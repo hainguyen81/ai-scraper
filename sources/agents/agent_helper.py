@@ -28,3 +28,21 @@ def resolve_absolute_path(relative_target_path):
     
     # full path from root workspace
     return absolute_hardware_path
+
+def json_raw_content(raw_content):
+    """Securely serialize input telemetry payloads and generate standard markdown log contents."""
+    
+    # ✅ ENTERPRISE CORE FIX: Dynamically detect and convert dict/list objects into character string tokens
+    if isinstance(raw_content, (dict, list)):
+        try:
+            # Convert the live dictionary tracking buffer into a formatted JSON string structure
+            raw_content = json.dumps(raw_content, indent=4, ensure_ascii=False)
+        except Exception as serialize_err:
+            # Fallback implementation to safe string casting to prevent pipeline block execution crashes
+            raw_content = str(raw_content)
+    elif raw_content is None:
+        raw_content = "None"
+    else:
+        # Enforce absolute character string datatype constraints for subsequent regular expressions
+        raw_content = str(raw_content)
+    return raw_content

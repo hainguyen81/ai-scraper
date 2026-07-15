@@ -23,6 +23,7 @@ if PARENT_AGENTS_DIR not in sys.path:
     sys.path.insert(0, PARENT_AGENTS_DIR)
 
 from agent_helper import resolve_absolute_path
+from agent_helper import json_raw_content
 
 output_scapper_data_file        = resolve_absolute_path("sources/output/free_models_by_llm_web_scapper.json")
 agent_working_history_file      = resolve_absolute_path("sources/output/free_models_by_llm_web_scapper.md")
@@ -64,6 +65,7 @@ class DynamicScraperAgent:
     
     def write_log(self, raw_content, prompt_instruction):
         pattern = r"\{.*\}|\[.*\]"
+        raw_content = json_raw_content(raw_content)
         is_json = bool(re.search(pattern, raw_content, re.DOTALL))
         log_content = (
             f"# Prompt Instruction:\n\n{prompt_instruction}\n\n"

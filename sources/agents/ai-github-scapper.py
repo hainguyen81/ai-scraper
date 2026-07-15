@@ -30,6 +30,7 @@ if PARENT_AGENTS_DIR not in sys.path:
 
 # Now Python can seamlessly see and import the centralized helper utility cleanly!
 from agent_helper import resolve_absolute_path
+from agent_helper import json_raw_content
 
 # ==============================================================================
 # GLOBAL CONFIGURATION PATHS - CONFIG HERE TO CUSTOMIZE DIRECTORY STRUCTURE
@@ -49,6 +50,7 @@ class GitHubModelScraper:
     
     def write_log(self, raw_content):
         pattern = r"\{.*\}|\[.*\]"
+        raw_content = json_raw_content(raw_content)
         is_json = bool(re.search(pattern, raw_content, re.DOTALL))
         log_content = (
             f"# Source:\n\n{self.target_url}\n\n"
