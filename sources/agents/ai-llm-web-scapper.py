@@ -48,6 +48,7 @@ class DynamicScraperAgent:
             base_url=base_url,
             api_key=api_key
         )
+        self.api_endpoint = base_url
         self.model_name = model_name
 
     def extract_web_content(self, url: str) -> str:
@@ -69,7 +70,7 @@ class DynamicScraperAgent:
 
     def process_and_structure_data(self, raw_text: str) -> Dict[str, Any]:
         """Execute semantic data structuring leveraging OpenAI compatible JSON structures globally."""
-        logger.info(f"Deserializing text matrix using Provider Base URL: {TARGET_BASE_URL} | Model: {self.model_name}")
+        logger.info(f"Deserializing text matrix using Provider Base URL: {self.api_endpoint} | Model: {self.model_name}")
         
         prompt_instruction = (
             "Analyze the text corpus provided and isolate all AI model providers offering a free tier API. "
