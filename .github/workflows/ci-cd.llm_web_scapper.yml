@@ -60,10 +60,10 @@ jobs:
       - name: "🤖 Launch AI Agent extraction graph instance"
         env:
           # Match the variable name with your execution script configuration env variables
-          API_KEY_GEMINI: ${{ secrets.MY_GEMINI_API_KEY }}
+          API_KEY_GEMINI: ${{ secrets.API_KEY_GEMINI }}
         run: |
           if [ -z "$API_KEY_GEMINI" ]; then
-            echo "::error::🚨 CRITICAL SECURITY FAILURE: MY_GEMINI_API_KEY secret token is missing from vault."
+            echo "::error::🚨 CRITICAL SECURITY FAILURE: API_KEY_GEMINI secret token is missing from vault."
             exit 1
           fi
           
