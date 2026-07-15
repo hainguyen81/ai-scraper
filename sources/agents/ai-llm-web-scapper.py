@@ -42,6 +42,7 @@ class AIWebScraperAgent:
         """Build core engine configuration parameters with secure endpoint mapping for Google AI Studio."""
         resolved_url = "https://generativelanguage.googleapis.com/v1beta/"
         
+        os.environ["BROWSERBASE_API_KEY"] = self.api_key
         return {
             "llm": {
                 "api_key": self.api_key,
@@ -109,7 +110,6 @@ if __name__ == "__main__":
     
     # Extract operational parameters using clean object attribute accessing instead of dict lookup
     geminiApiKey = args.gemini_api_key
-    os.environ["BROWSERBASE_API_KEY"] = geminiApiKey
     
     # Target URL database reference target mapping
     target_webpage = "https://github.com/open-free-llm-api/awesome-freellm-apis"
