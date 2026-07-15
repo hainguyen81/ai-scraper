@@ -2,6 +2,7 @@ import os
 import sys
 import json
 import logging
+import re
 import urllib.request
 from typing import List, Dict, Any, Optional
 
@@ -42,9 +43,10 @@ class HackerNewsTechScraper:
         self._show_stories_url = HN_STORIES_JSON_URL
     
     def write_log(self, raw_content):
+        pattern = r"^\s*(\{.*\}|\[.*\])\s*$"
         log_content = (
-            f"# Source:\n-------------------------------------------------\n{self._show_stories_url}\n-------------------------------------------------\n\n"
-            f"# Raw Response / Exception:\n-------------------------------------------------\n{raw_content}\n-------------------------------------------------\n\n"
+            f"# Source:\n\n{self._show_stories_url}\n\n"
+            f"# Raw Response / Exception:\n\n```json\n{raw_content}\n```\n\n" if re.match(pattern, raw_content, re.DOTALL) else f"# Raw Response / Exception:\n\n```text\n{raw_content}\n```\n\n"
         )
         with open(agent_working_history_file, "a", encoding="utf-8") as file:
             file.write(log_content)
