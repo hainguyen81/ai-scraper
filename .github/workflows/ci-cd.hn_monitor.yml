@@ -1,4 +1,4 @@
-name: "🤖 Agent - Execute Hacker News Tech Monitor"
+name: "🕵️ Agent - Execute Hacker News Tech Monitor"
 
 # Define triggering mechanisms for automated lifecycle management
 on:
@@ -8,8 +8,8 @@ on:
       scan_limit:
         description: "🔍 Maximum number of recent community threads to scan sequentially"
         required: false
-        default: "50"
-        type: string
+        default: 50
+        type: number
     
   # allow other workflow call into (inputs same as workflow_dispatch but required)
   workflow_call:
@@ -17,8 +17,8 @@ on:
       scan_limit:
         description: "🔍 Maximum number of recent community threads to scan sequentially"
         required: false
-        default: "50"
-        type: string
+        default: 50
+        type: number
     
   schedule:
     - cron: "0 0 * * 0" # every Sunday at 0:00
@@ -53,7 +53,9 @@ jobs:
     steps:
       # Step 1: Initialize workspace by cloning the target branch repository
       - name: "📂 Checkout code repository workspace"
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
+        with:
+          fetch-depth: 0
 
       # Step 2: Establish a secure, isolated Python virtual execution environment
       - name: "⚙️ Configure Python runtime execution platform"
@@ -63,9 +65,11 @@ jobs:
 
       # Step 3: Run asynchronous API listener via standard library runtime context
       - name: "🕵️‍♂️ Run community scanning monitoring pipeline"
+        env:
+          SCAN_LIMIT: ${{ inputs.scan_limit }}
         run: |
           echo "⚡ Initializing Hacker News REST endpoint stream listener..."
-          python sources/agents/ai-reddit-hacker-news-scapper.py
+          python sources/agents/ai-reddit-hacker-news-scapper.py --scan-limit "$SCAN_LIMIT"
           
       # Step 4: Dynamically organize directory, rename file by system date, and commit changes
       - name: "🚀 Commit and Push structured data to repository storage"
