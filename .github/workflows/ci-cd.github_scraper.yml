@@ -88,9 +88,10 @@ jobs:
               echo "📝 Committing system state changes..."
               git commit -m "🚀 data: Auto-ingest semantic corpus update [${CURRENT_DATE}]"
               
-              # ✅ ENTERPRISE HOTFIX: Fetch latest remote tree and rebase locally to prevent non-fast-forward failures
-              echo "🔄 Fetching remote state and applying automated rebase..."
-              git pull origin HEAD:${{ github.ref_name }} --rebase
+              # ✅ ENTERPRISE HOTFIX: Explicitly pull and rebase the remote branch directly into the working tree
+              echo "🔄 Fetching latest upstream tree and executing explicit contextual rebase..."
+              git fetch origin ${{ github.ref_name }}
+              git rebase origin/${{ github.ref_name }}
               
               echo "📤 Pushing secure data changes upstream to repository branch..."
               git push origin HEAD:${{ github.ref }}
