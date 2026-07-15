@@ -42,7 +42,7 @@ class AIWebScraperAgent:
         """Build core engine configuration parameters with secure endpoint mapping for Google AI Studio."""
         resolved_url = "https://generativelanguage.googleapis.com/v1beta/"
         
-        os.environ["BROWSERBASE_API_KEY"] = self.api_key
+        # os.environ["BROWSERBASE_API_KEY"] = self.api_key
         return {
             "llm": {
                 "api_key": self.api_key,
@@ -51,9 +51,9 @@ class AIWebScraperAgent:
                 "base_url": resolved_url,
                 "temperature": 0.0  # Set to zero to enforce strict factual parsing and eliminate hallucination
             },
-            "browser_base": {
-                "headless": True,  # Operate browser engine in background to optimize server workload
-                "driver": "chromium"
+            "loader": "playwright",
+            "loader_kwargs": {
+                "headless": True
             },
             "verbose": True
         }
