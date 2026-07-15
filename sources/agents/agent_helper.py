@@ -29,7 +29,7 @@ def resolve_absolute_path(relative_target_path):
     # full path from root workspace
     return absolute_hardware_path
 
-def json_raw_content(raw_content: Any) -> str:
+def json_raw_content(raw_content):
     """Securely serialize input telemetry payloads and generate standard markdown log contents."""
     
     # ✅ STEP 1: If input is already a string, attempt to safely parse it into a dict/list first
