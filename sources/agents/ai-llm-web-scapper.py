@@ -7,6 +7,27 @@ from scrapegraphai.graphs import SmartScraperGraph
 logging.basicConfig(level=logging.INFO, format="%(asctime)s [%(levelname)s]: %(message)s")
 logger = logging.getLogger("AIScraperAgent")
 
+# ==============================================================================
+# 🏢 ENTERPRISE INTER-PACKAGE ROUTING LAYER
+# ==============================================================================
+# Programmatically appends the parent directory (.ai/.agents/) into Python's runtime
+# search path array. This completely unlocks importing 'agent_helper.py'.
+# ==============================================================================
+CURRENT_SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__)) # .ai/.agents/.sub-agents/
+PARENT_AGENTS_DIR  = os.path.abspath(os.path.join(CURRENT_SCRIPT_DIR, "../")) # .ai/.agents/
+
+# jump to `agent_helper.py` folder path
+if PARENT_AGENTS_DIR not in sys.path:
+    sys.path.insert(0, PARENT_AGENTS_DIR)
+
+# Now Python can seamlessly see and import the centralized helper utility cleanly!
+from agent_helper import resolve_absolute_path
+
+# ==============================================================================
+# GLOBAL CONFIGURATION PATHS - CONFIG HERE TO CUSTOMIZE DIRECTORY STRUCTURE
+# ==============================================================================
+output_scapper_data_file  = resolve_absolute_path("sources/output/free_models_by_llm_web_scapper.json")
+
 class AIWebScraperAgent:
     """Autonomous AI Agent designed to ingest web pages and structure model parameters using an LLM."""
     
@@ -87,6 +108,7 @@ if __name__ == "__main__":
     if geminiApiKey:
         agent = AIWebScraperAgent(google_api_key=geminiApiKey)
         extracted_json = agent.scrape_target_page(target_url=target_webpage)
-        agent.export_agent_result(extracted_json)
+        agent.export_agent_result(extracted_json, output_scapper_data_file)
     else:
         logger.warning("Execution halted. Please supply a valid 'Gemini API Key' configuration parameter.")
+
