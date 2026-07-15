@@ -28,6 +28,7 @@ concurrency:
 
 # permissions for GitHub Actions READ/WRITE
 permissions:
+  actions: write
   contents: write
   packages: write
 
@@ -40,53 +41,96 @@ env:
 
 jobs:
   # ==============================================================================
-  # JOB 1: AUTOMATED ORCHESTRATION PIPELINE MATRIX ENGINE
+  # JOB 1: AUTOMATED ROUTING ENGINE FOR EXA SEMANTIC SEARCH AGENT
   # ==============================================================================
-  orchestrate-agents:
-    name: "🚀 Triggering Selected Infrastructure Components"
+  trigger-exa-agent:
+    name: "🕸 Trigger 👉 Semantic Search Scraper"
     runs-on: ubuntu-latest
-    
     permissions:
-      contents: write
       actions: write
-
+    # Execute only if the master configuration selection matches the current node driver route
+    if: ${{ github.event.inputs.agent_selection == 'All' || github.event.inputs.agent_selection == '🕸️ Semantic Search Scraper' }}
     steps:
-      # Step 1: Initialize code space workspace environment
       - name: "📂 Checkout workspace root repository"
         uses: actions/checkout@v7
         with:
           fetch-depth: 0
 
-      # Step 2: Dynamically parse variables and evaluate dispatch matrix routes
-      - name: "⚙️ Dispatching targeted upstream workflow signals"
+      - name: "📡 Dispatch Upstream Signal to Exa Agent"
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          SELECTION: ${{ github.event.inputs.agent_selection }}
+        run: |
+          echo "Initiating execution trigger for Exa Semantic Search Scraper Pipeline..."
+          gh workflow run "🕸️ Agent - Execute Semantic Search Scraper" --repo "${{ github.repository }}" --ref "${{ github.ref_name }}"
+          echo "✅ Signal transmitted successfully."
+
+  # ==============================================================================
+  # JOB 2: AUTOMATED ROUTING ENGINE FOR HACKER NEWS MONITOR AGENT
+  # ==============================================================================
+  trigger-hn-agent:
+    name: "🕵️ Trigger 👉 Hacker News Tech Monitor"
+    runs-on: ubuntu-latest
+    permissions:
+      actions: write
+    if: ${{ github.event.inputs.agent_selection == 'All' || github.event.inputs.agent_selection == '🕵️ Hacker News Tech Monitor' }}
+    steps:
+      - name: "📂 Checkout workspace root repository"
+        uses: actions/checkout@v7
+        with:
+          fetch-depth: 0
+
+      - name: "📡 Dispatch Upstream Signal with Custom Scan Limit Input Data"
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           LIMIT: ${{ github.event.inputs.scan_limit_default }}
         run: |
-          echo "🌐 Initiating core routing controller matrix layer..."
-          CURRENT_REPO="${{ github.repository }}"
-          TARGET_BRANCH="${{ github.ref_name }}"
-          
-          # Implementation of centralized switch routing logic matching business selections
-          if [ "$SELECTION" = "All" ] || [ "$SELECTION" = "🕸️ Semantic Search Scraper" ]; then
-            echo "📡 Activating: Exa AI Semantic Search Ingestion Node..."
-            gh workflow run "Execute Semantic Search Scraper" --repo "$CURRENT_REPO" --ref "$TARGET_BRANCH"
-          fi
-          
-          if [ "$SELECTION" = "All" ] || [ "$SELECTION" = "🕵️ Hacker News Tech Monitor" ]; then
-            echo "📡 Activating: Hacker News Real-Time Forum Stream Listener..."
-            gh workflow run "Execute Hacker News Tech Monitor" --repo "$CURRENT_REPO" --ref "$TARGET_BRANCH" -f scan_limit="$LIMIT"
-          fi
-          
-          if [ "$SELECTION" = "All" ] || [ "$SELECTION" = "🐙 GitHub Repository Scraper" ]; then
-            echo "📡 Activating: GitHub Open-Source Discovery Pipeline..."
-            gh workflow run "Execute GitHub Repository Scraper" --repo "$CURRENT_REPO" --ref "$TARGET_BRANCH"
-          fi
-          
-          if [ "$SELECTION" = "All" ] || [ "$SELECTION" = "🤖 AI Web Scraper" ]; then
-            echo "📡 Activating: Autonomous LLM Graph Web Scraper Agent..."
-            gh workflow run "Execute AI Web Scraper Agent" --repo "$CURRENT_REPO" --ref "$TARGET_BRANCH"
-          fi
-          
-          echo "🏆 All targeted agent workflow tasks successfully dispatched upstream!"
+          echo "Initiating execution trigger for Hacker News Forum Stream Analyzer Node..."
+          # ✅ CORRECTED: Explicitly bind the input parameter using the -f (field) operational option flag
+          gh workflow run "🕵️ Agent - Execute Hacker News Tech Monitor" --repo "${{ github.repository }}" --ref "${{ github.ref_name }}" -f scan_limit="$LIMIT"
+          echo "✅ Signal containing injection payload transmitted successfully."
+
+  # ==============================================================================
+  # JOB 3: AUTOMATED ROUTING ENGINE FOR GITHUB REPOSITORY SCRAPER AGENT
+  # ==============================================================================
+  trigger-github-agent:
+    name: "🐙 Trigger 👉 GitHub Repository Scraper"
+    runs-on: ubuntu-latest
+    permissions:
+      actions: write
+    if: ${{ github.event.inputs.agent_selection == 'All' || github.event.inputs.agent_selection == '🐙 GitHub Repository Scraper' }}
+    steps:
+      - name: "📂 Checkout workspace root repository"
+        uses: actions/checkout@v7
+        with:
+          fetch-depth: 0
+
+      - name: "📡 Dispatch Upstream Signal to GitHub Scraper Agent"
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          echo "Initiating execution trigger for Open-Source Repository Discovery Pipeline..."
+          gh workflow run "🐙 Agent - Execute GitHub Repository Scraper" --repo "${{ github.repository }}" --ref "${{ github.ref_name }}"
+          echo "✅ Signal transmitted successfully."
+
+  # ==============================================================================
+  # JOB 4: AUTOMATED ROUTING ENGINE FOR AI WEB SCRAPER LLM AGENT
+  # ==============================================================================
+  trigger-ai-web-agent:
+    name: "🤖 Trigger 👉 AI Web Scraper"
+    runs-on: ubuntu-latest
+    permissions:
+      actions: write
+    if: ${{ github.event.inputs.agent_selection == 'All' || github.event.inputs.agent_selection == '🤖 AI Web Scraper' }}
+    steps:
+      - name: "📂 Checkout workspace root repository"
+        uses: actions/checkout@v7
+        with:
+          fetch-depth: 0
+
+      - name: "📡 Dispatch Upstream Signal to Autonomous LLM Graph Agent"
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          echo "Initiating execution trigger for Autonomous LLM Graph Web Scraper Engine..."
+          gh workflow run "🤖 Agent - Execute AI Web Scraper" --repo "${{ github.repository }}" --ref "${{ github.ref_name }}"
+          echo "✅ Signal transmitted successfully."
