@@ -39,11 +39,12 @@ class SemanticSearchScraper:
         self.client = Exa(api_key=exa_api_key)
     
     def write_log(self, url, query, raw_content):
-        pattern = r"^\s*(\{.*\}|\[.*\])\s*$"
+        pattern = r"\{.*\}|\[.*\]"
+        is_json = bool(re.search(pattern, raw_content, re.DOTALL))
         log_content = (
             f"# Source:\n\n{url}\n\n"
             f"# Query:\n\n{query}\n\n"
-            f"# Raw Response / Exception:\n\n```json\n{raw_content}\n```\n\n" if re.match(pattern, raw_content, re.DOTALL) else f"# Raw Response / Exception:\n\n```text\n{raw_content}\n```\n\n"
+            f"# Raw Response / Exception:\n\n```json\n{raw_content}\n```\n\n" if is_json else f"# Raw Response / Exception:\n\n```text\n{raw_content}\n```\n\n"
         )
         with open(agent_working_history_file, "a", encoding="utf-8") as file:
             file.write(log_content)

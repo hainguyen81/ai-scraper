@@ -63,10 +63,11 @@ class DynamicScraperAgent:
             return ""
     
     def write_log(self, raw_content, prompt_instruction):
-        pattern = r"^\s*(\{.*\}|\[.*\])\s*$"
+        pattern = r"\{.*\}|\[.*\]"
+        is_json = bool(re.search(pattern, raw_content, re.DOTALL))
         log_content = (
             f"# Prompt Instruction:\n\n{prompt_instruction}\n\n"
-            f"# Raw Response:\n\n```json\n{raw_content}\n```\n\n" if re.match(pattern, raw_content, re.DOTALL) else f"# Raw Response:\n\n```text\n{raw_content}\n```\n\n"
+            f"# Raw Response:\n\n```json\n{raw_content}\n```\n\n" if is_json else f"# Raw Response:\n\n```text\n{raw_content}\n```\n\n"
         )
         with open(agent_working_history_file, "a", encoding="utf-8") as file:
             file.write(log_content)
