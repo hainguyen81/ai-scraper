@@ -52,7 +52,7 @@ class AIWebScraperAgent:
             },
             "browser_base": {
                 "headless": True,  # Operate browser engine in background to optimize server workload
-                "driver": "playwright"
+                "driver": "chromium"
             },
             "verbose": True
         }
