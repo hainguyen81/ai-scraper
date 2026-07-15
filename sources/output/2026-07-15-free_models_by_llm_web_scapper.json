@@ -1,0 +1,5 @@
+{
+    "free_providers": [],
+    "status": "failed",
+    "error": "The browserbase module is not installed. Please install it using `pip install browserbase`."
+}
