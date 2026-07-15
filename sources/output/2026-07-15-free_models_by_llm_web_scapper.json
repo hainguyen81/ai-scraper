@@ -1,4 +1,5 @@
 {
     "free_providers": [],
-    "status": "failed"
+    "status": "failed",
+    "error": "Structured inference schema parsing crashed: name 'agent_working_response_file' is not defined"
 }
