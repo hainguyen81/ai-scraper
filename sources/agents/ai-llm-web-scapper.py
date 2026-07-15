@@ -35,7 +35,7 @@ class NativeGeminiScraperAgent:
         self.client = genai.Client(api_key=google_api_key)
         self.model_name = "gemini-2.5-flash"
         self.types = types
-
+    
     def extract_web_content(self, url: str) -> str:
         """Fetch remote HTML content safely and strip heavy DOM elements to preserve token window space."""
         logger.info(f"Extracting DOM structures from remote target: {url}")
@@ -43,17 +43,17 @@ class NativeGeminiScraperAgent:
             req = urllib.request.Request(url, headers={"User-Agent": "EnterpriseScraper/2.0"})
             with urllib.request.urlopen(req, timeout=15) as response:
                 html_raw = response.read().decode("utf-8")
-                
+            
             # Parse and clean text payload utilizing BeautifulSoup layout matrices
             soup = BeautifulSoup(html_raw, "html.parser")
             for element in soup(["script", "style", "nav", "footer", "header"]):
                 element.decompose()
-                
+            
             return soup.get_text(separator=" ", strip=True)
         except Exception as fetch_err:
             logger.error(f"Failed to ingest raw data structures from target URL: {str(fetch_err)}")
             return ""
-
+    
     def process_and_structure_data(self, raw_text: str) -> Dict[str, Any]:
         """Execute semantic data structuring leveraging official Google structured output parameters."""
         logger.info("Deserializing semi-structured text matrix using official Gemini Client...")
@@ -68,29 +68,39 @@ class NativeGeminiScraperAgent:
             "3. 'model_name' (string) "
             "4. 'context_window_tokens' (integer, default to 128000 if not mentioned)."
         )
-
-        try:
-            # Enforce deterministic JSON output matching your strict specification schema
-            response = self.client.models.generate_content(
-                model=self.model_name,
-                contents=[prompt_instruction, raw_text],
-                config=self.types.GenerateContentConfig(
-                    response_mime_type="application/json",
-                    temperature=0.0
-                ),
-            )
-            return json.loads(response.text)
-        except Exception as llm_err:
-            logger.error(f"Structured inference schema parsing crashed: {str(llm_err)}")
-            return {"free_providers": [], "status": "failed"}
-
+        
+        # ✅ ENTERPRISE BACKOFF: Implement robust retry mechanism to bypass temporary 429 Rate Limits
+        import time
+        max_retries = 3
+        retry_delay_seconds = 30 # Sleep for 30 seconds if Google throttles the connection
+        
+        for attempt in range(max_retries):
+            try:
+                # Enforce deterministic JSON output matching your strict specification schema
+                response = self.client.models.generate_content(
+                    model=self.model_name,
+                    contents=[prompt_instruction, raw_text],
+                    config=self.types.GenerateContentConfig(
+                        response_mime_type="application/json",
+                        temperature=0.0
+                    ),
+                )
+                return json.loads(response.text)
+            except Exception as llm_err:
+                if "429" in str(llm_err) and attempt < max_retries - 1:
+                    logger.warning(f"⚠️ Rate limit 429 detected. Backing off for {retry_delay_seconds}s (Attempt {attempt + 1}/{max_retries})...")
+                    time.sleep(retry_delay_seconds)
+                else:
+                    logger.error(f"Structured inference schema parsing crashed: {str(llm_err)}")
+                    return {"free_providers": [], "status": "failed"}
+    
     def save_output(self, dataset: Dict[str, Any], filepath: str) -> None:
         """Ensure destination space existence and securely persist data objects on disk storage."""
         try:
             target_directory = os.path.dirname(filepath)
             if target_directory and not os.path.exists(target_directory):
                 os.makedirs(target_directory, exist_ok=True)
-                
+            
             with open(filepath, "w", encoding="utf-8") as f:
                 json.dump(dataset, f, indent=4, ensure_ascii=False)
             logger.info(f"Persistent payload successfully deployed to target: {filepath}")
