@@ -59,7 +59,7 @@ jobs:
         env:
           FILE_NAME: "free_models_by_github_scapper"
         run: |
-          TARGET_DIR="source/output"
+          TARGET_DIR="sources/output"
           # Prevent pipeline block execution if the target output file was not generated
           if [ ! -f "${TARGET_DIR}/$FILE_NAME" ]; then
               echo "::error::🚨 CRITICAL FAILURE: The scraper output payload '${TARGET_DIR}/$FILE_NAME' is missing."
