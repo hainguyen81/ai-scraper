@@ -1,6 +1,8 @@
 import os
+import sys
 import json
 import logging
+import argparse
 from typing import Dict, Any
 from scrapegraphai.graphs import SmartScraperGraph
 
@@ -17,11 +19,11 @@ logger = logging.getLogger("AIScraperAgent")
 CURRENT_SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__)) # .ai/.agents/.sub-agents/
 PARENT_AGENTS_DIR  = os.path.abspath(os.path.join(CURRENT_SCRIPT_DIR, "../")) # .ai/.agents/
 
-# jump to `agent_helper.py` folder path
+# Dynamic expansion of the system path execution environment variables
 if PARENT_AGENTS_DIR not in sys.path:
     sys.path.insert(0, PARENT_AGENTS_DIR)
 
-# Now Python can seamlessly see and import the centralized helper utility cleanly!
+# Resolve cross-module import paths cleanly from the absolute parent runtime workspace
 from agent_helper import resolve_absolute_path
 
 # ==============================================================================
@@ -38,7 +40,6 @@ class AIWebScraperAgent:
         
     def _build_agent_configuration(self) -> Dict[str, Any]:
         """Build core engine configuration parameters with secure endpoint mapping for Google AI Studio."""
-        # Use string escape mechanics to prevent system hyperlink rendering conflicts
         resolved_url = "https://generativelanguage.googleapis.com/v1beta/"
         
         return {
@@ -85,31 +86,35 @@ class AIWebScraperAgent:
             logger.error(f"Fatal operational exception raised inside AI Agent extraction graph: {str(agent_err)}")
             return {"free_providers": [], "status": "failed", "error": str(agent_err)}
             
-    def export_agent_result(self, result_data: Dict[str, Any], filename: str = "free_models_ai_agent.json") -> None:
-        """Verify data integrity and commit the extracted agent dataset to disk storage."""
+    def export_agent_result(self, result_data: Dict[str, Any], filename: str) -> None:
+        """Verify data integrity, secure nested directories, and commit dataset to disk storage."""
         try:
+            # Safely create nested parent directories for the resolved absolute output path
+            target_directory = os.path.dirname(filename)
+            if target_directory and not os.path.exists(target_directory):
+                os.makedirs(target_directory, exist_ok=True)
+                
             with open(filename, "w", encoding="utf-8") as file_out:
                 json.dump(result_data, file_out, indent=4, ensure_ascii=False)
             logger.info(f"Structured dataset successfully preserved to workspace file storage: {filename}")
         except IOError as io_err:
             logger.error(f"Disk write interface failure while exporting agent dataset: {str(io_err)}")
 
-# Application entry point for executing Block 2 system validation testing
+# Application entry point for executing operational pipeline automation
 if __name__ == "__main__":
-    parser = argparse.ArgumentParser()
-    parser.add_argument("--gemini-api-key", required=True)
+    parser = argparse.ArgumentParser(description="Autonomous LLM Web Scraper Pipeline Engine")
+    parser.add_argument("--gemini-api-key", required=True, help="Google AI Studio access credential string")
     args = parser.parse_args()
     
-    # Substitute with your actual Google AI Studio verification credential
-    geminiApiKey = args['gemini-api-key'] if args else None
+    # Extract operational parameters using clean object attribute accessing instead of dict lookup
+    geminiApiKey = args.gemini_api_key
     
-    # Target URL string protected with escape sequence mechanisms
+    # Target URL database reference target mapping
     target_webpage = "https://github.com/open-free-llm-api/awesome-freellm-apis"
     
     if geminiApiKey:
         agent = AIWebScraperAgent(google_api_key=geminiApiKey)
         extracted_json = agent.scrape_target_page(target_url=target_webpage)
-        agent.export_agent_result(extracted_json, output_scapper_data_file)
+        agent.export_agent_result(extracted_json, filename=output_scapper_data_file)
     else:
-        logger.warning("Execution halted. Please supply a valid 'Gemini API Key' configuration parameter.")
-
+        logger.warning("Execution halted. Please supply a valid '--gemini-api-key' configuration parameter.")
