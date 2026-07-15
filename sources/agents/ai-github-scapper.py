@@ -99,7 +99,8 @@ class GitHubModelScraper:
                 continue
             
             # ✅ ENTERPRISE CORE FIX: Detect free tier status via the parent's description text channel
-            description_text = str(provider.get("description", "-")).lower()
+            description = str(provider.get("description", "-"))
+            description_text = description.lower()
             is_free_provider = "free" in description_text or provider.get("category") == "provider_api"
             
             # If the provider is verified as a free host node, process its embedded models
@@ -152,7 +153,7 @@ class GitHubModelScraper:
                         "url": url,
                         "base_url": base_url,
                         "context_window": context_tokens,
-                        "description": description_text,
+                        "description": description,
                         "maxOutput": output_tokens,
                         "modality": model.get("modality", "-"),
                         "rateLimit": model.get("rateLimit", "-")
