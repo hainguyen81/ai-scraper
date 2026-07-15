@@ -23,21 +23,14 @@ if PARENT_AGENTS_DIR not in sys.path:
 
 from agent_helper import resolve_absolute_path
 
-output_scapper_data_file = resolve_absolute_path("sources/output/free_models_by_llm_web_scapper.json")
+output_scapper_data_file        = resolve_absolute_path("sources/output/free_models_by_llm_web_scapper.json")
+agent_working_history_file      = resolve_absolute_path("sources/output/free_models_by_llm_web_scapper.md")
 
 # ==============================================================================
 # 🎛️ CENTRALIZED AI ENDPOINT CONFIGURATION LAYER
 # Swap providers instantly by changing these 2 variables. The API Key is passed via CLI.
 # ==============================================================================
 SOURCE_LLM_MODELS_FREE_URL = "https://github.com/open-free-llm-api/awesome-freellm-apis"
-
-# Option A: OpenRouter Free Tier (Uncomment to use)
-# TARGET_BASE_URL   = "https://openrouter.ai"
-# TARGET_MODEL_NAME = "qwen/qwen-2.5-coder-32b-instruct:free"
-
-# Option B: Google Gemini API (Uncomment to use)
-# TARGET_BASE_URL   = "https://googleapis.com"
-# TARGET_MODEL_NAME = "gemini-2.5-flash"
 
 class DynamicScraperAgent:
     """Enterprise-grade dynamic agent designed to switch LLM providers effortlessly by modifying endpoint configurations."""
@@ -67,6 +60,14 @@ class DynamicScraperAgent:
         except Exception as fetch_err:
             logger.error(f"Failed to ingest raw data structures from target URL: {str(fetch_err)}")
             return ""
+    
+    def write_log(self, raw_content, prompt_instruction):
+        log_content = (
+            f"# Prompt Instruction:\n-------------------------------------------------\n{prompt_instruction}\n-------------------------------------------------\n\n"
+            f"# Raw Response:\n-------------------------------------------------\n{raw_content}\n-------------------------------------------------\n\n"
+        )
+        with open(agent_working_response_file, "a", encoding="utf-8") as file:
+            file.write(log_content)
 
     def process_and_structure_data(self, raw_text: str) -> Dict[str, Any]:
         """Execute semantic data structuring leveraging OpenAI compatible JSON structures globally."""
@@ -87,13 +88,22 @@ class DynamicScraperAgent:
             # Enforce strict deterministic JSON response schema via completion payloads
             response = self.client.chat.completions.create(
                 model=self.model_name,
-                response_format={"type": "json_object"},
                 messages=[
                     {"role": "system", "content": "You are a professional web data extractor. Always output clean raw JSON without markdown codeblocks."},
                     {"role": "user", "content": f"{prompt_instruction}\n\nWebpage content:\n{raw_text}"}
                 ],
                 temperature=0.0
             )
+            
+            raw_content = response.choices.message.content.strip()
+            self.write_log(raw_content, prompt_instruction)
+            
+            # ✅ ROBUST REGEX EXTRACTION: Isolate nested JSON bracket layouts to eliminate markdown wrapper block errors
+            json_match = re.search(r'\{.*\}', raw_content, re.DOTALL)
+            if json_match:
+                clean_json_str = json_match.group(0)
+                return json.loads(clean_json_str)
+            
             return json.loads(response.choices.message.content)
         except Exception as llm_err:
             logger.error(f"Structured inference schema parsing crashed: {str(llm_err)}")
