@@ -6,7 +6,7 @@
 # ==============================================================================
 
 import os
-import ast
+import json
 
 def resolve_absolute_path(relative_target_path):
     """
