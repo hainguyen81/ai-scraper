@@ -95,9 +95,34 @@ class DynamicScraperAgent:
                 temperature=0.0
             )
             
-            raw_content = response.choices.message.content.strip()
-            self.write_log(raw_content, prompt_instruction)
+            # ✅ ENTERPRISE DYNAMIC PARSING: Safely handle polymorphic responses (List vs Object choices wrapper)
+            choices_data = response.choices
+            # write response to history log
+            try:
+                # Convert the entire response structure into a standardized dictionary and serialize to string
+                raw_response_string = json.dumps(response, default=lambda o: getattr(o, '__dict__', str(o)), indent=2)
+                self.write_log(raw_response_string, prompt_instruction)
+                logger.info(f"💾 RAW RESPONSE MATRIX CAPTURED:\n{raw_response_string}")
+            except Exception as log_err:
+                # Fallback to standard string casting if complex nested serialization handshakes fail
+                logger.info(f"💾 RAW RESPONSE STRING CASTING FALLBACK:\n{str(response)}")
+                self.write_log(str(response), prompt_instruction)
             
+            # parse response JSON
+            raw_content = None
+            if isinstance(choices_data, list):
+                # If the provider wraps choices inside a native list structure
+                if len(choices_data) > 0:
+                    first_choice = choices_data[0]
+                    raw_content = first_choice.message.content.strip() if hasattr(first_choice, 'message') else str(first_choice)
+            else:
+                # Standard OpenAI object layout behavior fallback
+                raw_content = choices_data.message.content.strip()
+            
+            # could not parse
+            if not raw_content:
+                raise ValueError("Operational Critical: Extracted chat completion content stream is empty.")
+
             # ✅ ROBUST REGEX EXTRACTION: Isolate nested JSON bracket layouts to eliminate markdown wrapper block errors
             json_match = re.search(r'\{.*\}', raw_content, re.DOTALL)
             if json_match:
