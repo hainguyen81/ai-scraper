@@ -90,14 +90,9 @@ jobs:
         env:
           FILE_NAME: "free_models_by_llm_web_scapper"
         run: |
-          ls -la ../../
-          ls -la ../
-          ls -la ./
-          ls -la sources/
-          ls -la sources/output/
           TARGET_DIR="sources/output"
           # Prevent pipeline block execution if the target output file was not generated
-          if [ ! -f "${TARGET_DIR}/$FILE_NAME" ]; then
+          if [ ! -f "${TARGET_DIR}/$FILE_NAME.json" ]; then
               echo "::error::🚨 CRITICAL FAILURE: The scraper output payload '${TARGET_DIR}/$FILE_NAME' is missing."
               exit 1
           fi
