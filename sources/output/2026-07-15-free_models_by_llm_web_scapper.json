@@ -1,5 +1,4 @@
 {
     "free_providers": [],
-    "status": "failed",
-    "error": "Error code: 401 - {'statusCode': 401, 'error': 'Unauthorized', 'message': 'Unauthorized'}"
+    "status": "failed"
 }
