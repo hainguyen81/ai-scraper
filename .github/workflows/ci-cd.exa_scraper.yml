@@ -58,15 +58,15 @@ jobs:
       - name: "🤖 Execute multi-source semantic web discovery pipeline"
         env:
           # Secure ingestion of the private API Key configuration from GitHub Secrets manager
-          EXA_API_KEY: ${{ secrets.EXA_API_KEY }}
+          API_KEY_EXA: ${{ secrets.API_KEY_EXA }}
         run: |
           # Validate token existence to prevent runtime authentication failures
-          if [ -z "$EXA_API_KEY" ]; then
-            echo "::error::🚨 CRITICAL INFRASTRUCTURE FAILURE: EXA_API_KEY secret token identifier is missing from repository vault."
+          if [ -z "$API_KEY_EXA" ]; then
+            echo "::error::🚨 CRITICAL INFRASTRUCTURE FAILURE: API_KEY_EXA secret token identifier is missing from repository vault."
             exit 1
           fi
           echo "🧠 AI Ingestion Agent successfully authenticated. Booting semantic web discovery matrix..."
-          python sources/agents/ai-semantic-search-scapper.py --exa-api-key "$EXA_API_KEY"
+          python sources/agents/ai-semantic-search-scapper.py --exa-api-key "$API_KEY_EXA"
           echo "✅ Massive parallel data extraction process completed successfully!"
           
       # Step 5: Dynamically organize directory, rename file by system date, and commit changes
