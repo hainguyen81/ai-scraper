@@ -5,6 +5,1238 @@ https://raw.githubusercontent.com/mnfst/awesome-free-llm-apis/main/data.json
 # Raw Response / Exception:
 
 ```json
-{'lastUpdated': '2026-06-15', 'providers': [{'name': 'Aion Labs', 'category': 'provider_api', 'country': 'IL', 'flag': '🇮🇱', 'url': 'https://www.aionlabs.ai', 'baseUrl': 'https://api.aionlabs.ai/v1', 'description': 'Permanent free tier, no credit card required. 15 RPM, 20K tokens/day. Specialized for roleplay and storytelling.', 'footnoteRef': None, 'models': [{'id': 'aion-2.5', 'name': 'Aion 2.5', 'context': '128K', 'maxOutput': '32K', 'modality': 'Text (roleplay)', 'rateLimit': '15 RPM, 20K TPD'}, {'id': 'aion-2.0', 'name': 'Aion 2.0', 'context': '128K', 'maxOutput': '32K', 'modality': 'Text (roleplay)', 'rateLimit': '15 RPM, 20K TPD'}, {'id': 'aion-rp-llama-3.1-8b', 'name': 'Aion-RP 1.0 (8B)', 'context': '32K', 'maxOutput': '~8K', 'modality': 'Text (roleplay)', 'rateLimit': '15 RPM, 20K TPD'}]}, {'name': 'Cohere', 'category': 'provider_api', 'country': 'CA', 'flag': '🇨🇦', 'url': 'https://dashboard.cohere.com/api-keys', 'baseUrl': 'https://api.cohere.com/v2', 'description': 'Free "Trial" API key, no credit card. 1,000 API calls/month. Non-commercial use only.', 'footnoteRef': None, 'models': [{'id': 'command-a-plus-05-2026', 'name': 'Command A+ (218B)', 'context': '128K', 'maxOutput': '4K', 'modality': 'Text', 'rateLimit': '20 RPM'}, {'id': 'command-a-03-2025', 'name': 'Command A (111B)', 'context': '256K', 'maxOutput': '4K', 'modality': 'Text', 'rateLimit': '20 RPM'}, {'id': 'command-r-plus-08-2024', 'name': 'Command R+', 'context': '128K', 'maxOutput': '4K', 'modality': 'Text', 'rateLimit': '20 RPM'}, {'id': 'command-r-08-2024', 'name': 'Command R', 'context': '128K', 'maxOutput': '4K', 'modality': 'Text', 'rateLimit': '20 RPM'}, {'id': 'command-r7b-12-2024', 'name': 'Command R7B', 'context': '128K', 'maxOutput': '4K', 'modality': 'Text', 'rateLimit': '20 RPM'}]}, {'name': 'Google Gemini', 'category': 'provider_api', 'country': 'US', 'flag': '🇺🇸', 'url': 'https://aistudio.google.com/app/apikey', 'baseUrl': 'https://generativelanguage.googleapis.com/v1beta', 'description': 'Free tier unavailable in EU/UK/Switzerland. Free-tier prompts may be used by Google to improve products.', 'footnoteRef': 1, 'models': [{'id': 'gemini-3.5-flash', 'name': 'Gemini 3.5 Flash', 'context': '1M', 'maxOutput': '64K', 'modality': 'Text + Image + Audio + Video', 'rateLimit': '15 RPM, 1,500 RPD'}, {'id': 'gemini-3.1-flash-lite', 'name': 'Gemini 3.1 Flash-Lite', 'context': '1M', 'maxOutput': '65K', 'modality': 'Text + Image + Audio + Video', 'rateLimit': '30 RPM, 1,500 RPD'}, {'id': 'gemini-2.5-flash', 'name': 'Gemini 2.5 Flash', 'context': '1M', 'maxOutput': '65K', 'modality': 'Text + Image + Audio + Video', 'rateLimit': '15 RPM, 1,500 RPD'}, {'id': 'gemini-2.5-pro', 'name': 'Gemini 2.5 Pro', 'context': '2M', 'maxOutput': '65K', 'modality': 'Text + Image + Audio + Video', 'rateLimit': '5 RPM, 50 RPD'}]}, {'name': 'Mistral AI', 'category': 'provider_api', 'country': 'FR', 'flag': '🇫🇷', 'url': 'https://console.mistral.ai/api-keys', 'baseUrl': 'https://api.mistral.ai/v1', 'description': 'Free "Experiment" plan, no credit card. ~1B tokens/month. Prompts may be used to improve models.', 'footnoteRef': None, 'models': [{'id': 'mistral-medium-2604', 'name': 'Mistral Medium 3.5 (128B)', 'context': '256K', 'maxOutput': '256K', 'modality': 'Text + Image + Code', 'rateLimit': '~1 RPS, 500K TPM'}, {'id': 'mistral-small-2603', 'name': 'Mistral Small 4', 'context': '256K', 'maxOutput': '256K', 'modality': 'Text + Image + Code', 'rateLimit': '~1 RPS, 500K TPM'}, {'id': 'mistral-large-2411', 'name': 'Mistral Large 3', 'context': '256K', 'maxOutput': '256K', 'modality': 'Text', 'rateLimit': '~1 RPS, 500K TPM'}, {'id': 'open-mistral-nemo', 'name': 'Mistral Nemo (12B)', 'context': '128K', 'maxOutput': '128K', 'modality': 'Text', 'rateLimit': '~1 RPS, 500K TPM'}, {'id': 'codestral-2501', 'name': 'Codestral', 'context': '256K', 'maxOutput': '256K', 'modality': 'Code', 'rateLimit': '~1 RPS, 500K TPM'}, {'id': 'pixtral-large-2411', 'name': 'Pixtral Large', 'context': '128K', 'maxOutput': '128K', 'modality': 'Text + Image', 'rateLimit': '~1 RPS, 500K TPM'}]}, {'name': 'Z AI (Zhipu AI)', 'category': 'provider_api', 'country': 'CN', 'flag': '🇨🇳', 'url': 'https://open.bigmodel.cn/usercenter/apikeys', 'baseUrl': 'https://open.bigmodel.cn/api/paas/v4', 'description': 'Permanent free models, no credit card required.', 'footnoteRef': None, 'models': [{'id': 'glm-4.7-flash', 'name': 'GLM-4.7-Flash', 'context': '200K', 'maxOutput': '128K', 'modality': 'Text', 'rateLimit': '1 concurrent request'}, {'id': 'glm-4.6v-flash', 'name': 'GLM-4.6V-Flash', 'context': '128K', 'maxOutput': '~4K', 'modality': 'Text + Image', 'rateLimit': '1 concurrent request'}]}, {'name': 'Cerebras', 'category': 'inference_provider', 'country': 'US', 'flag': '🇺🇸', 'url': 'https://cloud.cerebras.ai/', 'baseUrl': 'https://api.cerebras.ai/v1', 'description': 'Free tier, no credit card. Ultra-fast inference (~2,600 tok/s). 1M tokens/day cap. 8K context cap on free tier.', 'footnoteRef': None, 'models': [{'id': 'gpt-oss-120b', 'name': 'gpt-oss-120b', 'context': '128K (8K on free)', 'maxOutput': '8K', 'modality': 'Text', 'rateLimit': '30 RPM, 14,400 RPD, 1M TPD'}, {'id': 'zai-glm-4.7', 'name': 'zai-glm-4.7', 'context': '128K (8K on free)', 'maxOutput': '8K', 'modality': 'Text', 'rateLimit': '10 RPM, 100 RPD, 1M TPD'}]}, {'name': 'Cloudflare Workers AI', 'category': 'inference_provider', 'country': 'US', 'flag': '🇺🇸', 'url': 'https://dash.cloudflare.com/profile/api-tokens', 'baseUrl': 'https://api.cloudflare.com/client/v4/accounts/{account_id}/ai/run', 'description': '10,000 Neurons/day free. 50+ models available on free tier.', 'footnoteRef': None, 'models': [{'id': '@cf/meta/llama-3.3-70b-instruct-fp8-fast', 'name': '@cf/meta/llama-3.3-70b-instruct-fp8-fast', 'context': '131K', 'maxOutput': 'Shared w/ context', 'modality': 'Text', 'rateLimit': '10K neurons/day (shared)'}, {'id': '@cf/meta/llama-4-scout-17b-16e-instruct', 'name': '@cf/meta/llama-4-scout-17b-16e-instruct', 'context': 'Up to 10M', 'maxOutput': 'Shared w/ context', 'modality': 'Multimodal', 'rateLimit': '10K neurons/day (shared)'}, {'id': '@cf/openai/gpt-oss-120b', 'name': '@cf/openai/gpt-oss-120b', 'context': '128K', 'maxOutput': 'Shared w/ context', 'modality': 'Text', 'rateLimit': '10K neurons/day (shared)'}, {'id': '@cf/moonshotai/kimi-k2.7-code', 'name': '@cf/moonshotai/kimi-k2.7-code', 'context': '262K', 'maxOutput': 'Shared w/ context', 'modality': 'Text (code)', 'rateLimit': '10K neurons/day (shared)'}, {'id': '@cf/google/gemma-4-26b-a4b-it', 'name': '@cf/google/gemma-4-26b-a4b-it', 'context': '256K', 'maxOutput': 'Shared w/ context', 'modality': 'Text', 'rateLimit': '10K neurons/day (shared)'}, {'id': '@cf/zhipuai/glm-4.7-flash', 'name': '@cf/zhipuai/glm-4.7-flash', 'context': '131K', 'maxOutput': 'Shared w/ context', 'modality': 'Text', 'rateLimit': '10K neurons/day (shared)'}, {'id': '@cf/mistralai/mistral-small-3.1-24b-instruct', 'name': '@cf/mistralai/mistral-small-3.1-24b-instruct', 'context': '128K', 'maxOutput': 'Shared w/ context', 'modality': 'Text', 'rateLimit': '10K neurons/day (shared)'}, {'id': '@cf/deepseek-ai/deepseek-r1-distill-qwen-32b', 'name': '@cf/deepseek-ai/deepseek-r1-distill-qwen-32b', 'context': '32K', 'maxOutput': 'Shared w/ context', 'modality': 'Text (reasoning)', 'rateLimit': '10K neurons/day (shared)'}, {'id': None, 'name': '+ 42 more models', 'context': 'Varies', 'maxOutput': 'Varies', 'modality': 'Text, Image, Audio, Embeddings', 'rateLimit': '10K neurons/day (shared)'}]}, {'name': 'GitHub Models', 'category': 'inference_provider', 'country': 'US', 'flag': '🇺🇸', 'url': 'https://github.com/marketplace/models', 'baseUrl': 'https://models.github.ai/inference', 'description': 'Free prototyping for all GitHub users. 45+ models. Per-request limits (8K in / 4K out).', 'footnoteRef': None, 'models': [{'id': 'openai/gpt-5', 'name': 'gpt-5', 'context': '200K', 'maxOutput': '32K', 'modality': 'Text', 'rateLimit': '10 RPM, 50 RPD'}, {'id': 'openai/gpt-4.1', 'name': 'gpt-4.1', 'context': '1M', 'maxOutput': '32K', 'modality': 'Text', 'rateLimit': '10 RPM, 50 RPD'}, {'id': 'openai/gpt-4.1-mini', 'name': 'gpt-4.1-mini', 'context': '1M', 'maxOutput': '32K', 'modality': 'Text', 'rateLimit': '15 RPM, 150 RPD'}, {'id': 'openai/gpt-4o', 'name': 'gpt-4o', 'context': '128K', 'maxOutput': '16K', 'modality': 'Text + Vision', 'rateLimit': '10 RPM, 50 RPD'}, {'id': 'openai/o4-mini', 'name': 'o4-mini', 'context': '200K', 'maxOutput': '100K', 'modality': 'Text (reasoning)', 'rateLimit': '10 RPM, 50 RPD'}, {'id': 'meta/Llama-4-Scout-17B-16E', 'name': 'Llama-4-Scout-17B-16E', 'context': '512K', 'maxOutput': '~4K', 'modality': 'Text + Vision', 'rateLimit': '15 RPM, 150 RPD'}, {'id': 'meta/Llama-4-Maverick-17B-128E', 'name': 'Llama-4-Maverick-17B-128E', 'context': '256K', 'maxOutput': '~4K', 'modality': 'Text + Vision', 'rateLimit': '10 RPM, 50 RPD'}, {'id': 'meta/Meta-Llama-3.3-70B', 'name': 'Meta-Llama-3.3-70B', 'context': '131K', 'maxOutput': '~4K', 'modality': 'Text', 'rateLimit': '15 RPM, 150 RPD'}, {'id': 'deepseek/DeepSeek-R1', 'name': 'DeepSeek-R1', 'context': '64K', 'maxOutput': '8K', 'modality': 'Text (reasoning)', 'rateLimit': '15 RPM, 150 RPD'}, {'id': 'mistralai/Mistral-Small-3.1', 'name': 'Mistral-Small-3.1', 'context': '128K', 'maxOutput': '~4K', 'modality': 'Text + Vision', 'rateLimit': '15 RPM, 150 RPD'}, {'id': None, 'name': '+ 35 more models', 'context': 'Varies', 'maxOutput': 'Varies', 'modality': 'Text / Image', 'rateLimit': 'Varies by tier'}]}, {'name': 'Groq', 'category': 'inference_provider', 'country': 'US', 'flag': '🇺🇸', 'url': 'https://console.groq.com/keys', 'baseUrl': 'https://api.groq.com/openai/v1', 'description': 'Free tier, no credit card. Ultra-fast LPU inference.', 'footnoteRef': 2, 'models': [{'id': 'llama-3.3-70b-versatile', 'name': 'llama-3.3-70b-versatile', 'context': '131K', 'maxOutput': '32K', 'modality': 'Text', 'rateLimit': '30 RPM, 1,000 RPD'}, {'id': 'llama-3.1-8b-instant', 'name': 'llama-3.1-8b-instant', 'context': '131K', 'maxOutput': '131K', 'modality': 'Text', 'rateLimit': '30 RPM, 1,000 RPD'}, {'id': 'llama-4-scout-17b-16e-instruct', 'name': 'llama-4-scout-17b-16e-instruct', 'context': '131K', 'maxOutput': '8K', 'modality': 'Text + Vision', 'rateLimit': '30 RPM, 1,000 RPD'}, {'id': 'qwen3-32b', 'name': 'qwen3-32b', 'context': '131K', 'maxOutput': '131K', 'modality': 'Text', 'rateLimit': '30 RPM, 1,000 RPD'}, {'id': 'gpt-oss-120b', 'name': 'gpt-oss-120b', 'context': '131K', 'maxOutput': '32K', 'modality': 'Text', 'rateLimit': '30 RPM, 1,000 RPD'}]}, {'name': 'Hugging Face', 'category': 'inference_provider', 'country': 'US', 'flag': '🇺🇸', 'url': 'https://huggingface.co/settings/tokens', 'baseUrl': 'https://router.huggingface.co/v1', 'description': '100K monthly Inference Provider credits for free users. Routes to Fireworks, Together, Hyperbolic, Nebius, Novita, DeepInfra and others. Thousands of models.', 'footnoteRef': None, 'models': [{'id': 'meta-llama/Meta-Llama-3.1-8B-Instruct', 'name': 'Meta-Llama-3.1-8B-Instruct', 'context': '128K', 'maxOutput': '~4K', 'modality': 'Text', 'rateLimit': 'Credit-metered'}, {'id': 'mistralai/Mistral-7B-Instruct-v0.3', 'name': 'Mistral-7B-Instruct-v0.3', 'context': '32K', 'maxOutput': '~4K', 'modality': 'Text', 'rateLimit': 'Credit-metered'}, {'id': 'mistralai/Mixtral-8x7B-Instruct-v0.1', 'name': 'Mixtral-8x7B-Instruct-v0.1', 'context': '32K', 'maxOutput': '~4K', 'modality': 'Text', 'rateLimit': 'Credit-metered'}, {'id': 'microsoft/Phi-3.5-mini-instruct', 'name': 'Phi-3.5-mini-instruct', 'context': '128K', 'maxOutput': '~4K', 'modality': 'Text', 'rateLimit': 'Credit-metered'}, {'id': 'Qwen/Qwen2.5-7B-Instruct', 'name': 'Qwen2.5-7B-Instruct', 'context': '131K', 'maxOutput': '~4K', 'modality': 'Text', 'rateLimit': 'Credit-metered'}, {'id': None, 'name': '+ thousands of community models', 'context': 'Varies', 'maxOutput': 'Varies', 'modality': 'Text, Image, Audio, Embeddings', 'rateLimit': '100K credits/month free'}]}, {'name': 'Kilo Code', 'category': 'inference_provider', 'country': 'US', 'flag': '🇺🇸', 'url': 'https://kilo.ai', 'baseUrl': 'https://api.kilo.ai/api/gateway', 'description': 'Free models with no credit card required. `kilo-auto/free` auto-router routes to minimax/minimax-m2.5:free (80%) and stepfun/step-3.5-flash:free (20%).', 'footnoteRef': 5, 'models': [{'id': 'x-ai/grok-code-fast-1:free', 'name': 'x-ai/grok-code-fast-1:free', 'context': '256K', 'maxOutput': '—', 'modality': 'Text (code)', 'rateLimit': '~200 req/hr'}, {'id': 'minimax/minimax-m2.5:free', 'name': 'minimax/minimax-m2.5:free', 'context': '196K', 'maxOutput': '8K', 'modality': 'Text', 'rateLimit': '~200 req/hr'}, {'id': 'bytedance-seed/dola-seed-2.0-pro:free', 'name': 'bytedance-seed/dola-seed-2.0-pro:free', 'context': '—', 'maxOutput': '—', 'modality': 'Text', 'rateLimit': '~200 req/hr'}, {'id': 'nvidia/nemotron-3-super-120b-a12b:free', 'name': 'nvidia/nemotron-3-super-120b-a12b:free', 'context': '262K', 'maxOutput': '32K', 'modality': 'Text', 'rateLimit': '~200 req/hr'}, {'id': 'arcee-ai/trinity-large-thinking:free', 'name': 'arcee-ai/trinity-large-thinking:free', 'context': '—', 'maxOutput': '—', 'modality': 'Text (reasoning)', 'rateLimit': '~200 req/hr'}, {'id': 'openrouter/free', 'name': 'openrouter/free', 'context': 'Varies', 'maxOutput': 'Varies', 'modality': 'Text', 'rateLimit': '~200 req/hr'}]}, {'name': 'LLM7.io', 'category': 'inference_provider', 'country': 'GB', 'flag': '🇬🇧', 'url': 'https://token.llm7.io', 'baseUrl': 'https://api.llm7.io/v1', 'description': 'Zero-friction API gateway. No registration needed for basic access. 30+ models. GDPR-compliant.', 'footnoteRef': None, 'models': [{'id': 'deepseek-r1-0528', 'name': 'deepseek-r1-0528', 'context': '—', 'maxOutput': '—', 'modality': 'Text (reasoning)', 'rateLimit': '30 RPM (120 with token)'}, {'id': 'deepseek-v3-0324', 'name': 'deepseek-v3-0324', 'context': '—', 'maxOutput': '—', 'modality': 'Text', 'rateLimit': '30 RPM (120 with token)'}, {'id': 'gemini-2.5-flash-lite', 'name': 'gemini-2.5-flash-lite', 'context': '—', 'maxOutput': '—', 'modality': 'Text + Vision', 'rateLimit': '30 RPM (120 with token)'}, {'id': 'gpt-4o-mini', 'name': 'gpt-4o-mini', 'context': '—', 'maxOutput': '—', 'modality': 'Text + Vision', 'rateLimit': '30 RPM (120 with token)'}, {'id': 'mistral-small-3.1-24b', 'name': 'mistral-small-3.1-24b', 'context': '32K', 'maxOutput': '—', 'modality': 'Text', 'rateLimit': '30 RPM (120 with token)'}, {'id': 'qwen2.5-coder-32b', 'name': 'qwen2.5-coder-32b', 'context': '—', 'maxOutput': '—', 'modality': 'Text (code)', 'rateLimit': '30 RPM (120 with token)'}, {'id': None, 'name': '+ ~24 more models', 'context': 'Varies', 'maxOutput': 'Varies', 'modality': 'Text', 'rateLimit': '30 RPM (120 with token)'}]}, {'name': 'ModelScope', 'category': 'inference_provider', 'country': 'CN', 'flag': '🇨🇳', 'url': 'https://modelscope.cn/my/myaccesstoken', 'baseUrl': 'https://api-inference.modelscope.cn/v1', 'description': 'Free API-Inference for registered users. Requires Alibaba Cloud account binding + real-name verification.', 'footnoteRef': 6, 'models': [{'id': 'Qwen/Qwen3.5-35B-A3B', 'name': 'Qwen/Qwen3.5-35B-A3B', 'context': '—', 'maxOutput': '—', 'modality': 'Text', 'rateLimit': '2,000 RPD total; <=500 RPD/model (dynamic)'}, {'id': 'Qwen/Qwen3.5-27B', 'name': 'Qwen/Qwen3.5-27B', 'context': '—', 'maxOutput': '—', 'modality': 'Text', 'rateLimit': '2,000 RPD total; <=500 RPD/model (dynamic)'}, {'id': None, 'name': '+ API-Inference-enabled models', 'context': 'Varies', 'maxOutput': 'Varies', 'modality': 'LLM, MLLM', 'rateLimit': 'Dynamic quotas + dynamic concurrency'}]}, {'name': 'NVIDIA NIM', 'category': 'inference_provider', 'country': 'US', 'flag': '🇺🇸', 'url': 'https://build.nvidia.com/explore/discover', 'baseUrl': 'https://integrate.api.nvidia.com/v1', 'description': 'Free with NVIDIA Developer Program membership. 100+ models. Rate-limited (no daily token cap).', 'footnoteRef': None, 'models': [{'id': 'deepseek-ai/deepseek-r1', 'name': 'deepseek-ai/deepseek-r1', 'context': '128K', 'maxOutput': '~163K', 'modality': 'Text (reasoning)', 'rateLimit': '~40 RPM'}, {'id': 'nvidia/nemotron-3-super-120b-a12b', 'name': 'nvidia/nemotron-3-super-120b-a12b', 'context': '262K', 'maxOutput': '262K', 'modality': 'Text', 'rateLimit': '~40 RPM'}, {'id': 'nvidia/nemotron-3-nano-30b-a3b', 'name': 'nvidia/nemotron-3-nano-30b-a3b', 'context': '128K', 'maxOutput': '32K', 'modality': 'Text', 'rateLimit': '~40 RPM'}, {'id': 'nvidia/llama-3.1-nemotron-ultra-253b-v1', 'name': 'nvidia/llama-3.1-nemotron-ultra-253b-v1', 'context': '128K', 'maxOutput': '4K', 'modality': 'Text', 'rateLimit': '~40 RPM'}, {'id': 'meta/llama-3.1-405b-instruct', 'name': 'meta/llama-3.1-405b-instruct', 'context': '128K', 'maxOutput': '4K', 'modality': 'Text', 'rateLimit': '~40 RPM'}, {'id': 'qwen/qwen2.5-72b-instruct', 'name': 'qwen/qwen2.5-72b-instruct', 'context': '128K', 'maxOutput': '8K', 'modality': 'Text', 'rateLimit': '~40 RPM'}, {'id': 'google/gemma-4-31b', 'name': 'google/gemma-4-31b', 'context': '128K', 'maxOutput': '8K', 'modality': 'Text', 'rateLimit': '~40 RPM'}, {'id': 'mistralai/mistral-large-2-instruct', 'name': 'mistralai/mistral-large-2-instruct', 'context': '128K', 'maxOutput': '4K', 'modality': 'Text', 'rateLimit': '~40 RPM'}, {'id': 'minimax/minimax-m2.7', 'name': 'minimax/minimax-m2.7', 'context': '128K', 'maxOutput': '8K', 'modality': 'Text', 'rateLimit': '~40 RPM'}, {'id': None, 'name': '+ 90 more models', 'context': 'Varies', 'maxOutput': 'Varies', 'modality': 'Text, Image, Video, Speech, Embeddings', 'rateLimit': '~40 RPM'}]}, {'name': 'Ollama Cloud', 'category': 'inference_provider', 'country': 'US', 'flag': '🇺🇸', 'url': 'https://ollama.com/settings/keys', 'baseUrl': 'https://api.ollama.com', 'description': 'Free tier with qualitative usage limits. 400+ models from Ollama library. Not OpenAI SDK-compatible; uses [Ollama API](https://docs.ollama.com/cloud).', 'footnoteRef': 3, 'models': [{'id': 'gpt-oss:120b-cloud', 'name': 'gpt-oss:120b-cloud', 'context': '128K', 'maxOutput': 'Model-dependent', 'modality': 'Text', 'rateLimit': 'Session/weekly limits (unpublished)'}, {'id': 'deepseek-v3.1:671b-cloud', 'name': 'deepseek-v3.1:671b-cloud', 'context': '128K', 'maxOutput': 'Model-dependent', 'modality': 'Text', 'rateLimit': 'Session/weekly limits (unpublished)'}, {'id': 'qwen3-coder:480b-cloud', 'name': 'qwen3-coder:480b-cloud', 'context': '128K', 'maxOutput': 'Model-dependent', 'modality': 'Text (code)', 'rateLimit': 'Session/weekly limits (unpublished)'}, {'id': 'kimi-k2:1t-cloud', 'name': 'kimi-k2:1t-cloud', 'context': '262K', 'maxOutput': 'Model-dependent', 'modality': 'Text', 'rateLimit': 'Session/weekly limits (unpublished)'}, {'id': 'glm-4.6:cloud', 'name': 'glm-4.6:cloud', 'context': '128K', 'maxOutput': 'Model-dependent', 'modality': 'Text', 'rateLimit': 'Session/weekly limits (unpublished)'}, {'id': 'deepseek-r1:cloud', 'name': 'deepseek-r1:cloud', 'context': '128K', 'maxOutput': 'Model-dependent', 'modality': 'Text (reasoning)', 'rateLimit': 'Session/weekly limits (unpublished)'}, {'id': None, 'name': '+ 30 more cloud models', 'context': 'Varies', 'maxOutput': 'Varies', 'modality': 'Text', 'rateLimit': 'Session/weekly limits (unpublished)'}]}, {'name': 'OpenRouter', 'category': 'inference_provider', 'country': 'US', 'flag': '🇺🇸', 'url': 'https://openrouter.ai/keys', 'baseUrl': 'https://openrouter.ai/api/v1', 'description': '~22 free models (marked with `:free` suffix). OpenAI SDK-compatible.', 'footnoteRef': 4, 'models': [{'id': 'qwen/qwen3-coder:free', 'name': 'qwen/qwen3-coder:free', 'context': '1M', 'maxOutput': '262K', 'modality': 'Text (code)', 'rateLimit': '20 RPM, 200 RPD'}, {'id': 'nvidia/nemotron-3-ultra-550b-a55b:free', 'name': 'nvidia/nemotron-3-ultra-550b-a55b:free', 'context': '1M', 'maxOutput': '65K', 'modality': 'Text', 'rateLimit': '20 RPM, 200 RPD'}, {'id': 'nvidia/nemotron-3-super-120b-a12b:free', 'name': 'nvidia/nemotron-3-super-120b-a12b:free', 'context': '1M', 'maxOutput': '262K', 'modality': 'Text', 'rateLimit': '20 RPM, 200 RPD'}, {'id': 'openai/gpt-oss-120b:free', 'name': 'openai/gpt-oss-120b:free', 'context': '131K', 'maxOutput': '131K', 'modality': 'Text', 'rateLimit': '20 RPM, 200 RPD'}, {'id': 'openai/gpt-oss-20b:free', 'name': 'openai/gpt-oss-20b:free', 'context': '131K', 'maxOutput': '8K', 'modality': 'Text', 'rateLimit': '20 RPM, 200 RPD'}, {'id': 'meta-llama/llama-3.3-70b-instruct:free', 'name': 'meta-llama/llama-3.3-70b-instruct:free', 'context': '131K', 'maxOutput': '~16K', 'modality': 'Text', 'rateLimit': '20 RPM, 200 RPD'}, {'id': 'nousresearch/hermes-3-llama-3.1-405b:free', 'name': 'nousresearch/hermes-3-llama-3.1-405b:free', 'context': '131K', 'maxOutput': '~16K', 'modality': 'Text', 'rateLimit': '20 RPM, 200 RPD'}, {'id': 'google/gemma-4-31b-it:free', 'name': 'google/gemma-4-31b-it:free', 'context': '262K', 'maxOutput': '32K', 'modality': 'Multimodal', 'rateLimit': '20 RPM, 200 RPD'}, {'id': 'poolside/laguna-m.1:free', 'name': 'poolside/laguna-m.1:free', 'context': '262K', 'maxOutput': '32K', 'modality': 'Text', 'rateLimit': '20 RPM, 200 RPD'}, {'id': 'qwen/qwen3-next-80b-a3b-instruct:free', 'name': 'qwen/qwen3-next-80b-a3b-instruct:free', 'context': '262K', 'maxOutput': '~32K', 'modality': 'Text', 'rateLimit': '20 RPM, 200 RPD'}, {'id': None, 'name': '+ ~12 more free models', 'context': 'Varies', 'maxOutput': 'Varies', 'modality': 'Text / Image', 'rateLimit': '20 RPM, 200 RPD'}]}, {'name': 'OVHcloud AI Endpoints', 'category': 'inference_provider', 'country': 'FR', 'flag': '🇫🇷', 'url': 'https://www.ovhcloud.com/en/public-cloud/ai-endpoints/catalog/', 'baseUrl': 'https://oai.endpoints.kepler.ai.cloud.ovh.net/v1', 'description': 'Free anonymous tier (no API key, no signup): 2 RPM per IP per model. 20+ open-weight models hosted in EU. OpenAI SDK-compatible.', 'footnoteRef': 7, 'models': [{'id': 'Qwen3.5-397B-A17B', 'name': 'Qwen3.5-397B-A17B', 'context': '131K', 'maxOutput': '~32K', 'modality': 'Text', 'rateLimit': '2 RPM (anonymous)'}, {'id': 'gpt-oss-120b', 'name': 'gpt-oss-120b', 'context': '128K', 'maxOutput': '~32K', 'modality': 'Text', 'rateLimit': '2 RPM (anonymous)'}, {'id': 'gpt-oss-20b', 'name': 'gpt-oss-20b', 'context': '128K', 'maxOutput': '~8K', 'modality': 'Text', 'rateLimit': '2 RPM (anonymous)'}, {'id': 'Meta-Llama-3_3-70B-Instruct', 'name': 'Meta-Llama-3_3-70B-Instruct', 'context': '131K', 'maxOutput': '~4K', 'modality': 'Text', 'rateLimit': '2 RPM (anonymous)'}, {'id': 'Llama-3.1-8B-Instruct', 'name': 'Llama-3.1-8B-Instruct', 'context': '131K', 'maxOutput': '~4K', 'modality': 'Text', 'rateLimit': '2 RPM (anonymous)'}, {'id': 'Qwen3.6-27B', 'name': 'Qwen3.6-27B', 'context': '131K', 'maxOutput': '~32K', 'modality': 'Text', 'rateLimit': '2 RPM (anonymous)'}, {'id': 'Qwen3.5-9B', 'name': 'Qwen3.5-9B', 'context': '131K', 'maxOutput': '~8K', 'modality': 'Text', 'rateLimit': '2 RPM (anonymous)'}, {'id': 'Qwen3-32B', 'name': 'Qwen3-32B', 'context': '131K', 'maxOutput': '~32K', 'modality': 'Text', 'rateLimit': '2 RPM (anonymous)'}, {'id': 'Qwen3-Coder-30B-A3B-Instruct', 'name': 'Qwen3-Coder-30B-A3B-Instruct', 'context': '262K', 'maxOutput': '~32K', 'modality': 'Text (code)', 'rateLimit': '2 RPM (anonymous)'}, {'id': 'Qwen2.5-VL-72B-Instruct', 'name': 'Qwen2.5-VL-72B-Instruct', 'context': '128K', 'maxOutput': '~8K', 'modality': 'Text + Vision', 'rateLimit': '2 RPM (anonymous)'}, {'id': 'Mistral-Small-3.2-24B-Instruct-2506', 'name': 'Mistral-Small-3.2-24B-Instruct', 'context': '128K', 'maxOutput': '~4K', 'modality': 'Text', 'rateLimit': '2 RPM (anonymous)'}, {'id': 'Mistral-Nemo-Instruct-2407', 'name': 'Mistral-Nemo-Instruct-2407', 'context': '128K', 'maxOutput': '~4K', 'modality': 'Text', 'rateLimit': '2 RPM (anonymous)'}, {'id': 'Mistral-7B-Instruct-v0.3', 'name': 'Mistral-7B-Instruct-v0.3', 'context': '32K', 'maxOutput': '~4K', 'modality': 'Text', 'rateLimit': '2 RPM (anonymous)'}]}, {'name': 'SambaNova', 'category': 'inference_provider', 'country': 'US', 'flag': '🇺🇸', 'url': 'https://cloud.sambanova.ai/apis', 'baseUrl': 'https://api.sambanova.ai/v1', 'description': 'Free tier, no credit card. Ultra-fast RDU inference. 20 RPM, 200K tokens/day.', 'footnoteRef': 8, 'models': [{'id': 'DeepSeek-V3.1', 'name': 'DeepSeek-V3.1', 'context': '128K', 'maxOutput': '~8K', 'modality': 'Text', 'rateLimit': '20 RPM, 20 RPD, 200K TPD'}, {'id': 'DeepSeek-V3.2', 'name': 'DeepSeek-V3.2 (Preview)', 'context': '128K', 'maxOutput': '~8K', 'modality': 'Text', 'rateLimit': '20 RPM, 20 RPD, 200K TPD'}, {'id': 'Meta-Llama-3.3-70B-Instruct', 'name': 'Meta-Llama-3.3-70B-Instruct', 'context': '128K', 'maxOutput': '~8K', 'modality': 'Text', 'rateLimit': '20 RPM, 20 RPD, 200K TPD'}, {'id': 'gpt-oss-120b', 'name': 'gpt-oss-120b', 'context': '128K', 'maxOutput': '~8K', 'modality': 'Text', 'rateLimit': '20 RPM, 20 RPD, 200K TPD'}, {'id': 'MiniMax-M2.7', 'name': 'MiniMax-M2.7', 'context': '128K', 'maxOutput': '~8K', 'modality': 'Text', 'rateLimit': '20 RPM, 20 RPD, 200K TPD'}, {'id': 'gemma-4-31B-it', 'name': 'gemma-4-31B-it (Preview)', 'context': '128K', 'maxOutput': '~8K', 'modality': 'Text', 'rateLimit': '20 RPM, 20 RPD, 200K TPD'}]}, {'name': 'SiliconFlow', 'category': 'inference_provider', 'country': 'CN', 'flag': '🇨🇳', 'url': 'https://cloud.siliconflow.cn/account/ak', 'baseUrl': 'https://api.siliconflow.cn/v1', 'description': 'Permanently free models, no credit card required. 200+ paid models also available.', 'footnoteRef': None, 'models': [{'id': 'Qwen/Qwen3-8B', 'name': 'Qwen/Qwen3-8B', 'context': '131K', 'maxOutput': '131K', 'modality': 'Text', 'rateLimit': '30 RPM, 60K TPM'}, {'id': 'deepseek-ai/DeepSeek-R1-Distill-Qwen-7B', 'name': 'deepseek-ai/DeepSeek-R1-Distill-Qwen-7B', 'context': '131K', 'maxOutput': 'Configurable', 'modality': 'Text (reasoning)', 'rateLimit': '30 RPM, 60K TPM'}]}], 'footnotes': [{'id': 1, 'text': 'Free tier not available in the EU, UK, or Switzerland ([available regions](https://ai.google.dev/gemini-api/docs/available-regions)).'}, {'id': 2, 'text': 'Groq rate limits were reduced in 2026. Most models now get 1,000 RPD on the free tier (down from 14,400). Llama 4 Maverick has been deprecated. See [rate limits](https://console.groq.com/docs/rate-limits).'}, {'id': 3, 'text': 'Ollama Cloud measures usage by GPU time, not tokens or requests. Free tier described as "light usage" with session limits resetting every 5 hours and weekly limits every 7 days. Pro (50x more) and Max (250x more) plans available. Not OpenAI SDK-compatible; uses the Ollama API.'}, {'id': 4, 'text': 'Free models default to 200 RPD per model. A one-time purchase of $10+ in credits unlocks 1,000 RPD for free models. OpenRouter also offers a [Free Models Router](https://openrouter.ai/docs/guides/routing/routers/free-models-router) (`openrouter/free`) and [model fallbacks](https://openrouter.ai/docs/guides/routing/model-fallbacks) for chaining models in priority order. Free providers may log prompts for training.'}, {'id': 5, 'text': 'Kilo Code free model list may change over time. nvidia/nemotron-3-super-120b-a12b:free is for trial use only — prompts are logged by NVIDIA. Auto-router `kilo-auto/free` routes to minimax/minimax-m2.5:free (80%) and stepfun/step-3.5-flash:free (20%).'}, {'id': 6, 'text': 'API-Inference is free for registered users. Current published limits are 2,000 requests/day per user (total across models), with per-model daily quotas dynamically adjusted and capped at 500; concurrency is also dynamically rate-limited. Requires Alibaba Cloud account binding and real-name verification ([limits](https://modelscope.cn/docs/model-service/API-Inference/limits), [intro](https://modelscope.cn/docs/model-service/API-Inference/intro)).'}, {'id': 7, 'text': 'OVHcloud AI Endpoints offers a permanent free anonymous tier (2 requests per minute per IP, per model) with no signup or API key required. Higher rate limits (400 RPM per Public Cloud project per model) require an API key and are billed pay-as-you-go per token; new Public Cloud accounts get up to $200 in free trial credits. Models are hosted in EU data centers.'}, {'id': 8, 'text': 'SambaNova grants $5 in initial credits (valid 30 days) on top of the permanent free tier. The free tier itself persists indefinitely with 20 RPM, 20 RPD, and 200K TPD per model. No credit card required. OpenAI SDK-compatible.'}], 'glossary': [{'abbreviation': 'RPM', 'meaning': 'Requests per minute'}, {'abbreviation': 'RPD', 'meaning': 'Requests per day'}, {'abbreviation': 'TPM', 'meaning': 'Tokens per minute'}, {'abbreviation': 'TPD', 'meaning': 'Tokens per day'}, {'abbreviation': 'RPS', 'meaning': 'Requests per second'}]}
+{
+    "lastUpdated": "2026-06-15",
+    "providers": [
+        {
+            "name": "Aion Labs",
+            "category": "provider_api",
+            "country": "IL",
+            "flag": "🇮🇱",
+            "url": "https://www.aionlabs.ai",
+            "baseUrl": "https://api.aionlabs.ai/v1",
+            "description": "Permanent free tier, no credit card required. 15 RPM, 20K tokens/day. Specialized for roleplay and storytelling.",
+            "footnoteRef": null,
+            "models": [
+                {
+                    "id": "aion-2.5",
+                    "name": "Aion 2.5",
+                    "context": "128K",
+                    "maxOutput": "32K",
+                    "modality": "Text (roleplay)",
+                    "rateLimit": "15 RPM, 20K TPD"
+                },
+                {
+                    "id": "aion-2.0",
+                    "name": "Aion 2.0",
+                    "context": "128K",
+                    "maxOutput": "32K",
+                    "modality": "Text (roleplay)",
+                    "rateLimit": "15 RPM, 20K TPD"
+                },
+                {
+                    "id": "aion-rp-llama-3.1-8b",
+                    "name": "Aion-RP 1.0 (8B)",
+                    "context": "32K",
+                    "maxOutput": "~8K",
+                    "modality": "Text (roleplay)",
+                    "rateLimit": "15 RPM, 20K TPD"
+                }
+            ]
+        },
+        {
+            "name": "Cohere",
+            "category": "provider_api",
+            "country": "CA",
+            "flag": "🇨🇦",
+            "url": "https://dashboard.cohere.com/api-keys",
+            "baseUrl": "https://api.cohere.com/v2",
+            "description": "Free \"Trial\" API key, no credit card. 1,000 API calls/month. Non-commercial use only.",
+            "footnoteRef": null,
+            "models": [
+                {
+                    "id": "command-a-plus-05-2026",
+                    "name": "Command A+ (218B)",
+                    "context": "128K",
+                    "maxOutput": "4K",
+                    "modality": "Text",
+                    "rateLimit": "20 RPM"
+                },
+                {
+                    "id": "command-a-03-2025",
+                    "name": "Command A (111B)",
+                    "context": "256K",
+                    "maxOutput": "4K",
+                    "modality": "Text",
+                    "rateLimit": "20 RPM"
+                },
+                {
+                    "id": "command-r-plus-08-2024",
+                    "name": "Command R+",
+                    "context": "128K",
+                    "maxOutput": "4K",
+                    "modality": "Text",
+                    "rateLimit": "20 RPM"
+                },
+                {
+                    "id": "command-r-08-2024",
+                    "name": "Command R",
+                    "context": "128K",
+                    "maxOutput": "4K",
+                    "modality": "Text",
+                    "rateLimit": "20 RPM"
+                },
+                {
+                    "id": "command-r7b-12-2024",
+                    "name": "Command R7B",
+                    "context": "128K",
+                    "maxOutput": "4K",
+                    "modality": "Text",
+                    "rateLimit": "20 RPM"
+                }
+            ]
+        },
+        {
+            "name": "Google Gemini",
+            "category": "provider_api",
+            "country": "US",
+            "flag": "🇺🇸",
+            "url": "https://aistudio.google.com/app/apikey",
+            "baseUrl": "https://generativelanguage.googleapis.com/v1beta",
+            "description": "Free tier unavailable in EU/UK/Switzerland. Free-tier prompts may be used by Google to improve products.",
+            "footnoteRef": 1,
+            "models": [
+                {
+                    "id": "gemini-3.5-flash",
+                    "name": "Gemini 3.5 Flash",
+                    "context": "1M",
+                    "maxOutput": "64K",
+                    "modality": "Text + Image + Audio + Video",
+                    "rateLimit": "15 RPM, 1,500 RPD"
+                },
+                {
+                    "id": "gemini-3.1-flash-lite",
+                    "name": "Gemini 3.1 Flash-Lite",
+                    "context": "1M",
+                    "maxOutput": "65K",
+                    "modality": "Text + Image + Audio + Video",
+                    "rateLimit": "30 RPM, 1,500 RPD"
+                },
+                {
+                    "id": "gemini-2.5-flash",
+                    "name": "Gemini 2.5 Flash",
+                    "context": "1M",
+                    "maxOutput": "65K",
+                    "modality": "Text + Image + Audio + Video",
+                    "rateLimit": "15 RPM, 1,500 RPD"
+                },
+                {
+                    "id": "gemini-2.5-pro",
+                    "name": "Gemini 2.5 Pro",
+                    "context": "2M",
+                    "maxOutput": "65K",
+                    "modality": "Text + Image + Audio + Video",
+                    "rateLimit": "5 RPM, 50 RPD"
+                }
+            ]
+        },
+        {
+            "name": "Mistral AI",
+            "category": "provider_api",
+            "country": "FR",
+            "flag": "🇫🇷",
+            "url": "https://console.mistral.ai/api-keys",
+            "baseUrl": "https://api.mistral.ai/v1",
+            "description": "Free \"Experiment\" plan, no credit card. ~1B tokens/month. Prompts may be used to improve models.",
+            "footnoteRef": null,
+            "models": [
+                {
+                    "id": "mistral-medium-2604",
+                    "name": "Mistral Medium 3.5 (128B)",
+                    "context": "256K",
+                    "maxOutput": "256K",
+                    "modality": "Text + Image + Code",
+                    "rateLimit": "~1 RPS, 500K TPM"
+                },
+                {
+                    "id": "mistral-small-2603",
+                    "name": "Mistral Small 4",
+                    "context": "256K",
+                    "maxOutput": "256K",
+                    "modality": "Text + Image + Code",
+                    "rateLimit": "~1 RPS, 500K TPM"
+                },
+                {
+                    "id": "mistral-large-2411",
+                    "name": "Mistral Large 3",
+                    "context": "256K",
+                    "maxOutput": "256K",
+                    "modality": "Text",
+                    "rateLimit": "~1 RPS, 500K TPM"
+                },
+                {
+                    "id": "open-mistral-nemo",
+                    "name": "Mistral Nemo (12B)",
+                    "context": "128K",
+                    "maxOutput": "128K",
+                    "modality": "Text",
+                    "rateLimit": "~1 RPS, 500K TPM"
+                },
+                {
+                    "id": "codestral-2501",
+                    "name": "Codestral",
+                    "context": "256K",
+                    "maxOutput": "256K",
+                    "modality": "Code",
+                    "rateLimit": "~1 RPS, 500K TPM"
+                },
+                {
+                    "id": "pixtral-large-2411",
+                    "name": "Pixtral Large",
+                    "context": "128K",
+                    "maxOutput": "128K",
+                    "modality": "Text + Image",
+                    "rateLimit": "~1 RPS, 500K TPM"
+                }
+            ]
+        },
+        {
+            "name": "Z AI (Zhipu AI)",
+            "category": "provider_api",
+            "country": "CN",
+            "flag": "🇨🇳",
+            "url": "https://open.bigmodel.cn/usercenter/apikeys",
+            "baseUrl": "https://open.bigmodel.cn/api/paas/v4",
+            "description": "Permanent free models, no credit card required.",
+            "footnoteRef": null,
+            "models": [
+                {
+                    "id": "glm-4.7-flash",
+                    "name": "GLM-4.7-Flash",
+                    "context": "200K",
+                    "maxOutput": "128K",
+                    "modality": "Text",
+                    "rateLimit": "1 concurrent request"
+                },
+                {
+                    "id": "glm-4.6v-flash",
+                    "name": "GLM-4.6V-Flash",
+                    "context": "128K",
+                    "maxOutput": "~4K",
+                    "modality": "Text + Image",
+                    "rateLimit": "1 concurrent request"
+                }
+            ]
+        },
+        {
+            "name": "Cerebras",
+            "category": "inference_provider",
+            "country": "US",
+            "flag": "🇺🇸",
+            "url": "https://cloud.cerebras.ai/",
+            "baseUrl": "https://api.cerebras.ai/v1",
+            "description": "Free tier, no credit card. Ultra-fast inference (~2,600 tok/s). 1M tokens/day cap. 8K context cap on free tier.",
+            "footnoteRef": null,
+            "models": [
+                {
+                    "id": "gpt-oss-120b",
+                    "name": "gpt-oss-120b",
+                    "context": "128K (8K on free)",
+                    "maxOutput": "8K",
+                    "modality": "Text",
+                    "rateLimit": "30 RPM, 14,400 RPD, 1M TPD"
+                },
+                {
+                    "id": "zai-glm-4.7",
+                    "name": "zai-glm-4.7",
+                    "context": "128K (8K on free)",
+                    "maxOutput": "8K",
+                    "modality": "Text",
+                    "rateLimit": "10 RPM, 100 RPD, 1M TPD"
+                }
+            ]
+        },
+        {
+            "name": "Cloudflare Workers AI",
+            "category": "inference_provider",
+            "country": "US",
+            "flag": "🇺🇸",
+            "url": "https://dash.cloudflare.com/profile/api-tokens",
+            "baseUrl": "https://api.cloudflare.com/client/v4/accounts/{account_id}/ai/run",
+            "description": "10,000 Neurons/day free. 50+ models available on free tier.",
+            "footnoteRef": null,
+            "models": [
+                {
+                    "id": "@cf/meta/llama-3.3-70b-instruct-fp8-fast",
+                    "name": "@cf/meta/llama-3.3-70b-instruct-fp8-fast",
+                    "context": "131K",
+                    "maxOutput": "Shared w/ context",
+                    "modality": "Text",
+                    "rateLimit": "10K neurons/day (shared)"
+                },
+                {
+                    "id": "@cf/meta/llama-4-scout-17b-16e-instruct",
+                    "name": "@cf/meta/llama-4-scout-17b-16e-instruct",
+                    "context": "Up to 10M",
+                    "maxOutput": "Shared w/ context",
+                    "modality": "Multimodal",
+                    "rateLimit": "10K neurons/day (shared)"
+                },
+                {
+                    "id": "@cf/openai/gpt-oss-120b",
+                    "name": "@cf/openai/gpt-oss-120b",
+                    "context": "128K",
+                    "maxOutput": "Shared w/ context",
+                    "modality": "Text",
+                    "rateLimit": "10K neurons/day (shared)"
+                },
+                {
+                    "id": "@cf/moonshotai/kimi-k2.7-code",
+                    "name": "@cf/moonshotai/kimi-k2.7-code",
+                    "context": "262K",
+                    "maxOutput": "Shared w/ context",
+                    "modality": "Text (code)",
+                    "rateLimit": "10K neurons/day (shared)"
+                },
+                {
+                    "id": "@cf/google/gemma-4-26b-a4b-it",
+                    "name": "@cf/google/gemma-4-26b-a4b-it",
+                    "context": "256K",
+                    "maxOutput": "Shared w/ context",
+                    "modality": "Text",
+                    "rateLimit": "10K neurons/day (shared)"
+                },
+                {
+                    "id": "@cf/zhipuai/glm-4.7-flash",
+                    "name": "@cf/zhipuai/glm-4.7-flash",
+                    "context": "131K",
+                    "maxOutput": "Shared w/ context",
+                    "modality": "Text",
+                    "rateLimit": "10K neurons/day (shared)"
+                },
+                {
+                    "id": "@cf/mistralai/mistral-small-3.1-24b-instruct",
+                    "name": "@cf/mistralai/mistral-small-3.1-24b-instruct",
+                    "context": "128K",
+                    "maxOutput": "Shared w/ context",
+                    "modality": "Text",
+                    "rateLimit": "10K neurons/day (shared)"
+                },
+                {
+                    "id": "@cf/deepseek-ai/deepseek-r1-distill-qwen-32b",
+                    "name": "@cf/deepseek-ai/deepseek-r1-distill-qwen-32b",
+                    "context": "32K",
+                    "maxOutput": "Shared w/ context",
+                    "modality": "Text (reasoning)",
+                    "rateLimit": "10K neurons/day (shared)"
+                },
+                {
+                    "id": null,
+                    "name": "+ 42 more models",
+                    "context": "Varies",
+                    "maxOutput": "Varies",
+                    "modality": "Text, Image, Audio, Embeddings",
+                    "rateLimit": "10K neurons/day (shared)"
+                }
+            ]
+        },
+        {
+            "name": "GitHub Models",
+            "category": "inference_provider",
+            "country": "US",
+            "flag": "🇺🇸",
+            "url": "https://github.com/marketplace/models",
+            "baseUrl": "https://models.github.ai/inference",
+            "description": "Free prototyping for all GitHub users. 45+ models. Per-request limits (8K in / 4K out).",
+            "footnoteRef": null,
+            "models": [
+                {
+                    "id": "openai/gpt-5",
+                    "name": "gpt-5",
+                    "context": "200K",
+                    "maxOutput": "32K",
+                    "modality": "Text",
+                    "rateLimit": "10 RPM, 50 RPD"
+                },
+                {
+                    "id": "openai/gpt-4.1",
+                    "name": "gpt-4.1",
+                    "context": "1M",
+                    "maxOutput": "32K",
+                    "modality": "Text",
+                    "rateLimit": "10 RPM, 50 RPD"
+                },
+                {
+                    "id": "openai/gpt-4.1-mini",
+                    "name": "gpt-4.1-mini",
+                    "context": "1M",
+                    "maxOutput": "32K",
+                    "modality": "Text",
+                    "rateLimit": "15 RPM, 150 RPD"
+                },
+                {
+                    "id": "openai/gpt-4o",
+                    "name": "gpt-4o",
+                    "context": "128K",
+                    "maxOutput": "16K",
+                    "modality": "Text + Vision",
+                    "rateLimit": "10 RPM, 50 RPD"
+                },
+                {
+                    "id": "openai/o4-mini",
+                    "name": "o4-mini",
+                    "context": "200K",
+                    "maxOutput": "100K",
+                    "modality": "Text (reasoning)",
+                    "rateLimit": "10 RPM, 50 RPD"
+                },
+                {
+                    "id": "meta/Llama-4-Scout-17B-16E",
+                    "name": "Llama-4-Scout-17B-16E",
+                    "context": "512K",
+                    "maxOutput": "~4K",
+                    "modality": "Text + Vision",
+                    "rateLimit": "15 RPM, 150 RPD"
+                },
+                {
+                    "id": "meta/Llama-4-Maverick-17B-128E",
+                    "name": "Llama-4-Maverick-17B-128E",
+                    "context": "256K",
+                    "maxOutput": "~4K",
+                    "modality": "Text + Vision",
+                    "rateLimit": "10 RPM, 50 RPD"
+                },
+                {
+                    "id": "meta/Meta-Llama-3.3-70B",
+                    "name": "Meta-Llama-3.3-70B",
+                    "context": "131K",
+                    "maxOutput": "~4K",
+                    "modality": "Text",
+                    "rateLimit": "15 RPM, 150 RPD"
+                },
+                {
+                    "id": "deepseek/DeepSeek-R1",
+                    "name": "DeepSeek-R1",
+                    "context": "64K",
+                    "maxOutput": "8K",
+                    "modality": "Text (reasoning)",
+                    "rateLimit": "15 RPM, 150 RPD"
+                },
+                {
+                    "id": "mistralai/Mistral-Small-3.1",
+                    "name": "Mistral-Small-3.1",
+                    "context": "128K",
+                    "maxOutput": "~4K",
+                    "modality": "Text + Vision",
+                    "rateLimit": "15 RPM, 150 RPD"
+                },
+                {
+                    "id": null,
+                    "name": "+ 35 more models",
+                    "context": "Varies",
+                    "maxOutput": "Varies",
+                    "modality": "Text / Image",
+                    "rateLimit": "Varies by tier"
+                }
+            ]
+        },
+        {
+            "name": "Groq",
+            "category": "inference_provider",
+            "country": "US",
+            "flag": "🇺🇸",
+            "url": "https://console.groq.com/keys",
+            "baseUrl": "https://api.groq.com/openai/v1",
+            "description": "Free tier, no credit card. Ultra-fast LPU inference.",
+            "footnoteRef": 2,
+            "models": [
+                {
+                    "id": "llama-3.3-70b-versatile",
+                    "name": "llama-3.3-70b-versatile",
+                    "context": "131K",
+                    "maxOutput": "32K",
+                    "modality": "Text",
+                    "rateLimit": "30 RPM, 1,000 RPD"
+                },
+                {
+                    "id": "llama-3.1-8b-instant",
+                    "name": "llama-3.1-8b-instant",
+                    "context": "131K",
+                    "maxOutput": "131K",
+                    "modality": "Text",
+                    "rateLimit": "30 RPM, 1,000 RPD"
+                },
+                {
+                    "id": "llama-4-scout-17b-16e-instruct",
+                    "name": "llama-4-scout-17b-16e-instruct",
+                    "context": "131K",
+                    "maxOutput": "8K",
+                    "modality": "Text + Vision",
+                    "rateLimit": "30 RPM, 1,000 RPD"
+                },
+                {
+                    "id": "qwen3-32b",
+                    "name": "qwen3-32b",
+                    "context": "131K",
+                    "maxOutput": "131K",
+                    "modality": "Text",
+                    "rateLimit": "30 RPM, 1,000 RPD"
+                },
+                {
+                    "id": "gpt-oss-120b",
+                    "name": "gpt-oss-120b",
+                    "context": "131K",
+                    "maxOutput": "32K",
+                    "modality": "Text",
+                    "rateLimit": "30 RPM, 1,000 RPD"
+                }
+            ]
+        },
+        {
+            "name": "Hugging Face",
+            "category": "inference_provider",
+            "country": "US",
+            "flag": "🇺🇸",
+            "url": "https://huggingface.co/settings/tokens",
+            "baseUrl": "https://router.huggingface.co/v1",
+            "description": "100K monthly Inference Provider credits for free users. Routes to Fireworks, Together, Hyperbolic, Nebius, Novita, DeepInfra and others. Thousands of models.",
+            "footnoteRef": null,
+            "models": [
+                {
+                    "id": "meta-llama/Meta-Llama-3.1-8B-Instruct",
+                    "name": "Meta-Llama-3.1-8B-Instruct",
+                    "context": "128K",
+                    "maxOutput": "~4K",
+                    "modality": "Text",
+                    "rateLimit": "Credit-metered"
+                },
+                {
+                    "id": "mistralai/Mistral-7B-Instruct-v0.3",
+                    "name": "Mistral-7B-Instruct-v0.3",
+                    "context": "32K",
+                    "maxOutput": "~4K",
+                    "modality": "Text",
+                    "rateLimit": "Credit-metered"
+                },
+                {
+                    "id": "mistralai/Mixtral-8x7B-Instruct-v0.1",
+                    "name": "Mixtral-8x7B-Instruct-v0.1",
+                    "context": "32K",
+                    "maxOutput": "~4K",
+                    "modality": "Text",
+                    "rateLimit": "Credit-metered"
+                },
+                {
+                    "id": "microsoft/Phi-3.5-mini-instruct",
+                    "name": "Phi-3.5-mini-instruct",
+                    "context": "128K",
+                    "maxOutput": "~4K",
+                    "modality": "Text",
+                    "rateLimit": "Credit-metered"
+                },
+                {
+                    "id": "Qwen/Qwen2.5-7B-Instruct",
+                    "name": "Qwen2.5-7B-Instruct",
+                    "context": "131K",
+                    "maxOutput": "~4K",
+                    "modality": "Text",
+                    "rateLimit": "Credit-metered"
+                },
+                {
+                    "id": null,
+                    "name": "+ thousands of community models",
+                    "context": "Varies",
+                    "maxOutput": "Varies",
+                    "modality": "Text, Image, Audio, Embeddings",
+                    "rateLimit": "100K credits/month free"
+                }
+            ]
+        },
+        {
+            "name": "Kilo Code",
+            "category": "inference_provider",
+            "country": "US",
+            "flag": "🇺🇸",
+            "url": "https://kilo.ai",
+            "baseUrl": "https://api.kilo.ai/api/gateway",
+            "description": "Free models with no credit card required. `kilo-auto/free` auto-router routes to minimax/minimax-m2.5:free (80%) and stepfun/step-3.5-flash:free (20%).",
+            "footnoteRef": 5,
+            "models": [
+                {
+                    "id": "x-ai/grok-code-fast-1:free",
+                    "name": "x-ai/grok-code-fast-1:free",
+                    "context": "256K",
+                    "maxOutput": "—",
+                    "modality": "Text (code)",
+                    "rateLimit": "~200 req/hr"
+                },
+                {
+                    "id": "minimax/minimax-m2.5:free",
+                    "name": "minimax/minimax-m2.5:free",
+                    "context": "196K",
+                    "maxOutput": "8K",
+                    "modality": "Text",
+                    "rateLimit": "~200 req/hr"
+                },
+                {
+                    "id": "bytedance-seed/dola-seed-2.0-pro:free",
+                    "name": "bytedance-seed/dola-seed-2.0-pro:free",
+                    "context": "—",
+                    "maxOutput": "—",
+                    "modality": "Text",
+                    "rateLimit": "~200 req/hr"
+                },
+                {
+                    "id": "nvidia/nemotron-3-super-120b-a12b:free",
+                    "name": "nvidia/nemotron-3-super-120b-a12b:free",
+                    "context": "262K",
+                    "maxOutput": "32K",
+                    "modality": "Text",
+                    "rateLimit": "~200 req/hr"
+                },
+                {
+                    "id": "arcee-ai/trinity-large-thinking:free",
+                    "name": "arcee-ai/trinity-large-thinking:free",
+                    "context": "—",
+                    "maxOutput": "—",
+                    "modality": "Text (reasoning)",
+                    "rateLimit": "~200 req/hr"
+                },
+                {
+                    "id": "openrouter/free",
+                    "name": "openrouter/free",
+                    "context": "Varies",
+                    "maxOutput": "Varies",
+                    "modality": "Text",
+                    "rateLimit": "~200 req/hr"
+                }
+            ]
+        },
+        {
+            "name": "LLM7.io",
+            "category": "inference_provider",
+            "country": "GB",
+            "flag": "🇬🇧",
+            "url": "https://token.llm7.io",
+            "baseUrl": "https://api.llm7.io/v1",
+            "description": "Zero-friction API gateway. No registration needed for basic access. 30+ models. GDPR-compliant.",
+            "footnoteRef": null,
+            "models": [
+                {
+                    "id": "deepseek-r1-0528",
+                    "name": "deepseek-r1-0528",
+                    "context": "—",
+                    "maxOutput": "—",
+                    "modality": "Text (reasoning)",
+                    "rateLimit": "30 RPM (120 with token)"
+                },
+                {
+                    "id": "deepseek-v3-0324",
+                    "name": "deepseek-v3-0324",
+                    "context": "—",
+                    "maxOutput": "—",
+                    "modality": "Text",
+                    "rateLimit": "30 RPM (120 with token)"
+                },
+                {
+                    "id": "gemini-2.5-flash-lite",
+                    "name": "gemini-2.5-flash-lite",
+                    "context": "—",
+                    "maxOutput": "—",
+                    "modality": "Text + Vision",
+                    "rateLimit": "30 RPM (120 with token)"
+                },
+                {
+                    "id": "gpt-4o-mini",
+                    "name": "gpt-4o-mini",
+                    "context": "—",
+                    "maxOutput": "—",
+                    "modality": "Text + Vision",
+                    "rateLimit": "30 RPM (120 with token)"
+                },
+                {
+                    "id": "mistral-small-3.1-24b",
+                    "name": "mistral-small-3.1-24b",
+                    "context": "32K",
+                    "maxOutput": "—",
+                    "modality": "Text",
+                    "rateLimit": "30 RPM (120 with token)"
+                },
+                {
+                    "id": "qwen2.5-coder-32b",
+                    "name": "qwen2.5-coder-32b",
+                    "context": "—",
+                    "maxOutput": "—",
+                    "modality": "Text (code)",
+                    "rateLimit": "30 RPM (120 with token)"
+                },
+                {
+                    "id": null,
+                    "name": "+ ~24 more models",
+                    "context": "Varies",
+                    "maxOutput": "Varies",
+                    "modality": "Text",
+                    "rateLimit": "30 RPM (120 with token)"
+                }
+            ]
+        },
+        {
+            "name": "ModelScope",
+            "category": "inference_provider",
+            "country": "CN",
+            "flag": "🇨🇳",
+            "url": "https://modelscope.cn/my/myaccesstoken",
+            "baseUrl": "https://api-inference.modelscope.cn/v1",
+            "description": "Free API-Inference for registered users. Requires Alibaba Cloud account binding + real-name verification.",
+            "footnoteRef": 6,
+            "models": [
+                {
+                    "id": "Qwen/Qwen3.5-35B-A3B",
+                    "name": "Qwen/Qwen3.5-35B-A3B",
+                    "context": "—",
+                    "maxOutput": "—",
+                    "modality": "Text",
+                    "rateLimit": "2,000 RPD total; <=500 RPD/model (dynamic)"
+                },
+                {
+                    "id": "Qwen/Qwen3.5-27B",
+                    "name": "Qwen/Qwen3.5-27B",
+                    "context": "—",
+                    "maxOutput": "—",
+                    "modality": "Text",
+                    "rateLimit": "2,000 RPD total; <=500 RPD/model (dynamic)"
+                },
+                {
+                    "id": null,
+                    "name": "+ API-Inference-enabled models",
+                    "context": "Varies",
+                    "maxOutput": "Varies",
+                    "modality": "LLM, MLLM",
+                    "rateLimit": "Dynamic quotas + dynamic concurrency"
+                }
+            ]
+        },
+        {
+            "name": "NVIDIA NIM",
+            "category": "inference_provider",
+            "country": "US",
+            "flag": "🇺🇸",
+            "url": "https://build.nvidia.com/explore/discover",
+            "baseUrl": "https://integrate.api.nvidia.com/v1",
+            "description": "Free with NVIDIA Developer Program membership. 100+ models. Rate-limited (no daily token cap).",
+            "footnoteRef": null,
+            "models": [
+                {
+                    "id": "deepseek-ai/deepseek-r1",
+                    "name": "deepseek-ai/deepseek-r1",
+                    "context": "128K",
+                    "maxOutput": "~163K",
+                    "modality": "Text (reasoning)",
+                    "rateLimit": "~40 RPM"
+                },
+                {
+                    "id": "nvidia/nemotron-3-super-120b-a12b",
+                    "name": "nvidia/nemotron-3-super-120b-a12b",
+                    "context": "262K",
+                    "maxOutput": "262K",
+                    "modality": "Text",
+                    "rateLimit": "~40 RPM"
+                },
+                {
+                    "id": "nvidia/nemotron-3-nano-30b-a3b",
+                    "name": "nvidia/nemotron-3-nano-30b-a3b",
+                    "context": "128K",
+                    "maxOutput": "32K",
+                    "modality": "Text",
+                    "rateLimit": "~40 RPM"
+                },
+                {
+                    "id": "nvidia/llama-3.1-nemotron-ultra-253b-v1",
+                    "name": "nvidia/llama-3.1-nemotron-ultra-253b-v1",
+                    "context": "128K",
+                    "maxOutput": "4K",
+                    "modality": "Text",
+                    "rateLimit": "~40 RPM"
+                },
+                {
+                    "id": "meta/llama-3.1-405b-instruct",
+                    "name": "meta/llama-3.1-405b-instruct",
+                    "context": "128K",
+                    "maxOutput": "4K",
+                    "modality": "Text",
+                    "rateLimit": "~40 RPM"
+                },
+                {
+                    "id": "qwen/qwen2.5-72b-instruct",
+                    "name": "qwen/qwen2.5-72b-instruct",
+                    "context": "128K",
+                    "maxOutput": "8K",
+                    "modality": "Text",
+                    "rateLimit": "~40 RPM"
+                },
+                {
+                    "id": "google/gemma-4-31b",
+                    "name": "google/gemma-4-31b",
+                    "context": "128K",
+                    "maxOutput": "8K",
+                    "modality": "Text",
+                    "rateLimit": "~40 RPM"
+                },
+                {
+                    "id": "mistralai/mistral-large-2-instruct",
+                    "name": "mistralai/mistral-large-2-instruct",
+                    "context": "128K",
+                    "maxOutput": "4K",
+                    "modality": "Text",
+                    "rateLimit": "~40 RPM"
+                },
+                {
+                    "id": "minimax/minimax-m2.7",
+                    "name": "minimax/minimax-m2.7",
+                    "context": "128K",
+                    "maxOutput": "8K",
+                    "modality": "Text",
+                    "rateLimit": "~40 RPM"
+                },
+                {
+                    "id": null,
+                    "name": "+ 90 more models",
+                    "context": "Varies",
+                    "maxOutput": "Varies",
+                    "modality": "Text, Image, Video, Speech, Embeddings",
+                    "rateLimit": "~40 RPM"
+                }
+            ]
+        },
+        {
+            "name": "Ollama Cloud",
+            "category": "inference_provider",
+            "country": "US",
+            "flag": "🇺🇸",
+            "url": "https://ollama.com/settings/keys",
+            "baseUrl": "https://api.ollama.com",
+            "description": "Free tier with qualitative usage limits. 400+ models from Ollama library. Not OpenAI SDK-compatible; uses [Ollama API](https://docs.ollama.com/cloud).",
+            "footnoteRef": 3,
+            "models": [
+                {
+                    "id": "gpt-oss:120b-cloud",
+                    "name": "gpt-oss:120b-cloud",
+                    "context": "128K",
+                    "maxOutput": "Model-dependent",
+                    "modality": "Text",
+                    "rateLimit": "Session/weekly limits (unpublished)"
+                },
+                {
+                    "id": "deepseek-v3.1:671b-cloud",
+                    "name": "deepseek-v3.1:671b-cloud",
+                    "context": "128K",
+                    "maxOutput": "Model-dependent",
+                    "modality": "Text",
+                    "rateLimit": "Session/weekly limits (unpublished)"
+                },
+                {
+                    "id": "qwen3-coder:480b-cloud",
+                    "name": "qwen3-coder:480b-cloud",
+                    "context": "128K",
+                    "maxOutput": "Model-dependent",
+                    "modality": "Text (code)",
+                    "rateLimit": "Session/weekly limits (unpublished)"
+                },
+                {
+                    "id": "kimi-k2:1t-cloud",
+                    "name": "kimi-k2:1t-cloud",
+                    "context": "262K",
+                    "maxOutput": "Model-dependent",
+                    "modality": "Text",
+                    "rateLimit": "Session/weekly limits (unpublished)"
+                },
+                {
+                    "id": "glm-4.6:cloud",
+                    "name": "glm-4.6:cloud",
+                    "context": "128K",
+                    "maxOutput": "Model-dependent",
+                    "modality": "Text",
+                    "rateLimit": "Session/weekly limits (unpublished)"
+                },
+                {
+                    "id": "deepseek-r1:cloud",
+                    "name": "deepseek-r1:cloud",
+                    "context": "128K",
+                    "maxOutput": "Model-dependent",
+                    "modality": "Text (reasoning)",
+                    "rateLimit": "Session/weekly limits (unpublished)"
+                },
+                {
+                    "id": null,
+                    "name": "+ 30 more cloud models",
+                    "context": "Varies",
+                    "maxOutput": "Varies",
+                    "modality": "Text",
+                    "rateLimit": "Session/weekly limits (unpublished)"
+                }
+            ]
+        },
+        {
+            "name": "OpenRouter",
+            "category": "inference_provider",
+            "country": "US",
+            "flag": "🇺🇸",
+            "url": "https://openrouter.ai/keys",
+            "baseUrl": "https://openrouter.ai/api/v1",
+            "description": "~22 free models (marked with `:free` suffix). OpenAI SDK-compatible.",
+            "footnoteRef": 4,
+            "models": [
+                {
+                    "id": "qwen/qwen3-coder:free",
+                    "name": "qwen/qwen3-coder:free",
+                    "context": "1M",
+                    "maxOutput": "262K",
+                    "modality": "Text (code)",
+                    "rateLimit": "20 RPM, 200 RPD"
+                },
+                {
+                    "id": "nvidia/nemotron-3-ultra-550b-a55b:free",
+                    "name": "nvidia/nemotron-3-ultra-550b-a55b:free",
+                    "context": "1M",
+                    "maxOutput": "65K",
+                    "modality": "Text",
+                    "rateLimit": "20 RPM, 200 RPD"
+                },
+                {
+                    "id": "nvidia/nemotron-3-super-120b-a12b:free",
+                    "name": "nvidia/nemotron-3-super-120b-a12b:free",
+                    "context": "1M",
+                    "maxOutput": "262K",
+                    "modality": "Text",
+                    "rateLimit": "20 RPM, 200 RPD"
+                },
+                {
+                    "id": "openai/gpt-oss-120b:free",
+                    "name": "openai/gpt-oss-120b:free",
+                    "context": "131K",
+                    "maxOutput": "131K",
+                    "modality": "Text",
+                    "rateLimit": "20 RPM, 200 RPD"
+                },
+                {
+                    "id": "openai/gpt-oss-20b:free",
+                    "name": "openai/gpt-oss-20b:free",
+                    "context": "131K",
+                    "maxOutput": "8K",
+                    "modality": "Text",
+                    "rateLimit": "20 RPM, 200 RPD"
+                },
+                {
+                    "id": "meta-llama/llama-3.3-70b-instruct:free",
+                    "name": "meta-llama/llama-3.3-70b-instruct:free",
+                    "context": "131K",
+                    "maxOutput": "~16K",
+                    "modality": "Text",
+                    "rateLimit": "20 RPM, 200 RPD"
+                },
+                {
+                    "id": "nousresearch/hermes-3-llama-3.1-405b:free",
+                    "name": "nousresearch/hermes-3-llama-3.1-405b:free",
+                    "context": "131K",
+                    "maxOutput": "~16K",
+                    "modality": "Text",
+                    "rateLimit": "20 RPM, 200 RPD"
+                },
+                {
+                    "id": "google/gemma-4-31b-it:free",
+                    "name": "google/gemma-4-31b-it:free",
+                    "context": "262K",
+                    "maxOutput": "32K",
+                    "modality": "Multimodal",
+                    "rateLimit": "20 RPM, 200 RPD"
+                },
+                {
+                    "id": "poolside/laguna-m.1:free",
+                    "name": "poolside/laguna-m.1:free",
+                    "context": "262K",
+                    "maxOutput": "32K",
+                    "modality": "Text",
+                    "rateLimit": "20 RPM, 200 RPD"
+                },
+                {
+                    "id": "qwen/qwen3-next-80b-a3b-instruct:free",
+                    "name": "qwen/qwen3-next-80b-a3b-instruct:free",
+                    "context": "262K",
+                    "maxOutput": "~32K",
+                    "modality": "Text",
+                    "rateLimit": "20 RPM, 200 RPD"
+                },
+                {
+                    "id": null,
+                    "name": "+ ~12 more free models",
+                    "context": "Varies",
+                    "maxOutput": "Varies",
+                    "modality": "Text / Image",
+                    "rateLimit": "20 RPM, 200 RPD"
+                }
+            ]
+        },
+        {
+            "name": "OVHcloud AI Endpoints",
+            "category": "inference_provider",
+            "country": "FR",
+            "flag": "🇫🇷",
+            "url": "https://www.ovhcloud.com/en/public-cloud/ai-endpoints/catalog/",
+            "baseUrl": "https://oai.endpoints.kepler.ai.cloud.ovh.net/v1",
+            "description": "Free anonymous tier (no API key, no signup): 2 RPM per IP per model. 20+ open-weight models hosted in EU. OpenAI SDK-compatible.",
+            "footnoteRef": 7,
+            "models": [
+                {
+                    "id": "Qwen3.5-397B-A17B",
+                    "name": "Qwen3.5-397B-A17B",
+                    "context": "131K",
+                    "maxOutput": "~32K",
+                    "modality": "Text",
+                    "rateLimit": "2 RPM (anonymous)"
+                },
+                {
+                    "id": "gpt-oss-120b",
+                    "name": "gpt-oss-120b",
+                    "context": "128K",
+                    "maxOutput": "~32K",
+                    "modality": "Text",
+                    "rateLimit": "2 RPM (anonymous)"
+                },
+                {
+                    "id": "gpt-oss-20b",
+                    "name": "gpt-oss-20b",
+                    "context": "128K",
+                    "maxOutput": "~8K",
+                    "modality": "Text",
+                    "rateLimit": "2 RPM (anonymous)"
+                },
+                {
+                    "id": "Meta-Llama-3_3-70B-Instruct",
+                    "name": "Meta-Llama-3_3-70B-Instruct",
+                    "context": "131K",
+                    "maxOutput": "~4K",
+                    "modality": "Text",
+                    "rateLimit": "2 RPM (anonymous)"
+                },
+                {
+                    "id": "Llama-3.1-8B-Instruct",
+                    "name": "Llama-3.1-8B-Instruct",
+                    "context": "131K",
+                    "maxOutput": "~4K",
+                    "modality": "Text",
+                    "rateLimit": "2 RPM (anonymous)"
+                },
+                {
+                    "id": "Qwen3.6-27B",
+                    "name": "Qwen3.6-27B",
+                    "context": "131K",
+                    "maxOutput": "~32K",
+                    "modality": "Text",
+                    "rateLimit": "2 RPM (anonymous)"
+                },
+                {
+                    "id": "Qwen3.5-9B",
+                    "name": "Qwen3.5-9B",
+                    "context": "131K",
+                    "maxOutput": "~8K",
+                    "modality": "Text",
+                    "rateLimit": "2 RPM (anonymous)"
+                },
+                {
+                    "id": "Qwen3-32B",
+                    "name": "Qwen3-32B",
+                    "context": "131K",
+                    "maxOutput": "~32K",
+                    "modality": "Text",
+                    "rateLimit": "2 RPM (anonymous)"
+                },
+                {
+                    "id": "Qwen3-Coder-30B-A3B-Instruct",
+                    "name": "Qwen3-Coder-30B-A3B-Instruct",
+                    "context": "262K",
+                    "maxOutput": "~32K",
+                    "modality": "Text (code)",
+                    "rateLimit": "2 RPM (anonymous)"
+                },
+                {
+                    "id": "Qwen2.5-VL-72B-Instruct",
+                    "name": "Qwen2.5-VL-72B-Instruct",
+                    "context": "128K",
+                    "maxOutput": "~8K",
+                    "modality": "Text + Vision",
+                    "rateLimit": "2 RPM (anonymous)"
+                },
+                {
+                    "id": "Mistral-Small-3.2-24B-Instruct-2506",
+                    "name": "Mistral-Small-3.2-24B-Instruct",
+                    "context": "128K",
+                    "maxOutput": "~4K",
+                    "modality": "Text",
+                    "rateLimit": "2 RPM (anonymous)"
+                },
+                {
+                    "id": "Mistral-Nemo-Instruct-2407",
+                    "name": "Mistral-Nemo-Instruct-2407",
+                    "context": "128K",
+                    "maxOutput": "~4K",
+                    "modality": "Text",
+                    "rateLimit": "2 RPM (anonymous)"
+                },
+                {
+                    "id": "Mistral-7B-Instruct-v0.3",
+                    "name": "Mistral-7B-Instruct-v0.3",
+                    "context": "32K",
+                    "maxOutput": "~4K",
+                    "modality": "Text",
+                    "rateLimit": "2 RPM (anonymous)"
+                }
+            ]
+        },
+        {
+            "name": "SambaNova",
+            "category": "inference_provider",
+            "country": "US",
+            "flag": "🇺🇸",
+            "url": "https://cloud.sambanova.ai/apis",
+            "baseUrl": "https://api.sambanova.ai/v1",
+            "description": "Free tier, no credit card. Ultra-fast RDU inference. 20 RPM, 200K tokens/day.",
+            "footnoteRef": 8,
+            "models": [
+                {
+                    "id": "DeepSeek-V3.1",
+                    "name": "DeepSeek-V3.1",
+                    "context": "128K",
+                    "maxOutput": "~8K",
+                    "modality": "Text",
+                    "rateLimit": "20 RPM, 20 RPD, 200K TPD"
+                },
+                {
+                    "id": "DeepSeek-V3.2",
+                    "name": "DeepSeek-V3.2 (Preview)",
+                    "context": "128K",
+                    "maxOutput": "~8K",
+                    "modality": "Text",
+                    "rateLimit": "20 RPM, 20 RPD, 200K TPD"
+                },
+                {
+                    "id": "Meta-Llama-3.3-70B-Instruct",
+                    "name": "Meta-Llama-3.3-70B-Instruct",
+                    "context": "128K",
+                    "maxOutput": "~8K",
+                    "modality": "Text",
+                    "rateLimit": "20 RPM, 20 RPD, 200K TPD"
+                },
+                {
+                    "id": "gpt-oss-120b",
+                    "name": "gpt-oss-120b",
+                    "context": "128K",
+                    "maxOutput": "~8K",
+                    "modality": "Text",
+                    "rateLimit": "20 RPM, 20 RPD, 200K TPD"
+                },
+                {
+                    "id": "MiniMax-M2.7",
+                    "name": "MiniMax-M2.7",
+                    "context": "128K",
+                    "maxOutput": "~8K",
+                    "modality": "Text",
+                    "rateLimit": "20 RPM, 20 RPD, 200K TPD"
+                },
+                {
+                    "id": "gemma-4-31B-it",
+                    "name": "gemma-4-31B-it (Preview)",
+                    "context": "128K",
+                    "maxOutput": "~8K",
+                    "modality": "Text",
+                    "rateLimit": "20 RPM, 20 RPD, 200K TPD"
+                }
+            ]
+        },
+        {
+            "name": "SiliconFlow",
+            "category": "inference_provider",
+            "country": "CN",
+            "flag": "🇨🇳",
+            "url": "https://cloud.siliconflow.cn/account/ak",
+            "baseUrl": "https://api.siliconflow.cn/v1",
+            "description": "Permanently free models, no credit card required. 200+ paid models also available.",
+            "footnoteRef": null,
+            "models": [
+                {
+                    "id": "Qwen/Qwen3-8B",
+                    "name": "Qwen/Qwen3-8B",
+                    "context": "131K",
+                    "maxOutput": "131K",
+                    "modality": "Text",
+                    "rateLimit": "30 RPM, 60K TPM"
+                },
+                {
+                    "id": "deepseek-ai/DeepSeek-R1-Distill-Qwen-7B",
+                    "name": "deepseek-ai/DeepSeek-R1-Distill-Qwen-7B",
+                    "context": "131K",
+                    "maxOutput": "Configurable",
+                    "modality": "Text (reasoning)",
+                    "rateLimit": "30 RPM, 60K TPM"
+                }
+            ]
+        }
+    ],
+    "footnotes": [
+        {
+            "id": 1,
+            "text": "Free tier not available in the EU, UK, or Switzerland ([available regions](https://ai.google.dev/gemini-api/docs/available-regions))."
+        },
+        {
+            "id": 2,
+            "text": "Groq rate limits were reduced in 2026. Most models now get 1,000 RPD on the free tier (down from 14,400). Llama 4 Maverick has been deprecated. See [rate limits](https://console.groq.com/docs/rate-limits)."
+        },
+        {
+            "id": 3,
+            "text": "Ollama Cloud measures usage by GPU time, not tokens or requests. Free tier described as \"light usage\" with session limits resetting every 5 hours and weekly limits every 7 days. Pro (50x more) and Max (250x more) plans available. Not OpenAI SDK-compatible; uses the Ollama API."
+        },
+        {
+            "id": 4,
+            "text": "Free models default to 200 RPD per model. A one-time purchase of $10+ in credits unlocks 1,000 RPD for free models. OpenRouter also offers a [Free Models Router](https://openrouter.ai/docs/guides/routing/routers/free-models-router) (`openrouter/free`) and [model fallbacks](https://openrouter.ai/docs/guides/routing/model-fallbacks) for chaining models in priority order. Free providers may log prompts for training."
+        },
+        {
+            "id": 5,
+            "text": "Kilo Code free model list may change over time. nvidia/nemotron-3-super-120b-a12b:free is for trial use only — prompts are logged by NVIDIA. Auto-router `kilo-auto/free` routes to minimax/minimax-m2.5:free (80%) and stepfun/step-3.5-flash:free (20%)."
+        },
+        {
+            "id": 6,
+            "text": "API-Inference is free for registered users. Current published limits are 2,000 requests/day per user (total across models), with per-model daily quotas dynamically adjusted and capped at 500; concurrency is also dynamically rate-limited. Requires Alibaba Cloud account binding and real-name verification ([limits](https://modelscope.cn/docs/model-service/API-Inference/limits), [intro](https://modelscope.cn/docs/model-service/API-Inference/intro))."
+        },
+        {
+            "id": 7,
+            "text": "OVHcloud AI Endpoints offers a permanent free anonymous tier (2 requests per minute per IP, per model) with no signup or API key required. Higher rate limits (400 RPM per Public Cloud project per model) require an API key and are billed pay-as-you-go per token; new Public Cloud accounts get up to $200 in free trial credits. Models are hosted in EU data centers."
+        },
+        {
+            "id": 8,
+            "text": "SambaNova grants $5 in initial credits (valid 30 days) on top of the permanent free tier. The free tier itself persists indefinitely with 20 RPM, 20 RPD, and 200K TPD per model. No credit card required. OpenAI SDK-compatible."
+        }
+    ],
+    "glossary": [
+        {
+            "abbreviation": "RPM",
+            "meaning": "Requests per minute"
+        },
+        {
+            "abbreviation": "RPD",
+            "meaning": "Requests per day"
+        },
+        {
+            "abbreviation": "TPM",
+            "meaning": "Tokens per minute"
+        },
+        {
+            "abbreviation": "TPD",
+            "meaning": "Tokens per day"
+        },
+        {
+            "abbreviation": "RPS",
+            "meaning": "Requests per second"
+        }
+    ]
+}
 ```
 
