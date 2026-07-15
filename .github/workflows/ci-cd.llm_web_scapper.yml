@@ -54,17 +54,18 @@ jobs:
           echo "🔥 Installing ScrapeGraphAI core engine and system dependencies..."
           python -m pip install --upgrade pip
           
-          # ✅ ENTERPRISE OPTIMIZATION: Dropped heavy scrapegraphai/playwright binaries entirely.
-          # Installed official lightning-fast google-genai SDK and stable corporate bs4 components.
-          pip install google-genai beautifulsoup4 requests
+          # ✅ ENTERPRISE ATTRIBUTE: Consolidated core libraries required for the dynamic OpenAI client architecture
+          pip install openai beautifulsoup4 requests
 
       - name: "🤖 Launch AI Agent extraction graph instance"
         env:
           # Match the variable name with your execution script configuration env variables
-          API_KEY_GEMINI: ${{ secrets.API_KEY_GEMINI }}
+          API_KEY: ${{ secrets.API_KEY }}
+          API_ENDPONT: ${{ secrets.API_ENDPOINT }}
+          API_MODEL: ${{ secrets.API_MODEL }}
         run: |
-          if [ -z "$API_KEY_GEMINI" ]; then
-            echo "::error::🚨 CRITICAL SECURITY FAILURE: API_KEY_GEMINI secret token is missing from vault."
+          if [ -z "$API_KEY" -o -z "$API_ENDPONT" -o -z "$API_MODEL" ]; then
+            echo "::error::🚨 CRITICAL SECURITY FAILURE: API_KEY, API_ENDPOINT, API_MODEL secret tokens is missing from vault."
             exit 1
           fi
           
@@ -83,7 +84,7 @@ jobs:
           
           echo "🧠 AI Agent successfully initialized. Booting extraction graph workflow..."
           # Execute the enterprise script payload safely passing the verified API key parameters
-          python sources/agents/ai-llm-web-scapper.py --gemini-api-key "$API_KEY_GEMINI"
+          python sources/agents/ai-llm-web-scapper.py --api-key "$API_KEY" --api-endpoint "$API_ENDPONT" --api-model "$API_MODEL"
           echo "✅ AI parsing complete. Extraction graph closed successfully."
 
       # Step 5: Dynamically organize directory, rename file by system date, and commit changes
