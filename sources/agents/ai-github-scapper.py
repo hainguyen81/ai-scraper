@@ -33,16 +33,27 @@ from agent_helper import resolve_absolute_path
 # ==============================================================================
 # GLOBAL CONFIGURATION PATHS - CONFIG HERE TO CUSTOMIZE DIRECTORY STRUCTURE
 # ==============================================================================
-output_scapper_data_file  = resolve_absolute_path("sources/output/free_models_by_github_scapper.json")
+output_scapper_data_file        = resolve_absolute_path("sources/output/free_models_by_github_scapper.json")
+agent_working_history_file      = resolve_absolute_path("sources/output/free_models_by_github_scapper.md")
+
+GITHUB_LLM_MODELS_JSON_URL      = "https://raw.githubusercontent.com/mnfst/awesome-free-llm-apis/main/data.json"
 
 class GitHubModelScraper:
     """Enterprise automation class to fetch and standardize free AI model providers from GitHub."""
     
     def __init__(self) -> None:
         # Use escaped strings to prevent system auto-formatting and markdown render errors
-        self.target_url: str = "https://raw.githubusercontent.com/mnfst/awesome-free-llm-apis/main/data.json"
+        self.target_url: str = GITHUB_LLM_MODELS_JSON_URL
         self.timeout_seconds: int = 15
-
+    
+    def write_log(self, raw_content):
+        log_content = (
+            f"# Source:\n-------------------------------------------------\n{self.target_url}\n-------------------------------------------------\n\n"
+            f"# Raw Response / Exception:\n-------------------------------------------------\n{raw_content}\n-------------------------------------------------\n\n"
+        )
+        with open(agent_working_history_file, "a", encoding="utf-8") as file:
+            file.write(log_content)
+    
     def fetch_raw_data(self) -> Optional[List[Dict[str, Any]]]:
         """Fetch raw JSON payload from the remote repository with error isolation."""
         logger.info("Initializing secure connection to GitHub data repository...")
@@ -55,6 +66,7 @@ class GitHubModelScraper:
         
         try:
             with urllib.request.urlopen(req, timeout=self.timeout_seconds) as response:
+                self.write_log(str(response))
                 if response.status == 200:
                     logger.info("Raw configuration data fetched successfully from GitHub.")
                     return json.loads(response.read().decode("utf-8"))
@@ -63,12 +75,15 @@ class GitHubModelScraper:
                     return None
         except urllib.error.URLError as url_err:
             logger.error(f"Network transport layer error or malformed URL: {url_err.reason}")
+            self.write_log(str(url_err))
             return None
         except json.JSONDecodeError as json_err:
             logger.error(f"Failed to parse source payload. Invalid JSON structure: {json_err.msg}")
+            self.write_log(str(json_err))
             return None
         except Exception as general_err:
             logger.error(f"Unexpected operational anomaly during download: {str(general_err)}")
+            self.write_log(str(general_err))
             return None
 
     def process_and_standardize(self, raw_providers: List[Dict[str, Any]]) -> List[Dict[str, Any]]:
@@ -118,6 +133,7 @@ class GitHubModelScraper:
             return True
         except IOError as io_err:
             logger.error(f"Disk I/O failure while writing structured payload: {str(io_err)}")
+            self.write_log(str(io_err))
             return False
 
 # Application entry point for executing Block 1 pipeline testing
