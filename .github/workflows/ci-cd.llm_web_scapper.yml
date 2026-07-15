@@ -50,9 +50,11 @@ jobs:
       # Step 3: Install ScrapeGraphAI framework modules and headless browser binaries
       - name: "🛠️ Install AI Framework and Playwright browsers"
         run: |
-          echo "🔥 Installing ScrapeGraphAI core engine..."
+          echo "🔥 Installing ScrapeGraphAI core engine and hotfix dependencies..."
           python -m pip install --upgrade pip
-          pip install scrapegraphai playwright
+          
+          # HOTFIX: Force install compatible langchain components to fix ChatOllama import crash
+          pip install scrapegraphai langchain-community langchain-ollama playwright
           
           echo "🌐 Provisioning sandboxed headless browser binaries..."
           playwright install --with-deps chromium
