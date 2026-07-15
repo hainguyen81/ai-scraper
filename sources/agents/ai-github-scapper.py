@@ -123,6 +123,17 @@ class GitHubModelScraper:
         if not raw_data:
             logger.critical("Pipeline aborted: Unable to retrieve operational data from source.")
             return False
+        
+        # ==============================================================================
+        # 🩹 ENTERPRISE CORE FIX: Extract the nested array under the 'providers' key
+        # ==============================================================================
+        providers_list = []
+        if isinstance(raw_data, dict):
+            # Safe extraction of the target list array embedded within the corporate JSON object
+            providers_list = raw_data.get("providers", [])
+        elif isinstance(raw_data, list):
+            # Fallback handling in case the raw payload directly resolves to a root array list
+            providers_list = raw_data
             
         processed_data = self.process_and_standardize(raw_data)
         
