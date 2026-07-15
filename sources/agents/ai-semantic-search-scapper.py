@@ -28,14 +28,24 @@ from agent_helper import resolve_absolute_path
 # ==============================================================================
 # GLOBAL CONFIGURATION PATHS - CONFIG HERE TO CUSTOMIZE DIRECTORY STRUCTURE
 # ==============================================================================
-output_scapper_data_file  = resolve_absolute_path("sources/output/web_search_corpus.json")
+output_scapper_data_file        = resolve_absolute_path("sources/output/web_search_corpus.json")
+agent_working_history_file      = resolve_absolute_path("sources/output/web_search_corpus.md")
 
 class SemanticSearchScraper:
     """Enterprise-grade semantic scraper using Exa AI to discover and scrape raw data from hundreds of tech sites simultaneously."""
     
     def __init__(self, exa_api_key: str) -> None:
         self.client = Exa(api_key=exa_api_key)
-        
+    
+    def write_log(self, url, query, raw_content):
+        log_content = (
+            f"# Source:\n-------------------------------------------------\n{url}\n-------------------------------------------------\n\n"
+            f"# Query:\n-------------------------------------------------\n{query}\n-------------------------------------------------\n\n"
+            f"# Raw Response / Exception:\n-------------------------------------------------\n{raw_content}\n-------------------------------------------------\n\n"
+        )
+        with open(agent_working_history_file, "a", encoding="utf-8") as file:
+            file.write(log_content)
+    
     def discover_and_scrape_sources(self) -> List[Dict[str, Any]]:
         """Search the entire web for free AI endpoints, extract their raw text, and compile source links."""
         logger.info("Initiating massive multi-source semantic web discovery...")
@@ -54,6 +64,7 @@ class SemanticSearchScraper:
             )
             
             scraped_payload = []
+            self.write_log(result.url, search_query, str(response.results))
             for result in response.results:
                 scraped_payload.append({
                     "source_title": result.title,
@@ -66,6 +77,7 @@ class SemanticSearchScraper:
             
         except Exception as search_err:
             logger.error(f"Failed to execute semantic search pipeline: {str(search_err)}")
+            self.write_log("!!! EXA URL !!!", search_query, str(search_err))
             return []
 
     def save_raw_corpus(self, data: List[Dict[str, Any]], filename: str = "web_search_corpus.json") -> None:

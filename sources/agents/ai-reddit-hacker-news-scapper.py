@@ -27,16 +27,28 @@ from agent_helper import resolve_absolute_path
 # ==============================================================================
 # GLOBAL CONFIGURATION PATHS - CONFIG HERE TO CUSTOMIZE DIRECTORY STRUCTURE
 # ==============================================================================
-output_scapper_data_file  = resolve_absolute_path("sources/output/discovered-community-endpoints.json")
+output_scapper_data_file        = resolve_absolute_path("sources/output/discovered-community-endpoints.json")
+agent_working_history_file      = resolve_absolute_path("sources/output/discovered-community-endpoints.md")
+
+HN_ITEM_URL                     = "https://hacker-news.firebaseio.com/v0/item/"
+HN_STORIES_JSON_URL             = "https://hacker-news.firebaseio.com/v0/showstories.json" 
 
 class HackerNewsTechScraper:
     """Real-time community monitor tracking new text threads to catch newly released free AI models instantly."""
     
     def __init__(self) -> None:
         # Escaped internal Hacker News REST endpoints to maintain layout stability
-        self._base_item_url = "https://hacker-news.firebaseio.com/v0/item/"
-        self._show_stories_url = "https://hacker-news.firebaseio.com/v0/showstories.json"
-
+        self._base_item_url = HN_ITEM_URL
+        self._show_stories_url = HN_STORIES_JSON_URL
+    
+    def write_log(self, raw_content):
+        log_content = (
+            f"# Source:\n-------------------------------------------------\n{self._show_stories_url}\n-------------------------------------------------\n\n"
+            f"# Raw Response / Exception:\n-------------------------------------------------\n{raw_content}\n-------------------------------------------------\n\n"
+        )
+        with open(agent_working_history_file, "a", encoding="utf-8") as file:
+            file.write(log_content)
+    
     def fetch_latest_ai_threads(self, scan_limit: int = 40) -> List[Dict[str, Any]]:
         """Scan latest 'Show HN' launch threads for keyword matches relating to free LLM endpoints."""
         logger.info("Scanning community pipeline for open-source and free tech releases...")
@@ -46,7 +58,9 @@ class HackerNewsTechScraper:
             # Step 1: Fetch the list of newest show/launch story item IDs
             req = urllib.request.Request(resolved_list_url, headers={"User-Agent": "EnterpriseMonitor/1.0"})
             with urllib.request.urlopen(req) as resp:
-                story_ids: List[int] = json.loads(resp.read().decode("utf-8"))[:scan_limit]
+                raw_data = resp.read().decode("utf-8")
+                self.write_log(raw_data)
+                story_ids: List[int] = json.loads(raw_data)[:scan_limit]
                 
             matching_threads = []
             keywords = ["free", "api", "llm", "endpoint", "model", "provider"]
@@ -78,6 +92,7 @@ class HackerNewsTechScraper:
             
         except Exception as network_err:
             logger.error(f"Critical interface crash monitoring community pipeline: {str(network_err)}")
+            self.write_log(str(network_err))
             return []
 
 if __name__ == "__main__":

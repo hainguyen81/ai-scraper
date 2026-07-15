@@ -73,6 +73,9 @@ jobs:
           
           echo "📝 Relocating and renaming output payload to ${TARGET_DIR}/${CURRENT_DATE}.json"
           mv sources/output/$FILE_NAME.json "${TARGET_DIR}/${CURRENT_DATE}-$FILE_NAME.json"
+          if [ -f "${TARGET_DIR}/$FILE_NAME.md" ]; then
+            mv sources/output/$FILE_NAME.md "${TARGET_DIR}/${CURRENT_DATE}-$FILE_NAME.md"
+          fi
           
           echo "🔧 Configuring automated Git bot profile identity..."
           git config --local user.email "github-actions[bot]@://github.com"
@@ -80,6 +83,9 @@ jobs:
           
           echo "💾 Staging modified file vectors..."
           git add "${TARGET_DIR}/${CURRENT_DATE}-$FILE_NAME.json"
+          if [ -f "${TARGET_DIR}/${CURRENT_DATE}-$FILE_NAME.md" ]; then
+            git add "${TARGET_DIR}/${CURRENT_DATE}-$FILE_NAME.md"
+          fi
           
           # Only commit if there are explicit architectural diff changes detected
           if git diff --cached --quiet; then
