@@ -1,0 +1,92 @@
+[
+    {
+        "id": 48923438,
+        "title": "Show HN: Fork – Customize the web, just by asking",
+        "url": "https://withfork.co",
+        "description_snippet": "Fork lets you add features to any existing web app: describe what you want, and our coding agent builds it live.<p>Some of our favorites: grouped table rows on Gmail (50 sec. demo: <a href=\"https:&#x2F;&#x2F;www.youtube.com&#x2F;watch?v=JQ292bncO_c\" rel=\"nofollow\">https:&#x2F;&#x2F;www.youtube.com&#x2F;watch?v=JQ292bncO_c</a>), highlighting hold times and sharing on Google Calendar.<p>Chrome extension (free, no login): <a href=\"https:&#x2F;&#x2F;chromewebstore.google.com&#x2F;detail&#x2F;fork-for-the-web&#x2F;mflpnofahgnilhgbnbaeimngajhjbifn\" rel=\"nofollow\">https:&#x2F;&#x2F;chromewebstore.google.com&#x2F;detail&#x2F;fork-for-the-web&#x2F;mf...</a><p>We keep limited traces of coding sessions for 30 days to troubleshoot and improve Fork. No data from the apps is ever logged or retained.<p>Would love any and all feedback!\nDalton &amp; Paul"
+    },
+    {
+        "id": 48923423,
+        "title": "Show HN: 3-line calendar for Apple Watch – free, open source, no sign-in",
+        "url": "https://threelinecal.apps.zzn.im/",
+        "description_snippet": "I had a pain point with my watch, so I built something to address it.<p>A watch should do one thing well, and today it doesn&#x27;t: help me avoid missing my next meeting&#x2F;event. That&#x27;s it.\nFashion and decoration are secondary. Even knowing what time it is is secondary. The original reason for a watch is to get to the next thing on time.<p>And this wasn&#x27;t really possible before smartwatches, since you couldn&#x27;t connect the calendar. But now you can. Android Wear solved this a long time ago. For some reason, on Apple Watch I can&#x27;t find a good native first-party or third-party option that simply shows the next few items on your screen.<p>There&#x27;s a one-line version built in, and I found a few third-party apps with a 3-line calendar. But most of them either ask you to pay, make you sign in, harvest your data, or trick you into some in-app purchase. I understand developers need to eat — so do I. But it&#x27;s one thing to be transparent about it, and another to h"
+    },
+    {
+        "id": 48923047,
+        "title": "Show HN: OtoDock, run Claude Code and Codex as a team of agents on your server",
+        "url": "https://github.com/OtoDock/oto-dock/",
+        "description_snippet": "Hi HN, i am Dimitris,<p>I have been using Claude Code and Codex agents, for some time now from the beggining i had been using them from inside my terminal mainly for coding.<p>For the past 3 years i kept building so i have a homelab and a business server, which already has a lot of vms, so a lot of things to manage.<p>So i decided to start building my own ideal version of using claude code, and codex flexibly and connect them easily with all my vms and infra but at the same time keep using them for coding, and as a personal assistant for daily use.<p>So for the past months I built OtoDock. Its a self hosted platform, that runs real CLaude code and Codex as the engine. On top of them i build a live dashboard with websockets and integrated in depth the clis, so its even nicer to work with the cli through the dashboard instead of working on the terminal. I even ended up integrating interactive terminals as well (due to the subscription change Anthropic was trying to do for harnesses) so y"
+    },
+    {
+        "id": 48920650,
+        "title": "Show HN: Goku – WASM (wllama)-powered LLM inference and model manager",
+        "url": "https://userfrom1995.github.io/goku/",
+        "description_snippet": ""
+    },
+    {
+        "id": 48922687,
+        "title": "Show HN: Sign in with your ChatGPT account for free AI",
+        "url": "https://openai-oauth.vercel.app/",
+        "description_snippet": ""
+    },
+    {
+        "id": 48922631,
+        "title": "Show HN: SirixDB 1.0 Beta – Git-Like Versioning, Diffs, Time-Travel Queries",
+        "url": "https://github.com/sirixdb/sirix",
+        "description_snippet": "Hi HN! I&#x27;ve posted SirixDB here before, back in 2019 and again in 2023.<p>The core idea behind SirixDB is, that history is a first-class citizen. Every commit stores a lightweight, queryable revision. You can query any point in time, even individual nodes (for instance JSON values), diff arbitrary revisions, and efficiently track how data evolved without replaying events.<p>Unlike traditional event stores, historical states do not need to be reconstructed by replaying events nor do we have to think about projections. Revisions are directly queryable.<p>A simple example:<p>Jan 1: Record &quot;Price = $100, valid from Jan 1&quot;. Stored on Jan 1 (transaction time).<p>Jan 20: Discover price was actually $95 on Jan 1. Commit correction.<p>After correction, you can ask across both axes:<p>- &quot;What did we THINK the price was on Jan 16?&quot; -&gt; $100 (Transaction time)<p>- &quot;What WAS the price on Jan 1?&quot; -&gt; $95 (Valid time)<p>I&#x27;ve worked on this in my spare time "
+    },
+    {
+        "id": 48922536,
+        "title": "Show HN: Homestead – Build apps for you, your family, and your agents",
+        "url": "https://myhomestead.dev/",
+        "description_snippet": "A while back, I decided I wanted to build a grocery store list app for my wife and I to share. Building a native app felt too difficult. I would have to deal with App Store review, TestFlight, and I’d still need to run a server to store data. Seemed like too much hassle for a grocery list app. Plus, I wanted to build a bunch more apps later, like a credit card perk tracker and a tracker for the family’s Pictionary games.<p>All of this turned into a full OSS platform. All apps in Homestead start out with the resource schema. Homestead creates fully authenticated REST APIs on top. You can use the built-in, agent-friendly CLI if you’re tech savvy or you can use the built-in web server to expose React apps. All the apps are easily compartmentalized, live on your machine, and each can have their own Home Screen icon.<p>If you’re interested in building personal software, please take a look!"
+    },
+    {
+        "id": 48919638,
+        "title": "Show HN: Leet Robotics: Learn robotics and ROS2 with hands-on courses",
+        "url": "https://www.leetrobotics.com",
+        "description_snippet": "Hi all,<p>I&#x27;ve just launched Leet Robotics: a platform to learn robotics hands-on, with a full ROS2 workspace that runs in the browser (Jazzy, Gazebo Harmonic, Foxglove, VS Code) - no install required. The platform also has room for sharing projects and simulation assets as it grows.<p>Our first course is live now: Intro to ROS2 (free to read). The course teaches skills ranging from building your first node to a capstone project of a robot touring a museum world, with every lesson runnable in the online workspace (free accounts get an hour of workspace time daily - enough to follow the course).<p>Would love feedback from this community: on the course, the workspace experience, and what courses to build next."
+    },
+    {
+        "id": 48920706,
+        "title": "Show HN: Fast NF4 dequantization Triton kernel (1.41x faster than bitsandbytes)",
+        "url": "https://github.com/Griffith-7/nf4-triton-kernel",
+        "description_snippet": "&quot;I wanted to see if I could optimize the dequantization bottleneck during 4-bit LLM inference. By writing a custom kernel in Triton to optimize memory access patterns, I managed to get up to a 1.41x speedup over the standard bitsandbytes implementation. Check out the source code and benchmarks, feedback is highly appreciated!&quot;"
+    },
+    {
+        "id": 48921948,
+        "title": "Show HN: Specsanity.dev – an OAS linter that works",
+        "url": "https://specsanity.dev",
+        "description_snippet": "OAS linters online generally suck. This one runs 100% in your browser and is backed by @redocly&#x2F;openapi-core. You can configure, edit, and share specs easily. The best part is, it works. No more copypasta"
+    },
+    {
+        "id": 48920582,
+        "title": "Show HN: Running server scripts from smartphone via SSH",
+        "url": "https://c100k.eu/p/rebootx/updates/20260714-remote-runbooks",
+        "description_snippet": "I&#x27;ve added Remote Runbooks to RebootX, a mobile app for managing cloud and on-prem infrastructure, available on iOS and Android (freemium).<p>The idea is simple: when PagerDuty wakes you up, many incidents boil down to executing the same sequence of SSH commands or operational steps. Instead of opening a laptop, you can execute a predefined runbook directly from your phone.<p>Very usefyl when you&#x27;re on the go.<p>The scripts are retrieved from the server at `&#x2F;usr&#x2F;local&#x2F;sbin&#x2F;rebootx&#x2F;runbooks`, also via SSH. If a script is prefixed with `__` (2 underscores), it&#x27;s considered dangerous and the app warns you about it and ask for confirmation before executing it.<p>Some will argue that with the perfect infra, you don&#x27;t have to do all of this. By experience, none of us have the perfect infra so SSH-ing into the server (e.g VPS) is often required.<p>Happy to hear about your feedback or ideas of improvement."
+    },
+    {
+        "id": 48921013,
+        "title": "Show HN: I Am Hosting Amalia – The First Portuguese LLM",
+        "url": "https://iaamalia.com/",
+        "description_snippet": ""
+    },
+    {
+        "id": 48920849,
+        "title": "Show HN: InferAll – One API for OpenAI, Anthropic, Google, Nvidia Nim",
+        "url": "https://inferall.ai/?src=hn",
+        "description_snippet": ""
+    },
+    {
+        "id": 48920784,
+        "title": "Show HN: Ranking 19 LLMs on Flutter code by compile pass & hidden-test pass-at-1",
+        "url": "https://nativevibe.dev/flutter-benchmark",
+        "description_snippet": ""
+    },
+    {
+        "id": 48920494,
+        "title": "Show HN: Nable – Local-first cost intelligence tool for cloud and AI",
+        "url": "https://github.com/getnable/finopsmcp",
+        "description_snippet": "Hey yall, I built nable.\nIt&#x27;s an open source MCP based in normalizing your bill across all your providers, being your cost brain, andd pushing to pr&#x2F;verifying savings. Apache 2.0\n180+ tools, only called when necessary.\nTry it $uvx nable"
+    }
+]
