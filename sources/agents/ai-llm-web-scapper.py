@@ -66,7 +66,7 @@ class DynamicScraperAgent:
             f"# Prompt Instruction:\n-------------------------------------------------\n{prompt_instruction}\n-------------------------------------------------\n\n"
             f"# Raw Response:\n-------------------------------------------------\n{raw_content}\n-------------------------------------------------\n\n"
         )
-        with open(agent_working_response_file, "a", encoding="utf-8") as file:
+        with open(agent_working_history_file, "a", encoding="utf-8") as file:
             file.write(log_content)
 
     def process_and_structure_data(self, raw_text: str) -> Dict[str, Any]:
