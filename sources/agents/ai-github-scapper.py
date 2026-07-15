@@ -135,7 +135,7 @@ class GitHubModelScraper:
             # Fallback handling in case the raw payload directly resolves to a root array list
             providers_list = raw_data
             
-        processed_data = self.process_and_standardize(raw_data)
+        processed_data = self.process_and_standardize(providers_list)
         
         try:
             with open(output_filepath, "w", encoding="utf-8") as f:
