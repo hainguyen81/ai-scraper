@@ -64,7 +64,7 @@ jobs:
       # Step 3: Run asynchronous API listener via standard library runtime context
       - name: "🕵️‍♂️ Run community scanning monitoring pipeline"
         env:
-          SCAN_LIMIT: ${{ inputs.scan_limit }}
+          SCAN_LIMIT: ${{ github.event.inputs.scan_limit }}
         run: |
           echo "⚡ Initializing Hacker News REST endpoint stream listener..."
           python sources/agents/ai-reddit-hacker-news-scapper.py --scan-limit "$SCAN_LIMIT"
@@ -77,7 +77,7 @@ jobs:
           TARGET_DIR="sources/output"
           # Prevent pipeline block execution if the target output file was not generated
           if [ ! -f "${TARGET_DIR}/$FILE_NAME.json" ]; then
-              echo "::error::🚨 CRITICAL FAILURE: The scraper output payload '${TARGET_DIR}/$FILE_NAME' is missing."
+              echo "::error::🚨 CRITICAL FAILURE: The scraper output payload '${TARGET_DIR}/$FILE_NAME.json' is missing."
               exit 1
           fi
           

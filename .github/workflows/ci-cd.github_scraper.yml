@@ -60,7 +60,7 @@ jobs:
           TARGET_DIR="sources/output"
           # Prevent pipeline block execution if the target output file was not generated
           if [ ! -f "${TARGET_DIR}/$FILE_NAME.json" ]; then
-              echo "::error::🚨 CRITICAL FAILURE: The scraper output payload '${TARGET_DIR}/$FILE_NAME' is missing."
+              echo "::error::🚨 CRITICAL FAILURE: The scraper output payload '${TARGET_DIR}/$FILE_NAME.json' is missing."
               exit 1
           fi
           

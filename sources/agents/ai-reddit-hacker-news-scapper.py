@@ -106,8 +106,14 @@ if __name__ == "__main__":
     parser.add_argument("--scan-limit", required=True)
     args = parser.parse_args()
     
+    scan_limit = args.scan_limit
+    try:
+        scan_limit = int(scan_limit)
+    except ValueError:
+        scan_limit = 50 # Reliable fallback value configuration
+    
     forum_scraper = HackerNewsTechScraper()
-    discovered_threads = forum_scraper.fetch_latest_ai_threads(scan_limit=args.scan_limit)
+    discovered_threads = forum_scraper.fetch_latest_ai_threads(scan_limit=scan_limit)
     # Save the output arrays locally if threads are successfully captured
     if discovered_threads:
         print('🎉 Pipeline parsing complete. Successfully extracted', len(discovered_threads), 'highly-relevant technical threads.')
