@@ -46,6 +46,7 @@ class AIWebScraperAgent:
             "llm": {
                 "api_key": self.api_key,
                 "model": "google_genai/gemini-2.5-flash",
+                "model_tokens": 1000000,
                 "base_url": resolved_url,
                 "temperature": 0.0  # Set to zero to enforce strict factual parsing and eliminate hallucination
             },
