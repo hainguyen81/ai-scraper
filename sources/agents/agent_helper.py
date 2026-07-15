@@ -29,20 +29,34 @@ def resolve_absolute_path(relative_target_path):
     # full path from root workspace
     return absolute_hardware_path
 
-def json_raw_content(raw_content):
+def json_raw_content(raw_content: Any) -> str:
     """Securely serialize input telemetry payloads and generate standard markdown log contents."""
     
-    # ✅ ENTERPRISE CORE FIX: Dynamically detect and convert dict/list objects into character string tokens
+    # ✅ STEP 1: If input is already a string, attempt to safely parse it into a dict/list first
+    if isinstance(raw_content, str):
+        cleaned_str = raw_content.strip()
+        # Verify if the string pattern looks like a potential JSON structure
+        if cleaned_str.startswith("{") or cleaned_str.startswith("["):
+            try:
+                raw_content = json.loads(cleaned_str)
+            except Exception:
+                # Fallback silently if it is a standard plain text instead of JSON string
+                pass
+    
+    # ✅ STEP 2: Once object identity is recovered, execute absolute beautification constraints
     if isinstance(raw_content, (dict, list)):
         try:
-            # Convert the live dictionary tracking buffer into a formatted JSON string structure
+            # Convert the target data layout into a beautiful formatted JSON string with 4-space indent lines
             raw_content = json.dumps(raw_content, indent=4, ensure_ascii=False)
         except Exception as serialize_err:
-            # Fallback implementation to safe string casting to prevent pipeline block execution crashes
+            # Emergency fallback to prevent total execution runtime pipeline crashes
             raw_content = str(raw_content)
+    
     elif raw_content is None:
         raw_content = "None"
+    
     else:
-        # Enforce absolute character string datatype constraints for subsequent regular expressions
+        # Enforce character string datatype constraints for any other variable types
         raw_content = str(raw_content)
+    
     return raw_content
