@@ -132,7 +132,7 @@ class DynamicScraperAgent:
             return json.loads(response.choices.message.content)
         except Exception as llm_err:
             logger.error(f"Structured inference schema parsing crashed: {str(llm_err)}")
-            return {"free_providers": [], "status": "failed"}
+            return {"free_providers": [], "status": "failed", "error": f"Structured inference schema parsing crashed: {str(llm_err)}"}
 
     def save_output(self, dataset: Dict[str, Any], filepath: str) -> None:
         """Ensure destination space existence and securely persist data objects on disk storage."""
