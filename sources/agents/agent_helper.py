@@ -6,6 +6,7 @@
 # ==============================================================================
 
 import os
+import ast
 
 def resolve_absolute_path(relative_target_path):
     """
@@ -32,31 +33,39 @@ def resolve_absolute_path(relative_target_path):
 def json_raw_content(raw_content):
     """Securely serialize input telemetry payloads and generate standard markdown log contents."""
     
-    # ✅ STEP 1: If input is already a string, attempt to safely parse it into a dict/list first
-    if isinstance(raw_content, str):
-        cleaned_str = raw_content.strip()
-        # Verify if the string pattern looks like a potential JSON structure
-        if cleaned_str.startswith("{") or cleaned_str.startswith("["):
-            try:
-                raw_content = json.loads(cleaned_str)
-            except Exception:
-                # Fallback silently if it is a standard plain text instead of JSON string
-                pass
-    
-    # ✅ STEP 2: Once object identity is recovered, execute absolute beautification constraints
+    # ✅ STEP 1: Process inputs if they arrive as live Python Dictionary or List types directly
     if isinstance(raw_content, (dict, list)):
         try:
-            # Convert the target data layout into a beautiful formatted JSON string with 4-space indent lines
-            raw_content = json.dumps(raw_content, indent=4, ensure_ascii=False)
-        except Exception as serialize_err:
-            # Emergency fallback to prevent total execution runtime pipeline crashes
-            raw_content = str(raw_content)
+            # Convert dictionary objects to a strict double-quoted JSON string with indentation rules
+            return json.dumps(raw_content, indent=4, ensure_ascii=False)
+        except Exception:
+            return str(raw_content)
     
-    elif raw_content is None:
-        raw_content = "None"
+    # ✅ STEP 2: Handle string inputs that might be single-quoted representation strings or flat JSON blocks
+    if isinstance(raw_content, str):
+        cleaned_str = raw_content.strip()
+        
+        # Hotfix for Python object representation strings containing single quotes instead of valid JSON double quotes
+        if cleaned_str.startswith("{") and "'" in cleaned_str:
+            try:
+                # Replace structural single quotes with standardized JSON compliant double quotes safely using literal evaluation
+                import ast
+                evaluated_object = ast.literal_eval(cleaned_str)
+                return json.dumps(evaluated_object, indent=4, ensure_ascii=False)
+            except Exception:
+                pass
+        
+        # Handle standard double-quoted minified JSON strings safely
+        if cleaned_str.startswith("{") or cleaned_str.startswith("["):
+            try:
+                parsed_object = json.loads(cleaned_str)
+                return json.dumps(parsed_object, indent=4, ensure_ascii=False)
+            except Exception:
+                pass
+        
+        return cleaned_str
     
-    else:
-        # Enforce character string datatype constraints for any other variable types
-        raw_content = str(raw_content)
+    if raw_content is None:
+        return "None"
     
-    return raw_content
+    return str(raw_content)
