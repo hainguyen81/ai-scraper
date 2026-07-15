@@ -27,7 +27,7 @@ env:
 
 jobs:
   run-ai-agent-pipeline:
-    name: "🧠 LLM-Driven Autonomous Web Scraping"
+    name: "🤖 LLM-Driven Autonomous Web Scraping"
     runs-on: ubuntu-latest
     
     steps:

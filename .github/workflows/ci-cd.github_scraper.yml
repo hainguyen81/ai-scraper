@@ -27,7 +27,7 @@ env:
 
 jobs:
   run-github-pipeline:
-    name: "📂 Open-Source Repository Data Ingestion"
+    name: "🐙 Open-Source Repository Data Ingestion"
     runs-on: ubuntu-latest
     
     steps:
