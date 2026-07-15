@@ -50,10 +50,7 @@ class AIWebScraperAgent:
                 "base_url": resolved_url,
                 "temperature": 0.0  # Set to zero to enforce strict factual parsing and eliminate hallucination
             },
-            "browser_base": {
-                "headless": True,  # Operate browser engine in background to optimize server workload
-                "driver": "chromium"
-            },
+            "headless": True,
             "verbose": True
         }
         
