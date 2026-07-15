@@ -66,7 +66,6 @@ class GitHubModelScraper:
         
         try:
             with urllib.request.urlopen(req, timeout=self.timeout_seconds) as response:
-                self.write_log(str(response))
                 if response.status == 200:
                     logger.info("Raw configuration data fetched successfully from GitHub.")
                     return json.loads(response.read().decode("utf-8"))
@@ -124,6 +123,19 @@ class GitHubModelScraper:
             logger.critical("Pipeline aborted: Unable to retrieve operational data from source.")
             return False
         
+        # write response
+        self.write_log(raw_data)
+        
+        # ==============================================================================
+        # 🩹 DEEP TYPE DE-SERIALIZATION: Force conversion if payload is a double-encoded string
+        # ==============================================================================
+        if isinstance(raw_data, str):
+            try:
+                logger.info("Payload isolated as raw string format. Executing second layer JSON deserialization...")
+                raw_data = json.loads(raw_data)
+            except Exception as parse_inner_err:
+                logger.error(f"Failed to process internal character token blocks: {str(parse_inner_err)}")
+        
         # ==============================================================================
         # 🩹 ENTERPRISE CORE FIX: Extract the nested array under the 'providers' key
         # ==============================================================================
@@ -131,9 +143,15 @@ class GitHubModelScraper:
         if isinstance(raw_data, dict):
             # Safe extraction of the target list array embedded within the corporate JSON object
             providers_list = raw_data.get("providers", [])
+            logger.info(f"Target key 'providers' discovered. Array volume captured: {len(providers_list)} blocks.")
+        
         elif isinstance(raw_data, list):
             # Fallback handling in case the raw payload directly resolves to a root array list
             providers_list = raw_data
+            logger.info(f"Root node resolved as flat array list. Volume captured: {len(providers_list)} blocks.")
+        
+        else:
+            logger.error(f"Critical operational mismatch. Unrecognized data mapping signature: {type(raw_data)}")
             
         processed_data = self.process_and_standardize(providers_list)
         
