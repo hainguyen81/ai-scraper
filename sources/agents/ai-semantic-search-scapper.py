@@ -3,6 +3,7 @@ import sys
 import json
 import logging
 import re
+import argparse
 from typing import List, Dict, Any
 from exa_py import Exa
 

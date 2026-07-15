@@ -3,6 +3,7 @@ import sys
 import json
 import logging
 import re
+import argparse
 import urllib.request
 from typing import List, Dict, Any, Optional
 
@@ -106,8 +107,7 @@ if __name__ == "__main__":
     args = parser.parse_args()
     
     forum_scraper = HackerNewsTechScraper()
-    scanLimit = args['scan-limit'] if args else None
-    discovered_threads = forum_scraper.fetch_latest_ai_threads(scan_limit=scanLimit)
+    discovered_threads = forum_scraper.fetch_latest_ai_threads(scan_limit=args.scan_limit)
     # Save the output arrays locally if threads are successfully captured
     if discovered_threads:
         print('🎉 Pipeline parsing complete. Successfully extracted', len(discovered_threads), 'highly-relevant technical threads.')
