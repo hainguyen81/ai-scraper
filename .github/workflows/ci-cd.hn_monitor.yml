@@ -1,0 +1,85 @@
+name: "📡 Execute Hacker News Tech Monitor"
+
+# Define triggering mechanisms for automated lifecycle management
+on:
+  # Allows administrators to manually trigger the workflow execution pipeline via the GitHub UI
+  workflow_dispatch:
+    inputs:
+      scan_limit:
+        description: "🔍 Maximum number of recent community threads to scan sequentially"
+        required: true
+        default: "50"
+        type: string
+
+# Enforce secure concurrency policies to prevent race conditions during artifact generation
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+# permissions for GitHub Actions READ/WRITE
+permissions:
+  contents: write
+  packages: write
+
+# enviroment
+env:
+  ACTIONS_ALLOW_USE_UNSECURE_NODE_VERSION: true
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
+  LANG: 'C.UTF-8'
+  LC_ALL: 'C.UTF-8'
+
+jobs:
+  run-monitor-pipeline:
+    name: "🕵️‍♂️ Real-Time Forum Stream Analysis"
+    runs-on: ubuntu-latest
+
+    # Restrict workflow runtime capabilities to minimal security requirements
+    permissions:
+      contents: write
+      actions: write
+
+    steps:
+      # Step 1: Initialize workspace by cloning the target branch repository
+      - name: "📂 Checkout code repository workspace"
+        uses: actions/checkout@v4
+
+      # Step 2: Establish a secure, isolated Python virtual execution environment
+      - name: "⚙️ Configure Python runtime execution platform"
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      # Step 3: Run asynchronous API listener via standard library runtime context
+      - name: "🕵️‍♂️ Run community scanning monitoring pipeline"
+        run: |
+          echo "⚡ Initializing Hacker News REST endpoint stream listener..."
+          # Execute a secure inner-inline script block bypassing external shell injections
+          python -c "
+          import os
+          from community_forum_scraper import HackerNewsTechScraper
+          import json
+          
+          # Safely cast workflow input string to strict native integer parameter
+          limit = int('${{ github.event.inputs.scan_limit }}')
+          print('🔎 Intercepting top', limit, 'latest Show HN threads. Scanning payload structures for free LLM API endpoints...')
+          
+          forum_scraper = HackerNewsTechScraper()
+          discovered_threads = forum_scraper.fetch_latest_ai_threads(scan_limit=limit)
+          
+          # Conditional evaluation based on endpoint tracking results
+          if discovered_threads:
+              print('🎉 Pipeline parsing complete. Successfully extracted', len(discovered_threads), 'highly-relevant technical threads.')
+              with open('discovered_community_threads.json', 'w', encoding='utf-8') as out:
+                  json.dump(discovered_threads, out, indent=4, ensure_ascii=False)
+          else:
+              print('⚠️ Operational Warning: Zero matching threads found in the current community buffer.')
+          "
+
+      # Step 4: Archive the discovered model dataset file for review
+      - name: "📦 Upload discovered community threads artifact"
+        uses: actions/upload-artifact@v4
+        with:
+          name: discovered-community-endpoints
+          path: discovered_community_threads.json
+          retention-days: 7 # Auto-purge artifact after 7 days to manage storage footprint
+          compression-level: 6 # Balance between archival performance and storage optimization

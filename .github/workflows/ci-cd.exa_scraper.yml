@@ -1,0 +1,77 @@
+name: "🚀 Execute Semantic Search Scraper"
+
+# Define triggering mechanisms for automated lifecycle management
+on:
+  # Allows administrators to manually trigger the workflow execution pipeline via the GitHub UI
+  workflow_dispatch:
+    inputs:
+      output_filename:
+        description: "🎯 Target filename to store the scraped web corpus metadata"
+        required: true
+        default: "web_search_corpus.json"
+        type: string
+
+# Enforce secure concurrency policies to prevent race conditions during artifact generation
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+# permissions for GitHub Actions READ/WRITE
+permissions:
+  contents: write
+  packages: write
+
+# enviroment
+env:
+  ACTIONS_ALLOW_USE_UNSECURE_NODE_VERSION: true
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
+  LANG: 'C.UTF-8'
+  LC_ALL: 'C.UTF-8'
+
+jobs:
+  run-search-pipeline:
+    name: "🤖 AI Semantic Search Data Ingestion"
+    runs-on: ubuntu-latest
+
+    steps:
+      # Step 1: Initialize workspace by cloning the target branch repository
+      - name: "📂 Checkout code repository workspace"
+        uses: actions/checkout@v4
+
+      # Step 2: Establish a secure, isolated Python virtual execution environment
+      - name: "⚙️ Configure Python runtime execution platform"
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: "pip" # Opt-in to dependency caching to optimize subsequent build duration
+
+      # Step 3: Upgrade pip binary interfaces and securely bind external libraries
+      - name: "🛠️ Install operational dependencies"
+        run: |
+          echo "🔥 Upgrading package managers and resolving required core modules..."
+          python -m pip install --upgrade pip
+          pip install exa_py
+
+      # Step 4: Inject encrypted credentials from repository vault and trigger ingestion core
+      - name: "🤖 Execute multi-source semantic web discovery pipeline"
+        env:
+          # Secure ingestion of the private API Key configuration from GitHub Secrets manager
+          EXA_API_KEY: ${{ secrets.EXA_API_KEY }}
+        run: |
+          # Validate token existence to prevent runtime authentication failures
+          if [ -z "$EXA_API_KEY" ]; then
+            echo "::error::🚨 CRITICAL INFRASTRUCTURE FAILURE: EXA_API_KEY secret token identifier is missing from repository vault."
+            exit 1
+          fi
+          echo "🧠 AI Ingestion Agent successfully authenticated. Booting semantic web discovery matrix..."
+          python semantic_search_scraper.py
+          echo "✅ Massive parallel data extraction process completed successfully!"
+          
+      # Step 5: Archive the resulting structured file as an immutable pipeline storage artifact
+      - name: "📦 Upload output corpus artifact to storage"
+        uses: actions/upload-artifact@v4
+        with:
+          name: web-search-knowledge-corpus
+          path: ${{ github.event.inputs.output_filename }}
+          retention-days: 7 # Auto-purge artifact after 7 days to manage storage footprint
+          compression-level: 6 # Balance between archival performance and storage optimization
