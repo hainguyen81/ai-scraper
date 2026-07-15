@@ -55,11 +55,11 @@ jobs:
         uses: actions/checkout@v7
         with:
           fetch-depth: 0
-          token: ${{ secrets.GITHUB_TOKEN }}
+          token: ${{ secrets.PAT_SECRETS_MANAGER }}
 
       - name: "📡 Dispatch Upstream Signal to Exa Agent"
         env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GH_TOKEN: ${{ secrets.PAT_SECRETS_MANAGER }}
         run: |
           echo "Initiating execution trigger for Exa Semantic Search Scraper Pipeline..."
           gh workflow run "🕸️ Agent - Execute Semantic Search Scraper" --repo "${{ github.repository }}" --ref "${{ github.ref_name }}"
@@ -79,11 +79,11 @@ jobs:
         uses: actions/checkout@v7
         with:
           fetch-depth: 0
-          token: ${{ secrets.GITHUB_TOKEN }}
+          token: ${{ secrets.PAT_SECRETS_MANAGER }}
 
       - name: "📡 Dispatch Upstream Signal with Custom Scan Limit Input Data"
         env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GH_TOKEN: ${{ secrets.PAT_SECRETS_MANAGER }}
           LIMIT: ${{ github.event.inputs.scan_limit_default }}
         run: |
           echo "Initiating execution trigger for Hacker News Forum Stream Analyzer Node..."
@@ -105,11 +105,11 @@ jobs:
         uses: actions/checkout@v7
         with:
           fetch-depth: 0
-          token: ${{ secrets.GITHUB_TOKEN }}
+          token: ${{ secrets.PAT_SECRETS_MANAGER }}
 
       - name: "📡 Dispatch Upstream Signal to GitHub Scraper Agent"
         env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GH_TOKEN: ${{ secrets.PAT_SECRETS_MANAGER }}
         run: |
           echo "Initiating execution trigger for Open-Source Repository Discovery Pipeline..."
           gh workflow run "🐙 Agent - Execute GitHub Repository Scraper" --repo "${{ github.repository }}" --ref "${{ github.ref_name }}"
@@ -129,11 +129,11 @@ jobs:
         uses: actions/checkout@v7
         with:
           fetch-depth: 0
-          token: ${{ secrets.GITHUB_TOKEN }}
+          token: ${{ secrets.PAT_SECRETS_MANAGER }}
 
       - name: "📡 Dispatch Upstream Signal to Autonomous LLM Graph Agent"
         env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GH_TOKEN: ${{ secrets.PAT_SECRETS_MANAGER }}
         run: |
           echo "Initiating execution trigger for Autonomous LLM Graph Web Scraper Engine..."
           gh workflow run "🤖 Agent - Execute AI Web Scraper" --repo "${{ github.repository }}" --ref "${{ github.ref_name }}"
