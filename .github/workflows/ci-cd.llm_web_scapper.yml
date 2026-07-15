@@ -50,28 +50,38 @@ jobs:
       # Step 3: Install ScrapeGraphAI framework modules and headless browser binaries
       - name: "🛠️ Install AI Framework and Playwright browsers"
         run: |
-          echo "🔥 Installing ScrapeGraphAI core engine and hotfix dependencies..."
+          echo "🔥 Installing ScrapeGraphAI core engine and system dependencies..."
           python -m pip install --upgrade pip
-          
-          # HOTFIX: Force install compatible langchain components to fix ChatOllama import crash
           pip install scrapegraphai langchain-community langchain-ollama playwright
           
           echo "🌐 Provisioning sandboxed headless browser binaries..."
           playwright install --with-deps chromium
 
-      # Step 4: Inject API authorization variables securely and launch AI Agent core
       - name: "🤖 Launch AI Agent extraction graph instance"
         env:
-          # Securely inject Google AI Studio credential from repository vault into workspace environment
-          API_KEY_GEMINI: ${{ secrets.API_KEY_GEMINI }}
+          # Match the variable name with your execution script configuration env variables
+          API_KEY_GEMINI: ${{ secrets.MY_GEMINI_API_KEY }}
         run: |
           if [ -z "$API_KEY_GEMINI" ]; then
-            echo "::error::🚨 CRITICAL SECURITY FAILURE: API_KEY_GEMINI secret token is missing from vault."
+            echo "::error::🚨 CRITICAL SECURITY FAILURE: MY_GEMINI_API_KEY secret token is missing from vault."
             exit 1
           fi
           
+          # 🩹 ENTERPRISE MONKEY PATCH: Fix broken nested import inside scrapegraphai core library dynamically
+          SITE_PACKAGES_DIR=$(python -c "import site; print(site.getsitepackages()[0])")
+          TARGET_INIT_FILE="$SITE_PACKAGES_DIR/langchain_community/chat_models/__init__.py"
+          
+          echo "Injecting hotfix routing directly into: $TARGET_INIT_FILE"
+          if [ -f "$TARGET_INIT_FILE" ]; then
+              # Append the redirection pointer safely to bypass the internal library crash line
+              echo -e "\nfrom langchain_ollama import ChatOllama" >> "$TARGET_INIT_FILE"
+              echo "✅ Hotfix dynamically applied to langchain infrastructure successfully."
+          else
+              echo "⚠️ Target initialization file path not discovered. Skipping hotfix injection."
+          fi
+          
           echo "🧠 AI Agent successfully initialized. Booting extraction graph workflow..."
-          # Expects ai_agent_scraper.py to accept env var and output 'free_models_ai_agent.json'
+          # Execute the enterprise script payload safely passing the verified API key parameters
           python sources/agents/ai-llm-web-scapper.py --gemini-api-key "$API_KEY_GEMINI"
           echo "✅ AI parsing complete. Extraction graph closed successfully."
 
