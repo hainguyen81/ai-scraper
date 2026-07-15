@@ -50,7 +50,10 @@ class AIWebScraperAgent:
                 "base_url": resolved_url,
                 "temperature": 0.0  # Set to zero to enforce strict factual parsing and eliminate hallucination
             },
-            "headless": True,
+            "browser_base": {
+                "headless": True,  # Operate browser engine in background to optimize server workload
+                "driver": "chromium"
+            },
             "verbose": True
         }
         
@@ -106,6 +109,7 @@ if __name__ == "__main__":
     
     # Extract operational parameters using clean object attribute accessing instead of dict lookup
     geminiApiKey = args.gemini_api_key
+    os.environ["BROWSERBASE_API_KEY"] = geminiApiKey
     
     # Target URL database reference target mapping
     target_webpage = "https://github.com/open-free-llm-api/awesome-freellm-apis"
