@@ -1,4 +1,4 @@
-name: "🤖 Execute AI Web Scraper Agent"
+name: "🤖 Agent - Execute AI Web Scraper"
 
 # Define triggering mechanisms for automated lifecycle management
 on:

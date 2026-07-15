@@ -1,4 +1,4 @@
-name: "📡 Execute Hacker News Tech Monitor"
+name: "📡 Agent - Execute Hacker News Tech Monitor"
 
 # Define triggering mechanisms for automated lifecycle management
 on:

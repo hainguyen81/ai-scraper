@@ -1,4 +1,4 @@
-name: "🚀 Execute Semantic Search Scraper"
+name: "🚀 Agent - Execute Semantic Search Scraper"
 
 # Define triggering mechanisms for automated lifecycle management
 on:
