@@ -2,14 +2,26 @@ name: "📡 Execute Hacker News Tech Monitor"
 
 # Define triggering mechanisms for automated lifecycle management
 on:
-  # Allows administrators to manually trigger the workflow execution pipeline via the GitHub UI
+  # manual trigger workflow
   workflow_dispatch:
     inputs:
       scan_limit:
         description: "🔍 Maximum number of recent community threads to scan sequentially"
-        required: true
+        required: false
         default: "50"
         type: string
+    
+  # allow other workflow call into (inputs same as workflow_dispatch but required)
+  workflow_call:
+    inputs:
+      scan_limit:
+        description: "🔍 Maximum number of recent community threads to scan sequentially"
+        required: false
+        default: "50"
+        type: string
+    
+  schedule:
+    - cron: "0 0 * * 0" # every Sunday at 0:00
 
 # Enforce secure concurrency policies to prevent race conditions during artifact generation
 concurrency:
@@ -53,33 +65,45 @@ jobs:
       - name: "🕵️‍♂️ Run community scanning monitoring pipeline"
         run: |
           echo "⚡ Initializing Hacker News REST endpoint stream listener..."
-          # Execute a secure inner-inline script block bypassing external shell injections
-          python -c "
-          import os
-          from community_forum_scraper import HackerNewsTechScraper
-          import json
+          python sources/agents/ai-reddit-hacker-news-scapper.py
           
-          # Safely cast workflow input string to strict native integer parameter
-          limit = int('${{ github.event.inputs.scan_limit }}')
-          print('🔎 Intercepting top', limit, 'latest Show HN threads. Scanning payload structures for free LLM API endpoints...')
+      # Step 4: Dynamically organize directory, rename file by system date, and commit changes
+      - name: "🚀 Commit and Push structured data to repository storage"
+        env:
+          FILE_NAME: "discovered-community-endpoints"
+        run: |
+          TARGET_DIR="source/output"
+          # Prevent pipeline block execution if the target output file was not generated
+          if [ ! -f "${TARGET_DIR}/$FILE_NAME" ]; then
+              echo "::error::🚨 CRITICAL FAILURE: The scraper output payload '${TARGET_DIR}/$FILE_NAME' is missing."
+              exit 1
+          fi
           
-          forum_scraper = HackerNewsTechScraper()
-          discovered_threads = forum_scraper.fetch_latest_ai_threads(scan_limit=limit)
+          echo "📅 Fetching current system timestamp..."
+          # Generate current date in YYYY-MM-DD format
+          CURRENT_DATE=$(date +'%Y-%m-%d')
           
-          # Conditional evaluation based on endpoint tracking results
-          if discovered_threads:
-              print('🎉 Pipeline parsing complete. Successfully extracted', len(discovered_threads), 'highly-relevant technical threads.')
-              with open('discovered_community_threads.json', 'w', encoding='utf-8') as out:
-                  json.dump(discovered_threads, out, indent=4, ensure_ascii=False)
-          else:
-              print('⚠️ Operational Warning: Zero matching threads found in the current community buffer.')
-          "
+          echo "📁 Ensuring target destination directory exists..."
+          mkdir -p $TARGET_DIR
+          
+          echo "📝 Relocating and renaming output payload to ${TARGET_DIR}/${CURRENT_DATE}.json"
+          mv sources/output/$FILE_NAME.json "${TARGET_DIR}/${CURRENT_DATE}-$FILE_NAME.json"
+          
+          echo "🔧 Configuring automated Git bot profile identity..."
+          git config --local user.email "github-actions[bot]@://github.com"
+          git config --local user.name "github-actions[bot]"
+          
+          echo "💾 Staging modified file vectors..."
+          git add "${TARGET_DIR}/${CURRENT_DATE}-$FILE_NAME.json"
+          
+          # Only commit if there are explicit architectural diff changes detected
+          if git diff --cached --quiet; then
+              echo "⚠️ Operational Notice: No data state changes detected. Skipping repository commit."
+          else
+              echo "📝 Committing system state changes..."
+              git commit -m "🚀 data: Auto-ingest semantic corpus update [${CURRENT_DATE}]"
+              echo "📤 Pushing secure data changes upstream to repository branch..."
+              git push origin HEAD:${{ github.ref }}
+              echo "🎉 Workspace data pipeline successfully persistent!"
+          fi
 
-      # Step 4: Archive the discovered model dataset file for review
-      - name: "📦 Upload discovered community threads artifact"
-        uses: actions/upload-artifact@v4
-        with:
-          name: discovered-community-endpoints
-          path: discovered_community_threads.json
-          retention-days: 7 # Auto-purge artifact after 7 days to manage storage footprint
-          compression-level: 6 # Balance between archival performance and storage optimization

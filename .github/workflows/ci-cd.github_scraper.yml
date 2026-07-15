@@ -1,4 +1,4 @@
-name: "🚀 Execute Semantic Search Scraper"
+name: "🚀 Execute GitHub Repository Scraper"
 
 # Define triggering mechanisms for automated lifecycle management
 on:
@@ -29,50 +29,35 @@ env:
   LC_ALL: 'C.UTF-8'
 
 jobs:
-  run-search-pipeline:
-    name: "🤖 AI Semantic Search Data Ingestion"
+  run-github-pipeline:
+    name: "📂 Open-Source Repository Data Ingestion"
     runs-on: ubuntu-latest
-
+    
     steps:
       # Step 1: Initialize workspace by cloning the target branch repository
       - name: "📂 Checkout code repository workspace"
         uses: actions/checkout@v7
         with:
-          fetch-depth: 0
+          fetch-depth: 0 # Fetch all history so git commit can properly track branches
 
       # Step 2: Establish a secure, isolated Python virtual execution environment
       - name: "⚙️ Configure Python runtime execution platform"
         uses: actions/setup-python@v5
         with:
           python-version: "3.11"
-          cache: "pip" # Opt-in to dependency caching to optimize subsequent build duration
 
-      # Step 3: Upgrade pip binary interfaces and securely bind external libraries
-      - name: "🛠️ Install operational dependencies"
+      # Step 3: Run standard library processing script (Zero external dependencies required)
+      - name: "🐍 Run GitHub open-source model discovery core"
         run: |
-          echo "🔥 Upgrading package managers and resolving required core modules..."
-          python -m pip install --upgrade pip
-          pip install exa_py
+          echo "🔥 Booting local pipeline engine..."
+          # Expects github_scraper.py to output 'free_models_github.json' by default
+          python sources/agents/ai-github-scapper.py
+          echo "✅ Repository scanning completed successfully!"
 
-      # Step 4: Inject encrypted credentials from repository vault and trigger ingestion core
-      - name: "🤖 Execute multi-source semantic web discovery pipeline"
-        env:
-          # Secure ingestion of the private API Key configuration from GitHub Secrets manager
-          API_KEY_EXA: ${{ secrets.API_KEY_EXA }}
-        run: |
-          # Validate token existence to prevent runtime authentication failures
-          if [ -z "$API_KEY_EXA" ]; then
-            echo "::error::🚨 CRITICAL INFRASTRUCTURE FAILURE: API_KEY_EXA secret token identifier is missing from repository vault."
-            exit 1
-          fi
-          echo "🧠 AI Ingestion Agent successfully authenticated. Booting semantic web discovery matrix..."
-          python sources/agents/ai-semantic-search-scapper.py --exa-api-key "$API_KEY_EXA"
-          echo "✅ Massive parallel data extraction process completed successfully!"
-          
-      # Step 5: Dynamically organize directory, rename file by system date, and commit changes
+      # Step 4: Dynamically organize directory, rename file by system date, and commit changes
       - name: "🚀 Commit and Push structured data to repository storage"
         env:
-          FILE_NAME: "web_search_corpus"
+          FILE_NAME: "free_models_by_github_scapper"
         run: |
           TARGET_DIR="source/output"
           # Prevent pipeline block execution if the target output file was not generated
