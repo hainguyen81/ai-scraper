@@ -1,5 +1,5 @@
 {
     "free_providers": [],
     "status": "failed",
-    "error": "The api_key client option must be set either by passing api_key to the client or by setting the BROWSERBASE_API_KEY environment variable"
+    "error": "Error code: 401 - {'statusCode': 401, 'error': 'Unauthorized', 'message': 'Unauthorized'}"
 }
