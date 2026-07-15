@@ -17,13 +17,8 @@ class GitHubModelScraper:
     
     def __init__(self) -> None:
         # Use escaped strings to prevent system auto-formatting and markdown render errors
-        self._escaped_url: str = "https://raw.githubusercontent.com/mnfst/awesome-free-llm-apis/main/data.json"
-        self.target_url: str = self._resolve_url(self._escaped_url)
+        self.target_url: str = "https://raw.githubusercontent.com/mnfst/awesome-free-llm-apis/main/data.json"
         self.timeout_seconds: int = 15
-        
-    def _resolve_url(self, escaped_str: str) -> str:
-        """Decode the escaped protection string back to a valid operational URL."""
-        return escaped_str.replace("https", "https").replace(".", ".")
 
     def fetch_raw_data(self) -> Optional[List[Dict[str, Any]]]:
         """Fetch raw JSON payload from the remote repository with error isolation."""
