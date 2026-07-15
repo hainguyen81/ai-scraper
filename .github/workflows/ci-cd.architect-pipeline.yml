@@ -1,0 +1,110 @@
+name: 🚀 AI Architect Pipeline
+
+# Trigger the workflow when requirements change or via manual trigger
+on:
+  workflow_dispatch:
+    inputs:
+      requirements_file:
+        description: '📄 Path to the project requirements file'
+        required: true
+        default: 'requirements.txt'
+        type: string
+      phases:
+        description: '🔢 Number of phases to split the project'
+        required: true
+        default: 5
+        type: number
+      output_dir:
+        description: '📂 Target directory path to save the generated blueprint'
+        required: true
+        default: 'sources/generated_architecture_blueprint'
+        type: string
+    
+  # allow other workflow call into (inputs same as workflow_dispatch but required)
+  workflow_call:
+    inputs:
+      requirements_file:
+        description: '📄 Path to the project requirements file'
+        required: true
+        default: 'requirements.txt'
+        type: string
+      phases:
+        description: '🔢 Number of phases to split the project'
+        required: true
+        default: 3
+        type: number
+      output_dir:
+        description: '📂 Target directory path to save the generated blueprint'
+        required: true
+        default: 'sources/generated_architecture_blueprint'
+        type: string
+
+jobs:
+  generate-blueprint:
+    name: 🏗️ System Architecture & Phase Planner
+    runs-on: ubuntu-latest
+
+    steps:
+    # Step 1: Checkout the repository code into the runner workspace
+    - name: 📥 Checkout Repository
+      uses: actions/checkout@v7
+      with:
+          fetch-depth: 0
+
+    # Step 2: Initialize a clean Python runtime environment
+    - name: 🐍 Set up Python Environment
+      uses: actions/setup-python@v5
+      with:
+        python-version: '3.11'
+        cache: 'pip'
+
+    # Step 3: Upgrade pip and install the official Google GenAI SDK
+    - name: 📦 Install Python Dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install google-genai
+
+    # Step 4: Extract inputs dynamically and execute the Lead Architect Agent
+    - name: 🤖 Run Lead Architect Agent
+      env:
+        # Match the variable name with your execution script configuration env variables
+        API_KEY_GEMINI: ${{ secrets.API_KEY_GEMINI }}
+        REQUIREMENTS_FILE: ${{ inputs.requirements_file }}
+        OUTPUT_BLUEPRINT_DIR: ${{ inputs.output_dir }}
+        NUM_OF_PHASES: ${{ inputs.phases }}
+      run: |
+        # Extract Phase count (Fallback to 3 if triggered automatically via git push)
+        NUM_PHASES="$NUM_OF_PHASES"
+        if [ -z "$NUM_PHASES" ]; then
+          NUM_PHASES=5
+        fi
+        
+        # Extract dynamic Output Path (Fallback to default directory on automated events)
+        OUT_DIR="$OUTPUT_BLUEPRINT_DIR"
+        if [ -z "$OUT_DIR" ]; then
+          OUT_DIR="sources/generated_architecture_blueprint"
+        fi
+        
+        echo "⚡ Kicking off AI Agent orchestration..."
+        echo "🔢 Requested Execution Phases: $NUM_PHASES"
+        echo "📂 Target Destination Directory: $OUT_DIR"
+        
+        # Execute the python architect core script with the dynamic paths
+        python architect_agent.py --req "$REQUIREMENTS_FILE" --phases $NUM_PHASES --out "$OUT_DIR"
+
+    # Step 5: Automatically stage, commit, and push the generated architecture files
+    - name: 🚀 Commit and Push Blueprint Changes
+      run: |
+        # Set up git bot profile identities
+        git config --global user.name "github-actions[bot]"
+        git config --global user.email "github-actions[bot]@://github.com"
+        
+        # Evaluate workspace state to check for new architecture modifications
+        if [ -n "$(git status --porcelain)" ]; then
+          git add .
+          git commit -m "chore(ai): auto-generate global context and phase plan [skip ci]"
+          git push
+          echo "🎯 Success! Architecture files successfully committed and pushed back to the repository."
+        else
+          echo "ℹ️ Notice: No architecture structural updates or modifications were detected."
+        fi
