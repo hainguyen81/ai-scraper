@@ -95,28 +95,67 @@ class GitHubModelScraper:
         standardized_list: List[Dict[str, Any]] = []
         
         for provider in raw_providers:
-            provider_name = provider.get("name", "Unknown Provider")
-            api_info = provider.get("api", {})
-            base_url = api_info.get("baseUrl") or api_info.get("endpoint", "")
-            
-            # Skip provider evaluation if the base connection string is missing
-            if not base_url:
+            if not isinstance(provider, dict):
                 continue
+            
+            # ✅ ENTERPRISE CORE FIX: Detect free tier status via the parent's description text channel
+            description_text = str(provider.get("description", "-")).lower()
+            is_free_provider = "free" in description_text or provider.get("category") == "provider_api"
+            
+            # If the provider is verified as a free host node, process its embedded models
+            if is_free_provider:
+                provider_name = provider.get("name", "-")
+                api_info = provider.get("api", {})
+                base_url = api_info.get("baseUrl") or api_info.get("endpoint") or provider.get("baseUrl", "-")
+                url = provider.get("url", "-")
                 
-            models = provider.get("models", [])
-            for model in models:
-                # Evaluate multiple criteria to confirm free tier accessibility
-                is_free = model.get("is_free") or model.get("free", False) or "free" in model.get("tier", "").lower()
+                # Skip provider evaluation if the base connection string is missing
+                if not base_url:
+                    continue
                 
-                if is_free or provider.get("is_free_provider", False):
-                    context = model.get("context_length") or model.get("context", 128000)
+                # parse models
+                models = provider.get("models", [])
+                if not isinstance(models, list):
+                    continue
+                
+                for model in models:
+                    model_id = model.get("id") or model.get("name", "unknown-model")
                     
+                    # ✅ DYNAMIC TOKEN PARSING: Convert strings like "128K" or "32K" into clean operational integers
+                    raw_context = str(model.get("context", "128K")).upper().strip()
+                    try:
+                        if "K" in raw_context:
+                            context_tokens = int(float(raw_context.replace("K", "").strip()) * 1000)
+                        elif "M" in raw_context:
+                            context_tokens = int(float(raw_context.replace("M", "").strip()) * 1000000)
+                        else:
+                            context_tokens = int(raw_context)
+                    except Exception:
+                        context_tokens = 128000 # Stable engineering fallback value
+                    
+                    raw_context = str(model.get("maxOutput", "128K")).upper().strip()
+                    try:
+                        if "K" in raw_context:
+                            output_tokens = int(float(raw_context.replace("K", "").strip()) * 1000)
+                        elif "M" in raw_context:
+                            output_tokens = int(float(raw_context.replace("M", "").strip()) * 1000000)
+                        else:
+                            output_tokens = int(raw_context)
+                    except Exception:
+                        output_tokens = 128000 # Stable engineering fallback value
+                    
+                    # collect model info
                     standardized_list.append({
                         "provider": provider_name,
+                        "id": model_id,
+                        "name": model.get("name", "-"),
+                        "url": url,
                         "base_url": base_url,
-                        "model_id": model.get("id") or model.get("name"),
-                        "context_window": context,
-                        "recommended_agent_role": "Coder/Fixer" if "coder" in str(model.get("id")).lower() else "General Tester"
+                        "context_window": context_tokens,
+                        "description": description_text,
+                        "maxOutput": output_tokens,
+                        "modality": model.get("modality", "-"),
+                        "rateLimit": model.get("rateLimit", "-")
                     })
                     
         return standardized_list
