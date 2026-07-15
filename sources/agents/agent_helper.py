@@ -31,41 +31,18 @@ def resolve_absolute_path(relative_target_path):
     return absolute_hardware_path
 
 def json_raw_content(raw_content):
-    """Securely serialize input telemetry payloads and generate standard markdown log contents."""
-    
-    # ✅ STEP 1: Process inputs if they arrive as live Python Dictionary or List types directly
+    """Securely serialize input telemetry payloads into structural double-quoted strings."""
+    # If the payload is already a memory object list or dictionary
     if isinstance(raw_content, (dict, list)):
-        try:
-            # Convert dictionary objects to a strict double-quoted JSON string with indentation rules
-            return json.dumps(raw_content, indent=4, ensure_ascii=False)
-        except Exception:
-            return str(raw_content)
+        return json.dumps(raw_content, indent=4, ensure_ascii=False)
     
-    # ✅ STEP 2: Handle string inputs that might be single-quoted representation strings or flat JSON blocks
     if isinstance(raw_content, str):
         cleaned_str = raw_content.strip()
-        
-        # Hotfix for Python object representation strings containing single quotes instead of valid JSON double quotes
-        if cleaned_str.startswith("{") and "'" in cleaned_str:
+        # If it is a stringified JSON layout, decode and encode with indentation rules
+        if (cleaned_str.startswith("{") or cleaned_str.startswith("[")) and '"' in cleaned_str:
             try:
-                # Replace structural single quotes with standardized JSON compliant double quotes safely using literal evaluation
-                import ast
-                evaluated_object = ast.literal_eval(cleaned_str)
-                return json.dumps(evaluated_object, indent=4, ensure_ascii=False)
+                return json.dumps(json.loads(cleaned_str), indent=4, ensure_ascii=False)
             except Exception:
                 pass
-        
-        # Handle standard double-quoted minified JSON strings safely
-        if cleaned_str.startswith("{") or cleaned_str.startswith("["):
-            try:
-                parsed_object = json.loads(cleaned_str)
-                return json.dumps(parsed_object, indent=4, ensure_ascii=False)
-            except Exception:
-                pass
-        
-        return cleaned_str
-    
-    if raw_content is None:
-        return "None"
     
     return str(raw_content)
