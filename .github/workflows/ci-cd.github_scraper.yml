@@ -1,4 +1,4 @@
-name: "🚀 Agent - Execute GitHub Repository Scraper"
+name: "🤖 Agent - Execute GitHub Repository Scraper"
 
 # Define triggering mechanisms for automated lifecycle management
 on:
