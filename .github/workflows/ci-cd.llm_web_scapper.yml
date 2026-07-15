@@ -8,9 +8,6 @@ on:
   # allow other workflow call into (inputs same as workflow_dispatch but required)
   workflow_call:
     
-  schedule:
-    - cron: "0 0 * * 0" # every Sunday at 0:00
-
 # Enforce secure concurrency policies to prevent race conditions during artifact generation
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}

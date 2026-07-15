@@ -19,10 +19,7 @@ on:
         required: false
         default: 50
         type: number
-    
-  schedule:
-    - cron: "0 0 * * 0" # every Sunday at 0:00
-
+  
 # Enforce secure concurrency policies to prevent race conditions during artifact generation
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}

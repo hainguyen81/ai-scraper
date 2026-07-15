@@ -20,6 +20,9 @@ on:
         required: true
         default: 50
         type: number
+  
+  schedule:
+    - cron: "0 0 * * 0" # every Sunday at 0:00
 
 # Ensure system telemetry prevents dirty workspace overlapping states
 concurrency:
