@@ -3,6 +3,7 @@ import sys
 import json
 import logging
 import argparse
+import re
 import urllib.request
 from bs4 import BeautifulSoup
 from typing import Dict, Any
