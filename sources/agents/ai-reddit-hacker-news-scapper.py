@@ -80,8 +80,13 @@ class HackerNewsTechScraper:
             return []
 
 if __name__ == "__main__":
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--scan-limit", required=True)
+    args = parser.parse_args()
+    
     forum_scraper = HackerNewsTechScraper()
-    discovered_threads = forum_scraper.fetch_latest_ai_threads()
+    scanLimit = args['scan-limit'] if args else None
+    discovered_threads = forum_scraper.fetch_latest_ai_threads(scan_limit=scanLimit)
     # Save the output arrays locally if threads are successfully captured
     if discovered_threads:
         print('🎉 Pipeline parsing complete. Successfully extracted', len(discovered_threads), 'highly-relevant technical threads.')

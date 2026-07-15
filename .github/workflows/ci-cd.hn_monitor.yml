@@ -56,7 +56,7 @@ jobs:
         uses: actions/checkout@v7
         with:
           fetch-depth: 0
-          token: ${{ secrets.GITHUB_TOKEN }}
+          token: ${{ secrets.PAT_SECRETS_MANAGER }}     # use personal access token `PAT` to for main workflow triggering by batch script parallel multi agents
 
       # Step 2: Establish a secure, isolated Python virtual execution environment
       - name: "⚙️ Configure Python runtime execution platform"
