@@ -6,7 +6,7 @@
         "url": "https://www.aionlabs.ai",
         "base_url": "https://api.aionlabs.ai/v1",
         "context_window": 128000,
-        "description": "permanent free tier, no credit card required. 15 rpm, 20k tokens/day. specialized for roleplay and storytelling.",
+        "description": "Permanent free tier, no credit card required. 15 RPM, 20K tokens/day. Specialized for roleplay and storytelling.",
         "maxOutput": 32000,
         "modality": "Text (roleplay)",
         "rateLimit": "15 RPM, 20K TPD"
@@ -18,7 +18,7 @@
         "url": "https://www.aionlabs.ai",
         "base_url": "https://api.aionlabs.ai/v1",
         "context_window": 128000,
-        "description": "permanent free tier, no credit card required. 15 rpm, 20k tokens/day. specialized for roleplay and storytelling.",
+        "description": "Permanent free tier, no credit card required. 15 RPM, 20K tokens/day. Specialized for roleplay and storytelling.",
         "maxOutput": 32000,
         "modality": "Text (roleplay)",
         "rateLimit": "15 RPM, 20K TPD"
@@ -30,7 +30,7 @@
         "url": "https://www.aionlabs.ai",
         "base_url": "https://api.aionlabs.ai/v1",
         "context_window": 32000,
-        "description": "permanent free tier, no credit card required. 15 rpm, 20k tokens/day. specialized for roleplay and storytelling.",
+        "description": "Permanent free tier, no credit card required. 15 RPM, 20K tokens/day. Specialized for roleplay and storytelling.",
         "maxOutput": 128000,
         "modality": "Text (roleplay)",
         "rateLimit": "15 RPM, 20K TPD"
@@ -42,7 +42,7 @@
         "url": "https://dashboard.cohere.com/api-keys",
         "base_url": "https://api.cohere.com/v2",
         "context_window": 128000,
-        "description": "free \"trial\" api key, no credit card. 1,000 api calls/month. non-commercial use only.",
+        "description": "Free \"Trial\" API key, no credit card. 1,000 API calls/month. Non-commercial use only.",
         "maxOutput": 4000,
         "modality": "Text",
         "rateLimit": "20 RPM"
@@ -54,7 +54,7 @@
         "url": "https://dashboard.cohere.com/api-keys",
         "base_url": "https://api.cohere.com/v2",
         "context_window": 256000,
-        "description": "free \"trial\" api key, no credit card. 1,000 api calls/month. non-commercial use only.",
+        "description": "Free \"Trial\" API key, no credit card. 1,000 API calls/month. Non-commercial use only.",
         "maxOutput": 4000,
         "modality": "Text",
         "rateLimit": "20 RPM"
@@ -66,7 +66,7 @@
         "url": "https://dashboard.cohere.com/api-keys",
         "base_url": "https://api.cohere.com/v2",
         "context_window": 128000,
-        "description": "free \"trial\" api key, no credit card. 1,000 api calls/month. non-commercial use only.",
+        "description": "Free \"Trial\" API key, no credit card. 1,000 API calls/month. Non-commercial use only.",
         "maxOutput": 4000,
         "modality": "Text",
         "rateLimit": "20 RPM"
@@ -78,7 +78,7 @@
         "url": "https://dashboard.cohere.com/api-keys",
         "base_url": "https://api.cohere.com/v2",
         "context_window": 128000,
-        "description": "free \"trial\" api key, no credit card. 1,000 api calls/month. non-commercial use only.",
+        "description": "Free \"Trial\" API key, no credit card. 1,000 API calls/month. Non-commercial use only.",
         "maxOutput": 4000,
         "modality": "Text",
         "rateLimit": "20 RPM"
@@ -90,7 +90,7 @@
         "url": "https://dashboard.cohere.com/api-keys",
         "base_url": "https://api.cohere.com/v2",
         "context_window": 128000,
-        "description": "free \"trial\" api key, no credit card. 1,000 api calls/month. non-commercial use only.",
+        "description": "Free \"Trial\" API key, no credit card. 1,000 API calls/month. Non-commercial use only.",
         "maxOutput": 4000,
         "modality": "Text",
         "rateLimit": "20 RPM"
@@ -102,7 +102,7 @@
         "url": "https://aistudio.google.com/app/apikey",
         "base_url": "https://generativelanguage.googleapis.com/v1beta",
         "context_window": 1000000,
-        "description": "free tier unavailable in eu/uk/switzerland. free-tier prompts may be used by google to improve products.",
+        "description": "Free tier unavailable in EU/UK/Switzerland. Free-tier prompts may be used by Google to improve products.",
         "maxOutput": 64000,
         "modality": "Text + Image + Audio + Video",
         "rateLimit": "15 RPM, 1,500 RPD"
@@ -114,7 +114,7 @@
         "url": "https://aistudio.google.com/app/apikey",
         "base_url": "https://generativelanguage.googleapis.com/v1beta",
         "context_window": 1000000,
-        "description": "free tier unavailable in eu/uk/switzerland. free-tier prompts may be used by google to improve products.",
+        "description": "Free tier unavailable in EU/UK/Switzerland. Free-tier prompts may be used by Google to improve products.",
         "maxOutput": 65000,
         "modality": "Text + Image + Audio + Video",
         "rateLimit": "30 RPM, 1,500 RPD"
@@ -126,7 +126,7 @@
         "url": "https://aistudio.google.com/app/apikey",
         "base_url": "https://generativelanguage.googleapis.com/v1beta",
         "context_window": 1000000,
-        "description": "free tier unavailable in eu/uk/switzerland. free-tier prompts may be used by google to improve products.",
+        "description": "Free tier unavailable in EU/UK/Switzerland. Free-tier prompts may be used by Google to improve products.",
         "maxOutput": 65000,
         "modality": "Text + Image + Audio + Video",
         "rateLimit": "15 RPM, 1,500 RPD"
@@ -138,7 +138,7 @@
         "url": "https://aistudio.google.com/app/apikey",
         "base_url": "https://generativelanguage.googleapis.com/v1beta",
         "context_window": 2000000,
-        "description": "free tier unavailable in eu/uk/switzerland. free-tier prompts may be used by google to improve products.",
+        "description": "Free tier unavailable in EU/UK/Switzerland. Free-tier prompts may be used by Google to improve products.",
         "maxOutput": 65000,
         "modality": "Text + Image + Audio + Video",
         "rateLimit": "5 RPM, 50 RPD"
@@ -150,7 +150,7 @@
         "url": "https://console.mistral.ai/api-keys",
         "base_url": "https://api.mistral.ai/v1",
         "context_window": 256000,
-        "description": "free \"experiment\" plan, no credit card. ~1b tokens/month. prompts may be used to improve models.",
+        "description": "Free \"Experiment\" plan, no credit card. ~1B tokens/month. Prompts may be used to improve models.",
         "maxOutput": 256000,
         "modality": "Text + Image + Code",
         "rateLimit": "~1 RPS, 500K TPM"
@@ -162,7 +162,7 @@
         "url": "https://console.mistral.ai/api-keys",
         "base_url": "https://api.mistral.ai/v1",
         "context_window": 256000,
-        "description": "free \"experiment\" plan, no credit card. ~1b tokens/month. prompts may be used to improve models.",
+        "description": "Free \"Experiment\" plan, no credit card. ~1B tokens/month. Prompts may be used to improve models.",
         "maxOutput": 256000,
         "modality": "Text + Image + Code",
         "rateLimit": "~1 RPS, 500K TPM"
@@ -174,7 +174,7 @@
         "url": "https://console.mistral.ai/api-keys",
         "base_url": "https://api.mistral.ai/v1",
         "context_window": 256000,
-        "description": "free \"experiment\" plan, no credit card. ~1b tokens/month. prompts may be used to improve models.",
+        "description": "Free \"Experiment\" plan, no credit card. ~1B tokens/month. Prompts may be used to improve models.",
         "maxOutput": 256000,
         "modality": "Text",
         "rateLimit": "~1 RPS, 500K TPM"
@@ -186,7 +186,7 @@
         "url": "https://console.mistral.ai/api-keys",
         "base_url": "https://api.mistral.ai/v1",
         "context_window": 128000,
-        "description": "free \"experiment\" plan, no credit card. ~1b tokens/month. prompts may be used to improve models.",
+        "description": "Free \"Experiment\" plan, no credit card. ~1B tokens/month. Prompts may be used to improve models.",
         "maxOutput": 128000,
         "modality": "Text",
         "rateLimit": "~1 RPS, 500K TPM"
@@ -198,7 +198,7 @@
         "url": "https://console.mistral.ai/api-keys",
         "base_url": "https://api.mistral.ai/v1",
         "context_window": 256000,
-        "description": "free \"experiment\" plan, no credit card. ~1b tokens/month. prompts may be used to improve models.",
+        "description": "Free \"Experiment\" plan, no credit card. ~1B tokens/month. Prompts may be used to improve models.",
         "maxOutput": 256000,
         "modality": "Code",
         "rateLimit": "~1 RPS, 500K TPM"
@@ -210,7 +210,7 @@
         "url": "https://console.mistral.ai/api-keys",
         "base_url": "https://api.mistral.ai/v1",
         "context_window": 128000,
-        "description": "free \"experiment\" plan, no credit card. ~1b tokens/month. prompts may be used to improve models.",
+        "description": "Free \"Experiment\" plan, no credit card. ~1B tokens/month. Prompts may be used to improve models.",
         "maxOutput": 128000,
         "modality": "Text + Image",
         "rateLimit": "~1 RPS, 500K TPM"
@@ -222,7 +222,7 @@
         "url": "https://open.bigmodel.cn/usercenter/apikeys",
         "base_url": "https://open.bigmodel.cn/api/paas/v4",
         "context_window": 200000,
-        "description": "permanent free models, no credit card required.",
+        "description": "Permanent free models, no credit card required.",
         "maxOutput": 128000,
         "modality": "Text",
         "rateLimit": "1 concurrent request"
@@ -234,7 +234,7 @@
         "url": "https://open.bigmodel.cn/usercenter/apikeys",
         "base_url": "https://open.bigmodel.cn/api/paas/v4",
         "context_window": 128000,
-        "description": "permanent free models, no credit card required.",
+        "description": "Permanent free models, no credit card required.",
         "maxOutput": 128000,
         "modality": "Text + Image",
         "rateLimit": "1 concurrent request"
@@ -246,7 +246,7 @@
         "url": "https://cloud.cerebras.ai/",
         "base_url": "https://api.cerebras.ai/v1",
         "context_window": 128000,
-        "description": "free tier, no credit card. ultra-fast inference (~2,600 tok/s). 1m tokens/day cap. 8k context cap on free tier.",
+        "description": "Free tier, no credit card. Ultra-fast inference (~2,600 tok/s). 1M tokens/day cap. 8K context cap on free tier.",
         "maxOutput": 8000,
         "modality": "Text",
         "rateLimit": "30 RPM, 14,400 RPD, 1M TPD"
@@ -258,7 +258,7 @@
         "url": "https://cloud.cerebras.ai/",
         "base_url": "https://api.cerebras.ai/v1",
         "context_window": 128000,
-        "description": "free tier, no credit card. ultra-fast inference (~2,600 tok/s). 1m tokens/day cap. 8k context cap on free tier.",
+        "description": "Free tier, no credit card. Ultra-fast inference (~2,600 tok/s). 1M tokens/day cap. 8K context cap on free tier.",
         "maxOutput": 8000,
         "modality": "Text",
         "rateLimit": "10 RPM, 100 RPD, 1M TPD"
@@ -270,7 +270,7 @@
         "url": "https://dash.cloudflare.com/profile/api-tokens",
         "base_url": "https://api.cloudflare.com/client/v4/accounts/{account_id}/ai/run",
         "context_window": 131000,
-        "description": "10,000 neurons/day free. 50+ models available on free tier.",
+        "description": "10,000 Neurons/day free. 50+ models available on free tier.",
         "maxOutput": 128000,
         "modality": "Text",
         "rateLimit": "10K neurons/day (shared)"
@@ -282,7 +282,7 @@
         "url": "https://dash.cloudflare.com/profile/api-tokens",
         "base_url": "https://api.cloudflare.com/client/v4/accounts/{account_id}/ai/run",
         "context_window": 128000,
-        "description": "10,000 neurons/day free. 50+ models available on free tier.",
+        "description": "10,000 Neurons/day free. 50+ models available on free tier.",
         "maxOutput": 128000,
         "modality": "Multimodal",
         "rateLimit": "10K neurons/day (shared)"
@@ -294,7 +294,7 @@
         "url": "https://dash.cloudflare.com/profile/api-tokens",
         "base_url": "https://api.cloudflare.com/client/v4/accounts/{account_id}/ai/run",
         "context_window": 128000,
-        "description": "10,000 neurons/day free. 50+ models available on free tier.",
+        "description": "10,000 Neurons/day free. 50+ models available on free tier.",
         "maxOutput": 128000,
         "modality": "Text",
         "rateLimit": "10K neurons/day (shared)"
@@ -306,7 +306,7 @@
         "url": "https://dash.cloudflare.com/profile/api-tokens",
         "base_url": "https://api.cloudflare.com/client/v4/accounts/{account_id}/ai/run",
         "context_window": 262000,
-        "description": "10,000 neurons/day free. 50+ models available on free tier.",
+        "description": "10,000 Neurons/day free. 50+ models available on free tier.",
         "maxOutput": 128000,
         "modality": "Text (code)",
         "rateLimit": "10K neurons/day (shared)"
@@ -318,7 +318,7 @@
         "url": "https://dash.cloudflare.com/profile/api-tokens",
         "base_url": "https://api.cloudflare.com/client/v4/accounts/{account_id}/ai/run",
         "context_window": 256000,
-        "description": "10,000 neurons/day free. 50+ models available on free tier.",
+        "description": "10,000 Neurons/day free. 50+ models available on free tier.",
         "maxOutput": 128000,
         "modality": "Text",
         "rateLimit": "10K neurons/day (shared)"
@@ -330,7 +330,7 @@
         "url": "https://dash.cloudflare.com/profile/api-tokens",
         "base_url": "https://api.cloudflare.com/client/v4/accounts/{account_id}/ai/run",
         "context_window": 131000,
-        "description": "10,000 neurons/day free. 50+ models available on free tier.",
+        "description": "10,000 Neurons/day free. 50+ models available on free tier.",
         "maxOutput": 128000,
         "modality": "Text",
         "rateLimit": "10K neurons/day (shared)"
@@ -342,7 +342,7 @@
         "url": "https://dash.cloudflare.com/profile/api-tokens",
         "base_url": "https://api.cloudflare.com/client/v4/accounts/{account_id}/ai/run",
         "context_window": 128000,
-        "description": "10,000 neurons/day free. 50+ models available on free tier.",
+        "description": "10,000 Neurons/day free. 50+ models available on free tier.",
         "maxOutput": 128000,
         "modality": "Text",
         "rateLimit": "10K neurons/day (shared)"
@@ -354,7 +354,7 @@
         "url": "https://dash.cloudflare.com/profile/api-tokens",
         "base_url": "https://api.cloudflare.com/client/v4/accounts/{account_id}/ai/run",
         "context_window": 32000,
-        "description": "10,000 neurons/day free. 50+ models available on free tier.",
+        "description": "10,000 Neurons/day free. 50+ models available on free tier.",
         "maxOutput": 128000,
         "modality": "Text (reasoning)",
         "rateLimit": "10K neurons/day (shared)"
@@ -366,7 +366,7 @@
         "url": "https://dash.cloudflare.com/profile/api-tokens",
         "base_url": "https://api.cloudflare.com/client/v4/accounts/{account_id}/ai/run",
         "context_window": 128000,
-        "description": "10,000 neurons/day free. 50+ models available on free tier.",
+        "description": "10,000 Neurons/day free. 50+ models available on free tier.",
         "maxOutput": 128000,
         "modality": "Text, Image, Audio, Embeddings",
         "rateLimit": "10K neurons/day (shared)"
@@ -378,7 +378,7 @@
         "url": "https://github.com/marketplace/models",
         "base_url": "https://models.github.ai/inference",
         "context_window": 200000,
-        "description": "free prototyping for all github users. 45+ models. per-request limits (8k in / 4k out).",
+        "description": "Free prototyping for all GitHub users. 45+ models. Per-request limits (8K in / 4K out).",
         "maxOutput": 32000,
         "modality": "Text",
         "rateLimit": "10 RPM, 50 RPD"
@@ -390,7 +390,7 @@
         "url": "https://github.com/marketplace/models",
         "base_url": "https://models.github.ai/inference",
         "context_window": 1000000,
-        "description": "free prototyping for all github users. 45+ models. per-request limits (8k in / 4k out).",
+        "description": "Free prototyping for all GitHub users. 45+ models. Per-request limits (8K in / 4K out).",
         "maxOutput": 32000,
         "modality": "Text",
         "rateLimit": "10 RPM, 50 RPD"
@@ -402,7 +402,7 @@
         "url": "https://github.com/marketplace/models",
         "base_url": "https://models.github.ai/inference",
         "context_window": 1000000,
-        "description": "free prototyping for all github users. 45+ models. per-request limits (8k in / 4k out).",
+        "description": "Free prototyping for all GitHub users. 45+ models. Per-request limits (8K in / 4K out).",
         "maxOutput": 32000,
         "modality": "Text",
         "rateLimit": "15 RPM, 150 RPD"
@@ -414,7 +414,7 @@
         "url": "https://github.com/marketplace/models",
         "base_url": "https://models.github.ai/inference",
         "context_window": 128000,
-        "description": "free prototyping for all github users. 45+ models. per-request limits (8k in / 4k out).",
+        "description": "Free prototyping for all GitHub users. 45+ models. Per-request limits (8K in / 4K out).",
         "maxOutput": 16000,
         "modality": "Text + Vision",
         "rateLimit": "10 RPM, 50 RPD"
@@ -426,7 +426,7 @@
         "url": "https://github.com/marketplace/models",
         "base_url": "https://models.github.ai/inference",
         "context_window": 200000,
-        "description": "free prototyping for all github users. 45+ models. per-request limits (8k in / 4k out).",
+        "description": "Free prototyping for all GitHub users. 45+ models. Per-request limits (8K in / 4K out).",
         "maxOutput": 100000,
         "modality": "Text (reasoning)",
         "rateLimit": "10 RPM, 50 RPD"
@@ -438,7 +438,7 @@
         "url": "https://github.com/marketplace/models",
         "base_url": "https://models.github.ai/inference",
         "context_window": 512000,
-        "description": "free prototyping for all github users. 45+ models. per-request limits (8k in / 4k out).",
+        "description": "Free prototyping for all GitHub users. 45+ models. Per-request limits (8K in / 4K out).",
         "maxOutput": 128000,
         "modality": "Text + Vision",
         "rateLimit": "15 RPM, 150 RPD"
@@ -450,7 +450,7 @@
         "url": "https://github.com/marketplace/models",
         "base_url": "https://models.github.ai/inference",
         "context_window": 256000,
-        "description": "free prototyping for all github users. 45+ models. per-request limits (8k in / 4k out).",
+        "description": "Free prototyping for all GitHub users. 45+ models. Per-request limits (8K in / 4K out).",
         "maxOutput": 128000,
         "modality": "Text + Vision",
         "rateLimit": "10 RPM, 50 RPD"
@@ -462,7 +462,7 @@
         "url": "https://github.com/marketplace/models",
         "base_url": "https://models.github.ai/inference",
         "context_window": 131000,
-        "description": "free prototyping for all github users. 45+ models. per-request limits (8k in / 4k out).",
+        "description": "Free prototyping for all GitHub users. 45+ models. Per-request limits (8K in / 4K out).",
         "maxOutput": 128000,
         "modality": "Text",
         "rateLimit": "15 RPM, 150 RPD"
@@ -474,7 +474,7 @@
         "url": "https://github.com/marketplace/models",
         "base_url": "https://models.github.ai/inference",
         "context_window": 64000,
-        "description": "free prototyping for all github users. 45+ models. per-request limits (8k in / 4k out).",
+        "description": "Free prototyping for all GitHub users. 45+ models. Per-request limits (8K in / 4K out).",
         "maxOutput": 8000,
         "modality": "Text (reasoning)",
         "rateLimit": "15 RPM, 150 RPD"
@@ -486,7 +486,7 @@
         "url": "https://github.com/marketplace/models",
         "base_url": "https://models.github.ai/inference",
         "context_window": 128000,
-        "description": "free prototyping for all github users. 45+ models. per-request limits (8k in / 4k out).",
+        "description": "Free prototyping for all GitHub users. 45+ models. Per-request limits (8K in / 4K out).",
         "maxOutput": 128000,
         "modality": "Text + Vision",
         "rateLimit": "15 RPM, 150 RPD"
@@ -498,7 +498,7 @@
         "url": "https://github.com/marketplace/models",
         "base_url": "https://models.github.ai/inference",
         "context_window": 128000,
-        "description": "free prototyping for all github users. 45+ models. per-request limits (8k in / 4k out).",
+        "description": "Free prototyping for all GitHub users. 45+ models. Per-request limits (8K in / 4K out).",
         "maxOutput": 128000,
         "modality": "Text / Image",
         "rateLimit": "Varies by tier"
@@ -510,7 +510,7 @@
         "url": "https://console.groq.com/keys",
         "base_url": "https://api.groq.com/openai/v1",
         "context_window": 131000,
-        "description": "free tier, no credit card. ultra-fast lpu inference.",
+        "description": "Free tier, no credit card. Ultra-fast LPU inference.",
         "maxOutput": 32000,
         "modality": "Text",
         "rateLimit": "30 RPM, 1,000 RPD"
@@ -522,7 +522,7 @@
         "url": "https://console.groq.com/keys",
         "base_url": "https://api.groq.com/openai/v1",
         "context_window": 131000,
-        "description": "free tier, no credit card. ultra-fast lpu inference.",
+        "description": "Free tier, no credit card. Ultra-fast LPU inference.",
         "maxOutput": 131000,
         "modality": "Text",
         "rateLimit": "30 RPM, 1,000 RPD"
@@ -534,7 +534,7 @@
         "url": "https://console.groq.com/keys",
         "base_url": "https://api.groq.com/openai/v1",
         "context_window": 131000,
-        "description": "free tier, no credit card. ultra-fast lpu inference.",
+        "description": "Free tier, no credit card. Ultra-fast LPU inference.",
         "maxOutput": 8000,
         "modality": "Text + Vision",
         "rateLimit": "30 RPM, 1,000 RPD"
@@ -546,7 +546,7 @@
         "url": "https://console.groq.com/keys",
         "base_url": "https://api.groq.com/openai/v1",
         "context_window": 131000,
-        "description": "free tier, no credit card. ultra-fast lpu inference.",
+        "description": "Free tier, no credit card. Ultra-fast LPU inference.",
         "maxOutput": 131000,
         "modality": "Text",
         "rateLimit": "30 RPM, 1,000 RPD"
@@ -558,7 +558,7 @@
         "url": "https://console.groq.com/keys",
         "base_url": "https://api.groq.com/openai/v1",
         "context_window": 131000,
-        "description": "free tier, no credit card. ultra-fast lpu inference.",
+        "description": "Free tier, no credit card. Ultra-fast LPU inference.",
         "maxOutput": 32000,
         "modality": "Text",
         "rateLimit": "30 RPM, 1,000 RPD"
@@ -570,7 +570,7 @@
         "url": "https://huggingface.co/settings/tokens",
         "base_url": "https://router.huggingface.co/v1",
         "context_window": 128000,
-        "description": "100k monthly inference provider credits for free users. routes to fireworks, together, hyperbolic, nebius, novita, deepinfra and others. thousands of models.",
+        "description": "100K monthly Inference Provider credits for free users. Routes to Fireworks, Together, Hyperbolic, Nebius, Novita, DeepInfra and others. Thousands of models.",
         "maxOutput": 128000,
         "modality": "Text",
         "rateLimit": "Credit-metered"
@@ -582,7 +582,7 @@
         "url": "https://huggingface.co/settings/tokens",
         "base_url": "https://router.huggingface.co/v1",
         "context_window": 32000,
-        "description": "100k monthly inference provider credits for free users. routes to fireworks, together, hyperbolic, nebius, novita, deepinfra and others. thousands of models.",
+        "description": "100K monthly Inference Provider credits for free users. Routes to Fireworks, Together, Hyperbolic, Nebius, Novita, DeepInfra and others. Thousands of models.",
         "maxOutput": 128000,
         "modality": "Text",
         "rateLimit": "Credit-metered"
@@ -594,7 +594,7 @@
         "url": "https://huggingface.co/settings/tokens",
         "base_url": "https://router.huggingface.co/v1",
         "context_window": 32000,
-        "description": "100k monthly inference provider credits for free users. routes to fireworks, together, hyperbolic, nebius, novita, deepinfra and others. thousands of models.",
+        "description": "100K monthly Inference Provider credits for free users. Routes to Fireworks, Together, Hyperbolic, Nebius, Novita, DeepInfra and others. Thousands of models.",
         "maxOutput": 128000,
         "modality": "Text",
         "rateLimit": "Credit-metered"
@@ -606,7 +606,7 @@
         "url": "https://huggingface.co/settings/tokens",
         "base_url": "https://router.huggingface.co/v1",
         "context_window": 128000,
-        "description": "100k monthly inference provider credits for free users. routes to fireworks, together, hyperbolic, nebius, novita, deepinfra and others. thousands of models.",
+        "description": "100K monthly Inference Provider credits for free users. Routes to Fireworks, Together, Hyperbolic, Nebius, Novita, DeepInfra and others. Thousands of models.",
         "maxOutput": 128000,
         "modality": "Text",
         "rateLimit": "Credit-metered"
@@ -618,7 +618,7 @@
         "url": "https://huggingface.co/settings/tokens",
         "base_url": "https://router.huggingface.co/v1",
         "context_window": 131000,
-        "description": "100k monthly inference provider credits for free users. routes to fireworks, together, hyperbolic, nebius, novita, deepinfra and others. thousands of models.",
+        "description": "100K monthly Inference Provider credits for free users. Routes to Fireworks, Together, Hyperbolic, Nebius, Novita, DeepInfra and others. Thousands of models.",
         "maxOutput": 128000,
         "modality": "Text",
         "rateLimit": "Credit-metered"
@@ -630,7 +630,7 @@
         "url": "https://huggingface.co/settings/tokens",
         "base_url": "https://router.huggingface.co/v1",
         "context_window": 128000,
-        "description": "100k monthly inference provider credits for free users. routes to fireworks, together, hyperbolic, nebius, novita, deepinfra and others. thousands of models.",
+        "description": "100K monthly Inference Provider credits for free users. Routes to Fireworks, Together, Hyperbolic, Nebius, Novita, DeepInfra and others. Thousands of models.",
         "maxOutput": 128000,
         "modality": "Text, Image, Audio, Embeddings",
         "rateLimit": "100K credits/month free"
@@ -642,7 +642,7 @@
         "url": "https://kilo.ai",
         "base_url": "https://api.kilo.ai/api/gateway",
         "context_window": 256000,
-        "description": "free models with no credit card required. `kilo-auto/free` auto-router routes to minimax/minimax-m2.5:free (80%) and stepfun/step-3.5-flash:free (20%).",
+        "description": "Free models with no credit card required. `kilo-auto/free` auto-router routes to minimax/minimax-m2.5:free (80%) and stepfun/step-3.5-flash:free (20%).",
         "maxOutput": 128000,
         "modality": "Text (code)",
         "rateLimit": "~200 req/hr"
@@ -654,7 +654,7 @@
         "url": "https://kilo.ai",
         "base_url": "https://api.kilo.ai/api/gateway",
         "context_window": 196000,
-        "description": "free models with no credit card required. `kilo-auto/free` auto-router routes to minimax/minimax-m2.5:free (80%) and stepfun/step-3.5-flash:free (20%).",
+        "description": "Free models with no credit card required. `kilo-auto/free` auto-router routes to minimax/minimax-m2.5:free (80%) and stepfun/step-3.5-flash:free (20%).",
         "maxOutput": 8000,
         "modality": "Text",
         "rateLimit": "~200 req/hr"
@@ -666,7 +666,7 @@
         "url": "https://kilo.ai",
         "base_url": "https://api.kilo.ai/api/gateway",
         "context_window": 128000,
-        "description": "free models with no credit card required. `kilo-auto/free` auto-router routes to minimax/minimax-m2.5:free (80%) and stepfun/step-3.5-flash:free (20%).",
+        "description": "Free models with no credit card required. `kilo-auto/free` auto-router routes to minimax/minimax-m2.5:free (80%) and stepfun/step-3.5-flash:free (20%).",
         "maxOutput": 128000,
         "modality": "Text",
         "rateLimit": "~200 req/hr"
@@ -678,7 +678,7 @@
         "url": "https://kilo.ai",
         "base_url": "https://api.kilo.ai/api/gateway",
         "context_window": 262000,
-        "description": "free models with no credit card required. `kilo-auto/free` auto-router routes to minimax/minimax-m2.5:free (80%) and stepfun/step-3.5-flash:free (20%).",
+        "description": "Free models with no credit card required. `kilo-auto/free` auto-router routes to minimax/minimax-m2.5:free (80%) and stepfun/step-3.5-flash:free (20%).",
         "maxOutput": 32000,
         "modality": "Text",
         "rateLimit": "~200 req/hr"
@@ -690,7 +690,7 @@
         "url": "https://kilo.ai",
         "base_url": "https://api.kilo.ai/api/gateway",
         "context_window": 128000,
-        "description": "free models with no credit card required. `kilo-auto/free` auto-router routes to minimax/minimax-m2.5:free (80%) and stepfun/step-3.5-flash:free (20%).",
+        "description": "Free models with no credit card required. `kilo-auto/free` auto-router routes to minimax/minimax-m2.5:free (80%) and stepfun/step-3.5-flash:free (20%).",
         "maxOutput": 128000,
         "modality": "Text (reasoning)",
         "rateLimit": "~200 req/hr"
@@ -702,7 +702,7 @@
         "url": "https://kilo.ai",
         "base_url": "https://api.kilo.ai/api/gateway",
         "context_window": 128000,
-        "description": "free models with no credit card required. `kilo-auto/free` auto-router routes to minimax/minimax-m2.5:free (80%) and stepfun/step-3.5-flash:free (20%).",
+        "description": "Free models with no credit card required. `kilo-auto/free` auto-router routes to minimax/minimax-m2.5:free (80%) and stepfun/step-3.5-flash:free (20%).",
         "maxOutput": 128000,
         "modality": "Text",
         "rateLimit": "~200 req/hr"
@@ -714,7 +714,7 @@
         "url": "https://modelscope.cn/my/myaccesstoken",
         "base_url": "https://api-inference.modelscope.cn/v1",
         "context_window": 128000,
-        "description": "free api-inference for registered users. requires alibaba cloud account binding + real-name verification.",
+        "description": "Free API-Inference for registered users. Requires Alibaba Cloud account binding + real-name verification.",
         "maxOutput": 128000,
         "modality": "Text",
         "rateLimit": "2,000 RPD total; <=500 RPD/model (dynamic)"
@@ -726,7 +726,7 @@
         "url": "https://modelscope.cn/my/myaccesstoken",
         "base_url": "https://api-inference.modelscope.cn/v1",
         "context_window": 128000,
-        "description": "free api-inference for registered users. requires alibaba cloud account binding + real-name verification.",
+        "description": "Free API-Inference for registered users. Requires Alibaba Cloud account binding + real-name verification.",
         "maxOutput": 128000,
         "modality": "Text",
         "rateLimit": "2,000 RPD total; <=500 RPD/model (dynamic)"
@@ -738,7 +738,7 @@
         "url": "https://modelscope.cn/my/myaccesstoken",
         "base_url": "https://api-inference.modelscope.cn/v1",
         "context_window": 128000,
-        "description": "free api-inference for registered users. requires alibaba cloud account binding + real-name verification.",
+        "description": "Free API-Inference for registered users. Requires Alibaba Cloud account binding + real-name verification.",
         "maxOutput": 128000,
         "modality": "LLM, MLLM",
         "rateLimit": "Dynamic quotas + dynamic concurrency"
@@ -750,7 +750,7 @@
         "url": "https://build.nvidia.com/explore/discover",
         "base_url": "https://integrate.api.nvidia.com/v1",
         "context_window": 128000,
-        "description": "free with nvidia developer program membership. 100+ models. rate-limited (no daily token cap).",
+        "description": "Free with NVIDIA Developer Program membership. 100+ models. Rate-limited (no daily token cap).",
         "maxOutput": 128000,
         "modality": "Text (reasoning)",
         "rateLimit": "~40 RPM"
@@ -762,7 +762,7 @@
         "url": "https://build.nvidia.com/explore/discover",
         "base_url": "https://integrate.api.nvidia.com/v1",
         "context_window": 262000,
-        "description": "free with nvidia developer program membership. 100+ models. rate-limited (no daily token cap).",
+        "description": "Free with NVIDIA Developer Program membership. 100+ models. Rate-limited (no daily token cap).",
         "maxOutput": 262000,
         "modality": "Text",
         "rateLimit": "~40 RPM"
@@ -774,7 +774,7 @@
         "url": "https://build.nvidia.com/explore/discover",
         "base_url": "https://integrate.api.nvidia.com/v1",
         "context_window": 128000,
-        "description": "free with nvidia developer program membership. 100+ models. rate-limited (no daily token cap).",
+        "description": "Free with NVIDIA Developer Program membership. 100+ models. Rate-limited (no daily token cap).",
         "maxOutput": 32000,
         "modality": "Text",
         "rateLimit": "~40 RPM"
@@ -786,7 +786,7 @@
         "url": "https://build.nvidia.com/explore/discover",
         "base_url": "https://integrate.api.nvidia.com/v1",
         "context_window": 128000,
-        "description": "free with nvidia developer program membership. 100+ models. rate-limited (no daily token cap).",
+        "description": "Free with NVIDIA Developer Program membership. 100+ models. Rate-limited (no daily token cap).",
         "maxOutput": 4000,
         "modality": "Text",
         "rateLimit": "~40 RPM"
@@ -798,7 +798,7 @@
         "url": "https://build.nvidia.com/explore/discover",
         "base_url": "https://integrate.api.nvidia.com/v1",
         "context_window": 128000,
-        "description": "free with nvidia developer program membership. 100+ models. rate-limited (no daily token cap).",
+        "description": "Free with NVIDIA Developer Program membership. 100+ models. Rate-limited (no daily token cap).",
         "maxOutput": 4000,
         "modality": "Text",
         "rateLimit": "~40 RPM"
@@ -810,7 +810,7 @@
         "url": "https://build.nvidia.com/explore/discover",
         "base_url": "https://integrate.api.nvidia.com/v1",
         "context_window": 128000,
-        "description": "free with nvidia developer program membership. 100+ models. rate-limited (no daily token cap).",
+        "description": "Free with NVIDIA Developer Program membership. 100+ models. Rate-limited (no daily token cap).",
         "maxOutput": 8000,
         "modality": "Text",
         "rateLimit": "~40 RPM"
@@ -822,7 +822,7 @@
         "url": "https://build.nvidia.com/explore/discover",
         "base_url": "https://integrate.api.nvidia.com/v1",
         "context_window": 128000,
-        "description": "free with nvidia developer program membership. 100+ models. rate-limited (no daily token cap).",
+        "description": "Free with NVIDIA Developer Program membership. 100+ models. Rate-limited (no daily token cap).",
         "maxOutput": 8000,
         "modality": "Text",
         "rateLimit": "~40 RPM"
@@ -834,7 +834,7 @@
         "url": "https://build.nvidia.com/explore/discover",
         "base_url": "https://integrate.api.nvidia.com/v1",
         "context_window": 128000,
-        "description": "free with nvidia developer program membership. 100+ models. rate-limited (no daily token cap).",
+        "description": "Free with NVIDIA Developer Program membership. 100+ models. Rate-limited (no daily token cap).",
         "maxOutput": 4000,
         "modality": "Text",
         "rateLimit": "~40 RPM"
@@ -846,7 +846,7 @@
         "url": "https://build.nvidia.com/explore/discover",
         "base_url": "https://integrate.api.nvidia.com/v1",
         "context_window": 128000,
-        "description": "free with nvidia developer program membership. 100+ models. rate-limited (no daily token cap).",
+        "description": "Free with NVIDIA Developer Program membership. 100+ models. Rate-limited (no daily token cap).",
         "maxOutput": 8000,
         "modality": "Text",
         "rateLimit": "~40 RPM"
@@ -858,7 +858,7 @@
         "url": "https://build.nvidia.com/explore/discover",
         "base_url": "https://integrate.api.nvidia.com/v1",
         "context_window": 128000,
-        "description": "free with nvidia developer program membership. 100+ models. rate-limited (no daily token cap).",
+        "description": "Free with NVIDIA Developer Program membership. 100+ models. Rate-limited (no daily token cap).",
         "maxOutput": 128000,
         "modality": "Text, Image, Video, Speech, Embeddings",
         "rateLimit": "~40 RPM"
@@ -870,7 +870,7 @@
         "url": "https://ollama.com/settings/keys",
         "base_url": "https://api.ollama.com",
         "context_window": 128000,
-        "description": "free tier with qualitative usage limits. 400+ models from ollama library. not openai sdk-compatible; uses [ollama api](https://docs.ollama.com/cloud).",
+        "description": "Free tier with qualitative usage limits. 400+ models from Ollama library. Not OpenAI SDK-compatible; uses [Ollama API](https://docs.ollama.com/cloud).",
         "maxOutput": 128000,
         "modality": "Text",
         "rateLimit": "Session/weekly limits (unpublished)"
@@ -882,7 +882,7 @@
         "url": "https://ollama.com/settings/keys",
         "base_url": "https://api.ollama.com",
         "context_window": 128000,
-        "description": "free tier with qualitative usage limits. 400+ models from ollama library. not openai sdk-compatible; uses [ollama api](https://docs.ollama.com/cloud).",
+        "description": "Free tier with qualitative usage limits. 400+ models from Ollama library. Not OpenAI SDK-compatible; uses [Ollama API](https://docs.ollama.com/cloud).",
         "maxOutput": 128000,
         "modality": "Text",
         "rateLimit": "Session/weekly limits (unpublished)"
@@ -894,7 +894,7 @@
         "url": "https://ollama.com/settings/keys",
         "base_url": "https://api.ollama.com",
         "context_window": 128000,
-        "description": "free tier with qualitative usage limits. 400+ models from ollama library. not openai sdk-compatible; uses [ollama api](https://docs.ollama.com/cloud).",
+        "description": "Free tier with qualitative usage limits. 400+ models from Ollama library. Not OpenAI SDK-compatible; uses [Ollama API](https://docs.ollama.com/cloud).",
         "maxOutput": 128000,
         "modality": "Text (code)",
         "rateLimit": "Session/weekly limits (unpublished)"
@@ -906,7 +906,7 @@
         "url": "https://ollama.com/settings/keys",
         "base_url": "https://api.ollama.com",
         "context_window": 262000,
-        "description": "free tier with qualitative usage limits. 400+ models from ollama library. not openai sdk-compatible; uses [ollama api](https://docs.ollama.com/cloud).",
+        "description": "Free tier with qualitative usage limits. 400+ models from Ollama library. Not OpenAI SDK-compatible; uses [Ollama API](https://docs.ollama.com/cloud).",
         "maxOutput": 128000,
         "modality": "Text",
         "rateLimit": "Session/weekly limits (unpublished)"
@@ -918,7 +918,7 @@
         "url": "https://ollama.com/settings/keys",
         "base_url": "https://api.ollama.com",
         "context_window": 128000,
-        "description": "free tier with qualitative usage limits. 400+ models from ollama library. not openai sdk-compatible; uses [ollama api](https://docs.ollama.com/cloud).",
+        "description": "Free tier with qualitative usage limits. 400+ models from Ollama library. Not OpenAI SDK-compatible; uses [Ollama API](https://docs.ollama.com/cloud).",
         "maxOutput": 128000,
         "modality": "Text",
         "rateLimit": "Session/weekly limits (unpublished)"
@@ -930,7 +930,7 @@
         "url": "https://ollama.com/settings/keys",
         "base_url": "https://api.ollama.com",
         "context_window": 128000,
-        "description": "free tier with qualitative usage limits. 400+ models from ollama library. not openai sdk-compatible; uses [ollama api](https://docs.ollama.com/cloud).",
+        "description": "Free tier with qualitative usage limits. 400+ models from Ollama library. Not OpenAI SDK-compatible; uses [Ollama API](https://docs.ollama.com/cloud).",
         "maxOutput": 128000,
         "modality": "Text (reasoning)",
         "rateLimit": "Session/weekly limits (unpublished)"
@@ -942,7 +942,7 @@
         "url": "https://ollama.com/settings/keys",
         "base_url": "https://api.ollama.com",
         "context_window": 128000,
-        "description": "free tier with qualitative usage limits. 400+ models from ollama library. not openai sdk-compatible; uses [ollama api](https://docs.ollama.com/cloud).",
+        "description": "Free tier with qualitative usage limits. 400+ models from Ollama library. Not OpenAI SDK-compatible; uses [Ollama API](https://docs.ollama.com/cloud).",
         "maxOutput": 128000,
         "modality": "Text",
         "rateLimit": "Session/weekly limits (unpublished)"
@@ -954,7 +954,7 @@
         "url": "https://openrouter.ai/keys",
         "base_url": "https://openrouter.ai/api/v1",
         "context_window": 1000000,
-        "description": "~22 free models (marked with `:free` suffix). openai sdk-compatible.",
+        "description": "~22 free models (marked with `:free` suffix). OpenAI SDK-compatible.",
         "maxOutput": 262000,
         "modality": "Text (code)",
         "rateLimit": "20 RPM, 200 RPD"
@@ -966,7 +966,7 @@
         "url": "https://openrouter.ai/keys",
         "base_url": "https://openrouter.ai/api/v1",
         "context_window": 1000000,
-        "description": "~22 free models (marked with `:free` suffix). openai sdk-compatible.",
+        "description": "~22 free models (marked with `:free` suffix). OpenAI SDK-compatible.",
         "maxOutput": 65000,
         "modality": "Text",
         "rateLimit": "20 RPM, 200 RPD"
@@ -978,7 +978,7 @@
         "url": "https://openrouter.ai/keys",
         "base_url": "https://openrouter.ai/api/v1",
         "context_window": 1000000,
-        "description": "~22 free models (marked with `:free` suffix). openai sdk-compatible.",
+        "description": "~22 free models (marked with `:free` suffix). OpenAI SDK-compatible.",
         "maxOutput": 262000,
         "modality": "Text",
         "rateLimit": "20 RPM, 200 RPD"
@@ -990,7 +990,7 @@
         "url": "https://openrouter.ai/keys",
         "base_url": "https://openrouter.ai/api/v1",
         "context_window": 131000,
-        "description": "~22 free models (marked with `:free` suffix). openai sdk-compatible.",
+        "description": "~22 free models (marked with `:free` suffix). OpenAI SDK-compatible.",
         "maxOutput": 131000,
         "modality": "Text",
         "rateLimit": "20 RPM, 200 RPD"
@@ -1002,7 +1002,7 @@
         "url": "https://openrouter.ai/keys",
         "base_url": "https://openrouter.ai/api/v1",
         "context_window": 131000,
-        "description": "~22 free models (marked with `:free` suffix). openai sdk-compatible.",
+        "description": "~22 free models (marked with `:free` suffix). OpenAI SDK-compatible.",
         "maxOutput": 8000,
         "modality": "Text",
         "rateLimit": "20 RPM, 200 RPD"
@@ -1014,7 +1014,7 @@
         "url": "https://openrouter.ai/keys",
         "base_url": "https://openrouter.ai/api/v1",
         "context_window": 131000,
-        "description": "~22 free models (marked with `:free` suffix). openai sdk-compatible.",
+        "description": "~22 free models (marked with `:free` suffix). OpenAI SDK-compatible.",
         "maxOutput": 128000,
         "modality": "Text",
         "rateLimit": "20 RPM, 200 RPD"
@@ -1026,7 +1026,7 @@
         "url": "https://openrouter.ai/keys",
         "base_url": "https://openrouter.ai/api/v1",
         "context_window": 131000,
-        "description": "~22 free models (marked with `:free` suffix). openai sdk-compatible.",
+        "description": "~22 free models (marked with `:free` suffix). OpenAI SDK-compatible.",
         "maxOutput": 128000,
         "modality": "Text",
         "rateLimit": "20 RPM, 200 RPD"
@@ -1038,7 +1038,7 @@
         "url": "https://openrouter.ai/keys",
         "base_url": "https://openrouter.ai/api/v1",
         "context_window": 262000,
-        "description": "~22 free models (marked with `:free` suffix). openai sdk-compatible.",
+        "description": "~22 free models (marked with `:free` suffix). OpenAI SDK-compatible.",
         "maxOutput": 32000,
         "modality": "Multimodal",
         "rateLimit": "20 RPM, 200 RPD"
@@ -1050,7 +1050,7 @@
         "url": "https://openrouter.ai/keys",
         "base_url": "https://openrouter.ai/api/v1",
         "context_window": 262000,
-        "description": "~22 free models (marked with `:free` suffix). openai sdk-compatible.",
+        "description": "~22 free models (marked with `:free` suffix). OpenAI SDK-compatible.",
         "maxOutput": 32000,
         "modality": "Text",
         "rateLimit": "20 RPM, 200 RPD"
@@ -1062,7 +1062,7 @@
         "url": "https://openrouter.ai/keys",
         "base_url": "https://openrouter.ai/api/v1",
         "context_window": 262000,
-        "description": "~22 free models (marked with `:free` suffix). openai sdk-compatible.",
+        "description": "~22 free models (marked with `:free` suffix). OpenAI SDK-compatible.",
         "maxOutput": 128000,
         "modality": "Text",
         "rateLimit": "20 RPM, 200 RPD"
@@ -1074,7 +1074,7 @@
         "url": "https://openrouter.ai/keys",
         "base_url": "https://openrouter.ai/api/v1",
         "context_window": 128000,
-        "description": "~22 free models (marked with `:free` suffix). openai sdk-compatible.",
+        "description": "~22 free models (marked with `:free` suffix). OpenAI SDK-compatible.",
         "maxOutput": 128000,
         "modality": "Text / Image",
         "rateLimit": "20 RPM, 200 RPD"
@@ -1086,7 +1086,7 @@
         "url": "https://www.ovhcloud.com/en/public-cloud/ai-endpoints/catalog/",
         "base_url": "https://oai.endpoints.kepler.ai.cloud.ovh.net/v1",
         "context_window": 131000,
-        "description": "free anonymous tier (no api key, no signup): 2 rpm per ip per model. 20+ open-weight models hosted in eu. openai sdk-compatible.",
+        "description": "Free anonymous tier (no API key, no signup): 2 RPM per IP per model. 20+ open-weight models hosted in EU. OpenAI SDK-compatible.",
         "maxOutput": 128000,
         "modality": "Text",
         "rateLimit": "2 RPM (anonymous)"
@@ -1098,7 +1098,7 @@
         "url": "https://www.ovhcloud.com/en/public-cloud/ai-endpoints/catalog/",
         "base_url": "https://oai.endpoints.kepler.ai.cloud.ovh.net/v1",
         "context_window": 128000,
-        "description": "free anonymous tier (no api key, no signup): 2 rpm per ip per model. 20+ open-weight models hosted in eu. openai sdk-compatible.",
+        "description": "Free anonymous tier (no API key, no signup): 2 RPM per IP per model. 20+ open-weight models hosted in EU. OpenAI SDK-compatible.",
         "maxOutput": 128000,
         "modality": "Text",
         "rateLimit": "2 RPM (anonymous)"
@@ -1110,7 +1110,7 @@
         "url": "https://www.ovhcloud.com/en/public-cloud/ai-endpoints/catalog/",
         "base_url": "https://oai.endpoints.kepler.ai.cloud.ovh.net/v1",
         "context_window": 128000,
-        "description": "free anonymous tier (no api key, no signup): 2 rpm per ip per model. 20+ open-weight models hosted in eu. openai sdk-compatible.",
+        "description": "Free anonymous tier (no API key, no signup): 2 RPM per IP per model. 20+ open-weight models hosted in EU. OpenAI SDK-compatible.",
         "maxOutput": 128000,
         "modality": "Text",
         "rateLimit": "2 RPM (anonymous)"
@@ -1122,7 +1122,7 @@
         "url": "https://www.ovhcloud.com/en/public-cloud/ai-endpoints/catalog/",
         "base_url": "https://oai.endpoints.kepler.ai.cloud.ovh.net/v1",
         "context_window": 131000,
-        "description": "free anonymous tier (no api key, no signup): 2 rpm per ip per model. 20+ open-weight models hosted in eu. openai sdk-compatible.",
+        "description": "Free anonymous tier (no API key, no signup): 2 RPM per IP per model. 20+ open-weight models hosted in EU. OpenAI SDK-compatible.",
         "maxOutput": 128000,
         "modality": "Text",
         "rateLimit": "2 RPM (anonymous)"
@@ -1134,7 +1134,7 @@
         "url": "https://www.ovhcloud.com/en/public-cloud/ai-endpoints/catalog/",
         "base_url": "https://oai.endpoints.kepler.ai.cloud.ovh.net/v1",
         "context_window": 131000,
-        "description": "free anonymous tier (no api key, no signup): 2 rpm per ip per model. 20+ open-weight models hosted in eu. openai sdk-compatible.",
+        "description": "Free anonymous tier (no API key, no signup): 2 RPM per IP per model. 20+ open-weight models hosted in EU. OpenAI SDK-compatible.",
         "maxOutput": 128000,
         "modality": "Text",
         "rateLimit": "2 RPM (anonymous)"
@@ -1146,7 +1146,7 @@
         "url": "https://www.ovhcloud.com/en/public-cloud/ai-endpoints/catalog/",
         "base_url": "https://oai.endpoints.kepler.ai.cloud.ovh.net/v1",
         "context_window": 131000,
-        "description": "free anonymous tier (no api key, no signup): 2 rpm per ip per model. 20+ open-weight models hosted in eu. openai sdk-compatible.",
+        "description": "Free anonymous tier (no API key, no signup): 2 RPM per IP per model. 20+ open-weight models hosted in EU. OpenAI SDK-compatible.",
         "maxOutput": 128000,
         "modality": "Text",
         "rateLimit": "2 RPM (anonymous)"
@@ -1158,7 +1158,7 @@
         "url": "https://www.ovhcloud.com/en/public-cloud/ai-endpoints/catalog/",
         "base_url": "https://oai.endpoints.kepler.ai.cloud.ovh.net/v1",
         "context_window": 131000,
-        "description": "free anonymous tier (no api key, no signup): 2 rpm per ip per model. 20+ open-weight models hosted in eu. openai sdk-compatible.",
+        "description": "Free anonymous tier (no API key, no signup): 2 RPM per IP per model. 20+ open-weight models hosted in EU. OpenAI SDK-compatible.",
         "maxOutput": 128000,
         "modality": "Text",
         "rateLimit": "2 RPM (anonymous)"
@@ -1170,7 +1170,7 @@
         "url": "https://www.ovhcloud.com/en/public-cloud/ai-endpoints/catalog/",
         "base_url": "https://oai.endpoints.kepler.ai.cloud.ovh.net/v1",
         "context_window": 131000,
-        "description": "free anonymous tier (no api key, no signup): 2 rpm per ip per model. 20+ open-weight models hosted in eu. openai sdk-compatible.",
+        "description": "Free anonymous tier (no API key, no signup): 2 RPM per IP per model. 20+ open-weight models hosted in EU. OpenAI SDK-compatible.",
         "maxOutput": 128000,
         "modality": "Text",
         "rateLimit": "2 RPM (anonymous)"
@@ -1182,7 +1182,7 @@
         "url": "https://www.ovhcloud.com/en/public-cloud/ai-endpoints/catalog/",
         "base_url": "https://oai.endpoints.kepler.ai.cloud.ovh.net/v1",
         "context_window": 262000,
-        "description": "free anonymous tier (no api key, no signup): 2 rpm per ip per model. 20+ open-weight models hosted in eu. openai sdk-compatible.",
+        "description": "Free anonymous tier (no API key, no signup): 2 RPM per IP per model. 20+ open-weight models hosted in EU. OpenAI SDK-compatible.",
         "maxOutput": 128000,
         "modality": "Text (code)",
         "rateLimit": "2 RPM (anonymous)"
@@ -1194,7 +1194,7 @@
         "url": "https://www.ovhcloud.com/en/public-cloud/ai-endpoints/catalog/",
         "base_url": "https://oai.endpoints.kepler.ai.cloud.ovh.net/v1",
         "context_window": 128000,
-        "description": "free anonymous tier (no api key, no signup): 2 rpm per ip per model. 20+ open-weight models hosted in eu. openai sdk-compatible.",
+        "description": "Free anonymous tier (no API key, no signup): 2 RPM per IP per model. 20+ open-weight models hosted in EU. OpenAI SDK-compatible.",
         "maxOutput": 128000,
         "modality": "Text + Vision",
         "rateLimit": "2 RPM (anonymous)"
@@ -1206,7 +1206,7 @@
         "url": "https://www.ovhcloud.com/en/public-cloud/ai-endpoints/catalog/",
         "base_url": "https://oai.endpoints.kepler.ai.cloud.ovh.net/v1",
         "context_window": 128000,
-        "description": "free anonymous tier (no api key, no signup): 2 rpm per ip per model. 20+ open-weight models hosted in eu. openai sdk-compatible.",
+        "description": "Free anonymous tier (no API key, no signup): 2 RPM per IP per model. 20+ open-weight models hosted in EU. OpenAI SDK-compatible.",
         "maxOutput": 128000,
         "modality": "Text",
         "rateLimit": "2 RPM (anonymous)"
@@ -1218,7 +1218,7 @@
         "url": "https://www.ovhcloud.com/en/public-cloud/ai-endpoints/catalog/",
         "base_url": "https://oai.endpoints.kepler.ai.cloud.ovh.net/v1",
         "context_window": 128000,
-        "description": "free anonymous tier (no api key, no signup): 2 rpm per ip per model. 20+ open-weight models hosted in eu. openai sdk-compatible.",
+        "description": "Free anonymous tier (no API key, no signup): 2 RPM per IP per model. 20+ open-weight models hosted in EU. OpenAI SDK-compatible.",
         "maxOutput": 128000,
         "modality": "Text",
         "rateLimit": "2 RPM (anonymous)"
@@ -1230,7 +1230,7 @@
         "url": "https://www.ovhcloud.com/en/public-cloud/ai-endpoints/catalog/",
         "base_url": "https://oai.endpoints.kepler.ai.cloud.ovh.net/v1",
         "context_window": 32000,
-        "description": "free anonymous tier (no api key, no signup): 2 rpm per ip per model. 20+ open-weight models hosted in eu. openai sdk-compatible.",
+        "description": "Free anonymous tier (no API key, no signup): 2 RPM per IP per model. 20+ open-weight models hosted in EU. OpenAI SDK-compatible.",
         "maxOutput": 128000,
         "modality": "Text",
         "rateLimit": "2 RPM (anonymous)"
@@ -1242,7 +1242,7 @@
         "url": "https://cloud.sambanova.ai/apis",
         "base_url": "https://api.sambanova.ai/v1",
         "context_window": 128000,
-        "description": "free tier, no credit card. ultra-fast rdu inference. 20 rpm, 200k tokens/day.",
+        "description": "Free tier, no credit card. Ultra-fast RDU inference. 20 RPM, 200K tokens/day.",
         "maxOutput": 128000,
         "modality": "Text",
         "rateLimit": "20 RPM, 20 RPD, 200K TPD"
@@ -1254,7 +1254,7 @@
         "url": "https://cloud.sambanova.ai/apis",
         "base_url": "https://api.sambanova.ai/v1",
         "context_window": 128000,
-        "description": "free tier, no credit card. ultra-fast rdu inference. 20 rpm, 200k tokens/day.",
+        "description": "Free tier, no credit card. Ultra-fast RDU inference. 20 RPM, 200K tokens/day.",
         "maxOutput": 128000,
         "modality": "Text",
         "rateLimit": "20 RPM, 20 RPD, 200K TPD"
@@ -1266,7 +1266,7 @@
         "url": "https://cloud.sambanova.ai/apis",
         "base_url": "https://api.sambanova.ai/v1",
         "context_window": 128000,
-        "description": "free tier, no credit card. ultra-fast rdu inference. 20 rpm, 200k tokens/day.",
+        "description": "Free tier, no credit card. Ultra-fast RDU inference. 20 RPM, 200K tokens/day.",
         "maxOutput": 128000,
         "modality": "Text",
         "rateLimit": "20 RPM, 20 RPD, 200K TPD"
@@ -1278,7 +1278,7 @@
         "url": "https://cloud.sambanova.ai/apis",
         "base_url": "https://api.sambanova.ai/v1",
         "context_window": 128000,
-        "description": "free tier, no credit card. ultra-fast rdu inference. 20 rpm, 200k tokens/day.",
+        "description": "Free tier, no credit card. Ultra-fast RDU inference. 20 RPM, 200K tokens/day.",
         "maxOutput": 128000,
         "modality": "Text",
         "rateLimit": "20 RPM, 20 RPD, 200K TPD"
@@ -1290,7 +1290,7 @@
         "url": "https://cloud.sambanova.ai/apis",
         "base_url": "https://api.sambanova.ai/v1",
         "context_window": 128000,
-        "description": "free tier, no credit card. ultra-fast rdu inference. 20 rpm, 200k tokens/day.",
+        "description": "Free tier, no credit card. Ultra-fast RDU inference. 20 RPM, 200K tokens/day.",
         "maxOutput": 128000,
         "modality": "Text",
         "rateLimit": "20 RPM, 20 RPD, 200K TPD"
@@ -1302,7 +1302,7 @@
         "url": "https://cloud.sambanova.ai/apis",
         "base_url": "https://api.sambanova.ai/v1",
         "context_window": 128000,
-        "description": "free tier, no credit card. ultra-fast rdu inference. 20 rpm, 200k tokens/day.",
+        "description": "Free tier, no credit card. Ultra-fast RDU inference. 20 RPM, 200K tokens/day.",
         "maxOutput": 128000,
         "modality": "Text",
         "rateLimit": "20 RPM, 20 RPD, 200K TPD"
@@ -1314,7 +1314,7 @@
         "url": "https://cloud.siliconflow.cn/account/ak",
         "base_url": "https://api.siliconflow.cn/v1",
         "context_window": 131000,
-        "description": "permanently free models, no credit card required. 200+ paid models also available.",
+        "description": "Permanently free models, no credit card required. 200+ paid models also available.",
         "maxOutput": 131000,
         "modality": "Text",
         "rateLimit": "30 RPM, 60K TPM"
@@ -1326,7 +1326,7 @@
         "url": "https://cloud.siliconflow.cn/account/ak",
         "base_url": "https://api.siliconflow.cn/v1",
         "context_window": 131000,
-        "description": "permanently free models, no credit card required. 200+ paid models also available.",
+        "description": "Permanently free models, no credit card required. 200+ paid models also available.",
         "maxOutput": 128000,
         "modality": "Text (reasoning)",
         "rateLimit": "30 RPM, 60K TPM"
