@@ -63,10 +63,12 @@ class HackerNewsTechScraper:
         try:
             # Step 1: Fetch the list of newest show/launch story item IDs
             req = urllib.request.Request(resolved_list_url, headers={"User-Agent": "EnterpriseMonitor/1.0"})
+            raw_data = {}
             with urllib.request.urlopen(req) as resp:
                 raw_data = resp.read().decode("utf-8")
-                self.write_log(raw_data)
-                story_ids: List[int] = json.loads(raw_data)[:scan_limit]
+                json_story_ids = json.loads(raw_data)
+                raw_data['story_ids'] = json_story_ids
+                story_ids: List[int] = json_story_ids[:scan_limit]
                 
             matching_threads = []
             keywords = ["free", "api", "llm", "endpoint", "model", "provider"]
@@ -92,6 +94,10 @@ class HackerNewsTechScraper:
                             "url": item_data.get("url", f"https://ycombinator.com{item_id}"),
                             "description_snippet": item_data.get("text", "")[:1000]
                         })
+            
+            # write log
+            raw_data['threads'] = matching_threads
+            self.write_log(raw_data)
                         
             logger.info(f"Community scanning pipeline complete. Found {len(matching_threads)} relevant API topics.")
             return matching_threads
