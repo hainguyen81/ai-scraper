@@ -1,4 +1,4 @@
-name: "🚀 Execute Semantic Search Scraper"
+name: "🤖 Execute AI Web Scraper Agent"
 
 # Define triggering mechanisms for automated lifecycle management
 on:
@@ -29,10 +29,10 @@ env:
   LC_ALL: 'C.UTF-8'
 
 jobs:
-  run-search-pipeline:
-    name: "🤖 AI Semantic Search Data Ingestion"
+  run-ai-agent-pipeline:
+    name: "🧠 LLM-Driven Autonomous Web Scraping"
     runs-on: ubuntu-latest
-
+    
     steps:
       # Step 1: Initialize workspace by cloning the target branch repository
       - name: "📂 Checkout code repository workspace"
@@ -45,34 +45,38 @@ jobs:
         uses: actions/setup-python@v5
         with:
           python-version: "3.11"
-          cache: "pip" # Opt-in to dependency caching to optimize subsequent build duration
+          cache: "pip"
 
-      # Step 3: Upgrade pip binary interfaces and securely bind external libraries
-      - name: "🛠️ Install operational dependencies"
+      # Step 3: Install ScrapeGraphAI framework modules and headless browser binaries
+      - name: "🛠️ Install AI Framework and Playwright browsers"
         run: |
-          echo "🔥 Upgrading package managers and resolving required core modules..."
+          echo "🔥 Installing ScrapeGraphAI core engine..."
           python -m pip install --upgrade pip
-          pip install exa_py
+          pip install scrapegraphai playwright
+          
+          echo "🌐 Provisioning sandboxed headless browser binaries..."
+          playwright install --with-deps chromium
 
-      # Step 4: Inject encrypted credentials from repository vault and trigger ingestion core
-      - name: "🤖 Execute multi-source semantic web discovery pipeline"
+      # Step 4: Inject API authorization variables securely and launch AI Agent core
+      - name: "🤖 Launch AI Agent extraction graph instance"
         env:
-          # Secure ingestion of the private API Key configuration from GitHub Secrets manager
-          EXA_API_KEY: ${{ secrets.EXA_API_KEY }}
+          # Securely inject Google AI Studio credential from repository vault into workspace environment
+          API_KEY_GEMINI: ${{ secrets.API_KEY_GEMINI }}
         run: |
-          # Validate token existence to prevent runtime authentication failures
-          if [ -z "$EXA_API_KEY" ]; then
-            echo "::error::🚨 CRITICAL INFRASTRUCTURE FAILURE: EXA_API_KEY secret token identifier is missing from repository vault."
+          if [ -z "$API_KEY_GEMINI" ]; then
+            echo "::error::🚨 CRITICAL SECURITY FAILURE: API_KEY_GEMINI secret token is missing from vault."
             exit 1
           fi
-          echo "🧠 AI Ingestion Agent successfully authenticated. Booting semantic web discovery matrix..."
-          python sources/agents/ai-semantic-search-scapper.py --exa-api-key "$EXA_API_KEY"
-          echo "✅ Massive parallel data extraction process completed successfully!"
           
+          echo "🧠 AI Agent successfully initialized. Booting extraction graph workflow..."
+          # Expects ai_agent_scraper.py to accept env var and output 'free_models_ai_agent.json'
+          python sources/agents/ai-llm-web-scapper.py --gemini-api-key "$API_KEY_GEMINI"
+          echo "✅ AI parsing complete. Extraction graph closed successfully."
+
       # Step 5: Dynamically organize directory, rename file by system date, and commit changes
       - name: "🚀 Commit and Push structured data to repository storage"
         env:
-          FILE_NAME: "web_search_corpus"
+          FILE_NAME: "free_models_by_llm_web_scapper"
         run: |
           TARGET_DIR="source/output"
           # Prevent pipeline block execution if the target output file was not generated
