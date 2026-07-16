@@ -68,7 +68,7 @@ class SemanticSearchScraper:
                     title = item.get("source_title", "[ No title ]")
                     url = item.get("source_url", "<!-- URL -->")
                     text = item.get("extracted_text", "-").replace("#", "##")
-                    markdown_block = f"---\n\n# {title}[{url}]\n{text}\n\n"
+                    markdown_block = f"---\n\n# Source: [{title}]({url})\n{text}\n\n"
                     file.write(markdown_block)
                 
     
