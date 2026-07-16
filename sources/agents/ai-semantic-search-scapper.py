@@ -52,6 +52,20 @@ class SemanticSearchScraper:
         os.makedirs(os.path.dirname(agent_working_history_file), exist_ok=True)
         with open(agent_working_history_file, "a", encoding="utf-8") as file:
             file.write(log_content)
+        
+        # extract details as md
+        if not isinstance(raw_content, list) and len(raw_content) == 0:
+            with open(agent_working_history_file, "a", encoding="utf-8") as file:
+                for item in raw_content:
+                    if not isinstance(item, dict):
+                        continue
+                    
+                    title = item.get("source_title", "[ No title ]")
+                    url = item.get("source_url", "<!-- URL -->")
+                    text = item.get("extracted_text", "-").replace("#", "##")
+                    markdown_block = f"# {title} - {url}\n{text}\n\n"
+                    file.write(markdown_block)
+                
     
     def discover_and_scrape_sources(self) -> List[Dict[str, Any]]:
         """Search the entire web for free AI endpoints, extract their raw text, and compile source links."""
