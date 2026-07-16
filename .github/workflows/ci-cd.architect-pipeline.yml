@@ -83,6 +83,7 @@ jobs:
         OUTPUT_BLUEPRINT_DIR: ${{ github.event.inputs.output_dir }}
         NUM_OF_PHASES: ${{ github.event.inputs.phases }}
         PROJECT_NAME: ${{ github.event.inputs.project_name }}
+        PYTHONPATH: ${{ github.workspace }} # force Python load folder structure, including 'sources'
       run: |
         # Extract Phase count (Fallback to 3 if triggered automatically via git push)
         NUM_PHASES="$NUM_OF_PHASES"
