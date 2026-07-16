@@ -8,7 +8,7 @@ from google import genai
 from google.genai import types
 
 # Now Python can seamlessly see and import the centralized helper utility cleanly!
-from ..agent_helper import resolve_absolute_path
+from sources.agents.agent_helper import resolve_absolute_path
 
 # Import decoupled functional components cleanly
 from block_global import generate_global_context
