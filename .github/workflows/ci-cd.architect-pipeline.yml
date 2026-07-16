@@ -151,7 +151,7 @@ jobs:
         NUM_OF_PHASES: ${{ github.event.inputs.phases }}
         PROJECT_NAME: ${{ github.event.inputs.project_name }}
       run: |
-        # Extract Phase count (Fallback to 3 if triggered automatically via git push)
+        # Extract Phase count (Fallback to 5 if triggered automatically via git push)
         NUM_PHASES="$NUM_OF_PHASES"
         if [ -z "$NUM_PHASES" ]; then
           NUM_PHASES=5
