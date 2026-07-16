@@ -44,9 +44,8 @@ def convert_phases_to_json(client: OpenAI, model_name: str, project_name: str, n
     
     log_phase_idx = 0
     log_prompt = ""
+    instruction = "You are a rigid technical translator. Map high-level Markdown workflows into precise, executable JSON schemas."
     try:
-        instruction = "You are a rigid technical translator. Map high-level Markdown workflows into precise, executable JSON schemas."
-        
         for phase_idx in range(1, num_phases + 1):
             log_phase_idx = phase_idx
             phase_context_dir = os.path.join(resolve_absolute_path(out_dir), "plan", "context")
@@ -91,7 +90,7 @@ def convert_phases_to_json(client: OpenAI, model_name: str, project_name: str, n
             response = client.beta.chat.completions.parse(
                 model=model_name if model_name else "gpt-4o",  # Standard heavy reasoning model for structured enterprise operations
                 messages=[
-                    {"role": "system", "content": system_instruction},
+                    {"role": "system", "content": instruction},
                     {"role": "user", "content": prompt}
                 ],
                 temperature=0.1,
@@ -108,10 +107,10 @@ def convert_phases_to_json(client: OpenAI, model_name: str, project_name: str, n
                     json.dump(json_data, f, ensure_ascii=False, indent=4)
         
             # write log
-            write_log(log_phase_idx, log_prompt.replace('#', '##'), raw_data, True)
+            write_log(log_phase_idx, instruction, log_prompt.replace('#', '##'), raw_data, True)
             
             print(f" │   └── 🎉 Saved Phase {phase_idx} JSON Tracker: {out_path}")
     except Exception as e:
         print(f"❌ Failed to initiate chat/generate Phase {log_phase_idx} Steps JSON: {e}")
-        write_log(log_phase_idx, log_prompt.replace('#', '##'), str(e), True)
+        write_log(log_phase_idx, instruction, log_prompt.replace('#', '##'), str(e), True)
         sys.exit(1) # break pipeline

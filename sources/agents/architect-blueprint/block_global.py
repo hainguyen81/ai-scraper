@@ -25,8 +25,8 @@ def generate_global_context(client: OpenAI, model_name: str, project_name: str, 
     print(f"🏗️  [BLOCK 1] Extracting Raw Requirements into Global Context MD...")
     
     log_prompt = ""
+    instruction = "You are an Elite Solution Architect. Define the global system truth and multi-agent guardrails."
     try:
-        instruction = "You are an Elite Solution Architect. Define the global system truth and multi-agent guardrails."
         prompt = f"""
         Analyze the attached project requirements. Build the GLOBAL PROJECT CONTEXT for '{project_name}'.
         
@@ -55,7 +55,7 @@ def generate_global_context(client: OpenAI, model_name: str, project_name: str, 
         response = client.chat.completions.create(
             model=model_name if model_name else "gpt-4o",
             messages=[
-                {"role": "system", "content": system_instruction},
+                {"role": "system", "content": instruction},
                 {"role": "user", "content": prompt}
             ],
             temperature=0.2
@@ -70,12 +70,12 @@ def generate_global_context(client: OpenAI, model_name: str, project_name: str, 
             f.write(raw_data)
         
         # write log
-        write_log(0, log_prompt.replace('#', '##'), raw_data.replace('#', '##') if raw_data else "-", False)
+        write_log(0, instruction, log_prompt.replace('#', '##'), raw_data.replace('#', '##') if raw_data else "-", False)
         
         print(f"✅ [BLOCK 1 SUCCESS] Saved Global Blueprint: {out_path}")
         return raw_data
     except Exception as e:
         print(f"❌ Failed to initiate chat/generate Global Blueprint: {e}")
-        write_log(0, log_prompt.replace('#', '##'), str(e), False)
+        write_log(0, instruction, log_prompt.replace('#', '##'), str(e), False)
         sys.exit(1) # break pipeline
 

@@ -24,7 +24,7 @@ from sources.agents.agent_helper import json_raw_content
 # ==============================================================================
 agent_working_history_file      = resolve_absolute_path("sources/output/architecture-blueprint.md")
 
-def write_log(phase_idx, prompt, raw_content, is_step):
+def write_log(phase_idx, instruction, prompt, raw_content, is_step):
     pattern = r"\{.*\}|\[.*\]"
     raw_content = json_raw_content(raw_content)
     is_json = bool(re.search(pattern, raw_content, re.DOTALL))
@@ -34,11 +34,12 @@ def write_log(phase_idx, prompt, raw_content, is_step):
         header_title = f"# Phase {phase_idx} - Prompt:\n\n{prompt}\n\n"
     else:
         header_title = f"# Phase {phase_idx} STEPS - Prompt:\n\n{prompt}\n\n"
+    instruction_block = f"# System Instruction\n\n{instruction}\n\n"
     if is_json:
         response_block = f"# Raw Response / Exception:\n\n```json\n{cleaned_content}\n```\n\n"
     else:
         response_block = f"# Raw Response / Exception:\n\n```text\n{cleaned_content}\n```\n\n"
-    log_content = header_title + response_block
+    log_content = header_title + instruction_block + response_block
     os.makedirs(os.path.dirname(agent_working_history_file), exist_ok=True)
     with open(agent_working_history_file, "a", encoding="utf-8") as file:
         file.write(log_content)

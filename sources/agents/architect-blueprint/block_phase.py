@@ -26,9 +26,8 @@ def generate_phase_contexts(client: OpenAI, model_name: str, project_name: str, 
     
     log_phase_idx = 0
     log_prompt = ""
+    instruction = "You are an Elite Solution Architect. Isolate development boundaries so sub-agents never overlap."
     try:
-        instruction = "You are an Elite Solution Architect. Isolate development boundaries so sub-agents never overlap."
-        
         for phase_idx in range(1, num_phases + 1):
             log_phase_idx = phase_idx
             print(f" │   ├── 📝 Compiling Context Markdown for Phase {phase_idx} of {num_phases}...")
@@ -66,7 +65,7 @@ def generate_phase_contexts(client: OpenAI, model_name: str, project_name: str, 
             response = client.chat.completions.create(
                 model=model_name if model_name else "gpt-4o",
                 messages=[
-                    {"role": "system", "content": system_instruction},
+                    {"role": "system", "content": instruction},
                     {"role": "user", "content": prompt}
                 ],
                 temperature=0.2
@@ -80,11 +79,11 @@ def generate_phase_contexts(client: OpenAI, model_name: str, project_name: str, 
                 f.write(raw_data)
         
             # write log
-            write_log(log_phase_idx, log_prompt.replace('#', '##'), raw_data.replace('#', '##') if raw_data else "-", False)
+            write_log(log_phase_idx, instruction, log_prompt.replace('#', '##'), raw_data.replace('#', '##') if raw_data else "-", False)
             
             print(f" │   ├── ✅ Saved Phase {phase_idx} MD: {out_path}")
     except Exception as e:
         print(f"❌ Failed to initiate chat/generate Phase {log_phase_idx} Blueprint: {e}")
-        write_log(log_phase_idx, log_prompt.replace('#', '##'), str(e), False)
+        write_log(log_phase_idx, instruction, log_prompt.replace('#', '##'), str(e), False)
         sys.exit(1) # break pipeline
 
