@@ -77,7 +77,7 @@ class SemanticSearchScraper:
                     "extracted_text": result.text[:8000] # Truncate text block size per page to optimize token space
                 })
             
-            urls = "\n".join([payload.source_url for payload in scraped_payload])
+            urls = "\n".join([payload["source_url"] for payload in scraped_payload])
             self.write_log(urls, search_query, scraped_payload)
             
             logger.info(f"Successfully scraped and extracted text from {len(scraped_payload)} different web domains.")
