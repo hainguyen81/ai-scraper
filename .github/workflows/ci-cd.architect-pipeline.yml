@@ -112,17 +112,17 @@ jobs:
         fi
         
         # check models
-        MODEL_GLOBAL = $API_MODEL_GLOBAL
+        MODEL_GLOBAL="$API_MODEL_GLOBAL"
         if [ -z "$MODEL_GLOBAL" ]; then
-          MODEL_GLOBAL=$API_MODEL
+          MODEL_GLOBAL="$API_MODEL"
         fi
-        MODEL_PHASE = $API_MODEL_PHASE
+        MODEL_PHASE="$API_MODEL_PHASE"
         if [ -z "$MODEL_PHASE" ]; then
-          MODEL_PHASE=$MODEL_GLOBAL
+          MODEL_PHASE="$MODEL_GLOBAL"
         fi
-        MODEL_STEPS = $API_MODEL_STEPS
+        MODEL_STEPS="$API_MODEL_STEPS"
         if [ -z "$MODEL_STEPS" ]; then
-          MODEL_STEPS=$MODEL_PHASE
+          MODEL_STEPS="$MODEL_PHASE"
         fi
         
         echo "⚡ Kicking off AI Agent orchestration..."
