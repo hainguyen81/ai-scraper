@@ -21,7 +21,7 @@ from block_global import generate_global_context
 from block_phase import generate_phase_contexts
 from block_json import convert_phases_to_json
 
-def run_architect_agent(project_name: str, requirements_path: str, num_phases: int, output_dir: str, api_key: str, api_endpoint: str, api_model_global: str, api_model_phase: str, api_model_steps: str):
+def run_architect_agent(project_name: str, requirements_path: str, num_phases: int, output_dir: str, api_key: str, api_endpoint: str, api_model_global: str, api_model_phase: str, api_model_steps: str, exec_mode: int):
     """
     Master pipeline orchestrator that runs individual functional blocks in sequence.
     Provides pristine separation of concerns and protects engine runtime stability.
@@ -39,11 +39,13 @@ def run_architect_agent(project_name: str, requirements_path: str, num_phases: i
     api_model_phase = api_model_phase if api_model_phase else api_model_global
     api_model_steps = api_model_steps if api_model_steps else api_model_phase
     api_model_steps = api_model_steps if api_model_steps else api_model_global
+    exec_mode = exec_mode if exec_mode >= 0 and exec_mode <= 3 else 0
     print("=============================================================================")
-    print(f"🤖 AI: Endpoint {api_endpoint}")
-    print(f"    - Global Context:       {api_model_global}")
-    print(f"    - Phase Context:        {api_model_phase}")
-    print(f"    - Phase JSON Steps:     {api_model_steps}")
+    print(f"🤖 AI: Endpoint {api_endpoint}. Mode '0' for all.")
+    print(f"    - Global Context:       {api_model_global}. Mode 1")
+    print(f"    - Phase Context:        {api_model_phase}.  Mode 2")
+    print(f"    - Phase JSON Steps:     {api_model_steps}.  Mode 3")
+    print(f"    - Execution Mode:       {exec_mode}")
     print("=============================================================================")
     
     absolute_requirements_path = resolve_absolute_path(requirements_path)
@@ -57,53 +59,68 @@ def run_architect_agent(project_name: str, requirements_path: str, num_phases: i
     absolute_out_dir = resolve_absolute_path(output_dir)
     os.makedirs(absolute_out_dir, exist_ok=True)
     
+    safe_name = project_name.replace(' ', '-')
+    
     # 1. Execute Block 1 Module
-    result = generate_global_context(
-        client=client,
-        model_name=api_model_global,
-        project_name=project_name,
-        requirements=project_requirements,
-        num_phases=num_phases,
-        out_dir=absolute_out_dir
-    )
+    if exec_mode in (0, 1):
+        result = generate_global_context(
+            client=client,
+            model_name=api_model_global,
+            project_name=project_name,
+            requirements=project_requirements,
+            num_phases=num_phases,
+            out_dir=absolute_out_dir
+        )
+        
+        # sleep to avoid 429 Too Many Requests
+        if result:
+            print("⏳ Rate limit guard active... holding pipeline for 15 seconds to clear AI TPM window...")
+            time.sleep(15)
+    
+    # no need AI, just reading from existing context file
+    else:
+        context_dir = os.path.join(absolute_out_dir, "context")
+        global_context_file = os.path.join(context_dir, f"{safe_name}.global.blueprint.md")
+        with open(global_context_file, "r", encoding="utf-8") as f:
+            result = f.read()
     if not result:
         print("\n[ 🤖💬 PIPELINE WARN ] Modular Enterprise Architecture Pipeline Executed: Fail to generate project global context!")
         return
     
-    # sleep to avoid 429 Too Many Requests
-    print("⏳ Rate limit guard active... holding pipeline for 15 seconds to clear AI TPM window...")
-    time.sleep(15)
-    
     # 2. Execute Block 2 Module
-    global_context_text = result
-    result = generate_phase_contexts(
-        client=client,
-        model_name=api_model_phase,
-        project_name=project_name,
-        requirements=project_requirements,
-        global_context=global_context_text,
-        num_phases=num_phases,
-        out_dir=absolute_out_dir
-    )
-    if not result:
-        print("\n[ 🤖💬 PIPELINE WARN ] Modular Enterprise Architecture Pipeline Executed: Fail to generate project phase contexts!")
-        return
-    
-    # sleep to avoid 429 Too Many Requests
-    print("⏳ Rate limit guard active... holding pipeline for 15 seconds to clear AI TPM window...")
-    time.sleep(15)
+    if exec_mode in (0, 2):
+        global_context_text = result
+        result = generate_phase_contexts(
+            client=client,
+            model_name=api_model_phase,
+            project_name=project_name,
+            requirements=project_requirements,
+            global_context=global_context_text,
+            num_phases=num_phases,
+            out_dir=absolute_out_dir
+        )
+        
+        # sleep to avoid 429 Too Many Requests
+        if result:
+            print("⏳ Rate limit guard active... holding pipeline for 15 seconds to clear AI TPM window...")
+            time.sleep(15)
+        
+        else:
+            print("\n[ 🤖💬 PIPELINE WARN ] Modular Enterprise Architecture Pipeline Executed: Fail to generate project phase contexts!")
+            return
     
     # 3. Execute Block 3 Module
-    result = convert_phases_to_json(
-        client=client,
-        model_name=api_model_steps,
-        project_name=project_name,
-        num_phases=num_phases,
-        out_dir=absolute_out_dir
-    )
-    if not result:
-        print("\n[ 🤖💬 PIPELINE WARN ] Modular Enterprise Architecture Pipeline Executed: Fail to generate project phase JSON steps!")
-        return
+    if exec_mode in (0, 3):
+        result = convert_phases_to_json(
+            client=client,
+            model_name=api_model_steps,
+            project_name=project_name,
+            num_phases=num_phases,
+            out_dir=absolute_out_dir
+        )
+        if not result:
+            print("\n[ 🤖💬 PIPELINE WARN ] Modular Enterprise Architecture Pipeline Executed: Fail to generate project phase JSON steps!")
+            return
     
     print("\n🎉 [ PIPELINE SUCCESS ] Modular Enterprise Architecture Pipeline Executed Perfectly!")
 
@@ -121,6 +138,7 @@ if __name__ == "__main__":
     parser.add_argument("--api-model-global-context", type=str, default="gpt-4o", help="AI API Model to support global Markdown context")
     parser.add_argument("--api-model-phase-context", type=str, default="gpt-4o", help="AI API Model to support phase Markdown context")
     parser.add_argument("--api-model-phase-steps-json", type=str, default="gpt-4o", help="AI API Model to support phase steps JSON context")
+    parser.add_argument("--exec-mode", type=int, default=0, help="AI Execution Mode: Global / Phase Context / Steps. Acceptable values: 0, 1, 2, 3")
     
     args = parser.parse_args()
     
@@ -128,6 +146,7 @@ if __name__ == "__main__":
     run_architect_agent(
         args.project_name, args.req, args.phases, args.out,
         args.api_key, args.api_endpoint,
-        args.api_model_global_context, args.api_model_phase_context, args.api_model_phase_steps_json
+        args.api_model_global_context, args.api_model_phase_context, args.api_model_phase_steps_json,
+        args.exec_mode
     )
 
