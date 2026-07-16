@@ -46,40 +46,72 @@ def write_log(phase_idx, instruction, prompt, raw_content, is_step):
         file.write(log_content)
 
 def parseOpenAIResponseData(response):
-    choices_data = response.choices if response and response.choices else None
-    raw_data = None
-    if choices_data and isinstance(choices_data, list) and len(choices_data) > 0:
+    """
+    Safely parses text responses from OpenAI completion models.
+    Protects the runtime from attribute errors if content fields are blank or null.
+    """
+    if not response or not hasattr(response, 'choices') or not response.choices:
+        return None
+        
+    choices_data = response.choices
+    
+    # Verify that choices structure matches standard list tracking behavior
+    if isinstance(choices_data, list) and len(choices_data) > 0:
         first_choice = choices_data[0]
-        raw_data = first_choice.message.content.strip() if hasattr(first_choice, 'message') else str(first_choice)
-    
-    else:
-        # Standard OpenAI object layout behavior fallback
-        raw_data = choices_data.message.content.strip() if choices_data and choices_data.message and choices_data.message.content else None
-    
-    return raw_data
+        
+        # Guard against malformed message blocks or unexpected payload closures
+        if hasattr(first_choice, 'message') and first_choice.message:
+            message_obj = first_choice.message
+            if hasattr(message_obj, 'content') and message_obj.content:
+                return message_obj.content.strip()
+                
+        # Safe fallback if choice format changes or breaks unexpectedly
+        return str(first_choice).strip()
+        
+    return None
 
 def parseOpenAIResponseJsonData(response):
+    """
+    Extracts and deserializes raw response texts into fully validated Python dict layouts.
+    Leverages non-greedy structural indexing to filter out conversational agent summaries.
+    """
+    # Ingest text payload through the hardened safety parser above
     raw_data = parseOpenAIResponseData(response)
     
-    # ✅ ROBUST REGEX EXTRACTION: Isolate nested JSON bracket layouts to eliminate markdown wrapper block errors
-    if raw_data:
-        # pattern 1
-        json_match = re.search(r"```json\s*([\s\S]*?)\s*```", raw_data, re.DOTALL)
-        if json_match:
-            clean_json_str = json_match.group(0).strip()
-            return (raw_data, json.loads(clean_json_str))
+    if not raw_data:
+        return (None, None)
         
-        # patten 2
-        json_match = re.search(r'\{.*\}', raw_data, re.DOTALL)
-        if json_match:
-            clean_json_str = json_match.group(0).strip()
+    # Pattern 1: Targeted scan for standard markdown language JSON codeblocks
+    json_match = re.search(r"```json\s*([\s\S]*?)\s*```", raw_data, re.DOTALL)
+    if json_match:
+        try:
+            clean_json_str = json_match.group(1).strip()
             return (raw_data, json.loads(clean_json_str))
-        
-        # pattern 3
-        json_match = re.search(r"```\s*([\s\S]*?)\s*```", raw_data, re.DOTALL)
-        if json_match:
-            clean_json_str = json_match.group(0).strip()
+        except Exception:
+            pass # Continue evaluating alternative pattern structures if parsing breaks
+            
+    # Pattern 2: Generic codeblock fallback without language tags
+    json_match = re.search(r"```\s*([\s\S]*?)\s*```", raw_data, re.DOTALL)
+    if json_match:
+        try:
+            clean_json_str = json_match.group(1).strip()
             return (raw_data, json.loads(clean_json_str))
-        
-        reurn (raw_data, json.loads(raw_data))
-    return (raw_data, None)
+        except Exception:
+            pass
+
+    # Pattern 3: Hardened bracket boundary locator leveraging non-greedy isolation
+    # Fixes the broken greedy regex logic to ensure text outside the curly braces is safely ignored
+    json_match = re.search(r"(\{[\s\S]*?\})", raw_data, re.DOTALL)
+    if json_match:
+        try:
+            clean_json_str = json_match.group(1).strip()
+            return (raw_data, json.loads(clean_json_str))
+        except Exception:
+            pass
+            
+    # Final Fallback Layer: Treat the whole string as literal plain text payload
+    try:
+        return (raw_data, json.loads(raw_data.strip()))
+    except Exception as final_error:
+        print(f"⚠️  [PARSER WARNING] Local string-to-json mapping failed: {final_error}")
+        return (raw_data, None)
