@@ -24,6 +24,21 @@ on:
         required: true
         default: 'sources/output/blueprint'
         type: string
+      model_global:
+        description: '🌐 Global Context Model - OpenAI'
+        required: false
+        default: 'meta-llama/llama-3.3-70b-instruct:free'
+        type: string
+      model_phase:
+        description: '📈 Phase Context Model - OpenAI'
+        required: false
+        default: 'meta-llama/llama-3.3-70b-instruct:free'
+        type: string
+      model_steps:
+        description: '🔢 Phase Steps Json Context Model - OpenAI'
+        required: false
+        default: 'qwen/qwen-2.5-72b-instruct:free'
+        type: string
     
   # allow other workflow call into (inputs same as workflow_dispatch but required)
   workflow_call:
@@ -47,6 +62,21 @@ on:
         description: '📂 Target directory path to save the generated blueprint'
         required: true
         default: 'sources/output/blueprint'
+        type: string
+      model_global:
+        description: '🌐 Global Context Model - OpenAI'
+        required: false
+        default: 'meta-llama/llama-3.3-70b-instruct:free'
+        type: string
+      model_phase:
+        description: '📈 Phase Context Model - OpenAI'
+        required: false
+        default: 'meta-llama/llama-3.3-70b-instruct:free'
+        type: string
+      model_steps:
+        description: '🔢 Phase Steps Json Context Model - OpenAI'
+        required: false
+        default: 'qwen/qwen-2.5-72b-instruct:free'
         type: string
 
 jobs:
@@ -90,6 +120,11 @@ jobs:
         API_MODEL_PHASE: ${{ secrets.API_BLUEPRINT_MODEL_PHASE }}
         API_MODEL_STEPS: ${{ secrets.API_BLUEPRINT_MODEL_STEPS_JSON }}
         
+        # specific models
+        INPUTS_MODEL_GLOBAL: ${{ github.event.inputs.model_global }}
+        INPUTS_MODEL_PHASE: ${{ github.event.inputs.model_phase }}
+        INPUTS_MODEL_STEPS: ${{ github.event.inputs.model_steps }}
+        
         # Python environment
         PYTHONPATH: ${{ github.workspace }} # force Python load folder structure, including 'sources'
         
@@ -112,15 +147,26 @@ jobs:
         fi
         
         # check models
-        MODEL_GLOBAL="$API_MODEL_GLOBAL"
+        MODEL_GLOBAL="$INPUTS_MODEL_GLOBAL"
+        if [ -z "$MODEL_GLOBAL" ]; then
+          MODEL_GLOBAL="$API_MODEL_GLOBAL"
+        fi
         if [ -z "$MODEL_GLOBAL" ]; then
           MODEL_GLOBAL="$API_MODEL"
         fi
-        MODEL_PHASE="$API_MODEL_PHASE"
+        
+        MODEL_PHASE="$INPUTS_MODEL_PHASE"
+        if [ -z "$MODEL_PHASE" ]; then
+          MODEL_PHASE="$API_MODEL_PHASE"
+        fi
         if [ -z "$MODEL_PHASE" ]; then
           MODEL_PHASE="$MODEL_GLOBAL"
         fi
-        MODEL_STEPS="$API_MODEL_STEPS"
+        
+        MODEL_STEPS="$INPUTS_MODEL_STEPS"
+        if [ -z "$MODEL_STEPS" ]; then
+          MODEL_STEPS="$API_MODEL_STEPS"
+        fi
         if [ -z "$MODEL_STEPS" ]; then
           MODEL_STEPS="$MODEL_PHASE"
         fi
