@@ -58,12 +58,12 @@ class HackerNewsTechScraper:
     def fetch_latest_ai_threads(self, scan_limit: int = 40) -> List[Dict[str, Any]]:
         """Scan latest 'Show HN' launch threads for keyword matches relating to free LLM endpoints."""
         logger.info("Scanning community pipeline for open-source and free tech releases...")
+        log_data = {'story_ids': [], 'threads': []}
         resolved_list_url = self._show_stories_url
         
         try:
             # Step 1: Fetch the list of newest show/launch story item IDs
             req = urllib.request.Request(resolved_list_url, headers={"User-Agent": "EnterpriseMonitor/1.0"})
-            log_data = {}
             with urllib.request.urlopen(req) as resp:
                 raw_data = resp.read().decode("utf-8")
                 json_story_ids = json.loads(raw_data)
@@ -76,26 +76,31 @@ class HackerNewsTechScraper:
             # Step 2: Iterate through thread items and pull detailed text data blocks
             log_data['threads'] = []
             for item_id in story_ids:
-                resolved_item_url = f"{self._base_item_url}{item_id}.json".replace(".", ".")
-                item_req = urllib.request.Request(resolved_item_url, headers={"User-Agent": "EnterpriseMonitor/1.0"})
-                
-                with urllib.request.urlopen(item_req) as item_resp:
-                    item_data = json.loads(item_resp.read().decode("utf-8"))
-                    if not item_data:
-                        continue
+                try:
+                    resolved_item_url = f"{self._base_item_url}{item_id}.json".replace(".", ".")
+                    item_req = urllib.request.Request(resolved_item_url, headers={"User-Agent": "EnterpriseMonitor/1.0"})
                     
-                    log_data['threads'].append(item_data)
-                    title = item_data.get("title", "").lower()
-                    text_content = item_data.get("text", "").lower()
-                    
-                    # Filter elements containing high-relevancy operational keywords
-                    if any(kw in title for kw in keywords) or any(kw in text_content for kw in keywords):
-                        matching_threads.append({
-                            "id": item_id,
-                            "title": item_data.get("title"),
-                            "url": item_data.get("url", f"https://ycombinator.com{item_id}"),
-                            "description_snippet": item_data.get("text", "")[:1000]
-                        })
+                    with urllib.request.urlopen(item_req) as item_resp:
+                        item_data = json.loads(item_resp.read().decode("utf-8"))
+                        if not item_data:
+                            continue
+                        
+                        log_data['threads'].append(item_data)
+                        title = item_data.get("title", "").lower()
+                        text_content = item_data.get("text", "").lower()
+                        
+                        # Filter elements containing high-relevancy operational keywords
+                        if any(kw in title for kw in keywords) or any(kw in text_content for kw in keywords):
+                            matching_threads.append({
+                                "id": item_id,
+                                "title": item_data.get("title"),
+                                "url": item_data.get("url", f"https://ycombinator.com{item_id}"),
+                                "description_snippet": item_data.get("text", "")[:1000]
+                            })
+                except Exception as item_err:
+                    print(f"Error while fetching {item_id}: {item_err}")
+                    log_data['threads'].append({ "id": item_id, "error": item_err })
+                    continue
             
             # write log
             self.write_log(log_data)
