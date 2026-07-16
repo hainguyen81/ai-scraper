@@ -4,8 +4,13 @@ import os
 import json
 from pydantic import BaseModel, Field
 from typing import List
-from google import genai
-from google.genai import types
+
+# GEMINI
+#from google import genai
+#from google.genai import types
+
+# OpenAI
+from openai import OpenAI
 
 # Now Python can seamlessly see and import the centralized helper utility cleanly!
 from helper import write_log
@@ -63,19 +68,51 @@ def convert_phases_to_json(client: genai.Client, project_name: str, num_phases: 
             """
             log_prompt = prompt
             
-            response = client.models.generate_content(
-                model='gemini-2.5-pro',
-                contents=prompt,
-                config=types.GenerateContentConfig(
-                    system_instruction=instruction,
-                    temperature=0.1,
-                    response_mime_type="application/json",
-                    response_schema=PhaseStepsPlan
-                )
+            # GEMINI
+            # response = client.models.generate_content(
+            #     model='gemini-2.5-pro',
+            #     contents=prompt,
+            #     config=types.GenerateContentConfig(
+            #         system_instruction=instruction,
+            #         temperature=0.1,
+            #         response_mime_type="application/json",
+            #         response_schema=PhaseStepsPlan
+            #     )
+            # )
+            # response_text = response.text
+            # json_data = json.loads(response_text)
+            
+            # OpenAI
+            response = client.beta.chat.completions.parse(
+                model="gpt-4o",  # Standard heavy reasoning model for structured enterprise operations
+                messages=[
+                    {"role": "system", "content": system_instruction},
+                    {"role": "user", "content": prompt}
+                ],
+                temperature=0.1,
+                response_format=PhaseStepsPlan, # Injects the pydantic model schema ruleset natively
             )
             
-            response_text = response.text
-            json_data = json.loads(response_text)
+            # parse response JSON
+            response_text = None
+            if isinstance(choices_data, list):
+                # If the provider wraps choices inside a native list structure
+                if len(choices_data) > 0:
+                    first_choice = choices_data[0]
+                    response_text = first_choice.message.content.strip() if hasattr(first_choice, 'message') else str(first_choice)
+            else:
+                # Standard OpenAI object layout behavior fallback
+                response_text = choices_data.message.content.strip()
+            
+            # ✅ ROBUST REGEX EXTRACTION: Isolate nested JSON bracket layouts to eliminate markdown wrapper block errors
+            json_match = re.search(r'\{.*\}', response_text, re.DOTALL)
+            if json_match:
+                clean_json_str = json_match.group(0)
+                json_data = json.loads(clean_json_str)
+            else:
+                json_data = json.loads(response.choices.message.content)
+            
+            # write blueprint
             steps_dir = os.path.join(out_dir, "plan", "steps")
             os.makedirs(steps_dir, exist_ok=True)
             out_path = os.path.join(steps_dir, f"phase-{phase_idx}.steps.json")
