@@ -1,0 +1,98 @@
+[
+    {
+        "id": 48907681,
+        "title": "Show HN: Low-latency local LLM runner via OpenJDK Panama FFM (Java 22)",
+        "url": "https://github.com/projectargus-cc/libargus.cc",
+        "description_snippet": "I wanted to run AI from inside the JVM. I started out with the standard REST sidecar, ripped that out to use Project Panama (Foreign Function &amp; Memory API) in the new JDK versions to interface directly with llama.cpp.  I still wasn&#x27;t happy with how that functioned, so I built libargus.cc to get a clean ABI to expose a structured API up in the JVM landscape. It still uses Project Panama to interface directly with llama.cpp, whisper.cpp, and ggml compute graphs.<p>I have zero-allocation on the hot paths, memory segments for prompts and tokens are allocated once inside confined Arenas.  Raw pointers pass straight through down to the low C level. This avoids primitive array cloning and heap churn.<p>I mapped out the native structures from llama.cpp and whisper.cpp while matching the compiler&#x27;s padding to maintain safe memory access.<p>I bundle pre-compiled native binaries in the jar for easy deployment.<p>This execution engine provides the foundation I need for work I&#x27;m "
+    },
+    {
+        "id": 48929408,
+        "title": "Show HN: I made a local image compressor to save you from popups andsubscription",
+        "url": "https://compressor.conutil.com",
+        "description_snippet": "Hey HN.<p>Online image compressors are good, actually not! popups, subscription, clunky ui &amp; more...<p>So I created ConUtil Compressor it&#x27;s 100% free and opensource.\nThe only local image compressor that doesn&#x27;t suck or get you into subscription hell.<p>Enjoy!\nAhmed"
+    },
+    {
+        "id": 48928934,
+        "title": "Show HN: MasterVault: Stop your LLM's context file from growing stale",
+        "url": "https://github.com/JustMichael-80/MasterVault",
+        "description_snippet": ""
+    },
+    {
+        "id": 48928918,
+        "title": "Show HN: Throttle – Local Claude Cockpit for macOS, now with remote control",
+        "url": "https://lorislab.fr/throttle/",
+        "description_snippet": "Kevin here, indie dev (lorisLabs.)<p>Thorttle started as a menu bar meter for Claude code usage, and grow into a cockpit !<p>you have the full claude meter as expected with no telemetry, no network. and that in the free version.<p>Pro is where it got interesting :<p>Cockpit have every claude code project on your Mac in one window.\nEach embedded terminal using SwiftTerm,  auto hibernate to keep a 16gb Mac from getting out of memory.<p>Remote Control that hand a session off to any linux server (I use proxmox) \nI have a IOS and Vision Pro app coming up soon!<p>my main goal and what I prefer: \nClaude code burn a lot of token you dont even see... bloated claude.md files &amp; stale memory, dead skills, barbs output ...<p>Throttle optimiser with a AI assistant that audit your claude.md and settings.json hook with a real read_file tool call emit search&#x2F;replace...<p>autopilot applied automatically concise output style (65&#x2F;75% fewer output tokens!!!) usage statusline, auto -archive of"
+    },
+    {
+        "id": 48919191,
+        "title": "Show HN: For 10 World Cups, my model's 2 favorites had the champion every time",
+        "url": "https://papers.ssrn.com/sol3/papers.cfm?abstract_id=7013338",
+        "description_snippet": ""
+    },
+    {
+        "id": 48919489,
+        "title": "Show HN: Make senders work to get into your inbox",
+        "url": "https://www.captchainbox.com",
+        "description_snippet": "Hi HN :) really excited to share this with you.<p>The one thing AI reliably does is generate noise. Half the tools I see launch are just machines for producing more noise across more channels. And people are starting to see this in the form of emails in their inboxes as spam filters are struggling.<p>There used to be a useful signal in email: the effort a sender put into customizing a message was a rough proxy for how relevant it actually was. AI killed that. Now it&#x27;s customized slop with the appearance of effort with none of the cost. It is painful that the open internet &#x2F; open channels have been abused like this.<p>Captchainbox applies the idea of proof-of-work to email. If a sender is willing to do a bit of work to reach you, the message is more likely to be worth your time and the sender more likely to be real. The work is a traditional captcha. You can also set a pay-to-deliver amount if you want more friction. The proceeds of the delivery payment after transaction costs"
+    },
+    {
+        "id": 48922631,
+        "title": "Show HN: SirixDB 1.0 Beta – Git-Like Versioning, Diffs, Time-Travel Queries",
+        "url": "https://github.com/sirixdb/sirix",
+        "description_snippet": "Hi HN! I&#x27;ve posted SirixDB here before, back in 2019 (<a href=\"https:&#x2F;&#x2F;news.ycombinator.com&#x2F;item?id=19834681\">https:&#x2F;&#x2F;news.ycombinator.com&#x2F;item?id=19834681</a>) and again in 2023 (<a href=\"https:&#x2F;&#x2F;news.ycombinator.com&#x2F;item?id=38252963\">https:&#x2F;&#x2F;news.ycombinator.com&#x2F;item?id=38252963</a>).<p>The core idea behind SirixDB is, that history is a first-class citizen. Every commit stores a lightweight, queryable revision. You can query any point in time, even individual nodes (for instance JSON values), diff arbitrary revisions, and efficiently track how data evolved without replaying events.<p>Unlike traditional event stores, historical states do not need to be reconstructed by replaying events nor do we have to think about projections. Revisions are directly queryable.<p>A simple example:<p>Jan 1: Record &quot;Price = $100, valid from Jan 1&quot;. Stored on Jan 1 (transaction time).<p>Jan 20: Discover price was actually $95 on J"
+    },
+    {
+        "id": 48923842,
+        "title": "Show HN: Painterly – Turn pictures into digital paintings without generative AI",
+        "url": "https://github.com/jbunke/painterly",
+        "description_snippet": "Painterly is an application that &quot;paints&quot; input images stroke by stroke to produce digital paintings. GenAI is not used in any part of the production pipeline.<p>There is a free demo available under Releases on the GitHub repo.<p>Let me know what you think!"
+    },
+    {
+        "id": 48928389,
+        "title": "Show HN: A Monte Carlo model that called the World Cup finalists 2 weeks ago",
+        "url": "https://github.com/fabio-ricardo/worldcup-forecasting-model",
+        "description_snippet": ""
+    },
+    {
+        "id": 48927877,
+        "title": "Show HN: Swagsocial",
+        "url": "https://swag.nomaakip.xyz/browse",
+        "description_snippet": "swagsocial is an up and coming microblogging social media made in Node.js and EJS made by me and my friends, nomaakip, squirrel, and mpax235. The platform has ~30 users and 2 bots (using our API and official-ish Python module, Swagger) as of writing. My friends have been making fun stuff for 1 year, almost 2! This is our first full-fledged social media app and we are very, very proud of it. v1.12, made by squirrel, has just come out today with some bug fixes, markdown, and ograph embed support!! The URL linked is a showcase; you can view user pages &amp; posts but not follow, like, or reply. We hope you enjoy and join our small community &lt;3"
+    },
+    {
+        "id": 48919638,
+        "title": "Show HN: Leet Robotics: Learn robotics and ROS2 with hands-on courses",
+        "url": "https://www.leetrobotics.com",
+        "description_snippet": "Hi all,<p>I&#x27;ve just launched Leet Robotics: a platform to learn robotics hands-on, with a full ROS2 workspace that runs in the browser (Jazzy, Gazebo Harmonic, Foxglove, VS Code) - no install required. The platform also has room for sharing projects and simulation assets as it grows.<p>Our first course is live now: Intro to ROS2 (free to read). The course teaches skills ranging from building your first node to a capstone project of a robot touring a museum world, with every lesson runnable in the online workspace (free accounts get an hour of workspace time daily - enough to follow the course).<p>Would love feedback from this community: on the course, the workspace experience, and what courses to build next."
+    },
+    {
+        "id": 48927546,
+        "title": "Show HN: Pullboard – a work queue for agents, built to run a quant desk",
+        "url": "https://pullboard.dev/",
+        "description_snippet": "Hello HN.<p>Pullboard (<a href=\"https:&#x2F;&#x2F;pullboard.dev&#x2F;\" rel=\"nofollow\">https:&#x2F;&#x2F;pullboard.dev&#x2F;</a>) is the shared place work lives. You talk to one agent about what you want, and the rest of the fleet can organize around the resulting work without manually dispatching every task or re-explaining the context and any other in-flight work. It helps keep agents coherent.<p>I run a small quantitative trading operation with a fleet of coding agents, and I originally built Pullboard to manage high-velocity work across complex projects. With Pullboard and a few other tools, I can keep a 400k+ line codebase (with extensive tests and harnesses) coherent enough to trade US options.<p>An agent picking up a task can see the prior attempts, why the last one was rejected, and what the task depends on from Pullboard, not from me pasting context into another session. Across a large codebase over weeks or months, this tool keeps agents from starting cold. It lets agents trou"
+    },
+    {
+        "id": 48927478,
+        "title": "Show HN: Redis Rubix Bridge a HTTP API Redis Gateway",
+        "url": "https://github.com/rubix-studios-pty-ltd/rubix-redis-bridge",
+        "description_snippet": "Rubix Redis Bridge is an open source Redis HTTP API gateway compatible with Upstash Redis, Upstash Rate Limiter and Upstash Realtime.<p>Before the usual comments, yes, native TCP is faster and exposing Redis directly to the internet is dangerous.<p>The problem is that Redis has traditionally been difficult to use from serverless platforms and environments with dynamic IP addresses, strict firewall policies or networking restrictions where opening a Redis port is either impractical or impossible.<p>Cloudflare recently introduced Workers support to address this problem. While that approach works, it still relies on creating Redis connections from a serverless runtime, which can become inefficient when every request establishes a new connection.<p>Rubix Redis Bridge takes a different approach. Similar to Upstash, it exposes Redis through an HTTP API gateway instead of exposing Redis itself. Unlike projects such as Webdis or other Redis-over-HTTP gateways, Rubix Redis Bridge supports Pub&#"
+    },
+    {
+        "id": 48926880,
+        "title": "Show HN: ScreenshotAPIs – screenshot/PDF API with credits that never expire",
+        "url": "https://screenshotapis.org",
+        "description_snippet": ""
+    },
+    {
+        "id": 48926618,
+        "title": "Show HN: Vendo (YC S26) – Let your users add their own features to your product",
+        "url": "https://github.com/runvendo/vendo",
+        "description_snippet": "Hey HN, my name is Yousef and I am one of the co-founders of Vendo (YC S26). We let your users create their own personal micro-apps and features right on top of your product.<p>Me and my co-founder have been thinking a lot lately about how agents are going to change the way that dashboards and UIs are consumed by users. And one of the big things we often come back to is personalization. Everyone has their own workflows, outcomes, and views they want from a product. Instead of devs having to wade through hundreds of feature requests, we think agents will let every user use a product exactly how they want to.<p>We started working on this problem initially through an open-source software angle: we would let users easily deploy open-source software so they could customize it directly. What we found, though, was that customization alone wasn&#x27;t enough to convince users to switch to us, and people just wanted to customize what they already use. So we pivoted to what Vendo currently is. W"
+    },
+    {
+        "id": 48905919,
+        "title": "Show HN: I RL-trained an agent that trains models with RL (for ~$1.3k)",
+        "url": "https://github.com/Danau5tin/ai-trains-ai",
+        "description_snippet": ""
+    }
+]
