@@ -25,29 +25,24 @@ on:
         default: 'sources/output/blueprint'
         type: string
       model_endpoint:
-        description: '🔗 AI Endpoint - OpenAI'
+        description: '🔗 AI Endpoint - OpenAI (Ex: https://openrouter.ai/api/v1)'
         required: false
-        default: 'https://openrouter.ai/api/v1'
         type: string
       model_key:
-        description: '🔑 AI Endpoint Key - OpenAI'
+        description: '🔑 AI Endpoint API Key - OpenAI'
         required: false
-        default: ''
         type: string
       model_global:
-        description: '🌐 Global Context Model - OpenAI'
+        description: '🌐 Global Context Model - OpenAI (Ex: meta-llama/llama-3.3-70b-instruct:free)'
         required: false
-        default: 'meta-llama/llama-3.3-70b-instruct:free'
         type: string
       model_phase:
-        description: '📈 Phase Context Model - OpenAI'
+        description: '📈 Phase Context Model - OpenAI (Ex: meta-llama/llama-3.3-70b-instruct:free)'
         required: false
-        default: 'meta-llama/llama-3.3-70b-instruct:free'
         type: string
       model_steps:
-        description: '🔢 Phase Steps Json Context Model - OpenAI'
+        description: '🔢 Phase Steps Json Context Model - OpenAI (Ex: meta-llama/llama-3.3-70b-instruct:free)'
         required: false
-        default: 'qwen/qwen-2.5-72b-instruct:free'
         type: string
     
   # allow other workflow call into (inputs same as workflow_dispatch but required)
@@ -74,29 +69,24 @@ on:
         default: 'sources/output/blueprint'
         type: string
       model_endpoint:
-        description: '🔗 AI Endpoint - OpenAI'
+        description: '🔗 AI Endpoint - OpenAI (Ex: https://openrouter.ai/api/v1)'
         required: false
-        default: 'https://openrouter.ai/api/v1'
         type: string
       model_key:
-        description: '🔑 AI Endpoint Key - OpenAI'
+        description: '🔑 AI Endpoint API Key - OpenAI'
         required: false
-        default: ''
         type: string
       model_global:
-        description: '🌐 Global Context Model - OpenAI'
+        description: '🌐 Global Context Model - OpenAI (Ex: meta-llama/llama-3.3-70b-instruct:free)'
         required: false
-        default: 'meta-llama/llama-3.3-70b-instruct:free'
         type: string
       model_phase:
-        description: '📈 Phase Context Model - OpenAI'
+        description: '📈 Phase Context Model - OpenAI (Ex: meta-llama/llama-3.3-70b-instruct:free)'
         required: false
-        default: 'meta-llama/llama-3.3-70b-instruct:free'
         type: string
       model_steps:
-        description: '🔢 Phase Steps Json Context Model - OpenAI'
+        description: '🔢 Phase Steps Json Context Model - OpenAI (Ex: meta-llama/llama-3.3-70b-instruct:free)'
         required: false
-        default: 'qwen/qwen-2.5-72b-instruct:free'
         type: string
 
 jobs:
