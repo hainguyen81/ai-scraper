@@ -2,6 +2,7 @@
 
 import os
 import sys
+import time
 
 # GEMINI
 # from google import genai
@@ -83,7 +84,12 @@ def generate_phase_contexts(client: OpenAI, model_name: str, project_name: str, 
             write_log(log_phase_idx, instruction, log_prompt.replace('#', '##'), raw_data.replace('#', '##') if raw_data else "-", False)
             
             print(f" │   ├── ✅ Saved Phase {phase_idx} MD: {out_path}")
-        
+            
+            # sleep to avoid 429 Too Many Requests
+            if phase_idx < num_phases + 1:
+                print("⏳ Rate limit guard active... holding pipeline for 15 seconds to clear AI TPM window...")
+                time.sleep(15)
+            
         result = True if num_phases > 0 else False
         return result # success or empty phases
     except Exception as e:

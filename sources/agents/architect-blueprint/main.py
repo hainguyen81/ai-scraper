@@ -4,6 +4,7 @@ import os
 import sys
 import argparse
 from datetime import datetime
+import time
 
 # GEMINI
 #from google import genai
@@ -69,6 +70,10 @@ def run_architect_agent(project_name: str, requirements_path: str, num_phases: i
         print("\n[ 🤖💬 PIPELINE WARN ] Modular Enterprise Architecture Pipeline Executed: Fail to generate project global context!")
         return
     
+    # sleep to avoid 429 Too Many Requests
+    print("⏳ Rate limit guard active... holding pipeline for 15 seconds to clear AI TPM window...")
+    time.sleep(15)
+    
     # 2. Execute Block 2 Module
     global_context_text = result
     result = generate_phase_contexts(
@@ -83,6 +88,10 @@ def run_architect_agent(project_name: str, requirements_path: str, num_phases: i
     if not result:
         print("\n[ 🤖💬 PIPELINE WARN ] Modular Enterprise Architecture Pipeline Executed: Fail to generate project phase contexts!")
         return
+    
+    # sleep to avoid 429 Too Many Requests
+    print("⏳ Rate limit guard active... holding pipeline for 15 seconds to clear AI TPM window...")
+    time.sleep(15)
     
     # 3. Execute Block 3 Module
     result = convert_phases_to_json(

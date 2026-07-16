@@ -3,6 +3,8 @@
 import os
 import sys
 import json
+import time
+
 from pydantic import BaseModel, Field
 from typing import List
 
@@ -123,7 +125,12 @@ def convert_phases_to_json(client: OpenAI, model_name: str, project_name: str, n
             write_log(log_phase_idx, instruction, log_prompt.replace('#', '##'), raw_data, True)
             
             print(f" │   └── 🎉 Saved Phase {phase_idx} JSON Tracker: {out_path}")
-        
+            
+            # sleep to avoid 429 Too Many Requests
+            if phase_idx < num_phases + 1:
+                print("⏳ Rate limit guard active... holding pipeline for 15 seconds to clear AI TPM window...")
+                time.sleep(15)
+                
         result = True if num_phases > 0 else False
         return result # success or empty phases
     except Exception as e:
