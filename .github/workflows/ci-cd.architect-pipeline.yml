@@ -86,6 +86,9 @@ jobs:
         API_KEY: ${{ secrets.API_KEY }}
         API_ENDPONT: ${{ secrets.API_ENDPOINT }}
         API_MODEL: ${{ secrets.API_BLUEPRINT_MODEL }}
+        API_MODEL_GLOBAL: ${{ secrets.API_BLUEPRINT_MODEL_GLOBAL }}
+        API_MODEL_PHASE: ${{ secrets.API_BLUEPRINT_MODEL_PHASE }}
+        API_MODEL_STEPS: ${{ secrets.API_BLUEPRINT_MODEL_STEPS_JSON }}
         
         # Python environment
         PYTHONPATH: ${{ github.workspace }} # force Python load folder structure, including 'sources'
@@ -108,6 +111,20 @@ jobs:
           OUT_DIR="sources/output/blueprint"
         fi
         
+        # check models
+        MODEL_GLOBAL = $API_MODEL_GLOBAL
+        if [ -z "$MODEL_GLOBAL" ]; then
+          MODEL_GLOBAL=$API_MODEL
+        fi
+        MODEL_PHASE = $API_MODEL_PHASE
+        if [ -z "$MODEL_PHASE" ]; then
+          MODEL_PHASE=$MODEL_GLOBAL
+        fi
+        MODEL_STEPS = $API_MODEL_STEPS
+        if [ -z "$MODEL_STEPS" ]; then
+          MODEL_STEPS=$MODEL_PHASE
+        fi
+        
         echo "⚡ Kicking off AI Agent orchestration..."
         echo "🔢 Requested Execution Phases: $NUM_PHASES"
         echo "📂 Target Destination Directory: $OUT_DIR"
@@ -115,7 +132,10 @@ jobs:
         # Execute the python architect core script with the dynamic paths
         python sources/agents/architect-blueprint/main.py \
             --project-name "$PROJECT_NAME" --req "$REQUIREMENTS_FILE" --phases $NUM_PHASES --out "$OUT_DIR" \
-            --api-key "$API_KEY" --api-endpoint "$API_ENDPONT" --api-model "$API_MODEL"
+            --api-key "$API_KEY" --api-endpoint "$API_ENDPONT" \
+            --api-model-global-context "$MODEL_GLOBAL" \
+            --api-model-phase-context "$MODEL_PHASE" \
+            --api-model-phase-steps-json "$MODEL_STEPS"
 
     # Step 5: Automatically stage, commit, and push the generated architecture files
     - name: 🚀 Commit and Push Blueprint Changes

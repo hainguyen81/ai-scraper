@@ -20,7 +20,7 @@ from block_global import generate_global_context
 from block_phase import generate_phase_contexts
 from block_json import convert_phases_to_json
 
-def run_architect_agent(project_name: str, requirements_path: str, num_phases: int, output_dir: str, api_key: str, api_endpoint: str, api_model: str):
+def run_architect_agent(project_name: str, requirements_path: str, num_phases: int, output_dir: str, api_key: str, api_endpoint: str, api_model_global: str, api_model_phase: str, api_model_steps: str):
     """
     Master pipeline orchestrator that runs individual functional blocks in sequence.
     Provides pristine separation of concerns and protects engine runtime stability.
@@ -34,6 +34,10 @@ def run_architect_agent(project_name: str, requirements_path: str, num_phases: i
         base_url=api_endpoint,
         api_key=api_key
     )
+    
+    api_model_phase = api_model_phase if api_model_phase else api_model_global
+    api_model_steps = api_model_steps if api_model_steps else api_model_phase
+    api_model_steps = api_model_steps if api_model_steps else api_model_global
     
     absolute_requirements_path = resolve_absolute_path(requirements_path)
     if not os.path.exists(absolute_requirements_path):
@@ -49,7 +53,7 @@ def run_architect_agent(project_name: str, requirements_path: str, num_phases: i
     # 1. Execute Block 1 Module
     global_context_text = generate_global_context(
         client=client,
-        model_name=api_model,
+        model_name=api_model_global,
         project_name=project_name,
         requirements=project_requirements,
         num_phases=num_phases,
@@ -59,7 +63,7 @@ def run_architect_agent(project_name: str, requirements_path: str, num_phases: i
     # 2. Execute Block 2 Module
     generate_phase_contexts(
         client=client,
-        model_name=api_model,
+        model_name=api_model_phase,
         project_name=project_name,
         requirements=project_requirements,
         global_context=global_context_text,
@@ -70,7 +74,7 @@ def run_architect_agent(project_name: str, requirements_path: str, num_phases: i
     # 3. Execute Block 3 Module
     convert_phases_to_json(
         client=client,
-        model_name=api_model,
+        model_name=api_model_steps,
         project_name=project_name,
         num_phases=num_phases,
         out_dir=absolute_out_dir
@@ -89,9 +93,11 @@ if __name__ == "__main__":
     parser.add_argument("--out", type=str, default="sources/output/blueprint", help="Target output directory for the generated blueprint")
     parser.add_argument("--api-key", type=str, required=True, help="AI API Key is required")
     parser.add_argument("--api-endpoint", type=str, required=True, help="AI API Endpoint is required")
-    parser.add_argument("--api-model", type=str, default="gpt-4o", help="AI API Model to chat")
+    parser.add_argument("--api-model-global-context", type=str, default="gpt-4o", help="AI API Model to support global Markdown context")
+    parser.add_argument("--api-model-phase-context", type=str, default="gpt-4o", help="AI API Model to support phase Markdown context")
+    parser.add_argument("--api-model-phase-steps-json", type=str, default="gpt-4o", help="AI API Model to support phase steps JSON context")
     
     args = parser.parse_args()
     
     # Trigger the primary agent orchestration function.
-    run_architect_agent(args.project_name, args.req, args.phases, args.out, args.api_key, args.api_endpoint, args.api_model)
+    run_architect_agent(args.project_name, args.req, args.phases, args.out, args.api_key, args.api_endpoint, args.api_model_global_context, args.api_model_phase_context, args.api_model_phase_steps_json)
