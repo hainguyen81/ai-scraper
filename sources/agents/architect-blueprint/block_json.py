@@ -123,7 +123,10 @@ def convert_phases_to_json(client: OpenAI, model_name: str, project_name: str, n
             write_log(log_phase_idx, instruction, log_prompt.replace('#', '##'), raw_data, True)
             
             print(f" │   └── 🎉 Saved Phase {phase_idx} JSON Tracker: {out_path}")
+        
+        result = True if num_phases > 0 else False
+        return result # success or empty phases
     except Exception as e:
         print(f"❌ Failed to initiate chat/generate Phase {log_phase_idx} Steps JSON: {e}")
         write_log(log_phase_idx, instruction, log_prompt.replace('#', '##'), str(e), True)
-        sys.exit(1) # break pipeline
+        return False

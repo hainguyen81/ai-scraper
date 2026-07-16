@@ -74,9 +74,9 @@ def generate_global_context(client: OpenAI, model_name: str, project_name: str, 
         write_log(0, instruction, log_prompt.replace('#', '##'), raw_data.replace('#', '##') if raw_data else "-", False)
         
         print(f"✅ [BLOCK 1 SUCCESS] Saved Global Blueprint: {out_path}")
-        return raw_data
+        return True
     except Exception as e:
         print(f"❌ Failed to initiate chat/generate Global Blueprint: {e}")
         write_log(0, instruction, log_prompt.replace('#', '##'), str(e), False)
-        sys.exit(1) # break pipeline
+        return False
 

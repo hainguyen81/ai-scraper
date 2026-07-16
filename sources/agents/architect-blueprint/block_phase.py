@@ -83,8 +83,11 @@ def generate_phase_contexts(client: OpenAI, model_name: str, project_name: str, 
             write_log(log_phase_idx, instruction, log_prompt.replace('#', '##'), raw_data.replace('#', '##') if raw_data else "-", False)
             
             print(f" │   ├── ✅ Saved Phase {phase_idx} MD: {out_path}")
+        
+        result = True if num_phases > 0 else False
+        return result # success or empty phases
     except Exception as e:
         print(f"❌ Failed to initiate chat/generate Phase {log_phase_idx} Blueprint: {e}")
         write_log(log_phase_idx, instruction, log_prompt.replace('#', '##'), str(e), False)
-        sys.exit(1) # break pipeline
+        return False
 

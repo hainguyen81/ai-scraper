@@ -57,7 +57,7 @@ def run_architect_agent(project_name: str, requirements_path: str, num_phases: i
     os.makedirs(absolute_out_dir, exist_ok=True)
     
     # 1. Execute Block 1 Module
-    global_context_text = generate_global_context(
+    result = generate_global_context(
         client=client,
         model_name=api_model_global,
         project_name=project_name,
@@ -65,9 +65,12 @@ def run_architect_agent(project_name: str, requirements_path: str, num_phases: i
         num_phases=num_phases,
         out_dir=absolute_out_dir
     )
+    if not result:
+        print("\n[ 🤖💬 PIPELINE WARN ] Modular Enterprise Architecture Pipeline Executed: Fail to generate project global context!")
+        return
     
     # 2. Execute Block 2 Module
-    generate_phase_contexts(
+    result = generate_phase_contexts(
         client=client,
         model_name=api_model_phase,
         project_name=project_name,
@@ -76,17 +79,23 @@ def run_architect_agent(project_name: str, requirements_path: str, num_phases: i
         num_phases=num_phases,
         out_dir=absolute_out_dir
     )
+    if not result:
+        print("\n[ 🤖💬 PIPELINE WARN ] Modular Enterprise Architecture Pipeline Executed: Fail to generate project phase contexts!")
+        return
     
     # 3. Execute Block 3 Module
-    convert_phases_to_json(
+    result = convert_phases_to_json(
         client=client,
         model_name=api_model_steps,
         project_name=project_name,
         num_phases=num_phases,
         out_dir=absolute_out_dir
     )
+    if not result:
+        print("\n[ 🤖💬 PIPELINE WARN ] Modular Enterprise Architecture Pipeline Executed: Fail to generate project phase JSON steps!")
+        return
     
-    print("\n🎉 [PIPELINE SUCCESS] Modular Enterprise Architecture Pipeline Executed Perfectly!")
+    print("\n🎉 [ PIPELINE SUCCESS ] Modular Enterprise Architecture Pipeline Executed Perfectly!")
 
 if __name__ == "__main__":
     # Configure CLI arguments parsing to allow dynamic inputs for requirements path, phase count, and output location.
