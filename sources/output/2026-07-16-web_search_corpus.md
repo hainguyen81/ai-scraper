@@ -104,7 +104,7 @@ List of free LLM API providers endpoints base_url openrouter alternatives 2026
 
 ---
 
-# foisalislambd/all-llm-provider-list[https://github.com/foisalislambd/all-llm-provider-list]
+# Source: [foisalislambd/all-llm-provider-list](https://github.com/foisalislambd/all-llm-provider-list)
 ## Repository: foisalislambd/all-llm-provider-list
 
 🚀 The ultimate list of LLM providers, AI APIs, OpenAI-compatible services, model endpoints, pricing, documentation, and developer resources. Find and compare OpenAI, Claude, Gemini, DeepSeek, Groq, Mistral, OpenRouter, Together AI, and more.
@@ -719,7 +719,7 @@ MIT — use freely, attribute when you share.
 
 ---
 
-# felipetruman/free-llm-hub[https://github.com/felipetruman/free-llm-hub]
+# Source: [felipetruman/free-llm-hub](https://github.com/felipetruman/free-llm-hub)
 ## Repository: felipetruman/free-llm-hub
 
 🌟 Catálogo unificado de 187+ APIs de LLM, motores OSS, gateways e ecossistema de IA
@@ -1094,7 +1094,7 @@ MIT
 
 ---
 
-# nludd25/free-llm-api-resources[https://github.com/nludd25/free-llm-api-resources]
+# Source: [nludd25/free-llm-api-resources](https://github.com/nludd25/free-llm-api-resources)
 ## Repository: nludd25/free-llm-api-resources
 
 - Stars: 0
@@ -1501,7 +1501,7 @@ Extremely restrictive input/output token limits.
 
 ---
 
-# cheahjs/free-llm-api-resources[https://github.com/cheahjs/free-llm-api-resources]
+# Source: [cheahjs/free-llm-api-resources](https://github.com/cheahjs/free-llm-api-resources)
 ## Repository: cheahjs/free-llm-api-resources
 
 A list of free LLM inference resources accessible via API.
@@ -1908,7 +1908,7 @@ Extremely restrictive input/output token limits.
 
 ---
 
-# README.md at main · open-free-llm-api/awesome-freellm-apis[https://github.com/open-free-llm-api/awesome-freellm-apis/blob/main/README.md]
+# Source: [README.md at main · open-free-llm-api/awesome-freellm-apis](https://github.com/open-free-llm-api/awesome-freellm-apis/blob/main/README.md)
 ## File: open-free-llm-api/awesome-freellm-apis/README.md
 
 - Repository: open-free-llm-api/awesome-freellm-apis | 134+ free LLM APIs & AI API keys from 40+ providers. Google Gemini, NVIDIA NIM, Groq, OpenRouter & more. One-click setup for Claude Code, Cursor and Codex. | 739 stars
@@ -2303,7 +2303,7 @@ MIT © open-free-llm-api
 
 ---
 
-# TaylorAmarelTech/text-generation-ai-llm-tools-endpoints-api-list-repository[https://github.com/TaylorAmarelTech/text-generation-ai-llm-tools-endpoints-api-list-repository]
+# Source: [TaylorAmarelTech/text-generation-ai-llm-tools-endpoints-api-list-repository](https://github.com/TaylorAmarelTech/text-generation-ai-llm-tools-endpoints-api-list-repository)
 ## Repository: TaylorAmarelTech/text-generation-ai-llm-tools-endpoints-api-list-repository
 
 The most comprehensive directory of free & affordable LLM API endpoints. 50+ providers, AI-powered discovery, async scanner, plugin system, cascade client, local proxy. All with OpenAI SDK compatibility.
@@ -3400,7 +3400,7 @@ See **[CONTRIBUTING.md](CONTRIBUTING.md)** for full guidelines. Quick version:
 
 ---
 
-# open-free-llm-api/awesome-freellm-apis[https://github.com/open-free-llm-api/awesome-freellm-apis]
+# Source: [open-free-llm-api/awesome-freellm-apis](https://github.com/open-free-llm-api/awesome-freellm-apis)
 ## Repository: open-free-llm-api/awesome-freellm-apis
 
 134+ free LLM APIs & AI API keys from 40+ providers. Google Gemini, NVIDIA NIM, Groq, OpenRouter & more. One-click setup for Claude Code, Cursor and Codex.
@@ -3816,7 +3816,7 @@ MIT © open-free-llm-api
 
 ---
 
-# mnfst/awesome-free-llm-apis[https://github.com/mnfst/awesome-free-llm-apis/]
+# Source: [mnfst/awesome-free-llm-apis](https://github.com/mnfst/awesome-free-llm-apis/)
 ## Repository: mnfst/awesome-free-llm-apis
 
 List of Permanent Free LLM API (API Keys)
@@ -4180,7 +4180,7 @@ Know a free tier that's missing? [Open a PR](contributing.md). Include the provi
 
 ---
 
-# amardeeplakshkar/awesome-free-llm-apis[https://github.com/amardeeplakshkar/awesome-free-llm-apis]
+# Source: [amardeeplakshkar/awesome-free-llm-apis](https://github.com/amardeeplakshkar/awesome-free-llm-apis)
 ## Repository: amardeeplakshkar/awesome-free-llm-apis
 
 A curated list of permanently free LLM APIs — with rate limits, OpenAI SDK compatibility, available SDKs, speed tiers, and free model lists. No trial credits. No time-limited promos. No credit card required.
@@ -4570,7 +4570,7 @@ See [contributing.md](contributing.md) for the full guide. The short version:
 
 ---
 
-# Compare 30+ Free LLM API Providers (2026) | freellm.net[https://freellm.net/providers/]
+# Source: [Compare 30+ Free LLM API Providers (2026) | freellm.net](https://freellm.net/providers/)
 Compare 30+ Free LLM API Providers (2026) | freellm.net
 
 ## Free LLM API Providers 2026 — Compare 30+ Providers
@@ -4726,7 +4726,7 @@ Cancel Export Configuration
 
 ---
 
-# The best free LLM APIs in 2026 (live-probed list) | WotAI[https://wotai.co/blog/best-free-llm-apis]
+# Source: [The best free LLM APIs in 2026 (live-probed list) | WotAI](https://wotai.co/blog/best-free-llm-apis)
 The best free LLM APIs in 2026 (live-probed list) | WotAI
 
 Back to Blog
@@ -4897,7 +4897,7 @@ AI DevelopmentAnthropic's first public Mythos-class model launched June 9, then 
 
 ---
 
-# README.md at main · felipetruman/free-llm-hub[https://github.com/felipetruman/free-llm-hub/blob/main/README.md]
+# Source: [README.md at main · felipetruman/free-llm-hub](https://github.com/felipetruman/free-llm-hub/blob/main/README.md)
 ## File: felipetruman/free-llm-hub/README.md
 
 - Repository: felipetruman/free-llm-hub | 🌟 Catálogo unificado de 187+ APIs de LLM, motores OSS, gateways e ecossistema de IA | 0 stars | Python
@@ -5257,7 +5257,7 @@ MIT
 
 ---
 
-# Cachetricoupling/Free-LLM[https://github.com/Cachetricoupling/Free-LLM]
+# Source: [Cachetricoupling/Free-LLM](https://github.com/Cachetricoupling/Free-LLM)
 ## Repository: Cachetricoupling/Free-LLM
 
 Free LLM APIs : 45+ providers with permanent free tiers, trial credits & no credit card required. Includes GPT-4o, Gemini, Claude, Llama, DeepSeek, Mistral & more. Updated weekly. free-llm llm-api free-api gpt-4o-free claude-api gemini-api llama-api deepseek-free mistral-api openai-alternative free-gpt ai-api llm generative-ai machine-learning
@@ -5429,7 +5429,7 @@ MIT — see [LICENSE](LICENSE) for details.
 
 ---
 
-# ynewayne/free-ai-tools[https://github.com/ynewayne/free-ai-tools]
+# Source: [ynewayne/free-ai-tools](https://github.com/ynewayne/free-ai-tools)
 ## ynewayne/free-ai-tools
 
 Curated list of free and low cost AI tools, LLM APIs, IDEs, agents, and infrastructure for building real AI apps
@@ -7380,7 +7380,7 @@ MIT © [ShaikhWarsi](https://github.com/ShaikhWarsi)
 
 ---
 
-# docs/FREE_TIERS.md at main · diegosouzapw/OmniRoute[https://github.com/diegosouzapw/OmniRoute/blob/main/docs/FREE_TIERS.md]
+# Source: [docs/FREE_TIERS.md at main · diegosouzapw/OmniRoute](https://github.com/diegosouzapw/OmniRoute/blob/main/docs/FREE_TIERS.md)
 ## File: diegosouzapw/OmniRoute/docs/FREE_TIERS.md
 
 - Repository: diegosouzapw/OmniRoute | Never stop coding. Free AI gateway: one endpoint, 160+ providers, RTK+Caveman stacked compression up to ~95% eligible context savings, smart auto-fallback, MCP/A2A, multimodal APIs, Desktop/PWA. | 4K stars | TypeScript
