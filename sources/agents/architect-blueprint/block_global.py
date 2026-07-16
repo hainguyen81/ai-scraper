@@ -1,6 +1,7 @@
 # BLOCK 1: GENERATES GLOBAL CONTEXT
 
 import os
+import sys
 
 # GEMINI
 # from google import genai
