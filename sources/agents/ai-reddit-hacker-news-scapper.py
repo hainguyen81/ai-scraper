@@ -81,8 +81,10 @@ class HackerNewsTechScraper:
                     item_req = urllib.request.Request(resolved_item_url, headers={"User-Agent": "EnterpriseMonitor/1.0"})
                     
                     with urllib.request.urlopen(item_req) as item_resp:
-                        item_data = json.loads(item_resp.read().decode("utf-8"))
+                        raw_item_data = item_resp.read().decode("utf-8")
+                        item_data = json.loads(raw_item_data)
                         if not item_data:
+                            log_data['threads'].append({ "id": item_id, "raw_data": raw_item_data })
                             continue
                         
                         log_data['threads'].append(item_data)
