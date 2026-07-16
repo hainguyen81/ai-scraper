@@ -30,16 +30,16 @@
         "description_snippet": ""
     },
     {
-        "id": 48928918,
-        "title": "Show HN: Throttle – Local Claude Cockpit for macOS, now with remote control",
-        "url": "https://lorislab.fr/throttle/",
-        "description_snippet": "Kevin here, indie dev (lorisLabs.)<p>Thorttle started as a menu bar meter for Claude code usage, and grow into a cockpit !<p>you have the full claude meter as expected with no telemetry, no network. and that in the free version.<p>Pro is where it got interesting :<p>Cockpit have every claude code project on your Mac in one window.\nEach embedded terminal using SwiftTerm,  auto hibernate to keep a 16gb Mac from getting out of memory.<p>Remote Control that hand a session off to any linux server (I use proxmox) \nI have a IOS and Vision Pro app coming up soon!<p>my main goal and what I prefer: \nClaude code burn a lot of token you dont even see... bloated claude.md files &amp; stale memory, dead skills, barbs output ...<p>Throttle optimiser with a AI assistant that audit your claude.md and settings.json hook with a real read_file tool call emit search&#x2F;replace...<p>autopilot applied automatically concise output style (65&#x2F;75% fewer output tokens!!!) usage statusline, auto -archive of"
-    },
-    {
         "id": 48922631,
         "title": "Show HN: SirixDB 1.0 Beta – Git-Like Versioning, Diffs, Time-Travel Queries",
         "url": "https://github.com/sirixdb/sirix",
         "description_snippet": "Hi HN! I&#x27;ve posted SirixDB here before, back in 2019 (<a href=\"https:&#x2F;&#x2F;news.ycombinator.com&#x2F;item?id=19834681\">https:&#x2F;&#x2F;news.ycombinator.com&#x2F;item?id=19834681</a>) and again in 2023 (<a href=\"https:&#x2F;&#x2F;news.ycombinator.com&#x2F;item?id=38252963\">https:&#x2F;&#x2F;news.ycombinator.com&#x2F;item?id=38252963</a>).<p>The core idea behind SirixDB is, that history is a first-class citizen. Every commit stores a lightweight, queryable revision. You can query any point in time, even individual nodes (for instance JSON values), diff arbitrary revisions, and efficiently track how data evolved without replaying events.<p>Unlike traditional event stores, historical states do not need to be reconstructed by replaying events nor do we have to think about projections. Revisions are directly queryable.<p>A simple example:<p>Jan 1: Record &quot;Price = $100, valid from Jan 1&quot;. Stored on Jan 1 (transaction time).<p>Jan 20: Discover price was actually $95 on J"
+    },
+    {
+        "id": 48928918,
+        "title": "Show HN: Throttle – Local Claude Cockpit for macOS, now with remote control",
+        "url": "https://lorislab.fr/throttle/",
+        "description_snippet": "Kevin here, indie dev (lorisLabs.)<p>Thorttle started as a menu bar meter for Claude code usage, and grow into a cockpit !<p>you have the full claude meter as expected with no telemetry, no network. and that in the free version.<p>Pro is where it got interesting :<p>Cockpit have every claude code project on your Mac in one window.\nEach embedded terminal using SwiftTerm,  auto hibernate to keep a 16gb Mac from getting out of memory.<p>Remote Control that hand a session off to any linux server (I use proxmox) \nI have a IOS and Vision Pro app coming up soon!<p>my main goal and what I prefer: \nClaude code burn a lot of token you dont even see... bloated claude.md files &amp; stale memory, dead skills, barbs output ...<p>Throttle optimiser with a AI assistant that audit your claude.md and settings.json hook with a real read_file tool call emit search&#x2F;replace...<p>autopilot applied automatically concise output style (65&#x2F;75% fewer output tokens!!!) usage statusline, auto -archive of"
     },
     {
         "id": 48923842,
@@ -54,16 +54,16 @@
         "description_snippet": ""
     },
     {
-        "id": 48927877,
-        "title": "Show HN: Swagsocial",
-        "url": "https://swag.nomaakip.xyz/browse",
-        "description_snippet": "swagsocial is an up and coming microblogging social media made in Node.js and EJS made by me and my friends, nomaakip, squirrel, and mpax235. The platform has ~30 users and 2 bots (using our API and official-ish Python module, Swagger) as of writing. My friends have been making fun stuff for 1 year, almost 2! This is our first full-fledged social media app and we are very, very proud of it. v1.12, made by squirrel, has just come out today with some bug fixes, markdown, and ograph embed support!! The URL linked is a showcase; you can view user pages &amp; posts but not follow, like, or reply. We hope you enjoy and join our small community &lt;3"
-    },
-    {
         "id": 48919638,
         "title": "Show HN: Leet Robotics: Learn robotics and ROS2 with hands-on courses",
         "url": "https://www.leetrobotics.com",
         "description_snippet": "Hi all,<p>I&#x27;ve just launched Leet Robotics: a platform to learn robotics hands-on, with a full ROS2 workspace that runs in the browser (Jazzy, Gazebo Harmonic, Foxglove, VS Code) - no install required. The platform also has room for sharing projects and simulation assets as it grows.<p>Our first course is live now: Intro to ROS2 (free to read). The course teaches skills ranging from building your first node to a capstone project of a robot touring a museum world, with every lesson runnable in the online workspace (free accounts get an hour of workspace time daily - enough to follow the course).<p>Would love feedback from this community: on the course, the workspace experience, and what courses to build next."
+    },
+    {
+        "id": 48927877,
+        "title": "Show HN: Swagsocial",
+        "url": "https://swag.nomaakip.xyz/browse",
+        "description_snippet": "swagsocial is an up and coming microblogging social media made in Node.js and EJS made by me and my friends, nomaakip, squirrel, and mpax235. The platform has ~30 users and 2 bots (using our API and official-ish Python module, Swagger) as of writing. My friends have been making fun stuff for 1 year, almost 2! This is our first full-fledged social media app and we are very, very proud of it. v1.12, made by squirrel, has just come out today with some bug fixes, markdown, and ograph embed support!! The URL linked is a showcase; you can view user pages &amp; posts but not follow, like, or reply. We hope you enjoy and join our small community &lt;3"
     },
     {
         "id": 48927546,
@@ -82,5 +82,11 @@
         "title": "Show HN: I RL-trained an agent that trains models with RL (for ~$1.3k)",
         "url": "https://github.com/Danau5tin/ai-trains-ai",
         "description_snippet": ""
+    },
+    {
+        "id": 48883305,
+        "title": "Show HN: Juggler – an open-source GUI coding agent, by the creator of JUCE",
+        "url": "https://github.com/juggler-ai/juggler",
+        "description_snippet": "Hello HN, I don&#x27;t post on here much, but wanted to get some eyes on a new project I&#x27;m just launching. I think we definitely need one more AI code agent..<p>I&#x27;m a long-term C++ dev, and over 30+ years I&#x27;ve created some successful audio dev tools (JUCE, the Tracktion DAW, the Cmajor DSP language). All of these came from me getting annoyed with something I had to use, and deciding to have a go at my own take on whatever it was.<p>So Juggler is my attempt at an AI code agent, after spending too many hours loving what the models could do, but hating the CLI experience, and having some opinions of what a better UX might be for this stuff.<p>Lots more blurb on the website and github, but a quick tech dump which might grab your attention if you&#x27;re into these things:<p>A session is a document, not a log file. Each conversation is a Yjs CRDT tree. It can branch into sub-threads (recursively), and you can drill down, backtrack, edit, undo&#x2F;redo, and inspect everything"
     }
 ]
