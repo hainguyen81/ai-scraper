@@ -63,17 +63,18 @@ class HackerNewsTechScraper:
         try:
             # Step 1: Fetch the list of newest show/launch story item IDs
             req = urllib.request.Request(resolved_list_url, headers={"User-Agent": "EnterpriseMonitor/1.0"})
-            raw_data = {}
+            log_data = {}
             with urllib.request.urlopen(req) as resp:
                 raw_data = resp.read().decode("utf-8")
                 json_story_ids = json.loads(raw_data)
-                raw_data['story_ids'] = json_story_ids
+                log_data['story_ids'] = json_story_ids
                 story_ids: List[int] = json_story_ids[:scan_limit]
                 
             matching_threads = []
             keywords = ["free", "api", "llm", "endpoint", "model", "provider"]
             
             # Step 2: Iterate through thread items and pull detailed text data blocks
+            log_data['threads'] = []
             for item_id in story_ids:
                 resolved_item_url = f"{self._base_item_url}{item_id}.json".replace(".", ".")
                 item_req = urllib.request.Request(resolved_item_url, headers={"User-Agent": "EnterpriseMonitor/1.0"})
@@ -82,7 +83,8 @@ class HackerNewsTechScraper:
                     item_data = json.loads(item_resp.read().decode("utf-8"))
                     if not item_data:
                         continue
-                        
+                    
+                    log_data['threads'].append(item_data)
                     title = item_data.get("title", "").lower()
                     text_content = item_data.get("text", "").lower()
                     
@@ -96,8 +98,7 @@ class HackerNewsTechScraper:
                         })
             
             # write log
-            raw_data['threads'] = matching_threads
-            self.write_log(raw_data)
+            self.write_log(log_data)
                         
             logger.info(f"Community scanning pipeline complete. Found {len(matching_threads)} relevant API topics.")
             return matching_threads
