@@ -74,7 +74,7 @@ class SemanticSearchScraper:
                 scraped_payload.append({
                     "source_title": result.title,
                     "source_url": result.url,
-                    "extracted_text": result.text[:8000] # Truncate text block size per page to optimize token space
+                    "extracted_text": result.text # Truncate text block size per page to optimize token space
                 })
             
             urls = "\n".join([payload["source_url"] for payload in scraped_payload])
