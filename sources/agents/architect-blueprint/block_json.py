@@ -49,7 +49,7 @@ def convert_phases_to_json(client: OpenAI, model_name: str, project_name: str, n
     try:
         for phase_idx in range(1, num_phases + 1):
             log_phase_idx = phase_idx
-            phase_context_dir = os.path.join(resolve_absolute_path(out_dir), "plan", "context")
+            phase_context_dir = os.path.join(out_dir, "plan", "context")
             md_path = os.path.join(phase_context_dir, f"phase-{phase_idx}.context.blueprint.md")
             
             if not os.path.exists(md_path):
