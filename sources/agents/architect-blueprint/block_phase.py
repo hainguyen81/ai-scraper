@@ -1,13 +1,23 @@
 # BLOCK 2: GENERATES PHASE MARKDOWN
 
 import os
-from google import genai
-from google.genai import types
+
+# GEMINI
+# from google import genai
+# from google.genai import types
+
+# OpenAI
+from openai import OpenAI
 
 # Now Python can seamlessly see and import the centralized helper utility cleanly!
 from helper import write_log
+from helper import parseOpenAIResponseData
 
-def generate_phase_contexts(client: genai.Client, project_name: str, requirements: str, global_context: str, num_phases: int, out_dir: str):
+# GEMINI
+# def generate_phase_contexts(client: genai.Client, project_name: str, requirements: str, global_context: str, num_phases: int, out_dir: str):
+
+# OpenAI
+def generate_phase_contexts(client: OpenAI, project_name: str, requirements: str, global_context: str, num_phases: int, out_dir: str):
     """
     BLOCK 2: Decomposes requirements into segmented, sandbox-ready development boundaries.
     Executes raw isolated stateless calls per loop item to bypass sequence length degradation.
@@ -44,21 +54,33 @@ def generate_phase_contexts(client: genai.Client, project_name: str, requirement
             """
             log_prompt = prompt
             
-            response = client.models.generate_content(
-                model='gemini-2.5-pro',
-                contents=prompt,
-                config=types.GenerateContentConfig(system_instruction=instruction, temperature=0.2)
+            # GEMINI
+            # response = client.models.generate_content(
+            #     model='gemini-2.5-pro',
+            #     contents=prompt,
+            #     config=types.GenerateContentConfig(system_instruction=instruction, temperature=0.2)
+            # )
+            # raw_data = response.text
+            
+            # OpenAI
+            response = client.chat.completions.create(
+                model="gpt-4o",
+                messages=[
+                    {"role": "system", "content": system_instruction},
+                    {"role": "user", "content": prompt}
+                ],
+                temperature=0.2
             )
+            raw_data = parseOpenAIResponseData(response)
             
             context_dir = os.path.join(out_dir, "plan", "context")
             os.makedirs(context_dir, exist_ok=True)
             out_path = os.path.join(context_dir, f"phase-{phase_idx}.context.blueprint.md")
-            response_text = response.text
             with open(out_path, "w", encoding="utf-8") as f:
-                f.write(response_text)
+                f.write(raw_data)
         
             # write log
-            write_log(log_phase_idx, log_prompt.replace('#', '##'), response_text.replace('#', '##'), False)
+            write_log(log_phase_idx, log_prompt.replace('#', '##'), raw_data.replace('#', '##') if raw_data else "-", False)
             
             print(f" │   ├── ✅ Saved Phase {phase_idx} MD: {out_path}")
     except Exception as e:

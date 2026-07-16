@@ -4,8 +4,13 @@ import os
 import sys
 import argparse
 from datetime import datetime
-from google import genai
-from google.genai import types
+
+# GEMINI
+#from google import genai
+#from google.genai import types
+
+# OpenAI
+from openai import OpenAI
 
 # Now Python can seamlessly see and import the centralized helper utility cleanly!
 from sources.agents.agent_helper import resolve_absolute_path
@@ -20,7 +25,12 @@ def run_architect_agent(project_name: str, requirements_path: str, num_phases: i
     Master pipeline orchestrator that runs individual functional blocks in sequence.
     Provides pristine separation of concerns and protects engine runtime stability.
     """
-    client = genai.Client(api_key=api_key)
+    
+    # GEMINI
+    # client = genai.Client(api_key=api_key)
+    
+    # OpenAI
+    client = OpenAI(api_key=api_key)
     
     absolute_requirements_path = resolve_absolute_path(requirements_path)
     if not os.path.exists(absolute_requirements_path):

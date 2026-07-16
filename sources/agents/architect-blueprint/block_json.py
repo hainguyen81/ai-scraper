@@ -14,6 +14,7 @@ from openai import OpenAI
 
 # Now Python can seamlessly see and import the centralized helper utility cleanly!
 from helper import write_log
+from helper import parseOpenAIResponseJsonData
 
 # --- Validated Schemas for Structured JSON Output ---
 class SubAgentTask(BaseModel):
@@ -30,7 +31,11 @@ class PhaseStepsPlan(BaseModel):
     phase_title: str = Field(description="Descriptive roadmap title matching the source Markdown.")
     steps: List[DailyStep] = Field(description="Day-by-day engineering tracking steps.")
 
-def convert_phases_to_json(client: genai.Client, project_name: str, num_phases: int, out_dir: str):
+# GEMINI
+# def convert_phases_to_json(client: genai.Client, project_name: str, num_phases: int, out_dir: str):
+
+# OpenAI
+def convert_phases_to_json(client: OpenAI, project_name: str, num_phases: int, out_dir: str):
     """
     BLOCK 3: Consumes the physical localized markdown outputs and structuralized them into strictly-typed JSON.
     Guarantees no invalid text pollution using Pydantic typing patterns.
@@ -79,8 +84,8 @@ def convert_phases_to_json(client: genai.Client, project_name: str, num_phases: 
             #         response_schema=PhaseStepsPlan
             #     )
             # )
-            # response_text = response.text
-            # json_data = json.loads(response_text)
+            # raw_data = response.text
+            # json_data = json.loads(raw_data)
             
             # OpenAI
             response = client.beta.chat.completions.parse(
@@ -92,35 +97,18 @@ def convert_phases_to_json(client: genai.Client, project_name: str, num_phases: 
                 temperature=0.1,
                 response_format=PhaseStepsPlan, # Injects the pydantic model schema ruleset natively
             )
-            
-            # parse response JSON
-            response_text = None
-            if isinstance(choices_data, list):
-                # If the provider wraps choices inside a native list structure
-                if len(choices_data) > 0:
-                    first_choice = choices_data[0]
-                    response_text = first_choice.message.content.strip() if hasattr(first_choice, 'message') else str(first_choice)
-            else:
-                # Standard OpenAI object layout behavior fallback
-                response_text = choices_data.message.content.strip()
-            
-            # ✅ ROBUST REGEX EXTRACTION: Isolate nested JSON bracket layouts to eliminate markdown wrapper block errors
-            json_match = re.search(r'\{.*\}', response_text, re.DOTALL)
-            if json_match:
-                clean_json_str = json_match.group(0)
-                json_data = json.loads(clean_json_str)
-            else:
-                json_data = json.loads(response.choices.message.content)
+            raw_data, json_data = parseOpenAIResponseJsonData(response)
             
             # write blueprint
-            steps_dir = os.path.join(out_dir, "plan", "steps")
-            os.makedirs(steps_dir, exist_ok=True)
-            out_path = os.path.join(steps_dir, f"phase-{phase_idx}.steps.json")
-            with open(out_path, "w", encoding="utf-8") as f:
-                json.dump(json_data, f, ensure_ascii=False, indent=4)
+            if json_data:
+                steps_dir = os.path.join(out_dir, "plan", "steps")
+                os.makedirs(steps_dir, exist_ok=True)
+                out_path = os.path.join(steps_dir, f"phase-{phase_idx}.steps.json")
+                with open(out_path, "w", encoding="utf-8") as f:
+                    json.dump(json_data, f, ensure_ascii=False, indent=4)
         
             # write log
-            write_log(log_phase_idx, log_prompt.replace('#', '##'), response_text.replace('#', '##'), True)
+            write_log(log_phase_idx, log_prompt.replace('#', '##'), raw_data, True)
             
             print(f" │   └── 🎉 Saved Phase {phase_idx} JSON Tracker: {out_path}")
     except Exception as e:

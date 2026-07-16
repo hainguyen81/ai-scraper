@@ -1,5 +1,6 @@
 import os
 import sys
+import re
 
 # ==============================================================================
 # 🏢 ENTERPRISE INTER-PACKAGE ROUTING LAYER
@@ -16,6 +17,7 @@ if PARENT_AGENTS_DIR not in sys.path:
 
 # Now Python can seamlessly see and import the centralized helper utility cleanly!
 from sources.agents.agent_helper import resolve_absolute_path
+from sources.agents.agent_helper import json_raw_content
 
 # ==============================================================================
 # GLOBAL CONFIGURATION PATHS - CONFIG HERE TO CUSTOMIZE DIRECTORY STRUCTURE
@@ -41,3 +43,29 @@ def write_log(phase_idx, prompt, raw_content, is_step):
     with open(agent_working_history_file, "a", encoding="utf-8") as file:
         file.write(log_content)
 
+def parseOpenAIResponseData(response):
+    choices_data = response.choices if response and response.choices else None
+    raw_data = None
+    if choices_data and isinstance(choices_data, list) and len(choices_data) > 0:
+        first_choice = choices_data[0]
+        raw_data = first_choice.message.content.strip() if hasattr(first_choice, 'message') else str(first_choice)
+    
+    else:
+        # Standard OpenAI object layout behavior fallback
+        raw_data = choices_data.message.content.strip() if choices_data and choices_data.message and choices_data.message.content else None
+    
+    return raw_data
+
+def parseOpenAIResponseJsonData(response):
+    raw_data = parseOpenAIResponseData(response)
+    
+    # ✅ ROBUST REGEX EXTRACTION: Isolate nested JSON bracket layouts to eliminate markdown wrapper block errors
+    if raw_data:
+        json_match = re.search(r'\{.*\}', raw_data, re.DOTALL)
+        if json_match:
+            clean_json_str = json_match.group(0)
+            json_data = json.loads(clean_json_str)
+        else:
+            json_data = json.loads(raw_data)
+        return (raw_data, json_data)
+    return (raw_data, None)
