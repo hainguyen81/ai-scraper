@@ -4,10 +4,15 @@ name: 🏗️ Agent - Execute AI Architect BluePrint
 on:
   workflow_dispatch:
     inputs:
+      project_name:
+        description: '📁 Project Name'
+        required: true
+        default: 'test-ai-architecture'
+        type: string
       requirements_file:
         description: '📄 Path to the project requirements file'
         required: true
-        default: 'requirements.txt'
+        default: 'sources/requirements/test-requirements.md'
         type: string
       phases:
         description: '🔢 Number of phases to split the project'
@@ -17,16 +22,21 @@ on:
       output_dir:
         description: '📂 Target directory path to save the generated blueprint'
         required: true
-        default: 'sources/generated_architecture_blueprint'
+        default: 'sources/output/blueprint'
         type: string
     
   # allow other workflow call into (inputs same as workflow_dispatch but required)
   workflow_call:
     inputs:
+      project_name:
+        description: '📁 Project Name'
+        required: true
+        default: 'test-ai-architecture'
+        type: string
       requirements_file:
         description: '📄 Path to the project requirements file'
         required: true
-        default: 'requirements.txt'
+        default: 'sources/requirements/test-requirements.md'
         type: string
       phases:
         description: '🔢 Number of phases to split the project'
@@ -36,7 +46,7 @@ on:
       output_dir:
         description: '📂 Target directory path to save the generated blueprint'
         required: true
-        default: 'sources/generated_architecture_blueprint'
+        default: 'sources/output/blueprint'
         type: string
 
 jobs:
@@ -69,9 +79,10 @@ jobs:
       env:
         # Match the variable name with your execution script configuration env variables
         API_KEY_GEMINI: ${{ secrets.API_KEY_GEMINI }}
-        REQUIREMENTS_FILE: ${{ inputs.requirements_file }}
-        OUTPUT_BLUEPRINT_DIR: ${{ inputs.output_dir }}
-        NUM_OF_PHASES: ${{ inputs.phases }}
+        REQUIREMENTS_FILE: ${{ github.event.inputs.requirements_file }}
+        OUTPUT_BLUEPRINT_DIR: ${{ github.event.inputs.output_dir }}
+        NUM_OF_PHASES: ${{ github.event.inputs.phases }}
+        PROJECT_NAME: ${{ github.event.inputs.project_name }}
       run: |
         # Extract Phase count (Fallback to 3 if triggered automatically via git push)
         NUM_PHASES="$NUM_OF_PHASES"
@@ -82,7 +93,7 @@ jobs:
         # Extract dynamic Output Path (Fallback to default directory on automated events)
         OUT_DIR="$OUTPUT_BLUEPRINT_DIR"
         if [ -z "$OUT_DIR" ]; then
-          OUT_DIR="sources/generated_architecture_blueprint"
+          OUT_DIR="sources/output/blueprint"
         fi
         
         echo "⚡ Kicking off AI Agent orchestration..."
@@ -90,7 +101,7 @@ jobs:
         echo "📂 Target Destination Directory: $OUT_DIR"
         
         # Execute the python architect core script with the dynamic paths
-        python architect_agent.py --req "$REQUIREMENTS_FILE" --phases $NUM_PHASES --out "$OUT_DIR"
+        python sources/agents/architect-blueprint/main.py --project-name "$PROJECT_NAME" --req "$REQUIREMENTS_FILE" --phases $NUM_PHASES --out "$OUT_DIR"
 
     # Step 5: Automatically stage, commit, and push the generated architecture files
     - name: 🚀 Commit and Push Blueprint Changes

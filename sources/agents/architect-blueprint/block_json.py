@@ -1,0 +1,92 @@
+# BLOCK 3: CONVERTS PHASE MARKDOWN TO STEPS JSON
+
+import os
+import json
+from pydantic import BaseModel, Field
+from typing import List
+from google import genai
+from google.genai import types
+
+# Now Python can seamlessly see and import the centralized helper utility cleanly!
+from helper import write_log
+
+# --- Validated Schemas for Structured JSON Output ---
+class SubAgentTask(BaseModel):
+    agent_role: str = Field(description="Target sub-agent role executing the task.")
+    task_description: str = Field(description="Literal, low-level technical step assigned to the agent.")
+
+class DailyStep(BaseModel):
+    day: int = Field(description="Timeline iteration day inside this isolated phase.")
+    focus: str = Field(description="The functional epic targeted for closure on this day.")
+    sub_agent_tasks: List[SubAgentTask] = Field(description="Array of isolated micro-tasks assigned to sub-agents.")
+
+class PhaseStepsPlan(BaseModel):
+    phase_id: int = Field(description="Target phase tracker index.")
+    phase_title: str = Field(description="Descriptive roadmap title matching the source Markdown.")
+    steps: List[DailyStep] = Field(description="Day-by-day engineering tracking steps.")
+
+def convert_phases_to_json(client: genai.Client, project_name: str, num_phases: int, out_dir: str):
+    """
+    BLOCK 3: Consumes the physical localized markdown outputs and structuralized them into strictly-typed JSON.
+    Guarantees no invalid text pollution using Pydantic typing patterns.
+    """
+    print(f"⚙️  [BLOCK 3] Translating Phase Markdown files into Structured Daily Steps JSON trackers...")
+    
+    log_phase_idx = 0
+    log_prompt = ""
+    try:
+        instruction = "You are a rigid technical translator. Map high-level Markdown workflows into precise, executable JSON schemas."
+        
+        for phase_idx in range(1, num_phases + 1):
+            log_phase_idx = phase_idx
+            phase_context_dir = os.path.join(resolve_absolute_path(out_dir), "plan", "context")
+            md_path = os.path.join(phase_context_dir, f"phase-{phase_idx}.context.blueprint.md")
+            
+            if not os.path.exists(md_path):
+                print(f" │   └── ❌ Skipped Phase {phase_idx}: Source Markdown file not found.")
+                continue
+                
+            with open(md_path, "r", encoding="utf-8") as f:
+                phase_markdown_content = f.read()
+                
+            print(f" │   ├── 🔀 Parsing Phase {phase_idx} MD -> Compiling phase-{phase_idx}.steps.json...")
+            
+            prompt = f"""
+            Analyze the attached Phase {phase_idx} Context Markdown content. 
+            Translate every directive, objective, and daily task mentioned inside it into a structured day-by-day JSON map.
+            
+            --- PHASE {phase_idx} CONTEXT MARKDOWN ---
+            {phase_markdown_content}
+            ------------------------------------------
+
+            Map your response strictly to the requested PhaseStepsPlan JSON structure.
+            """
+            log_prompt = prompt
+            
+            response = client.models.generate_content(
+                model='gemini-2.5-pro',
+                contents=prompt,
+                config=types.GenerateContentConfig(
+                    system_instruction=instruction,
+                    temperature=0.1,
+                    response_mime_type="application/json",
+                    response_schema=PhaseStepsPlan
+                )
+            )
+            
+            response_text = response.text
+            json_data = json.loads(response_text)
+            steps_dir = os.path.join(out_dir, "plan", "steps")
+            os.makedirs(steps_dir, exist_ok=True)
+            out_path = os.path.join(steps_dir, f"phase-{phase_idx}.steps.json")
+            with open(out_path, "w", encoding="utf-8") as f:
+                json.dump(json_data, f, ensure_ascii=False, indent=4)
+        
+            # write log
+            write_log(log_phase_idx, log_prompt.replace('#', '##'), response_text.replace('#', '##'), True)
+            
+            print(f" │   └── 🎉 Saved Phase {phase_idx} JSON Tracker: {out_path}")
+    except Exception as e:
+        print(f"❌ Failed to initiate chat/generate Phase {log_phase_idx} Steps JSON: {e}")
+        write_log(log_phase_idx, log_prompt.replace('#', '##'), str(e), True)
+        sys.exit(1) # break pipeline
