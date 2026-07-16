@@ -1,0 +1,122 @@
+name: "🏗️ Enterprise Automation: Initialize Project Repository 🚀"
+
+on:
+  # 🎯 Allows manual triggering via the GitHub UI with dynamic input parameters
+  workflow_dispatch:
+    inputs:
+      new_repo_name:
+        description: "📛 The name of the target repository to create (e.g., membership-hub)"
+        required: true
+        type: string
+      is_private:
+        description: "🔒 Enforce strict enterprise privacy guardrails (True = 🔑 Private, False = 🌐 Public)"
+        required: true
+        default: true
+        type: boolean
+      template:
+        description: "🎨 Project Initial Template"
+        required: false
+        default: 'sources/templates/project_initialization'
+        type: string
+    
+  # allow other workflow call into (inputs same as workflow_dispatch but required)
+  workflow_call:
+    inputs:
+      new_repo_name:
+        description: "📛 The name of the target repository to create (e.g., membership-hub)"
+        required: true
+        type: string
+      is_private:
+        description: "🔒 Enforce strict enterprise privacy guardrails (True = 🔑 Private, False = 🌐 Public)"
+        required: true
+        default: true
+        type: boolean
+      template:
+        description: "🎨 Project Initial Template"
+        required: false
+        default: 'sources/templates/project_initialization'
+        type: string
+
+jobs:
+  orchestrate-repository:
+    name: "🛠️ Create & Initialize Repo Engine"
+    runs-on: ubuntu-latest
+    
+    steps:
+      # 📂 Step 1: Ingest the current repository codebase along with the template assets
+      - name: "📥 Checkout Source Template Repository"
+        uses: actions/checkout@v4
+
+      # ⚡ Step 2: Establish connection parameters and securely provision the brand-new repository
+      - name: "🖥️ Create Target GitHub Repository"
+        id: repo-provisioner
+        env:
+          GH_TOKEN: ${{ secrets.PAT_SECRETS_MANAGER }} # 🔑 Uses your personal token to bypass organizational write blocks
+          REPO_NAME: ${{ github.event.inputs.new_repo_name }}
+          IS_PRIV: ${{ github.event.inputs.is_private }}
+        run: |
+          echo "✨ Sanitizing repository name..."
+          # 🧼 Sanitize and format the repository name to guarantee a safe slug string
+          CLEAN_REPO_NAME=$(echo "$REPO_NAME" | sed 's/ /-/g' | tr '[:upper:]' '[:lower:]')
+          echo "CLEAN_NAME=$CLEAN_REPO_NAME" >> $GITHUB_ENV
+          
+          # 🎛️ Formulate the visibility switch flag based on the boolean runtime user input
+          VISIBILITY="public"
+          if [ "$IS_PRIV" = "true" ]; then
+            VISIBILITY="private"
+          fi
+          
+          echo "🚀 Provisioning a new $VISIBILITY enterprise repository named: $CLEAN_REPO_NAME"
+          
+          # 🦾 Invoke official GitHub CLI engine to safely create the target remote space
+          gh repo create "$CLEAN_REPO_NAME" --$VISIBILITY --confirm || echo "⚠️ Repository might already exist, proceeding to synchronization..."
+
+      # 🔄 Step 3: Localize template files, commit them cleanly, and synchronize to the target remote
+      - name: "📦 Sync Template Payload to Target Repository"
+        env:
+          GH_TOKEN: ${{ secrets.PAT_SECRETS_MANAGER }}
+          TARGET_OWNER: ${{ github.repository_owner }}
+          TEMPLATE_DIR: ${{ github.event.inputs.template }}
+        run: |
+          echo "🔍 Checking template folder existence..."
+          # 🚨 Verify that the target template payload workspace physically exists inside the runner workspace
+          if [ ! -d "$TEMPLATE_DIR" ]; then
+            echo "❌ Critical Error: Source deployment folder '$TEMPLATE_DIR' not found in workspace root!"
+            exit 1
+          fi
+          
+          echo "📂 Creating isolated temporary sync-workspace..."
+          # 🧼 Create an isolated temporary synchronization workspace directory
+          mkdir -p ../sync-workspace
+          
+          # 🖨️ Copy all recursive configuration items, scripts, and dotfiles into the synchronization sandbox
+          cp -r $TEMPLATE_DIR/. ../sync-workspace/
+          
+          # 🔀 Change context directory to the decoupled target initialization workspace
+          cd ../sync-workspace
+          
+          echo "🌱 Initializing clean independent git repository..."
+          # 💎 Initialize a clean independent git local tree tracking environment
+          git init
+          
+          # 🤖 Inject standard automation bot metadata to certify clean audit logs
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@://github.com"
+          
+          echo "📝 Staging and committing base templates..."
+          # 📦 Package and stage all local file translations into the root commit block
+          git add .
+          git commit -m "chore(init): 🚀 base project infrastructure synchronization from master architecture templates"
+          
+          # 🔐 Dynamically map the authentication header token onto the remote destination URL target string
+          TARGET_URL="https://x-access-token:${{ secrets.GH_PAT }}@://github.com{TARGET_OWNER}/${{ env.CLEAN_NAME }}.git"
+          
+          # ⚓ Bind the newly instantiated git workspace to the targeted repository endpoint on GitHub
+          git remote add origin "$TARGET_URL"
+          
+          echo "⬆️ Force pushing payload to upstream main branch..."
+          # 🛩️ Force push the local tracking lineage directly onto the upstream main integration branch
+          git branch -M master
+          git push -u origin master --force
+          
+          echo -e "\n🎉 [SUCCESS] Target Repository initialization pipeline finalized smoothly! 🏁✨"
