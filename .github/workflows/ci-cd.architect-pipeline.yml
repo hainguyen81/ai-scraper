@@ -6,7 +6,7 @@ on:
     inputs:
       project_name:
         description: '📁 Project Name'
-        required: true
+        required: false
         default: 'test-ai-architecture'
         type: string
       requirements_file:
@@ -21,7 +21,7 @@ on:
         type: number
       output_dir:
         description: '📂 Target directory path to save the generated blueprint'
-        required: true
+        required: false
         default: 'sources/output/blueprint'
         type: string
       model_global:
@@ -45,7 +45,7 @@ on:
     inputs:
       project_name:
         description: '📁 Project Name'
-        required: true
+        required: false
         default: 'test-ai-architecture'
         type: string
       requirements_file:
@@ -60,7 +60,7 @@ on:
         type: number
       output_dir:
         description: '📂 Target directory path to save the generated blueprint'
-        required: true
+        required: false
         default: 'sources/output/blueprint'
         type: string
       model_global:
