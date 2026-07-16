@@ -100,4 +100,9 @@ if __name__ == "__main__":
     args = parser.parse_args()
     
     # Trigger the primary agent orchestration function.
-    run_architect_agent(args.project_name, args.req, args.phases, args.out, args.api_key, args.api_endpoint, args.api_model_global_context, args.api_model_phase_context, args.api_model_phase_steps_json)
+    run_architect_agent(
+        args.project_name, args.req, args.phases, args.out,
+        args.api_key, args.api_endpoint,
+        args.api_model_global_context, args.api_model_phase_context, args.api_model_phase_steps_json
+    )
+
