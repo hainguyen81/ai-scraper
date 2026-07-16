@@ -38,6 +38,12 @@ def run_architect_agent(project_name: str, requirements_path: str, num_phases: i
     api_model_phase = api_model_phase if api_model_phase else api_model_global
     api_model_steps = api_model_steps if api_model_steps else api_model_phase
     api_model_steps = api_model_steps if api_model_steps else api_model_global
+    print("=============================================================================")
+    print(f"🤖 AI: Endpoint {api_endpoint}")
+    print(f"    - Global Context:       {api_model_global}")
+    print(f"    - Phase Context:        {api_model_phase}")
+    print(f"    - Phase JSON Steps:     {api_model_steps}")
+    print("=============================================================================")
     
     absolute_requirements_path = resolve_absolute_path(requirements_path)
     if not os.path.exists(absolute_requirements_path):
