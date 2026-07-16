@@ -54,7 +54,7 @@ class SemanticSearchScraper:
             file.write(log_content)
         
         # extract details as md
-        if not isinstance(raw_content, list) and len(raw_content) == 0:
+        if isinstance(raw_content, list) and len(raw_content) > 0:
             with open(agent_working_history_file, "a", encoding="utf-8") as file:
                 for item in raw_content:
                     if not isinstance(item, dict):
