@@ -17,7 +17,7 @@ from helper import parseOpenAIResponseData
 # def generate_phase_contexts(client: genai.Client, project_name: str, requirements: str, global_context: str, num_phases: int, out_dir: str):
 
 # OpenAI
-def generate_phase_contexts(client: OpenAI, project_name: str, requirements: str, global_context: str, num_phases: int, out_dir: str):
+def generate_phase_contexts(client: OpenAI, model_name: str, project_name: str, requirements: str, global_context: str, num_phases: int, out_dir: str):
     """
     BLOCK 2: Decomposes requirements into segmented, sandbox-ready development boundaries.
     Executes raw isolated stateless calls per loop item to bypass sequence length degradation.
@@ -64,7 +64,7 @@ def generate_phase_contexts(client: OpenAI, project_name: str, requirements: str
             
             # OpenAI
             response = client.chat.completions.create(
-                model="gpt-4o",
+                model=model_name if model_name else "gpt-4o",
                 messages=[
                     {"role": "system", "content": system_instruction},
                     {"role": "user", "content": prompt}

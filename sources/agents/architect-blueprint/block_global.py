@@ -17,7 +17,7 @@ from helper import parseOpenAIResponseData
 # def generate_global_context(client: genai.Client, project_name: str, requirements: str, num_phases: int, out_dir: str) -> str:
 
 # OpenAI
-def generate_global_context(client: OpenAI, project_name: str, requirements: str, num_phases: int, out_dir: str) -> str:
+def generate_global_context(client: OpenAI, model_name: str, project_name: str, requirements: str, num_phases: int, out_dir: str) -> str:
     """
     BLOCK 1: Transforms raw text requirements into the supreme global project blueprint.
     Operates inside an isolated transactional API request to maximize logic token efficiency.
@@ -53,7 +53,7 @@ def generate_global_context(client: OpenAI, project_name: str, requirements: str
         
         # OpenAI
         response = client.chat.completions.create(
-            model="gpt-4o",
+            model=model_name if model_name else "gpt-4o",
             messages=[
                 {"role": "system", "content": system_instruction},
                 {"role": "user", "content": prompt}

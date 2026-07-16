@@ -78,13 +78,19 @@ jobs:
     # Step 4: Extract inputs dynamically and execute the Lead Architect Agent
     - name: 🤖 Run Lead Architect Agent
       env:
-        # Match the variable name with your execution script configuration env variables
-        API_KEY_GEMINI: ${{ secrets.API_KEY_GEMINI }}
+        # OpenAI
+        API_KEY: ${{ secrets.API_KEY }}
+        API_ENDPONT: ${{ secrets.API_ENDPOINT }}
+        API_MODEL: ${{ secrets.API_MODEL }}
+        
+        # Python environment
+        PYTHONPATH: ${{ github.workspace }} # force Python load folder structure, including 'sources'
+        
+        # Project Information
         REQUIREMENTS_FILE: ${{ github.event.inputs.requirements_file }}
         OUTPUT_BLUEPRINT_DIR: ${{ github.event.inputs.output_dir }}
         NUM_OF_PHASES: ${{ github.event.inputs.phases }}
         PROJECT_NAME: ${{ github.event.inputs.project_name }}
-        PYTHONPATH: ${{ github.workspace }} # force Python load folder structure, including 'sources'
       run: |
         # Extract Phase count (Fallback to 3 if triggered automatically via git push)
         NUM_PHASES="$NUM_OF_PHASES"
@@ -103,7 +109,9 @@ jobs:
         echo "📂 Target Destination Directory: $OUT_DIR"
         
         # Execute the python architect core script with the dynamic paths
-        python sources/agents/architect-blueprint/main.py --project-name "$PROJECT_NAME" --req "$REQUIREMENTS_FILE" --phases $NUM_PHASES --out "$OUT_DIR" --api-key "$API_KEY_GEMINI"
+        python sources/agents/architect-blueprint/main.py \
+            --project-name "$PROJECT_NAME" --req "$REQUIREMENTS_FILE" --phases $NUM_PHASES --out "$OUT_DIR" \
+            --api-key "$API_KEY" --api-endpoint "$API_ENDPONT" --api-model "$API_MODEL"
 
     # Step 5: Automatically stage, commit, and push the generated architecture files
     - name: 🚀 Commit and Push Blueprint Changes

@@ -35,7 +35,7 @@ class PhaseStepsPlan(BaseModel):
 # def convert_phases_to_json(client: genai.Client, project_name: str, num_phases: int, out_dir: str):
 
 # OpenAI
-def convert_phases_to_json(client: OpenAI, project_name: str, num_phases: int, out_dir: str):
+def convert_phases_to_json(client: OpenAI, model_name: str, project_name: str, num_phases: int, out_dir: str):
     """
     BLOCK 3: Consumes the physical localized markdown outputs and structuralized them into strictly-typed JSON.
     Guarantees no invalid text pollution using Pydantic typing patterns.
@@ -89,7 +89,7 @@ def convert_phases_to_json(client: OpenAI, project_name: str, num_phases: int, o
             
             # OpenAI
             response = client.beta.chat.completions.parse(
-                model="gpt-4o",  # Standard heavy reasoning model for structured enterprise operations
+                model=model_name if model_name else "gpt-4o",  # Standard heavy reasoning model for structured enterprise operations
                 messages=[
                     {"role": "system", "content": system_instruction},
                     {"role": "user", "content": prompt}
