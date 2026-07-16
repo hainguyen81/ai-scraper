@@ -24,6 +24,16 @@ on:
         required: false
         default: 'sources/output/blueprint'
         type: string
+      model_endpoint:
+        description: '🔗 AI Endpoint - OpenAI'
+        required: false
+        default: 'https://openrouter.ai/api/v1'
+        type: string
+      model_key:
+        description: '🔑 AI Endpoint Key - OpenAI'
+        required: false
+        default: ''
+        type: string
       model_global:
         description: '🌐 Global Context Model - OpenAI'
         required: false
@@ -62,6 +72,16 @@ on:
         description: '📂 Target directory path to save the generated blueprint'
         required: false
         default: 'sources/output/blueprint'
+        type: string
+      model_endpoint:
+        description: '🔗 AI Endpoint - OpenAI'
+        required: false
+        default: 'https://openrouter.ai/api/v1'
+        type: string
+      model_key:
+        description: '🔑 AI Endpoint Key - OpenAI'
+        required: false
+        default: ''
         type: string
       model_global:
         description: '🌐 Global Context Model - OpenAI'
@@ -112,15 +132,22 @@ jobs:
     # Step 4: Extract inputs dynamically and execute the Lead Architect Agent
     - name: 🤖 Run Lead Architect Agent
       env:
-        # OpenAI
+        # OpenAI - Common from LLM-Web-Scrapper Workflow
         API_KEY: ${{ secrets.API_KEY }}
         API_ENDPONT: ${{ secrets.API_ENDPOINT }}
-        API_MODEL: ${{ secrets.API_BLUEPRINT_MODEL }}
+        API_MODEL: ${{ secrets.API_MODEL }}
+        
+        # OpenAI - for BluePrint
+        API_BLUEPRINT_ENDPOINT: ${{ secrets.API_BLUEPRINT_ENDPOINT }}
+        API_BLUEPRINT_KEY: ${{ secrets.API_BLUEPRINT_KEY }}
+        API_BLUEPRINT_MODEL: ${{ secrets.API_BLUEPRINT_MODEL }}
         API_MODEL_GLOBAL: ${{ secrets.API_BLUEPRINT_MODEL_GLOBAL }}
         API_MODEL_PHASE: ${{ secrets.API_BLUEPRINT_MODEL_PHASE }}
         API_MODEL_STEPS: ${{ secrets.API_BLUEPRINT_MODEL_STEPS_JSON }}
         
         # specific models
+        INPUTS_MODEL_ENDPOINT: ${{ github.event.inputs.model_endpoint }}
+        INPUTS_MODEL_KEY: ${{ github.event.inputs.model_key }}
         INPUTS_MODEL_GLOBAL: ${{ github.event.inputs.model_global }}
         INPUTS_MODEL_PHASE: ${{ github.event.inputs.model_phase }}
         INPUTS_MODEL_STEPS: ${{ github.event.inputs.model_steps }}
@@ -171,6 +198,23 @@ jobs:
           MODEL_STEPS="$MODEL_PHASE"
         fi
         
+        # check endpoint/key
+        MODEL_ENDPOINT="$INPUTS_MODEL_ENDPOINT"
+        if [ -z "$MODEL_ENDPOINT" ]; then
+          MODEL_ENDPOINT="$API_BLUEPRINT_ENDPOINT"
+        fi
+        if [ -z "$MODEL_ENDPOINT" ]; then
+          MODEL_ENDPOINT="$API_ENDPONT"
+        fi
+        
+        MODEL_KEY="$INPUTS_MODEL_KEY"
+        if [ -z "$MODEL_KEY" ]; then
+          MODEL_KEY="$API_BLUEPRINT_KEY"
+        fi
+        if [ -z "$MODEL_KEY" ]; then
+          MODEL_KEY="$API_KEY"
+        fi
+        
         echo "⚡ Kicking off AI Agent orchestration..."
         echo "🔢 Requested Execution Phases: $NUM_PHASES"
         echo "📂 Target Destination Directory: $OUT_DIR"
@@ -178,7 +222,7 @@ jobs:
         # Execute the python architect core script with the dynamic paths
         python sources/agents/architect-blueprint/main.py \
             --project-name "$PROJECT_NAME" --req "$REQUIREMENTS_FILE" --phases $NUM_PHASES --out "$OUT_DIR" \
-            --api-key "$API_KEY" --api-endpoint "$API_ENDPONT" \
+            --api-key "$MODEL_KEY" --api-endpoint "$MODEL_ENDPOINT" \
             --api-model-global-context "$MODEL_GLOBAL" \
             --api-model-phase-context "$MODEL_PHASE" \
             --api-model-phase-steps-json "$MODEL_STEPS"
