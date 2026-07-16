@@ -964,3 +964,245 @@ You are a rigid technical translator. Map high-level Markdown workflows into pre
 cannot access local variable 'out_path' where it is not associated with a value
 ```
 
+# Phase 1 STEPS - Prompt:
+
+
+            Analyze the attached Phase 1 Context Markdown content. 
+            Translate every directive, objective, and daily task mentioned inside it into a structured day-by-day JSON map.
+            
+            --- PHASE 1 CONTEXT MARKDOWN ---
+            ## PHASE 1 CONTEXT BLUEPRINT: test-ai-architecture
+#### 1. Phase Operational Scope & Objectives
+The primary objective of Phase 1 is to define the project scope, create wireframes, and establish the technical architecture for the membership-hub project. This phase will focus on planning and design, ensuring that all stakeholders are aligned and that the project is set up for success. The key deliverables for this phase include:
+- A detailed project scope statement
+- Wireframes for the web and mobile applications
+- A technical architecture document outlining the use of Quarkus, Kafka, Postgres, and Docker
+- A high-level design for the authentication and authorization system
+- A plan for scalability, security, and data management
+
+#### 2. Allowed Technical Scope & Directory Boundaries (Files, paths, and endpoints)
+The technical scope for Phase 1 includes:
+- Defining the project directory structure and organization
+- Creating a new Quarkus project and setting up the basic configuration
+- Designing the database schema for Postgres
+- Creating wireframes for the web and mobile applications using tools like Figma or Sketch
+- Defining the API endpoints for authentication, user management, and attendance tracking
+- Establishing the Docker configuration for containerization
+- Setting up the Kafka configuration for messaging and event-driven architecture
+The following directories and files are in scope for this phase:
+- `src/main/java` for Quarkus backend code
+- `src/main/resources` for configuration files and database schema
+- `wireframes` for web and mobile application designs
+- `docker` for Docker configuration files
+- `kafka` for Kafka configuration files
+
+#### 3. Dedicated Sub-Agent Functional Directives (Specific tasks for Coder, Tester, Reviewer, DevOps)
+The following sub-agents have specific tasks assigned to them for Phase 1:
+- **Coder**: Create a new Quarkus project, define the database schema, and create wireframes for the web and mobile applications
+- **Tester**: Review the wireframes and provide feedback on usability and functionality
+- **Reviewer**: Review the technical architecture document and provide feedback on scalability, security, and data management
+- **DevOps (Docker)**: Set up the Docker configuration for containerization and create a Dockerfile for the Quarkus application
+- **DevOps (Deployer)**: Set up the Kafka configuration for messaging and event-driven architecture
+
+#### 4. Phase Definition of Done (DoD)
+Phase 1 is considered complete when the following criteria are met:
+- The project scope statement is complete and approved by all stakeholders
+- The wireframes for the web and mobile applications are complete and approved by all stakeholders
+- The technical architecture document is complete and approved by all stakeholders
+- The database schema is defined and approved by all stakeholders
+- The Docker configuration is set up and tested
+- The Kafka configuration is set up and tested
+- All sub-agents have completed their assigned tasks and delivered their artifacts
+- A review meeting is held to ensure that all stakeholders are aligned and that the project is ready to move on to Phase 2.
+            ------------------------------------------
+
+            Map your response strictly to the requested PhaseStepsPlan JSON structure.
+            
+
+# System Instruction
+
+You are a rigid technical translator. Map high-level Markdown workflows into precise, executable JSON schemas.
+
+# Raw Response / Exception:
+
+```json
+```json
+{
+  "phase": "Phase 1",
+  "objectives": [
+    "Define project scope",
+    "Create wireframes",
+    "Establish technical architecture"
+  ],
+  "dailyTasks": [
+    {
+      "day": 1,
+      "tasks": [
+        {
+          "task": "Define project directory structure and organization",
+          "assignee": "Coder"
+        },
+        {
+          "task": "Create a new Quarkus project and set up basic configuration",
+          "assignee": "Coder"
+        }
+      ]
+    },
+    {
+      "day": 2,
+      "tasks": [
+        {
+          "task": "Design database schema for Postgres",
+          "assignee": "Coder"
+        },
+        {
+          "task": "Create wireframes for web application",
+          "assignee": "Coder"
+        }
+      ]
+    },
+    {
+      "day": 3,
+      "tasks": [
+        {
+          "task": "Create wireframes for mobile application",
+          "assignee": "Coder"
+        },
+        {
+          "task": "Review wireframes and provide feedback on usability and functionality",
+          "assignee": "Tester"
+        }
+      ]
+    },
+    {
+      "day": 4,
+      "tasks": [
+        {
+          "task": "Define API endpoints for authentication, user management, and attendance tracking",
+          "assignee": "Coder"
+        },
+        {
+          "task": "Establish Docker configuration for containerization",
+          "assignee": "DevOps (Docker)"
+        }
+      ]
+    },
+    {
+      "day": 5,
+      "tasks": [
+        {
+          "task": "Set up Kafka configuration for messaging and event-driven architecture",
+          "assignee": "DevOps (Deployer)"
+        },
+        {
+          "task": "Review technical architecture document and provide feedback on scalability, security, and data management",
+          "assignee": "Reviewer"
+        }
+      ]
+    },
+    {
+      "day": 6,
+      "tasks": [
+        {
+          "task": "Create Dockerfile for Quarkus application",
+          "assignee": "DevOps (Docker)"
+        },
+        {
+          "task": "Test Docker configuration",
+          "assignee": "DevOps (Docker)"
+        }
+      ]
+    },
+    {
+      "day": 7,
+      "tasks": [
+        {
+          "task": "Test Kafka configuration",
+          "assignee": "DevOps (Deployer)"
+        },
+        {
+          "task": "Hold review meeting to ensure all stakeholders are aligned and project is ready to move on to Phase 2",
+          "assignee": "All"
+        }
+      ]
+    }
+  ],
+  "definitionOfDone": [
+    "Project scope statement is complete and approved by all stakeholders",
+    "Wireframes for web and mobile applications are complete and approved by all stakeholders",
+    "Technical architecture document is complete and approved by all stakeholders",
+    "Database schema is defined and approved by all stakeholders",
+    "Docker configuration is set up and tested",
+    "Kafka configuration is set up and tested",
+    "All sub-agents have completed their assigned tasks and delivered their artifacts",
+    "Review meeting is held to ensure all stakeholders are aligned and project is ready to move on to Phase 2"
+  ]
+}
+```
+```
+
+# Phase 1 STEPS - Prompt:
+
+
+            Analyze the attached Phase 1 Context Markdown content. 
+            Translate every directive, objective, and daily task mentioned inside it into a structured day-by-day JSON map.
+            
+            --- PHASE 1 CONTEXT MARKDOWN ---
+            ## PHASE 1 CONTEXT BLUEPRINT: test-ai-architecture
+#### 1. Phase Operational Scope & Objectives
+The primary objective of Phase 1 is to define the project scope, create wireframes, and establish the technical architecture for the membership-hub project. This phase will focus on planning and design, ensuring that all stakeholders are aligned and that the project is set up for success. The key deliverables for this phase include:
+- A detailed project scope statement
+- Wireframes for the web and mobile applications
+- A technical architecture document outlining the use of Quarkus, Kafka, Postgres, and Docker
+- A high-level design for the authentication and authorization system
+- A plan for scalability, security, and data management
+
+#### 2. Allowed Technical Scope & Directory Boundaries (Files, paths, and endpoints)
+The technical scope for Phase 1 includes:
+- Defining the project directory structure and organization
+- Creating a new Quarkus project and setting up the basic configuration
+- Designing the database schema for Postgres
+- Creating wireframes for the web and mobile applications using tools like Figma or Sketch
+- Defining the API endpoints for authentication, user management, and attendance tracking
+- Establishing the Docker configuration for containerization
+- Setting up the Kafka configuration for messaging and event-driven architecture
+The following directories and files are in scope for this phase:
+- `src/main/java` for Quarkus backend code
+- `src/main/resources` for configuration files and database schema
+- `wireframes` for web and mobile application designs
+- `docker` for Docker configuration files
+- `kafka` for Kafka configuration files
+
+#### 3. Dedicated Sub-Agent Functional Directives (Specific tasks for Coder, Tester, Reviewer, DevOps)
+The following sub-agents have specific tasks assigned to them for Phase 1:
+- **Coder**: Create a new Quarkus project, define the database schema, and create wireframes for the web and mobile applications
+- **Tester**: Review the wireframes and provide feedback on usability and functionality
+- **Reviewer**: Review the technical architecture document and provide feedback on scalability, security, and data management
+- **DevOps (Docker)**: Set up the Docker configuration for containerization and create a Dockerfile for the Quarkus application
+- **DevOps (Deployer)**: Set up the Kafka configuration for messaging and event-driven architecture
+
+#### 4. Phase Definition of Done (DoD)
+Phase 1 is considered complete when the following criteria are met:
+- The project scope statement is complete and approved by all stakeholders
+- The wireframes for the web and mobile applications are complete and approved by all stakeholders
+- The technical architecture document is complete and approved by all stakeholders
+- The database schema is defined and approved by all stakeholders
+- The Docker configuration is set up and tested
+- The Kafka configuration is set up and tested
+- All sub-agents have completed their assigned tasks and delivered their artifacts
+- A review meeting is held to ensure that all stakeholders are aligned and that the project is ready to move on to Phase 2.
+            ------------------------------------------
+
+            Map your response strictly to the requested PhaseStepsPlan JSON structure.
+            
+
+# System Instruction
+
+You are a rigid technical translator. Map high-level Markdown workflows into precise, executable JSON schemas.
+
+# Raw Response / Exception:
+
+```text
+cannot access local variable 'out_path' where it is not associated with a value
+```
+

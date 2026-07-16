@@ -1,137 +1,113 @@
 ```json
 {
   "phase": "Phase 1",
-  "context": "test-ai-architecture",
   "objectives": [
     "Define project scope",
     "Create wireframes",
     "Establish technical architecture"
   ],
-  "deliverables": [
-    "Detailed project scope statement",
-    "Wireframes for web and mobile applications",
-    "Technical architecture document",
-    "High-level design for authentication and authorization system",
-    "Plan for scalability, security, and data management"
-  ],
-  "technicalScope": [
-    "Define project directory structure and organization",
-    "Create new Quarkus project and set up basic configuration",
-    "Design database schema for Postgres",
-    "Create wireframes for web and mobile applications",
-    "Define API endpoints for authentication, user management, and attendance tracking",
-    "Establish Docker configuration for containerization",
-    "Set up Kafka configuration for messaging and event-driven architecture"
-  ],
-  "directoriesAndFiles": [
-    "src/main/java",
-    "src/main/resources",
-    "wireframes",
-    "docker",
-    "kafka"
-  ],
-  "subAgentTasks": {
-    "Coder": [
-      "Create new Quarkus project",
-      "Define database schema",
-      "Create wireframes for web and mobile applications"
-    ],
-    "Tester": [
-      "Review wireframes and provide feedback on usability and functionality"
-    ],
-    "Reviewer": [
-      "Review technical architecture document and provide feedback on scalability, security, and data management"
-    ],
-    "DevOps (Docker)": [
-      "Set up Docker configuration for containerization",
-      "Create Dockerfile for Quarkus application"
-    ],
-    "DevOps (Deployer)": [
-      "Set up Kafka configuration for messaging and event-driven architecture"
-    ]
-  },
-  "definitionOfDone": [
-    "Project scope statement is complete and approved",
-    "Wireframes for web and mobile applications are complete and approved",
-    "Technical architecture document is complete and approved",
-    "Database schema is defined and approved",
-    "Docker configuration is set up and tested",
-    "Kafka configuration is set up and tested",
-    "All sub-agents have completed their assigned tasks and delivered their artifacts",
-    "Review meeting is held to ensure all stakeholders are aligned and project is ready to move on to Phase 2"
-  ],
-  "dayByDayPlan": [
+  "dailyTasks": [
     {
       "day": 1,
       "tasks": [
-        "Define project scope",
-        "Create new Quarkus project"
-      ],
-      "assignees": [
-        "Coder"
+        {
+          "task": "Define project directory structure and organization",
+          "assignee": "Coder"
+        },
+        {
+          "task": "Create a new Quarkus project and set up basic configuration",
+          "assignee": "Coder"
+        }
       ]
     },
     {
       "day": 2,
       "tasks": [
-        "Design database schema for Postgres",
-        "Create wireframes for web application"
-      ],
-      "assignees": [
-        "Coder"
+        {
+          "task": "Design database schema for Postgres",
+          "assignee": "Coder"
+        },
+        {
+          "task": "Create wireframes for web application",
+          "assignee": "Coder"
+        }
       ]
     },
     {
       "day": 3,
       "tasks": [
-        "Create wireframes for mobile application",
-        "Define API endpoints for authentication and user management"
-      ],
-      "assignees": [
-        "Coder"
+        {
+          "task": "Create wireframes for mobile application",
+          "assignee": "Coder"
+        },
+        {
+          "task": "Review wireframes and provide feedback on usability and functionality",
+          "assignee": "Tester"
+        }
       ]
     },
     {
       "day": 4,
       "tasks": [
-        "Establish Docker configuration for containerization",
-        "Create Dockerfile for Quarkus application"
-      ],
-      "assignees": [
-        "DevOps (Docker)"
+        {
+          "task": "Define API endpoints for authentication, user management, and attendance tracking",
+          "assignee": "Coder"
+        },
+        {
+          "task": "Establish Docker configuration for containerization",
+          "assignee": "DevOps (Docker)"
+        }
       ]
     },
     {
       "day": 5,
       "tasks": [
-        "Set up Kafka configuration for messaging and event-driven architecture",
-        "Review wireframes and provide feedback on usability and functionality"
-      ],
-      "assignees": [
-        "DevOps (Deployer)",
-        "Tester"
+        {
+          "task": "Set up Kafka configuration for messaging and event-driven architecture",
+          "assignee": "DevOps (Deployer)"
+        },
+        {
+          "task": "Review technical architecture document and provide feedback on scalability, security, and data management",
+          "assignee": "Reviewer"
+        }
       ]
     },
     {
       "day": 6,
       "tasks": [
-        "Review technical architecture document and provide feedback on scalability, security, and data management",
-        "Finalize project scope statement and technical architecture document"
-      ],
-      "assignees": [
-        "Reviewer",
-        "Coder"
+        {
+          "task": "Create Dockerfile for Quarkus application",
+          "assignee": "DevOps (Docker)"
+        },
+        {
+          "task": "Test Docker configuration",
+          "assignee": "DevOps (Docker)"
+        }
       ]
     },
     {
       "day": 7,
       "tasks": [
-        "Hold review meeting to ensure all stakeholders are aligned and project is ready to move on to Phase 2"
-      ],
-      "assignees": [
-        "All"
+        {
+          "task": "Test Kafka configuration",
+          "assignee": "DevOps (Deployer)"
+        },
+        {
+          "task": "Hold review meeting to ensure all stakeholders are aligned and project is ready to move on to Phase 2",
+          "assignee": "All"
+        }
       ]
     }
+  ],
+  "definitionOfDone": [
+    "Project scope statement is complete and approved by all stakeholders",
+    "Wireframes for web and mobile applications are complete and approved by all stakeholders",
+    "Technical architecture document is complete and approved by all stakeholders",
+    "Database schema is defined and approved by all stakeholders",
+    "Docker configuration is set up and tested",
+    "Kafka configuration is set up and tested",
+    "All sub-agents have completed their assigned tasks and delivered their artifacts",
+    "Review meeting is held to ensure all stakeholders are aligned and project is ready to move on to Phase 2"
   ]
 }
 ```
