@@ -71,6 +71,7 @@ class DynamicScraperAgent:
             f"# Prompt Instruction:\n\n{prompt_instruction}\n\n"
             f"# Raw Response:\n\n```json\n{raw_content}\n```\n\n" if is_json else f"# Raw Response:\n\n```text\n{raw_content}\n```\n\n"
         )
+        os.makedirs(os.path.dirname(agent_working_history_file), exist_ok=True)
         with open(agent_working_history_file, "a", encoding="utf-8") as file:
             file.write(log_content)
 

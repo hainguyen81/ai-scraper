@@ -56,6 +56,7 @@ class GitHubModelScraper:
             f"# Source:\n\n{self.target_url}\n\n"
             f"# Raw Response / Exception:\n\n```json\n{raw_content}\n```\n\n" if is_json else f"# Raw Response / Exception:\n\n```text\n{raw_content}\n```\n\n"
         )
+        os.makedirs(os.path.dirname(agent_working_history_file), exist_ok=True)
         with open(agent_working_history_file, "a", encoding="utf-8") as file:
             file.write(log_content)
     

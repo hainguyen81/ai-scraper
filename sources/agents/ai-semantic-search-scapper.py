@@ -49,6 +49,7 @@ class SemanticSearchScraper:
             f"# Query:\n\n{query}\n\n"
             f"# Raw Response / Exception:\n\n```json\n{raw_content}\n```\n\n" if is_json else f"# Raw Response / Exception:\n\n```text\n{raw_content}\n```\n\n"
         )
+        os.makedirs(os.path.dirname(agent_working_history_file), exist_ok=True)
         with open(agent_working_history_file, "a", encoding="utf-8") as file:
             file.write(log_content)
     
@@ -64,7 +65,6 @@ class SemanticSearchScraper:
             response = self.client.search_and_contents(
                 query=search_query,
                 type="neural",
-                use_autoprompt=True,
                 num_results=15,
                 text=True # Instruct Exa to extract clean text contents from all found pages
             )
