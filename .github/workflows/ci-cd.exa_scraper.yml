@@ -92,7 +92,7 @@ jobs:
             exit 1
           fi
           echo "🧠 AI Ingestion Agent successfully authenticated. Booting semantic web discovery matrix..."
-          python sources/agents/ai-semantic-search-scapper.py --exa-api-key "$API_KEY_EXA"
+          python sources/agents/ai-semantic-search-scraper.py --exa-api-key "$API_KEY_EXA"
           echo "✅ Massive parallel data extraction process completed successfully!"
           
       # Step 5: Dynamically organize directory, rename file by system date, and commit changes

@@ -95,18 +95,30 @@ def convert_phases_to_json(client: OpenAI, model_name: str, project_name: str, n
                     {"role": "user", "content": prompt}
                 ],
                 temperature=0.1,
-                response_format=PhaseStepsPlan, # Injects the pydantic model schema ruleset natively
+                # response_format=PhaseStepsPlan, # Injects the pydantic model schema ruleset natively
             )
             raw_data, json_data = parseOpenAIResponseJsonData(response)
             
             # write blueprint
-            if json_data:
-                steps_dir = os.path.join(out_dir, "plan", "steps")
-                os.makedirs(steps_dir, exist_ok=True)
-                out_path = os.path.join(steps_dir, f"phase-{phase_idx}.steps.json")
+            try:
+                # 2. Parse and validate the string payload locally with Pydantic core engine
+                validated_pydantic_object = PhaseStepsPlan.model_validate_json(json_data)
+                
+                out_path = os.path.join(out_dir, f"phase-{phase_idx}.steps.json")
                 with open(out_path, "w", encoding="utf-8") as f:
-                    json.dump(json_data, f, ensure_ascii=False, indent=4)
-        
+                    json.dump(validated_pydantic_object.model_dump(), f, ensure_ascii=False, indent=4)
+                    
+                print(f" │   └── 🎉 Saved Phase {phase_idx} Standardized JSON Tracker: {out_path}")
+                
+            except Exception as pydantic_error:
+                print(f" │   └── ❌ Local Validation Failed for Phase {phase_idx}: {pydantic_error}")
+                
+                # Save the raw unparsed text payload directly to file for manual logging evaluation
+                fallback_path = os.path.join(out_dir, f"phase-{phase_idx}.steps.error.txt")
+                with open(fallback_path, "w", encoding="utf-8") as f:
+                    f.write(raw_data)
+                print(f" │   └── ⚠️ Raw dump saved to diagnostic log file: {fallback_path}")
+            
             # write log
             write_log(log_phase_idx, instruction, log_prompt.replace('#', '##'), raw_data, True)
             

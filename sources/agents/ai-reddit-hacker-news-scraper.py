@@ -30,7 +30,7 @@ from agent_helper import json_raw_content
 # ==============================================================================
 # GLOBAL CONFIGURATION PATHS - CONFIG HERE TO CUSTOMIZE DIRECTORY STRUCTURE
 # ==============================================================================
-output_scapper_data_file        = resolve_absolute_path("sources/output/discovered-community-endpoints.json")
+output_scraper_data_file        = resolve_absolute_path("sources/output/discovered-community-endpoints.json")
 agent_working_history_file      = resolve_absolute_path("sources/output/discovered-community-endpoints.md")
 
 HN_ITEM_URL                     = "https://hacker-news.firebaseio.com/v0/item/"
@@ -132,7 +132,7 @@ if __name__ == "__main__":
     # Save the output arrays locally if threads are successfully captured
     if discovered_threads:
         print('🎉 Pipeline parsing complete. Successfully extracted', len(discovered_threads), 'highly-relevant technical threads.')
-        with open(output_scapper_data_file, "w", encoding="utf-8") as out:
+        with open(output_scraper_data_file, "w", encoding="utf-8") as out:
             json.dump(discovered_threads, out, indent=4, ensure_ascii=False)
     else:
         print('⚠️ Operational Warning: Zero matching threads found in the current community buffer.')

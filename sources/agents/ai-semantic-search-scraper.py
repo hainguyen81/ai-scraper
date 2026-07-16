@@ -31,7 +31,7 @@ from agent_helper import json_raw_content
 # ==============================================================================
 # GLOBAL CONFIGURATION PATHS - CONFIG HERE TO CUSTOMIZE DIRECTORY STRUCTURE
 # ==============================================================================
-output_scapper_data_file        = resolve_absolute_path("sources/output/web_search_corpus.json")
+output_scraper_data_file        = resolve_absolute_path("sources/output/web_search_corpus.json")
 agent_working_history_file      = resolve_absolute_path("sources/output/web_search_corpus.md")
 
 class SemanticSearchScraper:
@@ -127,5 +127,5 @@ if __name__ == "__main__":
     if exaApiKey:
         scraper = SemanticSearchScraper(exa_api_key=exaApiKey)
         raw_corpus = scraper.discover_and_scrape_sources()
-        scraper.save_raw_corpus(raw_corpus, output_scapper_data_file)
+        scraper.save_raw_corpus(raw_corpus, output_scraper_data_file)
 

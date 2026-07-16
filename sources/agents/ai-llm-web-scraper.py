@@ -25,8 +25,8 @@ if PARENT_AGENTS_DIR not in sys.path:
 from agent_helper import resolve_absolute_path
 from agent_helper import json_raw_content
 
-output_scapper_data_file        = resolve_absolute_path("sources/output/free_models_by_llm_web_scapper.json")
-agent_working_history_file      = resolve_absolute_path("sources/output/free_models_by_llm_web_scapper.md")
+output_scraper_data_file        = resolve_absolute_path("sources/output/free_models_by_llm_web_scraper.json")
+agent_working_history_file      = resolve_absolute_path("sources/output/free_models_by_llm_web_scraper.md")
 
 # ==============================================================================
 # 🎛️ CENTRALIZED AI ENDPOINT CONFIGURATION LAYER
@@ -173,4 +173,4 @@ if __name__ == "__main__":
     
     if cleaned_corpus:
         structured_json = agent.process_and_structure_data(cleaned_corpus)
-        agent.save_output(structured_json, output_scapper_data_file)
+        agent.save_output(structured_json, output_scraper_data_file)

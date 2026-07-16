@@ -62,11 +62,23 @@ def parseOpenAIResponseJsonData(response):
     
     # ✅ ROBUST REGEX EXTRACTION: Isolate nested JSON bracket layouts to eliminate markdown wrapper block errors
     if raw_data:
+        # pattern 1
+        json_match = re.search(r"```json\s*([\s\S]*?)\s*```", raw_data, re.DOTALL)
+        if json_match:
+            clean_json_str = json_match.group(0).strip()
+            return (raw_data, json.loads(clean_json_str))
+        
+        # patten 2
         json_match = re.search(r'\{.*\}', raw_data, re.DOTALL)
         if json_match:
-            clean_json_str = json_match.group(0)
-            json_data = json.loads(clean_json_str)
-        else:
-            json_data = json.loads(raw_data)
-        return (raw_data, json_data)
+            clean_json_str = json_match.group(0).strip()
+            return (raw_data, json.loads(clean_json_str))
+        
+        # pattern 3
+        json_match = re.search(r"```\s*([\s\S]*?)\s*```", raw_data, re.DOTALL)
+        if json_match:
+            clean_json_str = json_match.group(0).strip()
+            return (raw_data, json.loads(clean_json_str))
+        
+        reurn (raw_data, json.loads(raw_data))
     return (raw_data, None)

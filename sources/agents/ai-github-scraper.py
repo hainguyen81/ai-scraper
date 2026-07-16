@@ -35,8 +35,8 @@ from agent_helper import json_raw_content
 # ==============================================================================
 # GLOBAL CONFIGURATION PATHS - CONFIG HERE TO CUSTOMIZE DIRECTORY STRUCTURE
 # ==============================================================================
-output_scapper_data_file        = resolve_absolute_path("sources/output/free_models_by_github_scapper.json")
-agent_working_history_file      = resolve_absolute_path("sources/output/free_models_by_github_scapper.md")
+output_scraper_data_file        = resolve_absolute_path("sources/output/free_models_by_github_scraper.json")
+agent_working_history_file      = resolve_absolute_path("sources/output/free_models_by_github_scraper.md")
 
 GITHUB_LLM_MODELS_JSON_URL      = "https://raw.githubusercontent.com/mnfst/awesome-free-llm-apis/main/data.json"
 
@@ -214,5 +214,5 @@ class GitHubModelScraper:
 # Application entry point for executing Block 1 pipeline testing
 if __name__ == "__main__":
     scraper = GitHubModelScraper()
-    scraper.execute_pipeline(output_scapper_data_file)
+    scraper.execute_pipeline(output_scraper_data_file)
 
