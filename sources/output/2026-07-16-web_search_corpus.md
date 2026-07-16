@@ -102,3 +102,7682 @@ List of free LLM API providers endpoints base_url openrouter alternatives 2026
 ]
 ```
 
+# foisalislambd/all-llm-provider-list - https://github.com/foisalislambd/all-llm-provider-list
+## foisalislambd/all-llm-provider-list
+
+🚀 The ultimate list of LLM providers, AI APIs, OpenAI-compatible services, model endpoints, pricing, documentation, and developer resources. Find and compare OpenAI, Claude, Gemini, DeepSeek, Groq, Mistral, OpenRouter, Together AI, and more.
+
+- Stars: 1
+- Forks: 0
+- Watchers: 1
+- Open issues: 0
+- Default branch: main
+- Created: 2026-06-16T07:20:56Z
+
+#### Languages
+
+- Python
+
+#### Topics
+
+- ai
+- ai-api
+- ai-provider
+- ai-providers
+- llm
+
+#### Top Contributors
+
+- foisalislambd (8 contributions)
+
+---
+
+#### README
+
+## All LLM Providers — API Endpoints, Models & Integration Guide
+
+A curated, developer-friendly directory of **110+ global LLM providers** — official frontier APIs, inference platforms, sovereign clouds, gateways, aggregators, and local runtimes.
+
+Use this repo as a single reference when you need:
+
+- Official website & documentation links 
+- Standard API base URLs 
+- Popular model families per provider 
+- Environment variable names for quick setup 
+- Copy-paste integration patterns (OpenAI & Anthropic SDKs)
+
+> **Note:** Model names and API URLs change frequently. Always verify against the provider's official docs before production use. Machine-readable data lives in [`data/`](data/) — see the [Documentation](docs/README.md) for guides.
+
+---
+
+#### Table of Contents
+
+- [Quick Start](##quick-start)
+- [Complete Provider Index](##complete-provider-index)
+- [How Providers Are Organized](##how-providers-are-organized)
+- [Official Frontier Model Developers](##official-frontier-model-developers)
+- [High-Performance Inference Platforms (IaaS)](##high-performance-inference-platforms-iaas)
+- [Decentralized, Sovereign & Enterprise Clouds](##decentralized-sovereign--enterprise-clouds)
+- [Multi-Provider Gateways & Routers](##multi-provider-gateways--routers)
+- [Aggregators & API Marketplaces](##aggregators--api-marketplaces)
+- [Embeddings & Specialized APIs](##embeddings--specialized-apis)
+- [Local & Self-Hosted Runtimes](##local--self-hosted-runtimes)
+- [Environment Variables Cheat Sheet](##environment-variables-cheat-sheet)
+- [Integration Examples](##integration-examples)
+- [Choosing the Right Provider](##choosing-the-right-provider)
+- [Documentation](##documentation)
+- [Contributing](##contributing)
+- [License](##license)
+
+---
+
+#### Quick Start
+
+Most providers expose an **OpenAI-compatible** REST API. Switching providers usually means changing only two things:
+
+1. `base_url` — the API endpoint 
+2. `api_key` — your provider credential 
+
+```python
+import os
+from openai import OpenAI
+
+client = OpenAI(
+    base_url="https://api.groq.com/openai/v1",
+    api_key=os.environ["GROQ_API_KEY"],
+)
+
+response = client.chat.completions.create(
+    model="llama-3.3-70b-versatile",
+    messages=[{"role": "user", "content": "Hello!"}],
+)
+print(response.choices[0].message.content)
+```
+
+**Want one API key for many models?** Start with a gateway like [OpenRouter](https://openrouter.ai), [Portkey](https://portkey.ai), or [Opper](https://opper.ai).
+
+---
+
+#### Complete Provider Index
+
+| ## | Provider | Category | API Base URL |
+|---|----------|----------|--------------|
+| 1 | OpenAI | Frontier | `https://api.openai.com/v1` |
+| 2 | Anthropic | Frontier | `https://api.anthropic.com` |
+| 3 | Google AI Studio | Frontier | `https://generativelanguage.googleapis.com` |
+| 4 | DeepSeek | Frontier | `https://api.deepseek.com/v1` |
+| 5 | Mistral AI | Frontier | `https://api.mistral.ai/v1` |
+| 6 | xAI | Frontier | `https://api.x.ai/v1` |
+| 7 | Cohere | Frontier | `https://api.cohere.com/v2` |
+| 8 | AI21 Labs | Frontier | `https://api.ai21.com/studio/v1` |
+| 9 | Baidu Qianfan | Frontier | `https://api.baiduqianfan.ai/v1` |
+| 10 | StepFun | Frontier | `https://api.stepfun.com/v1` |
+| 11 | Z.ai (Zhipu AI) | Frontier | `https://open.bigmodel.cn/api/paas/v4/` |
+| 12 | Xiaomi | Frontier | Custom endpoint |
+| 13 | Reka AI | Frontier | `https://api.reka.ai/v1` |
+| 14 | Inflection | Frontier | Custom webhooks |
+| 15 | MiniMax | Frontier | `https://api.minimax.io/v1` |
+| 16 | Alibaba DashScope (Qwen) | Frontier | `https://dashscope-intl.aliyuncs.com/compatible-mode/v1` |
+| 17 | Upstage | Frontier | `https://api.upstage.ai/v1/solar` |
+| 18 | Perplexity | Frontier | `https://api.perplexity.ai` |
+| 19 | Voyage AI | Embeddings | `https://api.voyageai.com/v1` |
+| 20 | Groq | IaaS | `https://api.groq.com/openai/v1` |
+| 21 | Cerebras | IaaS | `https://api.cerebras.ai/v1` |
+| 22 | SambaNova | IaaS | `https://api.sambanova.ai/v1` |
+| 23 | Together AI | IaaS | `https://api.together.xyz/v1` |
+| 24 | Fireworks AI | IaaS | `https://api.fireworks.ai/inference/v1` |
+| 25 | DeepInfra | IaaS | `https://api.deepinfra.com/v1/openai` |
+| 26 | Nebius AI Studio | IaaS | `https://api.studio.nebius.ai/v1` |
+| 27 | SiliconFlow | IaaS | `https://api.siliconflow.cn/v1` |
+| 28 | Inception | IaaS | `https://api.inceptionlabs.ai/v1` |
+| 29 | Liquid AI | IaaS | Custom cluster endpoints |
+| 30 | Friendli | IaaS | `https://api.friendli.ai/serverless/v1` |
+| 31 | Inceptron | IaaS | Custom endpoint |
+| 32 | Infermatic | IaaS | `https://api.totalgpt.ai` |
+| 33 | Mancer | IaaS | `https://mancer.tech/oai/v1` |
+| 34 | Morph | IaaS | `https://api.morphllm.com/v1` |
+| 35 | AionLabs | IaaS | `https://api.aionlabs.ai/v1` |
+| 36 | HuggingFace Inference | IaaS | `https://router.huggingface.co/v1` |
+| 37 | NVIDIA NIM | IaaS | `https://integrate.api.nvidia.com/v1` |
+| 38 | Hyperbolic | IaaS | `https://api.hyperbolic.xyz/v1` |
+| 39 | Lepton AI | IaaS | `https://api.lepton.ai/v1` |
+| 40 | Kluster.ai | IaaS | `https://api.kluster.ai/v1` |
+| 41 | Anyscale Endpoints | IaaS | `https://api.endpoints.anyscale.com/v1` |
+| 42 | Replicate | IaaS | `https://api.replicate.com/v1` |
+| 43 | Inference.net | IaaS | `https://api.inference.net/v1` |
+| 44 | Arcee AI | IaaS | `https://conductor.arcee.ai/v1` |
+| 45 | Glhf.chat | IaaS | `https://glhf.chat/api/openai/v1` |
+| 46 | AkashML | Sovereign / Cloud | `https://api.akashml.com/v1` |
+| 47 | AtlasCloud | Sovereign / Cloud | `https://api.atlascloud.ai/v1` |
+| 48 | Chutes | Sovereign / Cloud | `https://llm.chutes.ai/v1` |
+| 49 | Cloudflare Workers AI | Sovereign / Cloud | `https://api.cloudflare.com/client/v4/accounts/{id}/ai/v1` |
+| 50 | DigitalOcean | Sovereign / Cloud | `https://inference.do-ai.run/v1/` |
+| 51 | GMICloud | Sovereign / Cloud | `https://api.gmi-serving.com/v1` |
+| 52 | io.net | Sovereign / Cloud | `https://api.intelligence.io.solutions/api/v1` |
+| 53 | NextBit | Sovereign / Cloud | `https://api.nextbit256.com/v1` |
+| 54 | Novita | Sovereign / Cloud | `https://api.novita.ai/openai/v1` |
+| 55 | Parasail | Sovereign / Cloud | `https://api.saas.parasail.io/v1` |
+| 56 | Phala | Sovereign / Cloud | `POST /v1/chat/completions` |
+| 57 | Poolside | Sovereign / Cloud | `https://divers.poolsi.de/openai/v1/` |
+| 58 | Venice | Sovereign / Cloud | `https://api.venice.ai/api/v1` |
+| 59 | Wafer | Sovereign / Cloud | `https://pass.wafer.ai/v1` |
+| 60 | Azure OpenAI | Sovereign / Cloud | `https://.openai.azure.com/openai/v1` |
+| 61 | Google Vertex AI | Sovereign / Cloud | Region-dependent |
+| 62 | Amazon Bedrock | Sovereign / Cloud | `https://bedrock-runtime..amazonaws.com` |
+| 63 | Baseten | Sovereign / Cloud | `https://model-{id}.api.baseten.co/v1` |
+| 64 | Clarifai | Sovereign / Cloud | Custom endpoints |
+| 65 | Scaleway | Sovereign / Cloud | `https://api.scaleway.ai/v1` |
+| 66 | OVHcloud AI Endpoints | Sovereign / Cloud | `https://oai.endpoints.kepler.ai.cloud.ovh.net/v1` |
+| 67 | GitHub Models | Sovereign / Cloud | `https://models.inference.ai.azure.com` |
+| 68 | Modal | Sovereign / Cloud | `https://.modal.run/v1` |
+| 69 | OpenRouter | Gateway | `https://openrouter.ai/api/v1` |
+| 70 | Opper | Gateway | `https://api.opper.ai/v3/compat` |
+| 71 | Axiom | Gateway | `https://cloud.axiomstudio.ai/rest/v1/llm-gateway/v1/` |
+| 72 | Switchpoint | Gateway | `https://api.ppq.ai` |
+| 73 | Relace | Gateway | `https://api.relace.ai/v1` |
+| 74 | Moonshot AI | Gateway | `https://api.moonshot.ai/v1` |
+| 75 | OpenInference | Gateway | Tracing / observability |
+| 76 | Weights & Biases | Gateway | Evaluation registry |
+| 77 | Perceptron | Gateway | Custom gateway |
+| 78 | Portkey | Gateway | `https://api.portkey.ai/v1` |
+| 79 | LiteLLM | Gateway | `http://localhost:4000/v1` (self-hosted) |
+| 80 | Requesty | Gateway | `https://router.requesty.ai/v1` |
+| 81 | Unify.ai | Gateway | `https://api.unify.ai/v0` |
+| 82 | Helicone | Gateway | `https://ai-gateway.helicone.ai/v1` |
+| 83 | Vercel AI Gateway | Gateway | `https://ai-gateway.vercel.sh/v1` |
+| 84 | Cloudflare AI Gateway | Gateway | `https://gateway.ai.cloudflare.com/v1` |
+| 85 | Kong AI Gateway | Gateway | Self-hosted / enterprise |
+| 86 | AIMLAPI | Aggregator | `https://api.aimlapi.com/v1` |
+| 87 | Eden AI | Aggregator | `https://api.edenai.co/v2` |
+| 88 | LemonData | Aggregator | `https://api.lemondata.ai/v1` |
+| 89 | Coze (ByteDance) | Aggregator | `https://api.coze.com/v1` |
+| 90 | NLP Cloud | Specialized | `https://api.nlpcloud.io/v1` |
+| 91 | Puter.js | Specialized | `https://api.puter.com/ai/chat` |
+| 92 | Ollama | Local | `http://localhost:11434/v1` |
+| 93 | LM Studio | Local | `http://localhost:1234/v1` |
+| 94 | llama.cpp | Local | `http://localhost:8080/v1` |
+| 95 | Jan.ai | Local | `http://localhost:1337/v1` |
+| 96 | vLLM | Local | `http://localhost:8000/v1` |
+| 97 | LocalAI | Local | `http://localhost:8080/v1` |
+| 98 | 302.AI | Aggregator | `https://api.302.ai/v1` |
+| 99 | Atomic Chat | Local | `http://127.0.0.1:1337/v1` |
+| 100 | Azure Cognitive Services | Sovereign / Cloud | `https://.cognitiveservices.azure.com/openai/v1` |
+| 101 | Cortecs | Gateway | `https://api.cortecs.ai/v1` |
+| 102 | FrogBot | Aggregator | `https://app.frogbot.ai/api` |
+| 103 | GitLab Duo | Sovereign / Cloud | `https://gitlab.com/api/v4/ai` |
+| 104 | GitHub Copilot | Sovereign / Cloud | OAuth device flow (Copilot subscription) |
+| 105 | Ollama Cloud | IaaS | `https://ollama.com/api` |
+| 106 | OpenCode Zen | Gateway | `https://opencode.ai/zen/v1` |
+| 107 | OpenCode Go | Gateway | `https://opencode.ai/zen/go/v1` |
+| 108 | LLM Gateway | Gateway | `https://api.llmgateway.io/v1` |
+| 109 | SAP AI Core | Sovereign / Cloud | `https://api.ai...ml.hana.ondemand.com/v2` |
+| 110 | STACKIT AI Model Serving | Sovereign / Cloud | `https://api.openai-compat.model-serving.eu01.onstackit.cloud/v1` |
+| 111 | Snowflake Cortex | Sovereign / Cloud | `https://.snowflakecomputing.com/api/v2/cortex/v1` |
+| 112 | ZenMux | Gateway | `https://zenmux.ai/api/v1` |
+| 113 | Sakana AI (Fugu) | Gateway | `https://api.sakana.ai/v1` |
+| 114 | Prism API | Gateway | `https://sub2api.558686.xyz/v1` |
+
+---
+
+#### How Providers Are Organized
+
+```
+┌─────────────────────────────────────────┐
+│     Your App (OpenAI / Anthropic SDK)   │
+└────────────────────┬────────────────────┘
+                     │
+┌────────────────────▼────────────────────┐
+│  Gateways (OpenRouter, Portkey, Opper)  │  ← optional routing layer
+└─────────┬───────────┬───────────┬───────┘
+          │           │           │
+   ┌──────▼───┐ ┌─────▼─────┐ ┌──▼──────────┐
+   │ Frontier │ │ IaaS /    │ │ Sovereign / │
+   │ APIs     │ │ Inference │ │ Private     │
+   │ OpenAI,  │ │ Groq, HF  │ │ Azure, AWS  │
+   │ Claude,  │ │ Together  │ │ Vertex, EU  │
+   │ Gemini   │ │ Fireworks │ │ clouds      │
+   └──────────┘ └───────────┘ └─────────────┘
+```
+
+| Category | Count | Best for | Trade-off |
+|----------|-------|----------|-----------|
+| **Frontier APIs** | 18 | Best reasoning, agents, multimodal | Higher cost, vendor lock-in |
+| **IaaS / Inference** | 27 | Speed, open-weight models, low cost | Model catalog varies by host |
+| **Sovereign / Enterprise** | 29 | GDPR, VPC, compliance | More setup & procurement |
+| **Gateways & Routers** | 24 | One key, failover, observability | Extra hop, gateway fees |
+| **Aggregators** | 6 | Multi-vendor under one bill | Less control over routing |
+| **Local / Self-hosted** | 7 | Privacy, unlimited, offline | You manage hardware |
+
+---
+
+#### Official Frontier Model Developers
+
+Companies that train and ship their own foundation models.
+
+| Provider | Website | API Base URL | Popular Models | Notes |
+|----------|---------|--------------|----------------|-------|
+| **Google AI Studio** | [aistudio.google.com](https://aistudio.google.com) | `https://generativelanguage.googleapis.com` | Gemini 3.5, 3.1, 2.5 | Up to 2M context; free tier on Flash variants |
+| **Anthropic** | [anthropic.com](https://www.anthropic.com) | `https://api.anthropic.com` | Claude Opus 4.8, Sonnet 4.6, Haiku 4.5 | Native Messages API (not OpenAI-compatible) |
+| **OpenAI** | [platform.openai.com](https://platform.openai.com) | `https://api.openai.com/v1` | GPT-5.5, GPT-5.4, GPT-4.1, GPT-4o, o3-mini | Industry-standard SDK ecosystem |
+| **DeepSeek** | [platform.deepseek.com](https://platform.deepseek.com) | `https://api.deepseek.com/v1` | DeepSeek-V4-Pro, V4-Flash, R1 | OpenAI + Anthropic format; context caching |
+| **Mistral AI** | [console.mistral.ai](https://console.mistral.ai) | `https://api.mistral.ai/v1` | Mistral Medium 3.5, Small 4, Ministral 3 | EU-hosted; generous experiment tier |
+| **xAI** | [x.ai](https://x.ai) | `https://api.x.ai/v1` | Grok-3, Grok-2 | Real-time streaming & agent workflows |
+| **Cohere** | [cohere.com](https://cohere.com) | `https://api.cohere.com/v2` | Command R+, Embed v4, Rerank 3.5 | Enterprise search & RAG |
+| **AI21 Labs** | [studio.ai21.com](https://studio.ai21.com) | `https://api.ai21.com/studio/v1` | Jamba 1.5 Large, Jamba 1.5 Mini | Long-context hybrid architecture |
+| **Baidu Qianfan** | [cloud.baidu.com](https://cloud.baidu.com/product/wenxinworkshop) | `https://api.baiduqianfan.ai/v1` | ERNIE 4.0 Turbo, Speed, Lite | Chinese-language optimized |
+| **StepFun** | [platform.stepfun.com](https://platform.stepfun.com) | `https://api.stepfun.com/v1` | Step 3.5 Flash, Step-series | Multilingual agent pipelines |
+| **Z.ai (Zhipu AI)** | [open.bigmodel.cn](https://open.bigmodel.cn) | `https://open.bigmodel.cn/api/paas/v4/` | GLM-5, GLM-4.7, GLM-4.7-Flash | Strong bilingual CN/EN performance |
+| **Xiaomi** | [xiaomi.com](https://xiaomi.com) | Custom endpoint | Mimo-v2-pro | On-device & edge deployments |
+| **Reka AI** | [reka.ai](https://reka.ai) | `https://api.reka.ai/v1` | Reka Core, Reka Flash | Video, audio & text multimodal |
+| **Inflection** | [inflection.ai](https://inflection.ai) | Custom webhooks | Pi-series | Conversational assistant focus |
+| **MiniMax** | [platform.minimax.io](https://platform.minimax.io) | `https://api.minimax.io/v1` | MiniMax-M3, M2.1, M2 | OpenAI + Anthropic compatible; agentic |
+| **Alibaba DashScope** | [alibabacloud.com](https://www.alibabacloud.com) | `https://dashscope-intl.aliyuncs.com/compatible-mode/v1` | Qwen3-Max, Qwen-Plus, Qwen-Flash | Alibaba Cloud Model Studio; Qwen family |
+| **Upstage** | [console.upstage.ai](https://console.upstage.ai) | `https://api.upstage.ai/v1/solar` | Solar Pro 3, Solar Mini | Korean AI lab; strong document AI |
+| **Perplexity** | [docs.perplexity.ai](https://docs.perplexity.ai) | `https://api.perplexity.ai` | Sonar, Sonar Pro, Sonar Reasoning | Search-grounded answers with citations |
+
+---
+
+#### High-Performance Inference Platforms (IaaS)
+
+Hosted open-weight models on optimized hardware — great for **low latency** and **low cost per token**.
+
+| Provider | Website | API Base URL | Popular Models | Notes |
+|----------|---------|--------------|----------------|-------|
+| **Groq** | [console.groq.com](https://console.groq.com) | `https://api.groq.com/openai/v1` | Llama 3.3 70B, Llama 3.1 8B, Gemma 2 9B | LPU hardware; extremely fast TTFT |
+| **Cerebras** | [cerebras.ai](https://cerebras.ai) | `https://api.cerebras.ai/v1` | Llama 3.3 70B, GPT-OSS 120B, Qwen 3 32B | Wafer-scale engine throughput |
+| **SambaNova** | [sambanova.ai](https://sambanova.ai) | `https://api.sambanova.ai/v1` | Llama 3.1 405B, Llama 3.3 70B, Qwen | RDU serving for large models |
+| **Together AI** | [together.ai](https://together.ai) | `https://api.together.xyz/v1` | Llama 3.3, DeepSeek-V4, Qwen, FLUX.1 | Large catalog + fine-tuning |
+| **Fireworks AI** | [fireworks.ai](https://fireworks.ai) | `https://api.fireworks.ai/inference/v1` | Qwen 3.6 Plus, Kimi K2.6, Llama 4 Maverick | Serverless low-latency serving |
+| **DeepInfra** | [deepinfra.com](https://deepinfra.com) | `https://api.deepinfra.com/v1/openai` | Llama 3.3, Qwen 3, DeepSeek-V4, Mistral | Aggressive open-model pricing |
+| **Nebius AI Studio** | [studio.nebius.ai](https://studio.nebius.ai) | `https://api.studio.nebius.ai/v1` | DeepSeek-R1-0528, Llama 3.3 70B | EU infrastructure; Token Factory |
+| **SiliconFlow** | [siliconflow.com](https://siliconflow.com) | `https://api.siliconflow.cn/v1` | DeepSeek-R1-0528, MiniMax-M2, Qwen3-VL | Excellent cost/performance (CN) |
+| **Inception** | [inceptionlabs.ai](https://inceptionlabs.ai) | `https://api.inceptionlabs.ai/v1` | Mercury-2, Mercury-Edit-2 | Diffusion language models (dLLMs) |
+| **Liquid AI** | [liquid.ai](https://liquid.ai) | Custom cluster endpoints | LFM2.5 Instruct, LFM2-24B | Hybrid efficient architectures |
+| **Friendli** | [friendli.ai](https://friendli.ai) | `https://api.friendli.ai/serverless/v1` | Llama 3.1 8B, DeepSeek-R1 | Custom checkpoints & private instances |
+| **Inceptron** | [inceptron.io](https://inceptron.io) | Custom endpoint | Open-weight LLMs | Self-configured model hosting |
+| **Infermatic** | [infermatic.ai](https://infermatic.ai) | `https://api.totalgpt.ai` | Rocinante, Midnight Miqu, Llama | Flat-rate community checkpoints |
+| **Mancer** | [mancer.tech](https://mancer.tech) | `https://mancer.tech/oai/v1` | Goliath 120B, MythoMax, LumiMaid | Creative / roleplay fine-tunes |
+| **Morph** | [morphllm.com](https://morphllm.com) | `https://api.morphllm.com/v1` | morph-qwen35-397b, morph-qwen36-27b | Fast code editing & routing |
+| **AionLabs** | [aionlabs.ai](https://aionlabs.ai) | `https://api.aionlabs.ai/v1` | Aion 2.0, Aion-RP | Creative multi-turn fine-tunes |
+| **HuggingFace Inference** | [huggingface.co](https://huggingface.co) | `https://router.huggingface.co/v1` | Llama 3.3 70B, Qwen 2.5 72B | Huge model catalog; free tier available |
+| **NVIDIA NIM** | [build.nvidia.com](https://build.nvidia.com) | `https://integrate.api.nvidia.com/v1` | Llama 3.3 70B, DeepSeek-R1 | NVIDIA inference microservices |
+| **Hyperbolic** | [hyperbolic.xyz](https://app.hyperbolic.xyz) | `https://api.hyperbolic.xyz/v1` | DeepSeek-V3, Llama 3.3 70B | Decentralized GPU compute |
+| **Lepton AI** | [lepton.ai](https://lepton.ai) | `https://api.lepton.ai/v1` | Llama 3.3 70B | Fast serverless inference |
+| **Kluster.ai** | [kluster.ai](https://kluster.ai) | `https://api.kluster.ai/v1` | Llama 3.1 405B, Qwen 2.5 72B | Batch inference specialist |
+| **Anyscale Endpoints** | [anyscale.com](https://app.endpoints.anyscale.com) | `https://api.endpoints.anyscale.com/v1` | Llama 3.3 70B, Mixtral 8x22B | Ray-based model serving |
+| **Replicate** | [replicate.com](https://replicate.com) | `https://api.replicate.com/v1` | Open models, FLUX, video | Pay-per-run; image/audio/video too |
+| **Inference.net** | [inference.net](https://inference.net) | `https://api.inference.net/v1` | DeepSeek-R1, Llama 3.1 70B | Decentralized inference network |
+| **Arcee AI** | [arcee.ai](https://arcee.ai) | `https://conductor.arcee.ai/v1` | Trinity-Large, Caller-Large | Enterprise fine-tuned models |
+| **Glhf.chat** | [glhf.chat](https://glhf.chat) | `https://glhf.chat/api/openai/v1` | Any HuggingFace model (`hf:` prefix) | vLLM-backed; run any HF model |
+| **Ollama Cloud** | [ollama.com](https://ollama.com) | `https://ollama.com/api` | gpt-oss:20b-cloud, gpt-oss:120b | Remote Ollama host; OpenCode-supported |
+
+---
+
+#### Decentralized, Sovereign & Enterprise Clouds
+
+Regional compliance, private networking, decentralized compute, and enterprise MLOps.
+
+| Provider | Website | API Base URL | Popular Models | Notes |
+|----------|---------|--------------|----------------|-------|
+| **AkashML** | [akash.network](https://akash.network) | `https://api.akashml.com/v1` | Llama 3, Qwen, DeepSeek | Decentralized GPU marketplace |
+| **AtlasCloud** | [atlascloud.ai](https://atlascloud.ai) | `https://api.atlascloud.ai/v1` | DeepSeek-V3, Seedance 2.0, Kling 3.0 | Language + image + video APIs |
+| **Chutes** | [chutes.ai](https://chutes.ai) | `https://llm.chutes.ai/v1` | Kimi, GLM, Qwen, MiniMax | Serverless custom model deploy |
+| **Cloudflare Workers AI** | [cloudflare.com](https://cloudflare.com) | `https://api.cloudflare.com/client/v4/accounts/{id}/ai/v1` | Llama 3.3, Gemma 4, Kimi K2.5, FLUX | Edge inference; neuron-second billing |
+| **DigitalOcean** | [digitalocean.com](https://digitalocean.com) | `https://inference.do-ai.run/v1/` | Llama 3 8B Instruct | Integrates with App Platform |
+| **GMICloud** | [gmicloud.ai](https://gmicloud.ai) | `https://api.gmi-serving.com/v1` | GLM-5.1-FP8, DeepSeek-V3.2 | Enterprise H100 GPU cloud |
+| **io.net** | [io.net](https://io.net) | `https://api.intelligence.io.solutions/api/v1` | GLM-4.5-Air, GPT-OSS 120B, Llama 3.3 | DePIN GPU clusters |
+| **NextBit** | [nextbit256.com](https://nextbit256.com) | `https://api.nextbit256.com/v1` | qwen:3.5-35b, qwen3:30b, qwen3:14b | EU data centers (Spain) |
+| **Novita** | [novita.ai](https://novita.ai) | `https://api.novita.ai/openai/v1` | Kimi K2.5, Llama, Qwen | Model APIs + agent sandboxes |
+| **Parasail** | [parasail.io](https://parasail.io) | `https://api.saas.parasail.io/v1` | DeepSeek-R1, QwenCoder 32B | Serverless + dedicated instances |
+| **Phala** | [phala.network](https://phala.network) | `POST /v1/chat/completions` | Qwen2.5-72B-Instruct | TEE confidential execution |
+| **Poolside** | [poolside.ai](https://poolside.ai) | `https://divers.poolsi.de/openai/v1/` | Laguna XS.2, Laguna M.1 | Code generation focus |
+| **Venice** | [venice.ai](https://venice.ai) | `https://api.venice.ai/api/v1` | llama-3.3-70b, fluently-xl | Privacy-first; web3 auth |
+| **Wafer** | [wafer.ai](https://wafer.ai) | `https://pass.wafer.ai/v1` | Qwen3.5-397B-A17B, GLM-5.1 | Fast serverless; Claude Code compatible |
+| **Azure OpenAI** | [azure.microsoft.com](https://azure.microsoft.com) | `https://.openai.azure.com/openai/v1` | OpenAI, Anthropic, Llama | Enterprise Microsoft integration |
+| **Google Vertex AI** | [cloud.google.com/vertex-ai](https://cloud.google.com/vertex-ai) | Region-dependent | Gemini, Claude, partners | VPC, IAM, enterprise procurement |
+| **Amazon Bedrock** | [aws.amazon.com/bedrock](https://aws.amazon.com/bedrock) | `https://bedrock-runtime..amazonaws.com` | Claude, Llama, Titan, Mistral | AWS-native; IAM & VPC integration |
+| **Baseten** | [baseten.co](https://baseten.co) | `https://model-{id}.api.baseten.co/v1` | Llama 3.3, DeepSeek-R1, custom | MLOps with Truss packaging |
+| **Clarifai** | [clarifai.com](https://clarifai.com) | Custom endpoints | Multimodal models | Data labeling & classification |
+| **Scaleway** | [scaleway.com](https://console.scaleway.com) | `https://api.scaleway.ai/v1` | Llama 3.3 70B, DeepSeek-R1 | European cloud; GDPR-compliant |
+| **OVHcloud AI** | [ovhcloud.com](https://www.ovhcloud.com/en/public-cloud/ai-endpoints/) | `https://oai.endpoints.kepler.ai.cloud.ovh.net/v1` | Llama 3.1 70B, Qwen 2.5 72B | EU-hosted open models |
+| **GitHub Models** | [github.com/marketplace/models](https://github.com/marketplace/models) | `https://models.inference.ai.azure.com` | GPT-4o, Llama 3.1 70B | Free tier with GitHub PAT |
+| **Modal** | [modal.com](https://modal.com) | `https://.modal.run/v1` | Any (self-deployed via vLLM) | Serverless GPU; deploy your own models |
+| **Azure Cognitive Services** | [azure.microsoft.com](https://azure.microsoft.com/products/ai-services) | `https://.cognitiveservices.azure.com/openai/v1` | GPT-4o, GPT-4.1, o3-mini | Separate from Azure OpenAI; OpenCode-supported |
+| **GitLab Duo** | [about.gitlab.com](https://about.gitlab.com/gitlab-duo/) | `https://gitlab.com/api/v4/ai` | duo-chat-haiku/sonnet/opus-4-5 | OAuth or PAT; Premium/Ultimate |
+| **GitHub Copilot** | [github.com/features/copilot](https://github.com/features/copilot) | OAuth device flow | GPT-4o, Claude, o3-mini | Copilot subscription; OpenCode `/connect` |
+| **SAP AI Core** | [sap.com](https://www.sap.com/products/artificial-intelligence/ai-core.html) | `https://api.ai..ml.hana.ondemand.com/v2` | GPT-4o, Claude, Gemini, Llama | BTP service key JSON auth |
+| **STACKIT AI Model Serving** | [stackit.de](https://www.stackit.de/en/product/stackit-ai-model-serving) | `https://api.openai-compat.model-serving.eu01.onstackit.cloud/v1` | Qwen3-VL 235B, Llama 3.3 70B | EU sovereign hosting |
+| **Snowflake Cortex** | [snowflake.com](https://docs.snowflake.com/en/user-guide/snowflake-cortex/cortex-llm-rest-api) | `https://.snowflakecomputing.com/api/v2/cortex/v1` | Claude Sonnet/Haiku 4.x, GPT-5 | OAuth or PAT; in-perimeter inference |
+
+---
+
+#### Multi-Provider Gateways & Routers
+
+One API surface for many upstream providers — ideal for **failover**, **cost optimization**, and **reducing credential sprawl**.
+
+| Provider | Website | API Base URL | What you get | Notes |
+|----------|---------|--------------|--------------|-------|
+| **OpenRouter** | [openrouter.ai](https://openrouter.ai) | `https://openrouter.ai/api/v1` | 300+ models from 60+ providers | Auto fallback & provider selection |
+| **Opper** | [opper.ai](https://opper.ai) | `https://api.opper.ai/v3/compat` | 300+ routed models | EU-hosted; PII shielding |
+| **Axiom** | [axiomstudio.ai](https://axiomstudio.ai) | `https://cloud.axiomstudio.ai/rest/v1/llm-gateway/v1/` | 18+ unified providers | Kubernetes-native enterprise routing |
+| **Switchpoint** | [switchpoint.ai](https://switchpoint.ai) | `https://api.ppq.ai` | Intelligent router | Request-aware provider selection |
+| **Relace** | [relace.ai](https://relace.ai) | `https://api.relace.ai/v1` | Apply 3, Search | Coding APIs; zero data retention default |
+| **Moonshot AI** | [api.moonshot.ai](https://api.moonshot.ai/v1) | `https://api.moonshot.ai/v1` | Kimi K2.7 Code, K2.6 | First-party Kimi gateway |
+| **Portkey** | [portkey.ai](https://portkey.ai) | `https://api.portkey.ai/v1` | 250+ models | Guardrails, caching, observability |
+| **LiteLLM** | [github.com/BerriAI/litellm](https://github.com/BerriAI/litellm) | `http://localhost:4000/v1` | 100+ providers | Open-source; self-host or cloud |
+| **Requesty** | [requesty.ai](https://requesty.ai) | `https://router.requesty.ai/v1` | Multi-provider routing | Auto-failover between providers |
+| **Unify.ai** | [unify.ai](https://unify.ai) | `https://api.unify.ai/v0` | ML-based routing | Picks optimal provider per query |
+| **Helicone** | [helicone.ai](https://helicone.ai) | `https://ai-gateway.helicone.ai/v1` | 100+ models | Observability-first AI gateway |
+| **Vercel AI Gateway** | [vercel.com](https://vercel.com/docs/ai-gateway) | `https://ai-gateway.vercel.sh/v1` | All major providers | Bundled with Vercel platform |
+| **Cloudflare AI Gateway** | [cloudflare.com](https://developers.cloudflare.com/ai-gateway/) | `https://gateway.ai.cloudflare.com/v1` | Any upstream provider | Edge caching; sits in front of APIs |
+| **Kong AI Gateway** | [konghq.com](https://konghq.com/products/kong-ai-gateway) | Self-hosted | Enterprise routing | For existing Kong infrastructure |
+| **OpenInference** | [openinference.ai](https://openinference.ai) | Tracing / observability | LLM telemetry | Execution graph tracing |
+| **Weights & Biases** | [wandb.ai](https://wandb.ai) | Evaluation registry | Model benchmarking | Experiment tracking |
+| **Perceptron** | [perceptron.ai](https://perceptron.ai) | Custom gateway | Enterprise routes | Custom middleware routing |
+| **Cortecs** | [cortecs.ai](https://cortecs.ai) | `https://api.cortecs.ai/v1` | Kimi K2, GPT-5 Mini | EU GDPR-compliant LLM router |
+| **OpenCode Zen** | [opencode.ai/zen](https://opencode.ai/zen) | `https://opencode.ai/zen/v1` | GPT-5.5, Claude Sonnet 4.6, Qwen Coder | Curated models for coding agents |
+| **OpenCode Go** | [opencode.ai/docs/go](https://opencode.ai/docs/go/) | `https://opencode.ai/zen/go/v1` | Kimi K2.7, GLM-5.1, DeepSeek V4 | Low-cost open coding models |
+| **LLM Gateway** | [llmgateway.io](https://llmgateway.io) | `https://api.llmgateway.io/v1` | GPT-4o, Claude, Gemini, GLM | Unified routing; OpenCode-supported |
+| **ZenMux** | [zenmux.ai](https://zenmux.ai) | `https://zenmux.ai/api/v1` | 200+ routed models | Enterprise routing & failover |
+| **Sakana AI (Fugu)** | [console.sakana.ai](https://console.sakana.ai) | `https://api.sakana.ai/v1` | Fugu, Fugu Ultra | Trained orchestrator; routes frontier LLM pool |
+| **Prism API** | [prism-api-promo](https://go165.github.io/prism-api-promo/) | `https://sub2api.558686.xyz/v1` | GPT-5.5, GPT-5.4, Claude, Gemini | Independent OpenAI-compatible gateway; crypto-friendly recharge/vouchers; overseas users |
+
+---
+
+#### Aggregators & API Marketplaces
+
+Single API key to access models from multiple upstream vendors.
+
+| Provider | Website | API Base URL | Popular Models | Notes |
+|----------|---------|--------------|----------------|-------|
+| **AIMLAPI** | [aimlapi.com](https://aimlapi.com) | `https://api.aimlapi.com/v1` | GPT-4o, Claude 3.5, Gemini | 300+ models; free tier available |
+| **Eden AI** | [edenai.co](https://edenai.co) | `https://api.edenai.co/v2` | OpenAI, Google, Anthropic routes | Multi-provider under one API |
+| **LemonData** | [lemondata.ai](https://lemondata.ai) | `https://api.lemondata.ai/v1` | GPT-4o, Claude 3.5, open models | 300+ models; $1 free credits |
+| **Coze (ByteDance)** | [coze.com](https://coze.com) | `https://api.coze.com/v1` | Via bots: GPT-4o, Gemini, Claude | Bot-builder platform with LLM backends |
+| **302.AI** | [302.ai](https://302.ai) | `https://api.302.ai/v1` | GLM-5, GPT-4o, Claude Sonnet | 100+ models; OpenCode-supported |
+| **FrogBot** | [frogbot.ai](https://frogbot.ai) | `https://app.frogbot.ai/api` | Claude, GPT-4o, Gemini | Unified AI subscription |
+
+---
+
+#### Embeddings & Specialized APIs
+
+Providers focused on specific tasks rather than general chat.
+
+| Provider | Website | API Base URL | Specialty | Notes |
+|----------|---------|--------------|-----------|-------|
+| **Voyage AI** | [voyageai.com](https://www.voyageai.com) | `https://api.voyageai.com/v1` | Embeddings & rerankers | Top-tier retrieval embeddings |
+| **Perplexity** | [docs.perplexity.ai](https://docs.perplexity.ai) | `https://api.perplexity.ai` | Search-grounded chat | Real-time web search in responses |
+| **NLP Cloud** | [nlpcloud.com](https://nlpcloud.com) | `https://api.nlpcloud.io/v1` | NER, summarization, chat | Custom API format; fine-tuned models |
+| **Puter.js** | [puter.com](https://puter.com) | `https://api.puter.com/ai/chat` | Free GPT/Claude/Gemini access | No API key needed; web/Node.js SDK |
+
+---
+
+#### Local & Self-Hosted Runtimes
+
+Run models on your own machine — **free, private, and unlimited**.
+
+| Provider | Website | API Base URL | Popular Models | Notes |
+|----------|---------|--------------|----------------|-------|
+| **Ollama** | [ollama.com](https://ollama.com) | `http://localhost:11434/v1` | Llama 3.3, Qwen 2.5, Gemma | Easiest local setup; 50+ models |
+| **LM Studio** | [lmstudio.ai](https://lmstudio.ai) | `http://localhost:1234/v1` | Any GGUF from HuggingFace | Best GUI; drag-and-drop models |
+| **llama.cpp** | [github.com/ggml-org/llama.cpp](https://github.com/ggml-org/llama.cpp) | `http://localhost:8080/v1` | Any GGUF model | Foundation for most local tools |
+| **Jan.ai** | [jan.ai](https://jan.ai) | `http://localhost:1337/v1` | Supported local models | 100% offline desktop app |
+| **vLLM** | [github.com/vllm-project/vllm](https://github.com/vllm-project/vllm) | `http://localhost:8000/v1` | Any compatible checkpoint | Production-grade local serving |
+| **LocalAI** | [localai.io](https://localai.io) | `http://localhost:8080/v1` | OpenAI-compatible local stack | Drop-in OpenAI API replacement |
+| **Atomic Chat** | [atomicchat.ai](https://atomicchat.ai) | `http://127.0.0.1:1337/v1` | Qwen-Coder, DeepSeek-Coder | Desktop local server; OpenCode-supported |
+
+---
+
+#### Environment Variables Cheat Sheet
+
+Copy these into your `.env` file or secrets manager:
+
+| Provider | Env Variable | API Base URL |
+|----------|--------------|--------------|
+| Google AI Studio | `GEMINI_API_KEY` | `https://generativelanguage.googleapis.com` |
+| Anthropic | `ANTHROPIC_API_KEY` | `https://api.anthropic.com` |
+| OpenAI | `OPENAI_API_KEY` | `https://api.openai.com/v1` |
+| DeepSeek | `DEEPSEEK_API_KEY` | `https://api.deepseek.com/v1` |
+| Mistral AI | `MISTRAL_API_KEY` | `https://api.mistral.ai/v1` |
+| xAI | `XAI_API_KEY` | `https://api.x.ai/v1` |
+| Groq | `GROQ_API_KEY` | `https://api.groq.com/openai/v1` |
+| Together AI | `TOGETHER_API_KEY` | `https://api.together.xyz/v1` |
+| Fireworks AI | `FIREWORKS_API_KEY` | `https://api.fireworks.ai/inference/v1` |
+| Nebius Studio | `NEBIUS_API_KEY` | `https://api.tokenfactory.nebius.com/v1/` |
+| GMI Cloud | `GMI_API_KEY` | `https://api.gmi-serving.com/v1` |
+| Wafer | `WAFER_API_KEY` | `https://pass.wafer.ai/v1` |
+| OpenRouter | `OPENROUTER_API_KEY` | `https://openrouter.ai/api/v1` |
+| Portkey | `PORTKEY_API_KEY` | `https://api.portkey.ai/v1` |
+| Morph | `MORPH_API_KEY` | `https://api.morphllm.com/v1` |
+| MiniMax | `MINIMAX_API_KEY` | `https://api.minimax.io/v1` |
+| Alibaba DashScope | `DASHSCOPE_API_KEY` | `https://dashscope-intl.aliyuncs.com/compatible-mode/v1` |
+| HuggingFace | `HUGGINGFACE_API_KEY` | `https://router.huggingface.co/v1` |
+| NVIDIA NIM | `NVIDIA_API_KEY` | `https://integrate.api.nvidia.com/v1` |
+| Perplexity | `PERPLEXITY_API_KEY` | `https://api.perplexity.ai` |
+| Moonshot / Kimi | `MOONSHOT_API_KEY` | `https://api.moonshot.ai/v1` |
+| GitHub Models | `GITHUB_TOKEN` | `https://models.inference.ai.azure.com` |
+| OpenCode Zen / Go | `OPENCODE_API_KEY` | `https://opencode.ai/zen/v1` |
+| LLM Gateway | `LLM_GATEWAY_API_KEY` | `https://api.llmgateway.io/v1` |
+| ZenMux | `ZENMUX_API_KEY` | `https://zenmux.ai/api/v1` |
+| Sakana AI (Fugu) | `SAKANA_API_KEY` | `https://api.sakana.ai/v1` |
+| Prism API | `PRISM_API_KEY` | `https://sub2api.558686.xyz/v1` |
+| STACKIT | `STACKIT_API_KEY` | `https://api.openai-compat.model-serving.eu01.onstackit.cloud/v1` |
+| Snowflake Cortex | `SNOWFLAKE_CORTEX_TOKEN` | `https://.snowflakecomputing.com/api/v2/cortex/v1` |
+| 302.AI | `302AI_API_KEY` | `https://api.302.ai/v1` |
+
+---
+
+#### Integration Examples
+
+###### OpenAI SDK → Any OpenAI-Compatible Provider (Python)
+
+```python
+import os
+from openai import OpenAI
+
+client = OpenAI(
+    base_url="https://api.tokenfactory.nebius.com/v1/",
+    api_key=os.environ["NEBIUS_API_KEY"],
+)
+
+stream = client.chat.completions.create(
+    model="deepseek-ai/DeepSeek-R1-0528",
+    messages=[{"role": "user", "content": "Explain quantum computing in one paragraph."}],
+    temperature=0.1,
+    stream=True,
+)
+
+for chunk in stream:
+    if chunk.choices[0].delta.content:
+        print(chunk.choices[0].delta.content, end="", flush=True)
+```
+
+###### Anthropic SDK → Compatible Gateway (Node.js)
+
+```javascript
+import Anthropic from "@anthropic-ai/sdk";
+
+const anthropic = new Anthropic({
+  baseURL: "https://pass.wafer.ai",
+  apiKey: process.env.WAFER_API_KEY,
+});
+
+const message = await anthropic.messages.create({
+  model: "Qwen3.5-397B-A17B",
+  max_tokens: 4096,
+  messages: [{ role: "user", content: "Write a hello world in Rust." }],
+});
+
+console.log(message.content[0].text);
+```
+
+###### Alibaba Qwen via OpenAI SDK (Python)
+
+```python
+import os
+from openai import OpenAI
+
+client = OpenAI(
+    api_key=os.environ["DASHSCOPE_API_KEY"],
+    base_url="https://dashscope-intl.aliyuncs.com/compatible-mode/v1",
+)
+
+response = client.chat.completions.create(
+    model="qwen3-max",
+    messages=[{"role": "user", "content": "Hello from Qwen!"}],
+)
+print(response.choices[0].message.content)
+```
+
+###### OpenRouter — One Key, Many Models
+
+```bash
+curl https://openrouter.ai/api/v1/chat/completions \
+  -H "Authorization: Bearer $OPENROUTER_API_KEY" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "model": "anthropic/claude-sonnet-4",
+    "messages": [{"role": "user", "content": "Hello!"}]
+  }'
+```
+
+---
+
+#### Choosing the Right Provider
+
+| Your goal | Start here |
+|-----------|------------|
+| Best overall reasoning & tools | OpenAI, Anthropic, Google Gemini |
+| Lowest cost / open models | DeepInfra, Together, SiliconFlow, Groq |
+| EU data residency | Mistral, Nebius, NextBit, Scaleway, OVHcloud, Opper |
+| One API for everything | OpenRouter, Portkey, Opper, AIMLAPI |
+| Code generation | Poolside, Morph, Moonshot Kimi |
+| Privacy / no logging | Venice, Relace (ZDR), Phala (TEE), Local (Ollama) |
+| Enterprise & compliance | Azure OpenAI, Google Vertex AI, Amazon Bedrock |
+| Free tier / prototyping | Groq, Gemini, GitHub Models, HuggingFace, OpenRouter |
+| Chinese models | DeepSeek, Qwen (DashScope), Zhipu, MiniMax, StepFun |
+| Search-grounded answers | Perplexity Sonar |
+| Self-hosted / offline | Ollama, LM Studio, vLLM, LocalAI |
+
+###### Production tips
+
+1. **Use a gateway for HA** — Route across 2–3 providers so rate limits or outages don't take down your app.
+2. **Pin model versions** — Providers silently update models. Pin explicit model IDs and monitor output quality.
+3. **Enable context caching** — Gemini, DeepSeek, and Anthropic support caching that can cut costs significantly on repeated prompts.
+4. **Respect data sovereignty** — Route PII and regulated data only through EU or private VPC endpoints.
+
+---
+
+#### Documentation
+
+Step-by-step guides in [`docs/`](docs/README.md):
+
+| Guide | Description |
+|-------|-------------|
+| [Getting Started](docs/getting-started.md) | Clone, first lookup, pick a provider |
+| [Python Lookup](docs/python-lookup.md) | `llm_lookup.py` — search providers & models |
+| [Sync Models](docs/sync-models.md) | Refresh live model catalogs |
+| [Integration Guide](docs/integration-guide.md) | OpenAI / Anthropic SDK setup |
+| [Data Structure](docs/data-structure.md) | `providers.json`, `models.json` format |
+| [Adding Providers](docs/adding-providers.md) | Add or update a provider |
+| [Contributing](docs/contributing.md) | PR workflow & checklist |
+
+---
+
+#### Repository Structure
+
+```
+all-llm-provider-list/
+├── README.md              ← Provider tables & quick reference
+├── llm_lookup.py          ← Python lookup script
+├── scripts/
+│   └── sync_models.py     ← Refresh model catalogs
+├── example.py             ← Usage examples
+├── data/
+│   ├── providers.json     ← 97 providers (source of truth)
+│   ├── models.json        ← Model catalogs per provider
+│   └── static_models.json ← Fallback model lists
+└── docs/                  ← Step-by-step guides
+    ├── README.md
+    ├── getting-started.md
+    ├── python-lookup.md
+    ├── sync-models.md
+    ├── integration-guide.md
+    ├── data-structure.md
+    ├── adding-providers.md
+    └── contributing.md
+```
+
+---
+
+#### Contributing
+
+Found a new provider, updated endpoint, or wrong model name? PRs welcome!
+
+See [docs/contributing.md](docs/contributing.md) and [docs/adding-providers.md](docs/adding-providers.md) for the full workflow.
+
+---
+
+#### Disclaimer
+
+This list is maintained for **educational and integration reference** purposes. We are not affiliated with any listed provider. API endpoints, pricing, and model availability can change without notice. Always refer to official provider documentation for production deployments.
+
+---
+
+#### License
+
+MIT — use freely, attribute when you share.
+
+
+# felipetruman/free-llm-hub - https://github.com/felipetruman/free-llm-hub
+## Repository: felipetruman/free-llm-hub
+
+🌟 Catálogo unificado de 187+ APIs de LLM, motores OSS, gateways e ecossistema de IA
+
+- Stars: 0
+- Forks: 1
+- Watchers: 0
+- Open issues: 2
+- Primary language: Python
+- Languages: Python (95.5%), Makefile (2.6%), Shell (1.9%)
+- License: Other (NOASSERTION)
+- Topics: ai, anthropic, awesome-list, catalog, free-api, inference, llm, llm-apis, open-source, openai
+- Default branch: main
+- Homepage: https://github.com/felipetruman/free-llm-hub
+- Created: 2026-05-08T14:10:10Z
+- Last push: 2026-07-15T13:50:59Z
+- Contributors: 2 (top: felipetruman, github-actions[bot])
+- Releases: 1
+- Latest release: v0.2.0 (2026-05-08T18:02:59Z)
+
+---
+
+## 🌟 Free LLM Hub
+
+**🌍 Read this in other languages:** 🇺🇸 **English** • [🇧🇷 Português (BR)](.github/i18n/README.pt-BR.md) • [🇵🇹 Português (PT)](.github/i18n/README.pt-PT.md) • [🇪🇸 Español](.github/i18n/README.es.md) • [🇫🇷 Français](.github/i18n/README.fr.md) • [🇨🇳 中文 (简体)](.github/i18n/README.zh-CN.md) • [🇯🇵 日本語](.github/i18n/README.ja.md)
+
+![Anchors](https://github.com/felipetruman/free-llm-hub/actions/workflows/check-anchors.yml/badge.svg)
+
+> A unified, community-driven catalog of LLM APIs, inference engines, gateways, and the entire OSS LLM ecosystem.
+
+**Total entries:** 187 • **Last updated:** auto-generated
+
+#### 📑 Table of Contents
+
+- [📡 Provider APIs](##provider-apis) (18)
+- [🔌 Inference Providers](##inference-providers) (24)
+- [💰 Subscription Plans](##subscription-plans) (47)
+- [🛠️ Inference Engines (OSS)](##inference-engines-oss) (13)
+- [🚪 Gateways / Routers](##gateways-routers) (11)
+- [🎨 Specialty APIs](##specialty-apis) (22)
+- [🤖 Agent Frameworks](##agent-frameworks) (5)
+- [📚 LLM Frameworks](##llm-frameworks) (6)
+- [🗄️ Vector Databases](##vector-databases) (8)
+- [📊 Eval Frameworks](##eval-frameworks) (4)
+- [📦 Model Catalogs](##model-catalogs) (4)
+- [💻 Coding Tools](##coding-tools) (5)
+- [🖥️ Desktop UIs](##desktop-uis) (6)
+- [🧬 Open-Weights Families](##open-weights-families) (14)
+
+---
+
+#### 📡 Provider APIs
+
+| Name | Country | Pricing | Rate Limits | Models / Notes | Link |
+| --- | --- | --- | --- | --- | --- |
+| **Google AI Studio (Gemini)** | US | 🟢 Freemium | 15 RPM, 1000 RPD | gemini-2.5-pro, gemini-2.5-flash, gemini-2.5-flash-lite | [🔗](https://aistudio.google.com) |
+| **Mistral AI (La Plateforme)** | FR | 🟢 Freemium | 60 RPM, 1,000,000,000 tok/mo | mistral-large-3, mistral-small-3.1, ministral-8b | [🔗](https://console.mistral.ai) |
+| **Cohere** | CA | 🟢 Freemium | 20 RPM | command-a, command-r-plus, command-r7b | [🔗](https://cohere.com) |
+| **Zhipu AI (Z.AI / GLM)** | CN | 🟢 Freemium | — | glm-4.7-flash, glm-4.5-flash, glm-4.6v-flash | [🔗](https://open.bigmodel.cn) |
+| **DeepSeek Platform** | CN | 💵 $0.14/$0.28 per MTok | — | deepseek-v3.2, deepseek-r1, deepseek-v4-pro | [🔗](https://platform.deepseek.com) |
+| **Moonshot AI (Kimi)** | CN | 🟢 Freemium | — | kimi-k2.5, kimi-k2.6, kimi-long-context | [🔗](https://platform.moonshot.cn) |
+| **DashScope (Alibaba)** | CN | 🟢 Freemium | — | qwen-max, qwen-plus, qwen-vl | [🔗](https://dashscope.aliyun.com) |
+| **MiniMax** | CN | 🎁 Trial | — | minimax-m2.5, minimax-m2.1, abab6.5 | [🔗](https://api.minimax.chat) |
+| **01.AI (Yi / 零一万物)** | CN | 🎁 Trial | — | yi-large, yi-lightning, yi-vision | [🔗](https://platform.01.ai) |
+| **StepFun (阶跃星辰)** | CN | 🎁 Trial | — | step-3.5-flash, step-2 | [🔗](https://platform.stepfun.com) |
+| **Baidu Qianfan (ERNIE)** | CN | 🟢 Freemium | — | ernie-4.0, ernie-speed | [🔗](https://qianfan.cloud.baidu.com) |
+| **Tencent Hunyuan** | CN | 🟢 Freemium | — | hunyuan-lite, hunyuan-pro, hunyuan-turbo | [🔗](https://hunyuan.tencent.com) |
+| **InternLM (Shanghai AI Lab)** | CN | 🟢 Freemium | — | internlm2.5, internvl | [🔗](https://internlm.intern-ai.org.cn) |
+| **OpenAI API** | US | 💵 $1.25/$10.0 per MTok | — | gpt-5, gpt-5.1, gpt-5.2 | [🔗](https://platform.openai.com) |
+| **Anthropic API** | US | 💵 $3.0/$15.0 per MTok | — | claude-sonnet-4.6, claude-opus-4.6, claude-haiku-4 | [🔗](https://console.anthropic.com) |
+| **xAI Grok API** | US | 💵 $3.0/$15.0 per MTok | — | grok-3, grok-2 | [🔗](https://console.x.ai) |
+| **Perplexity Sonar API** | US | 💵 Pay-per-token | — | sonar, sonar-pro | [🔗](https://docs.perplexity.ai) |
+| **Reka AI** | US | 🎁 Trial | — | reka-core, reka-flash, reka-edge | [🔗](https://reka.ai) |
+
+#### 🔌 Inference Providers
+
+| Name | Country | Pricing | Rate Limits | Models / Notes | Link |
+| --- | --- | --- | --- | --- | --- |
+| **Groq** | US | 🟢 Freemium | 30 RPM, 1000 RPD | llama-3.3-70b, llama-4-scout, kimi-k2 | [🔗](https://groq.com) |
+| **Cerebras** | US | 🟢 Freemium | 30 RPM, 14400 RPD | llama-3.3-70b, qwen3-235b, gpt-oss-120b | [🔗](https://cloud.cerebras.ai) |
+| **NVIDIA NIM** | US | 🟢 Freemium | 40 RPM | llama-3.3-70b, mistral-large, qwen3-235b | [🔗](https://build.nvidia.com) |
+| **Cloudflare Workers AI** | US | 🟢 Freemium | — | llama-3.3-70b, qwen-qwq-32b, +47 more | [🔗](https://developers.cloudflare.com/workers-ai) |
+| **HuggingFace Inference Providers** | US | 🟢 Freemium | — | llama-3.3-70b, qwen2.5-72b, mistral-7b | [🔗](https://huggingface.co/docs/inference-providers) |
+| **OpenCode Zen** | US | 🟢 Freemium | — | — | [🔗](https://opencode.ai) |
+| **Ollama Cloud** | US | 🟢 Freemium | — | deepseek-v3.2, qwen3.5, kimi-k2.5 | [🔗](https://ollama.com/cloud) |
+| **LLM7.io** | GB | 🟢 Free | 30 RPM | deepseek-r1, qwen2.5-coder, +27 more | [🔗](https://llm7.io) |
+| **Kluster AI** | US | 🟢 Freemium | — | deepseek-r1, llama-4-maverick, qwen3-235b | [🔗](https://kluster.ai) |
+| **Together AI** | US | 🎁 $5 trial | — | llama-3.3, mixtral, qwen-2.5 | [🔗](https://together.ai) |
+| **Fireworks AI** | US | 🎁 $1 trial | 600 RPM | llama-3.3-70b, qwen-2.5-72b, deepseek-v3 | [🔗](https://fireworks.ai) |
+| **DeepInfra** | US | 💵 $0.14/$0.28 per MTok | — | deepseek-v4-flash, kimi-k2.6, glm-5 | [🔗](https://deepinfra.com) |
+| **Baseten** | US | 🎁 $30 trial | — | — | [🔗](https://baseten.co) |
+| **Nebius** | NL | 🎁 Trial | — | — | [🔗](https://nebius.ai) |
+| **Novita AI** | SG | 🎁 Trial | — | — | [🔗](https://novita.ai) |
+| **Hyperbolic** | US | 🎁 Trial | — | llama-3.3, deepseek | [🔗](https://hyperbolic.xyz) |
+| **SambaNova Cloud** | US | 🟢 Freemium | — | llama-4 | [🔗](https://cloud.sambanova.ai) |
+| **Scaleway Generative APIs** | FR | 🟢 Freemium | — | — | [🔗](https://www.scaleway.com/en/generative-apis) |
+| **Lepton AI** | US | 🎁 $10 trial | — | — | [🔗](https://lepton.ai) |
+| **Avian.io** | US | 🟢 Freemium | — | llama-3.1-405b, qwen | [🔗](https://avian.io) |
+| **Featherless AI** | US | 💳 $10/mo | — | 4000+ HF models | [🔗](https://featherless.ai) |
+| **Targon (Bittensor)** | US | 🟢 Freemium | — | deepseek, llama | [🔗](https://targon.com) |
+| **Chutes** | — | 🎁 Trial | — | — | [🔗](https://chutes.ai) |
+| **SiliconFlow (硅基流动)** | CN | 🟢 Freemium | 1000 RPM, 50000 TPM | qwen3-8b, deepseek-r1-distill, glm-4.1v-9b | [🔗](https://cloud.siliconflow.cn) |
+
+#### 💰 Subscription Plans
+
+| Name | Country | Pricing | Rate Limits | Models / Notes | Link |
+| --- | --- | --- | --- | --- | --- |
+| **ElevenLabs Starter** | — | 💳 $5/mo | — | 30K caracteres TTS/mês | [🔗](https://elevenlabs.io/pricing) |
+| **Suno Pro** | — | 💳 $10/mo | — | 500 créditos diários | [🔗](https://suno.com/pricing) |
+| **Midjourney Basic** | — | 💳 $10/mo | — | ~200 imagens/mês | [🔗](https://midjourney.com) |
+| **GitHub Copilot Pro** | — | 💳 $10/mo | — | gpt-5, claude-opus-4.6, gemini-3 | [🔗](https://github.com/features/copilot) |
+| **Tabnine Pro** | — | 💳 $12/mo | — | Code completion full-length, multi-LLM chat | [🔗](https://www.tabnine.com/pricing) |
+| **Leonardo.ai Apprentice** | — | 💳 $12/mo | — | — | [🔗](https://leonardo.ai) |
+| **Descript Hobbyist** | — | 💳 $12/mo | — | 10h transcrição/mês | [🔗](https://descript.com) |
+| **Runway Standard** | — | 💳 $15/mo | — | — | [🔗](https://runwayml.com/pricing) |
+| **Windsurf Pro** | — | 💳 $15/mo | — | claude-opus-4.6, gpt-5.4, gemini-3-pro | [🔗](https://windsurf.com/pricing) |
+| **Mistral Le Chat Pro** | — | 💳 $15/mo | — | mistral-large-3 | [🔗](https://chat.mistral.ai) |
+| **Augment Code Indie** | — | 💳 $15/mo | — | — | [🔗](https://augmentcode.com) |
+| **Writesonic** | — | 💳 $16/mo | — | — | [🔗](https://writesonic.com) |
+| **GitHub Copilot Business** | — | 💳 $19/mo | — | — | [🔗](https://github.com/features/copilot) |
+| **Amazon Q Developer Pro** | — | 💳 $19/mo | — | — | [🔗](https://aws.amazon.com/q/developer) |
+| **NotebookLM Plus** | — | 💳 $19.99/mo | — | — | [🔗](https://notebooklm.google) |
+| **ChatGPT Plus** | — | 💳 $20/mo | — | gpt-5.4, codex, dall-e-3 | [🔗](https://chatgpt.com) |
+| **Claude Pro** | — | 💳 $20/mo | — | claude-opus-4.6, claude-sonnet-4.6 | [🔗](https://claude.ai) |
+| **Gemini Advanced** | — | 💳 $20/mo | — | gemini-3-pro | [🔗](https://gemini.google.com) |
+| **Perplexity Pro** | — | 💳 $20/mo | — | — | [🔗](https://perplexity.ai/pro) |
+| **Cursor Pro** | — | 💳 $20/mo | — | claude-opus-4.6, gpt-5.4, gemini-3-pro | [🔗](https://cursor.com/pricing) |
+| **v0 Premium (Vercel)** | — | 💳 $20/mo | — | — | [🔗](https://v0.dev) |
+| **Lovable** | — | 💳 $20/mo | — | — | [🔗](https://lovable.dev) |
+| **Claude Code Pro** | — | 💳 $20/mo | — | — | [🔗](https://www.anthropic.com/claude-code) |
+| **Grok Premium (X)** | — | 💳 $22/mo | — | grok-3 | [🔗](https://x.com/i/grok) |
+| **HeyGen Creator** | — | 💳 $29/mo | — | — | [🔗](https://heygen.com) |
+| **Synthesia Starter** | — | 💳 $29/mo | — | — | [🔗](https://synthesia.io) |
+| **Midjourney Standard** | — | 💳 $30/mo | — | — | [🔗](https://midjourney.com) |
+| **Tabnine Enterprise** | — | 💳 $39/mo | — | Self-host VPC/on-prem | [🔗](https://www.tabnine.com/pricing) |
+| **GitHub Copilot Enterprise** | — | 💳 $39/mo | — | — | [🔗](https://github.com/features/copilot) |
+| **Cursor Teams** | — | 💳 $40/mo | — | — | [🔗](https://cursor.com/pricing) |
+| **Jasper Creator** | — | 💳 $49/mo | — | — | [🔗](https://jasper.ai) |
+| **Copy.ai Pro** | — | 💳 $49/mo | — | — | [🔗](https://copy.ai) |
+| **Cursor Pro+** | — | 💳 $60/mo | — | 3x usage Claude/GPT/Gemini | [🔗](https://cursor.com/pricing) |
+| **Windsurf Team** | — | 💳 $100/mo | — | 1500 credits/user, SSO | [🔗](https://windsurf.com/pricing) |
+| **ChatGPT Pro (new)** | — | 💳 $100/mo | — | 5x Plus, 10x Codex | [🔗](https://chatgpt.com) |
+| **Claude Max 5x** | — | 💳 $100/mo | — | — | [🔗](https://claude.ai) |
+| **ChatGPT Pro (original)** | — | 💳 $200/mo | — | 20x Plus, Sora, exclusive Pro models | [🔗](https://chatgpt.com) |
+| **Claude Max 20x** | — | 💳 $200/mo | — | — | [🔗](https://claude.ai) |
+| **Cursor Ultra** | — | 💳 $200/mo | — | — | [🔗](https://cursor.com/pricing) |
+| **Windsurf Max** | — | 💳 $200/mo | — | Unlimited credits, 1M context | [🔗](https://windsurf.com/pricing) |
+| **Gemini Ultra** | — | 💳 $250/mo | — | gemini-3-pro-deep-think | [🔗](https://gemini.google.com) |
+| **Devin (Cognition AI)** | — | 💳 $500/mo | — | Autonomous coding agent | [🔗](https://devin.ai) |
+| **OpenAI Enterprise** | — | 💳 Custom | — | Custom pricing, SOC2 | [🔗](https://openai.com/enterprise) |
+| **Anthropic Enterprise** | — | 💳 Custom | — | — | [🔗](https://anthropic.com/enterprise) |
+| **AWS Bedrock** | — | 💵 Pay-per-token | — | claude, llama, mistral | [🔗](https://aws.amazon.com/bedrock) |
+| **Azure OpenAI** | — | 💵 Pay-per-token | — | — | [🔗](https://azure.microsoft.com/en-us/products/ai-services/openai-service) |
+| **Google Vertex AI** | — | 💵 Pay-per-token | — | — | [🔗](https://cloud.google.com/vertex-ai) |
+
+#### 🛠️ Inference Engines (OSS)
+
+| Name | Country | Pricing | Rate Limits | Models / Notes | Link |
+| --- | --- | --- | --- | --- | --- |
+| **vLLM** | — | 🏠 Self-hosted | — | — | [🔗](https://vllm.ai) |
+| **Ollama** | — | 🏠 Self-hosted | — | — | [🔗](https://ollama.com) |
+| **llama.cpp** | — | 🏠 Self-hosted | — | — | [🔗](https://github.com/ggml-org/llama.cpp) |
+| **Text Generation Inference (TGI)** | — | 🏠 Self-hosted | — | — | [🔗](https://huggingface.co/docs/text-generation-inference) |
+| **SGLang** | — | 🏠 Self-hosted | — | — | [🔗](https://sgl-project.github.io) |
+| **TensorRT-LLM** | — | 🏠 Self-hosted | — | — | [🔗](https://nvidia.github.io/TensorRT-LLM) |
+| **LocalAI** | — | 🏠 Self-hosted | — | — | [🔗](https://localai.io) |
+| **LMDeploy** | — | 🏠 Self-hosted | — | — | [🔗](https://lmdeploy.readthedocs.io) |
+| **MLC-LLM** | — | 🏠 Self-hosted | — | — | [🔗](https://llm.mlc.ai) |
+| **KTransformers** | — | 🏠 Self-hosted | — | — | [🔗](https://kvcache-ai.github.io/ktransformers) |
+| **ExLlamaV2** | — | 🏠 Self-hosted | — | — | [🔗](https://github.com/turboderp-org/exllamav2) |
+| **Aphrodite Engine** | — | 🏠 Self-hosted | — | — | [🔗](https://aphrodite.pygmalion.chat) |
+| **CTranslate2** | — | 🏠 Self-hosted | — | — | [🔗](https://opennmt.net/CTranslate2) |
+
+#### 🚪 Gateways / Routers
+
+| Name | Country | Pricing | Rate Limits | Models / Notes | Link |
+| --- | --- | --- | --- | --- | --- |
+| **OpenRouter** | US | 🟢 Freemium | 20 RPM, 50 RPD | deepseek-r1-free, llama-3.3-70b-free, gpt-oss-120b-free | [🔗](https://openrouter.ai) |
+| **GitHub Models** | US | 🟢 Freemium | 15 RPM, 150 RPD | gpt-5, claude-sonnet-4, llama-3.3-70b | [🔗](https://github.com/marketplace/models) |
+| **Vercel AI Gateway** | US | 🟢 Freemium | — | multiple | [🔗](https://vercel.com/ai-gateway) |
+| **LiteLLM** | — | 🏠 Self-hosted | — | — | [🔗](https://litellm.ai) |
+| **Portkey AI Gateway** | — | 🟢 Freemium | — | — | [🔗](https://portkey.ai) |
+| **OneAPI** | — | 🏠 Self-hosted | — | — | [🔗](https://github.com/songquanpeng/one-api) |
+| **NewAPI** | — | 🏠 Self-hosted | — | — | [🔗](https://github.com/Calcium-Ion/new-api) |
+| **Helicone** | — | 🟢 Freemium | — | — | [🔗](https://helicone.ai) |
+| **Langfuse** | — | 🟢 Freemium | — | — | [🔗](https://langfuse.com) |
+| **RouteLLM** | — | 🏠 Self-hosted | — | — | [🔗](https://lmsys.org/blog/2024-07-01-routellm) |
+| **Arize Phoenix** | — | 🏠 Self-hosted | — | — | [🔗](https://docs.arize.com/phoenix) |
+
+#### 🎨 Specialty APIs
+
+| Name | Country | Pricing | Rate Limits | Models / Notes | Link |
+| --- | --- | --- | --- | --- | --- |
+| **ElevenLabs** | US | 🟢 Freemium | — | 10K chars/mês free | [🔗](https://elevenlabs.io) |
+| **PlayHT** | — | 🟢 Freemium | — | 12.5K chars/mês free | [🔗](https://play.ht) |
+| **Cartesia (Sonic)** | — | 🟢 Freemium | — | 10K chars/mês free | [🔗](https://cartesia.ai) |
+| **Resemble AI** | — | 🎁 Trial | — | — | [🔗](https://resemble.ai) |
+| **Coqui XTTS** | — | 🏠 Self-hosted | — | — | [🔗](https://github.com/coqui-ai/TTS) |
+| **Kokoro TTS** | — | 🏠 Self-hosted | — | — | [🔗](https://github.com/hexgrad/kokoro) |
+| **Deepgram** | — | 🎁 $200 trial | — | — | [🔗](https://deepgram.com) |
+| **AssemblyAI** | — | 🎁 $50 trial | — | — | [🔗](https://assemblyai.com) |
+| **Whisper** | — | 🏠 Self-hosted | — | — | [🔗](https://openai.com/research/whisper) |
+| **faster-whisper** | — | 🏠 Self-hosted | — | — | [🔗](https://github.com/SYSTRAN/faster-whisper) |
+| **Voyage AI** | — | 🟢 Freemium | — | 50M tokens free | [🔗](https://voyageai.com) |
+| **Jina AI** | — | 🟢 Freemium | — | 1M tokens free | [🔗](https://jina.ai) |
+| **Mixedbread** | DE | 🟢 Freemium | — | — | [🔗](https://mixedbread.ai) |
+| **Nomic Atlas** | — | 🟢 Freemium | — | — | [🔗](https://atlas.nomic.ai) |
+| **fal.ai** | — | 🎁 Trial | — | — | [🔗](https://fal.ai) |
+| **Pollinations** | — | 🟢 Free | — | — | [🔗](https://pollinations.ai) |
+| **Replicate** | — | 🎁 $0.5 trial | — | — | [🔗](https://replicate.com) |
+| **ComfyUI** | — | 🏠 Self-hosted | — | — | [🔗](https://www.comfy.org) |
+| **AUTOMATIC1111 WebUI** | — | 🏠 Self-hosted | — | — | [🔗](https://github.com/AUTOMATIC1111/stable-diffusion-webui) |
+| **Runway** | — | 💳 $15/mo | — | — | [🔗](https://runwayml.com) |
+| **Kling** | CN | 🟢 Freemium | — | — | [🔗](https://kling.ai) |
+| **Black Forest Labs (FLUX)** | DE | 🎁 Trial | — | — | [🔗](https://bfl.ai) |
+
+#### 🤖 Agent Frameworks
+
+| Name | Country | Pricing | Rate Limits | Models / Notes | Link |
+| --- | --- | --- | --- | --- | --- |
+| **CrewAI** | — | 🏠 Self-hosted | — | — | [🔗](https://crewai.com) |
+| **AutoGen** | — | 🏠 Self-hosted | — | — | [🔗](https://microsoft.github.io/autogen) |
+| **LangGraph** | — | 🏠 Self-hosted | — | — | [🔗](https://langchain-ai.github.io/langgraph) |
+| **Pydantic AI** | — | 🏠 Self-hosted | — | — | [🔗](https://ai.pydantic.dev) |
+| **Mastra** | — | 🏠 Self-hosted | — | — | [🔗](https://mastra.ai) |
+
+#### 📚 LLM Frameworks
+
+| Name | Country | Pricing | Rate Limits | Models / Notes | Link |
+| --- | --- | --- | --- | --- | --- |
+| **LangChain** | — | 🏠 Self-hosted | — | — | [🔗](https://langchain.com) |
+| **LlamaIndex** | — | 🏠 Self-hosted | — | — | [🔗](https://llamaindex.ai) |
+| **Haystack** | — | 🏠 Self-hosted | — | — | [🔗](https://haystack.deepset.ai) |
+| **DSPy** | — | 🏠 Self-hosted | — | — | [🔗](https://dspy.ai) |
+| **Semantic Kernel** | — | 🏠 Self-hosted | — | — | [🔗](https://learn.microsoft.com/semantic-kernel) |
+| **Vercel AI SDK** | — | 🟢 Free | — | — | [🔗](https://sdk.vercel.ai) |
+
+#### 🗄️ Vector Databases
+
+| Name | Country | Pricing | Rate Limits | Models / Notes | Link |
+| --- | --- | --- | --- | --- | --- |
+| **Qdrant** | — | 🟢 Freemium | — | 1GB free cloud | [🔗](https://qdrant.tech) |
+| **Weaviate** | — | 🟢 Freemium | — | — | [🔗](https://weaviate.io) |
+| **Milvus** | — | 🏠 Self-hosted | — | — | [🔗](https://milvus.io) |
+| **Chroma** | — | 🏠 Self-hosted | — | — | [🔗](https://trychroma.com) |
+| **pgvector** | — | 🏠 Self-hosted | — | — | [🔗](https://github.com/pgvector/pgvector) |
+| **Pinecone** | — | 🟢 Freemium | — | 1 free index | [🔗](https://pinecone.io) |
+| **LanceDB** | — | 🏠 Self-hosted | — | — | [🔗](https://lancedb.com) |
+| **Vespa** | — | 🏠 Self-hosted | — | — | [🔗](https://vespa.ai) |
+
+#### 📊 Eval Frameworks
+
+| Name | Country | Pricing | Rate Limits | Models / Notes | Link |
+| --- | --- | --- | --- | --- | --- |
+| **Promptfoo** | — | 🏠 Self-hosted | — | — | [🔗](https://promptfoo.dev) |
+| **DeepEval** | — | 🏠 Self-hosted | — | — | [🔗](https://deepeval.com) |
+| **Ragas** | — | 🏠 Self-hosted | — | — | [🔗](https://ragas.io) |
+| **OpenAI Evals** | — | 🏠 Self-hosted | — | — | [🔗](https://github.com/openai/evals) |
+
+#### 📦 Model Catalogs
+
+| Name | Country | Pricing | Rate Limits | Models / Notes | Link |
+| --- | --- | --- | --- | --- | --- |
+| **HuggingFace Hub** | — | 🟢 Freemium | — | — | [🔗](https://huggingface.co) |
+| **ModelScope (Alibaba)** | CN | 🟢 Freemium | — | — | [🔗](https://modelscope.cn) |
+| **models.dev** | — | 🟢 Free | — | — | [🔗](https://models.dev) |
+| **Civitai** | — | 🟢 Freemium | — | — | [🔗](https://civitai.com) |
+
+#### 💻 Coding Tools
+
+| Name | Country | Pricing | Rate Limits | Models / Notes | Link |
+| --- | --- | --- | --- | --- | --- |
+| **Aider** | — | 🏠 Self-hosted | — | — | [🔗](https://aider.chat) |
+| **Cline** | — | 🏠 Self-hosted | — | — | [🔗](https://cline.bot) |
+| **OpenHands** | — | 🏠 Self-hosted | — | — | [🔗](https://www.all-hands.dev) |
+| **Continue.dev** | — | 🏠 Self-hosted | — | — | [🔗](https://continue.dev) |
+| **Codex CLI** | — | 🏠 Self-hosted | — | — | [🔗](https://github.com/openai/codex) |
+
+#### 🖥️ Desktop UIs
+
+| Name | Country | Pricing | Rate Limits | Models / Notes | Link |
+| --- | --- | --- | --- | --- | --- |
+| **Open WebUI** | — | 🏠 Self-hosted | — | — | [🔗](https://openwebui.com) |
+| **Text Generation WebUI** | — | 🏠 Self-hosted | — | — | [🔗](https://github.com/oobabooga/text-generation-webui) |
+| **Jan** | — | 🏠 Self-hosted | — | — | [🔗](https://jan.ai) |
+| **GPT4All** | — | 🏠 Self-hosted | — | — | [🔗](https://gpt4all.io) |
+| **LM Studio** | — | 🟢 Free | — | — | [🔗](https://lmstudio.ai) |
+| **KoboldCpp** | — | 🏠 Self-hosted | — | — | [🔗](https://github.com/LostRuins/koboldcpp) |
+
+#### 🧬 Open-Weights Families
+
+| Name | Country | Pricing | Rate Limits | Models / Notes | Link |
+| --- | --- | --- | --- | --- | --- |
+| **Llama (Meta)** | — | — | — | llama-3.3-70b, llama-4-scout, llama-4-maverick | [🔗](https://llama.com) |
+| **Qwen (Alibaba)** | — | — | — | qwen3-0.6b, qwen3-8b, qwen3-72b | [🔗](https://qwenlm.github.io) |
+| **DeepSeek** | — | — | — | deepseek-v3, deepseek-r1, deepseek-v4-pro | [🔗](https://deepseek.com) |
+| **Mistral / Mixtral** | — | — | — | mistral-7b, mixtral-8x7b, mixtral-8x22b | [🔗](https://mistral.ai) |
+| **Gemma (Google)** | — | — | — | gemma-3-1b, gemma-3-4b, gemma-3-12b | [🔗](https://ai.google.dev/gemma) |
+| **Phi (Microsoft)** | — | — | — | phi-4, phi-4-mini | [🔗](https://huggingface.co/microsoft/phi-4) |
+| **Yi (01.AI)** | — | — | — | yi-6b, yi-9b, yi-34b | [🔗](https://01.ai) |
+| **InternLM** | — | — | — | internlm2.5-7b, internlm3-20b | [🔗](https://github.com/InternLM/InternLM) |
+| **GLM (Zhipu)** | — | — | — | glm-4-9b, glm-4-32b, glm-4.5-flash | [🔗](https://github.com/THUDM/GLM-4) |
+| **Hermes (Nous Research)** | — | — | — | hermes-3-405b, hermes-4 | [🔗](https://nousresearch.com) |
+| **gpt-oss (OpenAI)** | — | — | — | gpt-oss-20b, gpt-oss-120b | [🔗](https://openai.com/index/introducing-gpt-oss) |
+| **Granite (IBM)** | — | — | — | granite-3.0, granite-code | [🔗](https://www.ibm.com/granite) |
+| **OLMo (AllenAI)** | — | — | — | olmo-2-1b, olmo-2-13b, olmo-2-32b | [🔗](https://allenai.org/olmo) |
+| **SmolLM (HuggingFace)** | — | — | — | smollm-135m, smollm-360m, smollm-1.7b | [🔗](https://huggingface.co/blog/smollm) |
+
+---
+
+#### 🔍 Auto-discovered Models
+
+> Auto-generated by `scripts/discover_models.py` probing public `/v1/models` endpoints. **9 providers** responding publicly, **1157 models** total.
+
+###### 🟢 Public endpoints (no auth required)
+
+| Provider | Models | Endpoint |
+| --- | --- | --- |
+| `openrouter` | 358 | `https://openrouter.ai/api/v1` |
+| `vercel-ai-gateway` | 274 | `https://ai-gateway.vercel.sh/v1` |
+| `deepinfra` | 141 | `https://api.deepinfra.com/v1/openai` |
+| `huggingface-inference` | 131 | `https://router.huggingface.co/v1` |
+| `nvidia-nim` | 119 | `https://integrate.api.nvidia.com/v1` |
+| `novita` | 104 | `https://api.novita.ai/v3/openai` |
+| `kluster` | 15 | `https://api.kluster.ai/v1` |
+| `llm7` | 8 | `https://api.llm7.io/v1` |
+| `sambanova` | 7 | `https://api.sambanova.ai/v1` |
+
+ 
+ 🔒 15 providers require authentication (endpoint valid, key needed) 
+
+| Provider | Status |
+| --- | --- |
+| `cerebras` | auth_required_403 |
+| `dashscope` | auth_required_401 |
+| `deepseek` | auth_required_401 |
+| `fireworks` | auth_required_401 |
+| `github-models` | auth_required_401 |
+| `groq` | auth_required_401 |
+| `minimax` | auth_required_401 |
+| `mistral` | auth_required_401 |
+| `moonshot` | auth_required_401 |
+| `openai-api` | auth_required_401 |
+| `scaleway` | auth_required_401 |
+| `siliconflow` | auth_required_401 |
+| `together` | auth_required_401 |
+| `xai-grok` | auth_required_401 |
+| `zhipu` | auth_required_401 |
+
+ 
+
+ 
+ ⚠️ 3 endpoints with errors (TODO: investigate) 
+
+| Provider | Status |
+| --- | --- |
+| `ollama-cloud` | not_found_404 |
+| `opencode-zen` | not_found_404 |
+| `perplexity-api` | not_found_404 |
+
+ 
+
+---
+
+#### 🤝 Contributing
+
+Edit `data/0X-*.yaml`, run `./scripts/merge.sh && python scripts/render_readme.py`, open a PR.
+
+#### 📜 License
+
+MIT
+
+# nludd25/free-llm-api-resources - https://github.com/nludd25/free-llm-api-resources
+## Repository: nludd25/free-llm-api-resources
+
+- Stars: 0
+- Forks: 0
+- Watchers: 0
+- Open issues: 0
+- Primary language: Python
+- Languages: Python
+- Default branch: main
+- Created: 2026-07-10T04:00:12Z
+- Last push: 2026-07-10T04:00:20Z
+- Contributors: 1 (top: github-actions[bot])
+
+---
+
+ 
+
+## Free LLM API resources
+
+This lists various services that provide free access or credits towards API-based LLM usage.
+
+> [!NOTE] 
+> Please don't abuse these services, else we might lose them.
+
+> [!WARNING] 
+> This list explicitly excludes any services that are not legitimate (eg reverse engineers an existing chatbot)
+
+- [Free Providers](##free-providers)
+
+- [OpenRouter](##openrouter)
+ - [Google AI Studio](##google-ai-studio)
+ - [NVIDIA NIM](##nvidia-nim)
+ - [Mistral (La Plateforme)](##mistral-la-plateforme)
+ - [Mistral (Codestral)](##mistral-codestral)
+ - [HuggingFace Inference Providers](##huggingface-inference-providers)
+ - [Vercel AI Gateway](##vercel-ai-gateway)
+ - [OpenCode Zen](##opencode-zen)
+ - [Cerebras](##cerebras)
+ - [Groq](##groq)
+ - [Cohere](##cohere)
+ - [GitHub Models](##github-models)
+ - [Cloudflare Workers AI](##cloudflare-workers-ai)
+
+- [Providers with trial credits](##providers-with-trial-credits)
+
+- [Fireworks](##fireworks)
+ - [Baseten](##baseten)
+ - [Nebius](##nebius)
+ - [Novita](##novita)
+ - [AI21](##ai21)
+ - [Upstage](##upstage)
+ - [NLP Cloud](##nlp-cloud)
+ - [Alibaba Cloud (International) Model Studio](##alibaba-cloud-international-model-studio)
+ - [Modal](##modal)
+ - [Inference.net](##inferencenet)
+ - [Hyperbolic](##hyperbolic)
+ - [SambaNova Cloud](##sambanova-cloud)
+ - [Scaleway Generative APIs](##scaleway-generative-apis)
+
+#### Free Providers
+
+###### [OpenRouter](https://openrouter.ai)
+
+**Limits:**
+
+[20 requests/minute 50 requests/day Up to 1000 requests/day with $10 lifetime topup](https://openrouter.ai/docs/api/reference/limits)
+
+Models share a common quota.
+
+- [Hermes 3 Llama 3.1 405B](https://openrouter.ai/nousresearch/hermes-3-llama-3.1-405b:free)
+- [Llama 3.2 3B Instruct](https://openrouter.ai/meta-llama/llama-3.2-3b-instruct:free)
+- [Llama 3.3 70B Instruct](https://openrouter.ai/meta-llama/llama-3.3-70b-instruct:free)
+- [cognitivecomputations/dolphin-mistral-24b-venice-edition:free](https://openrouter.ai/cognitivecomputations/dolphin-mistral-24b-venice-edition:free)
+- [cohere/north-mini-code:free](https://openrouter.ai/cohere/north-mini-code:free)
+- [google/gemma-4-26b-a4b-it:free](https://openrouter.ai/google/gemma-4-26b-a4b-it:free)
+- [google/gemma-4-31b-it:free](https://openrouter.ai/google/gemma-4-31b-it:free)
+- [liquid/lfm-2.5-1.2b-instruct:free](https://openrouter.ai/liquid/lfm-2.5-1.2b-instruct:free)
+- [liquid/lfm-2.5-1.2b-thinking:free](https://openrouter.ai/liquid/lfm-2.5-1.2b-thinking:free)
+- [nvidia/nemotron-3-nano-30b-a3b:free](https://openrouter.ai/nvidia/nemotron-3-nano-30b-a3b:free)
+- [nvidia/nemotron-3-nano-omni-30b-a3b-reasoning:free](https://openrouter.ai/nvidia/nemotron-3-nano-omni-30b-a3b-reasoning:free)
+- [nvidia/nemotron-3-super-120b-a12b:free](https://openrouter.ai/nvidia/nemotron-3-super-120b-a12b:free)
+- [nvidia/nemotron-3-ultra-550b-a55b:free](https://openrouter.ai/nvidia/nemotron-3-ultra-550b-a55b:free)
+- [nvidia/nemotron-3.5-content-safety:free](https://openrouter.ai/nvidia/nemotron-3.5-content-safety:free)
+- [nvidia/nemotron-nano-12b-v2-vl:free](https://openrouter.ai/nvidia/nemotron-nano-12b-v2-vl:free)
+- [nvidia/nemotron-nano-9b-v2:free](https://openrouter.ai/nvidia/nemotron-nano-9b-v2:free)
+- [openai/gpt-oss-120b:free](https://openrouter.ai/openai/gpt-oss-120b:free)
+- [openai/gpt-oss-20b:free](https://openrouter.ai/openai/gpt-oss-20b:free)
+- [poolside/laguna-m.1:free](https://openrouter.ai/poolside/laguna-m.1:free)
+- [poolside/laguna-xs-2.1:free](https://openrouter.ai/poolside/laguna-xs-2.1:free)
+- [poolside/laguna-xs.2:free](https://openrouter.ai/poolside/laguna-xs.2:free)
+- [qwen/qwen3-coder:free](https://openrouter.ai/qwen/qwen3-coder:free)
+- [qwen/qwen3-next-80b-a3b-instruct:free](https://openrouter.ai/qwen/qwen3-next-80b-a3b-instruct:free)
+
+###### [Google AI Studio](https://aistudio.google.com)
+
+Data is used for training when used outside of the UK/CH/EEA/EU.
+
+ Model Name Model Limits 
+ Gemini 3.5 Flash 250,000 tokens/minute 20 requests/day 5 requests/minute 
+ Gemini 3 Flash 250,000 tokens/minute 20 requests/day 5 requests/minute 
+ Gemini 3.1 Flash-Lite 250,000 tokens/minute 500 requests/day 15 requests/minute 
+ Gemini 2.5 Flash 250,000 tokens/minute 20 requests/day 5 requests/minute 
+ Gemini 2.5 Flash-Lite 250,000 tokens/minute 20 requests/day 10 requests/minute 
+ Gemini 3.1 Flash TTS 10,000 tokens/minute 10 requests/day 3 requests/minute 
+ Gemini 2.5 Flash TTS 10,000 tokens/minute 10 requests/day 3 requests/minute 
+ Gemini Robotics-ER 1.6 250,000 tokens/minute 20 requests/day 5 requests/minute 
+ Gemini Robotics-ER 1.5 250,000 tokens/minute 20 requests/day 10 requests/minute 
+ Gemma 3 27B Instruct 15,000 tokens/minute 14,400 requests/day 30 requests/minute 
+ Gemma 3 12B Instruct 15,000 tokens/minute 14,400 requests/day 30 requests/minute 
+ Gemma 3 4B Instruct 15,000 tokens/minute 14,400 requests/day 30 requests/minute 
+ Gemma 3 1B Instruct 15,000 tokens/minute 14,400 requests/day 30 requests/minute 
+ 
+
+###### [NVIDIA NIM](https://build.nvidia.com/explore/discover)
+
+Phone number verification required.
+Models tend to be context window limited.
+
+**Limits:** 40 requests/minute
+
+- [Various open models](https://build.nvidia.com/models)
+
+###### [Mistral (La Plateforme)](https://console.mistral.ai/)
+
+- Free tier (Experiment plan) requires opting into data training
+- Requires phone number verification.
+
+**Limits (per-model):** 1 request/second, 500,000 tokens/minute, 1,000,000,000 tokens/month
+
+- [Open and Proprietary Mistral models](https://docs.mistral.ai/getting-started/models/models_overview/)
+
+###### [Mistral (Codestral)](https://codestral.mistral.ai/)
+
+- Currently free to use
+- Monthly subscription based
+- Requires phone number verification
+
+**Limits:** 30 requests/minute, 2,000 requests/day
+
+- Codestral
+
+###### [HuggingFace Inference Providers](https://huggingface.co/docs/inference-providers/en/index)
+
+HuggingFace Serverless Inference limited to models smaller than 10GB. Some popular models are supported even if they exceed 10GB.
+
+**Limits:** [$0.10/month in credits](https://huggingface.co/docs/inference-providers/en/pricing)
+
+- Various open models across supported providers
+
+###### [Vercel AI Gateway](https://vercel.com/docs/ai-gateway)
+
+Routes to various supported providers.
+
+**Limits:** [$5/month](https://vercel.com/docs/ai-gateway/pricing)
+
+###### [OpenCode Zen](https://opencode.ai/docs/zen/)
+
+AI gateway with curated models.
+
+Free models may use data for improvement.
+
+- Big Pickle Stealth
+- Nemotron 3 Super Free
+- DeepSeek V4 Flash Free
+
+###### [Cerebras](https://cloud.cerebras.ai/)
+
+ Model Name Model Limits 
+ gpt-oss-120b 30 requests/minute 60,000 tokens/minute 900 requests/hour 1,000,000 tokens/hour 14,400 requests/day 1,000,000 tokens/day 
+ Llama 3.1 8B 30 requests/minute 60,000 tokens/minute 900 requests/hour 1,000,000 tokens/hour 14,400 requests/day 1,000,000 tokens/day 
+ 
+
+###### [Groq](https://console.groq.com)
+
+ Model Name Model Limits 
+ Allam 2 7B 7,000 requests/day 6,000 tokens/minute 
+ Llama 3.1 8B 14,400 requests/day 6,000 tokens/minute 
+ Llama 3.3 70B 1,000 requests/day 12,000 tokens/minute 
+ Llama 4 Scout Instruct 1,000 requests/day 30,000 tokens/minute 
+ Whisper Large v3 2,000 requests/day 
+ Whisper Large v3 Turbo 2,000 requests/day 
+ canopylabs/orpheus-arabic-saudi 
+ canopylabs/orpheus-v1-english 
+ groq/compound 250 requests/day 70,000 tokens/minute 
+ groq/compound-mini 250 requests/day 70,000 tokens/minute 
+ meta-llama/llama-prompt-guard-2-22m 
+ meta-llama/llama-prompt-guard-2-86m 
+ openai/gpt-oss-120b 1,000 requests/day 8,000 tokens/minute 
+ openai/gpt-oss-20b 1,000 requests/day 8,000 tokens/minute 
+ openai/gpt-oss-safeguard-20b 1,000 requests/day 8,000 tokens/minute 
+ qwen/qwen3-32b 1,000 requests/day 6,000 tokens/minute 
+ qwen/qwen3.6-27b 1,000 requests/day 8,000 tokens/minute 
+ 
+
+###### [Cohere](https://cohere.com)
+
+**Limits:**
+
+[20 requests/minute 1,000 requests/month](https://docs.cohere.com/docs/rate-limits)
+
+Models share a common monthly quota.
+
+- c4ai-aya-expanse-32b
+- c4ai-aya-vision-32b
+- command-a-03-2025
+- command-a-plus-05-2026
+- command-a-reasoning-08-2025
+- command-a-translate-08-2025
+- command-a-vision-07-2025
+- command-r-08-2024
+- command-r-plus-08-2024
+- command-r7b-12-2024
+- command-r7b-arabic-02-2025
+
+###### [GitHub Models](https://github.com/marketplace/models)
+
+Extremely restrictive input/output token limits.
+
+**Limits:** [Dependent on Copilot subscription tier (Free/Pro/Pro+/Business/Enterprise)](https://docs.github.com/en/github-models/prototyping-with-ai-models##rate-limits)
+
+- Codestral 25.01
+- Cohere Command A
+- DeepSeek-R1
+- DeepSeek-R1-0528
+- DeepSeek-V3-0324
+- Llama 4 Maverick 17B 128E Instruct FP8
+- Llama 4 Scout 17B 16E Instruct
+- Llama-3.2-11B-Vision-Instruct
+- Llama-3.2-90B-Vision-Instruct
+- Llama-3.3-70B-Instruct
+- Meta-Llama-3.1-405B-Instruct
+- Meta-Llama-3.1-8B-Instruct
+- Ministral 3B
+- Mistral Medium 3 (25.05)
+- Mistral Small 3.1
+- OpenAI GPT-4.1
+- OpenAI GPT-4.1-mini
+- OpenAI GPT-4.1-nano
+- OpenAI GPT-4o
+- OpenAI GPT-4o mini
+- OpenAI Text Embedding 3 (large)
+- OpenAI Text Embedding 3 (small)
+- OpenAI gpt-5
+- OpenAI gpt-5-chat (preview)
+- OpenAI gpt-5-mini
+- OpenAI gpt-5-nano
+- OpenAI o1
+- OpenAI o1-mini
+- OpenAI o1-preview
+- OpenAI o3
+- OpenAI o3-mini
+- OpenAI o4-mini
+- Phi-4
+- Phi-4-mini-instruct
+- Phi-4-mini-reasoning
+- Phi-4-multimodal-instruct
+- Phi-4-reasoning
+
+###### [Cloudflare Workers AI](https://developers.cloudflare.com/workers-ai)
+
+**Limits:** [10,000 neurons/day](https://developers.cloudflare.com/workers-ai/platform/pricing/##free-allocation)
+
+- @cf/aisingapore/gemma-sea-lion-v4-27b-it
+- @cf/google/gemma-4-26b-a4b-it
+- @cf/ibm-granite/granite-4.0-h-micro
+- @cf/moonshotai/kimi-k2.6
+- @cf/moonshotai/kimi-k2.7-code
+- @cf/nvidia/nemotron-3-120b-a12b
+- @cf/openai/gpt-oss-120b
+- @cf/openai/gpt-oss-20b
+- @cf/qwen/qwen3-30b-a3b-fp8
+- @cf/zai-org/glm-4.7-flash
+- @cf/zai-org/glm-5.2
+- DeepSeek R1 Distill Qwen 32B
+- Gemma 2B Instruct (LoRA)
+- Gemma 7B Instruct (LoRA)
+- Llama 2 7B Chat (LoRA)
+- Llama 3.1 8B Instruct (FP8)
+- Llama 3.2 11B Vision Instruct
+- Llama 3.2 1B Instruct
+- Llama 3.2 3B Instruct
+- Llama 3.3 70B Instruct (FP8)
+- Llama 4 Scout Instruct
+- Llama Guard 3 8B
+- Mistral 7B Instruct v0.2 (LoRA)
+- Mistral Small 3.1 24B Instruct
+- Qwen 2.5 Coder 32B Instruct
+- Qwen QwQ 32B
+
+ 
+
+#### Providers with trial credits
+
+###### [Fireworks](https://fireworks.ai/)
+
+**Credits:** $1
+
+**Models:** [Various open models](https://fireworks.ai/models)
+
+###### [Baseten](https://app.baseten.co/)
+
+**Credits:** $30
+
+**Models:** [Any supported model - pay by compute time](https://www.baseten.co/library/)
+
+###### [Nebius](https://tokenfactory.nebius.com/)
+
+**Credits:** $1
+
+**Models:** [Various open models](https://tokenfactory.nebius.com/models)
+
+###### [Novita](https://novita.ai/?ref=ytblmjc&utm_source=affiliate)
+
+**Credits:** $0.5 for 1 year
+
+**Models:** [Various open models](https://novita.ai/models)
+
+###### [AI21](https://studio.ai21.com/)
+
+**Credits:** $10 for 3 months
+
+**Models:** Jamba family of models
+
+###### [Upstage](https://console.upstage.ai/)
+
+**Credits:** $10 for 3 months
+
+**Models:** Solar Pro/Mini
+
+###### [NLP Cloud](https://nlpcloud.com/home)
+
+**Credits:** $15
+
+**Requirements:** Phone number verification
+
+**Models:** Various open models
+
+###### [Alibaba Cloud (International) Model Studio](https://bailian.console.alibabacloud.com/)
+
+**Credits:** 1 million tokens/model
+
+**Models:** [Various open and proprietary Qwen models](https://www.alibabacloud.com/en/product/modelstudio)
+
+###### [Modal](https://modal.com)
+
+**Credits:** $5/month upon sign up, $30/month with payment method added
+
+**Models:** Any supported model - pay by compute time
+
+###### [Inference.net](https://inference.net)
+
+**Credits:** $1, $25 on responding to email survey
+
+**Models:** Various open models
+
+###### [Hyperbolic](https://app.hyperbolic.ai/)
+
+**Credits:** $1
+
+**Models:**
+
+- DeepSeek V3 0324
+- Llama 3.3 70B Instruct
+- deepseek-ai/deepseek-r1-0528
+- qwen/qwen3-coder-480b-a35b-instruct
+
+###### [SambaNova Cloud](https://cloud.sambanova.ai/)
+
+**Credits:** $5 for 3 months
+
+**Models:**
+
+- deepseek-v3.1
+- deepseek-v3.2
+- gemma-4-31b-it
+- gpt-oss-120b
+- meta-llama-3.3-70b-instruct
+- minimax-m2.7
+
+###### [Scaleway Generative APIs](https://console.scaleway.com/generative-api/models)
+
+**Credits:** 1,000,000 free tokens
+
+**Models:**
+
+- BGE-Multilingual-Gemma2
+- Gemma 3 27B Instruct
+- Llama 3.3 70B Instruct
+- Pixtral 12B (2409)
+- Whisper Large v3
+- devstral-2-123b-instruct-2512
+- gemma-4-26b-a4b-it
+- glm-5.2
+- gpt-oss-120b
+- holo2-30b-a3b
+- mistral-medium-3.5-128b
+- mistral-small-3.2-24b-instruct-2506
+- qwen3-235b-a22b-instruct-2507
+- qwen3-coder-30b-a3b-instruct
+- qwen3-embedding-8b
+- qwen3.5-397b-a17b
+- qwen3.6-35b-a3b
+- voxtral-small-24b-2507
+
+# cheahjs/free-llm-api-resources - https://github.com/cheahjs/free-llm-api-resources
+## Repository: cheahjs/free-llm-api-resources
+
+A list of free LLM inference resources accessible via API.
+
+- Stars: 27077
+- Forks: 2819
+- Watchers: 337
+- Open issues: 57
+- Primary language: Python
+- Languages: Python
+- Topics: ai, claude, gemini, llama, llm, openai
+- Default branch: main
+- Created: 2024-07-04T20:10:17Z
+- Last push: 2026-07-14T03:24:15Z
+- Contributors: 4 (top: cheahjs, github-actions[bot], salmanmkc, justmarkham)
+
+---
+
+ 
+
+## Free LLM API resources
+
+This lists various services that provide free access or credits towards API-based LLM usage.
+
+> [!NOTE] 
+> Please don't abuse these services, else we might lose them.
+
+> [!WARNING] 
+> This list explicitly excludes any services that are not legitimate (eg reverse engineers an existing chatbot)
+
+- [Free Providers](##free-providers)
+
+- [OpenRouter](##openrouter)
+ - [Google AI Studio](##google-ai-studio)
+ - [NVIDIA NIM](##nvidia-nim)
+ - [Mistral (La Plateforme)](##mistral-la-plateforme)
+ - [Mistral (Codestral)](##mistral-codestral)
+ - [HuggingFace Inference Providers](##huggingface-inference-providers)
+ - [Vercel AI Gateway](##vercel-ai-gateway)
+ - [OpenCode Zen](##opencode-zen)
+ - [Cerebras](##cerebras)
+ - [Groq](##groq)
+ - [Cohere](##cohere)
+ - [GitHub Models](##github-models)
+ - [Cloudflare Workers AI](##cloudflare-workers-ai)
+
+- [Providers with trial credits](##providers-with-trial-credits)
+
+- [Fireworks](##fireworks)
+ - [Baseten](##baseten)
+ - [Nebius](##nebius)
+ - [Novita](##novita)
+ - [AI21](##ai21)
+ - [Upstage](##upstage)
+ - [NLP Cloud](##nlp-cloud)
+ - [Alibaba Cloud (International) Model Studio](##alibaba-cloud-international-model-studio)
+ - [Modal](##modal)
+ - [Inference.net](##inferencenet)
+ - [Hyperbolic](##hyperbolic)
+ - [SambaNova Cloud](##sambanova-cloud)
+ - [Scaleway Generative APIs](##scaleway-generative-apis)
+
+#### Free Providers
+
+###### [OpenRouter](https://openrouter.ai)
+
+**Limits:**
+
+[20 requests/minute 50 requests/day Up to 1000 requests/day with $10 lifetime topup](https://openrouter.ai/docs/api/reference/limits)
+
+Models share a common quota.
+
+- [Hermes 3 Llama 3.1 405B](https://openrouter.ai/nousresearch/hermes-3-llama-3.1-405b:free)
+- [Llama 3.2 3B Instruct](https://openrouter.ai/meta-llama/llama-3.2-3b-instruct:free)
+- [Llama 3.3 70B Instruct](https://openrouter.ai/meta-llama/llama-3.3-70b-instruct:free)
+- [cognitivecomputations/dolphin-mistral-24b-venice-edition:free](https://openrouter.ai/cognitivecomputations/dolphin-mistral-24b-venice-edition:free)
+- [cohere/north-mini-code:free](https://openrouter.ai/cohere/north-mini-code:free)
+- [google/gemma-4-26b-a4b-it:free](https://openrouter.ai/google/gemma-4-26b-a4b-it:free)
+- [google/gemma-4-31b-it:free](https://openrouter.ai/google/gemma-4-31b-it:free)
+- [nvidia/nemotron-3-nano-30b-a3b:free](https://openrouter.ai/nvidia/nemotron-3-nano-30b-a3b:free)
+- [nvidia/nemotron-3-nano-omni-30b-a3b-reasoning:free](https://openrouter.ai/nvidia/nemotron-3-nano-omni-30b-a3b-reasoning:free)
+- [nvidia/nemotron-3-super-120b-a12b:free](https://openrouter.ai/nvidia/nemotron-3-super-120b-a12b:free)
+- [nvidia/nemotron-3-ultra-550b-a55b:free](https://openrouter.ai/nvidia/nemotron-3-ultra-550b-a55b:free)
+- [nvidia/nemotron-3.5-content-safety:free](https://openrouter.ai/nvidia/nemotron-3.5-content-safety:free)
+- [nvidia/nemotron-nano-12b-v2-vl:free](https://openrouter.ai/nvidia/nemotron-nano-12b-v2-vl:free)
+- [nvidia/nemotron-nano-9b-v2:free](https://openrouter.ai/nvidia/nemotron-nano-9b-v2:free)
+- [openai/gpt-oss-20b:free](https://openrouter.ai/openai/gpt-oss-20b:free)
+- [poolside/laguna-m.1:free](https://openrouter.ai/poolside/laguna-m.1:free)
+- [poolside/laguna-xs-2.1:free](https://openrouter.ai/poolside/laguna-xs-2.1:free)
+- [qwen/qwen3-coder:free](https://openrouter.ai/qwen/qwen3-coder:free)
+- [qwen/qwen3-next-80b-a3b-instruct:free](https://openrouter.ai/qwen/qwen3-next-80b-a3b-instruct:free)
+- [tencent/hy3:free](https://openrouter.ai/tencent/hy3:free)
+
+###### [Google AI Studio](https://aistudio.google.com)
+
+Data is used for training when used outside of the UK/CH/EEA/EU.
+
+ Model Name Model Limits 
+ Gemini 3.5 Flash 250,000 tokens/minute 20 requests/day 5 requests/minute 
+ Gemini 3 Flash 250,000 tokens/minute 20 requests/day 5 requests/minute 
+ Gemini 3.1 Flash-Lite 250,000 tokens/minute 500 requests/day 15 requests/minute 
+ Gemini 2.5 Flash 250,000 tokens/minute 20 requests/day 5 requests/minute 
+ Gemini 2.5 Flash-Lite 250,000 tokens/minute 20 requests/day 10 requests/minute 
+ Gemini 3.1 Flash TTS 10,000 tokens/minute 10 requests/day 3 requests/minute 
+ Gemini 2.5 Flash TTS 10,000 tokens/minute 10 requests/day 3 requests/minute 
+ Gemini Robotics-ER 1.6 250,000 tokens/minute 20 requests/day 5 requests/minute 
+ Gemini Robotics-ER 1.5 250,000 tokens/minute 20 requests/day 10 requests/minute 
+ Gemma 3 27B Instruct 15,000 tokens/minute 14,400 requests/day 30 requests/minute 
+ Gemma 3 12B Instruct 15,000 tokens/minute 14,400 requests/day 30 requests/minute 
+ Gemma 3 4B Instruct 15,000 tokens/minute 14,400 requests/day 30 requests/minute 
+ Gemma 3 1B Instruct 15,000 tokens/minute 14,400 requests/day 30 requests/minute 
+ 
+
+###### [NVIDIA NIM](https://build.nvidia.com/explore/discover)
+
+Phone number verification required.
+Models tend to be context window limited.
+
+**Limits:** 40 requests/minute
+
+- [Various open models](https://build.nvidia.com/models)
+
+###### [Mistral (La Plateforme)](https://console.mistral.ai/)
+
+- Free tier (Experiment plan) requires opting into data training
+- Requires phone number verification.
+
+**Limits (per-model):** 1 request/second, 500,000 tokens/minute, 1,000,000,000 tokens/month
+
+- [Open and Proprietary Mistral models](https://docs.mistral.ai/getting-started/models/models_overview/)
+
+###### [Mistral (Codestral)](https://codestral.mistral.ai/)
+
+- Currently free to use
+- Monthly subscription based
+- Requires phone number verification
+
+**Limits:** 30 requests/minute, 2,000 requests/day
+
+- Codestral
+
+###### [HuggingFace Inference Providers](https://huggingface.co/docs/inference-providers/en/index)
+
+HuggingFace Serverless Inference limited to models smaller than 10GB. Some popular models are supported even if they exceed 10GB.
+
+**Limits:** [$0.10/month in credits](https://huggingface.co/docs/inference-providers/en/pricing)
+
+- Various open models across supported providers
+
+###### [Vercel AI Gateway](https://vercel.com/docs/ai-gateway)
+
+Routes to various supported providers.
+
+**Limits:** [$5/month](https://vercel.com/docs/ai-gateway/pricing)
+
+###### [OpenCode Zen](https://opencode.ai/docs/zen/)
+
+AI gateway with curated models.
+
+Free models may use data for improvement.
+
+- Big Pickle Stealth
+- Nemotron 3 Super Free
+- DeepSeek V4 Flash Free
+
+###### [Cerebras](https://cloud.cerebras.ai/)
+
+ Model Name Model Limits 
+ gpt-oss-120b 30 requests/minute 60,000 tokens/minute 900 requests/hour 1,000,000 tokens/hour 14,400 requests/day 1,000,000 tokens/day 
+ Llama 3.1 8B 30 requests/minute 60,000 tokens/minute 900 requests/hour 1,000,000 tokens/hour 14,400 requests/day 1,000,000 tokens/day 
+ 
+
+###### [Groq](https://console.groq.com)
+
+ Model Name Model Limits 
+ Allam 2 7B 7,000 requests/day 6,000 tokens/minute 
+ Llama 3.1 8B 14,400 requests/day 6,000 tokens/minute 
+ Llama 3.3 70B 1,000 requests/day 12,000 tokens/minute 
+ Llama 4 Scout Instruct 1,000 requests/day 30,000 tokens/minute 
+ Whisper Large v3 2,000 requests/day 
+ Whisper Large v3 Turbo 2,000 requests/day 
+ canopylabs/orpheus-arabic-saudi 
+ canopylabs/orpheus-v1-english 
+ groq/compound 250 requests/day 70,000 tokens/minute 
+ groq/compound-mini 250 requests/day 70,000 tokens/minute 
+ meta-llama/llama-prompt-guard-2-22m 
+ meta-llama/llama-prompt-guard-2-86m 
+ openai/gpt-oss-120b 1,000 requests/day 8,000 tokens/minute 
+ openai/gpt-oss-20b 1,000 requests/day 8,000 tokens/minute 
+ openai/gpt-oss-safeguard-20b 1,000 requests/day 8,000 tokens/minute 
+ qwen/qwen3-32b 1,000 requests/day 6,000 tokens/minute 
+ qwen/qwen3.6-27b 1,000 requests/day 8,000 tokens/minute 
+ 
+
+###### [Cohere](https://cohere.com)
+
+**Limits:**
+
+[20 requests/minute 1,000 requests/month](https://docs.cohere.com/docs/rate-limits)
+
+Models share a common monthly quota.
+
+- c4ai-aya-expanse-32b
+- c4ai-aya-vision-32b
+- command-a-03-2025
+- command-a-plus-05-2026
+- command-a-reasoning-08-2025
+- command-a-translate-08-2025
+- command-a-vision-07-2025
+- command-r-08-2024
+- command-r-plus-08-2024
+- command-r7b-12-2024
+- command-r7b-arabic-02-2025
+
+###### [GitHub Models](https://github.com/marketplace/models)
+
+Extremely restrictive input/output token limits.
+
+**Limits:** [Dependent on Copilot subscription tier (Free/Pro/Pro+/Business/Enterprise)](https://docs.github.com/en/github-models/prototyping-with-ai-models##rate-limits)
+
+- Codestral 25.01
+- Cohere Command A
+- DeepSeek-R1
+- DeepSeek-R1-0528
+- DeepSeek-V3-0324
+- Llama 4 Maverick 17B 128E Instruct FP8
+- Llama 4 Scout 17B 16E Instruct
+- Llama-3.2-11B-Vision-Instruct
+- Llama-3.2-90B-Vision-Instruct
+- Llama-3.3-70B-Instruct
+- Meta-Llama-3.1-405B-Instruct
+- Meta-Llama-3.1-8B-Instruct
+- Ministral 3B
+- Mistral Medium 3 (25.05)
+- Mistral Small 3.1
+- OpenAI GPT-4.1
+- OpenAI GPT-4.1-mini
+- OpenAI GPT-4.1-nano
+- OpenAI GPT-4o
+- OpenAI GPT-4o mini
+- OpenAI Text Embedding 3 (large)
+- OpenAI Text Embedding 3 (small)
+- OpenAI gpt-5
+- OpenAI gpt-5-chat (preview)
+- OpenAI gpt-5-mini
+- OpenAI gpt-5-nano
+- OpenAI o1
+- OpenAI o1-mini
+- OpenAI o1-preview
+- OpenAI o3
+- OpenAI o3-mini
+- OpenAI o4-mini
+- Phi-4
+- Phi-4-mini-instruct
+- Phi-4-mini-reasoning
+- Phi-4-multimodal-instruct
+- Phi-4-reasoning
+
+###### [Cloudflare Workers AI](https://developers.cloudflare.com/workers-ai)
+
+**Limits:** [10,000 neurons/day](https://developers.cloudflare.com/workers-ai/platform/pricing/##free-allocation)
+
+- @cf/aisingapore/gemma-sea-lion-v4-27b-it
+- @cf/google/gemma-4-26b-a4b-it
+- @cf/ibm-granite/granite-4.0-h-micro
+- @cf/moonshotai/kimi-k2.6
+- @cf/moonshotai/kimi-k2.7-code
+- @cf/nvidia/nemotron-3-120b-a12b
+- @cf/openai/gpt-oss-120b
+- @cf/openai/gpt-oss-20b
+- @cf/qwen/qwen3-30b-a3b-fp8
+- @cf/zai-org/glm-4.7-flash
+- @cf/zai-org/glm-5.2
+- DeepSeek R1 Distill Qwen 32B
+- Gemma 2B Instruct (LoRA)
+- Gemma 7B Instruct (LoRA)
+- Llama 2 7B Chat (LoRA)
+- Llama 3.1 8B Instruct (FP8)
+- Llama 3.2 11B Vision Instruct
+- Llama 3.2 1B Instruct
+- Llama 3.2 3B Instruct
+- Llama 3.3 70B Instruct (FP8)
+- Llama 4 Scout Instruct
+- Llama Guard 3 8B
+- Mistral 7B Instruct v0.2 (LoRA)
+- Mistral Small 3.1 24B Instruct
+- Qwen 2.5 Coder 32B Instruct
+- Qwen QwQ 32B
+
+ 
+
+#### Providers with trial credits
+
+###### [Fireworks](https://fireworks.ai/)
+
+**Credits:** $1
+
+**Models:** [Various open models](https://fireworks.ai/models)
+
+###### [Baseten](https://app.baseten.co/)
+
+**Credits:** $30
+
+**Models:** [Any supported model - pay by compute time](https://www.baseten.co/library/)
+
+###### [Nebius](https://tokenfactory.nebius.com/)
+
+**Credits:** $1
+
+**Models:** [Various open models](https://tokenfactory.nebius.com/models)
+
+###### [Novita](https://novita.ai/?ref=ytblmjc&utm_source=affiliate)
+
+**Credits:** $0.5 for 1 year
+
+**Models:** [Various open models](https://novita.ai/models)
+
+###### [AI21](https://studio.ai21.com/)
+
+**Credits:** $10 for 3 months
+
+**Models:** Jamba family of models
+
+###### [Upstage](https://console.upstage.ai/)
+
+**Credits:** $10 for 3 months
+
+**Models:** Solar Pro/Mini
+
+###### [NLP Cloud](https://nlpcloud.com/home)
+
+**Credits:** $15
+
+**Requirements:** Phone number verification
+
+**Models:** Various open models
+
+###### [Alibaba Cloud (International) Model Studio](https://bailian.console.alibabacloud.com/)
+
+**Credits:** 1 million tokens/model
+
+**Models:** [Various open and proprietary Qwen models](https://www.alibabacloud.com/en/product/modelstudio)
+
+###### [Modal](https://modal.com)
+
+**Credits:** $5/month upon sign up, $30/month with payment method added
+
+**Models:** Any supported model - pay by compute time
+
+###### [Inference.net](https://inference.net)
+
+**Credits:** $1, $25 on responding to email survey
+
+**Models:** Various open models
+
+###### [Hyperbolic](https://app.hyperbolic.ai/)
+
+**Credits:** $1
+
+**Models:**
+
+- DeepSeek V3 0324
+- Llama 3.3 70B Instruct
+- deepseek-ai/deepseek-r1-0528
+- qwen/qwen3-coder-480b-a35b-instruct
+
+###### [SambaNova Cloud](https://cloud.sambanova.ai/)
+
+**Credits:** $5 for 3 months
+
+**Models:**
+
+- deepseek-v3.1
+- deepseek-v3.2
+- gemma-4-31b-it
+- gpt-oss-120b
+- meta-llama-3.3-70b-instruct
+- minimax-m2.7
+
+###### [Scaleway Generative APIs](https://console.scaleway.com/generative-api/models)
+
+**Credits:** 1,000,000 free tokens
+
+**Models:**
+
+- BGE-Multilingual-Gemma2
+- Gemma 3 27B Instruct
+- Llama 3.3 70B Instruct
+- Pixtral 12B (2409)
+- Whisper Large v3
+- devstral-2-123b-instruct-2512
+- gemma-4-26b-a4b-it
+- glm-5.2
+- gpt-oss-120b
+- holo2-30b-a3b
+- mistral-medium-3.5-128b
+- mistral-small-3.2-24b-instruct-2506
+- qwen3-235b-a22b-instruct-2507
+- qwen3-coder-30b-a3b-instruct
+- qwen3-embedding-8b
+- qwen3.5-397b-a17b
+- qwen3.6-35b-a3b
+- voxtral-small-24b-2507
+
+# README.md at main · open-free-llm-api/awesome-freellm-apis - https://github.com/open-free-llm-api/awesome-freellm-apis/blob/main/README.md
+## File: open-free-llm-api/awesome-freellm-apis/README.md
+
+- Repository: open-free-llm-api/awesome-freellm-apis | 134+ free LLM APIs & AI API keys from 40+ providers. Google Gemini, NVIDIA NIM, Groq, OpenRouter & more. One-click setup for Claude Code, Cursor and Codex. | 739 stars
+- Branch: main
+
+```md
+<p align="center">
+  <h1 align="center">awesome-free-llm-apis</h1>
+  <!-- AUTO_STATS -->
+  <p align="center"><strong>376+ free LLM APIs from 30 providers</strong> — find, compare & configure free models in seconds.</p>
+<!-- END_AUTO_STATS -->
+</p>
+
+<p align="center">
+  <a href="https://freellm.net" target="_blank" rel="noopener"><strong>🌐 Live at freellm.net</strong></a> —
+  <a href="https://freellm.net/models/" target="_blank" rel="noopener">Browse models</a> ·
+  <a href="https://freellm.net/playground/" target="_blank" rel="noopener">Playground</a> ·
+  <a href="https://freellm.net/config/" target="_blank" rel="noopener">Config generator</a> ·
+  <a href="https://freellm.net/free-llm-api-keys/" target="_blank" rel="noopener">API keys</a>
+</p>
+
+<p align="center">
+  <img alt="Provider Logos" src="assets/provider-logos-marquee.svg" width="100%" />
+</p>
+
+<!-- AUTO_UPDATE_BADGE -->
+  <p align="center"><strong>🔄 Data refreshed daily from <a href="https://freellm.net" target="_blank" rel="noopener">freellm.net</a></strong> — Last updated: 2026-07-15</p>
+<!-- END_AUTO_UPDATE_BADGE -->
+
+<p align="center">
+  🌐 <a href="README.md">English</a> · <a href="README.zh-CN.md">简体中文</a> · <a href="README.zh-TW.md">繁體中文</a> · <a href="README.ja.md">日本語</a> · <a href="README.ko.md">한국어</a>
+</p>
+
+---
+
+#### Why This Exists
+
+Finding a free LLM API shouldn't mean hunting through a dozen GitHub READMEs, signing up for five different platforms, or guessing which models still have a free tier.
+
+This repo is a **structured, machine-readable directory** of every free LLM API — rate limits, context windows, one-click config snippets, and direct API key links. Updated daily.
+
+**Why this repo + <a href="https://freellm.net" target="_blank" rel="noopener">freellm.net</a>:**
+
+- ✅ **Always up-to-date** — data refreshed daily via automated monitoring, not a 2-year-old static list
+- ✅ **Credit card transparency** — clearly shows which providers require a card, phone verification, or nothing at all
+- ✅ **One-click configs** — ready-to-copy snippets for Claude Code, Cursor, Codex, Aider, and 10+ more tools
+- ✅ **Side-by-side comparison** — compare context windows, rate limits, and modalities across providers instantly
+
+---
+
+#### How to Use — 3 Steps
+
+1. **Pick a provider** — see [Provider Directory](##provider-directory) below. Start with **Groq** (no credit card, 30 RPM free).
+2. **Get your API key** — click any [Get Key →](##quick-reference--base-urls--api-keys) link below, sign up (most need just an email), and copy your key. Takes < 1 minute.
+3. **Plug it in** — copy the base URL + model ID, paste into the [Quick Start](##quick-start--use-any-free-api-in-30-seconds) examples below.
+
+Configuring a specific tool? <a href="https://freellm.net/config/##claude-code" target="_blank" rel="noopener">Claude Code</a> · <a href="https://freellm.net/config/##cursor" target="_blank" rel="noopener">Cursor</a> · <a href="https://freellm.net/config/##codex" target="_blank" rel="noopener">Codex</a> · <a href="https://freellm.net/config/##openhuman" target="_blank" rel="noopener">OpenHuman</a> · <a href="https://freellm.net/config/##opencode" target="_blank" rel="noopener">OpenCode</a> · <a href="https://freellm.net/config/##openclaw" target="_blank" rel="noopener">OpenClaw</a> — one-click configs at <a href="https://freellm.net/config/" target="_blank" rel="noopener">freellm.net/config/</a>.
+
+#### Quick Start — Use Any Free API in 30 Seconds
+
+**Never used an API before?** Here's the simplest path: go to <a href="https://console.groq.com/keys" target="_blank" rel="noopener">console.groq.com/keys</a>, sign up with just an email (no credit card), copy your free key, and paste it into any example below. You'll be running in under a minute.
+
+All providers below expose an **OpenAI-compatible endpoint**. Any tool that accepts `baseURL` + `apiKey` works — just swap the base URL and key.
+
+###### Python (OpenAI SDK)
+
+```python
+from openai import OpenAI
+
+client = OpenAI(
+    base_url="https://api.groq.com/openai/v1",  ## free, no credit card
+    api_key="GROQ_API_KEY",                     ## get at console.groq.com/keys
+)
+
+response = client.chat.completions.create(
+    model="llama-3.3-70b-versatile",            ## see Best Models table below
+    messages=[{"role": "user", "content": "Hello!"}],
+)
+print(response.choices[0].message.content)
+## Groq free tier: 30 RPM, 14,400 RPD — generous for personal use
+```
+
+###### Codex CLI
+
+```bash
+export OPENAI_BASE_URL="https://api.groq.com/openai/v1"
+export OPENAI_API_KEY="your-groq-key"          ## get at console.groq.com/keys
+codex --model "llama-3.3-70b-versatile"
+```
+
+###### Cursor
+
+```
+Settings → Models → Add Model
+  Model name: llama-3.3-70b-versatile
+  Base URL: https://api.groq.com/openai/v1
+  API key: your-groq-key                       ## get at console.groq.com/keys
+```
+
+###### Claude Code
+
+```bash
+## Claude Code needs an Anthropic-compatible API — use OpenRouter
+export ANTHROPIC_BASE_URL="https://openrouter.ai/api"
+export ANTHROPIC_AUTH_TOKEN="sk-or-v1-your-key"  ## openrouter.ai/keys
+export ANTHROPIC_API_KEY=""                       ## must be empty
+## Note: OpenRouter Anthropic models need $10 top-up (one-time)
+```
+
+###### Using Other Tools?
+
+Most AI dev tools accept custom API endpoints — just point them at any provider above. Grab your free key, then:
+
+- **Claude Code** — set `ANTHROPIC_BASE_URL` + `ANTHROPIC_AUTH_TOKEN`. Step-by-step → 
+- **Cursor** — Settings → Models → Add Model. Step-by-step → 
+- **Codex CLI** — set `OPENAI_BASE_URL` + `OPENAI_API_KEY`. Step-by-step → 
+- **OpenHuman** — edit `config.toml`. Step-by-step → 
+- **Aider** — edit `.aider.conf.yml`. Step-by-step → 
+- **Cline** (VS Code) — API provider settings. Step-by-step → 
+- **Open WebUI** — Settings → Connections. Step-by-step → 
+
+More ready-to-copy configs at freellm.net/config/.
+
+> **All providers, base URLs, and API key links** are in the [Quick Reference](##quick-reference--base-urls--api-keys) below.
+
+---
+
+#### Provider Directory
+
+###### ⚡ Permanent Free Tiers
+
+These providers offer a **permanently free tier** — no credit card required for most.
+
+ 
+| Provider | Free Models | Credit Card? | Max Context | Modalities | Get API Key |
+|---|---|---|---|---|---|
+| NVIDIA NIM | 117 | Phone verification | 1M | audio, embedding, image, reasoning, rerank, text, video, vision | → |
+| ModelScope | 54 | Registration | 1M | audio, image, reasoning, text, video, vision | → |
+| Cloudflare Workers AI | 39 | No | 10M | code, image, reasoning, text, video | → |
+| GitHub Models | 13 | No | 1M | audio, image, pdf, reasoning, text | → |
+| Google Gemini | 12 | No | 1M | audio, image, pdf, reasoning, text, video, vision | → |
+| OVHcloud AI Endpoints | 12 | Registration | 262K | audio, code, image, reasoning, text, video | → |
+| Groq | 10 | No | 262K | text | → |
+| Mistral AI | 9 | No | 256K | code, image, text | → |
+| LLM7.io | 8 | No | 256K | audio, code, image, pdf, reasoning, text, video | → |
+| Cerebras | 7 | No | 262K | reasoning, text, vision | → |
+| Cohere | 6 | No | 256K | text | → |
+| Ollama Cloud | 6 | Registration | 262K | code, reasoning, text | → |
+| OpenCode Zen | 6 | Registration | 1M | audio, reasoning, vision | → |
+| Agnes AI | 5 | Registration | 256K | image, text, video, vision | → |
+| Aion Labs | 5 | Registration | 131K | text | → |
+| Hugging Face | 5 | No | 131K | text | → |
+| Kilo Code | 5 | No | 262K | code, reasoning, text | → |
+| Alibaba Cloud Model Studio | 5 | Registration | 1M | code, image, text | → |
+| Z AI (Zhipu AI) | 4 | No | 200K | image, reasoning, text, video | → |
+| SambaNova | 4 | Registration | 128K | image, reasoning, text | → |
+| SiliconFlow | 3 | Registration | 131K | text | → |
+| xAI | 3 | Registration | 2M | text | → |
+| Chutes.ai | 2 | Registration | 131K | reasoning, text | → |
+| Glhf.chat | 2 | Registration | 131K | text | → |
+| Grok (xAI) | 2 | Registration | 131K | text | → |
+| AI21 Labs | 2 | Registration | 256K | text | → |
+| DeepSeek | 2 | Registration | 128K | text | → |
+| Nscale | 2 | Registration | 128K | text | → |
+| Nebius | 1 | Registration | 128K | text | → |
+ 
+
+###### 💰 Renewable Credits
+
+Providers that periodically renew free credits.
+
+ 
+| Provider | Free Models | Credit Model | Max Context | Modalities | Get API Key |
+|---|---|---|---|---|---|
+| OpenRouter | 25 | Free tier + $10 topup → 1K RPD | 1M | audio, code, embeddings, image, reasoning, rerank, text, video, vision | → |
+ 
+
+#### Quick Reference — Base URLs & API Keys
+
+ 
+| Provider | Base URL | Get API Key | Credit Card? |
+|---|---|---|---|
+| NVIDIA NIM | `https://integrate.api.nvidia.com/v1` | Get Key → | Phone verification |
+| ModelScope | `https://api-inference.modelscope.cn/v1` | Get Key → | Registration |
+| Cloudflare Workers AI | `https://api.cloudflare.com/client/v4/accounts/{account_id}/ai/run` | Get Key → | No |
+| OpenRouter | `https://openrouter.ai/api/v1` | Get Key → | Registration |
+| GitHub Models | `https://models.github.ai/inference` | Get Key → | No |
+| Google Gemini | `https://generativelanguage.googleapis.com/v1beta` | Get Key → | No |
+| OVHcloud AI Endpoints | `https://oai.endpoints.kepler.ai.cloud.ovh.net/v1` | Get Key → | Registration |
+| Groq | `https://api.groq.com/openai/v1` | Get Key → | No |
+| Mistral AI | `https://api.mistral.ai/v1` | Get Key → | No |
+| LLM7.io | `https://api.llm7.io/v1` | Get Key → | No |
+| Cerebras | `https://api.cerebras.ai/v1` | Get Key → | No |
+| Cohere | `https://api.cohere.com/v2` | Get Key → | No |
+| Ollama Cloud | `https://api.ollama.com` | Get Key → | Registration |
+| OpenCode Zen | `https://opencode.ai/zen/v1` | Get Key → | Registration |
+| Agnes AI | `https://apihub.agnes-ai.com/v1` | Get Key → | Registration |
+| Aion Labs | `https://api.aionlabs.ai/v1` | Get Key → | Registration |
+| Hugging Face | `https://router.huggingface.co/v1` | Get Key → | No |
+| Kilo Code | `https://api.kilo.ai/api/gateway` | Get Key → | No |
+| Alibaba Cloud Model Studio | `https://dashscope-intl.aliyuncs.com/compatible-mode/v1` | Get Key → | Registration |
+| Z AI (Zhipu AI) | `https://open.bigmodel.cn/api/paas/v4` | Get Key → | No |
+| SambaNova | `https://api.sambanova.ai/v1` | Get Key → | Registration |
+| SiliconFlow | `https://api.siliconflow.cn/v1` | Get Key → | Registration |
+| xAI | `https://api.x.ai/v1` | Get Key → | Registration |
+| Chutes.ai | `https://api.chutes.ai/v1` | Get Key → | Registration |
+| Glhf.chat | `https://glhf.chat/api/openai/v1` | Get Key → | Registration |
+| Grok (xAI) | `https://api.x.ai/v1` | Get Key → | Registration |
+| AI21 Labs | `https://api.ai21.com/studio/v1` | Get Key → | Registration |
+| DeepSeek | `https://api.deepseek.com/v1` | Get Key → | Registration |
+| Nscale | `https://inference.api.nscale.com/v1` | Get Key → | Registration |
+| Nebius | `https://api.studio.nebius.com/v1` | Get Key → | Registration |
+ 
+
+#### Best Free Models by Provider
+
+ 
+| Provider | Best Free Model | Model ID | Max Context | Rate Limit |
+|---|---|---|---|---|
+| NVIDIA NIM | z-ai/glm-5.2 | `z-ai/glm-5.2` | 1M | Up to 40 RPM |
+| | moonshotai/kimi-k2.6 | `moonshotai/kimi-k2.6` | 262K | Up to 40 RPM |
+| | z-ai/glm-5.1 | `z-ai/glm-5.1` | 202K | Up to 40 RPM |
+| ModelScope | MiniMax-M2.5-highspeed | `MiniMax/MiniMax-M2.5` | 204K | See provider |
+| | Qwen/Qwen3.5-35B-A3B | `Qwen/Qwen3.5-35B-A3B` | 131K | 2,000 RPD total; <=500 .. |
+| | Qwen/Qwen3.5-27B | `Qwen/Qwen3.5-27B` | 131K | 2,000 RPD total; <=500 .. |
+| Cloudflare Workers AI | Mistral 7B | `@cf/mistral/mistral-7b-instruct-v0.1` | 32K | See provider |
+| | Qwen 1.5 7B | `@cf/qwen/qwen1.5-7b-chat` | 32K | See provider |
+| | @cf/meta/llama-3.3-70b-instruct-fp8-fast | `@cf/meta/llama-3.3-70b-instruct-fp8-fast` | 131K | 10K neurons/day (shared) |
+| OpenRouter | Tencent: Hy3 (free) | `tencent/hy3:free` | 262K | See provider |
+| | NVIDIA: Nemotron 3 Ultra (free) | `nvidia/nemotron-3-ultra-550b-a55b:free` | 1M | See provider |
+| | Poolside: Laguna M.1 (free) | `poolside/laguna-m.1:free` | 262K | See provider |
+| GitHub Models | Phi-4 | `Phi-4` | 131K | See provider |
+| | Mistral Large (24.11) | `Mistral-large-2411` | 131K | See provider |
+| | AI21 Jamba 1.5 Large | `AI21-Jamba-1.5-Large` | 256K | See provider |
+| Google Gemini | Gemini 3.5 Flash | `gemini-3.5-flash` | 1M | 15 RPM, 1,500 RPD |
+| | Gemini 3.1 Flash-Lite | `gemini-3.1-flash-lite` | 1M | 30 RPM, 1,500 RPD |
+| | Gemini 2.5 Flash | `gemini-2.5-flash` | 1M | 15 RPM, 1,500 RPD |
+| OVHcloud AI Endpoints | Qwen3.5-397B-A17B | `qwen3.5-397b-a17b` | 131K | 2 RPM (anonymous) |
+| | gpt-oss-20b | `gpt-oss-20b` | 128K | 2 RPM (anonymous) |
+| | Meta-Llama-3_3-70B-Instruct | `meta-llama-3_3-70b-instruct` | 131K | 2 RPM (anonymous) |
+| Groq | Moonshot Kimi K2 | `moonshotai/kimi-k2-instruct` | 131K | See provider |
+| | Moonshot Kimi K2 0905 | `moonshotai/kimi-k2-instruct-0905` | 131K | See provider |
+| | llama-4-maverick-17b-128e-instruct | `llama-4-maverick-17b-128e-instruct` | 131K | 15 RPM, 500 RPD |
+| Mistral AI | Mistral 7B | `open-mistral-7b` | 32K | See provider |
+| | Mixtral 8x7B | `open-mixtral-8x7b` | 32K | See provider |
+| | Mistral Medium 3.5 (128B) | `mistral-medium-3-5-128b` | 256K | ~1 RPS, 500K TPM |
+| LLM7.io | deepseek-r1-0528 | `deepseek-r1-0528` | 131K | 30 RPM (120 with token) |
+| | deepseek-v3-0324 | `deepseek-v3-0324` | 131K | 30 RPM (120 with token) |
+| | gemini-2.5-flash-lite | `gemini-2-5-flash-lite` | 131K | 30 RPM (120 with token) |
+| Cerebras | Llama 3.1 70B | `llama3.1-70b` | 131K | See provider |
+| | gpt-oss-120b | `gpt-oss-120b` | 128K | 30 RPM, 14,400 RPD, 1M .. |
+| | zai-glm-4.7 | `zai-glm-4.7` | 128K | 10 RPM, 100 RPD, 1M TPD |
+| Cohere | Command A+ (218B) | `command-a-218b` | 128K | 20 RPM |
+| | Command A (111B) | `command-a-111b` | 256K | 20 RPM |
+| | Command R+ | `command-r` | 128K | 20 RPM |
+| Ollama Cloud | gpt-oss:120b-cloud | `gpt-oss-120b-cloud` | 128K | Session/weekly limits (.. |
+| | deepseek-v3.1:671b-cloud | `deepseek-v3-1-671b-cloud` | 128K | Session/weekly limits (.. |
+| | qwen3-coder:480b-cloud | `qwen3-coder-480b-cloud` | 128K | Session/weekly limits (.. |
+| OpenCode Zen | big-pickle | `big-pickle` | 0 | |
+| | DeepSeek V4 Flash | `deepseek-v4-flash-free` | 1M | |
+| | MiMo-V2.5 | `mimo-v2.5-free` | 1M | |
+| Agnes AI | agnes-1.5-flash | `agnes-1.5-flash` | 256K | 30 RPM |
+| | agnes-2.0-flash | `agnes-2.0-flash` | 256K | 30 RPM |
+| | agnes-image-2.0-flash | `agnes-image-2.0-flash` | 4K | 30 RPM (1K) |
+| Aion Labs | Aion 2.5 | `aion-2-5` | 128K | 15 RPM, 20K TPD |
+| | Aion 2.0 | `aion-2-0` | 128K | 15 RPM, 20K TPD |
+| | Aion-RP 1.0 (8B) | `aion-rp-1-0-8b` | 32K | 15 RPM, 20K TPD |
+| Hugging Face | Meta-Llama-3.1-8B-Instruct | `meta-llama-3-1-8b-instruct` | 128K | Credit-metered |
+| | Mistral-7B-Instruct-v0.3 | `mistral-7b-instruct-v0-3` | 32K | Credit-metered |
+| | Mixtral-8x7B-Instruct-v0.1 | `mixtral-8x7b-instruct-v0-1` | 32K | Credit-metered |
+| Kilo Code | x-ai/grok-code-fast-1:free | `x-ai-grok-code-fast-1-free` | 256K | ~200 req/hr |
+| | minimax/minimax-m2.5:free | `minimax/minimax-m2.5` | 196K | ~200 req/hr |
+| | bytedance-seed/dola-seed-2.0-pro:free | `bytedance-seed-dola-seed-2-0-pro-free` | 131K | ~200 req/hr |
+| Alibaba Cloud Model Studio | Qwen3-Max | `qwen3-max` | 128K | Tiered by region |
+| | Qwen3-Plus | `qwen3-plus` | 1M | Tiered by region |
+| | Qwen3-VL-Plus | `qwen3-vl-plus` | 128K | Tiered by region |
+| Z AI (Zhipu AI) | GLM-4.7-Flash | `glm-4.7` | 200K | 1 concurrent request |
+| | GLM-4.6V-Flash | `glm-4.6` | 128K | 1 concurrent request |
+| | GLM-4.5-Flash | `glm-4.5` | 128K | 1 concurrent request |
+| SambaNova | DeepSeek-V3.1 | `deepseek-v3-1` | 128K | 20 RPM, 20 RPD, 200K TPD |
+| | DeepSeek-V3.2 (Preview) | `deepseek-v3-2-preview` | 128K | 20 RPM, 20 RPD, 200K TPD |
+| | MiniMax-M2.7 | `minimax-m2-7` | 128K | 20 RPM, 20 RPD, 200K TPD |
+| SiliconFlow | deepseek-ai/DeepSeek-R1-Distill-Qwen-7B | `deepseek-ai-deepseek-r1-distill-qwen-7b` | 131K | 30 RPM, 60K TPM |
+| | Abbreviation | `abbreviation` | 131K | See provider |
+| | deepseek-ai/DeepSeek-OCR | `deepseek-ai-deepseek-ocr` | 131K | 30 RPM, 60K TPM |
+| xAI | grok-4.3 | `grok-4-3` | 1M | Credit-based |
+| | grok-4.1-fast | `grok-4-1-fast` | 2M | Credit-based |
+| | grok-3-mini | `grok-3-mini` | 131K | Credit-based |
+| Chutes.ai | DeepSeek-R1 | `deepseek-ai/DeepSeek-R1` | 131K | Community-powered, no h.. |
+| | Llama 3.1 70B | `meta-llama/Meta-Llama-3.1-70B-Instruct` | 131K | Community-powered, no h.. |
+| Glhf.chat | Llama 3.1 70B | `meta-llama/Meta-Llama-3.1-70B-Instruct` | 131K | Unlimited for free models |
+| | Mixtral 8x7B | `mistralai/Mixtral-8x7B-Instruct-v0.1` | 32K | Unlimited for free models |
+| Grok (xAI) | Grok-2 | `grok-2` | 131K | $25/month free credits,.. |
+| | Grok-2 Mini | `grok-2-mini` | 131K | $25/month free credits,.. |
+| AI21 Labs | Jamba Large 1.7 | `jamba-large-1-7` | 256K | 200 RPM, 10 RPS |
+| | Jamba Mini 2 | `jamba-mini-2` | 256K | 200 RPM, 10 RPS |
+| DeepSeek | deepseek-chat (V3.2) | `deepseek-chat-v3-2` | 128K | Dynamic |
+| | deepseek-reasoner (R1) | `deepseek-reasoner-r1` | 128K | Dynamic |
+| Nscale | Llama-3.3-70B-Instruct | `llama-3-3-70b-instruct` | 128K | Fair-use |
+| | DeepSeek-R1-Distill-Llama-70B | `deepseek-r1-distill-llama-70b` | 128K | Fair-use |
+| Nebius | Qwen3-235B-A22B | `qwen3-235b-a22b` | 128K | Tier-based |
+ 
+
+###### 🖥️ Local / Self-Hosted (Unlimited, Private, Free Forever)
+
+| Tool | Type | Highlights |
+|---|---|---|
+| Ollama | CLI + API | 100+ models, GPU acceleration, OpenAI-compatible endpoint |
+| LM Studio | Desktop GUI | Any GGUF model, built-in model browser, offline |
+| llama.cpp | C/C++ engine | Runs any GGUF, minimal dependencies |
+| GPT4All | Desktop app | CPU-only, no GPU required, open source |
+| Jan.ai | Desktop app | Privacy-focused, 100% offline ChatGPT alternative |
+| KoboldCpp | Single executable | Optimized for creative writing, GGUF |
+
+---
+
+#### Top Free Models (by Weekly Usage)
+
+Data from freellm.net, updated daily via API monitoring.
+
+ 
+| Model | Provider | Context | Weekly Usage |
+|---|---|---|---|
+| Tencent: Hy3 (free) | OpenRouter | 262K | 8247B tokens |
+| NVIDIA: Nemotron 3 Ultra (free) | OpenRouter | 1M | 2728B tokens |
+| Poolside: Laguna M.1 (free) | OpenRouter | 262K | 768B tokens |
+| z-ai/glm-5.2 | NVIDIA NIM | 1M | 341B tokens |
+| moonshotai/kimi-k2.6 | NVIDIA NIM | 262K | 335B tokens |
+| NVIDIA: Nemotron 3 Super (free) | OpenRouter | 1M | 335B tokens |
+| z-ai/glm-5.1 | NVIDIA NIM | 202K | 158B tokens |
+| Cohere: North Mini Code (free) | OpenRouter | 256K | 125B tokens |
+| Poolside: Laguna XS 2.1 (free) | OpenRouter | 262K | 81B tokens |
+| NVIDIA: Nemotron 3 Nano 30B A3B (free) | OpenRouter | 256K | 38B tokens |
+ 
+
+---
+
+#### Repository Structure
+
+```
+awesome-free-llm-apis/
+├── README.md              ← Complete provider directory & code examples
+├── code-examples/          ← Ready-to-use config snippets
+│   ├── claude-code.md
+│   ├── cursor.md
+│   └── codex.md
+└── LICENSE                 ← MIT
+```
+
+> For the full structured dataset with 453 models and daily updates, visit ** freellm.net **.
+
+---
+
+#### Contributing
+
+We welcome contributions!
+
+- **Add a missing free model** — Open an issue or submit a PR
+- **Fix inaccurate data** — Rate limits change, providers graduate. PRs welcome
+- **Add a config snippet** — Have a working config for a tool we don't cover? Add it to `code-examples/`
+
+###### Criteria for inclusion
+
+A model belongs in this list if:
+1. The provider explicitly offers a **free tier** (not just a trial credit)
+2. The API is **publicly accessible** (no waitlist, closed beta, or reverse-engineering)
+3. For trial credits: clearly labeled and minimum $1 credit value
+
+---
+
+#### Links
+
+- 🌐 **Live site**: freellm.net — search, compare, playground, config generator
+- 🔑 **API key directory**: freellm.net/free-llm-api-keys/ 
+- ⚙️ **Config generator**: freellm.net/config/ 
+- 🎮 **Playground**: freellm.net/playground/ 
+- 📊 **Compare models**: freellm.net/compare/ 
+
+#### License
+
+MIT © open-free-llm-api 
+
+---
+
+ 
+ Last updated: 
+2026-07-15
+ 
+ 
+
+```
+
+# TaylorAmarelTech/text-generation-ai-llm-tools-endpoints-api-list-repository - https://github.com/TaylorAmarelTech/text-generation-ai-llm-tools-endpoints-api-list-repository
+## Repository: TaylorAmarelTech/text-generation-ai-llm-tools-endpoints-api-list-repository
+
+The most comprehensive directory of free & affordable LLM API endpoints. 50+ providers, AI-powered discovery, async scanner, plugin system, cascade client, local proxy. All with OpenAI SDK compatibility.
+
+- Stars: 1
+- Forks: 1
+- Watchers: 0
+- Open issues: 0
+- Primary language: Python
+- Languages: Python
+- License: MIT License (MIT)
+- Default branch: main
+- Created: 2026-03-05T21:52:05Z
+- Last push: 2026-03-08T00:57:43Z
+- Contributors: 1 (top: TaylorAmarelTech)
+
+---
+
+## Free & Open LLM API Endpoints Directory
+
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+ 
+ The most comprehensive, actively-maintained directory of free and affordable LLM API endpoints. 
+ 58 providers cataloged &bull; 18 truly free (no credit card) • All OpenAI SDK compatible • Updated: 2026-03-08 00:03 UTC
+ 
+
+---
+
+#### Why This Exists
+
+There are **dozens** of LLM API providers offering free tiers, trial credits, and affordable pricing -- but finding them, comparing limits, and knowing which ones actually work is a scattered mess. This repository maintains:
+
+- A **curated, verified directory** of every provider with free or cheap LLM API access
+- A **scanner toolkit** that automatically tests endpoints and reports status
+- An **AI-powered discovery engine** that finds new providers as they launch
+- **Production-ready code** (cascade client, local proxy, benchmarks) you can drop into your projects
+
+Whether you're a hobbyist building a chatbot, a startup watching costs, or a researcher who needs diverse model access -- this saves you hours of research.
+
+---
+
+ 
+ Table of Contents 
+
+- [Highlights](##highlights)
+- [Quick Start](##quick-start)
+- [Provider Directory](##provider-directory) (7 tiers)
+- [Cascade / Fallback Example](##cascade--fallback-example)
+- [Toolkit](##toolkit) (setup, CLI, discovery, plugins, proxy)
+- [Examples](##examples) (13 ready-to-run scripts)
+- [Agents & Adapters](##agent-framework)
+- [Utility Tools](##utility-tools) (rate limiter, token counter, cost calculator, conversation manager)
+- [Recipes & Use Cases](##recipes--use-cases)
+- [Architecture](##architecture)
+- [FAQ & Troubleshooting](##faq--troubleshooting)
+- [Keeping Up to Date](##keeping-up-to-date)
+- [Contributing](##contributing)
+- [Credits & Acknowledgments](##credits--acknowledgments)
+- [License](##license)
+
+ 
+
+---
+
+#### Highlights
+
+| Feature | Details |
+| --- | --- |
+| **58 Providers, 7 Tiers** | From completely free to pay-per-use, plus routers and local options |
+| **OpenAI SDK Standard** | 90%+ of providers work with `from openai import OpenAI` -- just swap `base_url` |
+| **13 Ready-to-Run Examples** | Chat, streaming, RAG, vision, embeddings, agents, batch, research, cURL, one-liners |
+| **Agent Framework** | 5 agents (Base, ReAct, Research, Code, Summarizer, Data Extractor) + 8 presets |
+| **API Adapters** | Unified interface for OpenAI, Anthropic, Cohere, and Google native APIs |
+| **Search Tools** | Brave, Serper, Google CSE wrappers + web scraper for agent use |
+| **AI-Powered Discovery** | Find new providers via web search, GitHub, Reddit, HN, and LLM brainstorming |
+| **Cascade Client** | Production-ready failover across providers with health tracking + cooldowns |
+| **Cost Calculator** | Compare pricing across providers, estimate monthly costs, find cheapest option |
+| **Token Counter** | Estimate token counts and costs without external dependencies |
+| **Local Proxy Server** | Route any OpenAI-compatible app through free providers at `localhost:8000/v1` |
+| **Plugin Architecture** | Benchmarks, model catalogs, pricing, export (JSON/CSV/YAML/HTML), notifications |
+| **Fully Configurable** | YAML config + env vars. Set your keys, pick your strategies, run |
+
+---
+
+#### Quick Start
+
+All Tier 1 providers use the **OpenAI SDK format** -- just change the `base_url` and `api_key`:
+
+```python
+"""Quick start: call any free LLM endpoint with the OpenAI SDK."""
+from openai import OpenAI
+
+## --- Pick any provider below (all free, no credit card) ---
+
+## Groq (fastest, ~1K RPD for 70B models)
+client = OpenAI(base_url="https://api.groq.com/openai/v1", api_key="YOUR_GROQ_KEY")
+model = "llama-3.3-70b-versatile"
+
+## Google Gemini (500 RPD Flash)
+## client = OpenAI(base_url="https://generativelanguage.googleapis.com/v1beta/openai/", api_key="YOUR_GEMINI_KEY")
+## model = "gemini-2.0-flash"
+
+## Cerebras (1M tokens/day, blazing fast)
+## client = OpenAI(base_url="https://api.cerebras.ai/v1", api_key="YOUR_CEREBRAS_KEY")
+## model = "llama-3.3-70b"
+
+## Mistral (1B tokens/mo per model)
+## client = OpenAI(base_url="https://api.mistral.ai/v1", api_key="YOUR_MISTRAL_KEY")
+## model = "mistral-small-latest"
+
+## OpenRouter (28+ free models, 200 RPD)
+## client = OpenAI(base_url="https://openrouter.ai/api/v1", api_key="YOUR_OPENROUTER_KEY")
+## model = "deepseek/deepseek-r1:free"
+
+response = client.chat.completions.create(
+    model=model,
+    messages=[{"role": "user", "content": "Explain quantum computing in one paragraph."}],
+    max_tokens=200,
+)
+print(response.choices[0].message.content)
+```
+
+> **Tip:** Don't want to pick just one? Use the [Cascade Client](##cascade--fallback-example) to automatically try multiple providers with failover.
+
+ 
+ cURL (no Python needed) 
+
+```bash
+curl https://api.groq.com/openai/v1/chat/completions \
+  -H "Authorization: Bearer $GROQ_API_KEY" \
+  -H "Content-Type: application/json" \
+  -d '{"model": "llama-3.3-70b-versatile", "messages": [{"role": "user", "content": "Hello!"}], "max_tokens": 200}'
+```
+
+Same format works for Gemini, Cerebras, Mistral, OpenRouter -- just swap the URL and key.
+See `examples/curl_examples.sh` for all 10 providers.
+
+ 
+
+---
+
+#### Provider Overview
+
+| Tier | Providers | Credit Card | Best For |
+| --- | --- | --- | --- |
+| Truly Free | 18 | No | Getting started, prototyping, hobby projects |
+| Generous Free Tier | 7 | No | Moderate usage with rate limits |
+| Free Credits | 20 | No* | Trying premium models, short-term projects |
+| Freemium | 3 | Yes | Production apps, frontier models (GPT-4o, Claude) |
+| Pay-per-use | 2 | Yes | Budget-conscious production, Chinese models |
+| Routers / Aggregators | 4 | Varies | Multi-provider failover, observability |
+| Local / Self-hosted | 4 | No | Privacy, offline use, unlimited generation |
+
+> *\*Free Credits tier: credit card generally not required for signup, but credits are one-time and may expire.*
+
+---
+
+#### Tier 1: Truly Free (no credit card, ongoing)
+
+| ## | Provider | Endpoint | Free Tier | Top Models | SDK | Status |
+| --- | --- | --- | --- | --- | --- | --- |
+| 1 | [**Google Gemini**](https://aistudio.google.com) | `generativelanguage.googleapis.com/v1beta/openai/` | 500 RPD Flash, 100 RPD Pro | gemini-2.5-flash, gemini-2.5-pro | ✅ | ❓ Not Tested |
+| 2 | [**Groq**](https://console.groq.com) | `api.groq.com/openai/v1` | ~1K RPD 70B, 14K RPD 8B | llama-3.3-70b-versatile, llama-3.1-8b-instant | ✅ | ❓ Not Tested |
+| 3 | [**Mistral**](https://console.mistral.ai) | `api.mistral.ai/v1` | 1B tokens/mo per model | mistral-large-latest, mistral-small-latest | ✅ | ❓ Not Tested |
+| 4 | [**Cerebras**](https://cloud.cerebras.ai) | `api.cerebras.ai/v1` | 1M tokens/day, 8K context | llama-3.3-70b, llama-3.1-8b | ✅ | ❓ Not Tested |
+| 5 | [**OpenRouter**](https://openrouter.ai) | `openrouter.ai/api/v1` | 28+ free models, 20 RPM / 200 RPD | deepseek/deepseek-r1:free, qwen/qwen3-coder-480b-a35b:free | ✅ | ❓ Not Tested |
+| 6 | [**Cloudflare Workers AI**](https://dash.cloudflare.com) | `api.cloudflare.com/client/v4/accounts/{account_id}/ai/v1` | 10K neurons/day | @cf/meta/llama-3.3-70b-instruct-fp8-fast, @cf/qwen/qwen2.5-coder-32b-instruct | ✅ | ❓ Not Tested |
+| 7 | [**GitHub Models**](https://github.com/marketplace/models) | `models.inference.ai.azure.com` | 50-150 RPD, 8K token limit | gpt-4o, Meta-Llama-3.1-70B-Instruct | ✅ | ❓ Not Tested |
+| 8 | [**Zhipu (GLM)**](https://open.bigmodel.cn) | `open.bigmodel.cn/api/paas/v4` | GLM-4-Flash unlimited, no quota | glm-4-flash, glm-4-plus | ✅ | ❓ Not Tested |
+| 9 | [**OVHcloud AI Endpoints**](https://ovhcloud.com) | `oai.endpoints.kepler.ai.cloud.ovh.net/v1` | 2 RPM anon, 400 RPM with auth | Meta-Llama-3_1-70B-Instruct, Qwen2.5-72B-Instruct | ✅ | ❓ Not Tested |
+| 10 | [**HuggingFace Inference**](https://huggingface.co) | `router.huggingface.co/v1` | ~300 req/hr | Qwen/Qwen2.5-72B-Instruct, meta-llama/Llama-3.3-70B-Instruct | ✅ | ❓ Not Tested |
+| 11 | [**Cohere**](https://dashboard.cohere.com) | `api.cohere.com/v2` | 1,000 calls/month forever | command-r-plus, command-r | ✅ | ❓ Not Tested |
+| 12 | [**NVIDIA NIM**](https://build.nvidia.com) | `integrate.api.nvidia.com/v1` | 1K-5K credits, 40 RPM | meta/llama-3.3-70b-instruct, deepseek-ai/deepseek-r1 | ✅ | ❓ Not Tested |
+| 13 | [**Glhf.chat**](https://glhf.chat) | `glhf.chat/api/openai/v1` | Free tier, 30 RPM | hf:meta-llama/Llama-3.3-70B-Instruct, hf:Qwen/Qwen2.5-72B-Instruct | ✅ | ❓ Not Tested |
+| 14 | [**Chutes.ai**](https://chutes.ai) | `api.chutes.ai/v1` | ~200 RPD | deepseek-ai/DeepSeek-R1, meta-llama/Llama-3.3-70B-Instruct | ✅ | ❓ Not Tested |
+| 15 | [**Venice.ai**](https://venice.ai) | `api.venice.ai/api/v1` | 10 prompts/day free | llama-3.3-70b, qwen-2.5-72b | ✅ | ❓ Not Tested |
+| 16 | [**Puter.js**](https://puter.com) | `api.puter.com/ai/chat` | Unlimited (no API key needed) | gpt-4o-mini, claude-3.5-sonnet | ❌ | ❓ Not Tested |
+| 17 | [**Reka AI**](https://platform.reka.ai) | `api.reka.ai/v1` | $10/mo free credits | reka-flash, reka-core | ✅ | ❓ Not Tested |
+| 18 | [**Arcee AI**](https://arcee.ai) | `conductor.arcee.ai/v1` | Free via OpenRouter | arcee-ai/trinity-large-preview, arcee-ai/caller-large | ✅ | ❓ Not Tested |
+
+ 
+ Provider Notes (18) 
+
+- **Google Gemini**: Free tier is very generous (500 RPD for Flash). Supports OpenAI SDK via compatibility layer.
+- **Groq**: Fastest inference. Custom LPU hardware.
+- **Mistral**: French AI lab. Excellent multilingual support.
+- **Cerebras**: Wafer-scale inference. Extremely fast.
+- **OpenRouter**: Aggregator with 28+ permanently free models incl. Qwen3 Coder 480B, Trinity-Large-Preview, StepFun Step 3.5 Flash.
+- **Cloudflare Workers AI**: Requires CLOUDFLARE_ACCOUNT_ID env var too. Edge inference.
+- **GitHub Models**: Uses your GitHub PAT. Great for prototyping.
+- **Zhipu (GLM)**: Chinese AI lab. GLM-4-Flash is completely free with no rate limits.
+- **OVHcloud AI Endpoints**: European cloud. Can work without auth at reduced rate.
+- **HuggingFace Inference**: Also offers free Inference Endpoints (serverless). Huge model catalog.
+- **Cohere**: Great for RAG/search. Aya models for 23 languages.
+- **NVIDIA NIM**: NVIDIA's inference microservices. Generous free credits.
+- **Glhf.chat**: Run any HuggingFace model via vLLM. Prefix model IDs with 'hf:'.
+- **Chutes.ai**: Decentralized GPU network. Free tier available.
+- **Venice.ai**: Privacy-focused. Uncensored models. May need credits for API.
+- **Puter.js**: Free unlimited access to GPT-4o-mini, Claude 3.5, Gemini via puter.js SDK. Web/Node.js only.
+- **Reka AI**: Multimodal AI. OpenAI-compatible. $10/mo free credits renewable.
+- **Arcee AI**: Trinity-Large-Preview is free on OpenRouter. Specializes in enterprise AI.
+
+ 
+
+---
+
+#### Tier 2: Generous Free Tier (notable limitations)
+
+| ## | Provider | Endpoint | Free Tier | Top Models | SDK | Status |
+| --- | --- | --- | --- | --- | --- | --- |
+| 1 | [**Fireworks AI**](https://fireworks.ai) | `api.fireworks.ai/inference/v1` | 10 RPM, $1 trial credits | accounts/fireworks/models/llama-v3p3-70b-instruct, accounts/fireworks/models/deepseek-v3 | ✅ | ❓ Not Tested |
+| 2 | [**AIMLAPI**](https://aimlapi.com) | `api.aimlapi.com/v1` | 10 req/hr, 50K credits | gpt-4o, claude-3-5-sonnet | ✅ | ❓ Not Tested |
+| 3 | [**Inference.net**](https://inference.net) | `api.inference.net/v1` | $1 + $25 (survey) | deepseek-ai/DeepSeek-R1, meta-llama/Llama-3.1-70B-Instruct | ✅ | ❓ Not Tested |
+| 4 | [**NLP Cloud**](https://nlpcloud.com) | `api.nlpcloud.io/v1` | 3 RPM ongoing, $15 credits | finetuned-llama-3-70b, chatdolphin | ❌ | ❓ Not Tested |
+| 5 | [**Coze (ByteDance)**](https://coze.com) | `api.coze.com/v1` | Free tier (bot-based) | Via bots: GPT-4o, Gemini, Claude | ✅ | ❓ Not Tested |
+| 6 | [**StepFun**](https://platform.stepfun.com) | `api.stepfun.com/v1` | Free on OpenRouter (Step 3.5 Flash) | step-3-flash, step-3-mini | ✅ | ❓ Not Tested |
+| 7 | [**LemonData**](https://lemondata.ai) | `api.lemondata.ai/v1` | $1 credits, 300+ models | gpt-4o, claude-3.5-sonnet | ✅ | ❓ Not Tested |
+
+ 
+ Provider Notes (7) 
+
+- **Fireworks AI**: Very fast. Supports function calling on open models.
+- **AIMLAPI**: Aggregator with 300+ models including GPT, Claude, open-source.
+- **Inference.net**: Decentralized inference. Complete survey for extra credits.
+- **NLP Cloud**: Also has NER, summarization, translation. Custom API format.
+- **Coze (ByteDance)**: Build bots that call underlying LLMs. ByteDance platform.
+- **StepFun**: Chinese AI lab. Step 3.5 Flash is a 196B MoE model, free via OpenRouter.
+- **LemonData**: Aggregator with 300+ models. $1 free credits on signup.
+
+ 
+
+---
+
+#### Tier 3: Free Credits on Signup (one-time, may expire)
+
+| ## | Provider | Endpoint | Free Tier | Top Models | SDK | Status |
+| --- | --- | --- | --- | --- | --- | --- |
+| 1 | [**xAI / Grok**](https://console.x.ai) | `api.x.ai/v1` | $25 + $150/mo (data sharing) | grok-3, grok-3-mini | ✅ | ❓ Not Tested |
+| 2 | [**DeepSeek**](https://platform.deepseek.com) | `api.deepseek.com/v1` | 5M tokens (30 days) | deepseek-chat, deepseek-reasoner | ✅ | ❓ Not Tested |
+| 3 | [**DeepInfra**](https://deepinfra.com) | `api.deepinfra.com/v1/openai` | $5 credits | meta-llama/Llama-3.3-70B-Instruct, deepseek-ai/DeepSeek-R1 | ✅ | ❓ Not Tested |
+| 4 | [**SambaNova**](https://cloud.sambanova.ai) | `api.sambanova.ai/v1` | $5 credits + free tier (3 months) | Meta-Llama-3.1-405B-Instruct, Meta-Llama-3.3-70B-Instruct | ✅ | ❓ Not Tested |
+| 5 | [**Together AI**](https://together.ai) | `api.together.xyz/v1` | $5 credits | meta-llama/Llama-3.3-70B-Instruct-Turbo, deepseek-ai/DeepSeek-R1 | ✅ | ❓ Not Tested |
+| 6 | [**AI21 Labs**](https://studio.ai21.com) | `api.ai21.com/studio/v1` | $10 credits (3 months) | jamba-1.5-large, jamba-1.5-mini | ✅ | ❓ Not Tested |
+| 7 | [**Upstage**](https://console.upstage.ai) | `api.upstage.ai/v1/solar` | $10 credits (3 months) | solar-pro | ✅ | ❓ Not Tested |
+| 8 | [**Scaleway**](https://console.scaleway.com) | `api.scaleway.ai/v1` | 1M tokens (one-time) | llama-3.3-70b-instruct, deepseek-r1 | ✅ | ❓ Not Tested |
+| 9 | [**Alibaba DashScope**](https://alibabacloud.com) | `dashscope-intl.aliyuncs.com/compatible-mode/v1` | 1M tokens/model | qwen-max, qwen-plus | ✅ | ❓ Not Tested |
+| 10 | [**Nebius AI Studio**](https://studio.nebius.ai) | `api.studio.nebius.ai/v1` | $1 credits | meta-llama/Llama-3.1-70B-Instruct, mistralai/Mistral-7B-Instruct-v0.3 | ✅ | ❓ Not Tested |
+| 11 | [**Kluster.ai**](https://kluster.ai) | `api.kluster.ai/v1` | $5 credits | Meta-Llama-3.1-405B-Instruct, Qwen2.5-72B-Instruct | ✅ | ❓ Not Tested |
+| 12 | [**Friendli**](https://friendli.ai) | `api.friendli.ai/v1` | $10 credits | meta-llama-3.3-70b-instruct, mixtral-8x7b-instruct-v0-1 | ✅ | ❓ Not Tested |
+| 13 | [**Hyperbolic**](https://app.hyperbolic.xyz) | `api.hyperbolic.xyz/v1` | $1-$50 credits | deepseek-ai/DeepSeek-V3, meta-llama/Llama-3.3-70B-Instruct | ✅ | ❓ Not Tested |
+| 14 | [**Novita AI**](https://novita.ai) | `api.novita.ai/v3/openai` | $0.50 credits (1 year) | meta-llama/llama-3.3-70b-instruct | ✅ | ❓ Not Tested |
+| 15 | [**SiliconCloud (SiliconFlow)**](https://siliconflow.com) | `api.siliconflow.cn/v1` | Small credits on signup | deepseek-ai/DeepSeek-V3, Qwen/Qwen2.5-72B-Instruct | ✅ | ❓ Not Tested |
+| 16 | [**Eden AI**](https://edenai.co) | `api.edenai.co/v2` | $10 credits | Multi-provider aggregator | ❌ | ❓ Not Tested |
+| 17 | [**Lepton AI**](https://lepton.ai) | `api.lepton.ai/v1` | Trial credits | llama-3.3-70b | ✅ | ❓ Not Tested |
+| 18 | [**Baseten**](https://baseten.co) | `model-{model_id}.api.baseten.co/v1` | $30 credits | llama-3.3-70b, deepseek-r1 | ✅ | ❓ Not Tested |
+| 19 | [**Modal**](https://modal.com) | `YOUR_APP.modal.run/v1` | $30/mo free compute | Any (self-deployed), vLLM templates | ✅ | ❓ Not Tested |
+| 20 | [**Anyscale Endpoints**](https://app.endpoints.anyscale.com) | `api.endpoints.anyscale.com/v1` | $10 credits | meta-llama/Llama-3.3-70B-Instruct, mistralai/Mixtral-8x22B-Instruct-v0.1 | ✅ | ❓ Not Tested |
+
+ 
+ Provider Notes (20) 
+
+- **xAI / Grok**: $150/mo free if you allow data sharing. 2M context window on Grok 3.
+- **DeepSeek**: Cheapest frontier model. $0.014/M for cache hits. V3 is 685B MoE.
+- **DeepInfra**: 100+ models. Very competitive pricing after credits.
+- **SambaNova**: Custom RDU hardware. Fast inference on large models.
+- **Together AI**: 200+ models. Great fine-tuning support.
+- **AI21 Labs**: SSM-Transformer hybrid (Jamba). 256K context.
+- **Upstage**: Korean AI lab. Solar Pro 3 is a 102B MoE model.
+- **Scaleway**: European cloud provider. GDPR-compliant.
+- **Alibaba DashScope**: Alibaba Cloud's AI platform. Qwen model family.
+- **Nebius AI Studio**: Yandex spin-off. European GPU cloud.
+- **Kluster.ai**: Batch inference specialist. Good for high-throughput.
+- **Friendli**: Korean inference startup. Fast and cost-effective.
+- **Hyperbolic**: Decentralized compute. Variable free credits.
+- **Novita AI**: Also has image generation and training.
+- **SiliconCloud (SiliconFlow)**: Chinese inference platform. Competitive pricing.
+- **Eden AI**: Aggregates OpenAI, Google, Anthropic, etc. under one API.
+- **Lepton AI**: Fast serverless inference.
+- **Baseten**: Deploy and serve any model. $30 free credits. OpenAI-compatible.
+- **Modal**: Serverless GPU platform. $30/mo free. Great for custom model serving with vLLM.
+- **Anyscale Endpoints**: Ray-based serving. Fast open-source model inference.
+
+ 
+
+---
+
+#### Tier 4: Freemium (credit card required)
+
+| ## | Provider | Endpoint | Free Tier | Top Models | SDK | Status |
+| --- | --- | --- | --- | --- | --- | --- |
+| 1 | [**OpenAI**](https://platform.openai.com) | `api.openai.com/v1` | $5 credits (3 months) | gpt-4o, gpt-4o-mini | ✅ | ❓ Not Tested |
+| 2 | [**Anthropic**](https://console.anthropic.com) | `api.anthropic.com/v1` | $5-10 credits | claude-opus-4-6, claude-sonnet-4-6 | ❌ | ❓ Not Tested |
+| 3 | [**Perplexity**](https://docs.perplexity.ai) | `api.perplexity.ai` | $5/mo (with Pro subscription) | sonar, sonar-pro | ✅ | ❓ Not Tested |
+
+ 
+ Provider Notes (3) 
+
+- **OpenAI**: Industry standard. Credit card required for API access.
+- **Anthropic**: Not OpenAI-compatible. Uses Messages API + x-api-key header.
+- **Perplexity**: Search-grounded LLM. Answers include citations.
+
+ 
+
+---
+
+#### Tier 5: Pay-per-use (no free tier, very cheap)
+
+| ## | Provider | Endpoint | Pricing | Top Models | SDK |
+| --- | --- | --- | --- | --- | --- |
+| 1 | [**Moonshot / Kimi**](https://platform.moonshot.ai) | `api.moonshot.cn/v1` | None (very cheap: $0.10/M cache hit) | moonshot-v1-128k, kimi-k2.5 | ✅ |
+| 2 | [**MiniMax**](https://platform.minimax.io) | `api.minimax.chat/v1` | None (8% of Claude Sonnet pricing) | abab6.5s-chat, abab5.5-chat | ✅ |
+
+ 
+ Provider Notes (2) 
+
+- **Moonshot / Kimi**: Chinese AI. 256K context. Extremely cheap with caching.
+- **MiniMax**: Chinese AI. Very cost-effective.
+
+ 
+
+---
+
+#### Routers / Aggregators
+
+| ## | Provider | Endpoint | Free? | Description |
+| --- | --- | --- | --- | --- |
+| 1 | [**Requesty**](https://requesty.ai) | `router.requesty.ai/v1` | Free credits | Auto-failover between providers. |
+| 2 | [**Portkey**](https://portkey.ai) | `api.portkey.ai/v1` | Free tier | AI gateway with observability, guardrails, caching. |
+| 3 | [**Unify.ai**](https://unify.ai) | `api.unify.ai/v0` | Free tier | ML-based model routing. Picks optimal provider per query. |
+| 4 | [**LiteLLM (self-hosted)**](https://github.com/BerriAI/litellm) | `localhost:4000/v1` | Free (open source) | Open-source proxy. Unified format for all providers. |
+
+ 
+ Provider Notes (4) 
+
+- **Requesty**: Auto-failover between providers.
+- **Portkey**: AI gateway with observability, guardrails, caching.
+- **Unify.ai**: ML-based model routing. Picks optimal provider per query.
+- **LiteLLM (self-hosted)**: Open-source proxy. Unified format for all providers.
+
+ 
+
+---
+
+#### Local / Self-hosted (unlimited, free forever)
+
+| ## | Provider | Endpoint | Models | Status |
+| --- | --- | --- | --- | --- |
+| 1 | [**Ollama**](https://ollama.com) | `localhost:11434/v1` | llama3.3, qwen2.5 | ❓ Not Tested |
+| 2 | [**LM Studio**](https://lmstudio.ai) | `localhost:1234/v1` | Any GGUF model from HuggingFace | ❓ Not Tested |
+| 3 | [**llama.cpp**](https://github.com/ggerganov/llama.cpp) | `localhost:8080/v1` | Any GGUF model | ❓ Not Tested |
+| 4 | [**Jan.ai**](https://jan.ai) | `localhost:1337/v1` | Any supported model | ❓ Not Tested |
+
+ 
+ Provider Notes (4) 
+
+- **Ollama**: Easiest local setup. 50+ models. OpenAI-compatible.
+- **LM Studio**: Best GUI for local models. Drag-and-drop GGUF loading.
+- **llama.cpp**: Foundation for most local inference tools.
+- **Jan.ai**: 100% offline desktop app.
+
+ 
+
+---
+
+#### Cascade / Fallback Example
+
+Chain multiple free providers so your app **never goes down**:
+
+```python
+"""Cascade through free providers with automatic fallback."""
+from openai import OpenAI
+import os
+
+PROVIDERS = [
+    {"name": "Groq",       "base_url": "https://api.groq.com/openai/v1",       "key_env": "GROQ_API_KEY",       "model": "llama-3.3-70b-versatile"},
+    {"name": "Cerebras",   "base_url": "https://api.cerebras.ai/v1",           "key_env": "CEREBRAS_API_KEY",   "model": "llama-3.3-70b"},
+    {"name": "Mistral",    "base_url": "https://api.mistral.ai/v1",            "key_env": "MISTRAL_API_KEY",    "model": "mistral-small-latest"},
+    {"name": "Gemini",     "base_url": "https://generativelanguage.googleapis.com/v1beta/openai/", "key_env": "GEMINI_API_KEY", "model": "gemini-2.0-flash"},
+    {"name": "SambaNova",  "base_url": "https://api.sambanova.ai/v1",          "key_env": "SAMBANOVA_API_KEY",  "model": "Meta-Llama-3.3-70B-Instruct"},
+    {"name": "GitHub",     "base_url": "https://models.inference.ai.azure.com","key_env": "GITHUB_TOKEN",       "model": "gpt-4o"},
+    {"name": "HuggingFace","base_url": "https://router.huggingface.co/v1",     "key_env": "HUGGINGFACE_API_KEY","model": "Qwen/Qwen2.5-72B-Instruct"},
+    {"name": "OpenRouter", "base_url": "https://openrouter.ai/api/v1",         "key_env": "OPENROUTER_API_KEY", "model": "deepseek/deepseek-r1:free"},
+]
+
+def ask(prompt: str, max_tokens: int = 500) -> str:
+    """Try each provider in order until one succeeds."""
+    for p in PROVIDERS:
+        api_key = os.environ.get(p["key_env"], "")
+        if not api_key:
+            continue
+        try:
+            client = OpenAI(base_url=p["base_url"], api_key=api_key)
+            resp = client.chat.completions.create(
+                model=p["model"],
+                messages=[{"role": "user", "content": prompt}],
+                max_tokens=max_tokens,
+            )
+            print(f"[Used: {p['name']}]")
+            return resp.choices[0].message.content
+        except Exception as e:
+            print(f"[{p['name']} failed: {e}]")
+            continue
+    raise RuntimeError("All providers failed")
+
+print(ask("What is the meaning of life?"))
+```
+
+Or use the built-in production cascade client with health tracking, cooldowns, and streaming:
+
+```python
+from tools.cascade import CascadeClient
+
+client = CascadeClient()  ## Uses all configured providers from .env
+
+## Simple call
+response = client.chat("Explain quantum computing")
+print(response)
+
+## Streaming
+for chunk in client.chat_stream("Write a haiku about AI"):
+    print(chunk, end="", flush=True)
+```
+
+---
+
+#### Toolkit
+
+This repository includes a full-featured Python toolkit for scanning, discovering, benchmarking, and using LLM endpoints.
+
+###### Setup
+
+```bash
+git clone https://github.com/TaylorAmarelTech/text-generation-ai-llm-tools-endpoints-api-list-repository.git
+cd text-generation-ai-llm-tools-endpoints-api-list-repository
+pip install -r requirements.txt
+cp .env.example .env   ## Fill in your API keys (all optional)
+python main.py scan     ## Test all endpoints
+```
+
+###### CLI Reference
+
+| Command | Description |
+| --- | --- |
+| `python main.py scan` | Test all endpoints and print results |
+| `python main.py scan --tier free` | Test only free-tier providers |
+| `python main.py scan --provider Groq` | Test a specific provider |
+| `python main.py scan --report` | Scan + regenerate this README |
+| `python main.py report` | Generate README from last scan |
+| `python main.py list` | List all providers with tier info |
+| `python main.py discover` | AI-powered discovery of new endpoints |
+| `python main.py discover --strategy llm_search` | Use a specific discovery strategy |
+| `python main.py benchmark` | Measure latency, TTFT, tokens/sec |
+| `python main.py models` | Fetch model catalogs from all providers |
+| `python main.py export --format csv` | Export to JSON, CSV, YAML, or HTML |
+| `python main.py compare "prompt"` | Compare providers side-by-side |
+| `python main.py costs` | Compare pricing across all providers |
+| `python main.py costs --provider deepseek --rpd 100` | Estimate monthly cost for a provider |
+| `python main.py tokens "your text"` | Estimate token count for text |
+| `python main.py proxy --port 8000` | Start a local OpenAI-compatible proxy |
+
+###### AI-Powered Discovery
+
+The discovery engine uses multiple strategies to find new LLM API endpoints:
+
+| Strategy | Source | API Key Required |
+| --- | --- | --- |
+| `web_search` | Brave, Serper, or Google Custom Search | Yes (any one) |
+| `github_search` | GitHub repos, awesome-lists, code search | Optional (higher limits with token) |
+| `llm_search` | Ask an LLM to brainstorm new providers | Yes (any LLM provider key) |
+| `community` | Reddit and Hacker News discussions | No |
+| `directory_scrape` | API directories (e.g., OpenRouter /models) | No |
+
+Configure strategies and API keys in `config.yaml` or via environment variables.
+
+###### Plugin System
+
+| Plugin | Description | Auto-runs |
+| --- | --- | --- |
+| `benchmark` | TTFT, tokens/sec, total latency with streaming | No |
+| `model_list` | Fetch and catalog all models from each provider | No |
+| `export` | Export to JSON, CSV, YAML, HTML | On scan complete |
+| `pricing` | Track pricing via OpenRouter's public API | No |
+| `notify` | Send alerts to Slack, Discord, or webhooks | On scan complete |
+
+**Custom plugins:** Drop a `.py` file in `plugins/custom/` that subclasses `BasePlugin`.
+
+###### Local Proxy
+
+Route any OpenAI-compatible app through your free providers:
+
+```bash
+python main.py proxy --port 8000
+
+## Point your apps to:
+export OPENAI_BASE_URL=http://localhost:8000/v1
+export OPENAI_API_KEY=anything
+
+## Works with any OpenAI SDK client, LangChain, LlamaIndex, etc.
+```
+
+---
+
+#### Examples
+
+Ready-to-run scripts in the `examples/` directory:
+
+| Example | Description | Run |
+| --- | --- | --- |
+| **basic_chat** | Simple single-turn chat | `python examples/basic_chat.py --provider groq` |
+| **streaming_chat** | Streaming with TTFT/throughput stats | `python examples/streaming_chat.py` |
+| **interactive_chat** | Multi-turn conversation with history | `python examples/interactive_chat.py` |
+| **multi_provider** | Compare responses across providers in parallel | `python examples/multi_provider.py "your prompt"` |
+| **structured_output** | JSON mode + function calling for extraction | `python examples/structured_output.py` |
+| **rag_pipeline** | RAG with local TF-IDF retriever + LLM | `python examples/rag_pipeline.py --query "..."` |
+| **agent_tool_use** | Interactive agent with calculator/weather/unit tools | `python examples/agent_tool_use.py` |
+| **batch_async** | Process 10 prompts in parallel with concurrency control | `python examples/batch_async.py` |
+| **vision** | Multimodal image analysis (Gemini, GitHub Models) | `python examples/vision.py --url "..."` |
+| **embeddings** | Free embeddings + similarity matrix | `python examples/embeddings.py` |
+| **research_demo** | Full research agent with web search | `python examples/research_demo.py "query"` |
+| **oneliners** | One-liner for every provider + quick list | `python examples/oneliners.py groq` |
+| **curl_examples** | cURL commands for 10 providers (no Python!) | `bash examples/curl_examples.sh groq` |
+
+All examples support `--provider` flag to switch between free providers (groq, gemini, cerebras, mistral, etc.).
+
+---
+
+#### Agent Framework
+
+The `agents/` module provides a lightweight agent framework that works with any free provider:
+
+###### BaseAgent
+
+Core agent with tool registration, conversation history, and automatic function calling:
+
+```python
+from agents import BaseAgent
+
+agent = BaseAgent("groq")  ## or "gemini", "cerebras", "mistral", etc.
+agent.register_tool("my_tool", "description", {params}, my_function)
+response = agent.chat("Use my_tool to do something")
+```
+
+###### ReActAgent
+
+Reason + Act pattern using text parsing (works with ANY provider, even without native tool support):
+
+```python
+from agents import ReActAgent
+
+agent = ReActAgent("gemini", verbose=True)
+agent.register_tool("search", "Search the web", {...}, search_fn)
+answer = agent.chat("Research the latest AI news")
+## Prints: [Thought] -> [Action] -> [Observation] -> ... -> [Answer]
+```
+
+###### ResearchAgent
+
+Web research agent with built-in search and page fetching:
+
+```python
+from agents import ResearchAgent
+from search import get_available_search
+
+agent = ResearchAgent("groq", search_provider=get_available_search())
+answer = agent.chat("What are the latest developments in fusion energy?")
+```
+
+###### CodeAgent
+
+Code generation, review, debugging, and explanation:
+
+```python
+from agents import CodeAgent
+
+agent = CodeAgent("groq", language="python")
+code = agent.generate("a binary search function")
+review = agent.review("def foo(x): return x+1")
+fix = agent.debug("def foo(): return 1/0", "ZeroDivisionError")
+```
+
+###### SummarizerAgent
+
+Handles long documents with automatic chunking and hierarchical summarization:
+
+```python
+from agents import SummarizerAgent
+
+agent = SummarizerAgent("groq")
+summary = agent.summarize(long_document)
+bullets = agent.summarize(long_document, style="bullets")
+brief = agent.summarize(long_document, style="tldr")
+diff = agent.compare(text_a, text_b)
+```
+
+###### DataExtractorAgent
+
+Extract structured data from unstructured text:
+
+```python
+from agents import DataExtractorAgent
+
+agent = DataExtractorAgent("groq")
+entities = agent.extract_entities("Elon Musk visited SpaceX in Texas.")
+data = agent.extract(text, {"product": "string", "price": "number"})
+table = agent.extract_table(report, columns=["quarter", "revenue"])
+category = agent.classify(text, ["positive", "negative", "neutral"])
+```
+
+###### Provider Presets
+
+All agents accept a provider name string with 8 built-in presets:
+
+| Preset | Provider | Model | Free Tier |
+| --- | --- | --- | --- |
+| `groq` | Groq | llama-3.3-70b-versatile | ~1K RPD |
+| `gemini` | Google Gemini | gemini-2.0-flash | 500 RPD |
+| `cerebras` | Cerebras | llama-3.3-70b | 1M tokens/day |
+| `mistral` | Mistral | mistral-small-latest | 1B tokens/mo |
+| `openrouter` | OpenRouter | deepseek-r1:free | 200 RPD |
+| `github` | GitHub Models | gpt-4o | 50-150 RPD |
+| `sambanova` | SambaNova | Llama-3.3-70B | $5 credits |
+| `huggingface` | HuggingFace | Qwen2.5-72B | ~300 req/hr |
+
+---
+
+#### Search Tools
+
+The `search/` module provides unified search provider wrappers for use with agents and discovery:
+
+| Provider | API | Free Tier | Setup |
+| --- | --- | --- | --- |
+| **Brave Search** | `search/brave_search.py` | 2,000 queries/month | `BRAVE_API_KEY` from [brave.com/search/api](https://brave.com/search/api/) |
+| **Serper.dev** | `search/serper_search.py` | 2,500 queries (one-time) | `SERPER_API_KEY` from [serper.dev](https://serper.dev) |
+| **Google CSE** | `search/google_cse.py` | 100 queries/day | `GOOGLE_API_KEY` + `GOOGLE_CSE_ID` |
+| **Web Scraper** | `search/web_scraper.py` | Unlimited (direct fetch) | No key needed |
+
+###### Usage
+
+```python
+from search import get_available_search, BraveSearch, fetch_url
+
+## Auto-detect first configured provider
+search = get_available_search()
+if search:
+    import asyncio
+    results = asyncio.run(search.search("free LLM API endpoints"))
+    for r in results:
+        print(f"{r.title}: {r.url}")
+
+## Or use a specific provider
+brave = BraveSearch()  ## Uses BRAVE_API_KEY from env
+results = asyncio.run(brave.search("best free AI APIs 2026"))
+
+## Fetch and extract text from any URL
+text = asyncio.run(fetch_url("https://example.com"))
+```
+
+All search providers implement the same `BaseSearchProvider` interface, making them interchangeable in agents and discovery strategies.
+
+---
+
+#### API Adapters
+
+The `adapters/` module normalizes different LLM API formats into a unified interface. Write your code once, use any provider:
+
+| Adapter | Providers | Auth Style | Notes |
+| --- | --- | --- | --- |
+| **OpenAIAdapter** | OpenAI, Groq, Cerebras, Mistral, Together, DeepSeek, 30+ more | Bearer token | Most common format |
+| **AnthropicAdapter** | Anthropic (Claude) | x-api-key header | System prompt as top-level param |
+| **CohereAdapter** | Cohere (Command-R) | Bearer token | Custom chat format |
+| **GoogleNativeAdapter** | Google Gemini (native) | Query param | GenerateContent API |
+
+###### Usage
+
+```python
+from adapters import get_adapter, ChatMessage
+
+## Unified interface across all providers
+adapter = get_adapter("openai", base_url="https://api.groq.com/openai/v1",
+                       api_key="...", model="llama-3.3-70b-versatile")
+response = adapter.chat([
+    ChatMessage("system", "You are helpful."),
+    ChatMessage("user", "Hello!"),
+])
+print(response.content)  ## Same ChatResponse regardless of provider
+
+## Quick one-liner
+text = adapter.simple_chat("Explain quantum computing")
+
+## Async support
+import asyncio
+response = asyncio.run(adapter.achat([ChatMessage("user", "Hi!")]))
+```
+
+---
+
+#### Utility Tools
+
+###### Rate Limiter
+
+Thread-safe rate limiting with per-provider quota tracking:
+
+```python
+from tools.rate_limiter import RateLimiter
+
+limiter = RateLimiter()  ## Pre-configured quotas for 8 free providers
+
+if limiter.can_request("groq"):
+    ## Make your request...
+    limiter.record_request("groq", tokens=150, latency_ms=230)
+else:
+    wait = limiter.wait_time("groq")
+    print(f"Rate limited. Wait {wait:.1f}s")
+
+## Check remaining quota
+print(limiter.remaining("groq"))  ## {"rpm": 29, "rpd": 999}
+print(limiter.summary())          ## Full usage summary table
+```
+
+###### Token Counter
+
+Estimate token counts without external dependencies:
+
+```python
+from tools.token_counter import count_tokens, estimate_messages_tokens, tokens_to_cost
+
+## Quick estimate
+tokens = count_tokens("Hello, how are you doing today?")  ## ~8
+
+## Estimate for chat messages
+messages = [
+    {"role": "system", "content": "You are a helpful assistant."},
+    {"role": "user", "content": "Explain quantum computing."},
+]
+total = estimate_messages_tokens(messages)  ## ~18
+
+## Calculate cost
+cost = tokens_to_cost(input_tokens=1000, output_tokens=500,
+                       input_price_per_m=0.14, output_price_per_m=0.28)
+## $0.00028 (DeepSeek pricing)
+```
+
+###### Cost Calculator
+
+Compare pricing across all providers:
+
+```python
+from tools.cost_calculator import CostCalculator, estimate_monthly_cost
+
+calc = CostCalculator()
+
+## Find cheapest provider
+cheapest = calc.cheapest_paid(input_tokens=1000, output_tokens=500)
+## {'provider': 'DeepSeek', 'model': 'deepseek-chat', 'cost': 0.00028, ...}
+
+## Full cost comparison table
+print(calc.summary(input_tokens=1000, output_tokens=500))
+
+## Estimate monthly spend
+monthly = estimate_monthly_cost("deepseek", requests_per_day=100)
+## {'monthly_cost': 0.84, 'monthly_requests': 3000, ...}
+```
+
+###### Conversation Manager
+
+Save, load, and export chat histories:
+
+```python
+from tools.conversation import ConversationManager
+
+manager = ConversationManager("data/conversations")
+conv = manager.new("Debug Session", provider="groq")
+conv.add_message("user", "Fix this bug...")
+conv.add_message("assistant", "The issue is...")
+
+manager.save(conv)                ## Save as JSON
+manager.save(conv, format="md")   ## Also save as Markdown
+convs = manager.list_conversations()  ## List all saved
+loaded = manager.load(conv.id)    ## Load by ID
+```
+
+---
+
+#### Recipes & Use Cases
+
+The `recipes/` directory contains step-by-step guides for common tasks:
+
+| Recipe | Use Case | Difficulty |
+| --- | --- | --- |
+| Chatbot | Build a conversational bot with memory | Beginner |
+| RAG System | Answer questions from your documents | Intermediate |
+| Content Pipeline | Generate, review, and refine content with multiple models | Intermediate |
+| Data Extraction | Pull structured data from unstructured text | Beginner |
+| Code Assistant | Generate, review, debug, and explain code | Beginner |
+| Research Agent | Search the web and synthesize answers | Intermediate |
+| Multi-Provider Failover | Never go down with cascade fallback | Intermediate |
+| Batch Processing | Process hundreds of prompts efficiently | Intermediate |
+| Cost Optimization | Smart routing to minimize API costs | Advanced |
+| Monitoring Dashboard | Track usage, latency, and errors across providers | Advanced |
+
+See [`recipes/README.md`](recipes/README.md) for full walkthroughs with code examples.
+
+---
+
+#### Architecture
+
+```
+                          ┌─────────────────┐
+                          │   config.yaml   │
+                          │    + .env keys  │
+                          └────────┬────────┘
+                                   │
+                          ┌────────▼────────┐
+                          │    main.py      │  CLI entry point
+                          │   (argparse)    │  11 subcommands
+                          └──┬────┬────┬────┘
+                             │    │    │
+              ┌──────────────┘    │    └──────────────┐
+              ▼                   ▼                   ▼
+    ┌──────────────────┐ ┌──────────────┐  ┌──────────────────┐
+    │  providers.py    │ │  scanner.py  │  │ discovery/engine  │
+    │  57+ providers   │ │  async HTTP  │  │  5 strategies     │
+    │  7 tiers         │ │  health test │  │  AI-powered       │
+    └────────┬─────────┘ └──────┬───────┘  └────────┬─────────┘
+             │                  │                    │
+             ▼                  ▼                    ▼
+    ┌──────────────────────────────────────────────────────┐
+    │              report_generator.py                     │
+    │              (generates README.md)                   │
+    └──────────────────────────────────────────────────────┘
+
+    ┌──────────────────────────────────────────────────────┐
+    │                agents/ + search/                     │
+    │  BaseAgent | ReActAgent | ResearchAgent | CodeAgent  │
+    │  BraveSearch | SerperSearch | GoogleCSE | WebScraper │
+    └──────────────────────────────────────────────────────┘
+
+    ┌──────────────────────────────────────────────────────┐
+    │              plugins/ + tools/                       │
+    │  benchmark | export | cascade | proxy | compare      │
+    │  pricing | notify | cost_calculator | token_counter  │
+    └──────────────────────────────────────────────────────┘
+
+    ┌──────────────────────────────────────────────────────┐
+    │                   examples/                          │
+    │  basic_chat | streaming | multi_provider | RAG       │
+    │  agent_tool_use | batch_async | structured_output    │
+    └──────────────────────────────────────────────────────┘
+```
+
+---
+
+#### Status Legend
+
+| Icon | Meaning |
+| --- | --- |
+| ✅ | **Working** -- endpoint responded with a valid completion |
+| 🟡 | **Reachable** -- endpoint alive but completion not tested |
+| 🔑 | **Key Not Set** -- API key not configured in `.env` |
+| ❌ | **Error / Auth Failed** -- endpoint returned an error |
+| 💳 | **Needs Credits** -- free credits exhausted |
+| ⏳ | **Rate Limited** -- too many requests, try again later |
+| ⏱️ | **Timeout** -- endpoint didn't respond in time |
+| ⬛ | **Offline** -- local server not running |
+| ⏭️ | **Skipped** -- no test model configured |
+
+---
+
+#### Project Structure
+
+```
+text-generation-ai-llm-tools-endpoints-api-list-repository/
+├── main.py                  ## CLI entry point (11 subcommands)
+├── config.py                ## Config loader (YAML + env overrides)
+├── config.yaml              ## All settings (scan, search, discovery, plugins)
+├── providers.py             ## Provider registry (58 providers, 7 tiers)
+├── scanner.py               ## Async endpoint health checker (httpx)
+├── report_generator.py      ## README/report generator
+├── requirements.txt         ## Python dependencies
+├── .env.example             ## API key template (50+ keys, all optional)
+├── CONTRIBUTING.md          ## How to contribute
+├── CHANGELOG.md             ## Version history and release notes
+├── SECURITY.md              ## Security policy
+├── CODE_OF_CONDUCT.md       ## Community guidelines
+├── __version__.py           ## Version number (0.4.0)
+├── .gitattributes           ## Line ending normalization
+│
+├── .github/                 ## GitHub templates
+│   ├── pull_request_template.md
+│   └── ISSUE_TEMPLATE/
+│       ├── new-provider.md
+│       ├── provider-update.md
+│       └── bug-report.md
+│
+├── examples/                ## Ready-to-run sample scripts (13 examples)
+│   ├── basic_chat.py        ## Simple single-turn chat
+│   ├── streaming_chat.py    ## Streaming with perf stats
+│   ├── interactive_chat.py  ## Multi-turn conversation
+│   ├── multi_provider.py    ## Compare providers side-by-side
+│   ├── structured_output.py ## JSON mode + function calling
+│   ├── rag_pipeline.py      ## RAG with local TF-IDF + LLM
+│   ├── agent_tool_use.py    ## Agent with calculator/weather tools
+│   ├── batch_async.py       ## Parallel prompt processing
+│   ├── vision.py            ## Multimodal image analysis
+│   ├── embeddings.py        ## Free embeddings + similarity
+│   ├── research_demo.py     ## Full research agent demo
+│   ├── oneliners.py         ## One-liner per provider
+│   └── curl_examples.sh     ## cURL commands for 10 providers
+│
+├── agents/                  ## LLM-powered agent framework
+│   ├── base.py              ## BaseAgent + 8 provider presets
+│   ├── react_agent.py       ## ReAct (Reason + Act) agent
+│   ├── research_agent.py    ## Web research agent
+│   ├── code_agent.py        ## Code gen/review/debug agent
+│   ├── summarizer.py        ## Document summarization agent
+│   └── data_extractor.py    ## Structured data extraction
+│
+├── adapters/                ## API format normalizers
+│   ├── base.py              ## ChatMessage/ChatResponse interface
+│   ├── openai_adapter.py    ## OpenAI-compatible (30+ providers)
+│   ├── anthropic_adapter.py ## Anthropic Messages API
+│   ├── cohere_adapter.py    ## Cohere Chat API
+│   └── google_adapter.py    ## Google Gemini native API
+│
+├── search/                  ## Search tool integrations
+│   ├── base.py              ## BaseSearchProvider interface
+│   ├── brave_search.py      ## Brave Search API
+│   ├── serper_search.py     ## Serper.dev Google Search
+│   ├── google_cse.py        ## Google Custom Search Engine
+│   └── web_scraper.py       ## URL content fetcher
+│
+├── recipes/                 ## Use case guides & walkthroughs
+│   └── README.md            ## 10 recipes with code examples
+│
+├── discovery/               ## AI-powered endpoint discovery
+│   ├── engine.py            ## Orchestrator (dedup, verify, save)
+│   └── strategies/
+│       ├── base.py          ## Strategy interface
+│       ├── web_search.py    ## Brave / Serper / Google CSE
+│       ├── github_search.py ## GitHub repos & awesome-lists
+│       ├── llm_search.py    ## LLM-assisted brainstorming
+│       ├── community.py     ## Reddit & Hacker News
+│       └── directory_scrape.py
+│
+├── plugins/                 ## Plugin system
+│   ├── base.py              ## BasePlugin + PluginManager
+│   ├── builtin/
+│   │   ├── benchmark.py     ## TTFT, tokens/sec, latency
+│   │   ├── model_list.py    ## Model catalog fetcher
+│   │   ├── export.py        ## JSON / CSV / YAML / HTML
+│   │   ├── pricing.py       ## Pricing tracker (OpenRouter)
+│   │   └── notify.py        ## Slack / Discord / webhook
+│   └── custom/              ## Drop your own plugins here
+│
+├── tools/                   ## Standalone tools
+│   ├── cascade.py           ## Production cascade client
+│   ├── compare.py           ## Side-by-side comparison
+│   ├── proxy.py             ## Local OpenAI-compatible proxy
+│   ├── rate_limiter.py      ## Per-provider rate limiting + quota tracking
+│   ├── conversation.py      ## Chat history save/load/export
+│   ├── token_counter.py     ## Token estimation + cost math
+│   └── cost_calculator.py   ## Cross-provider cost comparison
+│
+└── data/                    ## Generated data (gitignored)
+    └── .gitkeep
+```
+
+---
+
+#### FAQ & Troubleshooting
+
+ 
+ I'm getting "rate limited" -- what do I do? 
+
+Free tiers have daily/minute limits. Options:
+
+1. Switch to another free provider (use `CascadeClient` for automatic failover)
+2. Wait for the rate limit to reset (usually 1 minute for RPM, midnight UTC for RPD)
+3. Run `python main.py costs` to find affordable paid alternatives
+
+ 
+
+ 
+ Which provider should I start with? 
+
+**Groq** for speed, **Gemini** for generous limits (500 RPD), **Mistral** for highest volume (1B tokens/mo). See the Quick Start for all options.
+ 
+
+ 
+ "OpenAI SDK" -- do I need an OpenAI key? 
+
+No. The OpenAI Python SDK is just the client library. You point it at any compatible endpoint by setting `base_url`. No OpenAI account needed.
+ 
+
+ 
+ How do I use this without Python? 
+
+Use `examples/curl_examples.sh` -- it has cURL commands for 10 providers that work from any terminal. The API format is standard REST/JSON.
+ 
+
+ 
+ The scanner says "AUTH FAIL" for a provider I have a key for 
+
+1. Check that the key is correctly set in `.env` (no quotes, no trailing spaces)
+2. Some providers require account verification or have region restrictions
+3. Try the key manually: `python examples/oneliners.py `
+
+ 
+
+ 
+ Can I use this in production? 
+
+The code is MIT-licensed, so yes. For production, use `CascadeClient` for failover, `RateLimiter` for quota management, and consider paid tiers for guaranteed uptime. Free tiers can change without notice.
+ 
+
+---
+
+#### Keeping Up to Date
+
+Free tier limits and provider availability change frequently. Here's how to stay current:
+
+```bash
+## Pull the latest provider data
+git pull origin main
+
+## Re-scan all endpoints to check current status
+python main.py scan --report
+
+## Discover new providers that may have launched
+python main.py discover
+```
+
+**Automated updates:**
+
+- Star and watch this repo to get notified of new providers
+- The provider registry in `providers.py` is updated regularly
+- Run `python main.py scan` periodically to verify endpoint health
+- Check the [CHANGELOG.md](CHANGELOG.md) for version history
+
+**Current version:** 0.4.0 ([full changelog](CHANGELOG.md))
+
+---
+
+#### Contributing
+
+Found a new free LLM endpoint? Provider changed their limits? Something broken? **Contributions welcome!**
+
+See **[CONTRIBUTING.md](CONTRIBUTING.md)** for full guidelines. Quick version:
+
+1. Edit `providers.py` -- add a new `Provider(...)` entry in the appropriate tier
+2. Run `python main.py scan --provider YourProvider` to verify it works
+3. Run `python main.py report` to regenerate the README
+4. Submit a PR
+
+- Provider down or limits changed? [Open an issue](https://github.com/TaylorAmarelTech/text-generation-ai-llm-tools-endpoints-api-list-repository/issues)
+- New provider suggestion? Use the [New Provider template](https://github.com/TaylorAmarelTech/text-generation-ai-llm-tools-endpoints-api-list-repository/issues/new?template=new-provider.md)
+
+---
+
+#### Credits & Acknowledgments
+
+**Built by** [TaylorAmarelTech](https://github.com/TaylorAmarelTech)
+
+**Key dependencies:**
+
+- [OpenAI Python SDK](https://github.com/openai/openai-python) -- universal LLM client
+- [httpx](https://github.com/encode/httpx) -- async HTTP for scanning
+- [Rich](https://github.com/Textualize/rich) -- terminal formatting
+- [python-dotenv](https://github.com/theskumar/python-dotenv) -- environment management
+
+**Providers:** This project is made possible by the generous free tiers offered by Groq, Google, Cerebras, Mistral, OpenRouter, HuggingFace, Cloudflare, GitHub Models, and all the other providers listed in this directory. We are not affiliated with any of these providers.
+
+**Community:** Contributions, provider suggestions, and bug reports from the community keep this directory accurate and up to date. See [CONTRIBUTING.md](CONTRIBUTING.md) to get involved.
+
+---
+
+#### License
+
+[MIT](https://github.com/TaylorAmarelTech/text-generation-ai-llm-tools-endpoints-api-list-repository/blob/main/LICENSE) -- use this however you want.
+
+---
+
+ 
+ Auto-generated by LLM Endpoint Scanner v0.4.0 &bull; Last updated: 2026-03-08 00:03 UTC 
+
+
+# open-free-llm-api/awesome-freellm-apis - https://github.com/open-free-llm-api/awesome-freellm-apis
+## Repository: open-free-llm-api/awesome-freellm-apis
+
+134+ free LLM APIs & AI API keys from 40+ providers. Google Gemini, NVIDIA NIM, Groq, OpenRouter & more. One-click setup for Claude Code, Cursor and Codex.
+
+- Stars: 739
+- Forks: 86
+- Watchers: 3
+- Open issues: 4
+- License: MIT License (MIT)
+- Topics: free-llm-api, freeairesources, freellm, freellmapi, freellmmodels
+- Default branch: main
+- Homepage: https://freellm.net
+- Created: 2026-05-10T15:03:43Z
+- Last push: 2026-07-15T03:54:41Z
+- Contributors: 1 (top: github-actions[bot])
+
+---
+
+ 
+ awesome-free-llm-apis 
+ 
+ 376+ free LLM APIs from 30 providers — find, compare & configure free models in seconds. 
+ 
+ 
+
+ 
+ 🌐 Live at freellm.net —
+ Browse models ·
+ Playground ·
+ Config generator ·
+ API keys 
+ 
+
+ 
+ 
+ 
+
+ 
+ 🔄 Data refreshed daily from freellm.net — Last updated: 2026-07-15 
+ 
+
+ 
+ 🌐 English · 简体中文 · 繁體中文 · 日本語 · 한국어 
+ 
+
+---
+
+#### Why This Exists
+
+Finding a free LLM API shouldn't mean hunting through a dozen GitHub READMEs, signing up for five different platforms, or guessing which models still have a free tier.
+
+This repo is a **structured, machine-readable directory** of every free LLM API — rate limits, context windows, one-click config snippets, and direct API key links. Updated daily.
+
+**Why this repo + freellm.net:**
+
+- ✅ **Always up-to-date** — data refreshed daily via automated monitoring, not a 2-year-old static list
+- ✅ **Credit card transparency** — clearly shows which providers require a card, phone verification, or nothing at all
+- ✅ **One-click configs** — ready-to-copy snippets for Claude Code, Cursor, Codex, Aider, and 10+ more tools
+- ✅ **Side-by-side comparison** — compare context windows, rate limits, and modalities across providers instantly
+
+---
+
+#### How to Use — 3 Steps
+
+1. **Pick a provider** — see [Provider Directory](##provider-directory) below. Start with **Groq** (no credit card, 30 RPM free).
+2. **Get your API key** — click any [Get Key →](##quick-reference--base-urls--api-keys) link below, sign up (most need just an email), and copy your key. Takes < 1 minute.
+3. **Plug it in** — copy the base URL + model ID, paste into the [Quick Start](##quick-start--use-any-free-api-in-30-seconds) examples below.
+
+Configuring a specific tool? Claude Code · Cursor · Codex · OpenHuman · OpenCode · OpenClaw — one-click configs at freellm.net/config/.
+
+#### Quick Start — Use Any Free API in 30 Seconds
+
+**Never used an API before?** Here's the simplest path: go to console.groq.com/keys, sign up with just an email (no credit card), copy your free key, and paste it into any example below. You'll be running in under a minute.
+
+All providers below expose an **OpenAI-compatible endpoint**. Any tool that accepts `baseURL` + `apiKey` works — just swap the base URL and key.
+
+###### Python (OpenAI SDK)
+
+```python
+from openai import OpenAI
+
+client = OpenAI(
+    base_url="https://api.groq.com/openai/v1",  ## free, no credit card
+    api_key="GROQ_API_KEY",                     ## get at console.groq.com/keys
+)
+
+response = client.chat.completions.create(
+    model="llama-3.3-70b-versatile",            ## see Best Models table below
+    messages=[{"role": "user", "content": "Hello!"}],
+)
+print(response.choices[0].message.content)
+## Groq free tier: 30 RPM, 14,400 RPD — generous for personal use
+```
+
+###### Codex CLI
+
+```bash
+export OPENAI_BASE_URL="https://api.groq.com/openai/v1"
+export OPENAI_API_KEY="your-groq-key"          ## get at console.groq.com/keys
+codex --model "llama-3.3-70b-versatile"
+```
+
+###### Cursor
+
+```
+Settings → Models → Add Model
+  Model name: llama-3.3-70b-versatile
+  Base URL: https://api.groq.com/openai/v1
+  API key: your-groq-key                       ## get at console.groq.com/keys
+```
+
+###### Claude Code
+
+```bash
+## Claude Code needs an Anthropic-compatible API — use OpenRouter
+export ANTHROPIC_BASE_URL="https://openrouter.ai/api"
+export ANTHROPIC_AUTH_TOKEN="sk-or-v1-your-key"  ## openrouter.ai/keys
+export ANTHROPIC_API_KEY=""                       ## must be empty
+## Note: OpenRouter Anthropic models need $10 top-up (one-time)
+```
+
+###### Using Other Tools?
+
+Most AI dev tools accept custom API endpoints — just point them at any provider above. Grab your free key, then:
+
+- **Claude Code** — set `ANTHROPIC_BASE_URL` + `ANTHROPIC_AUTH_TOKEN`. Step-by-step → 
+- **Cursor** — Settings → Models → Add Model. Step-by-step → 
+- **Codex CLI** — set `OPENAI_BASE_URL` + `OPENAI_API_KEY`. Step-by-step → 
+- **OpenHuman** — edit `config.toml`. Step-by-step → 
+- **Aider** — edit `.aider.conf.yml`. Step-by-step → 
+- **Cline** (VS Code) — API provider settings. Step-by-step → 
+- **Open WebUI** — Settings → Connections. Step-by-step → 
+
+More ready-to-copy configs at freellm.net/config/.
+
+> **All providers, base URLs, and API key links** are in the [Quick Reference](##quick-reference--base-urls--api-keys) below.
+
+---
+
+#### Provider Directory
+
+###### ⚡ Permanent Free Tiers
+
+These providers offer a **permanently free tier** — no credit card required for most.
+
+ 
+
+| Provider | Free Models | Credit Card? | Max Context | Modalities | Get API Key |
+| --- | --- | --- | --- | --- | --- |
+| NVIDIA NIM | 117 | Phone verification | 1M | audio, embedding, image, reasoning, rerank, text, video, vision | → |
+| ModelScope | 54 | Registration | 1M | audio, image, reasoning, text, video, vision | → |
+| Cloudflare Workers AI | 39 | No | 10M | code, image, reasoning, text, video | → |
+| GitHub Models | 13 | No | 1M | audio, image, pdf, reasoning, text | → |
+| Google Gemini | 12 | No | 1M | audio, image, pdf, reasoning, text, video, vision | → |
+| OVHcloud AI Endpoints | 12 | Registration | 262K | audio, code, image, reasoning, text, video | → |
+| Groq | 10 | No | 262K | text | → |
+| Mistral AI | 9 | No | 256K | code, image, text | → |
+| LLM7.io | 8 | No | 256K | audio, code, image, pdf, reasoning, text, video | → |
+| Cerebras | 7 | No | 262K | reasoning, text, vision | → |
+| Cohere | 6 | No | 256K | text | → |
+| Ollama Cloud | 6 | Registration | 262K | code, reasoning, text | → |
+| OpenCode Zen | 6 | Registration | 1M | audio, reasoning, vision | → |
+| Agnes AI | 5 | Registration | 256K | image, text, video, vision | → |
+| Aion Labs | 5 | Registration | 131K | text | → |
+| Hugging Face | 5 | No | 131K | text | → |
+| Kilo Code | 5 | No | 262K | code, reasoning, text | → |
+| Alibaba Cloud Model Studio | 5 | Registration | 1M | code, image, text | → |
+| Z AI (Zhipu AI) | 4 | No | 200K | image, reasoning, text, video | → |
+| SambaNova | 4 | Registration | 128K | image, reasoning, text | → |
+| SiliconFlow | 3 | Registration | 131K | text | → |
+| xAI | 3 | Registration | 2M | text | → |
+| Chutes.ai | 2 | Registration | 131K | reasoning, text | → |
+| Glhf.chat | 2 | Registration | 131K | text | → |
+| Grok (xAI) | 2 | Registration | 131K | text | → |
+| AI21 Labs | 2 | Registration | 256K | text | → |
+| DeepSeek | 2 | Registration | 128K | text | → |
+| Nscale | 2 | Registration | 128K | text | → |
+| Nebius | 1 | Registration | 128K | text | → |
+
+ 
+
+###### 💰 Renewable Credits
+
+Providers that periodically renew free credits.
+
+ 
+
+| Provider | Free Models | Credit Model | Max Context | Modalities | Get API Key |
+| --- | --- | --- | --- | --- | --- |
+| OpenRouter | 25 | Free tier + $10 topup → 1K RPD | 1M | audio, code, embeddings, image, reasoning, rerank, text, video, vision | → |
+
+ 
+
+#### Quick Reference — Base URLs & API Keys
+
+ 
+
+| Provider | Base URL | Get API Key | Credit Card? |
+| --- | --- | --- | --- |
+| NVIDIA NIM | `https://integrate.api.nvidia.com/v1` | Get Key → | Phone verification |
+| ModelScope | `https://api-inference.modelscope.cn/v1` | Get Key → | Registration |
+| Cloudflare Workers AI | `https://api.cloudflare.com/client/v4/accounts/{account_id}/ai/run` | Get Key → | No |
+| OpenRouter | `https://openrouter.ai/api/v1` | Get Key → | Registration |
+| GitHub Models | `https://models.github.ai/inference` | Get Key → | No |
+| Google Gemini | `https://generativelanguage.googleapis.com/v1beta` | Get Key → | No |
+| OVHcloud AI Endpoints | `https://oai.endpoints.kepler.ai.cloud.ovh.net/v1` | Get Key → | Registration |
+| Groq | `https://api.groq.com/openai/v1` | Get Key → | No |
+| Mistral AI | `https://api.mistral.ai/v1` | Get Key → | No |
+| LLM7.io | `https://api.llm7.io/v1` | Get Key → | No |
+| Cerebras | `https://api.cerebras.ai/v1` | Get Key → | No |
+| Cohere | `https://api.cohere.com/v2` | Get Key → | No |
+| Ollama Cloud | `https://api.ollama.com` | Get Key → | Registration |
+| OpenCode Zen | `https://opencode.ai/zen/v1` | Get Key → | Registration |
+| Agnes AI | `https://apihub.agnes-ai.com/v1` | Get Key → | Registration |
+| Aion Labs | `https://api.aionlabs.ai/v1` | Get Key → | Registration |
+| Hugging Face | `https://router.huggingface.co/v1` | Get Key → | No |
+| Kilo Code | `https://api.kilo.ai/api/gateway` | Get Key → | No |
+| Alibaba Cloud Model Studio | `https://dashscope-intl.aliyuncs.com/compatible-mode/v1` | Get Key → | Registration |
+| Z AI (Zhipu AI) | `https://open.bigmodel.cn/api/paas/v4` | Get Key → | No |
+| SambaNova | `https://api.sambanova.ai/v1` | Get Key → | Registration |
+| SiliconFlow | `https://api.siliconflow.cn/v1` | Get Key → | Registration |
+| xAI | `https://api.x.ai/v1` | Get Key → | Registration |
+| Chutes.ai | `https://api.chutes.ai/v1` | Get Key → | Registration |
+| Glhf.chat | `https://glhf.chat/api/openai/v1` | Get Key → | Registration |
+| Grok (xAI) | `https://api.x.ai/v1` | Get Key → | Registration |
+| AI21 Labs | `https://api.ai21.com/studio/v1` | Get Key → | Registration |
+| DeepSeek | `https://api.deepseek.com/v1` | Get Key → | Registration |
+| Nscale | `https://inference.api.nscale.com/v1` | Get Key → | Registration |
+| Nebius | `https://api.studio.nebius.com/v1` | Get Key → | Registration |
+
+ 
+
+#### Best Free Models by Provider
+
+ 
+
+| Provider | Best Free Model | Model ID | Max Context | Rate Limit |
+| --- | --- | --- | --- | --- |
+| NVIDIA NIM | z-ai/glm-5.2 | `z-ai/glm-5.2` | 1M | Up to 40 RPM |
+| | moonshotai/kimi-k2.6 | `moonshotai/kimi-k2.6` | 262K | Up to 40 RPM |
+| | z-ai/glm-5.1 | `z-ai/glm-5.1` | 202K | Up to 40 RPM |
+| ModelScope | MiniMax-M2.5-highspeed | `MiniMax/MiniMax-M2.5` | 204K | See provider |
+| | Qwen/Qwen3.5-35B-A3B | `Qwen/Qwen3.5-35B-A3B` | 131K | 2,000 RPD total; <=500 .. |
+| | Qwen/Qwen3.5-27B | `Qwen/Qwen3.5-27B` | 131K | 2,000 RPD total; <=500 .. |
+| Cloudflare Workers AI | Mistral 7B | `@cf/mistral/mistral-7b-instruct-v0.1` | 32K | See provider |
+| | Qwen 1.5 7B | `@cf/qwen/qwen1.5-7b-chat` | 32K | See provider |
+| | @cf/meta/llama-3.3-70b-instruct-fp8-fast | `@cf/meta/llama-3.3-70b-instruct-fp8-fast` | 131K | 10K neurons/day (shared) |
+| OpenRouter | Tencent: Hy3 (free) | `tencent/hy3:free` | 262K | See provider |
+| | NVIDIA: Nemotron 3 Ultra (free) | `nvidia/nemotron-3-ultra-550b-a55b:free` | 1M | See provider |
+| | Poolside: Laguna M.1 (free) | `poolside/laguna-m.1:free` | 262K | See provider |
+| GitHub Models | Phi-4 | `Phi-4` | 131K | See provider |
+| | Mistral Large (24.11) | `Mistral-large-2411` | 131K | See provider |
+| | AI21 Jamba 1.5 Large | `AI21-Jamba-1.5-Large` | 256K | See provider |
+| Google Gemini | Gemini 3.5 Flash | `gemini-3.5-flash` | 1M | 15 RPM, 1,500 RPD |
+| | Gemini 3.1 Flash-Lite | `gemini-3.1-flash-lite` | 1M | 30 RPM, 1,500 RPD |
+| | Gemini 2.5 Flash | `gemini-2.5-flash` | 1M | 15 RPM, 1,500 RPD |
+| OVHcloud AI Endpoints | Qwen3.5-397B-A17B | `qwen3.5-397b-a17b` | 131K | 2 RPM (anonymous) |
+| | gpt-oss-20b | `gpt-oss-20b` | 128K | 2 RPM (anonymous) |
+| | Meta-Llama-3_3-70B-Instruct | `meta-llama-3_3-70b-instruct` | 131K | 2 RPM (anonymous) |
+| Groq | Moonshot Kimi K2 | `moonshotai/kimi-k2-instruct` | 131K | See provider |
+| | Moonshot Kimi K2 0905 | `moonshotai/kimi-k2-instruct-0905` | 131K | See provider |
+| | llama-4-maverick-17b-128e-instruct | `llama-4-maverick-17b-128e-instruct` | 131K | 15 RPM, 500 RPD |
+| Mistral AI | Mistral 7B | `open-mistral-7b` | 32K | See provider |
+| | Mixtral 8x7B | `open-mixtral-8x7b` | 32K | See provider |
+| | Mistral Medium 3.5 (128B) | `mistral-medium-3-5-128b` | 256K | ~1 RPS, 500K TPM |
+| LLM7.io | deepseek-r1-0528 | `deepseek-r1-0528` | 131K | 30 RPM (120 with token) |
+| | deepseek-v3-0324 | `deepseek-v3-0324` | 131K | 30 RPM (120 with token) |
+| | gemini-2.5-flash-lite | `gemini-2-5-flash-lite` | 131K | 30 RPM (120 with token) |
+| Cerebras | Llama 3.1 70B | `llama3.1-70b` | 131K | See provider |
+| | gpt-oss-120b | `gpt-oss-120b` | 128K | 30 RPM, 14,400 RPD, 1M .. |
+| | zai-glm-4.7 | `zai-glm-4.7` | 128K | 10 RPM, 100 RPD, 1M TPD |
+| Cohere | Command A+ (218B) | `command-a-218b` | 128K | 20 RPM |
+| | Command A (111B) | `command-a-111b` | 256K | 20 RPM |
+| | Command R+ | `command-r` | 128K | 20 RPM |
+| Ollama Cloud | gpt-oss:120b-cloud | `gpt-oss-120b-cloud` | 128K | Session/weekly limits (.. |
+| | deepseek-v3.1:671b-cloud | `deepseek-v3-1-671b-cloud` | 128K | Session/weekly limits (.. |
+| | qwen3-coder:480b-cloud | `qwen3-coder-480b-cloud` | 128K | Session/weekly limits (.. |
+| OpenCode Zen | big-pickle | `big-pickle` | 0 | |
+| | DeepSeek V4 Flash | `deepseek-v4-flash-free` | 1M | |
+| | MiMo-V2.5 | `mimo-v2.5-free` | 1M | |
+| Agnes AI | agnes-1.5-flash | `agnes-1.5-flash` | 256K | 30 RPM |
+| | agnes-2.0-flash | `agnes-2.0-flash` | 256K | 30 RPM |
+| | agnes-image-2.0-flash | `agnes-image-2.0-flash` | 4K | 30 RPM (1K) |
+| Aion Labs | Aion 2.5 | `aion-2-5` | 128K | 15 RPM, 20K TPD |
+| | Aion 2.0 | `aion-2-0` | 128K | 15 RPM, 20K TPD |
+| | Aion-RP 1.0 (8B) | `aion-rp-1-0-8b` | 32K | 15 RPM, 20K TPD |
+| Hugging Face | Meta-Llama-3.1-8B-Instruct | `meta-llama-3-1-8b-instruct` | 128K | Credit-metered |
+| | Mistral-7B-Instruct-v0.3 | `mistral-7b-instruct-v0-3` | 32K | Credit-metered |
+| | Mixtral-8x7B-Instruct-v0.1 | `mixtral-8x7b-instruct-v0-1` | 32K | Credit-metered |
+| Kilo Code | x-ai/grok-code-fast-1:free | `x-ai-grok-code-fast-1-free` | 256K | ~200 req/hr |
+| | minimax/minimax-m2.5:free | `minimax/minimax-m2.5` | 196K | ~200 req/hr |
+| | bytedance-seed/dola-seed-2.0-pro:free | `bytedance-seed-dola-seed-2-0-pro-free` | 131K | ~200 req/hr |
+| Alibaba Cloud Model Studio | Qwen3-Max | `qwen3-max` | 128K | Tiered by region |
+| | Qwen3-Plus | `qwen3-plus` | 1M | Tiered by region |
+| | Qwen3-VL-Plus | `qwen3-vl-plus` | 128K | Tiered by region |
+| Z AI (Zhipu AI) | GLM-4.7-Flash | `glm-4.7` | 200K | 1 concurrent request |
+| | GLM-4.6V-Flash | `glm-4.6` | 128K | 1 concurrent request |
+| | GLM-4.5-Flash | `glm-4.5` | 128K | 1 concurrent request |
+| SambaNova | DeepSeek-V3.1 | `deepseek-v3-1` | 128K | 20 RPM, 20 RPD, 200K TPD |
+| | DeepSeek-V3.2 (Preview) | `deepseek-v3-2-preview` | 128K | 20 RPM, 20 RPD, 200K TPD |
+| | MiniMax-M2.7 | `minimax-m2-7` | 128K | 20 RPM, 20 RPD, 200K TPD |
+| SiliconFlow | deepseek-ai/DeepSeek-R1-Distill-Qwen-7B | `deepseek-ai-deepseek-r1-distill-qwen-7b` | 131K | 30 RPM, 60K TPM |
+| | Abbreviation | `abbreviation` | 131K | See provider |
+| | deepseek-ai/DeepSeek-OCR | `deepseek-ai-deepseek-ocr` | 131K | 30 RPM, 60K TPM |
+| xAI | grok-4.3 | `grok-4-3` | 1M | Credit-based |
+| | grok-4.1-fast | `grok-4-1-fast` | 2M | Credit-based |
+| | grok-3-mini | `grok-3-mini` | 131K | Credit-based |
+| Chutes.ai | DeepSeek-R1 | `deepseek-ai/DeepSeek-R1` | 131K | Community-powered, no h.. |
+| | Llama 3.1 70B | `meta-llama/Meta-Llama-3.1-70B-Instruct` | 131K | Community-powered, no h.. |
+| Glhf.chat | Llama 3.1 70B | `meta-llama/Meta-Llama-3.1-70B-Instruct` | 131K | Unlimited for free models |
+| | Mixtral 8x7B | `mistralai/Mixtral-8x7B-Instruct-v0.1` | 32K | Unlimited for free models |
+| Grok (xAI) | Grok-2 | `grok-2` | 131K | $25/month free credits,.. |
+| | Grok-2 Mini | `grok-2-mini` | 131K | $25/month free credits,.. |
+| AI21 Labs | Jamba Large 1.7 | `jamba-large-1-7` | 256K | 200 RPM, 10 RPS |
+| | Jamba Mini 2 | `jamba-mini-2` | 256K | 200 RPM, 10 RPS |
+| DeepSeek | deepseek-chat (V3.2) | `deepseek-chat-v3-2` | 128K | Dynamic |
+| | deepseek-reasoner (R1) | `deepseek-reasoner-r1` | 128K | Dynamic |
+| Nscale | Llama-3.3-70B-Instruct | `llama-3-3-70b-instruct` | 128K | Fair-use |
+| | DeepSeek-R1-Distill-Llama-70B | `deepseek-r1-distill-llama-70b` | 128K | Fair-use |
+| Nebius | Qwen3-235B-A22B | `qwen3-235b-a22b` | 128K | Tier-based |
+
+ 
+
+###### 🖥️ Local / Self-Hosted (Unlimited, Private, Free Forever)
+
+| Tool | Type | Highlights |
+| --- | --- | --- |
+| Ollama | CLI + API | 100+ models, GPU acceleration, OpenAI-compatible endpoint |
+| LM Studio | Desktop GUI | Any GGUF model, built-in model browser, offline |
+| llama.cpp | C/C++ engine | Runs any GGUF, minimal dependencies |
+| GPT4All | Desktop app | CPU-only, no GPU required, open source |
+| Jan.ai | Desktop app | Privacy-focused, 100% offline ChatGPT alternative |
+| KoboldCpp | Single executable | Optimized for creative writing, GGUF |
+
+---
+
+#### Top Free Models (by Weekly Usage)
+
+Data from freellm.net, updated daily via API monitoring.
+
+ 
+
+| Model | Provider | Context | Weekly Usage |
+| --- | --- | --- | --- |
+| Tencent: Hy3 (free) | OpenRouter | 262K | 8247B tokens |
+| NVIDIA: Nemotron 3 Ultra (free) | OpenRouter | 1M | 2728B tokens |
+| Poolside: Laguna M.1 (free) | OpenRouter | 262K | 768B tokens |
+| z-ai/glm-5.2 | NVIDIA NIM | 1M | 341B tokens |
+| moonshotai/kimi-k2.6 | NVIDIA NIM | 262K | 335B tokens |
+| NVIDIA: Nemotron 3 Super (free) | OpenRouter | 1M | 335B tokens |
+| z-ai/glm-5.1 | NVIDIA NIM | 202K | 158B tokens |
+| Cohere: North Mini Code (free) | OpenRouter | 256K | 125B tokens |
+| Poolside: Laguna XS 2.1 (free) | OpenRouter | 262K | 81B tokens |
+| NVIDIA: Nemotron 3 Nano 30B A3B (free) | OpenRouter | 256K | 38B tokens |
+
+ 
+
+---
+
+#### Repository Structure
+
+```
+awesome-free-llm-apis/
+├── README.md              ← Complete provider directory & code examples
+├── code-examples/          ← Ready-to-use config snippets
+│   ├── claude-code.md
+│   ├── cursor.md
+│   └── codex.md
+└── LICENSE                 ← MIT
+```
+
+> For the full structured dataset with 453 models and daily updates, visit ** freellm.net **.
+
+---
+
+#### Contributing
+
+We welcome contributions!
+
+- **Add a missing free model** — Open an issue or submit a PR
+- **Fix inaccurate data** — Rate limits change, providers graduate. PRs welcome
+- **Add a config snippet** — Have a working config for a tool we don't cover? Add it to `code-examples/`
+
+###### Criteria for inclusion
+
+A model belongs in this list if:
+
+1. The provider explicitly offers a **free tier** (not just a trial credit)
+2. The API is **publicly accessible** (no waitlist, closed beta, or reverse-engineering)
+3. For trial credits: clearly labeled and minimum $1 credit value
+
+---
+
+#### Links
+
+- 🌐 **Live site**: freellm.net — search, compare, playground, config generator
+- 🔑 **API key directory**: freellm.net/free-llm-api-keys/ 
+- ⚙️ **Config generator**: freellm.net/config/ 
+- 🎮 **Playground**: freellm.net/playground/ 
+- 📊 **Compare models**: freellm.net/compare/ 
+
+#### License
+
+MIT © open-free-llm-api 
+
+---
+
+ 
+ Last updated: 
+2026-07-15
+ 
+
+
+# mnfst/awesome-free-llm-apis - https://github.com/mnfst/awesome-free-llm-apis/
+## Repository: mnfst/awesome-free-llm-apis
+
+List of Permanent Free LLM API (API Keys)
+
+- Stars: 5756
+- Forks: 545
+- Watchers: 80
+- Open issues: 16
+- Primary language: JavaScript
+- Languages: JavaScript
+- License: Creative Commons Zero v1.0 Universal (CC0-1.0)
+- Topics: ai-agents, anthropic, awesome, awesome-list, gemini, llm, llm-router, llm-routing, ollama, openai, openclaw, openclaw-plugin, router
+- Default branch: main
+- Created: 2026-03-21T18:14:07Z
+- Last push: 2026-06-16T12:55:00Z
+- Contributors: 5 (top: SebConejo, brunobuddy, claude, codeusb, github-actions[bot])
+
+---
+
+ 
+ 
+ 
+ 
+ 
+
+ 
+ 
+ 
+ 
+ 
+
+ LLM APIs with permanent free tiers for text inference. 
+
+ All endpoints are OpenAI SDK-compatible unless noted. Each link points to the provider's API key page. 
+
+#### Contents
+
+- [Provider APIs](##provider-apis)
+- [Inference providers](##inference-providers)
+- [Glossary](##glossary)
+
+#### Provider APIs
+
+APIs run by the companies that train or fine-tune the models themselves.
+
+###### [Aion Labs](https://www.aionlabs.ai) 🇮🇱
+
+Permanent free tier, no credit card required. 15 RPM, 20K tokens/day. Specialized for roleplay and storytelling.
+
+Base URL: `https://api.aionlabs.ai/v1`
+
+| Model Name | Context | Max Output | Modality | Rate Limit |
+| --- | --- | --- | --- | --- |
+| Aion 2.5 | 128K | 32K | Text (roleplay) | 15 RPM, 20K TPD |
+| Aion 2.0 | 128K | 32K | Text (roleplay) | 15 RPM, 20K TPD |
+| Aion-RP 1.0 (8B) | 32K | ~8K | Text (roleplay) | 15 RPM, 20K TPD |
+
+###### [Cohere](https://dashboard.cohere.com/api-keys) 🇨🇦
+
+Free "Trial" API key, no credit card. 1,000 API calls/month. Non-commercial use only.
+
+Base URL: `https://api.cohere.com/v2`
+
+| Model Name | Context | Max Output | Modality | Rate Limit |
+| --- | --- | --- | --- | --- |
+| Command A+ (218B) | 128K | 4K | Text | 20 RPM |
+| Command A (111B) | 256K | 4K | Text | 20 RPM |
+| Command R+ | 128K | 4K | Text | 20 RPM |
+| Command R | 128K | 4K | Text | 20 RPM |
+| Command R7B | 128K | 4K | Text | 20 RPM |
+
+###### [Google Gemini](https://aistudio.google.com/app/apikey) 🇺🇸
+
+Free tier unavailable in EU/UK/Switzerland. Free-tier prompts may be used by Google to improve products. [^1]
+
+Base URL: `https://generativelanguage.googleapis.com/v1beta`
+
+| Model Name | Context | Max Output | Modality | Rate Limit |
+| --- | --- | --- | --- | --- |
+| Gemini 3.5 Flash | 1M | 64K | Text + Image + Audio + Video | 15 RPM, 1,500 RPD |
+| Gemini 3.1 Flash-Lite | 1M | 65K | Text + Image + Audio + Video | 30 RPM, 1,500 RPD |
+| Gemini 2.5 Flash | 1M | 65K | Text + Image + Audio + Video | 15 RPM, 1,500 RPD |
+| Gemini 2.5 Pro | 2M | 65K | Text + Image + Audio + Video | 5 RPM, 50 RPD |
+
+###### [Mistral AI](https://console.mistral.ai/api-keys) 🇫🇷
+
+Free "Experiment" plan, no credit card. ~1B tokens/month. Prompts may be used to improve models.
+
+Base URL: `https://api.mistral.ai/v1`
+
+| Model Name | Context | Max Output | Modality | Rate Limit |
+| --- | --- | --- | --- | --- |
+| Mistral Medium 3.5 (128B) | 256K | 256K | Text + Image + Code | ~1 RPS, 500K TPM |
+| Mistral Small 4 | 256K | 256K | Text + Image + Code | ~1 RPS, 500K TPM |
+| Mistral Large 3 | 256K | 256K | Text | ~1 RPS, 500K TPM |
+| Mistral Nemo (12B) | 128K | 128K | Text | ~1 RPS, 500K TPM |
+| Codestral | 256K | 256K | Code | ~1 RPS, 500K TPM |
+| Pixtral Large | 128K | 128K | Text + Image | ~1 RPS, 500K TPM |
+
+###### [Z AI (Zhipu AI)](https://open.bigmodel.cn/usercenter/apikeys) 🇨🇳
+
+Permanent free models, no credit card required.
+
+Base URL: `https://open.bigmodel.cn/api/paas/v4`
+
+| Model Name | Context | Max Output | Modality | Rate Limit |
+| --- | --- | --- | --- | --- |
+| GLM-4.7-Flash | 200K | 128K | Text | 1 concurrent request |
+| GLM-4.6V-Flash | 128K | ~4K | Text + Image | 1 concurrent request |
+
+#### Inference providers
+
+Third-party platforms that host open-weight models from various sources.
+
+###### [Cerebras](https://cloud.cerebras.ai/) 🇺🇸
+
+Free tier, no credit card. Ultra-fast inference (~2,600 tok/s). 1M tokens/day cap. 8K context cap on free tier.
+
+Base URL: `https://api.cerebras.ai/v1`
+
+| Model Name | Context | Max Output | Modality | Rate Limit |
+| --- | --- | --- | --- | --- |
+| gpt-oss-120b | 128K (8K on free) | 8K | Text | 30 RPM, 14,400 RPD, 1M TPD |
+| zai-glm-4.7 | 128K (8K on free) | 8K | Text | 10 RPM, 100 RPD, 1M TPD |
+
+###### [Cloudflare Workers AI](https://dash.cloudflare.com/profile/api-tokens) 🇺🇸
+
+10,000 Neurons/day free. 50+ models available on free tier.
+
+Base URL: `https://api.cloudflare.com/client/v4/accounts/{account_id}/ai/run`
+
+| Model Name | Context | Max Output | Modality | Rate Limit |
+| --- | --- | --- | --- | --- |
+| `@cf/meta/llama-3.3-70b-instruct-fp8-fast` | 131K | Shared w/ context | Text | 10K neurons/day (shared) |
+| `@cf/meta/llama-4-scout-17b-16e-instruct` | Up to 10M | Shared w/ context | Multimodal | 10K neurons/day (shared) |
+| `@cf/openai/gpt-oss-120b` | 128K | Shared w/ context | Text | 10K neurons/day (shared) |
+| `@cf/moonshotai/kimi-k2.7-code` | 262K | Shared w/ context | Text (code) | 10K neurons/day (shared) |
+| `@cf/google/gemma-4-26b-a4b-it` | 256K | Shared w/ context | Text | 10K neurons/day (shared) |
+| `@cf/zhipuai/glm-4.7-flash` | 131K | Shared w/ context | Text | 10K neurons/day (shared) |
+| `@cf/mistralai/mistral-small-3.1-24b-instruct` | 128K | Shared w/ context | Text | 10K neurons/day (shared) |
+| `@cf/deepseek-ai/deepseek-r1-distill-qwen-32b` | 32K | Shared w/ context | Text (reasoning) | 10K neurons/day (shared) |
+| + 42 more models | Varies | Varies | Text, Image, Audio, Embeddings | 10K neurons/day (shared) |
+
+###### [GitHub Models](https://github.com/marketplace/models) 🇺🇸
+
+Free prototyping for all GitHub users. 45+ models. Per-request limits (8K in / 4K out).
+
+Base URL: `https://models.github.ai/inference`
+
+| Model Name | Context | Max Output | Modality | Rate Limit |
+| --- | --- | --- | --- | --- |
+| gpt-5 | 200K | 32K | Text | 10 RPM, 50 RPD |
+| gpt-4.1 | 1M | 32K | Text | 10 RPM, 50 RPD |
+| gpt-4.1-mini | 1M | 32K | Text | 15 RPM, 150 RPD |
+| gpt-4o | 128K | 16K | Text + Vision | 10 RPM, 50 RPD |
+| o4-mini | 200K | 100K | Text (reasoning) | 10 RPM, 50 RPD |
+| Llama-4-Scout-17B-16E | 512K | ~4K | Text + Vision | 15 RPM, 150 RPD |
+| Llama-4-Maverick-17B-128E | 256K | ~4K | Text + Vision | 10 RPM, 50 RPD |
+| Meta-Llama-3.3-70B | 131K | ~4K | Text | 15 RPM, 150 RPD |
+| DeepSeek-R1 | 64K | 8K | Text (reasoning) | 15 RPM, 150 RPD |
+| Mistral-Small-3.1 | 128K | ~4K | Text + Vision | 15 RPM, 150 RPD |
+| + 35 more models | Varies | Varies | Text / Image | Varies by tier |
+
+###### [Groq](https://console.groq.com/keys) 🇺🇸
+
+Free tier, no credit card. Ultra-fast LPU inference. [^2]
+
+Base URL: `https://api.groq.com/openai/v1`
+
+| Model Name | Context | Max Output | Modality | Rate Limit |
+| --- | --- | --- | --- | --- |
+| llama-3.3-70b-versatile | 131K | 32K | Text | 30 RPM, 1,000 RPD |
+| llama-3.1-8b-instant | 131K | 131K | Text | 30 RPM, 1,000 RPD |
+| llama-4-scout-17b-16e-instruct | 131K | 8K | Text + Vision | 30 RPM, 1,000 RPD |
+| qwen3-32b | 131K | 131K | Text | 30 RPM, 1,000 RPD |
+| gpt-oss-120b | 131K | 32K | Text | 30 RPM, 1,000 RPD |
+
+###### [Hugging Face](https://huggingface.co/settings/tokens) 🇺🇸
+
+100K monthly Inference Provider credits for free users. Routes to Fireworks, Together, Hyperbolic, Nebius, Novita, DeepInfra and others. Thousands of models.
+
+Base URL: `https://router.huggingface.co/v1`
+
+| Model Name | Context | Max Output | Modality | Rate Limit |
+| --- | --- | --- | --- | --- |
+| Meta-Llama-3.1-8B-Instruct | 128K | ~4K | Text | Credit-metered |
+| Mistral-7B-Instruct-v0.3 | 32K | ~4K | Text | Credit-metered |
+| Mixtral-8x7B-Instruct-v0.1 | 32K | ~4K | Text | Credit-metered |
+| Phi-3.5-mini-instruct | 128K | ~4K | Text | Credit-metered |
+| Qwen2.5-7B-Instruct | 131K | ~4K | Text | Credit-metered |
+| + thousands of community models | Varies | Varies | Text, Image, Audio, Embeddings | 100K credits/month free |
+
+###### [Kilo Code](https://kilo.ai) 🇺🇸
+
+Free models with no credit card required. `kilo-auto/free` auto-router routes to minimax/minimax-m2.5:free (80%) and stepfun/step-3.5-flash:free (20%). [^5]
+
+Base URL: `https://api.kilo.ai/api/gateway`
+
+| Model Name | Context | Max Output | Modality | Rate Limit |
+| --- | --- | --- | --- | --- |
+| `x-ai/grok-code-fast-1:free` | 256K | — | Text (code) | ~200 req/hr |
+| `minimax/minimax-m2.5:free` | 196K | 8K | Text | ~200 req/hr |
+| `bytedance-seed/dola-seed-2.0-pro:free` | — | — | Text | ~200 req/hr |
+| `nvidia/nemotron-3-super-120b-a12b:free` | 262K | 32K | Text | ~200 req/hr |
+| `arcee-ai/trinity-large-thinking:free` | — | — | Text (reasoning) | ~200 req/hr |
+| `openrouter/free` | Varies | Varies | Text | ~200 req/hr |
+
+###### [LLM7.io](https://token.llm7.io) 🇬🇧
+
+Zero-friction API gateway. No registration needed for basic access. 30+ models. GDPR-compliant.
+
+Base URL: `https://api.llm7.io/v1`
+
+| Model Name | Context | Max Output | Modality | Rate Limit |
+| --- | --- | --- | --- | --- |
+| deepseek-r1-0528 | — | — | Text (reasoning) | 30 RPM (120 with token) |
+| deepseek-v3-0324 | — | — | Text | 30 RPM (120 with token) |
+| gemini-2.5-flash-lite | — | — | Text + Vision | 30 RPM (120 with token) |
+| gpt-4o-mini | — | — | Text + Vision | 30 RPM (120 with token) |
+| mistral-small-3.1-24b | 32K | — | Text | 30 RPM (120 with token) |
+| qwen2.5-coder-32b | — | — | Text (code) | 30 RPM (120 with token) |
+| + ~24 more models | Varies | Varies | Text | 30 RPM (120 with token) |
+
+###### [ModelScope](https://modelscope.cn/my/myaccesstoken) 🇨🇳
+
+Free API-Inference for registered users. Requires Alibaba Cloud account binding + real-name verification. [^6]
+
+Base URL: `https://api-inference.modelscope.cn/v1`
+
+| Model Name | Context | Max Output | Modality | Rate Limit |
+| --- | --- | --- | --- | --- |
+| `Qwen/Qwen3.5-35B-A3B` | — | — | Text | 2,000 RPD total; <=500 RPD/model (dynamic) |
+| `Qwen/Qwen3.5-27B` | — | — | Text | 2,000 RPD total; <=500 RPD/model (dynamic) |
+| + API-Inference-enabled models | Varies | Varies | LLM, MLLM | Dynamic quotas + dynamic concurrency |
+
+###### [NVIDIA NIM](https://build.nvidia.com/explore/discover) 🇺🇸
+
+Free with NVIDIA Developer Program membership. 100+ models. Rate-limited (no daily token cap).
+
+Base URL: `https://integrate.api.nvidia.com/v1`
+
+| Model Name | Context | Max Output | Modality | Rate Limit |
+| --- | --- | --- | --- | --- |
+| `deepseek-ai/deepseek-r1` | 128K | ~163K | Text (reasoning) | ~40 RPM |
+| `nvidia/nemotron-3-super-120b-a12b` | 262K | 262K | Text | ~40 RPM |
+| `nvidia/nemotron-3-nano-30b-a3b` | 128K | 32K | Text | ~40 RPM |
+| `nvidia/llama-3.1-nemotron-ultra-253b-v1` | 128K | 4K | Text | ~40 RPM |
+| `meta/llama-3.1-405b-instruct` | 128K | 4K | Text | ~40 RPM |
+| `qwen/qwen2.5-72b-instruct` | 128K | 8K | Text | ~40 RPM |
+| `google/gemma-4-31b` | 128K | 8K | Text | ~40 RPM |
+| `mistralai/mistral-large-2-instruct` | 128K | 4K | Text | ~40 RPM |
+| `minimax/minimax-m2.7` | 128K | 8K | Text | ~40 RPM |
+| + 90 more models | Varies | Varies | Text, Image, Video, Speech, Embeddings | ~40 RPM |
+
+###### [Ollama Cloud](https://ollama.com/settings/keys) 🇺🇸
+
+Free tier with qualitative usage limits. 400+ models from Ollama library. Not OpenAI SDK-compatible; uses [Ollama API](https://docs.ollama.com/cloud). [^3]
+
+Base URL: `https://api.ollama.com`
+
+| Model Name | Context | Max Output | Modality | Rate Limit |
+| --- | --- | --- | --- | --- |
+| `gpt-oss:120b-cloud` | 128K | Model-dependent | Text | Session/weekly limits (unpublished) |
+| `deepseek-v3.1:671b-cloud` | 128K | Model-dependent | Text | Session/weekly limits (unpublished) |
+| `qwen3-coder:480b-cloud` | 128K | Model-dependent | Text (code) | Session/weekly limits (unpublished) |
+| `kimi-k2:1t-cloud` | 262K | Model-dependent | Text | Session/weekly limits (unpublished) |
+| `glm-4.6:cloud` | 128K | Model-dependent | Text | Session/weekly limits (unpublished) |
+| `deepseek-r1:cloud` | 128K | Model-dependent | Text (reasoning) | Session/weekly limits (unpublished) |
+| + 30 more cloud models | Varies | Varies | Text | Session/weekly limits (unpublished) |
+
+###### [OpenRouter](https://openrouter.ai/keys) 🇺🇸
+
+~22 free models (marked with `:free` suffix). OpenAI SDK-compatible. [^4]
+
+Base URL: `https://openrouter.ai/api/v1`
+
+| Model Name | Context | Max Output | Modality | Rate Limit |
+| --- | --- | --- | --- | --- |
+| `qwen/qwen3-coder:free` | 1M | 262K | Text (code) | 20 RPM, 200 RPD |
+| `nvidia/nemotron-3-ultra-550b-a55b:free` | 1M | 65K | Text | 20 RPM, 200 RPD |
+| `nvidia/nemotron-3-super-120b-a12b:free` | 1M | 262K | Text | 20 RPM, 200 RPD |
+| `openai/gpt-oss-120b:free` | 131K | 131K | Text | 20 RPM, 200 RPD |
+| `openai/gpt-oss-20b:free` | 131K | 8K | Text | 20 RPM, 200 RPD |
+| `meta-llama/llama-3.3-70b-instruct:free` | 131K | ~16K | Text | 20 RPM, 200 RPD |
+| `nousresearch/hermes-3-llama-3.1-405b:free` | 131K | ~16K | Text | 20 RPM, 200 RPD |
+| `google/gemma-4-31b-it:free` | 262K | 32K | Multimodal | 20 RPM, 200 RPD |
+| `poolside/laguna-m.1:free` | 262K | 32K | Text | 20 RPM, 200 RPD |
+| `qwen/qwen3-next-80b-a3b-instruct:free` | 262K | ~32K | Text | 20 RPM, 200 RPD |
+| + ~12 more free models | Varies | Varies | Text / Image | 20 RPM, 200 RPD |
+
+###### [OVHcloud AI Endpoints](https://www.ovhcloud.com/en/public-cloud/ai-endpoints/catalog/) 🇫🇷
+
+Free anonymous tier (no API key, no signup): 2 RPM per IP per model. 20+ open-weight models hosted in EU. OpenAI SDK-compatible. [^7]
+
+Base URL: `https://oai.endpoints.kepler.ai.cloud.ovh.net/v1`
+
+| Model Name | Context | Max Output | Modality | Rate Limit |
+| --- | --- | --- | --- | --- |
+| Qwen3.5-397B-A17B | 131K | ~32K | Text | 2 RPM (anonymous) |
+| gpt-oss-120b | 128K | ~32K | Text | 2 RPM (anonymous) |
+| gpt-oss-20b | 128K | ~8K | Text | 2 RPM (anonymous) |
+| Meta-Llama-3_3-70B-Instruct | 131K | ~4K | Text | 2 RPM (anonymous) |
+| Llama-3.1-8B-Instruct | 131K | ~4K | Text | 2 RPM (anonymous) |
+| Qwen3.6-27B | 131K | ~32K | Text | 2 RPM (anonymous) |
+| Qwen3.5-9B | 131K | ~8K | Text | 2 RPM (anonymous) |
+| Qwen3-32B | 131K | ~32K | Text | 2 RPM (anonymous) |
+| Qwen3-Coder-30B-A3B-Instruct | 262K | ~32K | Text (code) | 2 RPM (anonymous) |
+| Qwen2.5-VL-72B-Instruct | 128K | ~8K | Text + Vision | 2 RPM (anonymous) |
+| Mistral-Small-3.2-24B-Instruct | 128K | ~4K | Text | 2 RPM (anonymous) |
+| Mistral-Nemo-Instruct-2407 | 128K | ~4K | Text | 2 RPM (anonymous) |
+| Mistral-7B-Instruct-v0.3 | 32K | ~4K | Text | 2 RPM (anonymous) |
+
+###### [SambaNova](https://cloud.sambanova.ai/apis) 🇺🇸
+
+Free tier, no credit card. Ultra-fast RDU inference. 20 RPM, 200K tokens/day. [^8]
+
+Base URL: `https://api.sambanova.ai/v1`
+
+| Model Name | Context | Max Output | Modality | Rate Limit |
+| --- | --- | --- | --- | --- |
+| DeepSeek-V3.1 | 128K | ~8K | Text | 20 RPM, 20 RPD, 200K TPD |
+| DeepSeek-V3.2 (Preview) | 128K | ~8K | Text | 20 RPM, 20 RPD, 200K TPD |
+| Meta-Llama-3.3-70B-Instruct | 128K | ~8K | Text | 20 RPM, 20 RPD, 200K TPD |
+| gpt-oss-120b | 128K | ~8K | Text | 20 RPM, 20 RPD, 200K TPD |
+| MiniMax-M2.7 | 128K | ~8K | Text | 20 RPM, 20 RPD, 200K TPD |
+| gemma-4-31B-it (Preview) | 128K | ~8K | Text | 20 RPM, 20 RPD, 200K TPD |
+
+###### [SiliconFlow](https://cloud.siliconflow.cn/account/ak) 🇨🇳
+
+Permanently free models, no credit card required. 200+ paid models also available.
+
+Base URL: `https://api.siliconflow.cn/v1`
+
+| Model Name | Context | Max Output | Modality | Rate Limit |
+| --- | --- | --- | --- | --- |
+| `Qwen/Qwen3-8B` | 131K | 131K | Text | 30 RPM, 60K TPM |
+| `deepseek-ai/DeepSeek-R1-Distill-Qwen-7B` | 131K | Configurable | Text (reasoning) | 30 RPM, 60K TPM |
+
+#### Glossary
+
+| Abbreviation | Meaning |
+| --- | --- |
+| **RPM** | Requests per minute |
+| **RPD** | Requests per day |
+| **TPM** | Tokens per minute |
+| **TPD** | Tokens per day |
+| **RPS** | Requests per second |
+
+#### Contributing
+
+Know a free tier that's missing? [Open a PR](contributing.md). Include the provider, endpoint, rate limits (link to their docs), and a few notable models. Trial credits and time-limited promos don't count.
+
+[^1]: Free tier not available in the EU, UK, or Switzerland ([available regions](https://ai.google.dev/gemini-api/docs/available-regions)).
+[^2]: Groq rate limits were reduced in 2026. Most models now get 1,000 RPD on the free tier (down from 14,400). Llama 4 Maverick has been deprecated. See [rate limits](https://console.groq.com/docs/rate-limits).
+[^3]: Ollama Cloud measures usage by GPU time, not tokens or requests. Free tier described as "light usage" with session limits resetting every 5 hours and weekly limits every 7 days. Pro (50x more) and Max (250x more) plans available. Not OpenAI SDK-compatible; uses the Ollama API.
+[^4]: Free models default to 200 RPD per model. A one-time purchase of $10+ in credits unlocks 1,000 RPD for free models. OpenRouter also offers a [Free Models Router](https://openrouter.ai/docs/guides/routing/routers/free-models-router) (`openrouter/free`) and [model fallbacks](https://openrouter.ai/docs/guides/routing/model-fallbacks) for chaining models in priority order. Free providers may log prompts for training.
+[^5]: Kilo Code free model list may change over time. nvidia/nemotron-3-super-120b-a12b:free is for trial use only — prompts are logged by NVIDIA. Auto-router `kilo-auto/free` routes to minimax/minimax-m2.5:free (80%) and stepfun/step-3.5-flash:free (20%).
+[^6]: API-Inference is free for registered users. Current published limits are 2,000 requests/day per user (total across models), with per-model daily quotas dynamically adjusted and capped at 500; concurrency is also dynamically rate-limited. Requires Alibaba Cloud account binding and real-name verification ([limits](https://modelscope.cn/docs/model-service/API-Inference/limits), [intro](https://modelscope.cn/docs/model-service/API-Inference/intro)).
+[^7]: OVHcloud AI Endpoints offers a permanent free anonymous tier (2 requests per minute per IP, per model) with no signup or API key required. Higher rate limits (400 RPM per Public Cloud project per model) require an API key and are billed pay-as-you-go per token; new Public Cloud accounts get up to $200 in free trial credits. Models are hosted in EU data centers.
+[^8]: SambaNova grants $5 in initial credits (valid 30 days) on top of the permanent free tier. The free tier itself persists indefinitely with 20 RPM, 20 RPD, and 200K TPD per model. No credit card required. OpenAI SDK-compatible.
+
+# amardeeplakshkar/awesome-free-llm-apis - https://github.com/amardeeplakshkar/awesome-free-llm-apis
+## Repository: amardeeplakshkar/awesome-free-llm-apis
+
+A curated list of permanently free LLM APIs — with rate limits, OpenAI SDK compatibility, available SDKs, speed tiers, and free model lists. No trial credits. No time-limited promos. No credit card required.
+
+- Stars: 61
+- Forks: 9
+- Watchers: 0
+- Open issues: 0
+- License: Creative Commons Zero v1.0 Universal (CC0-1.0)
+- Topics: awesome, awesome-list, free-ai-api, free-gpt-api, free-llm-api, openai-compatible-api
+- Default branch: main
+- Created: 2026-03-25T19:37:38Z
+- Last push: 2026-03-26T01:34:52Z
+- Contributors: 1 (top: amardeeplakshkar)
+
+---
+
+## awesome-free-llm-apis 🧠
+
+> A curated list of **permanently free LLM APIs** — with rate limits, OpenAI SDK compatibility, available SDKs, speed tiers, and free model lists. No trial credits. No time-limited promos. No credit card required.
+
+[![Awesome](https://awesome.re/badge-flat2.svg)](https://awesome.re)
+![Last Verified](https://img.shields.io/badge/last%20verified-March%202026-brightgreen)
+![PRs Welcome](https://img.shields.io/badge/PRs-welcome-blue)
+![License: CC0](https://img.shields.io/badge/license-CC0-lightgrey)
+![Providers](https://img.shields.io/badge/providers-12-orange)
+
+**Keywords:** `free LLM API` · `free AI API` · `OpenAI compatible API` · `free GPT API` · `free Llama API` · `free inference API` · `LLM API key` · `no credit card AI API` · `free tier AI` · `open source LLM hosting`
+
+---
+
+#### Why This List — The Most Detailed Free LLM API Directory
+
+Most "free LLM API" lists give you a name and a link. This one gives you everything you need to decide *before* you sign up — so you're not hunting across 12 different docs pages to compare rate limits, SDK support, and OpenAI compatibility:
+
+| Column | What it means |
+| --- | --- |
+| **Free Models** | Models available on the permanent free tier |
+| **Rate Limits** | RPM (requests/min) and RPD (requests/day) |
+| **OpenAI Compat** | Can you use the OpenAI Python/JS SDK by just swapping `base_url`? |
+| **SDKs** | Official client libraries available |
+| **Speed Tier** | 🟢 Fast / 🟡 Medium / 🔴 Slow (see legend below) |
+
+---
+
+#### Contents
+
+- [Provider APIs](##provider-apis) — companies that train or fine-tune their own models
+- [Inference Providers](##inference-providers) — third-party platforms hosting open-weight models
+
+- includes Groq, Cerebras, OpenRouter, GitHub Models, NVIDIA NIM, Hugging Face, Cloudflare, Kluster AI, LLM7.io, Pollinations AI
+ - [Speed Tier Legend](##speed-tier-legend)
+ - [Quick Comparison Table](##quick-comparison-table)
+ - [Code Snippets](##code-snippets)
+ - [Contributing](##contributing)
+
+---
+
+#### Provider APIs — First-Party Free LLM APIs
+
+APIs run by the companies that train or fine-tune the models themselves. These are **official free AI APIs** directly from the model creators.
+
+---
+
+###### [Google Gemini](https://aistudio.google.com/app/apikey) 🇺🇸
+
+> Google's flagship model family. The free tier via AI Studio is among the most generous of any first-party provider.
+
+| Detail | Info |
+| --- | --- |
+| **Free Models** | Gemini 2.5 Pro, Gemini 2.0 Flash, Gemini 1.5 Flash, Gemini 1.5 Flash-8B, Gemini 1.0 Pro |
+| **Rate Limits** | 15 RPM / 1,500 RPD (Flash) · 2 RPM / 50 RPD (2.5 Pro) |
+| **OpenAI Compat** | ✅ Yes — `https://generativelanguage.googleapis.com/v1beta/openai/` |
+| **SDKs** | Python (`google-generativeai`), JS/TS, REST, Go, Swift, Dart |
+| **Speed Tier** | 🟢 Fast (Flash) · 🟡 Medium (Pro) |
+
+> ⚠️ Free tier not available in the EU, UK, or Switzerland. [Check available regions →](https://ai.google.dev/gemini-api/docs/available-regions)
+
+---
+
+###### [Mistral AI](https://console.mistral.ai/api-keys) 🇪🇺
+
+> European flagship. Apache 2.0 licensed models — free to use and self-host. One of the best free tiers for token volume.
+
+| Detail | Info |
+| --- | --- |
+| **Free Models** | Mistral Small 3.1, Mistral Large 3, Ministral 8B, Codestral Mamba, Mistral Embed |
+| **Rate Limits** | 1 req/sec · 1B tokens/month |
+| **OpenAI Compat** | ✅ Yes — `https://api.mistral.ai/v1` |
+| **SDKs** | Python (`mistralai`), JS/TS (`@mistralai/mistralai`), REST |
+| **Speed Tier** | 🟡 Medium |
+
+---
+
+###### [Cohere](https://dashboard.cohere.com/api-keys) 🇺🇸
+
+> Specializes in enterprise NLP. Strong free tier for RAG and embedding use cases.
+
+| Detail | Info |
+| --- | --- |
+| **Free Models** | Command A, Command R+, Command R, Aya Expanse 32B, Aya Expanse 8B + 5 more |
+| **Rate Limits** | 20 RPM · 1,000 req/month |
+| **OpenAI Compat** | ⚠️ Partial — native SDK preferred (`cohere-python`) |
+| **SDKs** | Python (`cohere`), JS/TS (`cohere-ai`), Go, Java, REST |
+| **Speed Tier** | 🟡 Medium |
+
+---
+
+###### [Zhipu AI](https://open.bigmodel.cn/usercenter/apikeys) 🇨🇳
+
+> Chinese AI lab. Flash models are genuinely free with no published cap — good for experimentation.
+
+| Detail | Info |
+| --- | --- |
+| **Free Models** | GLM-4.7-Flash, GLM-4.5-Flash, GLM-4.6V-Flash (vision) |
+| **Rate Limits** | Undocumented |
+| **OpenAI Compat** | ✅ Yes — `https://open.bigmodel.cn/api/paas/v4/` |
+| **SDKs** | Python (`zhipuai`), REST |
+| **Speed Tier** | 🟡 Medium |
+
+---
+
+#### Inference Providers — Free Third-Party LLM Hosting
+
+Third-party platforms hosting open-weight models from various sources (Meta, Mistral, DeepSeek, etc.). These are **free AI inference APIs** — no need to self-host.
+
+---
+
+###### [Groq](https://console.groq.com/keys) 🇺🇸
+
+> Fastest free inference available. Runs on custom LPU (Language Processing Unit) hardware. Drop-in OpenAI replacement.
+
+| Detail | Info |
+| --- | --- |
+| **Free Models** | Llama 3.3 70B, Llama 4 Scout, Llama 4 Maverick, Gemma 2 9B, Kimi K2, Qwen QwQ 32B + 17 more |
+| **Rate Limits** | 30 RPM · 14,400 RPD · 6,000 TPM (varies by model) |
+| **OpenAI Compat** | ✅ Yes — `https://api.groq.com/openai/v1` |
+| **SDKs** | Python (`groq`), JS/TS (`groq`), REST |
+| **Speed Tier** | 🟢 Fast — LPU hardware, consistently 300–500 tok/sec |
+
+---
+
+###### [Cerebras](https://cloud.cerebras.ai/) 🇺🇸
+
+> Wafer-scale chip inference. Competing with Groq on raw speed, strong free tier.
+
+| Detail | Info |
+| --- | --- |
+| **Free Models** | Llama 3.3 70B, Qwen3 235B, Llama 4 Scout, GPT-OSS-120B + 3 more |
+| **Rate Limits** | 30 RPM · 60,000 TPM · 14,400 RPD |
+| **OpenAI Compat** | ✅ Yes — `https://api.cerebras.ai/v1` |
+| **SDKs** | Python (`cerebras-cloud-sdk`), REST |
+| **Speed Tier** | 🟢 Fast — wafer-scale chip, comparable to Groq |
+
+---
+
+###### [OpenRouter](https://openrouter.ai/keys) 🇺🇸
+
+> One API key for 30+ free models across multiple providers. Great as a fallback layer or for model switching.
+
+| Detail | Info |
+| --- | --- |
+| **Free Models** | DeepSeek R1, Llama 3.3 70B, GPT-OSS-120B, Qwen3 Coder 480B + 27 more (models ending in `:free`) |
+| **Rate Limits** | 20 RPM · 200 RPD |
+| **OpenAI Compat** | ✅ Yes — `https://openrouter.ai/api/v1` |
+| **SDKs** | Python (via `openai`), JS/TS (via `openai`), REST |
+| **Speed Tier** | 🟡 Medium — routes to various backends, latency varies |
+
+---
+
+###### [GitHub Models](https://github.com/marketplace/models) 🇺🇸
+
+> Free inference via GitHub account. Good access to frontier models like GPT-4o alongside open-weight models.
+
+| Detail | Info |
+| --- | --- |
+| **Free Models** | GPT-4o, Llama 3.3 70B, DeepSeek-R1, Phi-4, Mistral Large + more |
+| **Rate Limits** | 10–15 RPM · 50–150 RPD (varies by model tier) |
+| **OpenAI Compat** | ✅ Yes — `https://models.inference.ai.azure.com` |
+| **SDKs** | Python (`azure-ai-inference` or `openai`), JS/TS, REST |
+| **Speed Tier** | 🟡 Medium |
+
+---
+
+###### [NVIDIA NIM](https://build.nvidia.com/explore/discover) 🇺🇸
+
+> NVIDIA's hosted inference. Access to large parameter models including Qwen3 235B on GPU clusters.
+
+| Detail | Info |
+| --- | --- |
+| **Free Models** | Llama 3.3 70B, Mistral Large, Qwen3 235B, DeepSeek-R1 + more |
+| **Rate Limits** | 40 RPM (credit-based, replenishes) |
+| **OpenAI Compat** | ✅ Yes — `https://integrate.api.nvidia.com/v1` |
+| **SDKs** | Python (via `openai`), REST |
+| **Speed Tier** | 🟡 Medium |
+
+---
+
+###### [Hugging Face Serverless](https://huggingface.co/settings/tokens) 🇺🇸
+
+> $0.10/month in free credits, auto-replenished. Access to thousands of community and flagship models. Limited to models under 10GB unless featured.
+
+| Detail | Info |
+| --- | --- |
+| **Free Models** | Llama 3.3 70B, Qwen2.5 72B, Mistral 7B, Zephyr, Phi + many more |
+| **Rate Limits** | $0.10 free credits/month (auto-refresh) |
+| **OpenAI Compat** | ✅ Yes — `https://api-inference.huggingface.co/v1` |
+| **SDKs** | Python (`huggingface_hub`, `openai`), JS/TS, REST |
+| **Speed Tier** | 🔴 Slow — shared queues, cold starts common |
+
+---
+
+###### [Cloudflare Workers AI](https://dash.cloudflare.com/profile/api-tokens) 🇺🇸
+
+> Edge inference baked into Cloudflare Workers. Globally low-latency via the Cloudflare network. 10K "neurons"/day free.
+
+| Detail | Info |
+| --- | --- |
+| **Free Models** | Llama 3.3 70B, Qwen QwQ 32B, Phi-2, Gemma 7B + 47 more |
+| **Rate Limits** | 10,000 neurons/day (1 neuron ≈ 1 output token) |
+| **OpenAI Compat** | ⚠️ Partial — own REST API format, not drop-in |
+| **SDKs** | JS/TS (Workers SDK), Python (via REST), REST |
+| **Speed Tier** | 🟡 Medium — edge inference, latency varies by region |
+
+---
+
+###### [Kluster AI](https://platform.kluster.ai/apikeys) 🇺🇸
+
+> Newer inference provider with access to flagship open-weight models. Rate limits not publicly documented.
+
+| Detail | Info |
+| --- | --- |
+| **Free Models** | DeepSeek-R1, Llama 4 Maverick, Qwen3-235B + 2 more |
+| **Rate Limits** | Undocumented |
+| **OpenAI Compat** | ✅ Yes |
+| **SDKs** | Python (via `openai`), REST |
+| **Speed Tier** | 🟡 Medium |
+
+---
+
+###### [LLM7.io](https://token.llm7.io) 🇬🇧
+
+> UK-based inference provider. Token-based rate limiting — free token increases RPM from 15 to 30.
+
+| Detail | Info |
+| --- | --- |
+| **Free Models** | DeepSeek R1, Gemini Flash-Lite, Qwen2.5 Coder + 27 more |
+| **Rate Limits** | 15 RPM (30 RPM with free token) |
+| **OpenAI Compat** | ✅ Yes |
+| **SDKs** | Python (via `openai`), REST |
+| **Speed Tier** | 🟡 Medium |
+
+---
+
+###### [Pollinations AI](https://enter.pollinations.ai) 🇩🇪
+
+> Berlin-based open-source platform. Unique in covering **text, image, video, and audio** generation all under one free API. No sign-up required for basic use — just hit the endpoint. API key unlocks higher limits and model access.
+
+| Detail | Info |
+| --- | --- |
+| **Free Models** | openai, openai-large, openai-reasoning, gemini, gemini-large, mistral, llama (text) · flux, gpt-image, seedream, kontext (image) · wan-fast (video) · tts-1, 30+ ElevenLabs voices (audio) |
+| **Rate Limits** | Per-IP, resets hourly. Undocumented exact cap — authenticated requests get priority limits |
+| **OpenAI Compat** | ✅ Yes — `https://gen.pollinations.ai/v1` (text & audio endpoints) |
+| **SDKs** | Python (via `openai`), JS/TS (via `openai`), REST, MCP server |
+| **Speed Tier** | 🟡 Medium |
+
+> 💡 **Standout feature:** The only free API on this list with image, video, and audio generation alongside text — all from one key. Also has an [MCP server](https://github.com/pollinations/pollinations) for use directly inside Claude and other AI assistants.
+
+---
+
+#### Speed Tier Legend
+
+| Tier | Typical Output Speed | Hardware |
+| --- | --- | --- |
+| 🟢 **Fast** | 300–600 tok/sec | Custom silicon (LPU/Wafer-scale) |
+| 🟡 **Medium** | 50–150 tok/sec | Standard cloud GPUs (A100/H100) |
+| 🔴 **Slow** | < 50 tok/sec or variable | Shared queues, CPU offload, cold starts |
+
+> Speed tiers are approximate. Real-world performance varies based on model size, prompt length, and time of day.
+
+---
+
+#### Quick Comparison — Free LLM APIs at a Glance
+
+All 12 **free LLM API providers** side by side. Sorted by category (provider-first, then inference). Use this to pick the right free AI API for your use case before diving into the full entry above.
+
+| Provider | Best Free Model | RPM | RPD | OpenAI Compat | Speed |
+| --- | --- | --- | --- | --- | --- |
+| Google Gemini | Gemini 2.5 Pro | 2–15 | 50–1,500 | ✅ | 🟢🟡 |
+| Mistral AI | Mistral Large 3 | 60 | Unlimited* | ✅ | 🟡 |
+| Cohere | Command A | 20 | ~33/day | ⚠️ | 🟡 |
+| Zhipu AI | GLM-4.7-Flash | — | — | ✅ | 🟡 |
+| Groq | Llama 3.3 70B | 30 | 14,400 | ✅ | 🟢 |
+| Cerebras | Qwen3 235B | 30 | 14,400 | ✅ | 🟢 |
+| OpenRouter | Qwen3 Coder 480B | 20 | 200 | ✅ | 🟡 |
+| GitHub Models | GPT-4o | 10–15 | 50–150 | ✅ | 🟡 |
+| NVIDIA NIM | Qwen3 235B | 40 | — | ✅ | 🟡 |
+| Hugging Face | Llama 3.3 70B | — | credit-based | ✅ | 🔴 |
+| Cloudflare Workers AI | Llama 3.3 70B | — | 10K neurons | ⚠️ | 🟡 |
+| Pollinations AI | openai-large + image/video/audio | — | hourly reset | ✅ | 🟡 |
+
+> \* Mistral free tier is token-volume capped (1B tokens/month), not RPD capped.
+
+---
+
+#### Code Snippets — How to Use Free LLM APIs with the OpenAI SDK
+
+All **OpenAI-compatible free LLM APIs** work with the same pattern. Just swap `base_url` and `api_key` — no new SDK to learn:
+
+```python
+from openai import OpenAI
+
+## Swap these two lines to switch provider
+BASE_URL = "https://api.groq.com/openai/v1"   ## Groq
+API_KEY  = "your-groq-key"
+
+client = OpenAI(api_key=API_KEY, base_url=BASE_URL)
+
+response = client.chat.completions.create(
+    model="llama-3.3-70b-versatile",           ## change model per provider
+    messages=[{"role": "user", "content": "Hello!"}],
+)
+
+print(response.choices[0].message.content)
+```
+
+**Provider base URLs:**
+
+```python
+PROVIDERS = {
+    "groq":        ("https://api.groq.com/openai/v1",                     "llama-3.3-70b-versatile"),
+    "cerebras":    ("https://api.cerebras.ai/v1",                         "llama-3.3-70b"),
+    "openrouter":  ("https://openrouter.ai/api/v1",                       "meta-llama/llama-3.3-70b-instruct:free"),
+    "mistral":     ("https://api.mistral.ai/v1",                          "mistral-small-latest"),
+    "gemini":      ("https://generativelanguage.googleapis.com/v1beta/openai/", "gemini-2.0-flash"),
+    "github":      ("https://models.inference.ai.azure.com",              "gpt-4o"),
+    "nvidia":      ("https://integrate.api.nvidia.com/v1",                "meta/llama-3.3-70b-instruct"),
+    "huggingface": ("https://api-inference.huggingface.co/v1",            "meta-llama/Llama-3.3-70B-Instruct"),
+    "zhipu":       ("https://open.bigmodel.cn/api/paas/v4/",              "glm-4-flash"),
+    "pollinations": ("https://gen.pollinations.ai/v1",                    "openai-large"),  ## no key needed for basic use
+}
+```
+
+---
+
+#### Notes & Definitions
+
+- **RPM** = requests per minute · **RPD** = requests per day · **TPM** = tokens per minute
+- "Limits undocumented" means the provider does not publicly publish rate limits — expect throttling.
+- All providers marked ✅ OpenAI Compat work with the `openai` Python/JS SDK by changing `base_url`.
+- Providers marked ⚠️ Partial have their own SDK or require minor request format changes.
+- **Trial credits and time-limited promos are excluded** — only permanent free tiers are listed.
+- Entries verified as of **March 2026**. Rate limits change frequently — always check provider docs.
+
+---
+
+#### Related Resources
+
+Looking for something specific? These searches might help:
+
+- **Free OpenAI-compatible APIs** → filter the table above by ✅ OpenAI Compat
+- **Fastest free LLM API** → see [Groq](##groq) and [Cerebras](##cerebras)
+- **Free API with no sign-up** → see [Pollinations AI](##pollinations-ai)
+- **Free LLM API for images** → see [Pollinations AI](##pollinations-ai)
+- **Free LLM API for Europe** → see [Mistral AI](##mistral-ai) (EU-based, no region block)
+- **Free Llama API** → Groq, Cerebras, OpenRouter, GitHub Models all offer free Llama 3.3 70B
+- **Free DeepSeek API** → OpenRouter, Kluster AI, LLM7.io, GitHub Models
+
+---
+
+#### Contributing to awesome-free-llm-apis
+
+See [contributing.md](contributing.md) for the full guide. The short version:
+
+1. Fork this repo
+2. Add your entry following the existing format (table + all fields)
+3. Include a link to the provider's official rate limit documentation
+4. Open a pull request — add the current month/year you verified it
+
+**Rules:** No trial credits. No invite-only access. No entries missing rate limits without noting "undocumented". One entry per provider.
+
+---
+
+#### License
+
+[CC0 1.0](license) — public domain. Use freely, no attribution required.
+
+# Compare 30+ Free LLM API Providers (2026) | freellm.net - https://freellm.net/providers/
+Compare 30+ Free LLM API Providers (2026) | freellm.net
+
+## Free LLM API Providers 2026 — Compare 30+ Providers
+
+Need an API key? Browse Free LLM API Keys →
+
+Every provider below offers a free tier for LLM API access. 29 of 30 require no credit card — sign up with just an email. Together they host 376 free models across all modalities.
+
+#### Compare Free LLM API Providers — Capabilities, Free Tiers & Notes
+
+Capabilities: All Text Vision / Image Audio Video Code Reasoning Embedding Rerank
+
+Tier & Access: Permanent Free Trial / Quota No Credit Card No Phone Verif.
+
+| PROVIDER | ACTION | CAPABILITIES | FREE TIER |
+| --- | --- | --- | --- |
+| NVIDIA NIM 117 models No Card | View Models | Text Reasoning Image Video Embedding Rerank Audio Vision | Permanent Free |
+| OpenRouter 25 models No Card | View Models | Text Reasoning Code Image Video Vision Audio Embedding Rerank | ~35 models free |
+| Groq 10 models No Card | View Models | Text Reasoning Image | Permanent Free |
+| GitHub Models 13 models No Card | View Models | Text Reasoning Image Pdf Audio | Copilot limits |
+| ModelScope 54 models No Card | View Models | Text Image Video Audio Reasoning Vision | Permanent Free |
+| OVHcloud AI Endpoints 12 models No Card | View Models | Text Image Video Audio Reasoning Code | Permanent Free |
+| Kilo Code 5 models No Card | View Models | Text Code Reasoning | Quota limits |
+| Cloudflare Workers AI 39 models No Card | View Models | Text Image Reasoning Code Video Embedding | Permanent Free |
+| Google Gemini 12 models No Card | View Models | Text Image Video Audio Pdf Reasoning Vision | Permanent Free |
+| Cerebras 7 models No Card | View Models | Text Reasoning Vision | Permanent Free |
+| Mistral AI 9 models No Card | View Models | Text Code Image | ~1B tokens/mo |
+| Chutes.ai 2 models No Card | View Models | Text Reasoning | Permanent Free |
+| Z AI (Zhipu AI) 4 models No Card | View Models | Text Reasoning Image Video | Permanent Free |
+| Agnes AI 5 models No Card | View Models | Text Vision Image Video | Permanent Free |
+| Glhf.chat 2 models No Card | View Models | Text | Permanent Free |
+| SambaNova 4 models No Card | View Models | Text Reasoning Image | Permanent Free |
+| LLM7.io 8 models No Card | View Models | Text Reasoning Image Audio Video Pdf Code | Permanent Free |
+| Ollama Cloud 6 models No Card | View Models | Text Reasoning Code | Permanent Free |
+| Grok (xAI) 2 models | View Models | Text | Permanent Free |
+| Hugging Face 5 models No Card | View Models | Text | 100K credits/mo |
+| SiliconFlow 3 models No Card | View Models | Text Reasoning | Permanent Free |
+| DeepSeek 2 models No Card | View Models | Text Reasoning | Permanent Free |
+| OpenCode Zen 6 models No Card | View Models | Reasoning Vision Audio | Permanent Free |
+| Cohere 6 models No Card | View Models | Text Embedding Rerank | Permanent Free |
+| Aion Labs 5 models No Card | View Models | Text | Permanent Free |
+| xAI 3 models No Card | View Models | Text | Permanent Free |
+| Nscale 2 models No Card | View Models | Text Reasoning | Permanent Free |
+| Nebius 1 models No Card | View Models | Text | Permanent Free |
+| Alibaba Cloud Model Studio 5 models No Card | View Models | Text Image Code | Permanent Free |
+| AI21 Labs 2 models No Card | View Models | Text | Permanent Free |
+
+#### How to Choose a Free LLM API Provider
+
+Not all free tiers are equally usable. Here's what to check before committing to a provider:
+
+- Rate limits — Requests per minute (RPM) and per day (RPD) vary wildly. Groq gives 30 RPM / 14,400 RPD. NVIDIA NIM gives 40 RPM with no daily cap. Google AI Studio gives 10 RPM / 250 RPD for Gemini 2.5 Flash. If you're building an app with multiple users, NVIDIA NIM's no-daily-cap policy is the most forgiving.
+- Signup friction — Some providers give you an API key instantly with just an email (Groq, OpenRouter, Cloudflare). Others require credit card verification (Google AI Studio) or phone verification (NVIDIA NIM). 29 of 30 providers on this page require no credit card at all.
+- Model selection — Do you need a specific model family? Llama models are on Groq, NVIDIA NIM, OpenRouter, Cloudflare, and Cerebras. Gemini models are only on Google AI Studio. DeepSeek is on NVIDIA NIM, Groq, OpenRouter, and SiliconFlow. Check each provider's page for the full model list.
+- API compatibility (OpenAI format) — If you use OpenAI SDKs or tools that expect OpenAI-format APIs, check the provider's endpoint format. NVIDIA NIM, Groq, Mistral, Cerebras, OpenRouter, and SiliconFlow all support the OpenAI`/chat/completions` format. When you outgrow the free tier, aggregators like OpenRouter and SiliconFlow also serve as excellent low cost LLM APIs. Google AI Studio uses a different format but has OpenAI-compatible wrappers available.
+- Data privacy — Free tiers often have different data policies than paid ones. Google AI Studio may use free-tier prompts for product improvement. Groq does not train on customer data. Mistral's free tier does not log prompts. If you're building a commercial app, read the provider's data policy carefully.
+
+#### Free LLM APIs with No Credit Card Required (2026)
+
+29 providers issue API keys with nothing more than an email address. These are the fastest to get started with:
+
+- NVIDIA NIM— 117 free models, 111 online. Get API key →
+- OpenRouter— 25 free models, 46 online. Get API key →
+- Groq— 10 free models, 17 online. Get API key →
+- GitHub Models— 13 free models, 13 online. Get API key →
+- ModelScope— 54 free models, 50 online. Get API key →
+- OVHcloud AI Endpoints— 12 free models, 10 online. Get API key →
+- Kilo Code— 5 free models, 5 online. Get API key →
+- Cloudflare Workers AI— 39 free models, 35 online. Get API key →
+- Google Gemini— 12 free models, 12 online. Get API key →
+- Cerebras— 7 free models, 4 online. Get API key →
+- Mistral AI— 9 free models, 8 online. Get API key →
+- Chutes.ai— 2 free models, 2 online. Get API key →
+- Z AI (Zhipu AI)— 4 free models, 4 online. Get API key →
+- Agnes AI— 5 free models, 5 online. Get API key →
+- Glhf.chat— 2 free models, 2 online. Get API key →
+- SambaNova— 4 free models, 4 online. Get API key →
+- LLM7.io— 8 free models, 1 online. Get API key →
+- Ollama Cloud— 6 free models, 0 online. Get API key →
+- Hugging Face— 5 free models, 5 online. Get API key →
+- SiliconFlow— 3 free models, 2 online. Get API key →
+- DeepSeek— 2 free models, 0 online. Get API key →
+- OpenCode Zen— 6 free models, 6 online. Get API key →
+- Cohere— 6 free models, 4 online. Get API key →
+- Aion Labs— 5 free models, 3 online. Get API key →
+- xAI— 3 free models, 0 online. Get API key →
+- Nscale— 2 free models, 0 online. Get API key →
+- Nebius— 1 free models, 0 online. Get API key →
+- Alibaba Cloud Model Studio— 5 free models, 0 online. Get API key →
+- AI21 Labs— 2 free models, 0 online. Get API key →
+
+#### How Free LLM API Providers Work
+
+Free LLM API providers give developers access to large language models without upfront payment. They make money through paid tiers for higher limits, enterprise contracts, cloud compute bundling (NVIDIA), or ecosystem lock-in (Google). The free tier is a customer acquisition channel — you get to build and test for free, and when your project outgrows the rate limits, you upgrade.
+
+The free tier landscape breaks down into three categories:
+
+- Always-free tiers — Permanent free access with rate limits. Groq, Mistral, and Cloudflare Workers AI fall here. No expiration, no trial period. Rate limits are the only constraint.
+- Free credits / trial periods — A fixed amount of free usage (e.g., $5 in API credits or 1 month free). Cohere and some GitHub Models tiers use this model. Useful for evaluation but not for ongoing projects.
+- Freemium routing services — OpenRouter aggregates multiple providers and offers a subset of models for free (usually smaller/older ones). One API key accesses all of them, but free models have lower rate limits than paid ones.
+
+#### Who Are Free LLM APIs Really For?
+
+Free tiers aren't for everyone — rate limits and shared infrastructure mean they max out quickly under heavy load. But for the right use cases, they're genuinely sufficient. Here's who we built this directory for.
+
+###### Students — zero-cost access to frontier AI
+
+For students, paying $20/month for an API subscription isn't realistic. Free LLM APIs let students experiment with the same models used in production — Gemini 2.5 Flash, Llama 3.3 70B, DeepSeek-V3 — without a credit card. Use them for coursework, research projects, learning prompt engineering, or building a portfolio project. No budget required.
+
+###### Programmers — testing before committing
+
+Before integrating a paid API into a codebase, we want to test it. Free tiers are the perfect evaluation sandbox: try the model's coding ability, check its latency, see if tool calling works with our stack. We can test 5 different models across 3 providers without spending a cent, then pick the best one for production. The free tier is the test drive that every paid API should offer.
+
+###### Agent builders — low-cost OpenClaw, Hermes & Claude Code usage
+
+AI coding agents (Claude Code, Codex, OpenClaw, Hermes) consume a lot of tokens — a single refactoring session can burn through thousands. Running them against paid Anthropic or OpenAI APIs adds up fast. By pointing these tools at free backends (NVIDIA NIM, Groq, OpenRouter), we get the same agent workflow at zero cost. Rate limits are the trade-off: at 30-40 RPM, a solo developer working interactively rarely hits them.
+
+###### LLM newcomers — experience frontier models at no cost
+
+Not everyone needs to ship an app. Many people just want to try the latest models, compare how different AIs answer the same question, or understand what "1M context window" actually means. Free APIs make this possible without signing up for a $20/month subscription. Browse our model directory, grab a free key, and start exploring — the Playground works in your browser with zero setup.
+
+See our FAQ for common questions about free LLM APIs
+
+Export to Chat Client 🚀
+
+×
+
+Select your preferred AI client to export this provider's configuration instantly.
+
+Target Client * CC Switch (Local Tool) Cherry Studio Lobe Chat ChatGPT Next Web DeepChat AionUI AI as Workspace AMA OpenCat
+
+API Key (Optional) Save this API key to Dashboard Your API key will be securely passed directly to the target client.
+
+Target App (CC Switch) *
+
+Claude Codex Gemini
+
+Haiku Model
+
+Sonnet Model
+
+Opus Model
+
+Provider Settings (Pre-filled)
+
+Provider Name
+
+API Endpoint
+
+Default Model
+
+Cancel Export Configuration
+
+# The best free LLM APIs in 2026 (live-probed list) | WotAI - https://wotai.co/blog/best-free-llm-apis
+The best free LLM APIs in 2026 (live-probed list) | WotAI
+
+Back to Blog
+
+Last updated: July 6, 2026
+
+#### TL;DR
+
+A free LLM API lets you call a hosted language model without paying. Across 16 providers there are about 110 free models right now, but only ~57 are genuinely free with permissive terms. The rest are eval-only, capped, anonymous-access, or off-limits under their own terms of service. This list sorts them by what's actually usable, refreshed from a live-probed catalog.
+
+#### How many free LLM APIs are there really?
+
+There are roughly 110 free models across 16 providers as of June 2026, but the honest number is smaller: about 57 are truly free with terms that allow personal use. Most "free LLM API" lists are just stale link dumps, every tier counted the same. The thing nobody separates out is that "free tier" means four pretty different things, and three of them come with strings attached.
+
+That's the split this list uses. The counts come from a catalog that gets re-probed, which means dead tiers get culled and the number drifts over time:
+
+| Tier | Models | What it means |
+| --- | --- | --- |
+| Truly free, permissive terms | ~57 | Real free tier, terms allow personal use |
+| Free but capped or eval-only | ~34 | Free to call, but rate-limited hard or scoped to "evaluation only" |
+| No account needed | ~12 | Anonymous access, no signup, no key |
+| Skip these | ~4 | Free, but the terms forbid the use you have in mind |
+
+One warning up front: free tiers move around weekly. Take any specific limit below as a starting point, not gospel, and check the provider's docs before you lean on it.
+
+#### The master list
+
+Every provider, what you get, and the catch. The models listed are examples, not the whole menu.
+
+| Provider | Free models | Example models | The catch | Account |
+| --- | --- | --- | --- | --- |
+| OpenRouter | ~23 | many`:free` routes | rotating availability | yes |
+| NVIDIA | ~13 | NIM catalog | evaluation only, 40 req/min | yes |
+| Ollama Cloud | ~11 | GLM-4.7, Kimi K2, gpt-oss, Qwen3 | 1 concurrent, 5-hour session caps | yes |
+| Cloudflare Workers AI | ~10 | Kimi K2, GLM-4.7, GPT-OSS, Granite 4 | neutral daily allocation | yes |
+| Google Gemini | ~9 | Gemini 2.5 Flash, 3.x previews | terms narrowed to business use | yes |
+| Groq | ~9 | Llama 3.3, Llama 4, GPT-OSS, Qwen3 | very fast, generous | yes |
+| Mistral | ~7 | Large 3, Codestral, Devstral | free experimentation tier | yes |
+| OpenCode Zen | ~6 | DeepSeek V4 Flash, Nemotron | promo, can change | anon ok |
+| Cerebras | ~4 | Qwen3 235B | fast, no key reselling | yes |
+| Cohere | ~4 | Command R+, Command-A | terms forbid personal use | yes |
+| Kilo | ~4 | `:free` routes | anonymous routes | anon ok |
+| HuggingFace | ~3 | DeepSeek V4, Kimi K2.6, Qwen3 | tool-call formatting can be finicky | yes |
+| Z.ai / Zhipu | ~3 | GLM-4.5, GLM-4.7 Flash | non-commercial carve-out | yes |
+| GitHub Models | ~2 | GPT-4.1, GPT-4o | scoped to prototyping | yes |
+| LLM7 | ~1 | GPT-OSS, Llama 3.1, GLM | anonymous | anon ok |
+| Pollinations | ~1 | GPT-OSS 20B | anonymous | anon ok |
+
+One more worth knowing: OVH AI Endpoints documents anonymous access (around 2 requests per minute per model) with no signup. It drifts in and out of the catalog, but it's a genuinely handy no-account option.
+
+#### Tier 1: truly free, start here
+
+These have a real free tier and terms that let you use it for personal stuff. If you just want to call a free model today without spending an hour in someone's legal page, start here.
+
+- Groq is the standout for speed. The free tier runs Llama 3.3, Llama 4, GPT-OSS, and Qwen3 fast, and the agreement is fine with you building it into your own app.
+- Cerebras runs big models like Qwen3 235B surprisingly fast on the free tier. The one rule: don't sell or hand off your keys.
+- Mistral has a free experimentation tier across Large 3, Codestral, and Devstral, and it's allowed for personal and internal business use.
+- OpenRouter is where you get the most free routes in one place, roughly two dozen tagged`:free`. Availability rotates, so don't pin your hopes on one specific model.
+- Ollama Cloud gives you free cloud access to GLM-4.7, Kimi K2, gpt-oss, and Qwen3, with one request at a time and 5-hour session caps.
+- Z.ai / Zhipu has a non-commercial research carve-out for GLM-4.5 and GLM-4.7 Flash.
+
+#### Tier 2: free, but read the limits
+
+Free to call, with a real asterisk: either a hard rate cap, or terms that say "evaluation" or "prototyping" out loud.
+
+- NVIDIA NIM has a huge catalog, but the free access is evaluation-only and runs at 40 requests a minute. Great for kicking the tires, not for a backend.
+- GitHub Models gives you GPT-4.1 and GPT-4o free, but the terms scope it to experimentation and prototyping.
+- Google Gemini has a strong free tier (Gemini 2.5 Flash, 3.x previews), but a 2026 terms change pointed it toward business rather than consumer use. A self-hosted dev setup is still defensible; just know the clause is there.
+- Cloudflare Workers AI hands you a daily allocation across Kimi K2, GLM-4.7, GPT-OSS, and Granite 4, with no anti-proxy clause but only general subscription terms.
+
+#### Tier 3: no account needed
+
+The fastest path to a free completion: no signup, no key. Quality and uptime bounce around, but for a quick test or a throwaway script, nothing beats them.
+
+- Kilo has`:free` routes that work anonymously.
+- Pollinations serves GPT-OSS 20B with no account.
+- LLM7 gives you GPT-OSS, Llama 3.1, and GLM anonymously.
+- OpenCode Zen runs promo anonymous access to DeepSeek V4 Flash and Nemotron.
+- OVH AI Endpoints documents anonymous access at about 2 requests a minute per model.
+
+#### Tier 4: skip these (for personal use)
+
+Free, but the terms forbid what most people actually want to do. Cohere's free trial of Command R+ and Command-A still bans "personal, family, or household purposes." The models are good; the license just isn't built for a hobby project. Read it before you build on it.
+
+#### What you actually get
+
+Free doesn't mean equal. Past the model name, three things decide whether a free tier is any use to you:
+
+- Rate limits and token budgets. A 40-a-minute eval tier and a generous experimentation tier are both "free" and they feel nothing alike when you're actually using them.
+- Context window. Some free models give you a few thousand tokens, others give you six figures. If you're feeding in long files, that's the whole game.
+- Tool calling and vision. About 79 of these free models do tool calling and 15 do vision. If your app needs function calls, filter to the tool-capable ones before you fall in love with a model that can't.
+
+That's the reason for a live-probed catalog instead of a static list. A model that quietly stops returning tool calls gets flagged and dropped, instead of sitting there looking fine.
+
+#### How to use all of them at once
+
+One free tier is a toy. Stack them and they're a real working pool, except now you're juggling 16 SDKs and 16 rate limits, which is its own misery. The open-source FreeLLMAPI project (by Tashfeen Ahmed, MIT) puts the free tiers behind one OpenAI-compatible endpoint, with a router that fails over when a provider taps out.
+
+The move that actually changes how you use these, though, is keeping a smart model in charge and letting it hand the cheap work to the free pool. That's the whole idea in how to put Claude Code in charge of a free LLM API pool: Claude orchestrates, the free models do the grunt work, and a rubric decides what's worth spending real tokens on.
+
+#### Frequently asked questions
+
+###### Is there a truly free LLM API?
+
+Yes. Several providers offer genuinely free tiers, including Groq, Cerebras, Mistral, OpenRouter, Ollama Cloud, and Google Gemini. About 57 free models across these permissive-terms providers are usable for personal projects today, though specific rate limits and model availability change often.
+
+###### What is the best free LLM API?
+
+For speed and a permissive free tier, Groq is the standout. For the widest selection in one place, OpenRouter aggregates the most free routes. For no signup at all, Kilo, Pollinations, and LLM7 offer anonymous access. The best one depends on whether you optimize for speed, selection, or zero friction.
+
+###### Is there a free LLM API with no account or key?
+
+Yes. Kilo, Pollinations, LLM7, OpenCode Zen, and OVH AI Endpoints all offer anonymous access with no signup. Uptime and quality vary more than account-based tiers, but for a quick test or a throwaway script they're the fastest path to a free completion.
+
+###### Are free LLM APIs legal to use?
+
+For personal experimentation, most are fine, but the terms vary by provider and some are restrictive. Cohere's free tier forbids personal use, NVIDIA's is evaluation-only, and GitHub Models is scoped to prototyping. Use one account per provider, don't resell access, and read each provider's terms. This is informational, not legal advice.
+
+###### Can I use a free LLM API in production?
+
+No, you shouldn't. Free tiers exist for prototyping; they aren't a stable, supported backend, and several providers explicitly forbid production use. If you build something real on top of free tiers, swap in a paid API before you ship.
+
+###### Is there a free Claude API?
+
+Not from Anthropic directly. You can get free access to many other strong models (Llama, Qwen, GLM, DeepSeek, GPT-OSS) through the providers in this list. If you want to use Claude itself efficiently, the better move is to keep Claude as the orchestrator and delegate cheap work to a free pool.
+
+###### How many free LLM tokens can I get per month?
+
+Stacked across providers, the combined free tiers run into the billions of tokens per month, though no single provider gives you that. The practical limit is per-provider rate caps, not a monthly total. Pooling several providers and failing over between them is what makes the combined free budget usable.
+
+###### Do these free models support tool calling?
+
+Many do. Of the free models in this catalog, about 79 support tool calling and 15 support vision. If your app needs function calls or image input, filter to the capable models first rather than assuming a given free model supports them.
+
+#### The honest version
+
+Free LLM APIs are one of the best deals in software right now, and also one of the most oversold. The tiers are real, but they're for learning and prototyping, not for running a business on. Providers offer them so you'll build against their models; that goodwill evaporates the second a free tier becomes somebody's production backend.
+
+So use them the way they're meant to be used. Prototype, learn, stack them into a pool, let your expensive model lean on them for the boring work. When you ship something real, pay for the API. This list stays current because the catalog behind it gets re-probed, so check back as providers come and go.
+
+Want the patterns we use to run this in production? Come hang out in the WotAI community with 760+ other builders, and grab the newsletter for the weekly breakdown.
+
+##claude-code##AI Models##free-llm-api##free-ai-api##llm-providers
+
+3 live calls a week
+
+#### Three live calls a week. Bring your hardest build.
+
+Every week we get on three 30-minute calls to work through real Claude Code builds, live. Bring the thing you're stuck on. Can't make it? Every call is recorded, so nothing's lost.
+
+Join the calls free
+
+Free to join. Real people. No spam.
+
+#### Related Posts
+
+###### WoterClip v0.2.0: GitHub Issues replaces Linear
+
+Developer ToolsAI AgentsWoterClip v0.2.0 swaps its tracker backend from Linear to GitHub Issues. No MCP, no external tracker – just the gh CLI. What changed, the concept mappings that fail silently, and how to migrate a v1 config.Jul 10, 2026·9 minRead more
+
+###### How to put Claude Code in charge of a free LLM API pool
+
+Ai EngineeringA free LLM API pool stacks 16 providers' free tiers behind one endpoint. The smarter move is to make Claude Code the orchestrator that delegates grunt work to the pool and spends its budget only on the hard tasks.Jun 26, 2026·13 minRead more
+
+###### Claude Fable 5 lasted three days: why the US government pulled Anthropic's most powerful model
+
+AI DevelopmentAnthropic's first public Mythos-class model launched June 9, then a US export-control order pulled it offline three days later. A clear look at what Claude Fable 5 does, what it costs vs Opus 4.8, why it was suspended, and what comes next.Jun 19, 2026·14 minRead more
+
+# README.md at main · felipetruman/free-llm-hub - https://github.com/felipetruman/free-llm-hub/blob/main/README.md
+## File: felipetruman/free-llm-hub/README.md
+
+- Repository: felipetruman/free-llm-hub | 🌟 Catálogo unificado de 187+ APIs de LLM, motores OSS, gateways e ecossistema de IA | 0 stars | Python
+- Branch: main
+
+```md
+## 🌟 Free LLM Hub
+
+**🌍 Read this in other languages:** 🇺🇸 **English** • [🇧🇷 Português (BR)](.github/i18n/README.pt-BR.md) • [🇵🇹 Português (PT)](.github/i18n/README.pt-PT.md) • [🇪🇸 Español](.github/i18n/README.es.md) • [🇫🇷 Français](.github/i18n/README.fr.md) • [🇨🇳 中文 (简体)](.github/i18n/README.zh-CN.md) • [🇯🇵 日本語](.github/i18n/README.ja.md)
+
+![Anchors](https://github.com/felipetruman/free-llm-hub/actions/workflows/check-anchors.yml/badge.svg)
+
+> A unified, community-driven catalog of LLM APIs, inference engines, gateways, and the entire OSS LLM ecosystem.
+
+**Total entries:** 187 • **Last updated:** auto-generated
+
+#### 📑 Table of Contents
+
+- [📡 Provider APIs](##provider-apis) (18)
+- [🔌 Inference Providers](##inference-providers) (24)
+- [💰 Subscription Plans](##subscription-plans) (47)
+- [🛠️ Inference Engines (OSS)](##inference-engines-oss) (13)
+- [🚪 Gateways / Routers](##gateways-routers) (11)
+- [🎨 Specialty APIs](##specialty-apis) (22)
+- [🤖 Agent Frameworks](##agent-frameworks) (5)
+- [📚 LLM Frameworks](##llm-frameworks) (6)
+- [🗄️ Vector Databases](##vector-databases) (8)
+- [📊 Eval Frameworks](##eval-frameworks) (4)
+- [📦 Model Catalogs](##model-catalogs) (4)
+- [💻 Coding Tools](##coding-tools) (5)
+- [🖥️ Desktop UIs](##desktop-uis) (6)
+- [🧬 Open-Weights Families](##open-weights-families) (14)
+
+---
+
+#### 📡 Provider APIs
+
+| Name | Country | Pricing | Rate Limits | Models / Notes | Link |
+|------|:-:|:-:|:-:|------|:-:|
+| **Google AI Studio (Gemini)** | US | 🟢 Freemium | 15 RPM, 1000 RPD | gemini-2.5-pro, gemini-2.5-flash, gemini-2.5-flash-lite | [🔗](https://aistudio.google.com) |
+| **Mistral AI (La Plateforme)** | FR | 🟢 Freemium | 60 RPM, 1,000,000,000 tok/mo | mistral-large-3, mistral-small-3.1, ministral-8b | [🔗](https://console.mistral.ai) |
+| **Cohere** | CA | 🟢 Freemium | 20 RPM | command-a, command-r-plus, command-r7b | [🔗](https://cohere.com) |
+| **Zhipu AI (Z.AI / GLM)** | CN | 🟢 Freemium | — | glm-4.7-flash, glm-4.5-flash, glm-4.6v-flash | [🔗](https://open.bigmodel.cn) |
+| **DeepSeek Platform** | CN | 💵 $0.14/$0.28 per MTok | — | deepseek-v3.2, deepseek-r1, deepseek-v4-pro | [🔗](https://platform.deepseek.com) |
+| **Moonshot AI (Kimi)** | CN | 🟢 Freemium | — | kimi-k2.5, kimi-k2.6, kimi-long-context | [🔗](https://platform.moonshot.cn) |
+| **DashScope (Alibaba)** | CN | 🟢 Freemium | — | qwen-max, qwen-plus, qwen-vl | [🔗](https://dashscope.aliyun.com) |
+| **MiniMax** | CN | 🎁 Trial | — | minimax-m2.5, minimax-m2.1, abab6.5 | [🔗](https://api.minimax.chat) |
+| **01.AI (Yi / 零一万物)** | CN | 🎁 Trial | — | yi-large, yi-lightning, yi-vision | [🔗](https://platform.01.ai) |
+| **StepFun (阶跃星辰)** | CN | 🎁 Trial | — | step-3.5-flash, step-2 | [🔗](https://platform.stepfun.com) |
+| **Baidu Qianfan (ERNIE)** | CN | 🟢 Freemium | — | ernie-4.0, ernie-speed | [🔗](https://qianfan.cloud.baidu.com) |
+| **Tencent Hunyuan** | CN | 🟢 Freemium | — | hunyuan-lite, hunyuan-pro, hunyuan-turbo | [🔗](https://hunyuan.tencent.com) |
+| **InternLM (Shanghai AI Lab)** | CN | 🟢 Freemium | — | internlm2.5, internvl | [🔗](https://internlm.intern-ai.org.cn) |
+| **OpenAI API** | US | 💵 $1.25/$10.0 per MTok | — | gpt-5, gpt-5.1, gpt-5.2 | [🔗](https://platform.openai.com) |
+| **Anthropic API** | US | 💵 $3.0/$15.0 per MTok | — | claude-sonnet-4.6, claude-opus-4.6, claude-haiku-4 | [🔗](https://console.anthropic.com) |
+| **xAI Grok API** | US | 💵 $3.0/$15.0 per MTok | — | grok-3, grok-2 | [🔗](https://console.x.ai) |
+| **Perplexity Sonar API** | US | 💵 Pay-per-token | — | sonar, sonar-pro | [🔗](https://docs.perplexity.ai) |
+| **Reka AI** | US | 🎁 Trial | — | reka-core, reka-flash, reka-edge | [🔗](https://reka.ai) |
+
+#### 🔌 Inference Providers
+
+| Name | Country | Pricing | Rate Limits | Models / Notes | Link |
+|------|:-:|:-:|:-:|------|:-:|
+| **Groq** | US | 🟢 Freemium | 30 RPM, 1000 RPD | llama-3.3-70b, llama-4-scout, kimi-k2 | [🔗](https://groq.com) |
+| **Cerebras** | US | 🟢 Freemium | 30 RPM, 14400 RPD | llama-3.3-70b, qwen3-235b, gpt-oss-120b | [🔗](https://cloud.cerebras.ai) |
+| **NVIDIA NIM** | US | 🟢 Freemium | 40 RPM | llama-3.3-70b, mistral-large, qwen3-235b | [🔗](https://build.nvidia.com) |
+| **Cloudflare Workers AI** | US | 🟢 Freemium | — | llama-3.3-70b, qwen-qwq-32b, +47 more | [🔗](https://developers.cloudflare.com/workers-ai) |
+| **HuggingFace Inference Providers** | US | 🟢 Freemium | — | llama-3.3-70b, qwen2.5-72b, mistral-7b | [🔗](https://huggingface.co/docs/inference-providers) |
+| **OpenCode Zen** | US | 🟢 Freemium | — | — | [🔗](https://opencode.ai) |
+| **Ollama Cloud** | US | 🟢 Freemium | — | deepseek-v3.2, qwen3.5, kimi-k2.5 | [🔗](https://ollama.com/cloud) |
+| **LLM7.io** | GB | 🟢 Free | 30 RPM | deepseek-r1, qwen2.5-coder, +27 more | [🔗](https://llm7.io) |
+| **Kluster AI** | US | 🟢 Freemium | — | deepseek-r1, llama-4-maverick, qwen3-235b | [🔗](https://kluster.ai) |
+| **Together AI** | US | 🎁 $5 trial | — | llama-3.3, mixtral, qwen-2.5 | [🔗](https://together.ai) |
+| **Fireworks AI** | US | 🎁 $1 trial | 600 RPM | llama-3.3-70b, qwen-2.5-72b, deepseek-v3 | [🔗](https://fireworks.ai) |
+| **DeepInfra** | US | 💵 $0.14/$0.28 per MTok | — | deepseek-v4-flash, kimi-k2.6, glm-5 | [🔗](https://deepinfra.com) |
+| **Baseten** | US | 🎁 $30 trial | — | — | [🔗](https://baseten.co) |
+| **Nebius** | NL | 🎁 Trial | — | — | [🔗](https://nebius.ai) |
+| **Novita AI** | SG | 🎁 Trial | — | — | [🔗](https://novita.ai) |
+| **Hyperbolic** | US | 🎁 Trial | — | llama-3.3, deepseek | [🔗](https://hyperbolic.xyz) |
+| **SambaNova Cloud** | US | 🟢 Freemium | — | llama-4 | [🔗](https://cloud.sambanova.ai) |
+| **Scaleway Generative APIs** | FR | 🟢 Freemium | — | — | [🔗](https://www.scaleway.com/en/generative-apis) |
+| **Lepton AI** | US | 🎁 $10 trial | — | — | [🔗](https://lepton.ai) |
+| **Avian.io** | US | 🟢 Freemium | — | llama-3.1-405b, qwen | [🔗](https://avian.io) |
+| **Featherless AI** | US | 💳 $10/mo | — | 4000+ HF models | [🔗](https://featherless.ai) |
+| **Targon (Bittensor)** | US | 🟢 Freemium | — | deepseek, llama | [🔗](https://targon.com) |
+| **Chutes** | — | 🎁 Trial | — | — | [🔗](https://chutes.ai) |
+| **SiliconFlow (硅基流动)** | CN | 🟢 Freemium | 1000 RPM, 50000 TPM | qwen3-8b, deepseek-r1-distill, glm-4.1v-9b | [🔗](https://cloud.siliconflow.cn) |
+
+#### 💰 Subscription Plans
+
+| Name | Country | Pricing | Rate Limits | Models / Notes | Link |
+|------|:-:|:-:|:-:|------|:-:|
+| **ElevenLabs Starter** | — | 💳 $5/mo | — | 30K caracteres TTS/mês | [🔗](https://elevenlabs.io/pricing) |
+| **Suno Pro** | — | 💳 $10/mo | — | 500 créditos diários | [🔗](https://suno.com/pricing) |
+| **Midjourney Basic** | — | 💳 $10/mo | — | ~200 imagens/mês | [🔗](https://midjourney.com) |
+| **GitHub Copilot Pro** | — | 💳 $10/mo | — | gpt-5, claude-opus-4.6, gemini-3 | [🔗](https://github.com/features/copilot) |
+| **Tabnine Pro** | — | 💳 $12/mo | — | Code completion full-length, multi-LLM chat | [🔗](https://www.tabnine.com/pricing) |
+| **Leonardo.ai Apprentice** | — | 💳 $12/mo | — | — | [🔗](https://leonardo.ai) |
+| **Descript Hobbyist** | — | 💳 $12/mo | — | 10h transcrição/mês | [🔗](https://descript.com) |
+| **Runway Standard** | — | 💳 $15/mo | — | — | [🔗](https://runwayml.com/pricing) |
+| **Windsurf Pro** | — | 💳 $15/mo | — | claude-opus-4.6, gpt-5.4, gemini-3-pro | [🔗](https://windsurf.com/pricing) |
+| **Mistral Le Chat Pro** | — | 💳 $15/mo | — | mistral-large-3 | [🔗](https://chat.mistral.ai) |
+| **Augment Code Indie** | — | 💳 $15/mo | — | — | [🔗](https://augmentcode.com) |
+| **Writesonic** | — | 💳 $16/mo | — | — | [🔗](https://writesonic.com) |
+| **GitHub Copilot Business** | — | 💳 $19/mo | — | — | [🔗](https://github.com/features/copilot) |
+| **Amazon Q Developer Pro** | — | 💳 $19/mo | — | — | [🔗](https://aws.amazon.com/q/developer) |
+| **NotebookLM Plus** | — | 💳 $19.99/mo | — | — | [🔗](https://notebooklm.google) |
+| **ChatGPT Plus** | — | 💳 $20/mo | — | gpt-5.4, codex, dall-e-3 | [🔗](https://chatgpt.com) |
+| **Claude Pro** | — | 💳 $20/mo | — | claude-opus-4.6, claude-sonnet-4.6 | [🔗](https://claude.ai) |
+| **Gemini Advanced** | — | 💳 $20/mo | — | gemini-3-pro | [🔗](https://gemini.google.com) |
+| **Perplexity Pro** | — | 💳 $20/mo | — | — | [🔗](https://perplexity.ai/pro) |
+| **Cursor Pro** | — | 💳 $20/mo | — | claude-opus-4.6, gpt-5.4, gemini-3-pro | [🔗](https://cursor.com/pricing) |
+| **v0 Premium (Vercel)** | — | 💳 $20/mo | — | — | [🔗](https://v0.dev) |
+| **Lovable** | — | 💳 $20/mo | — | — | [🔗](https://lovable.dev) |
+| **Claude Code Pro** | — | 💳 $20/mo | — | — | [🔗](https://www.anthropic.com/claude-code) |
+| **Grok Premium (X)** | — | 💳 $22/mo | — | grok-3 | [🔗](https://x.com/i/grok) |
+| **HeyGen Creator** | — | 💳 $29/mo | — | — | [🔗](https://heygen.com) |
+| **Synthesia Starter** | — | 💳 $29/mo | — | — | [🔗](https://synthesia.io) |
+| **Midjourney Standard** | — | 💳 $30/mo | — | — | [🔗](https://midjourney.com) |
+| **Tabnine Enterprise** | — | 💳 $39/mo | — | Self-host VPC/on-prem | [🔗](https://www.tabnine.com/pricing) |
+| **GitHub Copilot Enterprise** | — | 💳 $39/mo | — | — | [🔗](https://github.com/features/copilot) |
+| **Cursor Teams** | — | 💳 $40/mo | — | — | [🔗](https://cursor.com/pricing) |
+| **Jasper Creator** | — | 💳 $49/mo | — | — | [🔗](https://jasper.ai) |
+| **Copy.ai Pro** | — | 💳 $49/mo | — | — | [🔗](https://copy.ai) |
+| **Cursor Pro+** | — | 💳 $60/mo | — | 3x usage Claude/GPT/Gemini | [🔗](https://cursor.com/pricing) |
+| **Windsurf Team** | — | 💳 $100/mo | — | 1500 credits/user, SSO | [🔗](https://windsurf.com/pricing) |
+| **ChatGPT Pro (new)** | — | 💳 $100/mo | — | 5x Plus, 10x Codex | [🔗](https://chatgpt.com) |
+| **Claude Max 5x** | — | 💳 $100/mo | — | — | [🔗](https://claude.ai) |
+| **ChatGPT Pro (original)** | — | 💳 $200/mo | — | 20x Plus, Sora, exclusive Pro models | [🔗](https://chatgpt.com) |
+| **Claude Max 20x** | — | 💳 $200/mo | — | — | [🔗](https://claude.ai) |
+| **Cursor Ultra** | — | 💳 $200/mo | — | — | [🔗](https://cursor.com/pricing) |
+| **Windsurf Max** | — | 💳 $200/mo | — | Unlimited credits, 1M context | [🔗](https://windsurf.com/pricing) |
+| **Gemini Ultra** | — | 💳 $250/mo | — | gemini-3-pro-deep-think | [🔗](https://gemini.google.com) |
+| **Devin (Cognition AI)** | — | 💳 $500/mo | — | Autonomous coding agent | [🔗](https://devin.ai) |
+| **OpenAI Enterprise** | — | 💳 Custom | — | Custom pricing, SOC2 | [🔗](https://openai.com/enterprise) |
+| **Anthropic Enterprise** | — | 💳 Custom | — | — | [🔗](https://anthropic.com/enterprise) |
+| **AWS Bedrock** | — | 💵 Pay-per-token | — | claude, llama, mistral | [🔗](https://aws.amazon.com/bedrock) |
+| **Azure OpenAI** | — | 💵 Pay-per-token | — | — | [🔗](https://azure.microsoft.com/en-us/products/ai-services/openai-service) |
+| **Google Vertex AI** | — | 💵 Pay-per-token | — | — | [🔗](https://cloud.google.com/vertex-ai) |
+
+#### 🛠️ Inference Engines (OSS)
+
+| Name | Country | Pricing | Rate Limits | Models / Notes | Link |
+|------|:-:|:-:|:-:|------|:-:|
+| **vLLM** | — | 🏠 Self-hosted | — | — | [🔗](https://vllm.ai) |
+| **Ollama** | — | 🏠 Self-hosted | — | — | [🔗](https://ollama.com) |
+| **llama.cpp** | — | 🏠 Self-hosted | — | — | [🔗](https://github.com/ggml-org/llama.cpp) |
+| **Text Generation Inference (TGI)** | — | 🏠 Self-hosted | — | — | [🔗](https://huggingface.co/docs/text-generation-inference) |
+| **SGLang** | — | 🏠 Self-hosted | — | — | [🔗](https://sgl-project.github.io) |
+| **TensorRT-LLM** | — | 🏠 Self-hosted | — | — | [🔗](https://nvidia.github.io/TensorRT-LLM) |
+| **LocalAI** | — | 🏠 Self-hosted | — | — | [🔗](https://localai.io) |
+| **LMDeploy** | — | 🏠 Self-hosted | — | — | [🔗](https://lmdeploy.readthedocs.io) |
+| **MLC-LLM** | — | 🏠 Self-hosted | — | — | [🔗](https://llm.mlc.ai) |
+| **KTransformers** | — | 🏠 Self-hosted | — | — | [🔗](https://kvcache-ai.github.io/ktransformers) |
+| **ExLlamaV2** | — | 🏠 Self-hosted | — | — | [🔗](https://github.com/turboderp-org/exllamav2) |
+| **Aphrodite Engine** | — | 🏠 Self-hosted | — | — | [🔗](https://aphrodite.pygmalion.chat) |
+| **CTranslate2** | — | 🏠 Self-hosted | — | — | [🔗](https://opennmt.net/CTranslate2) |
+
+#### 🚪 Gateways / Routers
+
+| Name | Country | Pricing | Rate Limits | Models / Notes | Link |
+|------|:-:|:-:|:-:|------|:-:|
+| **OpenRouter** | US | 🟢 Freemium | 20 RPM, 50 RPD | deepseek-r1-free, llama-3.3-70b-free, gpt-oss-120b-free | [🔗](https://openrouter.ai) |
+| **GitHub Models** | US | 🟢 Freemium | 15 RPM, 150 RPD | gpt-5, claude-sonnet-4, llama-3.3-70b | [🔗](https://github.com/marketplace/models) |
+| **Vercel AI Gateway** | US | 🟢 Freemium | — | multiple | [🔗](https://vercel.com/ai-gateway) |
+| **LiteLLM** | — | 🏠 Self-hosted | — | — | [🔗](https://litellm.ai) |
+| **Portkey AI Gateway** | — | 🟢 Freemium | — | — | [🔗](https://portkey.ai) |
+| **OneAPI** | — | 🏠 Self-hosted | — | — | [🔗](https://github.com/songquanpeng/one-api) |
+| **NewAPI** | — | 🏠 Self-hosted | — | — | [🔗](https://github.com/Calcium-Ion/new-api) |
+| **Helicone** | — | 🟢 Freemium | — | — | [🔗](https://helicone.ai) |
+| **Langfuse** | — | 🟢 Freemium | — | — | [🔗](https://langfuse.com) |
+| **RouteLLM** | — | 🏠 Self-hosted | — | — | [🔗](https://lmsys.org/blog/2024-07-01-routellm) |
+| **Arize Phoenix** | — | 🏠 Self-hosted | — | — | [🔗](https://docs.arize.com/phoenix) |
+
+#### 🎨 Specialty APIs
+
+| Name | Country | Pricing | Rate Limits | Models / Notes | Link |
+|------|:-:|:-:|:-:|------|:-:|
+| **ElevenLabs** | US | 🟢 Freemium | — | 10K chars/mês free | [🔗](https://elevenlabs.io) |
+| **PlayHT** | — | 🟢 Freemium | — | 12.5K chars/mês free | [🔗](https://play.ht) |
+| **Cartesia (Sonic)** | — | 🟢 Freemium | — | 10K chars/mês free | [🔗](https://cartesia.ai) |
+| **Resemble AI** | — | 🎁 Trial | — | — | [🔗](https://resemble.ai) |
+| **Coqui XTTS** | — | 🏠 Self-hosted | — | — | [🔗](https://github.com/coqui-ai/TTS) |
+| **Kokoro TTS** | — | 🏠 Self-hosted | — | — | [🔗](https://github.com/hexgrad/kokoro) |
+| **Deepgram** | — | 🎁 $200 trial | — | — | [🔗](https://deepgram.com) |
+| **AssemblyAI** | — | 🎁 $50 trial | — | — | [🔗](https://assemblyai.com) |
+| **Whisper** | — | 🏠 Self-hosted | — | — | [🔗](https://openai.com/research/whisper) |
+| **faster-whisper** | — | 🏠 Self-hosted | — | — | [🔗](https://github.com/SYSTRAN/faster-whisper) |
+| **Voyage AI** | — | 🟢 Freemium | — | 50M tokens free | [🔗](https://voyageai.com) |
+| **Jina AI** | — | 🟢 Freemium | — | 1M tokens free | [🔗](https://jina.ai) |
+| **Mixedbread** | DE | 🟢 Freemium | — | — | [🔗](https://mixedbread.ai) |
+| **Nomic Atlas** | — | 🟢 Freemium | — | — | [🔗](https://atlas.nomic.ai) |
+| **fal.ai** | — | 🎁 Trial | — | — | [🔗](https://fal.ai) |
+| **Pollinations** | — | 🟢 Free | — | — | [🔗](https://pollinations.ai) |
+| **Replicate** | — | 🎁 $0.5 trial | — | — | [🔗](https://replicate.com) |
+| **ComfyUI** | — | 🏠 Self-hosted | — | — | [🔗](https://www.comfy.org) |
+| **AUTOMATIC1111 WebUI** | — | 🏠 Self-hosted | — | — | [🔗](https://github.com/AUTOMATIC1111/stable-diffusion-webui) |
+| **Runway** | — | 💳 $15/mo | — | — | [🔗](https://runwayml.com) |
+| **Kling** | CN | 🟢 Freemium | — | — | [🔗](https://kling.ai) |
+| **Black Forest Labs (FLUX)** | DE | 🎁 Trial | — | — | [🔗](https://bfl.ai) |
+
+#### 🤖 Agent Frameworks
+
+| Name | Country | Pricing | Rate Limits | Models / Notes | Link |
+|------|:-:|:-:|:-:|------|:-:|
+| **CrewAI** | — | 🏠 Self-hosted | — | — | [🔗](https://crewai.com) |
+| **AutoGen** | — | 🏠 Self-hosted | — | — | [🔗](https://microsoft.github.io/autogen) |
+| **LangGraph** | — | 🏠 Self-hosted | — | — | [🔗](https://langchain-ai.github.io/langgraph) |
+| **Pydantic AI** | — | 🏠 Self-hosted | — | — | [🔗](https://ai.pydantic.dev) |
+| **Mastra** | — | 🏠 Self-hosted | — | — | [🔗](https://mastra.ai) |
+
+#### 📚 LLM Frameworks
+
+| Name | Country | Pricing | Rate Limits | Models / Notes | Link |
+|------|:-:|:-:|:-:|------|:-:|
+| **LangChain** | — | 🏠 Self-hosted | — | — | [🔗](https://langchain.com) |
+| **LlamaIndex** | — | 🏠 Self-hosted | — | — | [🔗](https://llamaindex.ai) |
+| **Haystack** | — | 🏠 Self-hosted | — | — | [🔗](https://haystack.deepset.ai) |
+| **DSPy** | — | 🏠 Self-hosted | — | — | [🔗](https://dspy.ai) |
+| **Semantic Kernel** | — | 🏠 Self-hosted | — | — | [🔗](https://learn.microsoft.com/semantic-kernel) |
+| **Vercel AI SDK** | — | 🟢 Free | — | — | [🔗](https://sdk.vercel.ai) |
+
+#### 🗄️ Vector Databases
+
+| Name | Country | Pricing | Rate Limits | Models / Notes | Link |
+|------|:-:|:-:|:-:|------|:-:|
+| **Qdrant** | — | 🟢 Freemium | — | 1GB free cloud | [🔗](https://qdrant.tech) |
+| **Weaviate** | — | 🟢 Freemium | — | — | [🔗](https://weaviate.io) |
+| **Milvus** | — | 🏠 Self-hosted | — | — | [🔗](https://milvus.io) |
+| **Chroma** | — | 🏠 Self-hosted | — | — | [🔗](https://trychroma.com) |
+| **pgvector** | — | 🏠 Self-hosted | — | — | [🔗](https://github.com/pgvector/pgvector) |
+| **Pinecone** | — | 🟢 Freemium | — | 1 free index | [🔗](https://pinecone.io) |
+| **LanceDB** | — | 🏠 Self-hosted | — | — | [🔗](https://lancedb.com) |
+| **Vespa** | — | 🏠 Self-hosted | — | — | [🔗](https://vespa.ai) |
+
+#### 📊 Eval Frameworks
+
+| Name | Country | Pricing | Rate Limits | Models / Notes | Link |
+|------|:-:|:-:|:-:|------|:-:|
+| **Promptfoo** | — | 🏠 Self-hosted | — | — | [🔗](https://promptfoo.dev) |
+| **DeepEval** | — | 🏠 Self-hosted | — | — | [🔗](https://deepeval.com) |
+| **Ragas** | — | 🏠 Self-hosted | — | — | [🔗](https://ragas.io) |
+| **OpenAI Evals** | — | 🏠 Self-hosted | — | — | [🔗](https://github.com/openai/evals) |
+
+#### 📦 Model Catalogs
+
+| Name | Country | Pricing | Rate Limits | Models / Notes | Link |
+|------|:-:|:-:|:-:|------|:-:|
+| **HuggingFace Hub** | — | 🟢 Freemium | — | — | [🔗](https://huggingface.co) |
+| **ModelScope (Alibaba)** | CN | 🟢 Freemium | — | — | [🔗](https://modelscope.cn) |
+| **models.dev** | — | 🟢 Free | — | — | [🔗](https://models.dev) |
+| **Civitai** | — | 🟢 Freemium | — | — | [🔗](https://civitai.com) |
+
+#### 💻 Coding Tools
+
+| Name | Country | Pricing | Rate Limits | Models / Notes | Link |
+|------|:-:|:-:|:-:|------|:-:|
+| **Aider** | — | 🏠 Self-hosted | — | — | [🔗](https://aider.chat) |
+| **Cline** | — | 🏠 Self-hosted | — | — | [🔗](https://cline.bot) |
+| **OpenHands** | — | 🏠 Self-hosted | — | — | [🔗](https://www.all-hands.dev) |
+| **Continue.dev** | — | 🏠 Self-hosted | — | — | [🔗](https://continue.dev) |
+| **Codex CLI** | — | 🏠 Self-hosted | — | — | [🔗](https://github.com/openai/codex) |
+
+#### 🖥️ Desktop UIs
+
+| Name | Country | Pricing | Rate Limits | Models / Notes | Link |
+|------|:-:|:-:|:-:|------|:-:|
+| **Open WebUI** | — | 🏠 Self-hosted | — | — | [🔗](https://openwebui.com) |
+| **Text Generation WebUI** | — | 🏠 Self-hosted | — | — | [🔗](https://github.com/oobabooga/text-generation-webui) |
+| **Jan** | — | 🏠 Self-hosted | — | — | [🔗](https://jan.ai) |
+| **GPT4All** | — | 🏠 Self-hosted | — | — | [🔗](https://gpt4all.io) |
+| **LM Studio** | — | 🟢 Free | — | — | [🔗](https://lmstudio.ai) |
+| **KoboldCpp** | — | 🏠 Self-hosted | — | — | [🔗](https://github.com/LostRuins/koboldcpp) |
+
+#### 🧬 Open-Weights Families
+
+| Name | Country | Pricing | Rate Limits | Models / Notes | Link |
+|------|:-:|:-:|:-:|------|:-:|
+| **Llama (Meta)** | — | — | — | llama-3.3-70b, llama-4-scout, llama-4-maverick | [🔗](https://llama.com) |
+| **Qwen (Alibaba)** | — | — | — | qwen3-0.6b, qwen3-8b, qwen3-72b | [🔗](https://qwenlm.github.io) |
+| **DeepSeek** | — | — | — | deepseek-v3, deepseek-r1, deepseek-v4-pro | [🔗](https://deepseek.com) |
+| **Mistral / Mixtral** | — | — | — | mistral-7b, mixtral-8x7b, mixtral-8x22b | [🔗](https://mistral.ai) |
+| **Gemma (Google)** | — | — | — | gemma-3-1b, gemma-3-4b, gemma-3-12b | [🔗](https://ai.google.dev/gemma) |
+| **Phi (Microsoft)** | — | — | — | phi-4, phi-4-mini | [🔗](https://huggingface.co/microsoft/phi-4) |
+| **Yi (01.AI)** | — | — | — | yi-6b, yi-9b, yi-34b | [🔗](https://01.ai) |
+| **InternLM** | — | — | — | internlm2.5-7b, internlm3-20b | [🔗](https://github.com/InternLM/InternLM) |
+| **GLM (Zhipu)** | — | — | — | glm-4-9b, glm-4-32b, glm-4.5-flash | [🔗](https://github.com/THUDM/GLM-4) |
+| **Hermes (Nous Research)** | — | — | — | hermes-3-405b, hermes-4 | [🔗](https://nousresearch.com) |
+| **gpt-oss (OpenAI)** | — | — | — | gpt-oss-20b, gpt-oss-120b | [🔗](https://openai.com/index/introducing-gpt-oss) |
+| **Granite (IBM)** | — | — | — | granite-3.0, granite-code | [🔗](https://www.ibm.com/granite) |
+| **OLMo (AllenAI)** | — | — | — | olmo-2-1b, olmo-2-13b, olmo-2-32b | [🔗](https://allenai.org/olmo) |
+| **SmolLM (HuggingFace)** | — | — | — | smollm-135m, smollm-360m, smollm-1.7b | [🔗](https://huggingface.co/blog/smollm) |
+
+---
+
+#### 🔍 Auto-discovered Models
+
+> Auto-generated by `scripts/discover_models.py` probing public `/v1/models` endpoints. **9 providers** responding publicly, **1157 models** total.
+
+###### 🟢 Public endpoints (no auth required)
+
+| Provider | Models | Endpoint |
+|----------|------:|----------|
+| `openrouter` | 358 | `https://openrouter.ai/api/v1` |
+| `vercel-ai-gateway` | 274 | `https://ai-gateway.vercel.sh/v1` |
+| `deepinfra` | 141 | `https://api.deepinfra.com/v1/openai` |
+| `huggingface-inference` | 131 | `https://router.huggingface.co/v1` |
+| `nvidia-nim` | 119 | `https://integrate.api.nvidia.com/v1` |
+| `novita` | 104 | `https://api.novita.ai/v3/openai` |
+| `kluster` | 15 | `https://api.kluster.ai/v1` |
+| `llm7` | 8 | `https://api.llm7.io/v1` |
+| `sambanova` | 7 | `https://api.sambanova.ai/v1` |
+
+<details>
+<summary>🔒 <strong>15 providers require authentication</strong> (endpoint valid, key needed)</summary>
+
+| Provider | Status |
+|----------|--------|
+| `cerebras` | auth_required_403 |
+| `dashscope` | auth_required_401 |
+| `deepseek` | auth_required_401 |
+| `fireworks` | auth_required_401 |
+| `github-models` | auth_required_401 |
+| `groq` | auth_required_401 |
+| `minimax` | auth_required_401 |
+| `mistral` | auth_required_401 |
+| `moonshot` | auth_required_401 |
+| `openai-api` | auth_required_401 |
+| `scaleway` | auth_required_401 |
+| `siliconflow` | auth_required_401 |
+| `together` | auth_required_401 |
+| `xai-grok` | auth_required_401 |
+| `zhipu` | auth_required_401 |
+
+</details>
+
+<details>
+<summary>⚠️ <strong>3 endpoints with errors</strong> (TODO: investigate)</summary>
+
+| Provider | Status |
+|----------|--------|
+| `ollama-cloud` | not_found_404 |
+| `opencode-zen` | not_found_404 |
+| `perplexity-api` | not_found_404 |
+
+</details>
+
+---
+
+#### 🤝 Contributing
+
+Edit `data/0X-*.yaml`, run `./scripts/merge.sh && python scripts/render_readme.py`, open a PR.
+
+#### 📜 License
+MIT
+
+```
+
+# Cachetricoupling/Free-LLM - https://github.com/Cachetricoupling/Free-LLM
+## Repository: Cachetricoupling/Free-LLM
+
+Free LLM APIs : 45+ providers with permanent free tiers, trial credits & no credit card required. Includes GPT-4o, Gemini, Claude, Llama, DeepSeek, Mistral & more. Updated weekly. free-llm llm-api free-api gpt-4o-free claude-api gemini-api llama-api deepseek-free mistral-api openai-alternative free-gpt ai-api llm generative-ai machine-learning
+
+- Stars: 55
+- Forks: 0
+- Watchers: 0
+- Open issues: 0
+- Topics: chatgpt-alternative, claude-4-6-opus, claude-api, deepseek-free, free-apis, free-llms, gemini-api, llama-api, llm-apis, openai-alternative
+- Default branch: main
+- Created: 2026-04-30T00:36:14Z
+- Last push: 2026-05-31T16:08:41Z
+- Contributors: 1 (top: Cachetricoupling)
+
+---
+
+## Free-LLM — Open Directory of Free AI & LLM APIs
+
+**Stop paying for AI.** This project indexes every provider that lets you use large language models at zero cost — whether through permanent free tiers, trial credits, or local execution on your own hardware.
+
+---
+
+#### Why This Exists
+
+The LLM landscape changes weekly. New providers launch free tiers, others sunset theirs, rate limits shift overnight. Keeping track manually is painful. Free-LLM solves this by maintaining a **single source of truth** covering 45+ providers, continuously updated by the community.
+
+---
+
+#### Complete Provider Quota Reference
+
+> Detailed information for each provider — including models, pricing, code examples, and setup steps — is available at [our site](https://telegra.ph/Download-05-21-39).
+
+###### ⚡ Permanent Free Tiers (No Credit Card Required)
+
+These providers offer ongoing free access with rate-limited quotas that never expire.
+
+| Provider | Rate Limit | Daily Limit | Token Limit | Monthly Limit | Key Models |
+|:---|:---|:---|:---|:---|:---|
+| [Google AI Studio](https://telegra.ph/Download-05-21-39) | 2–15 RPM | 1,500 RPD (Flash) / 50 RPD (Pro) | 1M TPM (Flash) / 32K TPM (Pro) | Free of charge | Gemini 2.0 Flash, 1.5 Pro, 1.5 Flash |
+| [Groq](https://telegra.ph/Download-05-21-39) | 30 RPM | 14,400 RPD | 40K TPM (varies) | Free forever | Llama 4 Maverick/Scout, Llama 3.3 70B, Qwen3 32B, Whisper |
+| [Cerebras](https://telegra.ph/Download-05-21-39) | 30 RPM | 1,000,000 tokens/day | 60K–100K TPM | Free forever | Llama 3.1 8B, Llama 3.1 70B |
+| [HuggingFace Inference](https://telegra.ph/Download-05-21-39) | 300 req/hour | Dependent on load | Max context of model | Free forever (rate-limited) | Llama 3.2 11B, Qwen 2.5 72B, Gemma 2 9B, Flux.1 |
+| [Cloudflare Workers AI](https://telegra.ph/Download-05-21-39) | Varies by model | 10,000 neurons/day | Included in neuron budget | ~300K neurons/month | Llama 3.1 8B, Mistral 7B, Qwen 1.5 7B, DeepSeek Coder 6.7B, Phi-2 |
+| [Cohere](https://telegra.ph/Download-05-21-39) | 20 RPM | — | — | 1,000 req/month | Command R+, Command R, Command R7B |
+| [Mistral (La Plateforme)](https://telegra.ph/Download-05-21-39) | 1 req/s | — | 500K TPM / 1B tokens/month | Free (Experiment plan) | Mistral 7B, Mixtral 8x7B, Mistral Small, Mistral Nemo |
+| [OVH AI Endpoints](https://telegra.ph/Download-05-21-39) | 2 RPM (anon) / 400 RPM (auth) | Unspecified | Unspecified | Beta access | Qwen3Guard 0.6B/8B, Stable Diffusion XL, TTS models |
+| [Chutes.ai](https://telegra.ph/Download-05-21-39) | Varies (community) | Subject to availability | Free (community-powered) | No hard cap | DeepSeek-R1, Llama 3.1 70B, Qwen 2.5 72B |
+| [Inference.net](https://telegra.ph/Download-05-21-39) | Varies | Fair use | Free for listed models | Fair use policy | DeepSeek-R1, Llama 3.1 8B/70B |
+| [Kluster.ai](https://telegra.ph/Download-05-21-39) | Batch-based (async) | Generous batch quotas | Free for batch API | Subject to fair use | Llama 3.1 405B, DeepSeek-R1, Qwen 2.5 72B |
+| [Glhf.chat](https://telegra.ph/Download-05-21-39) | Standard | Generous for personal use | Free tier included | Unlimited for free models | Llama 3.1 70B, Mixtral 8x7B, Phi-3 Mini |
+| [Coze](https://telegra.ph/Download-05-21-39) | Varies by model | Token-based daily limits | Free daily tokens | Resets daily | GPT-4o (via Coze), Gemini 1.5 Pro (via Coze) |
+| [NVIDIA NIM](https://telegra.ph/Download-05-21-39) | 40 RPM | — | — | — | Various open-source models (phone verification required) |
+
+###### 💰 Renewable Credits
+
+These providers give you credits that renew periodically.
+
+| Provider | Rate Limit | Free Offer | Token Limit | Monthly Limit | Key Models |
+|:---|:---|:---|:---|:---|:---|
+| [Grok / xAI](https://telegra.ph/Download-05-21-39) | Varies (low for free tier) | Credit-based daily | $25/month renewing credits | $25/month (resets monthly) | Grok-2, Grok-2 Mini, Grok-2 Vision |
+| [OpenRouter](https://telegra.ph/Download-05-21-39) | 20 RPM | 50 RPD (up to 1K w/ $10 topup) | Shared quota | — | Gemini 2.0, Llama 3.3 70B, DeepSeek R1, Phi-3 (20+ free models) |
+| [GitHub Models](https://telegra.ph/Download-05-21-39) | Varies by Copilot tier | Low | Restrictive | — | GPT-4o, Llama 3.3 70B, Phi-4, Mistral Large, AI21 Jamba 1.5 |
+| [Venice.ai](https://telegra.ph/Download-05-21-39) | Daily limits for free tier | Basic usage allowed | Limits without Pro | Resets daily | Llama 3.1 405B, Dolphin Mixtral, Stable Diffusion 3 |
+
+###### 🎁 One-Time Trial Credits
+
+Sign up and receive credits to use until depleted.
+
+| Provider | Rate Limit | Credit Amount | Token Equivalent | Expiry | Key Models |
+|:---|:---|:---|:---|:---|:---|
+| [Together.AI](https://telegra.ph/Download-05-21-39) | Subject to availability | Free research models | Free (Apriel series) | Free forever (research) | Apriel 1.6/1.5 15B Thinker |
+| [DeepSeek](https://telegra.ph/Download-05-21-39) | Standard | 10M free tokens | 10,000,000 tokens | One-time | DeepSeek-R1, DeepSeek-V3 |
+| [DeepInfra](https://telegra.ph/Download-05-21-39) | 60 RPM | $5 credit | ~5M tokens (varies) | One-time | 40+ open-source models |
+| [SambaNova](https://telegra.ph/Download-05-21-39) | Varies by model | $5 credit | ~30M Llama 8B tokens | One-time | Llama 3.1 405B/70B/8B, Qwen 2.5 72B |
+| [Cerebrium](https://telegra.ph/Download-05-21-39) | Pay-per-second | $30 credit | Credit-based | One-time | Any deployable model |
+| [AI21 Labs](https://telegra.ph/Download-05-21-39) | Standard | $10 credit | Credit-based | 3 months | Jamba models |
+| [Fireworks AI](https://telegra.ph/Download-05-21-39) | Shared | $1 credit | One-time credit | One-time trial | Various open-source models |
+| [Friendli AI](https://telegra.ph/Download-05-21-39) | Standard | $10 credit | Varies by model | One-time | Popular open-source models |
+| [Lepton AI](https://telegra.ph/Download-05-21-39) | Varies | $10 credit | Credit-based | One-time trial | Llama, Mistral, Stable Diffusion |
+| [Hyperbolic](https://telegra.ph/Download-05-21-39) | Standard | $1 credit | Credit-based | One-time trial | Llama 3.1 405B, DeepSeek V3 |
+| [Nebius](https://telegra.ph/Download-05-21-39) | Standard | $1 credit | Credit-based | One-time trial | Various open-source models |
+| [Novita AI](https://telegra.ph/Download-05-21-39) | Standard | $0.50 credit | Credit-based | One-time trial | Llama, Mistral |
+| [Replicate](https://telegra.ph/Download-05-21-39) | Varies | Small trial credit | Credit-based | One-time trial | 1000+ models (LLMs, image, audio) |
+| [Upstage](https://telegra.ph/Download-05-21-39) | Standard | $10 credit | Credit-based | 3 months | Solar Pro LLM |
+| [Qwen / Alibaba](https://telegra.ph/Download-05-21-39) | Standard | 1M tokens/model (trial) | 1M tokens per model | One-time per model | Qwen family |
+| [Scaleway](https://telegra.ph/Download-05-21-39) | Standard | 1M free tokens (trial) | 1M tokens | One-time trial | Mistral, Llama, Qwen (EU-hosted) |
+| [Yi AI](https://telegra.ph/Download-05-21-39) | Standard | Initial trial credits | Credit-based | One-time trial | Yi-Large (200K context) |
+| [Requesty](https://telegra.ph/Download-05-21-39) | Standard | Free monthly credits | Free monthly credits | Free tier included | Multi-provider routing |
+
+###### 🖥️ Local / Self-Hosted (Unlimited & Private)
+
+Run on your own hardware — zero cost, zero rate limits, complete privacy.
+
+| Tool | Rate Limit | Daily Limit | Token Limit | Monthly Limit | Highlights |
+|:---|:---|:---|:---|:---|:---|
+| [Ollama](https://telegra.ph/Download-05-21-39) | Hardware limited | Unlimited | Unlimited | Free | CLI-first, 100+ models, GPU accel, OpenAI-compatible API |
+| [LM Studio](https://telegra.ph/Download-05-21-39) | Hardware limited | Unlimited | Unlimited | Free | Desktop GUI, any GGUF model, built-in model browser |
+| [GPT4All](https://telegra.ph/Download-05-21-39) | Hardware dependent | Unlimited | Unlimited | Free open source | CPU-only chatbot, no GPU required |
+| [llama.cpp](https://telegra.ph/Download-05-21-39) | Hardware dependent | Unlimited | Unlimited | Free open source | C/C++ engine, any GGUF model |
+| [Jan.ai](https://telegra.ph/Download-05-21-39) | Hardware dependent | Unlimited | Unlimited | Free forever (open source) | Privacy-focused ChatGPT alternative, 100% offline |
+| [KoboldCpp](https://telegra.ph/Download-05-21-39) | Hardware dependent | Unlimited | Unlimited | Free open source | Single-file GGUF engine for creative writing |
+| [llamafile](https://telegra.ph/Download-05-21-39) | Hardware dependent | Unlimited | Unlimited | Free open source | Single executable, runs anywhere (Mozilla) |
+| [Text Gen WebUI](https://telegra.ph/Download-05-21-39) | Hardware dependent | Unlimited | Unlimited | Free open source | Gradio interface for advanced local experimentation |
+| [BentoML](https://telegra.ph/Download-05-21-39) | Hardware dependent | Unlimited | Unlimited | Free open source | Inference platform for deploying models anywhere |
+
+---
+
+#### Guides & Tutorials
+
+Published at [free-llm.com/guides](https://telegra.ph/Download-05-21-39/guides/):
+
+- **Best Free LLM APIs in 2026** — side-by-side comparison of top picks
+- **Gemini vs ChatGPT (Free Tier)** — what you actually get for $0
+- **How to Use OpenRouter** — setup walkthrough with code
+- **OpenRouter Alternatives** — other aggregators worth trying
+- **Local LLMs with Ollama** — get started in under 5 minutes
+- **Ultimate Free LLM API Guide** — the comprehensive deep-dive
+
+---
+
+#### Community Features
+
+Free-LLM is **community-driven**. The website at [free-llm.com](https://telegra.ph/Download-05-21-39) lets visitors:
+
+- **Vote** on providers to surface the most useful ones
+- **Submit** new providers and models
+- **Propose edits** to existing provider data (admin-reviewed)
+- **Earn recognition** on the [Hall of Fame](https://telegra.ph/Download-05-21-39/hall-of-fame) leaderboard
+
+Data syncs back to this repository automatically.
+
+---
+
+#### Quick Start — Use Any Free API in 30 Seconds
+
+```python
+## Works with Groq, Cerebras, Grok, Together, DeepSeek, SambaNova...
+## Just swap the base_url and api_key.
+
+from openai import OpenAI
+
+client = OpenAI(
+    api_key="YOUR_API_KEY",
+    base_url="https://telegra.ph/Download-05-21-39"  ## or any OpenAI-compatible endpoint
+)
+
+response = client.chat.completions.create(
+    model="llama-3.3-70b-versatile",
+    messages=[{"role": "user", "content": "What makes LPU inference fast?"}]
+)
+
+print(response.choices[0].message.content)
+```
+
+Most providers listed here support the **OpenAI SDK** — meaning you can switch between them by changing two lines.
+
+---
+
+#### Contributing
+
+1. **Add a provider** — use the [submit form](https://telegra.ph/Download-05-21-39/submit) on the website or open a PR.
+2. **Vote & discuss** — help the community surface the best options at [free-llm.com](https://telegra.ph/Download-05-21-39).
+
+---
+
+#### License
+
+MIT — see [LICENSE](LICENSE) for details.
+
+# ynewayne/free-ai-tools - https://github.com/ynewayne/free-ai-tools
+## ynewayne/free-ai-tools
+
+Curated list of free and low cost AI tools, LLM APIs, IDEs, agents, and infrastructure for building real AI apps
+
+- Stars: 0
+- Forks: 0
+- Watchers: 0
+- Open issues: 0
+- License: MIT License
+- Homepage: https://FreeAiToolsList.vercel.app
+- Default branch: main
+- Created: 2026-06-06T15:02:19Z
+- Fork: yes
+
+#### Languages
+
+- CSS
+- JavaScript
+- TypeScript
+
+#### Top Contributors
+
+- ShaikhWarsi (25 contributions)
+- alexjyong (5 contributions)
+- Gtr206 (1 contributions)
+- ununununium (1 contributions)
+- fedoraBee (1 contributions)
+
+---
+
+#### README
+
+## Free AI Tools
+
+![Stars](https://img.shields.io/github/stars/ShaikhWarsi/free-ai-tools?style=social)
+![Last Updated](https://img.shields.io/badge/updated-April%2011%2C%202026-brightgreen)
+![License](https://img.shields.io/badge/license-MIT-blue)
+![Contributions](https://img.shields.io/badge/contributions-welcome-brightgreen)
+
+> **Curated list of free LLM APIs, coding copilots, AI IDEs, agents, and infrastructure tools for building real AI applications.**
+
+###### What's Inside
+- ✅ Free GPT-5 / Claude / Gemini API access
+- 🤖 Coding copilots and AI-native IDEs (Cursor, Trae, Windsurf)
+- 💰 Cheapest AI APIs ($0.10-0.50 per 1M tokens)
+- 📚 RAG stack tools (vector DBs, embeddings, frameworks)
+- 🎯 Agent frameworks and automation tools
+- 🔒 Local models for privacy (Ollama, Llama, Qwen)
+- 🏗️ Production-ready stack configurations
+
+**Goal:** Help developers build AI apps without paying $200/month.
+
+> [!NOTE] 
+> Please don't abuse these services, else we might lose them for everyone.
+> The numebr becomes 550+ when you add all the models and sub services of all the tools provided.
+> When raising issues or pull requests please dont add your own paid,expensive personal projets.
+
+> [!WARNING] 
+> **April 2026 Model Tier Changes:** Major providers (OpenAI, Anthropic, Google) have restricted flagship models (GPT-5.4, Claude Opus 4.6, Gemini 3.1 Pro) to paid tiers. Free tiers now get lighter models (GPT-4o, Claude Sonnet/Haiku, Gemini Flash). Entries marked with `[verify]` need confirmation.
+
+---
+
+#### 🎯 Why This Repo Exists
+
+Most AI tool lists are:
+- ❌ Outdated (prices/limits from 2023)
+- ❌ Filled with affiliate links and sponsored placements
+- ❌ General-purpose directories with no developer focus
+- ❌ Missing production-critical details (rate limits, commercial use, architecture patterns)
+
+**This repo focuses only on:**
+- ✅ Tools developers *actually* use in production
+- ✅ Generous free tiers (no "5 requests then paywall")
+- ✅ Production-capable models (SWE-bench verified, not toys)
+- ✅ Real infrastructure (APIs, hosting, vector DBs, not just chatbots)
+- ✅ Minimal fluff, maximum utility
+
+**Unlike:** `awesome-ai` (general list), `ai-collection` (marketing focus), `toolify` (affiliate-heavy)
+
+**This is for:** Builders who want to ship AI features this week.
+
+---
+
+#### ⭐ Support This Project
+
+If this repo helped you build something or saved you money:
+
+**[⭐ Star this repo](https://github.com/ShaikhWarsi/free-ai-tools)** — it helps more builders discover free AI resources.
+
+**[🔄 Share with your team]** — spread the knowledge.
+
+**[📝 Contribute](CONTRIBUTING.md)** — found a new free tier? Updated pricing? PRs welcome!
+
+---
+
+#### 📅 Updates
+
+**2026-05-18**
+- ✨ added github PR review tools
+
+**2026-04-12**
+- ✨ added a website for easy navigation
+---
+**2026-04-11**
+- ✨ Initial release
+---
+
+#### Table of Contents
+
+- [Quick Comparison](##quick-comparison)
+- [Free LLM API Providers](##free-llm-api-providers)
+ - [Fully Free Providers](##fully-free-providers)
+ - [Providers with Trial Credits](##providers-with-trial-credits)
+- [AI-Powered IDEs](##ai-powered-ides)
+ - [IDEs with Pro-Grade Models](##ides-with-pro-grade-models)
+ - [IDEs with Basic Models](##ides-with-basic-models)
+- [CLI Coding Tools](##cli-coding-tools)
+ - [CLI Tools with Pro-Grade Models](##cli-tools-with-pro-grade-models)
+ - [CLI Tools with Basic Models](##cli-tools-with-basic-models)
+- [API Providers for AI Coding Tools](##api-providers-for-ai-coding-tools)
+- [Paid Tiers Comparison](##paid-tiers-comparison)
+- [Local Models](##local-models)
+- [free-coding-models CLI](##free-coding-models-cli)
+- [Additional 2026 AI Tools](##additional-2026-ai-tools)
+ - [Agentic Workflow Platforms](##agentic-workflow-platforms)
+ - [Data Visualization & Analysis](##data-visualization--analysis)
+ - [Creative & Multimedia Tools](##creative--multimedia-tools)
+ - [Productivity & Research Tools](##productivity--research-tools)
+ - [Vertical AI](##vertical-ai)
+ - [Marketing & SEO Tools](##marketing--seo-tools)
+ - [Open Source & Local Tools](##open-source--local-tools)
+- [🏗️ Recommended Stacks](##️-recommended-stacks)
+- [⚡ Realtime & Streaming APIs](##-realtime--streaming-apis)
+- [🎙️ Speech Models](##️-speech-models)
+- [🎨 Image Generation Models](##-image-generation-models)
+- [🎬 Video Generation APIs](##-video-generation-apis)
+- [🌐 AI Browser Automation](##-ai-browser-automation)
+- [💾 Cheap Vector DB Hosting](##-cheap-vector-db-hosting)
+- [🏛️ Common AI Architecture Patterns](##️-common-ai-architecture-patterns)
+- [💵 Model Price Comparison](##-model-price-comparison)
+- [🎯 Best Models by Use Case](##-best-models-by-use-case)
+- [⏱️ Rate Limit Comparison](##️-rate-limit-comparison)
+- [✅ Commercial Use Summary](##-commercial-use-summary)
+- [🧩 RAG Stack Tools](##-rag-stack-tools)
+- [🔢 Best Free Embedding APIs](##-best-free-embedding-apis)
+- [🖥️ AI Hosting & GPU Providers](##️-ai-hosting--gpu-providers)
+- [📊 AI Evaluation Tools](##-ai-evaluation-tools)
+- [📐 Structured Output Tools](##-structured-output-tools)
+- [🏷️ Legend](##️-legend)
+- [Contributing](##contributing)
+- [License](##license)
+
+---
+
+#### Quick Comparison
+
+###### Free LLM API Providers Summary
+
+| Provider | Models | Free Tier | Credit Card |
+|----------|--------|-----------|-------------|
+| [NVIDIA NIM](##nvidia-nim) | 46 | 40 req/min | No |
+| [OpenRouter](##openrouter) | 25 | 50/day (1K/day with $10) | No |
+| [Groq](##groq) | 20+ | 1K-14.4K req/day | No |
+| [Google AI Studio](##google-ai-studio) | 9 | 5-500 req/day | No |
+| [Cloudflare Workers AI](##cloudflare-workers-ai) | 47+ | 10K neurons/day | No |
+| [Cerebras](##cerebras) | 4 | 1M tokens/day | No |
+| [Cohere](##cohere) | 14 | 1K req/month | No |
+| [Mistral La Plateforme](##mistral-la-plateforme) | 10+ | 1B tokens/month | No |
+| [GitHub Models](##github-models) | 30+ | 50 chat + 2K completions/month | No |
+| [SambaNova](##sambanova-cloud) | 13 | $5 for 3 months | No |
+| [Hyperbolic](##hyperbolic) | 13 | $1 trial | No |
+
+###### AI-Powered IDEs with Free Pro-Grade Access
+
+| IDE | Pro-grade Models | Free Tier Limit | Credit Card |
+|-----|------------------|-----------------|-------------|
+| [Cursor](##cursor) | GPT-5.1-Codex-Max | Limited free tier | No |
+| [Trae](##trae) | DeepSeek V4, GPT-4.1 (Claude removed Nov 2025) | 10 fast + 50 slow/month | No |
+| [Windsurf](##windsurf) | OpenAI, Anthropic, Google, xAI | 25 credits/month | Required |
+| [Qoder](##qoder) | Qwen3.6-Plus, Qwen3-Coder-480B, Claude, GPT, Gemini | Unlimited completions + limited chat | No |
+
+###### AI GitHub PR Review Tools
+
+| Tool | Starting Price | Free Tier | Features | Credit Card |
+|------|----------------|-----------|-----------|-------------|
+| [PrixAI](https://www.prixai.xyz) | Free / $10 paid plan | Free trial available | Unlimited reviews Auto-fix PRs, issue planning | No |
+| [Bito](##bito) | Free / $25 paid plans | Free trial available | AI PR reviews/Unlimited reviews | No |
+| [Sourcery](##sourcery) | ~$12/month | Free trial available | Code quality reviews | No |
+
+###### CLI Coding Tools with Free Pro-Grade Access
+
+| Tool | Pro-grade Models | Free Tier Limit | Credit Card |
+|------|------------------|-----------------|-------------|
+| [Gemini CLI](##gemini-cli) | Gemini 3.1 Flash [verify: Pro paid] | 100-250 req/day | No |
+| [Rovo Dev CLI](##rovo-dev-cli) | Claude Sonnet 4 [verify], GPT-5 preview [verify] | 5M tokens/day | No |
+| [Warp](##warp) | GPT-4.1, Claude Opus 4.1 [verify] | 150 credits/month | No |
+| [GitHub Copilot](##github-copilot) | GPT-4.1, Claude Opus | 50 chat + 2K completions/month | No |
+| [Jules](##jules) | Gemini 2.5 Pro | 15 tasks/day | No |
+| [AWS Kiro](##aws-kiro) | Claude Sonnet 4 [verify] | 50 credits/month | No |
+| [OpenCode](##opencode) | 300+ models via OpenRouter | Zen Free tier | No |
+| [ForgeCode](##forgecode) | 300+ models via OpenRouter | 10K tokens/day | No |
+| [Amazon Q Developer](##amazon-q-developer) | Claude Sonnet 4 [verify] | 50 agentic req/month | Required |
+| [RooCode](##roocode) | Bring your own keys | Unlimited (BYOK) | No |
+| [Goose](##goose) | Bring your own keys | Unlimited (BYOK) | No |
+| [OhMyPi](##ohmypi) | Bring your own keys | Unlimited (BYOK) | No |
+
+###### What Qualifies as "Pro-Grade"?
+
+Models achieving ≥60% on SWE-bench Verified:
+
+| Model | SWE-bench | Provider |
+|-------|-----------|----------|
+| Claude **Opus 4.6** | 84.2% | Anthropic |
+| **GPT-5.4** | 80.1% | OpenAI |
+| Claude Sonnet 4.6 | 79.3% | Anthropic |
+| Gemini 3.1 Pro | 77.4% | Google |
+| Claude Opus 4.5 | 82.1% | Anthropic |
+| GPT-5.1-Codex-Max | 78.3% | OpenAI |
+| Qwen3.6-Plus | 71.2% | Alibaba |
+| Claude Sonnet 4.5 | 77.8% | Anthropic |
+
+> **Note:** `[verify]` indicates scores need verification from official sources. Always check current benchmarks before making decisions.
+
+---
+
+#### 🏗️ Recommended Stacks
+
+Ready-made combinations for different use cases. Copy-paste these configurations.
+
+###### 🟢 Fully Free Coding Stack (No Credit Card)
+
+| Layer | Tool | Why |
+|-------|------|-----|
+| **IDE** | Cursor Hobby / Qoder | GPT-5.4 limited credits |
+| **CLI** | Gemini CLI (3.1 Pro) / Rovo | 100-250 req/day, 5M tokens/day |
+| **API** | OpenRouter + Groq | 50 req/day + 14.4K req/day combo |
+| **Local** | Ollama + Qwen3.6-Plus | Unlimited offline |
+| **Automation** | n8n Self-hosted | Unlimited workflows |
+| **Vector DB** | ChromaDB / LanceDB | Free local storage |
+
+**Total Cost: $0/month**
+
+---
+
+###### ⚡ Fastest Stack (Low Latency)
+
+| Layer | Tool | Speed |
+|-------|------|-------|
+| **Inference** | Groq / Cerebras | 2,000 tokens/sec (Cerebras) |
+| **Coding** | Qwen3.6-Plus via Groq | 1,000 req/day (71.2% SWE) |
+| **Agent** | OpenCode Zen | Big Pickle (72.0%), MiniMax M2.5 (80.2%) |
+| **Cache** | DeepSeek V4 | $0.30/$0.50 per 1M, 90% cache discount |
+| **Edge** | Cloudflare Workers AI | Global CDN |
+
+**Best for:** Real-time apps, trading bots, live coding assistants
+
+---
+
+###### 💰 Cheapest Pro Stack (<$10/month)
+
+| Layer | Tool | Cost |
+|-------|------|------|
+| **IDE** | Trae Pro | $10/mo (600 fast, DeepSeek V4/GPT-5.4) |
+| **API** | OpenRouter $10 | 1K req/day + BYOK 1M/month free |
+| **CLI** | Gemini CLI | v0.37.1 (Gemini 3.1 Pro/Flash) |
+| **Local** | Ollama | Free |
+| **Embeddings** | Jina AI | Free tier |
+
+**Total Cost: ~$10/month for pro-grade everything**
+
+---
+
+###### 🔒 Local Privacy Stack (100% Offline)
+
+| Layer | Tool | Privacy |
+|-------|------|---------|
+| **Models** | Ollama + Llama 3.3 / Qwen3-Coder | Runs locally |
+| **IDE** | Continue.dev + VS Code | BYO local models |
+| **CLI** | Aider + local Ollama | Git-integrated, offline |
+| **Chat UI** | Open WebUI | Self-hosted ChatGPT alternative |
+| **Vector DB** | ChromaDB / LanceDB | Local embeddings storage |
+| **Speech** | Whisper (local) | Offline transcription |
+
+**Best for:** Healthcare, legal, finance - any sensitive data
+
+---
+
+###### 🤖 Agentic AI Stack (Autonomous Workflows)
+
+| Component | Tool | Role |
+|-----------|------|------|
+| **Orchestrator** | n8n / Gumloop | Workflow automation |
+| **Reasoning** | DeepSeek R1 / DeepSeek V4 | Complex decision making |
+| **Execution** | Qwen3.6-Plus | Code generation |
+| **Memory** | ChromaDB / Supabase Vector | Long-term context |
+| **Embeddings** | Jina Embeddings v3 (1M tokens/day free) | Semantic search |
+| **Monitoring** | LangSmith | Trace agent steps |
+
+**Best for:** Autonomous research assistants, code review bots, data processing pipelines
+
+---
+
+###### 📊 RAG Stack (Document Q&A)
+
+| Component | Tool | Purpose |
+|-----------|------|---------|
+| **Framework** | LlamaIndex / LangChain | RAG orchestration |
+| **Vector DB** | ChromaDB / Weaviate / Supabase | Document storage |
+| **Embeddings** | E5-Mistral-7B (best accuracy) | Text vectorization |
+| **Chunking** | LlamaIndex | Smart document splitting |
+| **Reranking** | Cohere Rerank | Improve retrieval accuracy |
+| **LLM** | Claude Sonnet 4.6 (79.3%) / GPT-5.4 | Answer generation |
+| **Eval** | RAGAS | Measure RAG performance |
+
+**Best for:** ExamAi, legal document analysis, knowledge bases
+
+---
+
+#### Free LLM API Providers
+
+###### Fully Free Providers
+
+######## [OpenRouter](https://openrouter.ai)
+
+**Limits:** 20 RPM, **29 free models** (262K context max, March 2026), models share quota
+
+- [Llama 3.3 70B](https://openrouter.ai/meta-llama/llama-3.3-70b-instruct:free) ✅
+- **NEW: [Nemotron 3 Super](https://openrouter.ai/nvidia/nemotron-3-super:free)** (262K context)
+- **NEW: [MiniMax M2.5](https://openrouter.ai/minimax/minimax-m2.5:free)**
+- **NEW: [Devstral 2](https://openrouter.ai/mistralai/devstral-2:free)** (Apache 2.0)
+- **NEW: [Gemma 3n family](https://openrouter.ai/google/gemma-3n-e2b-it:free)** (mobile-optimized)
+- **qwen/qwen3.6-plus:free** ✅
+- [Hermes 3 Llama 3.1 405B](https://openrouter.ai/nousresearch/hermes-3-llama-3.1-405b:free)
+- [Llama 3.2 3B Instruct](https://openrouter.ai/meta-llama/llama-3.2-3b-instruct:free)
+- [Mistral Small 3.1 24B](https://openrouter.ai/mistralai/mistral-small-3.1-24b-instruct:free)
+- [Full list](https://openrouter.ai/collections/free-models)
+
+---
+
+######## [OfoxAI](https://ofox.ai)
+
+Unified API gateway for 100+ LLMs. OpenAI and Anthropic SDK-compatible. China-friendly with Hong Kong direct access (100-300ms latency). No monthly fees, pay per token.
+
+**Limits:** Not published | **1 free model**
+
+- [GLM-4.7-Flash](https://ofox.ai/models/z-ai/glm-4.7-flash:free) (200K context, 128K output, $0/M input, $0/M output)
+
+---
+
+######## [Google AI Studio](https://aistudio.google.com)
+
+Data is used for training when used outside UK/CH/EEA/EU.
+
+**Rate limits:** Tier 1 (default): 250 RPD | Tier 2: Requires $250 spend + 30 days
+
+| Model | Free Tier Limits |
+|-------|------------------|
+| Gemini 3.1 Pro [verify: now paid] | 250 RPD (Tier 1) |
+| Gemini 3 Flash | 1,500 RPD |
+| All others | Check console |
+
+> **Note:** Data training outside UK/CH/EEA/EU still applies.
+
+---
+
+######## [NVIDIA NIM](https://build.nvidia.com/explore/discover)
+
+Phone number verification required. Models tend to be context window limited.
+
+**Limits:** **1K credits signup, up to 5K total, 40 RPM** (phone verify required)
+
+- 46+ models including Llama 3.3 70B, Llama 4 Scout, Mistral Large, Qwen3 235B
+
+---
+
+######## [Mistral (La Plateforme)](https://console.mistral.ai/)
+
+*Free tier requires opting into data training; phone verification required*
+
+**Limits (per-model):** 1 req/s, 500K tokens/min, 1B tokens/month
+
+- Open and Proprietary Mistral models (Mistral Large 3, Small 3.1, etc.)
+
+---
+
+######## [Mistral (Codestral)](https://codestral.mistral.ai/)
+
+**Limits:** 30 RPM, 2K RPD confirmed free
+
+- Codestral (monthly subscription-based, currently free)
+
+---
+
+######## [HuggingFace Inference Providers](https://huggingface.co/docs/inference-providers/en/index)
+
+Serverless Inference limited to models <10GB (some popular models >10GB supported).
+
+**Limits:** ~$0.10/month in credits
+
+- Various open models across supported providers
+
+---
+
+######## [Vercel AI Gateway](https://vercel.com/docs/ai-gateway)
+
+Routes to various supported providers.
+
+**Limits:** $5/month
+
+---
+
+######## [OpenCode Zen](https://opencode.ai/docs/zen/)
+
+AI gateway with curated models. Free models may use data for improvement.
+
+- Big Pickle Stealth (S+, 72.0% SWE-bench)
+- MiniMax M2.5 Free (S+, 80.2% SWE-bench)
+- MiMo V2 Pro/Omni/Flash Free
+- Nemotron 3 Super Free
+- GPT 5 Nano
+- Trinity Large Preview Free
+
+---
+
+######## [Cerebras](https://cloud.cerebras.ai/)
+
+| Model | Limits |
+|-------|--------|
+| GPT-OSS 120B | 30 req/min, 60K tokens/min, 900 req/hour, 1M tokens/day |
+| Llama 3.1 8B | Same limits as above |
+| Qwen3-235B | Available via API |
+
+---
+
+######## [Groq](https://console.groq.com)
+
+| Model | Limits |
+|-------|--------|
+| Llama 3.1 8B | 14,400 req/day, 6K tokens/min |
+| Llama 3.3 70B | 1,000 req/day, 12K tokens/min |
+| Llama 4 Maverick/Scout | 1,000 req/day |
+| Whisper Large v3/v3 Turbo | 7,200 audio-sec/min, 2,000 req/day |
+| Qwen3-32B | 1,000 req/day, 6K tokens/min |
+| Kimi K2 Instruct | 1,000 req/day, 10K tokens/min |
+| GPT-OSS 20B/120B | 1,000 req/day, 8K tokens/min |
+| And 15+ more |
+
+---
+
+######## [Cohere](https://cohere.com)
+
+**Limits:** **20 RPM, 1K req/month (non-commercial only)**
+
+- Command R+ 2026
+- c4ai-aya-expanse/vision-32b
+- command-a/r/r7b variants
+
+---
+
+######## [GitHub Models](https://github.com/marketplace/models)
+
+Extremely restrictive input/output token limits.
+
+**Limits:** [Dependent on Copilot subscription tier (Free/Pro/Pro+/Business/Enterprise)](https://docs.github.com/en/github-models/prototyping-with-ai-models##rate-limits)
+
+- AI21 Jamba 1.5 Large
+- Codestral 25.01
+- Cohere Command A, Command R/R+ 08-2024
+- DeepSeek-R1, DeepSeek-R1-0528, DeepSeek-V3.2, DeepSeek-V3-0324
+- Grok 3, Grok 3 Mini
+- Llama 4 Maverick 17B 128E Instruct FP8, Llama 4 Scout 17B 16E Instruct
+- Llama-3.2-11B/90B-Vision-Instruct, Llama-3.3-70B-Instruct
+- MAI-DS-R1, Meta-Llama-3.1-405B/8B-Instruct
+- Ministral 3B, Mistral Medium 3 (25.05), Mistral Small 3.1
+- OpenAI GPT-4.1/mini/nano, GPT-4o/mini, GPT-5/mini/nano
+- OpenAI gpt-5-chat (preview), o1/o1-mini/o1-preview, o3/o3-mini, o4-mini
+- OpenAI Text Embedding 3 (large/small)
+- Phi-4, Phi-4-mini-instruct/reasoning, Phi-4-multimodal-instruct, Phi-4-reasoning
+
+---
+
+######## [Cloudflare Workers AI](https://developers.cloudflare.com/workers-ai)
+
+**Limits:** [10,000 neurons/day](https://developers.cloudflare.com/workers-ai/platform/pricing/##free-allocation)
+
+- @cf/aisingapore/gemma-sea-lion-v4-27b-it
+- @cf/ibm-granite/granite-4.0-h-micro
+- @cf/openai/gpt-oss-120b, @cf/openai/gpt-oss-20b
+- @cf/qwen/qwen3-30b-a3b-fp8
+- @cf/zai-org/glm-4.7-flash
+- DeepSeek R1 Distill Qwen 32B
+- Deepseek Coder 6.7B Base/Instruct (AWQ)
+- Deepseek Math 7B Instruct
+- Gemma 2B/3 12B/7B Instruct (LoRA)
+- Hermes 2 Pro Mistral 7B
+- Llama 2 7B/13B Chat (FP16/INT8/AWQ/LoRA)
+- Llama 3 8B Instruct, Llama 3.1 8B Instruct (AWQ/FP8)
+- Llama 3.2 1B/3B/11B Vision Instruct
+- Llama 3.3 70B Instruct (FP8), Llama 4 Scout Instruct
+- Mistral 7B Instruct v0.1/v0.2 (AWQ/LoRA)
+- Mistral Small 3.1 24B Instruct
+- Qwen 1.5 0.5B/1.8B/7B/14B Chat (AWQ)
+- Qwen 2.5 Coder 32B Instruct, Qwen QwQ 32B
+- Phi-2, SQLCoder 7B 2
+- And more...
+
+---
+
+###### Providers with Trial Credits
+
+| Provider | Credits | Duration | Notes |
+|----------|---------|----------|-------|
+| [Fireworks](https://fireworks.ai/) | $1 | Permanent | Various open models |
+| [Baseten](https://app.baseten.co/) | $30 | Permanent | Pay by compute time |
+| [Nebius](https://tokenfactory.nebius.com/) | $1 | Permanent | Various open models |
+| [Novita](https://novita.ai/) | $0.50 | 1 year | Various open models |
+| [AI21](https://studio.ai21.com/) | $10 | 3 months | Jamba family |
+| [Upstage](https://console.upstage.ai/) | $10 | 3 months | Solar Pro/Mini |
+| [NLP Cloud](https://nlpcloud.com/home) | $15 | Permanent | Phone verification required |
+| [Alibaba Cloud](https://bailian.console.alibabacloud.com/) | 1M tokens/model | 90 days | Qwen models |
+| [Modal](https://modal.com) | $5-30/month | Monthly | Pay by compute time |
+| [Inference.net](https://inference.net) | $1 (+$25 on survey) | Permanent | Various open models |
+| [Hyperbolic](https://app.hyperbolic.ai/) | $1 | Permanent | DeepSeek, Llama, Qwen, GPT-OSS |
+| [SambaNova Cloud](https://cloud.sambanova.ai/) | $5 | 3 months | Llama, Qwen, DeepSeek |
+| [Scaleway](https://console.scaleway.com/generative-api/models) | 1M tokens | Permanent | DeepSeek, Llama, Mistral, Gemma |
+
+###### Additional Free API Providers
+
+| Provider | Models | Free Tier | Environment Variable |
+|----------|--------|-----------|---------------------|
+| [Together AI](https://api.together.ai/settings/api-keys) | 19 | Credits/promos vary by account | `TOGETHER_API_KEY` |
+| [iFlow](https://platform.iflow.cn) | 11 | Free for individuals (7-day key expiry) | `IFLOW_API_KEY` |
+| [ZAI](https://z.ai) | 7 | Free tier (generous quota) | `ZAI_API_KEY` |
+| [SiliconFlow](https://cloud.siliconflow.cn/account/ak) | 6 | 1K RPM, 50K TPM | `SILICONFLOW_API_KEY` |
+| [Perplexity API](https://www.perplexity.ai/settings/api) | 4 | ~50 RPM default | `PERPLEXITY_API_KEY` |
+| [OVHcloud AI Endpoints](https://endpoints.ai.cloud.ovh.net) | 8 | 2 req/min (no key), 400 RPM with key | `OVH_AI_ENDPOINTS_ACCESS_TOKEN` |
+| [Chutes AI](https://chutes.ai) | 4 | Free community GPU-powered | `CHUTES_API_KEY` |
+| [DeepInfra](https://deepinfra.com/login) | 4 | 200 concurrent requests | `DEEPINFRA_API_KEY` |
+| [Replicate](https://replicate.com/account/api-tokens) | 2 | 6 req/min (no payment), up to 3K RPM with payment | `REPLICATE_API_TOKEN` |
+
+---
+
+#### AI-Powered IDEs
+
+Full-featured integrated development environments with built-in AI assistance.
+
+###### IDEs with Pro-Grade Models
+
+######## [Cursor](https://cursor.com/)
+
+**Model:** GPT-5.1-Codex-Max (77.9% SWE-bench Verified) [verify]
+- **Free tier:** **500 slow premium req/mo, 2K completions/mo** (post-Dec 2025 credits)
+- Free models: Cursor Small, Deepseek v3, Gemini 2.5 Flash, GPT-4o mini (500/day limit), Grok 3 Mini Beta [verify: GPT-5.4 now paid-only]
+- Claude models removed from free tier ~June 2025
+- Free tier uses token-based usage tracking (not request-based)
+- AI-powered code editor with autonomous coding capabilities
+- **Pro ($20/mo or $16/mo annually):** Extended Agent limits + Unlimited Tab completions + Background Agents + Maximum context windows
+- **Pro+ ($60/mo):** 3x usage on all OpenAI, Claude, Gemini models
+- **Ultra ($200/mo):** 20x usage on all models + Priority access to new features
+- **Teams ($40/user/mo):** Pro features + Centralized billing + Usage analytics + SAML/OIDC SSO
+- **Enterprise (Custom):** Everything in Teams + Pooled usage + SCIM + AI code tracking API + Audit logs
+
+**[Pricing](https://cursor.com/en/pricing)** | **[GPT-5.1-Codex-Max Announcement](https://forum.cursor.com/t/gpt-5-1-codex-max-available-in-cursor/145277)**
+
+---
+
+######## [Trae](https://trae.ai/)
+
+**Models:** DeepSeek V4, GPT-4.1, GPT-4o, Gemini 2.5 Pro (Claude models removed Nov 2025)
+- 10 fast requests + 50 slow requests/month for premium models
+- 1,000 slow requests/month for advanced models
+- 5,000 auto-completions/month
+- VS Code-based IDE with AI integration
+- No credit card required for free tier
+- **Pro ($10/mo):** 600 fast + unlimited slow requests for premium models
+- Unlimited slow requests for advanced models
+- Zero rate limits and faster access to premium models
+- Extra packages available: $3-$12 for additional fast requests
+- First month available for $3
+
+**[Pricing](https://trae.ai/pricing)** | **[Documentation](https://docs.trae.ai/ide/billing)**
+
+---
+
+######## [Windsurf](https://windsurf.com/)
+
+**Models:** OpenAI, Anthropic, Google, xAI model access
+- 25 prompt credits/month limit
+- Multiple providers (OpenAI, Claude, Gemini, xAI)
+- Credit card required
+- Can purchase add-on credits to continue
+- **Pro ($15/mo):** 500 prompt credits/month
+- **Teams ($30/user/mo):** 500 prompt credits/user/month
+- **Enterprise ($60+/user/mo):** 1,000 prompt credits/user/month
+
+**[Pricing](https://windsurf.com/pricing)**
+
+---
+
+######## [Void IDE](https://voideditor.com/)
+
+**Models:** Multi-agent (frontend/backend/testing agents)
+- **Agent-first IDE** - new 2026 category
+- Multiple specialized agents coordinate across codebase
+- Free preview tier with high usage limits
+- VS Code-based
+
+**Best for:** Full-stack development with natural language direction
+
+---
+
+######## [Qoder](https://qoder.com/)
+
+**Models:** Qwen3.6-Plus (71.2% SWE), Qwen-Coder-Qoder, GPT-4o, Claude Sonnet [verify: flagship models now paid-only]
+- **Free tier:** Unlimited completions + **limited chat/agent (basic models)** + **2-week Pro trial (1,000 credits)**
+- **Experts Mode:** Multi-agent collaboration (new Mar 2026)
+- **Quest Mode:** Fully autonomous app building
+- **Nextnew:** Tab predictions
+- Windows/macOS, VS Code-based
+
+**Pricing (50% discount - Apr 2026):**
+- **Free:** Basic models, limited messages
+- **Pro:** $10/mo (reg $20) - **2,000 credits**
+- **Pro+:** $30/mo (reg $60) - **6,000 credits**
+- **Ultra:** $100/mo (reg $200)
+- **Credits:** $0.01/credit (reg $0.02), expire 1mo
+
+**[Docs](https://docs.qoder.com/)** | **[Pricing](https://qoder.com/pricing)**
+
+---
+
+######## [RooCode](https://github.com/RooCodeInc/Roo-Code)
+
+**Models:** Bring your own API keys (any provider)
+- Open-source AI-powered coding assistant for VS Code
+- Whole dev team of AI agents in your editor
+- No subscription required - pay-as-you-go with your own keys
+- Custom modes for different coding tasks
+
+**[GitHub](https://github.com/RooCodeInc/Roo-Code)** | **[Website](https://roocode.com)**
+
+---
+
+###### IDEs with Basic Models
+
+######## [Codeium](https://codeium.com/)
+
+**Model:** Base model (Llama 3.1 70B), pro-grade models require subscription
+- Individual plan: Free forever with unlimited code completions, AI chat, commands
+- 70+ programming languages supported
+- IDE integrations: VS Code, JetBrains, Vim/Neovim, Jupyter
+- No credit card required
+- Limited context awareness (expanded in paid tiers)
+- **Pro ($10/mo):** Unlimited usage with advanced context awareness, Claude 3.5 Sonnet, GPT-4o access
+- **Teams ($12/user/mo):** Pro features + team management
+- **Enterprise (Custom):** On-premise deployment, custom models
+
+**[Pricing](https://codeium.com/pricing)** | **[Documentation](https://codeium.com/docs)**
+
+---
+
+######## [JetBrains AI Assistant](https://www.jetbrains.com/ai/)
+
+**Models:** Local models + cloud models with limited quota
+- AI Free tier included with IDEs
+- Unlimited code completion and local model support
+- Limited quota for cloud-based features
+- 30-day AI Pro trial included
+- Offline mode with local models via Ollama/LM Studio
+- **AI Pro ($15/mo):** Increased cloud quota + unlimited local models
+- **AI Ultimate ($25/mo):** Maximum cloud quota + advanced features
+
+**[AI Pricing](https://www.jetbrains.com/ai-ides/buy/)** | **[AI Features](https://www.jetbrains.com/ai-assistant/)**
+
+---
+
+######## [Tabnine](https://www.tabnine.com/)
+
+**Models:** Claude 3.5 Sonnet, GPT-4o, Llama 3.3 70B, proprietary models
+- Free tier with limited features
+- Basic AI code completions and chat (limited)
+- Local processing available
+- Context heavily limited in free tier
+- 600+ programming languages supported
+- **Pro ($12/mo):** Enhanced AI completions and chat
+- **Enterprise ($39/user/mo):** Multiple LLMs, private deployment, on-premises and air-gapped options
+
+**[Pricing](https://www.tabnine.com/pricing/)**
+
+---
+
+######## [SuperMaven](https://supermaven.com/) ⚠️ DISCONTINUED
+
+**Status:** Shut down November 21, 2025 after acquisition by Cursor (Nov 2024)
+
+~~**Models:** GPT-4o, Claude 3.5 Sonnet, GPT-4 (via chat interface)~~
+~~- Free tier with basic features~~
+~~- Basic code suggestions~~
+~~- 7-day data retention limit~~
+~~- Credit card required for registration~~
+~~- 1M token context window~~
+
+**Historical Note:** SuperMaven was acquired by Cursor in November 2024 and officially shut down in November 2025. Features were integrated into Cursor Tab. Users should migrate to Cursor or alternatives.
+
+**[Pricing](https://supermaven.com/pricing)**
+
+---
+
+######## [Bolt.new](https://bolt.new/)
+
+**Models:** Unspecified models
+- **$1 credit/mo = ~100K tokens** (reduced Mar 2026)
+- Specific model not publicly specified
+- Credit card required
+- **$20/mo:** 20M tokens/month
+- **$200/mo:** 200M tokens/month
+
+**[Token Documentation](https://support.bolt.new/account-and-subscription/tokens)**
+
+---
+
+######## [Lovable](https://lovable.dev/)
+
+**Models:** Unspecified models
+- 5 daily credits, max 30 per month (free)
+- Models not publicly enumerated
+- Credit card required
+- **Pro ($25/mo):** 150 credits/month (5 daily credits)
+- **Teams ($30/mo):** Higher limits (undisclosed)
+
+**[Messaging Limits](https://docs.lovable.dev/user-guides/messaging-limits)**
+
+---
+
+######## [v0.dev](https://v0.dev/)
+
+**Models:** Proprietary models (not frontier)
+- $5 in credits/month limit
+- Uses proprietary models with varied routing
+- Credit card required
+- GPT-5 access requires v0 Premium subscription
+
+**[Updated Pricing Blog](https://vercel.com/blog/improved-v0-pricing-5luSrdRUJsRvf1kXWoYGxh)**
+
+---
+
+###### Additional 2026 AI Chat Platforms
+
+General-purpose chat interfaces with free tiers.
+
+| Platform | Free Model | Key Capabilities | Limitations |
+|----------|------------|------------------|-------------|
+| [ChatGPT](https://chatgpt.com) | **GPT-4o / GPT-5.4-limited** [verify] | Sora 3, DALL-E 4, GPT Store | ~20 msgs/3hr |
+| [Gemini](https://gemini.google.com) | **Gemini 3.1 Flash** | 2M Context, **20 Deep Research/mo** | Research quota |
+| [Claude](https://claude.ai) | **Claude Sonnet/Haiku** [verify: Opus paid-only] | Technical reasoning | ~30 msgs/5h |
+| [Grok](https://grok.com) | **Grok 4.2** | Aurora 2 images, voice | 15 msgs/12hr |
+| [Mistral Le Chat](https://chat.mistral.ai) | **Mistral Medium 3** | Structured output | Fewer integrations |
+
+**Notes:**
+- **Aurora** - xAI's image generation model (available in Grok)
+- **Sora 2** - OpenAI's video generation (integrated in ChatGPT)
+- **DALL-E 4** - OpenAI's latest image model (ChatGPT)
+- **Deep Research** - Gemini's agentic research feature
+
+---
+
+#### CLI Coding Tools
+
+Command-line tools for AI-assisted coding in your terminal.
+
+###### CLI Tools with Pro-Grade Models
+
+######## [Gemini CLI](https://github.com/google-gemini/gemini-cli)
+
+**Models:** Gemini 3.1 Flash [verify: Pro now paid], Gemini 2.5 Pro
+- Gemini 3.1 Pro latest version (v0.37.1 April 2026)
+- 100 requests/day for Gemini 2.5 Pro (free tier fallback)
+- 250 requests/day for Gemini 2.5 Flash
+- No credit card required for free tier
+- MCP server support, Google Search grounding
+- Enable via `/settings` → Preview features → true
+- **Install:** `npm install -g @google/gemini-cli`
+
+**[Rate Limits](https://ai.google.dev/gemini-api/docs/rate-limits)** | **[Pricing](https://ai.google.dev/gemini-api/docs/pricing)** | **[Gemini 3 Pro Announcement](https://developers.googleblog.com/en/5-things-to-try-with-gemini-3-pro-in-gemini-cli/)**
+
+---
+
+######## [Rovo Dev CLI](https://www.atlassian.com/blog/announcements/rovo-dev-command-line-interface)
+
+> [!IMPORTANT] 
+> Rovo Dev CLI isn’t available during a Rovo Dev Standard trial. To use this feature, you need a paid Rovo Dev Standard subscription.
+
+**Models:** Claude Sonnet 4 [verify], GPT-5 preview [verify]
+- 5M tokens/day free tier
+- No credit card required during beta
+- Token limits reset at midnight UTC
+- Jira/Confluence integration, MCP server support
+- Requires Atlassian account
+- **Pro ($19.99/mo via Google AI Pro):** 100 tasks/day, 5x higher limits, 5x concurrent tasks (15)
+- **Ultra (via Google AI Ultra):** 300 tasks/day, 20x higher limits, 60 concurrent tasks, priority access to latest models
+
+**[Documentation](https://support.atlassian.com/rovo/docs/use-rovo-dev-cli/)** | **[Token Limits](https://support.atlassian.com/rovo/docs/rovo-dev-cli-limits/)**
+
+---
+
+######## [Warp](https://warp.dev/)
+
+**Models:** GPT-4.1, Claude Opus 4.1 [verify], Claude Sonnet 4 [verify], Gemini 2.5 Pro
+- 150 AI credits/month (first 2 months), then 75 AI credits/month
+- No credit card required for basic signup
+- AI-powered terminal with code generation
+- **Build ($20/mo):** 1,500 AI credits/month
+- Reload Credits available (up to 50% cheaper than old overage rates, roll over for 12 months)
+- Bring Your Own API Key (BYOK) option available
+- New pricing effective immediately for new customers (Oct 30, 2025)
+- Existing monthly subscribers transition on first renewal after Dec 1, 2025
+
+**[Pricing](https://www.warp.dev/pricing)**
+
+---
+
+######## [GitHub Copilot](https://github.com/features/copilot/plans)
+
+**Models:** GPT-4.1, Claude Opus 3.5, Gemini 2.0 Flash, Grok Code Fast 1 (Free tier); GPT-5.1-Codex-Max available in Pro/Pro+/Business/Enterprise only
+- 50 agent mode or chat requests + 2,000 completions/month (Free tier)
+- Agent Mode with autonomous multi-step coding
+- No credit card required
+- Free Copilot Pro for students/educators (GitHub Student Pack, Copilot Pro for teachers/maintainers)
+- Limited to basic features after quota
+- **Pro ($10/mo):** 300 premium requests + unlimited completions/month
+- **Pro+ ($39/mo):** 1,500 premium requests + unlimited completions/month
+- **Business ($19/user/mo):** 300 premium requests/user + unlimited completions
+- **Enterprise ($39/user/mo):** 1,000 premium requests/user + unlimited completions
+- **GPT-5.1-Codex-Max** available in public preview (Dec 4, 2025) for Pro, Pro+, Business, Enterprise - **NOT in free tier**
+- Overage billing available at $0.04/request
+
+**[Plans Details](https://docs.github.com/en/copilot/get-started/plans-for-github-copilot)** | **[Agent Mode](https://code.visualstudio.com/blogs/2025/02/24/introducing-copilot-agent-mode)** | **[GPT-5.1-Codex-Max Preview](https://github.blog/changelog/2025-12-04-openais-gpt-5-1-codex-max-is-now-in-public-preview-for-github-copilot/)**
+
+---
+
+######## [Jules](https://jules.google/)
+
+**Model:** Gemini 2.5 Pro
+- 15 tasks/day free tier
+- 3 concurrent tasks
+- No credit card required
+- Gmail account required (18+ years)
+- Task limits reset on rolling 24-hour window
+- **Pro ($19.99/mo):** 100 tasks/day, 5x higher limits, 5x concurrent tasks (15)
+- **Ultra (via Google AI Ultra):** 300 tasks/day, 20x higher limits, 60 concurrent tasks, priority access to latest models
+
+**[Usage Limits](https://jules.google/docs/usage-limits/)** | **[Documentation](https://jules.google/docs/)** | **[Google AI Plans](https://one.google.com/about/google-ai-plans/)**
+
+---
+
+######## [AWS Kiro](https://kiro.dev/)
+
+**Models:** Claude 4 Sonnet, Claude 3.7 Sonnet (AWS-hosted)
+- 50 credits/month (Free tier)
+- 14-day welcome bonus: 500 credits
+- No credit card required
+- **Pro ($20/mo):** 1,000 credits
+- **Pro+ ($40/mo):** 2,000 credits
+- **Power ($200/mo):** 10,000 credits
+
+**[Pricing](https://kiro.dev/pricing/)** | **[Introduction Blog](https://kiro.dev/blog/introducing-kiro/)**
+
+---
+
+######## [Amazon Q Developer](https://aws.amazon.com/q/developer/)
+
+**Model:** Claude Sonnet 4 [verify] (AWS-hosted)
+- 50 agentic requests/month limit (multi-turn conversations)
+- Latest Claude models
+- Credit card required
+- Must upgrade to Pro for continued access
+- Perpetual free tier
+- **Pro ($19/mo):** Increased limits for agentic requests
+- Usage may be adjusted based on regional factors and usage patterns
+
+**[Pricing](https://aws.amazon.com/q/developer/pricing/)**
+
+---
+
+######## [OpenCode](https://github.com/anomalyco/opencode)
+
+**Models:** 300+ via OpenRouter (Claude, GPT, DeepSeek, Gemini, Grok, etc.)
+- Open-source AI coding agent (Go-based CLI)
+- Zen Free tier with 8 exclusive models (Big Pickle, MiniMax M2.5 Free, MiMo V2)
+- Privacy-sensitive: no code/context stored
+- `opencode run --dangerously-skip-perm` for quick execution
+
+**[GitHub](https://github.com/anomalyco/opencode)** | **[Website](https://opencode.ai)**
+
+---
+
+######## [ForgeCode](https://github.com/antinomyhq/forgecode)
+
+**Models:** 300+ models via OpenRouter (Claude, GPT, O Series, Grok, DeepSeek, Gemini)
+- AI-enabled pair programmer (Rust-based, Apache 2.0)
+- Model-agnostic agent harness
+- Semantic codebase search via `:sync`
+- 10K tokens/day free tier
+
+**[GitHub](https://github.com/antinomyhq/forgecode)** | **[Website](https://forgecode.dev)**
+
+---
+
+######## [OhMyPi](https://github.com/can1357/oh-my-pi)
+
+**Models:** Bring your own keys (any provider)
+- AI coding agent for the terminal (Zig-powered)
+- Hash-anchored edits, optimized tool harness
+- LSP integration, Python support, browser automation
+- Subagents with coordinated API rate limiting
+- Multiplexer integration (tmux, GNU Screen, Zellij)
+- Interrupt anytime workflow
+
+**[GitHub](https://github.com/can1357/oh-my-pi)**
+
+---
+
+######## [Goose](https://github.com/block/goose)
+
+**Models:** Any LLM (Claude, GPT, DeepSeek, etc.)
+- Open-source extensible AI agent from Block (now AAIF/Linux Foundation)
+- Desktop app, CLI, and API
+- Active engineering tasks (not just code suggestions)
+- Built for code, workflows, and automation
+- Model-agnostic architecture
+
+**[GitHub](https://github.com/block/goose)** | **[Website](https://block.github.io/goose/)**
+
+---
+
+######## [Kilo Code](https://kilocode.ai/)
+
+**Models:** Bring your own API keys (Claude, Gemini, GPT, etc.)
+- Up to $25 signup credits (one-time bonus)
+- Open source VS Code extension
+- Pay-as-you-go with no markup on model pricing
+- Credit card required to claim full bonus credits
+- Full BYOK support
+
+**[GitHub](https://github.com/Kilo-Org/kilocode)** | **[Documentation](https://kilocode.ai/docs/)** | **[Pricing](https://kilocode.ai/pricing)**
+
+---
+
+######## [RooCode](https://github.com/RooCodeInc/Roo-Code)
+
+**Models:** Bring your own API keys (any provider)
+- Open-source AI-powered coding assistant for VS Code
+- Whole dev team of AI agents in your editor
+- No subscription required - pay-as-you-go with your own keys
+- Custom modes for different coding tasks
+- Previously known as Roo Cline
+
+**[GitHub](https://github.com/RooCodeInc/Roo-Code)** | **[Website](https://roocode.com)**
+
+---
+
+###### CLI Tools with Basic Models
+
+######## [Claude Code](https://www.anthropic.com/claude-code)
+
+**Models:** Claude Sonnet 4 [verify], Opus 4.5 [verify: paid-only], Haiku 4.5
+- Free tier available with limited usage
+- Pro ($20/mo or $17/mo annually): Sonnet 4 access with more usage
+- Max 5x ($100/mo): ~225 messages/5 hours
+- Max 20x ($200/mo): ~900 messages/5 hours
+- Extended thinking modes: "think" (~4K tokens), "megathink" (~10K), "ultrathink" (~32K)
+- Usage limits reset weekly with 5-hour rolling windows
+
+**[Pricing](https://www.anthropic.com/pricing)** | **[Claude Code Guide](https://docs.anthropic.com/en/docs/claude-code)**
+
+---
+
+######## [OpenAI Codex CLI](https://github.com/openai/codex)
+
+**Model:** GPT-5.1-Codex-Max (77.9% SWE-bench Verified)
+- Free with ChatGPT Plus ($20/mo): 30–150 messages/5 hours
+- ChatGPT Pro ($200/mo): 300–1,500 messages/5 hours
+- Pay-as-you-go API: $1.25/$10 per million tokens (input/output)
+- Free OSS mode: Access to open-source models only (via `--oss` flag)
+- First model with "compaction" for multi-million token sessions (24+ hour tasks)
+- 30% fewer thinking tokens than previous GPT-5.1-Codex
+- Cross-platform: macOS 12+, Ubuntu 20.04+, Windows 11 via WSL2
+
+**[GitHub Repo](https://github.com/openai/codex)** | **[GPT-5.1-Codex-Max Announcement](https://openai.com/index/gpt-5-1-codex-max/)**
+
+---
+
+######## [QuantFlow Pilot](https://github.com/qf-studio/pilot)
+
+**Models:** Uses Claude Code for implementation
+- Autonomous AI development pipeline — ##1 Terminal Benchmark 2.0
+- Turns GitHub issues into pull requests automatically
+- Label an issue "pilot" → Pilot claims it → Creates branch → Plans → Implements → Quality gates → Opens PR
+- Telegram bot integration available
+- Desktop app available
+- **Install:** `brew install qf-studio/tap/pilot` or `go install github.com/qf-studio/pilot@latest`
+
+**[GitHub](https://github.com/qf-studio/pilot)** | **[Website](https://pilot.quantflow.studio/)**
+
+---
+
+######## [MemoryPalace](https://github.com/milla-jovovich/mempalace)
+
+**Models:** Works with any LLM (Claude, ChatGPT, Cursor, Gemini, local models)
+- AI memory system with highest LongMemEval score ever (96.6%)
+- Uses ancient "memory palace" technique for AI conversations
+- Stores conversations in structured format: wings (people/projects), halls (memory types), rooms (specific ideas)
+- Raw verbatim storage without AI summarization
+- Three mining modes: projects (code/docs), convos (conversation exports), general (auto-classified)
+- MCP server with 19 tools for AI integration
+- Local, open, adaptable — runs entirely on your machine
+- **Install:** `pip install mempalace`
+
+**[GitHub](https://github.com/milla-jovovich/mempalace)** | **[Note from Milla](https://github.com/milla-jovovich/mempalace##readme)**
+
+---
+
+######## [Continue.dev](https://www.continue.dev/)
+
+**Models:** Bring your own API keys (200+ models supported)
+- Free VS Code and JetBrains extension
+- Full support for local models via Ollama/LM Studio
+- Solo tier: Private/team/public visibility options
+- Community hub for custom AI assistants
+- No vendor lock-in or usage limits for local models
+
+**[GitHub](https://github.com/continuedev/continue)** | **[Model Hub](https://hub.continue.dev/explore/models)**
+
+---
+
+######## [Aider](https://aider.chat/)
+
+**Models:** Bring your own API keys (supports many providers)
+- Free command-line assistant with built-in Git integration
+- Works with GPT-4o, Claude Sonnet, DeepSeek, and local models
+- Multi-file editing with repository context
+- Voice-to-code support
+- Use `/help` to see all commands
+
+**[Documentation](https://aider.chat/)** | **[GitHub](https://github.com/paul-gauthier/aider)**
+
+---
+
+#### API Providers for AI Coding Tools
+
+These services provide API access to coding-optimized models for tools like Cursor, Continue.dev, Cline, etc.
+
+###### [OpenRouter](https://openrouter.ai/)
+
+- 50 requests/day free tier (1,000/day with $10+ credits)
+- Qwen3-Coder-480B, Qwen3-30B-A3B, Qwen3-235B-A22B, Gemini Flash
+- 20 req/min rate limit for free tier
+- OpenAI-compatible API
+
+###### [Cerebras](https://cloud.cerebras.ai/)
+
+- **1.5M tokens/day** free tier (expanded Feb 2026)
+- 30 req/min, 8,192 token context
+- Models: **Qwen3.6-Plus-480B**, Llama 3.1 70B
+- Ultra-fast: **2,400 t/s** (Qwen3.6)
+- OpenAI-compatible API (works with Cursor, Continue.dev, Cline, RooCode, etc.)
+- **Paid tiers:** Developer ($10+ self-serve), Enterprise (custom pricing)
+
+**[Pricing](https://www.cerebras.ai/pricing)** | **[API Docs](https://inference-docs.cerebras.ai/)** | **[Integrations](https://inference-docs.cerebras.ai/integrations/)**
+
+---
+
+#### Paid Tiers Comparison
+
+###### AI-Powered IDEs - Paid Plans
+
+| IDE | Entry Tier | Credits/Requests | Key Features |
+|-----|------------|------------------|--------------|
+| [Cursor](https://cursor.com/) | Pro ($20/mo) | Extended Agent limits | Unlimited completions |
+| [Trae](https://trae.ai/) | Pro ($10/mo) | 600 fast + unlimited slow | Zero rate limits |
+| [Windsurf](https://windsurf.com/) | Pro ($20/mo) | 500 prompt credits | Multi-provider |
+| [Qoder](https://qoder.com/) | Pro ($10/mo - 50% off) | 2,000 credits | Quest Mode, Experts Mode |
+| [Codeium](https://codeium.com/) | Pro ($10/mo) | Unlimited | Claude 4.6 [verify], GPT-5.4 [verify] |
+| [Tabnine](https://www.tabnine.com/) | Pro ($12/mo) | Enhanced completions | 600+ languages |
+| [JetBrains AI](https://www.jetbrains.com/ai/) | AI Pro ($15/mo) | Increased cloud quota | Unlimited local models |
+| ~~[SuperMaven](https://supermaven.com/)~~ | ~~DISCONTINUED Nov 2025~~ | ~~1M token context~~ | ~~Acquired by Cursor~~ |
+
+###### CLI Tools - Paid Plans
+
+| Tool | Entry Tier | Credits/Requests | Key Features |
+|------|------------|------------------|--------------|
+| [Claude Code](https://www.anthropic.com/claude-code) | Pro ($20/mo) | ~225 messages/5h | Sonnet access [verify] |
+| [Warp](https://warp.dev/) | Build ($20/mo) | 1,500 credits/month | BYOK available |
+| [GitHub Copilot](https://github.com/features/copilot) | Pro ($10/mo) | 300 premium req/month | Unlimited completions |
+| [Rovo Dev CLI](https://www.atlassian.com/rovo) | Jira Standard ($7.53/mo) | 20M tokens/day | 4x free tier |
+| [Jules](https://jules.google/) | Pro ($19.99/mo) | 100 tasks/day | 5x free limits |
+| [OpenAI Codex CLI](https://github.com/openai/codex) | ChatGPT Plus ($20/mo) | 30-150 msg/5h | GPT-5.1-Codex-Max |
+| [Amazon Q Developer](https://aws.amazon.com/q/developer/) | Pro ($19/mo) | Increased agentic limits | AWS-hosted Claude |
+| [Kilo Code](https://kilocode.ai/) | Pay-as-you-go | Up to $25 signup credits | No markup on models |
+
+---
+
+#### Local Models
+
+Running open-weight frontier models locally provides unlimited coding assistance without API costs.
+
+**Popular Tools:**
+- **[Cline](https://cline.bot/)** - VS Code extension with Plan/Act modes and MCP support
+- **[Aider](https://aider.chat/)** - Command-line assistant with Git integration
+- **[Continue.dev](https://www.continue.dev/)** - Open-source VS Code extension (200+ models)
+
+**Local Model Tools:**
+- **[Ollama](https://ollama.com/)** - Run frontier models locally
+- **[LM Studio](https://lmstudio.ai/)** - Easy desktop app for local LLMs (no terminal required)
+
+**Notable Local Models (2026):**
+
+- Qwen3.6-Plus-480B (71.2% SWE, ~150GB VRAM)
+- **Gemma 4** [verify] (Google, Apache 2.0, fully open-source)
+- **GLM-5.1 / GLM-5V-Turbo** [verify] (Zhipu MoE-based SOTA coders)
+- Devstral 2 (24B, Apache 2.0, agent-optimized)
+- DeepSeek Coder V4 (lite version ~18GB)
+- Codestral 2 (Mistral, 22B)
+- GLM-4.9-Air (Chinese/English coding)
+
+> **Note:** Frontier models require substantial RAM/VRAM. See [Unsloth Qwen3-Coder guide](https://docs.unsloth.ai/basics/qwen3-coder-how-to-run-locally) for details.
+
+> **Update April 2026:** Gemma 4 and GLM-5.1 families are new flagship open-source releases. Verify availability in Ollama/LM Studio before downloading.
+
+---
+
+#### free-coding-models CLI
+
+Find the fastest free coding model in seconds. Ping 238 models across 25 providers in real-time.
+
+```bash
+npm install -g free-coding-models
+free-coding-models
+```
+
+###### Features
+
+- **Parallel pings** — all 238 models tested simultaneously
+- **Stability Score (0-100)** — composite score from p95 latency, jitter, spike rate, uptime
+- **Smart ranking** — top 3 highlighted 🥇🥈🥉
+- **Favorites** — star models with `F`, persisted across sessions
+- **Tool Integration** — auto-configure OpenCode, Goose, Aider, Continue, Cline, etc.
+- **OpenCode Zen Models** — 8 exclusive free models (Big Pickle, MiniMax M2.5 Free, MiMo V2, etc.)
+
+###### Quick Usage
+
+```bash
+## Most reliable model right now
+free-coding-models --fiable
+
+## Configure Goose with S-tier model
+free-coding-models --goose --tier S
+
+## NVIDIA top models only
+free-coding-models --origin nvidia --tier S
+
+## JSON output for scripting
+free-coding-models --tier S --json | jq -r '.[0].modelId'
+```
+
+###### Tool Launcher Flags
+
+| Flag | Launches |
+|------|----------|
+| `--opencode` | 📦 OpenCode CLI |
+| `--openclaw` | 🦞 OpenClaw |
+| `--goose` | 🪿 Goose |
+| `--aider` | 🛠 Aider |
+| `--qwen` | 🐉 Qwen Code |
+| `--continue` | ▶️ Continue CLI |
+| `--cline` | 🧠 Cline |
+| `--gemini` | ♊ Gemini CLI |
+| `--rovo` | 🦘 Rovo Dev CLI |
+| And 8 more... |
+
+###### Tier Scale
+
+| Tier | SWE-bench | Best For |
+|------|-----------|----------|
+| **S+** | ≥75% | **Claude Opus 4.6 [verify], GPT-5.4 [verify]** |
+| **S** | 65-75% | **Qwen3.6-Plus (71.2%), Claude Sonnet 4.6 [verify]** |
+| **A+/A** | 40–60% | Solid alternatives |
+| **A-/B+** | 30–40% | Smaller tasks |
+| **B/C** | < 30% | Code completion |
+
+###### License Summary
+
+All 238 models allow **commercial use of generated output**. You own what the models generate.
+
+| License | Models | Commercial |
+|---------|--------|:----------:|
+| Apache 2.0 | Qwen3/Qwen2.5 Coder, GPT-OSS 120B/20B, Devstral Small 2, Gemma 4, MiMo V2 Flash | ✅ Unrestricted |
+| MIT | GLM 4.5/4.6/4.7/5, MiniMax M2.1, Devstral 2 | ✅ Unrestricted |
+| Llama Community License | Llama 3.3 70B, Llama 4 Scout/Maverick | ✅ Attribution required. >700M MAU → separate Meta license |
+| DeepSeek License | DeepSeek V3/V3.1/V3.2, R1 | ✅ Use restrictions on model (no military, no harm) — output is yours |
+| NVIDIA Nemotron License | Nemotron Super/Ultra/Nano | ✅ Updated Mar 2026, now near-Apache 2.0 permissive |
+| MiniMax Model License | MiniMax M2, M2.5 | ✅ Royalty-free, non-exclusive. Prohibited uses policy applies to model |
+| Proprietary (API) | Claude (Rovo), Gemini (CLI), Perplexity Sonar, Mistral Large, Codestral | ✅ You own outputs per provider ToS |
+| OpenCode Zen | Big Pickle, MiMo V2 Pro/Flash/Omni Free, GPT 5 Nano, MiniMax M2.5 Free, Nemotron 3 Super Free | ✅ Per OpenCode Zen ToS |
+
+**Key Points:**
+1. **Generated code is yours** — no model claims ownership of your output
+2. **Apache 2.0 / MIT models** (Qwen, GLM, GPT-OSS, MiMo, Devstral Small) are the most permissive — no strings attached
+3. **Llama** requires "Built with Llama" attribution; >700M MAU needs a Meta license
+4. **DeepSeek / MiniMax** have use-restriction policies (no military use) that govern the model, not your generated code
+5. **API-served models** (Claude, Gemini, Perplexity) grant full output ownership under their terms of service
+
+> ⚠️ **Disclaimer:** This is a summary, not legal advice. License terms can change. Always verify the current license on the model's official page before making legal decisions.
+
+---
+
+#### Comparison Notes
+
+- **Goal**: Compare AI coding tools by their access to pro-grade models and free tier limits.
+- **What qualifies a model as "pro-grade"?** Models must achieve ≥60% on SWE-bench Verified, demonstrating real-world software engineering capability. Current qualifying models: Claude Opus 4.5 (80.9% [verify]), GPT-5.1-Codex-Max (77.9% [verify]), Claude Sonnet 4.5 (77.2% [verify]), Gemini 3 Pro (76.2% [verify]), GPT-5 (74.9% [verify]), Claude Opus 4.1 (74.5% [verify]), Claude Sonnet 4 (72.7% [verify]), GPT-5 mini (71.0% [verify]), Qwen3-Coder-480B (69.6% [verify]), and Gemini 2.5 Pro (63.2% [verify]).
+- **`[verify]` tag**: Indicates information needs verification from official sources. Pricing, limits, and model availability change frequently.
+- **Different limit types**: Tools use various quota systems - requests, tokens, credits, chats - making direct comparison challenging. Check documentation for specifics.
+- **Real-world usage**: Actual consumption varies dramatically based on coding style, task complexity, and tool implementation.
+
+---
+
+#### Education & Student Programs
+
+| Program | What You Get | Requirements |
+|---------|--------------|--------------|
+| [GitHub Student Pack](https://education.github.com/pack) | Free Copilot Pro for students | Verify with .edu email |
+| [GitHub Copilot Free](https://code.visualstudio.com/blogs/2024/12/18/free-github-copilot) | 50 chat + 2,000 completions/month | VS Code users |
+| [Copilot Pro for Teachers/Maintainers](https://docs.github.com/en/copilot/how-tos/manage-your-account/get-free-access-to-copilot-pro) | Free Copilot Pro | Open source maintainers & educators |
+
+---
+
+#### Additional 2026 AI Tools
+
+###### Agentic Workflow Platforms
+
+Visual orchestration tools for building autonomous AI agents without coding.
+
+| Platform | Free Tier | Best For | Key Features |
+|----------|-----------|----------|--------------|
+| [Make](https://make.com) (Integromat) | 1,000 ops/month | Visual builders | Drag-and-drop AI Agents, 3,000+ app integrations |
+| [n8n](https://n8n.io) | Unlimited (self-hosted) | Technical teams | Self-hosted RAG systems, private data automation |
+| [Gumloop](https://gumloop.com) | 2,000 credits/month | No-code agents | Natural-language builder, "Gummie" troubleshooting agent |
+| [Relay.app](https://relay.app) | Generous free plan | Beginners | Simple agentic workflows |
+| [Activepieces](https://activepieces.com) | 1,000 tasks/month | Open-source | Flat pricing, self-hostable |
+| [Podium](https://podium.com) | Entry-level tiers | Sales/communication | 24/7 lead response AI agents |
+| [QuantFlow Pilot](https://github.com/qf-studio/pilot) | Free | Autonomous development | ##1 Terminal Benchmark 2.0 — AI that ships your tickets |
+
+---
+
+###### Data Visualization & Analysis
+
+AI-powered tools for conversational data analysis and narrative visualization.
+
+| Tool | Function | Free Tier Detail | Key Feature |
+|------|----------|------------------|-------------|
+| [Julius](https://julius.ai) | Chat-with-data | Upload spreadsheets, generate instant visualizations |
+| [Anomaly AI](https://findanomaly.ai) | AI Dashboards | Generate interactive dashboards from natural language |
+| [Flourish](https://flourish.studio) | Data Storytelling | No-code interactive maps, "scrollytelling" features |
+| [Datawrapper](https://datawrapper.de) | Publishing | Publish-ready charts in seconds, journalism-focused |
+| [Looker Studio](https://lookerstudio.google.com) | Marketing Data | Seamless Google Analytics/Ads integration |
+| [Power BI Desktop](https://powerbi.microsoft.com) | Microsoft reports | Copilot recommendations, local report building |
+| [AI for Database](https://aifordatabase.com) | Natural language DB queries | Freemium - free tier available | Connect any DB (PostgreSQL, MySQL, MongoDB) and query in plain English — no SQL needed, with self-refreshing dashboards and workflow automation |
+
+---
+
+###### Creative & Multimedia Tools
+
+Professional-grade content creation with generous free tiers.
+
+| Tool | Output | Free Tier | Key Capability |
+|------|--------|-----------|----------------|
+| [Veo](https://deepmind.google/technologies/veo/) | Video | Basic Free | Cinematic clips with realistic motion and sound |
+| [Sora 2](https://openai.com/sora) (via ChatGPT) | Video | Limited free tier | Deep ChatGPT integration, high-quality video |
+| [DALL-E 4](https://openai.com/dall-e-4) (via ChatGPT) | Image | Limited free tier | Latest OpenAI image model |
+| [Synthesia](https://synthesia.io) | Video Avatars | Free individual plan | "Video Agents" in 120+ languages |
+| [1 More Shot](https://onemoreshot.ai) | Music Videos | Free plan | Advanced lip-sync, frame-by-frame control |
+| [Leonardo.Ai](https://leonardo.ai) | Images | 150 tokens/day (~70 images) | Commercial use allowed |
+| [Recraft AI](https://recraft.ai) | Vector/SVG | 30 credits/day | Infinitely scalable icons and logos |
+| [Ideogram](https://ideogram.ai) | Images | 10-20 prompts/day | Perfect text rendering, "Magic Prompt" |
+| [Suno AI](https://suno.ai) | Music | 50 credits/day (~10 tracks) | Complete songs with vocals and instruments |
+| [ElevenLabs](https://elevenlabs.io) | Voice | Basic Free | Realistic voice cloning |
+| [Canva AI](https://canva.com) | Design | Robust free tier | AI design assets, brochures, short videos |
+
+---
+
+###### Productivity & Research Tools
+
+| Tool | Function | Free Tier Detail | Key Feature |
+|------|----------|------------------|-------------|
+| [Grammarly](https://grammarly.com) | Writing | 100 AI prompts/month | Rewrites and tone detection |
+| [LanguageTool](https://languagetool.org) | Grammar | 10,000 characters/text | 25+ languages, open-source |
+| [Fathom](https://fathom.video) | Meetings | Forever Free | Records/transcribes Zoom/Teams, auto-sync to CRM |
+| [NotebookLM](https://notebooklm.google.com) | Research | Free | Audio Overview podcasts, grounded in your documents |
+| [Humata](https://humata.ai) | PDF Analysis | 60 pages/month | Clickable source citations |
+| [QuillBot](https://quillbot.com) | Rewriting | 125 words/time | Fluency & Standard modes |
+| [DeepL](https://deepl.com) | Translation | Basic Free | Incognito sensitive mode |
+| [MemoryPalace](https://github.com/milla-jovovich/mempalace) | AI Memory | Free, open source | 96.6% LongMemEval — memory palace technique for AI |
+
+---
+
+###### Vertical AI (Specialized Domains)
+
+**Medical AI:**
+| Tool | Pricing | Key Value |
+|------|---------|-----------|
+| [iatroX](https://iatrox.com) | Free | Adaptive Q-Bank, NICE/BNF clinical reference |
+| [DxGPT](https://dxgpt.com) | Free | Diagnostic assistant (500K+ users, 6K doctors) |
+| [OpenEvidence](https://openevidence.com) | Free (US verified) | Evidence-grounded search, ambient note generation |
+
+**Legal AI:**
+| Tool | Pricing | Key Value |
+|------|---------|-----------|
+| [DocLegal.Ai](https://doclegal.ai) | $10/month | Clause suggestion, risk detection |
+| [Doculex.ai](https://doculex.ai) | Varies | Case-data-driven drafting from medical records |
+| [Spellbook](https://spellbook.legal) | 7-day trial | In-editor contract analysis |
+| [Harvey AI](https://harvey.ai) | Enterprise | Regulatory matters, high security |
+
+---
+
+###### Marketing & SEO Tools
+
+| Tool | Function |
+|------|----------|
+| [Wellows](https://wellows.com) | AI Visibility Score tracking across ChatGPT, Gemini, Perplexity |
+| [Google SGE Labs](https://labs.google.com) | See how AI Overviews interpret target keywords |
+| [NeuronWriter](https://neuronwriter.com) | AI content scoring |
+| [Surfer SEO](https://surferseo.com) | Content optimization |
+| [Jasper](https://jasper.ai) | AI copywriting with brand voice |
+| [Writesonic](https://writesonic.com) | Scalable copywriting |
+
+---
+
+###### Open Source & Local Tools
+
+| Tool | Function | Description |
+|------|----------|-------------|
+| [Open WebUI](https://openwebui.com) | Local Chat Interface | ChatGPT-like experience running entirely offline with Ollama |
+| [Whisper](https://github.com/openai/whisper) (OpenAI) | Speech-to-Text | Most accurate open-source transcription |
+| [Piper](https://github.com/rhasspy/piper) | Text-to-Speech | High-quality offline audio generation |
+| [ComfyUI](https://comfyui.org) | Image Generation | Node-based interface for Stable Diffusion |
+| [Zed](https://zed.dev) | AI IDE | 50 AI prompts/month, native performance, high speed |
+| [Void IDE](https://voideditor.com/) | Agent-first IDE | Multi-agent frontend/backend/testing | Preview, free tier |
+| [MemoryPalace](https://github.com/milla-jovovich/mempalace) | AI Memory System | 96.6% LongMemEval — memory palace technique for AI conversations | Free, open source |
+
+---
+
+#### ⚡ Realtime & Streaming APIs
+
+Low-latency APIs for voice assistants, live coding copilots, trading tools, and realtime chat.
+
+###### Streaming LLM APIs
+
+| Provider | Latency | Best For | Free Tier |
+|----------|---------|----------|-----------|
+| **Groq Streaming** | ~50-150ms (0.4ms/token) | Live coding, chat | 14.4K req/day |
+| **OpenAI Realtime API** | Low | Voice assistants, agents | **No free tier** (pay-per-use only, trial credits new accounts) |
+| **Gemini Live API** | Low | Multimodal streaming | **Dynamic caps** (varies by prompt complexity) |
+| **Cerebras** | **2,400 tok/sec** (Qwen3.6) | Batch + streaming | 1.5M tokens/day |
+| **Cloudflare Workers AI** | Edge | Global low-latency | 10K neurons/day |
+
+###### Speech Streaming APIs
+
+| Provider | Type | Latency | Free Tier |
+|----------|------|---------|-----------|
+| **Deepgram** | STT streaming | ~300ms | $200 credits |
+| **AssemblyAI Streaming** | Realtime STT | ~400ms | 50 hours/month |
+| **Groq Whisper** | STT fast | ~200ms | 2,000 req/day |
+| **ElevenLabs Streaming** | TTS streaming | ~100ms | 10K chars/month |
+| **OpenAI Realtime** | STT + LLM + TTS | ~200ms | Limited |
+
+**Best for:**
+- **Trading bots:** Groq streaming (fastest)
+- **Voice assistants:** OpenAI Realtime API (end-to-end)
+- **Live captions:** AssemblyAI or Deepgram
+- **Realtime chat:** Gemini Live API
+
+---
+
+#### 🎙️ Speech Models
+
+Speech-to-text and text-to-speech models comparison.
+
+###### Speech-to-Text (STT)
+
+| Model | Provider | Accuracy | Speed | Free Tier | Best For |
+|-------|----------|----------|-------|-----------|----------|
+| **Whisper Large v3** | OpenAI/Groq/Local | Excellent | Fast | 2,000 req/day (Groq) | General purpose, local |
+| **Deepgram Nova** | Deepgram | Superior | Very Fast | $200 credits | Production, enterprise |
+| **AssemblyAI** | AssemblyAI | Excellent | Fast | 50 hours/month | Streaming, diarization |
+| **Whisper API** | OpenAI | Excellent | Medium | Pay-per-use | Reliable, consistent |
+| **Google Speech** | Google Cloud | Good | Fast | 60 min/month | Google ecosystem |
+| **Whisper (local)** | OpenAI/Ollama | Excellent | GPU-dependent | Unlimited offline | Privacy, cost control |
+
+###### Text-to-Speech (TTS)
+
+| Model | Provider | Quality | Speed | Free Tier | Best For |
+|-------|----------|---------|-------|-----------|----------|
+| **ElevenLabs** | ElevenLabs | 🏆 Best | Fast | 10K chars/month | Voice cloning, pro voice |
+| **OpenAI TTS** | OpenAI | Excellent | Fast | Pay-per-use | Reliable, cheap |
+| **Piper** | Local | Good | Very Fast | Unlimited offline | Privacy, self-hosted |
+| **Bark** | Suno/Local | Good | Medium | Free (local) | Expressive, local |
+| **Google TTS** | Google Cloud | Good | Fast | 1M chars/month | Google ecosystem |
+| **WhisperSpeech** | Local | Good | Fast | Unlimited | Whisper-based TTS |
+
+###### All-in-One Voice APIs
+
+| API | Input | Output | Latency | Use Case |
+|-----|-------|--------|---------|----------|
+| **OpenAI Realtime** | Audio | Audio | ~200ms | Voice agents |
+| **Deepgram Voice** | Audio | Text/Audio | ~300ms | Voice bots |
+| **AssemblyAI LeMUR** | Audio | LLM response | ~1s | Voice RAG |
+
+---
+
+#### 🎨 Image Generation Models
+
+Comparison of image generation models and APIs.
+
+| Model | Provider | Quality | Speed | Free Tier | Best For |
+|-------|----------|---------|-------|-----------|----------|
+| **FLUX.2** | Black Forest Labs | 🏆 Excellent | Fast | Local/Replicate | High quality, open |
+| **DALL-E 4** | OpenAI | 🏆 Best | Medium | ChatGPT Plus | Latest OpenAI |
+| **Ideogram 2.0** | Ideogram | Excellent | Fast | **20 prompts/day** | Text in images |
+| **Recraft V4** | Recraft | Excellent | Fast | **50 credits/day** | Vector/SVG output |
+| **Stable Diffusion XL** | Stability AI | Good | Fast | Local/DreamStudio | Flexibility, local |
+| **Midjourney v6** | Midjourney | 🏆 Excellent | Slow | None (paid only) | Artistic, Discord |
+| **Leonardo.ai** | Leonardo | Very Good | Fast | 150 tokens/day | Commercial use, gaming |
+| **Adobe Firefly** | Adobe | Good | Fast | 25 credits/month | Safe, commercial |
+| **Imagen 3** | Google | Excellent | Medium | Vertex AI trial | Photorealistic |
+| **DiffusionBee** | Local | Good | Fast | Local unlimited | Easy setup, open-source |
+| **ComfyUI** | Local | Good | Fast | Local unlimited | Advanced, node-based |
+
+###### Free Image Model APIs
+
+| Provider | Model | Free Tier | Notes |
+|----------|-------|-----------|-------|
+| **Replicate** | FLUX.1-schnell | Free tier | Fast inference |
+| **Pollinations** | Various | Unlimited | No signup |
+| **HuggingFace** | SDXL/FLUX | $0.10 credits | Inference API |
+| **Leonardo** | Phoenix | 150 tokens/day | Commercial OK |
+
+---
+
+#### 🎬 Video Generation APIs
+
+Text-to-video and image-to-video generation. Hot area in 2026.
+
+| Model | Provider | Quality | Duration | Free Tier | Best For |
+|-------|----------|---------|----------|-----------|----------|
+| **Veo 3** | Google | 🏆 Excellent | 1080p, **60s clips** | Limited preview | Cinematic, realistic |
+| **Sora 3** | OpenAI | 🏆 Excellent | **120s** | ChatGPT Plus | High quality, physics |
+| **Runway Gen-3** | Runway | Excellent | 10 seconds | 3 free credits | Creative, filmmaking |
+| **Pika 3.0** | Pika | Very Good | 3-5 seconds | Free tier | Lip-sync improved |
+| **Luma Dream Machine** | Luma | Very Good | 5 seconds | 30 generations/mo | Fast, realistic |
+| **Kling** | Kuaishou | Excellent | 2-10 minutes | Limited | Long-form, Chinese |
+| **Hailuo AI** | MiniMax | Good | 6 seconds | Free tier | Character consistency |
+| **Stable Video Diffusion** | Stability | Good | 4 seconds | Local | Open, flexible |
+
+###### Video API Pricing (approximate)
+
+| Provider | Cost per video | Generation time |
+|----------|----------------|-----------------|
+| **Runway** | ~$0.20-0.50 | 1-5 min |
+| **Pika** | ~$0.10-0.30 | 30s-2 min |
+| **Luma** | ~$0.30-0.60 | 2-5 min |
+| **Kling** | ~$0.05-0.20 | 1-10 min |
+
+---
+
+#### 🌐 AI Browser Automation
+
+Tools for AI agents to control browsers - web scraping, form filling, testing.
+
+| Tool | Type | Pricing | Best For |
+|------|------|---------|----------|
+| **Browserbase** | Managed browsers | $5 free tier | Production agents |
+| **Steel.dev** | Browser API | Free tier | AI-native browser control |
+| **Stagehand** | AI browser framework | Open source | Next-gen Playwright |
+| **Playwright** | Browser automation | Free | Reliable, well-documented |
+| **Puppeteer** | Chrome automation | Free | Chrome-specific |
+| **Selenium** | Cross-browser | Free | Legacy support |
+| **Scrapy** | Web scraping | Free | Data extraction |
+
+###### AI-Native Browser Tools
+
+| Tool | AI Integration | Use Case |
+|------|----------------|----------|
+| **Stagehand** | Natural language commands | AI agents controlling browsers |
+| **Browserbase** | Session recording for AI | Training agent trajectories |
+| **Steel.dev** | Built for LLM agents | Agent-native browser API |
+
+**Stack Recommendation:**
+- **AI agents:** Stagehand + Browserbase
+- **Web scraping:** Playwright + Scrapy
+- **Testing:** Playwright + AI assertions
+
+---
+
+#### 💾 Cheap Vector DB Hosting
+
+Production-ready vector storage without high costs.
+
+| Provider | Type | Free Tier | Paid | Best For |
+|----------|------|-----------|------|----------|
+| **Supabase Vector** | Postgres + pgvector | 500MB | $25/mo starter | Full-stack apps |
+| **Neon** | Serverless Postgres | 500MB | $19/mo | Serverless, branching |
+| **Railway** | Managed Postgres | $5 credits | Usage-based | Easy deployment |
+| **PlanetScale** | MySQL + vectors | 5GB | $39/mo | Scale, branching |
+| **Chroma Cloud** | Vector-native | Free tier | Usage-based | Pure vector workloads |
+| **Qdrant Cloud** | Vector DB | 1GB | $25/mo | High performance |
+| **Pinecone** | Managed vector | 2GB | $70/mo | Production, no ops |
+| **Weaviate Cloud** | Vector DB | 5M vectors | $25/mo | Hybrid search |
+| **LanceDB** | Embedded/Cloud | Free | Cloud beta | Multimodal |
+
+###### Self-Hosted (Free Forever)
+
+| Database | Best For | Notes |
+|----------|----------|-------|
+| **ChromaDB** | Prototyping | Simple, Python-native |
+| **Qdrant** | Production | Rust-based, fast |
+| **Milvus** | Enterprise | Scalable, complex |
+| **pgvector** | Postgres apps | Just add extension |
+| **LanceDB** | Embedded | No server needed |
+
+**Recommendation by Stage:**
+- **MVP:** ChromaDB (local) → Supabase (hosted)
+- **Production:** Qdrant Cloud or Pinecone
+- **Enterprise:** Milvus or Weaviate
+
+---
+
+#### 🏛️ Common AI Architecture Patterns
+
+Proven patterns for building AI applications.
+
+###### 1. 🤖 Chatbot Architecture
+
+```
+User → Chat UI → LLM API → Response
+            ↓
+        Context Memory (Redis/Postgres)
+```
+
+**Stack:**
+- Frontend: Next.js + Vercel AI SDK
+- Backend: FastAPI + OpenRouter
+- Memory: Upstash Redis or Supabase
+
+---
+
+###### 2. 📚 RAG Architecture (Like ExamAi)
+
+```
+Documents → Chunking → Embeddings → Vector DB
+                                    ↓
+User Query → Embedding → Similarity Search → LLM → Response
+```
+
+**Stack:**
+- Framework: LlamaIndex or LangChain
+- Embeddings: BGE-Large or Jina v3
+- Vector DB: ChromaDB (dev) → Pinecone (prod)
+- LLM: Claude Sonnet [verify] or GPT-4o
+
+---
+
+###### 3. 🎯 Agent Architecture
+
+```
+User Request → Agent Controller → Tool 1 (Search)
+                              → Tool 2 (Code exec)
+                              → Tool 3 (API call)
+                              ↓
+                        Synthesize → Response
+```
+
+**Stack:**
+- Framework: LangGraph, AutoGen, or CrewAI
+- Tools: Function calling with Claude/GPT-4
+- Memory: Vector DB + State management
+- Monitoring: LangSmith or Arize
+
+---
+
+###### 4. 🔄 Multi-Model Routing Architecture
+
+```
+User Request → Router (classify intent)
+                    ↓
+    ┌───────────────┼───────────────┐
+    ↓               ↓               ↓
+Cheap Model    Medium Model    Expensive Model
+(GPT-5 Nano)      (Claude Sonnet [verify]) (Claude Opus [verify])
+    ↓               ↓               ↓
+Simple Q&A    Complex task    Hard reasoning
+```
+
+**Implementation:**
+- Router: Fine-tuned classifier or LLM-based
+- Cost optimization: Route 80% to cheap models
+- Fallback: Escalate if cheap model fails
+
+---
+
+###### 5. ⚡ Realtime Streaming Architecture
+
+```
+Audio Input → STT → LLM → TTS → Audio Output
+     ↓           ↓      ↓       ↓
+ Deepgram    Groq   Claude  ElevenLabs
+```
+
+**Stack:**
+- STT: Deepgram or Whisper Streaming
+- LLM: Groq for speed or OpenAI Realtime
+- TTS: ElevenLabs or OpenAI TTS
+- Latency target: <500ms end-to-end
+
+---
+
+###### 6. 🖼️ Multimodal Pipeline Architecture
+
+```
+Image Input → Vision LLM → Structured Output
+                                 ↓
+                          Database / Action
+```
+
+**Stack:**
+- Vision: GPT-4o Vision or Gemini 2.5 Pro
+- Structured output: Instructor + Pydantic
+- Storage: Postgres JSONB or MongoDB
+
+---
+
+###### 7. 🎨 Creative Generation Pipeline
+
+```
+Text Prompt → LLM Enhancement → Image Gen → Upscaling
+                                                ↓
+                                           Video Gen (optional)
+```
+
+**Stack:**
+- Enhancement: GPT-4 or Claude
+- Image: FLUX or DALL-E 3
+- Upscale: Upscayl or Magnific
+- Video: Runway or Pika
+
+---
+
+#### 💵 Model Price Comparison (per 1M Tokens)
+
+API pricing for budget planning. Sorted by input cost.
+
+| Model | Provider | Input | Output | Cache Hit | Best For |
+|-------|----------|-------|--------|-----------|----------|
+| **MiniMax M2.6** | MiniMax | $0.08 | $0.12 | - | Bulk generation |
+| **DeepSeek V4** | DeepSeek | $0.28 | $0.55 | $0.03 🎯 | Coding, cached |
+| **GLM 4.9 Air** | ZAI | $0.35 | $0.75 | - | Chinese/English |
+| **Gemini 3.1 Flash** | Google | $0.30 | $0.90 | - | 2M context |
+| **GPT-5 Nano** | OpenAI | $0.45 | $1.80 | - | Cheap reasoning |
+| **Qwen3-Coder** | Alibaba | ~$0.60 | ~$1.20 | - | Strong agent tasks |
+| **Gemini 2.5 Pro** | Google | $1.25 | $10.00 | $0.625 | High quality, 1M context |
+| **GPT-4.1** | OpenAI | $2.00 | $8.00 | - | General purpose |
+| **GPT-5.4** | OpenAI | $2.50 | $10.00 | $1.25 | Latest OpenAI model |
+| **Claude Sonnet 4** | Anthropic | $3.00 | $15.00 | $0.60 | Best coding, reasoning |
+| **Claude Opus 4.6** | Anthropic | $5.00 | $25.00 | $2.50 | Complex reasoning |
+
+> 💡 **Pro tip:** DeepSeek's 90% cache discount makes it cheapest for repetitive tasks with long prompts.
+
+---
+
+#### 🎯 Best Models by Use Case
+
+Don't just use SWE-bench - match models to your specific task.
+
+###### 💻 Coding & Software Engineering
+
+| Model | Why | Free Tier |
+|-------|-----|-----------|
+| **Claude Sonnet 4.6** | **79.3%** SWE-bench, excellent at following instructions | 25 msgs/5h (Claude Code) |
+| **Qwen3.6-Plus** | **71.2%** SWE-bench, Chinese + English, agent-optimized | 2,000 req/day |
+| **GPT-5.4** [verify: paid-only] | **80.1%** SWE-bench, long context compaction | ChatGPT Plus/Pro |
+| **DeepSeek V4** | Near-Sonnet performance at 1/10th cost | DeepSeek API |
+
+###### 🧠 Complex Reasoning & Analysis
+
+| Model | Why | Free Tier |
+|-------|-----|-----------|
+| **DeepSeek R1** | Specialized reasoning model, math/logic | DeepSeek API |
+| **Claude Opus 4.6** | **84.2%** SWE-bench, best for complex architecture | Claude Code Pro |
+| **Gemini 3.1 Pro** | **77.4%** SWE-bench, 2M context for deep analysis | 100 req/day |
+| **o3-mini / o1** | OpenAI reasoning models, step-by-step | ChatGPT Plus |
+
+###### 💰 Cheap Bulk Generation
+
+| Model | Why | Cost per 1M |
+|-------|-----|---------------|
+| **Gemini 2.5 Flash** | 1M context, high throughput | ~$0.35/$1.00 |
+| **GPT-5 Nano** | Newest cheap model from OpenAI | $0.50/$2.00 |
+| **GPT-4o** | ChatGPT free tier model, fast | Variable (free tier) |
+| **GLM 4.5 Air** | Good quality, extremely cheap | ~$0.40/$0.80 |
+| **MiniMax M2.7** | **80.2%** SWE-bench, dirt cheap | $0.08/$0.12 |
+
+###### 🤖 Agents & Autonomous Tasks
+
+| Model | Why | Free Tier |
+|-------|-----|-----------|
+| **Claude Sonnet 4.6** | Best tool use, reliable agent behavior | Various |
+| **GPT-5.4** [verify: paid-only] | Compaction for 24+ hour sessions | ChatGPT Plus/Pro |
+| **Qwen3.6-Plus** | Built for agentic workflows | 2,000 req/day |
+| **Big Pickle (OpenCode)** | 72% SWE-bench [verify], agent-optimized | Zen Free tier |
+
+###### 👁️ Vision & Multimodal
+
+| Model | Why | Free Tier |
+|-------|-----|-----------|
+| **Gemini 2.5 Pro Vision** | 1M token context for images/video | 20-100 req/day |
+| **GPT-4o** | Best overall vision capabilities | ChatGPT Free |
+| **Claude 4 Vision** | Detailed image analysis | Claude Free tier |
+| **Qwen2.5 VL** | Strong open vision model | Hyperbolic |
+
+###### 🔊 Audio & Speech
+
+| Model | Provider | Free Tier |
+|-------|----------|-----------|
+| **Whisper Large v3** | Groq / Local | 2,000 req/day or unlimited local |
+| **ElevenLabs** | ElevenLabs | Basic free tier |
+| **Piper** | Local | Free, offline TTS |
+
+---
+
+#### ⏱️ Rate Limit Comparison
+
+Critical for scaling applications. Plan your architecture.
+
+| Provider | RPM | TPM | Daily | Best For |
+|----------|-----|-----|-------|----------|
+| **Groq** | 30 | Medium | 14,400 | High-throughput apps |
+| **Cerebras** | 30 | 1,000,000 | 14,400 | Batch processing |
+| **Gemini Studio** | 15 | High | 1,500 | Prototyping |
+| **OpenRouter** | 20 | Medium | 50-1,000 | Flexible routing |
+| **Cloudflare** | 300 | 10K neurons | 10K neurons | Edge deployment |
+| **Groq (varies)** | 30-50 | 6K-30K | 1K-14.4K | Model-dependent |
+
+###### Scaling Strategy by Use Case
+
+| App Type | Recommended Stack |
+|----------|-------------------|
+| **ExamAi (your app)** | Cerebras (Qwen3.6-Plus) + Groq |
+| **AI Reel Generator** | Gemini 3.1 Flash (video) + Groq (audio) |
+| **Trading AI** | Groq + local Qwen3.6-Plus |
+| **Chatbot** | OpenRouter + Gemini 3.1 Flash (cheap) |
+| **Code Review Bot** | DeepSeek V4 (cheap) + Claude Sonnet [verify] (quality) |
+
+---
+
+#### ✅ Commercial Use Summary
+
+Quick reference for legal safety.
+
+| Provider | Commercial Use | Notes |
+|----------|----------------|-------|
+| **OpenRouter** | ✅ Yes | All models |
+| **Groq** | ✅ Yes | All models |
+| **Gemini API** | ✅ Yes | Per Google ToS |
+| **Cohere** | ✅ Yes | 1K req/month free |
+| **Claude (API)** | ✅ Yes | Per Anthropic ToS |
+| **OpenCode Zen** | ✅ Yes | Per Zen ToS |
+| **DeepSeek** | ✅ Yes | No military use restriction |
+| **Qwen/Alibaba** | ✅ Yes | Apache 2.0 models |
+| **Ollama Local** | ✅ Yes | Fully offline |
+
+> ⚠️ **Always verify current ToS** - licenses can change.
+
+---
+
+#### 🧩 RAG Stack Tools
+
+Build document Q&A systems like ExamAi.
+
+###### Orchestration Frameworks
+
+| Tool | Best For | Free Tier |
+|------|----------|-----------|
+| **LlamaIndex** | Production RAG | Open source |
+| **LangChain** | Flexibility | Open source |
+| **Haystack** | Enterprise | Open source |
+| **Vercel AI SDK** | Edge RAG | Free tier |
+
+###### Vector Databases
+
+| Database | Type | Free Tier | Best For |
+|----------|------|-----------|----------|
+| **ChromaDB** | Local | Unlimited | Prototyping, small apps |
+| **LanceDB** | Local/Serverless | Generous | Multimodal, embeddings |
+| **Weaviate** | Cloud/Local | 5M vectors | Production scale |
+| **Supabase Vector** | Postgres | 500MB | Full-stack apps |
+| **Pinecone** | Managed | 2GB (1 pod) | Production, no ops |
+| **Qdrant** | Local/Cloud | 1GB cloud | High performance |
+
+###### RAG Evaluation
+
+| Tool | Purpose |
+|------|---------|
+| **RAGAS** | Evaluate retrieval quality |
+| **LlamaIndex Evals** | Built-in RAG metrics |
+| **Arize Phoenix** | Observability |
+
+---
+
+#### 🔢 Best Free Embedding APIs
+
+Essential for RAG - don't overlook these.
+
+| Embedding | Provider | Dimensions | Free Tier | Best For |
+|-----------|----------|------------|-----------|----------|
+| **text-embedding-3-small** | OpenAI | 1536 | 200K tokens/day | General purpose |
+| **Jina Embeddings v3** | Jina AI | 1024 | 1M tokens/day | Multilingual |
+| **BGE-Large-EN-v1.5** | HuggingFace/Local | 1024 | Free | High quality retrieval |
+| **E5-Mistral-7B** | Various | 4096 | Varies | Best accuracy |
+| **Nomic Embed v1.5** | Nomic | 768 | Free tier | Long context (8K) |
+| **GTE-Large** | Alibaba | 1024 | DashScope free | Chinese + English |
+
+###### Self-Hosted (Free Forever)
+
+| Model | Size | Speed | Quality |
+|-------|------|-------|---------|
+| **BGE-Small** | 33M | Fast | Good |
+| **MiniLM-L6** | 22M | Very Fast | Basic |
+| **Nomic Embed** | 137M | Fast | Excellent |
+
+---
+
+#### 🖥️ AI Hosting & GPU Providers
+
+Scale beyond free tiers.
+
+| Provider | Type | Pricing | Best For |
+|----------|------|---------|----------|
+| **Modal** | Serverless GPU | $5-30/month credits | Batch inference |
+| **RunPod** | GPU Cloud | $0.20-0.50/hr | Training, fine-tuning |
+| **Vast.ai** | Spot GPUs | Cheap spot prices | Budget inference |
+| **Lambda Labs** | GPU Cloud | ~$0.60/hr A100 | Stable workloads |
+| **Beam.cloud** | Serverless | Per request | Spiky traffic |
+| **Baseten** | Model serving | $30 credits | Production models |
+| **Replicate** | Model hosting | 6 req/min free | Quick deployment |
+
+###### Serverless Inference (Pay-per-use)
+
+| Platform | Cold Start | Best For |
+|----------|-----------|----------|
+| **Modal** | Fast | Python functions |
+| **Beam** | Fast | ML models |
+| **Replicate** | Medium | Pre-built models |
+| **HuggingFace Inference** | Medium | HF ecosystem |
+
+---
+
+#### 📊 AI Evaluation Tools
+
+Benchmark your models before production.
+
+| Tool | Purpose | Free Tier |
+|------|---------|-----------|
+| **Promptfoo** | Prompt testing, red-teaming | Open source |
+| **LangSmith** | Tracing, evals | 5K traces/month |
+| **RAGAS** | RAG evaluation | Open source |
+| **DeepEval** | LLM unit testing | Open source |
+| **Arize Phoenix** | Observability | Generous free tier |
+| **Weights & Biases** | Experiment tracking | Academic free |
+
+---
+
+#### 📐 Structured Output Tools
+
+Force LLMs to return valid JSON/schemas.
+
+| Tool | Approach | Best For |
+|------|----------|----------|
+| **Instructor** | Pydantic validation | Python apps |
+| **Guidance** | Constrained generation | Complex schemas |
+| **Outlines** | Regex/constrained | Fast inference |
+| **JSONformer** | Structure-aware decoding | Local models |
+| **Zod + Vercel AI SDK** | TypeScript validation | Web apps |
+
+---
+
+#### 🏷️ Legend
+
+Quick reference for badges used in this guide.
+
+| Badge | Meaning |
+|-------|---------|
+| 🟢 | No credit card required |
+| 💳 | Credit card required |
+| ⚡ | Fast inference (low latency) |
+| 🧠 | Strong reasoning capabilities |
+| 💻 | Coding optimized |
+| 📦 | Open source / self-hostable |
+| 🔒 | Privacy focused / local |
+| 🤖 | Agentic capabilities |
+| 🎯 | Best value / cheap |
+| 🌐 | Multilingual support |
+| `[verify]` | Needs verification from official source |
+
+---
+
+#### Contributing
+
+If you spot an error, missing source link, or have updated quota/model information, please open an issue or pull request with a source.
+
+No affiliation with any vendor. All trademarks belong to their owners. Information is for research; accuracy not guaranteed; limits/pricing change frequently.
+
+---
+
+#### Related Resources
+
+- [cheahjs/free-llm-api-resources](https://github.com/cheahjs/free-llm-api-resources) (18.4k ⭐) - Comprehensive free LLM API list
+- [mnfst/awesome-free-llm-apis](https://github.com/mnfst/awesome-free-llm-apis) (2.1k ⭐) - Permanent free LLM API tiers
+- [inmve/free-ai-coding](https://github.com/inmve/free-ai-coding) (648 ⭐) - Pro-grade AI coding tools comparison
+- [Coding with AI](https://coding-with-ai.dev/) - Practical techniques for coding with LLMs
+- [nowork-studio/awesome-ai-startups](https://github.com/nowork-studio/awesome-ai-startups) - A curated list of bootstrapped, pre-seed, and angel-funded AI products built by independent founders
+
+###### Research Methodology
+
+This list was compiled and verified using:
+- **Gemini** - For research and discovering new/additional AI tools
+- **Perplexity** - For verifying information accuracy and checking if data is current
+- **Community repos** - All referenced repositories above were used as reference sources
+
+---
+
+#### License
+
+MIT © [ShaikhWarsi](https://github.com/ShaikhWarsi)
+
+---
+
+*Last updated: April 11, 2026 • PRs/issues welcome*
+
+
+# docs/FREE_TIERS.md at main · diegosouzapw/OmniRoute - https://github.com/diegosouzapw/OmniRoute/blob/main/docs/FREE_TIERS.md
+## File: diegosouzapw/OmniRoute/docs/FREE_TIERS.md
+
+- Repository: diegosouzapw/OmniRoute | Never stop coding. Free AI gateway: one endpoint, 160+ providers, RTK+Caveman stacked compression up to ~95% eligible context savings, smart auto-fallback, MCP/A2A, multimodal APIs, Desktop/PWA. | 4K stars | TypeScript
+- Branch: main
+
+```md
+## 🆓 Free LLM API Providers — Consolidated Directory
+
+> **The ultimate aggregated reference for all permanently free LLM API providers.**
+> Consolidated from 6 community repositories. Use with OmniRoute to route through 25+ free providers simultaneously.
+
+_Last consolidated: May 2026 · Sources: awesome-free-llm-apis, awesome-free-llm-apis2, free-llm-api-resources, Free-LLM-Collection, FREE-LLM-API-Provider, gpt4free_
+
+---
+
+#### Table of Contents
+
+- [Quick Comparison](##quick-comparison)
+- [Provider APIs (First-Party)](##provider-apis-first-party)
+- [Inference Providers (Third-Party)](##inference-providers-third-party)
+- [China-Based Providers](##china-based-providers)
+- [Trial Credit Providers](##trial-credit-providers)
+- [Using with OmniRoute](##using-with-omniroute)
+- [Glossary](##glossary)
+
+---
+
+#### Quick Comparison
+
+All free providers at a glance, sorted by generosity of free tier:
+
+| Provider          | Type      | Best Free Model        | RPM     | RPD          | Tokens           | OpenAI Compat   | Speed     |
+| ----------------- | --------- | ---------------------- | ------- | ------------ | ---------------- | --------------- | --------- |
+| **Groq**          | Inference | Llama 3.3 70B          | 30      | 14,400       | 6K TPM           | ✅              | 🟢 Fast   |
+| **Cerebras**      | Inference | Qwen3 235B             | 30      | 14,400       | 1M TPD           | ✅              | 🟢 Fast   |
+| **Mistral AI**    | Provider  | Mistral Large 3        | 60      | Unlimited    | 1B/month         | ✅              | 🟡 Medium |
+| **Google Gemini** | Provider  | Gemini 2.5 Flash       | 5–15    | 20–1,500     | 250K TPM         | ✅              | 🟢 Fast   |
+| **NVIDIA NIM**    | Inference | 129 models             | 40      | —            | —                | ✅              | 🟡 Medium |
+| **Ollama Cloud**  | Inference | 400+ models            | —       | —            | Session limits   | ❌ (Ollama API) | 🟡 Medium |
+| **OpenRouter**    | Inference | 35+ free models        | 20      | 50–1,000     | —                | ✅              | 🟡 Medium |
+| **GitHub Models** | Inference | GPT-4.1, GPT-5         | 10–15   | 50–150       | 8K in/4K out     | ✅              | 🟡 Medium |
+| **Cloudflare AI** | Inference | 50+ models             | —       | 10K neurons  | —                | ⚠️ Partial      | 🟡 Medium |
+| **Hugging Face**  | Inference | Thousands              | —       | —            | $0.10/mo credits | ✅              | 🔴 Slow   |
+| **Cohere**        | Provider  | Command A (111B)       | 20      | —            | 1K calls/month   | ⚠️ Partial      | 🟡 Medium |
+| **Pollinations**  | Inference | Text+Image+Video+Audio | —       | Hourly reset | —                | ✅              | 🟡 Medium |
+| **Z.AI (Zhipu)**  | Provider  | GLM-4.7-Flash          | —       | —            | Undocumented     | ✅              | 🟡 Medium |
+| **SiliconFlow**   | Inference | Qwen3-8B               | 1,000   | —            | 50K TPM          | ✅              | 🟡 Medium |
+| **Kilo Code**     | Inference | Free auto-router       | ~200/hr | —            | —                | ✅              | 🟡 Medium |
+| **LLM7.io**       | Inference | 30+ models             | 15–30   | —            | —                | ✅              | 🟡 Medium |
+| **Kluster AI**    | Inference | DeepSeek-R1            | —       | —            | Undocumented     | ✅              | 🟡 Medium |
+| **ModelScope**    | Inference | Qwen, DeepSeek         | —       | 2,000        | ≤500/model/day   | ✅              | 🟡 Medium |
+| **IBM watsonx**   | Provider  | Granite models         | 2/sec   | —            | 300K/month       | ❌              | 🟡 Medium |
+
+---
+
+#### Provider APIs (First-Party)
+
+APIs from the companies that train or fine-tune the models.
+
+###### Google Gemini 🇺🇸
+
+🔗 [Get API Key](https://aistudio.google.com/app/apikey) · Base URL: `https://generativelanguage.googleapis.com/v1beta`
+
+> ⚠️ Free tier NOT available in EU/UK/Switzerland. Prompts may be used by Google to improve products.
+
+| Model                             | Context | Max Output | Modality               | RPM | RPD    |
+| --------------------------------- | ------- | ---------- | ---------------------- | --- | ------ |
+| Gemini 2.5 Flash / Gemini 3 Flash | 1M      | 65K        | Text+Image+Audio+Video | 5   | 20     |
+| Gemini 2.5 Flash-Lite             | 1M      | 65K        | Text+Image+Audio+Video | 10  | 20     |
+| Gemini 3.1 Flash-Lite             | 1M      | 65K        | Text+Image+Audio+Video | 15  | 1,500  |
+| Gemma 4 26B/31B                   | —       | —          | Text                   | 15  | 1,500  |
+| Gemma 3 (1B/4B/12B/27B)           | —       | —          | Text                   | 30  | 14,400 |
+
+###### Mistral AI 🇫🇷
+
+🔗 [Get API Key](https://console.mistral.ai/api-keys) · Base URL: `https://api.mistral.ai/v1`
+
+Free "Experiment" plan, no credit card. ~1B tokens/month. Requires phone verification.
+
+| Model              | Context | Max Output | Modality        | Rate Limit      |
+| ------------------ | ------- | ---------- | --------------- | --------------- |
+| Mistral Small 4    | 256K    | 256K       | Text+Image+Code | 1 RPS, 500K TPM |
+| Mistral Medium 3   | 128K    | 128K       | Text            | 1 RPS, 500K TPM |
+| Mistral Large 3    | 256K    | 256K       | Text            | 1 RPS, 500K TPM |
+| Mistral Nemo (12B) | 128K    | 128K       | Text            | 1 RPS, 500K TPM |
+| Codestral          | 256K    | 256K       | Code            | 30 RPM, 2K RPD  |
+| Pixtral Large      | 128K    | 128K       | Text+Image      | 1 RPS, 500K TPM |
+
+###### Cohere 🇨🇦
+
+🔗 [Get API Key](https://dashboard.cohere.com/api-keys) · Base URL: `https://api.cohere.com/v2`
+
+Free "Trial" key. 1,000 API calls/month. Non-commercial use only. 20 RPM.
+
+| Model               | Context | Max Output | Modality                |
+| ------------------- | ------- | ---------- | ----------------------- |
+| Command A (111B)    | 256K    | 4K         | Text                    |
+| Command A Reasoning | 256K    | 4K         | Text (reasoning)        |
+| Command A Vision    | 256K    | 4K         | Text+Image              |
+| Command A Translate | 256K    | 4K         | Translation             |
+| Command R+          | 128K    | 4K         | Text                    |
+| Command R           | 128K    | 4K         | Text                    |
+| Command R7B         | 128K    | 4K         | Text                    |
+| Embed 4             | —       | —          | Embeddings (Text+Image) |
+| Rerank 3.5          | —       | —          | Reranking               |
+
+###### Z.AI (Zhipu AI) 🇨🇳
+
+🔗 [Get API Key](https://open.bigmodel.cn/usercenter/apikeys) · Base URL: `https://open.bigmodel.cn/api/paas/v4`
+
+Permanent free models, no credit card. No published rate limits.
+
+| Model           | Context | Max Output | Modality   |
+| --------------- | ------- | ---------- | ---------- |
+| GLM-4.7-Flash   | 200K    | 128K       | Text       |
+| GLM-4.5-Flash   | 128K    | ~8K        | Text       |
+| GLM-4.6V-Flash  | 128K    | ~4K        | Text+Image |
+| GLM-5 / GLM-5.1 | —       | —          | Text       |
+
+###### IBM watsonx 🇺🇸
+
+🔗 [Pricing](https://www.ibm.com/products/watsonx-ai/pricing)
+
+Free tier: 2 RPS, 300K tokens/month. Granite foundation models.
+
+---
+
+#### Inference Providers (Third-Party)
+
+###### Groq 🇺🇸
+
+🔗 [Get API Key](https://console.groq.com/keys) · Base URL: `https://api.groq.com/openai/v1`
+
+Ultra-fast LPU inference (~300–500 tok/s). No credit card required.
+
+| Model                              | RPM | RPD    | TPM | Modality         |
+| ---------------------------------- | --- | ------ | --- | ---------------- |
+| llama-3.3-70b-versatile            | 30  | 1,000  | 12K | Text             |
+| llama-3.1-8b-instant               | 30  | 14,400 | 6K  | Text             |
+| llama-4-scout-17b-16e-instruct     | 30  | 1,000  | 30K | Text+Vision      |
+| llama-4-maverick-17b-128e-instruct | 30  | 1,000  | 6K  | Text+Vision      |
+| qwen3-32b                          | 60  | 1,000  | 6K  | Text             |
+| kimi-k2-instruct                   | 60  | 1,000  | 10K | Text             |
+| gpt-oss-120b / gpt-oss-20b         | 30  | 1,000  | 8K  | Text             |
+| deepseek-r1-distill-70b            | 30  | 14,400 | —   | Text (reasoning) |
+| whisper-large-v3 / v3-turbo        | 20  | 2,000  | —   | Audio→Text       |
+
+###### Cerebras 🇺🇸
+
+🔗 [Get API Key](https://cloud.cerebras.ai/) · Base URL: `https://api.cerebras.ai/v1`
+
+Wafer-scale chip inference (~2,600 tok/s). 1M tokens/day cap.
+
+| Model                          | RPM | RPH | RPD    | TPM | TPD |
+| ------------------------------ | --- | --- | ------ | --- | --- |
+| gpt-oss-120b                   | 30  | 900 | 14,400 | 64K | 1M  |
+| llama3.1-8b                    | 30  | 900 | 14,400 | 60K | 1M  |
+| qwen-3-235b-a22b-instruct-2507 | 30  | 900 | 14,400 | 60K | 1M  |
+| zai-glm-4.7                    | 10  | 100 | 100    | 60K | 1M  |
+
+###### NVIDIA NIM 🇺🇸
+
+🔗 [Explore Models](https://build.nvidia.com/explore/discover) · Base URL: `https://integrate.api.nvidia.com/v1`
+
+Free with NVIDIA Developer Program. **129 models**, 40 RPM. Phone verification required.
+
+**Notable models:** DeepSeek-R1, DeepSeek-V3.2, Nemotron Ultra 253B, Llama 3.1 405B, Qwen3 Coder 480B, Mistral Large 3, Kimi K2, GLM-5.1, MiniMax M2.7, Gemma 4 31B, + 100 more.
+
+###### OpenRouter 🇺🇸
+
+🔗 [Get API Key](https://openrouter.ai/keys) · Base URL: `https://openrouter.ai/api/v1`
+
+35+ free models (suffix `:free`). 20 RPM.
+
+| Credits Purchased | RPD   |
+| ----------------- | ----- |
+| < $10             | 50    |
+| ≥ $10 (one-time)  | 1,000 |
+
+**Notable free models:** DeepSeek R1, DeepSeek V3, Qwen3 Coder 480B, Llama 4 Scout/Maverick, GPT-OSS 120B, Nemotron 3 Super 120B, MiniMax M2.5, Gemma 4 31B, Devstral, + 23 more.
+
+###### GitHub Models 🇺🇸
+
+🔗 [Marketplace](https://github.com/marketplace/models) · Base URL: `https://models.inference.ai.azure.com`
+
+Free for all GitHub users. 45+ models including frontier models.
+
+| Tier                    | RPM | RPD | Tokens/Request |
+| ----------------------- | --- | --- | -------------- |
+| Low tier models         | 15  | 150 | 8K in / 4K out |
+| High tier models        | 10  | 50  | 8K in / 4K out |
+| DeepSeek-R1 / MAI-DS-R1 | 1   | 8   | 4K in / 4K out |
+| Grok-3                  | 1   | 15  | 4K in / 4K out |
+
+**Notable models:** GPT-4.1, GPT-4o, GPT-5, GPT-5-mini, o3-mini, o4-mini, DeepSeek-R1, Llama 4 Scout/Maverick, Codestral, Mistral Medium 3, Phi-4, Grok-3.
+
+###### Cloudflare Workers AI 🇺🇸
+
+🔗 [Get Token](https://dash.cloudflare.com/profile/api-tokens) · 10,000 Neurons/day free. 50+ models.
+
+**Notable models:** Llama 3.3 70B, Llama 4 Scout, Qwen3 30B-A3B, QwQ 32B, DeepSeek R1 Distill, Gemma 4 26B, GLM 4.7 Flash, Nemotron 3 120B, Kimi K2.5/K2.6, Mistral Small 3.1, GPT-OSS 120B/20B, + 40 more.
+
+###### Hugging Face 🇺🇸
+
+🔗 [Get Token](https://huggingface.co/settings/tokens) · Base URL: `https://api-inference.huggingface.co/v1`
+
+$0.10/month free credits (auto-replenished). Thousands of models. Serverless limited to <10GB models.
+
+###### Ollama Cloud 🇺🇸
+
+🔗 [Get Key](https://ollama.com/settings/keys) · Base URL: `https://api.ollama.com`
+
+400+ models. Session/weekly limits (unpublished). NOT OpenAI SDK-compatible.
+
+**Notable models:** GPT-OSS 120B, DeepSeek V3.2/V4, Kimi K2/K2.5/K2.6, GLM-5/5.1, Qwen3 Coder 480B, Gemini 3 Flash, MiniMax M2.7, Cogito 2.1 671B, Nemotron 3 Super 120B.
+
+###### Pollinations AI 🇩🇪
+
+🔗 [Get Key](https://enter.pollinations.ai) · Base URL: `https://gen.pollinations.ai/v1`
+
+No sign-up required for basic use. Unique: **text + image + video + audio** all free.
+
+**Text models:** openai, openai-large, openai-reasoning, gemini, mistral, llama.
+**Image models:** flux, gpt-image, seedream, kontext.
+**Video:** wan-fast. **Audio:** tts-1, 30+ ElevenLabs voices.
+
+###### SiliconFlow 🇨🇳
+
+🔗 [Get Key](https://cloud.siliconflow.cn/account/ak) · Base URL: `https://api.siliconflow.cn/v1`
+
+14 CNY signup credits. Permanently free models: 1,000 RPM, 50K TPM.
+
+| Model                       | Context | Modality         |
+| --------------------------- | ------- | ---------------- |
+| Qwen/Qwen3-8B               | 131K    | Text             |
+| DeepSeek-R1-0528-Qwen3-8B   | ~33K    | Text (reasoning) |
+| DeepSeek-R1-Distill-Qwen-7B | 131K    | Text (reasoning) |
+| THUDM/glm-4-9b-chat         | 32K     | Text             |
+| THUDM/GLM-4.1V-9B-Thinking  | 66K     | Vision+Text      |
+| DeepSeek-OCR                | —       | Vision (OCR)     |
+
+###### Kilo Code 🇺🇸
+
+🔗 [Get Key](https://kilo.ai) · Base URL: `https://api.kilo.ai/api/gateway`
+
+Free models, no credit card. ~200 req/hr. Auto-router `kilo-auto/free`.
+
+###### LLM7.io 🇬🇧
+
+🔗 [Get Token](https://token.llm7.io) · Base URL: `https://api.llm7.io/v1`
+
+30+ models. 15 RPM (30 RPM with free token). No registration for basic access.
+
+###### Kluster AI 🇺🇸
+
+🔗 [Get Key](https://platform.kluster.ai/apikeys) · DeepSeek-R1, Llama 4 Maverick, Qwen3-235B + more.
+
+###### OpenCode Zen
+
+🔗 [Docs](https://opencode.ai/docs/zen/) · Free models (Big Pickle Stealth, MiniMax M2.5 Free, Arcee Large).
+
+###### Vercel AI Gateway
+
+🔗 [Docs](https://vercel.com/docs/ai-gateway) · $5/month free credits. Routes to various providers.
+
+---
+
+#### China-Based Providers
+
+###### ModelScope (魔搭社区) 🇨🇳
+
+🔗 [Get Token](https://modelscope.cn/my/myaccesstoken) · Base URL: `https://api-inference.modelscope.cn/v1`
+
+2,000 req/day total, ≤500/model/day. Requires Alibaba Cloud account + real-name verification.
+
+**Models:** DeepSeek V4 Pro/Flash, DeepSeek V3.2, GLM-5/5.1, MiniMax M2.5, Qwen3-235B, Qwen3 Coder 480B, Ling-2.6-1T.
+
+###### Tencent Hunyuan (腾讯混元)
+
+Hunyuan-Lite: free. Other models: 100M tokens free (1-year expiry).
+
+###### Volcengine (火山引擎)
+
+500 resource points/day. Tongyi Qwen free (100 calls/day). Doubao models with tiered pricing.
+
+###### ChatAnywhere
+
+🔗 Base URL: `https://api.chatanywhere.tech` · GPT-5.4-mini, DeepSeek-V4, and more.
+
+###### InternAI (书生)
+
+🔗 Base URL: `https://chat.intern-ai.org.cn/api/v1` · 10 RPM. Keys valid 6 months.
+
+**Models:** intern-latest, intern-s1-pro, internvl3.5-241b-a28b.
+
+###### Bigmodel (智谱)
+
+🔗 Base URL: `https://open.bigmodel.cn/api/paas/v4/` · 30 concurrent requests.
+
+**Models:** GLM-4-Flash, GLM-4V-Flash, GLM-4.1V-Thinking-Flash, GLM-4.6V-Flash, GLM-4.7-Flash.
+
+---
+
+#### Trial Credit Providers
+
+These offer one-time or time-limited credits (not permanent free tiers):
+
+| Provider                                                   | Credits          | Expiry   | Notable Models                |
+| ---------------------------------------------------------- | ---------------- | -------- | ----------------------------- |
+| [Baseten](https://app.baseten.co/)                         | $30              | —        | Any model (pay by compute)    |
+| [NLP Cloud](https://nlpcloud.com)                          | $15              | —        | Various open models           |
+| [AI21](https://studio.ai21.com/)                           | $10              | 3 months | Jamba family                  |
+| [Upstage](https://console.upstage.ai/)                     | $10              | 3 months | Solar Pro/Mini                |
+| [Modal](https://modal.com)                                 | $5/mo            | Monthly  | Any model (compute time)      |
+| [SambaNova](https://cloud.sambanova.ai/)                   | $5               | 3 months | Llama 3.3, Qwen3, DeepSeek R1 |
+| [Scaleway](https://console.scaleway.com/generative-api)    | 1M tokens        | One-time | Llama 3.3, Gemma 3, GPT-OSS   |
+| [Alibaba Cloud](https://bailian.console.alibabacloud.com/) | 1M tokens/model  | —        | Qwen family                   |
+| [Fireworks](https://fireworks.ai/)                         | $1               | —        | Various open models           |
+| [Nebius](https://tokenfactory.nebius.com/)                 | $1               | —        | Various open models           |
+| [Inference.net](https://inference.net)                     | $1 (+$25 survey) | —        | Various open models           |
+| [Hyperbolic](https://app.hyperbolic.ai/)                   | $1               | —        | DeepSeek V3, Llama 3.3        |
+| [Novita](https://novita.ai/)                               | $0.50            | 1 year   | Various open models           |
+
+---
+
+#### Using with OmniRoute
+
+OmniRoute supports **all providers listed above** as connections. Here's how to maximize free usage:
+
+###### 1. Add Multiple Free Providers
+
+```
+Dashboard → Providers → Add Connection
+```
+
+Add API keys for Groq, Cerebras, Mistral, Google Gemini, OpenRouter, GitHub Models, etc.
+
+###### 2. Create a Free-Tier Combo
+
+```
+Dashboard → Combos → Create Combo → Add all free providers as targets
+```
+
+Use the **"priority"** or **"round-robin"** strategy to distribute load across free tiers.
+
+###### 3. Recommended Free Combo Strategy
+
+| Priority | Provider          | Why                                           |
+| -------- | ----------------- | --------------------------------------------- |
+| 1        | **Groq**          | Fastest inference, 14,400 RPD on small models |
+| 2        | **Cerebras**      | 1M TPD, fast wafer-scale chips                |
+| 3        | **Mistral**       | 1B tokens/month, large model selection        |
+| 4        | **Google Gemini** | 1M context, multimodal                        |
+| 5        | **NVIDIA NIM**    | 129 models, 40 RPM                            |
+| 6        | **OpenRouter**    | 35+ free models as final fallback             |
+
+###### 4. Environment Variables
+
+```bash
+## These providers work out of the box with OmniRoute:
+GROQ_API_KEY=your-key
+CEREBRAS_API_KEY=your-key
+MISTRAL_API_KEY=your-key
+GOOGLE_AI_API_KEY=your-key
+NVIDIA_API_KEY=your-key
+OPENROUTER_API_KEY=your-key
+GITHUB_TOKEN=your-token
+CLOUDFLARE_API_TOKEN=your-token
+COHERE_API_KEY=your-key
+SILICONFLOW_API_KEY=your-key
+```
+
+###### 5. Estimated Free Capacity
+
+With all top-6 providers combined in a combo:
+
+| Metric | Combined Free Capacity |
+| -------------------- | ---------------------- |
+| **Requests/Day** | ~31,000+ RPD |
+| **Tokens/Month** | ~32B+ tokens |
+| **Models Available** | 200+ unique models |
+| **Cost** | $0.00 |
+
+---
+
+#### Glossary
+
+| Term | Meaning |
+| ----------- | ------------------------------------------- |
+| **RPM** | Requests per minute |
+| **RPD** | Requests per day |
+| **RPH** | Requests per hour |
+| **RPS** | Requests per second |
+| **TPM** | Tokens per minute |
+| **TPD** | Tokens per day |
+| **Neurons** | Cloudflare's compute unit (~1 output token) |
+
+---
+
+#### Sources
+
+This document consolidates data from 6 community repositories:
+
+| Repository | Focus |
+| -------------------------------------------------------------------------- | ------------------------------------------------ |
+| [awesome-free-llm-apis](https://github.com/mnfst/awesome-free-llm-apis) | Curated list with detailed model tables |
+| [awesome-free-llm-apis2](https://github.com/) | Extended list with speed tiers and code snippets |
+| [free-llm-api-resources](https://github.com/) | Auto-generated model lists with trial credits |
+| [Free-LLM-Collection](https://github.com/for-the-zero/Free-LLM-Collection) | Chinese + global providers with rate limits |
+| [FREE-LLM-API-Provider](https://github.com/CYBIRD-D/FREE-LLM-API-Provider) | Deep provider analysis with CN platforms |
+| [gpt4free](https://github.com/xtekky/gpt4free) | Config-based routing with quota awareness |
+
+> ⚠️ **Disclaimer:** Rate limits change frequently. Always verify with the provider's official documentation before relying on specific limits. Trial credits and time-limited promotions are separated from permanent free tiers.
+
+```
+
