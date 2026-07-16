@@ -1,6 +1,6 @@
 # Raw Response / Exception:
 
 ```text
-Object of type Result is not JSON serializable
+'dict' object has no attribute 'source_url'
 ```
 
