@@ -37,6 +37,34 @@ jobs:
         with:
           fetch-depth: 0 # Fetch all history so git commit can properly track branches
           token: ${{ secrets.PAT_SECRETS_MANAGER }}     # use personal access token `PAT` to for main workflow triggering by batch script parallel multi agents
+      
+      # Step 1.1: clean-up old files
+      - name: 🗑️ Find and remove expired files
+        env:
+          EXPIRED_DAYS: 5
+          FILE_NAME: "free_models_by_github_scapper"
+        run: |
+          TARGET_DIR="sources/output"
+          
+          echo "=== Scan for cleaning up expired output files: $TARGET_DIR ==="
+          
+          # not found folder; ignore
+          if [ ! -d "$TARGET_DIR" ]; then
+            echo "⚠️ Not found directory $TARGET_DIR for cleaning up."
+            exit 0
+          fi
+          
+          # 2. List deleted files for tracing
+          echo "Expired Files (> $EXPIRED_DAYS days):"
+          find "$TARGET_DIR" -type f -name "*-$FILE_NAME.json" -mtime +$EXPIRED_DAYS -print
+          find "$TARGET_DIR" -type f -name "*-$FILE_NAME.md" -mtime +$EXPIRED_DAYS -print
+          
+          # 3. Delete expired files
+          # use -exec rm -f {} + to remove all expired files
+          find "$TARGET_DIR" -type f -name "*-$FILE_NAME.json" -mtime +$EXPIRED_DAYS -exec rm -f {} +
+          find "$TARGET_DIR" -type f -name "*-$FILE_NAME.md" -mtime +$EXPIRED_DAYS -exec rm -f {} +
+          
+          echo "=== Finish Cleaning up ==="
 
       # Step 2: Establish a secure, isolated Python virtual execution environment
       - name: "⚙️ Configure Python runtime execution platform"
@@ -59,32 +87,32 @@ jobs:
         run: |
           TARGET_DIR="sources/output"
           # Prevent pipeline block execution if the target output file was not generated
-          if [ ! -f "${TARGET_DIR}/$FILE_NAME.json" ]; then
-              echo "::error::🚨 CRITICAL FAILURE: The scraper output payload '${TARGET_DIR}/$FILE_NAME.json' is missing."
-              exit 1
-          fi
+          if [ -f "${TARGET_DIR}/$FILE_NAME.json" ]; then
+            echo "📅 Fetching current system timestamp..."
+            # Generate current date in YYYY-MM-DD format
+            CURRENT_DATE=$(date +'%Y-%m-%d')
+            
+            echo "📁 Ensuring target destination directory exists..."
+            mkdir -p $TARGET_DIR
+            
+            echo "📝 Relocating and renaming output payload to ${TARGET_DIR}/${CURRENT_DATE}.json"
+            mv sources/output/$FILE_NAME.json "${TARGET_DIR}/${CURRENT_DATE}-$FILE_NAME.json"
+            if [ -f "${TARGET_DIR}/$FILE_NAME.md" ]; then
+              mv sources/output/$FILE_NAME.md "${TARGET_DIR}/${CURRENT_DATE}-$FILE_NAME.md"
+            fi
+            
+            echo "🔧 Configuring automated Git bot profile identity..."
+            git config --local user.email "github-actions[bot]@://github.com"
+            git config --local user.name "github-actions[bot]"
+            
+            echo "💾 Staging modified file vectors..."
+            git add "${TARGET_DIR}/${CURRENT_DATE}-$FILE_NAME.json"
+            if [ -f "${TARGET_DIR}/${CURRENT_DATE}-$FILE_NAME.md" ]; then
+              git add "${TARGET_DIR}/${CURRENT_DATE}-$FILE_NAME.md"
+            fi
           
-          echo "📅 Fetching current system timestamp..."
-          # Generate current date in YYYY-MM-DD format
-          CURRENT_DATE=$(date +'%Y-%m-%d')
-          
-          echo "📁 Ensuring target destination directory exists..."
-          mkdir -p $TARGET_DIR
-          
-          echo "📝 Relocating and renaming output payload to ${TARGET_DIR}/${CURRENT_DATE}.json"
-          mv sources/output/$FILE_NAME.json "${TARGET_DIR}/${CURRENT_DATE}-$FILE_NAME.json"
-          if [ -f "${TARGET_DIR}/$FILE_NAME.md" ]; then
-            mv sources/output/$FILE_NAME.md "${TARGET_DIR}/${CURRENT_DATE}-$FILE_NAME.md"
-          fi
-          
-          echo "🔧 Configuring automated Git bot profile identity..."
-          git config --local user.email "github-actions[bot]@://github.com"
-          git config --local user.name "github-actions[bot]"
-          
-          echo "💾 Staging modified file vectors..."
-          git add "${TARGET_DIR}/${CURRENT_DATE}-$FILE_NAME.json"
-          if [ -f "${TARGET_DIR}/${CURRENT_DATE}-$FILE_NAME.md" ]; then
-            git add "${TARGET_DIR}/${CURRENT_DATE}-$FILE_NAME.md"
+          else
+            echo "::warn::️⚠️ CRITICAL WARN: The scraper output payload '${TARGET_DIR}/$FILE_NAME.json' is missing."
           fi
           
           # Only commit if there are explicit architectural diff changes detected
