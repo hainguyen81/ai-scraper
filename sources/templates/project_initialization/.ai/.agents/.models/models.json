@@ -1,0 +1,314 @@
+[
+	{
+		"separator": "------------------ OPENROUTER ENDPOINTS BOUNDARY ------------------"
+	},
+	{
+		"model_name": "meta-llama/llama-3.3-70b-instruct:free",
+		"api_endpoint": "https://openrouter.ai/api/v1"
+	},
+	{
+		"model_name": "meta-llama/llama-3.3-70b-instruct",
+		"provider": "openrouter_free",
+		"api_endpoint": "https://openrouter.ai/api/v1",
+		"context_window": "128,000 tokens",
+		"best_for": "PERMANENT FREE - Clean instruction boundaries. Best for Tester Agent to compose strict JUnit 5 suites."
+	},
+	{
+		"model_name": "qwen/qwen-2.5-coder-32b-instruct:free",
+		"api_endpoint": "https://openrouter.ai/api/v1"
+	},
+	{
+		"model_name": "qwen/qwen-2.5-coder-32b-instruct",
+		"provider": "openrouter_free",
+		"api_endpoint": "https://openrouter.ai/api/v1",
+		"context_window": "128,000 tokens",
+		"best_for": "PERMANENT FREE - Dedicated source code engineering. Best for building enterprise Next.js layout blocks."
+	},
+	{
+		"model_name": "deepseek/deepseek-r1:free",
+		"api_endpoint": "https://openrouter.ai/api/v1"
+	},
+	{
+		"model_name": "google/gemma-4-31b-instruct",
+		"provider": "openrouter_free",
+		"api_endpoint": "https://openrouter.ai/api/v1",
+		"context_window": "256,000 tokens",
+		"best_for": "PERMANENT FREE - Resilient backup instance. Activates when primary model providers encounter network timeouts."
+	},
+	{
+		"model_name": "minimax/minimax-m3",
+		"provider": "openrouter_free",
+		"api_endpoint": "https://openrouter.ai/api/v1",
+		"context_window": "1,000,000 tokens",
+		"best_for": "PERMANENT FREE - Extensive long-context tracking. Best for validation of GCP and GKE delivery configs."
+	},
+	{
+		"separator": "------------------ GROQ CONSOLE ENDPOINTS BOUNDARY ------------------"
+	},
+	{
+		"model_name": "llama-3.3-70b-versatile",
+		"api_endpoint": "https://api.groq.com/openai/v1"
+	},
+	{
+		"model_name": "llama-3.3-70b-specdec",
+		"api_endpoint": "https://api.groq.com/openai/v1"
+	},
+	{
+		"model_name": "qwen/qwen-2.5-coder-32b-instruct:free",
+		"api_endpoint": "https://api.groq.com/openai/v1",
+		"best_for": "Coder Agent"
+	},
+	{
+		"model_name": "deepseek/deepseek-r1:free",
+		"api_endpoint": "https://api.groq.com/openai/v1",
+		"best_for": "Fixer Agent"
+	},
+	{
+		"model_name": "deepseek/deepseek-chat:free",
+		"api_endpoint": "https://api.groq.com/openai/v1",
+		"best_for": "Writer Agent"
+	},
+	{
+		"model_name": "meta-llama/llama-3.3-70b-instruct:free",
+		"api_endpoint": "https://api.groq.com/openai/v1",
+		"best_for": "Tester Agent"
+	},
+	{
+		"model_name": "qwen-2.5-coder-32b-instruct",
+		"provider": "groq_console",
+		"api_endpoint": "https://api.groq.com/openai/v1",
+		"context_window": "128,000 tokens",
+		"best_for": "FREE TIER - Instantaneous processing speed via LPU hardware. Exceptional for rapid syntax fixes."
+	},
+	{
+		"model_name": "meta-llama/llama-3.3-70b-specdec",
+		"provider": "groq_console",
+		"api_endpoint": "https://api.groq.com/openai/v1",
+		"context_window": "128,000 tokens",
+		"best_for": "FREE TIER - Speculative decoding layout optimized for accelerated multi-agent logic validation passes."
+	},
+	{
+		"separator": "------------------ SAMBANOVA ENDPOINTS BOUNDARY ------------------"
+	},
+	{
+		"model_name": "llama-3.3-70b-versatile",
+		"api_endpoint": "https://api.sambanova.ai/v1",
+		"best_for": "Tester / Writer Agent",
+		"context_window": "128,000 tokens"
+	},
+	{
+		"model_name": "qwen-2.5-coder-32b",
+		"api_endpoint": "https://api.sambanova.ai/v1",
+		"best_for": "Coder Agent",
+		"context_window": "32,000 tokens"
+	},
+	{
+		"model_name": "deepseek-r1-distill-llama-70b",
+		"api_endpoint": "https://api.sambanova.ai/v1",
+		"best_for": "Fixer / Reviewer Agent",
+		"context_window": "128,000 tokens"
+	},
+	{
+		"model_name": "Meta-Llama-3.3-70b-Instruct",
+		"api_endpoint": "https://api.sambanova.ai/v1"
+	},
+	{
+		"model_name": "qwen-2.5-coder-32b-instruct",
+		"api_endpoint": "https://api.sambanova.ai/v1"
+	},
+	{
+		"model_name": "deepseek-r1",
+		"api_endpoint": "https://api.sambanova.ai/v1"
+	},
+	{
+		"model_name": "qwen-2.5-coder-32b-instruct",
+		"provider": "sambanova_cloud",
+		"api_endpoint": "https://api.sambanova.ai/v1",
+		"context_window": "128,000 tokens",
+		"best_for": "FREE DEVELOPER TIER - Ultra-fast tokens token-per-second generation. Best for rapid parsing of rough code drafts."
+	},
+	{
+		"separator": "------------------ GOOGLE AI STUDIO ENDPOINTS BOUNDARY ------------------"
+	},
+	{
+		"model_name": "gemini-2.5-pro",
+		"provider": "google_ai_studio",
+		"api_endpoint": "https://generativelanguage.googleapis.com/v1beta/openai",
+		"context_window": "2,000,000 tokens",
+		"best_for": "FREE TIER - Massive context ingestion. Best for Coder Agent to parse deep multi-tenant code rules."
+	},
+	{
+		"model_name": "gemini-2.5-flash",
+		"provider": "google_ai_studio",
+		"api_endpoint": "https://generativelanguage.googleapis.com/v1beta/openai",
+		"context_window": "1,000,000 tokens",
+		"best_for": "FREE TIER - Ultra-fast execution speed. Best for Doc Agent to write system architecture charts."
+	},
+	{
+		"model_name": "gemini-2.0-flash-exp",
+		"provider": "google_ai_studio",
+		"api_endpoint": "https://generativelanguage.googleapis.com/v1beta/openai",
+		"context_window": "1,000,000 tokens",
+		"best_for": "FREE TIER - Ultra-fast execution speed. Best for Doc Agent to write system architecture charts."
+	},
+	{
+		"separator": "------------------ DEEPSEEK PLATFORM ENDPOINTS BOUNDARY ------------------"
+	},
+	{
+		"model_name": "deepseek-v4-flash",
+		"provider": "deepseek_platform",
+		"api_endpoint": "https://api.deepseek.com/v1",
+		"context_window": "1,000,000 tokens",
+		"best_for": "FREE CREDITS - Elite coding capabilities. Best for Bug Fixer Agent to handle compiler stack traces."
+	},
+	{
+		"model_name": "deepseek-v4-pro",
+		"provider": "deepseek_platform",
+		"api_endpoint": "https://api.deepseek.com/v1",
+		"context_window": "1,000,000 tokens",
+		"best_for": "FREE CREDITS - Deep reasoning logic. Best for non-duplicable QR processing and dynamic partition logic."
+	},
+	{
+		"separator": "------------------ FIREWORKS AI ENDPOINTS BOUNDARY ------------------"
+	},
+	{
+		"model_name": "qwen-2.5-coder-32b",
+		"provider": "fireworks_ai",
+		"api_endpoint": "https://api.fireworks.ai/inference/v1",
+		"context_window": "128,000 tokens",
+		"best_for": "FREE DEVELOPER CREDITS - Extremely structured JSON schema output enforcement. Ideal for pipeline automated configs parsing."
+	},
+	{
+		"model_name": "meta/llama-3.3-70b-instruct",
+		"provider": "fireworks_ai",
+		"api_endpoint": "https://api.fireworks.ai/inference/v1",
+		"context_window": "128,000 tokens",
+		"best_for": "FREE DEVELOPER CREDITS - Robust architectural auditing context layout engine for the Fixer Agent compile gates."
+	},
+	{
+		"separator": "------------------ MISTRAL AI ENDPOINTS BOUNDARY ------------------"
+	},
+	{
+		"model_name": "codestral-latest",
+		"provider": "mistral_ai",
+		"api_endpoint": "https://api.mistral.ai/v1",
+		"context_window": "32,000 tokens",
+		"best_for": "FREE DEVELOPER ACCOUNT - Premium Java compilation metrics. Best for designing Quarkus non-blocking modules."
+	},
+	{
+		"model_name": "mistral-large-latest",
+		"provider": "mistral_ai",
+		"api_endpoint": "https://api.mistral.ai/v1",
+		"context_window": "128,000 tokens",
+		"best_for": "Reviewer / Tester Agent"
+	},
+	{
+		"model_name": "mistral-small-latest",
+		"provider": "mistral_ai",
+		"api_endpoint": "https://api.mistral.ai/v1",
+		"context_window": "128,000 tokens",
+		"best_for": "Tester Agent"
+	},
+	{
+		"separator": "------------------ CEREBRAS CLOUD ENDPOINTS BOUNDARY ------------------"
+	},
+	{
+		"model_name": "llama3.3-70b",
+		"provider": "cerebras_cloud",
+		"api_endpoint": "https://api.cerebras.ai/v1",
+		"context_window": "128,000 tokens",
+		"best_for": "FREE BETA TIER - Hyper-speed inference execution metrics. Resolves light component tasks in sub-second timelines."
+	},
+	{
+		"separator": "------------------ NVIDIA (LEPTON) CLOUD ENDPOINTS BOUNDARY ------------------"
+	},
+	{
+		"model_name": "meta-llama/llama-3.3-70b-instruct",
+		"provider": "nvidia_lepton_ai",
+		"api_endpoint": "https://integrate.api.nvidia.com/v1",
+		"context_window": "128,000 tokens",
+		"best_for": "FREE TIER SANDBOX - Confined deployment script verifier. Cross-checks GCP deployment parameters cleanly before build execution."
+	},
+	{
+		"model_name": "deepseek/deepseek-r1",
+		"provider": "nvidia_lepton_ai",
+		"api_endpoint": "https://integrate.api.nvidia.com/v1",
+		"context_window": "128,000 tokens",
+		"best_for": "Fixer Agent"
+	},
+	{
+		"model_name": "nvidia/nemotron-4-340b-instruct",
+		"provider": "nvidia_lepton_ai",
+		"api_endpoint": "https://integrate.api.nvidia.com/v1",
+		"context_window": "128,000 tokens",
+		"best_for": "Coder / Writer Agent"
+	},
+	{
+		"separator": "------------------ GITHUB CLOUD ENDPOINTS BOUNDARY ------------------"
+	},
+	{
+		"model_name": "gpt-4o-mini",
+		"provider": "github_ai",
+		"api_endpoint": "https://models.github.ai/inference",
+		"context_window": "128,000 tokens",
+		"best_for": "Coder / Writer Agent"
+	},
+	{
+		"model_name": "phi-4",
+		"provider": "github_ai",
+		"api_endpoint": "https://models.github.ai/inference",
+		"context_window": "16,384 tokens",
+		"best_for": "Tester Agent"
+	},
+	{
+		"model_name": "codestral-2501",
+		"provider": "github_ai",
+		"api_endpoint": "https://models.github.ai/inference",
+		"context_window": "32,000 tokens",
+		"best_for": "Fixer / Reviewer Agent"
+	},
+	{
+		"separator": "------------------ KILO CLOUD ENDPOINTS BOUNDARY ------------------"
+	},
+	{
+		"model_name": "kilo-auto/free",
+		"provider": "kilo_ai",
+		"api_endpoint": "https://api.kilo.ai/api/gateway",
+		"context_window": "128,000 tokens",
+		"best_for": "Coder / Tester Agent"
+	},
+	{
+		"model_name": "minimax/minimax-m2.5:free",
+		"provider": "kilo_ai",
+		"api_endpoint": "https://api.kilo.ai/api/gateway",
+		"context_window": "128,000 tokens",
+		"best_for": "Reviewer Agent"
+	},
+	{
+		"model_name": "stepfun/step-3.5-flash:free",
+		"provider": "kilo_ai",
+		"api_endpoint": "https://api.kilo.ai/api/gateway",
+		"context_window": "256,000 tokens",
+		"best_for": "Reviewer Agent"
+	},
+	{
+		"separator": "------------------ COHERE CLOUD ENDPOINTS BOUNDARY ------------------"
+	},
+	{
+		"model_name": "command-r-plus",
+		"provider": "cohere_ai",
+		"api_endpoint": "https://api.cohere.ai/compatibility/v1",
+		"context_window": "128,000 tokens",
+		"best_for": "Reviewer Agent"
+	},
+	{
+		"model_name": "command-r7b",
+		"provider": "cohere_ai",
+		"api_endpoint": "https://api.cohere.ai/compatibility/v1",
+		"context_window": "128,000 tokens",
+		"best_for": "Tester Agent"
+	}
+]
+
+
+

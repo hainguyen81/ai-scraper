@@ -1,0 +1,115 @@
+# ==============================================================================
+# ☁️ GCP GAR SUB-AGENT CONTAINER ARTIFACT PUBLICATION WORKFLOW
+# ==============================================================================
+# Activated via --release flags to build production GraalVM binaries.
+# Tags and streams artifacts safely straight into Google Artifact Registry.
+# ==============================================================================
+
+name: "☁️ GCP GAR Agent Worker"
+
+on:
+  workflow_call:
+    inputs:
+      phase:
+        description: '🗂️ Target Phase indicator passed from master pipeline'
+        required: true
+        type: string
+      day:
+        description: '📆 Target operational execution Day number'
+        required: true
+        type: string
+
+# permissions for GitHub Actions READ/WRITE
+permissions:
+  contents: write
+  packages: write
+  id-token: write
+
+# enviroment
+env:
+  ACTIONS_ALLOW_USE_UNSECURE_NODE_VERSION: true
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
+  LANG: 'C.UTF-8'
+  LC_ALL: 'C.UTF-8'
+
+jobs:
+  execute_gcp:
+    name: "☁️ Compile and Publish Cloud Native Images to GAR"
+    runs-on: ubuntu-latest
+    
+    steps:
+      # Check whether allow for running workflow
+      - name: 🛡️ Gatekeeper - Validate Administrative Access
+        env:
+          ALLOW_AGENTS: ${{ secrets.ALLOW_AGENTS }}
+        if: ${{ env.ALLOW_AGENTS != 'true' }}
+        run: |
+          echo "❌ Deployment is administratively DISABLED via GitHub Secrets (secrets.ALLOW_AGENTS is not true)."
+          echo "Terminating pipeline execution immediately to protect production infrastructure."
+          exit 1 # Require Admin Rights
+      
+      # Step 1: Clone the active daily isolated feature branch into the runner execution pool
+      - name: "📦 Clone Workspace Branch Assets"
+        uses: actions/checkout@v7
+        with:
+          ref: "features/development-day-${{ inputs.day }}"
+          path: '.'
+          fetch-depth: 0
+          clean: true
+      
+      # Step 1.1: Debug project check-out structure
+      - name: "⚙️ Config $PROJECT_WORKSPACE enviroment after checking out"
+        id: project-workspace
+        run: |
+          CURRENT_PWD=$(pwd)
+          echo "PROJECT_WORKSPACE=$CURRENT_PWD" >> $GITHUB_ENV
+          echo "project_workspace=$CURRENT_PWD" >> $GITHUB_OUTPUT
+          echo "⚙️ >> PROJECT_WORKSPACE: $CURRENT_PWD"
+          
+          # Debug step: Verify files exist physically in the workspace console log before AI execution path starts
+          echo "🐛 [DEBUG] Auditing active workspace files presence (../../):"
+          ls -la ../../
+          echo "🐛 [DEBUG] Auditing active workspace files presence (../):"
+          ls -la ../
+          echo "🐛 [DEBUG] Auditing active workspace files presence (./):"
+          ls -la ./
+          echo "🐛 [DEBUG] Auditing active workspace files presence (membership-hub/):"
+          if [ -d "membership-hub" ]; then ls -la membership-hub/; fi
+          echo "🐛 [DEBUG] Auditing active workspace files presence (.ai/):"
+          if [ -d ".ai" ]; then ls -la .ai/; fi
+      
+      # Step 2: Provision a clean Python 3.10 virtual space to handle shell authentication tasks
+      - name: "🐍 Provision Python 3.10 Sandboxed Runtime"
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.10'
+
+      # Step 3: Activate service account mappings and push built binary structures into private GCP repos
+      - name: "☁️ Trigger Google Artifact Registry Publication Core Layer"
+        working-directory: ${{ env.PROJECT_WORKSPACE }}
+        env:
+          PROJECT_WORKSPACE: ${{ env.PROJECT_WORKSPACE }}
+          GCP_SECRETS: ${{ secrets.GCP_SECRETS }}
+        run: |
+          echo "☁️ Connecting to Google Cloud SDK components to route compiled GAR assets..."
+          python3 .ai/.agents/.sub-agents/agent-gcp.py --phase "${{ inputs.phase }}" --day "${{ inputs.day }}"
+      
+      # if running stanalone
+      - name: "🚀 Standalone Push - Secure Isolated Code Assets"
+        # conditions in run script
+        shell: bash
+        run: |
+          echo "🧩 Executing immediate isolated branch push for Coder Agent..."
+          
+          # config GIT
+          git config --local user.name "github-actions[bot]"
+          git config --local user.email "github-actions[bot]@://github.com"
+          
+          # add all agent works
+          git add -A
+          
+          # Commit/Push to branch
+          BRANCH_NAME="features/development-day-${{ inputs.day }}"
+          git commit -m "feat(coder-standalone): dynamic architecture layer compiled for Day ${{ inputs.day }} [AI Test]" || true
+          git push origin HEAD:"refs/heads/$BRANCH_NAME" --force
+          echo "✅ Standalone assets successfully pushed upstream to origin/$BRANCH_NAME"
