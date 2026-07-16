@@ -98,10 +98,10 @@ class SemanticSearchScraper:
 if __name__ == "__main__":
     # Substitute with your actual Exa AI token key credentials
     parser = argparse.ArgumentParser()
-    parser.add_argument("--gemini-api-key", required=True)
+    parser.add_argument("--exa-api-key", required=True)
     args = parser.parse_args()
     
-    exaApiKey = args['exa-api-key'] if args else None
+    exaApiKey = args.exa_api_key if args else None
     
     if exaApiKey:
         scraper = SemanticSearchScraper(exa_api_key=exaApiKey)
