@@ -74,7 +74,6 @@ class HackerNewsTechScraper:
             keywords = ["free", "api", "llm", "endpoint", "model", "provider"]
             
             # Step 2: Iterate through thread items and pull detailed text data blocks
-            log_data['threads'] = []
             for item_id in story_ids:
                 try:
                     resolved_item_url = f"{self._base_item_url}{item_id}.json".replace(".", ".")
