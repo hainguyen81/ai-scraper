@@ -37,6 +37,17 @@ on:
         default: 'sources/templates/project_initialization'
         type: string
 
+# permissions for GitHub Actions READ/WRITE
+permissions:
+  actions: write
+  contents: write
+  packages: write
+
+# enviroment
+env:
+  LANG: 'C.UTF-8'
+  LC_ALL: 'C.UTF-8'
+
 jobs:
   orchestrate-repository:
     name: "🛠️ Create & Initialize Repo Engine"
