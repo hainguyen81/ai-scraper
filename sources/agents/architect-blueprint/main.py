@@ -70,6 +70,7 @@ def run_architect_agent(project_name: str, requirements_path: str, num_phases: i
         return
     
     # 2. Execute Block 2 Module
+    global_context_text = result
     result = generate_phase_contexts(
         client=client,
         model_name=api_model_phase,
