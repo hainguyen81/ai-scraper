@@ -70,7 +70,8 @@ class SemanticSearchScraper:
             )
             
             scraped_payload = []
-            self.write_log(result.url, search_query, str(response.results))
+            urls = "\n".join([result.url for result in response.results])
+            self.write_log(urls, search_query, response.results)
             for result in response.results:
                 scraped_payload.append({
                     "source_title": result.title,
