@@ -67,7 +67,7 @@ class HackerNewsTechScraper:
             with urllib.request.urlopen(req) as resp:
                 raw_data = resp.read().decode("utf-8")
                 json_story_ids = json.loads(raw_data)
-                log_data['story_ids'] = json_story_ids
+                log_data['story_ids'] = json_story_ids if json_story_ids else raw_data
                 story_ids: List[int] = json_story_ids[:scan_limit]
                 
             matching_threads = []
@@ -105,6 +105,7 @@ class HackerNewsTechScraper:
                     continue
             
             # write log
+            logger.info(f"Raw log data: {str(log_data)}")
             self.write_log(log_data)
                         
             logger.info(f"Community scanning pipeline complete. Found {len(matching_threads)} relevant API topics.")
