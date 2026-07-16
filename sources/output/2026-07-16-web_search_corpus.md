@@ -1,6 +1,6 @@
 # Raw Response / Exception:
 
 ```text
-cannot access local variable 'result' where it is not associated with a value
+Object of type Result is not JSON serializable
 ```
 
