@@ -42,12 +42,17 @@ class SemanticSearchScraper:
     
     def write_log(self, url, query, raw_content):
         pattern = r"\{.*\}|\[.*\]"
-        raw_content = json_raw_content(raw_content)
-        is_json = bool(re.search(pattern, raw_content, re.DOTALL))
+        if isinstance(raw_content, (list, dict)):
+            json_string = json.dumps(raw_content, indent=4, ensure_ascii=False)
+            is_json = True
+        else:
+            json_string = json_raw_content(raw_content)
+            pattern = r"\{.*\}|\[.*\]"
+            is_json = bool(re.search(pattern, json_string, re.DOTALL))
         log_content = (
             f"# Source:\n\n{url}\n\n"
             f"# Query:\n\n{query}\n\n"
-            f"# Raw Response / Exception:\n\n```json\n{raw_content}\n```\n\n" if is_json else f"# Raw Response / Exception:\n\n```text\n{raw_content}\n```\n\n"
+            f"# Raw Response / Exception:\n\n```json\n{json_string}\n```\n\n" if is_json else f"# Raw Response / Exception:\n\n```text\n{json_string}\n```\n\n"
         )
         os.makedirs(os.path.dirname(agent_working_history_file), exist_ok=True)
         with open(agent_working_history_file, "a", encoding="utf-8") as file:
