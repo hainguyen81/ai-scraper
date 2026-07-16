@@ -81,7 +81,7 @@ jobs:
         # OpenAI
         API_KEY: ${{ secrets.API_KEY }}
         API_ENDPONT: ${{ secrets.API_ENDPOINT }}
-        API_MODEL: ${{ secrets.API_MODEL }}
+        API_MODEL: ${{ secrets.API_BLUEPRINT_MODEL }}
         
         # Python environment
         PYTHONPATH: ${{ github.workspace }} # force Python load folder structure, including 'sources'
