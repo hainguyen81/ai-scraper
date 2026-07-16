@@ -101,7 +101,8 @@ jobs:
         echo "📂 Target Destination Directory: $OUT_DIR"
         
         # Execute the python architect core script with the dynamic paths
-        python sources/agents/architect-blueprint/main.py --project-name "$PROJECT_NAME" --req "$REQUIREMENTS_FILE" --phases $NUM_PHASES --out "$OUT_DIR"
+        cd sources/agents/architect-blueprint
+        python main.py --project-name "$PROJECT_NAME" --req "$REQUIREMENTS_FILE" --phases $NUM_PHASES --out "$OUT_DIR"
 
     # Step 5: Automatically stage, commit, and push the generated architecture files
     - name: 🚀 Commit and Push Blueprint Changes
