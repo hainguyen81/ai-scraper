@@ -1,39 +1,63 @@
 # PHASE 2 CONTEXT BLUEPRINT: test-ai-architecture
 ## 1. Phase Operational Scope & Objectives
-The primary objective of Phase 2 is to develop the backend of the membership-hub project using Quarkus, Kafka, and Postgres, with a focus on scalability and security. This phase will cover the design and implementation of the backend architecture, including the development of APIs, database schema, and integration with Kafka for messaging. The scope of this phase includes:
+The primary objective of Phase 2 is to develop the backend of the membership-hub project using Quarkus, Kafka, and Postgres. This phase will focus on building the core functionalities of the application, including user management, attendance tracking, and notification systems. The scope of this phase includes:
 
-* Designing and implementing the backend architecture
-* Developing APIs for user management, attendance tracking, and notification systems
-* Integrating Kafka for messaging and notification purposes
-* Implementing authentication and authorization using OAuth 2.0
-* Ensuring scalability and security of the backend system
+* Designing and implementing the database schema for user management and attendance tracking
+* Developing the backend API for user authentication, registration, and profile management
+* Integrating Kafka for real-time notification handling
+* Building the attendance tracking system with QR code scanning functionality
+* Implementing notification systems for SMS, Zalo, and in-app notifications
 
 ## 2. Allowed Technical Scope & Directory Boundaries (Files, paths, and endpoints)
-The technical scope of this phase includes:
+The technical scope for Phase 2 includes:
 
-* Backend directory: `src/main/java`
-* API endpoints: `/api/v1/users`, `/api/v1/attendance`, `/api/v1/notifications`
-* Database schema: `membership_hub_db`
-* Kafka topics: `attendance_topic`, `notification_topic`
-* Authentication and authorization: `oauth2`
-* Allowed dependencies: Quarkus, Kafka, Postgres, OAuth 2.0
+* Backend development using Quarkus, Kafka, and Postgres
+* Containerization using Docker
+* API endpoint development for user management and attendance tracking
+* Integration with Firebase, Google, and Facebook for external authentication
+* Development of notification systems using Kafka
+
+Directory boundaries:
+
+* `src/main/java`: Quarkus backend code
+* `src/main/resources`: Database schema and configuration files
+* `src/test/java`: Unit tests and integration tests for backend code
+* `docker`: Dockerfile and containerization configuration
+* `kafka`: Kafka configuration and notification handling code
+
+Endpoints:
+
+* `/api/v1/users`: User management API endpoints
+* `/api/v1/attendance`: Attendance tracking API endpoints
+* `/api/v1/notifications`: Notification systems API endpoints
 
 ## 3. Dedicated Sub-Agent Functional Directives (Specific tasks for Coder, Tester, Reviewer, DevOps)
-The following sub-agents will be involved in this phase:
-
-* **Coder**: Develop the backend APIs, integrate Kafka, and implement authentication and authorization
-* **Tester**: Develop unit tests and integration tests for the backend APIs and Kafka integration
-* **Reviewer**: Review the code for quality, security, and best practices
-* **DevOps (Docker)**: Containerize the backend application and ensure seamless deployment and scaling
-* **DevOps (Deployer)**: Deploy the backend application to GCP and GKE, ensuring smooth transitions to production and minimizing downtime
+* **Coder**:
+	+ Develop the backend API for user management and attendance tracking
+	+ Implement Kafka integration for real-time notification handling
+	+ Build the attendance tracking system with QR code scanning functionality
+* **Tester**:
+	+ Develop unit tests and integration tests for backend code
+	+ Test API endpoints for user management and attendance tracking
+	+ Test notification systems for SMS, Zalo, and in-app notifications
+* **Reviewer**:
+	+ Review backend code for quality and compliance with coding standards
+	+ Review database schema and configuration files
+	+ Review API endpoint documentation and testing coverage
+* **DevOps**:
+	+ Configure Docker containerization for backend code
+	+ Deploy backend code to GCP using GKE
+	+ Configure monitoring and logging for backend code
 
 ## 4. Phase Definition of Done (DoD)
 The Definition of Done for Phase 2 includes:
 
-* All backend APIs are developed and tested
-* Kafka integration is complete and tested
-* Authentication and authorization are implemented and tested
-* Backend application is containerized and deployed to GCP and GKE
-* All unit tests and integration tests pass
-* Code review is complete and all feedback is addressed
-* Deployment to production is successful and verified
+* All backend API endpoints are developed and tested
+* Kafka integration is complete and functional
+* Attendance tracking system with QR code scanning functionality is built and tested
+* Notification systems for SMS, Zalo, and in-app notifications are developed and tested
+* Backend code is reviewed and meets coding standards
+* Docker containerization is configured and deployed to GCP using GKE
+* Monitoring and logging are configured for backend code
+
+The phase is considered complete when all the above criteria are met, and the backend code is fully functional and deployable to production.
