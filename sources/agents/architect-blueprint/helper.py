@@ -101,7 +101,7 @@ def parseOpenAIResponseJsonData(response):
 
     # Pattern 3: Hardened bracket boundary locator leveraging non-greedy isolation
     # Fixes the broken greedy regex logic to ensure text outside the curly braces is safely ignored
-    json_match = re.search(r"(\{[\s\S]*?\})", raw_data, re.DOTALL)
+    json_match = re.search(r"(\{[\s\S]*\})", raw_data, re.DOTALL)
     if json_match:
         try:
             clean_json_str = json_match.group(1).strip()
