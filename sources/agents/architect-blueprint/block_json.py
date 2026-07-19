@@ -55,29 +55,29 @@ def dynamic_transform(json_data, project_name: str, phase_idx: int, template_fil
         print(f" │   └── ⚠️ The mapping JSON file not found: {template_file_path}. So using manual transform...")
         return manual_transform(json_data, project_name, phase_idx)
     
-    # 1. read mapping configuration
-    with open(template_file_path, "r", encoding="utf-8") as f:
-        template_content = f.read()
-    
-    # custom field mapping
-    json_data['project_name'] = project_name.lower()
-    json_data['global_context_file'] = project_context_file(project_name)
-    json_data['phase_idx'] = phase_idx
-    json_data['phase_context_file'] = phase_context_file(phase_idx)
-    
-    # 2. Render template using Jinja2 with AI json data
-    # wrap AI json data to variable `ai` in mapping config file to use
-    jinja_template = Template(template_content)
-    rendered_str = jinja_template.render(ai=json_data)
-    
-    # 3. Clean up redundant comma (,) by Jinja in JSON Array
-    # Process cases: [..., {obj}, ] hoặc [ , {obj} ]
-    cleaned_str = re.sub(r',\s*\]', ']', rendered_str)
-    cleaned_str = re.sub(r'\[\s*,', '[', cleaned_str)
-    cleaned_str = re.sub(r',\s*\}', '}', cleaned_str)
-    
-    # 4. Parse result JSON after rendering by Jinja
     try:
+        # 1. read mapping configuration
+        with open(template_file_path, "r", encoding="utf-8") as f:
+            template_content = f.read()
+        
+        # custom field mapping
+        json_data['project_name'] = project_name.lower()
+        json_data['global_context_file'] = project_context_file(project_name)
+        json_data['phase_idx'] = phase_idx
+        json_data['phase_context_file'] = phase_context_file(phase_idx)
+        
+        # 2. Render template using Jinja2 with AI json data
+        # wrap AI json data to variable `ai` in mapping config file to use
+        jinja_template = Template(template_content)
+        rendered_str = jinja_template.render(ai=json_data)
+        
+        # 3. Clean up redundant comma (,) by Jinja in JSON Array
+        # Process cases: [..., {obj}, ] hoặc [ , {obj} ]
+        cleaned_str = re.sub(r',\s*\]', ']', rendered_str)
+        cleaned_str = re.sub(r'\[\s*,', '[', cleaned_str)
+        cleaned_str = re.sub(r',\s*\}', '}', cleaned_str)
+        
+        # 4. Parse result JSON after rendering by Jinja
         return json.loads(cleaned_str)
     except json.JSONDecodeError as e:
         print(f" │   └── ❌ Exception while mapping JSON: { str(e) }. So using manual transform...")
@@ -131,6 +131,9 @@ def convert_phases_to_json(client: OpenAI, model_name: str, project_name: str, n
     Guarantees no invalid text pollution using Pydantic typing patterns.
     """
     print(f"⚙️  [BLOCK 3] Translating Phase Markdown files into Structured Daily Steps JSON trackers...")
+    
+    steps_context_dir = os.path.join(out_dir, "plan", "steps")
+    os.makedirs(steps_context_dir, exist_ok=True)
     
     log_phase_idx = 0
     log_prompt = ""
@@ -189,6 +192,8 @@ def convert_phases_to_json(client: OpenAI, model_name: str, project_name: str, n
             raw_data, json_data = parseOpenAIResponseJsonData(response)
             
             # write blueprint
+            out_path = os.path.join(steps_context_dir, f"phase-{phase_idx}.steps.json")
+            fallback_path = os.path.join(steps_context_dir, f"phase-{phase_idx}.steps.error.md")
             try:
                 # transform mapping
                 print(f" │   └── 🎉 Transform {phase_idx} Standardized JSON...")
@@ -198,9 +203,6 @@ def convert_phases_to_json(client: OpenAI, model_name: str, project_name: str, n
                 print(f" │   └── 🎉 Validate {phase_idx} Standardized JSON...")
                 validated_pydantic_object = PhaseStepsPlan.model_validate_json(transform_json_data)
                 
-                context_dir = os.path.join(out_dir, "plan", "steps")
-                os.makedirs(context_dir, exist_ok=True)
-                out_path = os.path.join(context_dir, f"phase-{phase_idx}.steps.json")
                 with open(out_path, "w", encoding="utf-8") as f:
                     json.dump(validated_pydantic_object.model_dump(), f, ensure_ascii=False, indent=4)
                     
@@ -210,7 +212,6 @@ def convert_phases_to_json(client: OpenAI, model_name: str, project_name: str, n
                 print(f" │   └── ❌ Local Validation Failed for Phase {phase_idx}: {pydantic_error}")
                 
                 # Save the raw unparsed text payload directly to file for manual logging evaluation
-                fallback_path = os.path.join(out_dir, f"phase-{phase_idx}.steps.error.txt")
                 with open(fallback_path, "w", encoding="utf-8") as f:
                     f.write(raw_data)
                 print(f" │   └── ⚠️ Raw dump saved to diagnostic log file: {fallback_path}")
