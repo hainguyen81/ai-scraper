@@ -61,10 +61,10 @@ def run_architect_agent(project_name: str, requirements_path: str, num_phases: i
     with open(absolute_requirements_path, "r", encoding="utf-8") as f:
         project_requirements = f.read()
         
-    absolute_out_dir = resolve_absolute_path(output_dir)
-    os.makedirs(absolute_out_dir, exist_ok=True)
-    
     safe_name = project_name.replace(' ', '-')
+    
+    absolute_out_dir = resolve_absolute_path(os.path.join(output_dir, safe_name))
+    os.makedirs(absolute_out_dir, exist_ok=True)
     
     # 1. Execute Block 1 Module
     if exec_mode in (0, 1):
