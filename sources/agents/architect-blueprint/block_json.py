@@ -187,7 +187,7 @@ def convert_phases_to_json(client: OpenAI, model_name: str, project_name: str, n
             raw_data, json_data = parseOpenAIResponseJsonData(response)
             
             # transform mapping
-            if json_mapping and os.path.exists(template_file_path):
+            if json_mapping and os.path.exists(json_mapping):
                 transform_json_data = dynamic_transform(json_data, project_name, phase_idx, json_mapping)
             
             else:
