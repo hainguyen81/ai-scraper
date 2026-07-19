@@ -78,7 +78,7 @@ def dynamic_transform(json_data, project_name: str, phase_idx: int, template_fil
     try:
         return json.loads(cleaned_str)
     except json.JSONDecodeError as e:
-        print("- ❌ Exception while mapping JSON:", str(e))
+        print(f"- ❌ Exception while mapping JSON: { str(e) }")
         print(cleaned_str)
         raise e
 
