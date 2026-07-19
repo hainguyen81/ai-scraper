@@ -1,41 +1,43 @@
 # PHASE 3 CONTEXT BLUEPRINT: test-ai-architecture
 ## 1. Phase Operational Scope & Objectives
-The primary objective of Phase 3 is to develop the mobile app for the membership-hub project using Next.js. This phase will focus on implementing features such as QR code scanning, notification systems, and multi-language support. The mobile app will be designed to work seamlessly with the backend developed in Phase 2, ensuring a cohesive user experience. Key deliverables for this phase include:
+The primary objective of Phase 3 is to develop the frontend of the membership-hub application using Next.js, supporting multiple languages and platforms (iOS, Android). This phase will focus on creating a user-friendly and responsive interface for students to interact with the application. The scope of this phase includes:
 
-* A fully functional mobile app with QR code scanning capabilities
-* Integration with the backend for user authentication and authorization
-* Implementation of notification systems (SMS, Zalo, and in-app notifications)
-* Support for multiple languages and platforms (iOS, Android)
-* Detection of default locale and language settings for users
+* Designing and implementing the frontend architecture
+* Developing features for student management, including QR code-based attendance tracking and notification systems
+* Integrating the frontend with the backend API developed in Phase 2
+* Ensuring support for multiple languages and platforms (iOS, Android)
 
 ## 2. Allowed Technical Scope & Directory Boundaries (Files, paths, and endpoints)
-The technical scope for Phase 3 will be limited to the mobile app development using Next.js. The following directories, files, and endpoints will be within the scope of this phase:
+The technical scope for Phase 3 includes:
 
-* `mobile-app/`: The root directory for the mobile app codebase
-* `components/`: Directory for reusable UI components
-* `pages/`: Directory for page-level components
-* `api/`: Directory for API endpoints and integrations
-* `utils/`: Directory for utility functions and helpers
-* `locales/`: Directory for language and locale settings
+* Frontend framework: Next.js
+* Programming languages: JavaScript, TypeScript
+* Directory boundaries:
+	+ `frontend/`: root directory for frontend code
+	+ `frontend/pages/`: directory for page components
+	+ `frontend/components/`: directory for reusable components
+	+ `frontend/api/`: directory for API endpoints
 * Endpoints:
-	+ `/api/qr-code`: Endpoint for QR code scanning and processing
-	+ `/api/notifications`: Endpoint for sending notifications (SMS, Zalo, and in-app)
-	+ `/api/auth`: Endpoint for user authentication and authorization
+	+ `/api/attendance`: endpoint for attendance tracking
+	+ `/api/notification`: endpoint for notification systems
+* Files:
+	+ `frontend/package.json`: file for managing dependencies and scripts
+	+ `frontend/next.config.js`: file for configuring Next.js
 
 ## 3. Dedicated Sub-Agent Functional Directives (Specific tasks for Coder, Tester, Reviewer, DevOps)
-The following sub-agents will be involved in Phase 3, with specific tasks and responsibilities:
+The following sub-agents will be involved in Phase 3:
 
-* **Coder**: Develop the mobile app using Next.js, implementing features such as QR code scanning, notification systems, and multi-language support. Ensure the app is optimized for performance and follows best practices for coding and security.
-* **Tester**: Design and execute tests for the mobile app, ensuring it meets the required standards for functionality, usability, and performance. Report bugs and work with the development team to resolve issues.
-* **Reviewer**: Conduct code reviews for the mobile app, ensuring it adheres to the project's standards and best practices. Provide feedback to improve code quality and suggest optimizations.
-* **DevOps**: Ensure the mobile app is properly packaged and ready for deployment. Configure the build process and automate testing and deployment scripts.
+* **Coder**: Responsible for developing the frontend code, including page components, reusable components, and API endpoints.
+* **Tester**: Responsible for designing and executing tests for the frontend code, including unit tests, integration tests, and user acceptance testing (UAT).
+* **Reviewer**: Responsible for conducting code reviews, providing feedback on quality, security, and best practices.
+* **DevOps**: Responsible for ensuring the frontend code is properly containerized and deployed to the production environment.
 
 ## 4. Phase Definition of Done (DoD)
-The Definition of Done for Phase 3 will be considered complete when the following criteria are met:
+The Definition of Done for Phase 3 includes:
 
-* The mobile app is fully functional and meets all the requirements outlined in the phase objectives
-* The app has been thoroughly tested and validated by the testing team
-* Code reviews have been completed, and all feedback has been addressed
-* The app has been properly packaged and is ready for deployment
-* All necessary documentation and guides have been updated to reflect the changes made during this phase
-* The phase has been reviewed and approved by the project manager and stakeholders.
+* All frontend code is complete, reviewed, and tested
+* The frontend is integrated with the backend API
+* The application is deployed to the production environment
+* All tests, including unit tests, integration tests, and UAT, have been executed and passed
+* The application is functional and meets the requirements outlined in the Raw Requirements Reference
+* The code is properly documented and follows best practices for maintainability and scalability.
