@@ -1,42 +1,38 @@
 # PHASE 4 CONTEXT BLUEPRINT: test-ai-architecture
 ## 1. Phase Operational Scope & Objectives
-The primary objective of Phase 4 is to conduct thorough testing and quality assurance of the membership-hub project. This phase will ensure that the application meets the required standards, is free of bugs, and provides a seamless user experience. The scope of this phase includes:
-- Unit testing of individual components
-- Integration testing of the entire system
-- User Acceptance Testing (UAT) to validate the application's functionality and usability
-- Performance testing to ensure scalability and efficiency
-- Security testing to identify and address potential vulnerabilities
+In Phase 4, the primary objective is to ensure the quality and reliability of the membership-hub application through comprehensive testing and quality assurance. This phase will focus on identifying and addressing any defects, inconsistencies, or performance issues in the application. The scope of this phase includes:
+- Conducting unit testing, integration testing, and user acceptance testing (UAT) for the entire application.
+- Performing code reviews to ensure adherence to coding standards, best practices, and security guidelines.
+- Validating the application's functionality, scalability, and performance.
+- Ensuring compliance with the established global guardrails and enterprise standards.
 
 ## 2. Allowed Technical Scope & Directory Boundaries (Files, paths, and endpoints)
-The technical scope of Phase 4 includes:
-- Testing of the Quarkus-based backend API endpoints
-- Verification of the Next.js-based mobile frontend functionality
-- Validation of the authentication and authorization mechanisms
-- Testing of the QR code-based attendance tracking feature
-- Verification of the notification systems (SMS, Zalo, and in-app notifications)
-- Testing of the SEO optimization for both web and mobile platforms
-- Directory boundaries:
-  - `src/test`: Unit tests and integration tests
-  - `src/main`: Backend and frontend code
-  - `docker`: Docker configuration files
-  - `kafka`: Kafka configuration files
-  - `postgres`: Postgres database configuration files
-  - `gcp`: GCP configuration files
-  - `gke`: GKE configuration files
+The technical scope for Phase 4 includes:
+- **Testing Frameworks**: Utilize testing frameworks such as JUnit, TestNG, or Jest for unit testing and integration testing.
+- **Test Environments**: Set up test environments for UAT, including staging servers and mock data.
+- **Code Review Tools**: Employ code review tools like SonarQube, CodeCoverage, or GitHub Code Review for code analysis and review.
+- **Directory Boundaries**:
+  - `src/test/java`: Unit tests and integration tests for the Quarkus backend.
+  - `src/test/javascript`: Unit tests and integration tests for the Next.js frontend.
+  - `config/test`: Test configurations and environment settings.
+  - `docker/test`: Docker images and containers for testing purposes.
+- **Endpoints**:
+  - `/api/test`: API endpoint for testing and validation.
+  - `/test`: Frontend endpoint for testing and validation.
 
 ## 3. Dedicated Sub-Agent Functional Directives (Specific tasks for Coder, Tester, Reviewer, DevOps)
-- **Coder**: Assist in writing unit tests and integration tests, provide input on testing strategies, and address bugs identified during testing
-- **Tester**: Conduct thorough testing of the application, including unit testing, integration testing, and UAT, and report defects and issues
-- **Reviewer**: Review test cases, test data, and test results to ensure completeness and accuracy, and provide feedback on testing strategies
-- **DevOps**: Ensure that the testing environment is set up correctly, configure CI/CD pipelines for automated testing, and deploy the application to the testing environment
+The following sub-agents will be involved in Phase 4:
+- **Coder**: Develop test cases, implement testing frameworks, and ensure code quality.
+- **Tester**: Conduct UAT, integration testing, and unit testing, and report defects or issues.
+- **Reviewer**: Perform code reviews, analyze test results, and ensure compliance with coding standards and security guidelines.
+- **DevOps (Docker)**: Set up test environments, create and manage Docker images for testing, and ensure smooth deployment.
+- **Deployer**: Assist in deploying the application to staging servers for UAT and testing purposes.
 
 ## 4. Phase Definition of Done (DoD)
-The Definition of Done for Phase 4 includes:
-- All unit tests and integration tests have been executed and passed
-- UAT has been completed, and the application meets the required functionality and usability standards
-- Performance testing has been conducted, and the application meets the required scalability and efficiency standards
-- Security testing has been completed, and all identified vulnerabilities have been addressed
-- The application has been deployed to the testing environment, and all tests have been executed successfully
-- All defects and issues identified during testing have been addressed and resolved
-- The testing environment has been configured correctly, and all testing tools and frameworks are in place
-- The application meets the required SEO optimization standards for both web and mobile platforms
+Phase 4 is considered complete when:
+- All unit tests, integration tests, and UAT have been conducted, and defects or issues have been addressed.
+- Code reviews have been completed, and code quality meets the established standards.
+- The application has been validated for functionality, scalability, and performance.
+- Test environments have been set up, and test data has been created.
+- The application has been deployed to staging servers for UAT and testing purposes.
+- All test results have been documented, and lessons learned have been recorded for future improvements.

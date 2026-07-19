@@ -1206,3 +1206,670 @@ You are a rigid technical translator. Map high-level Markdown workflows into pre
 cannot access local variable 'out_path' where it is not associated with a value
 ```
 
+# Global Prompt:
+
+
+        Analyze the attached project requirements. Build the GLOBAL PROJECT CONTEXT for 'test-ai-architecture'.
+        
+        --- RAW REQUIREMENTS ---
+        ## Project Name: membership-hub
+
+*	**Requirements:**
+	- Project vừa web để quản lý, vừa mobile để học viên xài.
+	- Project này xây dựng backend bằng quarkus, kafka, postgres, có thể scalable, build docker image, deploy GCP, GKE.
+	- Hỗ trợ xác thực internal bằng email password, hoặc qua firebase, google, facebook. quản lý user internal lẫn login qua xác thực với các bên bên trên.
+	- Project này quản lý các học viên của trung tâm bất kỳ, dùng được cho nhiều trung tâm 1 lúc được.
+	- Các học viên của trung tâm khi tới học sẽ điểm danh qua QR. Điểm danh sẽ đánh dấu ngày đó học viên có đi học. Cho dù điểm danh nhiều lần cũng không vấn đề và chỉ xem như đã điểm danh ngày hôm đó.
+	- Sau khi điểm danh sẽ hiển thị thẻ học viên còn bao nhiêu ngày hiệu lực như kiểu trừ dần ngày tập gym chẳng hạn.
+	- Đồng thời lúc đó gửi tin nhắn qua số đt zalo của học viên và nhóm zalo có học viên đó tham gia, và cả notification của app mobile trên đt học viên.
+	- App mobile dùng next.js làm front end, hỗ trợ đa ngôn ngữ, build đc cho ios, android.
+	- Project này có phần SEO đa ngôn ngữ cho cả web, app mobile.
+	- Detect default locale ngôn ngữ nếu user đã chọn trước đó thì dùng nó, không thì dùng locale từ browser hay mobile.
+
+        --- END REQUIREMENTS ---
+
+        Your output MUST follow this exact structure:
+        ## GLOBAL PROJECT CONTEXT: test-ai-architecture
+        #### 1. Executive Summary & Tech Stack Blueprint
+        #### 2. Global Guardrails & Enterprise Compliance Standards
+        #### 3. Standardized Sub-Agent Persona Definitions (Manager, Coder, Tester, Reviewer, Docker, Deployer)
+        #### 4. Multi-Phase Segmentation Strategy Overview (Plan exactly 5 phases)
+        
+
+# System Instruction
+
+You are an Elite Solution Architect. Define the global system truth and multi-agent guardrails.
+
+# Raw Response / Exception:
+
+```text
+## GLOBAL PROJECT CONTEXT: test-ai-architecture
+#### 1. Executive Summary & Tech Stack Blueprint
+The membership-hub project is a scalable web and mobile application designed to manage students across multiple centers. The tech stack consists of Quarkus, Kafka, Postgres, and Docker, with deployment on Google Cloud Platform (GCP) and Google Kubernetes Engine (GKE). The application supports internal authentication via email and password, as well as external authentication through Firebase, Google, and Facebook. The project utilizes Next.js for the mobile frontend, supporting multiple languages and building for both iOS and Android. Key features include QR code-based attendance tracking, notification systems, and SEO optimization for both web and mobile platforms.
+
+#### 2. Global Guardrails & Enterprise Compliance Standards
+To ensure the project's success and adherence to industry standards, the following global guardrails and compliance standards will be implemented:
+- **Security**: Implement OAuth 2.0 for authentication, SSL/TLS encryption for data transmission, and regular security audits.
+- **Scalability**: Design the system to scale horizontally, utilizing load balancers and auto-scaling groups in GCP.
+- **Data Management**: Establish data backup and recovery procedures, ensuring data integrity and compliance with relevant regulations (e.g., GDPR, CCPA).
+- **Accessibility**: Ensure the application meets Web Content Accessibility Guidelines (WCAG 2.1) and is optimized for users with disabilities.
+- **Compliance**: Adhere to GCP's compliance framework, ensuring alignment with industry standards such as HIPAA, PCI-DSS, and ISO 27001.
+
+#### 3. Standardized Sub-Agent Persona Definitions
+The following sub-agent personas will be defined to ensure clear roles and responsibilities:
+- **Manager**: Oversees project timelines, budgets, and resource allocation. Ensures compliance with global guardrails and enterprise standards.
+- **Coder**: Develops the application's backend and frontend, focusing on scalability, security, and performance.
+- **Tester**: Conducts unit testing, integration testing, and user acceptance testing (UAT) to ensure the application meets requirements.
+- **Reviewer**: Performs code reviews, ensuring adherence to coding standards, best practices, and security guidelines.
+- **Docker**: Responsible for containerization, creating and managing Docker images for deployment.
+- **Deployer**: Handles deployment to GCP and GKE, ensuring smooth rollout and minimal downtime.
+
+#### 4. Multi-Phase Segmentation Strategy Overview
+The project will be divided into five phases:
+- **Phase 1: Planning and Design** (Weeks 1-4): Define project scope, create wireframes, and establish the tech stack.
+- **Phase 2: Backend Development** (Weeks 5-12): Develop the Quarkus backend, Kafka integration, and Postgres database.
+- **Phase 3: Frontend Development** (Weeks 13-20): Build the Next.js mobile frontend, supporting multiple languages and platforms.
+- **Phase 4: Testing and Quality Assurance** (Weeks 21-24): Conduct unit testing, integration testing, UAT, and code reviews.
+- **Phase 5: Deployment and Maintenance** (Weeks 24-30): Deploy the application to GCP and GKE, ensuring scalability and performance, and provide ongoing maintenance and support.
+```
+
+# Phase 1 - Prompt:
+
+
+            Project Name: test-ai-architecture
+            You are tasked to detail **PHASE 1 OUT OF 5**.
+            You must align perfectly with the established Global Context and satisfy a subset of the Raw Requirements.
+
+            --- GLOBAL CONTEXT REFERENCE ---
+            ## GLOBAL PROJECT CONTEXT: test-ai-architecture
+#### 1. Executive Summary & Tech Stack Blueprint
+The membership-hub project is a scalable web and mobile application designed to manage students across multiple centers. The tech stack consists of Quarkus, Kafka, Postgres, and Docker, with deployment on Google Cloud Platform (GCP) and Google Kubernetes Engine (GKE). The application supports internal authentication via email and password, as well as external authentication through Firebase, Google, and Facebook. The project utilizes Next.js for the mobile frontend, supporting multiple languages and building for both iOS and Android. Key features include QR code-based attendance tracking, notification systems, and SEO optimization for both web and mobile platforms.
+
+#### 2. Global Guardrails & Enterprise Compliance Standards
+To ensure the project's success and adherence to industry standards, the following global guardrails and compliance standards will be implemented:
+- **Security**: Implement OAuth 2.0 for authentication, SSL/TLS encryption for data transmission, and regular security audits.
+- **Scalability**: Design the system to scale horizontally, utilizing load balancers and auto-scaling groups in GCP.
+- **Data Management**: Establish data backup and recovery procedures, ensuring data integrity and compliance with relevant regulations (e.g., GDPR, CCPA).
+- **Accessibility**: Ensure the application meets Web Content Accessibility Guidelines (WCAG 2.1) and is optimized for users with disabilities.
+- **Compliance**: Adhere to GCP's compliance framework, ensuring alignment with industry standards such as HIPAA, PCI-DSS, and ISO 27001.
+
+#### 3. Standardized Sub-Agent Persona Definitions
+The following sub-agent personas will be defined to ensure clear roles and responsibilities:
+- **Manager**: Oversees project timelines, budgets, and resource allocation. Ensures compliance with global guardrails and enterprise standards.
+- **Coder**: Develops the application's backend and frontend, focusing on scalability, security, and performance.
+- **Tester**: Conducts unit testing, integration testing, and user acceptance testing (UAT) to ensure the application meets requirements.
+- **Reviewer**: Performs code reviews, ensuring adherence to coding standards, best practices, and security guidelines.
+- **Docker**: Responsible for containerization, creating and managing Docker images for deployment.
+- **Deployer**: Handles deployment to GCP and GKE, ensuring smooth rollout and minimal downtime.
+
+#### 4. Multi-Phase Segmentation Strategy Overview
+The project will be divided into five phases:
+- **Phase 1: Planning and Design** (Weeks 1-4): Define project scope, create wireframes, and establish the tech stack.
+- **Phase 2: Backend Development** (Weeks 5-12): Develop the Quarkus backend, Kafka integration, and Postgres database.
+- **Phase 3: Frontend Development** (Weeks 13-20): Build the Next.js mobile frontend, supporting multiple languages and platforms.
+- **Phase 4: Testing and Quality Assurance** (Weeks 21-24): Conduct unit testing, integration testing, UAT, and code reviews.
+- **Phase 5: Deployment and Maintenance** (Weeks 24-30): Deploy the application to GCP and GKE, ensuring scalability and performance, and provide ongoing maintenance and support.
+            
+            --- RAW REQUIREMENTS REFERENCE ---
+            ## Project Name: membership-hub
+
+*	**Requirements:**
+	- Project vừa web để quản lý, vừa mobile để học viên xài.
+	- Project này xây dựng backend bằng quarkus, kafka, postgres, có thể scalable, build docker image, deploy GCP, GKE.
+	- Hỗ trợ xác thực internal bằng email password, hoặc qua firebase, google, facebook. quản lý user internal lẫn login qua xác thực với các bên bên trên.
+	- Project này quản lý các học viên của trung tâm bất kỳ, dùng được cho nhiều trung tâm 1 lúc được.
+	- Các học viên của trung tâm khi tới học sẽ điểm danh qua QR. Điểm danh sẽ đánh dấu ngày đó học viên có đi học. Cho dù điểm danh nhiều lần cũng không vấn đề và chỉ xem như đã điểm danh ngày hôm đó.
+	- Sau khi điểm danh sẽ hiển thị thẻ học viên còn bao nhiêu ngày hiệu lực như kiểu trừ dần ngày tập gym chẳng hạn.
+	- Đồng thời lúc đó gửi tin nhắn qua số đt zalo của học viên và nhóm zalo có học viên đó tham gia, và cả notification của app mobile trên đt học viên.
+	- App mobile dùng next.js làm front end, hỗ trợ đa ngôn ngữ, build đc cho ios, android.
+	- Project này có phần SEO đa ngôn ngữ cho cả web, app mobile.
+	- Detect default locale ngôn ngữ nếu user đã chọn trước đó thì dùng nó, không thì dùng locale từ browser hay mobile.
+
+            ----------------------------------
+
+            Your output MUST follow this exact Markdown structure for Phase 1:
+            ## PHASE 1 CONTEXT BLUEPRINT: test-ai-architecture
+            #### 1. Phase Operational Scope & Objectives
+            #### 2. Allowed Technical Scope & Directory Boundaries (Files, paths, and endpoints)
+            #### 3. Dedicated Sub-Agent Functional Directives (Specific tasks for Coder, Tester, Reviewer, DevOps)
+            #### 4. Phase Definition of Done (DoD)
+            
+
+# System Instruction
+
+You are an Elite Solution Architect. Isolate development boundaries so sub-agents never overlap.
+
+# Raw Response / Exception:
+
+```text
+## PHASE 1 CONTEXT BLUEPRINT: test-ai-architecture
+#### 1. Phase Operational Scope & Objectives
+The primary objective of Phase 1 is to define the project scope, create wireframes, and establish the tech stack for the membership-hub project. This phase will focus on planning and design, ensuring that all stakeholders are aligned and that the project is set up for success. The key deliverables for this phase include:
+- A detailed project scope statement
+- Wireframes for the web and mobile applications
+- A defined tech stack, including Quarkus, Kafka, Postgres, Docker, and Next.js
+- A high-level architecture diagram, illustrating the components and interactions of the system
+
+#### 2. Allowed Technical Scope & Directory Boundaries (Files, paths, and endpoints)
+The technical scope for Phase 1 includes:
+- Defining the project directory structure, including folders for backend, frontend, and infrastructure code
+- Establishing the tech stack, including Quarkus, Kafka, Postgres, Docker, and Next.js
+- Creating wireframes for the web and mobile applications, using tools such as Figma or Sketch
+- Defining the API endpoints for the backend, using tools such as Swagger or API Blueprint
+- Establishing the database schema, including tables for users, centers, and attendance records
+
+The following directory boundaries are defined:
+- `backend/`: Quarkus backend code
+- `frontend/`: Next.js frontend code
+- `infrastructure/`: Docker and Kubernetes configuration files
+- `wireframes/`: Wireframes for the web and mobile applications
+- `api/`: API endpoint definitions
+
+#### 3. Dedicated Sub-Agent Functional Directives (Specific tasks for Coder, Tester, Reviewer, DevOps)
+The following sub-agents are assigned to Phase 1:
+- **Coder**: Define the tech stack, create wireframes, and establish the project directory structure
+- **Tester**: Review the wireframes and provide feedback on usability and functionality
+- **Reviewer**: Review the tech stack and provide feedback on scalability and security
+- **Docker**: Establish the Docker configuration and create a Docker image for the backend
+- **Deployer**: Define the deployment process for the application, including deployment to GCP and GKE
+
+#### 4. Phase Definition of Done (DoD)
+The Definition of Done for Phase 1 includes:
+- A completed project scope statement
+- Wireframes for the web and mobile applications, reviewed and approved by stakeholders
+- A defined tech stack, including Quarkus, Kafka, Postgres, Docker, and Next.js
+- A high-level architecture diagram, illustrating the components and interactions of the system
+- A established project directory structure, including folders for backend, frontend, and infrastructure code
+- A review of the tech stack and wireframes by the assigned sub-agents, with feedback and approval documented.
+```
+
+# Phase 2 - Prompt:
+
+
+            Project Name: test-ai-architecture
+            You are tasked to detail **PHASE 2 OUT OF 5**.
+            You must align perfectly with the established Global Context and satisfy a subset of the Raw Requirements.
+
+            --- GLOBAL CONTEXT REFERENCE ---
+            ## GLOBAL PROJECT CONTEXT: test-ai-architecture
+#### 1. Executive Summary & Tech Stack Blueprint
+The membership-hub project is a scalable web and mobile application designed to manage students across multiple centers. The tech stack consists of Quarkus, Kafka, Postgres, and Docker, with deployment on Google Cloud Platform (GCP) and Google Kubernetes Engine (GKE). The application supports internal authentication via email and password, as well as external authentication through Firebase, Google, and Facebook. The project utilizes Next.js for the mobile frontend, supporting multiple languages and building for both iOS and Android. Key features include QR code-based attendance tracking, notification systems, and SEO optimization for both web and mobile platforms.
+
+#### 2. Global Guardrails & Enterprise Compliance Standards
+To ensure the project's success and adherence to industry standards, the following global guardrails and compliance standards will be implemented:
+- **Security**: Implement OAuth 2.0 for authentication, SSL/TLS encryption for data transmission, and regular security audits.
+- **Scalability**: Design the system to scale horizontally, utilizing load balancers and auto-scaling groups in GCP.
+- **Data Management**: Establish data backup and recovery procedures, ensuring data integrity and compliance with relevant regulations (e.g., GDPR, CCPA).
+- **Accessibility**: Ensure the application meets Web Content Accessibility Guidelines (WCAG 2.1) and is optimized for users with disabilities.
+- **Compliance**: Adhere to GCP's compliance framework, ensuring alignment with industry standards such as HIPAA, PCI-DSS, and ISO 27001.
+
+#### 3. Standardized Sub-Agent Persona Definitions
+The following sub-agent personas will be defined to ensure clear roles and responsibilities:
+- **Manager**: Oversees project timelines, budgets, and resource allocation. Ensures compliance with global guardrails and enterprise standards.
+- **Coder**: Develops the application's backend and frontend, focusing on scalability, security, and performance.
+- **Tester**: Conducts unit testing, integration testing, and user acceptance testing (UAT) to ensure the application meets requirements.
+- **Reviewer**: Performs code reviews, ensuring adherence to coding standards, best practices, and security guidelines.
+- **Docker**: Responsible for containerization, creating and managing Docker images for deployment.
+- **Deployer**: Handles deployment to GCP and GKE, ensuring smooth rollout and minimal downtime.
+
+#### 4. Multi-Phase Segmentation Strategy Overview
+The project will be divided into five phases:
+- **Phase 1: Planning and Design** (Weeks 1-4): Define project scope, create wireframes, and establish the tech stack.
+- **Phase 2: Backend Development** (Weeks 5-12): Develop the Quarkus backend, Kafka integration, and Postgres database.
+- **Phase 3: Frontend Development** (Weeks 13-20): Build the Next.js mobile frontend, supporting multiple languages and platforms.
+- **Phase 4: Testing and Quality Assurance** (Weeks 21-24): Conduct unit testing, integration testing, UAT, and code reviews.
+- **Phase 5: Deployment and Maintenance** (Weeks 24-30): Deploy the application to GCP and GKE, ensuring scalability and performance, and provide ongoing maintenance and support.
+            
+            --- RAW REQUIREMENTS REFERENCE ---
+            ## Project Name: membership-hub
+
+*	**Requirements:**
+	- Project vừa web để quản lý, vừa mobile để học viên xài.
+	- Project này xây dựng backend bằng quarkus, kafka, postgres, có thể scalable, build docker image, deploy GCP, GKE.
+	- Hỗ trợ xác thực internal bằng email password, hoặc qua firebase, google, facebook. quản lý user internal lẫn login qua xác thực với các bên bên trên.
+	- Project này quản lý các học viên của trung tâm bất kỳ, dùng được cho nhiều trung tâm 1 lúc được.
+	- Các học viên của trung tâm khi tới học sẽ điểm danh qua QR. Điểm danh sẽ đánh dấu ngày đó học viên có đi học. Cho dù điểm danh nhiều lần cũng không vấn đề và chỉ xem như đã điểm danh ngày hôm đó.
+	- Sau khi điểm danh sẽ hiển thị thẻ học viên còn bao nhiêu ngày hiệu lực như kiểu trừ dần ngày tập gym chẳng hạn.
+	- Đồng thời lúc đó gửi tin nhắn qua số đt zalo của học viên và nhóm zalo có học viên đó tham gia, và cả notification của app mobile trên đt học viên.
+	- App mobile dùng next.js làm front end, hỗ trợ đa ngôn ngữ, build đc cho ios, android.
+	- Project này có phần SEO đa ngôn ngữ cho cả web, app mobile.
+	- Detect default locale ngôn ngữ nếu user đã chọn trước đó thì dùng nó, không thì dùng locale từ browser hay mobile.
+
+            ----------------------------------
+
+            Your output MUST follow this exact Markdown structure for Phase 2:
+            ## PHASE 2 CONTEXT BLUEPRINT: test-ai-architecture
+            #### 1. Phase Operational Scope & Objectives
+            #### 2. Allowed Technical Scope & Directory Boundaries (Files, paths, and endpoints)
+            #### 3. Dedicated Sub-Agent Functional Directives (Specific tasks for Coder, Tester, Reviewer, DevOps)
+            #### 4. Phase Definition of Done (DoD)
+            
+
+# System Instruction
+
+You are an Elite Solution Architect. Isolate development boundaries so sub-agents never overlap.
+
+# Raw Response / Exception:
+
+```text
+## PHASE 2 CONTEXT BLUEPRINT: test-ai-architecture
+#### 1. Phase Operational Scope & Objectives
+The primary objective of Phase 2 is to develop the backend of the membership-hub project using Quarkus, Kafka, and Postgres. This phase will focus on creating a scalable and secure backend that can manage students across multiple centers, support internal and external authentication, and integrate with the frontend application. The key deliverables of this phase include:
+- Design and implementation of the Quarkus backend
+- Integration with Kafka for messaging and Postgres for database management
+- Development of APIs for user management, attendance tracking, and notification systems
+- Implementation of OAuth 2.0 for authentication and SSL/TLS encryption for data transmission
+
+#### 2. Allowed Technical Scope & Directory Boundaries (Files, paths, and endpoints)
+The technical scope of Phase 2 includes:
+- Backend directory: `src/main/java`
+- Configuration files: `src/main/resources/application.properties`, `src/main/resources/persistence.xml`
+- API endpoints:
+  - `/api/v1/users` for user management
+  - `/api/v1/attendance` for attendance tracking
+  - `/api/v1/notifications` for notification systems
+- Database schema: `membership_hub` database with tables for users, attendance, and notifications
+- Kafka topics: `user_topic`, `attendance_topic`, `notification_topic`
+
+#### 3. Dedicated Sub-Agent Functional Directives (Specific tasks for Coder, Tester, Reviewer, DevOps)
+- **Coder**: Develop the Quarkus backend, integrate with Kafka and Postgres, and implement API endpoints for user management, attendance tracking, and notification systems.
+- **Tester**: Conduct unit testing and integration testing for the backend APIs, ensuring that they meet the requirements and are free of bugs.
+- **Reviewer**: Perform code reviews to ensure that the code adheres to coding standards, best practices, and security guidelines.
+- **Docker**: Create and manage Docker images for the backend application, ensuring that they are properly configured and optimized for deployment.
+- **Deployer**: Prepare the backend application for deployment to GCP and GKE, ensuring that it is properly configured and optimized for scalability and performance.
+
+#### 4. Phase Definition of Done (DoD)
+The Definition of Done for Phase 2 includes:
+- All backend APIs are fully implemented and tested
+- Integration with Kafka and Postgres is complete and tested
+- OAuth 2.0 authentication and SSL/TLS encryption are implemented and tested
+- Code reviews are complete, and all code adheres to coding standards and best practices
+- Docker images are created and tested, and the application is ready for deployment to GCP and GKE
+- All testing, including unit testing, integration testing, and code reviews, is complete and successful
+- The backend application is properly documented, and all APIs are well-documented with clear instructions for use.
+```
+
+# Phase 3 - Prompt:
+
+
+            Project Name: test-ai-architecture
+            You are tasked to detail **PHASE 3 OUT OF 5**.
+            You must align perfectly with the established Global Context and satisfy a subset of the Raw Requirements.
+
+            --- GLOBAL CONTEXT REFERENCE ---
+            ## GLOBAL PROJECT CONTEXT: test-ai-architecture
+#### 1. Executive Summary & Tech Stack Blueprint
+The membership-hub project is a scalable web and mobile application designed to manage students across multiple centers. The tech stack consists of Quarkus, Kafka, Postgres, and Docker, with deployment on Google Cloud Platform (GCP) and Google Kubernetes Engine (GKE). The application supports internal authentication via email and password, as well as external authentication through Firebase, Google, and Facebook. The project utilizes Next.js for the mobile frontend, supporting multiple languages and building for both iOS and Android. Key features include QR code-based attendance tracking, notification systems, and SEO optimization for both web and mobile platforms.
+
+#### 2. Global Guardrails & Enterprise Compliance Standards
+To ensure the project's success and adherence to industry standards, the following global guardrails and compliance standards will be implemented:
+- **Security**: Implement OAuth 2.0 for authentication, SSL/TLS encryption for data transmission, and regular security audits.
+- **Scalability**: Design the system to scale horizontally, utilizing load balancers and auto-scaling groups in GCP.
+- **Data Management**: Establish data backup and recovery procedures, ensuring data integrity and compliance with relevant regulations (e.g., GDPR, CCPA).
+- **Accessibility**: Ensure the application meets Web Content Accessibility Guidelines (WCAG 2.1) and is optimized for users with disabilities.
+- **Compliance**: Adhere to GCP's compliance framework, ensuring alignment with industry standards such as HIPAA, PCI-DSS, and ISO 27001.
+
+#### 3. Standardized Sub-Agent Persona Definitions
+The following sub-agent personas will be defined to ensure clear roles and responsibilities:
+- **Manager**: Oversees project timelines, budgets, and resource allocation. Ensures compliance with global guardrails and enterprise standards.
+- **Coder**: Develops the application's backend and frontend, focusing on scalability, security, and performance.
+- **Tester**: Conducts unit testing, integration testing, and user acceptance testing (UAT) to ensure the application meets requirements.
+- **Reviewer**: Performs code reviews, ensuring adherence to coding standards, best practices, and security guidelines.
+- **Docker**: Responsible for containerization, creating and managing Docker images for deployment.
+- **Deployer**: Handles deployment to GCP and GKE, ensuring smooth rollout and minimal downtime.
+
+#### 4. Multi-Phase Segmentation Strategy Overview
+The project will be divided into five phases:
+- **Phase 1: Planning and Design** (Weeks 1-4): Define project scope, create wireframes, and establish the tech stack.
+- **Phase 2: Backend Development** (Weeks 5-12): Develop the Quarkus backend, Kafka integration, and Postgres database.
+- **Phase 3: Frontend Development** (Weeks 13-20): Build the Next.js mobile frontend, supporting multiple languages and platforms.
+- **Phase 4: Testing and Quality Assurance** (Weeks 21-24): Conduct unit testing, integration testing, UAT, and code reviews.
+- **Phase 5: Deployment and Maintenance** (Weeks 24-30): Deploy the application to GCP and GKE, ensuring scalability and performance, and provide ongoing maintenance and support.
+            
+            --- RAW REQUIREMENTS REFERENCE ---
+            ## Project Name: membership-hub
+
+*	**Requirements:**
+	- Project vừa web để quản lý, vừa mobile để học viên xài.
+	- Project này xây dựng backend bằng quarkus, kafka, postgres, có thể scalable, build docker image, deploy GCP, GKE.
+	- Hỗ trợ xác thực internal bằng email password, hoặc qua firebase, google, facebook. quản lý user internal lẫn login qua xác thực với các bên bên trên.
+	- Project này quản lý các học viên của trung tâm bất kỳ, dùng được cho nhiều trung tâm 1 lúc được.
+	- Các học viên của trung tâm khi tới học sẽ điểm danh qua QR. Điểm danh sẽ đánh dấu ngày đó học viên có đi học. Cho dù điểm danh nhiều lần cũng không vấn đề và chỉ xem như đã điểm danh ngày hôm đó.
+	- Sau khi điểm danh sẽ hiển thị thẻ học viên còn bao nhiêu ngày hiệu lực như kiểu trừ dần ngày tập gym chẳng hạn.
+	- Đồng thời lúc đó gửi tin nhắn qua số đt zalo của học viên và nhóm zalo có học viên đó tham gia, và cả notification của app mobile trên đt học viên.
+	- App mobile dùng next.js làm front end, hỗ trợ đa ngôn ngữ, build đc cho ios, android.
+	- Project này có phần SEO đa ngôn ngữ cho cả web, app mobile.
+	- Detect default locale ngôn ngữ nếu user đã chọn trước đó thì dùng nó, không thì dùng locale từ browser hay mobile.
+
+            ----------------------------------
+
+            Your output MUST follow this exact Markdown structure for Phase 3:
+            ## PHASE 3 CONTEXT BLUEPRINT: test-ai-architecture
+            #### 1. Phase Operational Scope & Objectives
+            #### 2. Allowed Technical Scope & Directory Boundaries (Files, paths, and endpoints)
+            #### 3. Dedicated Sub-Agent Functional Directives (Specific tasks for Coder, Tester, Reviewer, DevOps)
+            #### 4. Phase Definition of Done (DoD)
+            
+
+# System Instruction
+
+You are an Elite Solution Architect. Isolate development boundaries so sub-agents never overlap.
+
+# Raw Response / Exception:
+
+```text
+## PHASE 3 CONTEXT BLUEPRINT: test-ai-architecture
+#### 1. Phase Operational Scope & Objectives
+The primary objective of Phase 3 is to develop the frontend of the membership-hub application using Next.js, supporting multiple languages and building for both iOS and Android platforms. This phase will focus on creating a user-friendly and responsive mobile frontend that integrates with the Quarkus backend developed in Phase 2. The key deliverables for this phase include:
+- A fully functional Next.js mobile frontend
+- Support for multiple languages
+- Building and deployment scripts for both iOS and Android platforms
+- Integration with the Quarkus backend for authentication, QR code-based attendance tracking, and notification systems
+
+#### 2. Allowed Technical Scope & Directory Boundaries (Files, paths, and endpoints)
+The technical scope for Phase 3 will be limited to the frontend development using Next.js. The directory boundaries will include:
+- `frontend/`: The root directory for the Next.js frontend code
+- `frontend/pages/`: Directory for page components
+- `frontend/components/`: Directory for reusable UI components
+- `frontend/api/`: Directory for API endpoints and integrations with the Quarkus backend
+- `frontend/public/`: Directory for static assets and public files
+- `frontend/locales/`: Directory for language translations and locale settings
+The following endpoints will be used for integration with the Quarkus backend:
+- `/api/auth`: Authentication endpoint
+- `/api/attendance`: Attendance tracking endpoint
+- `/api/notifications`: Notification endpoint
+
+#### 3. Dedicated Sub-Agent Functional Directives (Specific tasks for Coder, Tester, Reviewer, DevOps)
+- **Coder**: Develop the Next.js mobile frontend, focusing on responsiveness, performance, and scalability. Implement multiple language support, QR code-based attendance tracking, and notification systems.
+- **Tester**: Conduct unit testing, integration testing, and user acceptance testing (UAT) for the mobile frontend. Ensure that the application meets the requirements and works as expected on both iOS and Android platforms.
+- **Reviewer**: Perform code reviews, ensuring adherence to coding standards, best practices, and security guidelines. Verify that the code is well-organized, readable, and maintainable.
+- **Docker**: Create and manage Docker images for the Next.js frontend, ensuring that the application can be easily deployed and scaled.
+- **Deployer**: Handle deployment of the Next.js frontend to GCP and GKE, ensuring smooth rollout and minimal downtime.
+
+#### 4. Phase Definition of Done (DoD)
+The Definition of Done for Phase 3 will be:
+- The Next.js mobile frontend is fully functional and meets all the requirements.
+- The application supports multiple languages and can be built for both iOS and Android platforms.
+- The frontend is integrated with the Quarkus backend for authentication, QR code-based attendance tracking, and notification systems.
+- All unit tests, integration tests, and UAT have been completed and passed.
+- Code reviews have been completed, and all feedback has been addressed.
+- Docker images have been created and deployed to GCP and GKE.
+- The application has been deployed to production, and all necessary configurations have been completed.
+```
+
+# Phase 4 - Prompt:
+
+
+            Project Name: test-ai-architecture
+            You are tasked to detail **PHASE 4 OUT OF 5**.
+            You must align perfectly with the established Global Context and satisfy a subset of the Raw Requirements.
+
+            --- GLOBAL CONTEXT REFERENCE ---
+            ## GLOBAL PROJECT CONTEXT: test-ai-architecture
+#### 1. Executive Summary & Tech Stack Blueprint
+The membership-hub project is a scalable web and mobile application designed to manage students across multiple centers. The tech stack consists of Quarkus, Kafka, Postgres, and Docker, with deployment on Google Cloud Platform (GCP) and Google Kubernetes Engine (GKE). The application supports internal authentication via email and password, as well as external authentication through Firebase, Google, and Facebook. The project utilizes Next.js for the mobile frontend, supporting multiple languages and building for both iOS and Android. Key features include QR code-based attendance tracking, notification systems, and SEO optimization for both web and mobile platforms.
+
+#### 2. Global Guardrails & Enterprise Compliance Standards
+To ensure the project's success and adherence to industry standards, the following global guardrails and compliance standards will be implemented:
+- **Security**: Implement OAuth 2.0 for authentication, SSL/TLS encryption for data transmission, and regular security audits.
+- **Scalability**: Design the system to scale horizontally, utilizing load balancers and auto-scaling groups in GCP.
+- **Data Management**: Establish data backup and recovery procedures, ensuring data integrity and compliance with relevant regulations (e.g., GDPR, CCPA).
+- **Accessibility**: Ensure the application meets Web Content Accessibility Guidelines (WCAG 2.1) and is optimized for users with disabilities.
+- **Compliance**: Adhere to GCP's compliance framework, ensuring alignment with industry standards such as HIPAA, PCI-DSS, and ISO 27001.
+
+#### 3. Standardized Sub-Agent Persona Definitions
+The following sub-agent personas will be defined to ensure clear roles and responsibilities:
+- **Manager**: Oversees project timelines, budgets, and resource allocation. Ensures compliance with global guardrails and enterprise standards.
+- **Coder**: Develops the application's backend and frontend, focusing on scalability, security, and performance.
+- **Tester**: Conducts unit testing, integration testing, and user acceptance testing (UAT) to ensure the application meets requirements.
+- **Reviewer**: Performs code reviews, ensuring adherence to coding standards, best practices, and security guidelines.
+- **Docker**: Responsible for containerization, creating and managing Docker images for deployment.
+- **Deployer**: Handles deployment to GCP and GKE, ensuring smooth rollout and minimal downtime.
+
+#### 4. Multi-Phase Segmentation Strategy Overview
+The project will be divided into five phases:
+- **Phase 1: Planning and Design** (Weeks 1-4): Define project scope, create wireframes, and establish the tech stack.
+- **Phase 2: Backend Development** (Weeks 5-12): Develop the Quarkus backend, Kafka integration, and Postgres database.
+- **Phase 3: Frontend Development** (Weeks 13-20): Build the Next.js mobile frontend, supporting multiple languages and platforms.
+- **Phase 4: Testing and Quality Assurance** (Weeks 21-24): Conduct unit testing, integration testing, UAT, and code reviews.
+- **Phase 5: Deployment and Maintenance** (Weeks 24-30): Deploy the application to GCP and GKE, ensuring scalability and performance, and provide ongoing maintenance and support.
+            
+            --- RAW REQUIREMENTS REFERENCE ---
+            ## Project Name: membership-hub
+
+*	**Requirements:**
+	- Project vừa web để quản lý, vừa mobile để học viên xài.
+	- Project này xây dựng backend bằng quarkus, kafka, postgres, có thể scalable, build docker image, deploy GCP, GKE.
+	- Hỗ trợ xác thực internal bằng email password, hoặc qua firebase, google, facebook. quản lý user internal lẫn login qua xác thực với các bên bên trên.
+	- Project này quản lý các học viên của trung tâm bất kỳ, dùng được cho nhiều trung tâm 1 lúc được.
+	- Các học viên của trung tâm khi tới học sẽ điểm danh qua QR. Điểm danh sẽ đánh dấu ngày đó học viên có đi học. Cho dù điểm danh nhiều lần cũng không vấn đề và chỉ xem như đã điểm danh ngày hôm đó.
+	- Sau khi điểm danh sẽ hiển thị thẻ học viên còn bao nhiêu ngày hiệu lực như kiểu trừ dần ngày tập gym chẳng hạn.
+	- Đồng thời lúc đó gửi tin nhắn qua số đt zalo của học viên và nhóm zalo có học viên đó tham gia, và cả notification của app mobile trên đt học viên.
+	- App mobile dùng next.js làm front end, hỗ trợ đa ngôn ngữ, build đc cho ios, android.
+	- Project này có phần SEO đa ngôn ngữ cho cả web, app mobile.
+	- Detect default locale ngôn ngữ nếu user đã chọn trước đó thì dùng nó, không thì dùng locale từ browser hay mobile.
+
+            ----------------------------------
+
+            Your output MUST follow this exact Markdown structure for Phase 4:
+            ## PHASE 4 CONTEXT BLUEPRINT: test-ai-architecture
+            #### 1. Phase Operational Scope & Objectives
+            #### 2. Allowed Technical Scope & Directory Boundaries (Files, paths, and endpoints)
+            #### 3. Dedicated Sub-Agent Functional Directives (Specific tasks for Coder, Tester, Reviewer, DevOps)
+            #### 4. Phase Definition of Done (DoD)
+            
+
+# System Instruction
+
+You are an Elite Solution Architect. Isolate development boundaries so sub-agents never overlap.
+
+# Raw Response / Exception:
+
+```text
+## PHASE 4 CONTEXT BLUEPRINT: test-ai-architecture
+#### 1. Phase Operational Scope & Objectives
+In Phase 4, the primary objective is to ensure the quality and reliability of the membership-hub application through comprehensive testing and quality assurance. This phase will focus on identifying and addressing any defects, inconsistencies, or performance issues in the application. The scope of this phase includes:
+- Conducting unit testing, integration testing, and user acceptance testing (UAT) for the entire application.
+- Performing code reviews to ensure adherence to coding standards, best practices, and security guidelines.
+- Validating the application's functionality, scalability, and performance.
+- Ensuring compliance with the established global guardrails and enterprise standards.
+
+#### 2. Allowed Technical Scope & Directory Boundaries (Files, paths, and endpoints)
+The technical scope for Phase 4 includes:
+- **Testing Frameworks**: Utilize testing frameworks such as JUnit, TestNG, or Jest for unit testing and integration testing.
+- **Test Environments**: Set up test environments for UAT, including staging servers and mock data.
+- **Code Review Tools**: Employ code review tools like SonarQube, CodeCoverage, or GitHub Code Review for code analysis and review.
+- **Directory Boundaries**:
+  - `src/test/java`: Unit tests and integration tests for the Quarkus backend.
+  - `src/test/javascript`: Unit tests and integration tests for the Next.js frontend.
+  - `config/test`: Test configurations and environment settings.
+  - `docker/test`: Docker images and containers for testing purposes.
+- **Endpoints**:
+  - `/api/test`: API endpoint for testing and validation.
+  - `/test`: Frontend endpoint for testing and validation.
+
+#### 3. Dedicated Sub-Agent Functional Directives (Specific tasks for Coder, Tester, Reviewer, DevOps)
+The following sub-agents will be involved in Phase 4:
+- **Coder**: Develop test cases, implement testing frameworks, and ensure code quality.
+- **Tester**: Conduct UAT, integration testing, and unit testing, and report defects or issues.
+- **Reviewer**: Perform code reviews, analyze test results, and ensure compliance with coding standards and security guidelines.
+- **DevOps (Docker)**: Set up test environments, create and manage Docker images for testing, and ensure smooth deployment.
+- **Deployer**: Assist in deploying the application to staging servers for UAT and testing purposes.
+
+#### 4. Phase Definition of Done (DoD)
+Phase 4 is considered complete when:
+- All unit tests, integration tests, and UAT have been conducted, and defects or issues have been addressed.
+- Code reviews have been completed, and code quality meets the established standards.
+- The application has been validated for functionality, scalability, and performance.
+- Test environments have been set up, and test data has been created.
+- The application has been deployed to staging servers for UAT and testing purposes.
+- All test results have been documented, and lessons learned have been recorded for future improvements.
+```
+
+# Phase 5 - Prompt:
+
+
+            Project Name: test-ai-architecture
+            You are tasked to detail **PHASE 5 OUT OF 5**.
+            You must align perfectly with the established Global Context and satisfy a subset of the Raw Requirements.
+
+            --- GLOBAL CONTEXT REFERENCE ---
+            ## GLOBAL PROJECT CONTEXT: test-ai-architecture
+#### 1. Executive Summary & Tech Stack Blueprint
+The membership-hub project is a scalable web and mobile application designed to manage students across multiple centers. The tech stack consists of Quarkus, Kafka, Postgres, and Docker, with deployment on Google Cloud Platform (GCP) and Google Kubernetes Engine (GKE). The application supports internal authentication via email and password, as well as external authentication through Firebase, Google, and Facebook. The project utilizes Next.js for the mobile frontend, supporting multiple languages and building for both iOS and Android. Key features include QR code-based attendance tracking, notification systems, and SEO optimization for both web and mobile platforms.
+
+#### 2. Global Guardrails & Enterprise Compliance Standards
+To ensure the project's success and adherence to industry standards, the following global guardrails and compliance standards will be implemented:
+- **Security**: Implement OAuth 2.0 for authentication, SSL/TLS encryption for data transmission, and regular security audits.
+- **Scalability**: Design the system to scale horizontally, utilizing load balancers and auto-scaling groups in GCP.
+- **Data Management**: Establish data backup and recovery procedures, ensuring data integrity and compliance with relevant regulations (e.g., GDPR, CCPA).
+- **Accessibility**: Ensure the application meets Web Content Accessibility Guidelines (WCAG 2.1) and is optimized for users with disabilities.
+- **Compliance**: Adhere to GCP's compliance framework, ensuring alignment with industry standards such as HIPAA, PCI-DSS, and ISO 27001.
+
+#### 3. Standardized Sub-Agent Persona Definitions
+The following sub-agent personas will be defined to ensure clear roles and responsibilities:
+- **Manager**: Oversees project timelines, budgets, and resource allocation. Ensures compliance with global guardrails and enterprise standards.
+- **Coder**: Develops the application's backend and frontend, focusing on scalability, security, and performance.
+- **Tester**: Conducts unit testing, integration testing, and user acceptance testing (UAT) to ensure the application meets requirements.
+- **Reviewer**: Performs code reviews, ensuring adherence to coding standards, best practices, and security guidelines.
+- **Docker**: Responsible for containerization, creating and managing Docker images for deployment.
+- **Deployer**: Handles deployment to GCP and GKE, ensuring smooth rollout and minimal downtime.
+
+#### 4. Multi-Phase Segmentation Strategy Overview
+The project will be divided into five phases:
+- **Phase 1: Planning and Design** (Weeks 1-4): Define project scope, create wireframes, and establish the tech stack.
+- **Phase 2: Backend Development** (Weeks 5-12): Develop the Quarkus backend, Kafka integration, and Postgres database.
+- **Phase 3: Frontend Development** (Weeks 13-20): Build the Next.js mobile frontend, supporting multiple languages and platforms.
+- **Phase 4: Testing and Quality Assurance** (Weeks 21-24): Conduct unit testing, integration testing, UAT, and code reviews.
+- **Phase 5: Deployment and Maintenance** (Weeks 24-30): Deploy the application to GCP and GKE, ensuring scalability and performance, and provide ongoing maintenance and support.
+            
+            --- RAW REQUIREMENTS REFERENCE ---
+            ## Project Name: membership-hub
+
+*	**Requirements:**
+	- Project vừa web để quản lý, vừa mobile để học viên xài.
+	- Project này xây dựng backend bằng quarkus, kafka, postgres, có thể scalable, build docker image, deploy GCP, GKE.
+	- Hỗ trợ xác thực internal bằng email password, hoặc qua firebase, google, facebook. quản lý user internal lẫn login qua xác thực với các bên bên trên.
+	- Project này quản lý các học viên của trung tâm bất kỳ, dùng được cho nhiều trung tâm 1 lúc được.
+	- Các học viên của trung tâm khi tới học sẽ điểm danh qua QR. Điểm danh sẽ đánh dấu ngày đó học viên có đi học. Cho dù điểm danh nhiều lần cũng không vấn đề và chỉ xem như đã điểm danh ngày hôm đó.
+	- Sau khi điểm danh sẽ hiển thị thẻ học viên còn bao nhiêu ngày hiệu lực như kiểu trừ dần ngày tập gym chẳng hạn.
+	- Đồng thời lúc đó gửi tin nhắn qua số đt zalo của học viên và nhóm zalo có học viên đó tham gia, và cả notification của app mobile trên đt học viên.
+	- App mobile dùng next.js làm front end, hỗ trợ đa ngôn ngữ, build đc cho ios, android.
+	- Project này có phần SEO đa ngôn ngữ cho cả web, app mobile.
+	- Detect default locale ngôn ngữ nếu user đã chọn trước đó thì dùng nó, không thì dùng locale từ browser hay mobile.
+
+            ----------------------------------
+
+            Your output MUST follow this exact Markdown structure for Phase 5:
+            ## PHASE 5 CONTEXT BLUEPRINT: test-ai-architecture
+            #### 1. Phase Operational Scope & Objectives
+            #### 2. Allowed Technical Scope & Directory Boundaries (Files, paths, and endpoints)
+            #### 3. Dedicated Sub-Agent Functional Directives (Specific tasks for Coder, Tester, Reviewer, DevOps)
+            #### 4. Phase Definition of Done (DoD)
+            
+
+# System Instruction
+
+You are an Elite Solution Architect. Isolate development boundaries so sub-agents never overlap.
+
+# Raw Response / Exception:
+
+```text
+## PHASE 5 CONTEXT BLUEPRINT: test-ai-architecture
+#### 1. Phase Operational Scope & Objectives
+The primary objective of Phase 5 is to deploy the membership-hub application to Google Cloud Platform (GCP) and Google Kubernetes Engine (GKE), ensuring scalability, performance, and minimal downtime. This phase will also focus on providing ongoing maintenance and support to guarantee the application's continued functionality and security.
+
+#### 2. Allowed Technical Scope & Directory Boundaries (Files, paths, and endpoints)
+The technical scope for Phase 5 includes:
+- Deployment scripts and configurations for GCP and GKE
+- Docker image creation and management
+- Load balancer and auto-scaling group setup
+- Security and monitoring configurations (e.g., SSL/TLS encryption, OAuth 2.0 authentication)
+- Directory boundaries:
+  - `/deploy`: contains deployment scripts and configurations
+  - `/docker`: contains Dockerfile and Docker Compose files
+  - `/k8s`: contains Kubernetes configuration files
+  - `/security`: contains security-related configurations and scripts
+- Endpoints:
+  - `/api/deploy`: handles deployment requests
+  - `/api/health`: provides application health checks
+  - `/api/metrics`: exposes application metrics
+
+#### 3. Dedicated Sub-Agent Functional Directives (Specific tasks for Coder, Tester, Reviewer, DevOps)
+- **Coder**: Focus on creating deployment scripts, configuring load balancers and auto-scaling groups, and implementing security measures.
+- **Tester**: Conduct deployment testing, ensuring the application is properly deployed and functional in the production environment.
+- **Reviewer**: Review deployment scripts, security configurations, and Kubernetes files to ensure adherence to best practices and security guidelines.
+- **Docker**: Create and manage Docker images for deployment.
+- **Deployer (DevOps)**: Handle the actual deployment to GCP and GKE, ensuring smooth rollout and minimal downtime.
+
+#### 4. Phase Definition of Done (DoD)
+The Definition of Done for Phase 5 includes:
+- Successful deployment of the application to GCP and GKE
+- Verification of application functionality and performance in the production environment
+- Implementation of security measures, including SSL/TLS encryption and OAuth 2.0 authentication
+- Configuration of load balancers and auto-scaling groups
+- Completion of deployment testing and review of deployment scripts and configurations
+- Handover of deployment scripts and configurations to the DevOps team for future maintenance and updates.
+```
+
+# Phase 1 STEPS - Prompt:
+
+
+            Analyze the attached Phase 1 Context Markdown content. 
+            Translate every directive, objective, and daily task mentioned inside it into a structured day-by-day JSON map.
+            
+            --- PHASE 1 CONTEXT MARKDOWN ---
+            ## PHASE 1 CONTEXT BLUEPRINT: test-ai-architecture
+#### 1. Phase Operational Scope & Objectives
+The primary objective of Phase 1 is to define the project scope, create wireframes, and establish the tech stack for the membership-hub project. This phase will focus on planning and design, ensuring that all stakeholders are aligned and that the project is set up for success. The key deliverables for this phase include:
+- A detailed project scope statement
+- Wireframes for the web and mobile applications
+- A defined tech stack, including Quarkus, Kafka, Postgres, Docker, and Next.js
+- A high-level architecture diagram, illustrating the components and interactions of the system
+
+#### 2. Allowed Technical Scope & Directory Boundaries (Files, paths, and endpoints)
+The technical scope for Phase 1 includes:
+- Defining the project directory structure, including folders for backend, frontend, and infrastructure code
+- Establishing the tech stack, including Quarkus, Kafka, Postgres, Docker, and Next.js
+- Creating wireframes for the web and mobile applications, using tools such as Figma or Sketch
+- Defining the API endpoints for the backend, using tools such as Swagger or API Blueprint
+- Establishing the database schema, including tables for users, centers, and attendance records
+
+The following directory boundaries are defined:
+- `backend/`: Quarkus backend code
+- `frontend/`: Next.js frontend code
+- `infrastructure/`: Docker and Kubernetes configuration files
+- `wireframes/`: Wireframes for the web and mobile applications
+- `api/`: API endpoint definitions
+
+#### 3. Dedicated Sub-Agent Functional Directives (Specific tasks for Coder, Tester, Reviewer, DevOps)
+The following sub-agents are assigned to Phase 1:
+- **Coder**: Define the tech stack, create wireframes, and establish the project directory structure
+- **Tester**: Review the wireframes and provide feedback on usability and functionality
+- **Reviewer**: Review the tech stack and provide feedback on scalability and security
+- **Docker**: Establish the Docker configuration and create a Docker image for the backend
+- **Deployer**: Define the deployment process for the application, including deployment to GCP and GKE
+
+#### 4. Phase Definition of Done (DoD)
+The Definition of Done for Phase 1 includes:
+- A completed project scope statement
+- Wireframes for the web and mobile applications, reviewed and approved by stakeholders
+- A defined tech stack, including Quarkus, Kafka, Postgres, Docker, and Next.js
+- A high-level architecture diagram, illustrating the components and interactions of the system
+- A established project directory structure, including folders for backend, frontend, and infrastructure code
+- A review of the tech stack and wireframes by the assigned sub-agents, with feedback and approval documented.
+            ------------------------------------------
+
+            Map your response strictly to the requested PhaseStepsPlan JSON structure.
+            
+
+# System Instruction
+
+You are a rigid technical translator. Map high-level Markdown workflows into precise, executable JSON schemas.
+
+# Raw Response / Exception:
+
+```text
+name 'template_file_path' is not defined
+```
+
