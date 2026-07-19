@@ -5,38 +5,41 @@
 	"global_context_file": "{{ ai.global_context_file }}",
 	"source_target_dir": "sources/",
 	"days": [
-		"{% for day_item in ai.dailyTasks | default([]) %}",
-		{
-		  "day": "{{ day_item.day }}",
-		  "context_section": "DAY {{ day_item.day }}",
-		  "context_file": "{{ ai.phase_context_file }}",
-		  "sub_tasks": [
-			"{% for task_item in day_item.tasks | default([]) %}",
+		{% if ai.dailyTasks %}
+			{% for day_item in ai.dailyTasks | default([]) %}
 			{
-			  "id": "D{{ day_item.day }}_ST{{ loop.index }}",
-			  "agent": "{{ task_item.assignee | default('Coder') | lower }}",
-			  "desc": "{{ task_item.assignee | default('Coder') }} Agent: {{ task_item.task }}"
-			},
-			"{% endfor %}"
-		  ]
-		},
-		"{% endfor %}"
+			  "day": "{{ day_item.day }}",
+			  "context_section": "DAY {{ day_item.day }}",
+			  "context_file": "{{ ai.phase_context_file }}",
+			  "sub_tasks": [
+				{% for task_item in day_item.tasks | default([]) %}
+				{
+				  "id": "D{{ day_item.day }}_ST{{ loop.index }}",
+				  "agent": "{{ task_item.assignee | default('Coder') | lower }}",
+				  "desc": "{{ task_item.assignee | default('Coder') }} Agent: {{ task_item.task }}"
+				}{% if not loop.last %},{% endif %}
+				{% endfor %}
+			  ]
+			}{% if not loop.last %},{% endif %}
+			{% endfor %}
 		
-		"{% for day_item in ai.dayByDayPlan | default([]) %}",
-		{
-		  "day": "{{ day_item.day }}",
-		  "context_section": "DAY {{ day_item.day }}",
-		  "context_file": "{{ ai.phase_context_file }}",
-		  "sub_tasks": [
-			"{% for task_item in day_item.tasks | default([]) %}",
+		{% elif ai.dayByDayPlan %}
+			{% for day_item in ai.dayByDayPlan | default([]) %}
 			{
-			  "id": "D{{ day_item.day }}_ST{{ loop.index }}",
-			  "agent": "{{ day_item.subAgent | default('Coder') | lower }}",
-			  "desc": "{{ day_item.subAgent | default('Coder') }} Agent: {{ task_item | default('No description provided') }}"
-			},
-			"{% endfor %}"
-		  ]
-		},
-		"{% endfor %}"
+			  "day": "{{ day_item.day }}",
+			  "context_section": "DAY {{ day_item.day }}",
+			  "context_file": "{{ ai.phase_context_file }}",
+			  "sub_tasks": [
+				{% for task_item in day_item.tasks | default([]) %}
+				{
+				  "id": "D{{ day_item.day }}_ST{{ loop.index }}",
+				  "agent": "{{ day_item.subAgent | default('Coder') | lower }}",
+				  "desc": "{{ day_item.subAgent | default('Coder') }} Agent: {{ task_item | default('No description provided') }}"
+				}{% if not loop.last %},{% endif %}
+				{% endfor %}
+			  ]
+			}{% if not loop.last %},{% endif %}
+			{% endfor %}
+		{% endif %}
 	]
 }
