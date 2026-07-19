@@ -8,6 +8,8 @@ target/
 secrets/
 **/secrets/**
 !sources/.history/
+__pycache__/
+**/__pycache__/**
 
 ### STS ###
 .apt_generated

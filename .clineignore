@@ -12,6 +12,8 @@
 secrets/
 **/secrets/**
 sources/.history/
+__pycache__/
+**/__pycache__/**
 
 # ==========================================
 # 2. IDE & SYSTEM CONFIGURATIONS

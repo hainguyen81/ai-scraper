@@ -15,30 +15,115 @@ from typing import List
 # OpenAI
 from openai import OpenAI
 
+# mapping JSON
+from jinja2 import Template
+
 # Now Python can seamlessly see and import the centralized helper utility cleanly!
 from helper import write_log
 from helper import parseOpenAIResponseJsonData
 
 # --- Validated Schemas for Structured JSON Output ---
 class SubAgentTask(BaseModel):
-    agent_role: str = Field(description="Target sub-agent role executing the task.")
-    task_description: str = Field(description="Literal, low-level technical step assigned to the agent.")
+    id: str = Field(description="Sub-Task identity of Task that sub-agent role executing.")
+    agent: str = Field(description="Target sub-agent role executing the task.")
+    desc: str = Field(description="Literal, low-level technical step assigned to the agent.")
 
 class DailyStep(BaseModel):
     day: int = Field(description="Timeline iteration day inside this isolated phase.")
-    focus: str = Field(description="The functional epic targeted for closure on this day.")
-    sub_agent_tasks: List[SubAgentTask] = Field(description="Array of isolated micro-tasks assigned to sub-agents.")
+    context_file: str = Field(description="The phase context Markdown file for closure on this day.")
+    context_section: str = Field(description="The day targeted for closure on this day.")
+    sub_tasks: List[SubAgentTask] = Field(description="Array of isolated micro-tasks assigned to sub-agents.")
 
 class PhaseStepsPlan(BaseModel):
     phase_id: int = Field(description="Target phase tracker index.")
-    phase_title: str = Field(description="Descriptive roadmap title matching the source Markdown.")
-    steps: List[DailyStep] = Field(description="Day-by-day engineering tracking steps.")
+    phase_name: str = Field(description="Target phase tracker name.")
+    global_context_file: str = Field(description="Project global context Markdown file for closure.")
+    source_target_dir: str = Field(description="Project sources folder path for closure.")
+    days: List[DailyStep] = Field(description="Day-by-day engineering tracking steps.")
+
+def project_context_file(project_name: str):
+    return f".ai/.context/{ project_name.lower() }.global.blueprint.md"
+
+def phase_context_file(phase_idx: int):
+    return f".ai/.plan/.context/phase-{ phase_idx }.context.blueprint.md"
+
+def dynamic_transform(json_data, project_name: str, phase_idx: int, template_file_path="blueprint.config.map.json"):
+    # check json mapping whether existed
+    if not template_file_path or not os.path.exists(template_file_path):
+        print(f"- ⚠️ The mapping JSON file not found: {template_file_path}")
+        return None
+    
+    # 1. read mapping configuration
+    with open(template_file_path, "r", encoding="utf-8") as f:
+        template_content = f.read()
+    
+    # custom field mapping
+    json_data['project_name'] = project_name.lower()
+    json_data['global_context_file'] = project_context_file(project_name)
+    json_data['phase_idx'] = phase_idx
+    json_data['phase_context_file'] = phase_context_file(phase_idx)
+    
+    # 2. Render template using Jinja2 with AI json data
+    # wrap AI json data to variable `ai` in mapping config file to use
+    jinja_template = Template(template_content)
+    rendered_str = jinja_template.render(ai=json_data)
+    
+    # 3. Clean up redundant comma (,) by Jinja in JSON Array
+    # Process cases: [..., {obj}, ] hoặc [ , {obj} ]
+    cleaned_str = re.sub(r',\s*\]', ']', rendered_str)
+    cleaned_str = re.sub(r'\[\s*,', '[', cleaned_str)
+    cleaned_str = re.sub(r',\s*\}', '}', cleaned_str)
+    
+    # 4. Parse result JSON after rendering by Jinja
+    try:
+        return json.loads(cleaned_str)
+    except json.JSONDecodeError as e:
+        print("- ❌ Exception while mapping JSON:", str(e))
+        print(cleaned_str)
+        raise e
+
+def manual_transform(json_data, project_name: str, phase_idx: int):
+    transform_json_data = {
+        "phase_id": phase_idx,
+        "phase_name": json_data.get("phase", f"Phase {phase_idx}"),
+        "global_context_file": project_context_file(project_name),
+        "source_target_dir": "sources/",
+        "days": []
+    }
+    
+    json_days = json_data.get("steps", json_data.get("dailyTasks", []))
+    for item in json_days:
+        day_val = item.get("day", 1)
+        
+        step_node = {
+            "day": day_val,
+            "context_section": f"DAY {day_val}",
+            "context_file": phase_context_file(phase_idx),
+            "sub_tasks": []
+        }
+        
+        json_tasks = item.get("sub_agent_tasks", item.get("tasks", []))
+        t_idx = 1
+        for t in json_tasks:
+            role = t.get("agent_role", t.get("assignee", "Coder"))
+            desc = t.get("task_description", t.get("task", ""))
+            
+            step_node["sub_tasks"].append({
+                "id": f"D{day_val}_ST{t_idx}",
+                "agent": role,
+                "desc": desc
+            })
+            t_idx = t_idx + 1
+        transform_json_data["days"].append(step_node)
+    
+    # manual transform JSON data
+    return transform_json_data
 
 # GEMINI
 # def convert_phases_to_json(client: genai.Client, project_name: str, num_phases: int, out_dir: str):
 
 # OpenAI
-def convert_phases_to_json(client: OpenAI, model_name: str, project_name: str, num_phases: int, out_dir: str):
+def convert_phases_to_json(client: OpenAI, model_name: str, project_name: str, num_phases: int, json_mapping: str, out_dir: str):
     """
     BLOCK 3: Consumes the physical localized markdown outputs and structuralized them into strictly-typed JSON.
     Guarantees no invalid text pollution using Pydantic typing patterns.
@@ -101,10 +186,17 @@ def convert_phases_to_json(client: OpenAI, model_name: str, project_name: str, n
             )
             raw_data, json_data = parseOpenAIResponseJsonData(response)
             
+            # transform mapping
+            if json_mapping and os.path.exists(template_file_path):
+                transform_json_data = dynamic_transform(json_data, project_name, phase_idx, json_mapping)
+            
+            else:
+                transform_json_data = manual_transform(json_data, project_name, phase_idx)
+            
             # write blueprint
             try:
                 # 2. Parse and validate the string payload locally with Pydantic core engine
-                validated_pydantic_object = PhaseStepsPlan.model_validate_json(json_data)
+                validated_pydantic_object = PhaseStepsPlan.model_validate_json(transform_json_data)
                 
                 out_path = os.path.join(out_dir, f"phase-{phase_idx}.steps.json")
                 with open(out_path, "w", encoding="utf-8") as f:

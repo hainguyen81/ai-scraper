@@ -54,6 +54,11 @@ on:
         description: '🔢 Phase Steps Json Context Model - OpenAI (Ex: meta-llama/llama-3.3-70b-instruct:free)'
         required: false
         type: string
+      model_steps_mapping_config:
+        description: '📜 JSON Configuration for mapping Phase Steps Context (Ex: sources/agents/architect-blueprint/blueprint.config.map.json)'
+        required: false
+        type: string
+        default: 'sources/agents/architect-blueprint/blueprint.config.map.json'
     
   # allow other workflow call into (inputs same as workflow_dispatch but required)
   workflow_call:
@@ -103,6 +108,11 @@ on:
         description: '🔢 Phase Steps Json Context Model - OpenAI (Ex: meta-llama/llama-3.3-70b-instruct:free)'
         required: false
         type: string
+      model_steps_mapping_config:
+        description: '📜 JSON Configuration for mapping Phase Steps Context (Ex: sources/agents/architect-blueprint/blueprint.config.map.json)'
+        required: false
+        type: string
+        default: 'sources/agents/architect-blueprint/blueprint.config.map.json'
 
 # permissions for GitHub Actions READ/WRITE
 permissions:
@@ -144,6 +154,9 @@ jobs:
         
         # OpenAI
         pip install openai pydantic
+        
+        # mapping JSON
+        pip install jinja2
 
     # Step 4: Extract inputs dynamically and execute the Lead Architect Agent
     - name: 🤖 Run Lead Architect Agent
@@ -167,6 +180,7 @@ jobs:
         INPUTS_MODEL_GLOBAL: ${{ github.event.inputs.model_global }}
         INPUTS_MODEL_PHASE: ${{ github.event.inputs.model_phase }}
         INPUTS_MODEL_STEPS: ${{ github.event.inputs.model_steps }}
+        INPUTS_MODEL_STEPS_MAPPING: ${{ github.event.inputs.model_steps_mapping_config }}
         
         # Python environment
         PYTHONPATH: ${{ github.workspace }} # force Python load folder structure, including 'sources'
@@ -255,6 +269,7 @@ jobs:
             --api-model-global-context "$MODEL_GLOBAL" \
             --api-model-phase-context "$MODEL_PHASE" \
             --api-model-phase-steps-json "$MODEL_STEPS" \
+            --api-model-phase-steps-json-mapping "$INPUTS_MODEL_STEPS_MAPPING" \
             --exec-mode $EXE_MODE
 
     # Step 5: Automatically stage, commit, and push the generated architecture files

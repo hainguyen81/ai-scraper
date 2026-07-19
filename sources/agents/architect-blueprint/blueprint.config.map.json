@@ -1,0 +1,25 @@
+{
+	"phase_id": "{{ ai.phase }}",
+	"phase_name": "{{ ai.phase }}",
+	"project_name": "{{ ai.project_name | lower }}",
+	"global_context_file": "{{ ai.global_context_file }}",
+	"source_target_dir": "sources/",
+	"days": [
+		"{% for day_item in ai.dailyTasks %}",
+		{
+		  "day": "{{ day_item.day }}",
+		  "context_section": "DAY {{ day_item.day }}",
+		  "context_file": "{{ ai.phase_context_file }}",
+		  "sub_tasks": [
+			"{% for task_item in day_item.tasks %}",
+			{
+			  "id": "D{{ day_item.day }}_ST{{ loop.index }}",
+			  "agent": "{{ task_item.assignee | lower }}",
+			  "desc": "{{ task_item.assignee }} Agent: {{ task_item.task }}"
+			},
+			"{% endfor %}"
+		  ]
+		},
+		"{% endfor %}"
+	]
+}
