@@ -70,6 +70,28 @@ def parseOpenAIResponseData(response):
         
     return None
 
+def splitOpenAIResponseJsonData(raw_data):
+    clean_json_str = raw_data.strip()
+    
+    # 💡 Cải tiến: Dùng find() cắt chuỗi block nhanh gọn, chấp mọi loại khoảng trắng/xuống dòng
+    lower_raw = clean_json_str.lower()
+    start_tag = "```json"
+    end_tag = "```"
+    
+    if start_tag in lower_raw:
+        start_idx = lower_raw.find(start_tag) + len(start_tag)
+        end_idx = lower_raw.find(end_tag, start_idx)
+        if end_idx != -1:
+            clean_json_str = clean_json_str[start_idx:end_idx].strip()
+    
+    elif "```" in lower_raw:
+        start_idx = lower_raw.find("```") + 3
+        end_idx = lower_raw.find("```", start_idx)
+        if end_idx != -1:
+            clean_json_str = clean_json_str[start_idx:end_idx].strip()
+    
+    return clean_json_str
+
 def parseOpenAIResponseJsonData(response):
     """
     Extracts and deserializes raw response texts into fully validated Python dict layouts.
@@ -101,12 +123,18 @@ def parseOpenAIResponseJsonData(response):
 
     # Pattern 3: Hardened bracket boundary locator leveraging non-greedy isolation
     # Fixes the broken greedy regex logic to ensure text outside the curly braces is safely ignored
-    json_match = re.search(r"(\{[\s\S]*\})", raw_data, re.DOTALL)
-    if json_match:
-        try:
-            clean_json_str = json_match.group(1).strip()
-            return (raw_data, json.loads(clean_json_str))
-        except Exception:
+    try:
+        return (raw_data, json.loads(splitOpenAIResponseJsonData(raw_data)))
+    except Exception as e:
+        json_match = re.search(r"(\{[\s\S]*\})", raw_data, re.DOTALL)
+        if json_match:
+            try:
+                clean_json_str = json_match.group(1).strip()
+                return (raw_data, json.loads(clean_json_str))
+            except Exception:
+                pass
+        
+        else:
             pass
             
     # Final Fallback Layer: Treat the whole string as literal plain text payload
