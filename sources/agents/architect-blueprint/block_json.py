@@ -87,6 +87,7 @@ def manual_transform(json_data, project_name: str, phase_idx: int):
     transform_json_data = {
         "phase_id": phase_idx,
         "phase_name": json_data.get("phase", f"Phase {phase_idx}"),
+        "project_name": project_name.lower(),
         "global_context_file": project_context_file(project_name),
         "source_target_dir": "sources/",
         "days": []
@@ -192,6 +193,7 @@ def convert_phases_to_json(client: OpenAI, model_name: str, project_name: str, n
                 ],
                 temperature=0.1,
                 # response_format=PhaseStepsPlan, # Injects the pydantic model schema ruleset natively
+                max_tokens=8192,
             )
             raw_data, json_data = parseOpenAIResponseJsonData(response)
             print(f" │   └── 🎉 Response Phase {phase_idx} Standardized JSON...")
