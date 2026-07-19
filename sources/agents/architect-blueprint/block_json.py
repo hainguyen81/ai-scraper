@@ -38,6 +38,7 @@ class DailyStep(BaseModel):
 class PhaseStepsPlan(BaseModel):
     phase_id: int = Field(description="Target phase tracker index.")
     phase_name: str = Field(description="Target phase tracker name.")
+    project_name: str = Field(description="Target project tracker name.")
     global_context_file: str = Field(description="Project global context Markdown file for closure.")
     source_target_dir: str = Field(description="Project sources folder path for closure.")
     days: List[DailyStep] = Field(description="Day-by-day engineering tracking steps.")
@@ -51,8 +52,8 @@ def phase_context_file(phase_idx: int):
 def dynamic_transform(json_data, project_name: str, phase_idx: int, template_file_path="blueprint.config.map.json"):
     # check json mapping whether existed
     if not template_file_path or not os.path.exists(template_file_path):
-        print(f"- ⚠️ The mapping JSON file not found: {template_file_path}")
-        return None
+        print(f" │   └── ⚠️ The mapping JSON file not found: {template_file_path}. So using manual transform...")
+        return manual_transform(json_data, project_name, phase_idx)
     
     # 1. read mapping configuration
     with open(template_file_path, "r", encoding="utf-8") as f:
@@ -79,9 +80,9 @@ def dynamic_transform(json_data, project_name: str, phase_idx: int, template_fil
     try:
         return json.loads(cleaned_str)
     except json.JSONDecodeError as e:
-        print(f"- ❌ Exception while mapping JSON: { str(e) }")
-        print(cleaned_str)
-        raise e
+        print(f" │   └── ❌ Exception while mapping JSON: { str(e) }. So using manual transform...")
+        print(f" │   └── { cleaned_str }")
+        return manual_transform(json_data, project_name, phase_idx)
 
 def manual_transform(json_data, project_name: str, phase_idx: int):
     transform_json_data = {
@@ -187,16 +188,14 @@ def convert_phases_to_json(client: OpenAI, model_name: str, project_name: str, n
             )
             raw_data, json_data = parseOpenAIResponseJsonData(response)
             
-            # transform mapping
-            if json_mapping and os.path.exists(json_mapping):
-                transform_json_data = dynamic_transform(json_data, project_name, phase_idx, json_mapping)
-            
-            else:
-                transform_json_data = manual_transform(json_data, project_name, phase_idx)
-            
             # write blueprint
             try:
+                # transform mapping
+                print(f" │   └── 🎉 Transform {phase_idx} Standardized JSON...")
+                transform_json_data = dynamic_transform(json_data, project_name, phase_idx, json_mapping)
+                
                 # 2. Parse and validate the string payload locally with Pydantic core engine
+                print(f" │   └── 🎉 Validate {phase_idx} Standardized JSON...")
                 validated_pydantic_object = PhaseStepsPlan.model_validate_json(transform_json_data)
                 
                 context_dir = os.path.join(out_dir, "plan", "steps")
@@ -229,6 +228,6 @@ def convert_phases_to_json(client: OpenAI, model_name: str, project_name: str, n
         result = True if num_phases > 0 else False
         return result # success or empty phases
     except Exception as e:
-        print(f"❌ Failed to initiate chat/generate Phase {log_phase_idx} Steps JSON: {e}")
+        print(f"❌ Failed to initiate chat/generate Phase {log_phase_idx} Steps JSON: {str(e)}")
         write_log(log_phase_idx, instruction, log_prompt.replace('#', '##'), str(e), True)
         return False
