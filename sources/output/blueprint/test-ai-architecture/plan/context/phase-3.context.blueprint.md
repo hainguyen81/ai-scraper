@@ -1,43 +1,44 @@
 # PHASE 3 CONTEXT BLUEPRINT: test-ai-architecture
 ## 1. Phase Operational Scope & Objectives
-The primary objective of Phase 3 is to develop the frontend of the membership-hub application using Next.js, supporting multiple languages and platforms (iOS, Android). This phase will focus on creating a user-friendly and responsive interface for students to interact with the application. The scope of this phase includes:
-
-* Designing and implementing the frontend architecture
-* Developing features for student management, including QR code-based attendance tracking and notification systems
-* Integrating the frontend with the backend API developed in Phase 2
-* Ensuring support for multiple languages and platforms (iOS, Android)
+The primary objective of Phase 3 is to develop the frontend of the mobile application using Next.js, focusing on features such as QR code scanning, notification handling, and multi-language support. This phase will ensure that the mobile app provides a seamless user experience for students to manage their attendance and receive notifications. The scope includes designing and implementing the user interface, integrating with the backend APIs, and ensuring the app is optimized for both iOS and Android platforms.
 
 ## 2. Allowed Technical Scope & Directory Boundaries (Files, paths, and endpoints)
 The technical scope for Phase 3 includes:
-
-* Frontend framework: Next.js
-* Programming languages: JavaScript, TypeScript
-* Directory boundaries:
-	+ `frontend/`: root directory for frontend code
-	+ `frontend/pages/`: directory for page components
-	+ `frontend/components/`: directory for reusable components
-	+ `frontend/api/`: directory for API endpoints
-* Endpoints:
-	+ `/api/attendance`: endpoint for attendance tracking
-	+ `/api/notification`: endpoint for notification systems
-* Files:
-	+ `frontend/package.json`: file for managing dependencies and scripts
-	+ `frontend/next.config.js`: file for configuring Next.js
+- Frontend framework: Next.js
+- Programming languages: JavaScript, TypeScript
+- Directory boundaries:
+  - `components`: Reusable UI components
+  - `pages`: Application pages (e.g., login, dashboard, attendance)
+  - `api`: API endpoints for interacting with the backend
+  - `utils`: Utility functions for handling notifications, QR code scanning, etc.
+- Endpoints:
+  - `/api/login`: Login API endpoint
+  - `/api/attendance`: Attendance tracking API endpoint
+  - `/api/notifications`: Notification API endpoint
 
 ## 3. Dedicated Sub-Agent Functional Directives (Specific tasks for Coder, Tester, Reviewer, DevOps)
-The following sub-agents will be involved in Phase 3:
-
-* **Coder**: Responsible for developing the frontend code, including page components, reusable components, and API endpoints.
-* **Tester**: Responsible for designing and executing tests for the frontend code, including unit tests, integration tests, and user acceptance testing (UAT).
-* **Reviewer**: Responsible for conducting code reviews, providing feedback on quality, security, and best practices.
-* **DevOps**: Responsible for ensuring the frontend code is properly containerized and deployed to the production environment.
+- **Coder**:
+  - Implement QR code scanning feature using a library like `react-qr-scanner`
+  - Develop notification handling system using `react-native-push-notification`
+  - Integrate multi-language support using `i18next`
+- **Tester**:
+  - Develop test cases for QR code scanning feature
+  - Test notification handling system on different platforms (iOS, Android)
+  - Conduct UI testing for multi-language support
+- **Reviewer**:
+  - Review code quality and adherence to coding standards
+  - Verify that the frontend implementation meets the requirements and design specifications
+  - Ensure that the code is well-documented and follows best practices
+- **DevOps (Docker and Deployer)**:
+  - Configure Dockerfile for building the frontend image
+  - Set up deployment scripts for deploying the frontend to GCP
 
 ## 4. Phase Definition of Done (DoD)
 The Definition of Done for Phase 3 includes:
-
-* All frontend code is complete, reviewed, and tested
-* The frontend is integrated with the backend API
-* The application is deployed to the production environment
-* All tests, including unit tests, integration tests, and UAT, have been executed and passed
-* The application is functional and meets the requirements outlined in the Raw Requirements Reference
-* The code is properly documented and follows best practices for maintainability and scalability.
+- All features and user stories for the frontend are fully implemented and tested
+- The mobile app is built and deployed to the app stores (Apple App Store and Google Play Store)
+- The app is optimized for both iOS and Android platforms
+- All code is reviewed, and feedback is incorporated
+- Automated tests are written and passing for all features
+- The app is deployed to GCP, and monitoring is set up
+- Documentation is updated to reflect the changes made during this phase
