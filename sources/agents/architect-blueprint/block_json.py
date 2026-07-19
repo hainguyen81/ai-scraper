@@ -81,7 +81,6 @@ def dynamic_transform(json_data, project_name: str, phase_idx: int, template_fil
         return json.loads(cleaned_str)
     except json.JSONDecodeError as e:
         print(f" │   └── ❌ Exception while mapping JSON: { str(e) }. So using manual transform...")
-        print(f" │   └── { cleaned_str }")
         return manual_transform(json_data, project_name, phase_idx)
 
 def manual_transform(json_data, project_name: str, phase_idx: int):
@@ -195,18 +194,20 @@ def convert_phases_to_json(client: OpenAI, model_name: str, project_name: str, n
                 # response_format=PhaseStepsPlan, # Injects the pydantic model schema ruleset natively
             )
             raw_data, json_data = parseOpenAIResponseJsonData(response)
+            print(f" │   └── 🎉 Response Phase {phase_idx} Standardized JSON...")
+            print(f" │   └── { json_data }")
             
             # write blueprint
             out_path = os.path.join(steps_context_dir, f"phase-{phase_idx}.steps.json")
             fallback_path = os.path.join(steps_context_dir, f"phase-{phase_idx}.steps.error.md")
             try:
                 # transform mapping
-                print(f" │   └── 🎉 Transform {phase_idx} Standardized JSON...")
+                print(f" │   └── 🎉 Transform Phase {phase_idx} Standardized JSON...")
                 transform_json_data = dynamic_transform(json_data, project_name, phase_idx, json_mapping)
                 
                 # 2. Parse and validate the string payload locally with Pydantic core engine
-                print(f" │   └── 🎉 Validate {phase_idx} Standardized JSON...")
-                validated_pydantic_object = PhaseStepsPlan.model_validate_json(transform_json_data)
+                print(f" │   └── 🎉 Validate Phase {phase_idx} Standardized JSON...")
+                validated_pydantic_object = PhaseStepsPlan.model_validate(transform_json_data)
                 
                 with open(out_path, "w", encoding="utf-8") as f:
                     json.dump(validated_pydantic_object.model_dump(), f, ensure_ascii=False, indent=4)
@@ -222,7 +223,7 @@ def convert_phases_to_json(client: OpenAI, model_name: str, project_name: str, n
                 print(f" │   └── ⚠️ Raw dump saved to diagnostic log file: {fallback_path}")
             
             # write log
-            write_log(log_phase_idx, instruction, log_prompt.replace('#', '##'), raw_data, True)
+            write_log(log_phase_idx, instruction, log_prompt.replace('#', '##'), json_data, True)
             
             print(f" │   └── 🎉 Saved Phase {phase_idx} JSON Tracker: {out_path}")
             
