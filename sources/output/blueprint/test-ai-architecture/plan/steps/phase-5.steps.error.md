@@ -2,22 +2,25 @@
 {
   "phase": "Phase 5",
   "objectives": [
-    "Deploy the membership-hub application to the Google Cloud Platform (GCP) using Google Kubernetes Engine (GKE)",
-    "Configure monitoring and logging tools",
-    "Setup security measures, including OAuth 2.0 and HTTPS",
-    "Plan for post-launch maintenance and updates"
+    "Deploy the membership-hub application to production",
+    "Ensure a smooth and efficient deployment process",
+    "Configure load balancing and auto-scaling",
+    "Set up monitoring and logging tools",
+    "Conduct final testing, including user acceptance testing (UAT) and performance testing"
   ],
   "dailyTasks": [
     {
       "day": 1,
       "tasks": [
         {
-          "role": "Coder",
-          "task": "Write deployment scripts for GKE"
+          "task": "Initialize deployment scripts",
+          "assignee": "Coder",
+          "directory": "deploy/scripts"
         },
         {
-          "role": "DevOps",
-          "task": "Prepare GCP environment for deployment"
+          "task": "Configure Kubernetes environments",
+          "assignee": "Coder",
+          "directory": "deploy/k8s"
         }
       ]
     },
@@ -25,12 +28,14 @@
       "day": 2,
       "tasks": [
         {
-          "role": "Coder",
-          "task": "Configure monitoring and logging tools"
+          "task": "Configure load balancing and auto-scaling",
+          "assignee": "Coder",
+          "directory": "deploy/k8s"
         },
         {
-          "role": "Tester",
-          "task": "Test deployment process"
+          "task": "Set up monitoring tools (Prometheus, Grafana)",
+          "assignee": "Coder",
+          "directory": "deploy/monitoring"
         }
       ]
     },
@@ -38,12 +43,14 @@
       "day": 3,
       "tasks": [
         {
-          "role": "Coder",
-          "task": "Implement security measures, including OAuth 2.0 and HTTPS"
+          "task": "Set up logging tools (ELK Stack)",
+          "assignee": "Coder",
+          "directory": "deploy/monitoring"
         },
         {
-          "role": "Reviewer",
-          "task": "Review deployment scripts and configurations"
+          "task": "Prepare test scripts for UAT and performance testing",
+          "assignee": "Tester",
+          "directory": "test/deployment"
         }
       ]
     },
@@ -51,12 +58,14 @@
       "day": 4,
       "tasks": [
         {
-          "role": "DevOps",
-          "task": "Deploy application to GCP using GKE"
+          "task": "Conduct UAT",
+          "assignee": "Tester",
+          "directory": "test/deployment"
         },
         {
-          "role": "Tester",
-          "task": "Test monitoring and logging configurations"
+          "task": "Conduct performance testing",
+          "assignee": "Tester",
+          "directory": "test/deployment"
         }
       ]
     },
@@ -64,12 +73,14 @@
       "day": 5,
       "tasks": [
         {
-          "role": "DevOps",
-          "task": "Configure monitoring and logging tools"
+          "task": "Review deployment scripts and Kubernetes configurations",
+          "assignee": "Reviewer",
+          "directory": "deploy/scripts"
         },
         {
-          "role": "Reviewer",
-          "task": "Review security settings and configurations"
+          "task": "Review monitoring and logging setups",
+          "assignee": "Reviewer",
+          "directory": "deploy/monitoring"
         }
       ]
     },
@@ -77,12 +88,14 @@
       "day": 6,
       "tasks": [
         {
-          "role": "Tester",
-          "task": "Test security settings and configurations"
+          "task": "Configure Docker images and containers",
+          "assignee": "Docker",
+          "directory": "deploy/k8s"
         },
         {
-          "role": "DevOps",
-          "task": "Verify deployment and configuration of the application"
+          "task": "Manage deployment process",
+          "assignee": "Deployer",
+          "directory": "deploy/scripts"
         }
       ]
     },
@@ -90,24 +103,26 @@
       "day": 7,
       "tasks": [
         {
-          "role": "Reviewer",
-          "task": "Review and approve all deployment scripts, configurations, and security settings"
+          "task": "Resolve defects or issues reported during testing",
+          "assignee": "Coder",
+          "directory": "deploy/scripts"
         },
         {
-          "role": "DevOps",
-          "task": "Finalize post-launch maintenance and update plans"
+          "task": "Confirm application meets security, data privacy, and scalability requirements",
+          "assignee": "Coder",
+          "directory": "deploy/k8s"
         }
       ]
     }
   ],
   "definitionOfDone": [
-    "The application is successfully deployed to GCP using GKE",
-    "Monitoring and logging tools are configured and functioning correctly",
-    "Security measures, including OAuth 2.0 and HTTPS, are implemented and tested",
-    "Post-launch maintenance and update plans are in place",
-    "All deployment scripts, configurations, and security settings are reviewed and approved by the Reviewer",
-    "The application is thoroughly tested by the Tester, and all defects are resolved",
-    "The DevOps team has verified the deployment and configuration of the application"
+    "Successful deployment of the application to GCP and GKE",
+    "Configuration of load balancing and auto-scaling",
+    "Setup of monitoring and logging tools",
+    "Completion of final testing (UAT, performance testing)",
+    "Resolution of all defects or issues reported during testing",
+    "Confirmation that the application meets all security, data privacy, and scalability requirements",
+    "Handover of the deployed application to the operations team for ongoing maintenance and support"
   ]
 }
 ```
