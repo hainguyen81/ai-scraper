@@ -73,7 +73,7 @@ def parseOpenAIResponseData(response):
 def splitOpenAIResponseJsonData(raw_data):
     clean_json_str = raw_data.strip()
     
-    # 💡 Cải tiến: Dùng find() cắt chuỗi block nhanh gọn, chấp mọi loại khoảng trắng/xuống dòng
+    # 💡 Use find() to split json block
     lower_raw = clean_json_str.lower()
     start_tag = "```json"
     end_tag = "```"
