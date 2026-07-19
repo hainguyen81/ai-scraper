@@ -1,43 +1,39 @@
 # PHASE 1 CONTEXT BLUEPRINT: test-ai-architecture
 ## 1. Phase Operational Scope & Objectives
-The primary objective of Phase 1 is to define the project scope, create wireframes, and establish the technical architecture for the membership-hub project. This phase will focus on planning and design, ensuring that all stakeholders are aligned and that the project is set up for success. The key deliverables for this phase include:
+The primary objective of Phase 1 is to define the project scope, create wireframes, and establish the tech stack for the membership-hub project. This phase will focus on planning and design, ensuring that all stakeholders are aligned and that the project is set up for success. The key deliverables for this phase include:
 - A detailed project scope statement
 - Wireframes for the web and mobile applications
-- A technical architecture document outlining the use of Quarkus, Kafka, Postgres, and Docker
-- A high-level design for the authentication and authorization system
-- A plan for scalability, security, and data management
+- A defined tech stack, including Quarkus, Kafka, Postgres, Docker, and Next.js
+- A high-level architecture diagram, illustrating the components and interactions of the system
 
 ## 2. Allowed Technical Scope & Directory Boundaries (Files, paths, and endpoints)
 The technical scope for Phase 1 includes:
-- Defining the project directory structure and organization
-- Creating a new Quarkus project and setting up the basic configuration
-- Designing the database schema for Postgres
-- Creating wireframes for the web and mobile applications using tools like Figma or Sketch
-- Defining the API endpoints for authentication, user management, and attendance tracking
-- Establishing the Docker configuration for containerization
-- Setting up the Kafka configuration for messaging and event-driven architecture
-The following directories and files are in scope for this phase:
-- `src/main/java` for Quarkus backend code
-- `src/main/resources` for configuration files and database schema
-- `wireframes` for web and mobile application designs
-- `docker` for Docker configuration files
-- `kafka` for Kafka configuration files
+- Defining the project directory structure, including folders for backend, frontend, and infrastructure code
+- Establishing the tech stack, including Quarkus, Kafka, Postgres, Docker, and Next.js
+- Creating wireframes for the web and mobile applications, using tools such as Figma or Sketch
+- Defining the API endpoints for the backend, using tools such as Swagger or API Blueprint
+- Establishing the database schema, including tables for users, centers, and attendance records
+
+The following directory boundaries are defined:
+- `backend/`: Quarkus backend code
+- `frontend/`: Next.js frontend code
+- `infrastructure/`: Docker and Kubernetes configuration files
+- `wireframes/`: Wireframes for the web and mobile applications
+- `api/`: API endpoint definitions
 
 ## 3. Dedicated Sub-Agent Functional Directives (Specific tasks for Coder, Tester, Reviewer, DevOps)
-The following sub-agents have specific tasks assigned to them for Phase 1:
-- **Coder**: Create a new Quarkus project, define the database schema, and create wireframes for the web and mobile applications
+The following sub-agents are assigned to Phase 1:
+- **Coder**: Define the tech stack, create wireframes, and establish the project directory structure
 - **Tester**: Review the wireframes and provide feedback on usability and functionality
-- **Reviewer**: Review the technical architecture document and provide feedback on scalability, security, and data management
-- **DevOps (Docker)**: Set up the Docker configuration for containerization and create a Dockerfile for the Quarkus application
-- **DevOps (Deployer)**: Set up the Kafka configuration for messaging and event-driven architecture
+- **Reviewer**: Review the tech stack and provide feedback on scalability and security
+- **Docker**: Establish the Docker configuration and create a Docker image for the backend
+- **Deployer**: Define the deployment process for the application, including deployment to GCP and GKE
 
 ## 4. Phase Definition of Done (DoD)
-Phase 1 is considered complete when the following criteria are met:
-- The project scope statement is complete and approved by all stakeholders
-- The wireframes for the web and mobile applications are complete and approved by all stakeholders
-- The technical architecture document is complete and approved by all stakeholders
-- The database schema is defined and approved by all stakeholders
-- The Docker configuration is set up and tested
-- The Kafka configuration is set up and tested
-- All sub-agents have completed their assigned tasks and delivered their artifacts
-- A review meeting is held to ensure that all stakeholders are aligned and that the project is ready to move on to Phase 2.
+The Definition of Done for Phase 1 includes:
+- A completed project scope statement
+- Wireframes for the web and mobile applications, reviewed and approved by stakeholders
+- A defined tech stack, including Quarkus, Kafka, Postgres, Docker, and Next.js
+- A high-level architecture diagram, illustrating the components and interactions of the system
+- A established project directory structure, including folders for backend, frontend, and infrastructure code
+- A review of the tech stack and wireframes by the assigned sub-agents, with feedback and approval documented.

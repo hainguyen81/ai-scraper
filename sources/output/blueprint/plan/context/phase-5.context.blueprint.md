@@ -1,40 +1,35 @@
 # PHASE 5 CONTEXT BLUEPRINT: test-ai-architecture
 ## 1. Phase Operational Scope & Objectives
-In Phase 5, the primary objective is to deploy the membership-hub application to Google Cloud Platform (GCP) and Google Kubernetes Engine (GKE), ensuring scalability, performance, and reliability. The scope includes:
-- Configuring load balancers and auto-scaling groups for horizontal scaling
-- Setting up monitoring and logging tools for performance optimization
-- Implementing security measures, such as SSL/TLS encryption and OAuth 2.0 authentication
-- Conducting final testing and quality assurance to ensure the application meets the required standards
-- Establishing a maintenance schedule for future updates and bug fixes
+The primary objective of Phase 5 is to deploy the membership-hub application to Google Cloud Platform (GCP) and Google Kubernetes Engine (GKE), ensuring scalability, performance, and minimal downtime. This phase will also focus on providing ongoing maintenance and support to guarantee the application's continued functionality and security.
 
 ## 2. Allowed Technical Scope & Directory Boundaries (Files, paths, and endpoints)
 The technical scope for Phase 5 includes:
-- Deployment scripts and configuration files for GCP and GKE
+- Deployment scripts and configurations for GCP and GKE
 - Docker image creation and management
-- Load balancer and auto-scaling group configuration
-- Monitoring and logging tool integration (e.g., Prometheus, Grafana, ELK Stack)
-- Security configuration files (e.g., OAuth 2.0, SSL/TLS certificates)
-- API endpoints for deployment, scaling, and monitoring
+- Load balancer and auto-scaling group setup
+- Security and monitoring configurations (e.g., SSL/TLS encryption, OAuth 2.0 authentication)
 - Directory boundaries:
-	+ `/deploy`: deployment scripts and configuration files
-	+ `/docker`: Docker image creation and management
-	+ `/k8s`: Kubernetes configuration files
-	+ `/monitoring`: monitoring and logging tool configuration
-	+ `/security`: security configuration files
+  - `/deploy`: contains deployment scripts and configurations
+  - `/docker`: contains Dockerfile and Docker Compose files
+  - `/k8s`: contains Kubernetes configuration files
+  - `/security`: contains security-related configurations and scripts
+- Endpoints:
+  - `/api/deploy`: handles deployment requests
+  - `/api/health`: provides application health checks
+  - `/api/metrics`: exposes application metrics
 
 ## 3. Dedicated Sub-Agent Functional Directives (Specific tasks for Coder, Tester, Reviewer, DevOps)
-- **Coder**: Assist in deployment script development, configure load balancers and auto-scaling groups, and implement security measures
-- **Tester**: Conduct final testing and quality assurance, including performance and security testing
-- **Reviewer**: Review deployment scripts, configuration files, and security measures to ensure adherence to industry standards and best practices
-- **Docker**: Create and manage Docker images for deployment
-- **Deployer (DevOps)**: Manage the deployment process, configure monitoring and logging tools, and establish a maintenance schedule
+- **Coder**: Focus on creating deployment scripts, configuring load balancers and auto-scaling groups, and implementing security measures.
+- **Tester**: Conduct deployment testing, ensuring the application is properly deployed and functional in the production environment.
+- **Reviewer**: Review deployment scripts, security configurations, and Kubernetes files to ensure adherence to best practices and security guidelines.
+- **Docker**: Create and manage Docker images for deployment.
+- **Deployer (DevOps)**: Handle the actual deployment to GCP and GKE, ensuring smooth rollout and minimal downtime.
 
 ## 4. Phase Definition of Done (DoD)
 The Definition of Done for Phase 5 includes:
 - Successful deployment of the application to GCP and GKE
-- Configuration of load balancers and auto-scaling groups for horizontal scaling
+- Verification of application functionality and performance in the production environment
 - Implementation of security measures, including SSL/TLS encryption and OAuth 2.0 authentication
-- Completion of final testing and quality assurance
-- Establishment of a maintenance schedule for future updates and bug fixes
-- Review and approval of deployment scripts, configuration files, and security measures by the Reviewer
-- Confirmation of successful deployment and testing by the Tester and Deployer (DevOps)
+- Configuration of load balancers and auto-scaling groups
+- Completion of deployment testing and review of deployment scripts and configurations
+- Handover of deployment scripts and configurations to the DevOps team for future maintenance and updates.
