@@ -1,38 +1,33 @@
 # PHASE 5 CONTEXT BLUEPRINT: test-ai-architecture
 ## 1. Phase Operational Scope & Objectives
-The primary objective of Phase 5 is to deploy the membership-hub application to the Google Cloud Platform (GCP) using Google Kubernetes Engine (GKE), ensuring a scalable, secure, and highly available environment. This phase will also focus on configuring monitoring and logging, as well as planning for post-launch maintenance and updates. The key deliverables include:
-- Deployment of the application to GCP using GKE
-- Configuration of monitoring and logging tools
-- Setup of security measures, including OAuth 2.0 and HTTPS
-- Planning for post-launch maintenance, updates, and potential scalability adjustments
+The primary objective of Phase 5 is to deploy the membership-hub application to production, ensuring a smooth and efficient deployment process. This phase will focus on deploying the application to Google Cloud Platform (GCP) and Google Kubernetes Engine (GKE), configuring load balancing and auto-scaling, and setting up monitoring and logging tools. Additionally, this phase will involve conducting final testing, including user acceptance testing (UAT) and performance testing, to ensure the application meets the required standards.
 
 ## 2. Allowed Technical Scope & Directory Boundaries (Files, paths, and endpoints)
 The technical scope for Phase 5 includes:
-- Deployment scripts and configurations for GKE
-- Monitoring and logging tools, such as Google Cloud Logging and Monitoring
-- Security configurations, including OAuth 2.0 and HTTPS settings
-- Directory boundaries:
-  - `/deploy`: contains deployment scripts and configurations
-  - `/monitoring`: contains monitoring and logging configurations
-  - `/security`: contains security configurations, including OAuth 2.0 and HTTPS settings
-- Endpoints:
-  - `/api/deploy`: endpoint for deploying the application to GCP
-  - `/api/monitoring`: endpoint for monitoring and logging
-  - `/api/security`: endpoint for security configurations
+* Deploying the application to GCP and GKE
+* Configuring load balancing and auto-scaling
+* Setting up monitoring and logging tools (e.g., Prometheus, Grafana, ELK Stack)
+* Conducting final testing (UAT, performance testing)
+* Ensuring compliance with security, data privacy, and scalability requirements
+* Directory boundaries:
+	+ Deployment scripts: `deploy/scripts`
+	+ Kubernetes configurations: `deploy/k8s`
+	+ Monitoring and logging configurations: `deploy/monitoring`
+	+ Test scripts: `test/deployment`
 
 ## 3. Dedicated Sub-Agent Functional Directives (Specific tasks for Coder, Tester, Reviewer, DevOps)
-- **Coder**: Focus on writing deployment scripts, configuring monitoring and logging tools, and implementing security measures.
-- **Tester**: Conduct thorough testing of the deployment process, monitoring and logging configurations, and security settings.
-- **Reviewer**: Review deployment scripts, monitoring and logging configurations, and security settings to ensure they meet the project's quality and compliance standards.
-- **DevOps (Deployer)**: Responsible for deploying the application to GCP, configuring monitoring and logging tools, and setting up security measures.
-- **Docker**: Ensure the application is properly containerized and can be efficiently deployed to GKE.
+* **Coder**: Assist in deployment scripting, configure load balancing and auto-scaling, and ensure compliance with security and scalability requirements.
+* **Tester**: Conduct final testing, including UAT and performance testing, and report any defects or issues.
+* **Reviewer**: Review deployment scripts, Kubernetes configurations, and monitoring and logging setups to ensure they meet the required standards.
+* **Docker**: Ensure seamless deployment and scaling of the application by configuring Docker images and containers.
+* **Deployer**: Manage the deployment process, ensuring smooth and efficient deployment of the application to production environments.
 
 ## 4. Phase Definition of Done (DoD)
 The Definition of Done for Phase 5 includes:
-- The application is successfully deployed to GCP using GKE.
-- Monitoring and logging tools are configured and functioning correctly.
-- Security measures, including OAuth 2.0 and HTTPS, are implemented and tested.
-- Post-launch maintenance and update plans are in place.
-- All deployment scripts, configurations, and security settings are reviewed and approved by the Reviewer.
-- The application is thoroughly tested by the Tester, and all defects are resolved.
-- The DevOps team has verified the deployment and configuration of the application.
+* Successful deployment of the application to GCP and GKE
+* Configuration of load balancing and auto-scaling
+* Setup of monitoring and logging tools
+* Completion of final testing (UAT, performance testing)
+* Resolution of all defects or issues reported during testing
+* Confirmation that the application meets all security, data privacy, and scalability requirements
+* Handover of the deployed application to the operations team for ongoing maintenance and support.

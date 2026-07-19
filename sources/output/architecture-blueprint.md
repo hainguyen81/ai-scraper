@@ -3198,3 +3198,1547 @@ You are a rigid technical translator. Map high-level Markdown workflows into pre
 ```
 ```
 
+# Global Prompt:
+
+
+        Analyze the attached project requirements. Build the GLOBAL PROJECT CONTEXT for 'test-ai-architecture'.
+        
+        --- RAW REQUIREMENTS ---
+        ## Project Name: membership-hub
+
+*	**Requirements:**
+	- Project vừa web để quản lý, vừa mobile để học viên xài.
+	- Project này xây dựng backend bằng quarkus, kafka, postgres, có thể scalable, build docker image, deploy GCP, GKE.
+	- Hỗ trợ xác thực internal bằng email password, hoặc qua firebase, google, facebook. quản lý user internal lẫn login qua xác thực với các bên bên trên.
+	- Project này quản lý các học viên của trung tâm bất kỳ, dùng được cho nhiều trung tâm 1 lúc được.
+	- Các học viên của trung tâm khi tới học sẽ điểm danh qua QR. Điểm danh sẽ đánh dấu ngày đó học viên có đi học. Cho dù điểm danh nhiều lần cũng không vấn đề và chỉ xem như đã điểm danh ngày hôm đó.
+	- Sau khi điểm danh sẽ hiển thị thẻ học viên còn bao nhiêu ngày hiệu lực như kiểu trừ dần ngày tập gym chẳng hạn.
+	- Đồng thời lúc đó gửi tin nhắn qua số đt zalo của học viên và nhóm zalo có học viên đó tham gia, và cả notification của app mobile trên đt học viên.
+	- App mobile dùng next.js làm front end, hỗ trợ đa ngôn ngữ, build đc cho ios, android.
+	- Project này có phần SEO đa ngôn ngữ cho cả web, app mobile.
+	- Detect default locale ngôn ngữ nếu user đã chọn trước đó thì dùng nó, không thì dùng locale từ browser hay mobile.
+
+        --- END REQUIREMENTS ---
+
+        Your output MUST follow this exact structure:
+        ## GLOBAL PROJECT CONTEXT: test-ai-architecture
+        #### 1. Executive Summary & Tech Stack Blueprint
+        #### 2. Global Guardrails & Enterprise Compliance Standards
+        #### 3. Standardized Sub-Agent Persona Definitions (Manager, Coder, Tester, Reviewer, Docker, Deployer)
+        #### 4. Multi-Phase Segmentation Strategy Overview (Plan exactly 5 phases)
+        
+
+# System Instruction
+
+You are an Elite Solution Architect. Define the global system truth and multi-agent guardrails.
+
+# Raw Response / Exception:
+
+```text
+## GLOBAL PROJECT CONTEXT: test-ai-architecture
+#### 1. Executive Summary & Tech Stack Blueprint
+The membership-hub project is a scalable web and mobile application designed to manage students across multiple centers. The tech stack includes Quarkus, Kafka, Postgres, and Docker, with deployment on GCP and GKE. The application supports internal authentication via email/password, Firebase, Google, and Facebook, as well as QR code-based attendance tracking. The front end is built using Next.js, with support for multiple languages, SEO optimization, and notification systems. The project aims to provide a comprehensive management system for centers, with features such as attendance tracking, membership management, and notification systems.
+
+#### 2. Global Guardrails & Enterprise Compliance Standards
+To ensure the project's success and adherence to industry standards, the following global guardrails and enterprise compliance standards will be implemented:
+* Security: Implement OAuth 2.0 for authentication, SSL/TLS encryption for data transmission, and regular security audits.
+* Data Privacy: Comply with GDPR, CCPA, and other relevant data protection regulations, ensuring the secure storage and handling of user data.
+* Scalability: Design the system to scale horizontally, with load balancing and auto-scaling capabilities to handle increased traffic.
+* Compliance: Adhere to industry-specific regulations, such as accessibility standards (WCAG 2.1) and data retention policies.
+* Quality Assurance: Implement automated testing, code reviews, and continuous integration/continuous deployment (CI/CD) pipelines to ensure high-quality code and rapid deployment.
+
+#### 3. Standardized Sub-Agent Persona Definitions
+The following sub-agent persona definitions will be used to ensure clear roles and responsibilities:
+* **Manager**: Oversees project scope, timeline, and budget, ensuring alignment with business objectives.
+* **Coder**: Develops high-quality, scalable, and secure code, following industry best practices and coding standards.
+* **Tester**: Designs and executes comprehensive testing plans, identifying and reporting defects to ensure high-quality software.
+* **Reviewer**: Conducts code reviews, providing constructive feedback to improve code quality, readability, and maintainability.
+* **Docker**: Responsible for containerization, ensuring seamless deployment and scaling of the application.
+* **Deployer**: Manages deployment processes, ensuring smooth and efficient deployment of the application to production environments.
+
+#### 4. Multi-Phase Segmentation Strategy Overview
+The project will be divided into five phases:
+* **Phase 1: Planning and Requirements Gathering** (Weeks 1-4): Define project scope, gather requirements, and create a detailed project plan.
+* **Phase 2: Backend Development** (Weeks 5-12): Develop the backend using Quarkus, Kafka, and Postgres, with a focus on scalability and security.
+* **Phase 3: Frontend Development** (Weeks 13-18): Develop the frontend using Next.js, with a focus on user experience, SEO optimization, and notification systems.
+* **Phase 4: Testing and Quality Assurance** (Weeks 19-22): Conduct comprehensive testing, including unit testing, integration testing, and user acceptance testing.
+* **Phase 5: Deployment and Maintenance** (Weeks 23-26): Deploy the application to production, ensure smooth operation, and provide ongoing maintenance and support.
+```
+
+# Phase 1 - Prompt:
+
+
+            Project Name: test-ai-architecture
+            You are tasked to detail **PHASE 1 OUT OF 5**.
+            You must align perfectly with the established Global Context and satisfy a subset of the Raw Requirements.
+
+            --- GLOBAL CONTEXT REFERENCE ---
+            ## GLOBAL PROJECT CONTEXT: test-ai-architecture
+#### 1. Executive Summary & Tech Stack Blueprint
+The membership-hub project is a scalable web and mobile application designed to manage students across multiple centers. The tech stack includes Quarkus, Kafka, Postgres, and Docker, with deployment on GCP and GKE. The application supports internal authentication via email/password, Firebase, Google, and Facebook, as well as QR code-based attendance tracking. The front end is built using Next.js, with support for multiple languages, SEO optimization, and notification systems. The project aims to provide a comprehensive management system for centers, with features such as attendance tracking, membership management, and notification systems.
+
+#### 2. Global Guardrails & Enterprise Compliance Standards
+To ensure the project's success and adherence to industry standards, the following global guardrails and enterprise compliance standards will be implemented:
+* Security: Implement OAuth 2.0 for authentication, SSL/TLS encryption for data transmission, and regular security audits.
+* Data Privacy: Comply with GDPR, CCPA, and other relevant data protection regulations, ensuring the secure storage and handling of user data.
+* Scalability: Design the system to scale horizontally, with load balancing and auto-scaling capabilities to handle increased traffic.
+* Compliance: Adhere to industry-specific regulations, such as accessibility standards (WCAG 2.1) and data retention policies.
+* Quality Assurance: Implement automated testing, code reviews, and continuous integration/continuous deployment (CI/CD) pipelines to ensure high-quality code and rapid deployment.
+
+#### 3. Standardized Sub-Agent Persona Definitions
+The following sub-agent persona definitions will be used to ensure clear roles and responsibilities:
+* **Manager**: Oversees project scope, timeline, and budget, ensuring alignment with business objectives.
+* **Coder**: Develops high-quality, scalable, and secure code, following industry best practices and coding standards.
+* **Tester**: Designs and executes comprehensive testing plans, identifying and reporting defects to ensure high-quality software.
+* **Reviewer**: Conducts code reviews, providing constructive feedback to improve code quality, readability, and maintainability.
+* **Docker**: Responsible for containerization, ensuring seamless deployment and scaling of the application.
+* **Deployer**: Manages deployment processes, ensuring smooth and efficient deployment of the application to production environments.
+
+#### 4. Multi-Phase Segmentation Strategy Overview
+The project will be divided into five phases:
+* **Phase 1: Planning and Requirements Gathering** (Weeks 1-4): Define project scope, gather requirements, and create a detailed project plan.
+* **Phase 2: Backend Development** (Weeks 5-12): Develop the backend using Quarkus, Kafka, and Postgres, with a focus on scalability and security.
+* **Phase 3: Frontend Development** (Weeks 13-18): Develop the frontend using Next.js, with a focus on user experience, SEO optimization, and notification systems.
+* **Phase 4: Testing and Quality Assurance** (Weeks 19-22): Conduct comprehensive testing, including unit testing, integration testing, and user acceptance testing.
+* **Phase 5: Deployment and Maintenance** (Weeks 23-26): Deploy the application to production, ensure smooth operation, and provide ongoing maintenance and support.
+            
+            --- RAW REQUIREMENTS REFERENCE ---
+            ## Project Name: membership-hub
+
+*	**Requirements:**
+	- Project vừa web để quản lý, vừa mobile để học viên xài.
+	- Project này xây dựng backend bằng quarkus, kafka, postgres, có thể scalable, build docker image, deploy GCP, GKE.
+	- Hỗ trợ xác thực internal bằng email password, hoặc qua firebase, google, facebook. quản lý user internal lẫn login qua xác thực với các bên bên trên.
+	- Project này quản lý các học viên của trung tâm bất kỳ, dùng được cho nhiều trung tâm 1 lúc được.
+	- Các học viên của trung tâm khi tới học sẽ điểm danh qua QR. Điểm danh sẽ đánh dấu ngày đó học viên có đi học. Cho dù điểm danh nhiều lần cũng không vấn đề và chỉ xem như đã điểm danh ngày hôm đó.
+	- Sau khi điểm danh sẽ hiển thị thẻ học viên còn bao nhiêu ngày hiệu lực như kiểu trừ dần ngày tập gym chẳng hạn.
+	- Đồng thời lúc đó gửi tin nhắn qua số đt zalo của học viên và nhóm zalo có học viên đó tham gia, và cả notification của app mobile trên đt học viên.
+	- App mobile dùng next.js làm front end, hỗ trợ đa ngôn ngữ, build đc cho ios, android.
+	- Project này có phần SEO đa ngôn ngữ cho cả web, app mobile.
+	- Detect default locale ngôn ngữ nếu user đã chọn trước đó thì dùng nó, không thì dùng locale từ browser hay mobile.
+
+            ----------------------------------
+
+            Your output MUST follow this exact Markdown structure for Phase 1:
+            ## PHASE 1 CONTEXT BLUEPRINT: test-ai-architecture
+            #### 1. Phase Operational Scope & Objectives
+            #### 2. Allowed Technical Scope & Directory Boundaries (Files, paths, and endpoints)
+            #### 3. Dedicated Sub-Agent Functional Directives (Specific tasks for Coder, Tester, Reviewer, DevOps)
+            #### 4. Phase Definition of Done (DoD)
+            
+
+# System Instruction
+
+You are an Elite Solution Architect. Isolate development boundaries so sub-agents never overlap.
+
+# Raw Response / Exception:
+
+```text
+## PHASE 1 CONTEXT BLUEPRINT: test-ai-architecture
+#### 1. Phase Operational Scope & Objectives
+The primary objective of Phase 1 is to define the project scope, gather requirements, and create a detailed project plan for the membership-hub project. This phase will focus on understanding the business needs, identifying the technical requirements, and establishing a clear roadmap for the project. The key deliverables for this phase include:
+* A comprehensive project plan outlining the scope, timeline, and budget
+* A detailed requirements document capturing the functional and non-functional requirements
+* A high-level architecture diagram illustrating the system components and interactions
+* A list of potential risks and mitigation strategies
+
+#### 2. Allowed Technical Scope & Directory Boundaries (Files, paths, and endpoints)
+The technical scope for Phase 1 includes:
+* Reviewing the existing tech stack and identifying potential areas for improvement
+* Researching and recommending tools and technologies for the project (e.g., Quarkus, Kafka, Postgres, Docker, GCP, GKE, Next.js)
+* Defining the directory structure and organization for the project codebase
+* Establishing the endpoints and APIs for the backend and frontend components
+* Identifying the required files and paths for the project (e.g., configuration files, data storage, logging)
+
+The following directories and files are in scope for Phase 1:
+* `docs/`: project documentation and meeting notes
+* `requirements/`: requirements gathering and analysis
+* `architecture/`: high-level architecture diagrams and design documents
+* `tech-stack/`: research and recommendations for tools and technologies
+
+#### 3. Dedicated Sub-Agent Functional Directives (Specific tasks for Coder, Tester, Reviewer, DevOps)
+The following sub-agents have specific tasks and responsibilities for Phase 1:
+* **Manager**: oversee the project scope, timeline, and budget; ensure alignment with business objectives
+* **Coder**: research and recommend tools and technologies; define the directory structure and organization for the project codebase
+* **Tester**: review the requirements document and identify potential testing scenarios
+* **Reviewer**: review the project plan and provide feedback on the scope, timeline, and budget
+* **Docker**: research and recommend containerization strategies for the project
+* **Deployer**: research and recommend deployment options for the project (e.g., GCP, GKE)
+
+#### 4. Phase Definition of Done (DoD)
+The Definition of Done (DoD) for Phase 1 includes:
+* A comprehensive project plan outlining the scope, timeline, and budget
+* A detailed requirements document capturing the functional and non-functional requirements
+* A high-level architecture diagram illustrating the system components and interactions
+* A list of potential risks and mitigation strategies
+* Review and approval of the project plan and requirements document by the stakeholders
+* Completion of the research and recommendations for tools and technologies
+* Establishment of the directory structure and organization for the project codebase
+* Identification of the required files and paths for the project
+* Review and feedback on the project plan and requirements document by the sub-agents
+```
+
+# Phase 2 - Prompt:
+
+
+            Project Name: test-ai-architecture
+            You are tasked to detail **PHASE 2 OUT OF 5**.
+            You must align perfectly with the established Global Context and satisfy a subset of the Raw Requirements.
+
+            --- GLOBAL CONTEXT REFERENCE ---
+            ## GLOBAL PROJECT CONTEXT: test-ai-architecture
+#### 1. Executive Summary & Tech Stack Blueprint
+The membership-hub project is a scalable web and mobile application designed to manage students across multiple centers. The tech stack includes Quarkus, Kafka, Postgres, and Docker, with deployment on GCP and GKE. The application supports internal authentication via email/password, Firebase, Google, and Facebook, as well as QR code-based attendance tracking. The front end is built using Next.js, with support for multiple languages, SEO optimization, and notification systems. The project aims to provide a comprehensive management system for centers, with features such as attendance tracking, membership management, and notification systems.
+
+#### 2. Global Guardrails & Enterprise Compliance Standards
+To ensure the project's success and adherence to industry standards, the following global guardrails and enterprise compliance standards will be implemented:
+* Security: Implement OAuth 2.0 for authentication, SSL/TLS encryption for data transmission, and regular security audits.
+* Data Privacy: Comply with GDPR, CCPA, and other relevant data protection regulations, ensuring the secure storage and handling of user data.
+* Scalability: Design the system to scale horizontally, with load balancing and auto-scaling capabilities to handle increased traffic.
+* Compliance: Adhere to industry-specific regulations, such as accessibility standards (WCAG 2.1) and data retention policies.
+* Quality Assurance: Implement automated testing, code reviews, and continuous integration/continuous deployment (CI/CD) pipelines to ensure high-quality code and rapid deployment.
+
+#### 3. Standardized Sub-Agent Persona Definitions
+The following sub-agent persona definitions will be used to ensure clear roles and responsibilities:
+* **Manager**: Oversees project scope, timeline, and budget, ensuring alignment with business objectives.
+* **Coder**: Develops high-quality, scalable, and secure code, following industry best practices and coding standards.
+* **Tester**: Designs and executes comprehensive testing plans, identifying and reporting defects to ensure high-quality software.
+* **Reviewer**: Conducts code reviews, providing constructive feedback to improve code quality, readability, and maintainability.
+* **Docker**: Responsible for containerization, ensuring seamless deployment and scaling of the application.
+* **Deployer**: Manages deployment processes, ensuring smooth and efficient deployment of the application to production environments.
+
+#### 4. Multi-Phase Segmentation Strategy Overview
+The project will be divided into five phases:
+* **Phase 1: Planning and Requirements Gathering** (Weeks 1-4): Define project scope, gather requirements, and create a detailed project plan.
+* **Phase 2: Backend Development** (Weeks 5-12): Develop the backend using Quarkus, Kafka, and Postgres, with a focus on scalability and security.
+* **Phase 3: Frontend Development** (Weeks 13-18): Develop the frontend using Next.js, with a focus on user experience, SEO optimization, and notification systems.
+* **Phase 4: Testing and Quality Assurance** (Weeks 19-22): Conduct comprehensive testing, including unit testing, integration testing, and user acceptance testing.
+* **Phase 5: Deployment and Maintenance** (Weeks 23-26): Deploy the application to production, ensure smooth operation, and provide ongoing maintenance and support.
+            
+            --- RAW REQUIREMENTS REFERENCE ---
+            ## Project Name: membership-hub
+
+*	**Requirements:**
+	- Project vừa web để quản lý, vừa mobile để học viên xài.
+	- Project này xây dựng backend bằng quarkus, kafka, postgres, có thể scalable, build docker image, deploy GCP, GKE.
+	- Hỗ trợ xác thực internal bằng email password, hoặc qua firebase, google, facebook. quản lý user internal lẫn login qua xác thực với các bên bên trên.
+	- Project này quản lý các học viên của trung tâm bất kỳ, dùng được cho nhiều trung tâm 1 lúc được.
+	- Các học viên của trung tâm khi tới học sẽ điểm danh qua QR. Điểm danh sẽ đánh dấu ngày đó học viên có đi học. Cho dù điểm danh nhiều lần cũng không vấn đề và chỉ xem như đã điểm danh ngày hôm đó.
+	- Sau khi điểm danh sẽ hiển thị thẻ học viên còn bao nhiêu ngày hiệu lực như kiểu trừ dần ngày tập gym chẳng hạn.
+	- Đồng thời lúc đó gửi tin nhắn qua số đt zalo của học viên và nhóm zalo có học viên đó tham gia, và cả notification của app mobile trên đt học viên.
+	- App mobile dùng next.js làm front end, hỗ trợ đa ngôn ngữ, build đc cho ios, android.
+	- Project này có phần SEO đa ngôn ngữ cho cả web, app mobile.
+	- Detect default locale ngôn ngữ nếu user đã chọn trước đó thì dùng nó, không thì dùng locale từ browser hay mobile.
+
+            ----------------------------------
+
+            Your output MUST follow this exact Markdown structure for Phase 2:
+            ## PHASE 2 CONTEXT BLUEPRINT: test-ai-architecture
+            #### 1. Phase Operational Scope & Objectives
+            #### 2. Allowed Technical Scope & Directory Boundaries (Files, paths, and endpoints)
+            #### 3. Dedicated Sub-Agent Functional Directives (Specific tasks for Coder, Tester, Reviewer, DevOps)
+            #### 4. Phase Definition of Done (DoD)
+            
+
+# System Instruction
+
+You are an Elite Solution Architect. Isolate development boundaries so sub-agents never overlap.
+
+# Raw Response / Exception:
+
+```text
+## PHASE 2 CONTEXT BLUEPRINT: test-ai-architecture
+#### 1. Phase Operational Scope & Objectives
+The primary objective of Phase 2 is to develop the backend of the membership-hub project using Quarkus, Kafka, and Postgres, with a focus on scalability and security. The scope of this phase includes:
+* Designing and implementing the database schema for user management, attendance tracking, and notification systems
+* Developing RESTful APIs for user authentication, attendance tracking, and notification systems
+* Integrating Kafka for real-time data processing and notification systems
+* Implementing OAuth 2.0 for authentication and SSL/TLS encryption for data transmission
+* Ensuring the backend is scalable, secure, and compliant with industry standards
+
+#### 2. Allowed Technical Scope & Directory Boundaries (Files, paths, and endpoints)
+The technical scope of Phase 2 includes:
+* Backend directory: `src/main/java`
+* Database schema: `src/main/resources/db`
+* Kafka configuration: `src/main/resources/kafka`
+* API endpoints:
+	+ `/api/v1/auth`: user authentication
+	+ `/api/v1/attendance`: attendance tracking
+	+ `/api/v1/notifications`: notification systems
+* Allowed dependencies:
+	+ Quarkus
+	+ Kafka
+	+ Postgres
+	+ OAuth 2.0
+	+ SSL/TLS encryption
+
+#### 3. Dedicated Sub-Agent Functional Directives (Specific tasks for Coder, Tester, Reviewer, DevOps)
+The following sub-agents will be involved in Phase 2:
+* **Coder**: Develop the backend using Quarkus, Kafka, and Postgres, implementing RESTful APIs and integrating OAuth 2.0 for authentication
+* **Tester**: Design and execute unit tests, integration tests, and API tests to ensure the backend is functioning correctly
+* **Reviewer**: Conduct code reviews to ensure the code is scalable, secure, and compliant with industry standards
+* **DevOps (Docker)**: Containerize the backend using Docker and ensure seamless deployment to GCP and GKE
+* **DevOps (Deployer)**: Manage the deployment process, ensuring smooth and efficient deployment of the backend to production environments
+
+#### 4. Phase Definition of Done (DoD)
+Phase 2 is considered complete when:
+* The backend is fully functional, with all required features implemented
+* All unit tests, integration tests, and API tests have been executed and passed
+* Code reviews have been completed, and all feedback has been addressed
+* The backend has been containerized using Docker and deployed to GCP and GKE
+* All security and compliance requirements have been met, including OAuth 2.0 and SSL/TLS encryption
+* The phase has been reviewed and approved by the Manager and all sub-agents involved.
+```
+
+# Phase 3 - Prompt:
+
+
+            Project Name: test-ai-architecture
+            You are tasked to detail **PHASE 3 OUT OF 5**.
+            You must align perfectly with the established Global Context and satisfy a subset of the Raw Requirements.
+
+            --- GLOBAL CONTEXT REFERENCE ---
+            ## GLOBAL PROJECT CONTEXT: test-ai-architecture
+#### 1. Executive Summary & Tech Stack Blueprint
+The membership-hub project is a scalable web and mobile application designed to manage students across multiple centers. The tech stack includes Quarkus, Kafka, Postgres, and Docker, with deployment on GCP and GKE. The application supports internal authentication via email/password, Firebase, Google, and Facebook, as well as QR code-based attendance tracking. The front end is built using Next.js, with support for multiple languages, SEO optimization, and notification systems. The project aims to provide a comprehensive management system for centers, with features such as attendance tracking, membership management, and notification systems.
+
+#### 2. Global Guardrails & Enterprise Compliance Standards
+To ensure the project's success and adherence to industry standards, the following global guardrails and enterprise compliance standards will be implemented:
+* Security: Implement OAuth 2.0 for authentication, SSL/TLS encryption for data transmission, and regular security audits.
+* Data Privacy: Comply with GDPR, CCPA, and other relevant data protection regulations, ensuring the secure storage and handling of user data.
+* Scalability: Design the system to scale horizontally, with load balancing and auto-scaling capabilities to handle increased traffic.
+* Compliance: Adhere to industry-specific regulations, such as accessibility standards (WCAG 2.1) and data retention policies.
+* Quality Assurance: Implement automated testing, code reviews, and continuous integration/continuous deployment (CI/CD) pipelines to ensure high-quality code and rapid deployment.
+
+#### 3. Standardized Sub-Agent Persona Definitions
+The following sub-agent persona definitions will be used to ensure clear roles and responsibilities:
+* **Manager**: Oversees project scope, timeline, and budget, ensuring alignment with business objectives.
+* **Coder**: Develops high-quality, scalable, and secure code, following industry best practices and coding standards.
+* **Tester**: Designs and executes comprehensive testing plans, identifying and reporting defects to ensure high-quality software.
+* **Reviewer**: Conducts code reviews, providing constructive feedback to improve code quality, readability, and maintainability.
+* **Docker**: Responsible for containerization, ensuring seamless deployment and scaling of the application.
+* **Deployer**: Manages deployment processes, ensuring smooth and efficient deployment of the application to production environments.
+
+#### 4. Multi-Phase Segmentation Strategy Overview
+The project will be divided into five phases:
+* **Phase 1: Planning and Requirements Gathering** (Weeks 1-4): Define project scope, gather requirements, and create a detailed project plan.
+* **Phase 2: Backend Development** (Weeks 5-12): Develop the backend using Quarkus, Kafka, and Postgres, with a focus on scalability and security.
+* **Phase 3: Frontend Development** (Weeks 13-18): Develop the frontend using Next.js, with a focus on user experience, SEO optimization, and notification systems.
+* **Phase 4: Testing and Quality Assurance** (Weeks 19-22): Conduct comprehensive testing, including unit testing, integration testing, and user acceptance testing.
+* **Phase 5: Deployment and Maintenance** (Weeks 23-26): Deploy the application to production, ensure smooth operation, and provide ongoing maintenance and support.
+            
+            --- RAW REQUIREMENTS REFERENCE ---
+            ## Project Name: membership-hub
+
+*	**Requirements:**
+	- Project vừa web để quản lý, vừa mobile để học viên xài.
+	- Project này xây dựng backend bằng quarkus, kafka, postgres, có thể scalable, build docker image, deploy GCP, GKE.
+	- Hỗ trợ xác thực internal bằng email password, hoặc qua firebase, google, facebook. quản lý user internal lẫn login qua xác thực với các bên bên trên.
+	- Project này quản lý các học viên của trung tâm bất kỳ, dùng được cho nhiều trung tâm 1 lúc được.
+	- Các học viên của trung tâm khi tới học sẽ điểm danh qua QR. Điểm danh sẽ đánh dấu ngày đó học viên có đi học. Cho dù điểm danh nhiều lần cũng không vấn đề và chỉ xem như đã điểm danh ngày hôm đó.
+	- Sau khi điểm danh sẽ hiển thị thẻ học viên còn bao nhiêu ngày hiệu lực như kiểu trừ dần ngày tập gym chẳng hạn.
+	- Đồng thời lúc đó gửi tin nhắn qua số đt zalo của học viên và nhóm zalo có học viên đó tham gia, và cả notification của app mobile trên đt học viên.
+	- App mobile dùng next.js làm front end, hỗ trợ đa ngôn ngữ, build đc cho ios, android.
+	- Project này có phần SEO đa ngôn ngữ cho cả web, app mobile.
+	- Detect default locale ngôn ngữ nếu user đã chọn trước đó thì dùng nó, không thì dùng locale từ browser hay mobile.
+
+            ----------------------------------
+
+            Your output MUST follow this exact Markdown structure for Phase 3:
+            ## PHASE 3 CONTEXT BLUEPRINT: test-ai-architecture
+            #### 1. Phase Operational Scope & Objectives
+            #### 2. Allowed Technical Scope & Directory Boundaries (Files, paths, and endpoints)
+            #### 3. Dedicated Sub-Agent Functional Directives (Specific tasks for Coder, Tester, Reviewer, DevOps)
+            #### 4. Phase Definition of Done (DoD)
+            
+
+# System Instruction
+
+You are an Elite Solution Architect. Isolate development boundaries so sub-agents never overlap.
+
+# Raw Response / Exception:
+
+```text
+## PHASE 3 CONTEXT BLUEPRINT: test-ai-architecture
+#### 1. Phase Operational Scope & Objectives
+The primary objective of Phase 3 is to develop the frontend of the membership-hub application using Next.js, focusing on user experience, SEO optimization, and notification systems. The scope of this phase includes designing and implementing the user interface, integrating with the backend API, and ensuring multi-language support. The key deliverables of this phase are:
+* A fully functional frontend application with a user-friendly interface
+* Integration with the backend API for authentication, attendance tracking, and notification systems
+* Support for multiple languages and SEO optimization for both web and mobile applications
+
+#### 2. Allowed Technical Scope & Directory Boundaries (Files, paths, and endpoints)
+The technical scope of this phase includes:
+* Frontend development using Next.js
+* Integration with the backend API using RESTful endpoints
+* Implementation of multi-language support using internationalization libraries
+* SEO optimization using meta tags, header tags, and content optimization
+* Development of notification systems using mobile push notifications and in-app notifications
+The directory boundaries for this phase include:
+* `frontend/`: contains all frontend code, including components, pages, and API integrations
+* `public/`: contains static assets, such as images, fonts, and favicon
+* `pages/`: contains page-level components, such as login, dashboard, and attendance tracking
+* `components/`: contains reusable UI components, such as buttons, forms, and tables
+* `api/`: contains API integrations with the backend, including authentication, attendance tracking, and notification systems
+
+#### 3. Dedicated Sub-Agent Functional Directives (Specific tasks for Coder, Tester, Reviewer, DevOps)
+The following sub-agents will be involved in this phase:
+* **Coder**: Develop the frontend application using Next.js, integrate with the backend API, and implement multi-language support and SEO optimization
+* **Tester**: Develop and execute comprehensive testing plans, including unit testing, integration testing, and user acceptance testing
+* **Reviewer**: Conduct code reviews, providing constructive feedback on code quality, readability, and maintainability
+* **DevOps**: Ensure seamless deployment and scaling of the frontend application, including containerization using Docker and deployment to GCP and GKE
+
+#### 4. Phase Definition of Done (DoD)
+The Definition of Done for Phase 3 includes:
+* The frontend application is fully functional and meets all requirements
+* The application is integrated with the backend API and supports authentication, attendance tracking, and notification systems
+* The application supports multiple languages and is optimized for SEO
+* The application has been thoroughly tested, including unit testing, integration testing, and user acceptance testing
+* The code has been reviewed and meets all coding standards and best practices
+* The application has been deployed to production and is available to users
+```
+
+# Phase 4 - Prompt:
+
+
+            Project Name: test-ai-architecture
+            You are tasked to detail **PHASE 4 OUT OF 5**.
+            You must align perfectly with the established Global Context and satisfy a subset of the Raw Requirements.
+
+            --- GLOBAL CONTEXT REFERENCE ---
+            ## GLOBAL PROJECT CONTEXT: test-ai-architecture
+#### 1. Executive Summary & Tech Stack Blueprint
+The membership-hub project is a scalable web and mobile application designed to manage students across multiple centers. The tech stack includes Quarkus, Kafka, Postgres, and Docker, with deployment on GCP and GKE. The application supports internal authentication via email/password, Firebase, Google, and Facebook, as well as QR code-based attendance tracking. The front end is built using Next.js, with support for multiple languages, SEO optimization, and notification systems. The project aims to provide a comprehensive management system for centers, with features such as attendance tracking, membership management, and notification systems.
+
+#### 2. Global Guardrails & Enterprise Compliance Standards
+To ensure the project's success and adherence to industry standards, the following global guardrails and enterprise compliance standards will be implemented:
+* Security: Implement OAuth 2.0 for authentication, SSL/TLS encryption for data transmission, and regular security audits.
+* Data Privacy: Comply with GDPR, CCPA, and other relevant data protection regulations, ensuring the secure storage and handling of user data.
+* Scalability: Design the system to scale horizontally, with load balancing and auto-scaling capabilities to handle increased traffic.
+* Compliance: Adhere to industry-specific regulations, such as accessibility standards (WCAG 2.1) and data retention policies.
+* Quality Assurance: Implement automated testing, code reviews, and continuous integration/continuous deployment (CI/CD) pipelines to ensure high-quality code and rapid deployment.
+
+#### 3. Standardized Sub-Agent Persona Definitions
+The following sub-agent persona definitions will be used to ensure clear roles and responsibilities:
+* **Manager**: Oversees project scope, timeline, and budget, ensuring alignment with business objectives.
+* **Coder**: Develops high-quality, scalable, and secure code, following industry best practices and coding standards.
+* **Tester**: Designs and executes comprehensive testing plans, identifying and reporting defects to ensure high-quality software.
+* **Reviewer**: Conducts code reviews, providing constructive feedback to improve code quality, readability, and maintainability.
+* **Docker**: Responsible for containerization, ensuring seamless deployment and scaling of the application.
+* **Deployer**: Manages deployment processes, ensuring smooth and efficient deployment of the application to production environments.
+
+#### 4. Multi-Phase Segmentation Strategy Overview
+The project will be divided into five phases:
+* **Phase 1: Planning and Requirements Gathering** (Weeks 1-4): Define project scope, gather requirements, and create a detailed project plan.
+* **Phase 2: Backend Development** (Weeks 5-12): Develop the backend using Quarkus, Kafka, and Postgres, with a focus on scalability and security.
+* **Phase 3: Frontend Development** (Weeks 13-18): Develop the frontend using Next.js, with a focus on user experience, SEO optimization, and notification systems.
+* **Phase 4: Testing and Quality Assurance** (Weeks 19-22): Conduct comprehensive testing, including unit testing, integration testing, and user acceptance testing.
+* **Phase 5: Deployment and Maintenance** (Weeks 23-26): Deploy the application to production, ensure smooth operation, and provide ongoing maintenance and support.
+            
+            --- RAW REQUIREMENTS REFERENCE ---
+            ## Project Name: membership-hub
+
+*	**Requirements:**
+	- Project vừa web để quản lý, vừa mobile để học viên xài.
+	- Project này xây dựng backend bằng quarkus, kafka, postgres, có thể scalable, build docker image, deploy GCP, GKE.
+	- Hỗ trợ xác thực internal bằng email password, hoặc qua firebase, google, facebook. quản lý user internal lẫn login qua xác thực với các bên bên trên.
+	- Project này quản lý các học viên của trung tâm bất kỳ, dùng được cho nhiều trung tâm 1 lúc được.
+	- Các học viên của trung tâm khi tới học sẽ điểm danh qua QR. Điểm danh sẽ đánh dấu ngày đó học viên có đi học. Cho dù điểm danh nhiều lần cũng không vấn đề và chỉ xem như đã điểm danh ngày hôm đó.
+	- Sau khi điểm danh sẽ hiển thị thẻ học viên còn bao nhiêu ngày hiệu lực như kiểu trừ dần ngày tập gym chẳng hạn.
+	- Đồng thời lúc đó gửi tin nhắn qua số đt zalo của học viên và nhóm zalo có học viên đó tham gia, và cả notification của app mobile trên đt học viên.
+	- App mobile dùng next.js làm front end, hỗ trợ đa ngôn ngữ, build đc cho ios, android.
+	- Project này có phần SEO đa ngôn ngữ cho cả web, app mobile.
+	- Detect default locale ngôn ngữ nếu user đã chọn trước đó thì dùng nó, không thì dùng locale từ browser hay mobile.
+
+            ----------------------------------
+
+            Your output MUST follow this exact Markdown structure for Phase 4:
+            ## PHASE 4 CONTEXT BLUEPRINT: test-ai-architecture
+            #### 1. Phase Operational Scope & Objectives
+            #### 2. Allowed Technical Scope & Directory Boundaries (Files, paths, and endpoints)
+            #### 3. Dedicated Sub-Agent Functional Directives (Specific tasks for Coder, Tester, Reviewer, DevOps)
+            #### 4. Phase Definition of Done (DoD)
+            
+
+# System Instruction
+
+You are an Elite Solution Architect. Isolate development boundaries so sub-agents never overlap.
+
+# Raw Response / Exception:
+
+```text
+## PHASE 4 CONTEXT BLUEPRINT: test-ai-architecture
+#### 1. Phase Operational Scope & Objectives
+In Phase 4, the primary objective is to conduct comprehensive testing and quality assurance of the membership-hub project. This phase will ensure that the application meets the required standards, is free from defects, and provides a seamless user experience. The scope of this phase includes:
+
+* Unit testing of individual components
+* Integration testing of backend and frontend services
+* User acceptance testing (UAT) to validate the application's functionality and usability
+* Performance testing to ensure the application's scalability and responsiveness
+* Security testing to identify and address potential vulnerabilities
+
+#### 2. Allowed Technical Scope & Directory Boundaries (Files, paths, and endpoints)
+The technical scope for Phase 4 includes:
+
+* Testing frameworks: JUnit, Jest, and Cypress
+* Testing tools: Postman, Selenium, and Apache JMeter
+* Directory boundaries:
+	+ `src/test/java`: Unit tests and integration tests for backend services
+	+ `src/test/javascript`: Unit tests and integration tests for frontend services
+	+ `cypress/integration`: End-to-end tests for frontend services
+	+ `postman collections`: API tests for backend services
+* Endpoints:
+	+ `/api/v1/auth`: Authentication endpoints
+	+ `/api/v1/users`: User management endpoints
+	+ `/api/v1/centers`: Center management endpoints
+	+ `/api/v1/attendances`: Attendance management endpoints
+
+#### 3. Dedicated Sub-Agent Functional Directives (Specific tasks for Coder, Tester, Reviewer, DevOps)
+The following sub-agents will be involved in Phase 4:
+
+* **Coder**: Develop test cases, implement testing frameworks, and write automated tests
+* **Tester**: Execute manual tests, create test plans, and report defects
+* **Reviewer**: Review test cases, provide feedback on testing strategies, and ensure testing coverage
+* **DevOps**: Configure testing environments, deploy testing frameworks, and monitor testing pipelines
+
+Specific tasks for each sub-agent:
+
+* Coder:
+	+ Develop unit tests for backend services using JUnit
+	+ Implement integration tests for frontend services using Jest
+* Tester:
+	+ Create test plans for user acceptance testing (UAT)
+	+ Execute manual tests for frontend and backend services
+* Reviewer:
+	+ Review test cases for coverage and effectiveness
+	+ Provide feedback on testing strategies and frameworks
+* DevOps:
+	+ Configure testing environments for backend and frontend services
+	+ Deploy testing frameworks and tools
+
+#### 4. Phase Definition of Done (DoD)
+The Definition of Done (DoD) for Phase 4 includes:
+
+* All unit tests and integration tests have been executed and passed
+* User acceptance testing (UAT) has been completed and validated
+* Performance testing has been conducted and optimized
+* Security testing has been performed and vulnerabilities have been addressed
+* All defects have been reported, prioritized, and resolved
+* Testing frameworks and tools have been configured and deployed
+* Testing environments have been set up and validated
+
+Upon completion of Phase 4, the application will have undergone rigorous testing and quality assurance, ensuring that it meets the required standards and provides a seamless user experience.
+```
+
+# Phase 5 - Prompt:
+
+
+            Project Name: test-ai-architecture
+            You are tasked to detail **PHASE 5 OUT OF 5**.
+            You must align perfectly with the established Global Context and satisfy a subset of the Raw Requirements.
+
+            --- GLOBAL CONTEXT REFERENCE ---
+            ## GLOBAL PROJECT CONTEXT: test-ai-architecture
+#### 1. Executive Summary & Tech Stack Blueprint
+The membership-hub project is a scalable web and mobile application designed to manage students across multiple centers. The tech stack includes Quarkus, Kafka, Postgres, and Docker, with deployment on GCP and GKE. The application supports internal authentication via email/password, Firebase, Google, and Facebook, as well as QR code-based attendance tracking. The front end is built using Next.js, with support for multiple languages, SEO optimization, and notification systems. The project aims to provide a comprehensive management system for centers, with features such as attendance tracking, membership management, and notification systems.
+
+#### 2. Global Guardrails & Enterprise Compliance Standards
+To ensure the project's success and adherence to industry standards, the following global guardrails and enterprise compliance standards will be implemented:
+* Security: Implement OAuth 2.0 for authentication, SSL/TLS encryption for data transmission, and regular security audits.
+* Data Privacy: Comply with GDPR, CCPA, and other relevant data protection regulations, ensuring the secure storage and handling of user data.
+* Scalability: Design the system to scale horizontally, with load balancing and auto-scaling capabilities to handle increased traffic.
+* Compliance: Adhere to industry-specific regulations, such as accessibility standards (WCAG 2.1) and data retention policies.
+* Quality Assurance: Implement automated testing, code reviews, and continuous integration/continuous deployment (CI/CD) pipelines to ensure high-quality code and rapid deployment.
+
+#### 3. Standardized Sub-Agent Persona Definitions
+The following sub-agent persona definitions will be used to ensure clear roles and responsibilities:
+* **Manager**: Oversees project scope, timeline, and budget, ensuring alignment with business objectives.
+* **Coder**: Develops high-quality, scalable, and secure code, following industry best practices and coding standards.
+* **Tester**: Designs and executes comprehensive testing plans, identifying and reporting defects to ensure high-quality software.
+* **Reviewer**: Conducts code reviews, providing constructive feedback to improve code quality, readability, and maintainability.
+* **Docker**: Responsible for containerization, ensuring seamless deployment and scaling of the application.
+* **Deployer**: Manages deployment processes, ensuring smooth and efficient deployment of the application to production environments.
+
+#### 4. Multi-Phase Segmentation Strategy Overview
+The project will be divided into five phases:
+* **Phase 1: Planning and Requirements Gathering** (Weeks 1-4): Define project scope, gather requirements, and create a detailed project plan.
+* **Phase 2: Backend Development** (Weeks 5-12): Develop the backend using Quarkus, Kafka, and Postgres, with a focus on scalability and security.
+* **Phase 3: Frontend Development** (Weeks 13-18): Develop the frontend using Next.js, with a focus on user experience, SEO optimization, and notification systems.
+* **Phase 4: Testing and Quality Assurance** (Weeks 19-22): Conduct comprehensive testing, including unit testing, integration testing, and user acceptance testing.
+* **Phase 5: Deployment and Maintenance** (Weeks 23-26): Deploy the application to production, ensure smooth operation, and provide ongoing maintenance and support.
+            
+            --- RAW REQUIREMENTS REFERENCE ---
+            ## Project Name: membership-hub
+
+*	**Requirements:**
+	- Project vừa web để quản lý, vừa mobile để học viên xài.
+	- Project này xây dựng backend bằng quarkus, kafka, postgres, có thể scalable, build docker image, deploy GCP, GKE.
+	- Hỗ trợ xác thực internal bằng email password, hoặc qua firebase, google, facebook. quản lý user internal lẫn login qua xác thực với các bên bên trên.
+	- Project này quản lý các học viên của trung tâm bất kỳ, dùng được cho nhiều trung tâm 1 lúc được.
+	- Các học viên của trung tâm khi tới học sẽ điểm danh qua QR. Điểm danh sẽ đánh dấu ngày đó học viên có đi học. Cho dù điểm danh nhiều lần cũng không vấn đề và chỉ xem như đã điểm danh ngày hôm đó.
+	- Sau khi điểm danh sẽ hiển thị thẻ học viên còn bao nhiêu ngày hiệu lực như kiểu trừ dần ngày tập gym chẳng hạn.
+	- Đồng thời lúc đó gửi tin nhắn qua số đt zalo của học viên và nhóm zalo có học viên đó tham gia, và cả notification của app mobile trên đt học viên.
+	- App mobile dùng next.js làm front end, hỗ trợ đa ngôn ngữ, build đc cho ios, android.
+	- Project này có phần SEO đa ngôn ngữ cho cả web, app mobile.
+	- Detect default locale ngôn ngữ nếu user đã chọn trước đó thì dùng nó, không thì dùng locale từ browser hay mobile.
+
+            ----------------------------------
+
+            Your output MUST follow this exact Markdown structure for Phase 5:
+            ## PHASE 5 CONTEXT BLUEPRINT: test-ai-architecture
+            #### 1. Phase Operational Scope & Objectives
+            #### 2. Allowed Technical Scope & Directory Boundaries (Files, paths, and endpoints)
+            #### 3. Dedicated Sub-Agent Functional Directives (Specific tasks for Coder, Tester, Reviewer, DevOps)
+            #### 4. Phase Definition of Done (DoD)
+            
+
+# System Instruction
+
+You are an Elite Solution Architect. Isolate development boundaries so sub-agents never overlap.
+
+# Raw Response / Exception:
+
+```text
+## PHASE 5 CONTEXT BLUEPRINT: test-ai-architecture
+#### 1. Phase Operational Scope & Objectives
+The primary objective of Phase 5 is to deploy the membership-hub application to production, ensuring a smooth and efficient deployment process. This phase will focus on deploying the application to Google Cloud Platform (GCP) and Google Kubernetes Engine (GKE), configuring load balancing and auto-scaling, and setting up monitoring and logging tools. Additionally, this phase will involve conducting final testing, including user acceptance testing (UAT) and performance testing, to ensure the application meets the required standards.
+
+#### 2. Allowed Technical Scope & Directory Boundaries (Files, paths, and endpoints)
+The technical scope for Phase 5 includes:
+* Deploying the application to GCP and GKE
+* Configuring load balancing and auto-scaling
+* Setting up monitoring and logging tools (e.g., Prometheus, Grafana, ELK Stack)
+* Conducting final testing (UAT, performance testing)
+* Ensuring compliance with security, data privacy, and scalability requirements
+* Directory boundaries:
+	+ Deployment scripts: `deploy/scripts`
+	+ Kubernetes configurations: `deploy/k8s`
+	+ Monitoring and logging configurations: `deploy/monitoring`
+	+ Test scripts: `test/deployment`
+
+#### 3. Dedicated Sub-Agent Functional Directives (Specific tasks for Coder, Tester, Reviewer, DevOps)
+* **Coder**: Assist in deployment scripting, configure load balancing and auto-scaling, and ensure compliance with security and scalability requirements.
+* **Tester**: Conduct final testing, including UAT and performance testing, and report any defects or issues.
+* **Reviewer**: Review deployment scripts, Kubernetes configurations, and monitoring and logging setups to ensure they meet the required standards.
+* **Docker**: Ensure seamless deployment and scaling of the application by configuring Docker images and containers.
+* **Deployer**: Manage the deployment process, ensuring smooth and efficient deployment of the application to production environments.
+
+#### 4. Phase Definition of Done (DoD)
+The Definition of Done for Phase 5 includes:
+* Successful deployment of the application to GCP and GKE
+* Configuration of load balancing and auto-scaling
+* Setup of monitoring and logging tools
+* Completion of final testing (UAT, performance testing)
+* Resolution of all defects or issues reported during testing
+* Confirmation that the application meets all security, data privacy, and scalability requirements
+* Handover of the deployed application to the operations team for ongoing maintenance and support.
+```
+
+# Phase 1 STEPS - Prompt:
+
+
+            Analyze the attached Phase 1 Context Markdown content. 
+            Translate every directive, objective, and daily task mentioned inside it into a structured day-by-day JSON map.
+            
+            --- PHASE 1 CONTEXT MARKDOWN ---
+            ## PHASE 1 CONTEXT BLUEPRINT: test-ai-architecture
+#### 1. Phase Operational Scope & Objectives
+The primary objective of Phase 1 is to define the project scope, gather requirements, and create a detailed project plan for the membership-hub project. This phase will focus on understanding the business needs, identifying the technical requirements, and establishing a clear roadmap for the project. The key deliverables for this phase include:
+* A comprehensive project plan outlining the scope, timeline, and budget
+* A detailed requirements document capturing the functional and non-functional requirements
+* A high-level architecture diagram illustrating the system components and interactions
+* A list of potential risks and mitigation strategies
+
+#### 2. Allowed Technical Scope & Directory Boundaries (Files, paths, and endpoints)
+The technical scope for Phase 1 includes:
+* Reviewing the existing tech stack and identifying potential areas for improvement
+* Researching and recommending tools and technologies for the project (e.g., Quarkus, Kafka, Postgres, Docker, GCP, GKE, Next.js)
+* Defining the directory structure and organization for the project codebase
+* Establishing the endpoints and APIs for the backend and frontend components
+* Identifying the required files and paths for the project (e.g., configuration files, data storage, logging)
+
+The following directories and files are in scope for Phase 1:
+* `docs/`: project documentation and meeting notes
+* `requirements/`: requirements gathering and analysis
+* `architecture/`: high-level architecture diagrams and design documents
+* `tech-stack/`: research and recommendations for tools and technologies
+
+#### 3. Dedicated Sub-Agent Functional Directives (Specific tasks for Coder, Tester, Reviewer, DevOps)
+The following sub-agents have specific tasks and responsibilities for Phase 1:
+* **Manager**: oversee the project scope, timeline, and budget; ensure alignment with business objectives
+* **Coder**: research and recommend tools and technologies; define the directory structure and organization for the project codebase
+* **Tester**: review the requirements document and identify potential testing scenarios
+* **Reviewer**: review the project plan and provide feedback on the scope, timeline, and budget
+* **Docker**: research and recommend containerization strategies for the project
+* **Deployer**: research and recommend deployment options for the project (e.g., GCP, GKE)
+
+#### 4. Phase Definition of Done (DoD)
+The Definition of Done (DoD) for Phase 1 includes:
+* A comprehensive project plan outlining the scope, timeline, and budget
+* A detailed requirements document capturing the functional and non-functional requirements
+* A high-level architecture diagram illustrating the system components and interactions
+* A list of potential risks and mitigation strategies
+* Review and approval of the project plan and requirements document by the stakeholders
+* Completion of the research and recommendations for tools and technologies
+* Establishment of the directory structure and organization for the project codebase
+* Identification of the required files and paths for the project
+* Review and feedback on the project plan and requirements document by the sub-agents
+            ------------------------------------------
+
+            Map your response strictly to the requested PhaseStepsPlan JSON structure.
+            
+
+# System Instruction
+
+You are a rigid technical translator. Map high-level Markdown workflows into precise, executable JSON schemas.
+
+# Raw Response / Exception:
+
+```json
+{
+    "phase": "Phase 1",
+    "context": "test-ai-architecture",
+    "objectives": [
+        "Define project scope",
+        "Gather requirements",
+        "Create a detailed project plan"
+    ],
+    "deliverables": [
+        "Comprehensive project plan",
+        "Detailed requirements document",
+        "High-level architecture diagram",
+        "List of potential risks and mitigation strategies"
+    ],
+    "dayByDayPlan": [
+        {
+            "day": 1,
+            "tasks": [
+                {
+                    "task": "Review existing tech stack",
+                    "assignee": "Coder"
+                },
+                {
+                    "task": "Research and recommend tools and technologies",
+                    "assignee": "Coder"
+                }
+            ]
+        },
+        {
+            "day": 2,
+            "tasks": [
+                {
+                    "task": "Define directory structure and organization",
+                    "assignee": "Coder"
+                },
+                {
+                    "task": "Establish endpoints and APIs",
+                    "assignee": "Coder"
+                }
+            ]
+        },
+        {
+            "day": 3,
+            "tasks": [
+                {
+                    "task": "Review requirements document",
+                    "assignee": "Tester"
+                },
+                {
+                    "task": "Identify potential testing scenarios",
+                    "assignee": "Tester"
+                }
+            ]
+        },
+        {
+            "day": 4,
+            "tasks": [
+                {
+                    "task": "Review project plan",
+                    "assignee": "Reviewer"
+                },
+                {
+                    "task": "Provide feedback on project plan",
+                    "assignee": "Reviewer"
+                }
+            ]
+        },
+        {
+            "day": 5,
+            "tasks": [
+                {
+                    "task": "Research containerization strategies",
+                    "assignee": "Docker"
+                },
+                {
+                    "task": "Research deployment options",
+                    "assignee": "Deployer"
+                }
+            ]
+        },
+        {
+            "day": 6,
+            "tasks": [
+                {
+                    "task": "Create high-level architecture diagram",
+                    "assignee": "Coder"
+                },
+                {
+                    "task": "Identify required files and paths",
+                    "assignee": "Coder"
+                }
+            ]
+        },
+        {
+            "day": 7,
+            "tasks": [
+                {
+                    "task": "Finalize project plan",
+                    "assignee": "Manager"
+                },
+                {
+                    "task": "Finalize requirements document",
+                    "assignee": "Manager"
+                }
+            ]
+        }
+    ],
+    "definitionOfDone": [
+        "Comprehensive project plan",
+        "Detailed requirements document",
+        "High-level architecture diagram",
+        "List of potential risks and mitigation strategies",
+        "Review and approval of project plan and requirements document",
+        "Completion of research and recommendations",
+        "Establishment of directory structure and organization",
+        "Identification of required files and paths",
+        "Review and feedback on project plan and requirements document"
+    ],
+    "project_name": "test-ai-architecture",
+    "global_context_file": ".ai/.context/test-ai-architecture.global.blueprint.md",
+    "phase_idx": 1,
+    "phase_context_file": ".ai/.plan/.context/phase-1.context.blueprint.md"
+}
+```
+
+# Phase 2 STEPS - Prompt:
+
+
+            Analyze the attached Phase 2 Context Markdown content. 
+            Translate every directive, objective, and daily task mentioned inside it into a structured day-by-day JSON map.
+            
+            --- PHASE 2 CONTEXT MARKDOWN ---
+            ## PHASE 2 CONTEXT BLUEPRINT: test-ai-architecture
+#### 1. Phase Operational Scope & Objectives
+The primary objective of Phase 2 is to develop the backend of the membership-hub project using Quarkus, Kafka, and Postgres, with a focus on scalability and security. The scope of this phase includes:
+* Designing and implementing the database schema for user management, attendance tracking, and notification systems
+* Developing RESTful APIs for user authentication, attendance tracking, and notification systems
+* Integrating Kafka for real-time data processing and notification systems
+* Implementing OAuth 2.0 for authentication and SSL/TLS encryption for data transmission
+* Ensuring the backend is scalable, secure, and compliant with industry standards
+
+#### 2. Allowed Technical Scope & Directory Boundaries (Files, paths, and endpoints)
+The technical scope of Phase 2 includes:
+* Backend directory: `src/main/java`
+* Database schema: `src/main/resources/db`
+* Kafka configuration: `src/main/resources/kafka`
+* API endpoints:
+	+ `/api/v1/auth`: user authentication
+	+ `/api/v1/attendance`: attendance tracking
+	+ `/api/v1/notifications`: notification systems
+* Allowed dependencies:
+	+ Quarkus
+	+ Kafka
+	+ Postgres
+	+ OAuth 2.0
+	+ SSL/TLS encryption
+
+#### 3. Dedicated Sub-Agent Functional Directives (Specific tasks for Coder, Tester, Reviewer, DevOps)
+The following sub-agents will be involved in Phase 2:
+* **Coder**: Develop the backend using Quarkus, Kafka, and Postgres, implementing RESTful APIs and integrating OAuth 2.0 for authentication
+* **Tester**: Design and execute unit tests, integration tests, and API tests to ensure the backend is functioning correctly
+* **Reviewer**: Conduct code reviews to ensure the code is scalable, secure, and compliant with industry standards
+* **DevOps (Docker)**: Containerize the backend using Docker and ensure seamless deployment to GCP and GKE
+* **DevOps (Deployer)**: Manage the deployment process, ensuring smooth and efficient deployment of the backend to production environments
+
+#### 4. Phase Definition of Done (DoD)
+Phase 2 is considered complete when:
+* The backend is fully functional, with all required features implemented
+* All unit tests, integration tests, and API tests have been executed and passed
+* Code reviews have been completed, and all feedback has been addressed
+* The backend has been containerized using Docker and deployed to GCP and GKE
+* All security and compliance requirements have been met, including OAuth 2.0 and SSL/TLS encryption
+* The phase has been reviewed and approved by the Manager and all sub-agents involved.
+            ------------------------------------------
+
+            Map your response strictly to the requested PhaseStepsPlan JSON structure.
+            
+
+# System Instruction
+
+You are a rigid technical translator. Map high-level Markdown workflows into precise, executable JSON schemas.
+
+# Raw Response / Exception:
+
+```json
+{
+    "phase": "Phase 2",
+    "context": "test-ai-architecture",
+    "objectives": [
+        "Develop the backend of the membership-hub project using Quarkus, Kafka, and Postgres",
+        "Focus on scalability and security"
+    ],
+    "scope": [
+        "Designing and implementing the database schema for user management, attendance tracking, and notification systems",
+        "Developing RESTful APIs for user authentication, attendance tracking, and notification systems",
+        "Integrating Kafka for real-time data processing and notification systems",
+        "Implementing OAuth 2.0 for authentication and SSL/TLS encryption for data transmission",
+        "Ensuring the backend is scalable, secure, and compliant with industry standards"
+    ],
+    "technicalScope": {
+        "backendDirectory": "src/main/java",
+        "databaseSchema": "src/main/resources/db",
+        "kafkaConfiguration": "src/main/resources/kafka",
+        "apiEndpoints": [
+            "/api/v1/auth",
+            "/api/v1/attendance",
+            "/api/v1/notifications"
+        ],
+        "allowedDependencies": [
+            "Quarkus",
+            "Kafka",
+            "Postgres",
+            "OAuth 2.0",
+            "SSL/TLS encryption"
+        ]
+    },
+    "subAgents": {
+        "Coder": [
+            "Develop the backend using Quarkus, Kafka, and Postgres",
+            "Implement RESTful APIs",
+            "Integrate OAuth 2.0 for authentication"
+        ],
+        "Tester": [
+            "Design and execute unit tests",
+            "Design and execute integration tests",
+            "Design and execute API tests"
+        ],
+        "Reviewer": [
+            "Conduct code reviews to ensure the code is scalable, secure, and compliant with industry standards"
+        ],
+        "DevOps (Docker)": [
+            "Containerize the backend using Docker"
+        ],
+        "DevOps (Deployer)": [
+            "Manage the deployment process",
+            "Ensure smooth and efficient deployment of the backend to production environments"
+        ]
+    },
+    "definitionOfDone": [
+        "The backend is fully functional, with all required features implemented",
+        "All unit tests, integration tests, and API tests have been executed and passed",
+        "Code reviews have been completed, and all feedback has been addressed",
+        "The backend has been containerized using Docker and deployed to GCP and GKE",
+        "All security and compliance requirements have been met, including OAuth 2.0 and SSL/TLS encryption",
+        "The phase has been reviewed and approved by the Manager and all sub-agents involved"
+    ],
+    "dayByDayPlan": [
+        {
+            "day": 1,
+            "tasks": [
+                "Coder: Develop the backend using Quarkus, Kafka, and Postgres",
+                "Tester: Design and execute unit tests"
+            ]
+        },
+        {
+            "day": 2,
+            "tasks": [
+                "Coder: Implement RESTful APIs",
+                "Tester: Design and execute integration tests"
+            ]
+        },
+        {
+            "day": 3,
+            "tasks": [
+                "Coder: Integrate OAuth 2.0 for authentication",
+                "Tester: Design and execute API tests"
+            ]
+        },
+        {
+            "day": 4,
+            "tasks": [
+                "Reviewer: Conduct code reviews",
+                "DevOps (Docker): Containerize the backend using Docker"
+            ]
+        },
+        {
+            "day": 5,
+            "tasks": [
+                "DevOps (Deployer): Manage the deployment process",
+                "DevOps (Deployer): Ensure smooth and efficient deployment of the backend to production environments"
+            ]
+        }
+    ],
+    "project_name": "test-ai-architecture",
+    "global_context_file": ".ai/.context/test-ai-architecture.global.blueprint.md",
+    "phase_idx": 2,
+    "phase_context_file": ".ai/.plan/.context/phase-2.context.blueprint.md"
+}
+```
+
+# Phase 3 STEPS - Prompt:
+
+
+            Analyze the attached Phase 3 Context Markdown content. 
+            Translate every directive, objective, and daily task mentioned inside it into a structured day-by-day JSON map.
+            
+            --- PHASE 3 CONTEXT MARKDOWN ---
+            ## PHASE 3 CONTEXT BLUEPRINT: test-ai-architecture
+#### 1. Phase Operational Scope & Objectives
+The primary objective of Phase 3 is to develop the frontend of the membership-hub application using Next.js, focusing on user experience, SEO optimization, and notification systems. The scope of this phase includes designing and implementing the user interface, integrating with the backend API, and ensuring multi-language support. The key deliverables of this phase are:
+* A fully functional frontend application with a user-friendly interface
+* Integration with the backend API for authentication, attendance tracking, and notification systems
+* Support for multiple languages and SEO optimization for both web and mobile applications
+
+#### 2. Allowed Technical Scope & Directory Boundaries (Files, paths, and endpoints)
+The technical scope of this phase includes:
+* Frontend development using Next.js
+* Integration with the backend API using RESTful endpoints
+* Implementation of multi-language support using internationalization libraries
+* SEO optimization using meta tags, header tags, and content optimization
+* Development of notification systems using mobile push notifications and in-app notifications
+The directory boundaries for this phase include:
+* `frontend/`: contains all frontend code, including components, pages, and API integrations
+* `public/`: contains static assets, such as images, fonts, and favicon
+* `pages/`: contains page-level components, such as login, dashboard, and attendance tracking
+* `components/`: contains reusable UI components, such as buttons, forms, and tables
+* `api/`: contains API integrations with the backend, including authentication, attendance tracking, and notification systems
+
+#### 3. Dedicated Sub-Agent Functional Directives (Specific tasks for Coder, Tester, Reviewer, DevOps)
+The following sub-agents will be involved in this phase:
+* **Coder**: Develop the frontend application using Next.js, integrate with the backend API, and implement multi-language support and SEO optimization
+* **Tester**: Develop and execute comprehensive testing plans, including unit testing, integration testing, and user acceptance testing
+* **Reviewer**: Conduct code reviews, providing constructive feedback on code quality, readability, and maintainability
+* **DevOps**: Ensure seamless deployment and scaling of the frontend application, including containerization using Docker and deployment to GCP and GKE
+
+#### 4. Phase Definition of Done (DoD)
+The Definition of Done for Phase 3 includes:
+* The frontend application is fully functional and meets all requirements
+* The application is integrated with the backend API and supports authentication, attendance tracking, and notification systems
+* The application supports multiple languages and is optimized for SEO
+* The application has been thoroughly tested, including unit testing, integration testing, and user acceptance testing
+* The code has been reviewed and meets all coding standards and best practices
+* The application has been deployed to production and is available to users
+            ------------------------------------------
+
+            Map your response strictly to the requested PhaseStepsPlan JSON structure.
+            
+
+# System Instruction
+
+You are a rigid technical translator. Map high-level Markdown workflows into precise, executable JSON schemas.
+
+# Raw Response / Exception:
+
+```json
+{
+    "phase": "Phase 3",
+    "context": "test-ai-architecture",
+    "objectives": [
+        "Develop the frontend of the membership-hub application using Next.js",
+        "Focus on user experience, SEO optimization, and notification systems",
+        "Design and implement the user interface",
+        "Integrate with the backend API",
+        "Ensure multi-language support"
+    ],
+    "keyDeliverables": [
+        "A fully functional frontend application with a user-friendly interface",
+        "Integration with the backend API for authentication, attendance tracking, and notification systems",
+        "Support for multiple languages and SEO optimization for both web and mobile applications"
+    ],
+    "technicalScope": [
+        "Frontend development using Next.js",
+        "Integration with the backend API using RESTful endpoints",
+        "Implementation of multi-language support using internationalization libraries",
+        "SEO optimization using meta tags, header tags, and content optimization",
+        "Development of notification systems using mobile push notifications and in-app notifications"
+    ],
+    "directoryBoundaries": {
+        "frontend": "contains all frontend code, including components, pages, and API integrations",
+        "public": "contains static assets, such as images, fonts, and favicon",
+        "pages": "contains page-level components, such as login, dashboard, and attendance tracking",
+        "components": "contains reusable UI components, such as buttons, forms, and tables",
+        "api": "contains API integrations with the backend, including authentication, attendance tracking, and notification systems"
+    },
+    "subAgents": {
+        "Coder": "Develop the frontend application using Next.js, integrate with the backend API, and implement multi-language support and SEO optimization",
+        "Tester": "Develop and execute comprehensive testing plans, including unit testing, integration testing, and user acceptance testing",
+        "Reviewer": "Conduct code reviews, providing constructive feedback on code quality, readability, and maintainability",
+        "DevOps": "Ensure seamless deployment and scaling of the frontend application, including containerization using Docker and deployment to GCP and GKE"
+    },
+    "definitionOfDone": [
+        "The frontend application is fully functional and meets all requirements",
+        "The application is integrated with the backend API and supports authentication, attendance tracking, and notification systems",
+        "The application supports multiple languages and is optimized for SEO",
+        "The application has been thoroughly tested, including unit testing, integration testing, and user acceptance testing",
+        "The code has been reviewed and meets all coding standards and best practices",
+        "The application has been deployed to production and is available to users"
+    ],
+    "phaseStepsPlan": [
+        {
+            "day": 1,
+            "tasks": [
+                "Initialize frontend project using Next.js",
+                "Set up directory structure and create initial components"
+            ]
+        },
+        {
+            "day": 2,
+            "tasks": [
+                "Implement user interface for login and dashboard pages",
+                "Start integrating with backend API for authentication"
+            ]
+        },
+        {
+            "day": 3,
+            "tasks": [
+                "Implement attendance tracking and notification systems",
+                "Start working on multi-language support"
+            ]
+        },
+        {
+            "day": 4,
+            "tasks": [
+                "Continue working on multi-language support and SEO optimization",
+                "Start testing and debugging the application"
+            ]
+        },
+        {
+            "day": 5,
+            "tasks": [
+                "Finish testing and debugging the application",
+                "Start code review and ensure coding standards are met"
+            ]
+        },
+        {
+            "day": 6,
+            "tasks": [
+                "Deploy the application to production",
+                "Ensure seamless deployment and scaling of the frontend application"
+            ]
+        },
+        {
+            "day": 7,
+            "tasks": [
+                "Monitor application performance and fix any issues that arise",
+                "Continue to work on any remaining tasks or bugs"
+            ]
+        }
+    ],
+    "project_name": "test-ai-architecture",
+    "global_context_file": ".ai/.context/test-ai-architecture.global.blueprint.md",
+    "phase_idx": 3,
+    "phase_context_file": ".ai/.plan/.context/phase-3.context.blueprint.md"
+}
+```
+
+# Phase 4 STEPS - Prompt:
+
+
+            Analyze the attached Phase 4 Context Markdown content. 
+            Translate every directive, objective, and daily task mentioned inside it into a structured day-by-day JSON map.
+            
+            --- PHASE 4 CONTEXT MARKDOWN ---
+            ## PHASE 4 CONTEXT BLUEPRINT: test-ai-architecture
+#### 1. Phase Operational Scope & Objectives
+In Phase 4, the primary objective is to conduct comprehensive testing and quality assurance of the membership-hub project. This phase will ensure that the application meets the required standards, is free from defects, and provides a seamless user experience. The scope of this phase includes:
+
+* Unit testing of individual components
+* Integration testing of backend and frontend services
+* User acceptance testing (UAT) to validate the application's functionality and usability
+* Performance testing to ensure the application's scalability and responsiveness
+* Security testing to identify and address potential vulnerabilities
+
+#### 2. Allowed Technical Scope & Directory Boundaries (Files, paths, and endpoints)
+The technical scope for Phase 4 includes:
+
+* Testing frameworks: JUnit, Jest, and Cypress
+* Testing tools: Postman, Selenium, and Apache JMeter
+* Directory boundaries:
+	+ `src/test/java`: Unit tests and integration tests for backend services
+	+ `src/test/javascript`: Unit tests and integration tests for frontend services
+	+ `cypress/integration`: End-to-end tests for frontend services
+	+ `postman collections`: API tests for backend services
+* Endpoints:
+	+ `/api/v1/auth`: Authentication endpoints
+	+ `/api/v1/users`: User management endpoints
+	+ `/api/v1/centers`: Center management endpoints
+	+ `/api/v1/attendances`: Attendance management endpoints
+
+#### 3. Dedicated Sub-Agent Functional Directives (Specific tasks for Coder, Tester, Reviewer, DevOps)
+The following sub-agents will be involved in Phase 4:
+
+* **Coder**: Develop test cases, implement testing frameworks, and write automated tests
+* **Tester**: Execute manual tests, create test plans, and report defects
+* **Reviewer**: Review test cases, provide feedback on testing strategies, and ensure testing coverage
+* **DevOps**: Configure testing environments, deploy testing frameworks, and monitor testing pipelines
+
+Specific tasks for each sub-agent:
+
+* Coder:
+	+ Develop unit tests for backend services using JUnit
+	+ Implement integration tests for frontend services using Jest
+* Tester:
+	+ Create test plans for user acceptance testing (UAT)
+	+ Execute manual tests for frontend and backend services
+* Reviewer:
+	+ Review test cases for coverage and effectiveness
+	+ Provide feedback on testing strategies and frameworks
+* DevOps:
+	+ Configure testing environments for backend and frontend services
+	+ Deploy testing frameworks and tools
+
+#### 4. Phase Definition of Done (DoD)
+The Definition of Done (DoD) for Phase 4 includes:
+
+* All unit tests and integration tests have been executed and passed
+* User acceptance testing (UAT) has been completed and validated
+* Performance testing has been conducted and optimized
+* Security testing has been performed and vulnerabilities have been addressed
+* All defects have been reported, prioritized, and resolved
+* Testing frameworks and tools have been configured and deployed
+* Testing environments have been set up and validated
+
+Upon completion of Phase 4, the application will have undergone rigorous testing and quality assurance, ensuring that it meets the required standards and provides a seamless user experience.
+            ------------------------------------------
+
+            Map your response strictly to the requested PhaseStepsPlan JSON structure.
+            
+
+# System Instruction
+
+You are a rigid technical translator. Map high-level Markdown workflows into precise, executable JSON schemas.
+
+# Raw Response / Exception:
+
+```json
+{
+    "phase": "Phase 4",
+    "objectives": [
+        "Conduct comprehensive testing and quality assurance of the membership-hub project",
+        "Ensure the application meets the required standards, is free from defects, and provides a seamless user experience"
+    ],
+    "scope": [
+        "Unit testing of individual components",
+        "Integration testing of backend and frontend services",
+        "User acceptance testing (UAT) to validate the application's functionality and usability",
+        "Performance testing to ensure the application's scalability and responsiveness",
+        "Security testing to identify and address potential vulnerabilities"
+    ],
+    "technicalScope": {
+        "testingFrameworks": [
+            "JUnit",
+            "Jest",
+            "Cypress"
+        ],
+        "testingTools": [
+            "Postman",
+            "Selenium",
+            "Apache JMeter"
+        ],
+        "directoryBoundaries": {
+            "unitTestsBackend": "src/test/java",
+            "unitTestsFrontend": "src/test/javascript",
+            "endToEndTestsFrontend": "cypress/integration",
+            "apiTestsBackend": "postman collections"
+        },
+        "endpoints": [
+            "/api/v1/auth",
+            "/api/v1/users",
+            "/api/v1/centers",
+            "/api/v1/attendances"
+        ]
+    },
+    "subAgents": {
+        "Coder": {
+            "tasks": [
+                "Develop test cases",
+                "Implement testing frameworks",
+                "Write automated tests",
+                "Develop unit tests for backend services using JUnit",
+                "Implement integration tests for frontend services using Jest"
+            ]
+        },
+        "Tester": {
+            "tasks": [
+                "Execute manual tests",
+                "Create test plans",
+                "Report defects",
+                "Create test plans for user acceptance testing (UAT)",
+                "Execute manual tests for frontend and backend services"
+            ]
+        },
+        "Reviewer": {
+            "tasks": [
+                "Review test cases",
+                "Provide feedback on testing strategies",
+                "Ensure testing coverage",
+                "Review test cases for coverage and effectiveness",
+                "Provide feedback on testing strategies and frameworks"
+            ]
+        },
+        "DevOps": {
+            "tasks": [
+                "Configure testing environments",
+                "Deploy testing frameworks",
+                "Monitor testing pipelines",
+                "Configure testing environments for backend and frontend services",
+                "Deploy testing frameworks and tools"
+            ]
+        }
+    },
+    "definitionOfDone": [
+        "All unit tests and integration tests have been executed and passed",
+        "User acceptance testing (UAT) has been completed and validated",
+        "Performance testing has been conducted and optimized",
+        "Security testing has been performed and vulnerabilities have been addressed",
+        "All defects have been reported, prioritized, and resolved",
+        "Testing frameworks and tools have been configured and deployed",
+        "Testing environments have been set up and validated"
+    ],
+    "dayByDayPlan": [
+        {
+            "day": 1,
+            "tasks": [
+                "Coder: Develop test cases",
+                "Tester: Create test plans",
+                "Reviewer: Review test cases",
+                "DevOps: Configure testing environments"
+            ]
+        },
+        {
+            "day": 2,
+            "tasks": [
+                "Coder: Implement testing frameworks",
+                "Tester: Execute manual tests",
+                "Reviewer: Provide feedback on testing strategies",
+                "DevOps: Deploy testing frameworks"
+            ]
+        },
+        {
+            "day": 3,
+            "tasks": [
+                "Coder: Write automated tests",
+                "Tester: Report defects",
+                "Reviewer: Ensure testing coverage",
+                "DevOps: Monitor testing pipelines"
+            ]
+        },
+        {
+            "day": 4,
+            "tasks": [
+                "Coder: Develop unit tests for backend services using JUnit",
+                "Tester: Create test plans for user acceptance testing (UAT)",
+                "Reviewer: Review test cases for coverage and effectiveness",
+                "DevOps: Configure testing environments for backend and frontend services"
+            ]
+        },
+        {
+            "day": 5,
+            "tasks": [
+                "Coder: Implement integration tests for frontend services using Jest",
+                "Tester: Execute manual tests for frontend and backend services",
+                "Reviewer: Provide feedback on testing strategies and frameworks",
+                "DevOps: Deploy testing frameworks and tools"
+            ]
+        }
+    ],
+    "project_name": "test-ai-architecture",
+    "global_context_file": ".ai/.context/test-ai-architecture.global.blueprint.md",
+    "phase_idx": 4,
+    "phase_context_file": ".ai/.plan/.context/phase-4.context.blueprint.md"
+}
+```
+
+# Phase 5 STEPS - Prompt:
+
+
+            Analyze the attached Phase 5 Context Markdown content. 
+            Translate every directive, objective, and daily task mentioned inside it into a structured day-by-day JSON map.
+            
+            --- PHASE 5 CONTEXT MARKDOWN ---
+            ## PHASE 5 CONTEXT BLUEPRINT: test-ai-architecture
+#### 1. Phase Operational Scope & Objectives
+The primary objective of Phase 5 is to deploy the membership-hub application to production, ensuring a smooth and efficient deployment process. This phase will focus on deploying the application to Google Cloud Platform (GCP) and Google Kubernetes Engine (GKE), configuring load balancing and auto-scaling, and setting up monitoring and logging tools. Additionally, this phase will involve conducting final testing, including user acceptance testing (UAT) and performance testing, to ensure the application meets the required standards.
+
+#### 2. Allowed Technical Scope & Directory Boundaries (Files, paths, and endpoints)
+The technical scope for Phase 5 includes:
+* Deploying the application to GCP and GKE
+* Configuring load balancing and auto-scaling
+* Setting up monitoring and logging tools (e.g., Prometheus, Grafana, ELK Stack)
+* Conducting final testing (UAT, performance testing)
+* Ensuring compliance with security, data privacy, and scalability requirements
+* Directory boundaries:
+	+ Deployment scripts: `deploy/scripts`
+	+ Kubernetes configurations: `deploy/k8s`
+	+ Monitoring and logging configurations: `deploy/monitoring`
+	+ Test scripts: `test/deployment`
+
+#### 3. Dedicated Sub-Agent Functional Directives (Specific tasks for Coder, Tester, Reviewer, DevOps)
+* **Coder**: Assist in deployment scripting, configure load balancing and auto-scaling, and ensure compliance with security and scalability requirements.
+* **Tester**: Conduct final testing, including UAT and performance testing, and report any defects or issues.
+* **Reviewer**: Review deployment scripts, Kubernetes configurations, and monitoring and logging setups to ensure they meet the required standards.
+* **Docker**: Ensure seamless deployment and scaling of the application by configuring Docker images and containers.
+* **Deployer**: Manage the deployment process, ensuring smooth and efficient deployment of the application to production environments.
+
+#### 4. Phase Definition of Done (DoD)
+The Definition of Done for Phase 5 includes:
+* Successful deployment of the application to GCP and GKE
+* Configuration of load balancing and auto-scaling
+* Setup of monitoring and logging tools
+* Completion of final testing (UAT, performance testing)
+* Resolution of all defects or issues reported during testing
+* Confirmation that the application meets all security, data privacy, and scalability requirements
+* Handover of the deployed application to the operations team for ongoing maintenance and support.
+            ------------------------------------------
+
+            Map your response strictly to the requested PhaseStepsPlan JSON structure.
+            
+
+# System Instruction
+
+You are a rigid technical translator. Map high-level Markdown workflows into precise, executable JSON schemas.
+
+# Raw Response / Exception:
+
+```json
+{
+    "phase": "Phase 5",
+    "objectives": [
+        "Deploy the membership-hub application to production",
+        "Ensure a smooth and efficient deployment process",
+        "Configure load balancing and auto-scaling",
+        "Set up monitoring and logging tools",
+        "Conduct final testing, including user acceptance testing (UAT) and performance testing"
+    ],
+    "dailyTasks": [
+        {
+            "day": 1,
+            "tasks": [
+                {
+                    "task": "Initialize deployment scripts",
+                    "assignee": "Coder",
+                    "directory": "deploy/scripts"
+                },
+                {
+                    "task": "Configure Kubernetes environments",
+                    "assignee": "Coder",
+                    "directory": "deploy/k8s"
+                }
+            ]
+        },
+        {
+            "day": 2,
+            "tasks": [
+                {
+                    "task": "Configure load balancing and auto-scaling",
+                    "assignee": "Coder",
+                    "directory": "deploy/k8s"
+                },
+                {
+                    "task": "Set up monitoring tools (Prometheus, Grafana)",
+                    "assignee": "Coder",
+                    "directory": "deploy/monitoring"
+                }
+            ]
+        },
+        {
+            "day": 3,
+            "tasks": [
+                {
+                    "task": "Set up logging tools (ELK Stack)",
+                    "assignee": "Coder",
+                    "directory": "deploy/monitoring"
+                },
+                {
+                    "task": "Prepare test scripts for UAT and performance testing",
+                    "assignee": "Tester",
+                    "directory": "test/deployment"
+                }
+            ]
+        },
+        {
+            "day": 4,
+            "tasks": [
+                {
+                    "task": "Conduct UAT",
+                    "assignee": "Tester",
+                    "directory": "test/deployment"
+                },
+                {
+                    "task": "Conduct performance testing",
+                    "assignee": "Tester",
+                    "directory": "test/deployment"
+                }
+            ]
+        },
+        {
+            "day": 5,
+            "tasks": [
+                {
+                    "task": "Review deployment scripts and Kubernetes configurations",
+                    "assignee": "Reviewer",
+                    "directory": "deploy/scripts"
+                },
+                {
+                    "task": "Review monitoring and logging setups",
+                    "assignee": "Reviewer",
+                    "directory": "deploy/monitoring"
+                }
+            ]
+        },
+        {
+            "day": 6,
+            "tasks": [
+                {
+                    "task": "Configure Docker images and containers",
+                    "assignee": "Docker",
+                    "directory": "deploy/k8s"
+                },
+                {
+                    "task": "Manage deployment process",
+                    "assignee": "Deployer",
+                    "directory": "deploy/scripts"
+                }
+            ]
+        },
+        {
+            "day": 7,
+            "tasks": [
+                {
+                    "task": "Resolve defects or issues reported during testing",
+                    "assignee": "Coder",
+                    "directory": "deploy/scripts"
+                },
+                {
+                    "task": "Confirm application meets security, data privacy, and scalability requirements",
+                    "assignee": "Coder",
+                    "directory": "deploy/k8s"
+                }
+            ]
+        }
+    ],
+    "definitionOfDone": [
+        "Successful deployment of the application to GCP and GKE",
+        "Configuration of load balancing and auto-scaling",
+        "Setup of monitoring and logging tools",
+        "Completion of final testing (UAT, performance testing)",
+        "Resolution of all defects or issues reported during testing",
+        "Confirmation that the application meets all security, data privacy, and scalability requirements",
+        "Handover of the deployed application to the operations team for ongoing maintenance and support"
+    ],
+    "project_name": "test-ai-architecture",
+    "global_context_file": ".ai/.context/test-ai-architecture.global.blueprint.md",
+    "phase_idx": 5,
+    "phase_context_file": ".ai/.plan/.context/phase-5.context.blueprint.md"
+}
+```
+
