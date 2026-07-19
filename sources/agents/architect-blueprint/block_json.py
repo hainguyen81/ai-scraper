@@ -112,7 +112,8 @@ def manual_transform(json_data, project_name: str, phase_idx: int):
                 desc = f"{ role } Agent: { t }"
             else:
                 role = t.get("agent_role", t.get("assignee", "Coder"))
-                desc = f"{ role } Agent: { t.get("task_description", t.get("task", "No description provided")) }"
+                desc = t.get("task_description", t.get("task", "No description provided"))
+                desc = f"{ role } Agent: { desc }"
             
             step_node["sub_tasks"].append({
                 "id": f"D{day_val}_ST{t_idx}",
