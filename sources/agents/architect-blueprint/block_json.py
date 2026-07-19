@@ -93,7 +93,7 @@ def manual_transform(json_data, project_name: str, phase_idx: int):
         "days": []
     }
     
-    json_days = json_data.get("steps", json_data.get("dailyTasks", []))
+    json_days = json_data.get("steps", json_data.get("dailyTasks", json_data.get("dayByDayPlan", [])))
     for item in json_days:
         day_val = item.get("day", 1)
         
@@ -107,8 +107,12 @@ def manual_transform(json_data, project_name: str, phase_idx: int):
         json_tasks = item.get("sub_agent_tasks", item.get("tasks", []))
         t_idx = 1
         for t in json_tasks:
-            role = t.get("agent_role", t.get("assignee", "Coder"))
-            desc = t.get("task_description", t.get("task", ""))
+            if isinstance(t, str):
+                role = item.get("subAgent", item.get("assignee", "Coder"))
+                desc = f"{ role } Agent: { t }"
+            else:
+                role = t.get("agent_role", t.get("assignee", "Coder"))
+                desc = f"{ role } Agent: { t.get("task_description", t.get("task", "No description provided")) }"
             
             step_node["sub_tasks"].append({
                 "id": f"D{day_val}_ST{t_idx}",
