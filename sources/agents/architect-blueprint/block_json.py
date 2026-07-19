@@ -199,7 +199,9 @@ def convert_phases_to_json(client: OpenAI, model_name: str, project_name: str, n
                 # 2. Parse and validate the string payload locally with Pydantic core engine
                 validated_pydantic_object = PhaseStepsPlan.model_validate_json(transform_json_data)
                 
-                out_path = os.path.join(out_dir, f"phase-{phase_idx}.steps.json")
+                context_dir = os.path.join(out_dir, "plan", "steps")
+                os.makedirs(context_dir, exist_ok=True)
+                out_path = os.path.join(context_dir, f"phase-{phase_idx}.steps.json")
                 with open(out_path, "w", encoding="utf-8") as f:
                     json.dump(validated_pydantic_object.model_dump(), f, ensure_ascii=False, indent=4)
                     
