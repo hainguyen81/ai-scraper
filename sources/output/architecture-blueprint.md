@@ -6497,3 +6497,17 @@ You are a rigid technical translator. Map high-level Markdown workflows into pre
 }
 ```
 
+# Phase 1 STEPS - Prompt:
+
+
+
+# System Instruction
+
+You are a rigid technical translator. Map high-level Markdown workflows into precise, executable JSON schemas.
+
+# Raw Response / Exception:
+
+```text
+'str' object is not callable
+```
+
