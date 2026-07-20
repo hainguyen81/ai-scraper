@@ -146,26 +146,15 @@ jobs:
           git add .
           git commit -m "chore(init): 🚀 base project infrastructure synchronization from master architecture templates"
           
-          # # 🔐 Dynamically map the authentication header token onto the remote destination URL target string
-          # TARGET_URL="https://x-access-token:$GH_TOKEN@://github.com/$TARGET_OWNER/${{ env.PROJECT_NAME }}.git"
-          # 
-          # # ⚓ Bind the newly instantiated git workspace to the targeted repository endpoint on GitHub
-          # git remote add origin "$TARGET_URL"
-          # 
-          # echo "⬆️ Force pushing payload to upstream main branch..."
-          # 
-          # # 🛩️ Force push the local tracking lineage directly onto the upstream main integration branch
-          # git branch -M master
-          # git push -u origin master --force
+          # 🔐 Dynamically map the authentication header token onto the remote destination URL target string
+          TARGET_URL="https://x-access-token:$GH_TOKEN@://github.com/$TARGET_OWNER/${{ env.PROJECT_NAME }}.git"
           
-          # config access token
-          git config --local --unset-all http.https://com.extraheader 2>/dev/null
-          
-          # push force origin
-          TARGET_URL="https://x-access-token:@GH_TOKEN@://github.com/$TARGET_OWNER/${{ env.PROJECT_NAME }}.git"
+          # ⚓ Bind the newly instantiated git workspace to the targeted repository endpoint on GitHub
           git remote add origin "$TARGET_URL"
           
-          echo "⬆️ Force pushing payload to upstream master branch..."
+          echo "⬆️ Force pushing payload to upstream main branch..."
+          
+          # 🛩️ Force push the local tracking lineage directly onto the upstream main integration branch
           git branch -M master
           git push -u origin master --force
           
