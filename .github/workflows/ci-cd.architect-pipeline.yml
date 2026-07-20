@@ -198,7 +198,7 @@ jobs:
           API_BLUEPRINT_MODEL: ${{ secrets.API_BLUEPRINT_MODEL }}
           API_MODEL_GLOBAL: ${{ secrets.API_BLUEPRINT_MODEL_GLOBAL }}
           API_MODEL_PHASE: ${{ secrets.API_BLUEPRINT_MODEL_PHASE }}
-          API_MODEL_STEPS: ${{ secrets.API_BLUEPRINT_MODEL_STEPS_JSON }}
+          API_MODEL_STEPS: ${{ secrets.API_BLUEPRINT_MODEL_STEPS }}
           
           # specific models
           INPUTS_MODEL_ENDPOINT: ${{ inputs.model_endpoint }}
