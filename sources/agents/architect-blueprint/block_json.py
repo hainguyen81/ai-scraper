@@ -71,7 +71,7 @@ def dynamic_transform(json_data, project_name: str, phase_idx: int, template_fil
         # wrap AI json data to variable `ai` in mapping config file to use
         jinja_template = Template(template_content)
         rendered_str = jinja_template.render(ai=json_data)
-        print(f" │   └── ⚠️ The mapping JSON Rendered String: {rendered_str}")
+        print(f" │   └── ⚠️ The mapping JSON Rendered String: { rendered_str }")
         
         # write log for tracing
         if os.path.exists(log_file_path):
@@ -85,6 +85,7 @@ def dynamic_transform(json_data, project_name: str, phase_idx: int, template_fil
         cleaned_str = re.sub(r',\s*\]', ']', rendered_str)
         cleaned_str = re.sub(r'\[\s*,', '[', cleaned_str)
         cleaned_str = re.sub(r',\s*\}', '}', cleaned_str)
+        print(f" │   └── ⚠️ The mapping JSON Cleaned String: { cleaned_str }")
         
         # write log for tracing
         if os.path.exists(log_file_path):
