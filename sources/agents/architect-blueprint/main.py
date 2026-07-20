@@ -21,7 +21,7 @@ from block_global import generate_global_context
 from block_phase import generate_phase_contexts
 from block_json import convert_phases_to_json
 
-def run_architect_agent(project_name: str, requirements_path: str, num_phases: int, output_dir: str, api_key: str, api_endpoint: str, api_model_global: str, api_model_phase: str, api_model_steps: str, api_model_steps_mapping: str, exec_mode: int, exec_delay: int, daysPerChunk: int):
+def run_architect_agent(project_name: str, requirements_path: str, num_phases: int, max_days_per_phase: int, output_dir: str, api_key: str, api_endpoint: str, api_model_global: str, api_model_phase: str, api_model_steps: str, api_model_steps_mapping: str, exec_mode: int, exec_delay: int, daysPerChunk: int):
     """
     Master pipeline orchestrator that runs individual functional blocks in sequence.
     Provides pristine separation of concerns and protects engine runtime stability.
@@ -39,6 +39,7 @@ def run_architect_agent(project_name: str, requirements_path: str, num_phases: i
     api_model_phase = api_model_phase if api_model_phase else api_model_global
     api_model_steps = api_model_steps if api_model_steps else api_model_phase
     api_model_steps = api_model_steps if api_model_steps else api_model_global
+    max_days_per_phase = max_days_per_phase if max_days_per_phase > 0 else 7
     exec_mode = exec_mode if exec_mode >= 0 and exec_mode <= 3 else 0
     exec_delay = exec_delay if exec_delay else 3
     print("=============================================================================")
@@ -76,6 +77,7 @@ def run_architect_agent(project_name: str, requirements_path: str, num_phases: i
             project_name=project_name,
             requirements=project_requirements,
             num_phases=num_phases,
+            max_days_per_phase=max_days_per_phase,
             out_dir=absolute_out_dir
         )
         
@@ -104,6 +106,7 @@ def run_architect_agent(project_name: str, requirements_path: str, num_phases: i
             requirements=project_requirements,
             global_context=global_context_text,
             num_phases=num_phases,
+            max_days=max_days_per_phase,
             out_dir=absolute_out_dir,
             delay=exec_delay
         )
@@ -148,6 +151,7 @@ if __name__ == "__main__":
     parser.add_argument("--api-endpoint", type=str, required=True, help="AI API Endpoint is required")
     parser.add_argument("--api-model-global-context", type=str, default="gpt-4o", help="AI API Model to support global Markdown context")
     parser.add_argument("--api-model-phase-context", type=str, default="gpt-4o", help="AI API Model to support phase Markdown context")
+    parser.add_argument("--api-model-phase-max-days", type=int, default=5, help="Maximum days per phase")
     parser.add_argument("--api-model-phase-steps-json", type=str, default="gpt-4o", help="AI API Model to support phase steps JSON context")
     parser.add_argument("--api-model-phase-steps-json-mapping", type=str, default="", help="AI phase steps JSON ampping configuration")
     parser.add_argument("--api-model-phase-steps-days-per-chunk", type=int, default=5, help="Execution Days per AI Request Chunk")
@@ -158,7 +162,7 @@ if __name__ == "__main__":
     
     # Trigger the primary agent orchestration function.
     run_architect_agent(
-        args.project_name, args.req, args.phases, args.out,
+        args.project_name, args.req, args.phases, args.api_model_phase_max_days, args.out,
         args.api_key, args.api_endpoint,
         args.api_model_global_context, args.api_model_phase_context, args.api_model_phase_steps_json,
         args.api_model_phase_steps_json_mapping, args.exec_mode, args.exec_delay,

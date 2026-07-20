@@ -61,6 +61,11 @@ on:
         description: '📈 Phase Context Model - OpenAI (Ex: meta-llama/llama-3.3-70b-instruct:free)'
         required: false
         type: string
+      model_phase_max_days:
+        description: '🌞 Maximum Days Per Phase - OpenAI (Ex: 1,2,3, or default 7)'
+        required: false
+        default: 7
+        type: number
       model_steps:
         description: '🔢 Phase Steps Json Context Model - OpenAI (Ex: meta-llama/llama-3.3-70b-instruct:free)'
         required: false
@@ -130,6 +135,11 @@ on:
         description: '📈 Phase Context Model - OpenAI (Ex: meta-llama/llama-3.3-70b-instruct:free)'
         required: false
         type: string
+      model_phase_max_days:
+        description: '🌞 Maximum Days Per Phase - OpenAI (Ex: 1,2,3, or default 7)'
+        required: false
+        default: 7
+        type: number
       model_steps:
         description: '🔢 Phase Steps Json Context Model - OpenAI (Ex: meta-llama/llama-3.3-70b-instruct:free)'
         required: false
@@ -215,6 +225,7 @@ jobs:
           INPUTS_MODEL_KEY: ${{ inputs.model_key }}
           INPUTS_MODEL_GLOBAL: ${{ inputs.model_global }}
           INPUTS_MODEL_PHASE: ${{ inputs.model_phase }}
+          INPUTS_MODEL_PHASE_MAX_DAYS: ${{ inputs.model_phase_max_days }}
           INPUTS_MODEL_STEPS: ${{ inputs.model_steps }}
           INPUTS_MODEL_STEPS_MAPPING: ${{ inputs.model_steps_mapping_config }}
           INPUTS_MODEL_STEPS_DAYS_PER_CHUNK: ${{ inputs.model_steps_days_per_chunk }}
@@ -257,6 +268,11 @@ jobs:
           fi
           if [ -z "$MODEL_PHASE" ]; then
             MODEL_PHASE="$MODEL_GLOBAL"
+          fi
+          
+          MODEL_PHASE_MAX_DAYS="$INPUTS_MODEL_PHASE_MAX_DAYS"
+          if [ -z "$MODEL_PHASE_MAX_DAYS" ]; then
+            MODEL_PHASE_MAX_DAYS=7
           fi
           
           MODEL_STEPS="$INPUTS_MODEL_STEPS"
@@ -315,6 +331,7 @@ jobs:
               --api-key "$MODEL_KEY" --api-endpoint "$MODEL_ENDPOINT" \
               --api-model-global-context "$MODEL_GLOBAL" \
               --api-model-phase-context "$MODEL_PHASE" \
+              --api-model-phase-max-days "$MODEL_PHASE_MAX_DAYS" \
               --api-model-phase-steps-json "$MODEL_STEPS" \
               --api-model-phase-steps-json-mapping "$INPUTS_MODEL_STEPS_MAPPING" \
               --api-model-phase-steps-days-per-chunk "$MODEL_STEPS_DAYS_PER_CHUNK" \
