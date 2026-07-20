@@ -127,7 +127,13 @@ jobs:
           # 🖨️ Copy all recursive configuration items, scripts, and dotfiles into the synchronization sandbox
           cp -r $TEMPLATE_DIR/. ../sync-workspace/
           if [ -d "$BLUEPRINT_DIR/${{ env.PROJECT_NAME }}" ]; then
-            cp -r $BLUEPRINT_DIR/${{ env.PROJECT_NAME }}/. ../sync-workspace/.ai/
+            [ -d "$BLUEPRINT_DIR/${{ env.PROJECT_NAME }}/context" ] && \
+                cp -r $BLUEPRINT_DIR/${{ env.PROJECT_NAME }}/context/. ../sync-workspace/.ai/.context/
+            [ -d "$BLUEPRINT_DIR/${{ env.PROJECT_NAME }}/plan/context" ] && \
+                cp -r $BLUEPRINT_DIR/${{ env.PROJECT_NAME }}/plan/context/. ../sync-workspace/.ai/.plan/.context/
+            [ -d "$BLUEPRINT_DIR/${{ env.PROJECT_NAME }}/plan/steps" ] && \
+                cp -r $BLUEPRINT_DIR/${{ env.PROJECT_NAME }}/plan/steps/. ../sync-workspace/.ai/.plan/.steps/ && \
+                cp -r $BLUEPRINT_DIR/${{ env.PROJECT_NAME }}/plan/steps/. ../sync-workspace/.ai/.agents/.steps/
           fi
           
           # 🔀 Change context directory to the decoupled target initialization workspace
