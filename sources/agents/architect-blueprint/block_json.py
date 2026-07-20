@@ -173,8 +173,7 @@ def convert_phases_to_json(client: OpenAI, model_name: str, project_name: str, n
         for phase_idx in range(1, num_phases + 1):
             log_phase_idx = phase_idx
             phase_context_dir = os.path.join(out_dir, "plan", "context")
-            phase_context_file = f"phase-{phase_idx}.context.blueprint.md"
-            md_path = os.path.join(phase_context_dir, phase_context_file)
+            md_path = os.path.join(phase_context_dir, f"phase-{phase_idx}.context.blueprint.md")
             
             if not os.path.exists(md_path):
                 print(f" │   └── ❌ Skipped Phase {phase_idx}: Source Markdown file not found.")
