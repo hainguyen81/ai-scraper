@@ -162,7 +162,7 @@ jobs:
           git config --local --unset-all http.https://com.extraheader 2>/dev/null
           
           # push force origin
-          TARGET_URL="https://x-access-token:$GH_TOKEN@://github.com/$TARGET_OWNER/{{ env.PROJECT_NAME }}.git"
+          TARGET_URL="https://x-access-token:@GH_TOKEN@://github.com/$TARGET_OWNER/${{ env.PROJECT_NAME }}.git"
           git remote add origin "$TARGET_URL"
           
           echo "⬆️ Force pushing payload to upstream master branch..."
