@@ -1,108 +1,142 @@
-<think>
-Here's a thinking process:
+# PHASE 2 CONTEXT BLUEPRINT: test‑ai‑architecture  
 
-1.  **Analyze User Input:**
-   - **Project Name:** `test-ai-architecture` (context title), `membership-hub` (raw requirements)
-   - **Task:** Detail **PHASE 2 OUT OF 5**
-   - **Global Context & Raw Requirements:** Provided in the prompt. Key features: Web admin + Mobile app, Quarkus/Kafka/Postgres backend, scalable, Docker/GCP/GKE, Auth (internal + Firebase/Google/FB), Multi-tenant, QR attendance (idempotent daily), validity countdown, Notifications (Zalo phone/group + mobile push), Next.js frontend (mobile/web), i18n, SEO, locale detection.
-   - **Required Output Structure:**
-     ```
-     # PHASE 2 CONTEXT BLUEPRINT: test-ai-architecture
-     ## 1. Phase Operational Scope & Objectives
-     ## 2. Allowed Technical Scope & Directory Boundaries (Files, paths, and endpoints)
-     ## 3. Dedicated Sub-Agent Functional Directives (Specific tasks for Coder, Tester, Reviewer, DevOps)
-     ## 4. Phase Definition of Done (DoD)
-     ```
-   - **Constraint:** "Isolate development boundaries so sub-agents never overlap." This is critical. I need to define strict boundaries for Phase 2, ensuring clear separation of concerns and preventing agent overlap.
+## 1. Phase Operational Scope & Objectives  
 
-2.  **Determine Phase 2 Focus:**
-   Looking at the 5-phase strategy I mentally outlined earlier:
-   - Phase 1: Foundation & Core Architecture (DB, Auth, Multi-tenant, Base Infra, Next.js/Quarkus scaffolding)
-   - **Phase 2: Attendance & Business Logic Core** (QR generation/validation, daily deduplication/idempotency, validity countdown, Kafka event streams for attendance, core API endpoints)
-   - Phase 3: Multi-Channel Notifications & i18n/SEO
-   - Phase 4: Testing, Security & Optimization
-   - Phase 5: Production Deployment & Observability
-   This aligns perfectly. Phase 2 will focus on the core business logic: Attendance processing, QR handling, validity tracking, and the Kafka event pipeline that will later feed notifications. I'll strictly bound it to avoid overlapping with Auth (Phase 1), Notifications (Phase 3), and Deployment/Testing (Phases 4/5).
+| Objective | Description | Success Indicator |
+|-----------|-------------|--------------------|
+| **Authentication Service** | Implement a unified identity layer that supports: <br>• Native email + password (hashed with Argon2) <br>• Firebase Auth federation <br>• Google & Facebook OIDC federation <br>All users (internal staff & learners) are represented in a single `users` table with a `tenant_id` discriminator. | Successful login via any provider; JWT access token issued with `tenant_id` claim. |
+| **Tenant‑Aware Core Backend** | Build the first Quarkus microservice **membership‑service** that exposes: <br>• Attendance‑record API (idempotent daily check‑in) <br>• Membership‑day calculation endpoint (remaining days) <br>All data scoped by `tenant_id` using PostgreSQL Row‑Level Security (RLS). | 100 % of API calls respect tenant isolation; unit‑test coverage ≥ 80 %. |
+| **Event‑Driven Pipeline** | Define Kafka topics and producers/consumers for: <br>• `attendance.events` (check‑in events) <br>• `notification.events` (down‑stream to Zalo & FCM) <br>Ensure exactly‑once semantics via idempotent keys. | No duplicate attendance records; consumer lag < 5 seconds in staging. |
+| **Docker & CI/CD Foundations** | Create a multi‑stage Dockerfile that builds a **GraalVM native image** of the Quarkus service, pushes to Artifact Registry, and is referenced by the Helm chart. Integrate into GitHub Actions → Cloud Build → Argo CD pipeline. | Native image ≤ 150 MB; CI pipeline passes all static analysis, SAST, container scan, and auto‑deploys to `dev` namespace. |
+| **Observability & Guardrail Hooks** | Instrument the service with OpenTelemetry (metrics, traces) and emit structured logs (JSON) to Cloud Logging. Add runtime checks for GDPR consent flag on every user‑related request. | Traces visible in Cloud Trace; alerts fire on missing consent flag. |
+| **Phase Gate Deliverables** | • Architecture diagram of auth & attendance flow <br>• Terraform module for Kafka & PostgreSQL <br>• Helm chart values for `membership-service` <br>• API contract (OpenAPI 3.0) <br>• Test suite (unit + contract) | All artifacts stored in the `phase‑2/` folder and pass review. |
 
-3.  **Draft - Section by Section:**
+---
 
-   *## 1. Phase Operational Scope & Objectives*
-   - Focus: Core attendance engine, QR lifecycle, daily idempotency logic, membership validity countdown, and Kafka event publishing.
-   - Objectives:
-     - Implement idempotent daily attendance tracking per tenant/student.
-     - Build QR generation & validation service with cryptographic signing.
-     - Develop validity countdown logic (days remaining calculation).
-     - Establish Kafka event schema & producers for attendance events.
-     - Ensure strict multi-tenant data isolation for attendance records.
-     - Deliver REST/gRPC endpoints for frontend consumption.
-   - Boundaries: Explicitly exclude Auth implementation, Notification delivery, i18n/SEO, and Infrastructure deployment. These are handled in other phases.
+## 2. Allowed Technical Scope & Directory Boundaries (Files, paths, and endpoints)  
 
-   *## 2. Allowed Technical Scope & Directory Boundaries*
-   - Need strict file/path/endpoint boundaries to prevent overlap.
-   - Backend (Quarkus):
-     - `src/main/java/com/membershiphub/attendance/` (Domain, Application, Infrastructure layers)
-     - `src/main/java/com/membershiphub/qr/` (QR generation/validation)
-     - `src/main/java/com/membershiphub/events/` (Kafka producers, DTOs)
-     - `src/main/resources/db/migration/V2__attendance_schema.sql`
-     - Endpoints: `POST /api/v1/attendance/check-in`, `GET /api/v1/attendance/{studentId}/status`, `GET /api/v1/qr/generate`
-   - Frontend (Next.js):
-     - `src/app/(mobile)/attendance/` (Pages/components for QR scan & countdown display)
-     - `src/app/(admin)/dashboard/attendance/` (Admin view)
-     - `src/services/attendance.service.ts`
-     - `src/components/qr-scanner/`
-   - Kafka:
-     - Topic: `membership.attendance.events`
-     - Schema: `AttendanceEvent` (tenantId, studentId, timestamp, status, validityRemaining)
-   - Explicit Exclusions: Auth routes, Notification services, i18n config, Dockerfiles, GKE manifests, Test suites (handled by other agents/phases).
+```
+/infra
+│   ├─ terraform/
+│   │   ├─ main.tf                # GKE cluster, VPC, CloudSQL, Kafka (Confluent) resources
+│   │   ├─ variables.tf
+│   │   └─ outputs.tf
+│   └─ helm/
+│       └─ membership-service/
+│           ├─ Chart.yaml
+│           ├─ values.yaml
+│           └─ templates/
+│               ├─ deployment.yaml
+│               ├─ service.yaml
+│               └─ configmap.yaml
+/src
+│   └─ membership-service/
+│       ├─ src/main/java/com/company/membership/
+│       │   ├─ Application.java                     # Quarkus entry point
+│       │   ├─ config/
+│       │   │   └─ JwtConfig.java
+│       │   ├─ model/
+│       │   │   ├─ User.java
+│       │   │   ├─ Attendance.java
+│       │   │   └─ Tenant.java
+│       │   ├─ repository/
+│       │   │   ├─ UserRepository.java
+│       │   │   └─ AttendanceRepository.java
+│       │   ├─ service/
+│       │   │   ├─ AuthService.java
+│       │   │   ├─ AttendanceService.java
+│       │   │   └─ MembershipCalcService.java
+│       │   ├─ resource/
+│       │   │   ├─ AuthResource.java                # /api/v1/auth/*
+│       │   │   ├─ AttendanceResource.java         # /api/v1/attendance/*
+│       │   │   └─ MembershipResource.java         # /api/v1/membership/*
+│       │   └─ kafka/
+│       │       ├─ AttendanceProducer.java
+│       │       └─ NotificationConsumer.java
+│       └─ src/main/resources/
+│           ├─ application.properties               # Quarkus config (dev)
+│           ├─ application-prod.yaml                # Prod overrides
+│           └─ META-INF/
+│               └─ openapi.yaml                     # OpenAPI spec
+/docker
+│   └─ Dockerfile                                 # Multi‑stage GraalVM native build
+/.github
+│   └─ workflows/
+│       └─ ci.yml                                 # Lint, unit, contract, SAST, Trivy, Build & Push
+/ops
+    └─ argo/
+        └─ app.yaml                               # Argo CD Application manifest
+```
 
-   *## 3. Dedicated Sub-Agent Functional Directives*
-   - Need specific tasks for Coder, Tester, Reviewer, DevOps (Docker/Deployer combined or split as requested? The prompt says "Coder, Tester, Reviewer, DevOps". I'll stick to that).
-   - **Coder:**
-     - Implement Quarkus attendance service with JPA/Hibernate, ensuring tenant isolation via `@TenantId` or row-level security.
-     - Build idempotency key mechanism (composite key: tenantId + studentId + date).
-     - Develop QR payload structure (JWT-like signed token with studentId, tenantId, expiry).
-     - Create Kafka producer for `membership.attendance.events`.
-     - Implement Next.js attendance UI components (QR scanner, countdown display, API integration).
-     - Strictly adhere to Clean Architecture & DDD boundaries.
-   - **Tester:**
-     - Design unit tests for idempotency logic, validity calculation, QR validation.
-     - Create integration tests for Kafka event publishing & DB persistence.
-     - Validate multi-tenant isolation (cross-tenant data leakage tests).
-     - Mock external dependencies (Kafka, DB) for isolated testing.
-     - Output: Test suite structure, coverage targets (>85%), test execution scripts.
-   - **Reviewer:**
-     - Audit code for DDD compliance, transaction boundaries, and idempotency guarantees.
-     - Verify Kafka schema versioning & backward compatibility.
-     - Check for N+1 queries, connection pooling, and tenant filtering enforcement.
-     - Ensure frontend components follow Next.js App Router standards & accessibility.
-     - Output: Review checklist, architectural compliance report, refactoring directives.
-   - **DevOps (Docker/Deployer focus for Phase 2):**
-     - Containerize Quarkus service with multi-stage Dockerfile.
-     - Define Kafka topic provisioning scripts (Ansible/Terraform or GCP PubSub/Kafka bridge config).
-     - Set up local development environment (Docker Compose: Postgres, Kafka, Quarkus, Next.js).
-     - Output: `docker-compose.phase2.yml`, Dockerfile, environment variable templates, local run instructions.
+### Public REST Endpoints (base `/api/v1/`)  
 
-   *## 4. Phase Definition of Done (DoD)*
-   - Need clear, measurable criteria.
-   - Functional: QR check-in works, idempotency enforced, countdown accurate, Kafka events published.
-   - Technical: Code passes review, tests pass, Docker images build successfully, local env runs.
-   - Compliance: Multi-tenant isolation verified, no auth/notification/i18n code mixed in, strict directory boundaries respected.
-   - Documentation: API specs (OpenAPI), Kafka schema docs, local setup guide.
-   - Sign-off: All sub-agents confirm completion, no cross-phase dependencies blocking Phase 3.
+| Method | Path | Description | Auth |
+|--------|------|-------------|------|
+| `POST` | `/auth/login` | Email/password login → returns JWT | Public |
+| `POST` | `/auth/firebase` | Firebase ID token exchange → JWT | Public |
+| `GET`  | `/auth/providers` | List enabled OIDC providers (Google, Facebook) | Public |
+| `POST` | `/attendance/checkin` | Idempotent daily QR check‑in (payload: `{ "qrToken": "...", "tenantId": "..." }`) | Bearer JWT |
+| `GET`  | `/attendance/today` | Returns today’s attendance status for caller | Bearer JWT |
+| `GET`  | `/membership/remaining` | Returns remaining membership days for caller | Bearer JWT |
+| `GET`  | `/healthz` | Liveness/Readiness probe | Public |
 
-4.  **Refine & Self-Correction/Verification:**
-   - *Check against constraints:* "Isolate development boundaries so sub-agents never overlap." -> I've explicitly defined allowed paths, endpoints, and excluded scopes. Each agent has distinct deliverables.
-   - *Check structure:* Matches exactly the required Markdown structure.
-   - *Check alignment with raw requirements:* Covers QR attendance, daily deduplication, validity countdown, Kafka events, Next.js frontend, Quarkus backend, multi-tenant isolation. Explicitly defers Auth, Notifications, i18n/SEO, GKE deployment to other phases.
-   - *Technical depth:* Uses appropriate terminology (idempotency keys, DDD, Clean Architecture, Kafka schema, JWT-signed QR, Row-Level Security, multi-stage Docker, OpenAPI).
-   - *Phase 2 focus:* Clearly positioned as the core business logic phase, bridging Phase 1 (foundation/auth) and Phase 3 (notifications/i18n).
-   - *Agent directives:* Clearly separated. Coder builds, Tester validates, Reviewer audits, DevOps containerizes/localizes. No overlap in responsibilities.
-   - *DoD:* Measurable, verifiable, aligned with phase scope.
+### Kafka Topics (namespace `membership-hub`)  
 
-   One minor adjustment: The prompt mentions "DevOps" in the directive section, but the global context listed "Docker, Deployer". I'll adapt to "DevOps (Docker & Local Infra)" to match the prompt's exact wording while keeping the spirit. I'll ensure the boundaries are extremely strict to prevent overlap.
+| Topic | Purpose | Key | Value Schema |
+|-------|---------|-----|--------------|
+| `attendance.events` | Publish each successful check‑in | `{tenantId}:{userId}:{date}` | `{ "userId": "...", "tenantId": "...", "date": "YYYY-MM-DD", "qrToken": "..."}`
+| `notification.events` | Down‑stream for Zalo & FCM notifications | `{tenantId}:{userId}` | `{ "userId": "...", "tenantId": "...", "type": "CHECKIN", "payload": {...} }`
 
-   I will now generate the response exactly matching the required structure. I'll make sure the tone is authoritative and architectural. I'll double-check the directory paths and endpoints to ensure they are realistic and strictly bounded. I'll explicitly state what is OUT OF SCOPE to reinforce boundary isolation. All good. Proceed. 
-   Structure check:
-   # PHASE 2 CONTEXT BLUEPRINT: test-ai-architecture
-   ## 1. Phase Operational Scope & Objectives
-   ## 2. Allowed Technical Scope & Directory Boundaries (Files, paths, and endpoints)
+---
+
+## 3. Dedicated Sub‑Agent Functional Directives  
+
+| Sub‑Agent | Primary Tasks (Phase 2) | Artefacts to Produce | Guardrail Checks |
+|-----------|--------------------------|----------------------|------------------|
+| **Coder** | • Scaffold Quarkus project with Maven (Java 17). <br>• Implement `AuthService` (email/password, Firebase token exchange, OIDC redirects). <br>• Implement `AttendanceService` with idempotent check‑in logic (use Redis cache or DB unique constraint). <br>• Add `MembershipCalcService` that decrements remaining days based on attendance history. <br>• Write OpenAPI annotations for all endpoints. <br>• Add PostgreSQL RLS policies (`tenant_id` filter) and migration scripts (Flyway). | - Source code under `/src/membership-service/` <br>- Flyway SQL files under `src/main/resources/db/migration/` <br>- OpenAPI spec (`openapi.yaml`) | • Static analysis (SonarQube ≥ A) <br>• Dependency check (OWASP Dependency‑Check) <br>• No hard‑coded secrets (use `${SECRET}` placeholders) |
+| **Tester** | • Unit tests for Auth, Attendance, Membership services (JUnit 5 + Mockito). <br>• Contract tests using **Karate** against the generated OpenAPI spec. <br>• Integration test that spins up an in‑memory Kafka (Testcontainers) and PostgreSQL, verifies idempotent check‑in and event publishing. <br>• Security test: ensure JWT without `tenant_id` claim is rejected. | - `src/test/java/...` with ≥ 80 % coverage reports (JaCoCo). <br>- `contract/attendance.feature` & `contract/auth.feature`. | • Test coverage threshold enforced in CI <br>• OWASP ZAP baseline scan on the running dev service (no high‑risk findings) |
+| **Reviewer** | • Review PRs for code style (Google Java Format), architectural compliance (tenant isolation, GDPR consent check). <br>• Validate OpenAPI spec matches implementation (diff tool). <br>• Approve Terraform changes only after `terraform validate` and `plan` review. <br>• Ensure Dockerfile passes `hadolint` and final image size ≤ 150 MB. | - Review comments on GitHub PRs <br>- Signed off checklist (Guardrail‑Compliance‑Checklist.md) | • No critical findings after static analysis <br>• All required CI checks (SAST, container scan) must be green before merge |
+| **DevOps (Deployer)** | • Write Terraform module for GKE, CloudSQL (PostgreSQL), and Confluent‑Kafka (or GKE‑based Strimzi). <br>• Create Helm chart values for resource limits, Istio sidecar injection, and secret references (Google Secret Manager). <br>• Extend GitHub Actions workflow: <br>   1. Lint → Test → Build native image → Push to Artifact Registry. <br>   2. Run `helm lint` and `helm template` sanity check. <br>   3. Deploy to `dev` namespace via Argo CD (auto‑sync). <br>• Configure OpenTelemetry exporter to Cloud Trace & Metrics. | - Terraform files under `/infra/terraform/` <br>- Helm chart under `/infra/helm/membership-service/` <br>- GitHub Actions workflow `.github/workflows/ci.yml` | • `terraform fmt` & `terraform validate` pass <br>• Helm chart passes `helm lint` <br>• Deployment health checks (`/healthz`) succeed > 99 % of pods within 2 min |
+| **Docker** *(optional sub‑agent if split)* | • Author multi‑stage Dockerfile: <br>   `FROM quay.io/quarkus/ubi-quarkus-maven:22.3-java17 AS build` → native compile <br>   `FROM registry.access.redhat.com/ubi8/ubi-minimal` → copy native binary. <br>• Run `hadolint` and `docker buildx` for multi‑arch (linux/amd64, linux/arm64). | - `Dockerfile` in `/docker/` <br>- Build logs archived as CI artifacts | • Final image ≤ 150 MB, CVE scan (Trivy) reports no critical vulnerabilities |
+
+---
+
+## 4. Phase Definition of Done (DoD)  
+
+The Phase 2 gate is considered **passed** only when **all** items below are satisfied:
+
+1. **Functional Completeness**  
+   - All REST endpoints listed in Section 2 are implemented, documented, and return the expected HTTP status codes.  
+   - Attendance check‑in is idempotent (multiple identical QR scans on the same day do not create duplicate rows).  
+   - Membership‑day calculation correctly reflects days remaining after each successful check‑in.  
+
+2. **Tenant & Privacy Guardrails**  
+   - PostgreSQL RLS policies enforce `tenant_id` isolation for every table (`users`, `attendance`, `membership`).  
+   - Every request that accesses personal data validates the user’s GDPR consent flag; missing consent results in `403 Forbidden`.  
+
+3. **Event‑Driven Reliability**  
+   - Kafka topics `attendance.events` and `notification.events` exist with correct replication factor (≥ 3).  
+   - Producer publishes with exactly‑once semantics; consumer acknowledges only after successful DB transaction.  
+
+4. **Quality Metrics**  
+   - Unit test coverage ≥ 80 % (JaCoCo).  
+   - Contract test suite passes against the generated OpenAPI spec.  
+   - Static analysis (SonarQube) score ≥ A, no blocker issues.  
+   - Container image size ≤ 150 MB, Trivy scan reports **no critical** CVEs.  
+
+5. **CI/CD & Deployability**  
+   - GitHub Actions pipeline runs end‑to‑end without manual intervention and reaches the **Deploy to Dev** stage.  
+   - Helm chart installs cleanly on a fresh GKE namespace (`membership-hub-dev`).  
+   - All pods report `Ready` and pass `/healthz` within 2 minutes of rollout.  
+
+6. **Observability & Monitoring**  
+   - OpenTelemetry traces appear in Cloud Trace for at least one request per endpoint.  
+   - Metrics (request count, latency, Kafka consumer lag) are visible in Cloud Monitoring dashboards.  
+
+7. **Documentation & Knowledge Transfer**  
+   - Architecture diagram (PlantUML or Lucidchart) uploaded to Confluence and linked in the repo README.  
+   - README contains: build instructions, local dev setup (Docker Compose with Kafka & Postgres), and how to run the test suite.  
+   - Runbook for “Attendance Check‑in Failure” and “Kafka Consumer Lag Alert” added to `/ops/runbooks/`.  
+
+8. **Phase Gate Review Sign‑off**  
+   - Manager and Reviewer have signed the **Phase 2 Gate Checklist** (stored as `phase

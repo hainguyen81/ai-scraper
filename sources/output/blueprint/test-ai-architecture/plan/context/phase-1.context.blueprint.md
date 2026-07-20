@@ -1,115 +1,88 @@
-<think>
-Here's a thinking process:
+# PHASE 1 CONTEXT BLUEPRINT: test-ai-architecture  
 
-1.  **Analyze User Input:**
-   - **Project Name:** `membership-hub` (but the prompt says `test-ai-architecture` for the context title, I'll stick to the requested title format)
-   - **Requirements:**
-     - Web for management, Mobile for students.
-     - Backend: Quarkus, Kafka, PostgreSQL. Scalable, Dockerized, deployed on GCP/GKE.
-     - Auth: Internal (email/password), External (Firebase, Google, Facebook). Manage internal users & external logins.
-     - Multi-tenant: Supports multiple training centers simultaneously.
-     - Attendance: QR code check-in. Marks attendance for the day. Multiple check-ins per day are allowed but only count as one attendance per day.
-     - Post-attendance: Shows remaining validity days (like a gym pass countdown).
-     - Notifications: Send via Zalo (phone number & group), plus mobile app push notifications.
-     - Mobile App: Next.js frontend, multi-language support, builds for iOS & Android.
-     - SEO: Multi-language SEO for both web and mobile app.
-     - Locale Detection: Default to user's saved preference, else browser/device locale.
-   - **Output Structure Required:**
-     ```
-     # PHASE 1 CONTEXT BLUEPRINT: test-ai-architecture
-     ## 1. Phase Operational Scope & Objectives
-     ## 2. Allowed Technical Scope & Directory Boundaries (Files, paths, and endpoints)
-     ## 3. Dedicated Sub-Agent Functional Directives (Specific tasks for Coder, Tester, Reviewer, DevOps)
-     ## 4. Phase Definition of Done (DoD)
-     ```
-   - **Constraint:** "Isolate development boundaries so sub-agents never overlap." This is critical. I need to define strict boundaries for each agent in Phase 1.
+## 1. Phase Operational Scope & Objectives  
 
-2.  **Deconstruct Phase 1 Requirements:**
-   Phase 1 should focus on the foundation: architecture setup, multi-tenant database schema, authentication system, base Next.js/Quarkus scaffolding, Docker/GKE infrastructure, and core event-driven setup. It shouldn't dive into attendance logic, notifications, or advanced SEO/i18n yet. Those come in later phases.
-   - *Scope:* Core infrastructure, multi-tenant DB design, auth provider abstraction, base Next.js/Quarkus project structure, Docker/GKE scaffolding, Kafka topic definition, locale detection foundation.
-   - *Boundaries:* Strict file/path separation. Backend vs Frontend vs Infra vs Tests.
-   - *Agents:* Coder (implementation), Tester (test strategy/setup), Reviewer (code/arch review), DevOps (Docker/GKE/CI-CD setup).
-   - *DoD:* Clear, measurable criteria for Phase 1 completion.
+| Goal | Description | Success Indicator |
+|------|-------------|--------------------|
+| **Requirement Validation & Traceability** | Capture all functional & non‑functional requirements from the Raw Requirements and map them to the Global Context. Produce a Requirement Traceability Matrix (RTM). | RTM approved by **Manager**; 100 % coverage of listed requirements. |
+| **Multi‑Tenant Data Model Definition** | Design the logical schema that isolates each learning center (`tenant_id`) and supports user‑type segregation (internal admin vs. external federated). Include Row‑Level Security (RLS) policies for PostgreSQL. | Entity‑Relationship diagram + RLS policy scripts reviewed and signed‑off. |
+| **High‑Level Architecture Blueprint** | Produce a system‑context diagram and component diagram covering: Quarkus services, Kafka topics, PostgreSQL, Keycloak/Firebase, Next.js web & mobile, GKE deployment topology, and external Zalo Business API. | Architecture diagram stored in the repository; Reviewer confirms alignment with Global Guardrails. |
+| **Baseline Infrastructure as Code (IaC)** | Scaffold Terraform modules for: <br>• GCP VPC, subnets, IAM service accounts <br>• GKE cluster (regional, multi‑zone) <br>• CloudSQL (PostgreSQL) with TimescaleDB extension <br>• Secret Manager integration <br>Provide a `main.tf` that can be applied in a **dev** environment. | `terraform init && terraform apply -var env=dev` succeeds without errors; no policy violations from Checkov. |
+| **CI/CD Skeleton** | Create GitHub Actions workflow that performs: <br>1️⃣ Lint (prettier/ESLint, hadolint) <br>2️⃣ Unit test placeholder <br>3️⃣ Build a **multi‑stage Dockerfile** (Quarkus native image) <br>4️⃣ Push image to Artifact Registry <br>5️⃣ Deploy Helm chart to the **dev** namespace via Argo CD (GitOps). | Pipeline runs end‑to‑end on a fresh commit; all jobs pass; Argo CD shows a healthy sync. |
+| **Guardrail Integration** | Embed automated checks for: <br>• OWASP Top 10 (via ZAP baseline scan) <br>• Secret leakage (Trivy) <br>• Terraform policy compliance (Checkov) <br>• Code quality gate (SonarQube). | Any violation fails the pipeline; alerts sent to Slack channel. |
+| **Documentation Foundations** | Populate Confluence (or Markdown repo) with: <br>• Project charter <br>• Glossary of tenant‑related terms <br>• On‑boarding guide for new developers (local dev setup). | Documentation reviewed and approved; links added to repository README. |
 
-3.  **Draft - Section by Section:**
+## 2. Allowed Technical Scope & Directory Boundaries (Files, paths, and endpoints)  
 
-   *## 1. Phase Operational Scope & Objectives*
-   - Focus: Foundation & Core Architecture.
-   - Objectives:
-     - Establish multi-tenant PostgreSQL schema with strict data isolation.
-     - Implement unified authentication gateway (Internal Email/Pass + OAuth2 for Firebase/Google/Facebook).
-     - Scaffold Quarkus backend with modular architecture, Kafka producer/consumer base, and REST/GraphQL API contracts.
-     - Scaffold Next.js frontend (App Router) with i18n routing foundation, locale detection logic, and PWA/native build configuration.
-     - Containerize services and establish GCP/GKE deployment pipeline.
-     - Define strict development boundaries to prevent agent overlap.
+| Area | Allowed Files / Paths | Prohibited / Out‑of‑Scope (Phase 1) |
+|------|----------------------|--------------------------------------|
+| **Terraform IaC** | `infra/terraform/` <br>• `main.tf` <br>• `variables.tf` <br>• `outputs.tf` <br>• `modules/**` (vpc, gke, cloudsql) | Production‑only modules, cross‑region replication configs. |
+| **Kubernetes Manifests** | `infra/helm/` <br>• `Chart.yaml` <br>• `values-dev.yaml` (dev namespace) <br>• `templates/**` (deployment, service, ingress) | `values-prod.yaml` or any `namespace: prod` definitions. |
+| **CI/CD Pipelines** | `.github/workflows/ci-cd.yml` <br>• `scripts/lint.sh`, `scripts/build.sh` | Separate release pipelines for canary/blue‑green (out‑of‑scope). |
+| **Docker** | `docker/Dockerfile.quarkus` (multi‑stage) <br>• `docker/.dockerignore` | Dockerfiles for auxiliary services (e.g., Zalo connector) – to be added in later phases. |
+| **Architecture Docs** | `docs/architecture/` <br>• `high‑level-arch.md` <br>• `tenant‑model.md` <br>• `rtm.xlsx` | Detailed API spec (OpenAPI) – scheduled for Phase 2. |
+| **Source Code (placeholder)** | `src/` (empty packages for now) – only to host **README** and **package.json** for future Next.js code. | Any actual business logic implementation (attendance, auth) – belongs to Phase 2. |
+| **API Endpoints (design only)** | Documented in `docs/api/phase1-endpoints.md` (e.g., `/health`, `/ready`, `/api/v1/tenant/{id}` placeholder). | Real endpoint implementations; they will be coded in Phase 2. |
+| **Testing Artifacts** | `tests/unit/` (empty) <br>• `tests/integration/` (empty) | Performance / load testing scripts – scheduled for Phase 5. |
 
-   *## 2. Allowed Technical Scope & Directory Boundaries*
-   - Need to define exact paths, endpoints, and tech boundaries.
-   - *Backend (Quarkus):* `backend/`
-     - `backend/src/main/java/com/membershiphub/auth/` (Auth providers, JWT, OAuth2 config)
-     - `backend/src/main/java/com/membershiphub/tenant/` (Multi-tenant resolver, RLS/schema setup)
-     - `backend/src/main/java/com/membershiphub/core/` (Base entities, Kafka config, DTOs)
-     - `backend/src/main/resources/db/migration/` (Flyway/Liquibase scripts)
-     - Endpoints: `/api/v1/auth/*`, `/api/v1/tenant/*`, `/api/v1/health`
-   - *Frontend (Next.js):* `frontend/`
-     - `frontend/src/app/(auth)/` (Login/Register pages)
-     - `frontend/src/app/(dashboard)/` (Web admin shell)
-     - `frontend/src/app/(mobile)/` (Mobile app shell)
-     - `frontend/src/i18n/` (Locale detection, routing config, message files)
-     - `frontend/src/config/` (Next.js config, Expo/Capacitor setup for iOS/Android)
-   - *Infrastructure/DevOps:* `infra/`
-     - `infra/docker/` (Dockerfiles, docker-compose for local dev)
-     - `infra/k8s/` (Helm charts, GKE manifests, ingress, secrets)
-     - `infra/ci-cd/` (GitHub Actions/GitLab CI pipelines)
-   - *Kafka Topics:* `membership.auth.events`, `membership.tenant.events`, `membership.system.events`
-   - *Strict Boundaries Rule:* Agents must only modify files within their designated directories. Cross-boundary changes require explicit architectural approval.
+**Network / Service Endpoint Constraints (dev environment)**  
 
-   *## 3. Dedicated Sub-Agent Functional Directives*
-   - Need specific tasks for Coder, Tester, Reviewer, DevOps. Ensure no overlap.
-   - *Coder:*
-     - Implement Quarkus auth module (JWT, OAuth2 providers, user management).
-     - Implement multi-tenant resolver (header-based or subdomain-based tenant ID).
-     - Scaffold Next.js app with i18n routing, locale detection fallback logic, and base UI shell.
-     - Set up Kafka producer/consumer templates in Quarkus.
-     - *Boundary:* `backend/src/`, `frontend/src/`, `frontend/public/`
-   - *Tester:*
-     - Design unit tests for auth flows, tenant isolation, and locale detection.
-     - Set up integration test harness for PostgreSQL RLS/schema validation.
-     - Configure E2E test framework (Playwright/Cypress) for auth & routing.
-     - *Boundary:* `backend/src/test/`, `frontend/src/__tests__/`, `e2e/`
-   - *Reviewer:*
-     - Enforce Clean Architecture & DDD boundaries.
-     - Validate security compliance (OAuth2 flows, JWT signing, secret handling).
-     - Review multi-tenant data isolation strategy.
-     - Audit i18n/SEO foundation for Next.js.
-     - *Boundary:* Read-only access to all code, write-only to `docs/reviews/` and PR comments.
-   - *DevOps:*
-     - Create multi-stage Dockerfiles for Quarkus & Next.js.
-     - Configure GKE cluster manifests, Helm charts, and ingress.
-     - Set up CI/CD pipeline for build, test, scan, and deploy.
-     - Configure GCP Secret Manager & Cloud SQL integration.
-     - *Boundary:* `infra/`, `.github/workflows/`, `Dockerfile.*`, `docker-compose.*`
+| Service | Hostname (dev) | Port | Protocol |
+|---------|----------------|------|----------|
+| GKE Ingress (API) | `api.dev.test-ai-architecture.internal` | 443 | HTTPS (mTLS enforced by Istio) |
+| PostgreSQL (CloudSQL) | `postgres-dev.test-ai-architecture.internal` | 5432 | TLS |
+| Kafka (Confluent) | `kafka-dev.test-ai-architecture.internal` | 9092 | TLS |
+| Keycloak | `auth.dev.test-ai-architecture.internal` | 8443 | HTTPS |
+| Zalo Mock (later) | N/A | N/A | N/A |
 
-   *## 4. Phase Definition of Done (DoD)*
-   - Clear, measurable criteria.
-   - [ ] Multi-tenant PostgreSQL schema deployed with strict row-level/schema isolation.
-   - [ ] Unified auth gateway operational (Internal + Firebase/Google/Facebook OAuth2).
-   - [ ] Quarkus backend scaffolded with Kafka integration, health checks, and tenant resolver.
-   - [ ] Next.js frontend scaffolded with i18n routing, locale detection fallback, and iOS/Android build config.
-   - [ ] Docker images built, scanned, and pushed to GCR/Artifact Registry.
-   - [ ] GKE deployment pipeline functional with auto-scaling & ingress configured.
-   - [ ] Unit/Integration tests passing with >80% coverage on auth & tenant modules.
-   - [ ] Security audit passed (JWT validation, OAuth2 state/nonce, secret management).
-   - [ ] Documentation updated (API contracts, architecture diagrams, deployment runbook).
-   - [ ] Zero critical/high vulnerabilities in SAST/DAST scans.
+Only the above hostnames may be referenced in Terraform or Helm values for Phase 1.
 
-4.  **Self-Correction & Refinement (Mental Review):**
-   - *Check against constraints:* "Isolate development boundaries so sub-agents never overlap." -> I've explicitly defined directory boundaries and agent scopes. I'll add a strict "Boundary Enforcement Protocol" to make it explicit.
-   - *Check against requirements:* Covers Quarkus, Kafka, Postgres, GCP/GKE, Auth (internal + external), Multi-tenant, Next.js frontend, i18n, locale detection, iOS/Android build config. Phase 1 focuses on foundation, which is correct. Attendance, notifications, SEO details come later.
-   - *Structure match:* Exactly matches the requested Markdown structure.
-   - *Tone:* Elite Solution Architect, precise, technical, authoritative.
-   - *Improvements during drafting:*
-     - Make sure the directory boundaries are extremely explicit.
-     - Clarify that Phase 1 does NOT implement attendance logic, notifications, or advanced SEO metadata (those are Phase 2/3).
-     - Add a "Boundary Enforcement Protocol" subsection to strictly prevent overlap.
-     - Ensure Kafka topics and endpoints are explicitly scoped to Phase 1.
+## 3. Dedicated Sub‑Agent Functional Directives  
+
+| Sub‑Agent | Concrete Tasks (Phase 1) | Deliverable(s) | Acceptance Criteria |
+|-----------|--------------------------|----------------|---------------------|
+| **Manager** | • Conduct kickoff meeting with stakeholders (Vietnamese & English). <br>• Approve RTM and Architecture Blueprint. | Meeting minutes, signed RTM, approved architecture diagram. | All stakeholders sign‑off; no open comments > 48 h. |
+| **Coder** | • Scaffold the repository structure (`infra/`, `docker/`, `src/`, `docs/`). <br>• Write Terraform modules for VPC, GKE, CloudSQL. <br>• Draft Helm chart skeleton (Chart.yaml, values‑dev.yaml, basic Deployment/Service). <br>• Create placeholder Quarkus project (`pom.xml`) with no code (just to generate native image). | Git commits with clear messages, PR opened for review. | `terraform validate` passes; `helm lint` passes; Dockerfile builds locally. |
+| **Tester** | • Define test plan for Phase 1 (infrastructure validation, CI pipeline health). <br>• Implement automated smoke tests: <br> - `curl https://api.dev.../health` returns 200. <br> - Terraform plan produces expected resources. <br>• Set up ZAP baseline scan against the dev ingress. | `tests/smoke/health_test.sh`, `tests/security/zap-baseline.sh`, test plan markdown. | All smoke tests run in CI and succeed; ZAP report contains **0** high/critical findings. |
+| **Reviewer** | • Perform code review on Terraform, Helm, Dockerfile, CI workflow. <br>• Run static analysis tools (Checkov, hadolint, SonarQube) and verify no blocker issues. <br>• Validate that all Guardrails (GDPR, Zero‑Trust, RLS placeholders) are documented. | Review comments resolved, approval label on PR. | No “Changes Requested” after final review; all automated policy checks green. |
+| **DevOps (Docker & Deployer combined)** | • Write multi‑stage Dockerfile that compiles Quarkus to a GraalVM native image and copies only the binary to the final stage (scratch). <br>• Configure GitHub Action to push the image to **Artifact Registry** (`asia-south1-docker.pkg.dev/.../membership-hub`). <br>• Set up Argo CD Application manifest pointing to the Helm chart in the repo, targeting the `dev` namespace. | `docker/Dockerfile.quarkus`, CI workflow step `build-and-push`, `argocd-app.yaml`. | Image size ≤ 150 MB; Argo CD shows **Synced** and **Healthy** after pipeline run. |
+| **Security (cross‑cutting)** | • Integrate Trivy scan in CI after image build. <br>• Add secret scanning step (GitHub secret scanning). | CI job `security-scan.yml`. | Pipeline fails on any CVE > 7 days old or any hard‑coded secret. |
+
+All agents must tag their work with the Phase 1 label (`phase-1`) and reference the issue tracker ticket `PH1-001`.
+
+## 4. Phase Definition of Done (DoD)  
+
+The Phase 1 is considered **Done** when **all** of the following conditions are met:
+
+1. **Documentation**  
+   - Requirement Traceability Matrix (RTM) completed and approved.  
+   - High‑level architecture diagram and tenant data‑model diagram stored in `docs/architecture/`.  
+   - README contains clear onboarding steps for local development (Terraform, Docker, CI).  
+
+2. **Infrastructure**  
+   - Terraform `dev` environment can be provisioned from scratch (`terraform apply -var env=dev`) with **0** errors.  
+   - GKE cluster, CloudSQL instance, and IAM service accounts are created in the **dev** GCP project.  
+   - Row‑Level Security policies are defined (even if not yet enforced by code).  
+
+3. **CI/CD Pipeline**  
+   - GitHub Actions workflow runs automatically on every push to `main`.  
+   - Lint, unit‑test placeholder, Docker build, Trivy scan, ZAP baseline, Terraform validate, Helm lint, and Argo CD sync steps all **pass**.  
+   - Image is stored in Artifact Registry and deployed to the `dev` namespace via Argo CD with **Healthy** status.  
+
+4. **Guardrail Compliance**  
+   - All automated policy checks (Checkov, SonarQube, Trivy, ZAP) report **no** blocker findings.  
+   - No secrets are present in the repository (verified by secret‑scan).  
+
+5. **Testing**  
+   - Smoke tests for `/health` and `/ready` endpoints succeed in the deployed dev environment.  
+   - Security baseline scan reports **0** high/critical issues.  
+
+6. **Review & Sign‑off**  
+   - All PRs related to Phase 1 have **Approved** reviews from at least one **Reviewer** and one **Security** reviewer.  
+   - **Manager** signs off on the Phase Gate Review checklist (attached as `docs/phase-gate/PH1-gate.md`).  
+
+7. **Readiness for Phase 2**  
+   - Repository tags the commit with `v0.1.0-alpha` and creates a GitHub Release draft.  
+   - Backlog items for Phase 2 (core backend, identity service) are created in the project board and linked to the Phase 1 release.  
+
+When the above criteria are satisfied, the Phase 1 team may merge the final `main` branch, promote the Helm chart to the **staging** environment, and schedule the Phase 2 kickoff.
