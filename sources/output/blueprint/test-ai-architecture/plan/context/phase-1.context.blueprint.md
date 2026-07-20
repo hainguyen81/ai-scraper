@@ -2,87 +2,57 @@
 
 ## 1. Phase Operational Scope & Objectives  
 
-| Goal | Description | Success Indicator |
-|------|-------------|--------------------|
-| **Requirement Validation & Traceability** | Capture all functional & non‑functional requirements from the Raw Requirements and map them to the Global Context. Produce a Requirement Traceability Matrix (RTM). | RTM approved by **Manager**; 100 % coverage of listed requirements. |
-| **Multi‑Tenant Data Model Definition** | Design the logical schema that isolates each learning center (`tenant_id`) and supports user‑type segregation (internal admin vs. external federated). Include Row‑Level Security (RLS) policies for PostgreSQL. | Entity‑Relationship diagram + RLS policy scripts reviewed and signed‑off. |
-| **High‑Level Architecture Blueprint** | Produce a system‑context diagram and component diagram covering: Quarkus services, Kafka topics, PostgreSQL, Keycloak/Firebase, Next.js web & mobile, GKE deployment topology, and external Zalo Business API. | Architecture diagram stored in the repository; Reviewer confirms alignment with Global Guardrails. |
-| **Baseline Infrastructure as Code (IaC)** | Scaffold Terraform modules for: <br>• GCP VPC, subnets, IAM service accounts <br>• GKE cluster (regional, multi‑zone) <br>• CloudSQL (PostgreSQL) with TimescaleDB extension <br>• Secret Manager integration <br>Provide a `main.tf` that can be applied in a **dev** environment. | `terraform init && terraform apply -var env=dev` succeeds without errors; no policy violations from Checkov. |
-| **CI/CD Skeleton** | Create GitHub Actions workflow that performs: <br>1️⃣ Lint (prettier/ESLint, hadolint) <br>2️⃣ Unit test placeholder <br>3️⃣ Build a **multi‑stage Dockerfile** (Quarkus native image) <br>4️⃣ Push image to Artifact Registry <br>5️⃣ Deploy Helm chart to the **dev** namespace via Argo CD (GitOps). | Pipeline runs end‑to‑end on a fresh commit; all jobs pass; Argo CD shows a healthy sync. |
-| **Guardrail Integration** | Embed automated checks for: <br>• OWASP Top 10 (via ZAP baseline scan) <br>• Secret leakage (Trivy) <br>• Terraform policy compliance (Checkov) <br>• Code quality gate (SonarQube). | Any violation fails the pipeline; alerts sent to Slack channel. |
-| **Documentation Foundations** | Populate Confluence (or Markdown repo) with: <br>• Project charter <br>• Glossary of tenant‑related terms <br>• On‑boarding guide for new developers (local dev setup). | Documentation reviewed and approved; links added to repository README. |
+| Objective | Description | Success Metric |
+|-----------|-------------|----------------|
+| **Validate & Formalize Requirements** | Consolidate the Vietnamese‑English raw requirements into a traceability matrix, confirm multi‑tenant, QR‑attendance, and multilingual SEO expectations with stakeholders. | Completed matrix signed‑off by Product Owner (PO) and compliance lead. |
+| **Define Multi‑Tenant Data & Service Model** | Design the logical data isolation strategy (row‑level security vs schema‑per‑tenant) and outline the Kafka topic topology (one topic per tenant, plus shared audit topic). | Architecture diagram approved; RLS policies documented. |
+| **Establish Baseline GCP Project & IAM** | Create a dedicated GCP project “test‑ai‑architecture‑dev”, enable required APIs (GKE, CloudSQL, Artifact Registry, Secret Manager, Pub/Sub for optional Kafka), and provision initial IAM groups (dev‑team, ops‑team, security‑team). | Project created, least‑privilege IAM roles assigned, audit log enabled. |
+| **Provision Minimal Infra for PoC** | Deploy a single‑node GKE cluster, a PostgreSQL instance (CloudSQL), and a Kafka broker (Strimzi operator) to host the first Quarkus microservice. | Cluster reachable, DB & Kafka pods healthy, network policies in place. |
+| **Build & Publish First Docker Image** | Create a multi‑stage Dockerfile for a “hello‑world” Quarkus service (native or JVM), run Trivy scan, sign with Cosign, and push to Artifact Registry. | Image size ≤ 300 MB, 0 critical CVEs, signature verified. |
+| **Set Up CI/CD Skeleton** | Configure GitHub Actions (or Cloud Build) to lint, test (unit), build Docker image, sign, and deploy to the dev GKE cluster using Helm chart placeholders. | Pipeline runs end‑to‑end on every push to `main`. |
+| **Establish Governance Guardrails** | Apply OPA Gatekeeper policies for namespace naming, required labels, and disallow privileged containers; enable Binary Authorization in GKE. | Policy enforcement logs show 0 violations. |
+| **Document Phase‑1 Deliverables** | Produce a concise Phase‑1 Report (architecture diagram, infra diagram, CI/CD flow, security guardrails, risk register). | Report reviewed and approved by Manager. |
 
 ## 2. Allowed Technical Scope & Directory Boundaries (Files, paths, and endpoints)  
 
-| Area | Allowed Files / Paths | Prohibited / Out‑of‑Scope (Phase 1) |
-|------|----------------------|--------------------------------------|
-| **Terraform IaC** | `infra/terraform/` <br>• `main.tf` <br>• `variables.tf` <br>• `outputs.tf` <br>• `modules/**` (vpc, gke, cloudsql) | Production‑only modules, cross‑region replication configs. |
-| **Kubernetes Manifests** | `infra/helm/` <br>• `Chart.yaml` <br>• `values-dev.yaml` (dev namespace) <br>• `templates/**` (deployment, service, ingress) | `values-prod.yaml` or any `namespace: prod` definitions. |
-| **CI/CD Pipelines** | `.github/workflows/ci-cd.yml` <br>• `scripts/lint.sh`, `scripts/build.sh` | Separate release pipelines for canary/blue‑green (out‑of‑scope). |
-| **Docker** | `docker/Dockerfile.quarkus` (multi‑stage) <br>• `docker/.dockerignore` | Dockerfiles for auxiliary services (e.g., Zalo connector) – to be added in later phases. |
-| **Architecture Docs** | `docs/architecture/` <br>• `high‑level-arch.md` <br>• `tenant‑model.md` <br>• `rtm.xlsx` | Detailed API spec (OpenAPI) – scheduled for Phase 2. |
-| **Source Code (placeholder)** | `src/` (empty packages for now) – only to host **README** and **package.json** for future Next.js code. | Any actual business logic implementation (attendance, auth) – belongs to Phase 2. |
-| **API Endpoints (design only)** | Documented in `docs/api/phase1-endpoints.md` (e.g., `/health`, `/ready`, `/api/v1/tenant/{id}` placeholder). | Real endpoint implementations; they will be coded in Phase 2. |
-| **Testing Artifacts** | `tests/unit/` (empty) <br>• `tests/integration/` (empty) | Performance / load testing scripts – scheduled for Phase 5. |
+| Layer | Allowed Repository Path | Example Files | Public API Endpoints (PoC) |
+|-------|--------------------------|---------------|----------------------------|
+| **Infrastructure as Code** | `infra/` | `infra/gke/cluster.yaml`, `infra/kafka/strimzi-operator.yaml`, `infra/postgres/cloudsql.tf` | N/A (IaC only) |
+| **Helm Charts / K8s Manifests** | `charts/membership-hub/` | `Chart.yaml`, `values.yaml`, `templates/deployment.yaml`, `templates/service.yaml` | N/A |
+| **Quarkus Service (PoC)** | `services/attendance-poc/` | `src/main/java/.../AttendanceResource.java`, `src/main/resources/application.yaml`, `Dockerfile` | `GET /api/v1/ping` (health), `POST /api/v1/attendance` (dummy payload) |
+| **CI/CD Pipelines** | `.github/workflows/` or `cloudbuild.yaml` | `ci-build.yml`, `ci-deploy.yml` | N/A |
+| **Security Policies** | `policy/opa/` | `gatekeeper/constraints.yaml`, `gatekeeper/templates.yaml` | N/A |
+| **Documentation** | `docs/` | `Phase1-Report.md`, `Traceability-Matrix.xlsx` | N/A |
 
-**Network / Service Endpoint Constraints (dev environment)**  
+**Endpoint Constraints for Phase 1**  
+- Only **internal** endpoints (health, ping, dummy attendance) are exposed.  
+- All endpoints must be behind **Istio IngressGateway** with mTLS enforced.  
+- Path prefix: `/api/v1/`  
 
-| Service | Hostname (dev) | Port | Protocol |
-|---------|----------------|------|----------|
-| GKE Ingress (API) | `api.dev.test-ai-architecture.internal` | 443 | HTTPS (mTLS enforced by Istio) |
-| PostgreSQL (CloudSQL) | `postgres-dev.test-ai-architecture.internal` | 5432 | TLS |
-| Kafka (Confluent) | `kafka-dev.test-ai-architecture.internal` | 9092 | TLS |
-| Keycloak | `auth.dev.test-ai-architecture.internal` | 8443 | HTTPS |
-| Zalo Mock (later) | N/A | N/A | N/A |
-
-Only the above hostnames may be referenced in Terraform or Helm values for Phase 1.
+**File‑Change Boundaries**  
+- No modifications outside the directories listed above.  
+- Front‑end code (`apps/web/`, `apps/mobile/`) is **out‑of‑scope** for Phase 1 and must remain untouched.  
 
 ## 3. Dedicated Sub‑Agent Functional Directives  
 
-| Sub‑Agent | Concrete Tasks (Phase 1) | Deliverable(s) | Acceptance Criteria |
-|-----------|--------------------------|----------------|---------------------|
-| **Manager** | • Conduct kickoff meeting with stakeholders (Vietnamese & English). <br>• Approve RTM and Architecture Blueprint. | Meeting minutes, signed RTM, approved architecture diagram. | All stakeholders sign‑off; no open comments > 48 h. |
-| **Coder** | • Scaffold the repository structure (`infra/`, `docker/`, `src/`, `docs/`). <br>• Write Terraform modules for VPC, GKE, CloudSQL. <br>• Draft Helm chart skeleton (Chart.yaml, values‑dev.yaml, basic Deployment/Service). <br>• Create placeholder Quarkus project (`pom.xml`) with no code (just to generate native image). | Git commits with clear messages, PR opened for review. | `terraform validate` passes; `helm lint` passes; Dockerfile builds locally. |
-| **Tester** | • Define test plan for Phase 1 (infrastructure validation, CI pipeline health). <br>• Implement automated smoke tests: <br> - `curl https://api.dev.../health` returns 200. <br> - Terraform plan produces expected resources. <br>• Set up ZAP baseline scan against the dev ingress. | `tests/smoke/health_test.sh`, `tests/security/zap-baseline.sh`, test plan markdown. | All smoke tests run in CI and succeed; ZAP report contains **0** high/critical findings. |
-| **Reviewer** | • Perform code review on Terraform, Helm, Dockerfile, CI workflow. <br>• Run static analysis tools (Checkov, hadolint, SonarQube) and verify no blocker issues. <br>• Validate that all Guardrails (GDPR, Zero‑Trust, RLS placeholders) are documented. | Review comments resolved, approval label on PR. | No “Changes Requested” after final review; all automated policy checks green. |
-| **DevOps (Docker & Deployer combined)** | • Write multi‑stage Dockerfile that compiles Quarkus to a GraalVM native image and copies only the binary to the final stage (scratch). <br>• Configure GitHub Action to push the image to **Artifact Registry** (`asia-south1-docker.pkg.dev/.../membership-hub`). <br>• Set up Argo CD Application manifest pointing to the Helm chart in the repo, targeting the `dev` namespace. | `docker/Dockerfile.quarkus`, CI workflow step `build-and-push`, `argocd-app.yaml`. | Image size ≤ 150 MB; Argo CD shows **Synced** and **Healthy** after pipeline run. |
-| **Security (cross‑cutting)** | • Integrate Trivy scan in CI after image build. <br>• Add secret scanning step (GitHub secret scanning). | CI job `security-scan.yml`. | Pipeline fails on any CVE > 7 days old or any hard‑coded secret. |
-
-All agents must tag their work with the Phase 1 label (`phase-1`) and reference the issue tracker ticket `PH1-001`.
+| Sub‑Agent | Primary Tasks (Phase 1) | Deliverables | Acceptance Criteria |
+|-----------|--------------------------|--------------|---------------------|
+| **Coder** | • Scaffold Quarkus Maven project (`services/attendance-poc`). <br>• Implement `AttendanceResource` with a simple in‑memory counter. <br>• Write `application.yaml` to read DB/Kafka URLs from env vars. <br>• Create multi‑stage Dockerfile (JVM base, optional GraalVM native). <br>• Add Helm chart skeleton (`charts/membership-hub`). | Source code, Dockerfile, Helm chart. | Code compiles, `mvn test` passes, Docker image builds without errors. |
+| **Tester** | • Write unit tests for `AttendanceResource` (JUnit5 + RestAssured). <br>• Add contract test (Pact) for the dummy attendance endpoint. <br>• Create CI test job that fails on < 80 % coverage. | Test suite, coverage report. | All tests pass locally; CI reports ≥ 80 % line coverage. |
+| **Reviewer** | • Perform security review of Dockerfile (no root user, minimal layers). <br>• Validate OPA policies are applied to the Helm release. <br>• Ensure PR includes documentation updates. | Review comments, approval sign‑off. | No high‑severity findings; PR merged within 12 h of submission. |
+| **DevOps (Deployer)** | • Provision GCP project & enable APIs via Terraform (`infra/`). <br>• Deploy GKE cluster (single‑node) with network policies. <br>• Install Strimzi Kafka operator and create a test topic `attendance-test`. <br>• Set up CloudSQL PostgreSQL instance (minimal tier). <br>• Configure GitHub Actions pipeline: lint → test → build → sign → push → Helm upgrade. <br>• Enable Binary Authorization & OPA Gatekeeper. | IaC scripts, CI/CD pipeline, running cluster. | All resources created, pipeline runs end‑to‑end, no policy violations. |
+| **Security (optional cross‑cutting)** | • Generate and store service account keys in Secret Manager. <br>• Verify TLS 1.3 on IngressGateway. | Secrets, TLS config. | Secrets accessible only to service accounts; TLS handshake succeeds with TLS 1.3. |
 
 ## 4. Phase Definition of Done (DoD)  
 
-The Phase 1 is considered **Done** when **all** of the following conditions are met:
+- **Documentation**: `docs/Phase1-Report.md` contains architecture diagram, infra diagram, CI/CD flowchart, and risk register; signed off by Manager.  
+- **Requirement Traceability**: `docs/Traceability-Matrix.xlsx` maps every raw requirement to a Phase‑1 artifact (e.g., “multi‑tenant DB” → RLS policy doc).  
+- **Infrastructure**: GCP project `test‑ai‑architecture‑dev` exists; GKE cluster, CloudSQL, and Kafka are operational; network policies and mTLS enforced.  
+- **Code**: Quarkus PoC service builds, passes all unit & contract tests, Docker image ≤ 300 MB, 0 critical CVEs, signed with Cosign, pushed to Artifact Registry.  
+- **Deployment**: Helm chart releases `attendance-poc` into `dev` namespace; health endpoint returns 200; Istio ingress reachable via HTTPS with mTLS.  
+- **CI/CD**: GitHub Actions pipeline executes on every push, completes all stages (lint, test, build, sign, push, deploy) without failures.  
+- **Security Guardrails**: OPA Gatekeeper policies enforced (no privileged containers, required labels present); Binary Authorization rejects unsigned images; audit logs enabled.  
+- **Observability**: Prometheus metrics endpoint (`/q/metrics`) exposed; Grafana dashboard stub created; logs forwarded to Cloud Logging.  
+- **Stakeholder Sign‑off**: Manager, Security Lead, and Product Owner have reviewed and formally approved the Phase‑1 Report.  
 
-1. **Documentation**  
-   - Requirement Traceability Matrix (RTM) completed and approved.  
-   - High‑level architecture diagram and tenant data‑model diagram stored in `docs/architecture/`.  
-   - README contains clear onboarding steps for local development (Terraform, Docker, CI).  
-
-2. **Infrastructure**  
-   - Terraform `dev` environment can be provisioned from scratch (`terraform apply -var env=dev`) with **0** errors.  
-   - GKE cluster, CloudSQL instance, and IAM service accounts are created in the **dev** GCP project.  
-   - Row‑Level Security policies are defined (even if not yet enforced by code).  
-
-3. **CI/CD Pipeline**  
-   - GitHub Actions workflow runs automatically on every push to `main`.  
-   - Lint, unit‑test placeholder, Docker build, Trivy scan, ZAP baseline, Terraform validate, Helm lint, and Argo CD sync steps all **pass**.  
-   - Image is stored in Artifact Registry and deployed to the `dev` namespace via Argo CD with **Healthy** status.  
-
-4. **Guardrail Compliance**  
-   - All automated policy checks (Checkov, SonarQube, Trivy, ZAP) report **no** blocker findings.  
-   - No secrets are present in the repository (verified by secret‑scan).  
-
-5. **Testing**  
-   - Smoke tests for `/health` and `/ready` endpoints succeed in the deployed dev environment.  
-   - Security baseline scan reports **0** high/critical issues.  
-
-6. **Review & Sign‑off**  
-   - All PRs related to Phase 1 have **Approved** reviews from at least one **Reviewer** and one **Security** reviewer.  
-   - **Manager** signs off on the Phase Gate Review checklist (attached as `docs/phase-gate/PH1-gate.md`).  
-
-7. **Readiness for Phase 2**  
-   - Repository tags the commit with `v0.1.0-alpha` and creates a GitHub Release draft.  
-   - Backlog items for Phase 2 (core backend, identity service) are created in the project board and linked to the Phase 1 release.  
-
-When the above criteria are satisfied, the Phase 1 team may merge the final `main` branch, promote the Helm chart to the **staging** environment, and schedule the Phase 2 kickoff.
+*Only when **all** items above are satisfied does Phase 1 achieve “Done” and the project may advance to Phase 2.*

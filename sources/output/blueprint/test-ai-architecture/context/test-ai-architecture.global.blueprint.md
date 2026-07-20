@@ -1,41 +1,34 @@
 # GLOBAL PROJECT CONTEXT: test‑ai‑architecture  
 
 ## 1. Executive Summary & Tech Stack Blueprint  
+**Project Vision** – Build a unified **membership‑hub** platform that serves two distinct front‑ends (a web portal for administrators and a cross‑platform mobile app for learners) while supporting **multi‑center tenancy**, **QR‑based attendance**, **real‑time notifications**, and **multilingual SEO**. The solution must be **cloud‑native**, **container‑first**, and **scalable** on Google Cloud Platform (GCP) using GKE.  
 
-**Executive Summary**  
-The *membership‑hub* platform is a bilingual, multi‑tenant SaaS solution that serves two distinct user‑faces:  
+### Core Business Capabilities  
+| Capability | Description | Primary Actors |
+|------------|-------------|----------------|
+| **Tenant‑aware user management** | Internal email/password + federated login (Firebase, Google, Facebook). Unified identity store for staff and learners across all centers. | Admins, Learners |
+| **QR attendance & validity tracking** | Learners scan a QR code on arrival; system records a single attendance per day, updates remaining membership days, and triggers notifications. | Learners, Staff |
+| **Real‑time messaging** | Sends Zalo SMS, Zalo group messages, and push notifications (FCM/APNs) immediately after attendance. | Learners |
+| **Multilingual UI & SEO** | Next.js front‑end with i18n (locale detection → stored preference → browser/device locale). SEO‑friendly server‑side rendering for web and mobile‑web. | End‑users, Search engines |
+| **Multi‑center tenancy** | One logical application serving many independent training centers, with data isolation per tenant. | Center owners, Admins |
+| **Observability & Scalability** | Kafka event streaming, PostgreSQL (partitioned per tenant), Prometheus/Grafana, auto‑scaling GKE. | Ops, DevOps |
 
-1. **Web portal** – used by administrators, teachers, and center staff to manage learners, attendance, subscriptions, and communications.  
-2. **Mobile app** – consumed by learners to check‑in via QR, view remaining membership days, receive notifications, and interact with Zalo groups.  
-
-Key business capabilities:  
-- Centralized identity federation (email + password, Firebase, Google, Facebook).  
-- Scalable, event‑driven backend (Quarkus + Kafka) with PostgreSQL persistence.  
-- Multi‑center tenancy – a single deployment can host unlimited learning centers, each isolated by a tenant identifier.  
-- Real‑time attendance logging via QR code scans; idempotent daily check‑in.  
-- Automatic decrement of “membership days” and proactive messaging (Zalo SMS, push notifications).  
-- Internationalization (i18n) for both web and mobile, SEO‑friendly multilingual URLs, locale detection fallback hierarchy (user preference → browser/device locale).  
-- Cloud‑native delivery: Docker images, CI/CD pipelines, deployment to Google Cloud Platform (GCP) – specifically Google Kubernetes Engine (GKE).  
-
-**Tech Stack Blueprint**  
+### Technical Blueprint  
 
 | Layer | Technology | Rationale |
 |-------|------------|-----------|
-| **API / Business Logic** | **Quarkus** (Java 17) | Reactive, GraalVM native image support, low memory footprint – ideal for high‑throughput Kafka consumers & REST endpoints. |
-| **Event Streaming** | **Apache Kafka** (Confluent Cloud or self‑managed on GKE) | Decouples attendance, notification, and analytics pipelines; guarantees ordering & replayability. |
-| **Data Store** | **PostgreSQL** (CloudSQL) + **TimescaleDB extension** (optional for time‑series attendance) | Strong ACID guarantees, native JSONB for flexible tenant metadata, time‑series queries for attendance trends. |
-| **Authentication / Identity** | **Keycloak** (OIDC) + **Firebase Auth** integration | Centralized user‑store for internal accounts; federation to Google/Facebook via OIDC; supports password‑less flows. |
-| **Mobile Front‑end** | **Next.js** (React) with **Expo** for native builds (iOS/Android) | Server‑Side Rendering (SSR) for SEO, built‑in i18n routing, easy OTA updates via Expo. |
-| **Web Front‑end** | **Next.js** (React) – same codebase as mobile (React Native Web) | Code reuse, SEO‑ready, locale‑aware routing. |
-| **Containerization** | **Docker** (multi‑stage builds → GraalVM native image) | Small runtime images, fast start‑up for autoscaling pods. |
-| **Orchestration** | **Google Kubernetes Engine (GKE)** | Managed K8s, auto‑scaling, regional clusters for high availability. |
-| **CI/CD** | **GitHub Actions** → **Google Cloud Build** → **Argo CD** (GitOps) | Automated lint, unit/integration tests, image build, Helm chart promotion, progressive delivery. |
-| **Observability** | **OpenTelemetry** → **Google Cloud Operations (formerly Stackdriver)** (Tracing, Metrics, Logging) | End‑to‑end visibility across services, Kafka lag monitoring, SLA dashboards. |
-| **Messaging / Notification** | **Zalo Business API**, **Firebase Cloud Messaging (FCM)** | Direct SMS to Zalo numbers, push notifications to mobile app. |
-| **Internationalization (i18n)** | **next‑i18next**, **react‑intl**, **Locale detection middleware** | Server‑side locale resolution, SEO‑friendly language sub‑paths (`/en/`, `/vi/`). |
-| **Infrastructure as Code** | **Terraform** (GCP provider) + **Helm** charts | Reproducible environments, multi‑tenant namespace isolation. |
-| **Security** | **Istio** (service mesh) + **Google Cloud Armor** | Mutual TLS, traffic policies, DDoS protection. |
-| **Testing** | **JUnit 5**, **RestAssured**, **Cypress**, **Detox** (mobile) | Unit, contract, end‑to‑end UI tests. |
+| **API / Business Logic** | **Quarkus** (Java, GraalVM native image optional) | Reactive, low‑memory, fast startup – ideal for microservices on GKE. |
+| **Message Bus** | **Apache Kafka** (Confluent Cloud or self‑managed on GKE) | Decouples attendance, notification, and analytics pipelines; guarantees at‑least‑once delivery. |
+| **Data Store** | **PostgreSQL** (CloudSQL or managed AlloyDB) + **Schema per tenant** or **Row‑level security** | ACID guarantees for membership days, mature ecosystem, native JSON support for flexible user profiles. |
+| **Authentication / Identity** | **Firebase Auth** (email/password, Google, Facebook) + **Custom JWT bridge** for internal users | Centralized auth, easy social login, token‑based access for Quarkus services. |
+| **Containerization** | **Docker** (multi‑stage builds, GraalVM native image optional) | Consistent runtime, fast CI/CD, minimal image size. |
+| **Orchestration** | **Google Kubernetes Engine (GKE)** with **Anthos**‑style policies (PodSecurity, NetworkPolicy) | Horizontal scaling, zero‑downtime deployments, regional redundancy. |
+| **Front‑end (Web)** | **Next.js** (React, SSR) + **i18next** for localization | SEO‑friendly, universal rendering, easy iOS/Android via React Native Web or separate React‑Native app. |
+| **Mobile App** | **React Native** (or Expo) sharing code with Next.js UI components | Single codebase for iOS & Android, push notifications via Firebase Cloud Messaging. |
+| **Notification Channels** | **Firebase Cloud Messaging** (FCM) + **Zalo Business API** | Real‑time push + SMS‑like Zalo messages to learners & groups. |
+| **CI/CD** | **GitHub Actions / Cloud Build** → Docker → Artifact Registry → GKE (ArgoCD or Flux) | Automated testing, image signing, progressive delivery. |
+| **Observability** | **Prometheus + Grafana**, **OpenTelemetry**, **ELK** for logs | End‑to‑end tracing from QR scan to notification. |
+| **Security & Compliance** | **OPA Gatekeeper**, **Binary Authorization**, **Secret Manager**, **VPC Service Controls** | Guardrails for data protection, least‑privilege, auditability. |
 
 ---
 
@@ -43,55 +36,46 @@ Key business capabilities:
 
 | Domain | Guardrail | Implementation Detail | Compliance Reference |
 |--------|-----------|-----------------------|----------------------|
-| **Data Privacy** | **GDPR / CCPA** – personal data must be pseudonymized & stored with consent logs. | Store only hashed email/phone, keep consent flag in `users.consent_at`. Enable data‑subject‑access‑request (DSAR) API. | GDPR Art. 5‑7, CCPA §1798.100 |
-| **Tenant Isolation** | **Logical isolation** – each center’s data scoped by `tenant_id`. | Row‑level security (RLS) policies in PostgreSQL; K8s namespace per tenant for optional dedicated resources. | ISO 27001 A.9.2 |
-| **Authentication** | **Zero‑trust** – MFA for admin accounts, short‑lived access tokens. | Keycloak MFA (TOTP), OAuth2 access token ≤15 min, refresh token rotation. | NIST SP 800‑63B |
-| **API Security** | **OWASP Top 10** mitigation. | Input validation via Bean Validation, rate limiting via Istio, CSP headers, secure cookies, CSRF tokens for web. | OWASP ASVS L2 |
-| **Secrets Management** | **No secrets in code**. | Google Secret Manager + K8s secrets injected at pod start; CI pipelines fetch via IAM. | SOC 2 CC6.1 |
-| **Logging & Auditing** | **Immutable audit trail** for attendance & membership changes. | Write‑once audit table, Cloud Logging with retention ≥ 1 year, log integrity via Cloud KMS signatures. | PCI‑DSS 10.2 |
-| **CI/CD Governance** | **Gate‑controlled promotions** – only after automated tests & security scans. | GitHub Actions runs: lint → unit → integration → SAST (SonarQube) → container scan (Trivy) → manual approval before prod. | NIST SP 800‑64 |
-| **Disaster Recovery** | **RPO ≤ 5 min, RTO ≤ 30 min**. | Automated cross‑region CloudSQL replicas, GKE multi‑zone node pools, Helm rollback scripts. | BCDR best practice |
-| **Accessibility** | **WCAG 2.1 AA** for web & mobile UI. | Automated axe-core scans, manual review checklist. | WCAG 2.1 |
-| **Internationalization** | **Locale fallback hierarchy** must be deterministic. | Middleware: `userPref → cookie → Accept‑Language → default (en)`. SEO hreflang tags on every page. | W3C i18n Best Practices |
-| **Resource Quotas** | **Prevent noisy neighbor** across tenants. | K8s ResourceQuota per namespace, Kafka consumer group throttling. | Cloud‑native best practice |
-
-All agents must enforce these guardrails automatically; any deviation must raise a blocking CI/CD failure or runtime alert.
+| **Identity & Access** | **Zero‑Trust** – all services authenticate via mutual TLS and verify JWT signatures. | Use **Istio** mTLS + **OPA** policies to enforce scopes (`attendance:write`, `notification:send`). | NIST SP 800‑207, ISO‑27001 A.5 |
+| **Data Privacy** | **Tenant Isolation** – no cross‑tenant data leakage. | Row‑level security in PostgreSQL + separate Kafka topics per tenant. | GDPR Art. 25, CCPA |
+| **Encryption** | **In‑Transit** TLS 1.3 everywhere; **At‑Rest** AES‑256 for DB, GCS, and Docker images. | GKE secrets via **Secret Manager**, CloudSQL encryption, Docker Content Trust. | PCI‑DSS 3.4, ISO‑27001 A.10 |
+| **Audit Logging** | Immutable audit trail for authentication, attendance, and notification events. | Write to **Cloud Audit Logs** + append‑only Kafka topic `audit-events`. | SOC 2 CC6, GDPR Art. 30 |
+| **API Rate Limiting** | Prevent abuse of attendance endpoint. | Envoy rate‑limit filter (e.g., 5 scans per user per minute). | OWASP API Security Top 10 |
+| **CI/CD Security** | **Signed images**, **SAST/DAST**, **dependency scanning**. | Cosign signatures, GitHub Dependabot, Trivy scans in pipeline. | SLSA Level 3 |
+| **Observability** | **Full‑stack tracing** for end‑to‑end latency SLA < 200 ms for QR scan → notification. | OpenTelemetry instrumentation in Quarkus & Next.js, Grafana alerts. | ITIL Service Monitoring |
+| **Disaster Recovery** | RPO < 5 min, RTO < 30 min for DB and Kafka. | CloudSQL cross‑region replicas, Kafka MirrorMaker, automated GKE node pool recreation. | ISO‑22301 |
+| **Internationalization** | **Locale fallback** hierarchy: stored preference → user profile → browser/device → default (en‑US). | i18next config with `fallbackLng`. | WCAG 2.1 AA (language) |
+| **SEO Compliance** | Structured data (`schema.org`) for centers, courses, and events. | Next.js `next-seo` plugin, server‑side rendering. | Google SEO Guidelines |
 
 ---
 
 ## 3. Standardized Sub‑Agent Persona Definitions  
 
-| Persona | Core Responsibilities | Primary Tools / Artifacts | Success Metrics |
-|---------|-----------------------|---------------------------|-----------------|
-| **Manager** | Owns product vision, backlog grooming, sprint planning, stakeholder communication. | Jira (Epics/Stories), Confluence, Roadmap board. | On‑time delivery of Phase milestones, stakeholder NPS ≥ 8. |
-| **Coder** | Implements features, writes unit & integration tests, adheres to coding standards. | IntelliJ, Quarkus, Next.js, Git, Prettier/ESLint, JUnit, Cypress. | Code coverage ≥ 80 %, PR merge time ≤ 24 h, static analysis score ≥ A. |
-| **Tester** | Designs & executes functional, performance, security, and accessibility test suites. | Postman, Karate, JMeter, OWASP ZAP, axe‑core, Detox. | Defect leakage ≤ 5 %, test automation pass rate ≥ 95 %. |
-| **Reviewer** | Conducts peer reviews, enforces architectural consistency, validates guardrail compliance. | GitHub PR reviews, SonarQube, Checkov (IaC), Trivy (container). | Review turnaround ≤ 12 h, no critical findings post‑merge. |
-| **Docker** | Crafts multi‑stage Dockerfiles, optimizes image size, ensures reproducible builds. | Docker CLI, BuildKit, GraalVM native-image, Dockerfile linter (hadolint). | Image size ≤ 150 MB (native), build success rate 100 % in CI. |
-| **Deployer** | Manages Helm charts, Terraform modules, CI/CD pipelines, monitors rollouts. | Helm, Terraform, Argo CD, Cloud Build, GKE, Prometheus/Grafana. | Zero‑downtime deployments, rollback < 5 min, deployment success rate ≥ 99 %. |
+| Persona | Core Responsibility | Primary Tools / APIs | Success Metrics |
+|---------|----------------------|----------------------|-----------------|
+| **Manager** | Oversees product backlog, defines milestones, aligns stakeholders. | Jira, Confluence, Roadmap Planner. | On‑time delivery of phase gates, stakeholder satisfaction > 90 %. |
+| **Coder** | Implements services, UI components, infrastructure as code. | Quarkus, Java, Kotlin, TypeScript, Next.js, Docker, Terraform. | Code coverage ≥ 80 %, PR merge time ≤ 24 h, no critical lint violations. |
+| **Tester** | Designs & runs automated unit, integration, contract, and UI tests. | JUnit, RestAssured, Cypress, Playwright, Pact. | Test pass rate ≥ 95 %, defect leakage < 5 %. |
+| **Reviewer** | Conducts code reviews, security reviews, and architecture compliance checks. | GitHub PR reviews, SonarQube, OPA policy checks. | Review turnaround ≤ 12 h, no high‑severity findings post‑merge. |
+| **Docker** | Crafts optimal container images, ensures reproducibility and security. | Dockerfile multi‑stage, Buildpacks, Cosign, Trivy. | Image size ≤ 150 MB (native) or ≤ 300 MB (JVM), 0 critical CVEs. |
+| **Deployer** | Automates CI/CD pipelines, manages releases to GKE, monitors roll‑backs. | GitHub Actions, Cloud Build, ArgoCD/Flux, Helm, Kustomize. | Deployment success rate ≥ 99 %, mean time to recovery (MTTR) < 10 min. |
 
-All personas share a **common “Guardrail‑Aware” mindset**: every artifact (code, config, pipeline) must be validated against the Global Guardrails (Section 2) before promotion.
+*All agents operate under the global guardrails defined in Section 2 and report status to the Manager.*
 
 ---
 
-## 4. Multi‑Phase Segmentation Strategy Overview (5 Phases)  
+## 4. Multi‑Phase Segmentation Strategy Overview (5 Phases)
 
-| Phase | Objective | Key Deliverables | Primary Agents Involved | Timeline (Weeks) |
-|-------|-----------|------------------|--------------------------|------------------|
-| **1️⃣ Discovery & Architecture Foundations** | Validate requirements, define multi‑tenant model, set up baseline infra. | • Requirement traceability matrix<br>• High‑level architecture diagram<br>• Terraform base module (VPC, GKE cluster, CloudSQL)<br>• CI/CD skeleton (GitHub Actions + Argo CD) | Manager, Coder (infra), Reviewer, Deployer | 2 |
-| **2️⃣ Core Backend & Identity Service** | Build authentication, tenant isolation, attendance API, Kafka pipelines. | • Quarkus microservice (auth, attendance)<br>• Keycloak realm + federation config<br>• Kafka topics & consumer groups<br>• Unit & contract tests<br>• Docker image (native) | Coder, Tester, Docker, Reviewer, Deployer | 4 |
-| **3️⃣ Front‑End & Mobile Experience** | Deliver multilingual web portal & React‑Native mobile app with QR check‑in flow. | • Next.js shared codebase (web + RN Web)<br>• i18n routing & SEO hreflang tags<br>• QR scanner integration (Expo Camera)<br>• Push notification setup (FCM) <br>• End‑to‑end Cypress/Detox suites | Coder, Tester, Reviewer, Docker | 5 |
-| **4️⃣ Notification Engine & Business Rules** | Implement Zalo messaging, membership day decrement, tenant‑specific branding. | • Notification microservice (Kafka consumer) <br>• Zalo Business API connector<br>• Membership‑day calculation service<br>• Configurable tenant templates (email/SMS) | Coder, Tester, Reviewer, Deployer | 3 |
-| **5️⃣ Productionization & Compliance Hardening** | Harden security, performance tune, launch MVP to pilot centers, establish monitoring. | • Istio mTLS + Cloud Armor policies<br>• RLS policies & audit logging<br>• Load‑test results (JMeter)<br>• Documentation (runbooks, GDPR DSAR API)<br>• Go‑live checklist & pilot rollout | Manager, Coder, Tester, Reviewer, Deployer | 3 |
+| Phase | Goal | Key Deliverables | Duration (weeks) | Primary Agents |
+|-------|------|------------------|------------------|----------------|
+| **1️⃣ Discovery & Architecture Foundations** | Validate requirements, define multi‑tenant data model, set up baseline infra. | • Requirement traceability matrix<br>• High‑level architecture diagram<br>• GCP project & IAM baseline<br>• PoC: Quarkus service + Kafka + Postgres on GKE | 4 | Manager, Coder, Reviewer, Deployer |
+| **2️⃣ Core Backend & Identity Service** | Implement tenant‑aware authentication, user CRUD, JWT issuance, and basic attendance API. | • Firebase‑Auth bridge service<br>• Quarkus microservice `attendance-service` (REST + Kafka producer)<br>• DB schema with row‑level security<br>• Unit & contract tests | 6 | Coder, Tester, Reviewer, Docker |
+| **3️⃣ Front‑end & QR Attendance Flow** | Build web portal (Next.js) and mobile UI (React Native) with QR scanning, locale detection, and SSR SEO. | • Next.js web app with i18n, SEO tags<br>• React‑Native app (Expo) with QR scanner<br>• Integration tests (Cypress/Playwright)<br>• CI pipeline for front‑end builds | 6 | Coder, Tester, Reviewer, Docker |
+| **4️⃣ Notification Engine & Zalo Integration** | Real‑time push + Zalo messaging after attendance, implement idempotent attendance logic. | • Kafka consumer `notification-service` (Quarkus)<br>• FCM integration<br>• Zalo Business API wrapper<br>• End‑to‑end test harness | 5 | Coder, Tester, Reviewer, Deployer |
+| **5️⃣ Scaling, Observability & Production Roll‑out** | Harden security, enable auto‑scaling, implement monitoring, conduct load‑test, and go live. | • OPA Gatekeeper policies, Binary Authorization<br>• Prometheus/Grafana dashboards, OpenTelemetry tracing<br>• Chaos‑engineered load test (k6)<br>• Production deployment with blue‑green strategy | 5 | Manager, Deployer, Reviewer, Tester |
 
-**Milestone Gates** – At the end of each phase, a **Phase Gate Review** (Manager + Reviewer) must certify that:  
+**Milestone Gates** – At the end of each phase, the Manager conducts a **Phase Review** (demo, compliance checklist, risk assessment). Only upon sign‑off does the project proceed to the next phase.
 
-1. All guardrails are passed (static analysis, security scans, compliance checks).  
-2. Test coverage & quality gates are met.  
-3. Documentation is up‑to‑date.  
+--- 
 
-Only then does the pipeline promote artifacts to the next environment (dev → staging → prod).  
-
----  
-
-*Prepared by the Elite Solution Architecture team to guide the end‑to‑end delivery of the **membership‑hub** SaaS platform under the global project identifier **test‑ai‑architecture**.*
+*This GLOBAL PROJECT CONTEXT provides a unified, enterprise‑grade blueprint that aligns technical decisions, compliance guardrails, and coordinated multi‑agent execution for the **membership‑hub** solution.*
