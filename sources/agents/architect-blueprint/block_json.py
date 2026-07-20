@@ -292,7 +292,7 @@ def convert_phases_to_json(client: OpenAI, model_name: str, project_name: str, n
                     break
                 
                 # ✅ MASTER MERGE: Merge chunk results into Python's memory repository tracker
-                for day_node in chunk_days_array:
+                for day_node in chunk_steps_array:
                     day_num = day_node.get("day", 0)
                     if current_start_day <= day_num <= current_end_day:
                         # Auto-inject string metadata if AI fills them with blank placeholders during chunking
