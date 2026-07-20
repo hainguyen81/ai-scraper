@@ -262,9 +262,7 @@ def convert_phases_to_json(client: OpenAI, model_name: str, project_name: str, n
                     max_completion_tokens=4096,
                     # 💡 Turn OFF thinking feature of Qwen on Groq
                     extra_body={
-                        "extra_params": {
-                            "reasoning_format": "none"
-                        }
+                        "reasoning_format": "none"
                     },
                 )
                 
