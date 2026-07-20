@@ -61,8 +61,8 @@ def dynamic_transform(json_data, project_name: str, phase_idx: int, template_fil
             template_content = f.read()
         
         # custom field mapping
-        print(f" │   └── ⚠️ The mapping JSON template: {template_content}")
-        print(f" │         { template_content }")
+        # print(f" │   └── ⚠️ The mapping JSON template: {template_content}")
+        # print(f" │         { template_content }")
         json_data['project_name'] = project_name.lower()
         json_data['global_context_file'] = project_context_file(project_name)
         json_data['phase_idx'] = phase_idx
@@ -72,28 +72,28 @@ def dynamic_transform(json_data, project_name: str, phase_idx: int, template_fil
         # wrap AI json data to variable `ai` in mapping config file to use
         jinja_template = Template(template_content)
         rendered_str = jinja_template.render(ai=json_data)
-        print(f" │   └── ⚠️ The mapping JSON Rendered String:")
-        print(f" │         { rendered_str }")
+        # print(f" │   └── ⚠️ The mapping JSON Rendered String:")
+        # print(f" │         { rendered_str }")
         
         # write log for tracing
-        if os.path.exists(log_file_path):
-            with open(log_file_path, "a", encoding="utf-8") as f:
-                f.write(f"# Project Name: { project_name } | Phase: { phase_idx }\n\n")
-                f.write(f"## JSON:\n\n```json{ json.dumps(json_data) }```\n\n")
-                f.write(f"## Mapped JSON:\n\n```json{ rendered_str }```\n\n")
+        # if os.path.exists(log_file_path):
+        #     with open(log_file_path, "a", encoding="utf-8") as f:
+        #         f.write(f"# Project Name: { project_name } | Phase: { phase_idx }\n\n")
+        #         f.write(f"## JSON:\n\n```json{ json.dumps(json_data) }```\n\n")
+        #         f.write(f"## Mapped JSON:\n\n```json{ rendered_str }```\n\n")
         
         # 3. Clean up redundant comma (,) by Jinja in JSON Array
         # Process cases: [..., {obj}, ] hoặc [ , {obj} ]
         cleaned_str = re.sub(r',\s*\]', ']', rendered_str)
         cleaned_str = re.sub(r'\[\s*,', '[', cleaned_str)
         cleaned_str = re.sub(r',\s*\}', '}', cleaned_str)
-        print(f" │   └── ⚠️ The mapping JSON Cleaned String:")
-        print(f" │         { cleaned_str }")
+        # print(f" │   └── ⚠️ The mapping JSON Cleaned String:")
+        # print(f" │         { cleaned_str }")
         
         # write log for tracing
-        if os.path.exists(log_file_path):
-            with open(log_file_path, "a", encoding="utf-8") as f:
-                f.write(f"## Cleaned JSON:\n\n```json{ cleaned_str }```\n\n")
+        # if os.path.exists(log_file_path):
+        #     with open(log_file_path, "a", encoding="utf-8") as f:
+        #         f.write(f"## Cleaned JSON:\n\n```json{ cleaned_str }```\n\n")
         
         # 4. Parse result JSON after rendering by Jinja
         return json.loads(cleaned_str)
@@ -214,9 +214,9 @@ def convert_phases_to_json(client: OpenAI, model_name: str, project_name: str, n
                 # max_tokens=8192,
             )
             raw_data, json_data = parseOpenAIResponseJsonData(response)
-            dump_json_data = json.dumps(json_data, indent=4, ensure_ascii=False) if json_data else "Invalid JSON Data"
-            print(f" │   └── 🎉 Response Phase {phase_idx} Standardized JSON:")
-            print(f" │         { dump_json_data }")
+            # dump_json_data = json.dumps(json_data, indent=4, ensure_ascii=False) if json_data else "Invalid JSON Data"
+            # print(f" │   └── 🎉 Response Phase {phase_idx} Standardized JSON:")
+            # print(f" │         { dump_json_data }")
             
             # write blueprint
             out_path = os.path.join(steps_context_dir, f"phase-{phase_idx}.steps.json")
@@ -225,9 +225,9 @@ def convert_phases_to_json(client: OpenAI, model_name: str, project_name: str, n
             try:
                 # transform mapping
                 transform_json_data = dynamic_transform(json_data, project_name, phase_idx, json_mapping, transform_log_path)
-                dump_json_data = json.dumps(transform_json_data, indent=4, ensure_ascii=False) if transform_json_data else "Invalid JSON Data"
-                print(f" │   └── 🎉 Transform Phase {phase_idx} Standardized JSON:")
-                print(f" │         { dump_json_data }")
+                # dump_json_data = json.dumps(transform_json_data, indent=4, ensure_ascii=False) if transform_json_data else "Invalid JSON Data"
+                # print(f" │   └── 🎉 Transform Phase {phase_idx} Standardized JSON:")
+                # print(f" │         { dump_json_data }")
                 
                 # 2. Parse and validate the string payload locally with Pydantic core engine
                 print(f" │   └── 🎉 Validate Phase {phase_idx} Standardized JSON...")
