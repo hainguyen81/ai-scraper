@@ -260,6 +260,7 @@ def convert_phases_to_json(client: OpenAI, model_name: str, project_name: str, n
                     temperature=0.1,
                     # response_format=PhaseStepsPlan, # Injects the pydantic model schema ruleset natively
                     # max_tokens=8192,
+                    max_completion_tokens=4096,
                 )
                 
                 # if response is ok, parse json
