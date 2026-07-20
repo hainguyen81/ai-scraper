@@ -11502,3 +11502,628 @@ You are a rigid technical translator. Map high-level Markdown workflows into pre
 Could not parse response content as the length limit was reached - CompletionUsage(completion_tokens=2048, prompt_tokens=3866, total_tokens=5914, completion_tokens_details=None, prompt_tokens_details=None, queue_time=0.19827579, prompt_time=0.288156464, completion_time=4.30636639, total_time=4.594522854)
 ```
 
+# Phase 1 STEPS - Prompt:
+
+
+                Analyze the attached Phase 1 Context Markdown content. 
+                Extract and translate ALL daily steps, checklists, and agent tasks starting from Day 1 up to Day 3 (inclusive).
+                
+                CRITICAL INSTRUCTIONS FOR PRODUCTION STABILITY:
+                1. Target Range Focus: Carefully locate all scheduling logs and task sections for any Day that falls strictly between Day 1 and Day 3 (inclusive).
+                2. Data Extraction: For each day found within the requested range, you MUST parse and append a day object node into the 'days' array list. Do NOT omit any day within this range.
+                3. STRICT LITERAL FIELD VALUES (MANDATORY):
+                   - You MUST populate the exact string ".ai/.context/test-ai-architecture.global.blueprint.md" into the 'global_context_file' field. Do not change it.
+                   - You MUST populate the exact string "sources/" into the 'source_target_dir' field. Do not change it.
+                4. Task Details: For every micro task item under a specific day:
+                   - Provide a sequential task description text into the 'task' field.
+                   - Provide the assigned role (e.g., 'Coder', 'Tester', 'Reviewer') into the 'agent', 'subAgent', 'assignee' or 'subAgent' field.
+                5. Context Fields: For each day object, set 'day' as the integer value of that day, set 'context_file' to '.ai/.plan/.context/phase-1.context.blueprint.md', and set 'context_section' to 'DAY ' followed by the day number.
+                6. Chunking Boundary Guard: Because we are chunking, you ONLY need to return records matching the requested day range [1 to 3]. Fill other outer metadata fields with fallback strings.
+                7. Absolute Fallback: If and only if there are absolutely no tasks or schedules matching any day within the range [1 to 3] inside the source text, then you may return an empty array for the 'days' field.
+                
+                You MUST conform strictly to your required JSON Schema layout design structure:
+                {
+  "$defs": {
+    "DailyStep": {
+      "properties": {
+        "day": {
+          "description": "Timeline iteration day inside this isolated phase.",
+          "title": "Day",
+          "type": "integer"
+        },
+        "context_file": {
+          "description": "The phase context Markdown file for closure on this day.",
+          "title": "Context File",
+          "type": "string"
+        },
+        "context_section": {
+          "description": "The day targeted for closure on this day.",
+          "title": "Context Section",
+          "type": "string"
+        },
+        "sub_tasks": {
+          "description": "Array of isolated micro-tasks assigned to sub-agents.",
+          "items": {
+            "$ref": "##/$defs/SubAgentTask"
+          },
+          "title": "Sub Tasks",
+          "type": "array"
+        }
+      },
+      "required": [
+        "day",
+        "context_file",
+        "context_section",
+        "sub_tasks"
+      ],
+      "title": "DailyStep",
+      "type": "object"
+    },
+    "SubAgentTask": {
+      "properties": {
+        "id": {
+          "description": "Sub-Task identity of Task that sub-agent role executing.",
+          "title": "Id",
+          "type": "string"
+        },
+        "agent": {
+          "description": "Target sub-agent role executing the task.",
+          "title": "Agent",
+          "type": "string"
+        },
+        "desc": {
+          "description": "Literal, low-level technical step assigned to the agent.",
+          "title": "Desc",
+          "type": "string"
+        }
+      },
+      "required": [
+        "id",
+        "agent",
+        "desc"
+      ],
+      "title": "SubAgentTask",
+      "type": "object"
+    }
+  },
+  "properties": {
+    "phase_id": {
+      "description": "Target phase tracker index.",
+      "title": "Phase Id",
+      "type": "integer"
+    },
+    "phase_name": {
+      "description": "Target phase tracker name.",
+      "title": "Phase Name",
+      "type": "string"
+    },
+    "project_name": {
+      "description": "Target project tracker name.",
+      "title": "Project Name",
+      "type": "string"
+    },
+    "global_context_file": {
+      "description": "Project global context Markdown file for closure.",
+      "title": "Global Context File",
+      "type": "string"
+    },
+    "source_target_dir": {
+      "description": "Project sources folder path for closure.",
+      "title": "Source Target Dir",
+      "type": "string"
+    },
+    "days": {
+      "description": "Day-by-day engineering tracking steps.",
+      "items": {
+        "$ref": "##/$defs/DailyStep"
+      },
+      "title": "Days",
+      "type": "array"
+    }
+  },
+  "required": [
+    "phase_id",
+    "phase_name",
+    "project_name",
+    "global_context_file",
+    "source_target_dir",
+    "days"
+  ],
+  "title": "PhaseStepsPlan",
+  "type": "object"
+}
+
+                --- PHASE 1 CONTEXT MARKDOWN ---
+                ## PHASE 1 CONTEXT BLUEPRINT: test‑ai‑architecture  
+
+#### 1. Phase Operational Scope & Objectives  
+
+| Objective | Description | Success Metric |
+|-----------|-------------|----------------|
+| **Validate Core Business Assumptions** | Confirm that the QR‑attendance flow, multi‑center data model, and omni‑channel notification pipeline can be realized with the chosen stack (Quarkus, Kafka, PostgreSQL, GKE). | PoC records a single attendance per learner per day, decrements remaining membership days, and enqueues a notification message. |
+| **Define Bounded‑Contexts & Domain Model** | Produce a Context‑Map (Domain‑Driven Design) that isolates **Learner**, **Center**, **Attendance**, **Membership**, **Notification**, and **Auth** contexts. | Reviewed diagram approved by Manager & Reviewer. |
+| **Prototype Critical Path** | Build a minimal end‑to‑end prototype: <br>1. **Auth** (email + password) → JWT <br>2. **QR Scan** (simulated HTTP call) → **Attendance Service** writes to PostgreSQL and publishes to Kafka <br>3. **Notification Service** consumes Kafka, calls a stub Zalo API and a mock FCM endpoint. | Automated integration test passes: attendance persisted once per day, membership days decremented, notification payload emitted. |
+| **Establish Security & Compliance Foundations** | Demonstrate TLS everywhere, secret‑less configuration (Secret Manager), and basic OPA policy for API gateway. | No plaintext secrets in repo; `curl -k https://...` succeeds with valid cert; OPA gate denies unauthenticated request. |
+| **Set Up CI/CD Skeleton** | GitHub Actions workflow that builds a **Quarkus** native image (optional GraalVM), runs unit tests, builds a Docker image, scans with Trivy, and pushes to Artifact Registry. | Workflow passes on every push to `main`. |
+| **Document Architecture Decisions** | ADRs for **Event Streaming**, **Multi‑Tenant DB**, **i18n detection**, and **Container Image Strategy**. | ADRs stored in `docs/adr/` and linked from the README. |
+
+> **Gate‑Go/No‑Go** – At the end of Phase 1 the Manager, Reviewer, and Tester jointly sign‑off if **all** success metrics are met and the Global Guardrails (Section 2 of the Global Context) are satisfied.
+
+---
+
+#### 2. Allowed Technical Scope & Directory Boundaries (Files, paths, and endpoints)  
+
+| Layer | Allowed Repository Path | Example Files | Public API Endpoints (prototype) |
+|------|--------------------------|---------------|-----------------------------------|
+| **Auth Service** | `services/auth/` | `src/main/java/.../AuthResource.java`, `src/main/resources/application.yml` | `POST /api/v1/auth/login` (email/password) <br> `POST /api/v1/auth/firebase` (token exchange) |
+| **Attendance Service** | `services/attendance/` | `AttendanceResource.java`, `AttendanceProcessor.java`, `src/main/resources/application.yml` | `POST /api/v1/attendance/scan` (payload: `{ learnerId, qrCode, timestamp }`) |
+| **Notification Service** | `services/notification/` | `NotificationConsumer.java`, `ZaloClientStub.java`, `FCMClientStub.java` | **No public HTTP** – consumes Kafka topic `attendance.events`. |
+| **Domain Model (shared)** | `libs/domain/` | `Learner.java`, `Center.java`, `Membership.java`, `Attendance.java` | – |
+| **Infrastructure as Code** | `infra/helm/` | `auth/values.yaml`, `attendance/values.yaml`, `notification/values.yaml` | – |
+| **CI/CD** | `.github/workflows/` | `ci-build.yml`, `ci-security.yml` | – |
+| **Documentation & ADRs** | `docs/` | `adr/001-event-streaming.md`, `architecture-overview.md` | – |
+| **Mock External APIs** | `mocks/` | `zalo-mock/`, `fcm-mock/` (simple Express servers) | `POST /mock/zalo/send` <br> `POST /mock/fcm/push` |
+
+**Endpoint Security** – All HTTP endpoints must require a valid **Bearer JWT** signed by the Auth Service’s private key. The JWT must contain a `role` claim (`ADMIN`, `STAFF`, `LEARNER`).  
+
+**Network Boundaries** –  
+* Services run in the same GKE namespace `phase1‑sandbox`.  
+* Kafka broker reachable only via internal ClusterIP service `kafka-svc`.  
+* Mock APIs exposed via `NodePort` **only** on the CI runner network (not internet‑facing).  
+
+**File‑level Guardrails** –  
+* No `.env` or secret files committed.  
+* All configuration values that are secrets must be referenced via `${SM://path/to/secret}` (Secret Manager placeholder).  
+
+---
+
+#### 3. Dedicated Sub‑Agent Functional Directives  
+
+| Sub‑Agent | Concrete Tasks for Phase 1 | Deliverables (artifact path) | Acceptance Criteria |
+|-----------|----------------------------|------------------------------|---------------------|
+| **Coder** | 1. Scaffold Quarkus Maven modules for `auth`, `attendance`, `notification`. <br>2. Implement JWT generation & verification (Auth). <br>3. Create PostgreSQL schema (Flyway scripts) for `learners`, `centers`, `memberships`, `attendance_logs`. <br>4. Wire Attendance Service to publish `AttendanceRecorded` events to Kafka. <br>5. Build Dockerfiles (multi‑stage, non‑root user) for each service. | `services/auth/`, `services/attendance/`, `services/notification/`, `infra/helm/`, `db/migrations/V1__init.sql` | Unit tests ≥ 80 % coverage; Docker images build locally without errors; `docker run` starts and health‑checks succeed. |
+| **Tester** | 1. Write JUnit tests for Auth login flow and Attendance idempotency. <br>2. Create Postman collection for the three public endpoints. <br>3. Develop an integration test (using Testcontainers) that spins up PostgreSQL + Kafka, runs a full scan → attendance → notification flow. <br>4. Execute OWASP Dependency‑Check on the Maven dependencies. | `services/**/src/test/java/`, `test/postman/attendance.postman_collection.json` | All tests pass on CI; integration test asserts exactly one `attendance_logs` row per learner per day; Dependency‑Check reports no CVE > 7.0. |
+| **Reviewer** | 1. Validate that all Dockerfiles use a minimal base (e.g., `gcr.io/distroless/java17`). <br>2. Ensure OpenAPI spec (`openapi.yaml`) matches implemented endpoints and includes JWT security scheme. <br>3. Verify OPA policy file (`policy/auth.rego`) denies requests without `Authorization` header. <br>4. Review ADRs for completeness and rationale. | `docs/openapi.yaml`, `policy/auth.rego`, `docs/adr/` | No critical style violations; OPA policy passes `opa eval` test suite; ADRs signed off in PR comments. |
+| **DevOps (Docker / Deployer)** | 1. Configure GitHub Actions workflow `ci-build.yml` to: <br>   - Run `mvn clean verify` <br>   - Build native image (optional) <br>   - Build Docker image, tag with `${{ github.sha }}` <br>   - Scan with Trivy, fail on HIGH+ vulnerabilities <br>   - Push to Artifact Registry `asia-south1-docker.pkg.dev/<project>/phase1-sandbox/<service>` <br>2. Create a minimal Helm chart (`infra/helm/attendance/Chart.yaml`) with values for image repository, replicaCount=1, resource limits. <br>3. Deploy the three services to a **GKE Autopilot** cluster in a temporary `phase1‑sandbox` namespace using `helm upgrade --install`. <br>4. Set up a basic Prometheus scrape config for the services (via ServiceMonitor). | `.github/workflows/ci-build.yml`, `infra/helm/attendance/`, `k8s/monitoring/prometheus.yaml` | CI pipeline passes on every push; Helm release reports `STATUS: deployed`; Pods run as non‑root; Prometheus metrics endpoint returns 200. |
+| **Security (optional sub‑agent)** | 1. Generate self‑signed TLS certs for local dev and store them in Secret Manager placeholders. <br>2. Add `Istio` sidecar injection annotation to the namespace (for later phases). | `infra/istio/namespace.yaml` | `kubectl get namespace phase1-sandbox -o yaml` shows `istio-injection: enabled`. |
+
+*All sub‑agents must log their daily progress in the shared Confluence page `Phase 1 – Discovery & Architecture Validation` and update the Kanban board in Jira (Epic **PH1‑DISCOVERY**).*
+
+---
+
+#### 4. Phase Definition of Done (DoD)  
+
+The Phase 1 increment is considered **Done** when **all** of the following conditions are satisfied:
+
+1. **Functional PoC**  
+   * A learner can authenticate via email/password and receive a signed JWT.  
+   * A QR‑scan request (POST `/api/v1/attendance/scan`) creates **exactly one** attendance record for the day, decrements the learner’s `remaining_days`, and publishes an `AttendanceRecorded` event to Kafka.  
+   * The Notification Service consumes the event and successfully calls both mock Zalo and mock FCM endpoints (verified by logs).  
+
+2. **Architecture Artefacts**  
+   * Context‑Map diagram (`docs/architecture/context-map.png`).  
+   * ADRs for Event Streaming, Multi‑Tenant DB, i18n detection, and Container Image Strategy stored under `docs/adr/`.  
+
+3. **Code Quality & Security**  
+   * Unit test coverage ≥ 80 % for new code.  
+   * No **critical** or **high** vulnerabilities reported by Trivy or OWASP Dependency‑Check.  
+   * All secrets referenced via Secret Manager placeholders; no plaintext secrets in repo.  
+
+4. **CI/CD Pipeline**  
+   * GitHub Actions workflow `ci-build.yml` runs on every push to `main` and completes all stages (build, test, scan, push).  
+   * Docker images are published to Artifact Registry with immutable digests.  
+
+5. **Infrastructure Deployment**  
+   * Helm releases for `auth`, `attendance`, and `notification` are deployed to GKE `phase1‑sandbox` namespace and report `READY` status.  
+   * Pods run as non‑root, use the minimal Distroless base image, and expose health‑check endpoints (`/q/health`).  
+
+6. **Observability & Logging**  
+   * Prometheus scrapes `/metrics` from each service; a Grafana dashboard (`docs/grafana/phase1-dashboard.json`) shows request latency and error rate.  
+   * All request/response logs are shipped to Cloud Logging with appropriate labels (`service=attendance`).  
+
+7. **Compliance Gate**  
+   * Reviewer signs off that the implementation adheres to every Guardrail in **Section 2 – Global Guardrails & Enterprise Compliance Standards** (data encryption, RBAC, audit logging, etc.).  
+
+8. **Stakeholder Sign‑off**  
+   * Manager, Reviewer, and Tester collectively approve the Phase 1 deliverables in Jira (transition to **Done**).  
+
+Once the above DoD checklist is fully satisfied, the team may proceed to **Phase 2 – Core Platform Build (MVP)**.
+                ------------------------------------------
+                
+
+# System Instruction
+
+You are a rigid technical translator. Map high-level Markdown workflows into precise, executable JSON schemas.
+
+# Raw Response / Exception:
+
+```json
+<think>
+Here's a thinking process:
+
+1.  **Analyze User Input:**
+   - **Input Text:** A Markdown document titled "PHASE 1 CONTEXT BLUEPRINT: test‑ai‑architecture". It contains sections on Objectives, Technical Scope, Sub-Agent Directives, and Definition of Done.
+   - **Task:** Extract and translate ALL daily steps, checklists, and agent tasks starting from Day 1 up to Day 3 (inclusive).
+   - **Constraints:**
+     - Target Range: Days 1 to 3 inclusive.
+     - Output Format: Strict JSON schema provided.
+     - Mandatory Fields: `global_context_file` = ".ai/.context/test-ai-architecture.global.blueprint.md", `source_target_dir` = "sources/".
+     - Task Details: `task` field (mapped to `desc` in schema), `agent` field.
+     - Context Fields: `day` (integer), `context_file` = ".ai/.plan/.context/phase-1.context.blueprint.md", `context_section` = "DAY " + day number.
+     - Chunking: Only return records for days 1-3. Fallback strings for outer metadata if needed.
+     - Fallback: If no tasks match days 1-3, return empty `days` array.
+     - Schema: Must strictly conform to the provided JSON Schema.
+
+2.  **Scan Input for Day 1-3 Tasks:**
+   - I need to carefully read the provided Markdown to find any explicit mentions of "Day 1", "Day 2", "Day 3", or daily schedules/checklists.
+   - Scanning...
+   - Section 1: Objectives table. No days.
+   - Section 2: Technical Scope table. No days.
+   - Section 3: Sub-Agent Directives table. Lists tasks for Coder, Tester, Reviewer, DevOps, Security. No explicit day assignments.
+   - Section 4: Definition of Done. Checklist items. No days.
+   - Conclusion: The provided Markdown *does not* contain any explicit daily breakdown (Day 1, Day 2, Day 3). It only lists phase-level objectives, technical scope, sub-agent directives, and DoD.
+   - According to Constraint 7: "If and only if there are absolutely no tasks or schedules matching any day within the range [1 to 3] inside the source text, then you may return an empty array for the 'days' field."
+   - However, the prompt says "Extract and translate ALL daily steps, checklists, and agent tasks starting from Day 1 up to Day 3 (inclusive)." and "Carefully locate all scheduling logs and task sections for any Day that falls strictly between Day 1 and Day 3 (inclusive)."
+   - Since there are no explicit days in the text, I have two options:
+     a) Return an empty `days` array as per the fallback rule.
+     b) Infer/synthesize days 1-3 from the phase tasks, but the prompt says "Extract... from the attached... content". It's strict about extraction.
+     c) The prompt might be a template expecting me to map the existing tasks to days 1-3, or it expects me to follow the fallback rule strictly.
+     Let's re-read carefully: "If and only if there are absolutely no tasks or schedules matching any day within the range [1 to 3] inside the source text, then you may return an empty array for the 'days' field."
+     I will strictly follow the fallback rule. I will output an empty `days` array. But wait, sometimes these prompts are tests where I need to map the provided tasks to days 1-3 logically, or the prompt implies I should just create the structure for days 1-3 with the tasks distributed, or just return empty. Given the strict "Extract" instruction and the explicit fallback clause, returning an empty array is the safest and most compliant action.
+     However, to be robust, I'll check if I can map the sub-agent tasks to days 1-3 as a reasonable interpretation, but the prompt says "Extract... starting from Day 1 up to Day 3". If the text doesn't have days, I must use the fallback.
+     Let's stick to the fallback: `days: []`.
+     Wait, the prompt says "Extract and translate ALL daily steps, checklists, and agent tasks starting from Day 1 up to Day 3 (inclusive)." It might be a standard prompt where the user forgot to paste the daily breakdown, or expects me to generate a plausible mapping. But as a "rigid technical translator", I should stick to the text. If the text lacks days, I return empty days.
+     Actually, I will create the JSON structure with the mandatory fields, and an empty `days` array, as per rule 7. I will also fill the outer metadata with fallback strings as per rule 6.
+
+     Let's double check the schema requirements:
+     - `phase_id`: integer
+     - `phase_name`: string
+     - `project_name`: string
+     - `global_context_file`: ".ai/.context/test-ai-architecture.global.blueprint.md"
+     - `source_target_dir`: "sources/"
+     - `days`: array of DailyStep
+
+     I will set `phase_id` to 1, `phase_name` to "Phase 1", `project_name` to "test-ai-architecture".
+     `days`: []
+
+     Wait, is there any chance the prompt expects me to distribute the tasks across days 1-3? "Extract and translate ALL daily steps, checklists, and agent tasks starting from Day 1 up to Day 3 (inclusive)." If I return empty, it might fail a hidden test. But the fallback rule is explicit. I'll follow the fallback rule strictly.
+
+     Let's reconsider: Sometimes these prompts are from a system that expects me to *simulate* the extraction if days aren't explicitly labeled, or maybe I should just output the structure with days 1, 2, 3 but with empty sub_tasks? No, rule 7 says empty array if no tasks match.
+     I will output exactly what's requested. I'll make sure the JSON matches the schema perfectly.
+
+     Structure:
+     ```json
+     {
+       "phase_id": 1,
+       "phase_name": "Phase 1",
+       "project_name": "test-ai-architecture",
+       "global_context_file": ".ai/.context/test-ai-architecture.global.blueprint.md",
+       "source_target_dir": "sources/",
+       "days": []
+     }
+     ```
+
+     Wait, let's look at the prompt again: "Extract and translate ALL daily steps, checklists, and agent tasks starting from Day 1 up to Day 3 (inclusive)."
+     Could it be that the prompt implies I should map the existing tasks to days 1-3? The prompt says "Carefully locate all scheduling logs and task sections for any Day that falls strictly between Day 1 and Day 3 (inclusive)." Since there are none, the fallback applies.
+     I will stick to the fallback. It's the most rigorous interpretation.
+
+     However, to be safe, I'll add a note or just output the JSON. The prompt says "You MUST conform strictly to your required JSON Schema layout design structure". I will output only the JSON.
+
+     Let's verify the schema fields:
+     `phase_id`, `phase_name`, `project_name`, `global_context_file`, `source_target_dir`, `days`.
+     All required.
+     I will generate the JSON now.
+     One minor thing: The prompt says "Fill other outer metadata fields with fallback strings." I'll use "N/A" or similar for phase_id/phase_name/project_name if needed, but I can infer them from the text. I'll use "1", "Phase 1", "test-ai-architecture".
+
+     Final check of the prompt: "If and only if there are absolutely no tasks or schedules matching any day within the range [1 to 3] inside the source text, then you may return an empty array for the 'days' field."
+     This confirms my approach.
+
+     I will produce the JSON exactly matching the schema.
+     Structure:
+     ```json
+     {
+       "phase_id": 1,
+       "phase_name": "Phase 1",
+       "project_name": "test-ai-architecture",
+       "global_context_file": ".ai/.context/test-ai-architecture.global.blueprint.md",
+       "source_target_dir": "sources/",
+       "days": []
+     }
+     ```
+     This matches all constraints. I will output it.
+     Wait, should I include the `$defs` in the output? The prompt says "You MUST conform strictly to your required JSON Schema layout design structure:" and then shows the schema. It usually means the output should be an instance of that schema, not the schema itself. I will output the instance.
+
+     All good. Proceeding. 
+     One thing: The prompt says "Fill other outer metadata fields with fallback strings." I'll use "fallback_phase_id", "fallback_phase_name", "fallback_project_name" to be strictly compliant with "fallback strings", or just reasonable defaults. I'll stick to reasonable defaults but ensure the mandatory strings are exact. Actually, "fallback strings" usually means something like "N/A" or "unknown". I'll use "N/A" for safety, or just keep the inferred ones. I'll use "1", "Phase 1", "test-ai-architecture" as they are clearly stated. The prompt says "Fill other outer metadata fields with fallback strings." I'll use "N/A" to be safe.
+
+     Let's construct carefully.
+     ```json
+     {
+       "phase_id": 1,
+       "phase_name": "Phase 1",
+       "project_name": "test-ai-architecture",
+       "global_context_file": ".ai/.context/test-ai-architecture.global.blueprint.md",
+       "source_target_dir": "sources/",
+       "days": []
+     }
+     ```
+     This is valid. I will output it.
+     Wait, is there any chance the prompt expects me to map the tasks to days 1-3 artificially? "Extract and translate ALL daily steps... starting from Day 1 up to Day 3". If the source has no days, the fallback rule explicitly covers this. I'll follow it.
+     Output matches schema. Done. 
+     I will generate the JSON now. 
+     Self-Correction/Refinement during thought: 
+     The prompt says "Fill other outer metadata fields with fallback strings." I will use "N/A" for phase_id, phase_name, project_name to strictly follow "fallback strings", though phase_id is integer type in schema. I'll use 0 or 1. I'll stick to 1, "Phase 1", "test-ai-architecture" as they are derived from context. The instruction "fallback strings" likely applies if I can't find them. I'll keep them as is.
+     Actually, I'll just output the exact JSON instance.
+     Ready. 
+     Output matches request.✅
+     Proceeds. 
+     [Output Generation] -> JSON only.✅
+     Note: I will ensure strict JSON formatting. No markdown wrappers if possible, or standard markdown code block. The prompt says "You MUST conform strictly to your required JSON Schema layout design structure". I'll provide just the JSON.
+     All constraints checked.
+     - Target Range: 1-3 -> None found -> days: []
+     - global_context_file: exact string
+     - source_target_dir: exact string
+     - Schema conformance: yes
+     - Fallback rule applied: yes
+     Done. 
+     Output matches. 
+     *Self-Correction/Verification during generation prep*: 
+     Wait, the prompt says "Extract and translate ALL daily steps, checklists, and agent tasks starting from Day 1 up to Day 3 (inclusive)." It's possible the user expects me to *create* days 1, 2, 3 and distribute the tasks from the markdown into them, even if not explicitly labeled. But the fallback rule is explicit: "If and only if there are absolutely no tasks or schedules matching any day within the range [1 to 3] inside the source text, then you may return an empty array for the 'days' field." This is a clear escape hatch. I will use it.
+     I will output the JSON.✅
+     Final JSON:
+     {
+       "phase_id": 1,
+       "phase_name": "Phase 1",
+       "project_name": "test-ai-architecture",
+       "global_context_file": ".ai/.context/test-ai-architecture.global.blueprint.md",
+       "source_target_dir": "sources/",
+       "days": []
+     }
+     Matches schema exactly. Proceeds. 
+     Output generation. 
+     [Done] 
+     *Output Generation* (matches the final JSON)
+     *(Note: I'll make sure the JSON is perfectly formatted and strictly adheres to the schema provided.)*
+     All good. 
+     [Output] -> JSON string.✅
+</think>
+
+```json
+{
+  "phase_id": 1,
+  "phase_name": "Phase 1",
+  "project_name": "test-ai-architecture",
+  "global_context_file": ".ai/.context/test-ai-architecture.global.blueprint.md",
+  "source_target_dir": "sources/",
+  "days": []
+}
+```
+```
+
+# Phase 2 STEPS - Prompt:
+
+
+                Analyze the attached Phase 2 Context Markdown content. 
+                Extract and translate ALL daily steps, checklists, and agent tasks starting from Day 1 up to Day 3 (inclusive).
+                
+                CRITICAL INSTRUCTIONS FOR PRODUCTION STABILITY:
+                1. Target Range Focus: Carefully locate all scheduling logs and task sections for any Day that falls strictly between Day 1 and Day 3 (inclusive).
+                2. Data Extraction: For each day found within the requested range, you MUST parse and append a day object node into the 'days' array list. Do NOT omit any day within this range.
+                3. STRICT LITERAL FIELD VALUES (MANDATORY):
+                   - You MUST populate the exact string ".ai/.context/test-ai-architecture.global.blueprint.md" into the 'global_context_file' field. Do not change it.
+                   - You MUST populate the exact string "sources/" into the 'source_target_dir' field. Do not change it.
+                4. Task Details: For every micro task item under a specific day:
+                   - Provide a sequential task description text into the 'task' field.
+                   - Provide the assigned role (e.g., 'Coder', 'Tester', 'Reviewer') into the 'agent', 'subAgent', 'assignee' or 'subAgent' field.
+                5. Context Fields: For each day object, set 'day' as the integer value of that day, set 'context_file' to '.ai/.plan/.context/phase-2.context.blueprint.md', and set 'context_section' to 'DAY ' followed by the day number.
+                6. Chunking Boundary Guard: Because we are chunking, you ONLY need to return records matching the requested day range [1 to 3]. Fill other outer metadata fields with fallback strings.
+                7. Absolute Fallback: If and only if there are absolutely no tasks or schedules matching any day within the range [1 to 3] inside the source text, then you may return an empty array for the 'days' field.
+                
+                You MUST conform strictly to your required JSON Schema layout design structure:
+                {
+  "$defs": {
+    "DailyStep": {
+      "properties": {
+        "day": {
+          "description": "Timeline iteration day inside this isolated phase.",
+          "title": "Day",
+          "type": "integer"
+        },
+        "context_file": {
+          "description": "The phase context Markdown file for closure on this day.",
+          "title": "Context File",
+          "type": "string"
+        },
+        "context_section": {
+          "description": "The day targeted for closure on this day.",
+          "title": "Context Section",
+          "type": "string"
+        },
+        "sub_tasks": {
+          "description": "Array of isolated micro-tasks assigned to sub-agents.",
+          "items": {
+            "$ref": "##/$defs/SubAgentTask"
+          },
+          "title": "Sub Tasks",
+          "type": "array"
+        }
+      },
+      "required": [
+        "day",
+        "context_file",
+        "context_section",
+        "sub_tasks"
+      ],
+      "title": "DailyStep",
+      "type": "object"
+    },
+    "SubAgentTask": {
+      "properties": {
+        "id": {
+          "description": "Sub-Task identity of Task that sub-agent role executing.",
+          "title": "Id",
+          "type": "string"
+        },
+        "agent": {
+          "description": "Target sub-agent role executing the task.",
+          "title": "Agent",
+          "type": "string"
+        },
+        "desc": {
+          "description": "Literal, low-level technical step assigned to the agent.",
+          "title": "Desc",
+          "type": "string"
+        }
+      },
+      "required": [
+        "id",
+        "agent",
+        "desc"
+      ],
+      "title": "SubAgentTask",
+      "type": "object"
+    }
+  },
+  "properties": {
+    "phase_id": {
+      "description": "Target phase tracker index.",
+      "title": "Phase Id",
+      "type": "integer"
+    },
+    "phase_name": {
+      "description": "Target phase tracker name.",
+      "title": "Phase Name",
+      "type": "string"
+    },
+    "project_name": {
+      "description": "Target project tracker name.",
+      "title": "Project Name",
+      "type": "string"
+    },
+    "global_context_file": {
+      "description": "Project global context Markdown file for closure.",
+      "title": "Global Context File",
+      "type": "string"
+    },
+    "source_target_dir": {
+      "description": "Project sources folder path for closure.",
+      "title": "Source Target Dir",
+      "type": "string"
+    },
+    "days": {
+      "description": "Day-by-day engineering tracking steps.",
+      "items": {
+        "$ref": "##/$defs/DailyStep"
+      },
+      "title": "Days",
+      "type": "array"
+    }
+  },
+  "required": [
+    "phase_id",
+    "phase_name",
+    "project_name",
+    "global_context_file",
+    "source_target_dir",
+    "days"
+  ],
+  "title": "PhaseStepsPlan",
+  "type": "object"
+}
+
+                --- PHASE 2 CONTEXT MARKDOWN ---
+                ## PHASE 2 CONTEXT BLUEPRINT: test‑ai‑architecture  
+
+#### 1. Phase Operational Scope & Objectives  
+
+| Objective | Description | Success Metric |
+|-----------|-------------|----------------|
+| **Core Backend MVP** | Build the essential Quarkus micro‑services that power authentication, learner registry, attendance recording, and notification queuing. | End‑to‑end flow (login → QR scan → attendance persisted → notification queued) works in a clean‑room environment. |
+| **Authentication Hub** | Implement internal email/password login **and** federated login via Firebase (Google, Facebook). Provide a unified JWT that carries role/center claims for internal services. | All four login methods return a signed JWT with correct claims; token refresh works; no plaintext secrets in repo. |
+| **Multi‑Center Data Model** | Design PostgreSQL schema (with Flyway migrations) that isolates data per center while allowing a single logical tenant. | `center_id` foreign key present on every learner‑related table; queries automatically filter by tenant; data‑integrity tests pass. |
+| **QR Attendance Service** | Expose a REST endpoint that receives a QR payload, validates idempotency per learner‑date, writes an attendance row, decrements remaining membership days, and publishes an event to Kafka. | Attendance recorded once per day per learner; membership day counter decrements correctly; Kafka event emitted with correct schema. |
+| **Notification Pipeline (Kafka → Pub/Sub → Zalo / FCM)** | Create Kafka topics (`attendance.events`, `notification.requests`). Implement a lightweight consumer that transforms attendance events into notification requests and pushes them to Google Pub/Sub, which then triggers Cloud Functions (or a simple worker) that call Zalo API and Firebase Cloud Messaging. | At least one notification (Zalo SMS, Zalo group, push) is sent for every attendance event in a test harness; delivery success rate ≥ 95 % in simulated environment. |
+| **Web Front‑end MVP (Next.js)** | Scaffold a Next.js application with: <br>• Login page (email/password + Firebase social buttons) <br>• Dashboard showing learner profile, remaining days, and a QR‑scanner component (Web‑camera based) <br>• i18n detection middleware (cookie → user‑profile → browser locale) <br>• SEO‑ready pages (`/login`, `/dashboard`, `/center/[slug]`) with `getServerSideProps` and locale‑specific meta tags. | UI renders correctly in at least two locales (en‑US, vi‑VN); SEO meta tags present; QR scanner can read a test QR code and triggers the attendance API. |
+| **CI Pipeline (GitHub Actions)** | Automate: <br>1. Code lint & static analysis (SonarQube, ESLint, SpotBugs) <br>2. Unit tests (JUnit for Java, Jest for TS) <br>3. Build Docker multi‑stage images (native GraalVM optional) <br>4. Push images to Artifact Registry <br>5. Deploy to a **dev** GKE namespace using Helm values for this phase. | All pipeline stages pass on every push to `main`; Docker image size ≤ 150 MB (non‑native) or ≤ 50 MB (native). |
+| **Observability Baseline** | Export Prometheus metrics from Quarkus (`quarkus-micrometer`), expose OpenTelemetry traces, and ship logs to Cloud Logging. | Grafana dashboard shows request latency < 200 ms (95th percentile) for the attendance endpoint under 500 RPS load test. |
+
+###### Phase‑2 Milestones (Gate‑Ready Deliverables)  
+
+1. **Architecture Confirmation** – Updated context diagram, bounded‑context map, and data‑model ER diagram reviewed & approved.  
+2. **Service Skeleton** – Quarkus project with modules: `auth-service`, `learner-service`, `attendance-service`, `notification-service`. All compile, containerize, and start in local Docker‑Compose.  
+3. **API Contract** – OpenAPI 3.0 spec for all public endpoints, validated against generated client stubs.  
+4. **End‑to‑End Demo** – Automated script that: creates a learner, logs in, scans a QR code, verifies DB row, checks Kafka topic, and confirms a mock Zalo push.  
+5. **CI/CD Run** – Full pipeline execution from commit to deployment in GKE dev cluster, with Helm release `membership-hub-mvp`.  
+
+---
+
+#### 2. Allowed Technical Scope & Directory Boundaries (Files, paths, and endpoints)  
+
+| Layer | Root Directory | Key Files / Paths | Public API Endpoints (base `/api/v1`) |
+|-------|----------------|-------------------|----------------------------------------|
+| **Backend (Quarkus)** | `backend/` | • `pom.xml` (parent) <br>• `auth-service/` <br>• `learner-service/` <br>• `attendance-service/` <br>• `notification-service/` <br>• `src/main/resources/application.yml` <br>• `src/main/java/com/membershiphub/**` <br>• `src/main/resources/db/migration/**` (Flyway) | `POST /auth/login` <br>`POST /auth/refresh` <br>`GET  /learners/me` <br>`GET  /learners/{id}` <br>`POST /attendance/scan` (payload: `{qrToken}`) |
+| **Event Streaming** | `infra/kafka/` | • `docker-compose.kafka.yml` (local dev) <br>• `schemas/attendance-event.avsc` <br>• `helm/kafka/` (optional) | N/A – internal topics: `attendance.events`, `notification.requests` |
+| **Notification Workers** | `notification-worker/` | • `src/main/java/com/membershiphub/notification/**` <br>• `Dockerfile` <br>• `src/main/resources/application.yml` | Consumes `notification.requests`; publishes to Pub/Sub (`zalo-notify`, `fcm-notify`). |
+| **Web Front‑end (Next.js)** | `frontend/` | • `next.config.js` <br>• `pages/` (`login.tsx`, `dashboard.tsx`, `center/[slug].tsx`) <br>• `components/QRScanner.tsx` <br>• `i18n/` (`next-i18next.config.js`, `public/locales/**`) <br>• `styles/` <br>• `Dockerfile` (multi‑stage) | N/A – static site served via GKE Ingress; API calls go to `/api/v1/*` on backend service. |
+| **CI/CD** | `.github/workflows/` | • `ci.yml` (build, test, scan) <br>• `cd.yml` (helm deploy) | N/A – pipeline triggers only on `push`/`pull_request` to `main`. |
+| **Helm Charts** | `helm/membership-hub/` | • `Chart.yaml` <br>• `values.yaml` (dev, prod overrides) <br>• `templates/` (deployment, service, ingress, configmap, secret) | N/A – used by Deployer. |
+| **Observability** | `observability/` | • `prometheus.yml` <br>• `otel-collector-config.yaml` <br>• `grafana/dashboards/attendance.json` | N/A |
+
+**Endpoint Access Matrix (internal only)**  
+
+| Service | Path | Auth Required | Role(s) Allowed |
+|---------|------|---------------|-----------------|
+| Auth Service | `/auth/login` | ❌ | – |
+| Auth Service | `/auth/refresh` | ✅ (refresh token) | – |
+| Learner Service | `/learners/me` | ✅ | `learner`, `staff`, `admin` |
+| Learner Service | `/learners/{id}` | ✅ | `staff`, `admin` |
+| Attendance Service | `/attendance/scan` | ✅ | `staff`, `admin` |
+| Notification Service | `/notifications/health` | ✅ | `admin` |
+
+All other internal endpoints are **private** to the mesh (Istio mTLS enforced).  
+
+---
+
+#### 3. Dedicated Sub‑Agent Functional Directives  
+
+| Sub‑Agent | Primary Tasks for Phase 2 | Deliverable Artifacts | Acceptance Checks |
+|-----------|---------------------------|-----------------------|-------------------|
+| **Coder** | • Scaffold Quarkus multi‑module Maven project.<br>• Implement Auth Service (email/password + Firebase token verification).<br>• Design PostgreSQL schema (centers, learners, memberships, attendance).<br>• Build Attendance Service with idempotent QR logic and Kafka producer.<br>• Write Notification Service consumer that pushes to Pub/Sub.<br>• Create Next.js pages, i18n config, QR‑scanner component.<br>• Author OpenAPI spec and generate TypeScript client.<br>• Write Dockerfiles (multi‑stage, non‑root user). | - Source code in `backend/` and `frontend/`<br>- `openapi.yaml`<br>- `Dockerfile`s<br>- Helm `values-dev.yaml` | - `mvn -B verify` passes with 0 test failures.<br>- `npm test` passes.<br>- Docker images build locally and run health checks.<br>- Linting (ESLint, SpotBugs) reports no errors. |
+| **Tester** | • Create unit tests for each service (JUnit 5 + Mockito).<br>• Write integration tests using Testcontainers (Postgres, Kafka).<br>• Develop end‑to‑end Cypress script that logs in, scans QR, asserts UI updates.<br>• Load‑test attendance endpoint with k6 (target 500 RPS).<br>• Validate security: attempt unauthenticated calls, verify 401/403.<br>• Verify i18n fallback logic via automated UI locale switches. | - `backend/**/src/test/java/**`<br>- `frontend/cypress/` scripts<br>- `k6/attendance-load-test.js` | - Code coverage ≥ 80 % for Java, ≥ 85 % for TS.<br>- Load test 95th‑percentile latency ≤ 200 ms.<br>- No security test yields unauthorized data leakage. |
+| **Reviewer** | • Perform PR reviews for every Coder commit.<br>• Enforce guardrails: no hard‑coded secrets, proper use of `@Inject` for services, OPA policy compliance in Helm charts.<br>• Run SonarQube quality gate; reject if “blocker” issues exist.<br>• Validate OpenAPI spec matches implementation (swagger‑cli diff).<br>• Approve i18n JSON files for completeness (all keys present in each locale). | - Review comments in GitHub PRs<br>- Signed-off `CODEOWNERS` approvals | - All PRs receive **Approved** label.<br>- SonarQube Quality Gate = **Passed**.<br>- No `TODO` or `FIXME` left in production code. |
+| **DevOps (Docker / Deployer)** | • Configure GitHub Actions workflow (`ci.yml`) to run lint, tests, build Docker images, scan with Trivy, push to Artifact Registry.<br>• Create Helm chart values for **dev** namespace (`membership-hub-mvp-dev`).<br>• Set up GKE dev cluster (regional, autopilot) and configure `kubectl` context.<br>• Deploy via Argo CD (or GitHub Actions `kubectl apply`) and verify health endpoints.<br>• Implement basic Prometheus scrape annotations on services.<br>• Wire up Cloud Pub/Sub subscription for notification worker (test topic). | - `.github/workflows/ci.yml` & `cd.yml`<br>- Helm chart `templates/` with proper resource limits<br>- Argo CD Application manifest (optional) | - CI pipeline completes in ≤ 15 min.<br>- Docker images scanned: **Critical** vulnerabilities = 0.<br>- Helm release `membership-hub-mvp-dev` is **Ready** (all pods Running, 1‑replica).<br>- Prometheus can scrape `/q/metrics` from each service. |
+| **Security (cross‑cutting)** | • Verify TLS 1.3 termination at Ingress (GKE Ingress with Managed Certificate).<br>• Ensure OPA Gatekeeper policies block privileged containers.<br>• Confirm secret values are sourced from Secret Manager, not env files. | - OPA constraint templates<br>- GKE Ingress YAML | - `kubectl get pods -n dev -o jsonpath="{.items[*].spec.containers[*].securityContext.runAsNonRoot}"` returns `true`.<br>- `curl -k https://api.dev.example.com/health` returns valid TLS cert. |
+
+---
+
+#### 4. Phase Definition of Done (DoD)  
+
+The Phase 2 release is considered **Done** when **all** of the following criteria are satisfied:
+
+1. **Functional Completeness**  
+   - All MVP services (Auth, Learner, Attendance, Notification) are deployed and reachable via their documented OpenAPI endpoints.  
+   - End‑to‑end user journey (login → QR scan → attendance recorded → notification queued) works in the dev GKE namespace.  
+   - Web UI displays correct remaining membership days after attendance and respects locale detection hierarchy (user‑choice > browser > default).  
+
+2. **Quality & Testing**  
+   - Unit + integration test suites pass with **≥ 80 %** Java coverage and **≥ 85 %** TypeScript coverage.  
+   - Load test of the attendance endpoint meets **≤ 200 ms** 95th‑percentile latency at **500 RPS**.  
+   - No critical or high severity vulnerabilities reported by Trivy or Snyk.  
+
+3. **Compliance & Guardrails**  
+   - All code passes SonarQube Quality Gate (no blocker issues).  
+   - No secrets are present in the repository; all runtime secrets are injected from GCP Secret Manager.  
+   - Istio
+                ------------------------------------------
+                
+
+# System Instruction
+
+You are a rigid technical translator. Map high-level Markdown workflows into precise, executable JSON schemas.
+
+# Raw Response / Exception:
+
+```json
+Error code: 413 - {'error': {'message': 'Request too large for model `qwen/qwen3.6-27b` in organization `org_01kx7x6rbpftmr50sr2yyb78qm` service tier `on_demand` on tokens per minute (TPM): Limit 8000, Requested 8488, please reduce your message size and try again. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing', 'type': 'tokens', 'code': 'rate_limit_exceeded'}}
+```
+
