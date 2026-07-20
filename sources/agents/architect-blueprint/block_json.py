@@ -264,7 +264,7 @@ def convert_phases_to_json(client: OpenAI, model_name: str, project_name: str, n
                 # print(f" │         { dump_json_data }")
                 
                 # write log
-                write_log(log_phase_idx, instruction, log_prompt.replace('#', '##'), json_data, True)
+                write_log(log_phase_idx, instruction, log_prompt.replace('#', '##'), raw_data, True)
                 
                 # Accumulate stream markers for audit logging preservation
                 accumulated_raw_data += f"\n--- CHUNK {chunk_counter} RAW ---\n" + (raw_data if raw_data else "")
@@ -336,7 +336,7 @@ def convert_phases_to_json(client: OpenAI, model_name: str, project_name: str, n
                 with open(fallback_path, "w", encoding="utf-8") as f:
                     f.write(raw_data)
                     f.write("\n-------------------------------------------------\n")
-                    f.write(aggregated_json_data)
+                    f.write(master_phase_plan)
                     f.write("\n-------------------------------------------------\n")
                 print(f" │   └── ⚠️ Raw dump saved to diagnostic log file: {fallback_path}")
             
