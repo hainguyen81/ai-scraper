@@ -308,14 +308,14 @@ jobs:
   
   # Publish Project Blueprint Changes
   publish-project-blueprint:
-    - name: 🚀 Publish Project Blueprint Changes
-      needs: [ generate-blueprint ]
-      if: ${{ github.event.inputs.publish_project == 'true' }}
-      uses: ./.github/workflows/ci-cd.project-initial.yml
-      with:
-        new_repo_name: ${{ github.event.inputs.project_name }}
-        is_private: true
-        blueprint: ${{ github.event.inputs.output_dir }}
-        template: 'sources/templates/project_initialization'
-      secrets: inherit
+    name: 🚀 Publish Project Blueprint Changes
+    needs: [ generate-blueprint ]
+    if: ${{ github.event.inputs.publish_project == 'true' }}
+    uses: ./.github/workflows/ci-cd.project-initial.yml
+    with:
+      new_repo_name: ${{ github.event.inputs.project_name }}
+      is_private: true
+      blueprint: ${{ github.event.inputs.output_dir }}
+      template: 'sources/templates/project_initialization'
+    secrets: inherit
 
