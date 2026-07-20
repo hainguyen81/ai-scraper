@@ -1,58 +1,94 @@
-# PHASE 1 CONTEXT BLUEPRINT: test-ai-architecture  
+# PHASE 1 CONTEXT BLUEPRINT: test‑ai‑architecture  
 
 ## 1. Phase Operational Scope & Objectives  
 
 | Objective | Description | Success Metric |
 |-----------|-------------|----------------|
-| **Validate & Formalize Requirements** | Consolidate the Vietnamese‑English raw requirements into a traceability matrix, confirm multi‑tenant, QR‑attendance, and multilingual SEO expectations with stakeholders. | Completed matrix signed‑off by Product Owner (PO) and compliance lead. |
-| **Define Multi‑Tenant Data & Service Model** | Design the logical data isolation strategy (row‑level security vs schema‑per‑tenant) and outline the Kafka topic topology (one topic per tenant, plus shared audit topic). | Architecture diagram approved; RLS policies documented. |
-| **Establish Baseline GCP Project & IAM** | Create a dedicated GCP project “test‑ai‑architecture‑dev”, enable required APIs (GKE, CloudSQL, Artifact Registry, Secret Manager, Pub/Sub for optional Kafka), and provision initial IAM groups (dev‑team, ops‑team, security‑team). | Project created, least‑privilege IAM roles assigned, audit log enabled. |
-| **Provision Minimal Infra for PoC** | Deploy a single‑node GKE cluster, a PostgreSQL instance (CloudSQL), and a Kafka broker (Strimzi operator) to host the first Quarkus microservice. | Cluster reachable, DB & Kafka pods healthy, network policies in place. |
-| **Build & Publish First Docker Image** | Create a multi‑stage Dockerfile for a “hello‑world” Quarkus service (native or JVM), run Trivy scan, sign with Cosign, and push to Artifact Registry. | Image size ≤ 300 MB, 0 critical CVEs, signature verified. |
-| **Set Up CI/CD Skeleton** | Configure GitHub Actions (or Cloud Build) to lint, test (unit), build Docker image, sign, and deploy to the dev GKE cluster using Helm chart placeholders. | Pipeline runs end‑to‑end on every push to `main`. |
-| **Establish Governance Guardrails** | Apply OPA Gatekeeper policies for namespace naming, required labels, and disallow privileged containers; enable Binary Authorization in GKE. | Policy enforcement logs show 0 violations. |
-| **Document Phase‑1 Deliverables** | Produce a concise Phase‑1 Report (architecture diagram, infra diagram, CI/CD flow, security guardrails, risk register). | Report reviewed and approved by Manager. |
+| **Validate Core Business Assumptions** | Confirm that the QR‑attendance flow, multi‑center data model, and omni‑channel notification pipeline can be realized with the chosen stack (Quarkus, Kafka, PostgreSQL, GKE). | PoC records a single attendance per learner per day, decrements remaining membership days, and enqueues a notification message. |
+| **Define Bounded‑Contexts & Domain Model** | Produce a Context‑Map (Domain‑Driven Design) that isolates **Learner**, **Center**, **Attendance**, **Membership**, **Notification**, and **Auth** contexts. | Reviewed diagram approved by Manager & Reviewer. |
+| **Prototype Critical Path** | Build a minimal end‑to‑end prototype: <br>1. **Auth** (email + password) → JWT <br>2. **QR Scan** (simulated HTTP call) → **Attendance Service** writes to PostgreSQL and publishes to Kafka <br>3. **Notification Service** consumes Kafka, calls a stub Zalo API and a mock FCM endpoint. | Automated integration test passes: attendance persisted once per day, membership days decremented, notification payload emitted. |
+| **Establish Security & Compliance Foundations** | Demonstrate TLS everywhere, secret‑less configuration (Secret Manager), and basic OPA policy for API gateway. | No plaintext secrets in repo; `curl -k https://...` succeeds with valid cert; OPA gate denies unauthenticated request. |
+| **Set Up CI/CD Skeleton** | GitHub Actions workflow that builds a **Quarkus** native image (optional GraalVM), runs unit tests, builds a Docker image, scans with Trivy, and pushes to Artifact Registry. | Workflow passes on every push to `main`. |
+| **Document Architecture Decisions** | ADRs for **Event Streaming**, **Multi‑Tenant DB**, **i18n detection**, and **Container Image Strategy**. | ADRs stored in `docs/adr/` and linked from the README. |
+
+> **Gate‑Go/No‑Go** – At the end of Phase 1 the Manager, Reviewer, and Tester jointly sign‑off if **all** success metrics are met and the Global Guardrails (Section 2 of the Global Context) are satisfied.
+
+---
 
 ## 2. Allowed Technical Scope & Directory Boundaries (Files, paths, and endpoints)  
 
-| Layer | Allowed Repository Path | Example Files | Public API Endpoints (PoC) |
-|-------|--------------------------|---------------|----------------------------|
-| **Infrastructure as Code** | `infra/` | `infra/gke/cluster.yaml`, `infra/kafka/strimzi-operator.yaml`, `infra/postgres/cloudsql.tf` | N/A (IaC only) |
-| **Helm Charts / K8s Manifests** | `charts/membership-hub/` | `Chart.yaml`, `values.yaml`, `templates/deployment.yaml`, `templates/service.yaml` | N/A |
-| **Quarkus Service (PoC)** | `services/attendance-poc/` | `src/main/java/.../AttendanceResource.java`, `src/main/resources/application.yaml`, `Dockerfile` | `GET /api/v1/ping` (health), `POST /api/v1/attendance` (dummy payload) |
-| **CI/CD Pipelines** | `.github/workflows/` or `cloudbuild.yaml` | `ci-build.yml`, `ci-deploy.yml` | N/A |
-| **Security Policies** | `policy/opa/` | `gatekeeper/constraints.yaml`, `gatekeeper/templates.yaml` | N/A |
-| **Documentation** | `docs/` | `Phase1-Report.md`, `Traceability-Matrix.xlsx` | N/A |
+| Layer | Allowed Repository Path | Example Files | Public API Endpoints (prototype) |
+|------|--------------------------|---------------|-----------------------------------|
+| **Auth Service** | `services/auth/` | `src/main/java/.../AuthResource.java`, `src/main/resources/application.yml` | `POST /api/v1/auth/login` (email/password) <br> `POST /api/v1/auth/firebase` (token exchange) |
+| **Attendance Service** | `services/attendance/` | `AttendanceResource.java`, `AttendanceProcessor.java`, `src/main/resources/application.yml` | `POST /api/v1/attendance/scan` (payload: `{ learnerId, qrCode, timestamp }`) |
+| **Notification Service** | `services/notification/` | `NotificationConsumer.java`, `ZaloClientStub.java`, `FCMClientStub.java` | **No public HTTP** – consumes Kafka topic `attendance.events`. |
+| **Domain Model (shared)** | `libs/domain/` | `Learner.java`, `Center.java`, `Membership.java`, `Attendance.java` | – |
+| **Infrastructure as Code** | `infra/helm/` | `auth/values.yaml`, `attendance/values.yaml`, `notification/values.yaml` | – |
+| **CI/CD** | `.github/workflows/` | `ci-build.yml`, `ci-security.yml` | – |
+| **Documentation & ADRs** | `docs/` | `adr/001-event-streaming.md`, `architecture-overview.md` | – |
+| **Mock External APIs** | `mocks/` | `zalo-mock/`, `fcm-mock/` (simple Express servers) | `POST /mock/zalo/send` <br> `POST /mock/fcm/push` |
 
-**Endpoint Constraints for Phase 1**  
-- Only **internal** endpoints (health, ping, dummy attendance) are exposed.  
-- All endpoints must be behind **Istio IngressGateway** with mTLS enforced.  
-- Path prefix: `/api/v1/`  
+**Endpoint Security** – All HTTP endpoints must require a valid **Bearer JWT** signed by the Auth Service’s private key. The JWT must contain a `role` claim (`ADMIN`, `STAFF`, `LEARNER`).  
 
-**File‑Change Boundaries**  
-- No modifications outside the directories listed above.  
-- Front‑end code (`apps/web/`, `apps/mobile/`) is **out‑of‑scope** for Phase 1 and must remain untouched.  
+**Network Boundaries** –  
+* Services run in the same GKE namespace `phase1‑sandbox`.  
+* Kafka broker reachable only via internal ClusterIP service `kafka-svc`.  
+* Mock APIs exposed via `NodePort` **only** on the CI runner network (not internet‑facing).  
+
+**File‑level Guardrails** –  
+* No `.env` or secret files committed.  
+* All configuration values that are secrets must be referenced via `${SM://path/to/secret}` (Secret Manager placeholder).  
+
+---
 
 ## 3. Dedicated Sub‑Agent Functional Directives  
 
-| Sub‑Agent | Primary Tasks (Phase 1) | Deliverables | Acceptance Criteria |
-|-----------|--------------------------|--------------|---------------------|
-| **Coder** | • Scaffold Quarkus Maven project (`services/attendance-poc`). <br>• Implement `AttendanceResource` with a simple in‑memory counter. <br>• Write `application.yaml` to read DB/Kafka URLs from env vars. <br>• Create multi‑stage Dockerfile (JVM base, optional GraalVM native). <br>• Add Helm chart skeleton (`charts/membership-hub`). | Source code, Dockerfile, Helm chart. | Code compiles, `mvn test` passes, Docker image builds without errors. |
-| **Tester** | • Write unit tests for `AttendanceResource` (JUnit5 + RestAssured). <br>• Add contract test (Pact) for the dummy attendance endpoint. <br>• Create CI test job that fails on < 80 % coverage. | Test suite, coverage report. | All tests pass locally; CI reports ≥ 80 % line coverage. |
-| **Reviewer** | • Perform security review of Dockerfile (no root user, minimal layers). <br>• Validate OPA policies are applied to the Helm release. <br>• Ensure PR includes documentation updates. | Review comments, approval sign‑off. | No high‑severity findings; PR merged within 12 h of submission. |
-| **DevOps (Deployer)** | • Provision GCP project & enable APIs via Terraform (`infra/`). <br>• Deploy GKE cluster (single‑node) with network policies. <br>• Install Strimzi Kafka operator and create a test topic `attendance-test`. <br>• Set up CloudSQL PostgreSQL instance (minimal tier). <br>• Configure GitHub Actions pipeline: lint → test → build → sign → push → Helm upgrade. <br>• Enable Binary Authorization & OPA Gatekeeper. | IaC scripts, CI/CD pipeline, running cluster. | All resources created, pipeline runs end‑to‑end, no policy violations. |
-| **Security (optional cross‑cutting)** | • Generate and store service account keys in Secret Manager. <br>• Verify TLS 1.3 on IngressGateway. | Secrets, TLS config. | Secrets accessible only to service accounts; TLS handshake succeeds with TLS 1.3. |
+| Sub‑Agent | Concrete Tasks for Phase 1 | Deliverables (artifact path) | Acceptance Criteria |
+|-----------|----------------------------|------------------------------|---------------------|
+| **Coder** | 1. Scaffold Quarkus Maven modules for `auth`, `attendance`, `notification`. <br>2. Implement JWT generation & verification (Auth). <br>3. Create PostgreSQL schema (Flyway scripts) for `learners`, `centers`, `memberships`, `attendance_logs`. <br>4. Wire Attendance Service to publish `AttendanceRecorded` events to Kafka. <br>5. Build Dockerfiles (multi‑stage, non‑root user) for each service. | `services/auth/`, `services/attendance/`, `services/notification/`, `infra/helm/`, `db/migrations/V1__init.sql` | Unit tests ≥ 80 % coverage; Docker images build locally without errors; `docker run` starts and health‑checks succeed. |
+| **Tester** | 1. Write JUnit tests for Auth login flow and Attendance idempotency. <br>2. Create Postman collection for the three public endpoints. <br>3. Develop an integration test (using Testcontainers) that spins up PostgreSQL + Kafka, runs a full scan → attendance → notification flow. <br>4. Execute OWASP Dependency‑Check on the Maven dependencies. | `services/**/src/test/java/`, `test/postman/attendance.postman_collection.json` | All tests pass on CI; integration test asserts exactly one `attendance_logs` row per learner per day; Dependency‑Check reports no CVE > 7.0. |
+| **Reviewer** | 1. Validate that all Dockerfiles use a minimal base (e.g., `gcr.io/distroless/java17`). <br>2. Ensure OpenAPI spec (`openapi.yaml`) matches implemented endpoints and includes JWT security scheme. <br>3. Verify OPA policy file (`policy/auth.rego`) denies requests without `Authorization` header. <br>4. Review ADRs for completeness and rationale. | `docs/openapi.yaml`, `policy/auth.rego`, `docs/adr/` | No critical style violations; OPA policy passes `opa eval` test suite; ADRs signed off in PR comments. |
+| **DevOps (Docker / Deployer)** | 1. Configure GitHub Actions workflow `ci-build.yml` to: <br>   - Run `mvn clean verify` <br>   - Build native image (optional) <br>   - Build Docker image, tag with `${{ github.sha }}` <br>   - Scan with Trivy, fail on HIGH+ vulnerabilities <br>   - Push to Artifact Registry `asia-south1-docker.pkg.dev/<project>/phase1-sandbox/<service>` <br>2. Create a minimal Helm chart (`infra/helm/attendance/Chart.yaml`) with values for image repository, replicaCount=1, resource limits. <br>3. Deploy the three services to a **GKE Autopilot** cluster in a temporary `phase1‑sandbox` namespace using `helm upgrade --install`. <br>4. Set up a basic Prometheus scrape config for the services (via ServiceMonitor). | `.github/workflows/ci-build.yml`, `infra/helm/attendance/`, `k8s/monitoring/prometheus.yaml` | CI pipeline passes on every push; Helm release reports `STATUS: deployed`; Pods run as non‑root; Prometheus metrics endpoint returns 200. |
+| **Security (optional sub‑agent)** | 1. Generate self‑signed TLS certs for local dev and store them in Secret Manager placeholders. <br>2. Add `Istio` sidecar injection annotation to the namespace (for later phases). | `infra/istio/namespace.yaml` | `kubectl get namespace phase1-sandbox -o yaml` shows `istio-injection: enabled`. |
+
+*All sub‑agents must log their daily progress in the shared Confluence page `Phase 1 – Discovery & Architecture Validation` and update the Kanban board in Jira (Epic **PH1‑DISCOVERY**).*
+
+---
 
 ## 4. Phase Definition of Done (DoD)  
 
-- **Documentation**: `docs/Phase1-Report.md` contains architecture diagram, infra diagram, CI/CD flowchart, and risk register; signed off by Manager.  
-- **Requirement Traceability**: `docs/Traceability-Matrix.xlsx` maps every raw requirement to a Phase‑1 artifact (e.g., “multi‑tenant DB” → RLS policy doc).  
-- **Infrastructure**: GCP project `test‑ai‑architecture‑dev` exists; GKE cluster, CloudSQL, and Kafka are operational; network policies and mTLS enforced.  
-- **Code**: Quarkus PoC service builds, passes all unit & contract tests, Docker image ≤ 300 MB, 0 critical CVEs, signed with Cosign, pushed to Artifact Registry.  
-- **Deployment**: Helm chart releases `attendance-poc` into `dev` namespace; health endpoint returns 200; Istio ingress reachable via HTTPS with mTLS.  
-- **CI/CD**: GitHub Actions pipeline executes on every push, completes all stages (lint, test, build, sign, push, deploy) without failures.  
-- **Security Guardrails**: OPA Gatekeeper policies enforced (no privileged containers, required labels present); Binary Authorization rejects unsigned images; audit logs enabled.  
-- **Observability**: Prometheus metrics endpoint (`/q/metrics`) exposed; Grafana dashboard stub created; logs forwarded to Cloud Logging.  
-- **Stakeholder Sign‑off**: Manager, Security Lead, and Product Owner have reviewed and formally approved the Phase‑1 Report.  
+The Phase 1 increment is considered **Done** when **all** of the following conditions are satisfied:
 
-*Only when **all** items above are satisfied does Phase 1 achieve “Done” and the project may advance to Phase 2.*
+1. **Functional PoC**  
+   * A learner can authenticate via email/password and receive a signed JWT.  
+   * A QR‑scan request (POST `/api/v1/attendance/scan`) creates **exactly one** attendance record for the day, decrements the learner’s `remaining_days`, and publishes an `AttendanceRecorded` event to Kafka.  
+   * The Notification Service consumes the event and successfully calls both mock Zalo and mock FCM endpoints (verified by logs).  
+
+2. **Architecture Artefacts**  
+   * Context‑Map diagram (`docs/architecture/context-map.png`).  
+   * ADRs for Event Streaming, Multi‑Tenant DB, i18n detection, and Container Image Strategy stored under `docs/adr/`.  
+
+3. **Code Quality & Security**  
+   * Unit test coverage ≥ 80 % for new code.  
+   * No **critical** or **high** vulnerabilities reported by Trivy or OWASP Dependency‑Check.  
+   * All secrets referenced via Secret Manager placeholders; no plaintext secrets in repo.  
+
+4. **CI/CD Pipeline**  
+   * GitHub Actions workflow `ci-build.yml` runs on every push to `main` and completes all stages (build, test, scan, push).  
+   * Docker images are published to Artifact Registry with immutable digests.  
+
+5. **Infrastructure Deployment**  
+   * Helm releases for `auth`, `attendance`, and `notification` are deployed to GKE `phase1‑sandbox` namespace and report `READY` status.  
+   * Pods run as non‑root, use the minimal Distroless base image, and expose health‑check endpoints (`/q/health`).  
+
+6. **Observability & Logging**  
+   * Prometheus scrapes `/metrics` from each service; a Grafana dashboard (`docs/grafana/phase1-dashboard.json`) shows request latency and error rate.  
+   * All request/response logs are shipped to Cloud Logging with appropriate labels (`service=attendance`).  
+
+7. **Compliance Gate**  
+   * Reviewer signs off that the implementation adheres to every Guardrail in **Section 2 – Global Guardrails & Enterprise Compliance Standards** (data encryption, RBAC, audit logging, etc.).  
+
+8. **Stakeholder Sign‑off**  
+   * Manager, Reviewer, and Tester collectively approve the Phase 1 deliverables in Jira (transition to **Done**).  
+
+Once the above DoD checklist is fully satisfied, the team may proceed to **Phase 2 – Core Platform Build (MVP)**.
