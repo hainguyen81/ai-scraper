@@ -337,7 +337,7 @@ jobs:
   publish-project-blueprint:
     name: 🌐 Publish Project Blueprint Changes
     needs: [ generate-blueprint ]
-    if: always() && inputs.publish_project == 'true'
+    if: always() && inputs.publish_project == true
     uses: ./.github/workflows/ci-cd.project-initial.yml
     with:
       new_repo_name: ${{ inputs.project_name }}
