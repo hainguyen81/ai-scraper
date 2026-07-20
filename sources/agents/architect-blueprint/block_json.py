@@ -75,7 +75,7 @@ def dynamic_transform(json_data, project_name: str, phase_idx: int, template_fil
         
         # write log for tracing
         if os.path.exists(log_file_path):
-            with open(fallback_path, "a", encoding="utf-8") as f:
+            with open(log_file_path, "a", encoding="utf-8") as f:
                 f.write(f"# Project Name: { project_name } | Phase: { phase_idx }\n\n")
                 f.write(f"## JSON:\n\n```json{ json.dumps(json_data) }```\n\n")
                 f.write(f"## Mapped JSON:\n\n```json{ rendered_str }```\n\n")
@@ -89,7 +89,7 @@ def dynamic_transform(json_data, project_name: str, phase_idx: int, template_fil
         
         # write log for tracing
         if os.path.exists(log_file_path):
-            with open(fallback_path, "a", encoding="utf-8") as f:
+            with open(log_file_path, "a", encoding="utf-8") as f:
                 f.write(f"## Cleaned JSON:\n\n```json{ cleaned_str }```\n\n")
         
         # 4. Parse result JSON after rendering by Jinja
