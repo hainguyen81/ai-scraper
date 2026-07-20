@@ -95,7 +95,7 @@ jobs:
           SCAN_LIMIT: ${{ inputs.scan_limit }}
         run: |
           echo "⚡ Initializing Hacker News REST endpoint stream listener..."
-          python sources/agents/ai-reddit-hacker-news-scapper.py --scan-limit "$SCAN_LIMIT"
+          python sources/agents/ai-reddit-hacker-news-scraper.py --scan-limit "$SCAN_LIMIT"
           
       # Step 4: Dynamically organize directory, rename file by system date, and commit changes
       - name: "🚀 Commit and Push structured data to repository storage"
