@@ -40,6 +40,11 @@ on:
           - "📈 Phase Context"
           - "🔢 Phase Steps"
           - "None"
+      exec_delay:
+        description: "🤖 Execution Delay (in seconds)"
+        required: false
+        default: 3
+        type: number
       model_endpoint:
         description: '🔗 AI Endpoint - OpenAI (Ex: https://openrouter.ai/api/v1)'
         required: false
@@ -99,6 +104,11 @@ on:
         required: false
         default: "All"
         type: string
+      exec_delay:
+        description: "🤖 Execution Delay (in seconds)"
+        required: false
+        default: 3
+        type: number
       model_endpoint:
         description: '🔗 AI Endpoint - OpenAI (Ex: https://openrouter.ai/api/v1)'
         required: false
@@ -207,6 +217,7 @@ jobs:
           NUM_OF_PHASES: ${{ inputs.phases }}
           PROJECT_NAME: ${{ inputs.project_name }}
           EXEC_MODE: ${{ inputs.exec_mode }}
+          EXEC_DELAY: ${{ inputs.exec_delay }}
         run: |
           # Extract Phase count (Fallback to 5 if triggered automatically via git push)
           NUM_PHASES="$NUM_OF_PHASES"
@@ -273,6 +284,10 @@ jobs:
           if [ "$EXEC_MODE" = "🔢 Phase Steps" ]; then
             EXE_MODE=3
           fi
+          EXE_DELAY="$EXEC_DELAY"
+          if [ -z "$EXE_DELAY" ]; then
+            EXE_DELAY=3
+          fi
           
           echo "⚡ Kicking off AI Agent orchestration..."
           echo "🔢 Requested Execution Phases: $NUM_PHASES"
@@ -286,7 +301,7 @@ jobs:
               --api-model-phase-context "$MODEL_PHASE" \
               --api-model-phase-steps-json "$MODEL_STEPS" \
               --api-model-phase-steps-json-mapping "$INPUTS_MODEL_STEPS_MAPPING" \
-              --exec-mode $EXE_MODE
+              --exec-mode $EXE_MODE --exec-delay $EXE_DELAY
 
       # Step 5: Automatically stage, commit, and push the generated architecture files
       - name: 🚀 Commit and Push Blueprint Changes

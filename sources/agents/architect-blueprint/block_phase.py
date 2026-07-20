@@ -19,13 +19,14 @@ from helper import parseOpenAIResponseData
 # def generate_phase_contexts(client: genai.Client, project_name: str, requirements: str, global_context: str, num_phases: int, out_dir: str):
 
 # OpenAI
-def generate_phase_contexts(client: OpenAI, model_name: str, project_name: str, requirements: str, global_context: str, num_phases: int, out_dir: str):
+def generate_phase_contexts(client: OpenAI, model_name: str, project_name: str, requirements: str, global_context: str, num_phases: int, out_dir: str, delay: int):
     """
     BLOCK 2: Decomposes requirements into segmented, sandbox-ready development boundaries.
     Executes raw isolated stateless calls per loop item to bypass sequence length degradation.
     """
     print(f"🔄 [BLOCK 2] Decomposing requirements into {num_phases} isolated Phase Markdowns...")
     
+    delay = delay if delay else 3
     log_phase_idx = 0
     log_prompt = ""
     instruction = "You are an Elite Solution Architect. Isolate development boundaries so sub-agents never overlap."
@@ -87,8 +88,8 @@ def generate_phase_contexts(client: OpenAI, model_name: str, project_name: str, 
             
             # sleep to avoid 429 Too Many Requests
             if phase_idx < num_phases + 1:
-                print("⏳ Rate limit guard active... holding pipeline for 15 seconds to clear AI TPM window...")
-                time.sleep(5)
+                print(f"⏳ Rate limit guard active... holding pipeline for { delay } seconds to clear AI TPM window...")
+                time.sleep(delay)
             
         result = True if num_phases > 0 else False
         return result # success or empty phases
