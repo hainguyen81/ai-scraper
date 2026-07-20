@@ -164,7 +164,7 @@ def convert_phases_to_json(client: OpenAI, model_name: str, project_name: str, n
     instruction = "You are a rigid technical translator. Map high-level Markdown workflows into precise, executable JSON schemas."
     
     # 🎯 CONFIG: Define safe day span bounds per API transaction window
-    DAYS_PER_CHUNK = 3
+    DAYS_PER_CHUNK = 5
     
     # 🎯 SCHEMA INJECTION: Dump expected structure configuration for the prompt injector
     json_schema_dump = json.dumps(PhaseStepsPlan.model_json_schema(), indent=2)
