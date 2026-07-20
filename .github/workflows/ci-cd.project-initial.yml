@@ -159,10 +159,9 @@ jobs:
           cd ../sync-workspace
           
           echo "🌱 Initializing clean independent git repository..."
-          # !!!IMPORTANT!!! Use branch 'main' to show workflows list. This's a bug of github
           # 💎 Initialize a clean independent git local tree tracking environment
-          # git init --initial-branch=master
-          git init
+          git init --initial-branch=master
+          # git init
           
           # 🤖 Inject standard automation bot metadata to certify clean audit logs
           git config user.name "github-actions[bot]"
@@ -183,9 +182,13 @@ jobs:
           
           # !!!IMPORTANT!!! Use branch 'main' to show workflows list. This's a bug of github
           # 🛩️ Force push the local tracking lineage directly onto the upstream main integration branch
-          # git branch -M master
-          # git push -u origin master --force
-          git branch -M main
-          git push -u origin main --force
+          git branch -M master
+          git push -u origin master --force
+          # git branch -M main
+          # git push -u origin main --force
+          
+          # !!!IMPORTANT!!! Use branch 'main' to show workflows list. This's a bug of github
+          # change default branch to 'master' for triggering to load workflows list
+          gh repo edit --default-branch master
           
           echo -e "\n🎉 [SUCCESS] Target Repository initialization pipeline finalized smoothly! 🏁✨"
