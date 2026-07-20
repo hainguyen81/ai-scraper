@@ -145,13 +145,14 @@ jobs:
     steps:
       # Step 1: Checkout the repository code into the runner workspace
       - name: 📥 Checkout Repository
+        if: ${{ github.event.inputs.exec_mode != 'None' }}                 # if previous step is successful
         uses: actions/checkout@v7
         with:
             fetch-depth: 0
 
       # Step 2: Initialize a clean Python runtime environment
       - name: 🐍 Set up Python Environment
-        if: success()                 # if previous step is successful
+        if: success() && github.event.inputs.exec_mode != 'None'          # if previous step is successful
         uses: actions/setup-python@v5
         with:
           python-version: '3.11'
@@ -159,7 +160,7 @@ jobs:
 
       # Step 3: Upgrade pip and install the official Google GenAI SDK
       - name: 📦 Install Python Dependencies
-        if: success()                 # if previous step is successful
+        if: success() && github.event.inputs.exec_mode != 'None'          # if previous step is successful
         run: |
           python -m pip install --upgrade pip
           
@@ -174,7 +175,7 @@ jobs:
 
       # Step 4: Extract inputs dynamically and execute the Lead Architect Agent
       - name: 🤖 Run Lead Architect Agent
-        if: success()                 # if previous step is successful
+        if: success() && github.event.inputs.exec_mode != 'None'          # if previous step is successful
         env:
           # OpenAI - Common from LLM-Web-Scrapper Workflow
           API_KEY: ${{ secrets.API_KEY }}
@@ -289,7 +290,7 @@ jobs:
 
       # Step 5: Automatically stage, commit, and push the generated architecture files
       - name: 🚀 Commit and Push Blueprint Changes
-        if: success()                 # if previous step is successful
+        if: success() && github.event.inputs.exec_mode != 'None'          # if previous step is successful
         run: |
           # Set up git bot profile identities
           git config --global user.name "github-actions[bot]"
@@ -308,6 +309,7 @@ jobs:
   # Publish Project Blueprint Changes
   publish-project-blueprint:
     - name: 🚀 Publish Project Blueprint Changes
+      needs: [ generate-blueprint ]
       if: ${{ github.event.inputs.publish_project == 'true' }}
       uses: ./.github/workflows/ci-cd.project-initial.yml
       with:

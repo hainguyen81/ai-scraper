@@ -72,6 +72,7 @@ jobs:
 
       # ⚡ Step 2: Establish connection parameters and securely provision the brand-new repository
       - name: "🖥️ Create Target GitHub Repository"
+        if: success()                 # if previous step is successful
         id: repo-provisioner
         env:
           GH_TOKEN: ${{ secrets.PAT_SECRETS_MANAGER }} # 🔑 Uses your personal token to bypass organizational write blocks
@@ -96,6 +97,7 @@ jobs:
 
       # 🔄 Step 3: Localize template files, commit them cleanly, and synchronize to the target remote
       - name: "📦 Sync Template Payload to Target Repository"
+        if: success()                 # if previous step is successful
         env:
           GH_TOKEN: ${{ secrets.PAT_SECRETS_MANAGER }}
           TARGET_OWNER: ${{ github.repository_owner }}
