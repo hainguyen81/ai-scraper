@@ -13,12 +13,12 @@
                 {
                     "id": "D1_ST1",
                     "agent": "Coder",
-                    "desc": "Coder Agent: Design backend API using Quarkus"
+                    "desc": "Coder Agent: Design database schema using Postgres"
                 },
                 {
                     "id": "D1_ST2",
                     "agent": "Coder",
-                    "desc": "Coder Agent: Set up Kafka and Postgres integration"
+                    "desc": "Coder Agent: Create and maintain Docker images for the application"
                 }
             ]
         },
@@ -30,12 +30,12 @@
                 {
                     "id": "D2_ST1",
                     "agent": "Coder",
-                    "desc": "Coder Agent: Implement authentication and authorization using OAuth 2.0"
+                    "desc": "Coder Agent: Develop backend API using Quarkus"
                 },
                 {
                     "id": "D2_ST2",
                     "agent": "Coder",
-                    "desc": "Coder Agent: Develop API endpoints for user management"
+                    "desc": "Coder Agent: Develop unit tests for the backend API"
                 }
             ]
         },
@@ -47,12 +47,12 @@
                 {
                     "id": "D3_ST1",
                     "agent": "Coder",
-                    "desc": "Coder Agent: Develop API endpoints for attendance tracking"
+                    "desc": "Coder Agent: Implement authentication and authorization mechanisms using OAuth 2.0"
                 },
                 {
                     "id": "D3_ST2",
                     "agent": "Coder",
-                    "desc": "Coder Agent: Develop API endpoints for notification systems"
+                    "desc": "Coder Agent: Review code for maintainability and efficiency"
                 }
             ]
         },
@@ -63,13 +63,13 @@
             "sub_tasks": [
                 {
                     "id": "D4_ST1",
-                    "agent": "Tester",
-                    "desc": "Tester Agent: Develop unit tests for backend API"
+                    "agent": "Coder",
+                    "desc": "Coder Agent: Integrate Kafka for message queuing and notification systems"
                 },
                 {
                     "id": "D4_ST2",
-                    "agent": "Tester",
-                    "desc": "Tester Agent: Develop integration tests for backend API"
+                    "agent": "Coder",
+                    "desc": "Coder Agent: Develop integration tests for the backend API"
                 }
             ]
         },
@@ -80,47 +80,13 @@
             "sub_tasks": [
                 {
                     "id": "D5_ST1",
-                    "agent": "Reviewer",
-                    "desc": "Reviewer Agent: Review code developed by Coder"
+                    "agent": "Coder",
+                    "desc": "Coder Agent: Ensure application is properly containerized and ready for deployment"
                 },
                 {
                     "id": "D5_ST2",
-                    "agent": "DevOps",
-                    "desc": "DevOps Agent: Create and maintain Docker images for backend API"
-                }
-            ]
-        },
-        {
-            "day": 6,
-            "context_file": ".ai/.plan/.context/phase-2.context.blueprint.md",
-            "context_section": "DAY 6",
-            "sub_tasks": [
-                {
-                    "id": "D6_ST1",
-                    "agent": "DevOps",
-                    "desc": "DevOps Agent: Deploy backend API to GKE"
-                },
-                {
-                    "id": "D6_ST2",
-                    "agent": "DevOps",
-                    "desc": "DevOps Agent: Configure backend API for production"
-                }
-            ]
-        },
-        {
-            "day": 7,
-            "context_file": ".ai/.plan/.context/phase-2.context.blueprint.md",
-            "context_section": "DAY 7",
-            "sub_tasks": [
-                {
-                    "id": "D7_ST1",
-                    "agent": "Tester",
-                    "desc": "Tester Agent: Test and verify backend API"
-                },
-                {
-                    "id": "D7_ST2",
                     "agent": "Coder",
-                    "desc": "Coder Agent: Address feedback from code reviews"
+                    "desc": "Coder Agent: Ensure adherence to industry best practices"
                 }
             ]
         }
