@@ -200,9 +200,9 @@ def convert_phases_to_json(client: OpenAI, model_name: str, project_name: str, n
             has_more_days = True
             chunk_counter = 1
             
-            # Combined text accumulators for the ultimate logging layers
-            accumulated_raw_data = ""
-            accumulated_json_text = ""
+            # # Combined text accumulators for the ultimate logging layers
+            # accumulated_raw_data = ""
+            # accumulated_json_text = ""
 
             # 🎯 CORE SLIDING TIMELINE SCROLL LOOP
             while has_more_days:
@@ -275,13 +275,13 @@ def convert_phases_to_json(client: OpenAI, model_name: str, project_name: str, n
                 # write log
                 write_log(log_phase_idx, instruction, log_prompt.replace('#', '##'), raw_data, True)
                 
-                # Accumulate stream markers for audit logging preservation
-                accumulated_raw_data += f"\n--- CHUNK {chunk_counter} RAW ---\n" + (raw_data if raw_data else "")
-                if json_data:
-                    accumulated_json_text += f"\n--- CHUNK {chunk_counter} JSON ---\n" + json.dumps(json_data, indent=2)
-                print(f" │       └── ⚠️ Chunk {chunk_counter}:")
-                print(f" │             {accumulated_raw_data}")
-                print(f" │             {accumulated_json_text}")
+                # # Accumulate stream markers for audit logging preservation
+                # accumulated_raw_data += f"\n--- CHUNK {chunk_counter} RAW ---\n" + (raw_data if raw_data else "")
+                # if json_data:
+                #     accumulated_json_text += f"\n--- CHUNK {chunk_counter} JSON ---\n" + json.dumps(json_data, indent=2)
+                # print(f" │       └── ⚠️ Chunk {chunk_counter}:")
+                # print(f" │             {accumulated_raw_data}")
+                # print(f" │             {accumulated_json_text}")
                 
                 # Guard against corrupted extractions
                 if not json_data or not isinstance(json_data, dict):
