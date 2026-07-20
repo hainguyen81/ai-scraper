@@ -209,7 +209,7 @@ def convert_phases_to_json(client: OpenAI, model_name: str, project_name: str, n
                 print(f" │       ├── 📦 Chunk {chunk_counter}: Extracting Days {current_start_day} to {current_end_day}...")
                 
                 prompt = f"""
-                Analyze the attached Phase {phase_idx} Context Markdown content of Project {project_name} with global_context_file at '{global_context_file}' and source_target_dir at 'sources/'. 
+                Analyze the attached Phase {phase_idx} Context Markdown content of Project {project_name} with 'global_context_file' at '{global_context_file}' and 'source_target_dir' at 'sources/'. 
                 Translate and extract ONLY the specific daily steps starting from Day {current_start_day} up to Day {current_end_day} (inclusive).
                 
                 If the Phase Context Markdown does not contain any tasks or plans for Day {current_start_day} or beyond, return an empty array for the 'dailyTasks' field.
