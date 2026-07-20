@@ -159,7 +159,8 @@ jobs:
           # git push -u origin master --force
           
           # config access token
-          git config --local http.https://github.com "Authorization: basic $(echo -n "x-access-token:$GH_TOKEN" | base64)"
+          B64_TOKEN=$(echo -n "x-access-token:$GH_TOKEN" | base64 | tr -d '\n')
+          git config --local http.https://github.com "Authorization: Basic $B64_TOKEN"
           
           # push force origin
           TARGET_URL="https://github.com/$TARGET_OWNER/${{ env.PROJECT_NAME }}.git"
