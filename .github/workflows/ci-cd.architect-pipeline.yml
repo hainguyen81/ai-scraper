@@ -290,7 +290,7 @@ jobs:
 
       # Step 5: Automatically stage, commit, and push the generated architecture files
       - name: 🚀 Commit and Push Blueprint Changes
-        if: success() && inputs.exec_mode != 'None'          # if previous step is successful
+        if: always() && inputs.exec_mode != 'None'          # if previous step is successful
         run: |
           # Only commit if there are explicit architectural diff changes detected
           if git diff --cached --quiet; then

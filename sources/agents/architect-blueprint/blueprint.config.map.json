@@ -1,22 +1,23 @@
 {
-	"phase_id": "{{ ai.phase }}",
-	"phase_name": "{{ ai.phase }}",
-	"project_name": "{{ ai.project_name | lower }}",
-	"global_context_file": "{{ ai.global_context_file }}",
+	"phase_id": {{ ai.phase | default(ai.phase_idx) | default(1) | int }},
+	"phase_name": "{{ ai.phase_name | default(ai.phase_title) | default(ai.phase) | default('Phase ' ~ ai.phase_idx | default(1)) }}",
+	"project_name": "{{ ai.project_name | default('No Specific Project') | lower }}",
+	"global_context_file": "{{ ai.global_context_file | default('No Specific Project Global BluePrint Context File') }}",
 	"source_target_dir": "sources/",
 	"days": [
 		{% if ai.dailyTasks %}
 			{% for day_item in ai.dailyTasks | default([]) %}
+			{% set day_idx = day_item.day | default(loop.index) | default(0) | int %}
 			{
-			  "day": "{{ day_item.day }}",
-			  "context_section": "DAY {{ day_item.day }}",
-			  "context_file": "{{ ai.phase_context_file }}",
+			  "day": {{ day_idx }},
+			  "context_section": "DAY {{ day_idx }}",
+			  "context_file": "{{ ai.phase_context_file | default('No Specific Project Phase BluePrint Context File') }}",
 			  "sub_tasks": [
 				{% for task_item in day_item.tasks | default([]) %}
 				{
-				  "id": "D{{ day_item.day }}_ST{{ loop.index }}",
+				  "id": "D{{ day_idx }}_ST{{ loop.index | default(0) | int }}",
 				  "agent": "{{ task_item.assignee | default('Coder') | lower }}",
-				  "desc": "{{ task_item.assignee | default('Coder') }} Agent: {{ task_item.task }}"
+				  "desc": "{{ task_item.assignee | default('Coder') }} Agent: {{ task_item.task | default('No description provided') }}"
 				}{% if not loop.last %},{% endif %}
 				{% endfor %}
 			  ]
@@ -25,16 +26,17 @@
 		
 		{% elif ai.dayByDayPlan %}
 			{% for day_item in ai.dayByDayPlan | default([]) %}
+			{% set day_idx = day_item.day | default(loop.index) | default(0) | int %}
 			{
-			  "day": "{{ day_item.day }}",
-			  "context_section": "DAY {{ day_item.day }}",
-			  "context_file": "{{ ai.phase_context_file }}",
+			  "day": {{ day_idx }},
+			  "context_section": "DAY {{ day_idx }}",
+			  "context_file": "{{ ai.phase_context_file | default('No Specific Project Phase BluePrint Context File') }}",
 			  "sub_tasks": [
 				{% for task_item in day_item.tasks | default([]) %}
 				{
-				  "id": "D{{ day_item.day }}_ST{{ loop.index }}",
+				  "id": "D{{ day_idx }}_ST{{ loop.index | default(0) | int }}",
 				  "agent": "{{ day_item.subAgent | default('Coder') | lower }}",
-				  "desc": "{{ day_item.subAgent | default('Coder') }} Agent: {{ task_item | default('No description provided') }}"
+				  "desc": "{{ day_item.subAgent | default('Coder') }} Agent: {{ task_item.task | default(task_item) | default('No description provided') }}"
 				}{% if not loop.last %},{% endif %}
 				{% endfor %}
 			  ]
