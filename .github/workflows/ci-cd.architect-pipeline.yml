@@ -308,7 +308,7 @@ jobs:
   
   # Publish Project Blueprint Changes
   publish-project-blueprint:
-    name: 🚀 Publish Project Blueprint Changes
+    name: 🌐 Publish Project Blueprint Changes
     needs: [ generate-blueprint ]
     if: ${{ github.event.inputs.publish_project == 'true' }}
     uses: ./.github/workflows/ci-cd.project-initial.yml
