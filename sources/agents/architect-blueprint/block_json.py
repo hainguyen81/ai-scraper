@@ -49,7 +49,7 @@ def project_context_file(project_name: str):
 def phase_context_file(phase_idx: int):
     return f".ai/.plan/.context/phase-{ phase_idx }.context.blueprint.md"
 
-def dynamic_transform(json_data, project_name: str, phase_idx: int, template_file_path="blueprint.config.map.json", log_file_path: str):
+def dynamic_transform(json_data, project_name: str, phase_idx: int, template_file_path: str, log_file_path: str):
     # check json mapping whether existed
     if not template_file_path or not os.path.exists(template_file_path):
         print(f" │   └── ⚠️ The mapping JSON file not found: {template_file_path}. So using manual transform...")
