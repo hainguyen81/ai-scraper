@@ -1,0 +1,86 @@
+[
+    {
+        "id": 48871547,
+        "title": "Show HN: Clx – Compile Lua to Native Executables Through C++20",
+        "url": "https://github.com/samyeyo/clx",
+        "description_snippet": "Hi HN,<p>clx is an ahead-of-time compiler for standard Lua that generates C++20 and produces standalone native executables through GCC, Clang or MSVC.<p>The project started as an experiment to see whether modern C++ could be used as a portable compiler backend instead of LLVM or direct machine code generation. The generated code is then compiled and optimized by the host toolchain.<p>The latest release replaces the previous NaN-tagged value representation with a new shadow-types implementation, adds full int64 support, improves native arithmetic code generation and adds ARM64 macOS coroutine support.<p>Performance is typically much faster than the Lua interpreter and can outperform LuaJIT on some computation-heavy workloads while remaining fully ahead-of-time compiled.<p>The repository also contains graphical examples written in Lua, including a Pong game and a Mandelbrot explorer using a Sokol binary module (using the clx C++ API)<p>I&#x27;d be very interested in feedback on clx :)"
+    },
+    {
+        "id": 48966852,
+        "title": "Show HN: Regularly, hand-picked daily logic and number puzzles, no ads",
+        "url": "https://regularly.co",
+        "description_snippet": "Hi HN. I wanted to present to you Regularly (<a href=\"https:&#x2F;&#x2F;regularly.co\" rel=\"nofollow\">https:&#x2F;&#x2F;regularly.co</a>), a daily logic&#x2F;math puzzle website I made to scratch my own itch: can we have a fun and engaging puzzle app that doesn&#x27;t eventually devolve into an iap blockaded mess? For background, a few years ago I released my first daily puzzle (Countable), which I made for my then-girlfriend (now wife) and me to play over morning coffee. One marriage and four games later, the full Regularly set was born: with no ads, no sign-up, no iaps. It spread by word of mouth and a few hundred people now play each day.<p>Our business model is simple: the daily puzzles will always be free (without ads). At some point I may charge a small amount to access and play the back catalogue, but the day&#x27;s puzzles stay free forever. As with many other websites, a fresh puzzle set drops every morning. However, unlike those websites, every puzzle shown is hand-picked rath"
+    },
+    {
+        "id": 48966808,
+        "title": "Show HN: Same castle prompt, 8 LLMs, 24 procedural Three.js worlds",
+        "url": "https://castle-bakeoff.pages.dev/",
+        "description_snippet": ""
+    },
+    {
+        "id": 48966690,
+        "title": "Show HN: AI Buddy – Free STT and Screenshot Tool for Mac (Requires Gemini)",
+        "url": "https://claudete.co/ai-buddy",
+        "description_snippet": "I created this tool because I honestly didn&#x27;t want to pay a monthly subscription fee for other apps, and I also needed it to be a bit more reliable and wanted to be able to take screenshots in a particular way that&#x27;s useful for working with Claude Code."
+    },
+    {
+        "id": 48941123,
+        "title": "Show HN: Mojibake – A low-level Unicode library written in C",
+        "url": "https://mojibake.zaerl.com/",
+        "description_snippet": "I&#x27;ve written Mojibake because I don&#x27;t like the other Unicode libraries for Unicode support.<p>It consists of only two amalgamation files: mojibake.h and mojibake.c. I&#x27;ve added all the most important Unicode algorithms, such as normalization, case conversion, segmentation, bidirectional text, collation, confusable, and others.<p>I regularly test it in these OSes: Linux, macOS, FreeBSD, OpenBSD, NetBSD, and Windows 11.<p>You can find a WASM demo on that site of all the public API functions and the documentation. If you want to participate, feel free to do it. Any kind of help is welcome. Check the CONTRIBUTING.md and API.md files in the GitHub repository for instructions on how to do it."
+    },
+    {
+        "id": 48966198,
+        "title": "Show HN: AI mock interview tool that scores your answers – free, no signup",
+        "url": "https://interviewpracticeai.com",
+        "description_snippet": ""
+    },
+    {
+        "id": 48966140,
+        "title": "Show HN: Shikigami, run AI coding agents in parallel, each in a Git worktree",
+        "url": "https://shikigami.dev/",
+        "description_snippet": "Hello all,<p>I&#x27;m a software developer. Over the last few months more and more of my work has turned into using coding agents instead of typing the whole code myself. Usually a few claude sessions at once, sometimes codex, one per feature or per revealed bug.<p>I ran them in a split terminal for a few weeks, and quickly spotted two main problems. The first is that I couldn&#x27;t easily tell which agent was stuck waiting on me and which was still working, so I&#x27;d cycle through sessions and checking on them.<p>The second one: agents sharing a single branch step on each other. Two of them could be editing the same file with different ideas - a nice recipe for a mess.<p>So I built my own solution - Shikigami. It&#x27;s a desktop app that runs agents side by side, each one in its own git worktree. Same repository, separate working directories, so they can all run at once without touching each other&#x27;s edits. Every agent has a real PTY session.<p>The sessions are resumable too, "
+    },
+    {
+        "id": 48908691,
+        "title": "Show HN: Simulator for a custom 8-bit discreet logic computer",
+        "url": "https://msap2.mehran.dk",
+        "description_snippet": "5 years ago, I made a derivative of SAP-1 (mainly inspired by Ben Eater) on breadboard with few improvement and called it MSAP-1 (<a href=\"https:&#x2F;&#x2F;github.com&#x2F;mehrantsi&#x2F;MSAP-1\" rel=\"nofollow\">https:&#x2F;&#x2F;github.com&#x2F;mehrantsi&#x2F;MSAP-1</a>) I made my own very primitive Assembly language and a simple Arduino programmer (<a href=\"https:&#x2F;&#x2F;github.com&#x2F;mehrantsi&#x2F;8-bit_CPU_Programmer\" rel=\"nofollow\">https:&#x2F;&#x2F;github.com&#x2F;mehrantsi&#x2F;8-bit_CPU_Programmer</a>) where I could load my programs onto MSAP-1 and even Debug them (<a href=\"https:&#x2F;&#x2F;github.com&#x2F;mehrantsi&#x2F;8-bit_CPU_Debugger\" rel=\"nofollow\">https:&#x2F;&#x2F;github.com&#x2F;mehrantsi&#x2F;8-bit_CPU_Debugger</a>).<p>After that I started worked on the second version of it (<a href=\"https:&#x2F;&#x2F;github.com&#x2F;mehrantsi&#x2F;MSAP-2\" rel=\"nofollow\">https:&#x2F;&#x2F;github.com&#x2F;mehrantsi&#x2F;MSAP-2</a>) by adding Stack, Interrupts and etc. with the "
+    },
+    {
+        "id": 48965552,
+        "title": "Show HN: FlexInference LLM Router",
+        "url": "https://www.flexinference.com",
+        "description_snippet": "Hey everyone, just added Bedrock and Vertex support to FlexInference. It now can do provider fallback on 429 and 5xx. Plus there is upstream retries you can setup via SDK. This way you can do routing for free through OpenAI, Anthropic, Google, Vertex, and Bedrock. Working on Foundry support next."
+    },
+    {
+        "id": 48965499,
+        "title": "Show HN: CodeKitHub – Free browser-based tools, files never leave your device",
+        "url": "https://codekithub.com/en/",
+        "description_snippet": ""
+    },
+    {
+        "id": 48965178,
+        "title": "Show HN: LectureToBook – Turn Videos into a PDF/ePub",
+        "url": "https://lecturetobook.com/",
+        "description_snippet": "Lecturetobook takes a video presentation and turns it into an editable document, with photos, diagrams, etc. extracted from your slides.<p>I came up with this idea because I was enrolled in an online course and it was all videos. I spend all day long on the computer for work, so the last thing I want to do after work is spend more time staring at a screen. I wanted something that could take those videos and turn them into a readable format.<p>The most difficult part was detecting what frames in the video are slides, and extracting from those what is useful content to add to the document. I didn&#x27;t want to just stick a screengrab of the slides in the text, I wanted it to read like an actual book, so it uses an AI model to take from the slides what is useful and ignores what is just repeated in the transcript.<p>Here is an output sample from an NIH video: <a href=\"https:&#x2F;&#x2F;lecturetobook.com&#x2F;sample&#x2F;sleep-book&#x2F;book.html\" rel=\"nofollow\">https:&#x2F;&#x2F;lecturet"
+    },
+    {
+        "id": 48957639,
+        "title": "Show HN: ride-recap, teaching a LLM my taste to automate cycling highlights",
+        "url": "https://www.iandmacomber.com/blog/gopro-garmin-gemini-ride-recap/",
+        "description_snippet": "TL;DR: Turn hours of raw GoPro footage + a .fit file into a 60-second highlight reel with ride telemetry burned in. Every second of the ride is scanned by gemini-3.5-flash, as is the clip ranking + curation. The whole thing costs about $0.04 per ride and takes 10 minutes.<p>Longer version: Road cycling has been my primary form of exercise, social outlet, therapy, wardrobe expense, and personality trait for almost a decade. I ride most weekends, usually out of Manhattan and up 9W. By the end of a ride I have hours of GoPro footage and one .fit file with per-second speed, power, heart rate, cadence, and GPS. Absolutely no one wants to watch 3 hours of being stuck behind Citibikes on West Side Highway. It&#x27;s fun to look through past footage, identify the fun parts, and put together a narrative to remember. But since cycling is already time consuming, manually editing a highlight reel edit per ride is a nonstarter. So I built and open-sourced <a href=\"https:&#x2F;&#x2F;github.com&#x2F;"
+    },
+    {
+        "id": 48938524,
+        "title": "Show HN: Be the ChatBOT",
+        "url": "https://bethechatbot.com/",
+        "description_snippet": "I made this experimental art project&#x2F;game that&#x27;s an LLM chat assistant, but where <i>you&#x27;re</i> the AI.<p>I wanted people to get a visceral sense of what it&#x27;s like to answer the kinds of things that people prompt their chatbots day in and day out.<p>If you&#x27;re interested, I wrote up some more info on how I made it, including how the &quot;user&quot; prompts are generated with an eye for realism: <a href=\"https:&#x2F;&#x2F;bethechatbot.com&#x2F;about\" rel=\"nofollow\">https:&#x2F;&#x2F;bethechatbot.com&#x2F;about</a><p>Hope you enjoy it! I&#x27;d love to hear people&#x27;s takeaways."
+    },
+    {
+        "id": 48965137,
+        "title": "Show HN: Zlvox – 25 Free Developer Tools (AI, JSON, PDF) with Zero Tracking",
+        "url": "https://zlvox.com/",
+        "description_snippet": ""
+    }
+]
