@@ -158,12 +158,15 @@ jobs:
           # git branch -M master
           # git push -u origin master --force
           
+          # config access token
+          git config --local http.https://github.com "Authorization: basic $(echo -n "x-access-token:$GH_TOKEN" | base64)"
+          
           # push force origin
           TARGET_URL="https://github.com/$TARGET_OWNER/${{ env.PROJECT_NAME }}.git"
           git remote add origin "$TARGET_URL"
           
           echo "⬆️ Force pushing payload to upstream master branch..."
-          # 💡 Push token via HTTP Extra Header
-          git -c http.extraheader="Authorization: Basic ${echo -n "x-access-token:$GH_TOKEN" | base64}" push -u origin master --force
+          git branch -M master
+          git push -u origin master --force
           
           echo -e "\n🎉 [SUCCESS] Target Repository initialization pipeline finalized smoothly! 🏁✨"
