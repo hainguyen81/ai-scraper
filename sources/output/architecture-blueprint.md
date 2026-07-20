@@ -36606,3 +36606,1650 @@ You are a rigid technical translator. Map high-level Markdown workflows into pre
 Error code: 404 - {'error': {'message': 'The model `qwen3-32b` does not exist or you do not have access to it.', 'type': 'invalid_request_error', 'code': 'model_not_found'}}
 ```
 
+# Phase 1 STEPS - Prompt:
+
+
+                Analyze the attached Phase 1 Context Markdown content. 
+                Extract and translate ALL daily steps, checklists, and agent tasks starting from Day 1 up to Day 5 (inclusive).
+
+                CRITICAL INSTRUCTIONS FOR PRODUCTION STABILITY:
+                1. Target Range Focus: Carefully locate all scheduling logs and task sections for any Day that falls strictly between Day 1 and Day 5 (inclusive).
+                2. Mandatory Data Extraction: You MUST parse and generate a day object node inside the 'days' array for EVERY single day within the requested range [1 to 5]. 
+                3. NO ESCAPE HATCH: Do NOT return an empty array for 'days' under any circumstances if there is markdown text present. Even if tasks are not explicitly labeled, parse the paragraph descriptions into technical sub-tasks for that day.
+                4. STRICT LITERAL FIELD VALUES (MANDATORY):
+                   - Populate the exact string ".ai/.context/test-ai-architecture.global.blueprint.md" into the 'global_context_file' field.
+                   - Populate the exact string "sources/" into the 'source_target_dir' field.
+                5. Task Details: For every micro task item under a specific day:
+                   - Provide a sequential task description text into the 'task' field.
+                   - Provide the assigned role (e.g., 'Coder', 'Tester', 'Reviewer') into the 'agent', 'subAgent', 'assignee' or 'subAgent' field.
+                6. Context Fields: For each day object, set 'day' as the integer value of that day, set 'context_file' to '.ai/.plan/.context/phase-1.context.blueprint.md', and set 'context_section' to 'DAY ' followed by the day number.
+
+                You MUST conform strictly to your required JSON Schema layout design structure:
+                {
+  "$defs": {
+    "DailyStep": {
+      "properties": {
+        "day": {
+          "description": "Timeline iteration day inside this isolated phase.",
+          "title": "Day",
+          "type": "integer"
+        },
+        "context_file": {
+          "description": "The phase context Markdown file for closure on this day.",
+          "title": "Context File",
+          "type": "string"
+        },
+        "context_section": {
+          "description": "The day targeted for closure on this day.",
+          "title": "Context Section",
+          "type": "string"
+        },
+        "sub_tasks": {
+          "description": "Array of isolated micro-tasks assigned to sub-agents.",
+          "items": {
+            "$ref": "##/$defs/SubAgentTask"
+          },
+          "title": "Sub Tasks",
+          "type": "array"
+        }
+      },
+      "required": [
+        "day",
+        "context_file",
+        "context_section",
+        "sub_tasks"
+      ],
+      "title": "DailyStep",
+      "type": "object"
+    },
+    "SubAgentTask": {
+      "properties": {
+        "id": {
+          "description": "Sub-Task identity of Task that sub-agent role executing.",
+          "title": "Id",
+          "type": "string"
+        },
+        "agent": {
+          "description": "Target sub-agent role executing the task.",
+          "title": "Agent",
+          "type": "string"
+        },
+        "desc": {
+          "description": "Literal, low-level technical step assigned to the agent.",
+          "title": "Desc",
+          "type": "string"
+        }
+      },
+      "required": [
+        "id",
+        "agent",
+        "desc"
+      ],
+      "title": "SubAgentTask",
+      "type": "object"
+    }
+  },
+  "properties": {
+    "phase_id": {
+      "description": "Target phase tracker index.",
+      "title": "Phase Id",
+      "type": "integer"
+    },
+    "phase_name": {
+      "description": "Target phase tracker name.",
+      "title": "Phase Name",
+      "type": "string"
+    },
+    "project_name": {
+      "description": "Target project tracker name.",
+      "title": "Project Name",
+      "type": "string"
+    },
+    "global_context_file": {
+      "description": "Project global context Markdown file for closure.",
+      "title": "Global Context File",
+      "type": "string"
+    },
+    "source_target_dir": {
+      "description": "Project sources folder path for closure.",
+      "title": "Source Target Dir",
+      "type": "string"
+    },
+    "days": {
+      "description": "Day-by-day engineering tracking steps.",
+      "items": {
+        "$ref": "##/$defs/DailyStep"
+      },
+      "title": "Days",
+      "type": "array"
+    }
+  },
+  "required": [
+    "phase_id",
+    "phase_name",
+    "project_name",
+    "global_context_file",
+    "source_target_dir",
+    "days"
+  ],
+  "title": "PhaseStepsPlan",
+  "type": "object"
+}
+
+                --- PHASE 1 CONTEXT MARKDOWN ---
+                ## PHASE 1 CONTEXT BLUEPRINT: test‑ai‑architecture  
+
+#### 1. Phase Operational Scope & Objectives  
+
+| Objective | Description | Success Metric |
+|-----------|-------------|----------------|
+| **Validate Core Business Assumptions** | Confirm that the QR‑attendance flow, multi‑center data model, and omni‑channel notification pipeline can be realized with the chosen stack (Quarkus, Kafka, PostgreSQL, GKE). | PoC records a single attendance per learner per day, decrements remaining membership days, and enqueues a notification message. |
+| **Define Bounded‑Contexts & Domain Model** | Produce a Context‑Map (Domain‑Driven Design) that isolates **Learner**, **Center**, **Attendance**, **Membership**, **Notification**, and **Auth** contexts. | Reviewed diagram approved by Manager & Reviewer. |
+| **Prototype Critical Path** | Build a minimal end‑to‑end prototype: <br>1. **Auth** (email + password) → JWT <br>2. **QR Scan** (simulated HTTP call) → **Attendance Service** writes to PostgreSQL and publishes to Kafka <br>3. **Notification Service** consumes Kafka, calls a stub Zalo API and a mock FCM endpoint. | Automated integration test passes: attendance persisted once per day, membership days decremented, notification payload emitted. |
+| **Establish Security & Compliance Foundations** | Demonstrate TLS everywhere, secret‑less configuration (Secret Manager), and basic OPA policy for API gateway. | No plaintext secrets in repo; `curl -k https://...` succeeds with valid cert; OPA gate denies unauthenticated request. |
+| **Set Up CI/CD Skeleton** | GitHub Actions workflow that builds a **Quarkus** native image (optional GraalVM), runs unit tests, builds a Docker image, scans with Trivy, and pushes to Artifact Registry. | Workflow passes on every push to `main`. |
+| **Document Architecture Decisions** | ADRs for **Event Streaming**, **Multi‑Tenant DB**, **i18n detection**, and **Container Image Strategy**. | ADRs stored in `docs/adr/` and linked from the README. |
+
+> **Gate‑Go/No‑Go** – At the end of Phase 1 the Manager, Reviewer, and Tester jointly sign‑off if **all** success metrics are met and the Global Guardrails (Section 2 of the Global Context) are satisfied.
+
+---
+
+#### 2. Allowed Technical Scope & Directory Boundaries (Files, paths, and endpoints)  
+
+| Layer | Allowed Repository Path | Example Files | Public API Endpoints (prototype) |
+|------|--------------------------|---------------|-----------------------------------|
+| **Auth Service** | `services/auth/` | `src/main/java/.../AuthResource.java`, `src/main/resources/application.yml` | `POST /api/v1/auth/login` (email/password) <br> `POST /api/v1/auth/firebase` (token exchange) |
+| **Attendance Service** | `services/attendance/` | `AttendanceResource.java`, `AttendanceProcessor.java`, `src/main/resources/application.yml` | `POST /api/v1/attendance/scan` (payload: `{ learnerId, qrCode, timestamp }`) |
+| **Notification Service** | `services/notification/` | `NotificationConsumer.java`, `ZaloClientStub.java`, `FCMClientStub.java` | **No public HTTP** – consumes Kafka topic `attendance.events`. |
+| **Domain Model (shared)** | `libs/domain/` | `Learner.java`, `Center.java`, `Membership.java`, `Attendance.java` | – |
+| **Infrastructure as Code** | `infra/helm/` | `auth/values.yaml`, `attendance/values.yaml`, `notification/values.yaml` | – |
+| **CI/CD** | `.github/workflows/` | `ci-build.yml`, `ci-security.yml` | – |
+| **Documentation & ADRs** | `docs/` | `adr/001-event-streaming.md`, `architecture-overview.md` | – |
+| **Mock External APIs** | `mocks/` | `zalo-mock/`, `fcm-mock/` (simple Express servers) | `POST /mock/zalo/send` <br> `POST /mock/fcm/push` |
+
+**Endpoint Security** – All HTTP endpoints must require a valid **Bearer JWT** signed by the Auth Service’s private key. The JWT must contain a `role` claim (`ADMIN`, `STAFF`, `LEARNER`).  
+
+**Network Boundaries** –  
+* Services run in the same GKE namespace `phase1‑sandbox`.  
+* Kafka broker reachable only via internal ClusterIP service `kafka-svc`.  
+* Mock APIs exposed via `NodePort` **only** on the CI runner network (not internet‑facing).  
+
+**File‑level Guardrails** –  
+* No `.env` or secret files committed.  
+* All configuration values that are secrets must be referenced via `${SM://path/to/secret}` (Secret Manager placeholder).  
+
+---
+
+#### 3. Dedicated Sub‑Agent Functional Directives  
+
+| Sub‑Agent | Concrete Tasks for Phase 1 | Deliverables (artifact path) | Acceptance Criteria |
+|-----------|----------------------------|------------------------------|---------------------|
+| **Coder** | 1. Scaffold Quarkus Maven modules for `auth`, `attendance`, `notification`. <br>2. Implement JWT generation & verification (Auth). <br>3. Create PostgreSQL schema (Flyway scripts) for `learners`, `centers`, `memberships`, `attendance_logs`. <br>4. Wire Attendance Service to publish `AttendanceRecorded` events to Kafka. <br>5. Build Dockerfiles (multi‑stage, non‑root user) for each service. | `services/auth/`, `services/attendance/`, `services/notification/`, `infra/helm/`, `db/migrations/V1__init.sql` | Unit tests ≥ 80 % coverage; Docker images build locally without errors; `docker run` starts and health‑checks succeed. |
+| **Tester** | 1. Write JUnit tests for Auth login flow and Attendance idempotency. <br>2. Create Postman collection for the three public endpoints. <br>3. Develop an integration test (using Testcontainers) that spins up PostgreSQL + Kafka, runs a full scan → attendance → notification flow. <br>4. Execute OWASP Dependency‑Check on the Maven dependencies. | `services/**/src/test/java/`, `test/postman/attendance.postman_collection.json` | All tests pass on CI; integration test asserts exactly one `attendance_logs` row per learner per day; Dependency‑Check reports no CVE > 7.0. |
+| **Reviewer** | 1. Validate that all Dockerfiles use a minimal base (e.g., `gcr.io/distroless/java17`). <br>2. Ensure OpenAPI spec (`openapi.yaml`) matches implemented endpoints and includes JWT security scheme. <br>3. Verify OPA policy file (`policy/auth.rego`) denies requests without `Authorization` header. <br>4. Review ADRs for completeness and rationale. | `docs/openapi.yaml`, `policy/auth.rego`, `docs/adr/` | No critical style violations; OPA policy passes `opa eval` test suite; ADRs signed off in PR comments. |
+| **DevOps (Docker / Deployer)** | 1. Configure GitHub Actions workflow `ci-build.yml` to: <br>   - Run `mvn clean verify` <br>   - Build native image (optional) <br>   - Build Docker image, tag with `${{ github.sha }}` <br>   - Scan with Trivy, fail on HIGH+ vulnerabilities <br>   - Push to Artifact Registry `asia-south1-docker.pkg.dev/<project>/phase1-sandbox/<service>` <br>2. Create a minimal Helm chart (`infra/helm/attendance/Chart.yaml`) with values for image repository, replicaCount=1, resource limits. <br>3. Deploy the three services to a **GKE Autopilot** cluster in a temporary `phase1‑sandbox` namespace using `helm upgrade --install`. <br>4. Set up a basic Prometheus scrape config for the services (via ServiceMonitor). | `.github/workflows/ci-build.yml`, `infra/helm/attendance/`, `k8s/monitoring/prometheus.yaml` | CI pipeline passes on every push; Helm release reports `STATUS: deployed`; Pods run as non‑root; Prometheus metrics endpoint returns 200. |
+| **Security (optional sub‑agent)** | 1. Generate self‑signed TLS certs for local dev and store them in Secret Manager placeholders. <br>2. Add `Istio` sidecar injection annotation to the namespace (for later phases). | `infra/istio/namespace.yaml` | `kubectl get namespace phase1-sandbox -o yaml` shows `istio-injection: enabled`. |
+
+*All sub‑agents must log their daily progress in the shared Confluence page `Phase 1 – Discovery & Architecture Validation` and update the Kanban board in Jira (Epic **PH1‑DISCOVERY**).*
+
+---
+
+#### 4. Phase Definition of Done (DoD)  
+
+The Phase 1 increment is considered **Done** when **all** of the following conditions are satisfied:
+
+1. **Functional PoC**  
+   * A learner can authenticate via email/password and receive a signed JWT.  
+   * A QR‑scan request (POST `/api/v1/attendance/scan`) creates **exactly one** attendance record for the day, decrements the learner’s `remaining_days`, and publishes an `AttendanceRecorded` event to Kafka.  
+   * The Notification Service consumes the event and successfully calls both mock Zalo and mock FCM endpoints (verified by logs).  
+
+2. **Architecture Artefacts**  
+   * Context‑Map diagram (`docs/architecture/context-map.png`).  
+   * ADRs for Event Streaming, Multi‑Tenant DB, i18n detection, and Container Image Strategy stored under `docs/adr/`.  
+
+3. **Code Quality & Security**  
+   * Unit test coverage ≥ 80 % for new code.  
+   * No **critical** or **high** vulnerabilities reported by Trivy or OWASP Dependency‑Check.  
+   * All secrets referenced via Secret Manager placeholders; no plaintext secrets in repo.  
+
+4. **CI/CD Pipeline**  
+   * GitHub Actions workflow `ci-build.yml` runs on every push to `main` and completes all stages (build, test, scan, push).  
+   * Docker images are published to Artifact Registry with immutable digests.  
+
+5. **Infrastructure Deployment**  
+   * Helm releases for `auth`, `attendance`, and `notification` are deployed to GKE `phase1‑sandbox` namespace and report `READY` status.  
+   * Pods run as non‑root, use the minimal Distroless base image, and expose health‑check endpoints (`/q/health`).  
+
+6. **Observability & Logging**  
+   * Prometheus scrapes `/metrics` from each service; a Grafana dashboard (`docs/grafana/phase1-dashboard.json`) shows request latency and error rate.  
+   * All request/response logs are shipped to Cloud Logging with appropriate labels (`service=attendance`).  
+
+7. **Compliance Gate**  
+   * Reviewer signs off that the implementation adheres to every Guardrail in **Section 2 – Global Guardrails & Enterprise Compliance Standards** (data encryption, RBAC, audit logging, etc.).  
+
+8. **Stakeholder Sign‑off**  
+   * Manager, Reviewer, and Tester collectively approve the Phase 1 deliverables in Jira (transition to **Done**).  
+
+Once the above DoD checklist is fully satisfied, the team may proceed to **Phase 2 – Core Platform Build (MVP)**.
+                ------------------------------------------
+                
+
+# System Instruction
+
+You are a rigid technical translator. Map high-level Markdown workflows into precise, executable JSON schemas.
+
+# Raw Response / Exception:
+
+```json
+### Phase 1 Context JSON Schema
+
+Based on the provided Markdown content, the following JSON schema represents the daily steps, checklists, and agent tasks from Day 1 to Day 5:
+
+```json
+{
+  "phase_id": 1,
+  "phase_name": "Phase 1",
+  "project_name": "test-ai-architecture",
+  "global_context_file": ".ai/.context/test-ai-architecture.global.blueprint.md",
+  "source_target_dir": "sources/",
+  "days": [
+    {
+      "day": 1,
+      "context_file": ".ai/.plan/.context/phase-1.context.blueprint.md",
+      "context_section": "DAY 1",
+      "sub_tasks": [
+        {
+          "id": "1.1",
+          "agent": "Coder",
+          "desc": "Scaffold Quarkus Maven modules for auth, attendance, notification"
+        },
+        {
+          "id": "1.2",
+          "agent": "Tester",
+          "desc": "Write JUnit tests for Auth login flow and Attendance idempotency"
+        },
+        {
+          "id": "1.3",
+          "agent": "Reviewer",
+          "desc": "Validate that all Dockerfiles use a minimal base (e.g., gcr.io/distroless/java17)"
+        },
+        {
+          "id": "1.4",
+          "agent": "DevOps (Docker / Deployer)",
+          "desc": "Configure GitHub Actions workflow ci-build.yml to run mvn clean verify, build native image, build Docker image, tag with ${{ github.sha }}, scan with Trivy, and push to Artifact Registry"
+        }
+      ]
+    },
+    {
+      "day": 2,
+      "context_file": ".ai/.plan/.context/phase-1.context.blueprint.md",
+      "context_section": "DAY 2",
+      "sub_tasks": [
+        {
+          "id": "2.1",
+          "agent": "Coder",
+          "desc": "Implement JWT generation & verification (Auth)"
+        },
+        {
+          "id": "2.2",
+          "agent": "Tester",
+          "desc": "Create Postman collection for the three public endpoints"
+        },
+        {
+          "id": "2.3",
+          "agent": "Reviewer",
+          "desc": "Ensure OpenAPI spec (openapi.yaml) matches implemented endpoints and includes JWT security scheme"
+        },
+        {
+          "id": "2.4",
+          "agent": "DevOps (Docker / Deployer)",
+          "desc": "Create a minimal Helm chart (infra/helm/attendance/Chart.yaml) with values for image repository, replicaCount=1, resource limits"
+        }
+      ]
+    },
+    {
+      "day": 3,
+      "context_file": ".ai/.plan/.context/phase-1.context.blueprint.md",
+      "context_section": "DAY 3",
+      "sub_tasks": [
+        {
+          "id": "3.1",
+          "agent": "Coder",
+          "desc": "Create PostgreSQL schema (Flyway scripts) for learners, centers, memberships, attendance_logs"
+        },
+        {
+          "id": "3.2",
+          "agent": "Tester",
+          "desc": "Develop an integration test (using Testcontainers) that spins up PostgreSQL + Kafka, runs a full scan → attendance → notification flow"
+        },
+        {
+          "id": "3.3",
+          "agent": "Reviewer",
+          "desc": "Verify OPA policy file (policy/auth.rego) denies requests without Authorization header"
+        },
+        {
+          "id": "3.4",
+          "agent": "DevOps (Docker / Deployer)",
+          "desc": "Deploy the three services to a GKE Autopilot cluster in a temporary phase1-sandbox namespace using helm upgrade --install"
+        }
+      ]
+    },
+    {
+      "day": 4,
+      "context_file": ".ai/.plan/.context/phase-1.context.blueprint.md",
+      "context_section": "DAY 4",
+      "sub_tasks": [
+        {
+          "id": "4.1",
+          "agent": "Coder",
+          "desc": "Wire Attendance Service to publish AttendanceRecorded events to Kafka"
+        },
+        {
+          "id": "4.2",
+          "agent": "Tester",
+          "desc": "Execute OWASP Dependency-Check on the Maven dependencies"
+        },
+        {
+          "id": "4.3",
+          "agent": "Reviewer",
+          "desc": "Review ADRs for completeness and rationale"
+        },
+        {
+          "id": "4.4",
+          "agent": "DevOps (Docker / Deployer)",
+          "desc": "Set up a basic Prometheus scrape config for the services (via ServiceMonitor)"
+        }
+      ]
+    },
+    {
+      "day": 5,
+      "context_file": ".ai/.plan/.context/phase-1.context.blueprint.md",
+      "context_section": "DAY 5",
+      "sub_tasks": [
+        {
+          "id": "5.1",
+          "agent": "Coder",
+          "desc": "Build Dockerfiles (multi-stage, non-root user) for each service"
+        },
+        {
+          "id": "5.2",
+          "agent": "Tester",
+          "desc": "Verify that all tests pass on CI and integration test asserts exactly one attendance_logs row per learner per day"
+        },
+        {
+          "id": "5.3",
+          "agent": "Reviewer",
+          "desc": "Validate that the implementation adheres to every Guardrail in Section 2 – Global Guardrails & Enterprise Compliance Standards"
+        },
+        {
+          "id": "5.4",
+          "agent": "DevOps (Docker / Deployer)",
+          "desc": "Ensure that the CI/CD pipeline runs on every push to main and completes all stages (build, test, scan, push)"
+        }
+      ]
+    }
+  ]
+}
+```
+
+This JSON schema represents the daily steps, checklists, and agent tasks from Day 1 to Day 5, as extracted from the provided Markdown content. Each day has a set of sub-tasks assigned to different agents, such as Coder, Tester, Reviewer, and DevOps (Docker / Deployer). The tasks are described in detail, and the agents are responsible for completing them. The JSON schema also includes the context file, context section, and day number for each day.
+```
+
+# Phase 1 STEPS - Prompt:
+
+
+                Analyze the attached Phase 1 Context Markdown content. 
+                Extract and translate ALL daily steps, checklists, and agent tasks starting from Day 6 up to Day 10 (inclusive).
+
+                CRITICAL INSTRUCTIONS FOR PRODUCTION STABILITY:
+                1. Target Range Focus: Carefully locate all scheduling logs and task sections for any Day that falls strictly between Day 6 and Day 10 (inclusive).
+                2. Mandatory Data Extraction: You MUST parse and generate a day object node inside the 'days' array for EVERY single day within the requested range [6 to 10]. 
+                3. NO ESCAPE HATCH: Do NOT return an empty array for 'days' under any circumstances if there is markdown text present. Even if tasks are not explicitly labeled, parse the paragraph descriptions into technical sub-tasks for that day.
+                4. STRICT LITERAL FIELD VALUES (MANDATORY):
+                   - Populate the exact string ".ai/.context/test-ai-architecture.global.blueprint.md" into the 'global_context_file' field.
+                   - Populate the exact string "sources/" into the 'source_target_dir' field.
+                5. Task Details: For every micro task item under a specific day:
+                   - Provide a sequential task description text into the 'task' field.
+                   - Provide the assigned role (e.g., 'Coder', 'Tester', 'Reviewer') into the 'agent', 'subAgent', 'assignee' or 'subAgent' field.
+                6. Context Fields: For each day object, set 'day' as the integer value of that day, set 'context_file' to '.ai/.plan/.context/phase-1.context.blueprint.md', and set 'context_section' to 'DAY ' followed by the day number.
+
+                You MUST conform strictly to your required JSON Schema layout design structure:
+                {
+  "$defs": {
+    "DailyStep": {
+      "properties": {
+        "day": {
+          "description": "Timeline iteration day inside this isolated phase.",
+          "title": "Day",
+          "type": "integer"
+        },
+        "context_file": {
+          "description": "The phase context Markdown file for closure on this day.",
+          "title": "Context File",
+          "type": "string"
+        },
+        "context_section": {
+          "description": "The day targeted for closure on this day.",
+          "title": "Context Section",
+          "type": "string"
+        },
+        "sub_tasks": {
+          "description": "Array of isolated micro-tasks assigned to sub-agents.",
+          "items": {
+            "$ref": "##/$defs/SubAgentTask"
+          },
+          "title": "Sub Tasks",
+          "type": "array"
+        }
+      },
+      "required": [
+        "day",
+        "context_file",
+        "context_section",
+        "sub_tasks"
+      ],
+      "title": "DailyStep",
+      "type": "object"
+    },
+    "SubAgentTask": {
+      "properties": {
+        "id": {
+          "description": "Sub-Task identity of Task that sub-agent role executing.",
+          "title": "Id",
+          "type": "string"
+        },
+        "agent": {
+          "description": "Target sub-agent role executing the task.",
+          "title": "Agent",
+          "type": "string"
+        },
+        "desc": {
+          "description": "Literal, low-level technical step assigned to the agent.",
+          "title": "Desc",
+          "type": "string"
+        }
+      },
+      "required": [
+        "id",
+        "agent",
+        "desc"
+      ],
+      "title": "SubAgentTask",
+      "type": "object"
+    }
+  },
+  "properties": {
+    "phase_id": {
+      "description": "Target phase tracker index.",
+      "title": "Phase Id",
+      "type": "integer"
+    },
+    "phase_name": {
+      "description": "Target phase tracker name.",
+      "title": "Phase Name",
+      "type": "string"
+    },
+    "project_name": {
+      "description": "Target project tracker name.",
+      "title": "Project Name",
+      "type": "string"
+    },
+    "global_context_file": {
+      "description": "Project global context Markdown file for closure.",
+      "title": "Global Context File",
+      "type": "string"
+    },
+    "source_target_dir": {
+      "description": "Project sources folder path for closure.",
+      "title": "Source Target Dir",
+      "type": "string"
+    },
+    "days": {
+      "description": "Day-by-day engineering tracking steps.",
+      "items": {
+        "$ref": "##/$defs/DailyStep"
+      },
+      "title": "Days",
+      "type": "array"
+    }
+  },
+  "required": [
+    "phase_id",
+    "phase_name",
+    "project_name",
+    "global_context_file",
+    "source_target_dir",
+    "days"
+  ],
+  "title": "PhaseStepsPlan",
+  "type": "object"
+}
+
+                --- PHASE 1 CONTEXT MARKDOWN ---
+                ## PHASE 1 CONTEXT BLUEPRINT: test‑ai‑architecture  
+
+#### 1. Phase Operational Scope & Objectives  
+
+| Objective | Description | Success Metric |
+|-----------|-------------|----------------|
+| **Validate Core Business Assumptions** | Confirm that the QR‑attendance flow, multi‑center data model, and omni‑channel notification pipeline can be realized with the chosen stack (Quarkus, Kafka, PostgreSQL, GKE). | PoC records a single attendance per learner per day, decrements remaining membership days, and enqueues a notification message. |
+| **Define Bounded‑Contexts & Domain Model** | Produce a Context‑Map (Domain‑Driven Design) that isolates **Learner**, **Center**, **Attendance**, **Membership**, **Notification**, and **Auth** contexts. | Reviewed diagram approved by Manager & Reviewer. |
+| **Prototype Critical Path** | Build a minimal end‑to‑end prototype: <br>1. **Auth** (email + password) → JWT <br>2. **QR Scan** (simulated HTTP call) → **Attendance Service** writes to PostgreSQL and publishes to Kafka <br>3. **Notification Service** consumes Kafka, calls a stub Zalo API and a mock FCM endpoint. | Automated integration test passes: attendance persisted once per day, membership days decremented, notification payload emitted. |
+| **Establish Security & Compliance Foundations** | Demonstrate TLS everywhere, secret‑less configuration (Secret Manager), and basic OPA policy for API gateway. | No plaintext secrets in repo; `curl -k https://...` succeeds with valid cert; OPA gate denies unauthenticated request. |
+| **Set Up CI/CD Skeleton** | GitHub Actions workflow that builds a **Quarkus** native image (optional GraalVM), runs unit tests, builds a Docker image, scans with Trivy, and pushes to Artifact Registry. | Workflow passes on every push to `main`. |
+| **Document Architecture Decisions** | ADRs for **Event Streaming**, **Multi‑Tenant DB**, **i18n detection**, and **Container Image Strategy**. | ADRs stored in `docs/adr/` and linked from the README. |
+
+> **Gate‑Go/No‑Go** – At the end of Phase 1 the Manager, Reviewer, and Tester jointly sign‑off if **all** success metrics are met and the Global Guardrails (Section 2 of the Global Context) are satisfied.
+
+---
+
+#### 2. Allowed Technical Scope & Directory Boundaries (Files, paths, and endpoints)  
+
+| Layer | Allowed Repository Path | Example Files | Public API Endpoints (prototype) |
+|------|--------------------------|---------------|-----------------------------------|
+| **Auth Service** | `services/auth/` | `src/main/java/.../AuthResource.java`, `src/main/resources/application.yml` | `POST /api/v1/auth/login` (email/password) <br> `POST /api/v1/auth/firebase` (token exchange) |
+| **Attendance Service** | `services/attendance/` | `AttendanceResource.java`, `AttendanceProcessor.java`, `src/main/resources/application.yml` | `POST /api/v1/attendance/scan` (payload: `{ learnerId, qrCode, timestamp }`) |
+| **Notification Service** | `services/notification/` | `NotificationConsumer.java`, `ZaloClientStub.java`, `FCMClientStub.java` | **No public HTTP** – consumes Kafka topic `attendance.events`. |
+| **Domain Model (shared)** | `libs/domain/` | `Learner.java`, `Center.java`, `Membership.java`, `Attendance.java` | – |
+| **Infrastructure as Code** | `infra/helm/` | `auth/values.yaml`, `attendance/values.yaml`, `notification/values.yaml` | – |
+| **CI/CD** | `.github/workflows/` | `ci-build.yml`, `ci-security.yml` | – |
+| **Documentation & ADRs** | `docs/` | `adr/001-event-streaming.md`, `architecture-overview.md` | – |
+| **Mock External APIs** | `mocks/` | `zalo-mock/`, `fcm-mock/` (simple Express servers) | `POST /mock/zalo/send` <br> `POST /mock/fcm/push` |
+
+**Endpoint Security** – All HTTP endpoints must require a valid **Bearer JWT** signed by the Auth Service’s private key. The JWT must contain a `role` claim (`ADMIN`, `STAFF`, `LEARNER`).  
+
+**Network Boundaries** –  
+* Services run in the same GKE namespace `phase1‑sandbox`.  
+* Kafka broker reachable only via internal ClusterIP service `kafka-svc`.  
+* Mock APIs exposed via `NodePort` **only** on the CI runner network (not internet‑facing).  
+
+**File‑level Guardrails** –  
+* No `.env` or secret files committed.  
+* All configuration values that are secrets must be referenced via `${SM://path/to/secret}` (Secret Manager placeholder).  
+
+---
+
+#### 3. Dedicated Sub‑Agent Functional Directives  
+
+| Sub‑Agent | Concrete Tasks for Phase 1 | Deliverables (artifact path) | Acceptance Criteria |
+|-----------|----------------------------|------------------------------|---------------------|
+| **Coder** | 1. Scaffold Quarkus Maven modules for `auth`, `attendance`, `notification`. <br>2. Implement JWT generation & verification (Auth). <br>3. Create PostgreSQL schema (Flyway scripts) for `learners`, `centers`, `memberships`, `attendance_logs`. <br>4. Wire Attendance Service to publish `AttendanceRecorded` events to Kafka. <br>5. Build Dockerfiles (multi‑stage, non‑root user) for each service. | `services/auth/`, `services/attendance/`, `services/notification/`, `infra/helm/`, `db/migrations/V1__init.sql` | Unit tests ≥ 80 % coverage; Docker images build locally without errors; `docker run` starts and health‑checks succeed. |
+| **Tester** | 1. Write JUnit tests for Auth login flow and Attendance idempotency. <br>2. Create Postman collection for the three public endpoints. <br>3. Develop an integration test (using Testcontainers) that spins up PostgreSQL + Kafka, runs a full scan → attendance → notification flow. <br>4. Execute OWASP Dependency‑Check on the Maven dependencies. | `services/**/src/test/java/`, `test/postman/attendance.postman_collection.json` | All tests pass on CI; integration test asserts exactly one `attendance_logs` row per learner per day; Dependency‑Check reports no CVE > 7.0. |
+| **Reviewer** | 1. Validate that all Dockerfiles use a minimal base (e.g., `gcr.io/distroless/java17`). <br>2. Ensure OpenAPI spec (`openapi.yaml`) matches implemented endpoints and includes JWT security scheme. <br>3. Verify OPA policy file (`policy/auth.rego`) denies requests without `Authorization` header. <br>4. Review ADRs for completeness and rationale. | `docs/openapi.yaml`, `policy/auth.rego`, `docs/adr/` | No critical style violations; OPA policy passes `opa eval` test suite; ADRs signed off in PR comments. |
+| **DevOps (Docker / Deployer)** | 1. Configure GitHub Actions workflow `ci-build.yml` to: <br>   - Run `mvn clean verify` <br>   - Build native image (optional) <br>   - Build Docker image, tag with `${{ github.sha }}` <br>   - Scan with Trivy, fail on HIGH+ vulnerabilities <br>   - Push to Artifact Registry `asia-south1-docker.pkg.dev/<project>/phase1-sandbox/<service>` <br>2. Create a minimal Helm chart (`infra/helm/attendance/Chart.yaml`) with values for image repository, replicaCount=1, resource limits. <br>3. Deploy the three services to a **GKE Autopilot** cluster in a temporary `phase1‑sandbox` namespace using `helm upgrade --install`. <br>4. Set up a basic Prometheus scrape config for the services (via ServiceMonitor). | `.github/workflows/ci-build.yml`, `infra/helm/attendance/`, `k8s/monitoring/prometheus.yaml` | CI pipeline passes on every push; Helm release reports `STATUS: deployed`; Pods run as non‑root; Prometheus metrics endpoint returns 200. |
+| **Security (optional sub‑agent)** | 1. Generate self‑signed TLS certs for local dev and store them in Secret Manager placeholders. <br>2. Add `Istio` sidecar injection annotation to the namespace (for later phases). | `infra/istio/namespace.yaml` | `kubectl get namespace phase1-sandbox -o yaml` shows `istio-injection: enabled`. |
+
+*All sub‑agents must log their daily progress in the shared Confluence page `Phase 1 – Discovery & Architecture Validation` and update the Kanban board in Jira (Epic **PH1‑DISCOVERY**).*
+
+---
+
+#### 4. Phase Definition of Done (DoD)  
+
+The Phase 1 increment is considered **Done** when **all** of the following conditions are satisfied:
+
+1. **Functional PoC**  
+   * A learner can authenticate via email/password and receive a signed JWT.  
+   * A QR‑scan request (POST `/api/v1/attendance/scan`) creates **exactly one** attendance record for the day, decrements the learner’s `remaining_days`, and publishes an `AttendanceRecorded` event to Kafka.  
+   * The Notification Service consumes the event and successfully calls both mock Zalo and mock FCM endpoints (verified by logs).  
+
+2. **Architecture Artefacts**  
+   * Context‑Map diagram (`docs/architecture/context-map.png`).  
+   * ADRs for Event Streaming, Multi‑Tenant DB, i18n detection, and Container Image Strategy stored under `docs/adr/`.  
+
+3. **Code Quality & Security**  
+   * Unit test coverage ≥ 80 % for new code.  
+   * No **critical** or **high** vulnerabilities reported by Trivy or OWASP Dependency‑Check.  
+   * All secrets referenced via Secret Manager placeholders; no plaintext secrets in repo.  
+
+4. **CI/CD Pipeline**  
+   * GitHub Actions workflow `ci-build.yml` runs on every push to `main` and completes all stages (build, test, scan, push).  
+   * Docker images are published to Artifact Registry with immutable digests.  
+
+5. **Infrastructure Deployment**  
+   * Helm releases for `auth`, `attendance`, and `notification` are deployed to GKE `phase1‑sandbox` namespace and report `READY` status.  
+   * Pods run as non‑root, use the minimal Distroless base image, and expose health‑check endpoints (`/q/health`).  
+
+6. **Observability & Logging**  
+   * Prometheus scrapes `/metrics` from each service; a Grafana dashboard (`docs/grafana/phase1-dashboard.json`) shows request latency and error rate.  
+   * All request/response logs are shipped to Cloud Logging with appropriate labels (`service=attendance`).  
+
+7. **Compliance Gate**  
+   * Reviewer signs off that the implementation adheres to every Guardrail in **Section 2 – Global Guardrails & Enterprise Compliance Standards** (data encryption, RBAC, audit logging, etc.).  
+
+8. **Stakeholder Sign‑off**  
+   * Manager, Reviewer, and Tester collectively approve the Phase 1 deliverables in Jira (transition to **Done**).  
+
+Once the above DoD checklist is fully satisfied, the team may proceed to **Phase 2 – Core Platform Build (MVP)**.
+                ------------------------------------------
+                
+
+# System Instruction
+
+You are a rigid technical translator. Map high-level Markdown workflows into precise, executable JSON schemas.
+
+# Raw Response / Exception:
+
+```json
+### Phase 1 Context JSON Schema
+
+Based on the provided Markdown content, the following JSON schema represents the extracted daily steps, checklists, and agent tasks from Day 6 to Day 10:
+
+```json
+{
+  "phase_id": 1,
+  "phase_name": "Phase 1",
+  "project_name": "test-ai-architecture",
+  "global_context_file": ".ai/.context/test-ai-architecture.global.blueprint.md",
+  "source_target_dir": "sources/",
+  "days": [
+    {
+      "day": 6,
+      "context_file": ".ai/.plan/.context/phase-1.context.blueprint.md",
+      "context_section": "DAY 6",
+      "sub_tasks": [
+        {
+          "id": "6-1",
+          "agent": "Coder",
+          "desc": "Implement JWT generation and verification for Auth Service"
+        },
+        {
+          "id": "6-2",
+          "agent": "Tester",
+          "desc": "Write JUnit tests for Auth login flow"
+        }
+      ]
+    },
+    {
+      "day": 7,
+      "context_file": ".ai/.plan/.context/phase-1.context.blueprint.md",
+      "context_section": "DAY 7",
+      "sub_tasks": [
+        {
+          "id": "7-1",
+          "agent": "Coder",
+          "desc": "Create PostgreSQL schema for learners, centers, and memberships"
+        },
+        {
+          "id": "7-2",
+          "agent": "DevOps",
+          "desc": "Configure GitHub Actions workflow for building and deploying services"
+        }
+      ]
+    },
+    {
+      "day": 8,
+      "context_file": ".ai/.plan/.context/phase-1.context.blueprint.md",
+      "context_section": "DAY 8",
+      "sub_tasks": [
+        {
+          "id": "8-1",
+          "agent": "Tester",
+          "desc": "Develop integration test for attendance and notification services"
+        },
+        {
+          "id": "8-2",
+          "agent": "Reviewer",
+          "desc": "Review ADRs for completeness and rationale"
+        }
+      ]
+    },
+    {
+      "day": 9,
+      "context_file": ".ai/.plan/.context/phase-1.context.blueprint.md",
+      "context_section": "DAY 9",
+      "sub_tasks": [
+        {
+          "id": "9-1",
+          "agent": "DevOps",
+          "desc": "Deploy services to GKE Autopilot cluster"
+        },
+        {
+          "id": "9-2",
+          "agent": "Security",
+          "desc": "Generate self-signed TLS certificates for local development"
+        }
+      ]
+    },
+    {
+      "day": 10,
+      "context_file": ".ai/.plan/.context/phase-1.context.blueprint.md",
+      "context_section": "DAY 10",
+      "sub_tasks": [
+        {
+          "id": "10-1",
+          "agent": "Coder",
+          "desc": "Implement attendance and notification services"
+        },
+        {
+          "id": "10-2",
+          "agent": "Tester",
+          "desc": "Execute integration test for attendance and notification services"
+        }
+      ]
+    }
+  ]
+}
+```
+
+Note that the tasks and agents are assigned based on the provided Markdown content, and the day numbers are assumed to be consecutive. The actual tasks and agents may vary depending on the specific requirements of the project.
+```
+
+# Phase 1 STEPS - Prompt:
+
+
+                Analyze the attached Phase 1 Context Markdown content. 
+                Extract and translate ALL daily steps, checklists, and agent tasks starting from Day 11 up to Day 15 (inclusive).
+
+                CRITICAL INSTRUCTIONS FOR PRODUCTION STABILITY:
+                1. Target Range Focus: Carefully locate all scheduling logs and task sections for any Day that falls strictly between Day 11 and Day 15 (inclusive).
+                2. Mandatory Data Extraction: You MUST parse and generate a day object node inside the 'days' array for EVERY single day within the requested range [11 to 15]. 
+                3. NO ESCAPE HATCH: Do NOT return an empty array for 'days' under any circumstances if there is markdown text present. Even if tasks are not explicitly labeled, parse the paragraph descriptions into technical sub-tasks for that day.
+                4. STRICT LITERAL FIELD VALUES (MANDATORY):
+                   - Populate the exact string ".ai/.context/test-ai-architecture.global.blueprint.md" into the 'global_context_file' field.
+                   - Populate the exact string "sources/" into the 'source_target_dir' field.
+                5. Task Details: For every micro task item under a specific day:
+                   - Provide a sequential task description text into the 'task' field.
+                   - Provide the assigned role (e.g., 'Coder', 'Tester', 'Reviewer') into the 'agent', 'subAgent', 'assignee' or 'subAgent' field.
+                6. Context Fields: For each day object, set 'day' as the integer value of that day, set 'context_file' to '.ai/.plan/.context/phase-1.context.blueprint.md', and set 'context_section' to 'DAY ' followed by the day number.
+
+                You MUST conform strictly to your required JSON Schema layout design structure:
+                {
+  "$defs": {
+    "DailyStep": {
+      "properties": {
+        "day": {
+          "description": "Timeline iteration day inside this isolated phase.",
+          "title": "Day",
+          "type": "integer"
+        },
+        "context_file": {
+          "description": "The phase context Markdown file for closure on this day.",
+          "title": "Context File",
+          "type": "string"
+        },
+        "context_section": {
+          "description": "The day targeted for closure on this day.",
+          "title": "Context Section",
+          "type": "string"
+        },
+        "sub_tasks": {
+          "description": "Array of isolated micro-tasks assigned to sub-agents.",
+          "items": {
+            "$ref": "##/$defs/SubAgentTask"
+          },
+          "title": "Sub Tasks",
+          "type": "array"
+        }
+      },
+      "required": [
+        "day",
+        "context_file",
+        "context_section",
+        "sub_tasks"
+      ],
+      "title": "DailyStep",
+      "type": "object"
+    },
+    "SubAgentTask": {
+      "properties": {
+        "id": {
+          "description": "Sub-Task identity of Task that sub-agent role executing.",
+          "title": "Id",
+          "type": "string"
+        },
+        "agent": {
+          "description": "Target sub-agent role executing the task.",
+          "title": "Agent",
+          "type": "string"
+        },
+        "desc": {
+          "description": "Literal, low-level technical step assigned to the agent.",
+          "title": "Desc",
+          "type": "string"
+        }
+      },
+      "required": [
+        "id",
+        "agent",
+        "desc"
+      ],
+      "title": "SubAgentTask",
+      "type": "object"
+    }
+  },
+  "properties": {
+    "phase_id": {
+      "description": "Target phase tracker index.",
+      "title": "Phase Id",
+      "type": "integer"
+    },
+    "phase_name": {
+      "description": "Target phase tracker name.",
+      "title": "Phase Name",
+      "type": "string"
+    },
+    "project_name": {
+      "description": "Target project tracker name.",
+      "title": "Project Name",
+      "type": "string"
+    },
+    "global_context_file": {
+      "description": "Project global context Markdown file for closure.",
+      "title": "Global Context File",
+      "type": "string"
+    },
+    "source_target_dir": {
+      "description": "Project sources folder path for closure.",
+      "title": "Source Target Dir",
+      "type": "string"
+    },
+    "days": {
+      "description": "Day-by-day engineering tracking steps.",
+      "items": {
+        "$ref": "##/$defs/DailyStep"
+      },
+      "title": "Days",
+      "type": "array"
+    }
+  },
+  "required": [
+    "phase_id",
+    "phase_name",
+    "project_name",
+    "global_context_file",
+    "source_target_dir",
+    "days"
+  ],
+  "title": "PhaseStepsPlan",
+  "type": "object"
+}
+
+                --- PHASE 1 CONTEXT MARKDOWN ---
+                ## PHASE 1 CONTEXT BLUEPRINT: test‑ai‑architecture  
+
+#### 1. Phase Operational Scope & Objectives  
+
+| Objective | Description | Success Metric |
+|-----------|-------------|----------------|
+| **Validate Core Business Assumptions** | Confirm that the QR‑attendance flow, multi‑center data model, and omni‑channel notification pipeline can be realized with the chosen stack (Quarkus, Kafka, PostgreSQL, GKE). | PoC records a single attendance per learner per day, decrements remaining membership days, and enqueues a notification message. |
+| **Define Bounded‑Contexts & Domain Model** | Produce a Context‑Map (Domain‑Driven Design) that isolates **Learner**, **Center**, **Attendance**, **Membership**, **Notification**, and **Auth** contexts. | Reviewed diagram approved by Manager & Reviewer. |
+| **Prototype Critical Path** | Build a minimal end‑to‑end prototype: <br>1. **Auth** (email + password) → JWT <br>2. **QR Scan** (simulated HTTP call) → **Attendance Service** writes to PostgreSQL and publishes to Kafka <br>3. **Notification Service** consumes Kafka, calls a stub Zalo API and a mock FCM endpoint. | Automated integration test passes: attendance persisted once per day, membership days decremented, notification payload emitted. |
+| **Establish Security & Compliance Foundations** | Demonstrate TLS everywhere, secret‑less configuration (Secret Manager), and basic OPA policy for API gateway. | No plaintext secrets in repo; `curl -k https://...` succeeds with valid cert; OPA gate denies unauthenticated request. |
+| **Set Up CI/CD Skeleton** | GitHub Actions workflow that builds a **Quarkus** native image (optional GraalVM), runs unit tests, builds a Docker image, scans with Trivy, and pushes to Artifact Registry. | Workflow passes on every push to `main`. |
+| **Document Architecture Decisions** | ADRs for **Event Streaming**, **Multi‑Tenant DB**, **i18n detection**, and **Container Image Strategy**. | ADRs stored in `docs/adr/` and linked from the README. |
+
+> **Gate‑Go/No‑Go** – At the end of Phase 1 the Manager, Reviewer, and Tester jointly sign‑off if **all** success metrics are met and the Global Guardrails (Section 2 of the Global Context) are satisfied.
+
+---
+
+#### 2. Allowed Technical Scope & Directory Boundaries (Files, paths, and endpoints)  
+
+| Layer | Allowed Repository Path | Example Files | Public API Endpoints (prototype) |
+|------|--------------------------|---------------|-----------------------------------|
+| **Auth Service** | `services/auth/` | `src/main/java/.../AuthResource.java`, `src/main/resources/application.yml` | `POST /api/v1/auth/login` (email/password) <br> `POST /api/v1/auth/firebase` (token exchange) |
+| **Attendance Service** | `services/attendance/` | `AttendanceResource.java`, `AttendanceProcessor.java`, `src/main/resources/application.yml` | `POST /api/v1/attendance/scan` (payload: `{ learnerId, qrCode, timestamp }`) |
+| **Notification Service** | `services/notification/` | `NotificationConsumer.java`, `ZaloClientStub.java`, `FCMClientStub.java` | **No public HTTP** – consumes Kafka topic `attendance.events`. |
+| **Domain Model (shared)** | `libs/domain/` | `Learner.java`, `Center.java`, `Membership.java`, `Attendance.java` | – |
+| **Infrastructure as Code** | `infra/helm/` | `auth/values.yaml`, `attendance/values.yaml`, `notification/values.yaml` | – |
+| **CI/CD** | `.github/workflows/` | `ci-build.yml`, `ci-security.yml` | – |
+| **Documentation & ADRs** | `docs/` | `adr/001-event-streaming.md`, `architecture-overview.md` | – |
+| **Mock External APIs** | `mocks/` | `zalo-mock/`, `fcm-mock/` (simple Express servers) | `POST /mock/zalo/send` <br> `POST /mock/fcm/push` |
+
+**Endpoint Security** – All HTTP endpoints must require a valid **Bearer JWT** signed by the Auth Service’s private key. The JWT must contain a `role` claim (`ADMIN`, `STAFF`, `LEARNER`).  
+
+**Network Boundaries** –  
+* Services run in the same GKE namespace `phase1‑sandbox`.  
+* Kafka broker reachable only via internal ClusterIP service `kafka-svc`.  
+* Mock APIs exposed via `NodePort` **only** on the CI runner network (not internet‑facing).  
+
+**File‑level Guardrails** –  
+* No `.env` or secret files committed.  
+* All configuration values that are secrets must be referenced via `${SM://path/to/secret}` (Secret Manager placeholder).  
+
+---
+
+#### 3. Dedicated Sub‑Agent Functional Directives  
+
+| Sub‑Agent | Concrete Tasks for Phase 1 | Deliverables (artifact path) | Acceptance Criteria |
+|-----------|----------------------------|------------------------------|---------------------|
+| **Coder** | 1. Scaffold Quarkus Maven modules for `auth`, `attendance`, `notification`. <br>2. Implement JWT generation & verification (Auth). <br>3. Create PostgreSQL schema (Flyway scripts) for `learners`, `centers`, `memberships`, `attendance_logs`. <br>4. Wire Attendance Service to publish `AttendanceRecorded` events to Kafka. <br>5. Build Dockerfiles (multi‑stage, non‑root user) for each service. | `services/auth/`, `services/attendance/`, `services/notification/`, `infra/helm/`, `db/migrations/V1__init.sql` | Unit tests ≥ 80 % coverage; Docker images build locally without errors; `docker run` starts and health‑checks succeed. |
+| **Tester** | 1. Write JUnit tests for Auth login flow and Attendance idempotency. <br>2. Create Postman collection for the three public endpoints. <br>3. Develop an integration test (using Testcontainers) that spins up PostgreSQL + Kafka, runs a full scan → attendance → notification flow. <br>4. Execute OWASP Dependency‑Check on the Maven dependencies. | `services/**/src/test/java/`, `test/postman/attendance.postman_collection.json` | All tests pass on CI; integration test asserts exactly one `attendance_logs` row per learner per day; Dependency‑Check reports no CVE > 7.0. |
+| **Reviewer** | 1. Validate that all Dockerfiles use a minimal base (e.g., `gcr.io/distroless/java17`). <br>2. Ensure OpenAPI spec (`openapi.yaml`) matches implemented endpoints and includes JWT security scheme. <br>3. Verify OPA policy file (`policy/auth.rego`) denies requests without `Authorization` header. <br>4. Review ADRs for completeness and rationale. | `docs/openapi.yaml`, `policy/auth.rego`, `docs/adr/` | No critical style violations; OPA policy passes `opa eval` test suite; ADRs signed off in PR comments. |
+| **DevOps (Docker / Deployer)** | 1. Configure GitHub Actions workflow `ci-build.yml` to: <br>   - Run `mvn clean verify` <br>   - Build native image (optional) <br>   - Build Docker image, tag with `${{ github.sha }}` <br>   - Scan with Trivy, fail on HIGH+ vulnerabilities <br>   - Push to Artifact Registry `asia-south1-docker.pkg.dev/<project>/phase1-sandbox/<service>` <br>2. Create a minimal Helm chart (`infra/helm/attendance/Chart.yaml`) with values for image repository, replicaCount=1, resource limits. <br>3. Deploy the three services to a **GKE Autopilot** cluster in a temporary `phase1‑sandbox` namespace using `helm upgrade --install`. <br>4. Set up a basic Prometheus scrape config for the services (via ServiceMonitor). | `.github/workflows/ci-build.yml`, `infra/helm/attendance/`, `k8s/monitoring/prometheus.yaml` | CI pipeline passes on every push; Helm release reports `STATUS: deployed`; Pods run as non‑root; Prometheus metrics endpoint returns 200. |
+| **Security (optional sub‑agent)** | 1. Generate self‑signed TLS certs for local dev and store them in Secret Manager placeholders. <br>2. Add `Istio` sidecar injection annotation to the namespace (for later phases). | `infra/istio/namespace.yaml` | `kubectl get namespace phase1-sandbox -o yaml` shows `istio-injection: enabled`. |
+
+*All sub‑agents must log their daily progress in the shared Confluence page `Phase 1 – Discovery & Architecture Validation` and update the Kanban board in Jira (Epic **PH1‑DISCOVERY**).*
+
+---
+
+#### 4. Phase Definition of Done (DoD)  
+
+The Phase 1 increment is considered **Done** when **all** of the following conditions are satisfied:
+
+1. **Functional PoC**  
+   * A learner can authenticate via email/password and receive a signed JWT.  
+   * A QR‑scan request (POST `/api/v1/attendance/scan`) creates **exactly one** attendance record for the day, decrements the learner’s `remaining_days`, and publishes an `AttendanceRecorded` event to Kafka.  
+   * The Notification Service consumes the event and successfully calls both mock Zalo and mock FCM endpoints (verified by logs).  
+
+2. **Architecture Artefacts**  
+   * Context‑Map diagram (`docs/architecture/context-map.png`).  
+   * ADRs for Event Streaming, Multi‑Tenant DB, i18n detection, and Container Image Strategy stored under `docs/adr/`.  
+
+3. **Code Quality & Security**  
+   * Unit test coverage ≥ 80 % for new code.  
+   * No **critical** or **high** vulnerabilities reported by Trivy or OWASP Dependency‑Check.  
+   * All secrets referenced via Secret Manager placeholders; no plaintext secrets in repo.  
+
+4. **CI/CD Pipeline**  
+   * GitHub Actions workflow `ci-build.yml` runs on every push to `main` and completes all stages (build, test, scan, push).  
+   * Docker images are published to Artifact Registry with immutable digests.  
+
+5. **Infrastructure Deployment**  
+   * Helm releases for `auth`, `attendance`, and `notification` are deployed to GKE `phase1‑sandbox` namespace and report `READY` status.  
+   * Pods run as non‑root, use the minimal Distroless base image, and expose health‑check endpoints (`/q/health`).  
+
+6. **Observability & Logging**  
+   * Prometheus scrapes `/metrics` from each service; a Grafana dashboard (`docs/grafana/phase1-dashboard.json`) shows request latency and error rate.  
+   * All request/response logs are shipped to Cloud Logging with appropriate labels (`service=attendance`).  
+
+7. **Compliance Gate**  
+   * Reviewer signs off that the implementation adheres to every Guardrail in **Section 2 – Global Guardrails & Enterprise Compliance Standards** (data encryption, RBAC, audit logging, etc.).  
+
+8. **Stakeholder Sign‑off**  
+   * Manager, Reviewer, and Tester collectively approve the Phase 1 deliverables in Jira (transition to **Done**).  
+
+Once the above DoD checklist is fully satisfied, the team may proceed to **Phase 2 – Core Platform Build (MVP)**.
+                ------------------------------------------
+                
+
+# System Instruction
+
+You are a rigid technical translator. Map high-level Markdown workflows into precise, executable JSON schemas.
+
+# Raw Response / Exception:
+
+```json
+To translate the provided Markdown content into a JSON schema as per the given instructions, we first need to identify the relevant sections and tasks for Days 11 to 15. However, the provided Markdown does not explicitly mention tasks for these specific days. Instead, it outlines objectives, tasks, and responsibilities for various sub-agents throughout Phase 1.
+
+Given the critical instructions and the JSON schema layout, we will create a JSON object that adheres to the required structure, focusing on the tasks and responsibilities outlined for the sub-agents, as these are the closest to "daily steps" and "checklists" provided in the context.
+
+```json
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "phase_id": 1,
+  "phase_name": "Phase 1",
+  "project_name": "test-ai-architecture",
+  "global_context_file": ".ai/.context/test-ai-architecture.global.blueprint.md",
+  "source_target_dir": "sources/",
+  "days": [
+    {
+      "day": 11,
+      "context_file": ".ai/.plan/.context/phase-1.context.blueprint.md",
+      "context_section": "DAY 11",
+      "sub_tasks": [
+        {
+          "id": "11-1",
+          "agent": "Coder",
+          "desc": "Scaffold Quarkus Maven modules for auth, attendance, notification."
+        },
+        {
+          "id": "11-2",
+          "agent": "Tester",
+          "desc": "Write JUnit tests for Auth login flow and Attendance idempotency."
+        }
+      ]
+    },
+    {
+      "day": 12,
+      "context_file": ".ai/.plan/.context/phase-1.context.blueprint.md",
+      "context_section": "DAY 12",
+      "sub_tasks": [
+        {
+          "id": "12-1",
+          "agent": "Reviewer",
+          "desc": "Validate that all Dockerfiles use a minimal base (e.g., gcr.io/distroless/java17)."
+        },
+        {
+          "id": "12-2",
+          "agent": "DevOps",
+          "desc": "Configure GitHub Actions workflow ci-build.yml to run mvn clean verify, build native image, build Docker image, scan with Trivy, and push to Artifact Registry."
+        }
+      ]
+    },
+    {
+      "day": 13,
+      "context_file": ".ai/.plan/.context/phase-1.context.blueprint.md",
+      "context_section": "DAY 13",
+      "sub_tasks": [
+        {
+          "id": "13-1",
+          "agent": "Coder",
+          "desc": "Implement JWT generation & verification (Auth)."
+        },
+        {
+          "id": "13-2",
+          "agent": "Security",
+          "desc": "Generate self-signed TLS certs for local dev and store them in Secret Manager placeholders."
+        }
+      ]
+    },
+    {
+      "day": 14,
+      "context_file": ".ai/.plan/.context/phase-1.context.blueprint.md",
+      "context_section": "DAY 14",
+      "sub_tasks": [
+        {
+          "id": "14-1",
+          "agent": "Tester",
+          "desc": "Develop an integration test (using Testcontainers) that spins up PostgreSQL + Kafka, runs a full scan → attendance → notification flow."
+        },
+        {
+          "id": "14-2",
+          "agent": "DevOps",
+          "desc": "Create a minimal Helm chart (infra/helm/attendance/Chart.yaml) with values for image repository, replicaCount=1, resource limits."
+        }
+      ]
+    },
+    {
+      "day": 15,
+      "context_file": ".ai/.plan/.context/phase-1.context.blueprint.md",
+      "context_section": "DAY 15",
+      "sub_tasks": [
+        {
+          "id": "15-1",
+          "agent": "Reviewer",
+          "desc": "Review ADRs for completeness and rationale."
+        },
+        {
+          "id": "15-2",
+          "agent": "Security",
+          "desc": "Add Istio sidecar injection annotation to the namespace (for later phases)."
+        }
+      ]
+    }
+  ]
+}
+```
+
+This JSON object adheres to the provided schema, incorporating tasks for various sub-agents across Days 11 to 15, based on the responsibilities and tasks outlined in the Markdown content. Note that specific daily tasks were not provided in the Markdown, so the tasks assigned to each day are a selection based on the sub-agent responsibilities described.
+```
+
+# Phase 1 STEPS - Prompt:
+
+
+                Analyze the attached Phase 1 Context Markdown content. 
+                Extract and translate ALL daily steps, checklists, and agent tasks starting from Day 16 up to Day 20 (inclusive).
+
+                CRITICAL INSTRUCTIONS FOR PRODUCTION STABILITY:
+                1. Target Range Focus: Carefully locate all scheduling logs and task sections for any Day that falls strictly between Day 16 and Day 20 (inclusive).
+                2. Mandatory Data Extraction: You MUST parse and generate a day object node inside the 'days' array for EVERY single day within the requested range [16 to 20]. 
+                3. NO ESCAPE HATCH: Do NOT return an empty array for 'days' under any circumstances if there is markdown text present. Even if tasks are not explicitly labeled, parse the paragraph descriptions into technical sub-tasks for that day.
+                4. STRICT LITERAL FIELD VALUES (MANDATORY):
+                   - Populate the exact string ".ai/.context/test-ai-architecture.global.blueprint.md" into the 'global_context_file' field.
+                   - Populate the exact string "sources/" into the 'source_target_dir' field.
+                5. Task Details: For every micro task item under a specific day:
+                   - Provide a sequential task description text into the 'task' field.
+                   - Provide the assigned role (e.g., 'Coder', 'Tester', 'Reviewer') into the 'agent', 'subAgent', 'assignee' or 'subAgent' field.
+                6. Context Fields: For each day object, set 'day' as the integer value of that day, set 'context_file' to '.ai/.plan/.context/phase-1.context.blueprint.md', and set 'context_section' to 'DAY ' followed by the day number.
+
+                You MUST conform strictly to your required JSON Schema layout design structure:
+                {
+  "$defs": {
+    "DailyStep": {
+      "properties": {
+        "day": {
+          "description": "Timeline iteration day inside this isolated phase.",
+          "title": "Day",
+          "type": "integer"
+        },
+        "context_file": {
+          "description": "The phase context Markdown file for closure on this day.",
+          "title": "Context File",
+          "type": "string"
+        },
+        "context_section": {
+          "description": "The day targeted for closure on this day.",
+          "title": "Context Section",
+          "type": "string"
+        },
+        "sub_tasks": {
+          "description": "Array of isolated micro-tasks assigned to sub-agents.",
+          "items": {
+            "$ref": "##/$defs/SubAgentTask"
+          },
+          "title": "Sub Tasks",
+          "type": "array"
+        }
+      },
+      "required": [
+        "day",
+        "context_file",
+        "context_section",
+        "sub_tasks"
+      ],
+      "title": "DailyStep",
+      "type": "object"
+    },
+    "SubAgentTask": {
+      "properties": {
+        "id": {
+          "description": "Sub-Task identity of Task that sub-agent role executing.",
+          "title": "Id",
+          "type": "string"
+        },
+        "agent": {
+          "description": "Target sub-agent role executing the task.",
+          "title": "Agent",
+          "type": "string"
+        },
+        "desc": {
+          "description": "Literal, low-level technical step assigned to the agent.",
+          "title": "Desc",
+          "type": "string"
+        }
+      },
+      "required": [
+        "id",
+        "agent",
+        "desc"
+      ],
+      "title": "SubAgentTask",
+      "type": "object"
+    }
+  },
+  "properties": {
+    "phase_id": {
+      "description": "Target phase tracker index.",
+      "title": "Phase Id",
+      "type": "integer"
+    },
+    "phase_name": {
+      "description": "Target phase tracker name.",
+      "title": "Phase Name",
+      "type": "string"
+    },
+    "project_name": {
+      "description": "Target project tracker name.",
+      "title": "Project Name",
+      "type": "string"
+    },
+    "global_context_file": {
+      "description": "Project global context Markdown file for closure.",
+      "title": "Global Context File",
+      "type": "string"
+    },
+    "source_target_dir": {
+      "description": "Project sources folder path for closure.",
+      "title": "Source Target Dir",
+      "type": "string"
+    },
+    "days": {
+      "description": "Day-by-day engineering tracking steps.",
+      "items": {
+        "$ref": "##/$defs/DailyStep"
+      },
+      "title": "Days",
+      "type": "array"
+    }
+  },
+  "required": [
+    "phase_id",
+    "phase_name",
+    "project_name",
+    "global_context_file",
+    "source_target_dir",
+    "days"
+  ],
+  "title": "PhaseStepsPlan",
+  "type": "object"
+}
+
+                --- PHASE 1 CONTEXT MARKDOWN ---
+                ## PHASE 1 CONTEXT BLUEPRINT: test‑ai‑architecture  
+
+#### 1. Phase Operational Scope & Objectives  
+
+| Objective | Description | Success Metric |
+|-----------|-------------|----------------|
+| **Validate Core Business Assumptions** | Confirm that the QR‑attendance flow, multi‑center data model, and omni‑channel notification pipeline can be realized with the chosen stack (Quarkus, Kafka, PostgreSQL, GKE). | PoC records a single attendance per learner per day, decrements remaining membership days, and enqueues a notification message. |
+| **Define Bounded‑Contexts & Domain Model** | Produce a Context‑Map (Domain‑Driven Design) that isolates **Learner**, **Center**, **Attendance**, **Membership**, **Notification**, and **Auth** contexts. | Reviewed diagram approved by Manager & Reviewer. |
+| **Prototype Critical Path** | Build a minimal end‑to‑end prototype: <br>1. **Auth** (email + password) → JWT <br>2. **QR Scan** (simulated HTTP call) → **Attendance Service** writes to PostgreSQL and publishes to Kafka <br>3. **Notification Service** consumes Kafka, calls a stub Zalo API and a mock FCM endpoint. | Automated integration test passes: attendance persisted once per day, membership days decremented, notification payload emitted. |
+| **Establish Security & Compliance Foundations** | Demonstrate TLS everywhere, secret‑less configuration (Secret Manager), and basic OPA policy for API gateway. | No plaintext secrets in repo; `curl -k https://...` succeeds with valid cert; OPA gate denies unauthenticated request. |
+| **Set Up CI/CD Skeleton** | GitHub Actions workflow that builds a **Quarkus** native image (optional GraalVM), runs unit tests, builds a Docker image, scans with Trivy, and pushes to Artifact Registry. | Workflow passes on every push to `main`. |
+| **Document Architecture Decisions** | ADRs for **Event Streaming**, **Multi‑Tenant DB**, **i18n detection**, and **Container Image Strategy**. | ADRs stored in `docs/adr/` and linked from the README. |
+
+> **Gate‑Go/No‑Go** – At the end of Phase 1 the Manager, Reviewer, and Tester jointly sign‑off if **all** success metrics are met and the Global Guardrails (Section 2 of the Global Context) are satisfied.
+
+---
+
+#### 2. Allowed Technical Scope & Directory Boundaries (Files, paths, and endpoints)  
+
+| Layer | Allowed Repository Path | Example Files | Public API Endpoints (prototype) |
+|------|--------------------------|---------------|-----------------------------------|
+| **Auth Service** | `services/auth/` | `src/main/java/.../AuthResource.java`, `src/main/resources/application.yml` | `POST /api/v1/auth/login` (email/password) <br> `POST /api/v1/auth/firebase` (token exchange) |
+| **Attendance Service** | `services/attendance/` | `AttendanceResource.java`, `AttendanceProcessor.java`, `src/main/resources/application.yml` | `POST /api/v1/attendance/scan` (payload: `{ learnerId, qrCode, timestamp }`) |
+| **Notification Service** | `services/notification/` | `NotificationConsumer.java`, `ZaloClientStub.java`, `FCMClientStub.java` | **No public HTTP** – consumes Kafka topic `attendance.events`. |
+| **Domain Model (shared)** | `libs/domain/` | `Learner.java`, `Center.java`, `Membership.java`, `Attendance.java` | – |
+| **Infrastructure as Code** | `infra/helm/` | `auth/values.yaml`, `attendance/values.yaml`, `notification/values.yaml` | – |
+| **CI/CD** | `.github/workflows/` | `ci-build.yml`, `ci-security.yml` | – |
+| **Documentation & ADRs** | `docs/` | `adr/001-event-streaming.md`, `architecture-overview.md` | – |
+| **Mock External APIs** | `mocks/` | `zalo-mock/`, `fcm-mock/` (simple Express servers) | `POST /mock/zalo/send` <br> `POST /mock/fcm/push` |
+
+**Endpoint Security** – All HTTP endpoints must require a valid **Bearer JWT** signed by the Auth Service’s private key. The JWT must contain a `role` claim (`ADMIN`, `STAFF`, `LEARNER`).  
+
+**Network Boundaries** –  
+* Services run in the same GKE namespace `phase1‑sandbox`.  
+* Kafka broker reachable only via internal ClusterIP service `kafka-svc`.  
+* Mock APIs exposed via `NodePort` **only** on the CI runner network (not internet‑facing).  
+
+**File‑level Guardrails** –  
+* No `.env` or secret files committed.  
+* All configuration values that are secrets must be referenced via `${SM://path/to/secret}` (Secret Manager placeholder).  
+
+---
+
+#### 3. Dedicated Sub‑Agent Functional Directives  
+
+| Sub‑Agent | Concrete Tasks for Phase 1 | Deliverables (artifact path) | Acceptance Criteria |
+|-----------|----------------------------|------------------------------|---------------------|
+| **Coder** | 1. Scaffold Quarkus Maven modules for `auth`, `attendance`, `notification`. <br>2. Implement JWT generation & verification (Auth). <br>3. Create PostgreSQL schema (Flyway scripts) for `learners`, `centers`, `memberships`, `attendance_logs`. <br>4. Wire Attendance Service to publish `AttendanceRecorded` events to Kafka. <br>5. Build Dockerfiles (multi‑stage, non‑root user) for each service. | `services/auth/`, `services/attendance/`, `services/notification/`, `infra/helm/`, `db/migrations/V1__init.sql` | Unit tests ≥ 80 % coverage; Docker images build locally without errors; `docker run` starts and health‑checks succeed. |
+| **Tester** | 1. Write JUnit tests for Auth login flow and Attendance idempotency. <br>2. Create Postman collection for the three public endpoints. <br>3. Develop an integration test (using Testcontainers) that spins up PostgreSQL + Kafka, runs a full scan → attendance → notification flow. <br>4. Execute OWASP Dependency‑Check on the Maven dependencies. | `services/**/src/test/java/`, `test/postman/attendance.postman_collection.json` | All tests pass on CI; integration test asserts exactly one `attendance_logs` row per learner per day; Dependency‑Check reports no CVE > 7.0. |
+| **Reviewer** | 1. Validate that all Dockerfiles use a minimal base (e.g., `gcr.io/distroless/java17`). <br>2. Ensure OpenAPI spec (`openapi.yaml`) matches implemented endpoints and includes JWT security scheme. <br>3. Verify OPA policy file (`policy/auth.rego`) denies requests without `Authorization` header. <br>4. Review ADRs for completeness and rationale. | `docs/openapi.yaml`, `policy/auth.rego`, `docs/adr/` | No critical style violations; OPA policy passes `opa eval` test suite; ADRs signed off in PR comments. |
+| **DevOps (Docker / Deployer)** | 1. Configure GitHub Actions workflow `ci-build.yml` to: <br>   - Run `mvn clean verify` <br>   - Build native image (optional) <br>   - Build Docker image, tag with `${{ github.sha }}` <br>   - Scan with Trivy, fail on HIGH+ vulnerabilities <br>   - Push to Artifact Registry `asia-south1-docker.pkg.dev/<project>/phase1-sandbox/<service>` <br>2. Create a minimal Helm chart (`infra/helm/attendance/Chart.yaml`) with values for image repository, replicaCount=1, resource limits. <br>3. Deploy the three services to a **GKE Autopilot** cluster in a temporary `phase1‑sandbox` namespace using `helm upgrade --install`. <br>4. Set up a basic Prometheus scrape config for the services (via ServiceMonitor). | `.github/workflows/ci-build.yml`, `infra/helm/attendance/`, `k8s/monitoring/prometheus.yaml` | CI pipeline passes on every push; Helm release reports `STATUS: deployed`; Pods run as non‑root; Prometheus metrics endpoint returns 200. |
+| **Security (optional sub‑agent)** | 1. Generate self‑signed TLS certs for local dev and store them in Secret Manager placeholders. <br>2. Add `Istio` sidecar injection annotation to the namespace (for later phases). | `infra/istio/namespace.yaml` | `kubectl get namespace phase1-sandbox -o yaml` shows `istio-injection: enabled`. |
+
+*All sub‑agents must log their daily progress in the shared Confluence page `Phase 1 – Discovery & Architecture Validation` and update the Kanban board in Jira (Epic **PH1‑DISCOVERY**).*
+
+---
+
+#### 4. Phase Definition of Done (DoD)  
+
+The Phase 1 increment is considered **Done** when **all** of the following conditions are satisfied:
+
+1. **Functional PoC**  
+   * A learner can authenticate via email/password and receive a signed JWT.  
+   * A QR‑scan request (POST `/api/v1/attendance/scan`) creates **exactly one** attendance record for the day, decrements the learner’s `remaining_days`, and publishes an `AttendanceRecorded` event to Kafka.  
+   * The Notification Service consumes the event and successfully calls both mock Zalo and mock FCM endpoints (verified by logs).  
+
+2. **Architecture Artefacts**  
+   * Context‑Map diagram (`docs/architecture/context-map.png`).  
+   * ADRs for Event Streaming, Multi‑Tenant DB, i18n detection, and Container Image Strategy stored under `docs/adr/`.  
+
+3. **Code Quality & Security**  
+   * Unit test coverage ≥ 80 % for new code.  
+   * No **critical** or **high** vulnerabilities reported by Trivy or OWASP Dependency‑Check.  
+   * All secrets referenced via Secret Manager placeholders; no plaintext secrets in repo.  
+
+4. **CI/CD Pipeline**  
+   * GitHub Actions workflow `ci-build.yml` runs on every push to `main` and completes all stages (build, test, scan, push).  
+   * Docker images are published to Artifact Registry with immutable digests.  
+
+5. **Infrastructure Deployment**  
+   * Helm releases for `auth`, `attendance`, and `notification` are deployed to GKE `phase1‑sandbox` namespace and report `READY` status.  
+   * Pods run as non‑root, use the minimal Distroless base image, and expose health‑check endpoints (`/q/health`).  
+
+6. **Observability & Logging**  
+   * Prometheus scrapes `/metrics` from each service; a Grafana dashboard (`docs/grafana/phase1-dashboard.json`) shows request latency and error rate.  
+   * All request/response logs are shipped to Cloud Logging with appropriate labels (`service=attendance`).  
+
+7. **Compliance Gate**  
+   * Reviewer signs off that the implementation adheres to every Guardrail in **Section 2 – Global Guardrails & Enterprise Compliance Standards** (data encryption, RBAC, audit logging, etc.).  
+
+8. **Stakeholder Sign‑off**  
+   * Manager, Reviewer, and Tester collectively approve the Phase 1 deliverables in Jira (transition to **Done**).  
+
+Once the above DoD checklist is fully satisfied, the team may proceed to **Phase 2 – Core Platform Build (MVP)**.
+                ------------------------------------------
+                
+
+# System Instruction
+
+You are a rigid technical translator. Map high-level Markdown workflows into precise, executable JSON schemas.
+
+# Raw Response / Exception:
+
+```json
+To translate the provided Markdown content into a JSON schema as per the given instructions, we first need to identify the relevant sections and tasks for Days 16 to 20. However, the provided Markdown does not explicitly mention tasks for specific days (Day 16 to Day 20). Instead, it outlines objectives, tasks, and responsibilities for various sub-agents (Coder, Tester, Reviewer, DevOps, Security) across the entire Phase 1.
+
+Given the constraints and the requirement to follow the JSON schema layout design structure, we will interpret the tasks and create a JSON object that adheres to the provided schema. Since specific daily tasks are not mentioned, we will consider the tasks assigned to sub-agents as part of the daily steps, assuming these tasks are to be completed over the course of Days 16 to 20.
+
+Here is a JSON representation based on the provided information:
+
+```json
+{
+  "phase_id": 1,
+  "phase_name": "Phase 1",
+  "project_name": "test-ai-architecture",
+  "global_context_file": ".ai/.context/test-ai-architecture.global.blueprint.md",
+  "source_target_dir": "sources/",
+  "days": [
+    {
+      "day": 16,
+      "context_file": ".ai/.plan/.context/phase-1.context.blueprint.md",
+      "context_section": "DAY 16",
+      "sub_tasks": [
+        {
+          "id": "CODER-1",
+          "agent": "Coder",
+          "desc": "Scaffold Quarkus Maven modules for auth, attendance, notification."
+        },
+        {
+          "id": "TESTER-1",
+          "agent": "Tester",
+          "desc": "Write JUnit tests for Auth login flow and Attendance idempotency."
+        }
+      ]
+    },
+    {
+      "day": 17,
+      "context_file": ".ai/.plan/.context/phase-1.context.blueprint.md",
+      "context_section": "DAY 17",
+      "sub_tasks": [
+        {
+          "id": "REVIEWER-1",
+          "agent": "Reviewer",
+          "desc": "Validate that all Dockerfiles use a minimal base (e.g., gcr.io/distroless/java17)."
+        },
+        {
+          "id": "DEVOPS-1",
+          "agent": "DevOps",
+          "desc": "Configure GitHub Actions workflow ci-build.yml to run mvn clean verify, build native image, build Docker image, scan with Trivy, and push to Artifact Registry."
+        }
+      ]
+    },
+    {
+      "day": 18,
+      "context_file": ".ai/.plan/.context/phase-1.context.blueprint.md",
+      "context_section": "DAY 18",
+      "sub_tasks": [
+        {
+          "id": "CODER-2",
+          "agent": "Coder",
+          "desc": "Implement JWT generation & verification (Auth)."
+        },
+        {
+          "id": "TESTER-2",
+          "agent": "Tester",
+          "desc": "Create Postman collection for the three public endpoints."
+        }
+      ]
+    },
+    {
+      "day": 19,
+      "context_file": ".ai/.plan/.context/phase-1.context.blueprint.md",
+      "context_section": "DAY 19",
+      "sub_tasks": [
+        {
+          "id": "REVIEWER-2",
+          "agent": "Reviewer",
+          "desc": "Ensure OpenAPI spec (openapi.yaml) matches implemented endpoints and includes JWT security scheme."
+        },
+        {
+          "id": "DEVOPS-2",
+          "agent": "DevOps",
+          "desc": "Create a minimal Helm chart (infra/helm/attendance/Chart.yaml) with values for image repository, replicaCount=1, resource limits."
+        }
+      ]
+    },
+    {
+      "day": 20,
+      "context_file": ".ai/.plan/.context/phase-1.context.blueprint.md",
+      "context_section": "DAY 20",
+      "sub_tasks": [
+        {
+          "id": "SECURITY-1",
+          "agent": "Security",
+          "desc": "Generate self-signed TLS certs for local dev and store them in Secret Manager placeholders."
+        },
+        {
+          "id": "CODER-3",
+          "agent": "Coder",
+          "desc": "Wire Attendance Service to publish AttendanceRecorded events to Kafka."
+        }
+      ]
+    }
+  ]
+}
+```
+
+This JSON object attempts to distribute the tasks across the days, assuming a balanced workload. However, the actual distribution should be based on the specific requirements and the team's workflow. The tasks and agents are assigned based on the roles and responsibilities outlined in the Markdown content.
+```
+
+# Phase 1 STEPS - Prompt:
+
+
+                Analyze the attached Phase 1 Context Markdown content. 
+                Extract and translate ALL daily steps, checklists, and agent tasks starting from Day 21 up to Day 25 (inclusive).
+
+                CRITICAL INSTRUCTIONS FOR PRODUCTION STABILITY:
+                1. Target Range Focus: Carefully locate all scheduling logs and task sections for any Day that falls strictly between Day 21 and Day 25 (inclusive).
+                2. Mandatory Data Extraction: You MUST parse and generate a day object node inside the 'days' array for EVERY single day within the requested range [21 to 25]. 
+                3. NO ESCAPE HATCH: Do NOT return an empty array for 'days' under any circumstances if there is markdown text present. Even if tasks are not explicitly labeled, parse the paragraph descriptions into technical sub-tasks for that day.
+                4. STRICT LITERAL FIELD VALUES (MANDATORY):
+                   - Populate the exact string ".ai/.context/test-ai-architecture.global.blueprint.md" into the 'global_context_file' field.
+                   - Populate the exact string "sources/" into the 'source_target_dir' field.
+                5. Task Details: For every micro task item under a specific day:
+                   - Provide a sequential task description text into the 'task' field.
+                   - Provide the assigned role (e.g., 'Coder', 'Tester', 'Reviewer') into the 'agent', 'subAgent', 'assignee' or 'subAgent' field.
+                6. Context Fields: For each day object, set 'day' as the integer value of that day, set 'context_file' to '.ai/.plan/.context/phase-1.context.blueprint.md', and set 'context_section' to 'DAY ' followed by the day number.
+
+                You MUST conform strictly to your required JSON Schema layout design structure:
+                {
+  "$defs": {
+    "DailyStep": {
+      "properties": {
+        "day": {
+          "description": "Timeline iteration day inside this isolated phase.",
+          "title": "Day",
+          "type": "integer"
+        },
+        "context_file": {
+          "description": "The phase context Markdown file for closure on this day.",
+          "title": "Context File",
+          "type": "string"
+        },
+        "context_section": {
+          "description": "The day targeted for closure on this day.",
+          "title": "Context Section",
+          "type": "string"
+        },
+        "sub_tasks": {
+          "description": "Array of isolated micro-tasks assigned to sub-agents.",
+          "items": {
+            "$ref": "##/$defs/SubAgentTask"
+          },
+          "title": "Sub Tasks",
+          "type": "array"
+        }
+      },
+      "required": [
+        "day",
+        "context_file",
+        "context_section",
+        "sub_tasks"
+      ],
+      "title": "DailyStep",
+      "type": "object"
+    },
+    "SubAgentTask": {
+      "properties": {
+        "id": {
+          "description": "Sub-Task identity of Task that sub-agent role executing.",
+          "title": "Id",
+          "type": "string"
+        },
+        "agent": {
+          "description": "Target sub-agent role executing the task.",
+          "title": "Agent",
+          "type": "string"
+        },
+        "desc": {
+          "description": "Literal, low-level technical step assigned to the agent.",
+          "title": "Desc",
+          "type": "string"
+        }
+      },
+      "required": [
+        "id",
+        "agent",
+        "desc"
+      ],
+      "title": "SubAgentTask",
+      "type": "object"
+    }
+  },
+  "properties": {
+    "phase_id": {
+      "description": "Target phase tracker index.",
+      "title": "Phase Id",
+      "type": "integer"
+    },
+    "phase_name": {
+      "description": "Target phase tracker name.",
+      "title": "Phase Name",
+      "type": "string"
+    },
+    "project_name": {
+      "description": "Target project tracker name.",
+      "title": "Project Name",
+      "type": "string"
+    },
+    "global_context_file": {
+      "description": "Project global context Markdown file for closure.",
+      "title": "Global Context File",
+      "type": "string"
+    },
+    "source_target_dir": {
+      "description": "Project sources folder path for closure.",
+      "title": "Source Target Dir",
+      "type": "string"
+    },
+    "days": {
+      "description": "Day-by-day engineering tracking steps.",
+      "items": {
+        "$ref": "##/$defs/DailyStep"
+      },
+      "title": "Days",
+      "type": "array"
+    }
+  },
+  "required": [
+    "phase_id",
+    "phase_name",
+    "project_name",
+    "global_context_file",
+    "source_target_dir",
+    "days"
+  ],
+  "title": "PhaseStepsPlan",
+  "type": "object"
+}
+
+                --- PHASE 1 CONTEXT MARKDOWN ---
+                ## PHASE 1 CONTEXT BLUEPRINT: test‑ai‑architecture  
+
+#### 1. Phase Operational Scope & Objectives  
+
+| Objective | Description | Success Metric |
+|-----------|-------------|----------------|
+| **Validate Core Business Assumptions** | Confirm that the QR‑attendance flow, multi‑center data model, and omni‑channel notification pipeline can be realized with the chosen stack (Quarkus, Kafka, PostgreSQL, GKE). | PoC records a single attendance per learner per day, decrements remaining membership days, and enqueues a notification message. |
+| **Define Bounded‑Contexts & Domain Model** | Produce a Context‑Map (Domain‑Driven Design) that isolates **Learner**, **Center**, **Attendance**, **Membership**, **Notification**, and **Auth** contexts. | Reviewed diagram approved by Manager & Reviewer. |
+| **Prototype Critical Path** | Build a minimal end‑to‑end prototype: <br>1. **Auth** (email + password) → JWT <br>2. **QR Scan** (simulated HTTP call) → **Attendance Service** writes to PostgreSQL and publishes to Kafka <br>3. **Notification Service** consumes Kafka, calls a stub Zalo API and a mock FCM endpoint. | Automated integration test passes: attendance persisted once per day, membership days decremented, notification payload emitted. |
+| **Establish Security & Compliance Foundations** | Demonstrate TLS everywhere, secret‑less configuration (Secret Manager), and basic OPA policy for API gateway. | No plaintext secrets in repo; `curl -k https://...` succeeds with valid cert; OPA gate denies unauthenticated request. |
+| **Set Up CI/CD Skeleton** | GitHub Actions workflow that builds a **Quarkus** native image (optional GraalVM), runs unit tests, builds a Docker image, scans with Trivy, and pushes to Artifact Registry. | Workflow passes on every push to `main`. |
+| **Document Architecture Decisions** | ADRs for **Event Streaming**, **Multi‑Tenant DB**, **i18n detection**, and **Container Image Strategy**. | ADRs stored in `docs/adr/` and linked from the README. |
+
+> **Gate‑Go/No‑Go** – At the end of Phase 1 the Manager, Reviewer, and Tester jointly sign‑off if **all** success metrics are met and the Global Guardrails (Section 2 of the Global Context) are satisfied.
+
+---
+
+#### 2. Allowed Technical Scope & Directory Boundaries (Files, paths, and endpoints)  
+
+| Layer | Allowed Repository Path | Example Files | Public API Endpoints (prototype) |
+|------|--------------------------|---------------|-----------------------------------|
+| **Auth Service** | `services/auth/` | `src/main/java/.../AuthResource.java`, `src/main/resources/application.yml` | `POST /api/v1/auth/login` (email/password) <br> `POST /api/v1/auth/firebase` (token exchange) |
+| **Attendance Service** | `services/attendance/` | `AttendanceResource.java`, `AttendanceProcessor.java`, `src/main/resources/application.yml` | `POST /api/v1/attendance/scan` (payload: `{ learnerId, qrCode, timestamp }`) |
+| **Notification Service** | `services/notification/` | `NotificationConsumer.java`, `ZaloClientStub.java`, `FCMClientStub.java` | **No public HTTP** – consumes Kafka topic `attendance.events`. |
+| **Domain Model (shared)** | `libs/domain/` | `Learner.java`, `Center.java`, `Membership.java`, `Attendance.java` | – |
+| **Infrastructure as Code** | `infra/helm/` | `auth/values.yaml`, `attendance/values.yaml`, `notification/values.yaml` | – |
+| **CI/CD** | `.github/workflows/` | `ci-build.yml`, `ci-security.yml` | – |
+| **Documentation & ADRs** | `docs/` | `adr/001-event-streaming.md`, `architecture-overview.md` | – |
+| **Mock External APIs** | `mocks/` | `zalo-mock/`, `fcm-mock/` (simple Express servers) | `POST /mock/zalo/send` <br> `POST /mock/fcm/push` |
+
+**Endpoint Security** – All HTTP endpoints must require a valid **Bearer JWT** signed by the Auth Service’s private key. The JWT must contain a `role` claim (`ADMIN`, `STAFF`, `LEARNER`).  
+
+**Network Boundaries** –  
+* Services run in the same GKE namespace `phase1‑sandbox`.  
+* Kafka broker reachable only via internal ClusterIP service `kafka-svc`.  
+* Mock APIs exposed via `NodePort` **only** on the CI runner network (not internet‑facing).  
+
+**File‑level Guardrails** –  
+* No `.env` or secret files committed.  
+* All configuration values that are secrets must be referenced via `${SM://path/to/secret}` (Secret Manager placeholder).  
+
+---
+
+#### 3. Dedicated Sub‑Agent Functional Directives  
+
+| Sub‑Agent | Concrete Tasks for Phase 1 | Deliverables (artifact path) | Acceptance Criteria |
+|-----------|----------------------------|------------------------------|---------------------|
+| **Coder** | 1. Scaffold Quarkus Maven modules for `auth`, `attendance`, `notification`. <br>2. Implement JWT generation & verification (Auth). <br>3. Create PostgreSQL schema (Flyway scripts) for `learners`, `centers`, `memberships`, `attendance_logs`. <br>4. Wire Attendance Service to publish `AttendanceRecorded` events to Kafka. <br>5. Build Dockerfiles (multi‑stage, non‑root user) for each service. | `services/auth/`, `services/attendance/`, `services/notification/`, `infra/helm/`, `db/migrations/V1__init.sql` | Unit tests ≥ 80 % coverage; Docker images build locally without errors; `docker run` starts and health‑checks succeed. |
+| **Tester** | 1. Write JUnit tests for Auth login flow and Attendance idempotency. <br>2. Create Postman collection for the three public endpoints. <br>3. Develop an integration test (using Testcontainers) that spins up PostgreSQL + Kafka, runs a full scan → attendance → notification flow. <br>4. Execute OWASP Dependency‑Check on the Maven dependencies. | `services/**/src/test/java/`, `test/postman/attendance.postman_collection.json` | All tests pass on CI; integration test asserts exactly one `attendance_logs` row per learner per day; Dependency‑Check reports no CVE > 7.0. |
+| **Reviewer** | 1. Validate that all Dockerfiles use a minimal base (e.g., `gcr.io/distroless/java17`). <br>2. Ensure OpenAPI spec (`openapi.yaml`) matches implemented endpoints and includes JWT security scheme. <br>3. Verify OPA policy file (`policy/auth.rego`) denies requests without `Authorization` header. <br>4. Review ADRs for completeness and rationale. | `docs/openapi.yaml`, `policy/auth.rego`, `docs/adr/` | No critical style violations; OPA policy passes `opa eval` test suite; ADRs signed off in PR comments. |
+| **DevOps (Docker / Deployer)** | 1. Configure GitHub Actions workflow `ci-build.yml` to: <br>   - Run `mvn clean verify` <br>   - Build native image (optional) <br>   - Build Docker image, tag with `${{ github.sha }}` <br>   - Scan with Trivy, fail on HIGH+ vulnerabilities <br>   - Push to Artifact Registry `asia-south1-docker.pkg.dev/<project>/phase1-sandbox/<service>` <br>2. Create a minimal Helm chart (`infra/helm/attendance/Chart.yaml`) with values for image repository, replicaCount=1, resource limits. <br>3. Deploy the three services to a **GKE Autopilot** cluster in a temporary `phase1‑sandbox` namespace using `helm upgrade --install`. <br>4. Set up a basic Prometheus scrape config for the services (via ServiceMonitor). | `.github/workflows/ci-build.yml`, `infra/helm/attendance/`, `k8s/monitoring/prometheus.yaml` | CI pipeline passes on every push; Helm release reports `STATUS: deployed`; Pods run as non‑root; Prometheus metrics endpoint returns 200. |
+| **Security (optional sub‑agent)** | 1. Generate self‑signed TLS certs for local dev and store them in Secret Manager placeholders. <br>2. Add `Istio` sidecar injection annotation to the namespace (for later phases). | `infra/istio/namespace.yaml` | `kubectl get namespace phase1-sandbox -o yaml` shows `istio-injection: enabled`. |
+
+*All sub‑agents must log their daily progress in the shared Confluence page `Phase 1 – Discovery & Architecture Validation` and update the Kanban board in Jira (Epic **PH1‑DISCOVERY**).*
+
+---
+
+#### 4. Phase Definition of Done (DoD)  
+
+The Phase 1 increment is considered **Done** when **all** of the following conditions are satisfied:
+
+1. **Functional PoC**  
+   * A learner can authenticate via email/password and receive a signed JWT.  
+   * A QR‑scan request (POST `/api/v1/attendance/scan`) creates **exactly one** attendance record for the day, decrements the learner’s `remaining_days`, and publishes an `AttendanceRecorded` event to Kafka.  
+   * The Notification Service consumes the event and successfully calls both mock Zalo and mock FCM endpoints (verified by logs).  
+
+2. **Architecture Artefacts**  
+   * Context‑Map diagram (`docs/architecture/context-map.png`).  
+   * ADRs for Event Streaming, Multi‑Tenant DB, i18n detection, and Container Image Strategy stored under `docs/adr/`.  
+
+3. **Code Quality & Security**  
+   * Unit test coverage ≥ 80 % for new code.  
+   * No **critical** or **high** vulnerabilities reported by Trivy or OWASP Dependency‑Check.  
+   * All secrets referenced via Secret Manager placeholders; no plaintext secrets in repo.  
+
+4. **CI/CD Pipeline**  
+   * GitHub Actions workflow `ci-build.yml` runs on every push to `main` and completes all stages (build, test, scan, push).  
+   * Docker images are published to Artifact Registry with immutable digests.  
+
+5. **Infrastructure Deployment**  
+   * Helm releases for `auth`, `attendance`, and `notification` are deployed to GKE `phase1‑sandbox` namespace and report `READY` status.  
+   * Pods run as non‑root, use the minimal Distroless base image, and expose health‑check endpoints (`/q/health`).  
+
+6. **Observability & Logging**  
+   * Prometheus scrapes `/metrics` from each service; a Grafana dashboard (`docs/grafana/phase1-dashboard.json`) shows request latency and error rate.  
+   * All request/response logs are shipped to Cloud Logging with appropriate labels (`service=attendance`).  
+
+7. **Compliance Gate**  
+   * Reviewer signs off that the implementation adheres to every Guardrail in **Section 2 – Global Guardrails & Enterprise Compliance Standards** (data encryption, RBAC, audit logging, etc.).  
+
+8. **Stakeholder Sign‑off**  
+   * Manager, Reviewer, and Tester collectively approve the Phase 1 deliverables in Jira (transition to **Done**).  
+
+Once the above DoD checklist is fully satisfied, the team may proceed to **Phase 2 – Core Platform Build (MVP)**.
+                ------------------------------------------
+                
+
+# System Instruction
+
+You are a rigid technical translator. Map high-level Markdown workflows into precise, executable JSON schemas.
+
+# Raw Response / Exception:
+
+```json
+Error code: 429 - {'error': {'message': 'Rate limit reached for model `llama-3.3-70b-versatile` in organization `org_01kx7x6rbpftmr50sr2yyb78qm` service tier `on_demand` on tokens per day (TPD): Limit 100000, Used 99999, Requested 7745. Please try again in 1h51m30.816s. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing', 'type': 'tokens', 'code': 'rate_limit_exceeded'}}
+```
+
