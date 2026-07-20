@@ -139,7 +139,7 @@ jobs:
           
           # 🤖 Inject standard automation bot metadata to certify clean audit logs
           git config user.name "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@://github.com"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           
           echo "📝 Staging and committing base templates..."
           # 📦 Package and stage all local file translations into the root commit block
@@ -147,7 +147,7 @@ jobs:
           git commit -m "chore(init): 🚀 base project infrastructure synchronization from master architecture templates"
           
           # 🔐 Dynamically map the authentication header token onto the remote destination URL target string
-          TARGET_URL="https://$GH_TOKEN@://github.com/$TARGET_OWNER/${{ env.PROJECT_NAME }}.git"
+          TARGET_URL="https://$GH_TOKEN@github.com/$TARGET_OWNER/${{ env.PROJECT_NAME }}.git"
           
           # ⚓ Bind the newly instantiated git workspace to the targeted repository endpoint on GitHub
           git remote add origin "$TARGET_URL"
