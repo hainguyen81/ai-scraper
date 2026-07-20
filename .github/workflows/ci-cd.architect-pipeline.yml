@@ -290,30 +290,34 @@ jobs:
 
       # Step 5: Automatically stage, commit, and push the generated architecture files
       - name: 🚀 Commit and Push Blueprint Changes
-        if: always() && inputs.exec_mode != 'None'          # if previous step is successful
+        if: always() && inputs.exec_mode != 'None'
         run: |
-          # Only commit if there are explicit architectural diff changes detected
-          if git diff --cached --quiet; then
-            echo "ℹ️ Notice: No architecture structural updates or modifications were detected."
-          else
-            # Set up git bot profile identities
-            git config --global user.name "github-actions[bot]"
-            git config --global user.email "github-actions[bot]@://github.com"
-            
+          # 1. Bot user GitHub
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          
+          # 2. Add everything into Stage
+          git add .
+          
+          # 3. Use status to check file changes
+          if [ -n "$(git status --porcelain)" ]; then
             echo "📝 Committing system state changes..."
-            git add .
             git commit -m "chore(ai): auto-generate global context and phase plan [skip ci]"
             
-            # ✅ ENTERPRISE HOTFIX: Explicitly pull and rebase the remote branch directly into the working tree
+            # ✅ ENTERPRISE HOTFIX: Pull new changes and rebase to avoid conflicts fast-forward
             echo "🔄 Fetching latest upstream tree and executing explicit contextual rebase..."
             git fetch origin ${{ github.ref_name }}
             git rebase origin/${{ github.ref_name }}
             
+            # 💡 Use github.ref_name to push safely
             echo "📤 Pushing secure data changes upstream to repository branch..."
-            git push origin HEAD:${{ github.ref }}
+            git push origin HEAD:${{ github.ref_name }}
             echo "🎯 Success! Architecture files successfully committed and pushed back to the repository."
+          
+          else
+            echo "ℹ️ Notice: No architecture structural updates or modifications were detected."
           fi
-  
+      
   # Publish Project Blueprint Changes
   publish-project-blueprint:
     name: 🌐 Publish Project Blueprint Changes
