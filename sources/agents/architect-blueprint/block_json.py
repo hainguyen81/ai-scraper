@@ -111,7 +111,7 @@ def manual_transform(json_data, project_name: str, phase_idx: int):
         "days": []
     }
     
-    json_days = json_data.get("steps", json_data.get("dailyTasks", json_data.get("dayByDayPlan", [])))
+    json_days = json_data.get("days", json_data.get("steps", json_data.get("dailyTasks", json_data.get("dayByDayPlan", []))))
     for item in json_days:
         day_val = item.get("day", 1)
         
@@ -126,10 +126,10 @@ def manual_transform(json_data, project_name: str, phase_idx: int):
         t_idx = 1
         for t in json_tasks:
             if isinstance(t, str):
-                role = item.get("subAgent", item.get("assignee", "Coder"))
+                role = item.get("agent", item.get("subAgent", item.get("assignee", "Coder")))
                 desc = f"{ role } Agent: { t }"
             else:
-                role = t.get("agent_role", t.get("assignee", "Coder"))
+                role = t.get("agent", t.get("agent_role", t.get("assignee", "Coder")))
                 desc = t.get("task_description", t.get("task", "No description provided"))
                 desc = f"{ role } Agent: { desc }"
             
@@ -173,7 +173,8 @@ def convert_phases_to_json(client: OpenAI, model_name: str, project_name: str, n
         for phase_idx in range(1, num_phases + 1):
             log_phase_idx = phase_idx
             phase_context_dir = os.path.join(out_dir, "plan", "context")
-            md_path = os.path.join(phase_context_dir, f"phase-{phase_idx}.context.blueprint.md")
+            phase_context_file = f"phase-{phase_idx}.context.blueprint.md"
+            md_path = os.path.join(phase_context_dir, phase_context_file)
             
             if not os.path.exists(md_path):
                 print(f" │   └── ❌ Skipped Phase {phase_idx}: Source Markdown file not found.")
@@ -185,14 +186,15 @@ def convert_phases_to_json(client: OpenAI, model_name: str, project_name: str, n
             print(f" │   ├── 🔀 Parsing Phase {phase_idx} MD -> Compiling phase-{phase_idx}.steps.json...")
             
             # 🎯 CHUNKING MEMORY STORAGE: Initialize temporary dictionary repository to hold aggregated elements
-            aggregated_json_data = {
+            project_phase_context_file = phase_context_file(phase_idx)
+            master_phase_plan = {
                 "phase_id": phase_idx,
                 "phase_name": f"Phase {phase_idx}",
                 "project_name": project_name.lower(),
                 "global_context_file": global_context_file,
                 "source_target_dir": "sources/",
                 "objectives": [],
-                "dailyTasks": [] # Matches your dynamic transform's expected source property fields
+                "days": [] # Matches your dynamic transform's expected source property fields
             }
             
             current_start_day = 1
@@ -208,20 +210,27 @@ def convert_phases_to_json(client: OpenAI, model_name: str, project_name: str, n
                 current_end_day = current_start_day + DAYS_PER_CHUNK - 1
                 print(f" │       ├── 📦 Chunk {chunk_counter}: Extracting Days {current_start_day} to {current_end_day}...")
                 
+                # Strict directives instructing the AI to populate only the requested slice arrays
                 prompt = f"""
-                Analyze the attached Phase {phase_idx} Context Markdown content of Project {project_name} with 'global_context_file' at '{global_context_file}' and 'source_target_dir' at 'sources/'. 
-                Translate and extract ONLY the specific daily steps starting from Day {current_start_day} up to Day {current_end_day} (inclusive).
+                Analyze the attached Phase {phase_idx} Context Markdown content. 
+                Extract and translate ALL daily steps, checklists, and agent tasks starting from Day {current_start_day} up to Day {current_end_day} (inclusive).
                 
-                If the Phase Context Markdown does not contain any tasks or plans for Day {current_start_day} or beyond, return an empty array for the 'dailyTasks' field.
+                CRITICAL INSTRUCTIONS FOR PRODUCTION STABILITY:
+                1. Look for Day information inside the markdown text. If scheduling logs for Day {current_start_day} exist, you MUST parse them inside the 'days' array list node.
+                2. For every micro task item under a specific day, invent a unique alpha-numeric task ID block string for the 'id' field (e.g., 'p{phase_idx}-d{current_start_day}-task1').
+                3. Map the target sub-agent executor string (e.g., 'Coder', 'Tester', 'Reviewer') onto the 'agent' field.
+                4. Map the literal task description technical content onto the 'desc' field.
+                5. Populate 'context_file' with '{project_phase_context_file}'.
+                6. Populate 'context_section' with '## Day {current_start_day}' or corresponding header sections found in the source text.
+                7. Because we are chunking, you ONLY need to return the records matching the requested day range. Fill other outer fields with fallback strings matching your structural validation schemas.
+                8. If there are no more tasks or schedules found for Day {current_start_day} or beyond, return an empty array for the 'days' field.
                 
-                You MUST conform strictly to this output JSON Schema structural specification:
+                You MUST conform strictly to your required JSON Schema layout design structure:
                 {json_schema_dump}
 
                 --- PHASE {phase_idx} CONTEXT MARKDOWN ---
                 {phase_markdown_content}
                 ------------------------------------------
-
-                Map your response strictly to the requested PhaseStepsPlan JSON structure.
                 """
                 log_prompt = prompt  # Stores the latest prompt state for error block fallback capture
                 
@@ -273,7 +282,7 @@ def convert_phases_to_json(client: OpenAI, model_name: str, project_name: str, n
                     break
                 
                 # Extract target task collections using flexible property matching vectors
-                chunk_steps_array = json_data.get("dailyTasks", json_data.get("steps", []))
+                chunk_steps_array = json_data.get("days", json_data.get("steps", json_data.get("dailyTasks", json_data.get("dayByDayPlan", []))))
                 
                 # Termination trigger: If array is missing or empty, the entire markdown blueprint context has been fully scanned
                 if not chunk_steps_array:
@@ -281,17 +290,16 @@ def convert_phases_to_json(client: OpenAI, model_name: str, project_name: str, n
                     has_more_days = False
                     break
                 
-                # Capture core objectives and metadata fields during the foundational step layer
-                if chunk_counter == 1:
-                    aggregated_json_data["phase_name"] = json_data.get("phase", f"Phase {phase_idx}")
-                    aggregated_json_data["objectives"] = json_data.get("objectives", [])
-                
-                # Safely merge individual segment elements straight into the master cluster memory repository
-                for step_node in chunk_steps_array:
-                    step_day = step_node.get("day", 0)
-                    # Block model prediction hallucination spills outside request parameters
-                    if current_start_day <= step_day <= current_end_day:
-                        aggregated_json_data["dailyTasks"].append(step_node)
+                # ✅ MASTER MERGE: Merge chunk results into Python's memory repository tracker
+                for day_node in chunk_days_array:
+                    day_num = day_node.get("day", 0)
+                    if current_start_day <= day_num <= current_end_day:
+                        # Auto-inject string metadata if AI fills them with blank placeholders during chunking
+                        if not day_node.get("context_file"):
+                            day_node["context_file"] = f"{project_phase_context_file}"
+                        if not day_node.get("context_section"):
+                            day_node["context_section"] = f"## Day {day_num}"
+                        master_phase_plan["days"].append(day_node)
                 
                 # Incremental shift parameters mapping to the next chronological segment index
                 current_start_day += DAYS_PER_CHUNK
