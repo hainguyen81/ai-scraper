@@ -80,7 +80,7 @@ def run_architect_agent(project_name: str, requirements_path: str, num_phases: i
         # sleep to avoid 429 Too Many Requests
         if result:
             print("⏳ Rate limit guard active... holding pipeline for 15 seconds to clear AI TPM window...")
-            time.sleep(15)
+            time.sleep(5)
     
     # no need AI, just reading from existing context file
     else:
@@ -108,7 +108,7 @@ def run_architect_agent(project_name: str, requirements_path: str, num_phases: i
         # sleep to avoid 429 Too Many Requests
         if result:
             print("⏳ Rate limit guard active... holding pipeline for 15 seconds to clear AI TPM window...")
-            time.sleep(15)
+            time.sleep(5)
         
         else:
             print("\n[ 🤖💬 PIPELINE WARN ] Modular Enterprise Architecture Pipeline Executed: Fail to generate project phase contexts!")
