@@ -41,7 +41,7 @@ on:
           - "📈 Phase Context"
           - "🔢 Phase Steps"
       exec_delay:
-        description: "🤖 Execution Delay (in seconds)"
+        description: "💤 Execution Delay (in seconds)"
         required: false
         default: 3
         type: number
@@ -105,7 +105,7 @@ on:
         default: "💯 All"
         type: string
       exec_delay:
-        description: "🤖 Execution Delay (in seconds)"
+        description: "💤 Execution Delay (in seconds)"
         required: false
         default: 3
         type: number
