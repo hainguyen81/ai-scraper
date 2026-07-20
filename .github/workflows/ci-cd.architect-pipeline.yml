@@ -292,18 +292,26 @@ jobs:
       - name: 🚀 Commit and Push Blueprint Changes
         if: success() && github.event.inputs.exec_mode != 'None'          # if previous step is successful
         run: |
-          # Set up git bot profile identities
-          git config --global user.name "github-actions[bot]"
-          git config --global user.email "github-actions[bot]@://github.com"
-          
-          # Evaluate workspace state to check for new architecture modifications
-          if [ -n "$(git status --porcelain)" ]; then
+          # Only commit if there are explicit architectural diff changes detected
+          if git diff --cached --quiet; then
+            echo "ℹ️ Notice: No architecture structural updates or modifications were detected."
+          else
+            # Set up git bot profile identities
+            git config --global user.name "github-actions[bot]"
+            git config --global user.email "github-actions[bot]@://github.com"
+            
+            echo "📝 Committing system state changes..."
             git add .
             git commit -m "chore(ai): auto-generate global context and phase plan [skip ci]"
-            git push
+            
+            # ✅ ENTERPRISE HOTFIX: Explicitly pull and rebase the remote branch directly into the working tree
+            echo "🔄 Fetching latest upstream tree and executing explicit contextual rebase..."
+            git fetch origin ${{ github.ref_name }}
+            git rebase origin/${{ github.ref_name }}
+            
+            echo "📤 Pushing secure data changes upstream to repository branch..."
+            git push origin HEAD:${{ github.ref }}
             echo "🎯 Success! Architecture files successfully committed and pushed back to the repository."
-          else
-            echo "ℹ️ Notice: No architecture structural updates or modifications were detected."
           fi
   
   # Publish Project Blueprint Changes
