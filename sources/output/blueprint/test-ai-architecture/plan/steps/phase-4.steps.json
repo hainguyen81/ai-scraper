@@ -1,0 +1,8 @@
+{
+    "phase_id": 4,
+    "phase_name": "Phase 4",
+    "project_name": "test-ai-architecture",
+    "global_context_file": ".ai/.context/test-ai-architecture.global.blueprint.md",
+    "source_target_dir": "sources/",
+    "days": []
+}
