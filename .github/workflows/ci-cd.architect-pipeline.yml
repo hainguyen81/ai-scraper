@@ -342,6 +342,7 @@ jobs:
     with:
       new_repo_name: ${{ inputs.project_name }}
       is_private: true
+      requirements_file: ${{ inputs.requirements_file }}
       blueprint: ${{ inputs.output_dir }}
       template: 'sources/templates/project_initialization'
     secrets: inherit
