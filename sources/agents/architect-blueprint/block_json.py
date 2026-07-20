@@ -148,7 +148,7 @@ def manual_transform(json_data, project_name: str, phase_idx: int):
 # def convert_phases_to_json(client: genai.Client, project_name: str, num_phases: int, out_dir: str):
 
 # OpenAI
-def convert_phases_to_json(client: OpenAI, model_name: str, project_name: str, num_phases: int, json_mapping: str, out_dir: str, delay: int, daysPerChunk: int):
+def convert_phases_to_json(client: OpenAI, model_name: str, project_name: str, num_phases: int, max_days_per_phase: int, json_mapping: str, out_dir: str, delay: int, daysPerChunk: int):
     """
     BLOCK 3: Consumes the physical localized markdown outputs and structuralized them into strictly-typed JSON.
     Guarantees no invalid text pollution using Pydantic typing patterns.
@@ -159,6 +159,7 @@ def convert_phases_to_json(client: OpenAI, model_name: str, project_name: str, n
     os.makedirs(steps_context_dir, exist_ok=True)
     
     delay = delay if delay else 3
+    max_days_per_phase = max_days_per_phase if max_days_per_phase > 0 else 7
     log_phase_idx = 0
     log_prompt = ""
     instruction = "You are a rigid technical translator. Map high-level Markdown workflows into precise, executable JSON schemas."
@@ -217,6 +218,10 @@ def convert_phases_to_json(client: OpenAI, model_name: str, project_name: str, n
                     prompt = f"""
                     Analyze the attached Phase {phase_idx} Context Markdown content. 
                     Extract and translate ALL daily steps, checklists, and agent tasks starting from Day {current_start_day} up to Day {current_end_day} (inclusive).
+            
+                    # CRITICAL TIMELINE BOUNDARY CONSTRAINTS:
+                    ## 1. STRICT PHASE DURATION LIMIT: Each individual Phase MUST be strictly bounded between 1 to {max_days_per_phase} days maximum (Absolute Hard Limit: Maximum {max_days_per_phase} days per phase). Under no circumstances are you allowed to invent, extrapolate, or generate scheduling logs beyond Day {max_days_per_phase}.
+                    ## 2. PROGRESSION STOPPING CRITERION: Stop generating immediately once the core technical objectives of the current Phase are satisfied. Do NOT duplicate or loop previous task structures just to inflate the timeline. If the work is complete on Day 1, freeze the output and exit.
 
                     CRITICAL INSTRUCTIONS FOR PRODUCTION STABILITY:
                     1. Target Range Focus: Carefully locate all scheduling logs and task sections for any Day that falls strictly between Day {current_start_day} and Day {current_end_day} (inclusive).

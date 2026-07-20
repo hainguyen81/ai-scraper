@@ -106,7 +106,7 @@ def run_architect_agent(project_name: str, requirements_path: str, num_phases: i
             requirements=project_requirements,
             global_context=global_context_text,
             num_phases=num_phases,
-            max_days=max_days_per_phase,
+            max_days_per_phase=max_days_per_phase,
             out_dir=absolute_out_dir,
             delay=exec_delay
         )
@@ -127,6 +127,7 @@ def run_architect_agent(project_name: str, requirements_path: str, num_phases: i
             model_name=api_model_steps,
             project_name=project_name,
             num_phases=num_phases,
+            max_days_per_phase=max_days_per_phase,
             json_mapping=absolute_api_model_steps_mapping,
             out_dir=absolute_out_dir,
             delay=exec_delay,

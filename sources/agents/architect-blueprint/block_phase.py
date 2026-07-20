@@ -19,7 +19,7 @@ from helper import parseOpenAIResponseData
 # def generate_phase_contexts(client: genai.Client, project_name: str, requirements: str, global_context: str, num_phases: int, out_dir: str):
 
 # OpenAI
-def generate_phase_contexts(client: OpenAI, model_name: str, project_name: str, requirements: str, global_context: str, num_phases: int, max_days: int, out_dir: str, delay: int):
+def generate_phase_contexts(client: OpenAI, model_name: str, project_name: str, requirements: str, global_context: str, num_phases: int, max_days_per_phase: int, out_dir: str, delay: int):
     """
     BLOCK 2: Decomposes requirements into segmented, sandbox-ready development boundaries.
     Executes raw isolated stateless calls per loop item to bypass sequence length degradation.
@@ -27,7 +27,7 @@ def generate_phase_contexts(client: OpenAI, model_name: str, project_name: str, 
     print(f"🔄 [BLOCK 2] Decomposing requirements into {num_phases} isolated Phase Markdowns...")
     
     delay = delay if delay else 3
-    max_days = max_days if max_days > 0 else 7
+    max_days_per_phase = max_days_per_phase if max_days_per_phase > 0 else 7
     log_phase_idx = 0
     log_prompt = ""
     instruction = "You are an Elite Solution Architect. Isolate development boundaries so sub-agents never overlap."
@@ -49,7 +49,7 @@ def generate_phase_contexts(client: OpenAI, model_name: str, project_name: str, 
             ----------------------------------
             
             # CRITICAL TIMELINE BOUNDARY CONSTRAINTS:
-            ## 1. STRICT PHASE DURATION LIMIT: Each individual Phase MUST be strictly bounded between 1 to {max_days} days maximum (Absolute Hard Limit: Maximum {max_days} days per phase). Under no circumstances are you allowed to invent, extrapolate, or generate scheduling logs beyond Day {max_days}.
+            ## 1. STRICT PHASE DURATION LIMIT: Each individual Phase MUST be strictly bounded between 1 to {max_days_per_phase} days maximum (Absolute Hard Limit: Maximum {max_days_per_phase} days per phase). Under no circumstances are you allowed to invent, extrapolate, or generate scheduling logs beyond Day {max_days_per_phase}.
             ## 2. PROGRESSION STOPPING CRITERION: Stop generating immediately once the core technical objectives of the current Phase are satisfied. Do NOT duplicate or loop previous task structures just to inflate the timeline. If the work is complete on Day 1, freeze the output and exit.
 
             Your output MUST follow this exact Markdown structure for Phase {phase_idx}:
