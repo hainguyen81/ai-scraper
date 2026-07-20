@@ -49,7 +49,7 @@ def project_context_file(project_name: str):
 def phase_context_file(phase_idx: int):
     return f".ai/.plan/.context/phase-{ phase_idx }.context.blueprint.md"
 
-def dynamic_transform(json_data, project_name: str, phase_idx: int, template_file_path="blueprint.config.map.json"):
+def dynamic_transform(json_data, project_name: str, phase_idx: int, template_file_path="blueprint.config.map.json", log_file_path: str):
     # check json mapping whether existed
     if not template_file_path or not os.path.exists(template_file_path):
         print(f" │   └── ⚠️ The mapping JSON file not found: {template_file_path}. So using manual transform...")
@@ -61,6 +61,7 @@ def dynamic_transform(json_data, project_name: str, phase_idx: int, template_fil
             template_content = f.read()
         
         # custom field mapping
+        print(f" │   └── ⚠️ The mapping JSON template: {template_content}")
         json_data['project_name'] = project_name.lower()
         json_data['global_context_file'] = project_context_file(project_name)
         json_data['phase_idx'] = phase_idx
@@ -70,12 +71,25 @@ def dynamic_transform(json_data, project_name: str, phase_idx: int, template_fil
         # wrap AI json data to variable `ai` in mapping config file to use
         jinja_template = Template(template_content)
         rendered_str = jinja_template.render(ai=json_data)
+        print(f" │   └── ⚠️ The mapping JSON Rendered String: {rendered_str}")
+        
+        # write log for tracing
+        if os.path.exists(log_file_path):
+            with open(fallback_path, "a", encoding="utf-8") as f:
+                f.write(f"# Project Name: { project_name } | Phase: { phase_idx }\n\n")
+                f.write(f"## JSON:\n\n```json{ json.dumps(json_data) }```\n\n")
+                f.write(f"## Mapped JSON:\n\n```json{ rendered_str }```\n\n")
         
         # 3. Clean up redundant comma (,) by Jinja in JSON Array
         # Process cases: [..., {obj}, ] hoặc [ , {obj} ]
         cleaned_str = re.sub(r',\s*\]', ']', rendered_str)
         cleaned_str = re.sub(r'\[\s*,', '[', cleaned_str)
         cleaned_str = re.sub(r',\s*\}', '}', cleaned_str)
+        
+        # write log for tracing
+        if os.path.exists(log_file_path):
+            with open(fallback_path, "a", encoding="utf-8") as f:
+                f.write(f"## Cleaned JSON:\n\n```json{ cleaned_str }```\n\n")
         
         # 4. Parse result JSON after rendering by Jinja
         return json.loads(cleaned_str)
@@ -201,9 +215,10 @@ def convert_phases_to_json(client: OpenAI, model_name: str, project_name: str, n
             # write blueprint
             out_path = os.path.join(steps_context_dir, f"phase-{phase_idx}.steps.json")
             fallback_path = os.path.join(steps_context_dir, f"phase-{phase_idx}.steps.error.md")
+            transform_log_path = os.path.join(steps_context_dir, f"phase-{phase_idx}.steps.transformer.md")
             try:
                 # transform mapping
-                transform_json_data = dynamic_transform(json_data, project_name, phase_idx, json_mapping)
+                transform_json_data = dynamic_transform(json_data, project_name, phase_idx, json_mapping, transform_log_path)
                 print(f" │   └── 🎉 Transform Phase {phase_idx} Standardized JSON: { json.dumps(transform_json_data) }")
                 
                 # 2. Parse and validate the string payload locally with Pydantic core engine
@@ -221,6 +236,8 @@ def convert_phases_to_json(client: OpenAI, model_name: str, project_name: str, n
                 # Save the raw unparsed text payload directly to file for manual logging evaluation
                 with open(fallback_path, "w", encoding="utf-8") as f:
                     f.write(raw_data)
+                    f.write("\n-------------------------------------------------\n")
+                    f.write(json_data)
                 print(f" │   └── ⚠️ Raw dump saved to diagnostic log file: {fallback_path}")
             
             # write log
