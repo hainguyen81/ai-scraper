@@ -255,6 +255,9 @@ def convert_phases_to_json(client: OpenAI, model_name: str, project_name: str, n
                 # print(f" │   └── 🎉 Response Phase {phase_idx} Standardized JSON:")
                 # print(f" │         { dump_json_data }")
                 
+                # write log
+                write_log(log_phase_idx, instruction, log_prompt.replace('#', '##'), json_data, True)
+                
                 # Accumulate stream markers for audit logging preservation
                 accumulated_raw_data += f"\n--- CHUNK {chunk_counter} RAW ---\n" + (raw_data if raw_data else "")
                 if json_data:
@@ -329,9 +332,6 @@ def convert_phases_to_json(client: OpenAI, model_name: str, project_name: str, n
                     f.write(aggregated_json_data)
                     f.write("\n-------------------------------------------------\n")
                 print(f" │   └── ⚠️ Raw dump saved to diagnostic log file: {fallback_path}")
-            
-            # write log
-            write_log(log_phase_idx, instruction, log_prompt.replace('#', '##'), json_data, True)
             
             print(f" │   └── 🎉 Saved Phase {phase_idx} JSON Tracker: {out_path}")
             
