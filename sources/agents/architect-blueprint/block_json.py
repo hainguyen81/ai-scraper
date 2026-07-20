@@ -260,10 +260,10 @@ def convert_phases_to_json(client: OpenAI, model_name: str, project_name: str, n
                     # response_format=PhaseStepsPlan, # Injects the pydantic model schema ruleset natively
                     # max_tokens=8192,
                     max_completion_tokens=4096,
-                    # 💡 Turn OFF thinking feature of Qwen on Groq
-                    extra_body={
-                        "reasoning_format": "hidden"
-                    },
+                    # # 💡 Turn OFF thinking feature of Qwen on Groq
+                    # extra_body={
+                    #     "reasoning_format": "hidden"
+                    # },
                 )
                 
                 # if response is ok, parse json
