@@ -7538,3 +7538,142 @@ You are a rigid technical translator. Map high-level Markdown workflows into pre
 Error code: 429 - {'error': {'message': 'Rate limit reached for model `llama-3.3-70b-versatile` in organization `org_01kx7x6rbpftmr50sr2yyb78qm` service tier `on_demand` on tokens per day (TPD): Limit 100000, Used 98769, Requested 1497. Please try again in 3m49.824s. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing', 'type': 'tokens', 'code': 'rate_limit_exceeded'}}
 ```
 
+# Global Prompt:
+
+
+        Analyze the attached project requirements. Build the GLOBAL PROJECT CONTEXT for 'test-ai-architecture'.
+        
+        --- RAW REQUIREMENTS ---
+        ## Project Name: membership-hub
+
+*	**Requirements:**
+	- Project vừa web để quản lý, vừa mobile để học viên xài.
+	- Project này xây dựng backend bằng quarkus, kafka, postgres, có thể scalable, build docker image, deploy GCP, GKE.
+	- Hỗ trợ xác thực internal bằng email password, hoặc qua firebase, google, facebook. quản lý user internal lẫn login qua xác thực với các bên bên trên.
+	- Project này quản lý các học viên của trung tâm bất kỳ, dùng được cho nhiều trung tâm 1 lúc được.
+	- Các học viên của trung tâm khi tới học sẽ điểm danh qua QR. Điểm danh sẽ đánh dấu ngày đó học viên có đi học. Cho dù điểm danh nhiều lần cũng không vấn đề và chỉ xem như đã điểm danh ngày hôm đó.
+	- Sau khi điểm danh sẽ hiển thị thẻ học viên còn bao nhiêu ngày hiệu lực như kiểu trừ dần ngày tập gym chẳng hạn.
+	- Đồng thời lúc đó gửi tin nhắn qua số đt zalo của học viên và nhóm zalo có học viên đó tham gia, và cả notification của app mobile trên đt học viên.
+	- App mobile dùng next.js làm front end, hỗ trợ đa ngôn ngữ, build đc cho ios, android.
+	- Project này có phần SEO đa ngôn ngữ cho cả web, app mobile.
+	- Detect default locale ngôn ngữ nếu user đã chọn trước đó thì dùng nó, không thì dùng locale từ browser hay mobile.
+
+        --- END REQUIREMENTS ---
+
+        Your output MUST follow this exact structure:
+        ## GLOBAL PROJECT CONTEXT: test-ai-architecture
+        #### 1. Executive Summary & Tech Stack Blueprint
+        #### 2. Global Guardrails & Enterprise Compliance Standards
+        #### 3. Standardized Sub-Agent Persona Definitions (Manager, Coder, Tester, Reviewer, Docker, Deployer)
+        #### 4. Multi-Phase Segmentation Strategy Overview (Plan exactly 5 phases)
+        
+
+# System Instruction
+
+You are an Elite Solution Architect. Define the global system truth and multi-agent guardrails.
+
+# Raw Response / Exception:
+
+```text
+## GLOBAL PROJECT CONTEXT: test-ai-architecture
+#### 1. Executive Summary & Tech Stack Blueprint
+The membership-hub project is a scalable web and mobile application designed to manage students across multiple centers. The tech stack includes Quarkus, Kafka, Postgres, and Docker, with deployment on GCP and GKE. The application will support internal authentication via email and password, as well as external authentication through Firebase, Google, and Facebook. The project will utilize Next.js for the mobile frontend, supporting multiple languages and building for both iOS and Android. Key features include QR code attendance tracking, notification systems, and SEO optimization for both web and mobile platforms.
+
+#### 2. Global Guardrails & Enterprise Compliance Standards
+To ensure the project's success and adherence to industry standards, the following guardrails and compliance standards will be implemented:
+- **Security**: Implement OAuth 2.0 for authentication, SSL/TLS encryption for data transmission, and regular security audits.
+- **Scalability**: Design the system to scale horizontally, utilizing cloud services like GCP and GKE to handle increased traffic.
+- **Data Management**: Utilize Postgres for relational data storage and Kafka for event-driven data processing, ensuring data consistency and integrity.
+- **Compliance**: Adhere to GDPR for user data protection, and ensure accessibility standards (WCAG 2.1) for the web and mobile applications.
+- **Quality Assurance**: Implement automated testing (unit, integration, and end-to-end) and conduct regular code reviews.
+
+#### 3. Standardized Sub-Agent Persona Definitions
+The following personas will be involved in the project:
+- **Manager**: Oversees project timelines, budgets, and resource allocation. Ensures compliance with enterprise standards and guardrails.
+- **Coder**: Develops the application's backend and frontend, focusing on Quarkus, Kafka, Postgres, and Next.js. Responsible for implementing security and scalability features.
+- **Tester**: Designs and executes automated tests, as well as manual testing for critical features. Ensures the application meets quality and accessibility standards.
+- **Reviewer**: Conducts code reviews, providing feedback on security, performance, and adherence to coding standards.
+- **Docker**: Responsible for containerizing the application, ensuring seamless deployment and scalability.
+- **Deployer**: Manages the deployment of the application on GCP and GKE, monitoring performance and addressing any deployment issues.
+
+#### 4. Multi-Phase Segmentation Strategy Overview
+The project will be divided into five phases:
+- **Phase 1: Planning and Design** (Weeks 1-4): Define project scope, create wireframes and prototypes, and establish the tech stack.
+- **Phase 2: Backend Development** (Weeks 5-12): Develop the Quarkus backend, implement Kafka and Postgres, and integrate authentication systems.
+- **Phase 3: Frontend Development** (Weeks 13-18): Develop the Next.js frontend, implement multi-language support, and design the mobile application.
+- **Phase 4: Testing and Quality Assurance** (Weeks 19-22): Conduct automated and manual testing, perform code reviews, and ensure accessibility and security standards are met.
+- **Phase 5: Deployment and Maintenance** (Weeks 23-26): Deploy the application on GCP and GKE, monitor performance, and address any issues that arise. Implement a maintenance schedule for updates and security patches.
+```
+
+# Phase 1 - Prompt:
+
+
+            Project Name: test-ai-architecture
+            You are tasked to detail **PHASE 1 OUT OF 5**.
+            You must align perfectly with the established Global Context and satisfy a subset of the Raw Requirements.
+
+            --- GLOBAL CONTEXT REFERENCE ---
+            ## GLOBAL PROJECT CONTEXT: test-ai-architecture
+#### 1. Executive Summary & Tech Stack Blueprint
+The membership-hub project is a scalable web and mobile application designed to manage students across multiple centers. The tech stack includes Quarkus, Kafka, Postgres, and Docker, with deployment on GCP and GKE. The application will support internal authentication via email and password, as well as external authentication through Firebase, Google, and Facebook. The project will utilize Next.js for the mobile frontend, supporting multiple languages and building for both iOS and Android. Key features include QR code attendance tracking, notification systems, and SEO optimization for both web and mobile platforms.
+
+#### 2. Global Guardrails & Enterprise Compliance Standards
+To ensure the project's success and adherence to industry standards, the following guardrails and compliance standards will be implemented:
+- **Security**: Implement OAuth 2.0 for authentication, SSL/TLS encryption for data transmission, and regular security audits.
+- **Scalability**: Design the system to scale horizontally, utilizing cloud services like GCP and GKE to handle increased traffic.
+- **Data Management**: Utilize Postgres for relational data storage and Kafka for event-driven data processing, ensuring data consistency and integrity.
+- **Compliance**: Adhere to GDPR for user data protection, and ensure accessibility standards (WCAG 2.1) for the web and mobile applications.
+- **Quality Assurance**: Implement automated testing (unit, integration, and end-to-end) and conduct regular code reviews.
+
+#### 3. Standardized Sub-Agent Persona Definitions
+The following personas will be involved in the project:
+- **Manager**: Oversees project timelines, budgets, and resource allocation. Ensures compliance with enterprise standards and guardrails.
+- **Coder**: Develops the application's backend and frontend, focusing on Quarkus, Kafka, Postgres, and Next.js. Responsible for implementing security and scalability features.
+- **Tester**: Designs and executes automated tests, as well as manual testing for critical features. Ensures the application meets quality and accessibility standards.
+- **Reviewer**: Conducts code reviews, providing feedback on security, performance, and adherence to coding standards.
+- **Docker**: Responsible for containerizing the application, ensuring seamless deployment and scalability.
+- **Deployer**: Manages the deployment of the application on GCP and GKE, monitoring performance and addressing any deployment issues.
+
+#### 4. Multi-Phase Segmentation Strategy Overview
+The project will be divided into five phases:
+- **Phase 1: Planning and Design** (Weeks 1-4): Define project scope, create wireframes and prototypes, and establish the tech stack.
+- **Phase 2: Backend Development** (Weeks 5-12): Develop the Quarkus backend, implement Kafka and Postgres, and integrate authentication systems.
+- **Phase 3: Frontend Development** (Weeks 13-18): Develop the Next.js frontend, implement multi-language support, and design the mobile application.
+- **Phase 4: Testing and Quality Assurance** (Weeks 19-22): Conduct automated and manual testing, perform code reviews, and ensure accessibility and security standards are met.
+- **Phase 5: Deployment and Maintenance** (Weeks 23-26): Deploy the application on GCP and GKE, monitor performance, and address any issues that arise. Implement a maintenance schedule for updates and security patches.
+            
+            --- RAW REQUIREMENTS REFERENCE ---
+            ## Project Name: membership-hub
+
+*	**Requirements:**
+	- Project vừa web để quản lý, vừa mobile để học viên xài.
+	- Project này xây dựng backend bằng quarkus, kafka, postgres, có thể scalable, build docker image, deploy GCP, GKE.
+	- Hỗ trợ xác thực internal bằng email password, hoặc qua firebase, google, facebook. quản lý user internal lẫn login qua xác thực với các bên bên trên.
+	- Project này quản lý các học viên của trung tâm bất kỳ, dùng được cho nhiều trung tâm 1 lúc được.
+	- Các học viên của trung tâm khi tới học sẽ điểm danh qua QR. Điểm danh sẽ đánh dấu ngày đó học viên có đi học. Cho dù điểm danh nhiều lần cũng không vấn đề và chỉ xem như đã điểm danh ngày hôm đó.
+	- Sau khi điểm danh sẽ hiển thị thẻ học viên còn bao nhiêu ngày hiệu lực như kiểu trừ dần ngày tập gym chẳng hạn.
+	- Đồng thời lúc đó gửi tin nhắn qua số đt zalo của học viên và nhóm zalo có học viên đó tham gia, và cả notification của app mobile trên đt học viên.
+	- App mobile dùng next.js làm front end, hỗ trợ đa ngôn ngữ, build đc cho ios, android.
+	- Project này có phần SEO đa ngôn ngữ cho cả web, app mobile.
+	- Detect default locale ngôn ngữ nếu user đã chọn trước đó thì dùng nó, không thì dùng locale từ browser hay mobile.
+
+            ----------------------------------
+
+            Your output MUST follow this exact Markdown structure for Phase 1:
+            ## PHASE 1 CONTEXT BLUEPRINT: test-ai-architecture
+            #### 1. Phase Operational Scope & Objectives
+            #### 2. Allowed Technical Scope & Directory Boundaries (Files, paths, and endpoints)
+            #### 3. Dedicated Sub-Agent Functional Directives (Specific tasks for Coder, Tester, Reviewer, DevOps)
+            #### 4. Phase Definition of Done (DoD)
+            
+
+# System Instruction
+
+You are an Elite Solution Architect. Isolate development boundaries so sub-agents never overlap.
+
+# Raw Response / Exception:
+
+```json
+Error code: 429 - {'error': {'message': 'Rate limit reached for model `llama-3.3-70b-versatile` in organization `org_01kx7x6rbpftmr50sr2yyb78qm` service tier `on_demand` on tokens per day (TPD): Limit 100000, Used 98986, Requested 1935. Please try again in 13m15.743999999s. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing', 'type': 'tokens', 'code': 'rate_limit_exceeded'}}
+```
+
