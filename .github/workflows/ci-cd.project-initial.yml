@@ -13,6 +13,11 @@ on:
         required: true
         default: true
         type: boolean
+      blueprint:
+        description: "🌐 Project BluePrint Folder to Publish (Ex: sources/output/blueprint)"
+        required: false
+        default: ''
+        type: string
       template:
         description: "🎨 Project Initial Template"
         required: false
@@ -31,6 +36,11 @@ on:
         required: true
         default: true
         type: boolean
+      blueprint:
+        description: "🌐 Project BluePrint Folder to Publish (Ex: sources/output/blueprint)"
+        required: false
+        default: ''
+        type: string
       template:
         description: "🎨 Project Initial Template"
         required: false
@@ -56,7 +66,9 @@ jobs:
     steps:
       # 📂 Step 1: Ingest the current repository codebase along with the template assets
       - name: "📥 Checkout Source Template Repository"
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
+        with:
+            fetch-depth: 0
 
       # ⚡ Step 2: Establish connection parameters and securely provision the brand-new repository
       - name: "🖥️ Create Target GitHub Repository"
@@ -69,7 +81,7 @@ jobs:
           echo "✨ Sanitizing repository name..."
           # 🧼 Sanitize and format the repository name to guarantee a safe slug string
           CLEAN_REPO_NAME=$(echo "$REPO_NAME" | sed 's/ /-/g' | tr '[:upper:]' '[:lower:]')
-          echo "CLEAN_NAME=$CLEAN_REPO_NAME" >> $GITHUB_ENV
+          echo "PROJECT_NAME=$CLEAN_REPO_NAME" >> $GITHUB_ENV
           
           # 🎛️ Formulate the visibility switch flag based on the boolean runtime user input
           VISIBILITY="public"
@@ -88,11 +100,16 @@ jobs:
           GH_TOKEN: ${{ secrets.PAT_SECRETS_MANAGER }}
           TARGET_OWNER: ${{ github.repository_owner }}
           TEMPLATE_DIR: ${{ github.event.inputs.template }}
+          BLUEPRINT_DIR: ${{ github.event.inputs.blueprint }}
         run: |
           echo "🔍 Checking template folder existence..."
           # 🚨 Verify that the target template payload workspace physically exists inside the runner workspace
           if [ ! -d "$TEMPLATE_DIR" ]; then
             echo "❌ Critical Error: Source deployment folder '$TEMPLATE_DIR' not found in workspace root!"
+            exit 1
+          fi
+          if [ -n "$BLUEPRINT_DIR" ] && [ ! -d "$BLUEPRINT_DIR/${{ env.PROJECT_NAME }}" ]; then
+            echo "❌ Critical Error: BluePrint deployment folder '$BLUEPRINT_DIR/${{ env.PROJECT_NAME }}' not found in workspace root!"
             exit 1
           fi
           
@@ -102,6 +119,9 @@ jobs:
           
           # 🖨️ Copy all recursive configuration items, scripts, and dotfiles into the synchronization sandbox
           cp -r $TEMPLATE_DIR/. ../sync-workspace/
+          if [ -d "$BLUEPRINT_DIR/${{ env.PROJECT_NAME }}" ]; then
+            cp -r $BLUEPRINT_DIR/${{ env.PROJECT_NAME }}/. ../sync-workspace/.ai/
+          fi
           
           # 🔀 Change context directory to the decoupled target initialization workspace
           cd ../sync-workspace
@@ -120,7 +140,7 @@ jobs:
           git commit -m "chore(init): 🚀 base project infrastructure synchronization from master architecture templates"
           
           # 🔐 Dynamically map the authentication header token onto the remote destination URL target string
-          TARGET_URL="https://x-access-token:${{ secrets.GH_PAT }}@://github.com{TARGET_OWNER}/${{ env.CLEAN_NAME }}.git"
+          TARGET_URL="https://x-access-token:${{ secrets.GH_PAT }}@://github.com{TARGET_OWNER}/${{ env.PROJECT_NAME }}.git"
           
           # ⚓ Bind the newly instantiated git workspace to the targeted repository endpoint on GitHub
           git remote add origin "$TARGET_URL"

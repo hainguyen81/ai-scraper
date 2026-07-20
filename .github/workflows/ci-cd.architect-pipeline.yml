@@ -4,6 +4,11 @@ name: 🏗️ Agent - Execute AI Architect BluePrint
 on:
   workflow_dispatch:
     inputs:
+      publish_project:
+        description: '🌐 Publish Project'
+        required: false
+        default: false
+        type: boolean
       project_name:
         description: '📁 Project Name'
         required: false
@@ -34,6 +39,7 @@ on:
           - "🌐 Global Context"
           - "📈 Phase Context"
           - "🔢 Phase Steps"
+          - "None"
       model_endpoint:
         description: '🔗 AI Endpoint - OpenAI (Ex: https://openrouter.ai/api/v1)'
         required: false
@@ -63,6 +69,11 @@ on:
   # allow other workflow call into (inputs same as workflow_dispatch but required)
   workflow_call:
     inputs:
+      publish_project:
+        description: '🌐 Publish Project'
+        required: false
+        default: false
+        type: boolean
       project_name:
         description: '📁 Project Name'
         required: false
@@ -126,165 +137,183 @@ env:
   LC_ALL: 'C.UTF-8'
 
 jobs:
+  # 🏗️ System Architecture & Phase Planner
   generate-blueprint:
     name: 🏗️ System Architecture & Phase Planner
     runs-on: ubuntu-latest
-
+    
     steps:
-    # Step 1: Checkout the repository code into the runner workspace
-    - name: 📥 Checkout Repository
-      uses: actions/checkout@v7
+      # Step 1: Checkout the repository code into the runner workspace
+      - name: 📥 Checkout Repository
+        uses: actions/checkout@v7
+        with:
+            fetch-depth: 0
+
+      # Step 2: Initialize a clean Python runtime environment
+      - name: 🐍 Set up Python Environment
+        if: success()                 # if previous step is successful
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+          cache: 'pip'
+
+      # Step 3: Upgrade pip and install the official Google GenAI SDK
+      - name: 📦 Install Python Dependencies
+        if: success()                 # if previous step is successful
+        run: |
+          python -m pip install --upgrade pip
+          
+          # GEMINI
+          # pip install google-genai
+          
+          # OpenAI
+          pip install openai pydantic
+          
+          # mapping JSON
+          pip install jinja2
+
+      # Step 4: Extract inputs dynamically and execute the Lead Architect Agent
+      - name: 🤖 Run Lead Architect Agent
+        if: success()                 # if previous step is successful
+        env:
+          # OpenAI - Common from LLM-Web-Scrapper Workflow
+          API_KEY: ${{ secrets.API_KEY }}
+          API_ENDPONT: ${{ secrets.API_ENDPOINT }}
+          API_MODEL: ${{ secrets.API_MODEL }}
+          
+          # OpenAI - for BluePrint
+          API_BLUEPRINT_ENDPOINT: ${{ secrets.API_BLUEPRINT_ENDPOINT }}
+          API_BLUEPRINT_KEY: ${{ secrets.API_BLUEPRINT_KEY }}
+          API_BLUEPRINT_MODEL: ${{ secrets.API_BLUEPRINT_MODEL }}
+          API_MODEL_GLOBAL: ${{ secrets.API_BLUEPRINT_MODEL_GLOBAL }}
+          API_MODEL_PHASE: ${{ secrets.API_BLUEPRINT_MODEL_PHASE }}
+          API_MODEL_STEPS: ${{ secrets.API_BLUEPRINT_MODEL_STEPS_JSON }}
+          
+          # specific models
+          INPUTS_MODEL_ENDPOINT: ${{ github.event.inputs.model_endpoint }}
+          INPUTS_MODEL_KEY: ${{ github.event.inputs.model_key }}
+          INPUTS_MODEL_GLOBAL: ${{ github.event.inputs.model_global }}
+          INPUTS_MODEL_PHASE: ${{ github.event.inputs.model_phase }}
+          INPUTS_MODEL_STEPS: ${{ github.event.inputs.model_steps }}
+          INPUTS_MODEL_STEPS_MAPPING: ${{ github.event.inputs.model_steps_mapping_config }}
+          
+          # Python environment
+          PYTHONPATH: ${{ github.workspace }} # force Python load folder structure, including 'sources'
+          
+          # Project Information
+          REQUIREMENTS_FILE: ${{ github.event.inputs.requirements_file }}
+          OUTPUT_BLUEPRINT_DIR: ${{ github.event.inputs.output_dir }}
+          NUM_OF_PHASES: ${{ github.event.inputs.phases }}
+          PROJECT_NAME: ${{ github.event.inputs.project_name }}
+          EXEC_MODE: ${{ github.event.inputs.exec_mode }}
+        run: |
+          # Extract Phase count (Fallback to 5 if triggered automatically via git push)
+          NUM_PHASES="$NUM_OF_PHASES"
+          if [ -z "$NUM_PHASES" ]; then
+            NUM_PHASES=5
+          fi
+          
+          # Extract dynamic Output Path (Fallback to default directory on automated events)
+          OUT_DIR="$OUTPUT_BLUEPRINT_DIR"
+          if [ -z "$OUT_DIR" ]; then
+            OUT_DIR="sources/output/blueprint"
+          fi
+          
+          # check models
+          MODEL_GLOBAL="$INPUTS_MODEL_GLOBAL"
+          if [ -z "$MODEL_GLOBAL" ]; then
+            MODEL_GLOBAL="$API_MODEL_GLOBAL"
+          fi
+          if [ -z "$MODEL_GLOBAL" ]; then
+            MODEL_GLOBAL="$API_MODEL"
+          fi
+          
+          MODEL_PHASE="$INPUTS_MODEL_PHASE"
+          if [ -z "$MODEL_PHASE" ]; then
+            MODEL_PHASE="$API_MODEL_PHASE"
+          fi
+          if [ -z "$MODEL_PHASE" ]; then
+            MODEL_PHASE="$MODEL_GLOBAL"
+          fi
+          
+          MODEL_STEPS="$INPUTS_MODEL_STEPS"
+          if [ -z "$MODEL_STEPS" ]; then
+            MODEL_STEPS="$API_MODEL_STEPS"
+          fi
+          if [ -z "$MODEL_STEPS" ]; then
+            MODEL_STEPS="$MODEL_PHASE"
+          fi
+          
+          # check endpoint/key
+          MODEL_ENDPOINT="$INPUTS_MODEL_ENDPOINT"
+          if [ -z "$MODEL_ENDPOINT" ]; then
+            MODEL_ENDPOINT="$API_BLUEPRINT_ENDPOINT"
+          fi
+          if [ -z "$MODEL_ENDPOINT" ]; then
+            MODEL_ENDPOINT="$API_ENDPONT"
+          fi
+          
+          MODEL_KEY="$INPUTS_MODEL_KEY"
+          if [ -z "$MODEL_KEY" ]; then
+            MODEL_KEY="$API_BLUEPRINT_KEY"
+          fi
+          if [ -z "$MODEL_KEY" ]; then
+            MODEL_KEY="$API_KEY"
+          fi
+          
+          # check execution mode
+          EXE_MODE=0
+          if [ "$EXEC_MODE" = "🌐 Global Context" ]; then
+            EXE_MODE=1
+          fi
+          if [ "$EXEC_MODE" = "📈 Phase Context" ]; then
+            EXE_MODE=2
+          fi
+          if [ "$EXEC_MODE" = "🔢 Phase Steps" ]; then
+            EXE_MODE=3
+          fi
+          
+          echo "⚡ Kicking off AI Agent orchestration..."
+          echo "🔢 Requested Execution Phases: $NUM_PHASES"
+          echo "📂 Target Destination Directory: $OUT_DIR"
+          
+          # Execute the python architect core script with the dynamic paths
+          python sources/agents/architect-blueprint/main.py \
+              --project-name "$PROJECT_NAME" --req "$REQUIREMENTS_FILE" --phases $NUM_PHASES --out "$OUT_DIR" \
+              --api-key "$MODEL_KEY" --api-endpoint "$MODEL_ENDPOINT" \
+              --api-model-global-context "$MODEL_GLOBAL" \
+              --api-model-phase-context "$MODEL_PHASE" \
+              --api-model-phase-steps-json "$MODEL_STEPS" \
+              --api-model-phase-steps-json-mapping "$INPUTS_MODEL_STEPS_MAPPING" \
+              --exec-mode $EXE_MODE
+
+      # Step 5: Automatically stage, commit, and push the generated architecture files
+      - name: 🚀 Commit and Push Blueprint Changes
+        if: success()                 # if previous step is successful
+        run: |
+          # Set up git bot profile identities
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@://github.com"
+          
+          # Evaluate workspace state to check for new architecture modifications
+          if [ -n "$(git status --porcelain)" ]; then
+            git add .
+            git commit -m "chore(ai): auto-generate global context and phase plan [skip ci]"
+            git push
+            echo "🎯 Success! Architecture files successfully committed and pushed back to the repository."
+          else
+            echo "ℹ️ Notice: No architecture structural updates or modifications were detected."
+          fi
+  
+  # Publish Project Blueprint Changes
+  publish-project-blueprint:
+    - name: 🚀 Publish Project Blueprint Changes
+      if: ${{ github.event.inputs.publish_project == 'true' }}
+      uses: ./.github/workflows/ci-cd.project-initial.yml
       with:
-          fetch-depth: 0
+        new_repo_name: ${{ github.event.inputs.project_name }}
+        is_private: true
+        blueprint: ${{ github.event.inputs.output_dir }}
+        template: 'sources/templates/project_initialization'
+      secrets: inherit
 
-    # Step 2: Initialize a clean Python runtime environment
-    - name: 🐍 Set up Python Environment
-      uses: actions/setup-python@v5
-      with:
-        python-version: '3.11'
-        cache: 'pip'
-
-    # Step 3: Upgrade pip and install the official Google GenAI SDK
-    - name: 📦 Install Python Dependencies
-      run: |
-        python -m pip install --upgrade pip
-        
-        # GEMINI
-        # pip install google-genai
-        
-        # OpenAI
-        pip install openai pydantic
-        
-        # mapping JSON
-        pip install jinja2
-
-    # Step 4: Extract inputs dynamically and execute the Lead Architect Agent
-    - name: 🤖 Run Lead Architect Agent
-      env:
-        # OpenAI - Common from LLM-Web-Scrapper Workflow
-        API_KEY: ${{ secrets.API_KEY }}
-        API_ENDPONT: ${{ secrets.API_ENDPOINT }}
-        API_MODEL: ${{ secrets.API_MODEL }}
-        
-        # OpenAI - for BluePrint
-        API_BLUEPRINT_ENDPOINT: ${{ secrets.API_BLUEPRINT_ENDPOINT }}
-        API_BLUEPRINT_KEY: ${{ secrets.API_BLUEPRINT_KEY }}
-        API_BLUEPRINT_MODEL: ${{ secrets.API_BLUEPRINT_MODEL }}
-        API_MODEL_GLOBAL: ${{ secrets.API_BLUEPRINT_MODEL_GLOBAL }}
-        API_MODEL_PHASE: ${{ secrets.API_BLUEPRINT_MODEL_PHASE }}
-        API_MODEL_STEPS: ${{ secrets.API_BLUEPRINT_MODEL_STEPS_JSON }}
-        
-        # specific models
-        INPUTS_MODEL_ENDPOINT: ${{ github.event.inputs.model_endpoint }}
-        INPUTS_MODEL_KEY: ${{ github.event.inputs.model_key }}
-        INPUTS_MODEL_GLOBAL: ${{ github.event.inputs.model_global }}
-        INPUTS_MODEL_PHASE: ${{ github.event.inputs.model_phase }}
-        INPUTS_MODEL_STEPS: ${{ github.event.inputs.model_steps }}
-        INPUTS_MODEL_STEPS_MAPPING: ${{ github.event.inputs.model_steps_mapping_config }}
-        
-        # Python environment
-        PYTHONPATH: ${{ github.workspace }} # force Python load folder structure, including 'sources'
-        
-        # Project Information
-        REQUIREMENTS_FILE: ${{ github.event.inputs.requirements_file }}
-        OUTPUT_BLUEPRINT_DIR: ${{ github.event.inputs.output_dir }}
-        NUM_OF_PHASES: ${{ github.event.inputs.phases }}
-        PROJECT_NAME: ${{ github.event.inputs.project_name }}
-        EXEC_MODE: ${{ github.event.inputs.exec_mode }}
-      run: |
-        # Extract Phase count (Fallback to 5 if triggered automatically via git push)
-        NUM_PHASES="$NUM_OF_PHASES"
-        if [ -z "$NUM_PHASES" ]; then
-          NUM_PHASES=5
-        fi
-        
-        # Extract dynamic Output Path (Fallback to default directory on automated events)
-        OUT_DIR="$OUTPUT_BLUEPRINT_DIR"
-        if [ -z "$OUT_DIR" ]; then
-          OUT_DIR="sources/output/blueprint"
-        fi
-        
-        # check models
-        MODEL_GLOBAL="$INPUTS_MODEL_GLOBAL"
-        if [ -z "$MODEL_GLOBAL" ]; then
-          MODEL_GLOBAL="$API_MODEL_GLOBAL"
-        fi
-        if [ -z "$MODEL_GLOBAL" ]; then
-          MODEL_GLOBAL="$API_MODEL"
-        fi
-        
-        MODEL_PHASE="$INPUTS_MODEL_PHASE"
-        if [ -z "$MODEL_PHASE" ]; then
-          MODEL_PHASE="$API_MODEL_PHASE"
-        fi
-        if [ -z "$MODEL_PHASE" ]; then
-          MODEL_PHASE="$MODEL_GLOBAL"
-        fi
-        
-        MODEL_STEPS="$INPUTS_MODEL_STEPS"
-        if [ -z "$MODEL_STEPS" ]; then
-          MODEL_STEPS="$API_MODEL_STEPS"
-        fi
-        if [ -z "$MODEL_STEPS" ]; then
-          MODEL_STEPS="$MODEL_PHASE"
-        fi
-        
-        # check endpoint/key
-        MODEL_ENDPOINT="$INPUTS_MODEL_ENDPOINT"
-        if [ -z "$MODEL_ENDPOINT" ]; then
-          MODEL_ENDPOINT="$API_BLUEPRINT_ENDPOINT"
-        fi
-        if [ -z "$MODEL_ENDPOINT" ]; then
-          MODEL_ENDPOINT="$API_ENDPONT"
-        fi
-        
-        MODEL_KEY="$INPUTS_MODEL_KEY"
-        if [ -z "$MODEL_KEY" ]; then
-          MODEL_KEY="$API_BLUEPRINT_KEY"
-        fi
-        if [ -z "$MODEL_KEY" ]; then
-          MODEL_KEY="$API_KEY"
-        fi
-        
-        # check execution mode
-        EXE_MODE=0
-        if [ "$EXEC_MODE" = "🌐 Global Context" ]; then
-          EXE_MODE=1
-        fi
-        if [ "$EXEC_MODE" = "📈 Phase Context" ]; then
-          EXE_MODE=2
-        fi
-        if [ "$EXEC_MODE" = "🔢 Phase Steps" ]; then
-          EXE_MODE=3
-        fi
-        
-        echo "⚡ Kicking off AI Agent orchestration..."
-        echo "🔢 Requested Execution Phases: $NUM_PHASES"
-        echo "📂 Target Destination Directory: $OUT_DIR"
-        
-        # Execute the python architect core script with the dynamic paths
-        python sources/agents/architect-blueprint/main.py \
-            --project-name "$PROJECT_NAME" --req "$REQUIREMENTS_FILE" --phases $NUM_PHASES --out "$OUT_DIR" \
-            --api-key "$MODEL_KEY" --api-endpoint "$MODEL_ENDPOINT" \
-            --api-model-global-context "$MODEL_GLOBAL" \
-            --api-model-phase-context "$MODEL_PHASE" \
-            --api-model-phase-steps-json "$MODEL_STEPS" \
-            --api-model-phase-steps-json-mapping "$INPUTS_MODEL_STEPS_MAPPING" \
-            --exec-mode $EXE_MODE
-
-    # Step 5: Automatically stage, commit, and push the generated architecture files
-    - name: 🚀 Commit and Push Blueprint Changes
-      run: |
-        # Set up git bot profile identities
-        git config --global user.name "github-actions[bot]"
-        git config --global user.email "github-actions[bot]@://github.com"
-        
-        # Evaluate workspace state to check for new architecture modifications
-        if [ -n "$(git status --porcelain)" ]; then
-          git add .
-          git commit -m "chore(ai): auto-generate global context and phase plan [skip ci]"
-          git push
-          echo "🎯 Success! Architecture files successfully committed and pushed back to the repository."
-        else
-          echo "ℹ️ Notice: No architecture structural updates or modifications were detected."
-        fi
