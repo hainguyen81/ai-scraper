@@ -215,15 +215,14 @@ def convert_phases_to_json(client: OpenAI, model_name: str, project_name: str, n
                 Extract and translate ALL daily steps, checklists, and agent tasks starting from Day {current_start_day} up to Day {current_end_day} (inclusive).
                 
                 CRITICAL INSTRUCTIONS FOR PRODUCTION STABILITY:
-                1. Look for Day information inside the markdown text. If scheduling logs for Day {current_start_day} exist, you MUST parse them inside the 'days' array list node.
-                2. Do NOT omit any day. If a day has tasks, map them immediately.
-                3. For every micro task item under a specific day, invent a unique alpha-numeric task ID block string for the 'id' field (e.g., 'p{phase_idx}-d{current_start_day}-task1').
-                4. Map the target sub-agent executor string (e.g., 'Coder', 'Tester', 'Reviewer') onto the 'agent' field.
-                5. Map the literal task description technical content onto the 'desc' field.
-                6. Populate 'context_file' with '{project_phase_context_file}'.
-                7. Populate 'context_section' with '## Day {current_start_day}' or corresponding header sections found in the source text.
-                8. Because we are chunking, you ONLY need to return the records matching the requested day range. Fill other outer fields with fallback strings matching your structural validation schemas.
-                9. If there are no more tasks or schedules found for Day {current_start_day} or beyond, return an empty array for the 'days' field.
+                1. Target Range Focus: Carefully locate all scheduling logs and task sections for any Day that falls strictly between Day {current_start_day} and Day {current_end_day} (inclusive).
+                2. Data Extraction: For each day found within the requested range, you MUST parse and append a day object node into the 'days' array list. Do NOT omit any day within this range.
+                3. Task Details: For every micro task item under a specific day:
+                   - Provide a sequential task description text into the 'task' field.
+                   - Provide the assigned role (e.g., 'Coder', 'Tester', 'Reviewer') into the 'assignee' or 'subAgent' field.
+                4. Context Fields: For each day object, set 'day' as the integer value of that day, set 'context_file' to '{project_phase_context_file}', and set 'context_section' to 'DAY ' followed by the day number.
+                5. Chunking Boundary Guard: Because we are chunking, you ONLY need to return records matching the requested day range [{current_start_day} to {current_end_day}]. Fill other outer metadata fields with fallback strings.
+                6. Absolute Fallback: If and only if there are absolutely no tasks or schedules matching any day within the range [{current_start_day} to {current_end_day}] inside the source text, then you may return an empty array for the 'days' field.
                 
                 You MUST conform strictly to your required JSON Schema layout design structure:
                 {json_schema_dump}
