@@ -66,9 +66,9 @@ jobs:
     steps:
       - name: "🛡️ Gatekeeper - Validate Conditions For Execution"
         env:
-          REPO_NAME: ${{ github.event.inputs.new_repo_name }}
-          TEMPLATE_DIR: ${{ github.event.inputs.template }}
-          BLUEPRINT_DIR: ${{ github.event.inputs.blueprint }}
+          REPO_NAME: ${{ inputs.new_repo_name }}
+          TEMPLATE_DIR: ${{ inputs.template }}
+          BLUEPRINT_DIR: ${{ inputs.blueprint }}
         run: |
           echo "✨ Sanitizing repository name..."
           # 🧼 Sanitize and format the repository name to guarantee a safe slug string
@@ -97,7 +97,7 @@ jobs:
         if: success()                 # if previous step is successful
         env:
           GH_TOKEN: ${{ secrets.PAT_SECRETS_MANAGER }} # 🔑 Uses your personal token to bypass organizational write blocks
-          IS_PRIV: ${{ github.event.inputs.is_private }}
+          IS_PRIV: ${{ inputs.is_private }}
         run: |
           # 🎛️ Formulate the visibility switch flag based on the boolean runtime user input
           VISIBILITY="public"
@@ -116,8 +116,8 @@ jobs:
         env:
           GH_TOKEN: ${{ secrets.PAT_SECRETS_MANAGER }}
           TARGET_OWNER: ${{ github.repository_owner }}
-          TEMPLATE_DIR: ${{ github.event.inputs.template }}
-          BLUEPRINT_DIR: ${{ github.event.inputs.blueprint }}
+          TEMPLATE_DIR: ${{ inputs.template }}
+          BLUEPRINT_DIR: ${{ inputs.blueprint }}
         run: |
           echo "📂 Creating isolated temporary sync-workspace..."
           # 🧼 Create an isolated temporary synchronization workspace directory

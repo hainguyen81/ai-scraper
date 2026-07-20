@@ -50,7 +50,7 @@ jobs:
     permissions:
       actions: write
     # Execute only if the master configuration selection matches the current node driver route
-    if: ${{ github.event.inputs.agent_selection == 'All' || github.event.inputs.agent_selection == '🕸️ Semantic Search Scraper' }}
+    if: ${{ inputs.agent_selection == 'All' || inputs.agent_selection == '🕸️ Semantic Search Scraper' }}
     steps:
       - name: "📂 Checkout workspace root repository"
         uses: actions/checkout@v7
@@ -74,7 +74,7 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
       actions: write
-    if: ${{ github.event.inputs.agent_selection == 'All' || github.event.inputs.agent_selection == '🕵️ Hacker News Tech Monitor' }}
+    if: ${{ inputs.agent_selection == 'All' || inputs.agent_selection == '🕵️ Hacker News Tech Monitor' }}
     steps:
       - name: "📂 Checkout workspace root repository"
         uses: actions/checkout@v7
@@ -85,7 +85,7 @@ jobs:
       - name: "📡 Dispatch Upstream Signal with Custom Scan Limit Input Data"
         env:
           GH_TOKEN: ${{ secrets.PAT_SECRETS_MANAGER }}
-          LIMIT: ${{ github.event.inputs.scan_limit_default }}
+          LIMIT: ${{ inputs.scan_limit_default }}
         run: |
           echo "Initiating execution trigger for Hacker News Forum Stream Analyzer Node..."
           # ✅ CORRECTED: Explicitly bind the input parameter using the -f (field) operational option flag
@@ -100,7 +100,7 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
       actions: write
-    if: ${{ github.event.inputs.agent_selection == 'All' || github.event.inputs.agent_selection == '🐙 GitHub Repository Scraper' }}
+    if: ${{ inputs.agent_selection == 'All' || inputs.agent_selection == '🐙 GitHub Repository Scraper' }}
     steps:
       - name: "📂 Checkout workspace root repository"
         uses: actions/checkout@v7
@@ -124,7 +124,7 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
       actions: write
-    if: ${{ github.event.inputs.agent_selection == 'All' || github.event.inputs.agent_selection == '🤖 AI Web Scraper' }}
+    if: ${{ inputs.agent_selection == 'All' || inputs.agent_selection == '🤖 AI Web Scraper' }}
     steps:
       - name: "📂 Checkout workspace root repository"
         uses: actions/checkout@v7

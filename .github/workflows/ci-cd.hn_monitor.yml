@@ -92,7 +92,7 @@ jobs:
       # Step 3: Run asynchronous API listener via standard library runtime context
       - name: "🕵️‍♂️ Run community scanning monitoring pipeline"
         env:
-          SCAN_LIMIT: ${{ github.event.inputs.scan_limit }}
+          SCAN_LIMIT: ${{ inputs.scan_limit }}
         run: |
           echo "⚡ Initializing Hacker News REST endpoint stream listener..."
           python sources/agents/ai-reddit-hacker-news-scapper.py --scan-limit "$SCAN_LIMIT"
