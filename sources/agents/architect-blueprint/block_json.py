@@ -315,7 +315,7 @@ def convert_phases_to_json(client: OpenAI, model_name: str, project_name: str, n
             transform_log_path = os.path.join(steps_context_dir, f"phase-{phase_idx}.steps.transformer.md")
             try:
                 # transform mapping
-                transform_json_data = dynamic_transform(aggregated_json_data, project_name, phase_idx, json_mapping, transform_log_path)
+                transform_json_data = dynamic_transform(master_phase_plan, project_name, phase_idx, json_mapping, transform_log_path)
                 # dump_json_data = json.dumps(transform_json_data, indent=4, ensure_ascii=False) if transform_json_data else "Invalid JSON Data"
                 # print(f" │   └── 🎉 Transform Phase {phase_idx} Standardized JSON:")
                 # print(f" │         { dump_json_data }")
