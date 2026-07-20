@@ -70,6 +70,11 @@ on:
         required: false
         type: string
         default: 'sources/agents/architect-blueprint/blueprint.config.map.json'
+      model_steps_days_per_chunk:
+        description: '⛓️ Phase Steps Days Per AI Request - OpenAI (Ex: 1,2,3, or 0 for unlimitted)'
+        required: false
+        default: 0
+        type: number
     
   # allow other workflow call into (inputs same as workflow_dispatch but required)
   workflow_call:
@@ -134,6 +139,11 @@ on:
         required: false
         type: string
         default: 'sources/agents/architect-blueprint/blueprint.config.map.json'
+      model_steps_days_per_chunk:
+        description: '⛓️ Phase Steps Days Per AI Request - OpenAI (Ex: 1,2,3, or 0 for unlimitted)'
+        required: false
+        default: 0
+        type: number
 
 # permissions for GitHub Actions READ/WRITE
 permissions:
@@ -207,6 +217,7 @@ jobs:
           INPUTS_MODEL_PHASE: ${{ inputs.model_phase }}
           INPUTS_MODEL_STEPS: ${{ inputs.model_steps }}
           INPUTS_MODEL_STEPS_MAPPING: ${{ inputs.model_steps_mapping_config }}
+          INPUTS_MODEL_STEPS_DAYS_PER_CHUNK: ${{ inputs.model_steps_days_per_chunk }}
           
           # Python environment
           PYTHONPATH: ${{ github.workspace }} # force Python load folder structure, including 'sources'
@@ -256,6 +267,11 @@ jobs:
             MODEL_STEPS="$MODEL_PHASE"
           fi
           
+          MODEL_STEPS_DAYS_PER_CHUNK="$INPUTS_MODEL_STEPS_DAYS_PER_CHUNK"
+          if [ -z "$MODEL_STEPS_DAYS_PER_CHUNK" ]; then
+            MODEL_STEPS_DAYS_PER_CHUNK=0
+          fi
+          
           # check endpoint/key
           MODEL_ENDPOINT="$INPUTS_MODEL_ENDPOINT"
           if [ -z "$MODEL_ENDPOINT" ]; then
@@ -301,6 +317,7 @@ jobs:
               --api-model-phase-context "$MODEL_PHASE" \
               --api-model-phase-steps-json "$MODEL_STEPS" \
               --api-model-phase-steps-json-mapping "$INPUTS_MODEL_STEPS_MAPPING" \
+              --api-model-phase-steps-days-per-chunk "$MODEL_STEPS_DAYS_PER_CHUNK" \
               --exec-mode $EXE_MODE --exec-delay $EXE_DELAY
 
       # Step 5: Automatically stage, commit, and push the generated architecture files

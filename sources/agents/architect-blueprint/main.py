@@ -21,7 +21,7 @@ from block_global import generate_global_context
 from block_phase import generate_phase_contexts
 from block_json import convert_phases_to_json
 
-def run_architect_agent(project_name: str, requirements_path: str, num_phases: int, output_dir: str, api_key: str, api_endpoint: str, api_model_global: str, api_model_phase: str, api_model_steps: str, api_model_steps_mapping: str, exec_mode: int, exec_delay: int):
+def run_architect_agent(project_name: str, requirements_path: str, num_phases: int, output_dir: str, api_key: str, api_endpoint: str, api_model_global: str, api_model_phase: str, api_model_steps: str, api_model_steps_mapping: str, exec_mode: int, exec_delay: int, daysPerChunk: int):
     """
     Master pipeline orchestrator that runs individual functional blocks in sequence.
     Provides pristine separation of concerns and protects engine runtime stability.
@@ -126,7 +126,8 @@ def run_architect_agent(project_name: str, requirements_path: str, num_phases: i
             num_phases=num_phases,
             json_mapping=absolute_api_model_steps_mapping,
             out_dir=absolute_out_dir,
-            delay=exec_delay
+            delay=exec_delay,
+            daysPerChunk=daysPerChunk
         )
         if not result:
             print("\n[ 🤖💬 PIPELINE WARN ] Modular Enterprise Architecture Pipeline Executed: Fail to generate project phase JSON steps!")
@@ -149,6 +150,7 @@ if __name__ == "__main__":
     parser.add_argument("--api-model-phase-context", type=str, default="gpt-4o", help="AI API Model to support phase Markdown context")
     parser.add_argument("--api-model-phase-steps-json", type=str, default="gpt-4o", help="AI API Model to support phase steps JSON context")
     parser.add_argument("--api-model-phase-steps-json-mapping", type=str, default="", help="AI phase steps JSON ampping configuration")
+    parser.add_argument("--api-model-phase-steps-days-per-chunk", type=int, default=5, help="Execution Days per AI Request Chunk")
     parser.add_argument("--exec-mode", type=int, default=0, help="AI Execution Mode: Global / Phase Context / Steps. Acceptable values: 0, 1, 2, 3")
     parser.add_argument("--exec-delay", type=int, default=3, help="AI Execution Delay in seconds")
     
@@ -159,6 +161,7 @@ if __name__ == "__main__":
         args.project_name, args.req, args.phases, args.out,
         args.api_key, args.api_endpoint,
         args.api_model_global_context, args.api_model_phase_context, args.api_model_phase_steps_json,
-        args.api_model_phase_steps_json_mapping, args.exec_mode, args.exec_delay
+        args.api_model_phase_steps_json_mapping, args.exec_mode, args.exec_delay,
+        args.api_model_phase_steps_days_per_chunk
     )
 
