@@ -64,6 +64,13 @@ jobs:
     runs-on: ubuntu-latest
     
     steps:
+      # 📂 Step 1: Ingest the current repository codebase along with the template assets
+      - name: "📥 Checkout Source Template Repository"
+        uses: actions/checkout@v7
+        with:
+            fetch-depth: 0
+      
+      # validate folder existing
       - name: "🛡️ Gatekeeper - Validate Conditions For Execution"
         env:
           REPO_NAME: ${{ inputs.new_repo_name }}
@@ -85,12 +92,6 @@ jobs:
             echo "❌ Critical Error: BluePrint deployment folder '$BLUEPRINT_DIR/$CLEAN_REPO_NAME' not found in workspace root!"
             exit 1
           fi
-      
-      # 📂 Step 1: Ingest the current repository codebase along with the template assets
-      - name: "📥 Checkout Source Template Repository"
-        uses: actions/checkout@v7
-        with:
-            fetch-depth: 0
 
       # ⚡ Step 2: Establish connection parameters and securely provision the brand-new repository
       - name: "🖥️ Create Target GitHub Repository"
