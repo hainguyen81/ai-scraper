@@ -259,6 +259,9 @@ def convert_phases_to_json(client: OpenAI, model_name: str, project_name: str, n
                 accumulated_raw_data += f"\n--- CHUNK {chunk_counter} RAW ---\n" + (raw_data if raw_data else "")
                 if json_data:
                     accumulated_json_text += f"\n--- CHUNK {chunk_counter} JSON ---\n" + json.dumps(json_data, indent=2)
+                print(f" │       └── ⚠️ Chunk {chunk_counter}:")
+                print(f" │             {accumulated_raw_data}")
+                print(f" │             {accumulated_json_text}")
                 
                 # Guard against corrupted extractions
                 if not json_data or not isinstance(json_data, dict):
@@ -277,7 +280,7 @@ def convert_phases_to_json(client: OpenAI, model_name: str, project_name: str, n
                 
                 # Capture core objectives and metadata fields during the foundational step layer
                 if chunk_counter == 1:
-                    aggregated_json_data["phase"] = json_data.get("phase", f"Phase {phase_idx}")
+                    aggregated_json_data["phase_name"] = json_data.get("phase", f"Phase {phase_idx}")
                     aggregated_json_data["objectives"] = json_data.get("objectives", [])
                 
                 # Safely merge individual segment elements straight into the master cluster memory repository
