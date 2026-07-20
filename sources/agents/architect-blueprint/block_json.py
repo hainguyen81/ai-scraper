@@ -216,13 +216,14 @@ def convert_phases_to_json(client: OpenAI, model_name: str, project_name: str, n
                 
                 CRITICAL INSTRUCTIONS FOR PRODUCTION STABILITY:
                 1. Look for Day information inside the markdown text. If scheduling logs for Day {current_start_day} exist, you MUST parse them inside the 'days' array list node.
-                2. For every micro task item under a specific day, invent a unique alpha-numeric task ID block string for the 'id' field (e.g., 'p{phase_idx}-d{current_start_day}-task1').
-                3. Map the target sub-agent executor string (e.g., 'Coder', 'Tester', 'Reviewer') onto the 'agent' field.
-                4. Map the literal task description technical content onto the 'desc' field.
-                5. Populate 'context_file' with '{project_phase_context_file}'.
-                6. Populate 'context_section' with '## Day {current_start_day}' or corresponding header sections found in the source text.
-                7. Because we are chunking, you ONLY need to return the records matching the requested day range. Fill other outer fields with fallback strings matching your structural validation schemas.
-                8. If there are no more tasks or schedules found for Day {current_start_day} or beyond, return an empty array for the 'days' field.
+                2. Do NOT omit any day. If a day has tasks, map them immediately.
+                3. For every micro task item under a specific day, invent a unique alpha-numeric task ID block string for the 'id' field (e.g., 'p{phase_idx}-d{current_start_day}-task1').
+                4. Map the target sub-agent executor string (e.g., 'Coder', 'Tester', 'Reviewer') onto the 'agent' field.
+                5. Map the literal task description technical content onto the 'desc' field.
+                6. Populate 'context_file' with '{project_phase_context_file}'.
+                7. Populate 'context_section' with '## Day {current_start_day}' or corresponding header sections found in the source text.
+                8. Because we are chunking, you ONLY need to return the records matching the requested day range. Fill other outer fields with fallback strings matching your structural validation schemas.
+                9. If there are no more tasks or schedules found for Day {current_start_day} or beyond, return an empty array for the 'days' field.
                 
                 You MUST conform strictly to your required JSON Schema layout design structure:
                 {json_schema_dump}
