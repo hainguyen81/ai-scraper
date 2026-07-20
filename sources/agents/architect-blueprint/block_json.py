@@ -213,20 +213,19 @@ def convert_phases_to_json(client: OpenAI, model_name: str, project_name: str, n
                 prompt = f"""
                 Analyze the attached Phase {phase_idx} Context Markdown content. 
                 Extract and translate ALL daily steps, checklists, and agent tasks starting from Day {current_start_day} up to Day {current_end_day} (inclusive).
-                
+
                 CRITICAL INSTRUCTIONS FOR PRODUCTION STABILITY:
                 1. Target Range Focus: Carefully locate all scheduling logs and task sections for any Day that falls strictly between Day {current_start_day} and Day {current_end_day} (inclusive).
-                2. Data Extraction: For each day found within the requested range, you MUST parse and append a day object node into the 'days' array list. Do NOT omit any day within this range.
-                3. STRICT LITERAL FIELD VALUES (MANDATORY):
-                   - You MUST populate the exact string "{global_context_file}" into the 'global_context_file' field. Do not change it.
-                   - You MUST populate the exact string "sources/" into the 'source_target_dir' field. Do not change it.
-                4. Task Details: For every micro task item under a specific day:
+                2. Mandatory Data Extraction: You MUST parse and generate a day object node inside the 'days' array for EVERY single day within the requested range [{current_start_day} to {current_end_day}]. 
+                3. NO ESCAPE HATCH: Do NOT return an empty array for 'days' under any circumstances if there is markdown text present. Even if tasks are not explicitly labeled, parse the paragraph descriptions into technical sub-tasks for that day.
+                4. STRICT LITERAL FIELD VALUES (MANDATORY):
+                   - Populate the exact string "{global_context_file}" into the 'global_context_file' field.
+                   - Populate the exact string "sources/" into the 'source_target_dir' field.
+                5. Task Details: For every micro task item under a specific day:
                    - Provide a sequential task description text into the 'task' field.
                    - Provide the assigned role (e.g., 'Coder', 'Tester', 'Reviewer') into the 'agent', 'subAgent', 'assignee' or 'subAgent' field.
-                5. Context Fields: For each day object, set 'day' as the integer value of that day, set 'context_file' to '{project_phase_context_file}', and set 'context_section' to 'DAY ' followed by the day number.
-                6. Chunking Boundary Guard: Because we are chunking, you ONLY need to return records matching the requested day range [{current_start_day} to {current_end_day}]. Fill other outer metadata fields with fallback strings.
-                7. Absolute Fallback: If and only if there are absolutely no tasks or schedules matching any day within the range [{current_start_day} to {current_end_day}] inside the source text, then you may return an empty array for the 'days' field.
-                
+                6. Context Fields: For each day object, set 'day' as the integer value of that day, set 'context_file' to '{project_phase_context_file}', and set 'context_section' to 'DAY ' followed by the day number.
+
                 You MUST conform strictly to your required JSON Schema layout design structure:
                 {json_schema_dump}
 
@@ -261,6 +260,12 @@ def convert_phases_to_json(client: OpenAI, model_name: str, project_name: str, n
                     # response_format=PhaseStepsPlan, # Injects the pydantic model schema ruleset natively
                     # max_tokens=8192,
                     max_completion_tokens=4096,
+                    # 💡 Turn OFF thinking feature of Qwen on Groq
+                    extra_body={
+                        "extra_params": {
+                            "reasoning_format": "none"
+                        }
+                    },
                 )
                 
                 # if response is ok, parse json
