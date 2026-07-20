@@ -207,7 +207,10 @@ def convert_phases_to_json(client: OpenAI, model_name: str, project_name: str, n
             # 🎯 CORE SLIDING TIMELINE SCROLL LOOP
             while has_more_days:
                 current_end_day = current_start_day + DAYS_PER_CHUNK - 1
-                print(f" │       ├── 📦 Chunk {chunk_counter}: Extracting Days {current_start_day} to {current_end_day}...")
+                if DAYS_PER_CHUNK > 0:
+                    print(f" │       ├── 📦 Chunk {chunk_counter}: Extracting Days {current_start_day} to {current_end_day}...")
+                else:
+                    print(f" │       ├── 📦 Chunk {chunk_counter}: Extracting All Days...")
                 
                 # Strict directives instructing the AI to populate only the requested slice arrays
                 if DAYS_PER_CHUNK > 0:
