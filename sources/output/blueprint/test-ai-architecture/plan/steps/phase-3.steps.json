@@ -1,0 +1,94 @@
+{
+    "phase_id": 3,
+    "phase_name": "Phase 3",
+    "project_name": "test-ai-architecture",
+    "global_context_file": ".ai/.context/test-ai-architecture.global.blueprint.md",
+    "source_target_dir": "sources/",
+    "days": [
+        {
+            "day": 1,
+            "context_file": ".ai/.plan/.context/phase-3.context.blueprint.md",
+            "context_section": "DAY 1",
+            "sub_tasks": [
+                {
+                    "id": "D1_ST1",
+                    "agent": "Coder",
+                    "desc": "Coder Agent: Develop the mobile frontend using Next.js"
+                },
+                {
+                    "id": "D1_ST2",
+                    "agent": "Tester",
+                    "desc": "Tester Agent: Develop and execute comprehensive test plans for the mobile frontend"
+                }
+            ]
+        },
+        {
+            "day": 2,
+            "context_file": ".ai/.plan/.context/phase-3.context.blueprint.md",
+            "context_section": "DAY 2",
+            "sub_tasks": [
+                {
+                    "id": "D2_ST1",
+                    "agent": "Coder",
+                    "desc": "Coder Agent: Implement QR code scanning and notification systems"
+                },
+                {
+                    "id": "D2_ST2",
+                    "agent": "Reviewer",
+                    "desc": "Reviewer Agent: Conduct code reviews to ensure the mobile frontend code meets the project's coding standards and best practices"
+                }
+            ]
+        },
+        {
+            "day": 3,
+            "context_file": ".ai/.plan/.context/phase-3.context.blueprint.md",
+            "context_section": "DAY 3",
+            "sub_tasks": [
+                {
+                    "id": "D3_ST1",
+                    "agent": "Coder",
+                    "desc": "Coder Agent: Integrate with the backend API"
+                },
+                {
+                    "id": "D3_ST2",
+                    "agent": "DevOps (Docker)",
+                    "desc": "DevOps (Docker) Agent: Create and maintain Docker images for the mobile frontend"
+                }
+            ]
+        },
+        {
+            "day": 4,
+            "context_file": ".ai/.plan/.context/phase-3.context.blueprint.md",
+            "context_section": "DAY 4",
+            "sub_tasks": [
+                {
+                    "id": "D4_ST1",
+                    "agent": "DevOps (Docker)",
+                    "desc": "DevOps (Docker) Agent: Optimize Docker images for production environments"
+                },
+                {
+                    "id": "D4_ST2",
+                    "agent": "DevOps (Deployer)",
+                    "desc": "DevOps (Deployer) Agent: Assist in deploying the mobile frontend to GKE"
+                }
+            ]
+        },
+        {
+            "day": 5,
+            "context_file": ".ai/.plan/.context/phase-3.context.blueprint.md",
+            "context_section": "DAY 5",
+            "sub_tasks": [
+                {
+                    "id": "D5_ST1",
+                    "agent": "DevOps (Deployer)",
+                    "desc": "DevOps (Deployer) Agent: Ensure a smooth deployment process"
+                },
+                {
+                    "id": "D5_ST2",
+                    "agent": "DevOps (Deployer)",
+                    "desc": "DevOps (Deployer) Agent: Verify the deployment is successful"
+                }
+            ]
+        }
+    ]
+}

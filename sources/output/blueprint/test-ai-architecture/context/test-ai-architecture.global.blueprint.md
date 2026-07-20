@@ -1,28 +1,28 @@
 # GLOBAL PROJECT CONTEXT: test-ai-architecture
 ## 1. Executive Summary & Tech Stack Blueprint
-The membership-hub project is a scalable web and mobile application designed to manage students across multiple centers. The tech stack includes Quarkus, Kafka, Postgres, and Docker, with deployment on GCP and GKE. The application supports internal authentication via email/password, Firebase, Google, and Facebook, as well as QR code-based attendance tracking. The front end is built using Next.js, with support for multiple languages, SEO optimization, and notification systems. The project aims to provide a comprehensive management system for centers, with features such as attendance tracking, membership management, and notification systems.
+The membership-hub project is a scalable web and mobile application designed to manage students across multiple centers. The tech stack includes Quarkus, Kafka, Postgres, and Docker, with deployment on GCP and GKE. The application supports internal authentication via email/password, Firebase, Google, and Facebook, and manages user login and registration. The project utilizes Next.js for the mobile frontend, supporting multiple languages and building for both iOS and Android. Key features include QR code-based attendance tracking, notification systems, and SEO optimization for both web and mobile platforms.
 
 ## 2. Global Guardrails & Enterprise Compliance Standards
-To ensure the project's success and adherence to industry standards, the following global guardrails and enterprise compliance standards will be implemented:
-* Security: Implement OAuth 2.0 for authentication, SSL/TLS encryption for data transmission, and regular security audits.
-* Data Privacy: Comply with GDPR, CCPA, and other relevant data protection regulations, ensuring the secure storage and handling of user data.
-* Scalability: Design the system to scale horizontally, with load balancing and auto-scaling capabilities to handle increased traffic.
-* Compliance: Adhere to industry-specific regulations, such as accessibility standards (WCAG 2.1) and data retention policies.
-* Quality Assurance: Implement automated testing, code reviews, and continuous integration/continuous deployment (CI/CD) pipelines to ensure high-quality code and rapid deployment.
+To ensure the project's success and adherence to industry standards, the following guardrails and compliance standards will be implemented:
+- **Security**: Implement OAuth 2.0 for authentication, use HTTPS for encryption, and follow OWASP guidelines for secure coding practices.
+- **Scalability**: Design the system to scale horizontally, utilizing load balancers and auto-scaling groups in GKE.
+- **Data Management**: Use Postgres for relational data storage and Kafka for event-driven architecture, ensuring data consistency and integrity.
+- **Compliance**: Adhere to GDPR for user data protection, and follow accessibility guidelines (WCAG 2.1) for the web and mobile applications.
+- **Monitoring and Logging**: Implement logging and monitoring tools (e.g., Prometheus, Grafana) to track system performance and identify potential issues.
 
 ## 3. Standardized Sub-Agent Persona Definitions
-The following sub-agent persona definitions will be used to ensure clear roles and responsibilities:
-* **Manager**: Oversees project scope, timeline, and budget, ensuring alignment with business objectives.
-* **Coder**: Develops high-quality, scalable, and secure code, following industry best practices and coding standards.
-* **Tester**: Designs and executes comprehensive testing plans, identifying and reporting defects to ensure high-quality software.
-* **Reviewer**: Conducts code reviews, providing constructive feedback to improve code quality, readability, and maintainability.
-* **Docker**: Responsible for containerization, ensuring seamless deployment and scaling of the application.
-* **Deployer**: Manages deployment processes, ensuring smooth and efficient deployment of the application to production environments.
+The following personas will be involved in the project:
+- **Manager**: Oversees the project timeline, budget, and resource allocation. Ensures that the project is delivered on time and within budget.
+- **Coder**: Responsible for writing clean, efficient, and well-documented code. Collaborates with the team to implement new features and fix bugs.
+- **Tester**: Develops and executes comprehensive test plans to ensure the application meets the required standards. Reports defects and collaborates with the development team to resolve issues.
+- **Reviewer**: Conducts code reviews to ensure that the code meets the project's coding standards and best practices. Provides feedback to the development team to improve code quality.
+- **Docker**: Responsible for creating and maintaining Docker images for the application, ensuring that the images are optimized for production environments.
+- **Deployer**: Manages the deployment of the application to GKE, ensuring that the deployment is smooth and that the application is properly configured for production.
 
 ## 4. Multi-Phase Segmentation Strategy Overview
-The project will be divided into five phases:
-* **Phase 1: Planning and Requirements Gathering** (Weeks 1-4): Define project scope, gather requirements, and create a detailed project plan.
-* **Phase 2: Backend Development** (Weeks 5-12): Develop the backend using Quarkus, Kafka, and Postgres, with a focus on scalability and security.
-* **Phase 3: Frontend Development** (Weeks 13-18): Develop the frontend using Next.js, with a focus on user experience, SEO optimization, and notification systems.
-* **Phase 4: Testing and Quality Assurance** (Weeks 19-22): Conduct comprehensive testing, including unit testing, integration testing, and user acceptance testing.
-* **Phase 5: Deployment and Maintenance** (Weeks 23-26): Deploy the application to production, ensure smooth operation, and provide ongoing maintenance and support.
+The project will be divided into the following five phases:
+- **Phase 1: Planning and Design** (Weeks 1-4): Define the project scope, create a detailed design document, and develop a prototype to validate the project's feasibility.
+- **Phase 2: Backend Development** (Weeks 5-12): Develop the backend API using Quarkus, implement authentication and authorization, and integrate with Kafka and Postgres.
+- **Phase 3: Mobile Frontend Development** (Weeks 13-18): Develop the mobile frontend using Next.js, implement features such as QR code scanning and notification systems.
+- **Phase 4: Testing and Quality Assurance** (Weeks 19-22): Conduct unit testing, integration testing, and UI testing to ensure that the application meets the required standards.
+- **Phase 5: Deployment and Maintenance** (Weeks 23-26): Deploy the application to GKE, configure monitoring and logging tools, and ensure that the application is properly maintained and updated to meet changing requirements.

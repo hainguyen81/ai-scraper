@@ -1,41 +1,55 @@
 # PHASE 2 CONTEXT BLUEPRINT: test-ai-architecture
 ## 1. Phase Operational Scope & Objectives
-The primary objective of Phase 2 is to develop the backend of the membership-hub project using Quarkus, Kafka, and Postgres, with a focus on scalability and security. The scope of this phase includes:
-* Designing and implementing the database schema for user management, attendance tracking, and notification systems
-* Developing RESTful APIs for user authentication, attendance tracking, and notification systems
-* Integrating Kafka for real-time data processing and notification systems
-* Implementing OAuth 2.0 for authentication and SSL/TLS encryption for data transmission
-* Ensuring the backend is scalable, secure, and compliant with industry standards
+The primary objective of Phase 2 is to develop the backend API using Quarkus, implementing authentication and authorization, and integrating with Kafka and Postgres. This phase will focus on building a scalable and secure backend infrastructure to support the membership-hub project. The key deliverables include:
+
+* Design and implementation of the backend API using Quarkus
+* Integration with Kafka for event-driven architecture
+* Integration with Postgres for relational data storage
+* Implementation of authentication and authorization using OAuth 2.0
+* Development of API endpoints for user management, attendance tracking, and notification systems
 
 ## 2. Allowed Technical Scope & Directory Boundaries (Files, paths, and endpoints)
-The technical scope of Phase 2 includes:
-* Backend directory: `src/main/java`
-* Database schema: `src/main/resources/db`
-* Kafka configuration: `src/main/resources/kafka`
-* API endpoints:
-	+ `/api/v1/auth`: user authentication
-	+ `/api/v1/attendance`: attendance tracking
-	+ `/api/v1/notifications`: notification systems
-* Allowed dependencies:
-	+ Quarkus
-	+ Kafka
-	+ Postgres
-	+ OAuth 2.0
-	+ SSL/TLS encryption
+The technical scope for Phase 2 includes:
+
+* Backend API development using Quarkus (Java or Kotlin)
+* Integration with Kafka and Postgres
+* Implementation of OAuth 2.0 for authentication and authorization
+* Development of API endpoints using RESTful architecture
+* Use of Docker for containerization
+* Deployment on GCP and GKE
+
+Directory boundaries:
+
+* `src/main/java`: Quarkus backend API code
+* `src/main/resources`: Configuration files and properties
+* `src/test/java`: Unit tests and integration tests
+* `docker`: Dockerfile and containerization scripts
+* `kafka`: Kafka configuration and integration code
+* `postgres`: Postgres configuration and integration code
+
+Endpoints:
+
+* `/api/v1/users`: User management endpoints (e.g., create, read, update, delete)
+* `/api/v1/attendance`: Attendance tracking endpoints (e.g., record attendance, get attendance history)
+* `/api/v1/notifications`: Notification system endpoints (e.g., send notifications, get notification history)
 
 ## 3. Dedicated Sub-Agent Functional Directives (Specific tasks for Coder, Tester, Reviewer, DevOps)
 The following sub-agents will be involved in Phase 2:
-* **Coder**: Develop the backend using Quarkus, Kafka, and Postgres, implementing RESTful APIs and integrating OAuth 2.0 for authentication
-* **Tester**: Design and execute unit tests, integration tests, and API tests to ensure the backend is functioning correctly
-* **Reviewer**: Conduct code reviews to ensure the code is scalable, secure, and compliant with industry standards
-* **DevOps (Docker)**: Containerize the backend using Docker and ensure seamless deployment to GCP and GKE
-* **DevOps (Deployer)**: Manage the deployment process, ensuring smooth and efficient deployment of the backend to production environments
+
+* **Coder**: Responsible for developing the backend API using Quarkus, integrating with Kafka and Postgres, and implementing authentication and authorization.
+* **Tester**: Responsible for developing unit tests and integration tests for the backend API, ensuring that the API endpoints are working correctly and securely.
+* **Reviewer**: Responsible for reviewing the code developed by the Coder, ensuring that it meets the project's coding standards and best practices.
+* **DevOps**: Responsible for creating and maintaining Docker images for the backend API, ensuring that the images are optimized for production environments, and deploying the API to GKE.
 
 ## 4. Phase Definition of Done (DoD)
-Phase 2 is considered complete when:
-* The backend is fully functional, with all required features implemented
-* All unit tests, integration tests, and API tests have been executed and passed
-* Code reviews have been completed, and all feedback has been addressed
-* The backend has been containerized using Docker and deployed to GCP and GKE
-* All security and compliance requirements have been met, including OAuth 2.0 and SSL/TLS encryption
-* The phase has been reviewed and approved by the Manager and all sub-agents involved.
+The Definition of Done for Phase 2 includes:
+
+* The backend API is fully implemented and tested
+* All API endpoints are working correctly and securely
+* Integration with Kafka and Postgres is complete and tested
+* Authentication and authorization are fully implemented and tested
+* Docker images are created and optimized for production environments
+* The backend API is deployed to GKE and configured for production
+* All unit tests and integration tests are passing
+* Code reviews are complete and all feedback is addressed
+* Deployment scripts and configuration files are updated and tested
