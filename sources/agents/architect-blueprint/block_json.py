@@ -259,9 +259,6 @@ def convert_phases_to_json(client: OpenAI, model_name: str, project_name: str, n
                     # max_tokens=8192,
                 )
                 
-                # require response ok, status is in 2xx
-                response.raise_for_status()
-                
                 # if response is ok, parse json
                 raw_data, json_data = parseOpenAIResponseJsonData(response)
                 # dump_json_data = json.dumps(json_data, indent=4, ensure_ascii=False) if json_data else "Invalid JSON Data"
