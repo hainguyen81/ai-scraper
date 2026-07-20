@@ -1,0 +1,184 @@
+{
+    "free_providers": [
+        {
+            "provider_name": "NVIDIA NIM",
+            "api_base_url": "https://integrate.api.nvidia.com/v1",
+            "model_name": "z-ai/glm-5.2",
+            "context_window_tokens": 1000000
+        },
+        {
+            "provider_name": "ModelScope",
+            "api_base_url": "https://api-inference.modelscope.cn/v1",
+            "model_name": "MiniMax/MiniMax-M2.5",
+            "context_window_tokens": 204000
+        },
+        {
+            "provider_name": "Cloudflare Workers AI",
+            "api_base_url": "https://api.cloudflare.com/client/v4/accounts/{account_id}/ai/run",
+            "model_name": "@cf/meta/llama-3.3-70b-instruct-fp8-fast",
+            "context_window_tokens": 131000
+        },
+        {
+            "provider_name": "OpenRouter",
+            "api_base_url": "https://openrouter.ai/api/v1",
+            "model_name": "tencent/hy3:free",
+            "context_window_tokens": 262000
+        },
+        {
+            "provider_name": "GitHub Models",
+            "api_base_url": "https://models.github.ai/inference",
+            "model_name": "Phi-4",
+            "context_window_tokens": 131000
+        },
+        {
+            "provider_name": "Groq",
+            "api_base_url": "https://api.groq.com/openai/v1",
+            "model_name": "moonshotai/kimi-k2-instruct",
+            "context_window_tokens": 131000
+        },
+        {
+            "provider_name": "Google Gemini",
+            "api_base_url": "https://generativelanguage.googleapis.com/v1beta",
+            "model_name": "gemini-3.5-flash",
+            "context_window_tokens": 1000000
+        },
+        {
+            "provider_name": "OVHcloud AI Endpoints",
+            "api_base_url": "https://oai.endpoints.kepler.ai.cloud.ovh.net/v1",
+            "model_name": "qwen3.5-397b-a17b",
+            "context_window_tokens": 131000
+        },
+        {
+            "provider_name": "Mistral AI",
+            "api_base_url": "https://api.mistral.ai/v1",
+            "model_name": "mistral-medium-3-5-128b",
+            "context_window_tokens": 256000
+        },
+        {
+            "provider_name": "LLM7.io",
+            "api_base_url": "https://api.llm7.io/v1",
+            "model_name": "deepseek-r1-0528",
+            "context_window_tokens": 131000
+        },
+        {
+            "provider_name": "Cerebras",
+            "api_base_url": "https://api.cerebras.ai/v1",
+            "model_name": "gpt-oss-120b",
+            "context_window_tokens": 128000
+        },
+        {
+            "provider_name": "Cohere",
+            "api_base_url": "https://api.cohere.com/v2",
+            "model_name": "command-a-111b",
+            "context_window_tokens": 256000
+        },
+        {
+            "provider_name": "Ollama Cloud",
+            "api_base_url": "https://api.ollama.com",
+            "model_name": "gpt-oss-120b-cloud",
+            "context_window_tokens": 128000
+        },
+        {
+            "provider_name": "OpenCode Zen",
+            "api_base_url": "https://opencode.ai/zen/v1",
+            "model_name": "deepseek-v4-flash-free",
+            "context_window_tokens": 1000000
+        },
+        {
+            "provider_name": "Agnes AI",
+            "api_base_url": "https://apihub.agnes-ai.com/v1",
+            "model_name": "agnes-1.5-flash",
+            "context_window_tokens": 256000
+        },
+        {
+            "provider_name": "Aion Labs",
+            "api_base_url": "https://api.aionlabs.ai/v1",
+            "model_name": "aion-2-5",
+            "context_window_tokens": 128000
+        },
+        {
+            "provider_name": "Hugging Face",
+            "api_base_url": "https://router.huggingface.co/v1",
+            "model_name": "meta-llama-3-1-8b-instruct",
+            "context_window_tokens": 128000
+        },
+        {
+            "provider_name": "Kilo Code",
+            "api_base_url": "https://api.kilo.ai/api/gateway",
+            "model_name": "x-ai-grok-code-fast-1-free",
+            "context_window_tokens": 256000
+        },
+        {
+            "provider_name": "Alibaba Cloud Model Studio",
+            "api_base_url": "https://dashscope-intl.aliyuncs.com/compatible-mode/v1",
+            "model_name": "qwen3-plus",
+            "context_window_tokens": 1000000
+        },
+        {
+            "provider_name": "Z AI (Zhipu AI)",
+            "api_base_url": "https://open.bigmodel.cn/api/paas/v4",
+            "model_name": "glm-4.7",
+            "context_window_tokens": 200000
+        },
+        {
+            "provider_name": "SambaNova",
+            "api_base_url": "https://api.sambanova.ai/v1",
+            "model_name": "deepseek-v3-1",
+            "context_window_tokens": 128000
+        },
+        {
+            "provider_name": "SiliconFlow",
+            "api_base_url": "https://api.siliconflow.cn/v1",
+            "model_name": "deepseek-ai-deepseek-r1-distill-qwen-7b",
+            "context_window_tokens": 131000
+        },
+        {
+            "provider_name": "xAI",
+            "api_base_url": "https://api.x.ai/v1",
+            "model_name": "grok-3-mini",
+            "context_window_tokens": 131000
+        },
+        {
+            "provider_name": "Chutes.ai",
+            "api_base_url": "https://api.chutes.ai/v1",
+            "model_name": "deepseek-ai/DeepSeek-R1",
+            "context_window_tokens": 131000
+        },
+        {
+            "provider_name": "Glhf.chat",
+            "api_base_url": "https://glhf.chat/api/openai/v1",
+            "model_name": "meta-llama/Meta-Llama-3.1-70B-Instruct",
+            "context_window_tokens": 131000
+        },
+        {
+            "provider_name": "Grok (xAI)",
+            "api_base_url": "https://api.x.ai/v1",
+            "model_name": "grok-2",
+            "context_window_tokens": 131000
+        },
+        {
+            "provider_name": "AI21 Labs",
+            "api_base_url": "https://api.ai21.com/studio/v1",
+            "model_name": "jamba-large-1-7",
+            "context_window_tokens": 256000
+        },
+        {
+            "provider_name": "DeepSeek",
+            "api_base_url": "https://api.deepseek.com/v1",
+            "model_name": "deepseek-chat-v3-2",
+            "context_window_tokens": 128000
+        },
+        {
+            "provider_name": "Nscale",
+            "api_base_url": "https://inference.api.nscale.com/v1",
+            "model_name": "llama-3-3-70b-instruct",
+            "context_window_tokens": 128000
+        },
+        {
+            "provider_name": "Nebius",
+            "api_base_url": "https://api.studio.nebius.com/v1",
+            "model_name": "qwen3-235b-a22b",
+            "context_window_tokens": 128000
+        }
+    ]
+}
