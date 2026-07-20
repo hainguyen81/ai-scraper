@@ -159,6 +159,7 @@ jobs:
           cd ../sync-workspace
           
           echo "🌱 Initializing clean independent git repository..."
+          # !!!IMPORTANT!!! Use branch 'main' to show workflows list. This's a bug of github
           # 💎 Initialize a clean independent git local tree tracking environment
           # git init --initial-branch=master
           git init
@@ -180,6 +181,7 @@ jobs:
           
           echo "⬆️ Force pushing payload to upstream main branch..."
           
+          # !!!IMPORTANT!!! Use branch 'main' to show workflows list. This's a bug of github
           # 🛩️ Force push the local tracking lineage directly onto the upstream main integration branch
           # git branch -M master
           # git push -u origin master --force
