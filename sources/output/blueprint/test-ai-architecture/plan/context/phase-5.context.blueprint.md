@@ -1,74 +1,70 @@
 # PHASE 5 CONTEXT BLUEPRINT: test‑ai‑architecture  
 
 ## 1. Phase Operational Scope & Objectives  
+
 | Objective | Description | Success Metric |
 |-----------|-------------|----------------|
-| **Security Hardening** | Implement Zero‑Trust guardrails (OPA Gatekeeper policies, Binary Authorization, secret management, mTLS via Istio). | 0 critical/high security findings in automated scans; all policies pass CI gate. |
-| **Autoscaling & Resilience** | Configure HPA/Cluster‑Autoscaler, pod‑disruption‑budgets, and graceful shutdown hooks for all micro‑services. | 99.9 % availability in simulated traffic spikes; CPU/Memory ≤ 70 % at peak load. |
-| **Observability Stack** | Deploy Prometheus, Grafana, OpenTelemetry collectors, and ELK logging; create dashboards for QR‑scan latency, notification delivery, and tenant‑level throughput. | End‑to‑end latency ≤ 200 ms (QR scan → notification) 95 % of the time; alerting on SLA breach within 1 min. |
-| **Chaos‑Engineered Load Testing** | Run k6 / Locust scenarios that simulate 10 k concurrent learners across 20 tenants, inject pod failures, network latency, and Kafka broker loss. | No data loss, idempotent attendance; system recovers < 30 s after fault injection. |
-| **Production Deployment** | Execute a blue‑green (or canary) rollout to GKE using Argo CD/Flux, with automated rollback on health‑check failure. | Deployment success rate ≥ 99 %; MTTR < 10 min for any rollback. |
-| **Documentation & Handover** | Produce run‑books for incident response, scaling procedures, and compliance audit (GDPR, SOC‑2). | Documentation reviewed and approved by Reviewer; stored in `docs/production/`. |
+| **Production‑grade deployment** | Deploy the full stack (Quarkus services, Kafka, PostgreSQL, Next.js web, React‑Native mobile) to a **regional GKE Autopilot cluster** with zero‑downtime upgrade capability. | 99.9 % availability over a 30‑day observation window; no ≥ 5 min outage during rollout. |
+| **GitOps & CI/CD maturity** | Codify Helm charts, Kustomize overlays, and Argo CD applications; enforce automated image promotion (dev → staging → prod) with canary & blue‑green strategies. | 100 % of releases pass automated gate (unit, integration, security, performance) before promotion. |
+| **Observability & Alerting** | Implement end‑to‑end tracing (OpenTelemetry), metrics (Prometheus), logs (Stackdriver), and dashboards (Grafana) for all services, including QR‑attendance latency, notification delivery rates, and mobile‑app crash‑free sessions. | SLA: 95th‑percentile API latency ≤ 200 ms; alert on error‑rate > 1 % within 2 min. |
+| **Disaster Recovery & Backup** | Configure CloudSQL automated backups + cross‑region read replica; Kafka MirrorMaker2 for multi‑region topic replication; periodic restore drills. | Successful restore of latest backup within 30 min; DR drill pass rate ≥ 95 %. |
+| **Governance & Compliance Automation** | Enforce OPA Gatekeeper policies, Istio mTLS, secret rotation via Secret Manager, and immutable audit logging for authentication, attendance, and notification events. | Zero critical findings in Snyk/Trivy scans; audit logs retained ≥ 1 year and tamper‑evident. |
+| **Feature‑flag & Continuous Improvement** | Integrate a lightweight feature‑flag service (e.g., Unleash) to allow safe rollout of new UI/notification capabilities without redeploy. | Feature flag toggles can be changed in < 5 seconds and are reflected in live traffic. |
 
 ## 2. Allowed Technical Scope & Directory Boundaries (Files, paths, and endpoints)  
 
-| Area | Repository Path | Allowed Modifications | Public / Internal Endpoints |
-|------|----------------|-----------------------|-----------------------------|
-| **Infrastructure as Code** | `infra/terraform/` – GCP project, VPC, IAM, CloudSQL, GKE cluster | Add/modify Terraform modules for autoscaling, node‑pools, IAM bindings | N/A |
-| **Kubernetes Manifests** | `k8s/helm/` – Helm charts for each service (`attendance-service`, `notification-service`, `gateway`, `opa-gatekeeper`) | Update values for resources, HPA, pod‑disruption‑budget, liveness/readiness probes | N/A |
-| **OPA Policies** | `security/opa/` – Rego files (`gatekeeper/`, `binary-authz/`) | Add new policies for tenant isolation, rate‑limit, JWT scopes | N/A |
-| **Observability Config** | `observability/prometheus/`, `observability/grafana/`, `observability/otel/` | Add scrape configs, dashboard JSON, OpenTelemetry SDK init code | N/A |
-| **Load‑Test Scripts** | `tests/load/k6/` – `scenario-*.js` | Create/adjust scripts for multi‑tenant traffic, fault injection | N/A |
-| **CI/CD Pipelines** | `.github/workflows/` – `ci.yml`, `cd.yml` | Add steps for policy enforcement, image signing, canary promotion | N/A |
-| **Service Code (Read‑only for this phase)** | `services/attendance/`, `services/notification/` – existing Quarkus source | **No functional changes** – only add instrumentation hooks, health‑check endpoints (`/healthz`, `/readyz`) | `GET /api/v1/attendance/healthz`, `GET /api/v1/notification/readyz` |
-| **Monitoring Endpoints** | `services/*/src/main/java/.../metrics/` – Micrometer/OpenTelemetry exporters | Add metric tags (`tenant_id`, `locale`) | N/A |
-| **Documentation** | `docs/production/` – run‑books, SOPs | Write/format markdown files | N/A |
+| Layer | Repository / Directory | Allowed Files / Paths | Public API Endpoints (base) |
+|------|------------------------|----------------------|-----------------------------|
+| **Backend (Quarkus)** | `backend/` | `src/main/java/**`, `src/main/resources/application.yml`, `src/main/resources/META-INF/resources/**`, `Dockerfile`, `pom.xml`, `flyway/**` | `https://api.<domain>/v1/auth/**`<br>`https://api.<domain>/v1/learners/**`<br>`https://api.<domain>/v1/attendance/**`<br>`https://api.<domain>/v1/notifications/**` |
+| **Event Streaming** | `infra/kafka/` | `kafka-topics.yaml`, `kafka-connect/**`, `schema-registry/**` | N/A (internal topics: `attendance-events`, `notification-queue`, `analytics-stream`) |
+| **Database** | `infra/postgres/` | `sql/**` (DDL, seed), `flyway/**` (migration scripts) | N/A (access via backend services only) |
+| **Web Front‑end (Next.js)** | `frontend/web/` | `pages/**`, `components/**`, `public/**`, `next.config.js`, `i18n/**`, `Dockerfile` | `https://<domain>/` (SSR pages) – locale‑prefixed routes e.g., `/en/dashboard`, `/vi/qr-scan` |
+| **Mobile Front‑end (React Native)** | `frontend/mobile/` | `src/**`, `app.json`, `expo/**`, `i18n/**`, `Dockerfile` (for Expo web build) | N/A (bundled app) – uses same API base as web (`https://api.<domain>/v1/...`) |
+| **GitOps / Helm** | `infra/helm/` | `charts/**`, `values-prod.yaml`, `values-staging.yaml`, `ArgoCD/**` | N/A (Argo CD sync endpoint) |
+| **Observability** | `infra/monitoring/` | `prometheus/**`, `grafana/**`, `otel-collector/**` | N/A |
+| **Security / Policies** | `infra/policies/` | `opa/**`, `istio/**`, `secret-manager/**` | N/A |
 
-> **Strict Boundary Rule:** No changes to core business logic (attendance calculation, QR handling) are permitted in Phase 5. All modifications must be confined to the directories listed above.
+> **Boundary Rule:** Sub‑agents must **only modify files within their designated directory**. No cross‑directory edits unless explicitly coordinated through a **Manager‑approved change request**.
 
 ## 3. Dedicated Sub‑Agent Functional Directives  
 
-| Sub‑Agent | Tasks (ordered) | Deliverable Artefacts |
-|-----------|----------------|-----------------------|
-| **Coder** | 1. Instrument all Quarkus services with OpenTelemetry (trace IDs, span attributes `tenant_id`, `user_id`). <br>2. Expose `/healthz` and `/readyz` endpoints with proper status codes. <br>3. Add Prometheus Micrometer metrics for `attendance_scans_total`, `notification_sent_total`, and latency histograms. <br>4. Refactor Helm values to include resource limits, HPA rules, and pod‑disruption‑budget. <br>5. Create Helm sub‑chart `observability` that deploys Prometheus‑Operator, Grafana, and OTEL collector as a sidecar. | - Updated source files under `services/*/src/main/java/.../metrics/` <br>- New Helm chart `observability/` <br>- PR with instrumentation changes |
-| **Tester** | 1. Write integration tests (Quarkus `@QuarkusTest`) that verify health/readiness endpoints return `200`. <br>2. Develop contract tests (Pact) for `attendance-service` → `notification-service` Kafka messages, ensuring required headers (`tenant_id`, `trace_id`). <br>3. Implement end‑to‑end k6 scripts that: <br>&nbsp;&nbsp;a. Simulate QR scans across 20 tenants. <br>&nbsp;&nbsp;b. Validate that duplicate scans on the same day are idempotent. <br>&nbsp;&nbsp;c. Assert latency < 200 ms and correct metric increments. <br>4. Add Grafana dashboard JSON validation tests (ensure panels exist). | - `tests/integration/health-readiness-test.java` <br>- `tests/pact/attendance-notification.pact.json` <br>- `tests/load/k6/scenario-multi-tenant.js` <br>- `observability/grafana/dashboards/attendance.json` |
-| **Reviewer** | 1. Perform static code analysis (SonarQube) on instrumentation changes; enforce no new critical issues. <br>2. Run OPA policy linting (`opa test`) against all new Rego files. <br>3. Validate Helm chart lint (`helm lint`) and Helm test hooks. <br>4. Conduct security review of image build (ensure Cosign signatures, no critical CVEs via Trivy). <br>5. Sign‑off on compliance checklist (Zero‑Trust, GDPR tenant isolation, audit‑log forwarding). | - Review comments on PRs <br>- Signed-off checklist document `docs/production/compliance-checklist.md` |
-| **DevOps (Deployer)** | 1. Extend GitHub Actions `cd.yml` to include: <br>&nbsp;&nbsp;a. OPA Gatekeeper policy enforcement as a pre‑deployment gate. <br>&nbsp;&nbsp;b. Cosign verification of Docker images. <br>&nbsp;&nbsp;c. Canary rollout steps using Argo CD `ApplicationSet`. <br>2. Configure GKE node‑pool autoscaling policies (CPU target 60 %). <br>3. Deploy Prometheus‑Operator, Grafana, and OTEL collector via Helm in the `observability` namespace. <br>4. Set up alerting rules in Prometheus for: <br>&nbsp;&nbsp;a. Attendance latency SLA breach. <br>&nbsp;&nbsp;b. Kafka consumer lag > 5000 msgs. <br>&nbsp;&nbsp;c. Pod restarts > 3 in 5 min. <br>5. Execute blue‑green deployment to production; verify traffic shift and rollback on any health‑check failure. | - Updated GitHub Actions workflow files <br>- Helm release manifests applied to GKE (recorded in `deployment/` logs) <br>- PrometheusRule CRDs `observability/prometheus/rules.yaml` <br>- Deployment run‑book `docs/production/deployment-runbook.md` |
+| Sub‑Agent | Core Tasks for Phase 5 | Deliverable Artifacts |
+|-----------|------------------------|-----------------------|
+| **Coder** | 1. Refactor all Quarkus services to expose **health‑check** (`/q/health/live`, `/q/health/ready`) and **metrics** (`/q/metrics`).<br>2. Convert Dockerfiles to **multi‑stage GraalVM native builds** (optional fallback to JVM).<br>3. Add **OpenTelemetry instrumentation** (HTTP, gRPC, Kafka) and export to GCP Trace.<br>4. Implement **feature‑flag checks** (`FeatureToggle.isEnabled("new‑notification‑format")`).<br>5. Ensure **i18n strings** are externalized in `frontend/**/i18n/*.json` and referenced via `next-i18next`. | Updated `Dockerfile`s, `application.yml` with OTEL config, new `src/main/java/.../HealthResource.java`, `feature-toggle` module, i18n JSON files. |
+| **Tester** | 1. Write **end‑to‑end (E2E) Cypress** tests covering login (email/Firebase), QR‑attendance idempotency, and locale‑aware UI rendering.<br>2. Create **k6 performance scripts** simulating 5 k concurrent users across 3 centers, measuring latency & error‑rate.<br>3. Add **Chaos Monkey** (Litmus) scenarios for pod‑kill, network‑latency, and Kafka broker failure; verify auto‑recovery.<br>4. Validate **disaster‑recovery restore** scripts (PostgreSQL dump restore, Kafka MirrorMaker failover). | `cypress/integration/**.spec.js`, `k6/scripts/load-test.js`, `litmus/chaos‑experiments.yaml`, DR test report (PDF). |
+| **Reviewer** | 1. Enforce **OPA Gatekeeper** policies: no privileged containers, image tag must be a digest, required labels (`app.kubernetes.io/name`, `environment`).<br>2. Run **static analysis** (SonarQube) on Java & TypeScript; reject any new **critical** issues.<br>3. Verify **Helm chart linting** (`helm lint`) and that values files do not contain hard‑coded secrets.<br>4. Approve **canary release** PRs only after successful E2E & performance test results are attached. | Review checklist, OPA policy compliance report, SonarQube quality gate screenshot, Helm lint output. |
+| **DevOps (Deployer)** | 1. Create **Argo CD Application** manifests for `prod` and `staging` environments, with **automated sync** and **health checks**.<br>2. Define **Helm values** for autoscaling (CPU target 70 %), pod disruption budgets, and **PodSecurityPolicy** replacements via Gatekeeper.<br>3. Set up **Prometheus ServiceMonitors** for each micro‑service and **Grafana dashboards** (API latency, attendance count, notification delivery).<br>4. Configure **Google Cloud Build** triggers: `dev → staging` (canary), `staging → prod` (blue‑green).<br>5. Implement **secret rotation pipeline** (Cloud Scheduler → Cloud Functions) that updates Secret Manager and rolls out new env vars without downtime. | `ArgoCD/production.yaml`, `helm/values-prod.yaml`, `prometheus/servicemonitor.yaml`, `grafana/dashboards/*.json`, Cloud Build YAML files, secret‑rotation script. |
 
 ## 4. Phase Definition of Done (DoD)  
-The phase is considered **Done** when **all** items below are satisfied and signed off by the **Manager**:
 
-1. **Security & Compliance**  
-   - All OPA Gatekeeper policies pass (`opa eval` returns no violations).  
-   - Binary Authorization enforced; every image in Artifact Registry is signed and verified.  
-   - No critical/high findings from Trivy, SonarQube, or dependency scanning.  
+- **Infrastructure**  
+  - GKE regional Autopilot cluster (2‑zone) fully provisioned and **Argo CD** syncing all Helm releases.  
+  - All services reachable via the documented public API endpoints with **TLS 1.3** enforced.  
+  - Istio mTLS enabled cluster‑wide; OPA Gatekeeper policies passing for every pod.  
 
-2. **Scalability & Resilience**  
-   - HPA rules are active; `kubectl get hpa` shows target CPU 60 % and max replicas ≥ 10 per service.  
-   - Pod‑Disruption‑Budgets allow at least 1‑pod availability during node upgrades.  
-   - Chaos test reports: system recovers from pod kill, network latency, and Kafka broker loss within 30 s, with zero data loss.  
+- **Deployment**  
+  - Docker images built as **GraalVM native** (or JVM fallback) and stored in **Artifact Registry** with immutable digests.  
+  - Canary rollout of the latest version completed; 100 % of traffic shifted to stable after automated health verification.  
 
-3. **Observability**  
-   - Prometheus scrapes all services; metrics `attendance_scans_total`, `notification_sent_total`, and latency histograms are visible.  
-   - Grafana dashboards load without errors and display real‑time data for at least 3 tenants.  
-   - OpenTelemetry traces appear in the chosen backend (e.g., Google Cloud Trace) with correct `tenant_id` and `trace_id` propagation.  
+- **Observability**  
+  - Prometheus scraping confirmed for every service; Grafana dashboards display real‑time metrics.  
+  - OpenTelemetry traces appear in **Google Cloud Trace** for a sample request flow (login → QR scan → notification).  
 
-4. **CI/CD Pipeline**  
-   - GitHub Actions pipeline runs end‑to‑end on the `main` branch: lint → test → image build → sign → policy gate → canary deploy → promotion.  
-   - Any pipeline failure blocks merge; all successful runs are recorded in the pipeline dashboard.  
+- **Reliability**  
+  - Automated backup schedule active; latest backup restored in a test environment with **data integrity check** passed.  
+  - Chaos tests executed with **no data loss** and automatic recovery within defined SLO (≤ 30 s).  
 
-5. **Load‑Test Validation**  
-   - k6 script `scenario-multi-tenant.js` completes with < 5 % errors.  
-   - Recorded average latency ≤ 200 ms; 95 th percentile ≤ 250 ms.  
-   - Duplicate QR scans on the same day are deduplicated (verified via Kafka audit topic).  
+- **Security & Compliance**  
+  - No critical vulnerabilities reported by **Trivy** and **Snyk** scans.  
+  - All audit logs (auth, attendance, notifications) are immutable in **Cloud Logging** with retention ≥ 365 days.  
+  - GDPR/PDPA data‑subject request endpoint (`/v1/users/{id}/data‑export`) functional and tested.  
 
-6. **Documentation & Handover**  
-   - Run‑books for **Incident Response**, **Scaling**, and **Compliance Auditing** are stored under `docs/production/` and reviewed by Reviewer.  
-   - All new Helm charts, OPA policies, and monitoring configs are version‑controlled with proper `README.md` explaining usage.  
+- **Quality Assurance**  
+  - 100 % of **Cypress E2E** tests pass on both web and mobile builds.  
+  - **k6** load test meets SLA: 95th‑percentile latency ≤ 200 ms, error rate < 1 % at 5 k concurrent users.  
 
-7. **Production Release**  
-   - Blue‑green (or canary) deployment completed; traffic switched to the new version with no user‑visible downtime.  
-   - Health endpoints (`/healthz`, `/readyz`) return `200` for all pods.  
-   - Manager signs off after a 24‑hour observation window with no SLA breaches.  
+- **Documentation & Handover**  
+  - Runbooks for **deployment**, **disaster recovery**, **feature‑flag management**, and **incident response** stored in Confluence and linked from the repo README.  
+  - All code reviewed and approved by **Reviewer**; PRs merged with **“Ready for Production”** label.  
 
-*Only when every bullet above is verified and the sign‑off is recorded does Phase 5 close, allowing the project to move to post‑launch support.*
+> **Go/No‑Go Gate:** The Manager, Reviewer, and Tester must sign off on the above criteria. Only after collective approval does the phase transition to “Production Live”.

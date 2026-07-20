@@ -1,79 +1,100 @@
-# PHASE 3 CONTEXT BLUEPRINT: test‑ai‑architecture  
+# PHASE 3 CONTEXT BLUEPRINT: test-ai-architecture  
 
 ## 1. Phase Operational Scope & Objectives  
 
-| Objective | Description | Success Metric |
-|-----------|-------------|----------------|
-| **Front‑end delivery** | Implement the **Next.js web portal** (admin view) and the **React‑Native mobile app** (learner view) with full i18n support, SEO‑friendly SSR, and QR‑code scanning capability. | • 100 % of UI screens rendered server‑side for web.<br>• Mobile app builds for iOS & Android pass Apple/Google store lint. |
-| **Locale handling** | Detect and persist user language preference, falling back to browser/device locale, then to default `en‑US`. | • Locale fallback logic covered by automated tests (≥ 95 % pass). |
-| **QR attendance flow** | End‑to‑end flow: QR scan → call `attendance-service` → optimistic UI update showing remaining membership days. | • End‑to‑end latency < 200 ms (measured via OpenTelemetry). |
-| **Integration readiness** | Expose front‑end endpoints that the back‑end `attendance-service` and `notification-service` will consume; ensure contracts are versioned. | • Contract tests (Pact) pass with zero mismatches. |
-| **CI/CD pipeline** | Add front‑end build jobs, Docker image creation, and automated deployment to a **staging GKE namespace** (`membership-hub‑stg`). | • Pipeline success rate ≥ 99 % over 5 consecutive runs. |
-| **Observability hooks** | Instrument UI with OpenTelemetry (web & RN) and expose Prometheus metrics for page‑load & QR‑scan latency. | • Grafana dashboards show < 200 ms 95th‑percentile latency. |
+| Goal | Description | Business Value |
+|------|-------------|----------------|
+| **Mobile Extension** | Deliver a cross‑platform mobile application (iOS & Android) built with **React Native (Expo) + React‑Native‑for‑Web** that re‑uses the Next.js component library and i18n assets. | Learners can scan QR codes, view membership day‑counter, receive push & Zalo notifications on‑the‑go. |
+| **Multi‑Center Tenant Isolation** | Implement true multi‑tenant support at the data‑layer (center_id foreign key) and optional Kubernetes namespace per center for runtime isolation. | Enables multiple education centers to operate concurrently on the same SaaS instance without data leakage. |
+| **Scalable Event & Service Fabric** | Refine Kafka partitioning, consumer group design, and Horizontal Pod Autoscaling (HPA) rules to support **≥5 k concurrent active users** across at least **3 centers**. | Guarantees low latency attendance processing and notification dispatch under peak load. |
+| **Zalo & Push Notification Integration** | Wire‑up **Zalo Business API** and **Firebase Cloud Messaging (FCM)** as downstream consumers of the `attendance-notify` Kafka topic. | Real‑time communication improves learner engagement and reduces missed sessions. |
+| **Locale Detection & i18n Consistency** | Consolidate locale‑resolution logic (user‑profile → cookie → device/browser) into a shared library used by both Next.js web and React Native apps. | Guarantees a seamless multilingual experience across all touch‑points. |
+| **Observability & Guardrail Enforcement** | Extend OpenTelemetry instrumentation to mobile SDKs, add Prometheus metrics for Kafka lag, and enforce OPA policies for tenant‑scoped API access. | Maintains compliance, performance visibility, and security posture as the system scales. |
+
+**Success Metrics**  
+
+- Mobile app passes **device‑farm** test matrix: iOS 14‑17, Android 10‑13, 100 % crash‑free sessions.  
+- End‑to‑end attendance flow (QR → Kafka → PostgreSQL → Zalo/FCM) completes within **≤300 ms** (95th percentile) under 5 k concurrent users.  
+- Multi‑tenant data isolation verified by automated integration tests (no cross‑center leakage).  
+- Autoscaling reacts to CPU ≥ 70 % or Kafka lag ≥ 200 msg within **30 s**.  
 
 ---
 
 ## 2. Allowed Technical Scope & Directory Boundaries (Files, paths, and endpoints)  
 
-| Layer | Allowed Path / Repo Root | Key Files / Artifacts | Public API Endpoints (to be consumed by back‑end) |
-|-------|--------------------------|-----------------------|---------------------------------------------------|
-| **Web portal (Next.js)** | `frontend/web/` | `pages/`, `components/`, `i18n/`, `next.config.js`, `next-seo.config.js`, `Dockerfile.web` | `GET /api/tenants/:tenantId/locale` (locale fetch)<br>`GET /api/attendance/:memberId/status` (remaining days) |
-| **Mobile app (React Native / Expo)** | `frontend/mobile/` | `src/`, `app.json`, `i18n/`, `Dockerfile.mobile` (for Expo web preview) | `POST /api/attendance/scan` (QR payload) – called via **fetch** from RN code |
-| **Shared UI library** | `frontend/shared/` | `components/`, `utils/locale.ts`, `utils/qr.ts` | N/A (internal) |
-| **Static assets** | `frontend/public/` | `locales/`, `images/qr-placeholder.svg` | N/A |
-| **Infrastructure as Code (IaC)** | `infra/helm/charts/membership-hub-frontend/` | `Chart.yaml`, `values.yaml`, `templates/deployment.yaml`, `templates/service.yaml` | N/A |
-| **Observability** | `frontend/otel/` | `otel-config.js`, `otel-metrics.ts` | N/A |
-| **Testing** | `frontend/tests/` | `cypress/`, `playwright/`, `unit/` | N/A |
+| Layer | Repository / Directory | Allowed Files / Paths | Public API Endpoints (REST) |
+|-------|------------------------|----------------------|-----------------------------|
+| **Backend (Quarkus)** | `backend/` | `src/main/java/com/membershiphub/**`<br>`src/main/resources/application.yml`<br>`src/main/resources/db/migration/**`<br>`Dockerfile` | `POST /api/v1/auth/login` (internal & Firebase)<br>`GET /api/v1/centers/{centerId}/learners`<br>`POST /api/v1/attendance/scan` (QR payload)<br>`GET /api/v1/learners/{learnerId}/membership` |
+| **Kafka** | `infra/kafka/` | `topics.yaml` (definition of `attendance`, `attendance-notify`, `notification-out`)<br>`consumer-config/attendance-consumer.yml` | N/A (internal) |
+| **PostgreSQL / TimescaleDB** | `infra/db/` | `schema.sql`<br>`migrations/V*/**.sql` | N/A (internal) |
+| **Web Front‑end (Next.js)** | `frontend/web/` | `pages/**`, `components/**`, `i18n/**`, `public/locales/**`, `next.config.js` | `GET /` (SSR home)<br>`GET /[locale]/dashboard` |
+| **Mobile Front‑end (React Native)** | `frontend/mobile/` | `src/**`, `app.json`, `eas.json`, `i18n/**` (symlinked to web i18n) | N/A (client) |
+| **Infrastructure as Code** | `infra/helm/` | `charts/membership-hub/**`, `values.yaml` | N/A |
+| **Observability** | `infra/monitoring/` | `otel-collector-config.yaml`, `prometheus-rules.yaml` | N/A |
+| **Security / Guardrails** | `security/` | `opa/policies/**`, `istio/virtualservice.yaml` | N/A |
 
-> **Boundary rule:** No changes are permitted outside the `frontend/` tree or the `infra/helm/charts/membership-hub-frontend/` chart during Phase 3. All back‑end code (`src/main/java/...`) remains frozen; any required contract change must be communicated to Phase 2 owners via a **Contract Change Request** ticket.
+**Endpoint Access Matrix (Tenant‑aware)**  
+
+| Endpoint | Auth Required | Tenant Scope | Rate Limit |
+|----------|---------------|--------------|------------|
+| `/api/v1/attendance/scan` | JWT (internal) **or** Firebase ID token | Must include `centerId` claim matching JWT/ID token | 30 req/s per user |
+| `/api/v1/learners/{id}/membership` | JWT | `centerId` claim must match learner’s center | 10 req/s |
+| `/api/v1/centers/{centerId}/learners` | JWT (admin role) | Exact `centerId` path param | 5 req/s |
+
+All new files must reside under the directories above; any deviation requires Manager approval.
 
 ---
 
 ## 3. Dedicated Sub‑Agent Functional Directives  
 
-| Sub‑Agent | Core Tasks (specific to Phase 3) | Deliverable Artefacts | Acceptance Criteria |
-|-----------|----------------------------------|-----------------------|---------------------|
-| **Coder** | 1. Scaffold Next.js project with TypeScript, i18next, and `next-seo` plugin.<br>2. Implement locale detection logic (`utils/locale.ts`) that reads stored preference → browser locale → default.<br>3. Build QR‑scanner component using `expo-camera` / `react-qr-reader` that returns a JSON payload `{ tenantId, memberId, timestamp }`.<br>4. Wire UI to call `POST /api/attendance/scan` (via `fetch`) and display remaining days returned from back‑end.<br>5. Create responsive admin dashboard page showing attendance logs per center (read‑only, consumes `GET /api/attendance/:memberId/status`).<br>6. Write Dockerfile for multi‑stage build (builder → nginx static serve).<br>7. Add OpenTelemetry web instrumentation (`frontend/otel/`). | - Complete source tree under `frontend/web/` and `frontend/mobile/`.<br>- Docker images pushed to Artifact Registry (`membership-hub-web:stg`, `membership-hub-mobile:stg`).<br>- Helm chart values updated for image tags. | - `npm run lint` passes with 0 errors.<br>- `npm run build` succeeds and produces SSR output.<br>- Image size ≤ 150 MB (native) or ≤ 300 MB (JVM‑based). |
-| **Tester** | 1. Write unit tests for locale utility (Jest) and QR‑scanner wrapper (Jest + React Native Testing Library).<br>2. Create Cypress end‑to‑end flow: visit web portal → set locale → scan QR (mock) → verify remaining days UI update.<br>3. Create Playwright mobile‑web test simulating RN QR scan and push‑notification mock.<br>4. Implement contract tests (Pact) for the two front‑end APIs (`GET /api/attendance/:memberId/status`, `POST /api/attendance/scan`).<br>5. Add performance test script (k6) that measures page‑load + QR‑scan latency in staging. | - `frontend/tests/unit/` suite.<br>- `frontend/tests/e2e/` Cypress & Playwright scripts.<br>- `frontend/tests/contracts/attendance.pact.json`.<br>- `frontend/tests/perf/k6-scan.js`. | - ≥ 80 % code coverage for new files.<br>- All CI test jobs pass in two consecutive runs.<br>- Performance script reports 95th‑percentile latency < 200 ms. |
-| **Reviewer** | 1. Conduct PR review for every Coder commit: verify adherence to lint rules, security (no hard‑coded secrets), and UI accessibility (WCAG 2.1 AA).<br>2. Run SonarQube quality gate on the PR; ensure no new blocker/critical issues.<br>3. Validate contract files against the back‑end contract baseline; raise a **Contract Change Request** if mismatched.<br>4. Approve Helm chart changes only if they respect the naming convention (`membership-hub-frontend-<env>`). | - Review comments documented in GitHub PRs.<br>- Signed-off review checklist attached to each merged PR. | - Review turnaround ≤ 12 h.<br>- No high‑severity findings remain after merge.<br>- All contract tests pass in CI. |
-| **DevOps (Deployer)** | 1. Extend the existing GitHub Actions workflow (`ci-cd.yml`) with jobs: `frontend-build-web`, `frontend-build-mobile`, `docker-push-web`, `docker-push-mobile`, `helm-deploy-staging`.<br>2. Configure **ArgoCD** application `membership-hub-frontend-stg` pointing to the Helm chart in `infra/helm/charts/membership-hub-frontend/`.<br>3. Set up **Kubernetes NetworkPolicy** to allow only ingress from the API gateway (`gateway.namespace.svc.cluster.local`) to the front‑end pods.<br>4. Add Prometheus ServiceMonitor for the front‑end pods exposing `/metrics` (via `express-prom-bundle`).<br>5. Implement a **blue‑green** deployment strategy using ArgoCD sync waves and a `canary` label for the first rollout. | - Updated `.github/workflows/ci-cd.yml`.<br>- ArgoCD Application manifest (`argocd-app-frontend-stg.yaml`).<br>- Helm values file with `image.tag` placeholders.<br>- NetworkPolicy YAML (`frontend-np.yaml`). | - Staging deployment succeeds without manual intervention.<br>- Rollback to previous version completes in < 5 min.<br>- Prometheus scrapes `/metrics` with no errors. |
+### Coder  
+1. **Mobile App Scaffold** – Initialize Expo project, integrate `react-native-web` to share UI components with Next.js. Implement screens: **Login**, **Dashboard**, **QR Scanner**, **Membership Card**.  
+2. **Locale Service** – Create `src/lib/locale.ts` exposing `detectLocale()` that follows: user‑profile → stored cookie → device locale → fallback `en-US`. Export same API for web via a shared npm package (`@membershiphub/i18n`).  
+3. **Multi‑Tenant DB Layer** – Extend Flyway migrations: add `center_id UUID NOT NULL` to `learners`, `attendance`, `notifications` tables; create composite unique index on `(center_id, learner_id, attendance_date)`. Update JPA entities and repository queries to always filter by `centerId`.  
+4. **Kafka Partition Strategy** – Define topic `attendance` with **3 partitions per center** (partition key = `centerId`). Update producer config in Quarkus to set `partitionKey`.  
+5. **Zalo & FCM Consumers** – Implement two new Quarkus consumers (`ZaloNotifier`, `FCMNotifier`) subscribed to `attendance-notify`. Each reads tenant‑scoped config (Zalo API key, FCM server key) from Secret Manager.  
+6. **Autoscaling Manifests** – Add HPA YAML in `infra/helm/charts/membership-hub/templates/hpa.yaml` with CPU target 70 % and custom metric `kafka_consumer_lag`.  
+7. **Observability** – Instrument mobile SDK with OpenTelemetry (React Native auto‑instrumentation) and add custom span `qr.scan`. Export to GCP Cloud Trace via Collector sidecar.  
+
+### Tester  
+1. **End‑to‑End Mobile Flow** – Write Cypress‑compatible **Detox** tests: login → scan QR (mock camera) → verify attendance record via API → assert push notification received (FCM mock) → assert Zalo message payload in test double.  
+2. **Multi‑Tenant Isolation Tests** – Create integration test suite (JUnit + Testcontainers) that spins two centers, registers learners with same email, performs attendance in each, and asserts no cross‑center data appears.  
+3. **Load & Stress** – Use **k6** script to simulate 5 k concurrent mobile users scanning QR simultaneously across 3 centers; capture latency, error rate, Kafka lag.  
+4. **Locale Verification** – Automated UI tests for each supported locale (vi‑VN, en‑US, zh‑CN) confirming UI strings, date formats, and SEO meta tags (via SSR).  
+5. **Security Regression** – Run OWASP ZAP scan against new mobile API endpoints; ensure no new high‑severity findings.  
+
+### Reviewer  
+1. **Code Review Checklist** – Verify:  
+   - All new services use **non‑root** Docker user (`USER 1001`).  
+   - Secrets accessed only via **Secret Manager**; no env‑var hard‑coding.  
+   - JPA queries include `centerId` filter; no raw SQL bypass.  
+   - OpenAPI spec updated for new endpoints with proper request/response schemas.  
+2. **Architecture Conformance** – Confirm that the mobile codebase imports the shared i18n package; no duplicate string files.  
+3. **Guardrail Enforcement** – Run OPA policy checks (`opa eval`) on PR diff to ensure no violation of tenant‑scoped access or rate‑limit definitions.  
+4. **Documentation** – Update `README.md` in `frontend/mobile/` with build instructions for iOS/Android, and add a **Tenant‑Isolation** section in the architecture wiki.  
+
+### DevOps (Deployer & Docker)  
+1. **Docker Image Pipeline** – Extend GitHub Actions workflow:  
+   - Build **multi‑stage Dockerfile** for Quarkus native image (optional) and React Native bundle (Expo).  
+   - Run **Trivy** scan; fail on CRITICAL vulnerabilities.  
+   - Push images to **Artifact Registry** with tags `sha-${{ github.sha }}` and `latest`.  
+2. **Helm Chart Enhancements** – Add values for `mobile.enabled` (true) and `tenantNamespaces.enabled` (true). Generate a Helm sub‑chart `mobile` that creates a Deployment with `nodeSelector` for GPU‑enabled nodes (if needed for QR scanning).  
+3. **Canary Release Strategy** – Configure Argo CD ApplicationSet to roll out new mobile backend version to **10 % of pods** for each center, monitor `attendance-notify` lag, then promote.  
+4. **Backup & DR** – Schedule **CloudSQL cross‑region replica** for the new `center_id`‑partitioned tables; verify point‑in‑time recovery (PITR) works for tenant data.  
+5. **Monitoring Dashboards** – Add Grafana panels: `mobile_app_crash_rate`, `kafka_lag_by_center`, `hpa_current_replicas`. Set alerts for `hpa_replicas > 0 && cpu > 80%` lasting > 2 min.  
 
 ---
 
 ## 4. Phase Definition of Done (DoD)  
 
-The Phase 3 is considered **Done** when **all** of the following criteria are satisfied and signed off by the **Manager**:
+- **Code**: All source files compiled, unit‑tested (≥ 80 % coverage), and merged to `main` with **Reviewer** approval and OPA policy pass.  
+- **Container Images**: Docker images for backend (Quarkus) and mobile (Expo) built, scanned (no critical vulns), and stored in Artifact Registry with immutable digests.  
+- **Infrastructure**: Helm chart version `3.x` deployed via Argo CD to a **GKE regional cluster**; HPA, network policies, and tenant namespaces active.  
+- **Functional**: End‑to‑end mobile attendance flow works for at least **3 distinct centers**; membership day‑counter updates correctly; Zalo & FCM notifications delivered (verified in test environment).  
+- **Performance**: Load test (k6) shows ≤ 300 ms 95th‑percentile latency for `/attendance/scan` under 5 k concurrent users; Kafka lag < 100 msgs per partition.  
+- **Security & Compliance**: OWASP ZAP scan reports **0** high‑severity issues; all secrets stored in Secret Manager; audit logs emitted to Cloud Logging with immutable retention.  
+- **Internationalization**: UI renders correctly in all supported locales; SEO meta tags (`hreflang`, `canonical`, `sitemap.xml`) generated per locale; locale detection follows the defined hierarchy.  
+- **Observability**: OpenTelemetry traces visible in Cloud Trace for mobile and backend; Grafana dashboards show real‑time metrics; alerts configured and tested.  
+- **Documentation**: Updated architecture diagram (Phase 3 additions), README for mobile build/deploy, tenant‑isolation guide, and run‑books for scaling and disaster recovery.  
 
-1. **Functional**  
-   - Web portal and mobile app are deployed to the **staging** GKE namespace and are reachable via HTTPS.  
-   - QR‑attendance flow works end‑to‑end: scanning a QR updates the UI with the correct remaining membership days (validated against a seeded test tenant).  
-   - Locale detection respects stored preference, browser/device locale, and default fallback; UI strings change accordingly.  
-
-2. **Quality**  
-   - Unit, integration, and contract test suites pass with ≥ 80 % coverage for new code.  
-   - No SonarQube **blocker** or **critical** issues remain.  
-   - Accessibility audit (axe‑core) reports no violations above WCAG AA.  
-
-3. **Performance & Observability**  
-   - OpenTelemetry traces show QR‑scan → back‑end → UI update latency ≤ 200 ms (95th percentile) in the staging Grafana dashboard.  
-   - Prometheus metrics for page load time and QR‑scan latency are exposed and visualized.  
-
-4. **Security & Compliance**  
-   - All secrets are sourced from **Secret Manager**; no secret appears in source code or Docker images.  
-   - Images are signed with **Cosign** and verified in the CI pipeline.  
-   - NetworkPolicy restricts traffic as defined; mTLS is enforced between front‑end and API gateway.  
-
-5. **Infrastructure**  
-   - Helm chart version `0.3.0` is released to Artifact Registry and referenced in the ArgoCD Application.  
-   - Blue‑green deployment to staging completed without downtime; rollback tested successfully.  
-
-6. **Documentation**  
-   - README in `frontend/` updated with build, run, and deployment instructions.  
-   - Architecture diagram (updated for front‑end components) added to Confluence.  
-   - End‑to‑end test scripts and contract files are version‑controlled and referenced in the project wiki.  
-
-7. **Sign‑off**  
-   - Manager records a **Phase 3 Review** meeting minutes, confirming that all acceptance criteria are met.  
-   - All sub‑agents have updated their status boards (Jira) to **Done** for Phase 3 tickets.  
-
-*Only after the above DoD checklist is fully satisfied will the project advance to Phase 4 (Notification Engine & Zalo Integration).*
+**Go/No‑Go Gate**: The Manager, Reviewer, and Tester must sign off on the checklist above. Only after sign‑off can the project proceed to Phase 4 (SEO, Internationalization & Compliance Hardening).
