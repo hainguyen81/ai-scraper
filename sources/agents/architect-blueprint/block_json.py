@@ -329,6 +329,7 @@ def convert_phases_to_json(client: OpenAI, model_name: str, project_name: str, n
                     break
                 
                 # ✅ MASTER MERGE: Merge chunk results into Python's memory repository tracker
+                new_days_added_in_this_chunk = 0
                 for day_node in chunk_steps_array:
                     day_num = day_node.get("day", 0)
                     if current_start_day <= day_num <= current_end_day:
@@ -338,17 +339,25 @@ def convert_phases_to_json(client: OpenAI, model_name: str, project_name: str, n
                         if not day_node.get("context_section"):
                             day_node["context_section"] = f"## Day {day_num}"
                         master_phase_plan["days"].append(day_node)
+                        new_days_added_in_this_chunk += 1
                 
                 # Incremental shift parameters mapping to the next chronological segment index
-                current_start_day += DAYS_PER_CHUNK
-                chunk_counter += 1
-                has_more_days = DAYS_PER_CHUNK > 0
-                
-                # Short internal sleep interval protecting free engine limits from burst failures
-                if has_more_days:
-                    time.sleep(1)
-                else:
+                if DAYS_PER_CHUNK == 0:
+                    print(f" │       └── 🎉 Monolithic processing complete. Total days extracted: {new_days_added_in_this_chunk}. Halting.")
+                    has_more_days = False
                     break
+                else:
+                    # not found any days
+                    if new_days_added_in_this_chunk == 0:
+                        print(f" │       └── 🏁 No new valid days matched the current span [{current_start_day}-{current_end_day}]. Ending scroll vector.")
+                        break
+                    
+                    # loop chunk
+                    current_start_day += DAYS_PER_CHUNK
+                    chunk_counter += 1
+                    
+                    # Short internal sleep interval protecting free engine limits from burst failures
+                    time.sleep(1)
 
             # --- END OF CHUNK SCROLL LOOP ---
                 
