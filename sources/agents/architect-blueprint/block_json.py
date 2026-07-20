@@ -193,19 +193,18 @@ def convert_phases_to_json(client: OpenAI, model_name: str, project_name: str, n
                 ],
                 temperature=0.1,
                 # response_format=PhaseStepsPlan, # Injects the pydantic model schema ruleset natively
-                max_tokens=8192,
+                # max_tokens=8192,
             )
             raw_data, json_data = parseOpenAIResponseJsonData(response)
-            print(f" │   └── 🎉 Response Phase {phase_idx} Standardized JSON...")
-            print(f" │   └── { json_data }")
+            print(f" │   └── 🎉 Response Phase {phase_idx} Standardized JSON: { json.dumps(json_data) }")
             
             # write blueprint
             out_path = os.path.join(steps_context_dir, f"phase-{phase_idx}.steps.json")
             fallback_path = os.path.join(steps_context_dir, f"phase-{phase_idx}.steps.error.md")
             try:
                 # transform mapping
-                print(f" │   └── 🎉 Transform Phase {phase_idx} Standardized JSON...")
                 transform_json_data = dynamic_transform(json_data, project_name, phase_idx, json_mapping)
+                print(f" │   └── 🎉 Transform Phase {phase_idx} Standardized JSON: { json.dumps(transform_json_data) }")
                 
                 # 2. Parse and validate the string payload locally with Pydantic core engine
                 print(f" │   └── 🎉 Validate Phase {phase_idx} Standardized JSON...")
