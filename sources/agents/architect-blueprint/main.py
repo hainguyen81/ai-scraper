@@ -53,10 +53,6 @@ def run_architect_agent(project_name: str, requirements_path: str, num_phases: i
     if not os.path.exists(absolute_requirements_path):
         print(f"❌ Target requirements file not found at: {absolute_requirements_path}")
         return
-    
-    absolute_api_model_steps_mapping = None
-    if api_model_steps_mapping and os.path.exists(resolve_absolute_path(absolute_requirements_path)):
-        absolute_api_model_steps_mapping = resolve_absolute_path(absolute_requirements_path)
         
     with open(absolute_requirements_path, "r", encoding="utf-8") as f:
         project_requirements = f.read()
@@ -65,6 +61,10 @@ def run_architect_agent(project_name: str, requirements_path: str, num_phases: i
     
     absolute_out_dir = resolve_absolute_path(os.path.join(output_dir, safe_name))
     os.makedirs(absolute_out_dir, exist_ok=True)
+    
+    absolute_api_model_steps_mapping = None
+    if api_model_steps_mapping and os.path.exists(resolve_absolute_path(api_model_steps_mapping)):
+        absolute_api_model_steps_mapping = resolve_absolute_path(api_model_steps_mapping)
     
     # 1. Execute Block 1 Module
     if exec_mode in (0, 1):

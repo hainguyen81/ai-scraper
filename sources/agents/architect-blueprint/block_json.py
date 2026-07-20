@@ -62,6 +62,7 @@ def dynamic_transform(json_data, project_name: str, phase_idx: int, template_fil
         
         # custom field mapping
         print(f" │   └── ⚠️ The mapping JSON template: {template_content}")
+        print(f" │         { template_content }")
         json_data['project_name'] = project_name.lower()
         json_data['global_context_file'] = project_context_file(project_name)
         json_data['phase_idx'] = phase_idx
@@ -71,7 +72,8 @@ def dynamic_transform(json_data, project_name: str, phase_idx: int, template_fil
         # wrap AI json data to variable `ai` in mapping config file to use
         jinja_template = Template(template_content)
         rendered_str = jinja_template.render(ai=json_data)
-        print(f" │   └── ⚠️ The mapping JSON Rendered String: { rendered_str }")
+        print(f" │   └── ⚠️ The mapping JSON Rendered String:")
+        print(f" │         { rendered_str }")
         
         # write log for tracing
         if os.path.exists(log_file_path):
@@ -85,7 +87,8 @@ def dynamic_transform(json_data, project_name: str, phase_idx: int, template_fil
         cleaned_str = re.sub(r',\s*\]', ']', rendered_str)
         cleaned_str = re.sub(r'\[\s*,', '[', cleaned_str)
         cleaned_str = re.sub(r',\s*\}', '}', cleaned_str)
-        print(f" │   └── ⚠️ The mapping JSON Cleaned String: { cleaned_str }")
+        print(f" │   └── ⚠️ The mapping JSON Cleaned String:")
+        print(f" │         { cleaned_str }")
         
         # write log for tracing
         if os.path.exists(log_file_path):
@@ -211,7 +214,9 @@ def convert_phases_to_json(client: OpenAI, model_name: str, project_name: str, n
                 # max_tokens=8192,
             )
             raw_data, json_data = parseOpenAIResponseJsonData(response)
-            print(f" │   └── 🎉 Response Phase {phase_idx} Standardized JSON: { json.dumps(json_data) }")
+            dump_json_data = json.dumps(json_data, indent=4, ensure_ascii=False) if json_data else "Invalid JSON Data"
+            print(f" │   └── 🎉 Response Phase {phase_idx} Standardized JSON:")
+            print(f" │         { dump_json_data }")
             
             # write blueprint
             out_path = os.path.join(steps_context_dir, f"phase-{phase_idx}.steps.json")
@@ -220,7 +225,9 @@ def convert_phases_to_json(client: OpenAI, model_name: str, project_name: str, n
             try:
                 # transform mapping
                 transform_json_data = dynamic_transform(json_data, project_name, phase_idx, json_mapping, transform_log_path)
-                print(f" │   └── 🎉 Transform Phase {phase_idx} Standardized JSON: { json.dumps(transform_json_data) }")
+                dump_json_data = json.dumps(transform_json_data, indent=4, ensure_ascii=False) if transform_json_data else "Invalid JSON Data"
+                print(f" │   └── 🎉 Transform Phase {phase_idx} Standardized JSON:")
+                print(f" │         { dump_json_data }")
                 
                 # 2. Parse and validate the string payload locally with Pydantic core engine
                 print(f" │   └── 🎉 Validate Phase {phase_idx} Standardized JSON...")
@@ -239,6 +246,7 @@ def convert_phases_to_json(client: OpenAI, model_name: str, project_name: str, n
                     f.write(raw_data)
                     f.write("\n-------------------------------------------------\n")
                     f.write(json_data)
+                    f.write("\n-------------------------------------------------\n")
                 print(f" │   └── ⚠️ Raw dump saved to diagnostic log file: {fallback_path}")
             
             # write log
