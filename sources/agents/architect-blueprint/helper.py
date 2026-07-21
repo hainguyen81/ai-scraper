@@ -3,6 +3,9 @@ import sys
 import re
 import json
 
+# mapping JSON
+from jinja2 import Template
+
 # ==============================================================================
 # 🏢 ENTERPRISE INTER-PACKAGE ROUTING LAYER
 # ==============================================================================
@@ -58,6 +61,20 @@ def write_log(phase_idx, instruction, prompt, raw_content, is_step):
     os.makedirs(os.path.dirname(agent_working_history_file), exist_ok=True)
     with open(agent_working_history_file, "a", encoding="utf-8") as file:
         file.write(log_content)
+
+def render_prompt(prompt_template_path: str, context: dict) -> str:
+    if not os.path.exists(prompt_template_path):
+        return None
+    
+    # read prompt template
+    with open(prompt_template_path, "r", encoding="utf-8") as f:
+        template_content = f.read()
+    
+    # use jinja2 Template
+    tmpl = Template(template_content)
+    
+    # substitute will throw error if missing variables, safely for production
+    return tmpl.substitute(context)
 
 def parseOpenAIResponseData(response):
     """

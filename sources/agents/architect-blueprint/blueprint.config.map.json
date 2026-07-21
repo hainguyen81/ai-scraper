@@ -17,7 +17,12 @@
 				{
 				  "id": "D{{ day_idx }}_ST{{ loop.index | default(0) | int }}",
 				  "agent": "{{ day_item.get('subAgent') | default(task_item.assignee, true) | default(task_item.agent, true) | default(task_item.agent_role, true) | default('Coder') }}",
-				  "desc": "{{ day_item.get('subAgent') | default(task_item.assignee, true) | default(task_item.agent, true) | default(task_item.agent_role, true) | default('Coder') }} Agent: {{ task_item.task | default(task_item.desc, true) | default(task_item.description, true) | default(task_item.task_description, true) | default(task_item, true) | default('No description provided') }}"
+				  "desc": "{{ day_item.get('subAgent') | default(task_item.assignee, true) | default(task_item.agent, true) | default(task_item.agent_role, true) | default('Coder') }} Agent: {{ task_item.task | default(task_item.desc, true) | default(task_item.description, true) | default(task_item.task_description, true) | default(task_item, true) | default('No description provided') }}",
+				  "components": [
+					{% for file_path in task_item.components | default(task_item.files, true) | default(task_item.targets, true) | default([]) %}
+					"{{ file_path }}"{% if not loop.last %},{% endif %}
+					{% endfor %}
+				  ]
 				}{% if not loop.last %},{% endif %}
 				{% endfor %}
 			  ]
@@ -36,7 +41,12 @@
 				{
 				  "id": "D{{ day_idx }}_ST{{ loop.index | default(0) | int }}",
 				  "agent": "{{ day_item.get('subAgent') | default(task_item.assignee, true) | default(task_item.agent, true) | default(task_item.agent_role, true) | default('Coder') }}",
-				  "desc": "{{ day_item.get('subAgent') | default(task_item.assignee, true) | default(task_item.agent, true) | default(task_item.agent_role, true) | default('Coder') }} Agent: {{ task_item.task | default(task_item.desc, true) | default(task_item.description, true) | default(task_item.task_description, true) | default(task_item, true) | default('No description provided') }}"
+				  "desc": "{{ day_item.get('subAgent') | default(task_item.assignee, true) | default(task_item.agent, true) | default(task_item.agent_role, true) | default('Coder') }} Agent: {{ task_item.task | default(task_item.desc, true) | default(task_item.description, true) | default(task_item.task_description, true) | default(task_item, true) | default('No description provided') }}",
+				  "components": [
+					{% for file_path in task_item.components | default(task_item.files, true) | default(task_item.targets, true) | default([]) %}
+					"{{ file_path }}"{% if not loop.last %},{% endif %}
+					{% endfor %}
+				  ]
 				}{% if not loop.last %},{% endif %}
 				{% endfor %}
 			  ]
@@ -55,7 +65,12 @@
 				{
 				  "id": "D{{ day_idx }}_ST{{ loop.index | default(0) | int }}",
 				  "agent": "{{ day_item.get('subAgent') | default(task_item.assignee, true) | default(task_item.agent, true) | default(task_item.agent_role, true) | default('Coder') }}",
-				  "desc": "{{ day_item.get('subAgent') | default(task_item.assignee, true) | default(task_item.agent, true) | default(task_item.agent_role, true) | default('Coder') }} Agent: {{ task_item.task | default(task_item.desc, true) | default(task_item.description, true) | default(task_item.task_description, true) | default(task_item, true) | default('No description provided') }}"
+				  "desc": "{{ day_item.get('subAgent') | default(task_item.assignee, true) | default(task_item.agent, true) | default(task_item.agent_role, true) | default('Coder') }} Agent: {{ task_item.task | default(task_item.desc, true) | default(task_item.description, true) | default(task_item.task_description, true) | default(task_item, true) | default('No description provided') }}",
+				  "components": [
+					{% for file_path in task_item.components | default(task_item.files, true) | default(task_item.targets, true) | default([]) %}
+					"{{ file_path }}"{% if not loop.last %},{% endif %}
+					{% endfor %}
+				  ]
 				}{% if not loop.last %},{% endif %}
 				{% endfor %}
 			  ]

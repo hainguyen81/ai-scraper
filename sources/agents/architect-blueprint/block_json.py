@@ -20,15 +20,29 @@ from openai import OpenAI
 from jinja2 import Template
 
 # Now Python can seamlessly see and import the centralized helper utility cleanly!
+from sources.agents.agent_helper import resolve_absolute_path
 from helper import write_log
 from helper import write_json_file
+from helper import render_prompt
 from helper import parseOpenAIResponseJsonData
+
+# ==============================================================================
+# GLOBAL CONFIGURATION PATHS - CONFIG HERE TO CUSTOMIZE DIRECTORY STRUCTURE
+# ==============================================================================
+PROMPT_TEMPLATE_PATH = resolve_absolute_path("sources/agents/architect-blueprint/block_json_prompt.md")
 
 # --- Validated Schemas for Structured JSON Output ---
 class SubAgentTask(BaseModel):
     id: str = Field(description="Sub-Task identity of Task that sub-agent role executing.")
     agent: str = Field(description="Target sub-agent role executing the task.")
     desc: str = Field(description="Literal, low-level technical step assigned to the agent.")
+    
+    # 🎯 FLAT STRING ARRAY - DEFAULTS TO EMPTY []
+    # list of source file paths that sub-agent should do
+    components: List[str] = Field(
+        default_factory=list,  # or default=[]
+        description="Flat array of physical localized file paths or scripts modified or targeted by this single task. Return an empty array [] if no files are involved."
+    )
 
 class DailyStep(BaseModel):
     day: int = Field(description="Timeline iteration day inside this isolated phase.")
@@ -138,6 +152,7 @@ def manual_transform(json_data, project_name: str, phase_idx: int):
                 "id": f"D{day_val}_ST{t_idx}",
                 "agent": role,
                 "desc": desc
+                "components": t.get("components", t.get("files", t.get("targets", [])))
             })
             t_idx = t_idx + 1
         transform_json_data["days"].append(step_node)
@@ -214,61 +229,17 @@ def convert_phases_to_json(client: OpenAI, model_name: str, project_name: str, n
                 else:
                     print(f" │       ├── 📦 Chunk {chunk_counter}: Extracting All Days...")
                 
-                # Strict directives instructing the AI to populate only the requested slice arrays
-                if DAYS_PER_CHUNK > 0:
-                    prompt = f"""
-                    Analyze the attached Phase {phase_idx} Context Markdown content. 
-                    Extract and translate ALL daily steps, checklists, and agent tasks starting from Day {current_start_day} up to Day {current_end_day} (inclusive).
-            
-                    # CRITICAL TIMELINE BOUNDARY CONSTRAINTS:
-                    ## 1. STRICT PHASE DURATION LIMIT: Each individual Phase MUST be strictly bounded between 1 to {max_days_per_phase} days maximum (Absolute Hard Limit: Maximum {max_days_per_phase} days per phase). Under no circumstances are you allowed to invent, extrapolate, or generate scheduling logs beyond Day {max_days_per_phase}.
-                    ## 2. PROGRESSION STOPPING CRITERION: Stop generating immediately once the core technical objectives of the current Phase are satisfied. Do NOT duplicate or loop previous task structures just to inflate the timeline. If the work is complete on Day 1, freeze the output and exit.
-
-                    CRITICAL INSTRUCTIONS FOR PRODUCTION STABILITY:
-                    1. Target Range Focus: Carefully locate all scheduling logs and task sections for any Day that falls strictly between Day {current_start_day} and Day {current_end_day} (inclusive).
-                    2. Mandatory Data Extraction: You MUST parse and generate a day object node inside the 'days' array for EVERY single day within the requested range [{current_start_day} to {current_end_day}]. 
-                    3. NO ESCAPE HATCH: Do NOT return an empty array for 'days' under any circumstances if there is markdown text present. Even if tasks are not explicitly labeled, parse the paragraph descriptions into technical sub-tasks for that day.
-                    4. STRICT LITERAL FIELD VALUES (MANDATORY):
-                       - Populate the exact string "{global_context_file}" into the 'global_context_file' field.
-                       - Populate the exact string "sources/" into the 'source_target_dir' field.
-                    5. Task Details: For every micro task item under a specific day:
-                       - Provide a sequential task description text into the 'task' field.
-                       - Provide the assigned role (e.g., 'Coder', 'Tester', 'Reviewer') into the 'agent', 'subAgent', 'assignee' or 'subAgent' field.
-                    6. Context Fields: For each day object, set 'day' as the integer value of that day, set 'context_file' to '{project_phase_context_file}', and set 'context_section' to 'DAY ' followed by the day number.
-
-                    You MUST conform strictly to your required JSON Schema layout design structure:
-                    {json_schema_dump}
-
-                    --- PHASE {phase_idx} CONTEXT MARKDOWN ---
-                    {phase_markdown_content}
-                    ------------------------------------------
-                    """
-                
-                else:
-                    prompt = f"""
-                    Analyze the attached Phase {phase_idx} Context Markdown content. 
-                    Extract and translate ALL daily steps, checklists, and agent tasks.
-
-                    CRITICAL INSTRUCTIONS FOR PRODUCTION STABILITY:
-                    1. Target Range Focus: Carefully locate all scheduling logs and task sections for any Day that falls strictly between Day {current_start_day} and Day {current_end_day} (inclusive).
-                    2. Mandatory Data Extraction: You MUST parse and generate a day object node inside the 'days' array for EVERY single day within the requested range [{current_start_day} to {current_end_day}]. 
-                    3. NO ESCAPE HATCH: Do NOT return an empty array for 'days' under any circumstances if there is markdown text present. Even if tasks are not explicitly labeled, parse the paragraph descriptions into technical sub-tasks for that day.
-                    4. STRICT LITERAL FIELD VALUES (MANDATORY):
-                       - Populate the exact string "{global_context_file}" into the 'global_context_file' field.
-                       - Populate the exact string "sources/" into the 'source_target_dir' field.
-                    5. Task Details: For every micro task item under a specific day:
-                       - Provide a sequential task description text into the 'task' field.
-                       - Provide the assigned role (e.g., 'Coder', 'Tester', 'Reviewer') into the 'agent', 'subAgent', 'assignee' or 'subAgent' field.
-                    6. Context Fields: For each day object, set 'day' as the integer value of that day, set 'context_file' to '{project_phase_context_file}', and set 'context_section' to 'DAY ' followed by the day number.
-
-                    You MUST conform strictly to your required JSON Schema layout design structure:
-                    {json_schema_dump}
-
-                    --- PHASE {phase_idx} CONTEXT MARKDOWN ---
-                    {phase_markdown_content}
-                    ------------------------------------------
-                    """
-                
+                # parse prompt from template
+                is_chunked_mode = True if DAYS_PER_CHUNK > 0 else False
+                prompt_context = {
+                    "is_chunked": is_chunked_mode,
+                    "phase_idx": phase_idx,
+                    "current_start_day": current_start_day,
+                    "current_end_day": current_end_day,
+                    "phase_steps_json_schema": json_schema_dump,
+                    "phase_markdown_content": phase_markdown_content
+                }
+                prompt = render_prompt(PROMPT_TEMPLATE_PATH, prompt_context)
                 log_prompt = prompt  # Stores the latest prompt state for error block fallback capture
                 
                 # GEMINI

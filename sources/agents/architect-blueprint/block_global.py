@@ -11,9 +11,16 @@ import sys
 from openai import OpenAI
 
 # Now Python can seamlessly see and import the centralized helper utility cleanly!
+from sources.agents.agent_helper import resolve_absolute_path
 from helper import write_log
 from helper import write_file
+from helper import render_prompt
 from helper import parseOpenAIResponseData
+
+# ==============================================================================
+# GLOBAL CONFIGURATION PATHS - CONFIG HERE TO CUSTOMIZE DIRECTORY STRUCTURE
+# ==============================================================================
+PROMPT_TEMPLATE_PATH = resolve_absolute_path("sources/agents/architect-blueprint/block_global_prompt.md")
 
 # GEMINI
 # def generate_global_context(client: genai.Client, project_name: str, requirements: str, num_phases: int, out_dir: str) -> str:
@@ -30,24 +37,14 @@ def generate_global_context(client: OpenAI, model_name: str, project_name: str, 
     log_prompt = ""
     instruction = "You are an Elite Solution Architect. Define the global system truth and multi-agent guardrails."
     try:
-        prompt = f"""
-        Analyze the attached project requirements. Build the GLOBAL PROJECT CONTEXT for '{project_name}'.
-        
-        --- RAW REQUIREMENTS ---
-        {requirements}
-        --- END REQUIREMENTS ---
-            
-        # CRITICAL TIMELINE BOUNDARY CONSTRAINTS:
-        ## 1. STRICT PHASE DURATION LIMIT: Each individual Phase MUST be strictly bounded between 1 to {max_days_per_phase} days maximum (Absolute Hard Limit: Maximum {max_days_per_phase} days per phase). Under no circumstances are you allowed to invent, extrapolate, or generate scheduling logs beyond Day {max_days_per_phase}.
-        ## 2. PROGRESSION STOPPING CRITERION: Stop generating immediately once the core technical objectives of the current Phase are satisfied. Do NOT duplicate or loop previous task structures just to inflate the timeline. If the work is complete on Day 1, freeze the output and exit.
-
-        Your output MUST follow this exact structure:
-        # GLOBAL PROJECT CONTEXT: {project_name}
-        ## 1. Executive Summary & Tech Stack Blueprint
-        ## 2. Global Guardrails & Enterprise Compliance Standards
-        ## 3. Standardized Sub-Agent Persona Definitions (Manager, Coder, Tester, Reviewer, Docker, Deployer)
-        ## 4. Multi-Phase Segmentation Strategy Overview (Plan exactly {num_phases} phases)
-        """
+        # parse prompt from template
+        prompt_context = {
+            "project_name": project_name,
+            "project_requirements": requirements,
+            "num_phases": num_phases,
+            "max_days_per_phase": max_days_per_phase
+        }
+        prompt = render_prompt(PROMPT_TEMPLATE_PATH, prompt_context)
         log_prompt = prompt
         
         # GEMINI
