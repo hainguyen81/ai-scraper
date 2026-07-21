@@ -13,7 +13,7 @@
                 {
                     "id": "D1_ST1",
                     "agent": "Coder",
-                    "desc": "Coder Agent: Write and optimize Dockerfile for backend service with multi-stage builds, minimal image size, and proper health-check endpoints",
+                    "desc": "Coder Agent: Write and optimize Dockerfile for backend service with multi-stage builds and health-check endpoints",
                     "components": [
                         "docker/backend/Dockerfile"
                     ]
@@ -21,7 +21,7 @@
                 {
                     "id": "D1_ST2",
                     "agent": "Coder",
-                    "desc": "Coder Agent: Write and optimize Dockerfile for frontend service with multi-stage builds, minimal image size, and proper health-check configuration",
+                    "desc": "Coder Agent: Write and optimize Dockerfile for frontend service with multi-stage builds and health-check endpoints",
                     "components": [
                         "docker/frontend/Dockerfile"
                     ]
@@ -29,7 +29,7 @@
                 {
                     "id": "D1_ST3",
                     "agent": "DevOps",
-                    "desc": "DevOps Agent: Provision GKE Autopilot cluster with Network Policy enabled and required add-ons (Secret Manager CSI driver, Cloud NAT, Cloud DNS)",
+                    "desc": "DevOps Agent: Provision GKE Autopilot cluster with Network Policy and required add-ons (Secret Manager CSI driver, Cloud NAT, Cloud DNS)",
                     "components": []
                 }
             ]
@@ -42,7 +42,7 @@
                 {
                     "id": "D2_ST1",
                     "agent": "Coder",
-                    "desc": "Coder Agent: Update application.yml with GKE-specific externalized properties using Secret Manager references for Kafka bootstrap servers and DB connection URLs",
+                    "desc": "Coder Agent: Update application.yml with GKE-specific externalized properties using Secret Manager references",
                     "components": [
                         "backend/src/main/resources/application.yml"
                     ]
@@ -50,18 +50,17 @@
                 {
                     "id": "D2_ST2",
                     "agent": "DevOps",
-                    "desc": "DevOps Agent: Deploy Helm charts from k8s/ directory including backend deployment with autoscaling and frontend ingress with TLS configuration",
+                    "desc": "DevOps Agent: Deploy backend Helm chart with autoscaling configuration",
                     "components": [
-                        "k8s/backend-deployment.yaml",
-                        "k8s/frontend-ingress.yaml"
+                        "k8s/backend-deployment.yaml"
                     ]
                 },
                 {
                     "id": "D2_ST3",
                     "agent": "DevOps",
-                    "desc": "DevOps Agent: Create Cloud Build pipeline that triggers on main branch, runs unit tests, builds Docker images, and executes deployment scripts",
+                    "desc": "DevOps Agent: Deploy frontend ingress with TLS configuration",
                     "components": [
-                        "scripts/ci.yaml"
+                        "k8s/frontend-ingress.yaml"
                     ]
                 }
             ]
@@ -74,22 +73,24 @@
                 {
                     "id": "D3_ST1",
                     "agent": "DevOps",
-                    "desc": "DevOps Agent: Deploy Prometheus operator and Grafana via Helm, import pre-built dashboards and configure data sources to scrape backend and frontend metrics",
+                    "desc": "DevOps Agent: Create Cloud Build pipeline that triggers on main branch, runs tests, builds images, and executes deployment",
+                    "components": [
+                        "scripts/ci.yaml"
+                    ]
+                },
+                {
+                    "id": "D3_ST2",
+                    "agent": "DevOps",
+                    "desc": "DevOps Agent: Deploy Prometheus operator and Grafana via Helm, import pre-built dashboards",
                     "components": [
                         "monitoring/prometheus.yml",
                         "monitoring/dashboards/"
                     ]
                 },
                 {
-                    "id": "D3_ST2",
-                    "agent": "DevOps",
-                    "desc": "DevOps Agent: Enable Google Cloud Logging agent on nodes and configure structured JSON logging in Quarkus for centralized logging",
-                    "components": []
-                },
-                {
                     "id": "D3_ST3",
-                    "agent": "Tester",
-                    "desc": "Tester Agent: Execute Postman/Newman scripts against deployed REST endpoints to confirm basic functionality of /api/members and /api/attendance/qr",
+                    "agent": "DevOps",
+                    "desc": "DevOps Agent: Enable Google Cloud Logging agent and configure structured JSON logging in Quarkus",
                     "components": []
                 }
             ]
@@ -102,22 +103,20 @@
                 {
                     "id": "D4_ST1",
                     "agent": "DevOps",
-                    "desc": "DevOps Agent: Apply Pod Security Policies, bind IAM Service Accounts using Workload Identity, and validate GDPR/CCPA data-handling controls",
+                    "desc": "DevOps Agent: Apply Pod Security Policies, bind IAM Service Accounts using Workload Identity, validate GDPR/CCPA data-handling",
                     "components": []
                 },
                 {
                     "id": "D4_ST2",
                     "agent": "Tester",
-                    "desc": "Tester Agent: Run Kafka connector verification tests and PostgreSQL data integrity checks using test containers",
+                    "desc": "Tester Agent: Execute Postman/Newman scripts against deployed REST endpoints to confirm basic functionality",
                     "components": []
                 },
                 {
                     "id": "D4_ST3",
                     "agent": "Tester",
-                    "desc": "Tester Agent: Use k6 or JMeter to simulate concurrent attendance scans and user logins, asserting response times < 200ms for critical paths",
-                    "components": [
-                        "tests/performance.jmx"
-                    ]
+                    "desc": "Tester Agent: Run Kafka connector verification and PostgreSQL data integrity checks using test containers",
+                    "components": []
                 }
             ]
         },
@@ -129,24 +128,22 @@
                 {
                     "id": "D5_ST1",
                     "agent": "Tester",
-                    "desc": "Tester Agent: Perform OWASP ZAP scans on web UI, validate authentication flows, and confirm sensitive fields are not exposed in logs",
-                    "components": []
+                    "desc": "Tester Agent: Use k6 or JMeter to simulate concurrent attendance scans and user logins, assert response times < 200ms",
+                    "components": [
+                        "tests/performance.jmx"
+                    ]
                 },
                 {
                     "id": "D5_ST2",
                     "agent": "Tester",
-                    "desc": "Tester Agent: Verify Prometheus scrapes metrics from /actuator/metrics and custom Kafka metrics, test Grafana dashboards and alert firing",
+                    "desc": "Tester Agent: Perform OWASP ZAP scans on web UI, validate authentication flows, confirm sensitive fields not exposed in logs",
                     "components": []
                 },
                 {
                     "id": "D5_ST3",
-                    "agent": "Reviewer",
-                    "desc": "Reviewer Agent: Conduct pairwise reviews of Dockerfile optimizations, Helm values, and Kubernetes manifests for best-practice compliance",
-                    "components": [
-                        "docker/backend/Dockerfile",
-                        "docker/frontend/Dockerfile",
-                        "k8s/"
-                    ]
+                    "agent": "Tester",
+                    "desc": "Tester Agent: Verify Prometheus scrapes metrics and Grafana dashboards display real-time data, test alert firing",
+                    "components": []
                 }
             ]
         },
@@ -158,23 +155,28 @@
                 {
                     "id": "D6_ST1",
                     "agent": "Reviewer",
-                    "desc": "Reviewer Agent: Validate IAM policies, Secret Manager usage, encryption keys, and ensure no hardcoded credentials exist",
-                    "components": []
+                    "desc": "Reviewer Agent: Conduct pairwise reviews of Dockerfile optimizations, Helm values, and Kubernetes manifests for best-practice compliance",
+                    "components": [
+                        "docker/backend/Dockerfile",
+                        "docker/frontend/Dockerfile",
+                        "k8s/backend-deployment.yaml",
+                        "k8s/frontend-ingress.yaml"
+                    ]
                 },
                 {
                     "id": "D6_ST2",
                     "agent": "Reviewer",
-                    "desc": "Reviewer Agent: Verify DEPLOYMENT.md and SECURITY.md are up-to-date, include run-books, and reference correct artifact repositories",
+                    "desc": "Reviewer Agent: Validate IAM policies, Secret Manager usage, encryption keys, ensure no hardcoded credentials exist",
+                    "components": []
+                },
+                {
+                    "id": "D6_ST3",
+                    "agent": "Reviewer",
+                    "desc": "Reviewer Agent: Verify DEPLOYMENT.md and SECURITY.md are up-to-date with run-books and correct artifact references",
                     "components": [
                         "docs/DEPLOYMENT.md",
                         "docs/SECURITY.md"
                     ]
-                },
-                {
-                    "id": "D6_ST3",
-                    "agent": "Tester",
-                    "desc": "Tester Agent: Run automated tools to check for plaintext secrets and ensure GDPR/CCPA adherence throughout the codebase",
-                    "components": []
                 }
             ]
         },
@@ -185,22 +187,28 @@
             "sub_tasks": [
                 {
                     "id": "D7_ST1",
+                    "agent": "Reviewer",
+                    "desc": "Reviewer Agent: Approve that all GDPR/CCPA controls are satisfied before final go-live",
+                    "components": []
+                },
+                {
+                    "id": "D7_ST2",
                     "agent": "DevOps",
-                    "desc": "DevOps Agent: Test simulated failure/recovery using rollback procedures and document scripts/rollback.sh",
+                    "desc": "DevOps Agent: Test simulated failure/recovery and validate rollback procedures",
                     "components": [
                         "scripts/rollback.sh"
                     ]
                 },
                 {
-                    "id": "D7_ST2",
-                    "agent": "Reviewer",
-                    "desc": "Reviewer Agent: Approve that all GDPR/CCPA controls are satisfied including data minimization, consent logging, and data retention",
+                    "id": "D7_ST3",
+                    "agent": "Coder",
+                    "desc": "Coder Agent: Commit final source code cleanup and ensure all external dependencies are declared",
                     "components": []
                 },
                 {
-                    "id": "D7_ST3",
+                    "id": "D7_ST4",
                     "agent": "Manager",
-                    "desc": "Manager Agent: Mark Phase-5 status as Complete in project tracker with formal sign-off from Manager, DevOps, and Security Reviewer",
+                    "desc": "Manager Agent: Mark Phase-5 status as Complete in project tracker with formal sign-off from all stakeholders",
                     "components": []
                 }
             ]

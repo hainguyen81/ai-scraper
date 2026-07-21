@@ -26,14 +26,6 @@
                         "k8s/test-environment/",
                         "terraform/test-env/"
                     ]
-                },
-                {
-                    "id": "D1_ST3",
-                    "agent": "DevOps",
-                    "desc": "DevOps Agent: Configure CI/CD pipelines to automatically spin up test containers and run tests",
-                    "components": [
-                        ".github/workflows/test-pipeline.yml"
-                    ]
                 }
             ]
         },
@@ -49,24 +41,16 @@
                     "components": [
                         "src/main/java/com/membership/backend/service/",
                         "src/main/java/com/membership/backend/repository/",
-                        "src/main/java/com/membership/backend/kafka/"
+                        "src/main/java/com/membership/backend/kafka/",
+                        "src/test/java/com/membership/backend/"
                     ]
                 },
                 {
                     "id": "D2_ST2",
-                    "agent": "Coder",
-                    "desc": "Coder Agent: Implement integration tests with embedded PostgreSQL and Kafka using Testcontainers",
-                    "components": [
-                        "src/test/java/com/membership/backend/integration/"
-                    ]
-                },
-                {
-                    "id": "D2_ST3",
                     "agent": "DevOps",
-                    "desc": "DevOps Agent: Implement monitoring (Prometheus/Grafana) and logging (ELK) for test runs",
+                    "desc": "DevOps Agent: Configure CI/CD pipelines to automatically spin up test containers, run unit/integration/e2e tests, and publish test reports",
                     "components": [
-                        "k8s/monitoring/",
-                        "k8s/logging/"
+                        ".github/workflows/test-pipeline.yml"
                     ]
                 }
             ]
@@ -79,22 +63,14 @@
                 {
                     "id": "D3_ST1",
                     "agent": "Coder",
-                    "desc": "Coder Agent: Create Next.js component unit tests (Jest) for all UI components",
+                    "desc": "Coder Agent: Implement integration tests that spin up embedded PostgreSQL and Kafka using Testcontainers",
                     "components": [
-                        "src/frontend/nextjs/__tests__/",
-                        "src/frontend/nextjs/components/"
+                        "src/test/java/com/membership/backend/integration/",
+                        "src/test/resources/application-test.yml"
                     ]
                 },
                 {
                     "id": "D3_ST2",
-                    "agent": "Coder",
-                    "desc": "Coder Agent: Implement Cypress end-to-end scenarios covering multi-language UI, QR scanner flow, and notification display",
-                    "components": [
-                        "src/frontend/nextjs/cypress/"
-                    ]
-                },
-                {
-                    "id": "D3_ST3",
                     "agent": "Coder",
                     "desc": "Coder Agent: Add contract tests (Pact) for external authentication providers",
                     "components": [
@@ -110,27 +86,18 @@
             "sub_tasks": [
                 {
                     "id": "D4_ST1",
-                    "agent": "Tester",
-                    "desc": "Tester Agent: Execute the test suite in CI pipeline and capture results, failures, and performance metrics",
+                    "agent": "Coder",
+                    "desc": "Coder Agent: Create Next.js component unit tests (Jest) for all UI components",
                     "components": [
-                        "docs/test-execution-results/"
+                        "src/frontend/nextjs/__tests__/",
+                        "src/frontend/nextjs/components/"
                     ]
                 },
                 {
                     "id": "D4_ST2",
-                    "agent": "Tester",
-                    "desc": "Tester Agent: Log defects in the issue tracker, prioritize them, and track verification",
+                    "agent": "Coder",
+                    "desc": "Coder Agent: Implement Cypress end-to-end scenarios covering multi-language UI, QR scanner flow, and notification display",
                     "components": [
-                        ".github/ISSUES.md"
-                    ]
-                },
-                {
-                    "id": "D4_ST3",
-                    "agent": "Reviewer",
-                    "desc": "Reviewer Agent: Conduct peer review of all test code against coding standards and security guidelines",
-                    "components": [
-                        "src/test/",
-                        "src/frontend/nextjs/__tests__/",
                         "src/frontend/nextjs/cypress/"
                     ]
                 }
@@ -143,27 +110,27 @@
             "sub_tasks": [
                 {
                     "id": "D5_ST1",
-                    "agent": "Reviewer",
-                    "desc": "Reviewer Agent: Validate that test coverage meets ≥90% (backend) / ≥80% (frontend) thresholds",
+                    "agent": "Tester",
+                    "desc": "Tester Agent: Execute the test suite in CI pipeline and capture results, failures, and performance metrics",
                     "components": [
-                        "docs/coverage-reports/"
+                        "docs/test-execution-report.md"
                     ]
                 },
                 {
                     "id": "D5_ST2",
                     "agent": "Tester",
-                    "desc": "Tester Agent: Execute security tests including OWASP checks, authentication token validation, and GDPR/CCPA compliance",
+                    "desc": "Tester Agent: Log defects in the issue tracker, prioritize them, and verify fixes",
                     "components": [
-                        "docs/security-test-results/"
+                        ".github/ISSUES.md"
                     ]
                 },
                 {
                     "id": "D5_ST3",
-                    "agent": "Tester",
-                    "desc": "Tester Agent: Execute load tests with k6 to verify response times and scalability requirements",
+                    "agent": "DevOps",
+                    "desc": "DevOps Agent: Implement monitoring (Prometheus/Grafana) and logging (ELK) for test runs to capture performance bottlenecks",
                     "components": [
-                        "k6/load-tests/",
-                        "docs/performance-reports/"
+                        "k8s/monitoring/",
+                        "k8s/logging/"
                     ]
                 }
             ]
@@ -175,29 +142,29 @@
             "sub_tasks": [
                 {
                     "id": "D6_ST1",
-                    "agent": "Tester",
-                    "desc": "Tester Agent: Produce Test Execution Report with coverage metrics, pass/fail ratios, and risk assessment",
+                    "agent": "Reviewer",
+                    "desc": "Reviewer Agent: Conduct peer review of all test code, test plans, and defect reports against coding standards and security guidelines",
                     "components": [
-                        "docs/test-execution-report.md"
+                        "src/test/",
+                        "docs/test-plan.md",
+                        ".github/ISSUES.md"
                     ]
                 },
                 {
                     "id": "D6_ST2",
                     "agent": "Reviewer",
-                    "desc": "Reviewer Agent: Review and approve test artifacts before production-ready status",
+                    "desc": "Reviewer Agent: Validate that test coverage meets the ≥90% (backend) / ≥80% (frontend) thresholds",
                     "components": [
-                        "docs/test-plan.md",
-                        "docs/test-execution-report.md",
-                        ".github/ISSUES.md"
+                        "docs/coverage-report.md"
                     ]
                 },
                 {
                     "id": "D6_ST3",
-                    "agent": "DevOps",
-                    "desc": "DevOps Agent: Ensure rollback capability is configured if test failures block promotion",
+                    "agent": "Reviewer",
+                    "desc": "Reviewer Agent: Approve test artifacts before they are promoted to production-ready status",
                     "components": [
-                        "k8s/rollback/",
-                        ".github/workflows/rollback.yml"
+                        "docs/test-execution-report.md",
+                        "docs/coverage-report.md"
                     ]
                 }
             ]
@@ -209,26 +176,26 @@
             "sub_tasks": [
                 {
                     "id": "D7_ST1",
-                    "agent": "Manager",
-                    "desc": "Manager Agent: Validate that Phase Definition of Done is met and oversee final progress",
+                    "agent": "Tester",
+                    "desc": "Tester Agent: Produce final Test Execution Report with coverage metrics, pass/fail ratios, and risk assessment",
                     "components": [
-                        "docs/dod-checklist.md"
+                        "docs/final-test-report.md"
                     ]
                 },
                 {
                     "id": "D7_ST2",
                     "agent": "Manager",
-                    "desc": "Manager Agent: Coordinate stakeholder sign-off from Security, Compliance, and Product teams",
+                    "desc": "Manager Agent: Validate that Phase Definition of Done is met and coordinate stakeholder sign-off (Security, Compliance, Product)",
                     "components": [
-                        "docs/sign-off/"
+                        "docs/phase-signoff.md"
                     ]
                 },
                 {
                     "id": "D7_ST3",
-                    "agent": "Tester",
-                    "desc": "Tester Agent: Archive complete test artifacts in project's artifact repository",
+                    "agent": "DevOps",
+                    "desc": "DevOps Agent: Ensure rollback capability is verified if test failures block promotion",
                     "components": [
-                        "docs/artifacts/"
+                        "k8s/rollback/"
                     ]
                 }
             ]
