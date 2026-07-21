@@ -370,7 +370,7 @@ jobs:
             
             # ✅ ENTERPRISE HOTFIX: Pull new changes and rebase to avoid conflicts fast-forward
             echo "🔄 Pulling latest upstream tree and executing explicit contextual rebase..."
-            git pull --rebase -X ours origin ${{ github.ref_name }}
+            git pull --rebase -X theirs origin ${{ github.ref_name }}
             
             # 💡 Use github.ref_name to push safely
             echo "📤 Pushing secure data changes upstream to repository branch..."
