@@ -56,10 +56,6 @@ def dynamic_transform(json_data, project_name: str, phase_idx: int, template_fil
         return manual_transform(json_data, project_name, phase_idx)
     
     try:
-        # 1. read mapping configuration
-        with open(template_file_path, "r", encoding="utf-8") as f:
-            template_content = f.read()
-        
         # custom field mapping
         # print(f" │   └── ⚠️ The mapping JSON template: {template_content}")
         # print(f" │         { template_content }")
@@ -67,6 +63,10 @@ def dynamic_transform(json_data, project_name: str, phase_idx: int, template_fil
         json_data['global_context_file'] = project_context_file(project_name)
         json_data['phase_idx'] = phase_idx
         json_data['phase_context_file'] = phase_context_file(phase_idx)
+        
+        # 1. read mapping configuration
+        with open(template_file_path, "r", encoding="utf-8") as f:
+            template_content = f.read()
         
         # 2. Render template using Jinja2 with AI json data
         # wrap AI json data to variable `ai` in mapping config file to use
@@ -122,7 +122,7 @@ def manual_transform(json_data, project_name: str, phase_idx: int):
             "sub_tasks": []
         }
         
-        json_tasks = item.get("sub_agent_tasks", item.get("tasks", []))
+        json_tasks = item.get("sub_tasks", item.get("sub_agent_tasks", item.get("tasks", [])))
         t_idx = 1
         for t in json_tasks:
             if isinstance(t, str):
@@ -204,7 +204,7 @@ def convert_phases_to_json(client: OpenAI, model_name: str, project_name: str, n
             # # Combined text accumulators for the ultimate logging layers
             # accumulated_raw_data = ""
             # accumulated_json_text = ""
-
+            
             # 🎯 CORE SLIDING TIMELINE SCROLL LOOP
             while has_more_days:
                 current_end_day = current_start_day + DAYS_PER_CHUNK - 1
@@ -363,7 +363,7 @@ def convert_phases_to_json(client: OpenAI, model_name: str, project_name: str, n
                     
                     # Short internal sleep interval protecting free engine limits from burst failures
                     time.sleep(1)
-
+            
             # --- END OF CHUNK SCROLL LOOP ---
             dump_json_data = json.dumps(master_phase_plan, indent=4, ensure_ascii=False)
             print(f" │   └── 🎉 Master Phase Plan:")
@@ -399,7 +399,7 @@ def convert_phases_to_json(client: OpenAI, model_name: str, project_name: str, n
                 with open(fallback_path, "w", encoding="utf-8") as f:
                     f.write(raw_data)
                     f.write("\n-------------------------------------------------\n")
-                    f.write(master_phase_plan)
+                    f.write(json.dumps(master_phase_plan, indent=4, ensure_ascii=False))
                     f.write("\n-------------------------------------------------\n")
                 print(f" │   └── ⚠️ Raw dump saved to diagnostic log file: {fallback_path}")
             
