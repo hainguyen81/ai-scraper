@@ -6,6 +6,151 @@
     "source_target_dir": "sources/",
     "days": [
         {
+            "day": 1,
+            "context_file": ".ai/.plan/.context/phase-2.context.blueprint.md",
+            "context_section": "DAY 1",
+            "sub_tasks": [
+                {
+                    "id": "D1_ST1",
+                    "agent": "Coder",
+                    "desc": "Coder Agent: Set up Quarkus project structure, define JPA entities (User, Center, Attendance), and create repository interfaces (UserRepository, CenterRepository, AttendanceRepository).",
+                    "components": [
+                        "sources/src/main/java/com/membership/backend/model/User.java",
+                        "sources/src/main/java/com/membership/backend/model/Center.java",
+                        "sources/src/main/java/com/membership/backend/model/Attendance.java",
+                        "sources/src/main/java/com/membership/backend/repository/UserRepository.java",
+                        "sources/src/main/java/com/membership/backend/repository/CenterRepository.java",
+                        "sources/src/main/java/com/membership/backend/repository/AttendanceRepository.java",
+                        "sources/src/main/java/com/membership/backend/Application.java"
+                    ]
+                },
+                {
+                    "id": "D1_ST2",
+                    "agent": "Tester",
+                    "desc": "Tester Agent: Write unit tests for JPA entity validation and repository CRUD operations.",
+                    "components": [
+                        "sources/src/test/java/com/membership/backend/model/UserTest.java",
+                        "sources/src/test/java/com/membership/backend/model/CenterTest.java",
+                        "sources/src/test/java/com/membership/backend/model/AttendanceTest.java",
+                        "sources/src/test/java/com/membership/backend/repository/UserRepositoryTest.java",
+                        "sources/src/test/java/com/membership/backend/repository/CenterRepositoryTest.java",
+                        "sources/src/test/java/com/membership/backend/repository/AttendanceRepositoryTest.java"
+                    ]
+                },
+                {
+                    "id": "D1_ST3",
+                    "agent": "DevOps",
+                    "desc": "DevOps Agent: Build Docker image using the JVM Dockerfile: `docker build -f src/main/docker/Dockerfile.jvm -t gcr.io/<project>/membership-hub-backend:latest .`",
+                    "components": [
+                        "sources/src/main/docker/Dockerfile.jvm"
+                    ]
+                },
+                {
+                    "id": "D1_ST4",
+                    "agent": "Reviewer",
+                    "desc": "Reviewer Agent: Perform code walk-through of Day 1 deliverables, enforce Java/Quarkus coding standards, and check entity/repository structure.",
+                    "components": []
+                },
+                {
+                    "id": "D1_ST5",
+                    "agent": "Manager",
+                    "desc": "Manager Agent: Conduct daily stand-up, update risk log, and approve Day 1 deliverables (project setup, entities, repositories, Docker image build) before moving to Day 2.",
+                    "components": []
+                }
+            ]
+        },
+        {
+            "day": 2,
+            "context_file": ".ai/.plan/.context/phase-2.context.blueprint.md",
+            "context_section": "DAY 2",
+            "sub_tasks": [
+                {
+                    "id": "D2_ST1",
+                    "agent": "Coder",
+                    "desc": "Coder Agent: Implement AuthService with JWT generation, integrate Firebase/Google/Facebook OAuth2 clients, and secure endpoints via JwtAuthFilter.",
+                    "components": [
+                        "sources/src/main/java/com/membership/backend/service/AuthService.java",
+                        "sources/src/main/java/com/membership/backend/security/JwtAuthFilter.java",
+                        "sources/src/main/java/com/membership/backend/security/KeyGenerator.java",
+                        "sources/src/main/java/com/membership/backend/resource/AuthResource.java"
+                    ]
+                },
+                {
+                    "id": "D2_ST2",
+                    "agent": "Tester",
+                    "desc": "Tester Agent: Create integration tests for /api/auth/login and /api/auth/register endpoints, covering internal email/password and mock external OAuth2 provider flows.",
+                    "components": [
+                        "sources/src/test/java/com/membership/backend/resource/AuthResourceIT.java"
+                    ]
+                },
+                {
+                    "id": "D2_ST3",
+                    "agent": "DevOps",
+                    "desc": "DevOps Agent: Push the built Docker image to GCP Artifact Registry using gcloud artifacts repositories commands.",
+                    "components": []
+                },
+                {
+                    "id": "D2_ST4",
+                    "agent": "Reviewer",
+                    "desc": "Reviewer Agent: Review AuthService and security filter implementation for best practices, including password hashing, token expiration, and OAuth2 client configuration.",
+                    "components": []
+                },
+                {
+                    "id": "D2_ST5",
+                    "agent": "Manager",
+                    "desc": "Manager Agent: Conduct daily stand-up, update risk log, and approve Day 2 deliverables (authentication, integration tests, image push) before moving to Day 3.",
+                    "components": []
+                }
+            ]
+        },
+        {
+            "day": 3,
+            "context_file": ".ai/.plan/.context/phase-2.context.blueprint.md",
+            "context_section": "DAY 3",
+            "sub_tasks": [
+                {
+                    "id": "D3_ST1",
+                    "agent": "Coder",
+                    "desc": "Coder Agent: Build AttendanceResource for QR validation, AttendanceProducer to send events to 'attendance-scan' topic, and AttendanceConsumer to write to PostgreSQL and emit to 'attendance-processed' topic.",
+                    "components": [
+                        "sources/src/main/java/com/membership/backend/resource/AttendanceResource.java",
+                        "sources/src/main/java/com/membership/backend/kafka/AttendanceProducer.java",
+                        "sources/src/main/java/com/membership/backend/kafka/AttendanceConsumer.java",
+                        "sources/src/main/java/com/membership/backend/service/AttendanceService.java"
+                    ]
+                },
+                {
+                    "id": "D3_ST2",
+                    "agent": "Tester",
+                    "desc": "Tester Agent: Simulate the full Kafka flow using an embedded Kafka broker; test AttendanceResource endpoint, producer event emission, consumer processing, and database persistence.",
+                    "components": [
+                        "sources/src/test/java/com/membership/backend/kafka/AttendanceFlowIT.java"
+                    ]
+                },
+                {
+                    "id": "D3_ST3",
+                    "agent": "DevOps",
+                    "desc": "DevOps Agent: Generate Kustomize/Helm charts and create configmap.yaml with references to DB credentials (secret manager) and Kafka bootstrap servers.",
+                    "components": [
+                        "sources/k8s/configmap.yaml",
+                        "sources/k8s/kustomization.yaml"
+                    ]
+                },
+                {
+                    "id": "D3_ST4",
+                    "agent": "Reviewer",
+                    "desc": "Reviewer Agent: Review Kafka message schema, ensure idempotency logic for duplicate scans, and validate the event-driven architecture.",
+                    "components": []
+                },
+                {
+                    "id": "D3_ST5",
+                    "agent": "Manager",
+                    "desc": "Manager Agent: Conduct daily stand-up, update risk log, and approve Day 3 deliverables (attendance flow, Kafka tests, K8s config) before moving to Day 4.",
+                    "components": []
+                }
+            ]
+        },
+        {
             "day": 4,
             "context_file": ".ai/.plan/.context/phase-2.context.blueprint.md",
             "context_section": "DAY 4",
@@ -13,274 +158,43 @@
                 {
                     "id": "D4_ST1",
                     "agent": "Coder",
-                    "desc": "Coder Agent: Set up Quarkus project structure and define JPA entities (User, Center, Attendance).",
+                    "desc": "Coder Agent: Add multi-tenant schema switching using centerId in repository methods, implement NotificationService stub, and integrate OpenTelemetry metrics.",
                     "components": [
-                        "src/main/java/com/membership/backend/model/User.java",
-                        "src/main/java/com/membership/backend/model/Center.java",
-                        "src/main/java/com/membership/backend/model/Attendance.java"
+                        "sources/src/main/java/com/membership/backend/service/NotificationService.java",
+                        "sources/src/main/java/com/membership/backend/resource/UserResource.java",
+                        "sources/src/main/java/com/membership/backend/resource/CenterResource.java",
+                        "sources/src/main/java/com/membership/backend/resource/HealthResource.java"
                     ]
                 },
                 {
                     "id": "D4_ST2",
-                    "agent": "Coder",
-                    "desc": "Coder Agent: Create JPA repository interfaces for User, Center, and Attendance entities.",
+                    "agent": "Tester",
+                    "desc": "Tester Agent: Execute health-check endpoint tests, verify security headers (CORS, CSP), and generate a final test coverage report.",
                     "components": [
-                        "src/main/java/com/membership/backend/repository/UserRepository.java",
-                        "src/main/java/com/membership/backend/repository/CenterRepository.java",
-                        "src/main/java/com/membership/backend/repository/AttendanceRepository.java"
+                        "sources/src/test/java/com/membership/backend/resource/HealthResourceTest.java",
+                        "sources/target/site/jacoco/index.html"
                     ]
                 },
                 {
                     "id": "D4_ST3",
-                    "agent": "Coder",
-                    "desc": "Coder Agent: Write the main Application.java class and configure application.properties.",
+                    "agent": "DevOps",
+                    "desc": "DevOps Agent: Deploy to GKE using `kubectl apply -k k8s/`, verify pod status, and enable Cloud Monitoring/Logging for the service.",
                     "components": [
-                        "src/main/java/com/membership/backend/Application.java",
-                        "src/main/resources/application.properties"
+                        "sources/k8s/deployment.yaml",
+                        "sources/k8s/service.yaml",
+                        "sources/k8s/hpa.yaml"
                     ]
                 },
                 {
                     "id": "D4_ST4",
-                    "agent": "Tester",
-                    "desc": "Tester Agent: Write unit tests for JPA entity validation and basic repository CRUD operations.",
-                    "components": [
-                        "src/test/java/com/membership/backend/model/UserTest.java",
-                        "src/test/java/com/membership/backend/model/CenterTest.java",
-                        "src/test/java/com/membership/backend/model/AttendanceTest.java",
-                        "src/test/java/com/membership/backend/repository/UserRepositoryTest.java"
-                    ]
+                    "agent": "Reviewer",
+                    "desc": "Reviewer Agent: Final review of multi-tenant isolation logic, observability setup, and overall codebase against the Definition of Done checklist.",
+                    "components": []
                 },
                 {
                     "id": "D4_ST5",
-                    "agent": "DevOps",
-                    "desc": "DevOps Agent: Build Docker image for the Quarkus application using the JVM Dockerfile.",
-                    "components": [
-                        "src/main/docker/Dockerfile.jvm"
-                    ]
-                },
-                {
-                    "id": "D4_ST6",
-                    "agent": "Reviewer",
-                    "desc": "Reviewer Agent: Perform code walk-through for Day 4 deliverables, enforce Java/Quarkus coding standards.",
-                    "components": []
-                },
-                {
-                    "id": "D4_ST7",
                     "agent": "Manager",
-                    "desc": "Manager Agent: Conduct daily stand-up and approve Day 4 deliverables before moving to Day 5.",
-                    "components": []
-                }
-            ]
-        },
-        {
-            "day": 5,
-            "context_file": ".ai/.plan/.context/phase-2.context.blueprint.md",
-            "context_section": "DAY 5",
-            "sub_tasks": [
-                {
-                    "id": "D5_ST1",
-                    "agent": "Coder",
-                    "desc": "Coder Agent: Implement AuthService with JWT generation, password hashing (bcrypt), and token validation.",
-                    "components": [
-                        "src/main/java/com/membership/backend/service/AuthService.java"
-                    ]
-                },
-                {
-                    "id": "D5_ST2",
-                    "agent": "Coder",
-                    "desc": "Coder Agent: Integrate Firebase, Google, and Facebook OAuth2 client configurations.",
-                    "components": [
-                        "src/main/java/com/membership/backend/service/AuthService.java",
-                        "src/main/resources/application.properties"
-                    ]
-                },
-                {
-                    "id": "D5_ST3",
-                    "agent": "Coder",
-                    "desc": "Coder Agent: Implement JwtAuthFilter to secure endpoints and apply role-based access control.",
-                    "components": [
-                        "src/main/java/com/membership/backend/security/JwtAuthFilter.java",
-                        "src/main/java/com/membership/backend/security/KeyGenerator.java"
-                    ]
-                },
-                {
-                    "id": "D5_ST4",
-                    "agent": "Coder",
-                    "desc": "Coder Agent: Create AuthResource with /api/auth/login and /api/auth/register endpoints.",
-                    "components": [
-                        "src/main/java/com/membership/backend/resource/AuthResource.java"
-                    ]
-                },
-                {
-                    "id": "D5_ST5",
-                    "agent": "Tester",
-                    "desc": "Tester Agent: Create integration tests for /api/auth/login endpoint covering internal and external OAuth2 flows using mock providers.",
-                    "components": [
-                        "src/test/java/com/membership/backend/resource/AuthResourceIT.java"
-                    ]
-                },
-                {
-                    "id": "D5_ST6",
-                    "agent": "DevOps",
-                    "desc": "DevOps Agent: Push the built Docker image to GCP Artifact Registry.",
-                    "components": []
-                },
-                {
-                    "id": "D5_ST7",
-                    "agent": "Reviewer",
-                    "desc": "Reviewer Agent: Review Day 5 code for security best practices (password hashing, token expiration, OAuth2 configuration).",
-                    "components": []
-                },
-                {
-                    "id": "D5_ST8",
-                    "agent": "Manager",
-                    "desc": "Manager Agent: Conduct daily stand-up and approve Day 5 deliverables before moving to Day 6.",
-                    "components": []
-                }
-            ]
-        },
-        {
-            "day": 6,
-            "context_file": ".ai/.plan/.context/phase-2.context.blueprint.md",
-            "context_section": "DAY 6",
-            "sub_tasks": [
-                {
-                    "id": "D6_ST1",
-                    "agent": "Coder",
-                    "desc": "Coder Agent: Build AttendanceResource with POST /api/attendance/scan endpoint to accept QR payload.",
-                    "components": [
-                        "src/main/java/com/membership/backend/resource/AttendanceResource.java"
-                    ]
-                },
-                {
-                    "id": "D6_ST2",
-                    "agent": "Coder",
-                    "desc": "Coder Agent: Implement AttendanceProducer to send QR scan events to the 'attendance-scan' Kafka topic.",
-                    "components": [
-                        "src/main/java/com/membership/backend/kafka/AttendanceProducer.java"
-                    ]
-                },
-                {
-                    "id": "D6_ST3",
-                    "agent": "Coder",
-                    "desc": "Coder Agent: Implement AttendanceConsumer to read from 'attendance-scan', persist to PostgreSQL, and emit to 'attendance-processed' topic.",
-                    "components": [
-                        "src/main/java/com/membership/backend/kafka/AttendanceConsumer.java"
-                    ]
-                },
-                {
-                    "id": "D6_ST4",
-                    "agent": "Coder",
-                    "desc": "Coder Agent: Create AttendanceService to handle business logic and idempotency for duplicate scans.",
-                    "components": [
-                        "src/main/java/com/membership/backend/service/AttendanceService.java"
-                    ]
-                },
-                {
-                    "id": "D6_ST5",
-                    "agent": "Tester",
-                    "desc": "Tester Agent: Simulate Kafka flow using embedded Kafka broker; test AttendanceResource -> Producer -> Consumer -> DB integration.",
-                    "components": [
-                        "src/test/java/com/membership/backend/kafka/AttendanceFlowIT.java"
-                    ]
-                },
-                {
-                    "id": "D6_ST6",
-                    "agent": "DevOps",
-                    "desc": "DevOps Agent: Generate Kustomize/Helm charts and create configmap.yaml with DB credentials and Kafka bootstrap servers.",
-                    "components": [
-                        "k8s/configmap.yaml",
-                        "k8s/kustomization.yaml"
-                    ]
-                },
-                {
-                    "id": "D6_ST7",
-                    "agent": "Reviewer",
-                    "desc": "Reviewer Agent: Review Kafka message schema, ensure idempotency logic, and validate data flow.",
-                    "components": []
-                },
-                {
-                    "id": "D6_ST8",
-                    "agent": "Manager",
-                    "desc": "Manager Agent: Conduct daily stand-up and approve Day 6 deliverables before moving to Day 7.",
-                    "components": []
-                }
-            ]
-        },
-        {
-            "day": 7,
-            "context_file": ".ai/.plan/.context/phase-2.context.blueprint.md",
-            "context_section": "DAY 7",
-            "sub_tasks": [
-                {
-                    "id": "D7_ST1",
-                    "agent": "Coder",
-                    "desc": "Coder Agent: Add multi-tenant schema switching using centerId in repository methods for data isolation.",
-                    "components": [
-                        "src/main/java/com/membership/backend/repository/UserRepository.java",
-                        "src/main/java/com/membership/backend/repository/AttendanceRepository.java"
-                    ]
-                },
-                {
-                    "id": "D7_ST2",
-                    "agent": "Coder",
-                    "desc": "Coder Agent: Implement NotificationService stub for downstream event processing.",
-                    "components": [
-                        "src/main/java/com/membership/backend/service/NotificationService.java"
-                    ]
-                },
-                {
-                    "id": "D7_ST3",
-                    "agent": "Coder",
-                    "desc": "Coder Agent: Add OpenTelemetry metrics and structured logging with correlation IDs.",
-                    "components": [
-                        "src/main/java/com/membership/backend/resource/HealthResource.java",
-                        "src/main/resources/logback.xml"
-                    ]
-                },
-                {
-                    "id": "D7_ST4",
-                    "agent": "Coder",
-                    "desc": "Coder Agent: Create UserResource and CenterResource endpoints with multi-tenancy checks.",
-                    "components": [
-                        "src/main/java/com/membership/backend/resource/UserResource.java",
-                        "src/main/java/com/membership/backend/resource/CenterResource.java"
-                    ]
-                },
-                {
-                    "id": "D7_ST5",
-                    "agent": "Tester",
-                    "desc": "Tester Agent: Execute health-check endpoint tests and verify security headers (CORS, CSP).",
-                    "components": [
-                        "src/test/java/com/membership/backend/resource/HealthResourceTest.java"
-                    ]
-                },
-                {
-                    "id": "D7_ST6",
-                    "agent": "Tester",
-                    "desc": "Tester Agent: Generate final test coverage report ensuring ≥ 90% coverage.",
-                    "components": []
-                },
-                {
-                    "id": "D7_ST7",
-                    "agent": "DevOps",
-                    "desc": "DevOps Agent: Deploy to GKE using kubectl apply, verify pods are running, and enable Cloud Monitoring/Logging.",
-                    "components": [
-                        "k8s/deployment.yaml",
-                        "k8s/service.yaml",
-                        "k8s/hpa.yaml"
-                    ]
-                },
-                {
-                    "id": "D7_ST8",
-                    "agent": "Reviewer",
-                    "desc": "Reviewer Agent: Final review of multi-tenant isolation logic and overall code compliance. Provide sign-off checklist.",
-                    "components": []
-                },
-                {
-                    "id": "D7_ST9",
-                    "agent": "Manager",
-                    "desc": "Manager Agent: Final stand-up, verify all Definition of Done items are satisfied, and provide phase-gate sign-off documentation.",
+                    "desc": "Manager Agent: Conduct final stand-up, verify all DoD items are satisfied, provide phase-gate sign-off documentation, and authorize hand-off to Phase 3.",
                     "components": []
                 }
             ]

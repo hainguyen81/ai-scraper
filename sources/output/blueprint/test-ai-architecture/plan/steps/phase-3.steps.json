@@ -16,9 +16,9 @@
                     "desc": "Coder Agent: Scaffold Next.js project with TypeScript, Tailwind CSS, and next-i18next.",
                     "components": [
                         "frontend/package.json",
-                        "frontend/tsconfig.json",
+                        "frontend/next.config.js",
                         "frontend/tailwind.config.js",
-                        "frontend/next.config.js"
+                        "frontend/tsconfig.json"
                     ]
                 },
                 {
@@ -35,7 +35,8 @@
                     "agent": "Coder",
                     "desc": "Coder Agent: Configure next.config.js for i18n (locales, defaultLocale, localeDetection) and SEO (generateRobotsTxt, generateSitemap).",
                     "components": [
-                        "frontend/next.config.js"
+                        "frontend/next.config.js",
+                        "frontend/src/lib/seo.ts"
                     ]
                 },
                 {
@@ -44,10 +45,7 @@
                     "desc": "Reviewer Agent: Perform static code analysis (ESLint, Prettier) on all committed files from Day 1.",
                     "components": [
                         "frontend/.eslintrc.json",
-                        "frontend/.prettierrc",
-                        "frontend/package.json",
-                        "frontend/next.config.js",
-                        "frontend/src/middleware.ts"
+                        "frontend/.prettierrc"
                     ]
                 }
             ]
@@ -60,7 +58,7 @@
                 {
                     "id": "D2_ST1",
                     "agent": "Coder",
-                    "desc": "Coder Agent: Build authentication module: Internal sign‑up / sign‑in forms with validation (Zod).",
+                    "desc": "Coder Agent: Build authentication module: Internal sign-up/sign-in forms with validation (Zod).",
                     "components": [
                         "frontend/src/components/auth/SignInForm.tsx",
                         "frontend/src/components/auth/SignUpForm.tsx",
@@ -73,7 +71,7 @@
                     "desc": "Coder Agent: Build authentication module: OAuth buttons linking to Firebase, Google, Facebook (use react-firebase-ui / next-auth patterns).",
                     "components": [
                         "frontend/src/components/auth/OAuthButtons.tsx",
-                        "frontend/src/services/auth/firebaseConfig.ts"
+                        "frontend/src/lib/firebase.ts"
                     ]
                 },
                 {
@@ -97,17 +95,11 @@
                 {
                     "id": "D2_ST5",
                     "agent": "Tester",
-                    "desc": "Tester Agent: Write unit tests for utility functions (localeDetector, dateFormatter) using Jest + ts‑jest.",
+                    "desc": "Tester Agent: Write unit tests for utility functions (localeDetector, dateFormatter) using Jest + ts-jest.",
                     "components": [
                         "frontend/src/tests/unit/utils/localeDetector.test.ts",
                         "frontend/src/tests/unit/utils/dateFormatter.test.ts"
                     ]
-                },
-                {
-                    "id": "D2_ST6",
-                    "agent": "Reviewer",
-                    "desc": "Reviewer Agent: Review pull requests for adherence to naming conventions, security best practices, and component composition.",
-                    "components": []
                 }
             ]
         },
@@ -119,40 +111,45 @@
                 {
                     "id": "D3_ST1",
                     "agent": "Coder",
-                    "desc": "Coder Agent: Create reusable UI components: LanguageSwitcher, ProtectedRoute, QRScanner (using html5-qrcode), ValidityBadge, NotificationToast.",
+                    "desc": "Coder Agent: Create reusable UI component: LanguageSwitcher.",
                     "components": [
-                        "frontend/src/components/ui/LanguageSwitcher.tsx",
-                        "frontend/src/components/ui/QRScanner.tsx",
-                        "frontend/src/components/ui/ValidityBadge.tsx",
-                        "frontend/src/components/ui/NotificationToast.tsx"
+                        "frontend/src/components/ui/LanguageSwitcher.tsx"
                     ]
                 },
                 {
                     "id": "D3_ST2",
                     "agent": "Coder",
-                    "desc": "Coder Agent: Develop pages/: /login – auth entry point.",
+                    "desc": "Coder Agent: Create reusable UI component: ProtectedRoute.",
                     "components": [
-                        "frontend/src/pages/login.tsx"
+                        "frontend/src/components/auth/ProtectedRoute.tsx"
                     ]
                 },
                 {
                     "id": "D3_ST3",
                     "agent": "Coder",
-                    "desc": "Coder Agent: Develop pages/: /students – list of students (admin view).",
+                    "desc": "Coder Agent: Create reusable UI component: QRScanner (using html5-qrcode).",
                     "components": [
-                        "frontend/src/pages/students/index.tsx"
+                        "frontend/src/components/attendance/QRScanner.tsx"
                     ]
                 },
                 {
                     "id": "D3_ST4",
                     "agent": "Coder",
-                    "desc": "Coder Agent: Develop pages/: /students/[id] – student detail with validity badge.",
+                    "desc": "Coder Agent: Create reusable UI component: ValidityBadge.",
                     "components": [
-                        "frontend/src/pages/students/[id].tsx"
+                        "frontend/src/components/students/ValidityBadge.tsx"
                     ]
                 },
                 {
                     "id": "D3_ST5",
+                    "agent": "Coder",
+                    "desc": "Coder Agent: Create reusable UI component: NotificationToast.",
+                    "components": [
+                        "frontend/src/components/notifications/NotificationToast.tsx"
+                    ]
+                },
+                {
+                    "id": "D3_ST6",
                     "agent": "Tester",
                     "desc": "Tester Agent: Create component unit tests (React Testing Library) for LanguageSwitcher, ProtectedRoute, QRScanner, ValidityBadge.",
                     "components": [
@@ -161,6 +158,12 @@
                         "frontend/src/tests/unit/components/QRScanner.test.tsx",
                         "frontend/src/tests/unit/components/ValidityBadge.test.tsx"
                     ]
+                },
+                {
+                    "id": "D3_ST7",
+                    "agent": "Reviewer",
+                    "desc": "Reviewer Agent: Review pull requests for adherence to naming conventions (kebab-case for files, camelCase for vars) and security best practices.",
+                    "components": []
                 }
             ]
         },
@@ -172,46 +175,50 @@
                 {
                     "id": "D4_ST1",
                     "agent": "Coder",
-                    "desc": "Coder Agent: Develop pages/: /attendance – QR scanner UI that POSTs to /api/attendance/scan and shows success/feedback.",
+                    "desc": "Coder Agent: Develop page: /login – auth entry point.",
                     "components": [
-                        "frontend/src/pages/attendance.tsx"
+                        "frontend/src/pages/login.tsx"
                     ]
                 },
                 {
                     "id": "D4_ST2",
                     "agent": "Coder",
-                    "desc": "Coder Agent: Develop pages/: /notifications – view sent Zalo/FCM messages.",
+                    "desc": "Coder Agent: Develop page: /students – list of students (admin view).",
                     "components": [
-                        "frontend/src/pages/notifications.tsx"
+                        "frontend/src/pages/students/index.tsx"
                     ]
                 },
                 {
                     "id": "D4_ST3",
                     "agent": "Coder",
-                    "desc": "Coder Agent: Integrate attendance flow: Call /api/attendance/scan on successful QR read. Call /api/students/{id}/validity to refresh badge. Display real‑time feedback (toast) and update UI state.",
+                    "desc": "Coder Agent: Develop page: /students/[id] – student detail with validity badge.",
                     "components": [
-                        "frontend/src/services/attendanceService.ts",
-                        "frontend/src/hooks/useAttendance.ts"
+                        "frontend/src/pages/students/[id].tsx"
                     ]
                 },
                 {
                     "id": "D4_ST4",
                     "agent": "Coder",
-                    "desc": "Coder Agent: Implement notification dispatch: UI form to select Zalo group/phone and message. Trigger POST /api/notifications/zalo and POST /api/notifications/push. Show confirmation and error states.",
+                    "desc": "Coder Agent: Develop page: /attendance – QR scanner UI that POSTs to /api/attendance/scan and shows success/feedback.",
                     "components": [
-                        "frontend/src/services/notificationService.ts",
-                        "frontend/src/hooks/useNotifications.ts"
+                        "frontend/src/pages/attendance.tsx"
                     ]
                 },
                 {
                     "id": "D4_ST5",
-                    "agent": "Tester",
-                    "desc": "Tester Agent: Mock API endpoints (msw) and test integration flows: Login with internal credentials. OAuth redirect simulation. QR scan → attendance POST → validity GET. Notification send → Zalo/FCM mock responses.",
+                    "agent": "Coder",
+                    "desc": "Coder Agent: Develop page: /notifications – view sent Zalo/FCM messages.",
                     "components": [
-                        "frontend/src/tests/integration/mocks/handlers.ts",
-                        "frontend/src/tests/integration/auth.test.ts",
-                        "frontend/src/tests/integration/attendance.test.ts",
-                        "frontend/src/tests/integration/notifications.test.ts"
+                        "frontend/src/pages/notifications.tsx"
+                    ]
+                },
+                {
+                    "id": "D4_ST6",
+                    "agent": "Tester",
+                    "desc": "Tester Agent: Mock API endpoints (msw) and test integration flows: Login with internal credentials and OAuth redirect simulation.",
+                    "components": [
+                        "frontend/src/tests/mocks/handlers/auth.ts",
+                        "frontend/src/tests/integration/auth.test.tsx"
                     ]
                 }
             ]
@@ -224,39 +231,54 @@
                 {
                     "id": "D5_ST1",
                     "agent": "Coder",
-                    "desc": "Coder Agent: Create Dockerfile and docker-compose.yml for containerizing the Next.js app (multi‑stage build, copy package.json, next build, serve with nginx or node).",
+                    "desc": "Coder Agent: Integrate attendance flow: Call /api/attendance/scan on successful QR read.",
                     "components": [
-                        "frontend/Dockerfile",
-                        "frontend/docker-compose.yml"
+                        "frontend/src/services/attendanceService.ts",
+                        "frontend/src/pages/attendance.tsx"
                     ]
                 },
                 {
                     "id": "D5_ST2",
-                    "agent": "DevOps",
-                    "desc": "DevOps Agent: Define GitHub Actions workflow: Lint → Test → Build → Docker Build → Push to GCR.",
+                    "agent": "Coder",
+                    "desc": "Coder Agent: Integrate attendance flow: Call /api/students/{id}/validity to refresh badge.",
                     "components": [
-                        ".github/workflows/frontend-ci.yml"
+                        "frontend/src/services/studentService.ts",
+                        "frontend/src/components/students/ValidityBadge.tsx"
                     ]
                 },
                 {
                     "id": "D5_ST3",
-                    "agent": "DevOps",
-                    "desc": "DevOps Agent: Create k8s/ manifests (Deployment, Service, Ingress) referencing the built image.",
+                    "agent": "Coder",
+                    "desc": "Coder Agent: Integrate attendance flow: Display real-time feedback (toast) and update UI state.",
                     "components": [
-                        "frontend/k8s/deployment.yaml",
-                        "frontend/k8s/service.yaml",
-                        "frontend/k8s/ingress.yaml"
+                        "frontend/src/stores/uiStore.ts",
+                        "frontend/src/components/notifications/NotificationToast.tsx"
                     ]
                 },
                 {
                     "id": "D5_ST4",
-                    "agent": "Tester",
-                    "desc": "Tester Agent: Develop E2E tests (Cypress) covering: Multi‑language navigation (EN → VI). Protected route redirection. End‑to‑end attendance scanning scenario. Notification sending workflow.",
+                    "agent": "Coder",
+                    "desc": "Coder Agent: Implement notification dispatch: UI form to select Zalo group/phone and message.",
                     "components": [
-                        "frontend/cypress/e2e/language.cy.ts",
-                        "frontend/cypress/e2e/auth.cy.ts",
-                        "frontend/cypress/e2e/attendance.cy.ts",
-                        "frontend/cypress/e2e/notifications.cy.ts"
+                        "frontend/src/components/notifications/NotificationForm.tsx"
+                    ]
+                },
+                {
+                    "id": "D5_ST5",
+                    "agent": "Coder",
+                    "desc": "Coder Agent: Implement notification dispatch: Trigger POST /api/notifications/zalo and POST /api/notifications/push.",
+                    "components": [
+                        "frontend/src/services/notificationService.ts"
+                    ]
+                },
+                {
+                    "id": "D5_ST6",
+                    "agent": "Tester",
+                    "desc": "Tester Agent: Mock API endpoints (msw) and test integration flows: QR scan → attendance POST → validity GET.",
+                    "components": [
+                        "frontend/src/tests/mocks/handlers/attendance.ts",
+                        "frontend/src/tests/mocks/handlers/students.ts",
+                        "frontend/src/tests/integration/attendance.test.tsx"
                     ]
                 }
             ]
@@ -268,44 +290,54 @@
             "sub_tasks": [
                 {
                     "id": "D6_ST1",
-                    "agent": "DevOps",
-                    "desc": "DevOps Agent: Set up monitoring hooks (Prometheus/Grafana) for frontend metrics (response time, error rate) and logging (ELK stack).",
+                    "agent": "Coder",
+                    "desc": "Coder Agent: Create Dockerfile for containerizing the Next.js app (multi-stage build, copy package.json, next build, serve with nginx or node).",
                     "components": [
-                        "frontend/k8s/monitoring/prometheus-config.yaml",
-                        "frontend/k8s/monitoring/grafana-dashboard.yaml"
+                        "frontend/Dockerfile"
                     ]
                 },
                 {
                     "id": "D6_ST2",
-                    "agent": "DevOps",
-                    "desc": "DevOps Agent: Prepare secret management (GCP Secret Manager) for OAuth credentials and Firebase keys.",
+                    "agent": "Coder",
+                    "desc": "Coder Agent: Create docker-compose.yml for local development orchestration.",
                     "components": [
-                        "frontend/k8s/secrets/secrets.yaml"
+                        "frontend/docker-compose.yml"
                     ]
                 },
                 {
                     "id": "D6_ST3",
-                    "agent": "Tester",
-                    "desc": "Tester Agent: Run accessibility audits (axe) and SEO checks (crawler simulation) for each locale.",
+                    "agent": "DevOps",
+                    "desc": "DevOps Agent: Define GitHub Actions workflow: Lint → Test → Build → Docker Build → Push to GCR.",
                     "components": [
-                        "frontend/reports/accessibility-audit.md",
-                        "frontend/reports/seo-audit.md"
+                        ".github/workflows/frontend-ci.yml"
                     ]
                 },
                 {
                     "id": "D6_ST4",
-                    "agent": "Tester",
-                    "desc": "Tester Agent: Generate test coverage report; ensure ≥ 80 % coverage before hand‑off.",
+                    "agent": "DevOps",
+                    "desc": "DevOps Agent: Create k8s/ manifests (Deployment, Service, Ingress) referencing the built image.",
                     "components": [
-                        "frontend/coverage/lcov-report/index.html"
+                        "frontend/k8s/deployment.yaml",
+                        "frontend/k8s/service.yaml",
+                        "frontend/k8s/ingress.yaml"
                     ]
                 },
                 {
                     "id": "D6_ST5",
-                    "agent": "Reviewer",
-                    "desc": "Reviewer Agent: Validate Docker images for size and vulnerability scanning (Trivy).",
+                    "agent": "Tester",
+                    "desc": "Tester Agent: Mock API endpoints (msw) and test integration flows: Notification send → Zalo/FCM mock responses.",
                     "components": [
-                        "frontend/reports/trivy-scan.md"
+                        "frontend/src/tests/mocks/handlers/notifications.ts",
+                        "frontend/src/tests/integration/notifications.test.tsx"
+                    ]
+                },
+                {
+                    "id": "D6_ST6",
+                    "agent": "Tester",
+                    "desc": "Tester Agent: Develop E2E tests (Cypress) covering multi-language navigation (EN → VI) and protected route redirection.",
+                    "components": [
+                        "frontend/cypress/e2e/navigation.cy.ts",
+                        "frontend/cypress/e2e/auth.cy.ts"
                     ]
                 }
             ]
@@ -317,30 +349,70 @@
             "sub_tasks": [
                 {
                     "id": "D7_ST1",
-                    "agent": "DevOps",
-                    "desc": "DevOps Agent: Verify that the Docker image runs correctly in a local GKE cluster (kind) before final sign‑off.",
+                    "agent": "Tester",
+                    "desc": "Tester Agent: Develop E2E tests (Cypress) covering end-to-end attendance scanning scenario and notification sending workflow.",
                     "components": [
-                        "frontend/scripts/test-local-k8s.sh"
+                        "frontend/cypress/e2e/attendance.cy.ts",
+                        "frontend/cypress/e2e/notifications.cy.ts"
                     ]
                 },
                 {
                     "id": "D7_ST2",
                     "agent": "Tester",
-                    "desc": "Tester Agent: Document test results and any known issues in a shared test report.",
+                    "desc": "Tester Agent: Run accessibility audits (axe) and SEO checks (crawler simulation) for each locale.",
                     "components": [
-                        "frontend/reports/test-summary-phase3.md"
+                        "frontend/cypress/e2e/accessibility.cy.ts",
+                        "frontend/cypress/e2e/seo.cy.ts"
                     ]
                 },
                 {
                     "id": "D7_ST3",
-                    "agent": "Reviewer",
-                    "desc": "Reviewer Agent: Approve final build artifacts and sign‑off for DevOps hand‑off.",
-                    "components": []
+                    "agent": "Tester",
+                    "desc": "Tester Agent: Generate test coverage report; ensure ≥ 80% coverage before hand-off.",
+                    "components": [
+                        "frontend/coverage/lcov-report/index.html"
+                    ]
                 },
                 {
                     "id": "D7_ST4",
+                    "agent": "Reviewer",
+                    "desc": "Reviewer Agent: Validate Docker images for size and vulnerability scanning (Trivy).",
+                    "components": [
+                        "frontend/Dockerfile"
+                    ]
+                },
+                {
+                    "id": "D7_ST5",
+                    "agent": "Reviewer",
+                    "desc": "Reviewer Agent: Approve final build artifacts and sign-off for DevOps hand-off.",
+                    "components": []
+                },
+                {
+                    "id": "D7_ST6",
+                    "agent": "DevOps",
+                    "desc": "DevOps Agent: Set up monitoring hooks (Prometheus/Grafana) for frontend metrics (response time, error rate) and logging (ELK stack).",
+                    "components": [
+                        "frontend/k8s/monitoring-config.yaml"
+                    ]
+                },
+                {
+                    "id": "D7_ST7",
+                    "agent": "DevOps",
+                    "desc": "DevOps Agent: Prepare secret management (GCP Secret Manager) for OAuth credentials and Firebase keys.",
+                    "components": [
+                        "frontend/k8s/secrets.yaml"
+                    ]
+                },
+                {
+                    "id": "D7_ST8",
+                    "agent": "DevOps",
+                    "desc": "DevOps Agent: Verify that the Docker image runs correctly in a local GKE cluster (kind) before final sign-off.",
+                    "components": []
+                },
+                {
+                    "id": "D7_ST9",
                     "agent": "Manager",
-                    "desc": "Manager Agent: Approve transition criteria before Phase 4 kickoff.",
+                    "desc": "Manager Agent: Approve transition criteria before Phase 4 kickoff.",
                     "components": []
                 }
             ]
