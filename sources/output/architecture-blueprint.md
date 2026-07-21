@@ -880,3 +880,2122 @@ You are an Elite Solution Architect. Isolate development boundaries so sub-agent
 Error code: 429 - {'error': {'message': 'Rate limit reached for model `llama-3.3-70b-versatile` in organization `org_01kx7x6rbpftmr50sr2yyb78qm` service tier `on_demand` on tokens per day (TPD): Limit 100000, Used 99997, Requested 1932. Please try again in 27m46.656s. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing', 'type': 'tokens', 'code': 'rate_limit_exceeded'}}
 ```
 
+# Global Prompt:
+
+
+        Analyze the attached project requirements. Build the GLOBAL PROJECT CONTEXT for 'test-ai-architecture'.
+        
+        --- RAW REQUIREMENTS ---
+        ## Project Name: membership-hub
+
+*	**Requirements:**
+	- Project vừa web để quản lý, vừa mobile để học viên xài.
+	- Project này xây dựng backend bằng quarkus, kafka, postgres, có thể scalable, build docker image, deploy GCP, GKE.
+	- Hỗ trợ xác thực internal bằng email password, hoặc qua firebase, google, facebook. quản lý user internal lẫn login qua xác thực với các bên bên trên.
+	- Project này quản lý các học viên của trung tâm bất kỳ, dùng được cho nhiều trung tâm 1 lúc được.
+	- Các học viên của trung tâm khi tới học sẽ điểm danh qua QR. Điểm danh sẽ đánh dấu ngày đó học viên có đi học. Cho dù điểm danh nhiều lần cũng không vấn đề và chỉ xem như đã điểm danh ngày hôm đó.
+	- Sau khi điểm danh sẽ hiển thị thẻ học viên còn bao nhiêu ngày hiệu lực như kiểu trừ dần ngày tập gym chẳng hạn.
+	- Đồng thời lúc đó gửi tin nhắn qua số đt zalo của học viên và nhóm zalo có học viên đó tham gia, và cả notification của app mobile trên đt học viên.
+	- App mobile dùng next.js làm front end, hỗ trợ đa ngôn ngữ, build đc cho ios, android.
+	- Project này có phần SEO đa ngôn ngữ cho cả web, app mobile.
+	- Detect default locale ngôn ngữ nếu user đã chọn trước đó thì dùng nó, không thì dùng locale từ browser hay mobile.
+
+        --- END REQUIREMENTS ---
+            
+        ## CRITICAL TIMELINE BOUNDARY CONSTRAINTS:
+        #### 1. STRICT PHASE DURATION LIMIT: Each individual Phase MUST be strictly bounded between 1 to 7 days maximum (Absolute Hard Limit: Maximum 7 days per phase). Under no circumstances are you allowed to invent, extrapolate, or generate scheduling logs beyond Day 7.
+        #### 2. PROGRESSION STOPPING CRITERION: Stop generating immediately once the core technical objectives of the current Phase are satisfied. Do NOT duplicate or loop previous task structures just to inflate the timeline. If the work is complete on Day 1, freeze the output and exit.
+
+        Your output MUST follow this exact structure:
+        ## GLOBAL PROJECT CONTEXT: test-ai-architecture
+        #### 1. Executive Summary & Tech Stack Blueprint
+        #### 2. Global Guardrails & Enterprise Compliance Standards
+        #### 3. Standardized Sub-Agent Persona Definitions (Manager, Coder, Tester, Reviewer, Docker, Deployer)
+        #### 4. Multi-Phase Segmentation Strategy Overview (Plan exactly 5 phases)
+        
+
+# System Instruction
+
+You are an Elite Solution Architect. Define the global system truth and multi-agent guardrails.
+
+# Raw Response / Exception:
+
+```text
+## GLOBAL PROJECT CONTEXT: test-ai-architecture
+#### 1. Executive Summary & Tech Stack Blueprint
+The membership-hub project is a web and mobile application designed to manage students and their attendance for multiple centers. The tech stack consists of Quarkus, Kafka, Postgres, and Docker, with deployment on Google Cloud Platform (GCP) and Google Kubernetes Engine (GKE). The application will support authentication via email/password, Firebase, Google, and Facebook, and will have features such as QR code-based attendance tracking, notification systems, and multi-language support.
+
+#### 2. Global Guardrails & Enterprise Compliance Standards
+To ensure the project's success, the following guardrails and compliance standards will be implemented:
+- **Security**: Implement OAuth 2.0 for authentication and authorization, and ensure data encryption for sensitive information.
+- **Scalability**: Design the system to scale horizontally, with load balancing and autoscaling on GKE.
+- **Compliance**: Adhere to GDPR and CCPA regulations for data protection, and ensure accessibility standards (WCAG 2.1) for the web and mobile applications.
+- **Quality**: Implement continuous integration and continuous deployment (CI/CD) pipelines, with automated testing and code reviews.
+
+#### 3. Standardized Sub-Agent Persona Definitions
+The following sub-agent personas will be defined:
+- **Manager**: Responsible for project planning, resource allocation, and progress tracking.
+- **Coder**: Responsible for developing the application's features, with expertise in Quarkus, Kafka, Postgres, and Docker.
+- **Tester**: Responsible for testing the application's functionality, performance, and security.
+- **Reviewer**: Responsible for reviewing code, ensuring adherence to coding standards, and providing feedback.
+- **Docker**: Responsible for containerizing the application and ensuring seamless deployment on GKE.
+- **Deployer**: Responsible for deploying the application on GCP and GKE, and ensuring zero-downtime deployments.
+
+#### 4. Multi-Phase Segmentation Strategy Overview
+The project will be divided into 5 phases, each with a maximum duration of 7 days:
+- **Phase 1: Planning and Setup** (Days 1-3): Define project scope, create a detailed project plan, and set up the development environment.
+- **Phase 2: Backend Development** (Days 4-7): Develop the backend features, including authentication, attendance tracking, and notification systems.
+- **Phase 3: Frontend Development** (Days 8-14): Develop the web and mobile applications, with features such as QR code scanning, multi-language support, and SEO optimization.
+- **Phase 4: Testing and Quality Assurance** (Days 15-21): Conduct thorough testing, including unit testing, integration testing, and performance testing.
+- **Phase 5: Deployment and Maintenance** (Days 22-28): Deploy the application on GCP and GKE, and ensure smooth operation, with ongoing maintenance and updates.
+```
+
+# Phase 1 - Prompt:
+
+
+            Project Name: test-ai-architecture
+            You are tasked to detail **PHASE 1 OUT OF 5**.
+            You must align perfectly with the established Global Context and satisfy a subset of the Raw Requirements.
+
+            --- GLOBAL CONTEXT REFERENCE ---
+            ## GLOBAL PROJECT CONTEXT: test-ai-architecture
+#### 1. Executive Summary & Tech Stack Blueprint
+The membership-hub project is a web and mobile application designed to manage students and their attendance for multiple centers. The tech stack consists of Quarkus, Kafka, Postgres, and Docker, with deployment on Google Cloud Platform (GCP) and Google Kubernetes Engine (GKE). The application will support authentication via email/password, Firebase, Google, and Facebook, and will have features such as QR code-based attendance tracking, notification systems, and multi-language support.
+
+#### 2. Global Guardrails & Enterprise Compliance Standards
+To ensure the project's success, the following guardrails and compliance standards will be implemented:
+- **Security**: Implement OAuth 2.0 for authentication and authorization, and ensure data encryption for sensitive information.
+- **Scalability**: Design the system to scale horizontally, with load balancing and autoscaling on GKE.
+- **Compliance**: Adhere to GDPR and CCPA regulations for data protection, and ensure accessibility standards (WCAG 2.1) for the web and mobile applications.
+- **Quality**: Implement continuous integration and continuous deployment (CI/CD) pipelines, with automated testing and code reviews.
+
+#### 3. Standardized Sub-Agent Persona Definitions
+The following sub-agent personas will be defined:
+- **Manager**: Responsible for project planning, resource allocation, and progress tracking.
+- **Coder**: Responsible for developing the application's features, with expertise in Quarkus, Kafka, Postgres, and Docker.
+- **Tester**: Responsible for testing the application's functionality, performance, and security.
+- **Reviewer**: Responsible for reviewing code, ensuring adherence to coding standards, and providing feedback.
+- **Docker**: Responsible for containerizing the application and ensuring seamless deployment on GKE.
+- **Deployer**: Responsible for deploying the application on GCP and GKE, and ensuring zero-downtime deployments.
+
+#### 4. Multi-Phase Segmentation Strategy Overview
+The project will be divided into 5 phases, each with a maximum duration of 7 days:
+- **Phase 1: Planning and Setup** (Days 1-3): Define project scope, create a detailed project plan, and set up the development environment.
+- **Phase 2: Backend Development** (Days 4-7): Develop the backend features, including authentication, attendance tracking, and notification systems.
+- **Phase 3: Frontend Development** (Days 8-14): Develop the web and mobile applications, with features such as QR code scanning, multi-language support, and SEO optimization.
+- **Phase 4: Testing and Quality Assurance** (Days 15-21): Conduct thorough testing, including unit testing, integration testing, and performance testing.
+- **Phase 5: Deployment and Maintenance** (Days 22-28): Deploy the application on GCP and GKE, and ensure smooth operation, with ongoing maintenance and updates.
+            
+            --- RAW REQUIREMENTS REFERENCE ---
+            ## Project Name: membership-hub
+
+*	**Requirements:**
+	- Project vừa web để quản lý, vừa mobile để học viên xài.
+	- Project này xây dựng backend bằng quarkus, kafka, postgres, có thể scalable, build docker image, deploy GCP, GKE.
+	- Hỗ trợ xác thực internal bằng email password, hoặc qua firebase, google, facebook. quản lý user internal lẫn login qua xác thực với các bên bên trên.
+	- Project này quản lý các học viên của trung tâm bất kỳ, dùng được cho nhiều trung tâm 1 lúc được.
+	- Các học viên của trung tâm khi tới học sẽ điểm danh qua QR. Điểm danh sẽ đánh dấu ngày đó học viên có đi học. Cho dù điểm danh nhiều lần cũng không vấn đề và chỉ xem như đã điểm danh ngày hôm đó.
+	- Sau khi điểm danh sẽ hiển thị thẻ học viên còn bao nhiêu ngày hiệu lực như kiểu trừ dần ngày tập gym chẳng hạn.
+	- Đồng thời lúc đó gửi tin nhắn qua số đt zalo của học viên và nhóm zalo có học viên đó tham gia, và cả notification của app mobile trên đt học viên.
+	- App mobile dùng next.js làm front end, hỗ trợ đa ngôn ngữ, build đc cho ios, android.
+	- Project này có phần SEO đa ngôn ngữ cho cả web, app mobile.
+	- Detect default locale ngôn ngữ nếu user đã chọn trước đó thì dùng nó, không thì dùng locale từ browser hay mobile.
+
+            ----------------------------------
+            
+            ## CRITICAL TIMELINE BOUNDARY CONSTRAINTS:
+            #### 1. STRICT PHASE DURATION LIMIT: Each individual Phase MUST be strictly bounded between 1 to 7 days maximum (Absolute Hard Limit: Maximum 7 days per phase). Under no circumstances are you allowed to invent, extrapolate, or generate scheduling logs beyond Day 7.
+            #### 2. PROGRESSION STOPPING CRITERION: Stop generating immediately once the core technical objectives of the current Phase are satisfied. Do NOT duplicate or loop previous task structures just to inflate the timeline. If the work is complete on Day 1, freeze the output and exit.
+
+            Your output MUST follow this exact Markdown structure for Phase 1:
+            ## PHASE 1 CONTEXT BLUEPRINT: test-ai-architecture
+            #### 1. Phase Operational Scope & Objectives
+            #### 2. Allowed Technical Scope & Directory Boundaries (Files, paths, and endpoints)
+            #### 3. Dedicated Sub-Agent Functional Directives (Specific tasks for Coder, Tester, Reviewer, DevOps)
+            #### 4. Phase Definition of Done (DoD)
+            
+
+# System Instruction
+
+You are an Elite Solution Architect. Isolate development boundaries so sub-agents never overlap.
+
+# Raw Response / Exception:
+
+```text
+## PHASE 1 CONTEXT BLUEPRINT: test-ai-architecture
+#### 1. Phase Operational Scope & Objectives
+The primary objective of Phase 1 is to define the project scope, create a detailed project plan, and set up the development environment. This phase will focus on planning and setup, ensuring that all necessary components are in place for the successful execution of the project. The key deliverables for this phase include:
+- A detailed project plan outlining the scope, timeline, and resources required
+- A setup development environment with the necessary tools and technologies (Quarkus, Kafka, Postgres, Docker)
+- Definition of the project's technical architecture and high-level design
+
+#### 2. Allowed Technical Scope & Directory Boundaries (Files, paths, and endpoints)
+The technical scope for Phase 1 includes:
+- Setting up the project directory structure
+- Initializing the Git repository
+- Creating a basic Quarkus project template
+- Setting up Kafka and Postgres for messaging and data storage
+- Configuring Docker for containerization
+- Defining the API endpoints for authentication, attendance tracking, and notification systems
+- Creating a high-level design document outlining the system architecture
+
+The allowed directory boundaries include:
+- `src/main/java` for Java source code
+- `src/main/resources` for configuration files and resources
+- `docker` for Docker configuration files
+- `kafka` for Kafka configuration files
+- `postgres` for Postgres configuration files
+
+#### 3. Dedicated Sub-Agent Functional Directives (Specific tasks for Coder, Tester, Reviewer, DevOps)
+The following sub-agents will be involved in Phase 1:
+- **Coder**: Responsible for setting up the Quarkus project template, configuring Kafka and Postgres, and defining the API endpoints.
+- **Tester**: Not actively involved in this phase, but will review the project plan and technical architecture.
+- **Reviewer**: Responsible for reviewing the project plan, technical architecture, and high-level design document.
+- **DevOps (Docker)**: Responsible for setting up the Docker configuration and ensuring containerization.
+- **Deployer**: Not actively involved in this phase, but will review the project plan and technical architecture.
+
+#### 4. Phase Definition of Done (DoD)
+Phase 1 is considered complete when:
+- The project plan is finalized and approved by all stakeholders
+- The development environment is set up and configured
+- The Quarkus project template is created and configured
+- Kafka and Postgres are set up and configured
+- Docker is configured for containerization
+- The high-level design document is completed and approved by all stakeholders
+- The project directory structure is initialized and the Git repository is set up
+
+The expected duration for Phase 1 is 3 days, with the following milestones:
+- Day 1: Project planning and scope definition
+- Day 2: Setup of development environment and Quarkus project template
+- Day 3: Configuration of Kafka, Postgres, and Docker, and completion of high-level design document
+```
+
+# Phase 2 - Prompt:
+
+
+            Project Name: test-ai-architecture
+            You are tasked to detail **PHASE 2 OUT OF 5**.
+            You must align perfectly with the established Global Context and satisfy a subset of the Raw Requirements.
+
+            --- GLOBAL CONTEXT REFERENCE ---
+            ## GLOBAL PROJECT CONTEXT: test-ai-architecture
+#### 1. Executive Summary & Tech Stack Blueprint
+The membership-hub project is a web and mobile application designed to manage students and their attendance for multiple centers. The tech stack consists of Quarkus, Kafka, Postgres, and Docker, with deployment on Google Cloud Platform (GCP) and Google Kubernetes Engine (GKE). The application will support authentication via email/password, Firebase, Google, and Facebook, and will have features such as QR code-based attendance tracking, notification systems, and multi-language support.
+
+#### 2. Global Guardrails & Enterprise Compliance Standards
+To ensure the project's success, the following guardrails and compliance standards will be implemented:
+- **Security**: Implement OAuth 2.0 for authentication and authorization, and ensure data encryption for sensitive information.
+- **Scalability**: Design the system to scale horizontally, with load balancing and autoscaling on GKE.
+- **Compliance**: Adhere to GDPR and CCPA regulations for data protection, and ensure accessibility standards (WCAG 2.1) for the web and mobile applications.
+- **Quality**: Implement continuous integration and continuous deployment (CI/CD) pipelines, with automated testing and code reviews.
+
+#### 3. Standardized Sub-Agent Persona Definitions
+The following sub-agent personas will be defined:
+- **Manager**: Responsible for project planning, resource allocation, and progress tracking.
+- **Coder**: Responsible for developing the application's features, with expertise in Quarkus, Kafka, Postgres, and Docker.
+- **Tester**: Responsible for testing the application's functionality, performance, and security.
+- **Reviewer**: Responsible for reviewing code, ensuring adherence to coding standards, and providing feedback.
+- **Docker**: Responsible for containerizing the application and ensuring seamless deployment on GKE.
+- **Deployer**: Responsible for deploying the application on GCP and GKE, and ensuring zero-downtime deployments.
+
+#### 4. Multi-Phase Segmentation Strategy Overview
+The project will be divided into 5 phases, each with a maximum duration of 7 days:
+- **Phase 1: Planning and Setup** (Days 1-3): Define project scope, create a detailed project plan, and set up the development environment.
+- **Phase 2: Backend Development** (Days 4-7): Develop the backend features, including authentication, attendance tracking, and notification systems.
+- **Phase 3: Frontend Development** (Days 8-14): Develop the web and mobile applications, with features such as QR code scanning, multi-language support, and SEO optimization.
+- **Phase 4: Testing and Quality Assurance** (Days 15-21): Conduct thorough testing, including unit testing, integration testing, and performance testing.
+- **Phase 5: Deployment and Maintenance** (Days 22-28): Deploy the application on GCP and GKE, and ensure smooth operation, with ongoing maintenance and updates.
+            
+            --- RAW REQUIREMENTS REFERENCE ---
+            ## Project Name: membership-hub
+
+*	**Requirements:**
+	- Project vừa web để quản lý, vừa mobile để học viên xài.
+	- Project này xây dựng backend bằng quarkus, kafka, postgres, có thể scalable, build docker image, deploy GCP, GKE.
+	- Hỗ trợ xác thực internal bằng email password, hoặc qua firebase, google, facebook. quản lý user internal lẫn login qua xác thực với các bên bên trên.
+	- Project này quản lý các học viên của trung tâm bất kỳ, dùng được cho nhiều trung tâm 1 lúc được.
+	- Các học viên của trung tâm khi tới học sẽ điểm danh qua QR. Điểm danh sẽ đánh dấu ngày đó học viên có đi học. Cho dù điểm danh nhiều lần cũng không vấn đề và chỉ xem như đã điểm danh ngày hôm đó.
+	- Sau khi điểm danh sẽ hiển thị thẻ học viên còn bao nhiêu ngày hiệu lực như kiểu trừ dần ngày tập gym chẳng hạn.
+	- Đồng thời lúc đó gửi tin nhắn qua số đt zalo của học viên và nhóm zalo có học viên đó tham gia, và cả notification của app mobile trên đt học viên.
+	- App mobile dùng next.js làm front end, hỗ trợ đa ngôn ngữ, build đc cho ios, android.
+	- Project này có phần SEO đa ngôn ngữ cho cả web, app mobile.
+	- Detect default locale ngôn ngữ nếu user đã chọn trước đó thì dùng nó, không thì dùng locale từ browser hay mobile.
+
+            ----------------------------------
+            
+            ## CRITICAL TIMELINE BOUNDARY CONSTRAINTS:
+            #### 1. STRICT PHASE DURATION LIMIT: Each individual Phase MUST be strictly bounded between 1 to 7 days maximum (Absolute Hard Limit: Maximum 7 days per phase). Under no circumstances are you allowed to invent, extrapolate, or generate scheduling logs beyond Day 7.
+            #### 2. PROGRESSION STOPPING CRITERION: Stop generating immediately once the core technical objectives of the current Phase are satisfied. Do NOT duplicate or loop previous task structures just to inflate the timeline. If the work is complete on Day 1, freeze the output and exit.
+
+            Your output MUST follow this exact Markdown structure for Phase 2:
+            ## PHASE 2 CONTEXT BLUEPRINT: test-ai-architecture
+            #### 1. Phase Operational Scope & Objectives
+            #### 2. Allowed Technical Scope & Directory Boundaries (Files, paths, and endpoints)
+            #### 3. Dedicated Sub-Agent Functional Directives (Specific tasks for Coder, Tester, Reviewer, DevOps)
+            #### 4. Phase Definition of Done (DoD)
+            
+
+# System Instruction
+
+You are an Elite Solution Architect. Isolate development boundaries so sub-agents never overlap.
+
+# Raw Response / Exception:
+
+```text
+## PHASE 2 CONTEXT BLUEPRINT: test-ai-architecture
+#### 1. Phase Operational Scope & Objectives
+The primary objective of Phase 2 is to develop the backend features of the membership-hub project, including authentication, attendance tracking, and notification systems. This phase will focus on building a scalable and secure backend using Quarkus, Kafka, and Postgres. The key deliverables for this phase include:
+- Design and implementation of authentication mechanisms (email/password, Firebase, Google, Facebook)
+- Development of attendance tracking features (QR code-based attendance tracking)
+- Implementation of notification systems (SMS, Zalo, in-app notifications)
+- Integration with Postgres database for data storage
+- Containerization using Docker for seamless deployment on GKE
+
+#### 2. Allowed Technical Scope & Directory Boundaries (Files, paths, and endpoints)
+The technical scope for Phase 2 will be limited to the backend development, with the following directory boundaries:
+- `src/main/java`: Java source code for Quarkus application
+- `src/main/resources`: Configuration files and static resources
+- `docker`: Dockerfile and containerization scripts
+- `kafka`: Kafka configuration and topic definitions
+- `postgres`: Postgres database schema and migration scripts
+- `api`: API endpoints for authentication, attendance tracking, and notification systems
+Allowed endpoints:
+- `/api/auth`: Authentication endpoints (login, logout, register)
+- `/api/attendance`: Attendance tracking endpoints (QR code scanning, attendance logging)
+- `/api/notifications`: Notification endpoints (SMS, Zalo, in-app notifications)
+
+#### 3. Dedicated Sub-Agent Functional Directives (Specific tasks for Coder, Tester, Reviewer, DevOps)
+- **Coder**: Implement authentication mechanisms, attendance tracking features, and notification systems. Develop API endpoints for backend features.
+- **Tester**: Develop unit tests and integration tests for backend features. Test authentication, attendance tracking, and notification systems.
+- **Reviewer**: Review code for adherence to coding standards, security, and scalability. Provide feedback on API endpoint design and implementation.
+- **DevOps (Docker)**: Containerize the Quarkus application using Docker. Ensure seamless deployment on GKE.
+- **DevOps (Deployer)**: Prepare deployment scripts for GCP and GKE. Ensure zero-downtime deployments.
+
+#### 4. Phase Definition of Done (DoD)
+Phase 2 is considered complete when:
+- All backend features (authentication, attendance tracking, notification systems) are implemented and tested.
+- API endpoints are designed and implemented for backend features.
+- Code is reviewed and meets coding standards, security, and scalability requirements.
+- Docker containerization is complete, and deployment scripts are prepared for GCP and GKE.
+- Unit tests and integration tests are developed and passed for backend features.
+The maximum duration for Phase 2 is 7 days. Once the core technical objectives are satisfied, the phase will be considered complete, and progression to Phase 3 will begin.
+```
+
+# Phase 3 - Prompt:
+
+
+            Project Name: test-ai-architecture
+            You are tasked to detail **PHASE 3 OUT OF 5**.
+            You must align perfectly with the established Global Context and satisfy a subset of the Raw Requirements.
+
+            --- GLOBAL CONTEXT REFERENCE ---
+            ## GLOBAL PROJECT CONTEXT: test-ai-architecture
+#### 1. Executive Summary & Tech Stack Blueprint
+The membership-hub project is a web and mobile application designed to manage students and their attendance for multiple centers. The tech stack consists of Quarkus, Kafka, Postgres, and Docker, with deployment on Google Cloud Platform (GCP) and Google Kubernetes Engine (GKE). The application will support authentication via email/password, Firebase, Google, and Facebook, and will have features such as QR code-based attendance tracking, notification systems, and multi-language support.
+
+#### 2. Global Guardrails & Enterprise Compliance Standards
+To ensure the project's success, the following guardrails and compliance standards will be implemented:
+- **Security**: Implement OAuth 2.0 for authentication and authorization, and ensure data encryption for sensitive information.
+- **Scalability**: Design the system to scale horizontally, with load balancing and autoscaling on GKE.
+- **Compliance**: Adhere to GDPR and CCPA regulations for data protection, and ensure accessibility standards (WCAG 2.1) for the web and mobile applications.
+- **Quality**: Implement continuous integration and continuous deployment (CI/CD) pipelines, with automated testing and code reviews.
+
+#### 3. Standardized Sub-Agent Persona Definitions
+The following sub-agent personas will be defined:
+- **Manager**: Responsible for project planning, resource allocation, and progress tracking.
+- **Coder**: Responsible for developing the application's features, with expertise in Quarkus, Kafka, Postgres, and Docker.
+- **Tester**: Responsible for testing the application's functionality, performance, and security.
+- **Reviewer**: Responsible for reviewing code, ensuring adherence to coding standards, and providing feedback.
+- **Docker**: Responsible for containerizing the application and ensuring seamless deployment on GKE.
+- **Deployer**: Responsible for deploying the application on GCP and GKE, and ensuring zero-downtime deployments.
+
+#### 4. Multi-Phase Segmentation Strategy Overview
+The project will be divided into 5 phases, each with a maximum duration of 7 days:
+- **Phase 1: Planning and Setup** (Days 1-3): Define project scope, create a detailed project plan, and set up the development environment.
+- **Phase 2: Backend Development** (Days 4-7): Develop the backend features, including authentication, attendance tracking, and notification systems.
+- **Phase 3: Frontend Development** (Days 8-14): Develop the web and mobile applications, with features such as QR code scanning, multi-language support, and SEO optimization.
+- **Phase 4: Testing and Quality Assurance** (Days 15-21): Conduct thorough testing, including unit testing, integration testing, and performance testing.
+- **Phase 5: Deployment and Maintenance** (Days 22-28): Deploy the application on GCP and GKE, and ensure smooth operation, with ongoing maintenance and updates.
+            
+            --- RAW REQUIREMENTS REFERENCE ---
+            ## Project Name: membership-hub
+
+*	**Requirements:**
+	- Project vừa web để quản lý, vừa mobile để học viên xài.
+	- Project này xây dựng backend bằng quarkus, kafka, postgres, có thể scalable, build docker image, deploy GCP, GKE.
+	- Hỗ trợ xác thực internal bằng email password, hoặc qua firebase, google, facebook. quản lý user internal lẫn login qua xác thực với các bên bên trên.
+	- Project này quản lý các học viên của trung tâm bất kỳ, dùng được cho nhiều trung tâm 1 lúc được.
+	- Các học viên của trung tâm khi tới học sẽ điểm danh qua QR. Điểm danh sẽ đánh dấu ngày đó học viên có đi học. Cho dù điểm danh nhiều lần cũng không vấn đề và chỉ xem như đã điểm danh ngày hôm đó.
+	- Sau khi điểm danh sẽ hiển thị thẻ học viên còn bao nhiêu ngày hiệu lực như kiểu trừ dần ngày tập gym chẳng hạn.
+	- Đồng thời lúc đó gửi tin nhắn qua số đt zalo của học viên và nhóm zalo có học viên đó tham gia, và cả notification của app mobile trên đt học viên.
+	- App mobile dùng next.js làm front end, hỗ trợ đa ngôn ngữ, build đc cho ios, android.
+	- Project này có phần SEO đa ngôn ngữ cho cả web, app mobile.
+	- Detect default locale ngôn ngữ nếu user đã chọn trước đó thì dùng nó, không thì dùng locale từ browser hay mobile.
+
+            ----------------------------------
+            
+            ## CRITICAL TIMELINE BOUNDARY CONSTRAINTS:
+            #### 1. STRICT PHASE DURATION LIMIT: Each individual Phase MUST be strictly bounded between 1 to 7 days maximum (Absolute Hard Limit: Maximum 7 days per phase). Under no circumstances are you allowed to invent, extrapolate, or generate scheduling logs beyond Day 7.
+            #### 2. PROGRESSION STOPPING CRITERION: Stop generating immediately once the core technical objectives of the current Phase are satisfied. Do NOT duplicate or loop previous task structures just to inflate the timeline. If the work is complete on Day 1, freeze the output and exit.
+
+            Your output MUST follow this exact Markdown structure for Phase 3:
+            ## PHASE 3 CONTEXT BLUEPRINT: test-ai-architecture
+            #### 1. Phase Operational Scope & Objectives
+            #### 2. Allowed Technical Scope & Directory Boundaries (Files, paths, and endpoints)
+            #### 3. Dedicated Sub-Agent Functional Directives (Specific tasks for Coder, Tester, Reviewer, DevOps)
+            #### 4. Phase Definition of Done (DoD)
+            
+
+# System Instruction
+
+You are an Elite Solution Architect. Isolate development boundaries so sub-agents never overlap.
+
+# Raw Response / Exception:
+
+```text
+## PHASE 3 CONTEXT BLUEPRINT: test-ai-architecture
+#### 1. Phase Operational Scope & Objectives
+The primary objective of Phase 3 is to develop the web and mobile applications for the membership-hub project. This phase will focus on creating a user-friendly interface for students to manage their attendance and for centers to track student activity. The key deliverables for this phase include:
+- Developing the web application using Next.js
+- Implementing QR code scanning for attendance tracking
+- Integrating multi-language support for both web and mobile applications
+- Ensuring SEO optimization for the web application
+- Building the mobile application for both iOS and Android platforms
+
+#### 2. Allowed Technical Scope & Directory Boundaries (Files, paths, and endpoints)
+The technical scope for Phase 3 will be limited to the frontend development of the web and mobile applications. The following directories, files, and endpoints are in scope:
+- `web-app/`: Directory for the web application code
+- `mobile-app/`: Directory for the mobile application code
+- `api/`: Directory for API endpoints for frontend-backend interaction
+- `components/`: Directory for reusable UI components
+- `locales/`: Directory for language translations
+- Endpoints for:
+  - QR code scanning
+  - Attendance tracking
+  - User profile management
+  - Language selection
+
+#### 3. Dedicated Sub-Agent Functional Directives (Specific tasks for Coder, Tester, Reviewer, DevOps)
+The following sub-agents will be involved in Phase 3, with the following tasks:
+- **Coder**: Develop the web and mobile applications, implement QR code scanning, multi-language support, and SEO optimization
+- **Tester**: Test the web and mobile applications for functionality, performance, and security
+- **Reviewer**: Review the code for adherence to coding standards, best practices, and security guidelines
+- **DevOps (Docker)**: Containerize the web application for deployment on GKE
+- **DevOps (Deployer)**: Prepare the environment for deployment, ensure zero-downtime deployments
+
+#### 4. Phase Definition of Done (DoD)
+Phase 3 will be considered complete when the following conditions are met:
+- The web application is fully functional, with QR code scanning, multi-language support, and SEO optimization
+- The mobile application is fully functional, with QR code scanning, multi-language support, and push notifications
+- All code has been reviewed and approved by the Reviewer
+- The web application has been containerized and is ready for deployment on GKE
+- The mobile application has been built and is ready for deployment on app stores
+- All testing has been completed, and the application has been verified to meet the requirements and quality standards.
+```
+
+# Phase 4 - Prompt:
+
+
+            Project Name: test-ai-architecture
+            You are tasked to detail **PHASE 4 OUT OF 5**.
+            You must align perfectly with the established Global Context and satisfy a subset of the Raw Requirements.
+
+            --- GLOBAL CONTEXT REFERENCE ---
+            ## GLOBAL PROJECT CONTEXT: test-ai-architecture
+#### 1. Executive Summary & Tech Stack Blueprint
+The membership-hub project is a web and mobile application designed to manage students and their attendance for multiple centers. The tech stack consists of Quarkus, Kafka, Postgres, and Docker, with deployment on Google Cloud Platform (GCP) and Google Kubernetes Engine (GKE). The application will support authentication via email/password, Firebase, Google, and Facebook, and will have features such as QR code-based attendance tracking, notification systems, and multi-language support.
+
+#### 2. Global Guardrails & Enterprise Compliance Standards
+To ensure the project's success, the following guardrails and compliance standards will be implemented:
+- **Security**: Implement OAuth 2.0 for authentication and authorization, and ensure data encryption for sensitive information.
+- **Scalability**: Design the system to scale horizontally, with load balancing and autoscaling on GKE.
+- **Compliance**: Adhere to GDPR and CCPA regulations for data protection, and ensure accessibility standards (WCAG 2.1) for the web and mobile applications.
+- **Quality**: Implement continuous integration and continuous deployment (CI/CD) pipelines, with automated testing and code reviews.
+
+#### 3. Standardized Sub-Agent Persona Definitions
+The following sub-agent personas will be defined:
+- **Manager**: Responsible for project planning, resource allocation, and progress tracking.
+- **Coder**: Responsible for developing the application's features, with expertise in Quarkus, Kafka, Postgres, and Docker.
+- **Tester**: Responsible for testing the application's functionality, performance, and security.
+- **Reviewer**: Responsible for reviewing code, ensuring adherence to coding standards, and providing feedback.
+- **Docker**: Responsible for containerizing the application and ensuring seamless deployment on GKE.
+- **Deployer**: Responsible for deploying the application on GCP and GKE, and ensuring zero-downtime deployments.
+
+#### 4. Multi-Phase Segmentation Strategy Overview
+The project will be divided into 5 phases, each with a maximum duration of 7 days:
+- **Phase 1: Planning and Setup** (Days 1-3): Define project scope, create a detailed project plan, and set up the development environment.
+- **Phase 2: Backend Development** (Days 4-7): Develop the backend features, including authentication, attendance tracking, and notification systems.
+- **Phase 3: Frontend Development** (Days 8-14): Develop the web and mobile applications, with features such as QR code scanning, multi-language support, and SEO optimization.
+- **Phase 4: Testing and Quality Assurance** (Days 15-21): Conduct thorough testing, including unit testing, integration testing, and performance testing.
+- **Phase 5: Deployment and Maintenance** (Days 22-28): Deploy the application on GCP and GKE, and ensure smooth operation, with ongoing maintenance and updates.
+            
+            --- RAW REQUIREMENTS REFERENCE ---
+            ## Project Name: membership-hub
+
+*	**Requirements:**
+	- Project vừa web để quản lý, vừa mobile để học viên xài.
+	- Project này xây dựng backend bằng quarkus, kafka, postgres, có thể scalable, build docker image, deploy GCP, GKE.
+	- Hỗ trợ xác thực internal bằng email password, hoặc qua firebase, google, facebook. quản lý user internal lẫn login qua xác thực với các bên bên trên.
+	- Project này quản lý các học viên của trung tâm bất kỳ, dùng được cho nhiều trung tâm 1 lúc được.
+	- Các học viên của trung tâm khi tới học sẽ điểm danh qua QR. Điểm danh sẽ đánh dấu ngày đó học viên có đi học. Cho dù điểm danh nhiều lần cũng không vấn đề và chỉ xem như đã điểm danh ngày hôm đó.
+	- Sau khi điểm danh sẽ hiển thị thẻ học viên còn bao nhiêu ngày hiệu lực như kiểu trừ dần ngày tập gym chẳng hạn.
+	- Đồng thời lúc đó gửi tin nhắn qua số đt zalo của học viên và nhóm zalo có học viên đó tham gia, và cả notification của app mobile trên đt học viên.
+	- App mobile dùng next.js làm front end, hỗ trợ đa ngôn ngữ, build đc cho ios, android.
+	- Project này có phần SEO đa ngôn ngữ cho cả web, app mobile.
+	- Detect default locale ngôn ngữ nếu user đã chọn trước đó thì dùng nó, không thì dùng locale từ browser hay mobile.
+
+            ----------------------------------
+            
+            ## CRITICAL TIMELINE BOUNDARY CONSTRAINTS:
+            #### 1. STRICT PHASE DURATION LIMIT: Each individual Phase MUST be strictly bounded between 1 to 7 days maximum (Absolute Hard Limit: Maximum 7 days per phase). Under no circumstances are you allowed to invent, extrapolate, or generate scheduling logs beyond Day 7.
+            #### 2. PROGRESSION STOPPING CRITERION: Stop generating immediately once the core technical objectives of the current Phase are satisfied. Do NOT duplicate or loop previous task structures just to inflate the timeline. If the work is complete on Day 1, freeze the output and exit.
+
+            Your output MUST follow this exact Markdown structure for Phase 4:
+            ## PHASE 4 CONTEXT BLUEPRINT: test-ai-architecture
+            #### 1. Phase Operational Scope & Objectives
+            #### 2. Allowed Technical Scope & Directory Boundaries (Files, paths, and endpoints)
+            #### 3. Dedicated Sub-Agent Functional Directives (Specific tasks for Coder, Tester, Reviewer, DevOps)
+            #### 4. Phase Definition of Done (DoD)
+            
+
+# System Instruction
+
+You are an Elite Solution Architect. Isolate development boundaries so sub-agents never overlap.
+
+# Raw Response / Exception:
+
+```text
+## PHASE 4 CONTEXT BLUEPRINT: test-ai-architecture
+#### 1. Phase Operational Scope & Objectives
+The primary objective of Phase 4 is to conduct thorough testing and quality assurance of the membership-hub project. This phase will focus on ensuring the application's functionality, performance, and security meet the required standards. The scope of this phase includes:
+
+* Unit testing of individual components
+* Integration testing of interconnected components
+* Performance testing to ensure scalability and reliability
+* Security testing to identify vulnerabilities
+* User acceptance testing (UAT) to validate the application's functionality
+
+#### 2. Allowed Technical Scope & Directory Boundaries (Files, paths, and endpoints)
+The technical scope of this phase is limited to the testing and quality assurance of the existing codebase. The following directories and files are within the scope:
+
+* `src/test`: Unit tests and integration tests
+* `src/main`: Application codebase
+* `docker-compose.yml`: Docker configuration for testing
+* `kafka-config.properties`: Kafka configuration for testing
+* `postgres-config.properties`: Postgres configuration for testing
+* API endpoints for testing:
+	+ `/api/v1/auth`
+	+ `/api/v1/attendance`
+	+ `/api/v1/notifications`
+
+#### 3. Dedicated Sub-Agent Functional Directives (Specific tasks for Coder, Tester, Reviewer, DevOps)
+The following sub-agents will be involved in this phase:
+
+* **Coder**: Assist in writing unit tests and integration tests
+* **Tester**: Conduct thorough testing of the application, including performance testing and security testing
+* **Reviewer**: Review test cases and provide feedback on test coverage and effectiveness
+* **DevOps**: Configure and manage the testing environment, including Docker and Kafka
+
+Tasks:
+
+* Coder:
+	+ Write unit tests for individual components (Days 1-2)
+	+ Write integration tests for interconnected components (Days 2-3)
+* Tester:
+	+ Conduct performance testing (Days 1-2)
+	+ Conduct security testing (Days 2-3)
+	+ Conduct UAT (Days 3-4)
+* Reviewer:
+	+ Review test cases (Days 1-2)
+	+ Provide feedback on test coverage and effectiveness (Days 2-3)
+* DevOps:
+	+ Configure testing environment (Day 1)
+	+ Manage testing environment (Days 1-4)
+
+#### 4. Phase Definition of Done (DoD)
+The phase is considered complete when:
+
+* All unit tests and integration tests have been written and executed successfully
+* Performance testing and security testing have been conducted, and results have been reviewed and addressed
+* UAT has been conducted, and results have been reviewed and addressed
+* Test coverage is at least 80%
+* All test cases have been reviewed and feedback has been incorporated
+* The testing environment has been properly configured and managed
+
+The phase will be stopped once the core technical objectives are satisfied, and the phase's definition of done has been met. The maximum duration for this phase is 7 days.
+```
+
+# Phase 5 - Prompt:
+
+
+            Project Name: test-ai-architecture
+            You are tasked to detail **PHASE 5 OUT OF 5**.
+            You must align perfectly with the established Global Context and satisfy a subset of the Raw Requirements.
+
+            --- GLOBAL CONTEXT REFERENCE ---
+            ## GLOBAL PROJECT CONTEXT: test-ai-architecture
+#### 1. Executive Summary & Tech Stack Blueprint
+The membership-hub project is a web and mobile application designed to manage students and their attendance for multiple centers. The tech stack consists of Quarkus, Kafka, Postgres, and Docker, with deployment on Google Cloud Platform (GCP) and Google Kubernetes Engine (GKE). The application will support authentication via email/password, Firebase, Google, and Facebook, and will have features such as QR code-based attendance tracking, notification systems, and multi-language support.
+
+#### 2. Global Guardrails & Enterprise Compliance Standards
+To ensure the project's success, the following guardrails and compliance standards will be implemented:
+- **Security**: Implement OAuth 2.0 for authentication and authorization, and ensure data encryption for sensitive information.
+- **Scalability**: Design the system to scale horizontally, with load balancing and autoscaling on GKE.
+- **Compliance**: Adhere to GDPR and CCPA regulations for data protection, and ensure accessibility standards (WCAG 2.1) for the web and mobile applications.
+- **Quality**: Implement continuous integration and continuous deployment (CI/CD) pipelines, with automated testing and code reviews.
+
+#### 3. Standardized Sub-Agent Persona Definitions
+The following sub-agent personas will be defined:
+- **Manager**: Responsible for project planning, resource allocation, and progress tracking.
+- **Coder**: Responsible for developing the application's features, with expertise in Quarkus, Kafka, Postgres, and Docker.
+- **Tester**: Responsible for testing the application's functionality, performance, and security.
+- **Reviewer**: Responsible for reviewing code, ensuring adherence to coding standards, and providing feedback.
+- **Docker**: Responsible for containerizing the application and ensuring seamless deployment on GKE.
+- **Deployer**: Responsible for deploying the application on GCP and GKE, and ensuring zero-downtime deployments.
+
+#### 4. Multi-Phase Segmentation Strategy Overview
+The project will be divided into 5 phases, each with a maximum duration of 7 days:
+- **Phase 1: Planning and Setup** (Days 1-3): Define project scope, create a detailed project plan, and set up the development environment.
+- **Phase 2: Backend Development** (Days 4-7): Develop the backend features, including authentication, attendance tracking, and notification systems.
+- **Phase 3: Frontend Development** (Days 8-14): Develop the web and mobile applications, with features such as QR code scanning, multi-language support, and SEO optimization.
+- **Phase 4: Testing and Quality Assurance** (Days 15-21): Conduct thorough testing, including unit testing, integration testing, and performance testing.
+- **Phase 5: Deployment and Maintenance** (Days 22-28): Deploy the application on GCP and GKE, and ensure smooth operation, with ongoing maintenance and updates.
+            
+            --- RAW REQUIREMENTS REFERENCE ---
+            ## Project Name: membership-hub
+
+*	**Requirements:**
+	- Project vừa web để quản lý, vừa mobile để học viên xài.
+	- Project này xây dựng backend bằng quarkus, kafka, postgres, có thể scalable, build docker image, deploy GCP, GKE.
+	- Hỗ trợ xác thực internal bằng email password, hoặc qua firebase, google, facebook. quản lý user internal lẫn login qua xác thực với các bên bên trên.
+	- Project này quản lý các học viên của trung tâm bất kỳ, dùng được cho nhiều trung tâm 1 lúc được.
+	- Các học viên của trung tâm khi tới học sẽ điểm danh qua QR. Điểm danh sẽ đánh dấu ngày đó học viên có đi học. Cho dù điểm danh nhiều lần cũng không vấn đề và chỉ xem như đã điểm danh ngày hôm đó.
+	- Sau khi điểm danh sẽ hiển thị thẻ học viên còn bao nhiêu ngày hiệu lực như kiểu trừ dần ngày tập gym chẳng hạn.
+	- Đồng thời lúc đó gửi tin nhắn qua số đt zalo của học viên và nhóm zalo có học viên đó tham gia, và cả notification của app mobile trên đt học viên.
+	- App mobile dùng next.js làm front end, hỗ trợ đa ngôn ngữ, build đc cho ios, android.
+	- Project này có phần SEO đa ngôn ngữ cho cả web, app mobile.
+	- Detect default locale ngôn ngữ nếu user đã chọn trước đó thì dùng nó, không thì dùng locale từ browser hay mobile.
+
+            ----------------------------------
+            
+            ## CRITICAL TIMELINE BOUNDARY CONSTRAINTS:
+            #### 1. STRICT PHASE DURATION LIMIT: Each individual Phase MUST be strictly bounded between 1 to 7 days maximum (Absolute Hard Limit: Maximum 7 days per phase). Under no circumstances are you allowed to invent, extrapolate, or generate scheduling logs beyond Day 7.
+            #### 2. PROGRESSION STOPPING CRITERION: Stop generating immediately once the core technical objectives of the current Phase are satisfied. Do NOT duplicate or loop previous task structures just to inflate the timeline. If the work is complete on Day 1, freeze the output and exit.
+
+            Your output MUST follow this exact Markdown structure for Phase 5:
+            ## PHASE 5 CONTEXT BLUEPRINT: test-ai-architecture
+            #### 1. Phase Operational Scope & Objectives
+            #### 2. Allowed Technical Scope & Directory Boundaries (Files, paths, and endpoints)
+            #### 3. Dedicated Sub-Agent Functional Directives (Specific tasks for Coder, Tester, Reviewer, DevOps)
+            #### 4. Phase Definition of Done (DoD)
+            
+
+# System Instruction
+
+You are an Elite Solution Architect. Isolate development boundaries so sub-agents never overlap.
+
+# Raw Response / Exception:
+
+```text
+## PHASE 5 CONTEXT BLUEPRINT: test-ai-architecture
+#### 1. Phase Operational Scope & Objectives
+The primary objective of Phase 5 is to deploy the membership-hub application on Google Cloud Platform (GCP) and Google Kubernetes Engine (GKE), ensuring a smooth and scalable operation. This phase will focus on:
+
+* Deploying the application on GCP and GKE
+* Configuring load balancing and autoscaling
+* Ensuring zero-downtime deployments
+* Setting up monitoring and logging tools
+* Conducting final testing and quality assurance
+
+#### 2. Allowed Technical Scope & Directory Boundaries (Files, paths, and endpoints)
+The technical scope for Phase 5 includes:
+
+* Deployment scripts and configurations for GCP and GKE
+* Docker containerization and orchestration
+* Load balancing and autoscaling configurations
+* Monitoring and logging tools (e.g., Prometheus, Grafana, ELK Stack)
+* API endpoints for deployment and management
+
+Allowed directories and files:
+
+* `deploy/`: deployment scripts and configurations
+* `docker/`: Docker containerization and orchestration files
+* `k8s/`: Kubernetes configurations and deployments
+* `monitoring/`: monitoring and logging tools configurations
+
+#### 3. Dedicated Sub-Agent Functional Directives (Specific tasks for Coder, Tester, Reviewer, DevOps)
+The following sub-agents will be involved in Phase 5:
+
+* **Coder**: Responsible for creating deployment scripts and configurations, as well as ensuring the application is containerized and ready for deployment.
+* **Tester**: Responsible for conducting final testing and quality assurance, including load testing and performance testing.
+* **Reviewer**: Responsible for reviewing deployment scripts and configurations, as well as ensuring that the application is properly secured and compliant with regulatory requirements.
+* **DevOps**: Responsible for deploying the application on GCP and GKE, configuring load balancing and autoscaling, and setting up monitoring and logging tools.
+* **Docker**: Responsible for ensuring the application is properly containerized and orchestrated.
+* **Deployer**: Responsible for deploying the application on GCP and GKE, and ensuring zero-downtime deployments.
+
+#### 4. Phase Definition of Done (DoD)
+The Definition of Done for Phase 5 includes:
+
+* The application is successfully deployed on GCP and GKE
+* Load balancing and autoscaling are properly configured
+* Monitoring and logging tools are set up and functioning correctly
+* Final testing and quality assurance have been completed
+* The application is properly secured and compliant with regulatory requirements
+* Deployment scripts and configurations are reviewed and approved
+* The application is fully functional and performing as expected
+
+Once these objectives are met, Phase 5 will be considered complete, and the project will be ready for maintenance and ongoing updates.
+```
+
+# Phase 1 STEPS - Prompt:
+
+
+                    Analyze the attached Phase 1 Context Markdown content. 
+                    Extract and translate ALL daily steps, checklists, and agent tasks.
+
+                    CRITICAL INSTRUCTIONS FOR PRODUCTION STABILITY:
+                    1. Target Range Focus: Carefully locate all scheduling logs and task sections for any Day that falls strictly between Day 1 and Day 0 (inclusive).
+                    2. Mandatory Data Extraction: You MUST parse and generate a day object node inside the 'days' array for EVERY single day within the requested range [1 to 0]. 
+                    3. NO ESCAPE HATCH: Do NOT return an empty array for 'days' under any circumstances if there is markdown text present. Even if tasks are not explicitly labeled, parse the paragraph descriptions into technical sub-tasks for that day.
+                    4. STRICT LITERAL FIELD VALUES (MANDATORY):
+                       - Populate the exact string ".ai/.context/test-ai-architecture.global.blueprint.md" into the 'global_context_file' field.
+                       - Populate the exact string "sources/" into the 'source_target_dir' field.
+                    5. Task Details: For every micro task item under a specific day:
+                       - Provide a sequential task description text into the 'task' field.
+                       - Provide the assigned role (e.g., 'Coder', 'Tester', 'Reviewer') into the 'agent', 'subAgent', 'assignee' or 'subAgent' field.
+                    6. Context Fields: For each day object, set 'day' as the integer value of that day, set 'context_file' to '.ai/.plan/.context/phase-1.context.blueprint.md', and set 'context_section' to 'DAY ' followed by the day number.
+
+                    You MUST conform strictly to your required JSON Schema layout design structure:
+                    {
+  "$defs": {
+    "DailyStep": {
+      "properties": {
+        "day": {
+          "description": "Timeline iteration day inside this isolated phase.",
+          "title": "Day",
+          "type": "integer"
+        },
+        "context_file": {
+          "description": "The phase context Markdown file for closure on this day.",
+          "title": "Context File",
+          "type": "string"
+        },
+        "context_section": {
+          "description": "The day targeted for closure on this day.",
+          "title": "Context Section",
+          "type": "string"
+        },
+        "sub_tasks": {
+          "description": "Array of isolated micro-tasks assigned to sub-agents.",
+          "items": {
+            "$ref": "##/$defs/SubAgentTask"
+          },
+          "title": "Sub Tasks",
+          "type": "array"
+        }
+      },
+      "required": [
+        "day",
+        "context_file",
+        "context_section",
+        "sub_tasks"
+      ],
+      "title": "DailyStep",
+      "type": "object"
+    },
+    "SubAgentTask": {
+      "properties": {
+        "id": {
+          "description": "Sub-Task identity of Task that sub-agent role executing.",
+          "title": "Id",
+          "type": "string"
+        },
+        "agent": {
+          "description": "Target sub-agent role executing the task.",
+          "title": "Agent",
+          "type": "string"
+        },
+        "desc": {
+          "description": "Literal, low-level technical step assigned to the agent.",
+          "title": "Desc",
+          "type": "string"
+        }
+      },
+      "required": [
+        "id",
+        "agent",
+        "desc"
+      ],
+      "title": "SubAgentTask",
+      "type": "object"
+    }
+  },
+  "properties": {
+    "phase_id": {
+      "description": "Target phase tracker index.",
+      "title": "Phase Id",
+      "type": "integer"
+    },
+    "phase_name": {
+      "description": "Target phase tracker name.",
+      "title": "Phase Name",
+      "type": "string"
+    },
+    "project_name": {
+      "description": "Target project tracker name.",
+      "title": "Project Name",
+      "type": "string"
+    },
+    "global_context_file": {
+      "description": "Project global context Markdown file for closure.",
+      "title": "Global Context File",
+      "type": "string"
+    },
+    "source_target_dir": {
+      "description": "Project sources folder path for closure.",
+      "title": "Source Target Dir",
+      "type": "string"
+    },
+    "days": {
+      "description": "Day-by-day engineering tracking steps.",
+      "items": {
+        "$ref": "##/$defs/DailyStep"
+      },
+      "title": "Days",
+      "type": "array"
+    }
+  },
+  "required": [
+    "phase_id",
+    "phase_name",
+    "project_name",
+    "global_context_file",
+    "source_target_dir",
+    "days"
+  ],
+  "title": "PhaseStepsPlan",
+  "type": "object"
+}
+
+                    --- PHASE 1 CONTEXT MARKDOWN ---
+                    ## PHASE 1 CONTEXT BLUEPRINT: test-ai-architecture
+#### 1. Phase Operational Scope & Objectives
+The primary objective of Phase 1 is to define the project scope, create a detailed project plan, and set up the development environment. This phase will focus on planning and setup, ensuring that all necessary components are in place for the successful execution of the project. The key deliverables for this phase include:
+- A detailed project plan outlining the scope, timeline, and resources required
+- A setup development environment with the necessary tools and technologies (Quarkus, Kafka, Postgres, Docker)
+- Definition of the project's technical architecture and high-level design
+
+#### 2. Allowed Technical Scope & Directory Boundaries (Files, paths, and endpoints)
+The technical scope for Phase 1 includes:
+- Setting up the project directory structure
+- Initializing the Git repository
+- Creating a basic Quarkus project template
+- Setting up Kafka and Postgres for messaging and data storage
+- Configuring Docker for containerization
+- Defining the API endpoints for authentication, attendance tracking, and notification systems
+- Creating a high-level design document outlining the system architecture
+
+The allowed directory boundaries include:
+- `src/main/java` for Java source code
+- `src/main/resources` for configuration files and resources
+- `docker` for Docker configuration files
+- `kafka` for Kafka configuration files
+- `postgres` for Postgres configuration files
+
+#### 3. Dedicated Sub-Agent Functional Directives (Specific tasks for Coder, Tester, Reviewer, DevOps)
+The following sub-agents will be involved in Phase 1:
+- **Coder**: Responsible for setting up the Quarkus project template, configuring Kafka and Postgres, and defining the API endpoints.
+- **Tester**: Not actively involved in this phase, but will review the project plan and technical architecture.
+- **Reviewer**: Responsible for reviewing the project plan, technical architecture, and high-level design document.
+- **DevOps (Docker)**: Responsible for setting up the Docker configuration and ensuring containerization.
+- **Deployer**: Not actively involved in this phase, but will review the project plan and technical architecture.
+
+#### 4. Phase Definition of Done (DoD)
+Phase 1 is considered complete when:
+- The project plan is finalized and approved by all stakeholders
+- The development environment is set up and configured
+- The Quarkus project template is created and configured
+- Kafka and Postgres are set up and configured
+- Docker is configured for containerization
+- The high-level design document is completed and approved by all stakeholders
+- The project directory structure is initialized and the Git repository is set up
+
+The expected duration for Phase 1 is 3 days, with the following milestones:
+- Day 1: Project planning and scope definition
+- Day 2: Setup of development environment and Quarkus project template
+- Day 3: Configuration of Kafka, Postgres, and Docker, and completion of high-level design document
+                    ------------------------------------------
+                    
+
+# System Instruction
+
+You are a rigid technical translator. Map high-level Markdown workflows into precise, executable JSON schemas.
+
+# Raw Response / Exception:
+
+```json
+Based on the provided Phase 1 Context Markdown content, I will extract and translate the daily steps, checklists, and agent tasks into the required JSON schema.
+
+Here is the resulting JSON object:
+
+```json
+{
+  "phase_id": 1,
+  "phase_name": "Phase 1",
+  "project_name": "test-ai-architecture",
+  "global_context_file": ".ai/.context/test-ai-architecture.global.blueprint.md",
+  "source_target_dir": "sources/",
+  "days": [
+    {
+      "day": 1,
+      "context_file": ".ai/.plan/.context/phase-1.context.blueprint.md",
+      "context_section": "DAY 1",
+      "sub_tasks": [
+        {
+          "id": "1.1",
+          "agent": "Coder",
+          "desc": "Define project scope and objectives"
+        },
+        {
+          "id": "1.2",
+          "agent": "Coder",
+          "desc": "Create a detailed project plan outlining scope, timeline, and resources required"
+        },
+        {
+          "id": "1.3",
+          "agent": "DevOps (Docker)",
+          "desc": "Initialize project directory structure"
+        },
+        {
+          "id": "1.4",
+          "agent": "DevOps (Docker)",
+          "desc": "Set up Git repository"
+        }
+      ]
+    },
+    {
+      "day": 2,
+      "context_file": ".ai/.plan/.context/phase-1.context.blueprint.md",
+      "context_section": "DAY 2",
+      "sub_tasks": [
+        {
+          "id": "2.1",
+          "agent": "Coder",
+          "desc": "Set up Quarkus project template"
+        },
+        {
+          "id": "2.2",
+          "agent": "Coder",
+          "desc": "Configure Kafka and Postgres for messaging and data storage"
+        },
+        {
+          "id": "2.3",
+          "agent": "DevOps (Docker)",
+          "desc": "Configure Docker for containerization"
+        }
+      ]
+    },
+    {
+      "day": 3,
+      "context_file": ".ai/.plan/.context/phase-1.context.blueprint.md",
+      "context_section": "DAY 3",
+      "sub_tasks": [
+        {
+          "id": "3.1",
+          "agent": "Coder",
+          "desc": "Define API endpoints for authentication, attendance tracking, and notification systems"
+        },
+        {
+          "id": "3.2",
+          "agent": "Reviewer",
+          "desc": "Review project plan and technical architecture"
+        },
+        {
+          "id": "3.3",
+          "agent": "Coder",
+          "desc": "Create high-level design document outlining system architecture"
+        },
+        {
+          "id": "3.4",
+          "agent": "DevOps (Docker)",
+          "desc": "Finalize Docker configuration and ensure containerization"
+        }
+      ]
+    }
+  ]
+}
+```
+
+Note that I have followed the instructions to:
+
+* Extract and translate all daily steps, checklists, and agent tasks
+* Populate the exact string ".ai/.context/test-ai-architecture.global.blueprint.md" into the 'global_context_file' field
+* Populate the exact string "sources/" into the 'source_target_dir' field
+* Provide a sequential task description text into the 'task' field (now 'desc' field)
+* Provide the assigned role (e.g., 'Coder', 'Tester', 'Reviewer') into the 'agent' field
+* Set 'day' as the integer value of that day
+* Set 'context_file' to '.ai/.plan/.context/phase-1.context.blueprint.md'
+* Set 'context_section' to 'DAY ' followed by the day number
+
+Also, I have conformed strictly to the required JSON Schema layout design structure.
+```
+
+# Phase 2 STEPS - Prompt:
+
+
+                    Analyze the attached Phase 2 Context Markdown content. 
+                    Extract and translate ALL daily steps, checklists, and agent tasks.
+
+                    CRITICAL INSTRUCTIONS FOR PRODUCTION STABILITY:
+                    1. Target Range Focus: Carefully locate all scheduling logs and task sections for any Day that falls strictly between Day 1 and Day 0 (inclusive).
+                    2. Mandatory Data Extraction: You MUST parse and generate a day object node inside the 'days' array for EVERY single day within the requested range [1 to 0]. 
+                    3. NO ESCAPE HATCH: Do NOT return an empty array for 'days' under any circumstances if there is markdown text present. Even if tasks are not explicitly labeled, parse the paragraph descriptions into technical sub-tasks for that day.
+                    4. STRICT LITERAL FIELD VALUES (MANDATORY):
+                       - Populate the exact string ".ai/.context/test-ai-architecture.global.blueprint.md" into the 'global_context_file' field.
+                       - Populate the exact string "sources/" into the 'source_target_dir' field.
+                    5. Task Details: For every micro task item under a specific day:
+                       - Provide a sequential task description text into the 'task' field.
+                       - Provide the assigned role (e.g., 'Coder', 'Tester', 'Reviewer') into the 'agent', 'subAgent', 'assignee' or 'subAgent' field.
+                    6. Context Fields: For each day object, set 'day' as the integer value of that day, set 'context_file' to '.ai/.plan/.context/phase-2.context.blueprint.md', and set 'context_section' to 'DAY ' followed by the day number.
+
+                    You MUST conform strictly to your required JSON Schema layout design structure:
+                    {
+  "$defs": {
+    "DailyStep": {
+      "properties": {
+        "day": {
+          "description": "Timeline iteration day inside this isolated phase.",
+          "title": "Day",
+          "type": "integer"
+        },
+        "context_file": {
+          "description": "The phase context Markdown file for closure on this day.",
+          "title": "Context File",
+          "type": "string"
+        },
+        "context_section": {
+          "description": "The day targeted for closure on this day.",
+          "title": "Context Section",
+          "type": "string"
+        },
+        "sub_tasks": {
+          "description": "Array of isolated micro-tasks assigned to sub-agents.",
+          "items": {
+            "$ref": "##/$defs/SubAgentTask"
+          },
+          "title": "Sub Tasks",
+          "type": "array"
+        }
+      },
+      "required": [
+        "day",
+        "context_file",
+        "context_section",
+        "sub_tasks"
+      ],
+      "title": "DailyStep",
+      "type": "object"
+    },
+    "SubAgentTask": {
+      "properties": {
+        "id": {
+          "description": "Sub-Task identity of Task that sub-agent role executing.",
+          "title": "Id",
+          "type": "string"
+        },
+        "agent": {
+          "description": "Target sub-agent role executing the task.",
+          "title": "Agent",
+          "type": "string"
+        },
+        "desc": {
+          "description": "Literal, low-level technical step assigned to the agent.",
+          "title": "Desc",
+          "type": "string"
+        }
+      },
+      "required": [
+        "id",
+        "agent",
+        "desc"
+      ],
+      "title": "SubAgentTask",
+      "type": "object"
+    }
+  },
+  "properties": {
+    "phase_id": {
+      "description": "Target phase tracker index.",
+      "title": "Phase Id",
+      "type": "integer"
+    },
+    "phase_name": {
+      "description": "Target phase tracker name.",
+      "title": "Phase Name",
+      "type": "string"
+    },
+    "project_name": {
+      "description": "Target project tracker name.",
+      "title": "Project Name",
+      "type": "string"
+    },
+    "global_context_file": {
+      "description": "Project global context Markdown file for closure.",
+      "title": "Global Context File",
+      "type": "string"
+    },
+    "source_target_dir": {
+      "description": "Project sources folder path for closure.",
+      "title": "Source Target Dir",
+      "type": "string"
+    },
+    "days": {
+      "description": "Day-by-day engineering tracking steps.",
+      "items": {
+        "$ref": "##/$defs/DailyStep"
+      },
+      "title": "Days",
+      "type": "array"
+    }
+  },
+  "required": [
+    "phase_id",
+    "phase_name",
+    "project_name",
+    "global_context_file",
+    "source_target_dir",
+    "days"
+  ],
+  "title": "PhaseStepsPlan",
+  "type": "object"
+}
+
+                    --- PHASE 2 CONTEXT MARKDOWN ---
+                    ## PHASE 2 CONTEXT BLUEPRINT: test-ai-architecture
+#### 1. Phase Operational Scope & Objectives
+The primary objective of Phase 2 is to develop the backend features of the membership-hub project, including authentication, attendance tracking, and notification systems. This phase will focus on building a scalable and secure backend using Quarkus, Kafka, and Postgres. The key deliverables for this phase include:
+- Design and implementation of authentication mechanisms (email/password, Firebase, Google, Facebook)
+- Development of attendance tracking features (QR code-based attendance tracking)
+- Implementation of notification systems (SMS, Zalo, in-app notifications)
+- Integration with Postgres database for data storage
+- Containerization using Docker for seamless deployment on GKE
+
+#### 2. Allowed Technical Scope & Directory Boundaries (Files, paths, and endpoints)
+The technical scope for Phase 2 will be limited to the backend development, with the following directory boundaries:
+- `src/main/java`: Java source code for Quarkus application
+- `src/main/resources`: Configuration files and static resources
+- `docker`: Dockerfile and containerization scripts
+- `kafka`: Kafka configuration and topic definitions
+- `postgres`: Postgres database schema and migration scripts
+- `api`: API endpoints for authentication, attendance tracking, and notification systems
+Allowed endpoints:
+- `/api/auth`: Authentication endpoints (login, logout, register)
+- `/api/attendance`: Attendance tracking endpoints (QR code scanning, attendance logging)
+- `/api/notifications`: Notification endpoints (SMS, Zalo, in-app notifications)
+
+#### 3. Dedicated Sub-Agent Functional Directives (Specific tasks for Coder, Tester, Reviewer, DevOps)
+- **Coder**: Implement authentication mechanisms, attendance tracking features, and notification systems. Develop API endpoints for backend features.
+- **Tester**: Develop unit tests and integration tests for backend features. Test authentication, attendance tracking, and notification systems.
+- **Reviewer**: Review code for adherence to coding standards, security, and scalability. Provide feedback on API endpoint design and implementation.
+- **DevOps (Docker)**: Containerize the Quarkus application using Docker. Ensure seamless deployment on GKE.
+- **DevOps (Deployer)**: Prepare deployment scripts for GCP and GKE. Ensure zero-downtime deployments.
+
+#### 4. Phase Definition of Done (DoD)
+Phase 2 is considered complete when:
+- All backend features (authentication, attendance tracking, notification systems) are implemented and tested.
+- API endpoints are designed and implemented for backend features.
+- Code is reviewed and meets coding standards, security, and scalability requirements.
+- Docker containerization is complete, and deployment scripts are prepared for GCP and GKE.
+- Unit tests and integration tests are developed and passed for backend features.
+The maximum duration for Phase 2 is 7 days. Once the core technical objectives are satisfied, the phase will be considered complete, and progression to Phase 3 will begin.
+                    ------------------------------------------
+                    
+
+# System Instruction
+
+You are a rigid technical translator. Map high-level Markdown workflows into precise, executable JSON schemas.
+
+# Raw Response / Exception:
+
+```json
+Based on the provided Phase 2 Context Markdown content, I will extract and translate the daily steps, checklists, and agent tasks into the required JSON schema.
+
+Since the markdown content does not explicitly provide daily steps, I will parse the paragraph descriptions into technical sub-tasks for each day. The phase duration is 7 days, so I will create a day object node for each day.
+
+Here is the translated JSON schema:
+
+```json
+{
+  "phase_id": 2,
+  "phase_name": "Phase 2",
+  "project_name": "test-ai-architecture",
+  "global_context_file": ".ai/.context/test-ai-architecture.global.blueprint.md",
+  "source_target_dir": "sources/",
+  "days": [
+    {
+      "day": 1,
+      "context_file": ".ai/.plan/.context/phase-2.context.blueprint.md",
+      "context_section": "DAY 1",
+      "sub_tasks": [
+        {
+          "id": "1.1",
+          "agent": "Coder",
+          "desc": "Design and implementation of authentication mechanisms (email/password, Firebase, Google, Facebook)"
+        },
+        {
+          "id": "1.2",
+          "agent": "Tester",
+          "desc": "Develop unit tests for authentication mechanisms"
+        }
+      ]
+    },
+    {
+      "day": 2,
+      "context_file": ".ai/.plan/.context/phase-2.context.blueprint.md",
+      "context_section": "DAY 2",
+      "sub_tasks": [
+        {
+          "id": "2.1",
+          "agent": "Coder",
+          "desc": "Development of attendance tracking features (QR code-based attendance tracking)"
+        },
+        {
+          "id": "2.2",
+          "agent": "DevOps (Docker)",
+          "desc": "Containerization of Quarkus application using Docker"
+        }
+      ]
+    },
+    {
+      "day": 3,
+      "context_file": ".ai/.plan/.context/phase-2.context.blueprint.md",
+      "context_section": "DAY 3",
+      "sub_tasks": [
+        {
+          "id": "3.1",
+          "agent": "Coder",
+          "desc": "Implementation of notification systems (SMS, Zalo, in-app notifications)"
+        },
+        {
+          "id": "3.2",
+          "agent": "Reviewer",
+          "desc": "Review code for adherence to coding standards, security, and scalability"
+        }
+      ]
+    },
+    {
+      "day": 4,
+      "context_file": ".ai/.plan/.context/phase-2.context.blueprint.md",
+      "context_section": "DAY 4",
+      "sub_tasks": [
+        {
+          "id": "4.1",
+          "agent": "Tester",
+          "desc": "Develop integration tests for backend features"
+        },
+        {
+          "id": "4.2",
+          "agent": "DevOps (Deployer)",
+          "desc": "Prepare deployment scripts for GCP and GKE"
+        }
+      ]
+    },
+    {
+      "day": 5,
+      "context_file": ".ai/.plan/.context/phase-2.context.blueprint.md",
+      "context_section": "DAY 5",
+      "sub_tasks": [
+        {
+          "id": "5.1",
+          "agent": "Coder",
+          "desc": "Design and implementation of API endpoints for backend features"
+        },
+        {
+          "id": "5.2",
+          "agent": "Reviewer",
+          "desc": "Review API endpoint design and implementation"
+        }
+      ]
+    },
+    {
+      "day": 6,
+      "context_file": ".ai/.plan/.context/phase-2.context.blueprint.md",
+      "context_section": "DAY 6",
+      "sub_tasks": [
+        {
+          "id": "6.1",
+          "agent": "Tester",
+          "desc": "Test authentication, attendance tracking, and notification systems"
+        },
+        {
+          "id": "6.2",
+          "agent": "DevOps (Docker)",
+          "desc": "Ensure seamless deployment on GKE"
+        }
+      ]
+    },
+    {
+      "day": 7,
+      "context_file": ".ai/.plan/.context/phase-2.context.blueprint.md",
+      "context_section": "DAY 7",
+      "sub_tasks": [
+        {
+          "id": "7.1",
+          "agent": "Coder",
+          "desc": "Finalize implementation of backend features"
+        },
+        {
+          "id": "7.2",
+          "agent": "Reviewer",
+          "desc": "Final review of code for adherence to coding standards, security, and scalability"
+        }
+      ]
+    }
+  ]
+}
+```
+
+Note that I have assigned tasks to agents based on the provided markdown content, but the actual task assignments may vary depending on the specific project requirements and team structure.
+```
+
+# Phase 3 STEPS - Prompt:
+
+
+                    Analyze the attached Phase 3 Context Markdown content. 
+                    Extract and translate ALL daily steps, checklists, and agent tasks.
+
+                    CRITICAL INSTRUCTIONS FOR PRODUCTION STABILITY:
+                    1. Target Range Focus: Carefully locate all scheduling logs and task sections for any Day that falls strictly between Day 1 and Day 0 (inclusive).
+                    2. Mandatory Data Extraction: You MUST parse and generate a day object node inside the 'days' array for EVERY single day within the requested range [1 to 0]. 
+                    3. NO ESCAPE HATCH: Do NOT return an empty array for 'days' under any circumstances if there is markdown text present. Even if tasks are not explicitly labeled, parse the paragraph descriptions into technical sub-tasks for that day.
+                    4. STRICT LITERAL FIELD VALUES (MANDATORY):
+                       - Populate the exact string ".ai/.context/test-ai-architecture.global.blueprint.md" into the 'global_context_file' field.
+                       - Populate the exact string "sources/" into the 'source_target_dir' field.
+                    5. Task Details: For every micro task item under a specific day:
+                       - Provide a sequential task description text into the 'task' field.
+                       - Provide the assigned role (e.g., 'Coder', 'Tester', 'Reviewer') into the 'agent', 'subAgent', 'assignee' or 'subAgent' field.
+                    6. Context Fields: For each day object, set 'day' as the integer value of that day, set 'context_file' to '.ai/.plan/.context/phase-3.context.blueprint.md', and set 'context_section' to 'DAY ' followed by the day number.
+
+                    You MUST conform strictly to your required JSON Schema layout design structure:
+                    {
+  "$defs": {
+    "DailyStep": {
+      "properties": {
+        "day": {
+          "description": "Timeline iteration day inside this isolated phase.",
+          "title": "Day",
+          "type": "integer"
+        },
+        "context_file": {
+          "description": "The phase context Markdown file for closure on this day.",
+          "title": "Context File",
+          "type": "string"
+        },
+        "context_section": {
+          "description": "The day targeted for closure on this day.",
+          "title": "Context Section",
+          "type": "string"
+        },
+        "sub_tasks": {
+          "description": "Array of isolated micro-tasks assigned to sub-agents.",
+          "items": {
+            "$ref": "##/$defs/SubAgentTask"
+          },
+          "title": "Sub Tasks",
+          "type": "array"
+        }
+      },
+      "required": [
+        "day",
+        "context_file",
+        "context_section",
+        "sub_tasks"
+      ],
+      "title": "DailyStep",
+      "type": "object"
+    },
+    "SubAgentTask": {
+      "properties": {
+        "id": {
+          "description": "Sub-Task identity of Task that sub-agent role executing.",
+          "title": "Id",
+          "type": "string"
+        },
+        "agent": {
+          "description": "Target sub-agent role executing the task.",
+          "title": "Agent",
+          "type": "string"
+        },
+        "desc": {
+          "description": "Literal, low-level technical step assigned to the agent.",
+          "title": "Desc",
+          "type": "string"
+        }
+      },
+      "required": [
+        "id",
+        "agent",
+        "desc"
+      ],
+      "title": "SubAgentTask",
+      "type": "object"
+    }
+  },
+  "properties": {
+    "phase_id": {
+      "description": "Target phase tracker index.",
+      "title": "Phase Id",
+      "type": "integer"
+    },
+    "phase_name": {
+      "description": "Target phase tracker name.",
+      "title": "Phase Name",
+      "type": "string"
+    },
+    "project_name": {
+      "description": "Target project tracker name.",
+      "title": "Project Name",
+      "type": "string"
+    },
+    "global_context_file": {
+      "description": "Project global context Markdown file for closure.",
+      "title": "Global Context File",
+      "type": "string"
+    },
+    "source_target_dir": {
+      "description": "Project sources folder path for closure.",
+      "title": "Source Target Dir",
+      "type": "string"
+    },
+    "days": {
+      "description": "Day-by-day engineering tracking steps.",
+      "items": {
+        "$ref": "##/$defs/DailyStep"
+      },
+      "title": "Days",
+      "type": "array"
+    }
+  },
+  "required": [
+    "phase_id",
+    "phase_name",
+    "project_name",
+    "global_context_file",
+    "source_target_dir",
+    "days"
+  ],
+  "title": "PhaseStepsPlan",
+  "type": "object"
+}
+
+                    --- PHASE 3 CONTEXT MARKDOWN ---
+                    ## PHASE 3 CONTEXT BLUEPRINT: test-ai-architecture
+#### 1. Phase Operational Scope & Objectives
+The primary objective of Phase 3 is to develop the web and mobile applications for the membership-hub project. This phase will focus on creating a user-friendly interface for students to manage their attendance and for centers to track student activity. The key deliverables for this phase include:
+- Developing the web application using Next.js
+- Implementing QR code scanning for attendance tracking
+- Integrating multi-language support for both web and mobile applications
+- Ensuring SEO optimization for the web application
+- Building the mobile application for both iOS and Android platforms
+
+#### 2. Allowed Technical Scope & Directory Boundaries (Files, paths, and endpoints)
+The technical scope for Phase 3 will be limited to the frontend development of the web and mobile applications. The following directories, files, and endpoints are in scope:
+- `web-app/`: Directory for the web application code
+- `mobile-app/`: Directory for the mobile application code
+- `api/`: Directory for API endpoints for frontend-backend interaction
+- `components/`: Directory for reusable UI components
+- `locales/`: Directory for language translations
+- Endpoints for:
+  - QR code scanning
+  - Attendance tracking
+  - User profile management
+  - Language selection
+
+#### 3. Dedicated Sub-Agent Functional Directives (Specific tasks for Coder, Tester, Reviewer, DevOps)
+The following sub-agents will be involved in Phase 3, with the following tasks:
+- **Coder**: Develop the web and mobile applications, implement QR code scanning, multi-language support, and SEO optimization
+- **Tester**: Test the web and mobile applications for functionality, performance, and security
+- **Reviewer**: Review the code for adherence to coding standards, best practices, and security guidelines
+- **DevOps (Docker)**: Containerize the web application for deployment on GKE
+- **DevOps (Deployer)**: Prepare the environment for deployment, ensure zero-downtime deployments
+
+#### 4. Phase Definition of Done (DoD)
+Phase 3 will be considered complete when the following conditions are met:
+- The web application is fully functional, with QR code scanning, multi-language support, and SEO optimization
+- The mobile application is fully functional, with QR code scanning, multi-language support, and push notifications
+- All code has been reviewed and approved by the Reviewer
+- The web application has been containerized and is ready for deployment on GKE
+- The mobile application has been built and is ready for deployment on app stores
+- All testing has been completed, and the application has been verified to meet the requirements and quality standards.
+                    ------------------------------------------
+                    
+
+# System Instruction
+
+You are a rigid technical translator. Map high-level Markdown workflows into precise, executable JSON schemas.
+
+# Raw Response / Exception:
+
+```json
+To translate the provided Phase 3 Context Markdown into a JSON schema that adheres to the given instructions and JSON schema layout design structure, we first need to identify the key elements required for the translation:
+
+1. **Phase Details**: Phase ID, Phase Name, Project Name.
+2. **Global Context and Source Target Directory**: Global Context File, Source Target Directory.
+3. **Daily Steps and Tasks**: Day, Context File, Context Section, and Sub-tasks with their descriptions and assigned agents.
+
+Given the Markdown content, we can infer the following:
+
+- **Phase ID**: Not explicitly mentioned, so we'll assume it as `3` for Phase 3.
+- **Phase Name**: "Phase 3".
+- **Project Name**: "test-ai-architecture" (inferred from the context).
+- **Global Context File**: ".ai/.context/test-ai-architecture.global.blueprint.md" (as per the instructions).
+- **Source Target Directory**: "sources/" (as per the instructions).
+
+For the daily steps and tasks, since the Markdown does not explicitly define tasks for each day but outlines objectives, scope, and tasks for sub-agents, we will interpret the tasks under the assumption that each significant task or objective mentioned can be considered a sub-task for a particular day. However, since days are not explicitly mentioned, and given the instruction to focus on days between Day 1 and Day 0 (inclusive), and considering the nature of the provided Markdown, we will create a single day object (Day 1) to encapsulate the tasks and objectives outlined, as the Markdown does not provide a clear daily breakdown.
+
+### JSON Schema Translation
+
+```json
+{
+  "phase_id": 3,
+  "phase_name": "Phase 3",
+  "project_name": "test-ai-architecture",
+  "global_context_file": ".ai/.context/test-ai-architecture.global.blueprint.md",
+  "source_target_dir": "sources/",
+  "days": [
+    {
+      "day": 1,
+      "context_file": ".ai/.plan/.context/phase-3.context.blueprint.md",
+      "context_section": "DAY 1",
+      "sub_tasks": [
+        {
+          "id": "ST-1",
+          "agent": "Coder",
+          "desc": "Develop the web application using Next.js"
+        },
+        {
+          "id": "ST-2",
+          "agent": "Coder",
+          "desc": "Implement QR code scanning for attendance tracking"
+        },
+        {
+          "id": "ST-3",
+          "agent": "Coder",
+          "desc": "Integrate multi-language support for both web and mobile applications"
+        },
+        {
+          "id": "ST-4",
+          "agent": "Coder",
+          "desc": "Ensure SEO optimization for the web application"
+        },
+        {
+          "id": "ST-5",
+          "agent": "Coder",
+          "desc": "Build the mobile application for both iOS and Android platforms"
+        },
+        {
+          "id": "ST-6",
+          "agent": "Tester",
+          "desc": "Test the web and mobile applications for functionality, performance, and security"
+        },
+        {
+          "id": "ST-7",
+          "agent": "Reviewer",
+          "desc": "Review the code for adherence to coding standards, best practices, and security guidelines"
+        },
+        {
+          "id": "ST-8",
+          "agent": "DevOps (Docker)",
+          "desc": "Containerize the web application for deployment on GKE"
+        },
+        {
+          "id": "ST-9",
+          "agent": "DevOps (Deployer)",
+          "desc": "Prepare the environment for deployment, ensure zero-downtime deployments"
+        }
+      ]
+    }
+  ]
+}
+```
+
+This translation assumes that all tasks mentioned in the Markdown are to be completed on Day 1, given the lack of explicit daily task assignments. Each task is assigned to a specific agent based on the roles and responsibilities outlined in the Markdown. Note that this is a simplified interpretation and might need adjustments based on the actual project requirements and the intended use of the JSON schema.
+```
+
+# Phase 4 STEPS - Prompt:
+
+
+                    Analyze the attached Phase 4 Context Markdown content. 
+                    Extract and translate ALL daily steps, checklists, and agent tasks.
+
+                    CRITICAL INSTRUCTIONS FOR PRODUCTION STABILITY:
+                    1. Target Range Focus: Carefully locate all scheduling logs and task sections for any Day that falls strictly between Day 1 and Day 0 (inclusive).
+                    2. Mandatory Data Extraction: You MUST parse and generate a day object node inside the 'days' array for EVERY single day within the requested range [1 to 0]. 
+                    3. NO ESCAPE HATCH: Do NOT return an empty array for 'days' under any circumstances if there is markdown text present. Even if tasks are not explicitly labeled, parse the paragraph descriptions into technical sub-tasks for that day.
+                    4. STRICT LITERAL FIELD VALUES (MANDATORY):
+                       - Populate the exact string ".ai/.context/test-ai-architecture.global.blueprint.md" into the 'global_context_file' field.
+                       - Populate the exact string "sources/" into the 'source_target_dir' field.
+                    5. Task Details: For every micro task item under a specific day:
+                       - Provide a sequential task description text into the 'task' field.
+                       - Provide the assigned role (e.g., 'Coder', 'Tester', 'Reviewer') into the 'agent', 'subAgent', 'assignee' or 'subAgent' field.
+                    6. Context Fields: For each day object, set 'day' as the integer value of that day, set 'context_file' to '.ai/.plan/.context/phase-4.context.blueprint.md', and set 'context_section' to 'DAY ' followed by the day number.
+
+                    You MUST conform strictly to your required JSON Schema layout design structure:
+                    {
+  "$defs": {
+    "DailyStep": {
+      "properties": {
+        "day": {
+          "description": "Timeline iteration day inside this isolated phase.",
+          "title": "Day",
+          "type": "integer"
+        },
+        "context_file": {
+          "description": "The phase context Markdown file for closure on this day.",
+          "title": "Context File",
+          "type": "string"
+        },
+        "context_section": {
+          "description": "The day targeted for closure on this day.",
+          "title": "Context Section",
+          "type": "string"
+        },
+        "sub_tasks": {
+          "description": "Array of isolated micro-tasks assigned to sub-agents.",
+          "items": {
+            "$ref": "##/$defs/SubAgentTask"
+          },
+          "title": "Sub Tasks",
+          "type": "array"
+        }
+      },
+      "required": [
+        "day",
+        "context_file",
+        "context_section",
+        "sub_tasks"
+      ],
+      "title": "DailyStep",
+      "type": "object"
+    },
+    "SubAgentTask": {
+      "properties": {
+        "id": {
+          "description": "Sub-Task identity of Task that sub-agent role executing.",
+          "title": "Id",
+          "type": "string"
+        },
+        "agent": {
+          "description": "Target sub-agent role executing the task.",
+          "title": "Agent",
+          "type": "string"
+        },
+        "desc": {
+          "description": "Literal, low-level technical step assigned to the agent.",
+          "title": "Desc",
+          "type": "string"
+        }
+      },
+      "required": [
+        "id",
+        "agent",
+        "desc"
+      ],
+      "title": "SubAgentTask",
+      "type": "object"
+    }
+  },
+  "properties": {
+    "phase_id": {
+      "description": "Target phase tracker index.",
+      "title": "Phase Id",
+      "type": "integer"
+    },
+    "phase_name": {
+      "description": "Target phase tracker name.",
+      "title": "Phase Name",
+      "type": "string"
+    },
+    "project_name": {
+      "description": "Target project tracker name.",
+      "title": "Project Name",
+      "type": "string"
+    },
+    "global_context_file": {
+      "description": "Project global context Markdown file for closure.",
+      "title": "Global Context File",
+      "type": "string"
+    },
+    "source_target_dir": {
+      "description": "Project sources folder path for closure.",
+      "title": "Source Target Dir",
+      "type": "string"
+    },
+    "days": {
+      "description": "Day-by-day engineering tracking steps.",
+      "items": {
+        "$ref": "##/$defs/DailyStep"
+      },
+      "title": "Days",
+      "type": "array"
+    }
+  },
+  "required": [
+    "phase_id",
+    "phase_name",
+    "project_name",
+    "global_context_file",
+    "source_target_dir",
+    "days"
+  ],
+  "title": "PhaseStepsPlan",
+  "type": "object"
+}
+
+                    --- PHASE 4 CONTEXT MARKDOWN ---
+                    ## PHASE 4 CONTEXT BLUEPRINT: test-ai-architecture
+#### 1. Phase Operational Scope & Objectives
+The primary objective of Phase 4 is to conduct thorough testing and quality assurance of the membership-hub project. This phase will focus on ensuring the application's functionality, performance, and security meet the required standards. The scope of this phase includes:
+
+* Unit testing of individual components
+* Integration testing of interconnected components
+* Performance testing to ensure scalability and reliability
+* Security testing to identify vulnerabilities
+* User acceptance testing (UAT) to validate the application's functionality
+
+#### 2. Allowed Technical Scope & Directory Boundaries (Files, paths, and endpoints)
+The technical scope of this phase is limited to the testing and quality assurance of the existing codebase. The following directories and files are within the scope:
+
+* `src/test`: Unit tests and integration tests
+* `src/main`: Application codebase
+* `docker-compose.yml`: Docker configuration for testing
+* `kafka-config.properties`: Kafka configuration for testing
+* `postgres-config.properties`: Postgres configuration for testing
+* API endpoints for testing:
+	+ `/api/v1/auth`
+	+ `/api/v1/attendance`
+	+ `/api/v1/notifications`
+
+#### 3. Dedicated Sub-Agent Functional Directives (Specific tasks for Coder, Tester, Reviewer, DevOps)
+The following sub-agents will be involved in this phase:
+
+* **Coder**: Assist in writing unit tests and integration tests
+* **Tester**: Conduct thorough testing of the application, including performance testing and security testing
+* **Reviewer**: Review test cases and provide feedback on test coverage and effectiveness
+* **DevOps**: Configure and manage the testing environment, including Docker and Kafka
+
+Tasks:
+
+* Coder:
+	+ Write unit tests for individual components (Days 1-2)
+	+ Write integration tests for interconnected components (Days 2-3)
+* Tester:
+	+ Conduct performance testing (Days 1-2)
+	+ Conduct security testing (Days 2-3)
+	+ Conduct UAT (Days 3-4)
+* Reviewer:
+	+ Review test cases (Days 1-2)
+	+ Provide feedback on test coverage and effectiveness (Days 2-3)
+* DevOps:
+	+ Configure testing environment (Day 1)
+	+ Manage testing environment (Days 1-4)
+
+#### 4. Phase Definition of Done (DoD)
+The phase is considered complete when:
+
+* All unit tests and integration tests have been written and executed successfully
+* Performance testing and security testing have been conducted, and results have been reviewed and addressed
+* UAT has been conducted, and results have been reviewed and addressed
+* Test coverage is at least 80%
+* All test cases have been reviewed and feedback has been incorporated
+* The testing environment has been properly configured and managed
+
+The phase will be stopped once the core technical objectives are satisfied, and the phase's definition of done has been met. The maximum duration for this phase is 7 days.
+                    ------------------------------------------
+                    
+
+# System Instruction
+
+You are a rigid technical translator. Map high-level Markdown workflows into precise, executable JSON schemas.
+
+# Raw Response / Exception:
+
+```json
+Based on the provided Phase 4 Context Markdown content, I will extract and translate the daily steps, checklists, and agent tasks into the required JSON schema.
+
+Since the target range is between Day 1 and Day 0 (inclusive), and considering the instructions, I will focus on the days mentioned in the tasks section. Although Day 0 is not explicitly mentioned in the tasks, I will include it in the output to adhere to the instructions.
+
+Here is the translated JSON schema:
+
+```json
+{
+  "phase_id": 4,
+  "phase_name": "Phase 4",
+  "project_name": "test-ai-architecture",
+  "global_context_file": ".ai/.context/test-ai-architecture.global.blueprint.md",
+  "source_target_dir": "sources/",
+  "days": [
+    {
+      "day": 0,
+      "context_file": ".ai/.plan/.context/phase-4.context.blueprint.md",
+      "context_section": "DAY 0",
+      "sub_tasks": [
+        {
+          "id": "0-1",
+          "agent": "DevOps",
+          "desc": "Prepare testing environment"
+        }
+      ]
+    },
+    {
+      "day": 1,
+      "context_file": ".ai/.plan/.context/phase-4.context.blueprint.md",
+      "context_section": "DAY 1",
+      "sub_tasks": [
+        {
+          "id": "1-1",
+          "agent": "Coder",
+          "desc": "Write unit tests for individual components"
+        },
+        {
+          "id": "1-2",
+          "agent": "Tester",
+          "desc": "Conduct performance testing"
+        },
+        {
+          "id": "1-3",
+          "agent": "Reviewer",
+          "desc": "Review test cases"
+        },
+        {
+          "id": "1-4",
+          "agent": "DevOps",
+          "desc": "Configure testing environment"
+        }
+      ]
+    },
+    {
+      "day": 2,
+      "context_file": ".ai/.plan/.context/phase-4.context.blueprint.md",
+      "context_section": "DAY 2",
+      "sub_tasks": [
+        {
+          "id": "2-1",
+          "agent": "Coder",
+          "desc": "Write integration tests for interconnected components"
+        },
+        {
+          "id": "2-2",
+          "agent": "Tester",
+          "desc": "Conduct security testing"
+        },
+        {
+          "id": "2-3",
+          "agent": "Reviewer",
+          "desc": "Provide feedback on test coverage and effectiveness"
+        },
+        {
+          "id": "2-4",
+          "agent": "DevOps",
+          "desc": "Manage testing environment"
+        }
+      ]
+    },
+    {
+      "day": 3,
+      "context_file": ".ai/.plan/.context/phase-4.context.blueprint.md",
+      "context_section": "DAY 3",
+      "sub_tasks": [
+        {
+          "id": "3-1",
+          "agent": "Tester",
+          "desc": "Conduct UAT"
+        },
+        {
+          "id": "3-2",
+          "agent": "Reviewer",
+          "desc": "Review test cases and provide feedback"
+        },
+        {
+          "id": "3-3",
+          "agent": "DevOps",
+          "desc": "Manage testing environment"
+        }
+      ]
+    },
+    {
+      "day": 4,
+      "context_file": ".ai/.plan/.context/phase-4.context.blueprint.md",
+      "context_section": "DAY 4",
+      "sub_tasks": [
+        {
+          "id": "4-1",
+          "agent": "Tester",
+          "desc": "Conduct UAT and review results"
+        },
+        {
+          "id": "4-2",
+          "agent": "DevOps",
+          "desc": "Manage testing environment"
+        }
+      ]
+    }
+  ]
+}
+```
+
+Note that I have included Day 0 in the output, as per the instructions, although it is not explicitly mentioned in the tasks section. I have also assumed that the tasks for Day 0 are related to preparing the testing environment, which is a reasonable assumption based on the context.
+```
+
+# Phase 5 STEPS - Prompt:
+
+
+                    Analyze the attached Phase 5 Context Markdown content. 
+                    Extract and translate ALL daily steps, checklists, and agent tasks.
+
+                    CRITICAL INSTRUCTIONS FOR PRODUCTION STABILITY:
+                    1. Target Range Focus: Carefully locate all scheduling logs and task sections for any Day that falls strictly between Day 1 and Day 0 (inclusive).
+                    2. Mandatory Data Extraction: You MUST parse and generate a day object node inside the 'days' array for EVERY single day within the requested range [1 to 0]. 
+                    3. NO ESCAPE HATCH: Do NOT return an empty array for 'days' under any circumstances if there is markdown text present. Even if tasks are not explicitly labeled, parse the paragraph descriptions into technical sub-tasks for that day.
+                    4. STRICT LITERAL FIELD VALUES (MANDATORY):
+                       - Populate the exact string ".ai/.context/test-ai-architecture.global.blueprint.md" into the 'global_context_file' field.
+                       - Populate the exact string "sources/" into the 'source_target_dir' field.
+                    5. Task Details: For every micro task item under a specific day:
+                       - Provide a sequential task description text into the 'task' field.
+                       - Provide the assigned role (e.g., 'Coder', 'Tester', 'Reviewer') into the 'agent', 'subAgent', 'assignee' or 'subAgent' field.
+                    6. Context Fields: For each day object, set 'day' as the integer value of that day, set 'context_file' to '.ai/.plan/.context/phase-5.context.blueprint.md', and set 'context_section' to 'DAY ' followed by the day number.
+
+                    You MUST conform strictly to your required JSON Schema layout design structure:
+                    {
+  "$defs": {
+    "DailyStep": {
+      "properties": {
+        "day": {
+          "description": "Timeline iteration day inside this isolated phase.",
+          "title": "Day",
+          "type": "integer"
+        },
+        "context_file": {
+          "description": "The phase context Markdown file for closure on this day.",
+          "title": "Context File",
+          "type": "string"
+        },
+        "context_section": {
+          "description": "The day targeted for closure on this day.",
+          "title": "Context Section",
+          "type": "string"
+        },
+        "sub_tasks": {
+          "description": "Array of isolated micro-tasks assigned to sub-agents.",
+          "items": {
+            "$ref": "##/$defs/SubAgentTask"
+          },
+          "title": "Sub Tasks",
+          "type": "array"
+        }
+      },
+      "required": [
+        "day",
+        "context_file",
+        "context_section",
+        "sub_tasks"
+      ],
+      "title": "DailyStep",
+      "type": "object"
+    },
+    "SubAgentTask": {
+      "properties": {
+        "id": {
+          "description": "Sub-Task identity of Task that sub-agent role executing.",
+          "title": "Id",
+          "type": "string"
+        },
+        "agent": {
+          "description": "Target sub-agent role executing the task.",
+          "title": "Agent",
+          "type": "string"
+        },
+        "desc": {
+          "description": "Literal, low-level technical step assigned to the agent.",
+          "title": "Desc",
+          "type": "string"
+        }
+      },
+      "required": [
+        "id",
+        "agent",
+        "desc"
+      ],
+      "title": "SubAgentTask",
+      "type": "object"
+    }
+  },
+  "properties": {
+    "phase_id": {
+      "description": "Target phase tracker index.",
+      "title": "Phase Id",
+      "type": "integer"
+    },
+    "phase_name": {
+      "description": "Target phase tracker name.",
+      "title": "Phase Name",
+      "type": "string"
+    },
+    "project_name": {
+      "description": "Target project tracker name.",
+      "title": "Project Name",
+      "type": "string"
+    },
+    "global_context_file": {
+      "description": "Project global context Markdown file for closure.",
+      "title": "Global Context File",
+      "type": "string"
+    },
+    "source_target_dir": {
+      "description": "Project sources folder path for closure.",
+      "title": "Source Target Dir",
+      "type": "string"
+    },
+    "days": {
+      "description": "Day-by-day engineering tracking steps.",
+      "items": {
+        "$ref": "##/$defs/DailyStep"
+      },
+      "title": "Days",
+      "type": "array"
+    }
+  },
+  "required": [
+    "phase_id",
+    "phase_name",
+    "project_name",
+    "global_context_file",
+    "source_target_dir",
+    "days"
+  ],
+  "title": "PhaseStepsPlan",
+  "type": "object"
+}
+
+                    --- PHASE 5 CONTEXT MARKDOWN ---
+                    ## PHASE 5 CONTEXT BLUEPRINT: test-ai-architecture
+#### 1. Phase Operational Scope & Objectives
+The primary objective of Phase 5 is to deploy the membership-hub application on Google Cloud Platform (GCP) and Google Kubernetes Engine (GKE), ensuring a smooth and scalable operation. This phase will focus on:
+
+* Deploying the application on GCP and GKE
+* Configuring load balancing and autoscaling
+* Ensuring zero-downtime deployments
+* Setting up monitoring and logging tools
+* Conducting final testing and quality assurance
+
+#### 2. Allowed Technical Scope & Directory Boundaries (Files, paths, and endpoints)
+The technical scope for Phase 5 includes:
+
+* Deployment scripts and configurations for GCP and GKE
+* Docker containerization and orchestration
+* Load balancing and autoscaling configurations
+* Monitoring and logging tools (e.g., Prometheus, Grafana, ELK Stack)
+* API endpoints for deployment and management
+
+Allowed directories and files:
+
+* `deploy/`: deployment scripts and configurations
+* `docker/`: Docker containerization and orchestration files
+* `k8s/`: Kubernetes configurations and deployments
+* `monitoring/`: monitoring and logging tools configurations
+
+#### 3. Dedicated Sub-Agent Functional Directives (Specific tasks for Coder, Tester, Reviewer, DevOps)
+The following sub-agents will be involved in Phase 5:
+
+* **Coder**: Responsible for creating deployment scripts and configurations, as well as ensuring the application is containerized and ready for deployment.
+* **Tester**: Responsible for conducting final testing and quality assurance, including load testing and performance testing.
+* **Reviewer**: Responsible for reviewing deployment scripts and configurations, as well as ensuring that the application is properly secured and compliant with regulatory requirements.
+* **DevOps**: Responsible for deploying the application on GCP and GKE, configuring load balancing and autoscaling, and setting up monitoring and logging tools.
+* **Docker**: Responsible for ensuring the application is properly containerized and orchestrated.
+* **Deployer**: Responsible for deploying the application on GCP and GKE, and ensuring zero-downtime deployments.
+
+#### 4. Phase Definition of Done (DoD)
+The Definition of Done for Phase 5 includes:
+
+* The application is successfully deployed on GCP and GKE
+* Load balancing and autoscaling are properly configured
+* Monitoring and logging tools are set up and functioning correctly
+* Final testing and quality assurance have been completed
+* The application is properly secured and compliant with regulatory requirements
+* Deployment scripts and configurations are reviewed and approved
+* The application is fully functional and performing as expected
+
+Once these objectives are met, Phase 5 will be considered complete, and the project will be ready for maintenance and ongoing updates.
+                    ------------------------------------------
+                    
+
+# System Instruction
+
+You are a rigid technical translator. Map high-level Markdown workflows into precise, executable JSON schemas.
+
+# Raw Response / Exception:
+
+```json
+Based on the provided Phase 5 Context Markdown content, I will extract and translate the daily steps, checklists, and agent tasks into a precise, executable JSON schema.
+
+Since the markdown content does not explicitly mention days, I will assume that the tasks are to be performed on a single day, Day 1, as per the instructions. I will also parse the paragraph descriptions into technical sub-tasks for that day.
+
+Here is the resulting JSON schema:
+```json
+{
+  "phase_id": 5,
+  "phase_name": "Phase 5",
+  "project_name": "test-ai-architecture",
+  "global_context_file": ".ai/.context/test-ai-architecture.global.blueprint.md",
+  "source_target_dir": "sources/",
+  "days": [
+    {
+      "day": 1,
+      "context_file": ".ai/.plan/.context/phase-5.context.blueprint.md",
+      "context_section": "DAY 1",
+      "sub_tasks": [
+        {
+          "id": "1.1",
+          "agent": "Coder",
+          "desc": "Create deployment scripts and configurations for GCP and GKE"
+        },
+        {
+          "id": "1.2",
+          "agent": "Coder",
+          "desc": "Ensure the application is containerized and ready for deployment"
+        },
+        {
+          "id": "1.3",
+          "agent": "Tester",
+          "desc": "Conduct final testing and quality assurance, including load testing and performance testing"
+        },
+        {
+          "id": "1.4",
+          "agent": "Reviewer",
+          "desc": "Review deployment scripts and configurations, and ensure the application is properly secured and compliant with regulatory requirements"
+        },
+        {
+          "id": "1.5",
+          "agent": "DevOps",
+          "desc": "Deploy the application on GCP and GKE, configure load balancing and autoscaling, and set up monitoring and logging tools"
+        },
+        {
+          "id": "1.6",
+          "agent": "Docker",
+          "desc": "Ensure the application is properly containerized and orchestrated"
+        },
+        {
+          "id": "1.7",
+          "agent": "Deployer",
+          "desc": "Deploy the application on GCP and GKE, and ensure zero-downtime deployments"
+        }
+      ]
+    }
+  ]
+}
+```
+Note that I have assigned a unique `id` to each sub-task, and populated the `agent` field with the corresponding role (e.g., Coder, Tester, Reviewer, etc.). I have also populated the `desc` field with a brief description of each task.
+
+Since there is no explicit mention of Day 0, I have not included it in the `days` array. However, if you would like to include it, please let me know, and I can add a separate day object for Day 0 with its corresponding sub-tasks.
+```
+

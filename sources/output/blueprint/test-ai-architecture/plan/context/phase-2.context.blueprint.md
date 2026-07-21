@@ -1,44 +1,37 @@
 # PHASE 2 CONTEXT BLUEPRINT: test-ai-architecture
 ## 1. Phase Operational Scope & Objectives
-The primary objective of Phase 2 is to develop the backend components of the membership-hub project using Quarkus, Kafka, and Postgres. This phase will focus on designing and implementing the core backend functionality, including user management, attendance tracking, and notification systems. The key deliverables for this phase include:
-
-* Design and implementation of the backend API using Quarkus
-* Integration with Kafka for message queuing and Postgres for database management
-* Development of user management and authentication systems
-* Implementation of attendance tracking and notification systems
+The primary objective of Phase 2 is to develop the backend features of the membership-hub project, including authentication, attendance tracking, and notification systems. This phase will focus on building a scalable and secure backend using Quarkus, Kafka, and Postgres. The key deliverables for this phase include:
+- Design and implementation of authentication mechanisms (email/password, Firebase, Google, Facebook)
+- Development of attendance tracking features (QR code-based attendance tracking)
+- Implementation of notification systems (SMS, Zalo, in-app notifications)
+- Integration with Postgres database for data storage
+- Containerization using Docker for seamless deployment on GKE
 
 ## 2. Allowed Technical Scope & Directory Boundaries (Files, paths, and endpoints)
-The technical scope for Phase 2 will be limited to the backend components of the project. The following directories, files, and endpoints are in scope:
-
-* `src/main/java`: Java source code for the backend API
-* `src/main/resources`: Configuration files and resources for the backend API
-* `pom.xml`: Maven project file for building and managing dependencies
-* `/api/users`: Endpoint for user management
-* `/api/attendance`: Endpoint for attendance tracking
-* `/api/notifications`: Endpoint for notification systems
-
-The following technologies and frameworks are in scope:
-
-* Quarkus
-* Kafka
-* Postgres
-* Java 11
+The technical scope for Phase 2 will be limited to the backend development, with the following directory boundaries:
+- `src/main/java`: Java source code for Quarkus application
+- `src/main/resources`: Configuration files and static resources
+- `docker`: Dockerfile and containerization scripts
+- `kafka`: Kafka configuration and topic definitions
+- `postgres`: Postgres database schema and migration scripts
+- `api`: API endpoints for authentication, attendance tracking, and notification systems
+Allowed endpoints:
+- `/api/auth`: Authentication endpoints (login, logout, register)
+- `/api/attendance`: Attendance tracking endpoints (QR code scanning, attendance logging)
+- `/api/notifications`: Notification endpoints (SMS, Zalo, in-app notifications)
 
 ## 3. Dedicated Sub-Agent Functional Directives (Specific tasks for Coder, Tester, Reviewer, DevOps)
-The following sub-agents will be responsible for the following tasks during Phase 2:
-
-* **Coder**: Develop the backend API using Quarkus, integrate with Kafka and Postgres, and implement user management and authentication systems.
-* **Tester**: Develop unit tests and integration tests for the backend API, focusing on user management, attendance tracking, and notification systems.
-* **Reviewer**: Review the code developed by the Coder, ensuring adherence to coding standards, best practices, and security guidelines.
-* **DevOps**: Configure the development environment, set up the build and deployment pipeline, and ensure that the backend API is properly containerized using Docker.
+- **Coder**: Implement authentication mechanisms, attendance tracking features, and notification systems. Develop API endpoints for backend features.
+- **Tester**: Develop unit tests and integration tests for backend features. Test authentication, attendance tracking, and notification systems.
+- **Reviewer**: Review code for adherence to coding standards, security, and scalability. Provide feedback on API endpoint design and implementation.
+- **DevOps (Docker)**: Containerize the Quarkus application using Docker. Ensure seamless deployment on GKE.
+- **DevOps (Deployer)**: Prepare deployment scripts for GCP and GKE. Ensure zero-downtime deployments.
 
 ## 4. Phase Definition of Done (DoD)
-Phase 2 will be considered complete when the following criteria are met:
-
-* The backend API is fully implemented and functional
-* Unit tests and integration tests are developed and passing
-* Code reviews are complete, and all feedback is addressed
-* The backend API is properly containerized using Docker
-* The development environment is configured, and the build and deployment pipeline is set up
-
-Once these criteria are met, Phase 2 will be considered complete, and the project will proceed to Phase 3.
+Phase 2 is considered complete when:
+- All backend features (authentication, attendance tracking, notification systems) are implemented and tested.
+- API endpoints are designed and implemented for backend features.
+- Code is reviewed and meets coding standards, security, and scalability requirements.
+- Docker containerization is complete, and deployment scripts are prepared for GCP and GKE.
+- Unit tests and integration tests are developed and passed for backend features.
+The maximum duration for Phase 2 is 7 days. Once the core technical objectives are satisfied, the phase will be considered complete, and progression to Phase 3 will begin.
