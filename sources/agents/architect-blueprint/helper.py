@@ -3,8 +3,8 @@ import sys
 import re
 import json
 
-# mapping JSON
-from jinja2 import Template
+# to load prompt template
+from string import Template
 
 # ==============================================================================
 # 🏢 ENTERPRISE INTER-PACKAGE ROUTING LAYER
