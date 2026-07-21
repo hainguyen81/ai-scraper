@@ -4,7 +4,7 @@ import re
 import json
 
 # to load prompt template
-from string import Template
+from jinja2 import Template as JinjaTemplate
 
 # ==============================================================================
 # 🏢 ENTERPRISE INTER-PACKAGE ROUTING LAYER
@@ -73,10 +73,10 @@ def render_prompt(prompt_template_path: str, context: dict) -> str:
         template_content = f.read()
     
     # use jinja2 Template
-    tmpl = Template(template_content)
+    tmpl = JinjaTemplate(template_content)
     
     # substitute will throw error if missing variables, safely for production
-    return tmpl.substitute(context)
+    return tmpl.render(**context)
 
 def parseOpenAIResponseData(response):
     """
