@@ -16265,3 +16265,1655 @@ You are a rigid technical translator. Map high-level Markdown workflows into pre
 }
 ```
 
+# Global Prompt:
+
+
+
+# System Instruction
+
+You are an Elite Solution Architect. Define the global system truth and multi-agent guardrails.
+
+# Raw Response / Exception:
+
+```text
+'Template' object has no attribute 'substitute'
+```
+
+# Global Prompt:
+
+
+
+# System Instruction
+
+You are an Elite Solution Architect. Define the global system truth and multi-agent guardrails.
+
+# Raw Response / Exception:
+
+```text
+'Template' object has no attribute 'substitute'
+```
+
+# Global Prompt:
+
+
+
+# System Instruction
+
+You are an Elite Solution Architect. Define the global system truth and multi-agent guardrails.
+
+# Raw Response / Exception:
+
+```text
+'Template' object has no attribute 'substitute'
+```
+
+# Global Prompt:
+
+
+
+# System Instruction
+
+You are an Elite Solution Architect. Define the global system truth and multi-agent guardrails.
+
+# Raw Response / Exception:
+
+```text
+'Template' object has no attribute 'substitute'
+```
+
+# Global Prompt:
+
+
+
+# System Instruction
+
+You are an Elite Solution Architect. Define the global system truth and multi-agent guardrails.
+
+# Raw Response / Exception:
+
+```text
+'Template' object has no attribute 'substitute'
+```
+
+# Global Prompt:
+
+
+
+# System Instruction
+
+You are an Elite Solution Architect. Define the global system truth and multi-agent guardrails.
+
+# Raw Response / Exception:
+
+```text
+'Template' object has no attribute 'substitute'
+```
+
+# Global Prompt:
+
+
+
+# System Instruction
+
+You are an Elite Solution Architect. Define the global system truth and multi-agent guardrails.
+
+# Raw Response / Exception:
+
+```text
+'Template' object has no attribute 'substitute'
+```
+
+# Global Prompt:
+
+
+
+# System Instruction
+
+You are an Elite Solution Architect. Define the global system truth and multi-agent guardrails.
+
+# Raw Response / Exception:
+
+```text
+'Template' object has no attribute 'substitute'
+```
+
+# Global Prompt:
+
+
+
+# System Instruction
+
+You are an Elite Solution Architect. Define the global system truth and multi-agent guardrails.
+
+# Raw Response / Exception:
+
+```text
+'Template' object has no attribute 'substitute'
+```
+
+# Global Prompt:
+
+
+
+# System Instruction
+
+You are an Elite Solution Architect. Define the global system truth and multi-agent guardrails.
+
+# Raw Response / Exception:
+
+```text
+'Template' object has no attribute 'substitute'
+```
+
+# Global Prompt:
+
+
+
+# System Instruction
+
+You are an Elite Solution Architect. Define the global system truth and multi-agent guardrails.
+
+# Raw Response / Exception:
+
+```text
+'Template' object has no attribute 'substitute'
+```
+
+# Global Prompt:
+
+
+
+# System Instruction
+
+You are an Elite Solution Architect. Define the global system truth and multi-agent guardrails.
+
+# Raw Response / Exception:
+
+```text
+'Template' object has no attribute 'substitute'
+```
+
+# Global Prompt:
+
+
+
+# System Instruction
+
+You are an Elite Solution Architect. Define the global system truth and multi-agent guardrails.
+
+# Raw Response / Exception:
+
+```text
+'Template' object has no attribute 'substitute'
+```
+
+# Global Prompt:
+
+
+
+# System Instruction
+
+You are an Elite Solution Architect. Define the global system truth and multi-agent guardrails.
+
+# Raw Response / Exception:
+
+```text
+'Template' object has no attribute 'substitute'
+```
+
+# Global Prompt:
+
+
+
+# System Instruction
+
+You are an Elite Solution Architect. Define the global system truth and multi-agent guardrails.
+
+# Raw Response / Exception:
+
+```text
+'Template' object has no attribute 'substitute'
+```
+
+# Global Prompt:
+
+
+
+# System Instruction
+
+You are an Elite Solution Architect. Define the global system truth and multi-agent guardrails.
+
+# Raw Response / Exception:
+
+```text
+'Template' object has no attribute 'substitute'
+```
+
+# Global Prompt:
+
+
+
+# System Instruction
+
+You are an Elite Solution Architect. Define the global system truth and multi-agent guardrails.
+
+# Raw Response / Exception:
+
+```text
+'Template' object has no attribute 'substitute'
+```
+
+# Global Prompt:
+
+
+
+# System Instruction
+
+You are an Elite Solution Architect. Define the global system truth and multi-agent guardrails.
+
+# Raw Response / Exception:
+
+```text
+'Template' object has no attribute 'substitute'
+```
+
+# Global Prompt:
+
+
+
+# System Instruction
+
+You are an Elite Solution Architect. Define the global system truth and multi-agent guardrails.
+
+# Raw Response / Exception:
+
+```text
+'Template' object has no attribute 'substitute'
+```
+
+# Global Prompt:
+
+
+
+# System Instruction
+
+You are an Elite Solution Architect. Define the global system truth and multi-agent guardrails.
+
+# Raw Response / Exception:
+
+```text
+'Template' object has no attribute 'substitute'
+```
+
+# Global Prompt:
+
+
+
+# System Instruction
+
+You are an Elite Solution Architect. Define the global system truth and multi-agent guardrails.
+
+# Raw Response / Exception:
+
+```text
+'Template' object has no attribute 'substitute'
+```
+
+# Global Prompt:
+
+
+
+# System Instruction
+
+You are an Elite Solution Architect. Define the global system truth and multi-agent guardrails.
+
+# Raw Response / Exception:
+
+```text
+'Template' object has no attribute 'substitute'
+```
+
+# Global Prompt:
+
+
+
+# System Instruction
+
+You are an Elite Solution Architect. Define the global system truth and multi-agent guardrails.
+
+# Raw Response / Exception:
+
+```text
+'Template' object has no attribute 'substitute'
+```
+
+# Global Prompt:
+
+
+
+# System Instruction
+
+You are an Elite Solution Architect. Define the global system truth and multi-agent guardrails.
+
+# Raw Response / Exception:
+
+```text
+'Template' object has no attribute 'substitute'
+```
+
+# Global Prompt:
+
+
+
+# System Instruction
+
+You are an Elite Solution Architect. Define the global system truth and multi-agent guardrails.
+
+# Raw Response / Exception:
+
+```text
+'Template' object has no attribute 'substitute'
+```
+
+# Global Prompt:
+
+
+
+# System Instruction
+
+You are an Elite Solution Architect. Define the global system truth and multi-agent guardrails.
+
+# Raw Response / Exception:
+
+```text
+'Template' object has no attribute 'substitute'
+```
+
+# Global Prompt:
+
+
+
+# System Instruction
+
+You are an Elite Solution Architect. Define the global system truth and multi-agent guardrails.
+
+# Raw Response / Exception:
+
+```text
+'Template' object has no attribute 'substitute'
+```
+
+# Global Prompt:
+
+
+
+# System Instruction
+
+You are an Elite Solution Architect. Define the global system truth and multi-agent guardrails.
+
+# Raw Response / Exception:
+
+```text
+'Template' object has no attribute 'substitute'
+```
+
+# Global Prompt:
+
+
+
+# System Instruction
+
+You are an Elite Solution Architect. Define the global system truth and multi-agent guardrails.
+
+# Raw Response / Exception:
+
+```text
+'Template' object has no attribute 'substitute'
+```
+
+# Global Prompt:
+
+
+
+# System Instruction
+
+You are an Elite Solution Architect. Define the global system truth and multi-agent guardrails.
+
+# Raw Response / Exception:
+
+```text
+'Template' object has no attribute 'substitute'
+```
+
+# Global Prompt:
+
+
+
+# System Instruction
+
+You are an Elite Solution Architect. Define the global system truth and multi-agent guardrails.
+
+# Raw Response / Exception:
+
+```text
+'Template' object has no attribute 'substitute'
+```
+
+# Global Prompt:
+
+
+
+# System Instruction
+
+You are an Elite Solution Architect. Define the global system truth and multi-agent guardrails.
+
+# Raw Response / Exception:
+
+```text
+'Template' object has no attribute 'substitute'
+```
+
+# Global Prompt:
+
+
+
+# System Instruction
+
+You are an Elite Solution Architect. Define the global system truth and multi-agent guardrails.
+
+# Raw Response / Exception:
+
+```text
+'Template' object has no attribute 'substitute'
+```
+
+# Global Prompt:
+
+
+
+# System Instruction
+
+You are an Elite Solution Architect. Define the global system truth and multi-agent guardrails.
+
+# Raw Response / Exception:
+
+```text
+'Template' object has no attribute 'substitute'
+```
+
+# Global Prompt:
+
+
+
+# System Instruction
+
+You are an Elite Solution Architect. Define the global system truth and multi-agent guardrails.
+
+# Raw Response / Exception:
+
+```text
+'Template' object has no attribute 'substitute'
+```
+
+# Global Prompt:
+
+
+
+# System Instruction
+
+You are an Elite Solution Architect. Define the global system truth and multi-agent guardrails.
+
+# Raw Response / Exception:
+
+```text
+'Template' object has no attribute 'substitute'
+```
+
+# Global Prompt:
+
+
+
+# System Instruction
+
+You are an Elite Solution Architect. Define the global system truth and multi-agent guardrails.
+
+# Raw Response / Exception:
+
+```text
+'Template' object has no attribute 'substitute'
+```
+
+# Global Prompt:
+
+
+
+# System Instruction
+
+You are an Elite Solution Architect. Define the global system truth and multi-agent guardrails.
+
+# Raw Response / Exception:
+
+```text
+'Template' object has no attribute 'substitute'
+```
+
+# Global Prompt:
+
+
+
+# System Instruction
+
+You are an Elite Solution Architect. Define the global system truth and multi-agent guardrails.
+
+# Raw Response / Exception:
+
+```text
+'Template' object has no attribute 'substitute'
+```
+
+# Global Prompt:
+
+
+
+# System Instruction
+
+You are an Elite Solution Architect. Define the global system truth and multi-agent guardrails.
+
+# Raw Response / Exception:
+
+```text
+'Template' object has no attribute 'substitute'
+```
+
+# Global Prompt:
+
+
+
+# System Instruction
+
+You are an Elite Solution Architect. Define the global system truth and multi-agent guardrails.
+
+# Raw Response / Exception:
+
+```text
+'Template' object has no attribute 'substitute'
+```
+
+# Global Prompt:
+
+
+
+# System Instruction
+
+You are an Elite Solution Architect. Define the global system truth and multi-agent guardrails.
+
+# Raw Response / Exception:
+
+```text
+'Template' object has no attribute 'substitute'
+```
+
+# Global Prompt:
+
+
+
+# System Instruction
+
+You are an Elite Solution Architect. Define the global system truth and multi-agent guardrails.
+
+# Raw Response / Exception:
+
+```text
+'Template' object has no attribute 'substitute'
+```
+
+# Global Prompt:
+
+
+
+# System Instruction
+
+You are an Elite Solution Architect. Define the global system truth and multi-agent guardrails.
+
+# Raw Response / Exception:
+
+```text
+'Template' object has no attribute 'substitute'
+```
+
+# Global Prompt:
+
+
+
+# System Instruction
+
+You are an Elite Solution Architect. Define the global system truth and multi-agent guardrails.
+
+# Raw Response / Exception:
+
+```text
+'Template' object has no attribute 'substitute'
+```
+
+# Global Prompt:
+
+
+
+# System Instruction
+
+You are an Elite Solution Architect. Define the global system truth and multi-agent guardrails.
+
+# Raw Response / Exception:
+
+```text
+'Template' object has no attribute 'substitute'
+```
+
+# Global Prompt:
+
+
+
+# System Instruction
+
+You are an Elite Solution Architect. Define the global system truth and multi-agent guardrails.
+
+# Raw Response / Exception:
+
+```text
+'Template' object has no attribute 'substitute'
+```
+
+# Global Prompt:
+
+
+
+# System Instruction
+
+You are an Elite Solution Architect. Define the global system truth and multi-agent guardrails.
+
+# Raw Response / Exception:
+
+```text
+'Template' object has no attribute 'substitute'
+```
+
+# Global Prompt:
+
+
+
+# System Instruction
+
+You are an Elite Solution Architect. Define the global system truth and multi-agent guardrails.
+
+# Raw Response / Exception:
+
+```text
+'Template' object has no attribute 'substitute'
+```
+
+# Global Prompt:
+
+
+
+# System Instruction
+
+You are an Elite Solution Architect. Define the global system truth and multi-agent guardrails.
+
+# Raw Response / Exception:
+
+```text
+'Template' object has no attribute 'substitute'
+```
+
+# Global Prompt:
+
+
+
+# System Instruction
+
+You are an Elite Solution Architect. Define the global system truth and multi-agent guardrails.
+
+# Raw Response / Exception:
+
+```text
+'Template' object has no attribute 'substitute'
+```
+
+# Global Prompt:
+
+
+
+# System Instruction
+
+You are an Elite Solution Architect. Define the global system truth and multi-agent guardrails.
+
+# Raw Response / Exception:
+
+```text
+'Template' object has no attribute 'substitute'
+```
+
+# Global Prompt:
+
+
+
+# System Instruction
+
+You are an Elite Solution Architect. Define the global system truth and multi-agent guardrails.
+
+# Raw Response / Exception:
+
+```text
+'Template' object has no attribute 'substitute'
+```
+
+# Global Prompt:
+
+
+
+# System Instruction
+
+You are an Elite Solution Architect. Define the global system truth and multi-agent guardrails.
+
+# Raw Response / Exception:
+
+```text
+'Template' object has no attribute 'substitute'
+```
+
+# Global Prompt:
+
+
+
+# System Instruction
+
+You are an Elite Solution Architect. Define the global system truth and multi-agent guardrails.
+
+# Raw Response / Exception:
+
+```text
+'Template' object has no attribute 'substitute'
+```
+
+# Global Prompt:
+
+
+
+# System Instruction
+
+You are an Elite Solution Architect. Define the global system truth and multi-agent guardrails.
+
+# Raw Response / Exception:
+
+```text
+'Template' object has no attribute 'substitute'
+```
+
+# Global Prompt:
+
+
+
+# System Instruction
+
+You are an Elite Solution Architect. Define the global system truth and multi-agent guardrails.
+
+# Raw Response / Exception:
+
+```text
+'Template' object has no attribute 'substitute'
+```
+
+# Global Prompt:
+
+
+
+# System Instruction
+
+You are an Elite Solution Architect. Define the global system truth and multi-agent guardrails.
+
+# Raw Response / Exception:
+
+```text
+'Template' object has no attribute 'substitute'
+```
+
+# Global Prompt:
+
+
+
+# System Instruction
+
+You are an Elite Solution Architect. Define the global system truth and multi-agent guardrails.
+
+# Raw Response / Exception:
+
+```text
+'Template' object has no attribute 'substitute'
+```
+
+# Global Prompt:
+
+
+
+# System Instruction
+
+You are an Elite Solution Architect. Define the global system truth and multi-agent guardrails.
+
+# Raw Response / Exception:
+
+```text
+'Template' object has no attribute 'substitute'
+```
+
+# Global Prompt:
+
+
+
+# System Instruction
+
+You are an Elite Solution Architect. Define the global system truth and multi-agent guardrails.
+
+# Raw Response / Exception:
+
+```text
+'Template' object has no attribute 'substitute'
+```
+
+# Global Prompt:
+
+
+
+# System Instruction
+
+You are an Elite Solution Architect. Define the global system truth and multi-agent guardrails.
+
+# Raw Response / Exception:
+
+```text
+'Template' object has no attribute 'substitute'
+```
+
+# Global Prompt:
+
+
+
+# System Instruction
+
+You are an Elite Solution Architect. Define the global system truth and multi-agent guardrails.
+
+# Raw Response / Exception:
+
+```text
+'Template' object has no attribute 'substitute'
+```
+
+# Global Prompt:
+
+
+
+# System Instruction
+
+You are an Elite Solution Architect. Define the global system truth and multi-agent guardrails.
+
+# Raw Response / Exception:
+
+```text
+'Template' object has no attribute 'substitute'
+```
+
+# Global Prompt:
+
+
+
+# System Instruction
+
+You are an Elite Solution Architect. Define the global system truth and multi-agent guardrails.
+
+# Raw Response / Exception:
+
+```text
+'Template' object has no attribute 'substitute'
+```
+
+# Global Prompt:
+
+
+
+# System Instruction
+
+You are an Elite Solution Architect. Define the global system truth and multi-agent guardrails.
+
+# Raw Response / Exception:
+
+```text
+'Template' object has no attribute 'substitute'
+```
+
+# Global Prompt:
+
+
+
+# System Instruction
+
+You are an Elite Solution Architect. Define the global system truth and multi-agent guardrails.
+
+# Raw Response / Exception:
+
+```text
+'Template' object has no attribute 'substitute'
+```
+
+# Global Prompt:
+
+
+
+# System Instruction
+
+You are an Elite Solution Architect. Define the global system truth and multi-agent guardrails.
+
+# Raw Response / Exception:
+
+```text
+'Template' object has no attribute 'substitute'
+```
+
+# Global Prompt:
+
+
+
+# System Instruction
+
+You are an Elite Solution Architect. Define the global system truth and multi-agent guardrails.
+
+# Raw Response / Exception:
+
+```text
+'Template' object has no attribute 'substitute'
+```
+
+# Global Prompt:
+
+
+
+# System Instruction
+
+You are an Elite Solution Architect. Define the global system truth and multi-agent guardrails.
+
+# Raw Response / Exception:
+
+```text
+'Template' object has no attribute 'substitute'
+```
+
+# Global Prompt:
+
+
+
+# System Instruction
+
+You are an Elite Solution Architect. Define the global system truth and multi-agent guardrails.
+
+# Raw Response / Exception:
+
+```text
+'Template' object has no attribute 'substitute'
+```
+
+# Global Prompt:
+
+
+
+# System Instruction
+
+You are an Elite Solution Architect. Define the global system truth and multi-agent guardrails.
+
+# Raw Response / Exception:
+
+```text
+'Template' object has no attribute 'substitute'
+```
+
+# Global Prompt:
+
+
+
+# System Instruction
+
+You are an Elite Solution Architect. Define the global system truth and multi-agent guardrails.
+
+# Raw Response / Exception:
+
+```text
+'Template' object has no attribute 'substitute'
+```
+
+# Global Prompt:
+
+
+
+# System Instruction
+
+You are an Elite Solution Architect. Define the global system truth and multi-agent guardrails.
+
+# Raw Response / Exception:
+
+```text
+'Template' object has no attribute 'substitute'
+```
+
+# Global Prompt:
+
+
+
+# System Instruction
+
+You are an Elite Solution Architect. Define the global system truth and multi-agent guardrails.
+
+# Raw Response / Exception:
+
+```text
+'Template' object has no attribute 'substitute'
+```
+
+# Global Prompt:
+
+
+
+# System Instruction
+
+You are an Elite Solution Architect. Define the global system truth and multi-agent guardrails.
+
+# Raw Response / Exception:
+
+```text
+'Template' object has no attribute 'substitute'
+```
+
+# Global Prompt:
+
+
+
+# System Instruction
+
+You are an Elite Solution Architect. Define the global system truth and multi-agent guardrails.
+
+# Raw Response / Exception:
+
+```text
+'Template' object has no attribute 'substitute'
+```
+
+# Global Prompt:
+
+
+
+# System Instruction
+
+You are an Elite Solution Architect. Define the global system truth and multi-agent guardrails.
+
+# Raw Response / Exception:
+
+```text
+'Template' object has no attribute 'substitute'
+```
+
+# Global Prompt:
+
+
+
+# System Instruction
+
+You are an Elite Solution Architect. Define the global system truth and multi-agent guardrails.
+
+# Raw Response / Exception:
+
+```text
+'Template' object has no attribute 'substitute'
+```
+
+# Global Prompt:
+
+
+
+# System Instruction
+
+You are an Elite Solution Architect. Define the global system truth and multi-agent guardrails.
+
+# Raw Response / Exception:
+
+```text
+'Template' object has no attribute 'substitute'
+```
+
+# Global Prompt:
+
+
+
+# System Instruction
+
+You are an Elite Solution Architect. Define the global system truth and multi-agent guardrails.
+
+# Raw Response / Exception:
+
+```text
+'Template' object has no attribute 'substitute'
+```
+
+# Global Prompt:
+
+
+
+# System Instruction
+
+You are an Elite Solution Architect. Define the global system truth and multi-agent guardrails.
+
+# Raw Response / Exception:
+
+```text
+'Template' object has no attribute 'substitute'
+```
+
+# Global Prompt:
+
+
+
+# System Instruction
+
+You are an Elite Solution Architect. Define the global system truth and multi-agent guardrails.
+
+# Raw Response / Exception:
+
+```text
+'Template' object has no attribute 'substitute'
+```
+
+# Global Prompt:
+
+
+
+# System Instruction
+
+You are an Elite Solution Architect. Define the global system truth and multi-agent guardrails.
+
+# Raw Response / Exception:
+
+```text
+'Template' object has no attribute 'substitute'
+```
+
+# Global Prompt:
+
+
+
+# System Instruction
+
+You are an Elite Solution Architect. Define the global system truth and multi-agent guardrails.
+
+# Raw Response / Exception:
+
+```text
+'Template' object has no attribute 'substitute'
+```
+
+# Global Prompt:
+
+
+
+# System Instruction
+
+You are an Elite Solution Architect. Define the global system truth and multi-agent guardrails.
+
+# Raw Response / Exception:
+
+```text
+'Template' object has no attribute 'substitute'
+```
+
+# Global Prompt:
+
+
+
+# System Instruction
+
+You are an Elite Solution Architect. Define the global system truth and multi-agent guardrails.
+
+# Raw Response / Exception:
+
+```text
+'Template' object has no attribute 'substitute'
+```
+
+# Global Prompt:
+
+
+
+# System Instruction
+
+You are an Elite Solution Architect. Define the global system truth and multi-agent guardrails.
+
+# Raw Response / Exception:
+
+```text
+'Template' object has no attribute 'substitute'
+```
+
+# Global Prompt:
+
+
+
+# System Instruction
+
+You are an Elite Solution Architect. Define the global system truth and multi-agent guardrails.
+
+# Raw Response / Exception:
+
+```text
+'Template' object has no attribute 'substitute'
+```
+
+# Global Prompt:
+
+
+
+# System Instruction
+
+You are an Elite Solution Architect. Define the global system truth and multi-agent guardrails.
+
+# Raw Response / Exception:
+
+```text
+'Template' object has no attribute 'substitute'
+```
+
+# Global Prompt:
+
+
+
+# System Instruction
+
+You are an Elite Solution Architect. Define the global system truth and multi-agent guardrails.
+
+# Raw Response / Exception:
+
+```text
+'Template' object has no attribute 'substitute'
+```
+
+# Global Prompt:
+
+
+
+# System Instruction
+
+You are an Elite Solution Architect. Define the global system truth and multi-agent guardrails.
+
+# Raw Response / Exception:
+
+```text
+'Template' object has no attribute 'substitute'
+```
+
+# Global Prompt:
+
+
+
+# System Instruction
+
+You are an Elite Solution Architect. Define the global system truth and multi-agent guardrails.
+
+# Raw Response / Exception:
+
+```text
+'Template' object has no attribute 'substitute'
+```
+
+# Global Prompt:
+
+
+
+# System Instruction
+
+You are an Elite Solution Architect. Define the global system truth and multi-agent guardrails.
+
+# Raw Response / Exception:
+
+```text
+'Template' object has no attribute 'substitute'
+```
+
+# Global Prompt:
+
+
+
+# System Instruction
+
+You are an Elite Solution Architect. Define the global system truth and multi-agent guardrails.
+
+# Raw Response / Exception:
+
+```text
+'Template' object has no attribute 'substitute'
+```
+
+# Global Prompt:
+
+
+
+# System Instruction
+
+You are an Elite Solution Architect. Define the global system truth and multi-agent guardrails.
+
+# Raw Response / Exception:
+
+```text
+'Template' object has no attribute 'substitute'
+```
+
+# Global Prompt:
+
+
+
+# System Instruction
+
+You are an Elite Solution Architect. Define the global system truth and multi-agent guardrails.
+
+# Raw Response / Exception:
+
+```text
+'Template' object has no attribute 'substitute'
+```
+
+# Global Prompt:
+
+
+
+# System Instruction
+
+You are an Elite Solution Architect. Define the global system truth and multi-agent guardrails.
+
+# Raw Response / Exception:
+
+```text
+'Template' object has no attribute 'substitute'
+```
+
+# Global Prompt:
+
+
+
+# System Instruction
+
+You are an Elite Solution Architect. Define the global system truth and multi-agent guardrails.
+
+# Raw Response / Exception:
+
+```text
+'Template' object has no attribute 'substitute'
+```
+
+# Global Prompt:
+
+
+
+# System Instruction
+
+You are an Elite Solution Architect. Define the global system truth and multi-agent guardrails.
+
+# Raw Response / Exception:
+
+```text
+'Template' object has no attribute 'substitute'
+```
+
+# Global Prompt:
+
+
+
+# System Instruction
+
+You are an Elite Solution Architect. Define the global system truth and multi-agent guardrails.
+
+# Raw Response / Exception:
+
+```text
+'Template' object has no attribute 'substitute'
+```
+
+# Global Prompt:
+
+
+
+# System Instruction
+
+You are an Elite Solution Architect. Define the global system truth and multi-agent guardrails.
+
+# Raw Response / Exception:
+
+```text
+'Template' object has no attribute 'substitute'
+```
+
+# Global Prompt:
+
+
+
+# System Instruction
+
+You are an Elite Solution Architect. Define the global system truth and multi-agent guardrails.
+
+# Raw Response / Exception:
+
+```text
+'Template' object has no attribute 'substitute'
+```
+
+# Global Prompt:
+
+
+
+# System Instruction
+
+You are an Elite Solution Architect. Define the global system truth and multi-agent guardrails.
+
+# Raw Response / Exception:
+
+```text
+'Template' object has no attribute 'substitute'
+```
+
+# Global Prompt:
+
+
+
+# System Instruction
+
+You are an Elite Solution Architect. Define the global system truth and multi-agent guardrails.
+
+# Raw Response / Exception:
+
+```text
+'Template' object has no attribute 'substitute'
+```
+
+# Global Prompt:
+
+
+
+# System Instruction
+
+You are an Elite Solution Architect. Define the global system truth and multi-agent guardrails.
+
+# Raw Response / Exception:
+
+```text
+'Template' object has no attribute 'substitute'
+```
+
+# Global Prompt:
+
+
+
+# System Instruction
+
+You are an Elite Solution Architect. Define the global system truth and multi-agent guardrails.
+
+# Raw Response / Exception:
+
+```text
+'Template' object has no attribute 'substitute'
+```
+
+# Global Prompt:
+
+
+
+# System Instruction
+
+You are an Elite Solution Architect. Define the global system truth and multi-agent guardrails.
+
+# Raw Response / Exception:
+
+```text
+'Template' object has no attribute 'substitute'
+```
+
+# Global Prompt:
+
+
+
+# System Instruction
+
+You are an Elite Solution Architect. Define the global system truth and multi-agent guardrails.
+
+# Raw Response / Exception:
+
+```text
+'Template' object has no attribute 'substitute'
+```
+
+# Global Prompt:
+
+
+
+# System Instruction
+
+You are an Elite Solution Architect. Define the global system truth and multi-agent guardrails.
+
+# Raw Response / Exception:
+
+```text
+'Template' object has no attribute 'substitute'
+```
+
+# Global Prompt:
+
+
+
+# System Instruction
+
+You are an Elite Solution Architect. Define the global system truth and multi-agent guardrails.
+
+# Raw Response / Exception:
+
+```text
+'Template' object has no attribute 'substitute'
+```
+
+# Global Prompt:
+
+
+
+# System Instruction
+
+You are an Elite Solution Architect. Define the global system truth and multi-agent guardrails.
+
+# Raw Response / Exception:
+
+```text
+'Template' object has no attribute 'substitute'
+```
+
+# Global Prompt:
+
+
+
+# System Instruction
+
+You are an Elite Solution Architect. Define the global system truth and multi-agent guardrails.
+
+# Raw Response / Exception:
+
+```text
+'Template' object has no attribute 'substitute'
+```
+
+# Global Prompt:
+
+
+
+# System Instruction
+
+You are an Elite Solution Architect. Define the global system truth and multi-agent guardrails.
+
+# Raw Response / Exception:
+
+```text
+'Template' object has no attribute 'substitute'
+```
+
+# Global Prompt:
+
+
+
+# System Instruction
+
+You are an Elite Solution Architect. Define the global system truth and multi-agent guardrails.
+
+# Raw Response / Exception:
+
+```text
+'Template' object has no attribute 'substitute'
+```
+
+# Global Prompt:
+
+
+
+# System Instruction
+
+You are an Elite Solution Architect. Define the global system truth and multi-agent guardrails.
+
+# Raw Response / Exception:
+
+```text
+'Template' object has no attribute 'substitute'
+```
+
+# Global Prompt:
+
+
+
+# System Instruction
+
+You are an Elite Solution Architect. Define the global system truth and multi-agent guardrails.
+
+# Raw Response / Exception:
+
+```text
+'Template' object has no attribute 'substitute'
+```
+
+# Global Prompt:
+
+
+
+# System Instruction
+
+You are an Elite Solution Architect. Define the global system truth and multi-agent guardrails.
+
+# Raw Response / Exception:
+
+```text
+'Template' object has no attribute 'substitute'
+```
+
