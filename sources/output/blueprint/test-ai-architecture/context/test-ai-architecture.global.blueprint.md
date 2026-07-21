@@ -1,28 +1,27 @@
 # GLOBAL PROJECT CONTEXT: test-ai-architecture
 ## 1. Executive Summary & Tech Stack Blueprint
-The membership-hub project is a web and mobile application designed to manage students and their attendance for multiple training centers. The tech stack consists of Quarkus, Kafka, Postgres, and Docker, with deployment on Google Cloud Platform (GCP) and Google Kubernetes Engine (GKE). The application will support internal authentication via email and password, as well as external authentication through Firebase, Google, and Facebook. The mobile app will be built using Next.js, supporting multiple languages and platforms (iOS and Android). The project also includes SEO optimization for both web and mobile applications.
+The membership-hub project is a web and mobile application designed to manage students and their attendance for multiple centers. The tech stack consists of Quarkus, Kafka, Postgres, and Docker, with deployment on Google Cloud Platform (GCP) and Google Kubernetes Engine (GKE). The application will support authentication via email/password, Firebase, Google, and Facebook, and will have features such as QR code-based attendance tracking, notification systems, and multi-language support.
 
 ## 2. Global Guardrails & Enterprise Compliance Standards
-To ensure the project's success and adherence to industry standards, the following guardrails and compliance standards will be implemented:
-- **Security**: Implement robust security measures to protect user data, including encryption, secure authentication, and access controls.
-- **Scalability**: Design the application to scale horizontally and vertically to handle increased traffic and user growth.
-- **Compliance**: Adhere to relevant regulations, such as GDPR, CCPA, and data protection laws, to ensure user data privacy and security.
-- **Quality**: Establish a rigorous testing and quality assurance process to ensure the application meets the required standards.
-- **Communication**: Foster open and transparent communication among team members, stakeholders, and users to ensure clear expectations and timely issue resolution.
+To ensure the project's success, the following guardrails and compliance standards will be implemented:
+- **Security**: Implement OAuth 2.0 for authentication and authorization, and ensure data encryption for sensitive information.
+- **Scalability**: Design the system to scale horizontally, with load balancing and autoscaling on GKE.
+- **Compliance**: Adhere to GDPR and CCPA regulations for data protection, and ensure accessibility standards (WCAG 2.1) for the web and mobile applications.
+- **Quality**: Implement continuous integration and continuous deployment (CI/CD) pipelines, with automated testing and code reviews.
 
 ## 3. Standardized Sub-Agent Persona Definitions
-The following sub-agent personas will be defined to ensure clear roles and responsibilities:
-- **Manager**: Oversees the project, sets goals, and allocates resources.
-- **Coder**: Develops the application's backend and frontend components.
-- **Tester**: Conducts thorough testing and quality assurance of the application.
-- **Reviewer**: Reviews code, provides feedback, and ensures adherence to coding standards.
-- **Docker**: Responsible for containerization and deployment of the application.
-- **Deployer**: Deploys the application to GCP and GKE, ensuring smooth and efficient deployment.
+The following sub-agent personas will be defined:
+- **Manager**: Responsible for project planning, resource allocation, and progress tracking.
+- **Coder**: Responsible for developing the application's features, with expertise in Quarkus, Kafka, Postgres, and Docker.
+- **Tester**: Responsible for testing the application's functionality, performance, and security.
+- **Reviewer**: Responsible for reviewing code, ensuring adherence to coding standards, and providing feedback.
+- **Docker**: Responsible for containerizing the application and ensuring seamless deployment on GKE.
+- **Deployer**: Responsible for deploying the application on GCP and GKE, and ensuring zero-downtime deployments.
 
 ## 4. Multi-Phase Segmentation Strategy Overview
-The project will be divided into five phases, each with a maximum duration of 7 days:
-- **Phase 1: Planning and Design (Days 1-3)**: Define project scope, create a detailed design document, and establish a project timeline.
-- **Phase 2: Backend Development (Days 4-7)**: Develop the backend components using Quarkus, Kafka, and Postgres.
-- **Phase 3: Frontend Development (Days 8-14)**: Develop the frontend components using Next.js and implement authentication and authorization.
-- **Phase 4: Testing and Quality Assurance (Days 15-21)**: Conduct thorough testing, quality assurance, and debugging of the application.
-- **Phase 5: Deployment and Launch (Days 22-28)**: Deploy the application to GCP and GKE, configure SEO, and launch the application.
+The project will be divided into 5 phases, each with a maximum duration of 7 days:
+- **Phase 1: Planning and Setup** (Days 1-3): Define project scope, create a detailed project plan, and set up the development environment.
+- **Phase 2: Backend Development** (Days 4-7): Develop the backend features, including authentication, attendance tracking, and notification systems.
+- **Phase 3: Frontend Development** (Days 8-14): Develop the web and mobile applications, with features such as QR code scanning, multi-language support, and SEO optimization.
+- **Phase 4: Testing and Quality Assurance** (Days 15-21): Conduct thorough testing, including unit testing, integration testing, and performance testing.
+- **Phase 5: Deployment and Maintenance** (Days 22-28): Deploy the application on GCP and GKE, and ensure smooth operation, with ongoing maintenance and updates.
