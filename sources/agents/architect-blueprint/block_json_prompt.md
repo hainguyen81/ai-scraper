@@ -34,6 +34,12 @@ Extract and translate ALL daily steps, checklists, and agent tasks from the enti
    - Provide a sequential task description text into the 'task' field.
    - Provide the assigned role (e.g., 'Coder', 'Tester', 'Reviewer', 'DevOps') into the 'agent', 'subAgent', 'assignee' or 'subAgent' field.
 ## 6. Context Fields: For each day object, set 'day' as the integer value of that day, set 'context_file' to '{project_phase_context_file}', and set 'context_section' to 'DAY ' followed by the day number.
+## 7. CHRONOLOGICAL TIMELINE RESET MANDATE (ABSOLUTE):
+Regardless of the actual day numbers documented in the source Markdown content (e.g., even if the text states "Days 4-7" or "Day 4 to Day 7"), you MUST reset the timeline timeline sequence internally for this JSON output so that it strictly starts from integer 1.
+   - The first operational day processed inside this Phase MUST always be gaged as "day": 1.
+   - Sequential days must progress logically as 2, 3, 4, etc.
+   - Example Transformation: Map "Day 4" to "day": 1, "Day 5" to "day": 2, "Day 6" to "day": 3, and "Day 7" to "day": 4.
+   - Adjust the 'context_section' field accordingly to match this localized reset format (e.g., set to "DAY 1", "DAY 2", etc.).
 
 You MUST conform strictly to your required JSON Schema layout design structure:
 {{ phase_steps_json_schema }}
