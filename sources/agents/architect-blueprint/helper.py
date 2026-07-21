@@ -34,6 +34,7 @@ def write_file(dir, file_name, data, append=False):
     out_path = os.path.join(dir, file_name)
     with open(out_path, opts, encoding="utf-8") as f:
         f.write(str(data))
+    return out_path # full path of file
 
 def write_json_file(dir, file_name, json_data, append=False):
     opts = "a" if append else "w"
@@ -41,6 +42,7 @@ def write_json_file(dir, file_name, json_data, append=False):
     out_path = os.path.join(dir, file_name)
     with open(out_path, opts, encoding="utf-8") as f:
         json.dump(json_data, f, ensure_ascii=False, indent=4)
+    return out_path # full path of file
 
 def write_log(phase_idx, instruction, prompt, raw_content, is_step):
     pattern = r"\{.*\}|\[.*\]"

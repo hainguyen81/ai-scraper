@@ -68,7 +68,7 @@ def generate_global_context(client: OpenAI, model_name: str, project_name: str, 
         
         # write context
         safe_name = project_name.replace(' ', '-')
-        write_file(
+        out_path = write_file(
             dir=os.path.join(out_dir, "context"),
             file_name=f"{safe_name}.global.blueprint.md",
             data=raw_data

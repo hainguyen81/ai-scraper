@@ -342,7 +342,6 @@ def convert_phases_to_json(client: OpenAI, model_name: str, project_name: str, n
             # print(f"           { dump_json_data }")
                 
             # write blueprint
-            out_path = os.path.join(steps_context_dir, f"phase-{phase_idx}.steps.json")
             fallback_path = os.path.join(steps_context_dir, f"phase-{phase_idx}.steps.error.md")
             transform_log_path = os.path.join(steps_context_dir, f"phase-{phase_idx}.steps.transformer.md")
             try:
@@ -361,7 +360,7 @@ def convert_phases_to_json(client: OpenAI, model_name: str, project_name: str, n
                 
             
                 # write steps
-                write_json_file(
+                out_path = write_json_file(
                     dir=steps_context_dir,
                     file_name=f"phase-{phase_idx}.steps.json",
                     json_data=model_dump
