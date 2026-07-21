@@ -12,27 +12,39 @@
             "sub_tasks": [
                 {
                     "id": "D1_ST1",
-                    "agent": "Project Manager",
-                    "desc": "Project Manager Agent: Review project requirements and gather initial specifications",
-                    "components": []
+                    "agent": "Coder",
+                    "desc": "Coder Agent: Scaffold Next.js project with TypeScript, Tailwind CSS, and i18n-next configuration",
+                    "components": [
+                        "package.json",
+                        "next.config.js",
+                        "tsconfig.json",
+                        "eslint.config.js"
+                    ]
                 },
                 {
                     "id": "D1_ST2",
-                    "agent": "DevOps",
-                    "desc": "DevOps Agent: Set up development environment and project structure",
-                    "components": []
+                    "agent": "Coder",
+                    "desc": "Coder Agent: Implement locale detection logic in lib/i18n.ts with stored preference → browser → default fallback",
+                    "components": [
+                        "src/lib/i18n.ts"
+                    ]
                 },
                 {
                     "id": "D1_ST3",
-                    "agent": "Technical Writer",
-                    "desc": "Technical Writer Agent: Create initial project documentation and README",
-                    "components": []
+                    "agent": "Coder",
+                    "desc": "Coder Agent: Build authentication UI components with login form and social buttons",
+                    "components": [
+                        "src/components/Auth/",
+                        "src/pages/login.tsx"
+                    ]
                 },
                 {
                     "id": "D1_ST4",
-                    "agent": "DevOps",
-                    "desc": "DevOps Agent: Initialize version control and commit baseline structure",
-                    "components": []
+                    "agent": "Tester",
+                    "desc": "Tester Agent: Design UI test suite for authentication flows using Playwright",
+                    "components": [
+                        "tests/auth.spec.ts"
+                    ]
                 }
             ]
         },
@@ -43,27 +55,39 @@
             "sub_tasks": [
                 {
                     "id": "D2_ST1",
-                    "agent": "Architect",
-                    "desc": "Architect Agent: Design system architecture and data models",
-                    "components": []
+                    "agent": "Coder",
+                    "desc": "Coder Agent: Integrate authentication with /api/auth/* endpoints and implement JWT/session management",
+                    "components": [
+                        "src/api/auth.ts",
+                        "src/hooks/useAuth.ts"
+                    ]
                 },
                 {
                     "id": "D2_ST2",
                     "agent": "Coder",
-                    "desc": "Coder Agent: Implement core data models and database schemas",
-                    "components": []
+                    "desc": "Coder Agent: Create reusable component library with Auth, Member Card, and Notification badge components",
+                    "components": [
+                        "src/components/Auth/",
+                        "src/components/Member/",
+                        "src/components/Notifications/"
+                    ]
                 },
                 {
                     "id": "D2_ST3",
-                    "agent": "Coder",
-                    "desc": "Coder Agent: Create API endpoints for data access",
-                    "components": []
+                    "agent": "Tester",
+                    "desc": "Tester Agent: Create integration tests for authentication API endpoints using MSW",
+                    "components": [
+                        "tests/integration/auth.test.ts"
+                    ]
                 },
                 {
                     "id": "D2_ST4",
-                    "agent": "Tester",
-                    "desc": "Tester Agent: Write unit tests for core functionality",
-                    "components": []
+                    "agent": "Reviewer",
+                    "desc": "Reviewer Agent: Conduct security review of authentication implementation and OAuth redirect URIs",
+                    "components": [
+                        "src/api/auth.ts",
+                        "src/components/Auth/"
+                    ]
                 }
             ]
         },
@@ -75,26 +99,38 @@
                 {
                     "id": "D3_ST1",
                     "agent": "Coder",
-                    "desc": "Coder Agent: Develop user authentication and authorization system",
-                    "components": []
+                    "desc": "Coder Agent: Develop QR scanning flow using react-qr-reader and integrate with /api/attendance/scan endpoint",
+                    "components": [
+                        "src/components/Attendance/",
+                        "src/lib/qr.ts",
+                        "src/api/attendance.ts"
+                    ]
                 },
                 {
                     "id": "D3_ST2",
                     "agent": "Coder",
-                    "desc": "Coder Agent: Implement role-based access control",
-                    "components": []
+                    "desc": "Coder Agent: Implement member dashboard with list view, search/filter functionality, and remaining validity days calculation",
+                    "components": [
+                        "src/pages/dashboard.tsx",
+                        "src/api/members.ts",
+                        "src/components/Member/"
+                    ]
                 },
                 {
                     "id": "D3_ST3",
-                    "agent": "Frontend Developer",
-                    "desc": "Frontend Developer Agent: Create login and registration UI components",
-                    "components": []
+                    "agent": "Tester",
+                    "desc": "Tester Agent: Design UI tests for QR scan success/failure scenarios and attendance duplicate handling",
+                    "components": [
+                        "tests/attendance.spec.ts"
+                    ]
                 },
                 {
                     "id": "D3_ST4",
-                    "agent": "Tester",
-                    "desc": "Tester Agent: Test authentication flow and security measures",
-                    "components": []
+                    "agent": "DevOps",
+                    "desc": "DevOps Agent: Prepare Docker base image for Next.js front-end with build-time environment variables",
+                    "components": [
+                        "Dockerfile"
+                    ]
                 }
             ]
         },
@@ -105,27 +141,38 @@
             "sub_tasks": [
                 {
                     "id": "D4_ST1",
-                    "agent": "UX Designer",
-                    "desc": "UX Designer Agent: Design and implement main application dashboard",
-                    "components": []
+                    "agent": "Coder",
+                    "desc": "Coder Agent: Add push notification integration with Firebase Cloud Messaging and Zalo API for SMS/WhatsApp",
+                    "components": [
+                        "src/api/notifications.ts",
+                        "src/utils/notify.ts"
+                    ]
                 },
                 {
                     "id": "D4_ST2",
-                    "agent": "Frontend Developer",
-                    "desc": "Frontend Developer Agent: Create data visualization components",
-                    "components": []
+                    "agent": "Coder",
+                    "desc": "Coder Agent: Implement SEO meta components with next/head for title, description, and hreflang tags",
+                    "components": [
+                        "src/components/SEO/",
+                        "src/pages/index.tsx",
+                        "src/pages/dashboard.tsx"
+                    ]
                 },
                 {
                     "id": "D4_ST3",
-                    "agent": "Backend Developer",
-                    "desc": "Backend Developer Agent: Implement real-time data updates",
-                    "components": []
+                    "agent": "Tester",
+                    "desc": "Tester Agent: Create i18n tests to verify correct locale rendering and hreflang links",
+                    "components": [
+                        "tests/i18n.test.ts"
+                    ]
                 },
                 {
                     "id": "D4_ST4",
-                    "agent": "Tester",
-                    "desc": "Tester Agent: Perform integration testing with dashboard features",
-                    "components": []
+                    "agent": "Reviewer",
+                    "desc": "Reviewer Agent: Validate SEO implementation including title, description, Open Graph, and hreflang tags",
+                    "components": [
+                        "src/components/SEO/"
+                    ]
                 }
             ]
         },
@@ -136,182 +183,37 @@
             "sub_tasks": [
                 {
                     "id": "D5_ST1",
-                    "agent": "Data Analyst",
-                    "desc": "Data Analyst Agent: Develop reporting and analytics module",
-                    "components": []
+                    "agent": "Coder",
+                    "desc": "Coder Agent: Set up CI linting with ESLint, Prettier, and commit linting rules",
+                    "components": [
+                        "eslint.config.js",
+                        ".prettierrc",
+                        "package.json"
+                    ]
                 },
                 {
                     "id": "D5_ST2",
-                    "agent": "Backend Developer",
-                    "desc": "Backend Developer Agent: Create export functionality for reports",
-                    "components": []
+                    "agent": "Tester",
+                    "desc": "Tester Agent: Perform accessibility audits using axe on all pages and document WCAG AA violations",
+                    "components": [
+                        "tests/accessibility.test.ts"
+                    ]
                 },
                 {
                     "id": "D5_ST3",
-                    "agent": "Coder",
-                    "desc": "Coder Agent: Implement PDF generation for reports",
-                    "components": []
+                    "agent": "Tester",
+                    "desc": "Tester Agent: Execute integration tests against mocked Quarkus endpoints to validate API contracts",
+                    "components": [
+                        "tests/integration/"
+                    ]
                 },
                 {
                     "id": "D5_ST4",
-                    "agent": "Tester",
-                    "desc": "Tester Agent: Test report generation and export features",
-                    "components": []
-                }
-            ]
-        },
-        {
-            "day": 6,
-            "context_file": ".ai/.plan/.context/phase-3.context.blueprint.md",
-            "context_section": "DAY 6",
-            "sub_tasks": [
-                {
-                    "id": "D6_ST1",
-                    "agent": "Backend Developer",
-                    "desc": "Backend Developer Agent: Implement notification system and alerts",
-                    "components": []
-                },
-                {
-                    "id": "D6_ST2",
-                    "agent": "Frontend Developer",
-                    "desc": "Frontend Developer Agent: Create notification UI components",
-                    "components": []
-                },
-                {
-                    "id": "D6_ST3",
-                    "agent": "DevOps",
-                    "desc": "DevOps Agent: Set up email notification service",
-                    "components": []
-                },
-                {
-                    "id": "D6_ST4",
-                    "agent": "Tester",
-                    "desc": "Tester Agent: Test notification delivery and formatting",
-                    "components": []
-                }
-            ]
-        },
-        {
-            "day": 7,
-            "context_file": ".ai/.plan/.context/phase-3.context.blueprint.md",
-            "context_section": "DAY 7",
-            "sub_tasks": [
-                {
-                    "id": "D7_ST1",
-                    "agent": "QA Lead",
-                    "desc": "QA Lead Agent: Perform comprehensive system testing",
-                    "components": []
-                },
-                {
-                    "id": "D7_ST2",
-                    "agent": "DevOps",
-                    "desc": "DevOps Agent: Execute performance and load testing",
-                    "components": []
-                },
-                {
-                    "id": "D7_ST3",
-                    "agent": "Coder",
-                    "desc": "Coder Agent: Review and fix critical bugs identified",
-                    "components": []
-                },
-                {
-                    "id": "D7_ST4",
-                    "agent": "Technical Writer",
-                    "desc": "Technical Writer Agent: Create final test report and documentation",
-                    "components": []
-                }
-            ]
-        },
-        {
-            "day": 8,
-            "context_file": ".ai/.plan/.context/phase-3.context.blueprint.md",
-            "context_section": "DAY 8",
-            "sub_tasks": [
-                {
-                    "id": "D8_ST1",
-                    "agent": "DevOps",
-                    "desc": "DevOps Agent: Deploy application to production environment",
-                    "components": []
-                },
-                {
-                    "id": "D8_ST2",
-                    "agent": "DevOps",
-                    "desc": "DevOps Agent: Configure monitoring and logging systems",
-                    "components": []
-                },
-                {
-                    "id": "D8_ST3",
-                    "agent": "DevOps",
-                    "desc": "DevOps Agent: Set up backup and recovery procedures",
-                    "components": []
-                },
-                {
-                    "id": "D8_ST4",
-                    "agent": "QA Lead",
-                    "desc": "QA Lead Agent: Perform final system validation",
-                    "components": []
-                }
-            ]
-        },
-        {
-            "day": 9,
-            "context_file": ".ai/.plan/.context/phase-3.context.blueprint.md",
-            "context_section": "DAY 9",
-            "sub_tasks": [
-                {
-                    "id": "D9_ST1",
-                    "agent": "Technical Trainer",
-                    "desc": "Technical Trainer Agent: Conduct client training and knowledge transfer",
-                    "components": []
-                },
-                {
-                    "id": "D9_ST2",
-                    "agent": "Technical Writer",
-                    "desc": "Technical Writer Agent: Document system architecture and configurations",
-                    "components": []
-                },
-                {
-                    "id": "D9_ST3",
-                    "agent": "Technical Writer",
-                    "desc": "Technical Writer Agent: Create operational procedures manual",
-                    "components": []
-                },
-                {
-                    "id": "D9_ST4",
-                    "agent": "Project Manager",
-                    "desc": "Project Manager Agent: Gather client feedback and address concerns",
-                    "components": []
-                }
-            ]
-        },
-        {
-            "day": 10,
-            "context_file": ".ai/.plan/.context/phase-3.context.blueprint.md",
-            "context_section": "DAY 10",
-            "sub_tasks": [
-                {
-                    "id": "D10_ST1",
-                    "agent": "Technical Writer",
-                    "desc": "Technical Writer Agent: Finalize project documentation and deliverables",
-                    "components": []
-                },
-                {
-                    "id": "D10_ST2",
-                    "agent": "DevOps",
-                    "desc": "DevOps Agent: Archive project files and code repositories",
-                    "components": []
-                },
-                {
-                    "id": "D10_ST3",
-                    "agent": "Project Manager",
-                    "desc": "Project Manager Agent: Conduct final project review with stakeholders",
-                    "components": []
-                },
-                {
-                    "id": "D10_ST4",
-                    "agent": "Project Manager",
-                    "desc": "Project Manager Agent: Close project and provide final report",
-                    "components": []
+                    "agent": "Reviewer",
+                    "desc": "Reviewer Agent: Conduct final code review focusing on security, coding standards, and i18n best practices",
+                    "components": [
+                        "src/"
+                    ]
                 }
             ]
         }
