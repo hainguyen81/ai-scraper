@@ -4,50 +4,5 @@
     "project_name": "test-ai-architecture",
     "global_context_file": ".ai/.context/test-ai-architecture.global.blueprint.md",
     "source_target_dir": "sources/",
-    "days": [
-        {
-            "day": 1,
-            "context_file": ".ai/.plan/.context/phase-5.context.blueprint.md",
-            "context_section": "DAY 1",
-            "sub_tasks": [
-                {
-                    "id": "D1_ST1",
-                    "agent": "Devops",
-                    "desc": "Devops Agent: Set up GCP project and enable necessary APIs for GKE deployment."
-                },
-                {
-                    "id": "D1_ST2",
-                    "agent": "Docker",
-                    "desc": "Docker Agent: Create Dockerfile for the membership-hub application."
-                },
-                {
-                    "id": "D1_ST3",
-                    "agent": "Coder",
-                    "desc": "Coder Agent: Write initial deployment scripts for GCP and GKE."
-                }
-            ]
-        },
-        {
-            "day": 2,
-            "context_file": ".ai/.plan/.context/phase-5.context.blueprint.md",
-            "context_section": "DAY 2",
-            "sub_tasks": [
-                {
-                    "id": "D2_ST1",
-                    "agent": "Devops",
-                    "desc": "Devops Agent: Configure load balancing and autoscaling settings for GKE cluster."
-                },
-                {
-                    "id": "D2_ST2",
-                    "agent": "Reviewer",
-                    "desc": "Reviewer Agent: Review deployment configurations and ensure compliance with security standards."
-                },
-                {
-                    "id": "D2_ST3",
-                    "agent": "Tester",
-                    "desc": "Tester Agent: Perform final load testing and performance validation of the deployed application."
-                }
-            ]
-        }
-    ]
+    "days": []
 }
