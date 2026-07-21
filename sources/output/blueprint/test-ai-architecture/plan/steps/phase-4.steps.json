@@ -12,23 +12,28 @@
             "sub_tasks": [
                 {
                     "id": "D1_ST1",
-                    "agent": "none",
-                    "desc": "None Agent: Write unit tests for individual components"
+                    "agent": "Coder",
+                    "desc": "Coder Agent: Write unit tests for individual components"
                 },
                 {
                     "id": "D1_ST2",
-                    "agent": "none",
-                    "desc": "None Agent: Conduct performance testing"
+                    "agent": "Tester",
+                    "desc": "Tester Agent: Conduct performance testing"
                 },
                 {
                     "id": "D1_ST3",
-                    "agent": "none",
-                    "desc": "None Agent: Review test cases"
+                    "agent": "Reviewer",
+                    "desc": "Reviewer Agent: Review test cases"
                 },
                 {
                     "id": "D1_ST4",
-                    "agent": "none",
-                    "desc": "None Agent: Configure testing environment"
+                    "agent": "Devops",
+                    "desc": "Devops Agent: Configure testing environment"
+                },
+                {
+                    "id": "D1_ST5",
+                    "agent": "Devops",
+                    "desc": "Devops Agent: Manage testing environment"
                 }
             ]
         },
@@ -39,33 +44,38 @@
             "sub_tasks": [
                 {
                     "id": "D2_ST1",
-                    "agent": "none",
-                    "desc": "None Agent: Write unit tests for individual components"
+                    "agent": "Coder",
+                    "desc": "Coder Agent: Write unit tests for individual components"
                 },
                 {
                     "id": "D2_ST2",
-                    "agent": "none",
-                    "desc": "None Agent: Conduct performance testing"
+                    "agent": "Coder",
+                    "desc": "Coder Agent: Write integration tests for interconnected components"
                 },
                 {
                     "id": "D2_ST3",
-                    "agent": "none",
-                    "desc": "None Agent: Review test cases"
+                    "agent": "Tester",
+                    "desc": "Tester Agent: Conduct performance testing"
                 },
                 {
                     "id": "D2_ST4",
-                    "agent": "none",
-                    "desc": "None Agent: Manage testing environment"
+                    "agent": "Tester",
+                    "desc": "Tester Agent: Conduct security testing"
                 },
                 {
                     "id": "D2_ST5",
-                    "agent": "none",
-                    "desc": "None Agent: Write integration tests for interconnected components"
+                    "agent": "Reviewer",
+                    "desc": "Reviewer Agent: Review test cases"
                 },
                 {
                     "id": "D2_ST6",
-                    "agent": "none",
-                    "desc": "None Agent: Conduct security testing"
+                    "agent": "Reviewer",
+                    "desc": "Reviewer Agent: Provide feedback on test coverage and effectiveness"
+                },
+                {
+                    "id": "D2_ST7",
+                    "agent": "Devops",
+                    "desc": "Devops Agent: Manage testing environment"
                 }
             ]
         },
@@ -76,28 +86,28 @@
             "sub_tasks": [
                 {
                     "id": "D3_ST1",
-                    "agent": "none",
-                    "desc": "None Agent: Write integration tests for interconnected components"
+                    "agent": "Coder",
+                    "desc": "Coder Agent: Write integration tests for interconnected components"
                 },
                 {
                     "id": "D3_ST2",
-                    "agent": "none",
-                    "desc": "None Agent: Conduct security testing"
+                    "agent": "Tester",
+                    "desc": "Tester Agent: Conduct security testing"
                 },
                 {
                     "id": "D3_ST3",
-                    "agent": "none",
-                    "desc": "None Agent: Provide feedback on test coverage and effectiveness"
+                    "agent": "Tester",
+                    "desc": "Tester Agent: Conduct UAT"
                 },
                 {
                     "id": "D3_ST4",
-                    "agent": "none",
-                    "desc": "None Agent: Manage testing environment"
+                    "agent": "Reviewer",
+                    "desc": "Reviewer Agent: Provide feedback on test coverage and effectiveness"
                 },
                 {
                     "id": "D3_ST5",
-                    "agent": "none",
-                    "desc": "None Agent: Conduct UAT"
+                    "agent": "Devops",
+                    "desc": "Devops Agent: Manage testing environment"
                 }
             ]
         },
@@ -108,13 +118,13 @@
             "sub_tasks": [
                 {
                     "id": "D4_ST1",
-                    "agent": "none",
-                    "desc": "None Agent: Conduct UAT"
+                    "agent": "Tester",
+                    "desc": "Tester Agent: Conduct UAT"
                 },
                 {
                     "id": "D4_ST2",
-                    "agent": "none",
-                    "desc": "None Agent: Manage testing environment"
+                    "agent": "Devops",
+                    "desc": "Devops Agent: Manage testing environment"
                 }
             ]
         }

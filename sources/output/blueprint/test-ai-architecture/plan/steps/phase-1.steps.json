@@ -12,18 +12,23 @@
             "sub_tasks": [
                 {
                     "id": "D1_ST1",
-                    "agent": "none",
-                    "desc": "None Agent: Define project scope and create a detailed project plan"
+                    "agent": "Coder",
+                    "desc": "Coder Agent: Define the project scope and objectives in the context blueprint."
                 },
                 {
                     "id": "D1_ST2",
-                    "agent": "none",
-                    "desc": "None Agent: Set up the project directory structure"
+                    "agent": "Reviewer",
+                    "desc": "Reviewer Agent: Review and approve the project scope and objectives defined by the Coder."
                 },
                 {
                     "id": "D1_ST3",
-                    "agent": "none",
-                    "desc": "None Agent: Initialize the Git repository"
+                    "agent": "Coder",
+                    "desc": "Coder Agent: Create a detailed project plan outlining the scope, timeline, and resources required."
+                },
+                {
+                    "id": "D1_ST4",
+                    "agent": "Reviewer",
+                    "desc": "Reviewer Agent: Review and approve the detailed project plan created by the Coder."
                 }
             ]
         },
@@ -34,40 +39,28 @@
             "sub_tasks": [
                 {
                     "id": "D2_ST1",
-                    "agent": "none",
-                    "desc": "None Agent: Set up the Quarkus project template"
+                    "agent": "Coder",
+                    "desc": "Coder Agent: Initialize the Git repository for the project."
                 },
                 {
                     "id": "D2_ST2",
-                    "agent": "none",
-                    "desc": "None Agent: Configure Kafka for messaging"
+                    "agent": "Devops",
+                    "desc": "Devops Agent: Set up the project directory structure with allowed boundaries (src/main/java, src/main/resources, docker, kafka, postgres)."
                 },
                 {
                     "id": "D2_ST3",
-                    "agent": "none",
-                    "desc": "None Agent: Configure Docker for containerization"
-                }
-            ]
-        },
-        {
-            "day": 3,
-            "context_file": ".ai/.plan/.context/phase-1.context.blueprint.md",
-            "context_section": "DAY 3",
-            "sub_tasks": [
-                {
-                    "id": "D3_ST1",
-                    "agent": "none",
-                    "desc": "None Agent: Configure Postgres for data storage"
+                    "agent": "Reviewer",
+                    "desc": "Reviewer Agent: Review the initialized directory structure and Git repository setup."
                 },
                 {
-                    "id": "D3_ST2",
-                    "agent": "none",
-                    "desc": "None Agent: Define the API endpoints for authentication, attendance tracking, and notification systems"
+                    "id": "D2_ST4",
+                    "agent": "Coder",
+                    "desc": "Coder Agent: Create a basic Quarkus project template."
                 },
                 {
-                    "id": "D3_ST3",
-                    "agent": "none",
-                    "desc": "None Agent: Review the project plan, technical architecture, and high-level design document"
+                    "id": "D2_ST5",
+                    "agent": "Reviewer",
+                    "desc": "Reviewer Agent: Review and approve the Quarkus project template created by the Coder."
                 }
             ]
         }

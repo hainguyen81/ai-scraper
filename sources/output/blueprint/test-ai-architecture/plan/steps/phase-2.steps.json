@@ -12,18 +12,28 @@
             "sub_tasks": [
                 {
                     "id": "D1_ST1",
-                    "agent": "none",
-                    "desc": "None Agent: Implement authentication mechanisms (email/password, Firebase, Google, Facebook)"
+                    "agent": "Coder",
+                    "desc": "Coder Agent: Set up Quarkus project structure with Maven and initialize basic dependencies."
                 },
                 {
                     "id": "D1_ST2",
-                    "agent": "none",
-                    "desc": "None Agent: Develop unit tests and integration tests for authentication mechanisms"
+                    "agent": "Coder",
+                    "desc": "Coder Agent: Implement initial authentication framework with email/password login mechanism."
                 },
                 {
                     "id": "D1_ST3",
-                    "agent": "none",
-                    "desc": "None Agent: Review code for adherence to coding standards, security, and scalability"
+                    "agent": "Tester",
+                    "desc": "Tester Agent: Write unit tests for initial authentication module setup."
+                },
+                {
+                    "id": "D1_ST4",
+                    "agent": "Reviewer",
+                    "desc": "Reviewer Agent: Review initial Quarkus project setup and authentication framework for coding standards and security."
+                },
+                {
+                    "id": "D1_ST5",
+                    "agent": "Devops (docker)",
+                    "desc": "Devops (docker) Agent: Create Dockerfile for Quarkus application and configure base image."
                 }
             ]
         },
@@ -34,18 +44,28 @@
             "sub_tasks": [
                 {
                     "id": "D2_ST1",
-                    "agent": "none",
-                    "desc": "None Agent: Develop attendance tracking features (QR code-based attendance tracking)"
+                    "agent": "Coder",
+                    "desc": "Coder Agent: Implement Firebase authentication integration."
                 },
                 {
                     "id": "D2_ST2",
-                    "agent": "none",
-                    "desc": "None Agent: Develop unit tests and integration tests for attendance tracking features"
+                    "agent": "Coder",
+                    "desc": "Coder Agent: Implement Google authentication integration."
                 },
                 {
                     "id": "D2_ST3",
-                    "agent": "none",
-                    "desc": "None Agent: Containerize the Quarkus application using Docker"
+                    "agent": "Coder",
+                    "desc": "Coder Agent: Implement Facebook authentication integration."
+                },
+                {
+                    "id": "D2_ST4",
+                    "agent": "Tester",
+                    "desc": "Tester Agent: Develop integration tests for third-party authentication providers."
+                },
+                {
+                    "id": "D2_ST5",
+                    "agent": "Reviewer",
+                    "desc": "Reviewer Agent: Review authentication integrations for security vulnerabilities and scalability."
                 }
             ]
         },
@@ -56,18 +76,28 @@
             "sub_tasks": [
                 {
                     "id": "D3_ST1",
-                    "agent": "none",
-                    "desc": "None Agent: Implement notification systems (SMS, Zalo, in-app notifications)"
+                    "agent": "Coder",
+                    "desc": "Coder Agent: Design and implement QR code generation service for attendance tracking."
                 },
                 {
                     "id": "D3_ST2",
-                    "agent": "none",
-                    "desc": "None Agent: Develop unit tests and integration tests for notification systems"
+                    "agent": "Coder",
+                    "desc": "Coder Agent: Implement QR code scanning endpoint for mobile clients."
                 },
                 {
                     "id": "D3_ST3",
-                    "agent": "none",
-                    "desc": "None Agent: Review code for adherence to coding standards, security, and scalability"
+                    "agent": "Tester",
+                    "desc": "Tester Agent: Test QR code generation and scanning functionality with sample data."
+                },
+                {
+                    "id": "D3_ST4",
+                    "agent": "Reviewer",
+                    "desc": "Reviewer Agent: Review attendance tracking system design for performance and data integrity."
+                },
+                {
+                    "id": "D3_ST5",
+                    "agent": "Devops (docker)",
+                    "desc": "Devops (docker) Agent: Update Dockerfile to include necessary libraries for QR code processing."
                 }
             ]
         },
@@ -78,18 +108,28 @@
             "sub_tasks": [
                 {
                     "id": "D4_ST1",
-                    "agent": "none",
-                    "desc": "None Agent: Develop API endpoints for backend features"
+                    "agent": "Coder",
+                    "desc": "Coder Agent: Implement SMS notification service using external provider API."
                 },
                 {
                     "id": "D4_ST2",
-                    "agent": "none",
-                    "desc": "None Agent: Develop unit tests and integration tests for API endpoints"
+                    "agent": "Coder",
+                    "desc": "Coder Agent: Implement Zalo notification service using official SDK."
                 },
                 {
                     "id": "D4_ST3",
-                    "agent": "none",
-                    "desc": "None Agent: Prepare deployment scripts for GCP and GKE"
+                    "agent": "Coder",
+                    "desc": "Coder Agent: Implement in-app notification system with WebSocket support."
+                },
+                {
+                    "id": "D4_ST4",
+                    "agent": "Tester",
+                    "desc": "Tester Agent: Perform end-to-end testing of notification services across different platforms."
+                },
+                {
+                    "id": "D4_ST5",
+                    "agent": "Reviewer",
+                    "desc": "Reviewer Agent: Evaluate notification system architecture for reliability and maintainability."
                 }
             ]
         },
@@ -100,18 +140,28 @@
             "sub_tasks": [
                 {
                     "id": "D5_ST1",
-                    "agent": "none",
-                    "desc": "None Agent: Integrate with Postgres database for data storage"
+                    "agent": "Coder",
+                    "desc": "Coder Agent: Define PostgreSQL database schema for user profiles, attendance records, and notifications."
                 },
                 {
                     "id": "D5_ST2",
-                    "agent": "none",
-                    "desc": "None Agent: Develop unit tests and integration tests for database integration"
+                    "agent": "Coder",
+                    "desc": "Coder Agent: Implement database migration scripts using Flyway or Liquibase."
                 },
                 {
                     "id": "D5_ST3",
-                    "agent": "none",
-                    "desc": "None Agent: Review code for adherence to coding standards, security, and scalability"
+                    "agent": "Tester",
+                    "desc": "Tester Agent: Run integration tests against PostgreSQL database with sample datasets."
+                },
+                {
+                    "id": "D5_ST4",
+                    "agent": "Reviewer",
+                    "desc": "Reviewer Agent: Audit database schema and migration scripts for normalization and indexing strategies."
+                },
+                {
+                    "id": "D5_ST5",
+                    "agent": "Devops (docker)",
+                    "desc": "Devops (docker) Agent: Configure Docker Compose for local development environment including PostgreSQL container."
                 }
             ]
         },
@@ -122,18 +172,28 @@
             "sub_tasks": [
                 {
                     "id": "D6_ST1",
-                    "agent": "none",
-                    "desc": "None Agent: Ensure seamless deployment on GKE"
+                    "agent": "Coder",
+                    "desc": "Coder Agent: Integrate Kafka producers and consumers for asynchronous event handling."
                 },
                 {
                     "id": "D6_ST2",
-                    "agent": "none",
-                    "desc": "None Agent: Ensure zero-downtime deployments"
+                    "agent": "Coder",
+                    "desc": "Coder Agent: Implement Kafka topics for authentication events, attendance logs, and notifications."
                 },
                 {
                     "id": "D6_ST3",
-                    "agent": "none",
-                    "desc": "None Agent: Test the entire system for functionality and performance"
+                    "agent": "Tester",
+                    "desc": "Tester Agent: Test Kafka message flow and ensure proper event distribution across services."
+                },
+                {
+                    "id": "D6_ST4",
+                    "agent": "Reviewer",
+                    "desc": "Reviewer Agent: Analyze Kafka integration for fault tolerance and scalability considerations."
+                },
+                {
+                    "id": "D6_ST5",
+                    "agent": "Devops (deployer)",
+                    "desc": "Devops (deployer) Agent: Prepare deployment manifests for GKE cluster with Kubernetes configurations."
                 }
             ]
         },
@@ -144,18 +204,28 @@
             "sub_tasks": [
                 {
                     "id": "D7_ST1",
-                    "agent": "none",
-                    "desc": "None Agent: Review the entire system for adherence to coding standards, security, and scalability"
+                    "agent": "Coder",
+                    "desc": "Coder Agent: Finalize all API endpoints for authentication, attendance tracking, and notifications."
                 },
                 {
                     "id": "D7_ST2",
-                    "agent": "none",
-                    "desc": "None Agent: Develop unit tests and integration tests for the entire system"
+                    "agent": "Tester",
+                    "desc": "Tester Agent: Execute full regression testing suite covering all backend features."
                 },
                 {
                     "id": "D7_ST3",
-                    "agent": "none",
-                    "desc": "None Agent: Address any remaining issues or bugs"
+                    "agent": "Reviewer",
+                    "desc": "Reviewer Agent: Conduct final code review and documentation check for compliance with DoD."
+                },
+                {
+                    "id": "D7_ST4",
+                    "agent": "Devops (docker)",
+                    "desc": "Devops (docker) Agent: Build and push final Docker images to registry for production deployment."
+                },
+                {
+                    "id": "D7_ST5",
+                    "agent": "Devops (deployer)",
+                    "desc": "Devops (deployer) Agent: Deploy application to GKE cluster with zero-downtime rollout strategy."
                 }
             ]
         }

@@ -12,60 +12,70 @@
             "sub_tasks": [
                 {
                     "id": "D1_ST1",
-                    "agent": "none",
-                    "desc": "None Agent: Develop the web application using Next.js"
+                    "agent": "Coder",
+                    "desc": "Coder Agent: Set up the Next.js web application project structure and initialize the repository with necessary configurations."
                 },
                 {
                     "id": "D1_ST2",
-                    "agent": "none",
-                    "desc": "None Agent: Implement QR code scanning for attendance tracking"
+                    "agent": "Coder",
+                    "desc": "Coder Agent: Create the basic UI components for the web application including header, footer, and navigation."
                 },
                 {
                     "id": "D1_ST3",
-                    "agent": "none",
-                    "desc": "None Agent: Integrate multi-language support for the web application"
+                    "agent": "Tester",
+                    "desc": "Tester Agent: Define the test plan for the web application, including functional, performance, and security testing requirements."
                 },
                 {
                     "id": "D1_ST4",
-                    "agent": "none",
-                    "desc": "None Agent: Test the web application for functionality, performance, and security"
+                    "agent": "Reviewer",
+                    "desc": "Reviewer Agent: Establish code review guidelines and standards for the web application development process."
                 },
                 {
                     "id": "D1_ST5",
-                    "agent": "none",
-                    "desc": "None Agent: Review the code for adherence to coding standards, best practices, and security guidelines"
+                    "agent": "Devops (docker)",
+                    "desc": "Devops (docker) Agent: Create a Dockerfile for the Next.js web application to enable containerization."
                 }
             ]
         },
         {
-            "day": 0,
+            "day": 2,
             "context_file": ".ai/.plan/.context/phase-3.context.blueprint.md",
-            "context_section": "DAY 0",
+            "context_section": "DAY 2",
             "sub_tasks": [
                 {
-                    "id": "D0_ST1",
-                    "agent": "none",
-                    "desc": "None Agent: Containerize the web application for deployment on GKE"
+                    "id": "D2_ST1",
+                    "agent": "Coder",
+                    "desc": "Coder Agent: Implement QR code scanning functionality for the web application using a third-party library."
                 },
                 {
-                    "id": "D0_ST2",
-                    "agent": "none",
-                    "desc": "None Agent: Prepare the environment for deployment, ensure zero-downtime deployments"
+                    "id": "D2_ST2",
+                    "agent": "Coder",
+                    "desc": "Coder Agent: Integrate multi-language support into the web application using i18next or similar framework."
                 },
                 {
-                    "id": "D0_ST3",
-                    "agent": "none",
-                    "desc": "None Agent: Build the mobile application for both iOS and Android platforms"
+                    "id": "D2_ST3",
+                    "agent": "Coder",
+                    "desc": "Coder Agent: Apply SEO optimization techniques to the web application including meta tags, structured data, and sitemap generation."
                 },
                 {
-                    "id": "D0_ST4",
-                    "agent": "none",
-                    "desc": "None Agent: Test the mobile application for functionality, performance, and security"
+                    "id": "D2_ST4",
+                    "agent": "Tester",
+                    "desc": "Tester Agent: Conduct end-to-end testing of the QR code scanning feature on the web application."
                 },
                 {
-                    "id": "D0_ST5",
-                    "agent": "none",
-                    "desc": "None Agent: Review the mobile application code for adherence to coding standards, best practices, and security guidelines"
+                    "id": "D2_ST5",
+                    "agent": "Tester",
+                    "desc": "Tester Agent: Perform localization testing for the multi-language support in the web application."
+                },
+                {
+                    "id": "D2_ST6",
+                    "agent": "Reviewer",
+                    "desc": "Reviewer Agent: Review the implementation of QR code scanning and multi-language support for adherence to coding standards."
+                },
+                {
+                    "id": "D2_ST7",
+                    "agent": "Devops (deployer)",
+                    "desc": "Devops (deployer) Agent: Prepare the staging environment for deployment of the web application."
                 }
             ]
         }
