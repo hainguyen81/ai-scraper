@@ -1,26 +1,27 @@
-# GLOBAL PROJECT CONTEXT: {{ project_name }}
+# GLOBAL PROJECT CONTEXT: test-ai-architecture
 ## 1. Executive Summary & Tech Stack Blueprint
-The executive summary for {{ project_name }} involves the development of a comprehensive system that meets the specified requirements. Given the constraints, the tech stack will be carefully selected to ensure that the project is completed within the mandated {{ num_phases }} phases, with each phase strictly bounded between 1 to {{ max_days_per_phase }} days. The tech stack will include a combination of agile methodologies, cloud-based services, and industry-standard tools to facilitate efficient development, testing, and deployment.
+The project 'membership-hub' aims to develop a scalable web and mobile application for managing membership and attendance tracking. The tech stack includes Quarkus, Kafka, Postgres, Docker, and GCP (Google Cloud Platform) with GKE (Google Kubernetes Engine) for deployment. The application will support internal authentication via email and password, as well as external authentication through Firebase, Google, and Facebook. The project will utilize Next.js for the mobile frontend, supporting multiple languages and platforms (iOS and Android). SEO optimization will be implemented for both web and mobile applications.
 
 ## 2. Global Guardrails & Enterprise Compliance Standards
-To ensure the project's success and adherence to the constraints, the following global guardrails and enterprise compliance standards will be implemented:
-- **Scope Management:** Strictly manage the project scope to fit within the {{ num_phases }} phases, ensuring that all requirements are met without exceeding the phase count or duration limits.
-- **Timeline Management:** Enforce the chronological packing of tasks, ensuring that every requirement is covered within the specified phases and that each phase does not exceed {{ max_days_per_phase }} days.
-- **Compliance:** Adhere to all relevant industry standards and regulations, ensuring that the project's development, testing, and deployment processes are compliant with enterprise policies.
-- **Quality Assurance:** Implement rigorous testing and review processes to guarantee the delivery of high-quality outputs in each phase.
+To ensure the project's success and adherence to enterprise standards, the following guardrails will be established:
+- **Security**: Implement robust security measures to protect user data, including encryption, secure authentication, and access controls.
+- **Scalability**: Design the application to scale horizontally, utilizing cloud services and containerization (Docker) to ensure high availability and performance.
+- **Compliance**: Adhere to relevant regulations, such as GDPR and CCPA, for data protection and user privacy.
+- **Quality**: Establish a rigorous testing framework, including unit testing, integration testing, and UI testing, to ensure the application meets the required standards.
+- **Monitoring and Logging**: Implement comprehensive monitoring and logging mechanisms to track application performance, identify issues, and facilitate debugging.
 
-## 3. Standardized Sub-Agent Persona Definitions (Manager, Coder, Tester, Reviewer, DevOps)
-The following standardized sub-agent persona definitions will be used to ensure clear roles and responsibilities throughout the project:
-- **Manager:** Oversees the project, ensuring that it is delivered on time, within budget, and to the required quality standards. Responsible for resource allocation, phase planning, and stakeholder management.
-- **Coder:** Focuses on the development of the project's components, ensuring that they meet the specified requirements and are developed within the allocated timeframe.
-- **Tester:** Conducts thorough testing of the developed components, identifying and reporting defects to ensure that the final product meets the quality standards.
-- **Reviewer:** Reviews the project's progress, code quality, and documentation, providing feedback to improve the overall quality of the deliverables.
-- **DevOps:** Ensures the smooth operation of the project's infrastructure, facilitating the continuous integration, testing, and deployment of the project's components.
+## 3. Standardized Sub-Agent Persona Definitions
+The following sub-agent personas will be defined to ensure clear roles and responsibilities:
+- **Manager**: Oversees the project, defines requirements, and ensures timely completion.
+- **Coder**: Develops the application, focusing on backend (Quarkus, Kafka, Postgres) and frontend (Next.js) components.
+- **Tester**: Designs and executes tests to validate the application's functionality, performance, and security.
+- **Reviewer**: Conducts code reviews to ensure adherence to coding standards, best practices, and security guidelines.
+- **DevOps**: Responsible for deploying the application to GCP, configuring GKE, and ensuring the application's scalability and high availability.
 
-## 4. Multi-Phase Segmentation Strategy Overview (Plan exactly {{ num_phases }} phases)
-The multi-phase segmentation strategy for {{ project_name }} involves dividing the project into exactly {{ num_phases }} sequential phases, each with a duration of up to {{ max_days_per_phase }} days. The phases will be designed to ensure that all project requirements are met, with a focus on delivering functional components at the end of each phase. The strategy will include:
-- **Phase 1:** Project initiation, requirements gathering, and planning.
-- **Phase 2-{{ num_phases - 1 }}:** Development, testing, and review of the project's components, with each phase building on the previous one.
-- **Phase {{ num_phases }}:** Finalization of the project, including deployment, testing, and handover to the stakeholders.
-
-This strategy ensures that the project is delivered within the specified constraints, with a focus on quality, efficiency, and compliance with enterprise standards.
+## 4. Multi-Phase Segmentation Strategy Overview
+The project will be segmented into exactly 5 phases, each with a maximum duration of 7 days:
+- **Phase 1: Planning and Requirements Gathering** (Days 1-3): Define project scope, gather requirements, and create a detailed project plan.
+- **Phase 2: Backend Development** (Days 4-7): Develop the backend components, including Quarkus, Kafka, and Postgres integration.
+- **Phase 3: Frontend Development** (Days 8-14): Develop the frontend components, including Next.js and mobile application development.
+- **Phase 4: Testing and Quality Assurance** (Days 15-21): Conduct unit testing, integration testing, and UI testing to ensure the application meets the required standards.
+- **Phase 5: Deployment and Monitoring** (Days 22-28): Deploy the application to GCP, configure GKE, and establish monitoring and logging mechanisms to ensure the application's scalability and high availability.

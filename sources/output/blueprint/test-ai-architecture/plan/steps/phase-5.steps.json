@@ -4,5 +4,251 @@
     "project_name": "test-ai-architecture",
     "global_context_file": ".ai/.context/test-ai-architecture.global.blueprint.md",
     "source_target_dir": "sources/",
-    "days": []
+    "days": [
+        {
+            "day": 1,
+            "context_file": ".ai/.plan/.context/phase-5.context.blueprint.md",
+            "context_section": "DAY 1",
+            "sub_tasks": [
+                {
+                    "id": "D1_ST1",
+                    "agent": "Coder",
+                    "desc": "Coder Agent: Write and optimize Dockerfile for backend service with multi-stage builds, minimal image size, and proper health-check endpoints",
+                    "components": [
+                        "docker/backend/Dockerfile"
+                    ]
+                },
+                {
+                    "id": "D1_ST2",
+                    "agent": "Coder",
+                    "desc": "Coder Agent: Write and optimize Dockerfile for frontend service with multi-stage builds, minimal image size, and proper health-check configuration",
+                    "components": [
+                        "docker/frontend/Dockerfile"
+                    ]
+                },
+                {
+                    "id": "D1_ST3",
+                    "agent": "DevOps",
+                    "desc": "DevOps Agent: Provision GKE Autopilot cluster with Network Policy enabled and required add-ons (Secret Manager CSI driver, Cloud NAT, Cloud DNS)",
+                    "components": []
+                }
+            ]
+        },
+        {
+            "day": 2,
+            "context_file": ".ai/.plan/.context/phase-5.context.blueprint.md",
+            "context_section": "DAY 2",
+            "sub_tasks": [
+                {
+                    "id": "D2_ST1",
+                    "agent": "Coder",
+                    "desc": "Coder Agent: Update application.yml with GKE-specific externalized properties using Secret Manager references for Kafka and PostgreSQL connections",
+                    "components": [
+                        "backend/src/main/resources/application.yml"
+                    ]
+                },
+                {
+                    "id": "D2_ST2",
+                    "agent": "Coder",
+                    "desc": "Coder Agent: Configure gcloud builds submit or GitHub Actions to build images and push to Google Artifact Registry with proper tagging",
+                    "components": [
+                        "scripts/ci.yaml"
+                    ]
+                },
+                {
+                    "id": "D2_ST3",
+                    "agent": "DevOps",
+                    "desc": "DevOps Agent: Deploy backend Helm chart with autoscaling configuration from k8s/backend-deployment.yaml",
+                    "components": [
+                        "k8s/backend-deployment.yaml"
+                    ]
+                },
+                {
+                    "id": "D2_ST4",
+                    "agent": "DevOps",
+                    "desc": "DevOps Agent: Deploy frontend ingress with TLS configuration from k8s/frontend-ingress.yaml",
+                    "components": [
+                        "k8s/frontend-ingress.yaml"
+                    ]
+                }
+            ]
+        },
+        {
+            "day": 3,
+            "context_file": ".ai/.plan/.context/phase-5.context.blueprint.md",
+            "context_section": "DAY 3",
+            "sub_tasks": [
+                {
+                    "id": "D3_ST1",
+                    "agent": "DevOps",
+                    "desc": "DevOps Agent: Deploy Prometheus operator and Grafana via Helm, import pre-built dashboards from monitoring/ directory",
+                    "components": [
+                        "monitoring/prometheus.yml",
+                        "monitoring/dashboards/"
+                    ]
+                },
+                {
+                    "id": "D3_ST2",
+                    "agent": "DevOps",
+                    "desc": "DevOps Agent: Enable Google Cloud Logging agent on nodes and configure structured JSON logging in Quarkus",
+                    "components": []
+                },
+                {
+                    "id": "D3_ST3",
+                    "agent": "DevOps",
+                    "desc": "DevOps Agent: Apply Pod Security Policies and bind IAM Service Accounts to pods using Workload Identity",
+                    "components": []
+                },
+                {
+                    "id": "D3_ST4",
+                    "agent": "Tester",
+                    "desc": "Tester Agent: Execute Postman/Newman scripts against deployed REST endpoints to confirm basic functionality",
+                    "components": [
+                        "tests/deployment.test.js"
+                    ]
+                }
+            ]
+        },
+        {
+            "day": 4,
+            "context_file": ".ai/.plan/.context/phase-5.context.blueprint.md",
+            "context_section": "DAY 4",
+            "sub_tasks": [
+                {
+                    "id": "D4_ST1",
+                    "agent": "Tester",
+                    "desc": "Tester Agent: Run Kafka connector verification and PostgreSQL data integrity checks using test containers",
+                    "components": []
+                },
+                {
+                    "id": "D4_ST2",
+                    "agent": "Tester",
+                    "desc": "Tester Agent: Use k6 or JMeter to simulate concurrent attendance scans and user logins, assert response times < 200ms",
+                    "components": [
+                        "tests/performance.jmx"
+                    ]
+                },
+                {
+                    "id": "D4_ST3",
+                    "agent": "Tester",
+                    "desc": "Tester Agent: Perform OWASP ZAP scans on web UI and validate authentication flows",
+                    "components": []
+                },
+                {
+                    "id": "D4_ST4",
+                    "agent": "Tester",
+                    "desc": "Tester Agent: Verify Prometheus scrapes metrics and Grafana dashboards display real-time data",
+                    "components": []
+                }
+            ]
+        },
+        {
+            "day": 5,
+            "context_file": ".ai/.plan/.context/phase-5.context.blueprint.md",
+            "context_section": "DAY 5",
+            "sub_tasks": [
+                {
+                    "id": "D5_ST1",
+                    "agent": "Coder",
+                    "desc": "Coder Agent: Remove local debugging stubs, ensure all external dependencies declared, commit final source",
+                    "components": [
+                        "backend/",
+                        "frontend/"
+                    ]
+                },
+                {
+                    "id": "D5_ST2",
+                    "agent": "Coder",
+                    "desc": "Coder Agent: Update deployment procedures and run-books in documentation directory",
+                    "components": [
+                        "docs/DEPLOYMENT.md",
+                        "docs/SECURITY.md"
+                    ]
+                },
+                {
+                    "id": "D5_ST3",
+                    "agent": "Tester",
+                    "desc": "Tester Agent: Run automated tools to ensure GDPR/CCPA adherence and check for plaintext secrets",
+                    "components": []
+                },
+                {
+                    "id": "D5_ST4",
+                    "agent": "Reviewer",
+                    "desc": "Reviewer Agent: Conduct pairwise reviews of Dockerfile optimizations, Helm values, and Kubernetes manifests",
+                    "components": [
+                        "docker/backend/Dockerfile",
+                        "docker/frontend/Dockerfile",
+                        "k8s/"
+                    ]
+                }
+            ]
+        },
+        {
+            "day": 6,
+            "context_file": ".ai/.plan/.context/phase-5.context.blueprint.md",
+            "context_section": "DAY 6",
+            "sub_tasks": [
+                {
+                    "id": "D6_ST1",
+                    "agent": "Reviewer",
+                    "desc": "Reviewer Agent: Validate IAM policies, Secret Manager usage, encryption keys, and ensure no hardcoded credentials",
+                    "components": []
+                },
+                {
+                    "id": "D6_ST2",
+                    "agent": "Reviewer",
+                    "desc": "Reviewer Agent: Verify DEPLOYMENT.md and SECURITY.md are up-to-date with run-books and correct artifact references",
+                    "components": [
+                        "docs/DEPLOYMENT.md",
+                        "docs/SECURITY.md"
+                    ]
+                },
+                {
+                    "id": "D6_ST3",
+                    "agent": "DevOps",
+                    "desc": "DevOps Agent: Test simulated failure/recovery using rollback procedures within the 7-day window",
+                    "components": [
+                        "scripts/rollback.sh"
+                    ]
+                },
+                {
+                    "id": "D6_ST4",
+                    "agent": "Manager",
+                    "desc": "Manager Agent: Update project board with daily status for each sub-agent and identify any blockers",
+                    "components": []
+                }
+            ]
+        },
+        {
+            "day": 7,
+            "context_file": ".ai/.plan/.context/phase-5.context.blueprint.md",
+            "context_section": "DAY 7",
+            "sub_tasks": [
+                {
+                    "id": "D7_ST1",
+                    "agent": "Reviewer",
+                    "desc": "Reviewer Agent: Approve that all GDPR/CCPA controls are satisfied before final go-live",
+                    "components": []
+                },
+                {
+                    "id": "D7_ST2",
+                    "agent": "Tester",
+                    "desc": "Tester Agent: Execute final end-to-end validation and archive all test reports in CI/CD artifact store",
+                    "components": []
+                },
+                {
+                    "id": "D7_ST3",
+                    "agent": "Manager",
+                    "desc": "Manager Agent: Provide Phase-5 completion brief to executives highlighting deployment health and compliance status",
+                    "components": []
+                },
+                {
+                    "id": "D7_ST4",
+                    "agent": "Manager",
+                    "desc": "Manager Agent: Mark Phase-5 status as Complete in project tracker with formal sign-off from all roles",
+                    "components": []
+                }
+            ]
+        }
+    ]
 }

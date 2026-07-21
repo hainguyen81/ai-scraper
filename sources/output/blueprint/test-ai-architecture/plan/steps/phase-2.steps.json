@@ -4,5 +4,187 @@
     "project_name": "test-ai-architecture",
     "global_context_file": ".ai/.context/test-ai-architecture.global.blueprint.md",
     "source_target_dir": "sources/",
-    "days": []
+    "days": [
+        {
+            "day": 4,
+            "context_file": ".ai/.plan/.context/phase-2.context.blueprint.md",
+            "context_section": "DAY 4",
+            "sub_tasks": [
+                {
+                    "id": "D4_ST1",
+                    "agent": "Coder",
+                    "desc": "Coder Agent: Implement MemberService with CRUD operations and validity calculation logic",
+                    "components": [
+                        "src/main/java/com/membershiphub/backend/service/MemberService.java"
+                    ]
+                },
+                {
+                    "id": "D4_ST2",
+                    "agent": "Coder",
+                    "desc": "Coder Agent: Implement PostgreSQL schema migration for centers, members, attendance, validity, and notifications tables",
+                    "components": [
+                        "src/main/resources/db/migration/"
+                    ]
+                },
+                {
+                    "id": "D4_ST3",
+                    "agent": "Tester",
+                    "desc": "Tester Agent: Write unit tests for MemberService validity calculation methods",
+                    "components": [
+                        "src/test/java/com/membershiphub/backend/service/MemberServiceTest.java"
+                    ]
+                },
+                {
+                    "id": "D4_ST4",
+                    "agent": "DevOps",
+                    "desc": "DevOps Agent: Create multi-stage Docker build configuration (Dockerfile.jvm)",
+                    "components": [
+                        "src/main/docker/Dockerfile.jvm"
+                    ]
+                }
+            ]
+        },
+        {
+            "day": 5,
+            "context_file": ".ai/.plan/.context/phase-2.context.blueprint.md",
+            "context_section": "DAY 5",
+            "sub_tasks": [
+                {
+                    "id": "D5_ST1",
+                    "agent": "Coder",
+                    "desc": "Coder Agent: Implement AttendanceService with PostgreSQL writes and Kafka attendance.events producer",
+                    "components": [
+                        "src/main/java/com/membershiphub/backend/service/AttendanceService.java",
+                        "src/main/java/com/membershiphub/backend/kafka/AttendanceEventProducer.java"
+                    ]
+                },
+                {
+                    "id": "D5_ST2",
+                    "agent": "Coder",
+                    "desc": "Coder Agent: Create REST resources (AttendanceResource, MemberResource) with OpenAPI annotations",
+                    "components": [
+                        "src/main/java/com/membershiphub/backend/resource/AttendanceResource.java",
+                        "src/main/java/com/membershiphub/backend/resource/MemberResource.java"
+                    ]
+                },
+                {
+                    "id": "D5_ST3",
+                    "agent": "Tester",
+                    "desc": "Tester Agent: Integration-test REST endpoints using @QuarkusTest including security filters",
+                    "components": [
+                        "src/it/java/com/membershiphub/backend/resource/"
+                    ]
+                },
+                {
+                    "id": "D5_ST4",
+                    "agent": "DevOps",
+                    "desc": "DevOps Agent: Generate Kubernetes manifests (deployment.yaml, service.yaml) with resource limits",
+                    "components": [
+                        "k8s/deployment.yaml",
+                        "k8s/service.yaml"
+                    ]
+                }
+            ]
+        },
+        {
+            "day": 6,
+            "context_file": ".ai/.plan/.context/phase-2.context.blueprint.md",
+            "context_section": "DAY 6",
+            "sub_tasks": [
+                {
+                    "id": "D6_ST1",
+                    "agent": "Coder",
+                    "desc": "Coder Agent: Implement NotificationService consuming notification.events and sending Zalo SMS, group chat, and FCM push",
+                    "components": [
+                        "src/main/java/com/membershiphub/backend/service/NotificationService.java",
+                        "src/main/java/com/membershiphub/backend/kafka/NotificationEventConsumer.java"
+                    ]
+                },
+                {
+                    "id": "D6_ST2",
+                    "agent": "Coder",
+                    "desc": "Coder Agent: Add JWT authentication filter and role-based access control (admin vs member)",
+                    "components": [
+                        "src/main/java/com/membershiphub/backend/security/JwtFilter.java",
+                        "src/main/java/com/membershiphub/backend/security/SecurityConfig.java"
+                    ]
+                },
+                {
+                    "id": "D6_ST3",
+                    "agent": "Coder",
+                    "desc": "Coder Agent: Code OAuth2 configuration for Firebase, Google, and Facebook providers using Quarkus OIDC",
+                    "components": [
+                        "src/main/resources/application.yml",
+                        "src/main/java/com/membershiphub/backend/security/OAuth2Config.java"
+                    ]
+                },
+                {
+                    "id": "D6_ST4",
+                    "agent": "Tester",
+                    "desc": "Tester Agent: Contract-test Kafka producers/consumers with embedded Kafka",
+                    "components": [
+                        "src/it/java/com/membershiphub/backend/kafka/"
+                    ]
+                },
+                {
+                    "id": "D6_ST5",
+                    "agent": "Reviewer",
+                    "desc": "Reviewer Agent: Verify OWASP Top-10 compliance (SQL injection, XSS, insecure deserialization)",
+                    "components": []
+                }
+            ]
+        },
+        {
+            "day": 7,
+            "context_file": ".ai/.plan/.context/phase-2.context.blueprint.md",
+            "context_section": "DAY 7",
+            "sub_tasks": [
+                {
+                    "id": "D7_ST1",
+                    "agent": "Coder",
+                    "desc": "Coder Agent: Create AuthResource with internal registration/login and social OAuth2 endpoints",
+                    "components": [
+                        "src/main/java/com/membershiphub/backend/resource/AuthResource.java"
+                    ]
+                },
+                {
+                    "id": "D7_ST2",
+                    "agent": "Coder",
+                    "desc": "Coder Agent: Add health-check endpoint (/api/health) and structured JSON logging",
+                    "components": [
+                        "src/main/java/com/membershiphub/backend/resource/HealthResource.java",
+                        "src/main/resources/application.yml"
+                    ]
+                },
+                {
+                    "id": "D7_ST3",
+                    "agent": "Tester",
+                    "desc": "Tester Agent: Write security tests for internal and social login flows",
+                    "components": [
+                        "src/test/java/com/membershiphub/backend/security/"
+                    ]
+                },
+                {
+                    "id": "D7_ST4",
+                    "agent": "DevOps",
+                    "desc": "DevOps Agent: Push Docker image to GCP Artifact Registry and apply Kubernetes manifests to GKE",
+                    "components": [
+                        ".github/workflows/ci.yml"
+                    ]
+                },
+                {
+                    "id": "D7_ST5",
+                    "agent": "Reviewer",
+                    "desc": "Reviewer Agent: Validate Docker image size and multi-stage builds, check Kafka idempotency",
+                    "components": []
+                },
+                {
+                    "id": "D7_ST6",
+                    "agent": "Manager",
+                    "desc": "Manager Agent: Track progress against Day 7 milestones and ensure all sub-agent deliverables are signed off",
+                    "components": []
+                }
+            ]
+        }
+    ]
 }

@@ -4,5 +4,235 @@
     "project_name": "test-ai-architecture",
     "global_context_file": ".ai/.context/test-ai-architecture.global.blueprint.md",
     "source_target_dir": "sources/",
-    "days": []
+    "days": [
+        {
+            "day": 1,
+            "context_file": ".ai/.plan/.context/phase-4.context.blueprint.md",
+            "context_section": "DAY 1",
+            "sub_tasks": [
+                {
+                    "id": "D1_ST1",
+                    "agent": "Tester",
+                    "desc": "Tester Agent: Design comprehensive Test Plan covering functional, security (OWASP), performance (load-testing with k6), and compliance (GDPR/CCPA) test cases",
+                    "components": [
+                        "docs/test-plan.md"
+                    ]
+                },
+                {
+                    "id": "D1_ST2",
+                    "agent": "DevOps",
+                    "desc": "DevOps Agent: Set up dedicated test environment in GCP (GKE cluster, Cloud SQL, Pub/Sub) using Terraform/Kustomize",
+                    "components": [
+                        "k8s/test-environment/",
+                        "terraform/test-env/"
+                    ]
+                },
+                {
+                    "id": "D1_ST3",
+                    "agent": "Coder",
+                    "desc": "Coder Agent: Write unit tests for Quarkus services and repositories using JUnit 5 & Mockk",
+                    "components": [
+                        "src/main/java/com/membership/backend/service/",
+                        "src/test/java/com/membership/backend/service/"
+                    ]
+                }
+            ]
+        },
+        {
+            "day": 2,
+            "context_file": ".ai/.plan/.context/phase-4.context.blueprint.md",
+            "context_section": "DAY 2",
+            "sub_tasks": [
+                {
+                    "id": "D2_ST1",
+                    "agent": "Coder",
+                    "desc": "Coder Agent: Implement integration tests with embedded PostgreSQL and Kafka using Testcontainers",
+                    "components": [
+                        "src/test/java/com/membership/backend/kafka/",
+                        "src/test/resources/application-test.yml"
+                    ]
+                },
+                {
+                    "id": "D2_ST2",
+                    "agent": "Coder",
+                    "desc": "Coder Agent: Add contract tests (Pact) for external authentication providers (Firebase, Google, Facebook)",
+                    "components": [
+                        "src/test/java/com/membership/backend/config/",
+                        "pact/contracts/"
+                    ]
+                },
+                {
+                    "id": "D2_ST3",
+                    "agent": "DevOps",
+                    "desc": "DevOps Agent: Configure CI/CD pipelines to automatically spin up test containers and run tests",
+                    "components": [
+                        ".github/workflows/test-pipeline.yml"
+                    ]
+                }
+            ]
+        },
+        {
+            "day": 3,
+            "context_file": ".ai/.plan/.context/phase-4.context.blueprint.md",
+            "context_section": "DAY 3",
+            "sub_tasks": [
+                {
+                    "id": "D3_ST1",
+                    "agent": "Coder",
+                    "desc": "Coder Agent: Create Next.js component unit tests using Jest",
+                    "components": [
+                        "src/frontend/nextjs/__tests__/",
+                        "src/frontend/nextjs/components/"
+                    ]
+                },
+                {
+                    "id": "D3_ST2",
+                    "agent": "Coder",
+                    "desc": "Coder Agent: Implement Cypress end-to-end scenarios covering multi-language UI, QR scanner flow, and notification display",
+                    "components": [
+                        "src/frontend/nextjs/cypress/",
+                        "src/frontend/nextjs/pages/"
+                    ]
+                },
+                {
+                    "id": "D3_ST3",
+                    "agent": "Tester",
+                    "desc": "Tester Agent: Execute initial test suite in CI pipeline and capture results, failures, and performance metrics",
+                    "components": [
+                        "docs/test-execution-log.md"
+                    ]
+                }
+            ]
+        },
+        {
+            "day": 4,
+            "context_file": ".ai/.plan/.context/phase-4.context.blueprint.md",
+            "context_section": "DAY 4",
+            "sub_tasks": [
+                {
+                    "id": "D4_ST1",
+                    "agent": "Coder",
+                    "desc": "Coder Agent: Create Detox/Unit tests for iOS/Android mobile wrapper",
+                    "components": [
+                        "src/mobile/nextjs-mobile/__tests__/"
+                    ]
+                },
+                {
+                    "id": "D4_ST2",
+                    "agent": "Tester",
+                    "desc": "Tester Agent: Execute performance load-testing with k6 for critical endpoints (QR scan, login)",
+                    "components": [
+                        "k6/load-tests/",
+                        "docs/performance-metrics.md"
+                    ]
+                },
+                {
+                    "id": "D4_ST3",
+                    "agent": "DevOps",
+                    "desc": "DevOps Agent: Implement monitoring (Prometheus/Grafana) and logging (ELK) for test runs",
+                    "components": [
+                        "k8s/monitoring/",
+                        "docker/prometheus/",
+                        "docker/grafana/"
+                    ]
+                }
+            ]
+        },
+        {
+            "day": 5,
+            "context_file": ".ai/.plan/.context/phase-4.context.blueprint.md",
+            "context_section": "DAY 5",
+            "sub_tasks": [
+                {
+                    "id": "D5_ST1",
+                    "agent": "Tester",
+                    "desc": "Tester Agent: Log defects in issue tracker, prioritize them, and track verification of fixes",
+                    "components": [
+                        "docs/defect-log.md"
+                    ]
+                },
+                {
+                    "id": "D5_ST2",
+                    "agent": "Reviewer",
+                    "desc": "Reviewer Agent: Validate that test coverage meets ≥90% backend and ≥80% frontend thresholds",
+                    "components": [
+                        "docs/coverage-reports/"
+                    ]
+                },
+                {
+                    "id": "D5_ST3",
+                    "agent": "Tester",
+                    "desc": "Tester Agent: Execute security verification tests for authentication tokens, password hashing, OAuth2 redirects, and GDPR/CCPA compliance",
+                    "components": [
+                        "docs/security-compliance-report.md"
+                    ]
+                }
+            ]
+        },
+        {
+            "day": 6,
+            "context_file": ".ai/.plan/.context/phase-4.context.blueprint.md",
+            "context_section": "DAY 6",
+            "sub_tasks": [
+                {
+                    "id": "D6_ST1",
+                    "agent": "Reviewer",
+                    "desc": "Reviewer Agent: Conduct peer review of all test code, test plans, and defect reports against coding standards and security guidelines",
+                    "components": [
+                        "docs/test-plan.md",
+                        "docs/test-execution-report.md",
+                        "docs/defect-log.md"
+                    ]
+                },
+                {
+                    "id": "D6_ST2",
+                    "agent": "Tester",
+                    "desc": "Tester Agent: Produce Test Execution Report with coverage metrics, pass/fail ratios, and risk assessment",
+                    "components": [
+                        "docs/test-execution-report.md"
+                    ]
+                },
+                {
+                    "id": "D6_ST3",
+                    "agent": "DevOps",
+                    "desc": "DevOps Agent: Ensure rollback capability is implemented if test failures block promotion",
+                    "components": [
+                        "k8s/rollback/",
+                        ".github/workflows/rollback.yml"
+                    ]
+                }
+            ]
+        },
+        {
+            "day": 7,
+            "context_file": ".ai/.plan/.context/phase-4.context.blueprint.md",
+            "context_section": "DAY 7",
+            "sub_tasks": [
+                {
+                    "id": "D7_ST1",
+                    "agent": "Manager",
+                    "desc": "Manager Agent: Oversee Phase-4 progress and validate that Definition of Done is met before authorizing transition to Phase 5",
+                    "components": [
+                        "docs/phase-sign-off.md"
+                    ]
+                },
+                {
+                    "id": "D7_ST2",
+                    "agent": "Manager",
+                    "desc": "Manager Agent: Coordinate stakeholder sign-off from Security, Compliance, and Product teams",
+                    "components": [
+                        "docs/stakeholder-approvals.md"
+                    ]
+                },
+                {
+                    "id": "D7_ST3",
+                    "agent": "Tester",
+                    "desc": "Tester Agent: Archive complete Test Plan, Execution Report, Defect Log, and Coverage Reports in project artifact repository",
+                    "components": [
+                        "docs/artifacts/"
+                    ]
+                }
+            ]
+        }
+    ]
 }

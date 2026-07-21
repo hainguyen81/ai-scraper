@@ -1,47 +1,83 @@
-# PHASE {{ phase_idx }} CONTEXT BLUEPRINT: {{ project_name }}
+# PHASE 5 CONTEXT BLUEPRINT: test-ai-architecture
 ## 1. Phase Operational Scope & Objectives
-- **Goal**: Advance the overall project ({{ project_name }}) toward the final deliverable by completing the specific technical objectives defined for this phase ({{ phase_idx }} of {{ num_phases }}).  
-- **Key Outcomes**:  
-  1. Implement the core functionality required by the raw requirements for this phase.  
-  2. Ensure all artifacts are integrated, tested, and ready for the next phase.  
-  3. Produce documentation and hand‑off artifacts that satisfy the Phase Definition of Done (DoD).  
-- **Constraints**:  
-  - The phase must be completed within **{{ max_days_per_phase }} days** (hard limit).  
-  - Work must stop as soon as the core technical objectives are satisfied—no unnecessary extensions or duplicated tasks.  
+- **Deploy** the Quarkus‑based backend (including Kafka connectors and PostgreSQL persistence) and the Next.js‑based mobile/web front‑end to Google Cloud Platform.
+- **Containerize** all services with Docker, push images to Google Artifact Registry, and orchestrate them on a GKE cluster using Helm/Kustomize.
+- **Configure** GKE networking (Ingress, Service‑Mesh if required), autoscaling policies, resource quotas, and IAM roles to meet security, GDPR/CCPA compliance, and high‑availability requirements.
+- **Implement** comprehensive monitoring (Prometheus + Grafana) and centralized logging (Google Cloud Logging / Stackdriver) for both backend and frontend components.
+- **Validate** end‑to‑end functionality, load‑testing, and security controls; ensure observability dashboards are operational and alert policies are defined.
+- **Document** deployment procedures, monitoring dashboards, and run‑books for ongoing operations.
 
 ## 2. Allowed Technical Scope & Directory Boundaries (Files, paths, and endpoints)
-| Category | Allowed Paths / Endpoints | Notes |
-|----------|---------------------------|-------|
-| **Source Code** | `src/{{ phase_idx }}_/` (e.g., `src/01_/`, `src/02_/`, …) | Only files directly related to this phase’s objectives. |
-| **Configuration** | `config/{{ phase_idx }}_/` | Environment‑specific configs for this phase. |
-| **Tests** | `tests/{{ phase_idx }}_/` | Unit, integration, and acceptance tests that validate the phase’s deliverables. |
-| **Documentation** | `docs/phases/{{ phase_idx }}_/` | Phase‑specific README, design notes, and API docs. |
-| **Build / CI** | `.github/workflows/phase-{{ phase_idx }}.yml` | CI pipelines that trigger builds/tests for this phase only. |
-| **External APIs** | Any endpoints listed in the **Raw Requirements** that are explicitly required for this phase. | No external services beyond those mandated. |
-| **Data / Assets** | `data/{{ phase_idx }}_/` | Input data or generated artifacts needed for this phase. |
+| Path | Purpose | Example Files / Endpoints |
+|------|---------|---------------------------|
+| `backend/` | Quarkus source code, Kafka producers/consumers, JPA entities | `src/main/java/com/membership/…`, `src/main/resources/application.yml` |
+| `frontend/` | Next.js web & mobile UI (including i18n) | `pages/…`, `components/…`, `next.config.js` |
+| `docker/` | Dockerfile(s) for backend & frontend | `backend/Dockerfile`, `frontend/Dockerfile` |
+| `k8s/` | Kubernetes manifests (Helm charts or Kustomize overlays) | `k8s/backend-deployment.yaml`, `k8s/frontend-ingress.yaml` |
+| `monitoring/` | Prometheus configs, Grafana dashboards, alert rules | `monitoring/prometheus.yml`, `monitoring/dashboards/...` |
+| `scripts/` | CI/CD pipelines (Cloud Build), deployment scripts, rollback procedures | `scripts/deploy.sh`, `scripts/ci.yaml` |
+| `docs/` | Deployment run‑books, architecture diagrams, compliance checklists | `docs/DEPLOYMENT.md`, `docs/SECURITY.md` |
+| `tests/` | Integration, load, and security test suites for deployment validation | `tests/deployment.test.js`, `tests/performance.jmx` |
 
-*All other directories, files, or endpoints are **out of scope** for this phase and must not be created, modified, or referenced.*
+*Only the directories above may be referenced or modified during Phase 5. No additional source trees or external repositories may be introduced.*
 
-## 3. Dedicated Sub-Agent Functional Directives
-| Sub‑Agent | Specific Tasks for This Phase |
-|-----------|--------------------------------|
-| **Coder** | 1. Implement the core logic defined in the **Raw Requirements** for Phase {{ phase_idx }}. <br>2. Commit changes to the `src/{{ phase_idx }}_/` directory following the project’s naming conventions. <br>3. Ensure code adheres to the style guide and passes linting. |
-| **Tester** | 1. Write unit and integration tests covering the new functionality in `tests/{{ phase_idx }}_/`. <br>2. Execute the test suite and verify 100 % pass rate before any hand‑off. <br>3. Record any defects and coordinate fixes with the Coder. |
-| **Reviewer** | 1. Perform a code review of all changes in `src/{{ phase_idx }}_/` and `tests/{{ phase_idx }}_/`. <br>2. Validate that the implementation matches the **Raw Requirements** and the **Global Context**. <br>3. Approve or request revisions; once approved, sign off in the phase tracking artifact. |
-| **DevOps** | 1. Set up the CI workflow `.github/workflows/phase-{{ phase_idx }}.yml` (if not already present) to build, test, and deploy the phase artifacts. <br>2. Ensure the pipeline runs within the allowed time budget ({{ max_days_per_phase }} days). <br>3. Publish the built artifacts to the designated staging area for verification. |
-| **Documentation Specialist** | 1. Create/update the Phase {{ phase_idx }} README in `docs/phases/{{ phase_idx }}_/`. <br>2. Document any new APIs, configuration changes, or data formats introduced. <br>3. Ensure documentation is linked from the project’s main documentation index. |
-| **Security / Compliance (if applicable)** | 1. Review the phase’s code and configurations for security best practices. <br>2. Verify compliance with any regulatory or data‑privacy constraints referenced in the **Global Context**. <br>3. Sign off on the security checklist before final hand‑off. |
+## 3. Dedicated Sub-Agent Functional Directives (Specific tasks for Coder, Tester, Reviewer, DevOps, etc.)
 
-*Each sub‑agent works **independently** and **exclusively** on the tasks listed above. No sub‑agent may modify files outside its designated scope.*
+### Coder
+- **Containerization**: Write and optimize Dockerfiles for backend (`docker/backend/Dockerfile`) and frontend (`docker/frontend/Dockerfile`), ensuring multi‑stage builds, minimal image size, and proper health‑check endpoints.
+- **Artifact Push**: Configure `gcloud builds submit` or GitHub Actions to build images, tag them with `gcr.io/<project>/<service>:<tag>`, and push to Google Artifact Registry.
+- **Configuration**: Update `application.yml` (or equivalent) with GKE‑specific externalized properties (e.g., Kafka bootstrap servers, DB connection URLs) using Secret Manager references.
+- **Code Cleanup**: Remove any local debugging stubs, ensure all external dependencies are declared, and commit final source to the repository.
+
+### DevOps
+- **Cluster Setup**: Provision a GKE Autopilot (or Standard) cluster, enable Network Policy, and install the necessary add‑ons (Secret Manager CSI driver, Cloud NAT, Cloud DNS).
+- **Helm/Kustomize**: Deploy Helm charts (or Kustomize overlays) from `k8s/`:
+  - Backend deployment with autoscaling (`k8s/backend-deployment.yaml`).
+  - Frontend ingress with TLS (`k8s/frontend-ingress.yaml`).
+  - Kafka and PostgreSQL operator installations (if using managed services).
+- **CI/CD Integration**: Create a Cloud Build pipeline (`scripts/ci.yaml`) that triggers on `main` branch, runs unit tests, builds Docker images, pushes to Artifact Registry, and executes the `scripts/deploy.sh` rollout.
+- **Monitoring Stack**: Deploy Prometheus operator and Grafana via Helm, import pre‑built dashboards from `monitoring/`, and configure data sources to scrape backend (`/actuator/metrics`) and frontend metrics.
+- **Logging**: Enable Google Cloud Logging agent on nodes, configure log routing policies to export backend logs, and set up structured JSON logging in Quarkus.
+- **Security & Compliance**:
+  - Apply Pod Security Policies (or Pod Security Standards) to enforce least‑privilege.
+  - Bind IAM Service Accounts to pods using Workload Identity.
+  - Validate GDPR/CCPA data‑handling (e.g., encryption at rest, audit logs) via automated checks.
+- **Rollback & Disaster Recovery**: Document `scripts/rollback.sh` and test a simulated failure/recovery within the 7‑day window.
+
+### Tester
+- **Smoke Tests**: Execute Postman/Newman scripts against deployed REST endpoints (e.g., `/api/members`, `/api/attendance/qr`) to confirm basic functionality.
+- **Integration Tests**: Run Kafka connector verification (produce/consume) and PostgreSQL data integrity checks using test containers.
+- **Load & Performance Tests**: Use k6 or JMeter to simulate concurrent attendance scans and user logins; assert response times < 200 ms for critical paths.
+- **Security Tests**: Perform OWASP ZAP scans on the web UI, validate authentication flows (email/password, Firebase/Google/Facebook), and confirm that sensitive fields are not exposed in logs.
+- **Monitoring Validation**: Verify that Prometheus scrapes metrics (`/actuator/metrics`, custom Kafka metrics) and that Grafana dashboards display real‑time data; test alert firing for error thresholds.
+- **Compliance Checks**: Run automated tools (e.g., `grep -R "password"` in code, check for plaintext secrets) to ensure GDPR/CCPA adherence.
+
+### Reviewer
+- **Code & Manifest Review**: Conduct pairwise reviews of Dockerfile optimizations, Helm values, and Kubernetes manifests for best‑practice compliance (resource limits, liveness probes, anti‑ARP table abuse).
+- **Security Review**: Validate IAM policies, Secret Manager usage, encryption keys, and ensure no hardcoded credentials exist.
+- **Documentation Review**: Verify that `docs/DEPLOYMENT.md` and `docs/SECURITY.md` are up‑to‑date, include run‑books, and reference correct artifact repositories.
+- **Compliance Sign‑off**: Approve that all GDPR/CCPA controls (data minimization, consent logging, data retention) are satisfied before final go‑live.
+
+### Manager (Phase‑level oversight)
+- **Progress Tracking**: Update the project board (e.g., Jira) with daily status for each sub‑agent, ensuring no phase exceeds 7 days.
+- **Risk Mitigation**: Identify and log any blockers (e.g., missing Artifact Registry permissions, GKE quota limits) and coordinate resolution with DevOps.
+- **Stakeholder Communication**: Provide a concise Phase‑5 completion brief to executives, highlighting deployment health, monitoring readiness, and compliance status.
 
 ## 4. Phase Definition of Done (DoD)
-- **Code**: All core functionality from the **Raw Requirements** is implemented, merged, and passes the full test suite (100 % pass rate).  
-- **Tests**: Comprehensive test coverage exists for the new code, and all tests are passing in the CI pipeline.  
-- **Review**: The Coder’s changes have been reviewed and approved by the Reviewer, with all comments addressed.  
-- **Build / CI**: The phase‑specific CI workflow runs successfully, builds the artifacts, and deploys them to the staging environment.  
-- **Documentation**: Phase‑specific documentation is complete, accurate, and linked from the main project docs.  
-- **Security / Compliance**: Any required security reviews or compliance checks have been completed and signed off.  
-- **Artifacts**: All required artifacts (source code, tests, configs, documentation, and build outputs) are stored in their respective `{{ phase_idx }}_/` directories and are ready for the next phase.  
-- **Hand‑off**: A formal hand‑off checklist is signed by the Reviewer and DevOps, confirming that the phase meets all criteria and is ready for progression.  
-
-*Once every item in the DoD is satisfied, the phase is considered complete. No further tasks or timeline extensions are generated.*
+- **All artifacts** (Docker images, Helm charts, monitoring configs) are built, tagged, and pushed to Google Artifact Registry.
+- **GKE cluster** is operational with all required services (backend, frontend, Kafka, PostgreSQL) running and reachable via Ingress.
+- **Health‑check endpoints** (`/actuator/health`, custom frontend health) return `200 OK` for at least three consecutive minutes.
+- **Autoscaling** policies are active (CPU, memory, custom Kafka lag metrics) and validated under load.
+- **Monitoring** stack is live: Prometheus scrapes metrics, Grafana dashboards display real‑time data, and alert rules fire correctly for errors and latency.
+- **Logging** is centralized: all application logs appear in Google Cloud Logging with structured fields; audit logs capture authentication events.
+- **Security & compliance** are verified:
+  - No plaintext secrets in repositories.
+  - IAM and Pod Security policies enforce least‑privilege.
+  - GDPR/CCPA controls (encryption, consent logging, data retention) are documented and tested.
+- **Testing** is complete:
+  - Smoke, integration, load, and security tests pass.
+  - All test reports are archived in the CI/CD artifact store.
+- **Documentation** is finalized:
+  - `docs/DEPLOYMENT.md` and `docs/SECURITY.md` are updated and reviewed.
+  - Run‑books and rollback procedures are stored in `docs/` and validated via a simulated rollback.
+- **Project closure**: Phase‑5 status is marked **Complete** in the project tracker, with a formal sign‑off from Manager, DevOps, and Security Reviewer.
