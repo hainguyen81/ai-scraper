@@ -4,5 +4,160 @@
     "project_name": "test-ai-architecture",
     "global_context_file": ".ai/.context/test-ai-architecture.global.blueprint.md",
     "source_target_dir": "sources/",
-    "days": []
+    "days": [
+        {
+            "day": 1,
+            "context_file": ".ai/.plan/.context/phase-2.context.blueprint.md",
+            "context_section": "DAY 1",
+            "sub_tasks": [
+                {
+                    "id": "D1_ST1",
+                    "agent": "none",
+                    "desc": "None Agent: Implement authentication mechanisms (email/password, Firebase, Google, Facebook)"
+                },
+                {
+                    "id": "D1_ST2",
+                    "agent": "none",
+                    "desc": "None Agent: Develop unit tests and integration tests for authentication mechanisms"
+                },
+                {
+                    "id": "D1_ST3",
+                    "agent": "none",
+                    "desc": "None Agent: Review code for adherence to coding standards, security, and scalability"
+                }
+            ]
+        },
+        {
+            "day": 2,
+            "context_file": ".ai/.plan/.context/phase-2.context.blueprint.md",
+            "context_section": "DAY 2",
+            "sub_tasks": [
+                {
+                    "id": "D2_ST1",
+                    "agent": "none",
+                    "desc": "None Agent: Develop attendance tracking features (QR code-based attendance tracking)"
+                },
+                {
+                    "id": "D2_ST2",
+                    "agent": "none",
+                    "desc": "None Agent: Develop unit tests and integration tests for attendance tracking features"
+                },
+                {
+                    "id": "D2_ST3",
+                    "agent": "none",
+                    "desc": "None Agent: Containerize the Quarkus application using Docker"
+                }
+            ]
+        },
+        {
+            "day": 3,
+            "context_file": ".ai/.plan/.context/phase-2.context.blueprint.md",
+            "context_section": "DAY 3",
+            "sub_tasks": [
+                {
+                    "id": "D3_ST1",
+                    "agent": "none",
+                    "desc": "None Agent: Implement notification systems (SMS, Zalo, in-app notifications)"
+                },
+                {
+                    "id": "D3_ST2",
+                    "agent": "none",
+                    "desc": "None Agent: Develop unit tests and integration tests for notification systems"
+                },
+                {
+                    "id": "D3_ST3",
+                    "agent": "none",
+                    "desc": "None Agent: Review code for adherence to coding standards, security, and scalability"
+                }
+            ]
+        },
+        {
+            "day": 4,
+            "context_file": ".ai/.plan/.context/phase-2.context.blueprint.md",
+            "context_section": "DAY 4",
+            "sub_tasks": [
+                {
+                    "id": "D4_ST1",
+                    "agent": "none",
+                    "desc": "None Agent: Develop API endpoints for backend features"
+                },
+                {
+                    "id": "D4_ST2",
+                    "agent": "none",
+                    "desc": "None Agent: Develop unit tests and integration tests for API endpoints"
+                },
+                {
+                    "id": "D4_ST3",
+                    "agent": "none",
+                    "desc": "None Agent: Prepare deployment scripts for GCP and GKE"
+                }
+            ]
+        },
+        {
+            "day": 5,
+            "context_file": ".ai/.plan/.context/phase-2.context.blueprint.md",
+            "context_section": "DAY 5",
+            "sub_tasks": [
+                {
+                    "id": "D5_ST1",
+                    "agent": "none",
+                    "desc": "None Agent: Integrate with Postgres database for data storage"
+                },
+                {
+                    "id": "D5_ST2",
+                    "agent": "none",
+                    "desc": "None Agent: Develop unit tests and integration tests for database integration"
+                },
+                {
+                    "id": "D5_ST3",
+                    "agent": "none",
+                    "desc": "None Agent: Review code for adherence to coding standards, security, and scalability"
+                }
+            ]
+        },
+        {
+            "day": 6,
+            "context_file": ".ai/.plan/.context/phase-2.context.blueprint.md",
+            "context_section": "DAY 6",
+            "sub_tasks": [
+                {
+                    "id": "D6_ST1",
+                    "agent": "none",
+                    "desc": "None Agent: Ensure seamless deployment on GKE"
+                },
+                {
+                    "id": "D6_ST2",
+                    "agent": "none",
+                    "desc": "None Agent: Ensure zero-downtime deployments"
+                },
+                {
+                    "id": "D6_ST3",
+                    "agent": "none",
+                    "desc": "None Agent: Test the entire system for functionality and performance"
+                }
+            ]
+        },
+        {
+            "day": 7,
+            "context_file": ".ai/.plan/.context/phase-2.context.blueprint.md",
+            "context_section": "DAY 7",
+            "sub_tasks": [
+                {
+                    "id": "D7_ST1",
+                    "agent": "none",
+                    "desc": "None Agent: Review the entire system for adherence to coding standards, security, and scalability"
+                },
+                {
+                    "id": "D7_ST2",
+                    "agent": "none",
+                    "desc": "None Agent: Develop unit tests and integration tests for the entire system"
+                },
+                {
+                    "id": "D7_ST3",
+                    "agent": "none",
+                    "desc": "None Agent: Address any remaining issues or bugs"
+                }
+            ]
+        }
+    ]
 }

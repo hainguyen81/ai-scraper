@@ -4,5 +4,70 @@
     "project_name": "test-ai-architecture",
     "global_context_file": ".ai/.context/test-ai-architecture.global.blueprint.md",
     "source_target_dir": "sources/",
-    "days": []
+    "days": [
+        {
+            "day": 1,
+            "context_file": ".ai/.plan/.context/phase-3.context.blueprint.md",
+            "context_section": "DAY 1",
+            "sub_tasks": [
+                {
+                    "id": "D1_ST1",
+                    "agent": "none",
+                    "desc": "None Agent: Develop the web application using Next.js"
+                },
+                {
+                    "id": "D1_ST2",
+                    "agent": "none",
+                    "desc": "None Agent: Implement QR code scanning for attendance tracking"
+                },
+                {
+                    "id": "D1_ST3",
+                    "agent": "none",
+                    "desc": "None Agent: Integrate multi-language support for the web application"
+                },
+                {
+                    "id": "D1_ST4",
+                    "agent": "none",
+                    "desc": "None Agent: Test the web application for functionality, performance, and security"
+                },
+                {
+                    "id": "D1_ST5",
+                    "agent": "none",
+                    "desc": "None Agent: Review the code for adherence to coding standards, best practices, and security guidelines"
+                }
+            ]
+        },
+        {
+            "day": 0,
+            "context_file": ".ai/.plan/.context/phase-3.context.blueprint.md",
+            "context_section": "DAY 0",
+            "sub_tasks": [
+                {
+                    "id": "D0_ST1",
+                    "agent": "none",
+                    "desc": "None Agent: Containerize the web application for deployment on GKE"
+                },
+                {
+                    "id": "D0_ST2",
+                    "agent": "none",
+                    "desc": "None Agent: Prepare the environment for deployment, ensure zero-downtime deployments"
+                },
+                {
+                    "id": "D0_ST3",
+                    "agent": "none",
+                    "desc": "None Agent: Build the mobile application for both iOS and Android platforms"
+                },
+                {
+                    "id": "D0_ST4",
+                    "agent": "none",
+                    "desc": "None Agent: Test the mobile application for functionality, performance, and security"
+                },
+                {
+                    "id": "D0_ST5",
+                    "agent": "none",
+                    "desc": "None Agent: Review the mobile application code for adherence to coding standards, best practices, and security guidelines"
+                }
+            ]
+        }
+    ]
 }
