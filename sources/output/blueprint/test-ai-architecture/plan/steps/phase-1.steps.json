@@ -19,7 +19,7 @@
                 {
                     "id": "D1_ST2",
                     "agent": "Manager",
-                    "desc": "Manager Agent: Draft PROJECT-CHARTER.md capturing business problem, stakeholder expectations, and high-level requirements",
+                    "desc": "Manager Agent: Draft PROJECT-CHARTER.md capturing business problem, stakeholder expectations, and requirements",
                     "components": [
                         "docs/PROJECT-CHARTER.md"
                     ]
@@ -29,30 +29,53 @@
                     "agent": "Coder",
                     "desc": "Coder Agent: Create basic Quarkus project structure under backend/src/main/java/com/membership/",
                     "components": [
-                        "backend/src/main/java/com/membership/auth/",
-                        "backend/src/main/java/com/membership/membership/",
-                        "backend/src/main/java/com/membership/attendance/",
-                        "backend/src/main/java/com/membership/notification/"
+                        "backend/src/main/java/com/membership/"
                     ]
                 },
                 {
                     "id": "D1_ST4",
                     "agent": "Coder",
-                    "desc": "Coder Agent: Define JPA entities for User, Center, Member, AttendanceRecord in backend services",
+                    "desc": "Coder Agent: Define JPA entities for User, Center, Member, AttendanceRecord",
                     "components": [
-                        "backend/src/main/java/com/membership/membership/User.java",
-                        "backend/src/main/java/com/membership/membership/Center.java",
-                        "backend/src/main/java/com/membership/membership/Member.java",
-                        "backend/src/main/java/com/membership/attendance/AttendanceRecord.java"
+                        "backend/src/main/java/com/membership/"
                     ]
                 },
                 {
                     "id": "D1_ST5",
                     "agent": "Coder",
-                    "desc": "Coder Agent: Initialize Next.js app in frontend/ directory with basic structure",
+                    "desc": "Coder Agent: Initialize Next.js app with frontend/ directory structure",
                     "components": [
-                        "frontend/package.json",
-                        "frontend/next.config.js"
+                        "frontend/"
+                    ]
+                },
+                {
+                    "id": "D1_ST6",
+                    "agent": "Coder",
+                    "desc": "Coder Agent: Install i18next and next-i18next plugins for multi-language support",
+                    "components": [
+                        "frontend/package.json"
+                    ]
+                },
+                {
+                    "id": "D1_ST7",
+                    "agent": "Tester",
+                    "desc": "Tester Agent: Review QUALITY-BENCHMARK.md and map to raw requirements",
+                    "components": [
+                        "docs/QUALITY-BENCHMARK.md"
+                    ]
+                },
+                {
+                    "id": "D1_ST8",
+                    "agent": "Reviewer",
+                    "desc": "Reviewer Agent: Establish code review checklist covering security, coding standards, documentation, and compliance",
+                    "components": []
+                },
+                {
+                    "id": "D1_ST9",
+                    "agent": "DevOps",
+                    "desc": "DevOps Agent: Create GitHub Actions workflows under ci-cd/ for backend lint, unit test, and Docker build",
+                    "components": [
+                        "ci-cd/backend.yml"
                     ]
                 }
             ]
@@ -65,7 +88,7 @@
                 {
                     "id": "D2_ST1",
                     "agent": "Manager",
-                    "desc": "Manager Agent: Circulate PROJECT-CHARTER.md for stakeholder approval and validation",
+                    "desc": "Manager Agent: Validate scope against raw requirements and circulate PROJECT-CHARTER.md for approval",
                     "components": [
                         "docs/PROJECT-CHARTER.md"
                     ]
@@ -75,37 +98,56 @@
                     "agent": "Coder",
                     "desc": "Coder Agent: Draft Kafka topic definitions (attendance.created, notification.sent) in backend/src/main/resources/kafka/",
                     "components": [
-                        "backend/src/main/resources/kafka/topics.yml"
+                        "backend/src/main/resources/kafka/"
                     ]
                 },
                 {
                     "id": "D2_ST3",
                     "agent": "Coder",
-                    "desc": "Coder Agent: Write placeholder REST resources (controllers) with OpenAPI annotations for backend services",
+                    "desc": "Coder Agent: Write placeholder REST resources with OpenAPI annotations",
                     "components": [
-                        "backend/src/main/java/com/membership/auth/AuthController.java",
-                        "backend/src/main/java/com/membership/membership/MemberController.java",
-                        "backend/src/main/java/com/membership/attendance/AttendanceController.java",
-                        "backend/src/main/java/com/membership/notification/NotificationController.java"
+                        "backend/src/main/java/com/membership/"
                     ]
                 },
                 {
                     "id": "D2_ST4",
                     "agent": "Coder",
-                    "desc": "Coder Agent: Install i18next and next-i18next plugins and create src/i18n/locales/ directory with en, vi, zh locales",
+                    "desc": "Coder Agent: Create src/i18n/locales/ directory with en, vi, zh language files",
                     "components": [
-                        "frontend/package.json",
-                        "frontend/src/i18n/locales/en.json",
-                        "frontend/src/i18n/locales/vi.json",
-                        "frontend/src/i18n/locales/zh.json"
+                        "frontend/src/i18n/locales/"
                     ]
                 },
                 {
                     "id": "D2_ST5",
-                    "agent": "Tester",
-                    "desc": "Tester Agent: Review QUALITY-BENCHMARK.md and map to raw requirements for test planning",
+                    "agent": "Coder",
+                    "desc": "Coder Agent: Add locale detection middleware (browser → default → fallback)",
                     "components": [
-                        "docs/QUALITY-BENCHMARK.md"
+                        "frontend/src/i18n/"
+                    ]
+                },
+                {
+                    "id": "D2_ST6",
+                    "agent": "Tester",
+                    "desc": "Tester Agent: Draft unit-test templates for JPA entities and service beans using JUnit5 + Mockito",
+                    "components": [
+                        "tests/unit/"
+                    ]
+                },
+                {
+                    "id": "D2_ST7",
+                    "agent": "Reviewer",
+                    "desc": "Reviewer Agent: Perform peer review of PROJECT-CHARTER.md and REQUIREMENTS.md",
+                    "components": [
+                        "docs/PROJECT-CHARTER.md",
+                        "docs/REQUIREMENTS.md"
+                    ]
+                },
+                {
+                    "id": "D2_ST8",
+                    "agent": "DevOps",
+                    "desc": "DevOps Agent: Create GitHub Actions workflow for frontend lint, test, and static export",
+                    "components": [
+                        "ci-cd/frontend.yml"
                     ]
                 }
             ]
@@ -126,7 +168,7 @@
                 {
                     "id": "D3_ST2",
                     "agent": "Coder",
-                    "desc": "Coder Agent: Add Dockerignore and create minimal multi-stage Dockerfile for backend services",
+                    "desc": "Coder Agent: Add Dockerignore and create minimal multi-stage Dockerfile",
                     "components": [
                         "backend/Dockerfile",
                         "backend/.dockerignore"
@@ -135,31 +177,45 @@
                 {
                     "id": "D3_ST3",
                     "agent": "Coder",
-                    "desc": "Coder Agent: Add locale detection middleware (browser → default → fallback) to Next.js frontend",
+                    "desc": "Coder Agent: Scaffold basic pages: Login, Dashboard, Attendance, Profile in frontend",
                     "components": [
-                        "frontend/src/i18n/middleware.js",
-                        "frontend/src/i18n/config.js"
+                        "frontend/src/pages/"
                     ]
                 },
                 {
                     "id": "D3_ST4",
-                    "agent": "Coder",
-                    "desc": "Coder Agent: Scaffold basic pages: Login, Dashboard, Attendance, Profile in frontend",
+                    "agent": "Tester",
+                    "desc": "Tester Agent: Draft integration-test plan for Kafka message flow using Testcontainers",
                     "components": [
-                        "frontend/src/pages/login.js",
-                        "frontend/src/pages/dashboard.js",
-                        "frontend/src/pages/attendance.js",
-                        "frontend/src/pages/profile.js"
+                        "tests/integration/"
                     ]
                 },
                 {
                     "id": "D3_ST5",
                     "agent": "Tester",
-                    "desc": "Tester Agent: Draft unit-test templates for JPA entities and service beans using JUnit5 + Mockito",
+                    "desc": "Tester Agent: Draft UI-test scenarios (Cypress) for login flows, QR scanning mock, notification display",
                     "components": [
-                        "tests/unit/UserTest.java",
-                        "tests/unit/MemberTest.java",
-                        "tests/unit/AttendanceRecordTest.java"
+                        "tests/ui/"
+                    ]
+                },
+                {
+                    "id": "D3_ST6",
+                    "agent": "Reviewer",
+                    "desc": "Reviewer Agent: Review ARCHITECTURE.md and approve TECH-STANDARDS.md",
+                    "components": [
+                        "docs/ARCHITECTURE.md",
+                        "docs/TECH-STANDARDS.md"
+                    ]
+                },
+                {
+                    "id": "D3_ST7",
+                    "agent": "DevOps",
+                    "desc": "DevOps Agent: Draft K8s manifests (namespace.yaml, Deployment, Service, Ingress) under infrastructure/k8s/",
+                    "components": [
+                        "infrastructure/k8s/namespace.yaml",
+                        "infrastructure/k8s/deployments/",
+                        "infrastructure/k8s/services/",
+                        "infrastructure/k8s/ingress/"
                     ]
                 }
             ]
@@ -171,47 +227,54 @@
             "sub_tasks": [
                 {
                     "id": "D4_ST1",
-                    "agent": "DevOps",
-                    "desc": "DevOps Agent: Create GitHub Actions workflows under ci-cd/ for backend lint, unit test, and Docker build",
+                    "agent": "Manager",
+                    "desc": "Manager Agent: Finalize and obtain sign-off on PROJECT-CHARTER.md and PROJECT-PLAN.md",
                     "components": [
-                        "ci-cd/backend.yml"
+                        "docs/PROJECT-CHARTER.md",
+                        "docs/PROJECT-PLAN.md"
                     ]
                 },
                 {
                     "id": "D4_ST2",
-                    "agent": "DevOps",
-                    "desc": "DevOps Agent: Create GitHub Actions workflows for frontend lint, test, and static export",
+                    "agent": "Coder",
+                    "desc": "Coder Agent: Create docker-compose.yml for local dev stack (Kafka + Postgres)",
                     "components": [
-                        "ci-cd/frontend.yml"
+                        "backend/docker-compose.yml"
                     ]
                 },
                 {
                     "id": "D4_ST3",
-                    "agent": "DevOps",
-                    "desc": "DevOps Agent: Draft K8s manifests (namespace.yaml, Deployment, Service, Ingress) under infrastructure/k8s/",
+                    "agent": "Tester",
+                    "desc": "Tester Agent: Store all test templates in tests/ directory and validate test strategy",
                     "components": [
-                        "infrastructure/k8s/namespace.yaml",
-                        "infrastructure/k8s/deployments/backend-deployment.yaml",
-                        "infrastructure/k8s/services/backend-service.yaml",
-                        "infrastructure/k8s/ingress/backend-ingress.yaml"
+                        "tests/unit/",
+                        "tests/integration/",
+                        "tests/ui/"
                     ]
                 },
                 {
                     "id": "D4_ST4",
-                    "agent": "Tester",
-                    "desc": "Tester Agent: Draft integration-test plan for Kafka message flow using Testcontainers",
+                    "agent": "Reviewer",
+                    "desc": "Reviewer Agent: Approve COMPLIANCE-CHECKLIST.md and validate GDPR/CCPA controls mapping",
                     "components": [
-                        "tests/integration/KafkaIntegrationTest.java"
+                        "docs/COMPLIANCE-CHECKLIST.md"
                     ]
                 },
                 {
                     "id": "D4_ST5",
-                    "agent": "Tester",
-                    "desc": "Tester Agent: Draft UI-test scenarios (Cypress) for login flows, QR scanning mock, and notification display",
+                    "agent": "DevOps",
+                    "desc": "DevOps Agent: Define monitoring configs (Prometheus ServiceMonitors, Grafana dashboards) in infrastructure/monitoring/",
                     "components": [
-                        "tests/ui/login.spec.js",
-                        "tests/ui/attendance.spec.js",
-                        "tests/ui/notifications.spec.js"
+                        "infrastructure/monitoring/prometheus/",
+                        "infrastructure/monitoring/grafana/"
+                    ]
+                },
+                {
+                    "id": "D4_ST6",
+                    "agent": "DevOps",
+                    "desc": "DevOps Agent: Create GitHub Actions workflow for deploy to GKE",
+                    "components": [
+                        "ci-cd/deploy.yml"
                     ]
                 }
             ]
@@ -224,46 +287,56 @@
                 {
                     "id": "D5_ST1",
                     "agent": "Reviewer",
-                    "desc": "Reviewer Agent: Establish review checklist covering security, coding standards, documentation, and compliance",
-                    "components": [
-                        "docs/REVIEW-CHECKLIST.md"
-                    ]
-                },
-                {
-                    "id": "D5_ST2",
-                    "agent": "Reviewer",
-                    "desc": "Reviewer Agent: Perform peer review of PROJECT-CHARTER.md, REQUIREMENTS.md, and ARCHITECTURE.md",
+                    "desc": "Reviewer Agent: Perform final review of all documentation artefacts and confirm compliance with standards",
                     "components": [
                         "docs/PROJECT-CHARTER.md",
                         "docs/REQUIREMENTS.md",
-                        "docs/ARCHITECTURE.md"
-                    ]
-                },
-                {
-                    "id": "D5_ST3",
-                    "agent": "Reviewer",
-                    "desc": "Reviewer Agent: Approve TECH-STANDARDS.md and COMPLIANCE-CHECKLIST.md",
-                    "components": [
+                        "docs/ARCHITECTURE.md",
                         "docs/TECH-STANDARDS.md",
+                        "docs/QUALITY-BENCHMARK.md",
                         "docs/COMPLIANCE-CHECKLIST.md"
                     ]
                 },
                 {
-                    "id": "D5_ST4",
-                    "agent": "DevOps",
-                    "desc": "DevOps Agent: Define monitoring configs (Prometheus ServiceMonitors, Grafana dashboards) in infrastructure/monitoring/",
+                    "id": "D5_ST2",
+                    "agent": "Manager",
+                    "desc": "Manager Agent: Confirm scope alignment with raw requirements and validate risk register",
                     "components": [
-                        "infrastructure/monitoring/prometheus/prometheus.yml",
-                        "infrastructure/monitoring/grafana/dashboards/backend-dashboard.json"
+                        "docs/PROJECT-PLAN.md"
+                    ]
+                },
+                {
+                    "id": "D5_ST3",
+                    "agent": "DevOps",
+                    "desc": "DevOps Agent: Validate CI/CD pipeline syntax and K8s manifest formatting",
+                    "components": [
+                        "ci-cd/backend.yml",
+                        "ci-cd/frontend.yml",
+                        "ci-cd/deploy.yml",
+                        "infrastructure/k8s/"
+                    ]
+                },
+                {
+                    "id": "D5_ST4",
+                    "agent": "Coder",
+                    "desc": "Coder Agent: Create single traceability matrix (docs/TRACEABILITY.md) linking requirements to artefacts and owners",
+                    "components": [
+                        "docs/TRACEABILITY.md"
                     ]
                 },
                 {
                     "id": "D5_ST5",
-                    "agent": "All Agents",
-                    "desc": "All Agents Agent: Create traceability matrix linking requirements to artefacts and owners in docs/TRACEABILITY.md",
+                    "agent": "Coder",
+                    "desc": "Coder Agent: Update README.md describing how to run local dev stack (docker-compose up)",
                     "components": [
-                        "docs/TRACEABILITY.md"
+                        "README.md"
                     ]
+                },
+                {
+                    "id": "D5_ST6",
+                    "agent": "Reviewer",
+                    "desc": "Reviewer Agent: Final sign-off confirmation that all Phase 1 Definition of Done criteria are satisfied",
+                    "components": []
                 }
             ]
         }
