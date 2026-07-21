@@ -189,7 +189,7 @@ def run_architect_agent(
                 time.sleep(exec_delay)
         
         # no need AI, just reading from existing context file
-        else:
+        elif not result_global:
             context_dir = os.path.join(absolute_out_dir, "context")
             global_context_file = os.path.join(context_dir, f"{safe_name}.global.blueprint.md")
             with open(global_context_file, "r", encoding="utf-8") as f:
