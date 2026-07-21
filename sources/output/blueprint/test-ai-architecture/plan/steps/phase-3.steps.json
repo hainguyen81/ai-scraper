@@ -13,48 +13,41 @@
                 {
                     "id": "D1_ST1",
                     "agent": "Coder",
-                    "desc": "Coder Agent: Scaffold Next.js project with TypeScript, Tailwind CSS, and i18n-next configuration",
+                    "desc": "Coder Agent: Scaffold Next.js project with TypeScript, Tailwind CSS, and next-i18next.",
                     "components": [
-                        "package.json",
-                        "next.config.js",
-                        "tsconfig.json",
-                        "eslint.config.js"
+                        "frontend/package.json",
+                        "frontend/tsconfig.json",
+                        "frontend/tailwind.config.js",
+                        "frontend/next.config.js"
                     ]
                 },
                 {
                     "id": "D1_ST2",
                     "agent": "Coder",
-                    "desc": "Coder Agent: Implement locale detection logic in lib/i18n.ts with stored preference → browser → default fallback",
+                    "desc": "Coder Agent: Implement locale detection middleware (i18nMiddleware) that reads cookie locale → Accept-Language → default en.",
                     "components": [
-                        "src/lib/i18n.ts"
+                        "frontend/src/middleware.ts",
+                        "frontend/src/utils/localeDetector.ts"
                     ]
                 },
                 {
                     "id": "D1_ST3",
                     "agent": "Coder",
-                    "desc": "Coder Agent: Build authentication UI components with login form and social buttons",
+                    "desc": "Coder Agent: Configure next.config.js for i18n (locales, defaultLocale, localeDetection) and SEO (generateRobotsTxt, generateSitemap).",
                     "components": [
-                        "src/components/Auth/",
-                        "src/pages/login.tsx"
+                        "frontend/next.config.js"
                     ]
                 },
                 {
                     "id": "D1_ST4",
-                    "agent": "Tester",
-                    "desc": "Tester Agent: Design UI test suite foundation with Playwright for authentication flows",
-                    "components": [
-                        "playwright.config.ts",
-                        "tests/auth.spec.ts"
-                    ]
-                },
-                {
-                    "id": "D1_ST5",
                     "agent": "Reviewer",
-                    "desc": "Reviewer Agent: Review initial project structure and authentication component architecture",
+                    "desc": "Reviewer Agent: Perform static code analysis (ESLint, Prettier) on all committed files from Day 1.",
                     "components": [
-                        "package.json",
-                        "src/components/Auth/",
-                        "src/lib/i18n.ts"
+                        "frontend/.eslintrc.json",
+                        "frontend/.prettierrc",
+                        "frontend/package.json",
+                        "frontend/next.config.js",
+                        "frontend/src/middleware.ts"
                     ]
                 }
             ]
@@ -67,39 +60,54 @@
                 {
                     "id": "D2_ST1",
                     "agent": "Coder",
-                    "desc": "Coder Agent: Integrate authentication with /api/auth/* endpoints and implement JWT/session management",
+                    "desc": "Coder Agent: Build authentication module: Internal sign‑up / sign‑in forms with validation (Zod).",
                     "components": [
-                        "src/api/auth.ts",
-                        "src/hooks/useAuth.ts",
-                        "src/lib/config.ts"
+                        "frontend/src/components/auth/SignInForm.tsx",
+                        "frontend/src/components/auth/SignUpForm.tsx",
+                        "frontend/src/schemas/authSchema.ts"
                     ]
                 },
                 {
                     "id": "D2_ST2",
                     "agent": "Coder",
-                    "desc": "Coder Agent: Create reusable component library with Auth, Member Card components using Tailwind + Headless UI",
+                    "desc": "Coder Agent: Build authentication module: OAuth buttons linking to Firebase, Google, Facebook (use react-firebase-ui / next-auth patterns).",
                     "components": [
-                        "src/components/Auth/",
-                        "src/components/Member/",
-                        "src/styles/"
+                        "frontend/src/components/auth/OAuthButtons.tsx",
+                        "frontend/src/services/auth/firebaseConfig.ts"
                     ]
                 },
                 {
                     "id": "D2_ST3",
-                    "agent": "Tester",
-                    "desc": "Tester Agent: Create i18n tests to verify locale rendering and hreflang functionality",
+                    "agent": "Coder",
+                    "desc": "Coder Agent: Build authentication module: Protected route guard (_app.tsx) that redirects unauthenticated users.",
                     "components": [
-                        "tests/i18n.spec.ts"
+                        "frontend/src/pages/_app.tsx",
+                        "frontend/src/components/auth/ProtectedRoute.tsx"
                     ]
                 },
                 {
                     "id": "D2_ST4",
-                    "agent": "DevOps",
-                    "desc": "DevOps Agent: Prepare Docker base image for Next.js front-end with build-time environment variables",
+                    "agent": "Coder",
+                    "desc": "Coder Agent: Write API client (api/client.ts) with interceptors for auth token handling and error mapping.",
                     "components": [
-                        "Dockerfile",
-                        ".env.example"
+                        "frontend/src/api/client.ts",
+                        "frontend/src/api/interceptors.ts"
                     ]
+                },
+                {
+                    "id": "D2_ST5",
+                    "agent": "Tester",
+                    "desc": "Tester Agent: Write unit tests for utility functions (localeDetector, dateFormatter) using Jest + ts‑jest.",
+                    "components": [
+                        "frontend/src/tests/unit/utils/localeDetector.test.ts",
+                        "frontend/src/tests/unit/utils/dateFormatter.test.ts"
+                    ]
+                },
+                {
+                    "id": "D2_ST6",
+                    "agent": "Reviewer",
+                    "desc": "Reviewer Agent: Review pull requests for adherence to naming conventions, security best practices, and component composition.",
+                    "components": []
                 }
             ]
         },
@@ -111,38 +119,47 @@
                 {
                     "id": "D3_ST1",
                     "agent": "Coder",
-                    "desc": "Coder Agent: Develop QR scanning flow using react-qr-reader and integrate with /api/attendance/scan endpoint",
+                    "desc": "Coder Agent: Create reusable UI components: LanguageSwitcher, ProtectedRoute, QRScanner (using html5-qrcode), ValidityBadge, NotificationToast.",
                     "components": [
-                        "src/components/Attendance/",
-                        "src/lib/qr.ts",
-                        "src/api/attendance.ts"
+                        "frontend/src/components/ui/LanguageSwitcher.tsx",
+                        "frontend/src/components/ui/QRScanner.tsx",
+                        "frontend/src/components/ui/ValidityBadge.tsx",
+                        "frontend/src/components/ui/NotificationToast.tsx"
                     ]
                 },
                 {
                     "id": "D3_ST2",
                     "agent": "Coder",
-                    "desc": "Coder Agent: Implement member dashboard with list view, search/filter functionality, and remaining validity days calculation",
+                    "desc": "Coder Agent: Develop pages/: /login – auth entry point.",
                     "components": [
-                        "src/pages/dashboard.tsx",
-                        "src/api/members.ts",
-                        "src/utils/"
+                        "frontend/src/pages/login.tsx"
                     ]
                 },
                 {
                     "id": "D3_ST3",
-                    "agent": "Tester",
-                    "desc": "Tester Agent: Perform accessibility audits (axe) on authentication and dashboard pages",
+                    "agent": "Coder",
+                    "desc": "Coder Agent: Develop pages/: /students – list of students (admin view).",
                     "components": [
-                        "tests/accessibility.spec.ts"
+                        "frontend/src/pages/students/index.tsx"
                     ]
                 },
                 {
                     "id": "D3_ST4",
-                    "agent": "Reviewer",
-                    "desc": "Reviewer Agent: Validate security implementation for authentication flows and API integrations",
+                    "agent": "Coder",
+                    "desc": "Coder Agent: Develop pages/: /students/[id] – student detail with validity badge.",
                     "components": [
-                        "src/api/auth.ts",
-                        "src/hooks/useAuth.ts"
+                        "frontend/src/pages/students/[id].tsx"
+                    ]
+                },
+                {
+                    "id": "D3_ST5",
+                    "agent": "Tester",
+                    "desc": "Tester Agent: Create component unit tests (React Testing Library) for LanguageSwitcher, ProtectedRoute, QRScanner, ValidityBadge.",
+                    "components": [
+                        "frontend/src/tests/unit/components/LanguageSwitcher.test.tsx",
+                        "frontend/src/tests/unit/components/ProtectedRoute.test.tsx",
+                        "frontend/src/tests/unit/components/QRScanner.test.tsx",
+                        "frontend/src/tests/unit/components/ValidityBadge.test.tsx"
                     ]
                 }
             ]
@@ -155,38 +172,46 @@
                 {
                     "id": "D4_ST1",
                     "agent": "Coder",
-                    "desc": "Coder Agent: Add push notification integration with Firebase Cloud Messaging and Zalo API for SMS/WhatsApp",
+                    "desc": "Coder Agent: Develop pages/: /attendance – QR scanner UI that POSTs to /api/attendance/scan and shows success/feedback.",
                     "components": [
-                        "src/components/Notifications/",
-                        "src/api/notifications.ts",
-                        "src/utils/notify.ts"
+                        "frontend/src/pages/attendance.tsx"
                     ]
                 },
                 {
                     "id": "D4_ST2",
                     "agent": "Coder",
-                    "desc": "Coder Agent: Implement SEO meta components with next/head for title, description, and hreflang tags",
+                    "desc": "Coder Agent: Develop pages/: /notifications – view sent Zalo/FCM messages.",
                     "components": [
-                        "src/components/SEO/",
-                        "src/pages/index.tsx",
-                        "src/pages/dashboard.tsx"
+                        "frontend/src/pages/notifications.tsx"
                     ]
                 },
                 {
                     "id": "D4_ST3",
-                    "agent": "Tester",
-                    "desc": "Tester Agent: Execute integration tests against mocked Quarkus endpoints using MSW",
+                    "agent": "Coder",
+                    "desc": "Coder Agent: Integrate attendance flow: Call /api/attendance/scan on successful QR read. Call /api/students/{id}/validity to refresh badge. Display real‑time feedback (toast) and update UI state.",
                     "components": [
-                        "tests/integration/",
-                        "src/mocks/"
+                        "frontend/src/services/attendanceService.ts",
+                        "frontend/src/hooks/useAttendance.ts"
                     ]
                 },
                 {
                     "id": "D4_ST4",
-                    "agent": "DevOps",
-                    "desc": "DevOps Agent: Configure GitHub Actions workflow for linting, testing, and Docker image building",
+                    "agent": "Coder",
+                    "desc": "Coder Agent: Implement notification dispatch: UI form to select Zalo group/phone and message. Trigger POST /api/notifications/zalo and POST /api/notifications/push. Show confirmation and error states.",
                     "components": [
-                        ".github/workflows/ci.yml"
+                        "frontend/src/services/notificationService.ts",
+                        "frontend/src/hooks/useNotifications.ts"
+                    ]
+                },
+                {
+                    "id": "D4_ST5",
+                    "agent": "Tester",
+                    "desc": "Tester Agent: Mock API endpoints (msw) and test integration flows: Login with internal credentials. OAuth redirect simulation. QR scan → attendance POST → validity GET. Notification send → Zalo/FCM mock responses.",
+                    "components": [
+                        "frontend/src/tests/integration/mocks/handlers.ts",
+                        "frontend/src/tests/integration/auth.test.ts",
+                        "frontend/src/tests/integration/attendance.test.ts",
+                        "frontend/src/tests/integration/notifications.test.ts"
                     ]
                 }
             ]
@@ -199,46 +224,123 @@
                 {
                     "id": "D5_ST1",
                     "agent": "Coder",
-                    "desc": "Coder Agent: Set up CI linting with ESLint, Prettier, and commit linting rules",
+                    "desc": "Coder Agent: Create Dockerfile and docker-compose.yml for containerizing the Next.js app (multi‑stage build, copy package.json, next build, serve with nginx or node).",
                     "components": [
-                        "eslint.config.js",
-                        ".prettierrc",
-                        "commitlint.config.js"
+                        "frontend/Dockerfile",
+                        "frontend/docker-compose.yml"
                     ]
                 },
                 {
                     "id": "D5_ST2",
-                    "agent": "Coder",
-                    "desc": "Coder Agent: Finalize all API error handling, loading states, and token refresh logic",
+                    "agent": "DevOps",
+                    "desc": "DevOps Agent: Define GitHub Actions workflow: Lint → Test → Build → Docker Build → Push to GCR.",
                     "components": [
-                        "src/api/auth.ts",
-                        "src/api/members.ts",
-                        "src/api/attendance.ts",
-                        "src/api/notifications.ts"
+                        ".github/workflows/frontend-ci.yml"
                     ]
                 },
                 {
                     "id": "D5_ST3",
-                    "agent": "Tester",
-                    "desc": "Tester Agent: Complete test coverage documentation and ensure ≥80% coverage threshold",
+                    "agent": "DevOps",
+                    "desc": "DevOps Agent: Create k8s/ manifests (Deployment, Service, Ingress) referencing the built image.",
                     "components": [
-                        "coverage/",
-                        "tests/"
+                        "frontend/k8s/deployment.yaml",
+                        "frontend/k8s/service.yaml",
+                        "frontend/k8s/ingress.yaml"
                     ]
                 },
                 {
                     "id": "D5_ST4",
-                    "agent": "Reviewer",
-                    "desc": "Reviewer Agent: Final code review pass focusing on security, coding standards, and i18n best practices",
+                    "agent": "Tester",
+                    "desc": "Tester Agent: Develop E2E tests (Cypress) covering: Multi‑language navigation (EN → VI). Protected route redirection. End‑to‑end attendance scanning scenario. Notification sending workflow.",
                     "components": [
-                        "src/",
-                        "tests/"
+                        "frontend/cypress/e2e/language.cy.ts",
+                        "frontend/cypress/e2e/auth.cy.ts",
+                        "frontend/cypress/e2e/attendance.cy.ts",
+                        "frontend/cypress/e2e/notifications.cy.ts"
+                    ]
+                }
+            ]
+        },
+        {
+            "day": 6,
+            "context_file": ".ai/.plan/.context/phase-3.context.blueprint.md",
+            "context_section": "DAY 6",
+            "sub_tasks": [
+                {
+                    "id": "D6_ST1",
+                    "agent": "DevOps",
+                    "desc": "DevOps Agent: Set up monitoring hooks (Prometheus/Grafana) for frontend metrics (response time, error rate) and logging (ELK stack).",
+                    "components": [
+                        "frontend/k8s/monitoring/prometheus-config.yaml",
+                        "frontend/k8s/monitoring/grafana-dashboard.yaml"
                     ]
                 },
                 {
-                    "id": "D5_ST5",
+                    "id": "D6_ST2",
+                    "agent": "DevOps",
+                    "desc": "DevOps Agent: Prepare secret management (GCP Secret Manager) for OAuth credentials and Firebase keys.",
+                    "components": [
+                        "frontend/k8s/secrets/secrets.yaml"
+                    ]
+                },
+                {
+                    "id": "D6_ST3",
+                    "agent": "Tester",
+                    "desc": "Tester Agent: Run accessibility audits (axe) and SEO checks (crawler simulation) for each locale.",
+                    "components": [
+                        "frontend/reports/accessibility-audit.md",
+                        "frontend/reports/seo-audit.md"
+                    ]
+                },
+                {
+                    "id": "D6_ST4",
+                    "agent": "Tester",
+                    "desc": "Tester Agent: Generate test coverage report; ensure ≥ 80 % coverage before hand‑off.",
+                    "components": [
+                        "frontend/coverage/lcov-report/index.html"
+                    ]
+                },
+                {
+                    "id": "D6_ST5",
+                    "agent": "Reviewer",
+                    "desc": "Reviewer Agent: Validate Docker images for size and vulnerability scanning (Trivy).",
+                    "components": [
+                        "frontend/reports/trivy-scan.md"
+                    ]
+                }
+            ]
+        },
+        {
+            "day": 7,
+            "context_file": ".ai/.plan/.context/phase-3.context.blueprint.md",
+            "context_section": "DAY 7",
+            "sub_tasks": [
+                {
+                    "id": "D7_ST1",
+                    "agent": "DevOps",
+                    "desc": "DevOps Agent: Verify that the Docker image runs correctly in a local GKE cluster (kind) before final sign‑off.",
+                    "components": [
+                        "frontend/scripts/test-local-k8s.sh"
+                    ]
+                },
+                {
+                    "id": "D7_ST2",
+                    "agent": "Tester",
+                    "desc": "Tester Agent: Document test results and any known issues in a shared test report.",
+                    "components": [
+                        "frontend/reports/test-summary-phase3.md"
+                    ]
+                },
+                {
+                    "id": "D7_ST3",
+                    "agent": "Reviewer",
+                    "desc": "Reviewer Agent: Approve final build artifacts and sign‑off for DevOps hand‑off.",
+                    "components": []
+                },
+                {
+                    "id": "D7_ST4",
                     "agent": "Manager",
-                    "desc": "Manager Agent: Validate all Phase 3 functional requirements are met and prepare for Phase 4 hand-off",
+                    "desc": "Manager Agent: Approve transition criteria before Phase 4 kickoff.",
                     "components": []
                 }
             ]

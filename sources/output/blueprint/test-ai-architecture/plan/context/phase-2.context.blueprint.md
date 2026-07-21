@@ -1,108 +1,105 @@
 # PHASE 2 CONTEXT BLUEPRINT: test-ai-architecture
 ## 1. Phase Operational Scope & Objectives
-- **Backend Service Foundation** – Build a production‑ready Quarkus application that exposes the core domain APIs for the membership‑hub platform.  
-- **Event‑Driven Architecture** – Implement Kafka producers/consumers to capture attendance events, authentication events, and notification triggers, ensuring idempotent processing and replay safety.  
-- **Data Layer** – Design and migrate a PostgreSQL schema that supports multi‑center isolation, member validity tracking, and audit logging.  
-- **Authentication & Authorization** – Deliver internal email/password login, and external OAuth2/OpenID Connect integrations with Firebase, Google, and Facebook (using Quarkus Keycloak or Spring‑Security‑OAuth2).  
-- **Attendance & Validity** – Create a QR‑scan endpoint that records daily attendance, enforces “one‑scan‑per‑day” semantics, and calculates remaining validity days for each member.  
-- **Notification Hub** – Build a notification service capable of sending Zalo SMS, group‑chat messages, and mobile push notifications (via Firebase Cloud Messaging) based on attendance events.  
-- **Containerization & Cloud Prep** – Produce a Docker image (native or JVM) and prepare Kubernetes manifests (Deployments, Services, ConfigMaps, Secrets) for deployment on GCP’s GKE cluster.  
-- **Observability** – Add structured logging, health‑checks, and metrics endpoints to satisfy the monitoring guardrail.  
+| # | Objective | Description |
+|---|-----------|-------------|
+| **2.1** | **Core Backend Build** | Create a production‑ready Quarkus application that exposes RESTful APIs for user management, authentication (internal email/password + external Firebase/Google/Facebook), and attendance handling. |
+| **2.2** | **Event‑Driven Attendance** | Implement Kafka producers/consumers to ingest QR‑scan events, persist attendance records in PostgreSQL, and trigger downstream notifications. |
+| **2.3** | **Multi‑Tenancy Support** | Design schema and service layers to isolate data per training centre while sharing the same application runtime. |
+| **2.4** | **Security & Compliance** | Apply JWT‑based auth, role‑based access control, GDPR/CCPA‑aligned data handling, and audit logging. |
+| **2.5** | **Containerization & Deployment Prep** | Build a Docker image, push to GCP Artifact Registry, and generate Kustomize/Helm manifests for GKE rollout. |
+| **2.6** | **Observability** | Add OpenTelemetry metrics, structured logging (Logback), and health‑check endpoints. |
 
-*Duration*: Days 4 – 7 (maximum 7 days total).  
+*All work must be completed within the 4‑day window (Days 4‑7). No extra days may be introduced.*
 
 ## 2. Allowed Technical Scope & Directory Boundaries (Files, paths, and endpoints)
-| Layer | Directory / File | Purpose |
-|-------|------------------|---------|
-| **Java Sources** | `src/main/java/com/membershiphub/backend/` | Core business services, repositories, security filters, Kafka producers/consumers. |
-| **Configuration** | `src/main/resources/application.yml` | Quarkus config, datasource, Kafka bootstrap servers, JWT settings. |
-| **Persistence** | `src/main/java/com/membershiphub/backend/repository/` | Spring Data JPA repositories for `Center`, `Member`, `Attendance`, `Validity`, `Notification`. |
-| **Kafka** | `src/main/java/com/membershiphub/backend/kafka/` | Producers (`AttendanceEventProducer`, `NotificationEventProducer`) and consumers (`AttendanceEventConsumer`, `AuthEventConsumer`). |
-| **Authentication** | `src/main/java/com/membershiphub/backend/security/` | JWT filter, OAuth2 configuration for Firebase/Google/Facebook providers, password hashing. |
-| **REST Resources** | `src/main/java/com/membershiphub/backend/resource/` | OpenAPI‑annotated endpoints (see below). |
-| **Docker** | `src/main/docker/Dockerfile.jvm` (or `Dockerfile.native`) | Multi‑stage build for container image. |
-| **Tests** | `src/test/java/` (unit) <br> `src/it/java/` (integration) | JUnit/Mockito tests for services, contract tests for Kafka, security tests for auth. |
-| **Kubernetes** | `k8s/` (e.g., `deployment.yaml`, `service.yaml`, `configmap.yaml`, `secret.yaml`) | Manifests for GKE deployment. |
-| **CI/CD** | `.github/workflows/ci.yml` | Build, test, Docker push to Artifact Registry (optional but recommended). |
 
-### Core REST Endpoints (must be implemented)
-- `POST /api/auth/register` – internal user registration.  
-- `POST /api/auth/login` – internal credential login, returns JWT.  
-- `POST /api/auth/social/{provider}` – OAuth2 callback for Firebase/Google/Facebook, returns JWT.  
-- `GET /api/centers` – list all centers (multi‑center support).  
-- `POST /api/centers` – create a new center.  
-- `GET /api/centers/{centerId}/members` – list members of a specific center.  
-- `POST /api/attendance/qr` – QR scan attendance (expects `memberId` and `centerId`).  
-- `GET /api/members/{memberId}/validity` – returns remaining validity days.  
-- `POST /api/notifications` – trigger notification (Zalo SMS, group chat, push).  
-- `GET /api/health` – liveness/readiness probes.  
+```
+src/
+  main/
+    java/
+      com/membership/
+        backend/               ← Core Quarkus services
+          model/
+            User.java
+            Center.java
+            Attendance.java
+          repository/
+            UserRepository.java
+            CenterRepository.java
+            AttendanceRepository.java
+          service/
+            UserService.java
+            AuthService.java
+            AttendanceService.java
+            NotificationService.java
+          resource/
+            UserResource.java          ← /api/users/{id}
+            AuthResource.java          ← /api/auth/login, /api/auth/register
+            CenterResource.java        ← /api/centers
+            AttendanceResource.java    ← /api/attendance/scan, /api/attendance/{id}
+            HealthResource.java        ← /q/health
+          security/
+            JwtAuthFilter.java
+            KeyGenerator.java
+          kafka/
+            AttendanceProducer.java
+            AttendanceConsumer.java
+        config/
+          application.properties
+    resources/
+      META-INF/
+        services/
+          org.apache.kafka.clients.KafkaProducer
+      static/
+      public/
+  test/
+    java/
+      com/membership/
+        backend/
+          ... unit & integration tests
+```
 
-### Kafka Topics (must be defined)
-- `attendance.events` – payload: `{memberId, centerId, timestamp, scanned}`.  
-- `auth.events` – payload: `{userId, action, timestamp}`.  
-- `notification.events` – payload: `{memberId, type, payload}`.  
+**Key REST Endpoints (must be implemented):**
+- `POST /api/auth/login` – internal email/password & external OAuth2 token validation.  
+- `POST /api/auth/register` – create internal user.  
+- `GET /api/users/{id}` – retrieve user profile (center‑scoped).  
+- `POST /api/attendance/scan` – accept QR payload, produce Kafka event.  
+- `GET /api/attendance/{date}` – list attendance for a centre on a given day.  
+- `GET /q/health` – liveness/readiness probes.  
 
-### Docker & GKE Boundaries
-- Docker image tag: `gcr.io/<project-id>/membership-hub-backend:<version>`.  
-- Kubernetes resources placed under `k8s/` with appropriate resource limits/requests.  
+**Kafka Topics (must exist):**
+- `attendance-scan` – raw QR events.  
+- `attendance-processed` – processed attendance records for downstream notifications.  
 
-## 3. Dedicated Sub-Agent Functional Directives (Specific tasks for Coder, Tester, Reviewer, DevOps, etc.)
-| Sub‑Agent | Concrete Tasks (Day‑wise focus) |
-|-----------|--------------------------------|
-| **Coder** | 1. Implement `MemberService` with CRUD + validity calculation logic.<br>2. Implement `AttendanceService` that writes to PostgreSQL **and** emits `attendance.events` to Kafka.<br>3. Add `NotificationService` that consumes `notification.events` and sends Zalo SMS, group chat, and FCM push.<br>4. Code OAuth2 configuration for each external provider (Firebase, Google, Facebook) using Quarkus OIDC.<br>5. Create REST resources (`AttendanceResource`, `MemberResource`, `AuthResource`) with OpenAPI annotations.<br>6. Add JWT authentication filter and role‑based access control (admin vs member).<br>7. Write a simple health‑check endpoint (`/api/health`). |
-| **Tester** | 1. Unit‑test service methods (validity calculation, duplicate‑scan guard).<br>2. Integration‑test REST endpoints using `@QuarkusTest` (including security filters).<br>3. Contract‑test Kafka producers/consumers with embedded Kafka.<br>4. Write security tests for internal and social login flows.<br>5. Performance‑test attendance endpoint under load (optional). |
-| **Reviewer** | 1. Verify OWASP Top‑10 compliance (SQL injection, XSS, insecure deserialization).<br>2. Check Kafka idempotency and exactly‑once semantics.<br>3. Validate Docker image size and use of multi‑stage builds.<br>4. Ensure GDPR/CCPA data‑handling (data retention, consent fields).<br>5. Review code style, naming conventions, and documentation (OpenAPI). |
-| **DevOps** | 1. Create a multi‑stage Docker build (`Dockerfile.jvm` or `Dockerfile.native`).<br>2. Push image to GCP Artifact Registry.<br>3. Generate Kubernetes manifests (`deployment.yaml`, `service.yaml`, `configmap.yaml`, `secret.yaml`) with resource limits and HPA.<br>4. Set up a GKE cluster (if not existing) and apply manifests.<br>5. Configure Kafka and PostgreSQL as Kubernetes Services/Clusters (using GCP managed services).<br>6. Add monitoring stubs: Prometheus metrics endpoint, structured JSON logs, and a simple Grafana dashboard. |
-| **Manager** (oversight) | 1. Track progress against Day 4‑7 milestones.<br>2. Ensure all sub‑agent deliverables are signed off before Phase 2 close.<br>3. Update Phase 2 status in the project board. |
+**Docker & GKE artefacts (must be generated):**
+- `Dockerfile.jvm` / `Dockerfile.native` under `src/main/docker`.  
+- `docker-compose.yml` (optional, for local dev).  
+- `k8s/` folder with `deployment.yaml`, `service.yaml`, `hpa.yaml`, `configmap.yaml`.  
 
-*All sub‑agents must work in parallel but on **non‑overlapping** code areas to avoid conflicts (e.g., Coder writes business logic, Tester writes tests for that logic, Reviewer audits the combined code, DevOps builds and deploys the artifact).*
+## 3. Dedicated Sub-Agent Functional Directives
+
+| Sub‑Agent | Specific Tasks (Day‑wise focus) | Deliverables |
+|-----------|--------------------------------|--------------|
+| **Coder** | **Day 4** – Set up Quarkus project, define JPA entities, create repositories, and write basic `Application.java`. <br>**Day 5** – Implement `AuthService` with JWT generation, integrate Firebase/Google/Facebook OAuth2 clients, and secure endpoints via `JwtAuthFilter`. <br>**Day 6** – Build `AttendanceResource` (QR validation), `AttendanceProducer` (send to `attendance-scan`), and `AttendanceConsumer` (write to PostgreSQL, emit `attendance-processed`). <br>**Day 7** – Add multi‑tenant schema switching (e.g., using `centerId` in repository methods), implement `NotificationService` stub, and write OpenTelemetry metrics. | Fully functional Quarkus services, compiled JAR, Dockerfiles, and a README with build commands. |
+| **Tester** | **Day 4** – Write unit tests for JPA entities and repository CRUD. <br>**Day 5** – Create integration tests for `/api/auth/login` (internal & external) using mock OAuth2 providers. <br>**Day 6** – Simulate Kafka flow with embedded Kafka broker; test `AttendanceResource` → producer → consumer → DB. <br>**Day 7** – Execute health‑check endpoint tests, verify security headers, and generate a test coverage report. | Test suite passing ≥ 90 % coverage, JUnit reports, and a test‑summary artifact. |
+| **Reviewer** | **Day 4‑5** – Perform code walk‑throughs, enforce Java/Quarkus coding standards, check security best‑practices (e.g., password hashing, token expiration). <br>**Day 6‑7** – Review Kafka message schema, ensure idempotency, and validate multi‑tenant isolation logic. | Signed-off code review checklist, comments resolved, and a compliance badge. |
+| **DevOps** | **Day 4** – Build Docker image (`docker build -f src/main/docker/Dockerfile.jvm -t gcr.io/<project>/membership-hub-backend:latest .`). <br>**Day 5** – Push image to GCP Artifact Registry (`gcloud artifacts repositories`). <br>**Day 6** – Generate Kustomize/Helm charts, create `configmap.yaml` with DB credentials (secret manager reference) and Kafka bootstrap servers. <br>**Day 7** – Deploy to GKE using `kubectl apply -k k8s/`, verify pods, and enable Cloud Monitoring/Logging for the service. | Deployed backend pod(s) in GKE, accessible endpoints, and monitoring dashboards linked. |
+| **Manager** | Daily stand‑ups, risk log updates, and approval gates for each sub‑agent’s deliverable before moving to the next day. | Phase‑gate sign‑off documentation. |
+
+*All sub‑agents must work in parallel but **must not overlap** on the same file or endpoint. The Coder owns the source code, the Tester owns test artefacts, the Reviewer owns only review comments, and DevOps owns container & deployment artefacts.*
 
 ## 4. Phase Definition of Done (DoD)
-- **Code & Build**  
-  - All Quarkus services compile and run locally in dev mode.  
-  - Docker image built, tagged, and pushed to GCP Artifact Registry.  
-  - OpenAPI specification generated and accessible (`/openapi.yaml`).  
 
-- **Data & Persistence**  
-  - PostgreSQL schema migrated (centers, members, attendance, validity, notifications).  
-  - Multi‑center data isolation verified (no cross‑center leakage).  
+- **[Backend]** All Quarkus services compile, start, and expose the required REST endpoints with correct HTTP status codes.
+- **[Auth]** Internal email/password login, registration, and external OAuth2 flows (Firebase/Google/Facebook) produce valid JWTs and enforce role‑based access.
+- **[Kafka]** `attendance-scan` topic receives QR events; `AttendanceConsumer` reliably writes to PostgreSQL; duplicate scans on the same day are idempotent.
+- **[Multi‑Tenancy]** Each centre’s data is isolated via `centerId` column; cross‑centre queries return only owned records.
+- **[Security]** Passwords hashed with bcrypt, JWT signed/encrypted, audit logs stored, GDPR/CCPA fields (consent flags) persisted.
+- **[Observability]** `/q/health` returns UP, OpenTelemetry metrics emitted, structured Logback logs with correlation IDs.
+- **[Testing]** All unit & integration tests pass, coverage ≥ 90 %, test reports attached.
+- **[Code Review]** Reviewer checklist signed, all comments addressed.
+- **[Containerization]** Docker image built, scanned for vulnerabilities, pushed to GCP Artifact Registry.
+- **[Deployment]** GKE deployment creates running pods, service exposes backend, HPA configured, monitoring dashboards active.
+- **[Documentation]** README with build, run, and deploy instructions, plus API spec (OpenAPI YAML) committed.
 
-- **Event Streaming**  
-  - Kafka topics (`attendance.events`, `auth.events`, `notification.events`) created in the GCP Kafka cluster.  
-  - Producers emit events for attendance and notifications; consumers process them without duplication.  
-
-- **Authentication**  
-  - Internal email/password registration/login functional with secure password hashing.  
-  - External OAuth2 flows for Firebase, Google, and Facebook fully functional and return valid JWTs.  
-
-- **Attendance & Validity**  
-  - QR scan endpoint (`POST /api/attendance/qr`) records attendance, enforces one‑scan‑per‑day per member, and updates validity days.  
-  - Validity calculation logic correctly subtracts days based on attendance and expiration rules.  
-
-- **Notifications**  
-  - Notification service can send Zalo SMS, group‑chat messages, and mobile push (FCM) based on attendance events.  
-  - All three channels tested with mock payloads.  
-
-- **Security & Compliance**  
-  - JWT tokens secured with RSA256, refresh mechanisms, and proper expiration.  
-  - GDPR/CCPA considerations addressed (data‑deletion endpoints, consent flags).  
-
-- **Testing**  
-  - Unit test coverage ≥ 80 % for core service classes.  
-  - Integration tests pass for all REST endpoints and Kafka contracts.  
-  - Security tests confirm authentication/authorization rules.  
-
-- **DevOps & Deployment**  
-  - Kubernetes manifests ready and applied to GKE.  
-  - Services expose correct ports, have proper HPA configurations.  
-  - Health‑check endpoints (`/api/health`) respond with 200.  
-
-- **Observability**  
-  - Structured JSON logs emitted for all business events.  
-  - Prometheus metrics endpoint (`/metrics`) includes request counts, error rates, and Kafka lag.  
-
-- **Documentation & Sign‑off**  
-  - Phase 2 deliverables documented in the project wiki.  
-  - All sub‑agents have signed off on their respective work.  
-
-When **all** the above criteria are satisfied, Phase 2 is complete and the project proceeds to Phase 3.
+When **all** DoD items are satisfied, the Phase 2 work is complete and the hand‑off to Phase 3 can commence. No further timeline extensions are permitted.

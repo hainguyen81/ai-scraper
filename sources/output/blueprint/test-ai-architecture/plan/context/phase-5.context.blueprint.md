@@ -1,83 +1,104 @@
 # PHASE 5 CONTEXT BLUEPRINT: test-ai-architecture
 ## 1. Phase Operational Scope & Objectives
-- **Deploy** the Quarkus‑based backend (including Kafka connectors and PostgreSQL persistence) and the Next.js‑based mobile/web front‑end to Google Cloud Platform.
-- **Containerize** all services with Docker, push images to Google Artifact Registry, and orchestrate them on a GKE cluster using Helm/Kustomize.
-- **Configure** GKE networking (Ingress, Service‑Mesh if required), autoscaling policies, resource quotas, and IAM roles to meet security, GDPR/CCPA compliance, and high‑availability requirements.
-- **Implement** comprehensive monitoring (Prometheus + Grafana) and centralized logging (Google Cloud Logging / Stackdriver) for both backend and frontend components.
-- **Validate** end‑to‑end functionality, load‑testing, and security controls; ensure observability dashboards are operational and alert policies are defined.
-- **Document** deployment procedures, monitoring dashboards, and run‑books for ongoing operations.
+- **Deploy** the Quarkus‑Kafka‑Postgres backend and Next.js mobile/web frontend to **Google Cloud Platform (GCP) – GKE** using Docker containers.  
+- **Configure** a production‑grade Kubernetes environment (namespaces, Ingress, Service‑Mesh if needed) with **horizontal pod autoscaling**, **liveness/readiness probes**, and **network policies** for security.  
+- **Implement** comprehensive **monitoring & logging** (Prometheus + Grafana dashboards, Cloud Logging, distributed tracing) to guarantee observability, performance tracking, and rapid incident response.  
+- **Secure** the deployment with **IAM**, **TLS/SSL**, and **compliance checks** (GDPR/CCPA) – encryption at rest/in‑transit, audit logs, and secret management (Secret Manager).  
+- **Validate** high‑availability, scalability, and end‑to‑end functionality through smoke, load, and security tests.  
+- **Document** deployment procedures, run‑books, and handover artifacts for ongoing operations.  
 
 ## 2. Allowed Technical Scope & Directory Boundaries (Files, paths, and endpoints)
-| Path | Purpose | Example Files / Endpoints |
-|------|---------|---------------------------|
-| `backend/` | Quarkus source code, Kafka producers/consumers, JPA entities | `src/main/java/com/membership/…`, `src/main/resources/application.yml` |
-| `frontend/` | Next.js web & mobile UI (including i18n) | `pages/…`, `components/…`, `next.config.js` |
-| `docker/` | Dockerfile(s) for backend & frontend | `backend/Dockerfile`, `frontend/Dockerfile` |
-| `k8s/` | Kubernetes manifests (Helm charts or Kustomize overlays) | `k8s/backend-deployment.yaml`, `k8s/frontend-ingress.yaml` |
-| `monitoring/` | Prometheus configs, Grafana dashboards, alert rules | `monitoring/prometheus.yml`, `monitoring/dashboards/...` |
-| `scripts/` | CI/CD pipelines (Cloud Build), deployment scripts, rollback procedures | `scripts/deploy.sh`, `scripts/ci.yaml` |
-| `docs/` | Deployment run‑books, architecture diagrams, compliance checklists | `docs/DEPLOYMENT.md`, `docs/SECURITY.md` |
-| `tests/` | Integration, load, and security test suites for deployment validation | `tests/deployment.test.js`, `tests/performance.jmx` |
+```
+project-root/
+├─ backend/                     # Quarkus services
+│  ├─ src/main/java/...         # Business logic, Kafka producers/consumers
+│  ├─ src/main/resources/...    # Application.yml, schema.sql
+│  ├─ src/main/docker/         # Dockerfile (multi‑stage)
+│  └─ src/main/kubernetes/     # K8s deployment/service manifests
+├─ frontend/                    # Next.js (web + mobile)
+│  ├─ src/                      # React components, i18n, SEO
+│  ├─ public/                   # Static assets
+│  ├─ Dockerfile                # Multi‑stage for Node.js
+│  └─ src/main/kubernetes/     # K8s frontend service
+├─ docker/                      # Shared build scripts, docker‑compose for local CI
+├─ k8s/                         # Helm charts / raw manifests for GKE
+│  ├─ charts/
+│  │  ├─ backend/
+│  │  └─ frontend/
+│  └─ monitoring/               # PrometheusRule, GrafanaDashboard YAMLs
+├─ monitoring/                  # Prometheus config, alerting rules
+├─ docs/                        # Deployment guides, run‑books
+└─ ci-cd/                       # GitHub Actions workflows (build, test, deploy)
+```
+- **Endpoints** to be exposed (via Ingress):
+  - `https://api.membership-hub.example.com/` (Quarkus REST API)
+  - `https://app.membership-hub.example.com/` (Next.js web UI)
+  - `https://mobile.membership-hub.example.com/` (PWA for mobile)
+- **Health / Metrics** endpoints:
+  - `/q/health` (Quarkus liveness/readiness)
+  - `/metrics` (Prometheus metrics)
+  - `/ping` (frontend health check)
 
-*Only the directories above may be referenced or modified during Phase 5. No additional source trees or external repositories may be introduced.*
-
-## 3. Dedicated Sub-Agent Functional Directives (Specific tasks for Coder, Tester, Reviewer, DevOps, etc.)
+## 3. Dedicated Sub-Agent Functional Directives
+### Manager
+- Finalize **deployment acceptance criteria** with product owner and security/compliance teams.  
+- Coordinate **go‑live checklist** and schedule **post‑deployment review** with stakeholders.  
 
 ### Coder
-- **Containerization**: Write and optimize Dockerfiles for backend (`docker/backend/Dockerfile`) and frontend (`docker/frontend/Dockerfile`), ensuring multi‑stage builds, minimal image size, and proper health‑check endpoints.
-- **Artifact Push**: Configure `gcloud builds submit` or GitHub Actions to build images, tag them with `gcr.io/<project>/<service>:<tag>`, and push to Google Artifact Registry.
-- **Configuration**: Update `application.yml` (or equivalent) with GKE‑specific externalized properties (e.g., Kafka bootstrap servers, DB connection URLs) using Secret Manager references.
-- **Code Cleanup**: Remove any local debugging stubs, ensure all external dependencies are declared, and commit final source to the repository.
-
-### DevOps
-- **Cluster Setup**: Provision a GKE Autopilot (or Standard) cluster, enable Network Policy, and install the necessary add‑ons (Secret Manager CSI driver, Cloud NAT, Cloud DNS).
-- **Helm/Kustomize**: Deploy Helm charts (or Kustomize overlays) from `k8s/`:
-  - Backend deployment with autoscaling (`k8s/backend-deployment.yaml`).
-  - Frontend ingress with TLS (`k8s/frontend-ingress.yaml`).
-  - Kafka and PostgreSQL operator installations (if using managed services).
-- **CI/CD Integration**: Create a Cloud Build pipeline (`scripts/ci.yaml`) that triggers on `main` branch, runs unit tests, builds Docker images, pushes to Artifact Registry, and executes the `scripts/deploy.sh` rollout.
-- **Monitoring Stack**: Deploy Prometheus operator and Grafana via Helm, import pre‑built dashboards from `monitoring/`, and configure data sources to scrape backend (`/actuator/metrics`) and frontend metrics.
-- **Logging**: Enable Google Cloud Logging agent on nodes, configure log routing policies to export backend logs, and set up structured JSON logging in Quarkus.
-- **Security & Compliance**:
-  - Apply Pod Security Policies (or Pod Security Standards) to enforce least‑privilege.
-  - Bind IAM Service Accounts to pods using Workload Identity.
-  - Validate GDPR/CCPA data‑handling (e.g., encryption at rest, audit logs) via automated checks.
-- **Rollback & Disaster Recovery**: Document `scripts/rollback.sh` and test a simulated failure/recovery within the 7‑day window.
+- Produce **production‑ready Dockerfiles** for Quarkus (Java 21, GraalVM optional) and Next.js (Node 20) – multi‑stage, minimal layers.  
+- Add **observability hooks**: expose `/metrics`, `/health`, and OpenTelemetry instrumentation for tracing.  
+- Commit **K8s manifests** (Deployment, Service, Ingress, HPA, NetworkPolicy) to `src/main/kubernetes/` and `k8s/charts/`.  
+- Ensure **configuration** (DB connection, Kafka bootstrap, Firebase/Google/Facebook auth credentials) is injected via **Secret Manager** or environment variables – no hard‑coded secrets.  
+- Run **local Docker Compose** smoke test against a temporary GKE sandbox to verify container startup and health endpoints.  
 
 ### Tester
-- **Smoke Tests**: Execute Postman/Newman scripts against deployed REST endpoints (e.g., `/api/members`, `/api/attendance/qr`) to confirm basic functionality.
-- **Integration Tests**: Run Kafka connector verification (produce/consume) and PostgreSQL data integrity checks using test containers.
-- **Load & Performance Tests**: Use k6 or JMeter to simulate concurrent attendance scans and user logins; assert response times < 200 ms for critical paths.
-- **Security Tests**: Perform OWASP ZAP scans on the web UI, validate authentication flows (email/password, Firebase/Google/Facebook), and confirm that sensitive fields are not exposed in logs.
-- **Monitoring Validation**: Verify that Prometheus scrapes metrics (`/actuator/metrics`, custom Kafka metrics) and that Grafana dashboards display real‑time data; test alert firing for error thresholds.
-- **Compliance Checks**: Run automated tools (e.g., `grep -R "password"` in code, check for plaintext secrets) to ensure GDPR/CCPA adherence.
+- Design **deployment smoke tests** (curl `/q/health`, `/metrics` on each service).  
+- Execute **load tests** (k6 or Locust) against the deployed API to validate HPA behavior and throughput.  
+- Perform **security scans** (Trivy for images, OWASP ZAP for runtime) and verify **network policies** block unintended pod communication.  
+- Validate **end‑to‑end user flows** (login internal/Firebase/Google/Facebook → QR check‑in → notification) against the live environment.  
+- Capture **monitoring alerts** and confirm they fire correctly for failures.  
 
 ### Reviewer
-- **Code & Manifest Review**: Conduct pairwise reviews of Dockerfile optimizations, Helm values, and Kubernetes manifests for best‑practice compliance (resource limits, liveness probes, anti‑ARP table abuse).
-- **Security Review**: Validate IAM policies, Secret Manager usage, encryption keys, and ensure no hardcoded credentials exist.
-- **Documentation Review**: Verify that `docs/DEPLOYMENT.md` and `docs/SECURITY.md` are up‑to‑date, include run‑books, and reference correct artifact repositories.
-- **Compliance Sign‑off**: Approve that all GDPR/CCPA controls (data minimization, consent logging, data retention) are satisfied before final go‑live.
+- Conduct **code review** of all Dockerfiles, K8s manifests, and CI/CD pipeline scripts for adherence to enterprise coding standards and security best practices.  
+- Verify **Helm chart versioning**, `values.yaml` templating, and that all secrets are referenced via `SecretRef`.  
+- Approve **observability configurations** (PrometheusRule, GrafanaDashboard) for completeness and naming conventions.  
 
-### Manager (Phase‑level oversight)
-- **Progress Tracking**: Update the project board (e.g., Jira) with daily status for each sub‑agent, ensuring no phase exceeds 7 days.
-- **Risk Mitigation**: Identify and log any blockers (e.g., missing Artifact Registry permissions, GKE quota limits) and coordinate resolution with DevOps.
-- **Stakeholder Communication**: Provide a concise Phase‑5 completion brief to executives, highlighting deployment health, monitoring readiness, and compliance status.
+### DevOps
+- Provision **GKE cluster** (or reuse existing) with **node pools** tuned for the workload (e.g., balanced CPU/memory).  
+- Apply **Kubernetes configurations**:
+  - Namespace `membership-hub-prod`.
+  - Deploy via **Helm** (or `kubectl apply`) using charts under `k8s/charts/`.
+  - Configure **Ingress** (Google Cloud HTTP(S) LB) with **cert‑manager** for automated TLS.
+  - Set up **Horizontal Pod Autoscaler** based on CPU/Memory metrics.
+  - Enforce **Network Policies** to isolate backend, frontend, and database pods.
+- Install **monitoring stack**:
+  - Deploy **Prometheus Operator** and **Grafana** via Helm.
+  - Import **pre‑built dashboards** from `k8s/monitoring/` and add custom panels for business metrics (e.g., attendance count, login attempts).
+  - Define **Alertmanager** rules for pod restarts, high latency, and database connection errors.
+- Integrate **Cloud Logging**: forward container logs to **Stackdriver** via sidecar or GKE logging agent.
+- Set up **CI/CD pipeline** (GitHub Actions) that:
+  - Runs unit & integration tests.
+  - Builds and pushes Docker images to **Artifact Registry**.
+  - Triggers **Helm upgrade** on the GKE cluster with rollback capability.
+- Perform **post‑deployment validation**: verify all services are reachable, health checks pass, autoscaling triggers, and monitoring dashboards are populated.
+- Document **run‑books** (restart procedures, scaling actions, log analysis) in `docs/` and share with operations team.  
 
 ## 4. Phase Definition of Done (DoD)
-- **All artifacts** (Docker images, Helm charts, monitoring configs) are built, tagged, and pushed to Google Artifact Registry.
-- **GKE cluster** is operational with all required services (backend, frontend, Kafka, PostgreSQL) running and reachable via Ingress.
-- **Health‑check endpoints** (`/actuator/health`, custom frontend health) return `200 OK` for at least three consecutive minutes.
-- **Autoscaling** policies are active (CPU, memory, custom Kafka lag metrics) and validated under load.
-- **Monitoring** stack is live: Prometheus scrapes metrics, Grafana dashboards display real‑time data, and alert rules fire correctly for errors and latency.
-- **Logging** is centralized: all application logs appear in Google Cloud Logging with structured fields; audit logs capture authentication events.
-- **Security & compliance** are verified:
-  - No plaintext secrets in repositories.
-  - IAM and Pod Security policies enforce least‑privilege.
-  - GDPR/CCPA controls (encryption, consent logging, data retention) are documented and tested.
-- **Testing** is complete:
-  - Smoke, integration, load, and security tests pass.
-  - All test reports are archived in the CI/CD artifact store.
-- **Documentation** is finalized:
-  - `docs/DEPLOYMENT.md` and `docs/SECURITY.md` are updated and reviewed.
-  - Run‑books and rollback procedures are stored in `docs/` and validated via a simulated rollback.
-- **Project closure**: Phase‑5 status is marked **Complete** in the project tracker, with a formal sign‑off from Manager, DevOps, and Security Reviewer.
+- ✅ All Docker images built, scanned, and pushed to GCP Artifact Registry.  
+- ✅ Backend and frontend services deployed in GKE, with **ready** Ingress URLs (`api`, `app`, `mobile`).  
+- ✅ **Liveness** and **readiness** probes configured and passing for every pod.  
+- ✅ **Horizontal Pod Autoscaler** active and tested under load.  
+- ✅ **Network policies** applied and validated (no cross‑namespace pod exposure).  
+- ✅ **TLS/SSL** enabled via cert‑manager; domain certificates installed.  
+- ✅ **IAM** and **Secret Manager** policies secured; no plaintext credentials in repo.  
+- ✅ **Monitoring** stack operational:
+  - Prometheus scrapes metrics from all services.  
+  - Grafana dashboards display key business and infrastructure metrics.  
+  - Alertmanager rules firing for critical events.  
+- ✅ **Logging** flowing to Cloud Logging; structured log format for audit and debugging.  
+- ✅ **Security & compliance** scans passed (Trivy, OWASP ZAP, GDPR/CCPA checks).  
+- ✅ **Smoke, load, and end‑to‑end tests** executed and all passed.  
+- ✅ **Documentation** (deployment guides, run‑books, monitoring dashboards) completed and stored in `docs/`.  
+- ✅ **Stakeholder sign‑off** obtained; project manager confirms readiness for production go‑live.  
+
+*Phase 5 is complete when every item above is verified and signed off.*

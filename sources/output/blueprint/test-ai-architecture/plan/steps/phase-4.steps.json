@@ -12,27 +12,32 @@
             "sub_tasks": [
                 {
                     "id": "D1_ST1",
-                    "agent": "Tester",
-                    "desc": "Tester Agent: Design comprehensive Test Plan covering functional, security (OWASP), performance (load-testing with k6), and compliance (GDPR/CCPA) test cases",
-                    "components": [
-                        "docs/test-plan.md"
-                    ]
+                    "agent": "Manager",
+                    "desc": "Manager Agent: Finalize test strategy and acceptance criteria document.",
+                    "components": []
                 },
                 {
                     "id": "D1_ST2",
                     "agent": "DevOps",
-                    "desc": "DevOps Agent: Set up dedicated test environment in GCP (GKE cluster, Cloud SQL, Pub/Sub) using Terraform/Kustomize",
+                    "desc": "DevOps Agent: Provision dedicated GKE test namespace 'membership-hub-test' with autoscaling enabled.",
                     "components": [
-                        "k8s/test-environment/",
-                        "terraform/test-env/"
+                        "k8s/test/namespace.yaml"
                     ]
                 },
                 {
                     "id": "D1_ST3",
-                    "agent": "DevOps",
-                    "desc": "DevOps Agent: Configure CI/CD pipelines to automatically spin up test containers and run tests",
+                    "agent": "Coder",
+                    "desc": "Coder Agent: Implement unit tests for AuthService targeting ≥90% line coverage.",
                     "components": [
-                        ".github/workflows/test-pipeline.yml"
+                        "src/test/java/com/membership/service/AuthServiceTest.java"
+                    ]
+                },
+                {
+                    "id": "D1_ST4",
+                    "agent": "Tester",
+                    "desc": "Tester Agent: Design exploratory test cases for QR scanning edge-cases (duplicate scans, expired tokens).",
+                    "components": [
+                        "TEST-README.md"
                     ]
                 }
             ]
@@ -45,28 +50,35 @@
                 {
                     "id": "D2_ST1",
                     "agent": "Coder",
-                    "desc": "Coder Agent: Write unit tests for all Quarkus services, repositories, and Kafka producers/consumers using JUnit 5 & Mockk",
+                    "desc": "Coder Agent: Implement unit tests for AttendanceService targeting ≥90% line coverage.",
                     "components": [
-                        "src/main/java/com/membership/backend/service/",
-                        "src/main/java/com/membership/backend/repository/",
-                        "src/main/java/com/membership/backend/kafka/"
+                        "src/test/java/com/membership/service/AttendanceServiceTest.java"
                     ]
                 },
                 {
                     "id": "D2_ST2",
                     "agent": "Coder",
-                    "desc": "Coder Agent: Implement integration tests with embedded PostgreSQL and Kafka using Testcontainers",
+                    "desc": "Coder Agent: Write integration tests using kafka-test-container and testcontainers to verify end-to-end event flow for attendance-events topic.",
                     "components": [
-                        "src/test/java/com/membership/backend/integration/"
+                        "src/test/java/com/membership/integration/AttendanceEventIntegrationTest.java",
+                        "src/test/resources/kafka-fixtures/attendance-events.json"
                     ]
                 },
                 {
                     "id": "D2_ST3",
                     "agent": "DevOps",
-                    "desc": "DevOps Agent: Implement monitoring (Prometheus/Grafana) and logging (ELK) for test runs",
+                    "desc": "DevOps Agent: Deploy test-ready Docker images (membership-hub:test) to the GKE test cluster.",
                     "components": [
-                        "k8s/monitoring/",
-                        "k8s/logging/"
+                        "docker-compose.test.yml",
+                        "k8s/test/deployment.yaml"
+                    ]
+                },
+                {
+                    "id": "D2_ST4",
+                    "agent": "Reviewer",
+                    "desc": "Reviewer Agent: Conduct peer review of AuthService unit test code for coding standards, naming, and documentation.",
+                    "components": [
+                        "src/test/java/com/membership/service/AuthServiceTest.java"
                     ]
                 }
             ]
@@ -79,26 +91,36 @@
                 {
                     "id": "D3_ST1",
                     "agent": "Coder",
-                    "desc": "Coder Agent: Create Next.js component unit tests (Jest) for all UI components",
+                    "desc": "Coder Agent: Implement unit tests for NotificationService and CenterService targeting ≥90% line coverage.",
                     "components": [
-                        "src/frontend/nextjs/__tests__/",
-                        "src/frontend/nextjs/components/"
+                        "src/test/java/com/membership/service/NotificationServiceTest.java",
+                        "src/test/java/com/membership/service/CenterServiceTest.java"
                     ]
                 },
                 {
                     "id": "D3_ST2",
                     "agent": "Coder",
-                    "desc": "Coder Agent: Implement Cypress end-to-end scenarios covering multi-language UI, QR scanner flow, and notification display",
+                    "desc": "Coder Agent: Add contract tests (Pact) for /api/auth/* and /api/attendance/* endpoints.",
                     "components": [
-                        "src/frontend/nextjs/cypress/"
+                        "src/test/java/com/membership/contract/AuthContractTest.java",
+                        "src/test/java/com/membership/contract/AttendanceContractTest.java"
                     ]
                 },
                 {
                     "id": "D3_ST3",
-                    "agent": "Coder",
-                    "desc": "Coder Agent: Add contract tests (Pact) for external authentication providers",
+                    "agent": "Tester",
+                    "desc": "Tester Agent: Create UI/E2E test suites (Cypress) covering multi-language locale detection and notification delivery.",
                     "components": [
-                        "src/test/java/com/membership/backend/contract/"
+                        "frontend/e2e/locale.cy.js",
+                        "frontend/e2e/notifications.cy.js"
+                    ]
+                },
+                {
+                    "id": "D3_ST4",
+                    "agent": "DevOps",
+                    "desc": "DevOps Agent: Configure CI pipeline (.github/workflows/test.yml) to trigger on PR merge and run unit/integration tests.",
+                    "components": [
+                        ".github/workflows/test.yml"
                     ]
                 }
             ]
@@ -111,27 +133,36 @@
                 {
                     "id": "D4_ST1",
                     "agent": "Tester",
-                    "desc": "Tester Agent: Execute the test suite in CI pipeline and capture results, failures, and performance metrics",
+                    "desc": "Tester Agent: Execute security scans (OWASP ZAP) on core API endpoints and log findings.",
                     "components": [
-                        "docs/test-execution-results/"
+                        "security/zap-scan-report.xml",
+                        "security/findings.md"
                     ]
                 },
                 {
                     "id": "D4_ST2",
-                    "agent": "Tester",
-                    "desc": "Tester Agent: Log defects in the issue tracker, prioritize them, and track verification",
+                    "agent": "Coder",
+                    "desc": "Coder Agent: Integrate test coverage reporting (Jacoco, Istanbul) into CI pipeline configuration.",
                     "components": [
-                        ".github/ISSUES.md"
+                        ".github/workflows/test.yml",
+                        "pom.xml",
+                        "frontend/package.json"
                     ]
                 },
                 {
                     "id": "D4_ST3",
-                    "agent": "Reviewer",
-                    "desc": "Reviewer Agent: Conduct peer review of all test code against coding standards and security guidelines",
+                    "agent": "Tester",
+                    "desc": "Tester Agent: Run performance scripts (k6) to validate throughput under simulated load for /api/attendance/* endpoints.",
                     "components": [
-                        "src/test/",
-                        "src/frontend/nextjs/__tests__/",
-                        "src/frontend/nextjs/cypress/"
+                        "performance/attendance-load-test.js"
+                    ]
+                },
+                {
+                    "id": "D4_ST4",
+                    "agent": "Reviewer",
+                    "desc": "Reviewer Agent: Verify test isolation (no side-effects between test runs) for integration test suites.",
+                    "components": [
+                        "src/test/java/com/membership/integration/AttendanceEventIntegrationTest.java"
                     ]
                 }
             ]
@@ -143,27 +174,39 @@
             "sub_tasks": [
                 {
                     "id": "D5_ST1",
-                    "agent": "Reviewer",
-                    "desc": "Reviewer Agent: Validate that test coverage meets ≥90% (backend) / ≥80% (frontend) thresholds",
+                    "agent": "Tester",
+                    "desc": "Tester Agent: Create mobile E2E test suites (Detox) covering multi-platform UI and offline-first behavior.",
                     "components": [
-                        "docs/coverage-reports/"
+                        "mobile/e2e/offline-behavior.spec.js",
+                        "mobile/e2e/ui-navigation.spec.js"
                     ]
                 },
                 {
                     "id": "D5_ST2",
                     "agent": "Tester",
-                    "desc": "Tester Agent: Execute security tests including OWASP checks, authentication token validation, and GDPR/CCPA compliance",
+                    "desc": "Tester Agent: Validate GDPR/CCPA compliance via test scripts for data export, consent revocation, and PII deletion.",
                     "components": [
-                        "docs/security-test-results/"
+                        "compliance/gdpr-export-test.js",
+                        "compliance/ccpa-deletion-test.js"
                     ]
                 },
                 {
                     "id": "D5_ST3",
-                    "agent": "Tester",
-                    "desc": "Tester Agent: Execute load tests with k6 to verify response times and scalability requirements",
+                    "agent": "DevOps",
+                    "desc": "DevOps Agent: Set up Cloud Logging & Monitoring dashboards for test environment; validate logs contain request IDs and error traces.",
                     "components": [
-                        "k6/load-tests/",
-                        "docs/performance-reports/"
+                        "src/main/resources/logback.xml",
+                        "src/main/resources/application.yml",
+                        "k8s/test/monitoring-config.yaml"
+                    ]
+                },
+                {
+                    "id": "D5_ST4",
+                    "agent": "Reviewer",
+                    "desc": "Reviewer Agent: Approve test-environment manifests and CI configuration for security and compliance.",
+                    "components": [
+                        "k8s/test/",
+                        ".github/workflows/test.yml"
                     ]
                 }
             ]
@@ -175,29 +218,33 @@
             "sub_tasks": [
                 {
                     "id": "D6_ST1",
-                    "agent": "Tester",
-                    "desc": "Tester Agent: Produce Test Execution Report with coverage metrics, pass/fail ratios, and risk assessment",
-                    "components": [
-                        "docs/test-execution-report.md"
-                    ]
+                    "agent": "Manager",
+                    "desc": "Manager Agent: Track progress against DoD and raise any blockers identified from test reports.",
+                    "components": []
                 },
                 {
                     "id": "D6_ST2",
-                    "agent": "Reviewer",
-                    "desc": "Reviewer Agent: Review and approve test artifacts before production-ready status",
+                    "agent": "Tester",
+                    "desc": "Tester Agent: Execute full regression suite (unit, integration, UI, security, performance) and compile test-execution reports.",
                     "components": [
-                        "docs/test-plan.md",
-                        "docs/test-execution-report.md",
-                        ".github/ISSUES.md"
+                        "TEST-REPORT.pdf"
                     ]
                 },
                 {
                     "id": "D6_ST3",
-                    "agent": "DevOps",
-                    "desc": "DevOps Agent: Ensure rollback capability is configured if test failures block promotion",
+                    "agent": "Coder",
+                    "desc": "Coder Agent: Remediate high-severity security issues identified in OWASP ZAP scan reports.",
                     "components": [
-                        "k8s/rollback/",
-                        ".github/workflows/rollback.yml"
+                        "security/findings.md",
+                        "src/main/java/com/membership/security/"
+                    ]
+                },
+                {
+                    "id": "D6_ST4",
+                    "agent": "DevOps",
+                    "desc": "DevOps Agent: Ensure CI pipeline fails fast on any test failure or coverage drop; publish all test artifacts.",
+                    "components": [
+                        ".github/workflows/test.yml"
                     ]
                 }
             ]
@@ -209,26 +256,34 @@
             "sub_tasks": [
                 {
                     "id": "D7_ST1",
-                    "agent": "Manager",
-                    "desc": "Manager Agent: Validate that Phase Definition of Done is met and oversee final progress",
+                    "agent": "All Agents",
+                    "desc": "All Agents Agent: Collaboratively document assumptions and limitations in TEST-README.md placed in the repository root.",
                     "components": [
-                        "docs/dod-checklist.md"
+                        "TEST-README.md"
                     ]
                 },
                 {
                     "id": "D7_ST2",
                     "agent": "Manager",
-                    "desc": "Manager Agent: Coordinate stakeholder sign-off from Security, Compliance, and Product teams",
-                    "components": [
-                        "docs/sign-off/"
-                    ]
+                    "desc": "Manager Agent: Approve test-environment provisioning and final test strategy based on execution results.",
+                    "components": []
                 },
                 {
                     "id": "D7_ST3",
-                    "agent": "Tester",
-                    "desc": "Tester Agent: Archive complete test artifacts in project's artifact repository",
+                    "agent": "Reviewer",
+                    "desc": "Reviewer Agent: Conduct final peer review of all test code and sign off that coding standards are met.",
                     "components": [
-                        "docs/artifacts/"
+                        "src/test/",
+                        "frontend/tests/",
+                        "mobile/tests/"
+                    ]
+                },
+                {
+                    "id": "D7_ST4",
+                    "agent": "DevOps",
+                    "desc": "DevOps Agent: Validate that Cloud Monitoring dashboards display key metrics (CPU, memory, Kafka lag, error rate) and alerts are configured.",
+                    "components": [
+                        "k8s/test/monitoring-config.yaml"
                     ]
                 }
             ]
