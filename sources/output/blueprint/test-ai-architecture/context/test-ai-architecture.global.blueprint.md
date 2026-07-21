@@ -1,27 +1,26 @@
-# GLOBAL PROJECT CONTEXT: test-ai-architecture
+# GLOBAL PROJECT CONTEXT: {{ project_name }}
 ## 1. Executive Summary & Tech Stack Blueprint
-The membership-hub project is a web and mobile application designed to manage students and their attendance for multiple centers. The tech stack consists of Quarkus, Kafka, Postgres, and Docker, with deployment on Google Cloud Platform (GCP) and Google Kubernetes Engine (GKE). The application will support authentication via email/password, Firebase, Google, and Facebook, and will have features such as QR code-based attendance tracking, notification systems, and multi-language support.
+The executive summary for {{ project_name }} involves the development of a comprehensive system that meets the specified requirements. Given the constraints, the tech stack will be carefully selected to ensure that the project is completed within the mandated {{ num_phases }} phases, with each phase strictly bounded between 1 to {{ max_days_per_phase }} days. The tech stack will include a combination of agile methodologies, cloud-based services, and industry-standard tools to facilitate efficient development, testing, and deployment.
 
 ## 2. Global Guardrails & Enterprise Compliance Standards
-To ensure the project's success, the following guardrails and compliance standards will be implemented:
-- **Security**: Implement OAuth 2.0 for authentication and authorization, and ensure data encryption for sensitive information.
-- **Scalability**: Design the system to scale horizontally, with load balancing and autoscaling on GKE.
-- **Compliance**: Adhere to GDPR and CCPA regulations for data protection, and ensure accessibility standards (WCAG 2.1) for the web and mobile applications.
-- **Quality**: Implement continuous integration and continuous deployment (CI/CD) pipelines, with automated testing and code reviews.
+To ensure the project's success and adherence to the constraints, the following global guardrails and enterprise compliance standards will be implemented:
+- **Scope Management:** Strictly manage the project scope to fit within the {{ num_phases }} phases, ensuring that all requirements are met without exceeding the phase count or duration limits.
+- **Timeline Management:** Enforce the chronological packing of tasks, ensuring that every requirement is covered within the specified phases and that each phase does not exceed {{ max_days_per_phase }} days.
+- **Compliance:** Adhere to all relevant industry standards and regulations, ensuring that the project's development, testing, and deployment processes are compliant with enterprise policies.
+- **Quality Assurance:** Implement rigorous testing and review processes to guarantee the delivery of high-quality outputs in each phase.
 
-## 3. Standardized Sub-Agent Persona Definitions
-The following sub-agent personas will be defined:
-- **Manager**: Responsible for project planning, resource allocation, and progress tracking.
-- **Coder**: Responsible for developing the application's features, with expertise in Quarkus, Kafka, Postgres, and Docker.
-- **Tester**: Responsible for testing the application's functionality, performance, and security.
-- **Reviewer**: Responsible for reviewing code, ensuring adherence to coding standards, and providing feedback.
-- **Docker**: Responsible for containerizing the application and ensuring seamless deployment on GKE.
-- **Deployer**: Responsible for deploying the application on GCP and GKE, and ensuring zero-downtime deployments.
+## 3. Standardized Sub-Agent Persona Definitions (Manager, Coder, Tester, Reviewer, DevOps)
+The following standardized sub-agent persona definitions will be used to ensure clear roles and responsibilities throughout the project:
+- **Manager:** Oversees the project, ensuring that it is delivered on time, within budget, and to the required quality standards. Responsible for resource allocation, phase planning, and stakeholder management.
+- **Coder:** Focuses on the development of the project's components, ensuring that they meet the specified requirements and are developed within the allocated timeframe.
+- **Tester:** Conducts thorough testing of the developed components, identifying and reporting defects to ensure that the final product meets the quality standards.
+- **Reviewer:** Reviews the project's progress, code quality, and documentation, providing feedback to improve the overall quality of the deliverables.
+- **DevOps:** Ensures the smooth operation of the project's infrastructure, facilitating the continuous integration, testing, and deployment of the project's components.
 
-## 4. Multi-Phase Segmentation Strategy Overview
-The project will be divided into 5 phases, each with a maximum duration of 7 days:
-- **Phase 1: Planning and Setup** (Days 1-3): Define project scope, create a detailed project plan, and set up the development environment.
-- **Phase 2: Backend Development** (Days 4-7): Develop the backend features, including authentication, attendance tracking, and notification systems.
-- **Phase 3: Frontend Development** (Days 8-14): Develop the web and mobile applications, with features such as QR code scanning, multi-language support, and SEO optimization.
-- **Phase 4: Testing and Quality Assurance** (Days 15-21): Conduct thorough testing, including unit testing, integration testing, and performance testing.
-- **Phase 5: Deployment and Maintenance** (Days 22-28): Deploy the application on GCP and GKE, and ensure smooth operation, with ongoing maintenance and updates.
+## 4. Multi-Phase Segmentation Strategy Overview (Plan exactly {{ num_phases }} phases)
+The multi-phase segmentation strategy for {{ project_name }} involves dividing the project into exactly {{ num_phases }} sequential phases, each with a duration of up to {{ max_days_per_phase }} days. The phases will be designed to ensure that all project requirements are met, with a focus on delivering functional components at the end of each phase. The strategy will include:
+- **Phase 1:** Project initiation, requirements gathering, and planning.
+- **Phase 2-{{ num_phases - 1 }}:** Development, testing, and review of the project's components, with each phase building on the previous one.
+- **Phase {{ num_phases }}:** Finalization of the project, including deployment, testing, and handover to the stakeholders.
+
+This strategy ensures that the project is delivered within the specified constraints, with a focus on quality, efficiency, and compliance with enterprise standards.

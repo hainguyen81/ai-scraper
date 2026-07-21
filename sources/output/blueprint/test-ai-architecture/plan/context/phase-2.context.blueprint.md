@@ -1,37 +1,44 @@
-# PHASE 2 CONTEXT BLUEPRINT: test-ai-architecture
+# PHASE {{ phase_idx }} CONTEXT BLUEPRINT: {{ project_name }}
 ## 1. Phase Operational Scope & Objectives
-The primary objective of Phase 2 is to develop the backend features of the membership-hub project, including authentication, attendance tracking, and notification systems. This phase will focus on building a scalable and secure backend using Quarkus, Kafka, and Postgres. The key deliverables for this phase include:
-- Design and implementation of authentication mechanisms (email/password, Firebase, Google, Facebook)
-- Development of attendance tracking features (QR code-based attendance tracking)
-- Implementation of notification systems (SMS, Zalo, in-app notifications)
-- Integration with Postgres database for data storage
-- Containerization using Docker for seamless deployment on GKE
+- **Goal**: Execute the core technical objectives defined for this phase within the overall project ({{ project_name }}) as outlined in the Global Context and Raw Requirements.
+- **Focus Areas**:
+  1. Align deliverables with the high‑level project vision captured in the Global Context.
+  2. Satisfy the specific functional and non‑functional requirements listed in the Raw Requirements.
+  3. Ensure all work stays within the permitted technical boundaries (see Section 2).
+- **Success Criteria**: The phase is complete when the deliverables explicitly listed under the Phase Definition of Done (DoD) are produced and verified.
 
 ## 2. Allowed Technical Scope & Directory Boundaries (Files, paths, and endpoints)
-The technical scope for Phase 2 will be limited to the backend development, with the following directory boundaries:
-- `src/main/java`: Java source code for Quarkus application
-- `src/main/resources`: Configuration files and static resources
-- `docker`: Dockerfile and containerization scripts
-- `kafka`: Kafka configuration and topic definitions
-- `postgres`: Postgres database schema and migration scripts
-- `api`: API endpoints for authentication, attendance tracking, and notification systems
-Allowed endpoints:
-- `/api/auth`: Authentication endpoints (login, logout, register)
-- `/api/attendance`: Attendance tracking endpoints (QR code scanning, attendance logging)
-- `/api/notifications`: Notification endpoints (SMS, Zalo, in-app notifications)
+- **Source Code**:
+  - `src/` – All application source files.
+  - `tests/` – Test suites for unit, integration, and end‑to‑end scenarios.
+- **Configuration**:
+  - `config/` – Project‑wide configuration files (e.g., `app.yml`, `database.yml`).
+  - `.env.example` – Example environment variables.
+- **Documentation**:
+  - `docs/` – Architectural and user documentation.
+- **Build / Deployment**:
+  - `Dockerfile` / `docker-compose.yml` – Container definitions.
+  - `CI/` – Continuous‑integration pipeline definitions.
+- **Endpoints** (if applicable):
+  - All HTTP(S) routes defined in the API specification (`api.yaml`).
+- **Restricted Areas**:
+  - No direct modifications to `node_modules/`, `.git/`, or any generated artifacts unless explicitly permitted in the Global Context.
 
-## 3. Dedicated Sub-Agent Functional Directives (Specific tasks for Coder, Tester, Reviewer, DevOps)
-- **Coder**: Implement authentication mechanisms, attendance tracking features, and notification systems. Develop API endpoints for backend features.
-- **Tester**: Develop unit tests and integration tests for backend features. Test authentication, attendance tracking, and notification systems.
-- **Reviewer**: Review code for adherence to coding standards, security, and scalability. Provide feedback on API endpoint design and implementation.
-- **DevOps (Docker)**: Containerize the Quarkus application using Docker. Ensure seamless deployment on GKE.
-- **DevOps (Deployer)**: Prepare deployment scripts for GCP and GKE. Ensure zero-downtime deployments.
+## 3. Dedicated Sub-Agent Functional Directives
+| Sub‑Agent | Primary Tasks | Hand‑off Criteria |
+|-----------|---------------|-------------------|
+| **Coder** | • Implement the core logic required by the phase.<br>• Write clean, idiomatic code following the project’s style guide.<br>• Commit changes with descriptive messages. | Code compiles/runs, passes basic linting, and includes unit tests. |
+| **Tester** | • Design and execute test cases covering the new functionality.<br>• Record and report any failures or edge‑case issues.<br>• Update test coverage metrics. | All tests pass; test coverage meets the minimum threshold defined in the Global Context. |
+| **Reviewer** | • Perform code review against the established standards.<br>• Verify that the implementation aligns with the Raw Requirements.<br>• Approve or request revisions. | Review checklist completed; no critical issues remain. |
+| **DevOps** | • Ensure the build and deployment pipelines can incorporate the new artifacts.<br>• Validate container images and configuration changes.<br>• Update any required documentation for operations. | CI/CD pipeline runs successfully; artifacts are deployable to the staging environment. |
+| **Documenter** *(if applicable)* | • Capture design decisions, API changes, and usage instructions.<br>• Update the `docs/` folder with phase‑specific notes. | Documentation is coherent, formatted correctly, and linked from the main README. |
 
 ## 4. Phase Definition of Done (DoD)
-Phase 2 is considered complete when:
-- All backend features (authentication, attendance tracking, notification systems) are implemented and tested.
-- API endpoints are designed and implemented for backend features.
-- Code is reviewed and meets coding standards, security, and scalability requirements.
-- Docker containerization is complete, and deployment scripts are prepared for GCP and GKE.
-- Unit tests and integration tests are developed and passed for backend features.
-The maximum duration for Phase 2 is 7 days. Once the core technical objectives are satisfied, the phase will be considered complete, and progression to Phase 3 will begin.
+- [ ] All core technical objectives from the Raw Requirements are implemented and functional.
+- [ ] Source code passes linting, formatting, and static analysis checks.
+- [ ] Unit and integration tests covering the new functionality achieve the required coverage (≥ 80 % unless otherwise specified).
+- [ ] All tests in the test suite pass without failures or errors.
+- [ ] Code review checklist is signed off by the Reviewer.
+- [ ] Build artifacts are successfully generated and can be deployed to the staging environment via the CI/CD pipeline.
+- [ ] Updated documentation (if any) is committed and reviewed.
+- [ ] No outstanding issues or blockers remain that prevent progression to the next phase.
