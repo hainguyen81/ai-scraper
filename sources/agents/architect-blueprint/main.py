@@ -285,6 +285,9 @@ def run_architect_agent(
     # result should be good for all
     return result_global and result_phase and result_steps
 
+def str2bool(v):
+    return str(v).lower() in ("yes", "true", "t", "1")
+
 if __name__ == "__main__":
     # Configure CLI arguments parsing to allow dynamic inputs for requirements path, phase count, and output location.
     datetimeStr = datetime.now().strftime("%Y%m%d%H%M%S")
@@ -304,7 +307,8 @@ if __name__ == "__main__":
     parser.add_argument("--api-model-phase-steps-days-per-chunk", type=int, default=5, help="Execution Days per AI Request Chunk")
     parser.add_argument("--exec-mode", type=int, default=0, help="AI Execution Mode: Global / Phase Context / Steps. Acceptable values: 0, 1, 2, 3")
     parser.add_argument("--exec-delay", type=int, default=3, help="AI Execution Delay in seconds")
-    parser.add_argument("--exec-rotate-model", action="store_true", default=False, help="Specify whether should rotate models if exceeding rate limit")
+    # use method `str2bool` to parse argument
+    parser.add_argument("--exec-rotate-model", type=str2bool, default=False,  help="Specify whether should rotate models if exceeding rate limit")
     
     args = parser.parse_args()
     
