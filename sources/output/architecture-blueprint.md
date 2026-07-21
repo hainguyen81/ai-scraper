@@ -3189,3 +3189,478 @@ You are a rigid technical translator. Map high-level Markdown workflows into pre
 Error code: 429 - {'error': {'message': 'Rate limit reached for model `llama-3.3-70b-versatile` in organization `org_01kx7x6rbpftmr50sr2yyb78qm` service tier `on_demand` on tokens per day (TPD): Limit 100000, Used 94528, Requested 5828. Please try again in 5m7.584s. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing', 'type': 'tokens', 'code': 'rate_limit_exceeded'}}
 ```
 
+# Phase 1 STEPS - Prompt:
+
+
+                    Analyze the attached Phase 1 Context Markdown content. 
+                    Extract and translate ALL daily steps, checklists, and agent tasks.
+
+                    CRITICAL INSTRUCTIONS FOR PRODUCTION STABILITY:
+                    1. Target Range Focus: Carefully locate all scheduling logs and task sections for any Day that falls strictly between Day 1 and Day 0 (inclusive).
+                    2. Mandatory Data Extraction: You MUST parse and generate a day object node inside the 'days' array for EVERY single day within the requested range [1 to 0]. 
+                    3. NO ESCAPE HATCH: Do NOT return an empty array for 'days' under any circumstances if there is markdown text present. Even if tasks are not explicitly labeled, parse the paragraph descriptions into technical sub-tasks for that day.
+                    4. STRICT LITERAL FIELD VALUES (MANDATORY):
+                       - Populate the exact string ".ai/.context/test-ai-architecture.global.blueprint.md" into the 'global_context_file' field.
+                       - Populate the exact string "sources/" into the 'source_target_dir' field.
+                    5. Task Details: For every micro task item under a specific day:
+                       - Provide a sequential task description text into the 'task' field.
+                       - Provide the assigned role (e.g., 'Coder', 'Tester', 'Reviewer') into the 'agent', 'subAgent', 'assignee' or 'subAgent' field.
+                    6. Context Fields: For each day object, set 'day' as the integer value of that day, set 'context_file' to '.ai/.plan/.context/phase-1.context.blueprint.md', and set 'context_section' to 'DAY ' followed by the day number.
+
+                    You MUST conform strictly to your required JSON Schema layout design structure:
+                    {
+  "$defs": {
+    "DailyStep": {
+      "properties": {
+        "day": {
+          "description": "Timeline iteration day inside this isolated phase.",
+          "title": "Day",
+          "type": "integer"
+        },
+        "context_file": {
+          "description": "The phase context Markdown file for closure on this day.",
+          "title": "Context File",
+          "type": "string"
+        },
+        "context_section": {
+          "description": "The day targeted for closure on this day.",
+          "title": "Context Section",
+          "type": "string"
+        },
+        "sub_tasks": {
+          "description": "Array of isolated micro-tasks assigned to sub-agents.",
+          "items": {
+            "$ref": "##/$defs/SubAgentTask"
+          },
+          "title": "Sub Tasks",
+          "type": "array"
+        }
+      },
+      "required": [
+        "day",
+        "context_file",
+        "context_section",
+        "sub_tasks"
+      ],
+      "title": "DailyStep",
+      "type": "object"
+    },
+    "SubAgentTask": {
+      "properties": {
+        "id": {
+          "description": "Sub-Task identity of Task that sub-agent role executing.",
+          "title": "Id",
+          "type": "string"
+        },
+        "agent": {
+          "description": "Target sub-agent role executing the task.",
+          "title": "Agent",
+          "type": "string"
+        },
+        "desc": {
+          "description": "Literal, low-level technical step assigned to the agent.",
+          "title": "Desc",
+          "type": "string"
+        }
+      },
+      "required": [
+        "id",
+        "agent",
+        "desc"
+      ],
+      "title": "SubAgentTask",
+      "type": "object"
+    }
+  },
+  "properties": {
+    "phase_id": {
+      "description": "Target phase tracker index.",
+      "title": "Phase Id",
+      "type": "integer"
+    },
+    "phase_name": {
+      "description": "Target phase tracker name.",
+      "title": "Phase Name",
+      "type": "string"
+    },
+    "project_name": {
+      "description": "Target project tracker name.",
+      "title": "Project Name",
+      "type": "string"
+    },
+    "global_context_file": {
+      "description": "Project global context Markdown file for closure.",
+      "title": "Global Context File",
+      "type": "string"
+    },
+    "source_target_dir": {
+      "description": "Project sources folder path for closure.",
+      "title": "Source Target Dir",
+      "type": "string"
+    },
+    "days": {
+      "description": "Day-by-day engineering tracking steps.",
+      "items": {
+        "$ref": "##/$defs/DailyStep"
+      },
+      "title": "Days",
+      "type": "array"
+    }
+  },
+  "required": [
+    "phase_id",
+    "phase_name",
+    "project_name",
+    "global_context_file",
+    "source_target_dir",
+    "days"
+  ],
+  "title": "PhaseStepsPlan",
+  "type": "object"
+}
+
+                    --- PHASE 1 CONTEXT MARKDOWN ---
+                    ## PHASE 1 CONTEXT BLUEPRINT: test-ai-architecture
+#### 1. Phase Operational Scope & Objectives
+The primary objective of Phase 1 is to define the project scope, create a detailed project plan, and set up the development environment. This phase will focus on planning and setup, ensuring that all necessary components are in place for the successful execution of the project. The key deliverables for this phase include:
+- A detailed project plan outlining the scope, timeline, and resources required
+- A setup development environment with the necessary tools and technologies (Quarkus, Kafka, Postgres, Docker)
+- Definition of the project's technical architecture and high-level design
+
+#### 2. Allowed Technical Scope & Directory Boundaries (Files, paths, and endpoints)
+The technical scope for Phase 1 includes:
+- Setting up the project directory structure
+- Initializing the Git repository
+- Creating a basic Quarkus project template
+- Setting up Kafka and Postgres for messaging and data storage
+- Configuring Docker for containerization
+- Defining the API endpoints for authentication, attendance tracking, and notification systems
+- Creating a high-level design document outlining the system architecture
+
+The allowed directory boundaries include:
+- `src/main/java` for Java source code
+- `src/main/resources` for configuration files and resources
+- `docker` for Docker configuration files
+- `kafka` for Kafka configuration files
+- `postgres` for Postgres configuration files
+
+#### 3. Dedicated Sub-Agent Functional Directives (Specific tasks for Coder, Tester, Reviewer, DevOps)
+The following sub-agents will be involved in Phase 1:
+- **Coder**: Responsible for setting up the Quarkus project template, configuring Kafka and Postgres, and defining the API endpoints.
+- **Tester**: Not actively involved in this phase, but will review the project plan and technical architecture.
+- **Reviewer**: Responsible for reviewing the project plan, technical architecture, and high-level design document.
+- **DevOps (Docker)**: Responsible for setting up the Docker configuration and ensuring containerization.
+- **Deployer**: Not actively involved in this phase, but will review the project plan and technical architecture.
+
+#### 4. Phase Definition of Done (DoD)
+Phase 1 is considered complete when:
+- The project plan is finalized and approved by all stakeholders
+- The development environment is set up and configured
+- The Quarkus project template is created and configured
+- Kafka and Postgres are set up and configured
+- Docker is configured for containerization
+- The high-level design document is completed and approved by all stakeholders
+- The project directory structure is initialized and the Git repository is set up
+
+The expected duration for Phase 1 is 3 days, with the following milestones:
+- Day 1: Project planning and scope definition
+- Day 2: Setup of development environment and Quarkus project template
+- Day 3: Configuration of Kafka, Postgres, and Docker, and completion of high-level design document
+                    ------------------------------------------
+                    
+
+# System Instruction
+
+You are a rigid technical translator. Map high-level Markdown workflows into precise, executable JSON schemas.
+
+# Raw Response / Exception:
+
+```json
+Based on the provided Phase 1 Context Markdown content, I will extract and translate the daily steps, checklists, and agent tasks into a JSON schema that conforms to the required layout design structure.
+
+Here is the resulting JSON object:
+
+```json
+{
+  "phase_id": 1,
+  "phase_name": "Phase 1",
+  "project_name": "test-ai-architecture",
+  "global_context_file": ".ai/.context/test-ai-architecture.global.blueprint.md",
+  "source_target_dir": "sources/",
+  "days": [
+    {
+      "day": 1,
+      "context_file": ".ai/.plan/.context/phase-1.context.blueprint.md",
+      "context_section": "DAY 1",
+      "sub_tasks": [
+        {
+          "id": "1.1",
+          "agent": "Coder",
+          "desc": "Define project scope and objectives"
+        },
+        {
+          "id": "1.2",
+          "agent": "Coder",
+          "desc": "Create a detailed project plan outlining scope, timeline, and resources required"
+        },
+        {
+          "id": "1.3",
+          "agent": "Reviewer",
+          "desc": "Review project plan and provide feedback"
+        }
+      ]
+    },
+    {
+      "day": 2,
+      "context_file": ".ai/.plan/.context/phase-1.context.blueprint.md",
+      "context_section": "DAY 2",
+      "sub_tasks": [
+        {
+          "id": "2.1",
+          "agent": "Coder",
+          "desc": "Set up development environment with necessary tools and technologies (Quarkus, Kafka, Postgres, Docker)"
+        },
+        {
+          "id": "2.2",
+          "agent": "Coder",
+          "desc": "Create a basic Quarkus project template"
+        },
+        {
+          "id": "2.3",
+          "agent": "DevOps (Docker)",
+          "desc": "Set up Docker configuration for containerization"
+        }
+      ]
+    },
+    {
+      "day": 3,
+      "context_file": ".ai/.plan/.context/phase-1.context.blueprint.md",
+      "context_section": "DAY 3",
+      "sub_tasks": [
+        {
+          "id": "3.1",
+          "agent": "Coder",
+          "desc": "Configure Kafka and Postgres for messaging and data storage"
+        },
+        {
+          "id": "3.2",
+          "agent": "Coder",
+          "desc": "Define API endpoints for authentication, attendance tracking, and notification systems"
+        },
+        {
+          "id": "3.3",
+          "agent": "Reviewer",
+          "desc": "Review high-level design document and provide feedback"
+        },
+        {
+          "id": "3.4",
+          "agent": "DevOps (Docker)",
+          "desc": "Ensure containerization is working correctly"
+        }
+      ]
+    },
+    {
+      "day": 0,
+      "context_file": ".ai/.plan/.context/phase-1.context.blueprint.md",
+      "context_section": "DAY 0",
+      "sub_tasks": [
+        {
+          "id": "0.1",
+          "agent": "Coder",
+          "desc": "Initialize project directory structure and set up Git repository"
+        },
+        {
+          "id": "0.2",
+          "agent": "Coder",
+          "desc": "Create high-level design document outlining system architecture"
+        }
+      ]
+    }
+  ]
+}
+```
+
+Note that I have included Day 0 in the output, as per the instructions to include all days between Day 1 and Day 0 (inclusive). I have also populated the `global_context_file` and `source_target_dir` fields with the exact string values specified in the instructions. Additionally, I have assigned tasks to agents based on the roles mentioned in the Markdown content.
+```
+
+# Phase 2 STEPS - Prompt:
+
+
+                    Analyze the attached Phase 2 Context Markdown content. 
+                    Extract and translate ALL daily steps, checklists, and agent tasks.
+
+                    CRITICAL INSTRUCTIONS FOR PRODUCTION STABILITY:
+                    1. Target Range Focus: Carefully locate all scheduling logs and task sections for any Day that falls strictly between Day 1 and Day 0 (inclusive).
+                    2. Mandatory Data Extraction: You MUST parse and generate a day object node inside the 'days' array for EVERY single day within the requested range [1 to 0]. 
+                    3. NO ESCAPE HATCH: Do NOT return an empty array for 'days' under any circumstances if there is markdown text present. Even if tasks are not explicitly labeled, parse the paragraph descriptions into technical sub-tasks for that day.
+                    4. STRICT LITERAL FIELD VALUES (MANDATORY):
+                       - Populate the exact string ".ai/.context/test-ai-architecture.global.blueprint.md" into the 'global_context_file' field.
+                       - Populate the exact string "sources/" into the 'source_target_dir' field.
+                    5. Task Details: For every micro task item under a specific day:
+                       - Provide a sequential task description text into the 'task' field.
+                       - Provide the assigned role (e.g., 'Coder', 'Tester', 'Reviewer') into the 'agent', 'subAgent', 'assignee' or 'subAgent' field.
+                    6. Context Fields: For each day object, set 'day' as the integer value of that day, set 'context_file' to '.ai/.plan/.context/phase-2.context.blueprint.md', and set 'context_section' to 'DAY ' followed by the day number.
+
+                    You MUST conform strictly to your required JSON Schema layout design structure:
+                    {
+  "$defs": {
+    "DailyStep": {
+      "properties": {
+        "day": {
+          "description": "Timeline iteration day inside this isolated phase.",
+          "title": "Day",
+          "type": "integer"
+        },
+        "context_file": {
+          "description": "The phase context Markdown file for closure on this day.",
+          "title": "Context File",
+          "type": "string"
+        },
+        "context_section": {
+          "description": "The day targeted for closure on this day.",
+          "title": "Context Section",
+          "type": "string"
+        },
+        "sub_tasks": {
+          "description": "Array of isolated micro-tasks assigned to sub-agents.",
+          "items": {
+            "$ref": "##/$defs/SubAgentTask"
+          },
+          "title": "Sub Tasks",
+          "type": "array"
+        }
+      },
+      "required": [
+        "day",
+        "context_file",
+        "context_section",
+        "sub_tasks"
+      ],
+      "title": "DailyStep",
+      "type": "object"
+    },
+    "SubAgentTask": {
+      "properties": {
+        "id": {
+          "description": "Sub-Task identity of Task that sub-agent role executing.",
+          "title": "Id",
+          "type": "string"
+        },
+        "agent": {
+          "description": "Target sub-agent role executing the task.",
+          "title": "Agent",
+          "type": "string"
+        },
+        "desc": {
+          "description": "Literal, low-level technical step assigned to the agent.",
+          "title": "Desc",
+          "type": "string"
+        }
+      },
+      "required": [
+        "id",
+        "agent",
+        "desc"
+      ],
+      "title": "SubAgentTask",
+      "type": "object"
+    }
+  },
+  "properties": {
+    "phase_id": {
+      "description": "Target phase tracker index.",
+      "title": "Phase Id",
+      "type": "integer"
+    },
+    "phase_name": {
+      "description": "Target phase tracker name.",
+      "title": "Phase Name",
+      "type": "string"
+    },
+    "project_name": {
+      "description": "Target project tracker name.",
+      "title": "Project Name",
+      "type": "string"
+    },
+    "global_context_file": {
+      "description": "Project global context Markdown file for closure.",
+      "title": "Global Context File",
+      "type": "string"
+    },
+    "source_target_dir": {
+      "description": "Project sources folder path for closure.",
+      "title": "Source Target Dir",
+      "type": "string"
+    },
+    "days": {
+      "description": "Day-by-day engineering tracking steps.",
+      "items": {
+        "$ref": "##/$defs/DailyStep"
+      },
+      "title": "Days",
+      "type": "array"
+    }
+  },
+  "required": [
+    "phase_id",
+    "phase_name",
+    "project_name",
+    "global_context_file",
+    "source_target_dir",
+    "days"
+  ],
+  "title": "PhaseStepsPlan",
+  "type": "object"
+}
+
+                    --- PHASE 2 CONTEXT MARKDOWN ---
+                    ## PHASE 2 CONTEXT BLUEPRINT: test-ai-architecture
+#### 1. Phase Operational Scope & Objectives
+The primary objective of Phase 2 is to develop the backend features of the membership-hub project, including authentication, attendance tracking, and notification systems. This phase will focus on building a scalable and secure backend using Quarkus, Kafka, and Postgres. The key deliverables for this phase include:
+- Design and implementation of authentication mechanisms (email/password, Firebase, Google, Facebook)
+- Development of attendance tracking features (QR code-based attendance tracking)
+- Implementation of notification systems (SMS, Zalo, in-app notifications)
+- Integration with Postgres database for data storage
+- Containerization using Docker for seamless deployment on GKE
+
+#### 2. Allowed Technical Scope & Directory Boundaries (Files, paths, and endpoints)
+The technical scope for Phase 2 will be limited to the backend development, with the following directory boundaries:
+- `src/main/java`: Java source code for Quarkus application
+- `src/main/resources`: Configuration files and static resources
+- `docker`: Dockerfile and containerization scripts
+- `kafka`: Kafka configuration and topic definitions
+- `postgres`: Postgres database schema and migration scripts
+- `api`: API endpoints for authentication, attendance tracking, and notification systems
+Allowed endpoints:
+- `/api/auth`: Authentication endpoints (login, logout, register)
+- `/api/attendance`: Attendance tracking endpoints (QR code scanning, attendance logging)
+- `/api/notifications`: Notification endpoints (SMS, Zalo, in-app notifications)
+
+#### 3. Dedicated Sub-Agent Functional Directives (Specific tasks for Coder, Tester, Reviewer, DevOps)
+- **Coder**: Implement authentication mechanisms, attendance tracking features, and notification systems. Develop API endpoints for backend features.
+- **Tester**: Develop unit tests and integration tests for backend features. Test authentication, attendance tracking, and notification systems.
+- **Reviewer**: Review code for adherence to coding standards, security, and scalability. Provide feedback on API endpoint design and implementation.
+- **DevOps (Docker)**: Containerize the Quarkus application using Docker. Ensure seamless deployment on GKE.
+- **DevOps (Deployer)**: Prepare deployment scripts for GCP and GKE. Ensure zero-downtime deployments.
+
+#### 4. Phase Definition of Done (DoD)
+Phase 2 is considered complete when:
+- All backend features (authentication, attendance tracking, notification systems) are implemented and tested.
+- API endpoints are designed and implemented for backend features.
+- Code is reviewed and meets coding standards, security, and scalability requirements.
+- Docker containerization is complete, and deployment scripts are prepared for GCP and GKE.
+- Unit tests and integration tests are developed and passed for backend features.
+The maximum duration for Phase 2 is 7 days. Once the core technical objectives are satisfied, the phase will be considered complete, and progression to Phase 3 will begin.
+                    ------------------------------------------
+                    
+
+# System Instruction
+
+You are a rigid technical translator. Map high-level Markdown workflows into precise, executable JSON schemas.
+
+# Raw Response / Exception:
+
+```json
+Error code: 429 - {'error': {'message': 'Rate limit reached for model `llama-3.3-70b-versatile` in organization `org_01kx7x6rbpftmr50sr2yyb78qm` service tier `on_demand` on tokens per day (TPD): Limit 100000, Used 99171, Requested 5819. Please try again in 1h11m51.359999999s. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing', 'type': 'tokens', 'code': 'rate_limit_exceeded'}}
+```
+
