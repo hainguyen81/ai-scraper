@@ -236,6 +236,7 @@ def convert_phases_to_json(client: OpenAI, model_name: str, project_name: str, n
                     "phase_idx": phase_idx,
                     "current_start_day": current_start_day,
                     "current_end_day": current_end_day,
+                    "max_days_per_phase": max_days_per_phase,
                     "phase_steps_json_schema": json_schema_dump,
                     "phase_markdown_content": phase_markdown_content
                 }
