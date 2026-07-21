@@ -41,9 +41,9 @@ def load_models_keys():
         print("[ ⚠️ CRITICAL WARN ] The environment variable 'AI_MODELS_KEYS_JSON' is completely absent.")
         return None
     
-    return json.load(json_key_secrets)
+    return json.loads(json_key_secrets)
 
-def rotate_model(json_ai_models, json_ai_keys, model_idx):
+def rotate_matching_model(json_ai_models, json_ai_keys, model_idx):
     models_len = len(json_ai_models) if json_ai_models else 0
     
     while model_idx < models_len and json_ai_keys and isinstance(json_ai_keys, dict):
@@ -123,11 +123,12 @@ def run_architect_agent(
     result_global = None
     result_phase = False if exec_mode in (0, 2) else True       # Phase should be ok if not running it
     result_steps = False if exec_mode in (0, 3) else True       # Steps should be ok if not running it
-    while model_idx < models_len:
+    everything_ok = False
+    while not everything_ok and model_idx < models_len:
         # rotate to find matching AI models
         if model_idx >= 0:
             # not found any registered matching AI model
-            rotate_idx, config, rotate_api_key = rotate_model(json_ai_models, json_ai_keys, model_idx)
+            rotate_idx, config, rotate_api_key = rotate_matching_model(json_ai_models, json_ai_keys, model_idx)
             if rotate_idx < 0 or not config or not rotate_api_key:
                 print("[ 💀 CRITICAL SHUTDOWN ] Not found any more registered AI models with valid keys.")
                 break
@@ -269,9 +270,12 @@ def run_architect_agent(
                 
                 # out of function if not rotating
                 break
+        
+        # check everything whether is ok
+        everything_ok = result_global and result_phase and result_steps
     
     # log for tracing
-    if not result_global or not result_phase or not result_steps:
+    if not everything_ok:
         print(f"\n❌ [ PIPELINE FAILED ] Modular Enterprise Architecture Pipeline Executed Failed: Global?. { True if result_global else False } - Phase { result_phase } - Steps { result_steps }")
     
     # everything is ok
