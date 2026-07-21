@@ -12,25 +12,53 @@
             "sub_tasks": [
                 {
                     "id": "D1_ST1",
-                    "agent": "Coder",
-                    "desc": "Coder Agent: Write and optimize Dockerfile for backend service with multi-stage builds and health-check endpoints",
+                    "agent": "Manager",
+                    "desc": "Manager Agent: Finalize deployment acceptance criteria with product owner and security/compliance teams.",
                     "components": [
-                        "docker/backend/Dockerfile"
+                        "docs/deployment_acceptance_criteria.md"
                     ]
                 },
                 {
                     "id": "D1_ST2",
                     "agent": "Coder",
-                    "desc": "Coder Agent: Write and optimize Dockerfile for frontend service with multi-stage builds and health-check endpoints",
+                    "desc": "Coder Agent: Produce production-ready multi-stage Dockerfile for Quarkus backend (Java 21).",
                     "components": [
-                        "docker/frontend/Dockerfile"
+                        "backend/src/main/docker/Dockerfile"
                     ]
                 },
                 {
                     "id": "D1_ST3",
-                    "agent": "DevOps",
-                    "desc": "DevOps Agent: Provision GKE Autopilot cluster with Network Policy and required add-ons (Secret Manager CSI driver, Cloud NAT, Cloud DNS)",
-                    "components": []
+                    "agent": "Coder",
+                    "desc": "Coder Agent: Produce production-ready multi-stage Dockerfile for Next.js frontend (Node 20).",
+                    "components": [
+                        "frontend/Dockerfile"
+                    ]
+                },
+                {
+                    "id": "D1_ST4",
+                    "agent": "Coder",
+                    "desc": "Coder Agent: Add observability hooks to backend: expose /metrics, /q/health, and integrate OpenTelemetry instrumentation.",
+                    "components": [
+                        "backend/src/main/java/",
+                        "backend/src/main/resources/application.yml"
+                    ]
+                },
+                {
+                    "id": "D1_ST5",
+                    "agent": "Coder",
+                    "desc": "Coder Agent: Add observability hooks to frontend: expose /ping health check endpoint.",
+                    "components": [
+                        "frontend/src/"
+                    ]
+                },
+                {
+                    "id": "D1_ST6",
+                    "agent": "Reviewer",
+                    "desc": "Reviewer Agent: Conduct code review of all Dockerfiles for adherence to enterprise standards and security best practices.",
+                    "components": [
+                        "backend/src/main/docker/Dockerfile",
+                        "frontend/Dockerfile"
+                    ]
                 }
             ]
         },
@@ -42,25 +70,56 @@
                 {
                     "id": "D2_ST1",
                     "agent": "Coder",
-                    "desc": "Coder Agent: Update application.yml with GKE-specific externalized properties using Secret Manager references",
+                    "desc": "Coder Agent: Commit Kubernetes manifests (Deployment, Service) for backend to src/main/kubernetes/.",
+                    "components": [
+                        "backend/src/main/kubernetes/deployment.yaml",
+                        "backend/src/main/kubernetes/service.yaml"
+                    ]
+                },
+                {
+                    "id": "D2_ST2",
+                    "agent": "Coder",
+                    "desc": "Coder Agent: Commit Kubernetes manifests (Deployment, Service) for frontend to src/main/kubernetes/.",
+                    "components": [
+                        "frontend/src/main/kubernetes/deployment.yaml",
+                        "frontend/src/main/kubernetes/service.yaml"
+                    ]
+                },
+                {
+                    "id": "D2_ST3",
+                    "agent": "Coder",
+                    "desc": "Coder Agent: Create Helm chart structure for backend in k8s/charts/backend/.",
+                    "components": [
+                        "k8s/charts/backend/Chart.yaml",
+                        "k8s/charts/backend/values.yaml",
+                        "k8s/charts/backend/templates/"
+                    ]
+                },
+                {
+                    "id": "D2_ST4",
+                    "agent": "Coder",
+                    "desc": "Coder Agent: Create Helm chart structure for frontend in k8s/charts/frontend/.",
+                    "components": [
+                        "k8s/charts/frontend/Chart.yaml",
+                        "k8s/charts/frontend/values.yaml",
+                        "k8s/charts/frontend/templates/"
+                    ]
+                },
+                {
+                    "id": "D2_ST5",
+                    "agent": "Coder",
+                    "desc": "Coder Agent: Ensure configuration (DB, Kafka, auth) is structured for injection via Secret Manager/Env Vars in application.yml.",
                     "components": [
                         "backend/src/main/resources/application.yml"
                     ]
                 },
                 {
-                    "id": "D2_ST2",
-                    "agent": "DevOps",
-                    "desc": "DevOps Agent: Deploy backend Helm chart with autoscaling configuration",
+                    "id": "D2_ST6",
+                    "agent": "Reviewer",
+                    "desc": "Reviewer Agent: Verify Helm chart versioning, values.yaml templating, and that all secrets are referenced via SecretRef.",
                     "components": [
-                        "k8s/backend-deployment.yaml"
-                    ]
-                },
-                {
-                    "id": "D2_ST3",
-                    "agent": "DevOps",
-                    "desc": "DevOps Agent: Deploy frontend ingress with TLS configuration",
-                    "components": [
-                        "k8s/frontend-ingress.yaml"
+                        "k8s/charts/backend/values.yaml",
+                        "k8s/charts/frontend/values.yaml"
                     ]
                 }
             ]
@@ -73,25 +132,51 @@
                 {
                     "id": "D3_ST1",
                     "agent": "DevOps",
-                    "desc": "DevOps Agent: Create Cloud Build pipeline that triggers on main branch, runs tests, builds images, and executes deployment",
-                    "components": [
-                        "scripts/ci.yaml"
-                    ]
+                    "desc": "DevOps Agent: Provision GKE cluster with tuned node pools or verify existing cluster configuration.",
+                    "components": []
                 },
                 {
                     "id": "D3_ST2",
                     "agent": "DevOps",
-                    "desc": "DevOps Agent: Deploy Prometheus operator and Grafana via Helm, import pre-built dashboards",
+                    "desc": "DevOps Agent: Create Kubernetes namespace 'membership-hub-prod'.",
                     "components": [
-                        "monitoring/prometheus.yml",
-                        "monitoring/dashboards/"
+                        "k8s/namespace.yaml"
                     ]
                 },
                 {
                     "id": "D3_ST3",
                     "agent": "DevOps",
-                    "desc": "DevOps Agent: Enable Google Cloud Logging agent and configure structured JSON logging in Quarkus",
-                    "components": []
+                    "desc": "DevOps Agent: Deploy backend and frontend services to GKE via Helm using charts from k8s/charts/.",
+                    "components": [
+                        "k8s/charts/backend/",
+                        "k8s/charts/frontend/"
+                    ]
+                },
+                {
+                    "id": "D3_ST4",
+                    "agent": "DevOps",
+                    "desc": "DevOps Agent: Configure Ingress (Google Cloud HTTP(S) Load Balancer) with cert-manager for automated TLS for api, app, and mobile subdomains.",
+                    "components": [
+                        "k8s/ingress.yaml"
+                    ]
+                },
+                {
+                    "id": "D3_ST5",
+                    "agent": "DevOps",
+                    "desc": "DevOps Agent: Set up Horizontal Pod Autoscaler (HPA) manifests for backend and frontend based on CPU/Memory metrics.",
+                    "components": [
+                        "k8s/hpa-backend.yaml",
+                        "k8s/hpa-frontend.yaml"
+                    ]
+                },
+                {
+                    "id": "D3_ST6",
+                    "agent": "DevOps",
+                    "desc": "DevOps Agent: Apply Network Policies to isolate backend, frontend, and database pods.",
+                    "components": [
+                        "k8s/network-policy-backend.yaml",
+                        "k8s/network-policy-frontend.yaml"
+                    ]
                 }
             ]
         },
@@ -103,20 +188,42 @@
                 {
                     "id": "D4_ST1",
                     "agent": "DevOps",
-                    "desc": "DevOps Agent: Apply Pod Security Policies, bind IAM Service Accounts using Workload Identity, validate GDPR/CCPA data-handling",
-                    "components": []
+                    "desc": "DevOps Agent: Deploy Prometheus Operator and Grafana via Helm to the GKE cluster.",
+                    "components": [
+                        "k8s/monitoring/prometheus-operator-values.yaml",
+                        "k8s/monitoring/grafana-values.yaml"
+                    ]
                 },
                 {
                     "id": "D4_ST2",
-                    "agent": "Tester",
-                    "desc": "Tester Agent: Execute Postman/Newman scripts against deployed REST endpoints to confirm basic functionality",
-                    "components": []
+                    "agent": "DevOps",
+                    "desc": "DevOps Agent: Import pre-built dashboards from k8s/monitoring/ into Grafana and add custom panels for business metrics.",
+                    "components": [
+                        "k8s/monitoring/grafana-dashboards/"
+                    ]
                 },
                 {
                     "id": "D4_ST3",
-                    "agent": "Tester",
-                    "desc": "Tester Agent: Run Kafka connector verification and PostgreSQL data integrity checks using test containers",
+                    "agent": "DevOps",
+                    "desc": "DevOps Agent: Define Alertmanager rules for pod restarts, high latency, and database connection errors.",
+                    "components": [
+                        "k8s/monitoring/prometheus-rules.yaml"
+                    ]
+                },
+                {
+                    "id": "D4_ST4",
+                    "agent": "DevOps",
+                    "desc": "DevOps Agent: Configure Cloud Logging integration to forward container logs to Stackdriver.",
                     "components": []
+                },
+                {
+                    "id": "D4_ST5",
+                    "agent": "Reviewer",
+                    "desc": "Reviewer Agent: Approve observability configurations (PrometheusRule, GrafanaDashboard) for completeness and naming conventions.",
+                    "components": [
+                        "k8s/monitoring/prometheus-rules.yaml",
+                        "k8s/monitoring/grafana-dashboards/"
+                    ]
                 }
             ]
         },
@@ -127,23 +234,49 @@
             "sub_tasks": [
                 {
                     "id": "D5_ST1",
-                    "agent": "Tester",
-                    "desc": "Tester Agent: Use k6 or JMeter to simulate concurrent attendance scans and user logins, assert response times < 200ms",
+                    "agent": "DevOps",
+                    "desc": "DevOps Agent: Set up CI/CD pipeline (GitHub Actions) for automated build, test, and deployment.",
                     "components": [
-                        "tests/performance.jmx"
+                        "ci-cd/.github/workflows/build-test-deploy.yml"
                     ]
                 },
                 {
                     "id": "D5_ST2",
-                    "agent": "Tester",
-                    "desc": "Tester Agent: Perform OWASP ZAP scans on web UI, validate authentication flows, confirm sensitive fields not exposed in logs",
-                    "components": []
+                    "agent": "Coder",
+                    "desc": "Coder Agent: Run local Docker Compose smoke test against a temporary GKE sandbox to verify container startup and health endpoints.",
+                    "components": [
+                        "docker/docker-compose.smoke-test.yml"
+                    ]
                 },
                 {
                     "id": "D5_ST3",
                     "agent": "Tester",
-                    "desc": "Tester Agent: Verify Prometheus scrapes metrics and Grafana dashboards display real-time data, test alert firing",
+                    "desc": "Tester Agent: Design deployment smoke tests (curl /q/health, /metrics, /ping) for each service.",
+                    "components": [
+                        "tests/smoke/smoke-test.sh"
+                    ]
+                },
+                {
+                    "id": "D5_ST4",
+                    "agent": "Tester",
+                    "desc": "Tester Agent: Execute load tests (k6 or Locust) against the deployed API to validate HPA behavior and throughput.",
+                    "components": [
+                        "tests/load/load-test.js"
+                    ]
+                },
+                {
+                    "id": "D5_ST5",
+                    "agent": "Tester",
+                    "desc": "Tester Agent: Perform security scans (Trivy for images, OWASP ZAP for runtime) on the deployed environment.",
                     "components": []
+                },
+                {
+                    "id": "D5_ST6",
+                    "agent": "Tester",
+                    "desc": "Tester Agent: Verify network policies block unintended pod-to-pod communication.",
+                    "components": [
+                        "tests/security/network-policy-test.sh"
+                    ]
                 }
             ]
         },
@@ -154,28 +287,40 @@
             "sub_tasks": [
                 {
                     "id": "D6_ST1",
-                    "agent": "Reviewer",
-                    "desc": "Reviewer Agent: Conduct pairwise reviews of Dockerfile optimizations, Helm values, and Kubernetes manifests for best-practice compliance",
+                    "agent": "Tester",
+                    "desc": "Tester Agent: Validate end-to-end user flows (login → QR check-in → notification) against the live environment.",
                     "components": [
-                        "docker/backend/Dockerfile",
-                        "docker/frontend/Dockerfile",
-                        "k8s/backend-deployment.yaml",
-                        "k8s/frontend-ingress.yaml"
+                        "tests/e2e/user-flow.spec.js"
                     ]
                 },
                 {
                     "id": "D6_ST2",
-                    "agent": "Reviewer",
-                    "desc": "Reviewer Agent: Validate IAM policies, Secret Manager usage, encryption keys, ensure no hardcoded credentials exist",
-                    "components": []
+                    "agent": "Tester",
+                    "desc": "Tester Agent: Capture monitoring alerts and confirm they fire correctly for simulated failures.",
+                    "components": [
+                        "tests/monitoring/alert-test.sh"
+                    ]
                 },
                 {
                     "id": "D6_ST3",
-                    "agent": "Reviewer",
-                    "desc": "Reviewer Agent: Verify DEPLOYMENT.md and SECURITY.md are up-to-date with run-books and correct artifact references",
+                    "agent": "DevOps",
+                    "desc": "DevOps Agent: Perform post-deployment validation: verify all services are reachable, health checks pass, and autoscaling triggers.",
+                    "components": []
+                },
+                {
+                    "id": "D6_ST4",
+                    "agent": "DevOps",
+                    "desc": "DevOps Agent: Document run-books (restart procedures, scaling actions, log analysis) in docs/.",
                     "components": [
-                        "docs/DEPLOYMENT.md",
-                        "docs/SECURITY.md"
+                        "docs/runbooks/"
+                    ]
+                },
+                {
+                    "id": "D6_ST5",
+                    "agent": "Manager",
+                    "desc": "Manager Agent: Coordinate go-live checklist and schedule post-deployment review with stakeholders.",
+                    "components": [
+                        "docs/go_live_checklist.md"
                     ]
                 }
             ]
@@ -187,28 +332,26 @@
             "sub_tasks": [
                 {
                     "id": "D7_ST1",
-                    "agent": "Reviewer",
-                    "desc": "Reviewer Agent: Approve that all GDPR/CCPA controls are satisfied before final go-live",
-                    "components": []
+                    "agent": "Manager",
+                    "desc": "Manager Agent: Obtain final stakeholder sign-off confirming readiness for production go-live.",
+                    "components": [
+                        "docs/stakeholder_signoff.md"
+                    ]
                 },
                 {
                     "id": "D7_ST2",
-                    "agent": "DevOps",
-                    "desc": "DevOps Agent: Test simulated failure/recovery and validate rollback procedures",
+                    "agent": "Reviewer",
+                    "desc": "Reviewer Agent: Conduct final review of all deployment artifacts, CI/CD scripts, and documentation for completeness.",
                     "components": [
-                        "scripts/rollback.sh"
+                        "ci-cd/.github/workflows/",
+                        "k8s/",
+                        "docs/"
                     ]
                 },
                 {
                     "id": "D7_ST3",
-                    "agent": "Coder",
-                    "desc": "Coder Agent: Commit final source code cleanup and ensure all external dependencies are declared",
-                    "components": []
-                },
-                {
-                    "id": "D7_ST4",
-                    "agent": "Manager",
-                    "desc": "Manager Agent: Mark Phase-5 status as Complete in project tracker with formal sign-off from all stakeholders",
+                    "agent": "DevOps",
+                    "desc": "DevOps Agent: Final verification: confirm TLS/SSL is enabled, IAM/Secret Manager policies are secure, and monitoring dashboards are populated.",
                     "components": []
                 }
             ]
