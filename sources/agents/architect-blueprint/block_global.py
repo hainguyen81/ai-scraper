@@ -12,6 +12,7 @@ from openai import OpenAI
 
 # Now Python can seamlessly see and import the centralized helper utility cleanly!
 from helper import write_log
+from helper import write_file
 from helper import parseOpenAIResponseData
 
 # GEMINI
@@ -68,12 +69,13 @@ def generate_global_context(client: OpenAI, model_name: str, project_name: str, 
         )
         raw_data = parseOpenAIResponseData(response)
         
+        # write context
         safe_name = project_name.replace(' ', '-')
-        context_dir = os.path.join(out_dir, "context")
-        os.makedirs(context_dir, exist_ok=True)
-        out_path = os.path.join(context_dir, f"{safe_name}.global.blueprint.md")
-        with open(out_path, "w", encoding="utf-8") as f:
-            f.write(raw_data)
+        write_file(
+            dir=os.path.join(out_dir, "context"),
+            file_name=f"{safe_name}.global.blueprint.md",
+            data=raw_data
+        )
         
         # write log
         write_log(0, instruction, log_prompt.replace('#', '##'), raw_data.replace('#', '##') if raw_data else "-", False)

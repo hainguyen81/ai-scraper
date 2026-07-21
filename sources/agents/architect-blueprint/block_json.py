@@ -21,6 +21,7 @@ from jinja2 import Template
 
 # Now Python can seamlessly see and import the centralized helper utility cleanly!
 from helper import write_log
+from helper import write_json_file
 from helper import parseOpenAIResponseJsonData
 
 # --- Validated Schemas for Structured JSON Output ---
@@ -387,8 +388,13 @@ def convert_phases_to_json(client: OpenAI, model_name: str, project_name: str, n
                 # dump_json_data = json.dumps(model_dump, indent=4, ensure_ascii=False)
                 # rint(f" │         { dump_json_data }")
                 
-                with open(out_path, "w", encoding="utf-8") as f:
-                    json.dump(model_dump, f, ensure_ascii=False, indent=4)
+            
+                # write steps
+                write_json_file(
+                    dir=steps_context_dir,
+                    file_name=f"phase-{phase_idx}.steps.json",
+                    json_data=model_dump
+                )
                     
                 print(f" │   └── 🎉 Saved Phase {phase_idx} Standardized JSON Tracker: {out_path}")
                 
@@ -402,8 +408,6 @@ def convert_phases_to_json(client: OpenAI, model_name: str, project_name: str, n
                     f.write(json.dumps(master_phase_plan, indent=4, ensure_ascii=False))
                     f.write("\n-------------------------------------------------\n")
                 print(f" │   └── ⚠️ Raw dump saved to diagnostic log file: {fallback_path}")
-            
-            print(f" │   └── 🎉 Saved Phase {phase_idx} JSON Tracker: {out_path}")
             
             # sleep to avoid 429 Too Many Requests
             if phase_idx < num_phases + 1:
