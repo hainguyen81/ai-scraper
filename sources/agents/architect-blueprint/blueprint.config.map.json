@@ -1,23 +1,23 @@
 {
-	"phase_id": {{ ai.phase | default(ai.phase_idx) | default(1) | int }},
-	"phase_name": "{{ ai.phase_name | default(ai.phase_title, true) | default(ai.phase) | default('Phase ' ~ ai.phase_idx | default(1)) }}",
+	"phase_id": {{ ai.phase | default(ai.phase_idx, true) | default(1) | int }},
+	"phase_name": "{{ ai.phase_name | default(ai.phase_title, true) | default(ai.phase, true) | default('Phase ' ~ ai.phase_idx | default(1)) }}",
 	"project_name": "{{ ai.project_name | default('No Specific Project') | lower }}",
 	"global_context_file": "{{ ai.global_context_file | default('No Specific Project Global BluePrint Context File') }}",
 	"source_target_dir": "sources/",
 	"days": [
 		{% if ai.dailyTasks %}
 			{% for day_item in ai.dailyTasks | default([]) %}
-			{% set day_idx = day_item.day | default(loop.index) | default(0) | int %}
+			{% set day_idx = day_item.day | default(loop.index, true) | default(0) | int %}
 			{
 			  "day": {{ day_idx }},
 			  "context_section": "DAY {{ day_idx }}",
 			  "context_file": "{{ ai.phase_context_file | default('No Specific Project Phase BluePrint Context File') }}",
 			  "sub_tasks": [
-				{% for task_item in day_item.tasks | default(day_item.sub_tasks) | default(day_item.sub_agent_tasks) | default([]) %}
+				{% for task_item in day_item.tasks | default(day_item.sub_tasks, true) | default(day_item.sub_agent_tasks, true) | default([]) %}
 				{
 				  "id": "D{{ day_idx }}_ST{{ loop.index | default(0) | int }}",
-				  "agent": "{{ day_item.get('subAgent') | default(task_item.assignee) | default(task_item.agent) | default(task_item.agent_role) | default('Coder') | lower }}",
-				  "desc": "{{ day_item.get('subAgent') | default(task_item.assignee) | default(task_item.agent) | default(task_item.agent_role) | default('Coder') }} Agent: {{ task_item.task | default(task_item.desc) | default(task_item) | default('No description provided') }}"
+				  "agent": "{{ day_item.get('subAgent') | default(task_item.assignee, true) | default(task_item.agent, true) | default(task_item.agent_role, true) | default('Coder') | capitalize }}",
+				  "desc": "{{ day_item.get('subAgent') | default(task_item.assignee, true) | default(task_item.agent, true) | default(task_item.agent_role, true) | default('Coder') | capitalize }} Agent: {{ task_item.task | default(task_item.desc, true) | default(task_item.description, true) | default(task_item.task_description, true) | default(task_item, true) | default('No description provided') }}"
 				}{% if not loop.last %},{% endif %}
 				{% endfor %}
 			  ]
@@ -26,17 +26,17 @@
 		
 		{% elif ai.dayByDayPlan %}
 			{% for day_item in ai.dayByDayPlan | default([]) %}
-			{% set day_idx = day_item.day | default(loop.index) | default(0) | int %}
+			{% set day_idx = day_item.day | default(loop.index, true) | default(0) | int %}
 			{
 			  "day": {{ day_idx }},
 			  "context_section": "DAY {{ day_idx }}",
 			  "context_file": "{{ ai.phase_context_file | default('No Specific Project Phase BluePrint Context File') }}",
 			  "sub_tasks": [
-				{% for task_item in day_item.tasks | default(day_item.sub_tasks) | default(day_item.sub_agent_tasks) | default([]) %}
+				{% for task_item in day_item.tasks | default(day_item.sub_tasks, true) | default(day_item.sub_agent_tasks, true) | default([]) %}
 				{
 				  "id": "D{{ day_idx }}_ST{{ loop.index | default(0) | int }}",
-				  "agent": "{{ day_item.get('subAgent') | default(task_item.assignee) | default(task_item.agent) | default(task_item.agent_role) | default('Coder') | lower }}",
-				  "desc": "{{ day_item.get('subAgent') | default(task_item.assignee) | default(task_item.agent) | default(task_item.agent_role) | default('Coder') }} Agent: {{ task_item.task | default(task_item.desc) | default(task_item) | default('No description provided') }}"
+				  "agent": "{{ day_item.get('subAgent') | default(task_item.assignee, true) | default(task_item.agent, true) | default(task_item.agent_role, true) | default('Coder') | capitalize }}",
+				  "desc": "{{ day_item.get('subAgent') | default(task_item.assignee, true) | default(task_item.agent, true) | default(task_item.agent_role, true) | default('Coder') | capitalize }} Agent: {{ task_item.task | default(task_item.desc, true) | default(task_item.description, true) | default(task_item.task_description, true) | default(task_item, true) | default('No description provided') }}"
 				}{% if not loop.last %},{% endif %}
 				{% endfor %}
 			  ]
@@ -45,17 +45,17 @@
 		
 		{% elif ai.days %}
 			{% for day_item in ai.days | default([]) %}
-			{% set day_idx = day_item.day | default(loop.index) | default(0) | int %}
+			{% set day_idx = day_item.day | default(loop.index, true) | default(0) | int %}
 			{
 			  "day": {{ day_idx }},
 			  "context_section": "DAY {{ day_idx }}",
 			  "context_file": "{{ ai.phase_context_file | default('No Specific Project Phase BluePrint Context File') }}",
 			  "sub_tasks": [
-				{% for task_item in day_item.tasks | default(day_item.sub_tasks) | default(day_item.sub_agent_tasks) | default([]) %}
+				{% for task_item in day_item.tasks | default(day_item.sub_tasks, true) | default(day_item.sub_agent_tasks, true) | default([]) %}
 				{
 				  "id": "D{{ day_idx }}_ST{{ loop.index | default(0) | int }}",
-				  "agent": "{{ day_item.get('subAgent') | default(task_item.assignee) | default(task_item.agent) | default(task_item.agent_role) | default('Coder') | lower }}",
-				  "desc": "{{ day_item.get('subAgent') | default(task_item.assignee) | default(task_item.agent) | default(task_item.agent_role) | default('Coder') }} Agent: {{ task_item.task | default(task_item.desc) | default(task_item) | default('No description provided') }}"
+				  "agent": "{{ day_item.get('subAgent') | default(task_item.assignee, true) | default(task_item.agent, true) | default(task_item.agent_role, true) | default('Coder') | capitalize }}",
+				  "desc": "{{ day_item.get('subAgent') | default(task_item.assignee, true) | default(task_item.agent, true) | default(task_item.agent_role, true) | default('Coder') | capitalize }} Agent: {{ task_item.task | default(task_item.desc, true) | default(task_item.description, true) | default(task_item.task_description, true) | default(task_item, true) | default('No description provided') }}"
 				}{% if not loop.last %},{% endif %}
 				{% endfor %}
 			  ]

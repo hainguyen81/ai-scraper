@@ -365,9 +365,9 @@ def convert_phases_to_json(client: OpenAI, model_name: str, project_name: str, n
                     time.sleep(1)
             
             # --- END OF CHUNK SCROLL LOOP ---
-            dump_json_data = json.dumps(master_phase_plan, indent=4, ensure_ascii=False)
-            print(f" │   └── 🎉 Master Phase Plan:")
-            print(f"           { dump_json_data }")
+            # dump_json_data = json.dumps(master_phase_plan, indent=4, ensure_ascii=False)
+            # print(f" │   └── 🎉 Master Phase Plan:")
+            # print(f"           { dump_json_data }")
                 
             # write blueprint
             out_path = os.path.join(steps_context_dir, f"phase-{phase_idx}.steps.json")
@@ -376,16 +376,16 @@ def convert_phases_to_json(client: OpenAI, model_name: str, project_name: str, n
             try:
                 # transform mapping
                 transform_json_data = dynamic_transform(master_phase_plan, project_name, phase_idx, json_mapping, transform_log_path)
-                dump_json_data = json.dumps(transform_json_data, indent=4, ensure_ascii=False) if transform_json_data else "Invalid JSON Data"
-                print(f" │   └── 🎉 Transform Phase {phase_idx} Standardized JSON:")
-                print(f" │         { dump_json_data }")
+                # dump_json_data = json.dumps(transform_json_data, indent=4, ensure_ascii=False) if transform_json_data else "Invalid JSON Data"
+                # print(f" │   └── 🎉 Transform Phase {phase_idx} Standardized JSON:")
+                # print(f" │         { dump_json_data }")
                 
                 # 2. Parse and validate the string payload locally with Pydantic core engine
                 print(f" │   └── 🎉 Validate Phase {phase_idx} Standardized JSON...")
                 validated_pydantic_object = PhaseStepsPlan.model_validate(transform_json_data)
                 model_dump = validated_pydantic_object.model_dump()
-                dump_json_data = json.dumps(model_dump, indent=4, ensure_ascii=False)
-                print(f" │         { dump_json_data }")
+                # dump_json_data = json.dumps(model_dump, indent=4, ensure_ascii=False)
+                # rint(f" │         { dump_json_data }")
                 
                 with open(out_path, "w", encoding="utf-8") as f:
                     json.dump(model_dump, f, ensure_ascii=False, indent=4)
