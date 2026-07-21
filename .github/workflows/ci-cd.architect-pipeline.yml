@@ -208,7 +208,7 @@ jobs:
           # pip install google-genai
           
           # OpenAI
-          pip install openai pydantic
+          pip install requests google-generativeai openai anthropic pydantic
           
           # mapping JSON
           pip install jinja2
