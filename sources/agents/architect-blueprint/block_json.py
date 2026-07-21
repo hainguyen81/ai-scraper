@@ -365,6 +365,9 @@ def convert_phases_to_json(client: OpenAI, model_name: str, project_name: str, n
                     time.sleep(1)
 
             # --- END OF CHUNK SCROLL LOOP ---
+            dump_json_data = json.dumps(master_phase_plan, indent=4, ensure_ascii=False)
+            print(f" │   └── 🎉 Master Phase Plan:")
+            print(f"           { dump_json_data }")
                 
             # write blueprint
             out_path = os.path.join(steps_context_dir, f"phase-{phase_idx}.steps.json")
