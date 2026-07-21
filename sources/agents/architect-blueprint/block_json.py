@@ -151,7 +151,7 @@ def manual_transform(json_data, project_name: str, phase_idx: int):
             step_node["sub_tasks"].append({
                 "id": f"D{day_val}_ST{t_idx}",
                 "agent": role,
-                "desc": desc
+                "desc": desc,
                 "components": t.get("components", t.get("files", t.get("targets", [])))
             })
             t_idx = t_idx + 1
