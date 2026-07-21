@@ -38,6 +38,6 @@ Extract and translate ALL daily steps, checklists, and agent tasks from the enti
 You MUST conform strictly to your required JSON Schema layout design structure:
 {{ phase_steps_json_schema }}
 
---- PHASE {phase_idx} CONTEXT MARKDOWN ---
+--- PHASE {{ phase_idx }} CONTEXT MARKDOWN ---
 {{ phase_markdown_content }}
 ------------------------------------------
