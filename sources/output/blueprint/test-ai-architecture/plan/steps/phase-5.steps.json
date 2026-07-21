@@ -4,5 +4,50 @@
     "project_name": "test-ai-architecture",
     "global_context_file": ".ai/.context/test-ai-architecture.global.blueprint.md",
     "source_target_dir": "sources/",
-    "days": []
+    "days": [
+        {
+            "day": 1,
+            "context_file": ".ai/.plan/.context/phase-5.context.blueprint.md",
+            "context_section": "DAY 1",
+            "sub_tasks": [
+                {
+                    "id": "D1_ST1",
+                    "agent": "none",
+                    "desc": "None Agent: Create deployment scripts and configurations for GCP and GKE"
+                },
+                {
+                    "id": "D1_ST2",
+                    "agent": "none",
+                    "desc": "None Agent: Deploy the application on GCP and GKE"
+                },
+                {
+                    "id": "D1_ST3",
+                    "agent": "none",
+                    "desc": "None Agent: Ensure the application is properly containerized and orchestrated"
+                }
+            ]
+        },
+        {
+            "day": 0,
+            "context_file": ".ai/.plan/.context/phase-5.context.blueprint.md",
+            "context_section": "DAY 0",
+            "sub_tasks": [
+                {
+                    "id": "D0_ST1",
+                    "agent": "none",
+                    "desc": "None Agent: Conduct final testing and quality assurance"
+                },
+                {
+                    "id": "D0_ST2",
+                    "agent": "none",
+                    "desc": "None Agent: Review deployment scripts and configurations for security and compliance"
+                },
+                {
+                    "id": "D0_ST3",
+                    "agent": "none",
+                    "desc": "None Agent: Ensure zero-downtime deployments and monitor application performance"
+                }
+            ]
+        }
+    ]
 }
