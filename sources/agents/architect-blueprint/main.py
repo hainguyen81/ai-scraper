@@ -168,6 +168,8 @@ def run_architect_agent(
         print(f"    - Execution Mode:               {exec_mode}")
         print(f"    - Execution Delay:              {exec_delay}")
         print("=============================================================================")
+        print(f"    - ROTATE MODEL INTEGRATION:     {model_idx}")
+        print("=============================================================================")
         
         # -------------------------------------------------
         # 1. Execute Block 1 Module
