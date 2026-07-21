@@ -80,6 +80,11 @@ on:
         required: false
         default: 0
         type: number
+      rotate_models:
+        description: '🔂 Rotate AI models - OpenAI'
+        required: false
+        default: true
+        type: boolean
     
   # allow other workflow call into (inputs same as workflow_dispatch but required)
   workflow_call:
@@ -154,6 +159,11 @@ on:
         required: false
         default: 0
         type: number
+      rotate_models:
+        description: '🔂 Rotate AI models - OpenAI'
+        required: false
+        default: true
+        type: boolean
 
 # permissions for GitHub Actions READ/WRITE
 permissions:
@@ -207,6 +217,9 @@ jobs:
       - name: 🤖 Run Lead Architect Agent
         if: success() && inputs.exec_mode != '🚫 None'          # if previous step is successful
         env:
+          # Secrets contains the AI endpoint and AI API key JSON
+          AI_MODELS_KEYS_JSON: ${{ secrets.AI_MODELS_KEYS_JSON }}
+          
           # OpenAI - Common from LLM-Web-Scrapper Workflow
           API_KEY: ${{ secrets.API_KEY }}
           API_ENDPONT: ${{ secrets.API_ENDPOINT }}
@@ -229,6 +242,7 @@ jobs:
           INPUTS_MODEL_STEPS: ${{ inputs.model_steps }}
           INPUTS_MODEL_STEPS_MAPPING: ${{ inputs.model_steps_mapping_config }}
           INPUTS_MODEL_STEPS_DAYS_PER_CHUNK: ${{ inputs.model_steps_days_per_chunk }}
+          INPUTS_ROTATE_MODELS: ${{ inputs.rotate_models }}
           
           # Python environment
           PYTHONPATH: ${{ github.workspace }} # force Python load folder structure, including 'sources'
@@ -335,7 +349,8 @@ jobs:
               --api-model-phase-steps-json "$MODEL_STEPS" \
               --api-model-phase-steps-json-mapping "$INPUTS_MODEL_STEPS_MAPPING" \
               --api-model-phase-steps-days-per-chunk "$MODEL_STEPS_DAYS_PER_CHUNK" \
-              --exec-mode $EXE_MODE --exec-delay $EXE_DELAY
+              --exec-mode $EXE_MODE --exec-delay $EXE_DELAY \
+              --exec-rotate-model "$INPUTS_ROTATE_MODELS"
 
       # Step 5: Automatically stage, commit, and push the generated architecture files
       - name: 🚀 Commit and Push Blueprint Changes
