@@ -304,7 +304,7 @@ if __name__ == "__main__":
     parser.add_argument("--api-model-phase-steps-days-per-chunk", type=int, default=5, help="Execution Days per AI Request Chunk")
     parser.add_argument("--exec-mode", type=int, default=0, help="AI Execution Mode: Global / Phase Context / Steps. Acceptable values: 0, 1, 2, 3")
     parser.add_argument("--exec-delay", type=int, default=3, help="AI Execution Delay in seconds")
-    parser.add_argument("--exec-rotate-model", type=bool, default=False, help="Specify whether should rotate models if exceeding rate limit")
+    parser.add_argument("--exec-rotate-model", action="store_true", default=False, help="Specify whether should rotate models if exceeding rate limit")
     
     args = parser.parse_args()
     
