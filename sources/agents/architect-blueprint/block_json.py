@@ -380,9 +380,12 @@ def convert_phases_to_json(client: OpenAI, model_name: str, project_name: str, n
                 # 2. Parse and validate the string payload locally with Pydantic core engine
                 print(f" │   └── 🎉 Validate Phase {phase_idx} Standardized JSON...")
                 validated_pydantic_object = PhaseStepsPlan.model_validate(transform_json_data)
+                model_dump = validated_pydantic_object.model_dump()
+                dump_json_data = json.dumps(model_dump, indent=4, ensure_ascii=False)
+                print(f" │         { dump_json_data }")
                 
                 with open(out_path, "w", encoding="utf-8") as f:
-                    json.dump(validated_pydantic_object.model_dump(), f, ensure_ascii=False, indent=4)
+                    json.dump(model_dump, f, ensure_ascii=False, indent=4)
                     
                 print(f" │   └── 🎉 Saved Phase {phase_idx} Standardized JSON Tracker: {out_path}")
                 
