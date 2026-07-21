@@ -337,7 +337,7 @@ def convert_phases_to_json(client: OpenAI, model_name: str, project_name: str, n
                 new_days_added_in_this_chunk = 0
                 for day_node in chunk_steps_array:
                     day_num = day_node.get("day", 0)
-                    if current_start_day <= day_num <= current_end_day:
+                    if DAYS_PER_CHUNK == 0 or current_start_day <= day_num <= current_end_day:
                         # Auto-inject string metadata if AI fills them with blank placeholders during chunking
                         if not day_node.get("context_file"):
                             day_node["context_file"] = f"{project_phase_context_file}"
