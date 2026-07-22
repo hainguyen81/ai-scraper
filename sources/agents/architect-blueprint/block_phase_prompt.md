@@ -27,6 +27,12 @@ You must align perfectly with the established Global Context and satisfy a subse
          *Example:* `./sources/backend/src/main/java/.../OrderService.java;./sources/backend/src/test/java/.../OrderServiceTest.java`
      *   **Rule for Integration / E2E Tests (No single source file):** You MUST use the literal string `INTEGRATION_SCOPE` as the first parameter to signal that this test verifies multi-component behaviors or API endpoints.
          *Example:* `INTEGRATION_SCOPE;./sources/backend/src/test/java/.../ReconciliationIntegTest.java`
+4. **WORKSPACE PATH BOUNDARY & MULTI-REPO CONSTRAINTS:**
+   - **Absolute Root Directory Rule:** The true workspace root is always the project root `./`. You MUST never use relative paths that assume the microservice directory is the root.
+   - **Strict Sub-folder Prefixing:** Every single `Target Path` generated MUST strictly start with either:
+     *   `./sources/backend/...` (For all Java/Spring Boot/Quarkus logic, source codes, pom.xml, and tests)
+     *   `./sources/frontend/...` (For all TypeScript/Tailwind/Thymeleaf/NextJS logic, package.json, and UI components)
+   - **Multi-Stack Inclusion Rule:** For each Phase, you MUST evaluate both the Backend and Frontend requirements. Do NOT completely omit Frontend components if the raw requirements imply UI modifications or file-upload drag-and-drop features for that phase.
 
 Your output MUST follow this exact Markdown structure for Phase {{ phase_idx }}:
 # PHASE {{ phase_idx }} CONTEXT BLUEPRINT: {{ project_name }}
@@ -36,28 +42,32 @@ Your output MUST follow this exact Markdown structure for Phase {{ phase_idx }}:
 ## 4. Phase Definition of Done (DoD)
 ## 5. DAY-BY-DAY ARCHITECTURAL EXECUTION LOGS
 
-### DAY [X]: [SHORT CAPITALIZED SPECIFIC OBJECTIVE NAME]
+### DAY [X]: INITIAL ENVIROMENT & PIPELINE SETUP
 
-#### SUB-TASK [X.1]: [Short description of work for the Agent]
+#### SUB-TASK [X.1]: Configure Enterprise Multi-Module Backend
 ##### Assigned Sub-Agent: Coder
 ##### Targeted Components & Technical Requirements:
-*   **Target Path:** `[Relative path to source file, e.g., ./src/main/java/.../ReconciliationService.java]`
+*   **Target Path:** `./sources/backend/pom.xml`
     *   **Architectural Requirements:**
-        *   [Rule 1: Detailed functional logic for this component]
+        *   Define the core parent dependencies, Quarkus/Spring Boot extensions, and Alibaba EasyExcel libraries.
+*   **Target Path:** `./sources/backend/src/main/java/com/saas/recon/HealthResource.java`
+    *   **Architectural Requirements:**
+        *   Expose `/api/v1/health` endpoint returning server infrastructure state.
 
-#### SUB-TASK [X.2]: [Next sub-task for the Tester Agent - Unit Testing Scenario]
+#### SUB-TASK [X.2]: Initialize Frontend Boilerplate and Drag-and-Drop Form
+##### Assigned Sub-Agent: Coder
+##### Targeted Components & Technical Requirements:
+*   **Target Path:** `./sources/frontend/package.json`
+    *   **Architectural Requirements:**
+        *   Initialize scripts for Tailwind CSS compiling and state management libraries.
+*   **Target Path:** `./sources/frontend/src/components/UploadZone.tsx`
+    *   **Architectural Requirements:**
+        *   Build the drag-and-drop UI component restricting uploads to `.xlsx` and `.csv` only.
+
+#### SUB-TASK [X.3]: Execute Core Unit and Ingestion Suite
 ##### Assigned Sub-Agent: Tester
 ##### Targeted Components & Technical Requirements:
-*   **Target Path:** `./sources/backend/src/main/java/com/saas/recon/service/ReconciliationService.java;./sources/backend/src/test/java/com/saas/recon/service/ReconciliationServiceTest.java`
+*   **Target Path:** `./sources/backend/src/main/java/com/saas/recon/HealthResource.java`;./sources/backend/src/test/java/com/saas/recon/HealthResourceTest.java`
     *   **Architectural Requirements:**
-        *   [Rule 1: Specify exact JUnit 5 / Mockito constraints to verify the paired source file]
-        *   [Rule 2: Boundary test cases required (e.g., handling Empty Excel rows, Null values)]
-
-#### SUB-TASK [X.3]: [Next sub-task for the Tester Agent - Integration Testing Scenario]
-##### Assigned Sub-Agent: Tester
-##### Targeted Components & Technical Requirements:
-*   **Target Path:** `INTEGRATION_SCOPE;./sources/backend/src/test/java/com/saas/recon/integration/ReconciliationIntegTest.java`
-    *   **Architectural Requirements:**
-        *   [Rule 1: Setup full context integration test using SpringBootTest and Testcontainers]
-        *   [Rule 2: Validate end-to-end HTTP Rest API endpoints and native database state transitions]
+        *   Assert response status `200` and JSON body containing `status=UP`.
 
