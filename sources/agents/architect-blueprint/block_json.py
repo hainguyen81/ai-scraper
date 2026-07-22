@@ -233,12 +233,15 @@ def convert_phases_to_json(client: OpenAI, model_name: str, project_name: str, n
                 is_chunked_mode = True if DAYS_PER_CHUNK > 0 else False
                 prompt_context = {
                     "is_chunked": is_chunked_mode,
+                    "project_name": project_name,
                     "phase_idx": phase_idx,
                     "current_start_day": current_start_day,
                     "current_end_day": current_end_day,
                     "max_days_per_phase": max_days_per_phase,
                     "phase_steps_json_schema": json_schema_dump,
-                    "phase_markdown_content": phase_markdown_content
+                    "phase_markdown_content": phase_markdown_content,
+                    "global_context_file": global_context_file,
+                    "project_phase_context_file": project_phase_context_file
                 }
                 prompt = render_prompt(PROMPT_TEMPLATE_PATH, prompt_context)
                 log_prompt = prompt  # Stores the latest prompt state for error block fallback capture

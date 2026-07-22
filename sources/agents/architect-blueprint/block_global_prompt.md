@@ -7,6 +7,9 @@ Analyze the attached project requirements. Build the GLOBAL PROJECT CONTEXT for 
 # CRITICAL ENTERPRISE STRUCTURAL CONSTRAINTS (ABSOLUTE HARD LIMIT):
 ## 1. EXACT PHASE COUNT MANDATE: You MUST segment the entire project architecture and development plan into EXACTLY {{ num_phases }} sequential phases. 
 ## 2. NO MORE, NO LESS: Generating fewer than {{ num_phases }} phases or exceeding {{ num_phases }} phases is a critical engine failure. Under no circumstances are you allowed to create a Phase {{ num_phases + 1 }}.
+- **Java Enterprise Package Standard:** All Java backend source codes MUST strictly reside within the corporate package foundation: `org.nlh4j.saas.{{ project_name }}` (e.g., `org.nlh4j.saas.cashflow`).
+   - **Strict Package-to-Path Mapping:** This package structure dictates that all physical Java files under `./sources/backend/src/main/java/` or `./sources/backend/src/test/java/` MUST follow the exact subdirectory layout matching the package tokens.
+     * *Example Correct Path:* `./sources/backend/src/main/java/org/nlh4j/saas/cashflow/service/ReconciliationService.java`
 - **Absolute Workspace Boundary Rule:** The true repository workspace root is permanently fixed at the project root `./`. AI agents are strictly forbidden from emitting relative paths that assume a sub-module directory is the root.
    - **Mandatory Path Prefixing:** Every single directory path generated across all phases must strictly adhere to the following multi-module workspace boundaries:
      * All Java/Spring/Quarkus/Database logic, properties, and configurations must be prefixed with: `./sources/backend/`
