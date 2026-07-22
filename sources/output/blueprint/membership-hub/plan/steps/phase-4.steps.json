@@ -13,134 +13,121 @@
                 {
                     "id": "D1_ST1",
                     "agent": "DevOps",
-                    "desc": "DevOps Agent: Provision and configure the testing environment, including creation of test directories (src/test/java, __tests__) and installation of required frameworks (JUnit, Jest).",
-                    "components": []
+                    "desc": "DevOps Agent: Setup isolated test environment containers with PostgreSQL, Kafka, and Keycloak services",
+                    "components": [
+                        "src/docker/test-compose.yml",
+                        ".github/workflows/test.yml"
+                    ]
                 },
                 {
                     "id": "D1_ST2",
                     "agent": "Coder",
-                    "desc": "Coder Agent: Write unit test cases for backend components using JUnit.",
-                    "components": []
+                    "desc": "Coder Agent: Build reusable test fixtures and helper utilities including TestDataFactory and MockKafkaProducer",
+                    "components": [
+                        "src/test/java/com/membership/hub/util/TestDataFactory.java",
+                        "src/test/java/com/membership/hub/util/MockKafkaProducer.java"
+                    ]
                 },
                 {
                     "id": "D1_ST3",
                     "agent": "Tester",
-                    "desc": "Tester Agent: Execute all backend unit tests and record results.",
-                    "components": []
-                },
+                    "desc": "Tester Agent: Draft comprehensive test plan and coverage goals for all modules",
+                    "components": [
+                        "src/test/java/com/membership/hub/qa/TestPlan.md"
+                    ]
+                }
+            ]
+        },
+        {
+            "day": 2,
+            "context_file": ".ai/.plan/.context/phase-4.context.blueprint.md",
+            "context_section": "DAY 2",
+            "sub_tasks": [
                 {
-                    "id": "D1_ST4",
-                    "agent": "Coder",
-                    "desc": "Coder Agent: Fix bugs identified by unit test failures.",
-                    "components": []
-                },
-                {
-                    "id": "D1_ST5",
+                    "id": "D2_ST1",
                     "agent": "Tester",
-                    "desc": "Tester Agent: Re‑run unit tests to verify bug fixes.",
-                    "components": []
+                    "desc": "Tester Agent: Implement unit tests for AuthController and AuthService with mocked dependencies",
+                    "components": [
+                        "src/test/java/com/membership/hub/controller/AuthControllerTest.java",
+                        "src/test/java/com/membership/hub/service/AuthServiceTest.java"
+                    ]
                 },
                 {
-                    "id": "D1_ST6",
-                    "agent": "Coder",
-                    "desc": "Coder Agent: Develop integration test suites for interconnected components.",
-                    "components": []
-                },
-                {
-                    "id": "D1_ST7",
-                    "agent": "Tester",
-                    "desc": "Tester Agent: Run integration tests and capture any failures.",
-                    "components": []
-                },
-                {
-                    "id": "D1_ST8",
-                    "agent": "Coder",
-                    "desc": "Coder Agent: Resolve integration test failures.",
-                    "components": []
-                },
-                {
-                    "id": "D1_ST9",
-                    "agent": "Tester",
-                    "desc": "Tester Agent: Validate integration fixes by re‑executing integration tests.",
-                    "components": []
-                },
-                {
-                    "id": "D1_ST10",
-                    "agent": "Coder",
-                    "desc": "Coder Agent: Create UI test scripts using Jest for frontend components.",
-                    "components": []
-                },
-                {
-                    "id": "D1_ST11",
-                    "agent": "Tester",
-                    "desc": "Tester Agent: Run UI tests and log any UI bugs or regressions.",
-                    "components": []
-                },
-                {
-                    "id": "D1_ST12",
-                    "agent": "Coder",
-                    "desc": "Coder Agent: Patch UI issues discovered during UI testing.",
-                    "components": []
-                },
-                {
-                    "id": "D1_ST13",
-                    "agent": "Tester",
-                    "desc": "Tester Agent: Re‑run UI tests to confirm UI bug resolutions.",
-                    "components": []
-                },
-                {
-                    "id": "D1_ST14",
-                    "agent": "Tester",
-                    "desc": "Tester Agent: Perform security testing with OWASP ZAP against all API endpoints.",
-                    "components": []
-                },
-                {
-                    "id": "D1_ST15",
-                    "agent": "Coder",
-                    "desc": "Coder Agent: Address security vulnerabilities reported by OWASP ZAP.",
-                    "components": []
-                },
-                {
-                    "id": "D1_ST16",
-                    "agent": "Tester",
-                    "desc": "Tester Agent: Retest secured endpoints to ensure vulnerabilities are mitigated.",
-                    "components": []
-                },
-                {
-                    "id": "D1_ST17",
-                    "agent": "Tester",
-                    "desc": "Tester Agent: Execute performance load tests to evaluate scalability and efficiency.",
-                    "components": []
-                },
-                {
-                    "id": "D1_ST18",
-                    "agent": "Coder",
-                    "desc": "Coder Agent: Optimize code paths identified as performance bottlenecks.",
-                    "components": []
-                },
-                {
-                    "id": "D1_ST19",
-                    "agent": "Tester",
-                    "desc": "Tester Agent: Re‑run performance tests to verify improvements.",
-                    "components": []
-                },
-                {
-                    "id": "D1_ST20",
+                    "id": "D2_ST2",
                     "agent": "Reviewer",
-                    "desc": "Reviewer Agent: Conduct comprehensive code reviews of test code and bug‑fix commits.",
-                    "components": []
+                    "desc": "Reviewer Agent: Review and enforce coding standards on test code for AuthControllerTest and AuthServiceTest",
+                    "components": [
+                        "src/test/java/com/membership/hub/controller/AuthControllerTest.java",
+                        "src/test/java/com/membership/hub/service/AuthServiceTest.java"
+                    ]
+                }
+            ]
+        },
+        {
+            "day": 3,
+            "context_file": ".ai/.plan/.context/phase-4.context.blueprint.md",
+            "context_section": "DAY 3",
+            "sub_tasks": [
+                {
+                    "id": "D3_ST1",
+                    "agent": "Tester",
+                    "desc": "Tester Agent: Integration test for QR-based attendance with Kafka event streaming using Testcontainers",
+                    "components": [
+                        "src/it/java/com/membership/hub/integration/AttendanceKafkaIT.java",
+                        "src/main/java/com/membership/hub/listener/AttendanceEventListener.java"
+                    ]
                 },
                 {
-                    "id": "D1_ST21",
+                    "id": "D3_ST2",
                     "agent": "DevOps",
-                    "desc": "DevOps Agent: Deploy the latest build to the staging environment for final validation.",
-                    "components": []
+                    "desc": "DevOps Agent: Add mock SMS/Zalo gateway container and configure NotificationService integration tests",
+                    "components": [
+                        "src/docker/test-compose.yml",
+                        "src/main/java/com/membership/hub/service/NotificationService.java"
+                    ]
                 },
                 {
-                    "id": "D1_ST22",
-                    "agent": "Manager",
-                    "desc": "Manager Agent: Generate a consolidated test report summarizing all test results, bug fixes, and remaining issues.",
-                    "components": []
+                    "id": "D3_ST3",
+                    "agent": "Reviewer",
+                    "desc": "Reviewer Agent: Peer review of integration test artifacts for resource management and external call mocking",
+                    "components": [
+                        "src/it/java/com/membership/hub/integration/AttendanceKafkaIT.java",
+                        "src/it/java/com/membership/hub/integration/NotificationIntegrationIT.java"
+                    ]
+                }
+            ]
+        },
+        {
+            "day": 4,
+            "context_file": ".ai/.plan/.context/phase-4.context.blueprint.md",
+            "context_section": "DAY 4",
+            "sub_tasks": [
+                {
+                    "id": "D4_ST1",
+                    "agent": "Tester",
+                    "desc": "Tester Agent: Unit test Next.js React components with multi-language support and role-based UI validation",
+                    "components": [
+                        "src/frontend/__tests__/components/LanguageToggle.test.jsx",
+                        "src/frontend/__tests__/pages/Dashboard.test.jsx"
+                    ]
+                },
+                {
+                    "id": "D4_ST2",
+                    "agent": "DevOps",
+                    "desc": "DevOps Agent: Implement end-to-end UI automation with Cypress including custom commands and role-based access tests",
+                    "components": [
+                        "cypress/support/commands.js",
+                        "cypress/e2e/role_based_access.spec.js"
+                    ]
+                },
+                {
+                    "id": "D4_ST3",
+                    "agent": "Reviewer",
+                    "desc": "Reviewer Agent: Security test suite validation for JWT authentication and CSRF protection mechanisms",
+                    "components": [
+                        "src/test/java/com/membership/hub/security/JwtAuthenticationTokenProviderTest.java",
+                        "src/test/java/com/membership/hub/security/SecurityConfigTest.java"
+                    ]
                 }
             ]
         }

@@ -13,150 +13,195 @@
                 {
                     "id": "D1_ST1",
                     "agent": "Coder",
-                    "desc": "Coder Agent: Initialize Next.js project structure for web and mobile frontends, creating base directories and configuration files.",
+                    "desc": "Coder Agent: Initialize Next.js monorepo with TypeScript, Tailwind, and i18n by configuring package.json, next.config.js, and i18n index files",
                     "components": [
-                        "frontend/web/pages/_app.js",
-                        "frontend/web/pages/index.js",
-                        "frontend/web/styles/globals.css",
-                        "frontend/mobile/screens/HomeScreen.jsx",
-                        "frontend/mobile/styles/AppStyle.js",
-                        "frontend/package.json"
+                        "frontend/package.json",
+                        "frontend/next.config.js",
+                        "frontend/src/i18n/index.ts"
                     ]
                 },
                 {
                     "id": "D1_ST2",
                     "agent": "Coder",
-                    "desc": "Coder Agent: Develop authentication UI components and integrate them with the /api/auth backend endpoint for both web and mobile.",
+                    "desc": "Coder Agent: Create base layout with AuthProvider and navigation, and implement protected route guard functionality",
                     "components": [
-                        "frontend/web/components/AuthForm.jsx",
-                        "frontend/web/pages/login.jsx",
-                        "frontend/mobile/screens/AuthScreen.jsx",
-                        "frontend/mobile/components/AuthInput.jsx"
+                        "frontend/src/layouts/AppLayout.tsx",
+                        "frontend/src/lib/authGuard.ts"
                     ]
-                },
+                }
+            ]
+        },
+        {
+            "day": 2,
+            "context_file": ".ai/.plan/.context/phase-3.context.blueprint.md",
+            "context_section": "DAY 2",
+            "sub_tasks": [
                 {
-                    "id": "D1_ST3",
+                    "id": "D2_ST1",
                     "agent": "Coder",
-                    "desc": "Coder Agent: Create course‑management UI (listing, enrollment, creation) and wire it to the /api/courses endpoint.",
+                    "desc": "Coder Agent: Build Login page with email/password and social providers integration, including auth service implementation",
                     "components": [
-                        "frontend/web/components/CourseList.jsx",
-                        "frontend/web/pages/courses.jsx",
-                        "frontend/mobile/screens/CourseScreen.jsx",
-                        "frontend/mobile/components/CourseCard.jsx"
+                        "frontend/src/pages/auth/login.tsx",
+                        "frontend/src/services/authService.ts"
                     ]
                 },
                 {
-                    "id": "D1_ST4",
-                    "agent": "Coder",
-                    "desc": "Coder Agent: Implement attendance‑tracking interface and connect it with the /api/attendance endpoint.",
-                    "components": [
-                        "frontend/web/components/AttendanceTracker.jsx",
-                        "frontend/web/pages/attendance.jsx",
-                        "frontend/mobile/screens/AttendanceScreen.jsx",
-                        "frontend/mobile/components/AttendanceItem.jsx"
-                    ]
-                },
-                {
-                    "id": "D1_ST5",
-                    "agent": "Coder",
-                    "desc": "Coder Agent: Build notification UI components and integrate them with the /api/notifications endpoint.",
-                    "components": [
-                        "frontend/web/components/NotificationPanel.jsx",
-                        "frontend/web/pages/notifications.jsx",
-                        "frontend/mobile/screens/NotificationScreen.jsx",
-                        "frontend/mobile/components/NotificationItem.jsx"
-                    ]
-                },
-                {
-                    "id": "D1_ST6",
-                    "agent": "Coder",
-                    "desc": "Coder Agent: Add multi‑language (i18n) support configuration for both web and mobile frontends.",
-                    "components": [
-                        "frontend/web/i18n.js",
-                        "frontend/web/locales/en.json",
-                        "frontend/web/locales/es.json",
-                        "frontend/mobile/i18n.js",
-                        "frontend/mobile/locales/en.json",
-                        "frontend/mobile/locales/es.json"
-                    ]
-                },
-                {
-                    "id": "D1_ST7",
+                    "id": "D2_ST2",
                     "agent": "Tester",
-                    "desc": "Tester Agent: Write and run unit tests for all newly created UI components.",
+                    "desc": "Tester Agent: Write unit tests for login component and auth service, mocking API calls and verifying user interactions",
                     "components": [
-                        "frontend/web/__tests__/AuthForm.test.js",
-                        "frontend/web/__tests__/CourseList.test.js",
-                        "frontend/web/__tests__/AttendanceTracker.test.js",
-                        "frontend/web/__tests__/NotificationPanel.test.js",
-                        "frontend/mobile/__tests__/AuthScreen.test.js",
-                        "frontend/mobile/__tests__/CourseScreen.test.js",
-                        "frontend/mobile/__tests__/AttendanceScreen.test.js",
-                        "frontend/mobile/__tests__/NotificationScreen.test.js"
+                        "frontend/src/pages/auth/login.test.tsx",
+                        "frontend/src/services/authService.test.ts"
+                    ]
+                }
+            ]
+        },
+        {
+            "day": 3,
+            "context_file": ".ai/.plan/.context/phase-3.context.blueprint.md",
+            "context_section": "DAY 3",
+            "sub_tasks": [
+                {
+                    "id": "D3_ST1",
+                    "agent": "Coder",
+                    "desc": "Coder Agent: Implement Dashboard widget layout with protected route, four main widgets, and auto-refresh functionality",
+                    "components": [
+                        "frontend/src/pages/dashboard.tsx",
+                        "frontend/src/components/DashboardWidget.tsx"
                     ]
                 },
                 {
-                    "id": "D1_ST8",
+                    "id": "D3_ST2",
+                    "agent": "Coder",
+                    "desc": "Coder Agent: Build QR code scanner component and attendance API integration with camera controls and toast notifications",
+                    "components": [
+                        "frontend/src/components/QRScanner.tsx",
+                        "frontend/src/pages/attendance.tsx",
+                        "frontend/src/hooks/useAttendance.ts"
+                    ]
+                },
+                {
+                    "id": "D3_ST3",
                     "agent": "Tester",
-                    "desc": "Tester Agent: Create integration tests that verify correct communication with backend API endpoints (/api/auth, /api/courses, /api/attendance, /api/notifications).",
+                    "desc": "Tester Agent: Write integration tests for attendance flow, mocking QR scanner and API calls, verifying success/failure handling",
                     "components": [
-                        "frontend/web/__tests__/apiIntegration.test.js",
-                        "frontend/mobile/__tests__/apiIntegration.test.js"
+                        "frontend/src/pages/attendance.test.tsx",
+                        "frontend/src/hooks/useAttendance.test.ts"
+                    ]
+                }
+            ]
+        },
+        {
+            "day": 4,
+            "context_file": ".ai/.plan/.context/phase-3.context.blueprint.md",
+            "context_section": "DAY 4",
+            "sub_tasks": [
+                {
+                    "id": "D4_ST1",
+                    "agent": "Coder",
+                    "desc": "Coder Agent: Create Center Management screen for System Admin only with CRUD operations and admin assignment functionality",
+                    "components": [
+                        "frontend/src/pages/center/list.tsx",
+                        "frontend/src/services/centerService.ts"
                     ]
                 },
                 {
-                    "id": "D1_ST9",
+                    "id": "D4_ST2",
+                    "agent": "Coder",
+                    "desc": "Coder Agent: Build Course Management screen for Admin & Manager with filtering, CRUD operations, and teacher/student assignment",
+                    "components": [
+                        "frontend/src/pages/course/list.tsx",
+                        "frontend/src/services/courseService.ts"
+                    ]
+                },
+                {
+                    "id": "D4_ST3",
+                    "agent": "Coder",
+                    "desc": "Coder Agent: Implement Teacher Management screen for Admin & Manager with CRUD operations and course assignment functionality",
+                    "components": [
+                        "frontend/src/pages/teacher/list.tsx",
+                        "frontend/src/services/teacherService.ts"
+                    ]
+                },
+                {
+                    "id": "D4_ST4",
+                    "agent": "Coder",
+                    "desc": "Coder Agent: Build Student Management screen for Admin & Manager with CRUD operations, enrollment, and remaining days badge",
+                    "components": [
+                        "frontend/src/pages/student/list.tsx",
+                        "frontend/src/services/studentService.ts"
+                    ]
+                },
+                {
+                    "id": "D4_ST5",
+                    "agent": "Coder",
+                    "desc": "Coder Agent: Create Promotion & Announcement Management screens with CRUD operations and notification triggering",
+                    "components": [
+                        "frontend/src/pages/promotion/list.tsx",
+                        "frontend/src/pages/announcement/list.tsx",
+                        "frontend/src/services/notificationService.ts"
+                    ]
+                },
+                {
+                    "id": "D4_ST6",
                     "agent": "Tester",
-                    "desc": "Tester Agent: Execute end‑to‑end UI tests (e.g., Cypress) covering authentication flow, course enrollment, attendance marking, and notification receipt.",
+                    "desc": "Tester Agent: Write end-to-end tests for center management and course registration flows, including login and UI validation",
                     "components": [
-                        "cypress/integration/authFlow.spec.js",
-                        "cypress/integration/courseEnrollment.spec.js",
-                        "cypress/integration/attendanceFlow.spec.js",
-                        "cypress/integration/notificationFlow.spec.js"
+                        "frontend/cypress/e2e/center_management.cy.ts",
+                        "frontend/cypress/e2e/course_registration.cy.ts"
+                    ]
+                }
+            ]
+        },
+        {
+            "day": 5,
+            "context_file": ".ai/.plan/.context/phase-3.context.blueprint.md",
+            "context_section": "DAY 5",
+            "sub_tasks": [
+                {
+                    "id": "D5_ST1",
+                    "agent": "DevOps",
+                    "desc": "DevOps Agent: Add PWA manifest and service worker registration for mobile experience with offline fallback support",
+                    "components": [
+                        "frontend/public/manifest.json",
+                        "frontend/src/lib/sw-register.ts"
                     ]
                 },
                 {
-                    "id": "D1_ST10",
+                    "id": "D5_ST2",
+                    "agent": "Coder",
+                    "desc": "Coder Agent: Implement SEO helpers including meta tag generation, dynamic sitemap, and hreflang support for multi-language",
+                    "components": [
+                        "frontend/src/lib/seo.ts",
+                        "frontend/src/pages/sitemap.xml.ts",
+                        "frontend/src/components/Hreflang.tsx"
+                    ]
+                },
+                {
+                    "id": "D5_ST3",
                     "agent": "Reviewer",
-                    "desc": "Reviewer Agent: Perform code review of all web frontend code ensuring style compliance, performance, and proper integration.",
+                    "desc": "Reviewer Agent: Run linting, type checking, and test suite; review CI logs and ensure all checks pass with exit code 0",
                     "components": [
-                        "frontend/web/components/",
-                        "frontend/web/pages/",
-                        "frontend/web/styles/"
+                        "frontend/.eslintrc.js",
+                        "frontend/tsconfig.json"
                     ]
                 },
                 {
-                    "id": "D1_ST11",
+                    "id": "D5_ST4",
+                    "agent": "DevOps",
+                    "desc": "DevOps Agent: Build multi-stage Docker image for front-end assets using node:20-alpine for build and nginx:alpine for runtime",
+                    "components": [
+                        "frontend/Dockerfile",
+                        "frontend/docker-compose.yml"
+                    ]
+                },
+                {
+                    "id": "D5_ST5",
                     "agent": "Reviewer",
-                    "desc": "Reviewer Agent: Perform code review of all mobile frontend code ensuring style compliance, performance, and proper integration.",
+                    "desc": "Reviewer Agent: Conduct final code review of all modified source files, verifying TypeScript compliance, accessibility, i18n, and security",
                     "components": [
-                        "frontend/mobile/components/",
-                        "frontend/mobile/screens/",
-                        "frontend/mobile/styles/"
+                        "frontend/README.md"
                     ]
-                },
-                {
-                    "id": "D1_ST12",
-                    "agent": "DevOps",
-                    "desc": "DevOps Agent: Set up development environment: install dependencies, configure .env variables, and ensure build scripts are functional.",
-                    "components": [
-                        "frontend/package.json",
-                        ".env"
-                    ]
-                },
-                {
-                    "id": "D1_ST13",
-                    "agent": "DevOps",
-                    "desc": "DevOps Agent: Create CI/CD pipeline configuration for automated testing and deployment of the frontend to the production environment.",
-                    "components": [
-                        ".github/workflows/frontend.yml"
-                    ]
-                },
-                {
-                    "id": "D1_ST14",
-                    "agent": "DevOps",
-                    "desc": "DevOps Agent: Deploy the built frontend applications to the production platform (e.g., Vercel) and verify successful launch.",
-                    "components": []
                 }
             ]
         }
