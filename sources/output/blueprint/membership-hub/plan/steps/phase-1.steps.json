@@ -12,82 +12,26 @@
             "sub_tasks": [
                 {
                     "id": "D1_ST1",
-                    "agent": "Manager",
-                    "desc": "Manager Agent: Draft project plan and stakeholder matrix in PROJECT_PLAN.md",
+                    "agent": "Coder",
+                    "desc": "Coder Agent: Create Maven Parent POM",
                     "components": [
-                        "./docs/PROJECT_PLAN.md"
+                        "./sources/backend/pom.xml"
                     ]
                 },
                 {
                     "id": "D1_ST2",
                     "agent": "Coder",
-                    "desc": "Coder Agent: Initialize Git repository with .gitignore and basic structure",
+                    "desc": "Coder Agent: Initialize Frontend Package",
                     "components": [
-                        "./.gitignore"
+                        "./sources/frontend/package.json"
                     ]
                 },
                 {
                     "id": "D1_ST3",
-                    "agent": "Coder",
-                    "desc": "Coder Agent: Create pom.xml with Quarkus platform and essential dependencies",
+                    "agent": "Manager",
+                    "desc": "Manager Agent: Create Project Plan Document",
                     "components": [
-                        "./pom.xml"
-                    ]
-                },
-                {
-                    "id": "D1_ST4",
-                    "agent": "Coder",
-                    "desc": "Coder Agent: Create Java package structure with Application.java main entry point",
-                    "components": [
-                        "./src/main/java/com/membershiphub/Application.java"
-                    ]
-                },
-                {
-                    "id": "D1_ST5",
-                    "agent": "Coder",
-                    "desc": "Coder Agent: Create HealthResource.java for health check endpoint",
-                    "components": [
-                        "./src/main/java/com/membershiphub/HealthResource.java"
-                    ]
-                },
-                {
-                    "id": "D1_ST6",
-                    "agent": "Coder",
-                    "desc": "Coder Agent: Configure application.yml with datasource and Kafka placeholders",
-                    "components": [
-                        "./src/main/resources/application.yml"
-                    ]
-                },
-                {
-                    "id": "D1_ST7",
-                    "agent": "DevOps",
-                    "desc": "DevOps Agent: Create Dockerfile for Quarkus application container",
-                    "components": [
-                        "./docker/Dockerfile"
-                    ]
-                },
-                {
-                    "id": "D1_ST8",
-                    "agent": "DevOps",
-                    "desc": "DevOps Agent: Create docker-compose.yml with app, postgres, and kafka services",
-                    "components": [
-                        "./docker/docker-compose.yml"
-                    ]
-                },
-                {
-                    "id": "D1_ST9",
-                    "agent": "Tester",
-                    "desc": "Tester Agent: Create HealthResourceTest.java for health endpoint testing",
-                    "components": [
-                        "./src/test/java/com/membershiphub/HealthResourceTest.java"
-                    ]
-                },
-                {
-                    "id": "D1_ST10",
-                    "agent": "Tester",
-                    "desc": "Tester Agent: Configure Maven surefire plugin for test execution in pom.xml",
-                    "components": [
-                        "./pom.xml"
+                        "./docs/Phase1-Plan.md"
                     ]
                 }
             ]
@@ -99,66 +43,65 @@
             "sub_tasks": [
                 {
                     "id": "D2_ST1",
+                    "agent": "Coder",
+                    "desc": "Coder Agent: Implement Health-Check Resource",
+                    "components": [
+                        "./sources/backend/src/main/java/org/nlh4j/saas/membership-hub/HealthResource.java"
+                    ]
+                },
+                {
+                    "id": "D2_ST2",
+                    "agent": "Tester",
+                    "desc": "Tester Agent: Write Health-Check Unit Test",
+                    "components": [
+                        "./sources/backend/src/test/java/org/nlh4j/saas/membership-hub/HealthResourceTest.java"
+                    ]
+                },
+                {
+                    "id": "D2_ST3",
+                    "agent": "Coder",
+                    "desc": "Coder Agent: Build Drag-and-Drop Upload Component",
+                    "components": [
+                        "./sources/frontend/src/components/UploadZone.tsx"
+                    ]
+                }
+            ]
+        },
+        {
+            "day": 3,
+            "context_file": ".ai/.plan/.context/phase-1.context.blueprint.md",
+            "context_section": "DAY 3",
+            "sub_tasks": [
+                {
+                    "id": "D3_ST1",
                     "agent": "DevOps",
-                    "desc": "DevOps Agent: Create GitHub Actions CI pipeline configuration in ci.yml",
+                    "desc": "DevOps Agent: Generate Backend Dockerfile",
+                    "components": [
+                        "./sources/backend/Dockerfile"
+                    ]
+                },
+                {
+                    "id": "D3_ST2",
+                    "agent": "DevOps",
+                    "desc": "DevOps Agent: Generate Frontend Dockerfile",
+                    "components": [
+                        "./sources/frontend/Dockerfile"
+                    ]
+                },
+                {
+                    "id": "D3_ST3",
+                    "agent": "DevOps",
+                    "desc": "DevOps Agent: Create GitHub Actions CI Workflow",
                     "components": [
                         "./.github/workflows/ci.yml"
                     ]
                 },
                 {
-                    "id": "D2_ST2",
+                    "id": "D3_ST4",
                     "agent": "Reviewer",
-                    "desc": "Reviewer Agent: Create CONTRIBUTING.md with commit conventions and PR template",
+                    "desc": "Reviewer Agent: Reviewer Validation",
                     "components": [
-                        "./.github/CONTRIBUTING.md"
-                    ]
-                },
-                {
-                    "id": "D2_ST3",
-                    "agent": "Reviewer",
-                    "desc": "Reviewer Agent: Create CODEOWNERS file with role-based code ownership",
-                    "components": [
-                        "./.github/CODEOWNERS"
-                    ]
-                },
-                {
-                    "id": "D2_ST4",
-                    "agent": "Coder",
-                    "desc": "Coder Agent: Create README.md with project overview and quick-start guide",
-                    "components": [
-                        "./README.md"
-                    ]
-                },
-                {
-                    "id": "D2_ST5",
-                    "agent": "Coder",
-                    "desc": "Coder Agent: Create ARCHITECTURE.md with high-level system architecture",
-                    "components": [
-                        "./docs/ARCHITECTURE.md"
-                    ]
-                },
-                {
-                    "id": "D2_ST6",
-                    "agent": "Coder",
-                    "desc": "Coder Agent: Create ENVIRONMENT_SETUP.md with local development instructions",
-                    "components": [
-                        "./docs/ENVIRONMENT_SETUP.md"
-                    ]
-                },
-                {
-                    "id": "D2_ST7",
-                    "agent": "Tester",
-                    "desc": "Tester Agent: Execute HealthResourceTest to validate health endpoint functionality",
-                    "components": [
-                        "./src/test/java/com/membershiphub/HealthResourceTest.java"
-                    ]
-                },
-                {
-                    "id": "D2_ST8",
-                    "agent": "Tester",
-                    "desc": "Tester Agent: Configure Maven surefire plugin for integration test execution",
-                    "components": [
-                        "./pom.xml"
+                        "./sources/backend/src/main/java/org/nlh4j/saas/membership-hub/HealthResource.java"
                     ]
                 }
             ]

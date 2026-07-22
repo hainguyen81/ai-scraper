@@ -1,240 +1,292 @@
 # PHASE 2 CONTEXT BLUEPRINT: membership-hub
 ## 1. Phase Operational Scope & Objectives
-- **Core Goal:** Build a robust, scalable **backend API** that powers the membership‑hub web and mobile experiences.  
-- **Tech Stack:** Java 17 + Quarkus, PostgreSQL, Apache Kafka, Docker, Google Cloud Platform (GCP) readiness.  
-- **Key Functional Areas:**  
-  1. **Authentication & Authorization** – email/password, Firebase, Google, Facebook OAuth, JWT‑based session management, role‑based access control (System Admin, Admin, Manager, Teacher, Student).  
-  2. **Entity Management** – Centers, Courses, Teachers, Students, Attendance (QR scan), Notifications, Promotions.  
-  3. **Real‑time Communication** – Kafka producers/consumers for instant push notifications to Zalo groups and mobile apps.  
-  4. **Security & Compliance** – Data encryption at rest/in‑transit, audit logging, GDPR/CCPA‑aligned data handling.  
-  5. **DevOps Foundations** – Docker image generation, health‑checks, environment‑driven configuration, CI/CD‑ready artifacts.  
+- **Core Technical Objectives**  
+  1. Build a fully‑functional Java 17 Quarkus backend with Kafka integration, Postgres persistence, and JWT‑based authentication (email/password, Firebase, Google, Facebook).  
+  2. Define the essential domain entities (`User`, `Center`, `Course`, `Attendance`, `Enrollment`) and expose REST resources for CRUD and attendance marking.  
+  3. Implement a minimal Next.js frontend that supports login, language detection, and a placeholder dashboard.  
+  4. Deliver Docker images, CI/CD pipeline definitions, and basic integration tests.  
+  5. Ensure compliance with global guardrails: package‑to‑path mapping, absolute workspace boundary, and no in‑memory large‑dataset loops.
 
-## 2. Allowed Technical Scope & Directory Boundaries (Files, Paths, and Endpoints)
-```
-src/main/java/com/membershiphub/backend/
-├─ model/                # JPA entities (Center, Course, Teacher, Student, Attendance, Notification, Promotion)
-├─ repository/           # Spring Data JPA interfaces (e.g., UserRepository, CenterRepository)
-├─ service/              # Business logic (UserService, AuthService, KafkaNotificationService)
-├─ resource/             # REST endpoints (AuthResource, UserResource, CenterResource, CourseResource,
-│                         TeacherResource, StudentResource, AttendanceResource, NotificationResource)
-├─ security/             # SecurityConfig, JwtTokenFilter, OAuth2SuccessHandler
-└─ kafka/                # KafkaProducerService, KafkaConsumerService
+## 2. Allowed Technical Scope & Directory Boundaries (Files, paths, and endpoints)
+| Layer | Path Prefix | Example Files | Notes |
+|-------|-------------|---------------|-------|
+| **Backend** | `./sources/backend/` | `pom.xml`, `src/main/java/...`, `src/test/java/...` | All Java source, tests, and build descriptors. |
+| **Frontend** | `./sources/frontend/` | `package.json`, `src/pages/...`, `src/components/...` | All TypeScript/React/Next.js files. |
+| **Docker** | `./sources/backend/` | `Dockerfile`, `docker-compose.yml` | Build context for backend. |
+| **CI/CD** | `./sources/backend/` | `.github/workflows/...` | GitHub Actions for build, test, deploy. |
 
-src/main/resources/
-└─ application.properties   # DB, Kafka, JWT, OAuth client configs
+**Endpoints (Backend)**  
+- `GET /api/v1/health` – health check.  
+- `POST /api/v1/auth/login` – email/password login.  
+- `POST /api/v1/auth/register` – user registration.  
+- `GET /api/v1/centers` – list centers.  
+- `GET /api/v1/courses` – list courses.  
+- `POST /api/v1/attendance/scan` – QR scan attendance.  
 
-src/main/docker/
-└─ Dockerfile               # Multi‑stage build for runtime image
+**Frontend Pages**  
+- `/login` – login form.  
+- `/dashboard` – placeholder dashboard.  
 
-src/test/java/com/membershiphub/backend/
-└─ **(*Unit/Integration*)Test classes for each resource & service
-
-docker-compose.yml          # Local dev stack (Postgres + Kafka)
-```
-
-**Endpoint Patterns (example):**  
-- `POST /api/auth/login` – email/password  
-- `POST /api/auth/oauth/{provider}` – Firebase/Google/Facebook callback  
-- `GET /api/centers`, `POST /api/centers` … etc.  
-- `POST /api/attendance/qr` – record attendance via QR  
-- `POST /api/kafka/notify` – fire a Kafka event for notifications  
-
-## 3. Dedicated Sub‑Agent Functional Directives
-| Agent | Primary Responsibility |
-|-------|------------------------|
-| **Coder** | Implement core REST resources, services, JPA entities, authentication/authorization logic, Kafka producers/consumers, and Docker file. |
-| **Tester** | Write unit & integration tests for all resources, auth flows, Kafka event handling, and security constraints. |
-| **Reviewer** | Perform code‑review checks, enforce coding standards, validate security best‑practices, and ensure compliance with guardrails. |
-| **DevOps** | Prepare Docker image, health‑check endpoints, environment configuration, and CI/CD stub (e.g., Cloud Build triggers). |
+## 3. Dedicated Sub-Agent Functional Directives
+| Agent | Responsibility | Key Deliverables |
+|-------|----------------|------------------|
+| **Coder** | Implement all Java and TypeScript source files, Dockerfiles, and CI configs. | Source files, Dockerfile, `package.json`, Next.js pages. |
+| **Tester** | Write unit tests for services and resources; integration tests for multi‑component flows. | JUnit test classes, integration test suites. |
+| **Reviewer** | Perform static analysis, enforce no nested loops over large tables, validate package‑to‑path mapping. | Review reports, code comments. |
+| **DevOps** | Create Docker images, compose files, and CI/CD pipelines. | `Dockerfile`, `docker-compose.yml`, GitHub Actions workflow. |
 
 ## 4. Phase Definition of Done (DoD)
-- All **backend REST endpoints** are implemented, documented, and follow Quarkus conventions.  
-- **Authentication** (local & OAuth) and **RBAC** are fully functional; JWT tokens are validated and role‑scoped.  
-- **Kafka integration** can produce/consume notification events for Zalo groups & mobile push.  
-- **Docker image** builds cleanly, includes health‑check, and is ready for GKE deployment.  
-- **Test coverage** ≥ 80 % for core resources; security tests confirm proper role enforcement.  
-- **Code review** sign‑off from Reviewer; DevOps signs off on container readiness.  
+- All core entities, services, and resources compile and pass unit tests.  
+- Authentication flow works end‑to‑end (frontend → backend → Postgres).  
+- Attendance marking endpoint publishes a Kafka event.  
+- Docker image builds successfully and passes integration tests.  
+- CI pipeline runs tests, builds image, and deploys to a GKE staging cluster.  
+- Reviewer approves code with no violations of guardrails.  
 
 ## 5. DAY‑BY‑DAY ARCHITECTURAL EXECUTION LOGS
 
-### DAY 1: PROJECT BOOTSTRAP & CORE ENTITY DEFINITIONS
-#### SUB‑TASK 1.1: Define JPA Entities & Repositories
+### DAY 1: BACKEND BOILERPLATE & HEALTH ENDPOINT
+#### SUB‑TASK 1.1: Configure Enterprise Multi‑Module Backend
 ##### Assigned Sub‑Agent: Coder
 ##### Targeted Components & Technical Requirements:
-*   **Target Path 1:** `src/main/java/com/membershiphub/backend/model/User.java`
-    *   **Architectural Requirements:**  
-        *   Annotate with `@Entity`, `@Table(name="users")`.  
-        *   Include fields: `id`, `email`, `passwordHash`, `provider` (LOCAL, FIREBASE, GOOGLE, FACEBOOK), `role` (enum: SYSTEM_ADMIN, ADMIN, MANAGER, TEACHER, STUDENT).  
-        *   Add `@OneToMany` for `Center` ownership if role = ADMIN.  
-        *   Implement `equals`/`hashCode` based on `id`.  
-*   **Target Path 2:** `src/main/java/com/membershiphub/backend/model/Center.java`
-    *   **Architectural Requirements:**  
-        *   `@Entity` with fields: `id`, `name`, `address`, `taxId`, `contactPhone`, `adminId` (`@ManyToOne` to `User`).  
-        *   Add `@OneToMany` to `Course` list.  
-*   **Target Path 3:** `src/main/java/com/membershiphub/backend/repository/UserRepository.java`
-    *   **Architectural Requirements:**  
-        *   Extend `JpaRepository<User, Long>`.  
-        *   Provide finder `Optional<User> findByEmail(String email)`.  
-        *   Provide custom query `List<User> findByRole(UserRole role)`.  
+* **Target Path:** `./sources/backend/pom.xml`  
+  * **Architectural Requirements:**  
+    * Define parent POM, Quarkus BOM, Postgres driver, Kafka client, and JWT dependencies.  
+* **Target Path:** `./sources/backend/src/main/java/org/nlh4j/saas/membershiphub/HealthResource.java`  
+  * **Architectural Requirements:**  
+    * Expose `/api/v1/health` returning JSON `{status: "UP"}`.  
 
-#### SUB‑TASK 1.2: Initialize Quarkus Application & Basic Config
-##### Assigned Sub‑Agent: DevOps
+#### SUB‑TASK 1.2: Initialize Frontend Boilerplate
+##### Assigned Sub‑Agent: Coder
 ##### Targeted Components & Technical Requirements:
-*   **Target Path 1:** `src/main/resources/application.properties`
-    *   **Architectural Requirements:**  
-        *   Set datasource URL, username, password for PostgreSQL.  
-        *   Configure Hibernate `ddl-auto = none` (schema migration handled externally).  
-        *   Define JWT `quarkus.smallrye.jwt.sign.key.location` (placeholder for secret).  
-        *   Kafka bootstrap servers (`kafka:9092` for dev).  
-        *   OAuth client IDs/secrets for Firebase, Google, Facebook (environment placeholders).  
-*   **Target Path 2:** `src/main/docker/Dockerfile`
-    *   **Architectural Requirements:**  
-        *   Multi‑stage: build stage with Maven, runtime stage using `quarkus:2.15.0` base image.  
-        *   Copy built uber‑jar, set `JAVA_OPTS`, expose port `8080`.  
-        *   Add health‑check endpoint `/q/health`.  
+* **Target Path:** `./sources/frontend/package.json`  
+  * **Architectural Requirements:**  
+    * Scripts for `dev`, `build`, `lint`, Tailwind CSS integration.  
+* **Target Path:** `./sources/frontend/src/pages/_app.tsx`  
+  * **Architectural Requirements:**  
+    * Wrap application with Tailwind provider and language context.  
 
-#### SUB‑TASK 1.3: Write Unit Tests for Entity Persistence
+#### SUB‑TASK 1.3: Unit Test Health Endpoint
 ##### Assigned Sub‑Agent: Tester
 ##### Targeted Components & Technical Requirements:
-*   **Target Path 1:** `src/test/java/com/membershiphub/backend/model/UserTest.java`
-    *   **Architectural Requirements:**  
-        *   Use `@DataJpaTest` to test save/find operations.  
-        *   Verify that `User` with duplicate email throws constraint violation.  
-        *   Assert role enum values are persisted correctly.  
-*   **Target Path 2:** `src/test/java/com/membershiphub/backend/repository/UserRepositoryTest.java`
-    *   **Architectural Requirements:**  
-        *   Test `findByEmail` returns expected user.  
-        *   Test `findByRole` filters users by role.  
+* **Target Path:** `./sources/backend/src/main/java/org/nlh4j/saas/membershiphub/HealthResource.java;./sources/backend/src/test/java/org/nlh4j/saas/membershiphub/HealthResourceTest.java`  
+  * **Architectural Requirements:**  
+    * Assert HTTP 200 and JSON body contains `status=UP`.  
 
-### DAY 2: AUTHENTICATION & AUTHORIZATION IMPLEMENTATION
-#### SUB‑TASK 2.1: Implement JWT Authentication Service
+---
+
+### DAY 2: AUTHENTICATION – EMAIL/ PASSWORD
+#### SUB‑TASK 2.1: Implement User Entity & Repository
 ##### Assigned Sub‑Agent: Coder
 ##### Targeted Components & Technical Requirements:
-*   **Target Path 1:** `src/main/java/com/membershiphub/backend/service/AuthService.java`
-    *   **Architectural Requirements:**  
-        *   Method `String generateToken(User user)` – includes `sub`, `email`, `role`, `iat`, `exp`.  
-        *   Method `User authenticateLocal(String email, String password)` – verify password hash.  
-        *   Method `User authenticateOAuth(String provider, String providerId)` – look up or create user.  
-*   **Target Path 2:** `src/main/java/com/membershiphub/backend/security/JwtTokenFilter.java`
-    *   **Architectural Requirements:**  
-        *   Extend `jakarta.ws.rs.container.ContainerRequestFilter`.  
-        *   Validate `Authorization: Bearer <token>` header.  
-        *   Extract claims, set `SecurityContext` with `UserPrincipal` and roles.  
+* **Target Path:** `./sources/backend/src/main/java/org/nlh4j/saas/membershiphub/model/User.java`  
+  * **Architectural Requirements:**  
+    * JPA entity with fields: `id`, `email`, `passwordHash`, `roles`, `centerId`.  
+* **Target Path:** `./sources/backend/src/main/java/org/nlh4j/saas/membershiphub/repository/UserRepository.java`  
+  * **Architectural Requirements:**  
+    * CRUD repository, findByEmail.  
 
-#### SUB‑TASK 2.2: Create OAuth2 Success Handlers for External Providers
+#### SUB‑TASK 2.2: Create Auth Service & Resource
 ##### Assigned Sub‑Agent: Coder
 ##### Targeted Components & Technical Requirements:
-*   **Target Path 1:** `src/main/java/com/membershiphub/backend/security/OAuth2SuccessHandler.java`
-    *   **Architectural Requirements:**  
-        *   Implement `OAuth2SuccessHandler` interface.  
-        *   For each provider (Firebase, Google, Facebook) map provider‑specific user info to `User` entity.  
-        *   Generate JWT and return `Response` with token.  
+* **Target Path:** `./sources/backend/src/main/java/org/nlh4j/saas/membershiphub/service/AuthService.java`  
+  * **Architectural Requirements:**  
+    * Password hashing (BCrypt), JWT generation, login logic.  
+* **Target Path:** `./sources/backend/src/main/java/org/nlh4j/saas/membershiphub/resource/AuthResource.java`  
+  * **Architectural Requirements:**  
+    * Endpoints: `/api/v1/auth/login`, `/api/v1/auth/register`.  
 
-#### SUB‑TASK 2.3: Write Integration Tests for Auth Flows
+#### SUB‑TASK 2.3: Frontend Login Page
+##### Assigned Sub‑Agent: Coder
+##### Targeted Components & Technical Requirements:
+* **Target Path:** `./sources/frontend/src/pages/login.tsx`  
+  * **Architectural Requirements:**  
+    * Form with email/password, submit to `/api/v1/auth/login`, store JWT in localStorage.  
+
+#### SUB‑TASK 2.4: Unit Tests for Auth Service
 ##### Assigned Sub‑Agent: Tester
 ##### Targeted Components & Technical Requirements:
-*   **Target Path 1:** `src/test/java/com/membershiphub/backend/resource/AuthResourceTest.java`
-    *   **Architectural Requirements:**  
-        *   Use `QuarkusTest` + `TestHTTPEndpoint`.  
-        *   Test `POST /api/auth/login` with valid/invalid credentials.  
-        *   Test `POST /api/auth/oauth/google` mock provider response.  
-        *   Verify JWT token in response headers.  
+* **Target Path:** `./sources/backend/src/main/java/org/nlh4j/saas/membershiphub/service/AuthService.java;./sources/backend/src/test/java/org/nlh4j/saas/membershiphub/service/AuthServiceTest.java`  
+  * **Architectural Requirements:**  
+    * Test password hashing, JWT claims, login success/failure.  
 
-#### SUB‑TASK 2.4: Code Review of Authentication Layer
+---
+
+### DAY 3: DOMAIN ENTITIES – CENTER & COURSE
+#### SUB‑TASK 3.1: Center Entity & Repository
+##### Assigned Sub‑Agent: Coder
+##### Targeted Components & Technical Requirements:
+* **Target Path:** `./sources/backend/src/main/java/org/nlh4j/saas/membershiphub/model/Center.java`  
+  * **Architectural Requirements:**  
+    * Fields: `id`, `name`, `address`, `taxCode`, `adminUserId`.  
+* **Target Path:** `./sources/backend/src/main/java/org/nlh4j/saas/membershiphub/repository/CenterRepository.java`  
+  * **Architectural Requirements:**  
+    * CRUD repository.  
+
+#### SUB‑TASK 3.2: Course Entity & Repository
+##### Assigned Sub‑Agent: Coder
+##### Targeted Components & Technical Requirements:
+* **Target Path:** `./sources/backend/src/main/java/org/nlh4j/saas/membershiphub/model/Course.java`  
+  * **Architectural Requirements:**  
+    * Fields: `id`, `centerId`, `title`, `description`, `startDate`, `endDate`, `teacherId`.  
+* **Target Path:** `./sources/backend/src/main/java/org/nlh4j/saas/membershiphub/repository/CourseRepository.java`  
+  * **Architectural Requirements:**  
+    * CRUD repository, findByCenterId.  
+
+#### SUB‑TASK 3.3: Center & Course Resources
+##### Assigned Sub‑Agent: Coder
+##### Targeted Components & Technical Requirements:
+* **Target Path:** `./sources/backend/src/main/java/org/nlh4j/saas/membershiphub/resource/CenterResource.java`  
+  * **Architectural Requirements:**  
+    * Endpoints: `GET /api/v1/centers`, `POST /api/v1/centers`.  
+* **Target Path:** `./sources/backend/src/main/java/org/nlh4j/saas/membershiphub/resource/CourseResource.java`  
+  * **Architectural Requirements:**  
+    * Endpoints: `GET /api/v1/courses`, `POST /api/v1/courses`.  
+
+#### SUB‑TASK 3.4: Frontend Center & Course Pages
+##### Assigned Sub‑Agent: Coder
+##### Targeted Components & Technical Requirements:
+* **Target Path:** `./sources/frontend/src/pages/centers.tsx`  
+  * **Architectural Requirements:**  
+    * Fetch and display list of centers.  
+* **Target Path:** `./sources/frontend/src/pages/courses.tsx`  
+  * **Architectural Requirements:**  
+    * Fetch and display list of courses.  
+
+#### SUB‑TASK 3.5: Integration Test for Center CRUD
+##### Assigned Sub‑Agent: Tester
+##### Targeted Components & Technical Requirements:
+* **Target Path:** `INTEGRATION_SCOPE;./sources/backend/src/test/java/org/nlh4j/saas/membershiphub/integration/CenterIntegrationTest.java`  
+  * **Architectural Requirements:**  
+    * Create a center, retrieve it, update, delete, and assert database state.  
+
+---
+
+### DAY 4: ATTENDANCE & QR SCAN
+#### SUB‑TASK 4.1: Attendance Entity & Repository
+##### Assigned Sub‑Agent: Coder
+##### Targeted Components & Technical Requirements:
+* **Target Path:** `./sources/backend/src/main/java/org/nlh4j/saas/membershiphub/model/Attendance.java`  
+  * **Architectural Requirements:**  
+    * Fields: `id`, `userId`, `courseId`, `scanTimestamp`.  
+* **Target Path:** `./sources/backend/src/main/java/org/nlh4j/saas/membershiphub/repository/AttendanceRepository.java`  
+  * **Architectural Requirements:**  
+    * CRUD repository, findByUserIdAndDate.  
+
+#### SUB‑TASK 4.2: Attendance Service & Resource
+##### Assigned Sub‑Agent: Coder
+##### Targeted Components & Technical Requirements:
+* **Target Path:** `./sources/backend/src/main/java/org/nlh4j/saas/membershiphub/service/AttendanceService.java`  
+  * **Architectural Requirements:**  
+    * `scanAttendance(userId, courseId)` – idempotent per day.  
+* **Target Path:** `./sources/backend/src/main/java/org/nlh4j/saas/membershiphub/resource/AttendanceResource.java`  
+  * **Architectural Requirements:**  
+    * `POST /api/v1/attendance/scan` – accepts JSON `{userId, courseId}`.  
+
+#### SUB‑TASK 4.3: Frontend Attendance Scan Component
+##### Assigned Sub‑Agent: Coder
+##### Targeted Components & Technical Requirements:
+* **Target Path:** `./sources/frontend/src/components/AttendanceScan.tsx`  
+  * **Architectural Requirements:**  
+    * QR code scanner (using `react-qr-reader`), submit to backend, display success message.  
+
+#### SUB‑TASK 4.4: Unit Test for Attendance Service
+##### Assigned Sub‑Agent: Tester
+##### Targeted Components & Technical Requirements:
+* **Target Path:** `./sources/backend/src/main/java/org/nlh4j/saas/membershiphub/service/AttendanceService.java;./sources/backend/src/test/java/org/nlh4j/saas/membershiphub/service/AttendanceServiceTest.java`  
+  * **Architectural Requirements:**  
+    * Test idempotency, date filtering, and event publishing stub.  
+
+---
+
+### DAY 5: KAFKA INTEGRATION
+#### SUB‑TASK 5.1: Kafka Producer Configuration
+##### Assigned Sub‑Agent: Coder
+##### Targeted Components & Technical Requirements:
+* **Target Path:** `./sources/backend/src/main/java/org/nlh4j/saas/membershiphub/config/KafkaProducerConfig.java`  
+  * **Architectural Requirements:**  
+    * Configure `io.smallrye.reactive.messaging` producer for topic `attendance-events`.  
+
+#### SUB‑TASK 5.2: Publish Attendance Event
+##### Assigned Sub‑Agent: Coder
+##### Targeted Components & Technical Requirements:
+* **Target Path:** `./sources/backend/src/main/java/org/nlh4j/saas/membershiphub/service/AttendanceService.java`  
+  * **Architectural Requirements:**  
+    * After successful scan, emit JSON `{userId, courseId, timestamp}` to Kafka.  
+
+#### SUB‑TASK 5.3: Integration Test for Kafka Event
+##### Assigned Sub‑Agent: Tester
+##### Targeted Components & Technical Requirements:
+* **Target Path:** `INTEGRATION_SCOPE;./sources/backend/src/test/java/org/nlh4j/saas/membershiphub/integration/AttendanceKafkaTest.java`  
+  * **Architectural Requirements:**  
+    * Use embedded Kafka, trigger scan, assert message received on `attendance-events`.  
+
+#### SUB‑TASK 5.4: Reviewer Static Analysis
 ##### Assigned Sub‑Agent: Reviewer
 ##### Targeted Components & Technical Requirements:
-*   **Target Path 1:** All files under `src/main/java/com/membershiphub/backend/security/` and `src/main/java/com/membershiphub/backend/service/AuthService.java`
-    *   **Architectural Requirements:**  
-        *   Ensure password hashing uses `BCrypt` or `Argon2`.  
-        *   Validate token expiration and refresh logic placeholders.  
-        *   Confirm role‑based access annotations (`@RolesAllowed`) are present in resource classes.  
-        *   Check for secure handling of OAuth client secrets (environment variables).  
+* **Target Path:** `./sources/backend/src/main/java/org/nlh4j/saas/membershiphub/service/AttendanceService.java`  
+  * **Architectural Requirements:**  
+    * Verify no nested loops over large tables; confirm use of indexed queries.  
 
-### DAY 3: CORE CRUD RESOURCES & KAFKA NOTIFICATION INTEGRATION
-#### SUB‑TASK 3.1: Implement Center Management REST Resources
-##### Assigned Sub‑Agent: Coder
-##### Targeted Components & Technical Requirements:
-*   **Target Path 1:** `src/main/java/com/membershiphub/backend/resource/CenterResource.java`
-    *   **Architectural Requirements:**  
-        *   Expose `GET /api/centers`, `GET /api/centers/{id}`, `POST /api/centers`, `PUT /api/centers/{id}`, `DELETE /api/centers/{id}`.  
-        *   Inject `CenterService` and enforce `@RolesAllowed("SYSTEM_ADMIN")` for create/delete.  
-        *   Validate request DTO against business rules (e.g., taxId uniqueness).  
-*   **Target Path 2:** `src/main/java/com/membershiphub/backend/service/CenterService.java`
-    *   **Architectural Requirements:**  
-        *   Implement CRUD delegating to `CenterRepository`.  
-        *   Add method `Center assignAdmin(Long centerId, Long adminId)` with role update.  
+---
 
-#### SUB‑TASK 3.2: Implement Course, Teacher, Student & Attendance Resources
-##### Assigned Sub‑Agent: Coder
-##### Targeted Components & Technical Requirements:
-*   **Target Path 1:** `src/main/java/com/membershiphub/backend/resource/CourseResource.java`
-    *   **Architectural Requirements:**  
-        *   Endpoints for course CRUD, `POST /api/courses/{courseId}/teachers/{teacherId}` (assign).  
-        *   Role restrictions: `ADMIN` can create/delete, `MANAGER` can assign teachers.  
-*   **Target Path 2:** `src/main/java/com/membershiphub/backend/resource/TeacherResource.java`
-    *   **Architectural Requirements:**  
-        *   CRUD for Teacher entity, `GET /api/teachers/{id}/courses`.  
-        *   Role restrictions: `ADMIN`/`MANAGER` can manage, `TEACHER` can view own data.  
-*   **Target Path 3:** `src/main/java/com/membershiphub/backend/resource/StudentResource.java`
-    *   **Architectural Requirements:**  
-        *   CRUD for Student, `POST /api/students/{id}/courses/{courseId}` (enroll).  
-        *   Role restrictions: `ADMIN`/`MANAGER` can manage, `STUDENT` can view own profile.  
-*   **Target Path 4:** `src/main/java/com/membershiphub/backend/resource/AttendanceResource.java`
-    *   **Architectural Requirements:**  
-        *   `POST /api/attendance/qr` – accepts `qrPayload` (studentId + timestamp).  
-        *   Business rule: only record once per student per day (use `LocalDate`).  
-        *   Emit Kafka event `AttendanceRecordedEvent` after persistence.  
-
-#### SUB‑TASK 3.3: Build Kafka Producer & Consumer Services
-##### Assigned Sub‑Agent: Coder
-##### Targeted Components & Technical Requirements:
-*   **Target Path 1:** `src/main/java/com/membershiphub/backend/kafka/AttendanceEventProducer.java`
-    *   **Architectural Requirements:**  
-        *   Use `KafkaProducer<String, AttendanceRecordedEvent>` configured via CDI.  
-        *   Method `sendAttendanceEvent(AttendanceRecordedEvent event)` with async send and callback logging.  
-*   **Target Path 2:** `src/main/java/com/membershiphub/backend/kafka/NotificationEventConsumer.java`
-    *   **Architectural Requirements:**  
-        *   Subscribe to topic `notifications`.  
-        *   On message, invoke `NotificationService.notifyZaloGroup` and `MobilePushService.sendPush`.  
-
-#### SUB‑TASK 3.4: Write Integration Tests for Core Resources
-##### Assigned Sub‑Agent: Tester
-##### Targeted Components & Technical Requirements:
-*   **Target Path 1:** `src/test/java/com/membershiphub/backend/resource/CenterResourceTest.java`
-    *   **Architectural Requirements:**  
-        *   Test CRUD operations with role‑based security (expect 403 for non‑admin).  
-        *   Verify Kafka event emission on center creation (mock producer).  
-*   **Target Path 2:** `src/test/java/com/membershiphub/backend/resource/AttendanceResourceTest.java`
-    *   **Architectural Requirements:**  
-        *   Simulate QR payload, assert attendance record created.  
-        *   Verify duplicate attendance for same student/date is rejected.  
-        *   Verify Kafka producer called exactly once.  
-
-#### SUB‑TASK 3.5: DevOps – Finalize Docker Image & Health Checks
+### DAY 6: DEVOPS – DOCKER & CI
+#### SUB‑TASK 6.1: Dockerfile for Backend
 ##### Assigned Sub‑Agent: DevOps
 ##### Targeted Components & Technical Requirements:
-*   **Target Path 1:** `src/main/docker/Dockerfile`
-    *   **Architectural Requirements:**  
-        *   Add `COPY target/membership-hub-backend.jar app.jar`.  
-        *   Add `RUN java -Djgroups.tcp.address=redis -jar app.jar` placeholder for runtime args.  
-        *   Include `HEALTHCHECK --interval=30s --timeout=10s CMD curl -f http://localhost:8080/q/health || exit 1`.  
-*   **Target Path 2:** `docker-compose.yml`
-    *   **Architectural Requirements:**  
-        *   Define services: `app`, `postgres`, `kafka`.  
-        *   Link app service to postgres & kafka networks.  
-        *   Set environment variables for DB connection, Kafka bootstrap, JWT secret.  
+* **Target Path:** `./sources/backend/Dockerfile`  
+  * **Architectural Requirements:**  
+    * Multi‑stage build: Maven compile → Quarkus native image → minimal Alpine runtime.  
 
-#### SUB‑TASK 3.6: Final Code Review & Sign‑off
+#### SUB‑TASK 6.2: Docker Compose for Local Development
+##### Assigned Sub‑Agent: DevOps
+##### Targeted Components & Technical Requirements:
+* **Target Path:** `./sources/backend/docker-compose.yml`  
+  * **Architectural Requirements:**  
+    * Services: `backend`, `postgres`, `kafka`.  
+
+#### SUB‑TASK 6.3: GitHub Actions Workflow
+##### Assigned Sub‑Agent: DevOps
+##### Targeted Components & Technical Requirements:
+* **Target Path:** `./sources/backend/.github/workflows/ci.yml`  
+  * **Architectural Requirements:**  
+    * Steps: checkout, setup JDK 17, build, test, docker build, push to GCP Artifact Registry.  
+
+#### SUB‑TASK 6.4: Integration Test for Docker Build
+##### Assigned Sub‑Agent: Tester
+##### Targeted Components & Technical Requirements:
+* **Target Path:** `INTEGRATION_SCOPE;./sources/backend/src/test/java/org/nlh4j/saas/membershiphub/integration/DockerBuildTest.java`  
+  * **Architectural Requirements:**  
+    * Spin up container, run health check, assert status 200.  
+
+---
+
+### DAY 7: FINAL REVIEW & DO NOTIFY
+#### SUB‑TASK 7.1: Reviewer Final Pass
 ##### Assigned Sub‑Agent: Reviewer
 ##### Targeted Components & Technical Requirements:
-*   **Target Path 1:** All source files created/modified in Days 1‑3 (entities, resources, services, security, kafka, Docker)
-    *   **Architectural Requirements:**  
-        *   Verify adherence to Java 17 coding standards (line length, naming conventions).  
-        *   Confirm all REST endpoints have proper OpenAPI annotations (`@Path`, `@GET`, `@POST`).  
-        *   Validate security annotations (`@RolesAllowed`, `@Authenticated`).  
-        *   Ensure Kafka events follow a consistent schema (DTOs with `@Valid`).  
-        *   Check that Docker image includes only necessary layers and health‑check is present.  
+* **Target Path:**  
+  * `./sources/backend/src/main/java/org/nlh4j/saas/membershiphub/**`  
+  * `./sources/frontend/src/**`  
+  * `./sources/backend/Dockerfile`  
+  * `./sources/backend/docker-compose.yml`  
+  * **Architectural Requirements:**  
+    * Confirm package‑to‑path mapping, no forbidden loops, all tests passing, and code coverage ≥ 80%.  
 
----  
+#### SUB‑TASK 7.2: Release Notes & Documentation
+##### Assigned Sub‑Agent: Coder
+##### Targeted Components & Technical Requirements:
+* **Target Path:** `./sources/backend/README.md`  
+  * **Architectural Requirements:**  
+    * Document API endpoints, Docker usage, environment variables, and deployment steps.  
 
-**Phase 2 is now complete.** All backend core functionalities, authentication/authorization, role‑based access, Kafka notification pipeline, and DevOps containerization have been implemented, tested, reviewed, and are ready for the subsequent Frontend Development phase.
+#### SUB‑TASK 7.3: Final Integration Test – End‑to‑End Flow
+##### Assigned Sub‑Agent: Tester
+##### Targeted Components & Technical Requirements:
+* **Target Path:** `INTEGRATION_SCOPE;./sources/backend/src/test/java/org/nlh4j/saas/membershiphub/integration/FullE2ETest.java`  
+  * **Architectural Requirements:**  
+    * Register user → login → create center/course → scan attendance → verify Kafka event → health check.  
+
+---
+
+**Phase 2 Complete** – All core objectives met, DoD satisfied, and ready for Phase 3 (Frontend Expansion).
