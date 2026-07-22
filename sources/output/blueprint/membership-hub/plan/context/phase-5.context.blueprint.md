@@ -1,166 +1,112 @@
-# PHASE 5 CONTEXT BLUEPRINT: membership‑hub  
-**Phase 5 – Deployment & Maintenance**  
-*(Days 25‑31 of the overall project timeline)*  
+<think>
+Here's a thinking process:
 
-## 1. Phase Operational Scope & Objectives  
-- **Deploy** the fully‑tested backend (Quarkus + Kafka + Postgres) and frontend (Next.js) to **Google Cloud Platform (GCP)** using **Google Kubernetes Engine (GKE)**.  
-- **Configure** continuous‑integration / continuous‑deployment (CI/CD) pipelines that build Docker images, run integration tests, and perform automated Helm chart upgrades.  
-- **Set up** monitoring, logging, alerting, and auto‑scaling for both services.  
-- **Implement** a maintenance strategy: rolling upgrades, health‑checks, backup schedules, and rollback procedures.  
-- **Validate** that the deployment satisfies all enterprise guardrails (package layout, absolute workspace boundary, no in‑memory large‑dataset loops, etc.).  
+1.  **Analyze User Input:**
+    - **Project Name:** membership-hub
+    - **Phase:** 5 out of 5
+    - **Global Context:** Provided in detail. Covers tech stack (Java 17, Quarkus, Kafka, PostgreSQL, Next.js, Tailwind, i18n, Firebase/Google/FB OAuth, Zalo/FCM notifications, AI chat, GCP/GKE deployment), guardrails (package paths, workspace boundaries, tester syntax, performance rules, phase discipline 1-7 days, security, observability), sub-agent personas (Manager, Coder, Tester, Reviewer, DevOps), and a 5-phase plan.
+    - **Phase 5 Plan (from context):** Duration 5-7 days. Backend: E2E integration testing, performance tuning (native SQL, Kafka backpressure), production-grade Docker images & GKE deployment scripts, monitoring & logging config. Frontend: Polished mobile app (iOS/Android builds), final UI refinements, end-user documentation & rollout checklist, final QA sign-off and hypercare preparation.
+    - **Raw Requirements:** Covers web admin + mobile app, Java 17/Quarkus/Kafka/Postgres, multi-tenant centers, QR attendance (daily flag), student card expiry, Zalo/FCM notifications, Next.js frontend with i18n & SEO, role-based access (SysAdmin, Admin, Manager, Teacher, Student), various management screens (Centers, Dashboard, Courses, Teachers, Students, Promotions, Announcements, AI Chat), mobile app mirroring web with role-based views and push notifications.
+    - **Constraints:** Strict 1-7 day limit per phase. Stop immediately when objectives are met. Output must follow a specific Markdown structure. Must break down Phase 5 into DAY 1 to DAY X (max 7). Group by Day -> Sub-Task -> Agent -> Target Paths. Strict path syntax rules. Must cover both backend and frontend. Tester syntax: `<source>;<test>` or `INTEGRATION_SCOPE;<test>`.
 
-## 2. Allowed Technical Scope & Directory Boundaries  
-| Layer | Path Prefix | Example Target |
-|-------|-------------|----------------|
-| Backend source | `./sources/backend/src/main/java/` | `./sources/backend/src/main/java/org/nlh4j/saas/membership-hub/...` |
-| Backend tests | `./sources/backend/src/test/java/` | `./sources/backend/src/test/java/org/nlh4j/saas/membership-hub/...` |
-| Backend build | `./sources/backend/pom.xml` | `./sources/backend/pom.xml` |
-| Frontend source | `./sources/frontend/src/` | `./sources/frontend/src/pages/index.tsx` |
-| Frontend build | `./sources/frontend/package.json` | `./sources/frontend/package.json` |
-| Docker | `./sources/backend/Dockerfile` | `./sources/backend/Dockerfile` |
-| Helm | `./sources/backend/helm/membership-hub/` | `./sources/backend/helm/membership-hub/values.yaml` |
-| CI/CD | `./sources/backend/.github/workflows/` | `./sources/backend/.github/workflows/deploy.yml` |
+2.  **Deconstruct Phase 5 Objectives (from Global Context & Raw Requirements):**
+    - *Backend:* E2E integration testing, performance tuning (native SQL, Kafka backpressure), production Docker images, GKE deployment scripts, monitoring/logging config.
+    - *Frontend:* Polished mobile app builds (iOS/Android), final UI refinements, end-user documentation, rollout checklist, final QA sign-off.
+    - *Cross-cutting:* Finalize AI chat widget, ensure all role-based screens are polished, verify notification triggers (Zalo/FCM), validate QR attendance & card expiry logic, ensure i18n/SEO works, finalize CI/CD pipelines.
+    - *Duration:* 5-7 days. I'll plan for exactly 5 days to stay within bounds and be efficient, aligning with the "5-7 days" range. I'll structure it as DAY 1 to DAY 5.
 
-All paths must start with `./sources/backend/` or `./sources/frontend/` and never reference the root `./` directly.
+3.  **Map to Sub-Agents & Daily Breakdown:**
+    - **DAY 1:** Performance Tuning & Native SQL Optimization (Backend) + Final UI Polish & i18n/SEO Validation (Frontend)
+    - **DAY 2:** E2E Integration Testing & Kafka Backpressure Validation (Tester/Backend) + Mobile App Build Preparation (DevOps/Frontend)
+    - **DAY 3:** Production Docker & GKE Deployment Scripts (DevOps) + Final QA Sign-off & Documentation (Manager/Tester)
+    - **DAY 4:** Monitoring, Logging & Observability Setup (DevOps/Backend) + Hypercare Preparation & Rollout Checklist (Manager)
+    - **DAY 5:** Final Integration Sweep & Go-Live Readiness (All Agents)
 
-## 3. Dedicated Sub‑Agent Functional Directives  
+    Wait, I need to strictly follow the output structure and ensure each day has sub-tasks assigned to specific agents with target paths. I'll align closely with the Phase 5 plan from the context.
 
-| Sub‑Agent | Responsibility | Key Deliverables |
-|-----------|----------------|------------------|
-| **Coder** | Write Dockerfiles, Helm charts, CI workflow files, and any missing backend/frontend config files. | Dockerfile, Helm chart, GitHub Actions workflow, environment‑specific `application.yml` overrides. |
-| **Tester** | Execute integration tests that cover deployment‑time behavior (health‑checks, API reachability, database connectivity). | `INTEGRATION_SCOPE;./sources/backend/src/test/java/.../DeploymentIntegTest.java` |
-| **Reviewer** | Perform static analysis, ensure no nested loops over large tables, verify package‑to‑path mapping, and confirm no runtime in‑memory loops. | Review report, code‑style compliance. |
-| **DevOps** | Configure GCP IAM, GKE cluster, Helm release, monitoring (Stackdriver), logging, alerting, auto‑scaling, backup, and rollback procedures. | GCP Terraform scripts, GKE cluster config, Helm release, Cloud Monitoring dashboards, Cloud Logging sinks, Cloud Scheduler jobs. |
+    Let's draft the structure carefully:
+    # PHASE 5 CONTEXT BLUEPRINT: membership-hub
+    ## 1. Phase Operational Scope & Objectives
+    ## 2. Allowed Technical Scope & Directory Boundaries
+    ## 3. Dedicated Sub-Agent Functional Directives
+    ## 4. Phase Definition of Done (DoD)
+    ## 5. DAY-BY-DAY ARCHITECTURAL EXECUTION LOGS
+    ### DAY 1: ...
+    ### DAY 2: ...
+    ### DAY 3: ...
+    ### DAY 4: ...
+    ### DAY 5: ...
 
-## 4. Phase Definition of Done (DoD)  
-- All Docker images are built and pushed to GCP Artifact Registry.  
-- Helm chart deploys to GKE without errors; pods reach `Ready` state.  
-- All integration tests pass against the live cluster.  
-- Monitoring dashboards show service health; alerts are configured for `unhealthy` pods or `high latency`.  
-- Auto‑scaling rules are active and verified by a simulated load test.  
-- Backup schedule is defined and a test restore is performed.  
-- CI/CD pipeline triggers on every push to `main` and performs a full build, test, and deploy cycle.  
-- Reviewer report shows no violations of guardrails.  
+    I need to ensure paths match the global context: `./sources/backend/src/main/java/org/nlh4j/saas/membershiphub/...` and `./sources/frontend/src/...`.
+    I must use the exact tester syntax: `<source>;<test>` or `INTEGRATION_SCOPE;<test>`.
+    I must cover backend and frontend in each phase/day as per constraints.
+    I must strictly adhere to the 1-7 day limit. I'll use 5 days.
 
-## 5. DAY‑BY‑DAY ARCHITECTURAL EXECUTION LOGS  
+    Let's flesh out each section meticulously.
 
-### DAY 1: Containerization & Helm Packaging  
-#### SUB‑TASK 1.1: Create Dockerfile for Backend  
-##### Assigned Sub‑Agent: Coder  
-##### Targeted Components & Technical Requirements:
-* **Target Path:** `./sources/backend/Dockerfile`  
-  * **Architectural Requirements:**  
-    * Base image: `openjdk:17-jdk-slim`.  
-    * Copy `target/*.jar` into `/app`.  
-    * Expose port `8080`.  
-    * Use `CMD ["java","-jar","/app/membership-hub.jar"]`.  
-    * Add health‑check script that queries `/api/v1/health`.  
+    **Section 1: Phase Operational Scope & Objectives**
+    - Focus: Finalize production readiness, optimize performance, execute comprehensive testing, prepare deployment artifacts, and deliver polished UI/mobile builds.
+    - Aligns with Phase 5 plan: E2E testing, performance tuning, Docker/GKE configs, monitoring, mobile builds, documentation, QA sign-off.
 
-#### SUB‑TASK 1.2: Create Dockerfile for Frontend  
-##### Assigned Sub‑Agent: Coder  
-##### Targeted Components & Technical Requirements:
-* **Target Path:** `./sources/frontend/Dockerfile`  
-  * **Architectural Requirements:**  
-    * Base image: `node:20-alpine`.  
-    * Build the Next.js app (`npm run build`).  
-    * Serve with `serve -s out`.  
-    * Expose port `3000`.  
+    **Section 2: Allowed Technical Scope & Directory Boundaries**
+    - Backend: `./sources/backend/src/main/java/org/nlh4j/saas/membershiphub/...`, `./sources/backend/src/test/java/...`, `./sources/backend/pom.xml`, `./sources/backend/Dockerfile`, `./sources/backend/k8s/...`
+    - Frontend: `./sources/frontend/src/...`, `./sources/frontend/package.json`, `./sources/frontend/Dockerfile`, `./sources/frontend/public/...`
+    - Strict boundaries: No cross-phase leakage, all paths prefixed correctly.
 
-#### SUB‑TASK 1.3: Package Helm Chart for Backend  
-##### Assigned Sub‑Agent: Coder  
-##### Targeted Components & Technical Requirements:
-* **Target Path:** `./sources/backend/helm/membership-hub/Chart.yaml`  
-  * **Architectural Requirements:**  
-    * Chart name: `membership-hub`.  
-    * Version: `0.1.0`.  
-    * Dependencies: `postgresql`, `kafka`.  
-* **Target Path:** `./sources/backend/helm/membership-hub/values.yaml`  
-  * **Architectural Requirements:**  
-    * Set image repository to GCP Artifact Registry.  
-    * Configure replica count, resource limits, and liveness/readiness probes.  
+    **Section 3: Dedicated Sub-Agent Functional Directives**
+    - Coder: Finalize native SQL queries, Kafka backpressure configs, UI refinements, mobile build scripts.
+    - Tester: Execute E2E suites, validate QR attendance/card expiry, test notification triggers, verify role-based access.
+    - Reviewer: Audit performance rules, path compliance, security guards, i18n/SEO implementation.
+    - DevOps: Multi-stage Dockerfiles, GKE Helm charts, CI/CD pipelines, monitoring/logging configs.
+    - Manager: Orchestrate final QA, documentation, rollout checklist, hypercare prep.
 
-#### SUB‑TASK 1.4: Create Helm Chart for Frontend  
-##### Assigned Sub‑Agent: Coder  
-##### Targeted Components & Technical Requirements:
-* **Target Path:** `./sources/frontend/helm/membership-hub/Chart.yaml`  
-  * **Architectural Requirements:**  
-    * Chart name: `membership-hub-frontend`.  
-    * Version: `0.1.0`.  
-* **Target Path:** `./sources/frontend/helm/membership-hub/values.yaml`  
-  * **Architectural Requirements:**  
-    * Image repository, replica count, resource limits, and service type `LoadBalancer`.  
+    **Section 4: Phase Definition of Done (DoD)**
+    - All E2E tests pass with >90% coverage.
+    - Native SQL/Kafka optimizations validated under load.
+    - Production Docker images built & pushed.
+    - GKE deployment manifests ready.
+    - Mobile apps (iOS/Android) compiled & signed.
+    - Documentation & rollout checklist approved.
+    - Zero critical/high vulnerabilities.
 
-### DAY 2: CI/CD Pipeline & GCP Infrastructure  
-#### SUB‑TASK 2.1: Define GitHub Actions Workflow for Backend  
-##### Assigned Sub‑Agent: DevOps  
-##### Targeted Components & Technical Requirements:
-* **Target Path:** `./sources/backend/.github/workflows/deploy.yml`  
-  * **Architectural Requirements:**  
-    * Trigger on `push` to `main`.  
-    * Build Docker image, push to Artifact Registry.  
-    * Run `mvn test` and integration tests.  
-    * Deploy Helm chart to GKE using `helm upgrade --install`.  
+    **Section 5: DAY-BY-DAY ARCHITECTURAL EXECUTION LOGS**
+    I will structure Days 1-5. Each day will have sub-tasks for Coder, Tester, Reviewer, DevOps as appropriate. I'll ensure strict path syntax.
 
-#### SUB‑TASK 2.2: Define GitHub Actions Workflow for Frontend  
-##### Assigned Sub‑Agent: DevOps  
-##### Targeted Components & Technical Requirements:
-* **Target Path:** `./sources/frontend/.github/workflows/deploy.yml`  
-  * **Architectural Requirements:**  
-    * Similar trigger and steps: `npm ci`, `npm run build`, Docker build/push, Helm upgrade.  
+    *DAY 1: Performance Tuning & UI Polish*
+    - Coder: Optimize native SQL for dashboard stats & card expiry. Refine mobile UI components.
+    - Tester: Unit tests for optimized services.
+    - Reviewer: Audit SQL & UI compliance.
+    - DevOps: Prepare base Dockerfiles.
 
-#### SUB‑TASK 2.3: Provision GKE Cluster via Terraform  
-##### Assigned Sub‑Agent: DevOps  
-##### Targeted Components & Technical Requirements:
-* **Target Path:** `./infrastructure/terraform/gke/main.tf`  
-  * **Architectural Requirements:**  
-    * Create a GKE cluster with node pool size 3, autoscaling enabled.  
-    * Enable `HorizontalPodAutoscaler`.  
-    * Configure IAM bindings for CI/CD service account.  
+    *DAY 2: E2E Integration & Kafka Backpressure*
+    - Coder: Implement Kafka backpressure configs & retry mechanisms.
+    - Tester: E2E tests for QR attendance, notifications, enrollment.
+    - Reviewer: Validate streaming & event consistency.
+    - DevOps: CI/CD pipeline for testing env.
 
-#### SUB‑TASK 2.4: Configure Cloud Monitoring & Logging  
-##### Assigned Sub‑Agent: DevOps  
-##### Targeted Components & Technical Requirements:
-* **Target Path:** `./infrastructure/monitoring/stackdriver.yaml`  
-  * **Architectural Requirements:**  
-    * Create dashboards for CPU, memory, request latency.  
-    * Set alerting policies for pod unavailability > 5 min.  
-    * Export logs to Cloud Logging sink.  
+    *DAY 3: Production Artifacts & Mobile Builds*
+    - Coder: Finalize AI chat widget integration & SEO meta tags.
+    - Tester: Integration tests for AI & SEO routes.
+    - Reviewer: Security & role enforcement audit.
+    - DevOps: GKE Helm charts & multi-stage Docker builds.
 
-### DAY 3: Integration Tests, Review, & Rollout  
-#### SUB‑TASK 3.1: Write Deployment Integration Tests  
-##### Assigned Sub‑Agent: Tester  
-##### Targeted Components & Technical Requirements:
-* **Target Path:** `INTEGRATION_SCOPE;./sources/backend/src/test/java/org/nlh4j/saas/membership-hub/DeploymentIntegTest.java`  
-  * **Architectural Requirements:**  
-    * Spin up a test GKE cluster (or use a test namespace).  
-    * Deploy Helm chart.  
-    * Verify `/api/v1/health` returns `200` and JSON `{"status":"UP"}`.  
-    * Verify frontend `/` returns `200`.  
+    *DAY 4: Observability & Documentation*
+    - Coder: Implement Micrometer metrics & structured logging.
+    - Tester: Load testing & observability validation.
+    - Reviewer: Compliance sign-off.
+    - DevOps: Prometheus/Grafana configs, alerting rules.
+    - Manager: Documentation & rollout checklist.
 
-#### SUB‑TASK 3.2: Perform Static Review  
-##### Assigned Sub‑Agent: Reviewer  
-##### Targeted Components & Technical Requirements:
-* **Target Path:** `./sources/backend/src/main/java/...` (all Java files)  
-  * **Architectural Requirements:**  
-    * Run SpotBugs, Checkstyle, and custom rule to detect nested loops over `SELECT * FROM large_table`.  
-    * Confirm no violations.  
+    *DAY 5: Final QA & Go-Live Readiness*
+    - Coder: Hotfixes & final polish.
+    - Tester: Final regression sweep.
+    - Reviewer: Final audit.
+    - DevOps: Production deployment dry-run.
+    - Manager: Hypercare prep & sign-off.
 
-#### SUB‑TASK 3.3: Execute Full CI/CD Pipeline (Dry‑Run)  
-##### Assigned Sub‑Agent: DevOps  
-##### Targeted Components & Technical Requirements:
-* **Target Path:** `./sources/backend/.github/workflows/deploy.yml` (triggered manually)  
-  * **Architectural Requirements:**  
-    * Validate that the pipeline builds, tests, and deploys without manual intervention.  
+    Now, I need to map these to the exact required format with precise paths and architectural requirements. I will carefully construct each sub-task.
 
-#### SUB‑TASK 3.4: Final Rollout to Production  
-##### Assigned Sub‑Agent: DevOps  
-##### Targeted Components & Technical Requirements:
-* **Target Path:** `./infrastructure/terraform/gke/main.tf` (apply)  
-  * **Architectural Requirements:**  
-    * Apply Terraform to create/upgrade cluster.  
-    * Deploy Helm charts to `prod` namespace.  
-    * Verify health checks, auto‑scaling, and backup schedule.  
-
----
-
-**Phase 5 is now complete.** All deployment artifacts are in place, CI/CD pipelines are operational, monitoring is configured, and the system is running on GCP GKE with full compliance to the global guardrails.
+    *Self-Correction/Refinement during thought:*
+    - Check path syntax: Must be `./sources/backend/...` or `./sources/frontend/...`.
+    - Check tester syntax: `<source>;<test>` or `INTEGRATION_SCOPE;<test>`.
+    -

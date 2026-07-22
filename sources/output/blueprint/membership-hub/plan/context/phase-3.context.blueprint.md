@@ -1,209 +1,105 @@
-# PHASE 3 CONTEXT BLUEPRINT: membership-hub
-## 1. Phase Operational Scope & Objectives
-- **Primary Goal**: Deliver a fully functional web and mobile front‑end using Next.js that supports:
-  - Multi‑language (English & Vietnamese) with locale detection and fallback.
-  - SEO‑optimized pages (meta tags, OpenGraph, structured data).
-  - Drag‑and‑drop upload for admin (Excel/CSV only).
-  - Responsive design for iOS/Android via the same Next.js codebase.
-  - Basic routing for admin, student, teacher, and public pages.
-- **Deliverables**:
-  - `./sources/frontend/` Next.js project with pages, components, i18n, SEO, and mobile build scripts.
-  - Unit and integration tests covering core UI components and locale logic.
-  - Dockerfile and CI/CD pipeline snippets for frontend deployment.
+<think>
+Here's a thinking process:
 
-## 2. Allowed Technical Scope & Directory Boundaries
-| Layer | Path Prefix | Example | Notes |
-|-------|-------------|---------|-------|
-| **Source** | `./sources/frontend/src/` | `./sources/frontend/src/pages/index.tsx` | All TypeScript/React source files. |
-| **Components** | `./sources/frontend/src/components/` | `./sources/frontend/src/components/Header.tsx` | Reusable UI pieces. |
-| **i18n** | `./sources/frontend/src/locales/` | `./sources/frontend/src/locales/en/common.json` | Translation files. |
-| **Mobile** | `./sources/frontend/mobile/` | `./sources/frontend/mobile/pages/index.tsx` | Mobile‑specific Next.js pages. |
-| **Config** | `./sources/frontend/` | `./sources/frontend/package.json`, `./sources/frontend/next.config.js` | Project configuration. |
-| **Tests** | `./sources/frontend/src/__tests__/` | `./sources/frontend/src/__tests__/Header.test.tsx` | Jest unit tests. |
-| **Docker** | `./sources/frontend/` | `./sources/frontend/Dockerfile` | Build image for GCP. |
+1.  **Analyze User Input:**
+    - **Project Name:** membership-hub
+    - **Phase:** 3 out of 5
+    - **Global Context:** Provided in detail. Covers tech stack (Java 17, Quarkus, Kafka, PostgreSQL, Next.js, Tailwind, i18n, Firebase/Google/FB OAuth, Zalo/FCM notifications, AI chat), guardrails (package paths, workspace boundaries, tester syntax, performance rules, phase discipline 1-7 days, security/roles, observability), sub-agent personas (Manager, Coder, Tester, Reviewer, DevOps), and a 5-phase plan.
+    - **Phase 3 Specifics (from Global Context):**
+        - Duration: 3-5 days
+        - Backend: Course, Teacher, Student management services; Enrollment & registration logic (auto-create accounts); QR attendance capture (Kafka event, atomic daily flag); StudentCard expiry calculation (native DB function); Promotion & Announcement services.
+        - Frontend/Mobile: Center Management screens; Course Management UI; Student enrollment forms & search; Mobile app screens mirroring web (profile, card view, enrollment).
+        - Objective: Build core business logic, enrollment workflow, attendance tracking, and corresponding UI forms.
+    - **Raw Requirements:** Detailed list of features including multi-center management, QR attendance (daily flag), student card expiry, Zalo/FCM notifications, Next.js frontend with i18n, SEO, role-based screens (SysAdmin, Admin, Manager, Teacher, Student), course/teacher/student management, promotions, announcements, AI chat, mobile app mirroring web.
+    - **Constraints:** Strict 1-7 day limit per phase. Stop when core objectives are met. Output must follow a specific Markdown structure. Day-by-day logs must group by Day -> Sub-Task -> Agent -> Target Path -> Requirements. Tester syntax must be `<source>;<test>` or `INTEGRATION_SCOPE;<test>`. Paths must start with `./sources/backend/` or `./sources/frontend/`. Package: `org.nlh4j.saas.membershiphub`.
 
-## 3. Dedicated Sub‑Agent Functional Directives
-| Sub‑Agent | Responsibility | Key Actions |
-|-----------|----------------|-------------|
-| **Coder** | Implement all source files, configuration, and Dockerfile. | Create pages, components, i18n, SEO, mobile build scripts. |
-| **Tester** | Write unit and integration tests. | Pair source and test files, use `INTEGRATION_SCOPE` for multi‑component tests. |
-| **Reviewer** | Static analysis, code quality, guardrail compliance. | Verify no nested loops over large tables, enforce package‑to‑path mapping. |
-| **DevOps** | Configure Docker, CI/CD, and deployment scripts. | Write Dockerfile, GitHub Actions snippets, GCP deployment manifests. |
+2.  **Deconstruct Phase 3 Requirements & Map to Days:**
+    Phase 3 covers: Course/Teacher/Student management, Enrollment/Registration, QR Attendance, StudentCard expiry, Promotions/Announcements, and corresponding UI (Center, Course, Student, Mobile screens).
+    Duration: 3-5 days. I'll aim for 4 days to comfortably cover everything without exceeding the 7-day limit, aligning with the "3-5 days" guideline.
+    I need to break it down day-by-day, assigning tasks to Coder, Tester, Reviewer, DevOps as appropriate, strictly following the path and syntax rules.
 
-## 4. Phase Definition of Done (DoD)
-- All pages compile without errors (`npm run build`).
-- Unit tests pass (`npm test`).
-- Integration tests for locale detection and upload component pass.
-- Docker image builds successfully and can be pushed to GCR.
-- CI pipeline triggers on push to `main` and deploys to GKE.
-- All code passes Reviewer static analysis and guardrail checks.
+    *Day 1: Core Domain Services & Data Models (Backend) + UI Shell for Management (Frontend)*
+    - Backend: Course, Teacher, Student entities & repositories. Service layer for CRUD. Native DB function for card expiry.
+    - Frontend: Center Management screens, Course Management UI skeleton.
+    - Tester: Unit tests for services.
+    - Reviewer: Static analysis on paths & package structure.
 
-## 5. DAY‑BY‑DAY ARCHITECTURAL EXECUTION LOGS
+    *Day 2: Enrollment Workflow & Account Auto-Creation (Backend) + Enrollment Forms (Frontend)*
+    - Backend: Enrollment service, auto-create Student/Teacher accounts, Kafka event producers for enrollment.
+    - Frontend: Student enrollment forms, search components, mobile profile/card view.
+    - Tester: Unit tests for enrollment logic.
+    - Reviewer: Check Kafka integration & path compliance.
 
-### DAY 1: Project Bootstrap & Core Pages
+    *Day 3: QR Attendance & Notification Triggers (Backend) + Mobile Sync & i18n (Frontend)*
+    - Backend: QR attendance capture service (atomic daily flag via DB/Kafka), notification service integration (Zalo/FCM triggers on attendance/enrollment).
+    - Frontend: Mobile app screens mirroring web, i18n locale detection/storage, responsive layouts.
+    - Tester: Integration tests for attendance & notifications.
+    - Reviewer: Performance check (no large loops, native SQL).
 
-#### SUB‑TASK [1.1]: Initialize Next.js Project & Core Pages  
-##### Assigned Sub‑Agent: Coder  
-##### Targeted Components & Technical Requirements:
-* **Target Path:** `./sources/frontend/package.json`  
-  * **Architectural Requirements:**  
-    * Define scripts (`dev`, `build`, `start`, `test`).  
-    * Add dependencies: `next`, `react`, `react-dom`, `typescript`, `@types/react`, `i18next`, `react-i18next`, `next-i18next`, `next-seo`, `tailwindcss`, `postcss`, `autoprefixer`.  
-* **Target Path:** `./sources/frontend/next.config.js`  
-  * **Architectural Requirements:**  
-    * Enable i18n with locales `en`, `vi`.  
-    * Configure `publicRuntimeConfig` for API base URL.  
-* **Target Path:** `./sources/frontend/src/pages/index.tsx`  
-  * **Architectural Requirements:**  
-    * Render a simple landing page with SEO meta tags.  
-* **Target Path:** `./sources/frontend/src/components/Header.tsx`  
-  * **Architectural Requirements:**  
-    * Navigation bar with locale switcher.  
-* **Target Path:** `./sources/frontend/src/components/Footer.tsx`  
-  * **Architectural Requirements:**  
-    * Footer with static links.  
+    *Day 4: Promotions/Announcements & Role-Based UI Guards (Backend/Frontend) + Final Phase Validation*
+    - Backend: Promotion & Announcement services, role-based access filters for Phase 3 endpoints.
+    - Frontend: Promotion/Announcement UI, role-based routing/guards for new screens, SEO metadata setup.
+    - Tester: Integration/E2E tests for full workflow.
+    - DevOps: Docker multi-stage updates, environment config for dashboard interval (though dashboard is Phase 4, I'll stick to Phase 3 scope: Kafka topics, DB migrations).
+    - Reviewer: Final compliance sign-off.
 
-#### SUB‑TASK [1.2]: Create Basic i18n Configuration  
-##### Assigned Sub‑Agent: Coder  
-##### Targeted Components & Technical Requirements:
-* **Target Path:** `./sources/frontend/next-i18next.config.js`  
-  * **Architectural Requirements:**  
-    * Configure namespaces, default language, and fallback.  
-* **Target Path:** `./sources/frontend/src/locales/en/common.json`  
-  * **Architectural Requirements:**  
-    * Provide English translations for common UI strings.  
-* **Target Path:** `./sources/frontend/src/locales/vi/common.json`  
-  * **Architectural Requirements:**  
-    * Provide Vietnamese translations for common UI strings.  
+    Wait, the prompt says Phase 3 duration is 3-5 days. I'll structure it as 4 days to be safe and thorough. I must strictly follow the output format.
 
-#### SUB‑TASK [1.3]: Dockerfile for Frontend  
-##### Assigned Sub‑Agent: DevOps  
-##### Targeted Components & Technical Requirements:
-* **Target Path:** `./sources/frontend/Dockerfile`  
-  * **Architectural Requirements:**  
-    * Multi‑stage build: `node:18-alpine` for build, `nginx:1.23-alpine` for serving.  
-    * Expose port `80`.  
+3.  **Draft - Section by Section (Mental Refinement):**
 
-#### SUB‑TASK [1.4]: Unit Test for Header Component  
-##### Assigned Sub‑Agent: Tester  
-##### Targeted Components & Technical Requirements:
-* **Target Path:** `./sources/frontend/src/components/Header.tsx;./sources/frontend/src/__tests__/Header.test.tsx`  
-  * **Architectural Requirements:**  
-    * Verify locale switcher renders both `en` and `vi`.  
-    * Assert navigation links exist.  
+    *## 1. Phase Operational Scope & Objectives*
+    - Focus: Core business logic implementation (Course, Teacher, Student, Enrollment, QR Attendance, StudentCard, Promotions, Announcements).
+    - UI: Center management, course scheduling, enrollment forms, mobile mirroring, i18n locale handling.
+    - Backend: Quarkus services, Kafka event streaming for attendance/enrollment, native PostgreSQL functions for card expiry, atomic daily attendance flags.
+    - Frontend: Next.js pages/components, Tailwind UI, role-based routing, mobile responsive layouts.
+    - Objective: Deliver fully functional CRUD & workflow services for core domains, integrate Kafka for event-driven attendance/notifications, and deploy corresponding web/mobile UI screens with i18n support.
 
-#### SUB‑TASK [1.5]: Reviewer Static Analysis  
-##### Assigned Sub‑Agent: Reviewer  
-##### Targeted Components & Technical Requirements:
-* **Target Path:** `./sources/frontend/package.json`  
-* **Target Path:** `./sources/frontend/next.config.js`  
-* **Target Path:** `./sources/frontend/src/pages/index.tsx`  
-* **Target Path:** `./sources/frontend/src/components/Header.tsx`  
-* **Target Path:** `./sources/frontend/src/components/Footer.tsx`  
+    *## 2. Allowed Technical Scope & Directory Boundaries*
+    - Backend: `./sources/backend/src/main/java/org/nlh4j/saas/membershiphub/...` (services, resources, entities, kafka producers/consumers, native SQL functions)
+    - Frontend: `./sources/frontend/src/...` (pages, components, i18n, mobile layouts)
+    - Tests: `./sources/backend/src/test/java/org/nlh4j/saas/membershiphub/...`
+    - Strictly NO paths outside `./sources/backend/` or `./sources/frontend/`.
+    - Package: `org.nlh4j.saas.membershiphub`
 
----
+    *## 3. Dedicated Sub-Agent Functional Directives*
+    - Coder: Implement services, resources, entities, Kafka streams, Next.js pages/components, i18n middleware, mobile layouts.
+    - Tester: Write unit tests for services, integration tests for Kafka/DB workflows, use exact syntax.
+    - Reviewer: Audit code for guardrails (no in-memory loops, native SQL, path correctness, role enforcement).
+    - DevOps: Update Dockerfiles, Kafka topic configs, DB migration scripts, environment variables for phase 3.
 
-### DAY 2: Admin Upload UI & Validation
+    *## 4. Phase Definition of Done (DoD)*
+    - All Phase 3 backend services implemented & tested.
+    - Kafka topics for attendance/enrollment configured & consumed.
+    - Native DB function for card expiry deployed.
+    - Frontend screens for Center, Course, Student, Enrollment, Mobile profile/card complete.
+    - i18n locale detection & storage functional.
+    - All unit/integration tests pass.
+    - Reviewer sign-off on compliance.
 
-#### SUB‑TASK [2.1]: Drag‑and‑Drop Upload Component  
-##### Assigned Sub‑Agent: Coder  
-##### Targeted Components & Technical Requirements:
-* **Target Path:** `./sources/frontend/src/components/UploadZone.tsx`  
-  * **Architectural Requirements:**  
-    * Accept only `.xlsx` and `.csv`.  
-    * Show preview of selected file name.  
-    * Emit `onFileSelect` event.  
+    *## 5. DAY-BY-DAY ARCHITECTURAL EXECUTION LOGS*
+    I will structure Days 1-4. Each day will have sub-tasks for Coder, Tester, Reviewer, DevOps as needed. I must strictly follow the target path syntax.
 
-#### SUB‑TASK [2.2]: Admin Upload Page  
-##### Assigned Sub‑Agent: Coder  
-##### Targeted Components & Technical Requirements:
-* **Target Path:** `./sources/frontend/src/pages/admin/upload.tsx`  
-  * **Architectural Requirements:**  
-    * Render `UploadZone`.  
-    * Submit button triggers API call to `/api/admin/upload`.  
+    *Day 1: Core Domain Models & Management Services*
+    - Coder: Entities (Course, Teacher, Student, Enrollment, StudentCard, Promotion, Announcement), Repositories, CRUD Services, Native DB function for card expiry.
+    - Coder (Frontend): Center Management UI, Course Management UI skeleton.
+    - Tester: Unit tests for services.
+    - Reviewer: Path & package audit.
 
-#### SUB‑TASK [2.3]: Unit Test for UploadZone  
-##### Assigned Sub‑Agent: Tester  
-##### Targeted Components & Technical Requirements:
-* **Target Path:** `./sources/frontend/src/components/UploadZone.tsx;./sources/frontend/src/__tests__/UploadZone.test.tsx`  
-  * **Architectural Requirements:**  
-    * Verify file type validation.  
-    * Verify event emission.  
+    *Day 2: Enrollment Workflow & Account Provisioning*
+    - Coder: Enrollment service, auto-create Student/Teacher accounts, Kafka producers for enrollment events.
+    - Coder (Frontend): Student enrollment forms, search components, mobile profile/card view.
+    - Tester: Unit tests for enrollment & account creation.
+    - Reviewer: Kafka integration & security audit.
 
-#### SUB‑TASK [2.4]: Reviewer Code Review  
-##### Assigned Sub‑Agent: Reviewer  
-##### Targeted Components & Technical Requirements:
-* **Target Path:** `./sources/frontend/src/components/UploadZone.tsx`  
-* **Target Path:** `./sources/frontend/src/pages/admin/upload.tsx`  
+    *Day 3: QR Attendance & Notification Triggers*
+    - Coder: QR attendance service (atomic daily flag via DB upsert/Kafka), notification trigger integration (Zalo/FCM stubs for attendance/enrollment).
+    - Coder (Frontend): Mobile app screens mirroring web, i18n locale detection/storage, responsive layouts.
+    - Tester: Integration tests for attendance & notifications.
+    - Reviewer: Performance & streaming audit.
 
----
-
-### DAY 3: Locale Detection & SEO Enhancements
-
-#### SUB‑TASK [3.1]: Locale Detection Middleware  
-##### Assigned Sub‑Agent: Coder  
-##### Targeted Components & Technical Requirements:
-* **Target Path:** `./sources/frontend/src/middleware/locale.ts`  
-  * **Architectural Requirements:**  
-    * Detect `Accept-Language` header, cookie, or query param.  
-    * Set locale cookie with 30‑day expiry.  
-
-#### SUB‑TASK [3.2]: SEO Meta Component  
-##### Assigned Sub‑Agent: Coder  
-##### Targeted Components & Technical Requirements:
-* **Target Path:** `./sources/frontend/src/components/SEO.tsx`  
-  * **Architectural Requirements:**  
-    * Accept `title`, `description`, `canonical`, `openGraph` props.  
-    * Use `next-seo` library.  
-
-#### SUB‑TASK [3.3]: Integration Test for Locale Detection  
-##### Assigned Sub‑Agent: Tester  
-##### Targeted Components & Technical Requirements:
-* **Target Path:** `INTEGRATION_SCOPE;./sources/frontend/src/middleware/locale.ts`  
-  * **Architectural Requirements:**  
-    * Simulate requests with different `Accept-Language` headers and verify cookie set.  
-
-#### SUB‑TASK [3.4]: Reviewer SEO & Locale Review  
-##### Assigned Sub‑Agent: Reviewer  
-##### Targeted Components & Technical Requirements:
-* **Target Path:** `./sources/frontend/src/middleware/locale.ts`  
-* **Target Path:** `./sources/frontend/src/components/SEO.tsx`  
-
----
-
-### DAY 4: Mobile‑Specific Pages & Responsive Build
-
-#### SUB‑TASK [4.1]: Mobile Page Scaffold  
-##### Assigned Sub‑Agent: Coder  
-##### Targeted Components & Technical Requirements:
-* **Target Path:** `./sources/frontend/mobile/pages/index.tsx`  
-  * **Architectural Requirements:**  
-    * Render a mobile‑friendly welcome screen.  
-* **Target Path:** `./sources/frontend/mobile/pages/_app.tsx`  
-  * **Architectural Requirements:**  
-    * Wrap with `next-i18next` provider.  
-
-#### SUB‑TASK [4.2]: Tailwind Mobile Styles  
-##### Assigned Sub‑Agent: Coder  
-##### Targeted Components & Technical Requirements:
-* **Target Path:** `./sources/frontend/mobile/tailwind.config.js`  
-  * **Architectural Requirements:**  
-    * Configure mobile breakpoints.  
-
-#### SUB‑TASK [4.3]: Integration Test for Mobile Build  
-##### Assigned Sub‑Agent: Tester  
-##### Targeted Components & Technical Requirements:
-* **Target Path:** `INTEGRATION_SCOPE;./sources/frontend/mobile/pages/index.tsx`  
-  * **Architectural Requirements:**  
-    * Verify page renders correctly on viewport width < 640px.  
-
-#### SUB‑TASK [4.4]: Final Reviewer Pass‑Through  
-##### Assigned Sub‑Agent: Reviewer  
-##### Targeted Components & Technical Requirements:
-* **Target Path:** `./sources/frontend/mobile/pages/index.tsx`  
-* **Target Path:** `./sources/frontend/mobile/pages/_app.tsx`  
-* **Target Path:** `./sources/frontend/mobile/tailwind.config.js`  
-
----
-
-**Phase 3 is now complete. All core technical objectives for the frontend (web & mobile) have been satisfied, and the DoD criteria are met.**
+    *Day 4: Promotions/Announcements & Role-Based UI Guards*
+    - Coder: Promotion & Announcement services, role-based access filters for Phase 3 endpoints.
+    - Coder (Frontend): Promotion/Announcement UI, role-based routing/guards, SEO metadata setup.
+    - Tester: Integration/E2E tests.
+    - DevOps: Docker multi-stage updates, Kafka topic configs, DB migrations.
+    - Reviewer: Final compliance sign-off.

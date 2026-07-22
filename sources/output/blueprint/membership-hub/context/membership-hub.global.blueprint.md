@@ -1,43 +1,60 @@
 # GLOBAL PROJECT CONTEXT: membership-hub
 ## 1. Executive Summary & Tech Stack Blueprint
-The membership-hub project is a comprehensive web and mobile application designed to manage and facilitate learning centers. The tech stack includes Java 17, Quarkus, Kafka, Postgres, and Docker, with deployment on GCP and GKE. The application will support authentication via email, password, Firebase, Google, and Facebook, and will have a role-based access control system. The web application will be built using Next.js, with support for multiple languages and SEO optimization. The mobile application will be built using Next.js as well, with support for iOS and Android.
+- **Project Vision** – A unified SaaS platform that empowers training centers to manage students, courses, attendance, promotions, and communications through a web admin console and a native mobile app.  
+- **Core Domains** – Center management, user authentication (email/password + OAuth via Firebase/Google/Facebook), role‑based access control (System Admin, Admin, Manager, Teacher, Student), course scheduling, student enrollment, QR‑based attendance, digital student cards with expiry tracking, real‑time notifications (Zalo groups & mobile push), multi‑language SEO‑ready UI, and an AI‑powered chat assistant.  
+- **Tech Stack Blueprint**  
+  - **Backend** – Java 17, Quarkus (reactive, container‑first), Kafka for event streaming, PostgreSQL with native indexing, Docker multi‑stage images, deployment on GCP GKE, package foundation `org.nlh4j.saas.membership-hub`.  
+  - **Frontend / Mobile** – Next.js (React‑based) serving both web admin UI and mobile app (iOS/Android) with shared component library, Tailwind CSS, i18n (detect stored locale → browser fallback), SEO‑optimized pages per language.  
+  - **Auth & Identity** – Internal email/password, Firebase Auth, Google/Facebook OAuth, JWT‑based session handling, integrated with Kafka for identity events.  
+  - **Communication** – Zalo group messaging API, mobile push notifications (Firebase Cloud Messaging), event‑driven notification service via Kafka.  
+  - **AI CSKH** – Float‑button AI chat widget with intent‑recognition for course, teacher, and center queries.  
+  - **DevOps** – CI/CD pipelines (GitHub Actions), Docker registries, GKE deployment configs, environment‑driven interval updates (e.g., dashboard refresh every 15 min).  
 
 ## 2. Global Guardrails & Enterprise Compliance Standards
-The project will adhere to the following global guardrails and enterprise compliance standards:
-* All Java backend source codes will reside within the corporate package foundation: `org.nlh4j.saas.membership-hub`.
-* The project will follow a strict package-to-path mapping, with all physical Java files under `./sources/backend/src/main/java/` or `./sources/backend/src/test/java/` following the exact subdirectory layout matching the package tokens.
-* The project will adhere to the absolute workspace boundary rule, with the true repository workspace root permanently fixed at the project root `./`.
-* All directory paths generated across all phases will be prefixed with `./sources/backend/` for Java/Spring/Quarkus/Database logic and `./sources/frontend/` for TypeScript/Tailwind/UI views.
-* The project will follow strict tester target path syntax, with any component targeted by a Tester Sub-Agent structured as a semi-colon separated pair `<source_component>;<test_suite>`.
-* The project will avoid runtime in-memory large dataset loops and will delegate complex multi-dataset processing to native, indexed database relational operations.
+- **Package & Path Discipline**  
+  - All Java source must reside under `org.nlh4j.saas.membership-hub` → physical path `./sources/backend/src/main/java/org/nlh4j/saas/membershiphub/...`.  
+  - All test source must mirror the same token hierarchy under `./sources/backend/src/test/java`.  
+- **Workspace Boundary Rule**  
+  - Backend logic, configs, properties → `./sources/backend/`.  
+  - UI, assets, packages → `./sources/frontend/`.  
+  - No relative paths assuming a sub‑module root; every emitted path must be prefixed accordingly.  
+- **Tester Target Syntax**  
+  - Unit tests: `<source_path>;<test_path>` (e.g., `./sources/backend/src/main/java/.../Service.java;./sources/backend/src/test/java/.../ServiceTest.java`).  
+  - Integration/E2E: `INTEGRATION_SCOPE;<test_path>`.  
+- **Performance & Data Handling**  
+  - **No large in‑memory loops** – all bulk processing must be expressed as native SQL JOINs or Kafka stream operations.  
+  - **Streaming parsing** – SAX/EasyExcel for file imports; avoid DOM‑heavy libraries.  
+  - **Real‑time constraints** – dashboard refresh interval configurable via environment (default 15 min).  
+- **Phase Discipline**  
+  - **Exact 5 phases** – no more, no less.  
+  - **Duration per phase** – 1 – 7 days (hard limit).  
+  - **Chronological packing** – every requirement item must be fully covered within the five phases; no post‑phase leftovers.  
+- **Security & Role Enforcement**  
+  - Role hierarchy enforced at API gateway level; each endpoint declares required roles.  
+  - OAuth providers integrated via secure token exchange; passwords never stored in plain text.  
+- **Observability & Deployment**  
+  - Structured logging, metrics via Micrometer, distributed tracing across Kafka and Quarkus.  
+  - Docker images built with minimal layers; GKE deployments use declarative Helm charts.  
 
 ## 3. Standardized Sub-Agent Persona Definitions
-The project will have the following standardized sub-agent persona definitions:
-* **Manager Agent:** Responsible for cross-phase orchestration, task timeline validation, and checking that the total phase count is exactly 5.
-* **Coder Agent:** Owns the implementation of components located in `./sources/backend/src/main/` and `./sources/frontend/src/`. Never writes test frameworks.
-* **Tester Agent:** Owns code verification. Responsible for emitting the dual-path semi-colon format (`<source>;<test>`) for units, or prefixing with `INTEGRATION_SCOPE` for system integration suites under `./sources/backend/src/test/`.
-* **Reviewer Agent:** Performs static analysis, validates compliance against the database-native calculation rule, and rejects any code containing nested loops over massive tables.
-* **DevOps Agent:** Owns deployment configurations, multi-stage Dockerfiles, package managers (`./sources/backend/pom.xml`, `./sources/frontend/package.json`), and CI/CD pipelines.
+| Persona | Core Mandate | Key Deliverables |
+|---------|--------------|------------------|
+| **Manager** | Cross‑phase orchestration, timeline validation, phase‑count enforcement, dependency mapping, risk mitigation. | Phase schedules, dependency graphs, compliance checkpoints, final project synopsis. |
+| **Coder** | Implement all backend services (`./sources/backend/src/main/java`) and frontend/mobile components (`./sources/frontend/src`). Writes production‑ready code, adheres to package & path rules, integrates Kafka, auth, and DB layers. | Functional modules, API contracts, UI components, shared libraries. |
+| **Tester** | Verify correctness via unit & integration tests. Emits dual‑path syntax `<source>;<test>` for units; uses `INTEGRATION_SCOPE` for system suites. | Test suites, coverage reports, validation of business rules (attendance, enrollment, notifications). |
+| **Reviewer** | Static analysis, compliance audit against guardrails (no large loops, native DB calculations, path correctness). Rejects non‑compliant code. | Review comments, compliance sign‑off, remediation requests. |
+| **DevOps** | Build CI/CD pipelines, multi‑stage Dockerfiles, `pom.xml`/`package.json` management, GKE deployment configs, environment variables, monitoring setup. | Docker images, GitHub Actions workflows, Helm charts, infra‑as‑code snippets. |
 
-## 4. Multi-Phase Segmentation Strategy Overview
-The project will be segmented into exactly 5 phases, with each phase strictly bounded between 1 to 7 days maximum. The phases will be:
-* **Phase 1: Project Setup and Planning (Days 1-3)**
-	+ Set up the project structure and repository
-	+ Define the tech stack and architecture
-	+ Create a detailed project plan and timeline
-* **Phase 2: Backend Development (Days 4-10)**
-	+ Implement the Java backend using Quarkus and Kafka
-	+ Develop the database schema and models
-	+ Implement authentication and authorization
-* **Phase 3: Frontend Development (Days 11-17)**
-	+ Implement the web application using Next.js
-	+ Develop the mobile application using Next.js
-	+ Implement SEO optimization and multi-language support
-* **Phase 4: Testing and Quality Assurance (Days 18-24)**
-	+ Develop unit tests and integration tests
-	+ Perform static analysis and code review
-	+ Conduct performance testing and optimization
-* **Phase 5: Deployment and Maintenance (Days 25-31)**
-	+ Deploy the application to GCP and GKE
-	+ Configure CI/CD pipelines and monitoring
-	+ Perform maintenance and updates as needed
+## 4. Multi-Phase Segmentation Strategy Overview (Plan exactly 5 phases)
+| Phase | Duration (Days) | Backend Core Components (touched) | Frontend / Mobile Core Components (touched) | Phase Objective Summary |
+|-------|-----------------|-----------------------------------|---------------------------------------------|--------------------------|
+| **Phase 1** | 1‑3 | • Project scaffolding (`org.nlh4j.saas.membershiphub`) <br>• Quarkus runtime, Kafka broker connection, PostgreSQL datasource <br>• Core domain entities: Center, User, Role, Course, Enrollment, Attendance, StudentCard <br>• Basic CRUD repositories & JPA entities | • Next.js project init, i18n middleware (locale detection), shared UI library (Tailwind) <br>• Login/Auth page (email/password + OAuth buttons) <br>• Role‑based routing guard | Establish the foundational architecture, data model, and authentication scaffold. |
+| **Phase 2** | 2‑4 | • User service with JWT issuance, role mapping, password hashing <br>• OAuth integration adapters (Firebase, Google, Facebook) <br>• Kafka producers/consumers for user & enrollment events <br>• Notification service (Zalo API, FCM) <br>• Authorization filter & security config | • Admin web layout (sidebar, header, role‑specific menus) <br>• Mobile app shell (React‑Native/Next.js hybrid) <br>• Multi‑language support (locale storage, fallback) <br>• Responsive dashboard skeleton | Implement identity & access, event streaming, and notification backbone; deliver UI shell for both web and mobile. |
+| **Phase 3** | 3‑5 | • Course, Teacher, Student management services <br>• Enrollment & registration logic (auto‑create Student/Teacher accounts) <br>• QR attendance capture (Kafka event, atomic daily flag) <br>• StudentCard expiry calculation (native DB function) <br>• Promotion & Announcement services | • Center Management screens (list/add/edit centers) <br>• Course Management UI (list, schedule, assign teachers) <br>• Student enrollment forms & search <br>• Mobile app screens mirroring web (profile, card view, enrollment) | Build core business logic, enrollment workflow, attendance tracking, and corresponding UI forms. |
+| **Phase 4** | 4‑6 | • Role‑based access control enforcement (System Admin, Admin, Manager, Teacher, Student) <br>• Advanced reporting & dashboard APIs (real‑time stats, interval refresh) <br>• AI CSKH integration (REST endpoint for chat queries) <br>• CI/CD pipeline stubs, Docker multi‑stage builds | • Full admin dashboards (overview, course schedule, teacher assignments) <br>• Mobile push notification handling, offline‑first service workers <br>• SEO‑optimized multilingual pages (course listings, center info) <br>• AI chat widget embed | Harden security, deliver analytics & AI chat, and complete responsive UI with SEO readiness. |
+| **Phase 5** | 5‑7 | • End‑to‑end integration testing (unit + integration suites) <br>• Performance tuning (native SQL, Kafka backpressure) <br>• Production‑grade Docker images & GKE deployment scripts <br>• Monitoring & logging configuration | • Polished mobile app (iOS/Android builds), final UI refinements <br>• End‑user documentation & rollout checklist <br>• Final QA sign‑off and hypercare preparation | Close the loop with comprehensive testing, deployment readiness, and final delivery. |
+
+**Phase Discipline Recap**  
+- Each phase is bounded 1‑7 days; no phase exceeds Day 7.  
+- All requirement items (QR attendance, student cards, notifications, multi‑language SEO, role screens, AI chat, etc.) are fully addressed within these five phases.  
+- No scheduling logs or extra phases are generated; work stops as soon as a phase’s core objectives are satisfied.
