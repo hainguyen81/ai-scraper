@@ -76,7 +76,7 @@ def render_prompt(prompt_template_path: str, context: dict) -> str:
     tmpl = JinjaTemplate(template_content)
     
     # substitute will throw error if missing variables, safely for production
-    return tmpl.render(**context)
+    return tmpl.render(**context).strip()
 
 def parseOpenAIResponseData(response):
     """
