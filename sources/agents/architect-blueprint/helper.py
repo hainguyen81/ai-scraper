@@ -30,16 +30,17 @@ def write_json_file(dir, file_name, json_data, append=False):
         json.dump(json_data, f, ensure_ascii=False, indent=4)
     return out_path # full path of file
 
-def write_log(phase_idx, instruction, prompt, raw_content, is_step):
+def write_log(phase_idx, instruction, prompt, raw_content, is_step, model_name=None):
     pattern = r"\{.*\}|\[.*\]"
     raw_content = json_raw_content(raw_content)
     is_json = bool(re.search(pattern, raw_content, re.DOTALL))
+    model_name_safe = f"AI Model: {model_name} - " if model_name and len(model_name) > 0 else ""
     if phase_idx <= 0:
-        header_title = f"# Global Prompt:\n\n{prompt}\n\n"
+        header_title = f"# {model_name_safe}Global Prompt:\n\n{prompt}\n\n"
     elif not is_step:
-        header_title = f"# Phase {phase_idx} - Prompt:\n\n{prompt}\n\n"
+        header_title = f"# {model_name_safe}Phase {phase_idx} - Prompt:\n\n{prompt}\n\n"
     else:
-        header_title = f"# Phase {phase_idx} STEPS - Prompt:\n\n{prompt}\n\n"
+        header_title = f"# {model_name_safe}Phase {phase_idx} STEPS - Prompt:\n\n{prompt}\n\n"
     instruction_block = f"# System Instruction\n\n{instruction}\n\n"
     if is_json:
         response_block = f"# Raw Response / Exception:\n\n```json\n{raw_content}\n```\n\n"

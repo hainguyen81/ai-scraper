@@ -259,8 +259,9 @@ def convert_phases_to_json(client: OpenAI, model_name: str, project_name: str, n
                 # json_data = json.loads(raw_data)
                 
                 # OpenAI
+                model_name_safe = model_name if model_name else "gpt-4o"
                 response = client.beta.chat.completions.parse(
-                    model=model_name if model_name else "gpt-4o",  # Standard heavy reasoning model for structured enterprise operations
+                    model=model_name_safe,  # Standard heavy reasoning model for structured enterprise operations
                     messages=[
                         {"role": "system", "content": instruction},
                         {"role": "user", "content": prompt}
@@ -282,7 +283,7 @@ def convert_phases_to_json(client: OpenAI, model_name: str, project_name: str, n
                 # print(f" │         { dump_json_data }")
                 
                 # write log
-                write_log(log_phase_idx, instruction, log_prompt.replace('#', '##'), raw_data, True)
+                write_log(log_phase_idx, instruction, log_prompt.replace('#', '##'), raw_data, True, model_name_safe)
                 
                 # # Accumulate stream markers for audit logging preservation
                 # accumulated_raw_data += f"\n--- CHUNK {chunk_counter} RAW ---\n" + (raw_data if raw_data else "")
