@@ -9,21 +9,11 @@ from bs4 import BeautifulSoup
 from typing import Dict, Any
 from openai import OpenAI
 
-# Standardize application log outputs across the agent architecture
-logging.basicConfig(level=logging.INFO, format="%(asctime)s [%(levelname)s]: %(message)s")
+# Now Python can seamlessly see and import the centralized helper utility cleanly!
+from agent_helper import resolve_absolute_path, json_raw_content
+
+# logger
 logger = logging.getLogger("DynamicAIScraper")
-
-# ==============================================================================
-# 🏢 ENTERPRISE INTER-PACKAGE ROUTING LAYER
-# ==============================================================================
-CURRENT_SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
-PARENT_AGENTS_DIR  = os.path.abspath(os.path.join(CURRENT_SCRIPT_DIR, "../"))
-
-if PARENT_AGENTS_DIR not in sys.path:
-    sys.path.insert(0, PARENT_AGENTS_DIR)
-
-from agent_helper import resolve_absolute_path
-from agent_helper import json_raw_content
 
 output_scraper_data_file        = resolve_absolute_path("sources/output/free_models_by_llm_web_scraper.json")
 agent_working_history_file      = resolve_absolute_path("sources/output/free_models_by_llm_web_scraper.md")

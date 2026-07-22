@@ -12,10 +12,7 @@ from openai import OpenAI
 
 # Now Python can seamlessly see and import the centralized helper utility cleanly!
 from sources.agents.agent_helper import resolve_absolute_path
-from helper import write_log
-from helper import write_file
-from helper import render_prompt
-from helper import parseOpenAIResponseData
+from helper import write_log, write_file, render_prompt, parseOpenAIResponseData
 
 # ==============================================================================
 # GLOBAL CONFIGURATION PATHS - CONFIG HERE TO CUSTOMIZE DIRECTORY STRUCTURE

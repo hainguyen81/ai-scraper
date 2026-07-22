@@ -6,13 +6,18 @@ import json
 # to load prompt template
 from jinja2 import Template as JinjaTemplate
 
-# Now Python can seamlessly see and import the centralized helper utility cleanly!
-from sources.agents.agent_helper import resolve_absolute_path, json_raw_content
+# ==============================================================================
+# 🏢 ENTERPRISE INTER-PACKAGE ROUTING LAYER
+# ==============================================================================
+# Programmatically appends the parent directory (.ai/.agents/) into Python's runtime
+# search path array. This completely unlocks importing 'agent_helper.py'.
+# ==============================================================================
+CURRENT_SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__)) # .ai/.agents/.sub-agents/
+PARENT_AGENTS_DIR  = os.path.abspath(os.path.join(CURRENT_SCRIPT_DIR, "../")) # .ai/.agents/
 
-# ==============================================================================
-# GLOBAL CONFIGURATION PATHS - CONFIG HERE TO CUSTOMIZE DIRECTORY STRUCTURE
-# ==============================================================================
-agent_working_history_file = resolve_absolute_path("sources/output/architecture-blueprint.md")
+# jump to `agent_helper.py` folder path
+if PARENT_AGENTS_DIR not in sys.path:
+    sys.path.insert(0, PARENT_AGENTS_DIR)
 
 def write_file(dir, file_name, data, append=False):
     opts = "a" if append else "w"
@@ -30,25 +35,36 @@ def write_json_file(dir, file_name, json_data, append=False):
         json.dump(json_data, f, ensure_ascii=False, indent=4)
     return out_path # full path of file
 
-def write_log(phase_idx, instruction, prompt, raw_content, is_step):
-    pattern = r"\{.*\}|\[.*\]"
-    raw_content = json_raw_content(raw_content)
-    is_json = bool(re.search(pattern, raw_content, re.DOTALL))
-    if phase_idx <= 0:
-        header_title = f"# Global Prompt:\n\n{prompt}\n\n"
-    elif not is_step:
-        header_title = f"# Phase {phase_idx} - Prompt:\n\n{prompt}\n\n"
-    else:
-        header_title = f"# Phase {phase_idx} STEPS - Prompt:\n\n{prompt}\n\n"
-    instruction_block = f"# System Instruction\n\n{instruction}\n\n"
-    if is_json:
-        response_block = f"# Raw Response / Exception:\n\n```json\n{raw_content}\n```\n\n"
-    else:
-        response_block = f"# Raw Response / Exception:\n\n```text\n{raw_content}\n```\n\n"
-    log_content = header_title + instruction_block + response_block
-    os.makedirs(os.path.dirname(agent_working_history_file), exist_ok=True)
-    with open(agent_working_history_file, "a", encoding="utf-8") as file:
-        file.write(log_content)
+def read_json_file(file_path):
+    if not os.path.exists(file_path):
+        return (None, None)
+    
+    # read json file
+    with open(file_path, "r", encoding="utf-8") as f:
+        return (file_path, json.load(f))
+
+def read_file_raw(file_path):
+    if not os.path.exists(file_path):
+        return (None, None)
+    
+    # read file
+    with open(global_context_file, "r", encoding="utf-8") as f:
+        return (file_path, f.read())
+
+def write_log_history(history_file, day, model_name, api_endpoint, target_component, prompt, data, append=False):
+    log_history_content = (
+        f"# Day { day }: model { model_name } - API Endpoint { api_endpoint }\n"
+        f"* **Production source codebase generated at target destination**: {target_component}\n"
+        f"* **📝 Prompt / Tasks / Data**:\n{prompt}\n"
+        f"* **📝 Response**:\n{data}\n\n"
+    )
+    write_file(
+        dir=os.path.dirname(history_file),
+        file_name=os.path.basename(history_file),
+        data=log_history_content,
+        append=append
+    )
+    return history_file
 
 def render_prompt(prompt_template_path: str, context: dict) -> str:
     if not os.path.exists(prompt_template_path):
@@ -102,9 +118,9 @@ def parseOpenAIResponseData(response):
     message_obj = first_choice.message
     if hasattr(message_obj, 'content') and message_obj.content:
         return message_obj.content.strip()
-    
+        
     # Safe fallback if choice format changes or breaks unexpectedly
-    return str(first_choice).strip()
+    return str(first_choice.text if first_choice.text else first_choice).strip()
 
 def splitOpenAIResponseJsonData(raw_data):
     clean_json_str = raw_data.strip()

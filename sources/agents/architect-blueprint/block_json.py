@@ -21,10 +21,7 @@ from jinja2 import Template
 
 # Now Python can seamlessly see and import the centralized helper utility cleanly!
 from sources.agents.agent_helper import resolve_absolute_path
-from helper import write_log
-from helper import write_json_file
-from helper import render_prompt
-from helper import parseOpenAIResponseJsonData
+from helper import write_log, write_json_file, render_prompt, parseOpenAIResponseJsonData
 
 # ==============================================================================
 # GLOBAL CONFIGURATION PATHS - CONFIG HERE TO CUSTOMIZE DIRECTORY STRUCTURE

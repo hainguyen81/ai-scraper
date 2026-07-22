@@ -7,26 +7,11 @@ import argparse
 from typing import List, Dict, Any
 from exa_py import Exa
 
-# Setup system logging format
-logging.basicConfig(level=logging.INFO, format="%(asctime)s [%(levelname)s]: %(message)s")
-logger = logging.getLogger("MultiSourceSearchScraper")
-
-# ==============================================================================
-# 🏢 ENTERPRISE INTER-PACKAGE ROUTING LAYER
-# ==============================================================================
-# Programmatically appends the parent directory (.ai/.agents/) into Python's runtime
-# search path array. This completely unlocks importing 'agent_helper.py'.
-# ==============================================================================
-CURRENT_SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__)) # .ai/.agents/.sub-agents/
-PARENT_AGENTS_DIR  = os.path.abspath(os.path.join(CURRENT_SCRIPT_DIR, "../")) # .ai/.agents/
-
-# jump to `agent_helper.py` folder path
-if PARENT_AGENTS_DIR not in sys.path:
-    sys.path.insert(0, PARENT_AGENTS_DIR)
-
 # Now Python can seamlessly see and import the centralized helper utility cleanly!
-from agent_helper import resolve_absolute_path
-from agent_helper import json_raw_content
+from agent_helper import resolve_absolute_path, json_raw_content
+
+# logger
+logger = logging.getLogger("MultiSourceSearchScraper")
 
 # ==============================================================================
 # GLOBAL CONFIGURATION PATHS - CONFIG HERE TO CUSTOMIZE DIRECTORY STRUCTURE

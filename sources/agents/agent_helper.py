@@ -6,7 +6,31 @@
 # ==============================================================================
 
 import os
+import sys
 import json
+import logging
+import re
+
+# ==============================================================================
+# 🏢 ENTERPRISE INTER-PACKAGE ROUTING LAYER
+# ==============================================================================
+# Programmatically appends the parent directory (.ai/.agents/) into Python's runtime
+# search path array. This completely unlocks importing 'agent_helper.py'.
+# ==============================================================================
+CURRENT_SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__)) # .ai/.agents/.sub-agents/
+PARENT_AGENTS_DIR  = os.path.abspath(os.path.join(CURRENT_SCRIPT_DIR, "../")) # .ai/.agents/
+
+# jump to `agent_helper.py` folder path
+if PARENT_AGENTS_DIR not in sys.path:
+    sys.path.insert(0, PARENT_AGENTS_DIR)
+
+# logging configuration
+# logging.basicConfig(level=logging.INFO, format="%(asctime)s [%(levelname)s]: %(message)s")
+logging.basicConfig(
+    level=logging.INFO,
+    format="%(asctime)s [%(levelname)s] %(name)s: %(message)s",
+    datefmt="%Y-%m-%d %H:%M:%S"
+)
 
 def resolve_absolute_path(relative_target_path):
     """

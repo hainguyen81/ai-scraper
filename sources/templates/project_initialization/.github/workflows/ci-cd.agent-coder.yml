@@ -94,14 +94,14 @@ jobs:
           pip install requests google-generativeai openai anthropic
 
       # Step 4: Invoke the localized standalone architect engine to output pristine binaries
-      - name: "🧑‍💻 Trigger Principal Architect LLM Generation Loop"
+      - name: "👩‍💻 Trigger Principal Architect LLM Generation Loop"
         working-directory: ${{ env.PROJECT_WORKSPACE }}
         env:
           PROJECT_WORKSPACE: ${{ env.PROJECT_WORKSPACE }}
           AI_MODELS_KEYS_JSON: ${{ secrets.AI_MODELS_KEYS_JSON }}
         run: |
           echo "🚀 Launching autonomous coder agent execution context for Day ${{ inputs.day }}..."
-          python3 .ai/.agents/.sub-agents/agent-coder.py --phase "${{ inputs.phase }}" --day "${{ inputs.day }}"
+          python3 .ai/.agents/.sub_agents/agent_coder.py --phase "${{ inputs.phase }}" --day "${{ inputs.day }}"
       
       # if running stanalone
       - name: "🚀 Standalone Push - Secure Isolated Code Assets"
