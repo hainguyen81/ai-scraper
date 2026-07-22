@@ -12,22 +12,26 @@
             "sub_tasks": [
                 {
                     "id": "D1_ST1",
-                    "agent": "DevOps",
-                    "desc": "DevOps Agent: Create GCP project, configure IAM, networking, and service accounts",
-                    "components": []
+                    "agent": "Coder",
+                    "desc": "Coder Agent: Create multi-stage Dockerfile for Quarkus backend with OpenJDK-17-slim base, distroless production image, HEALTHCHECK endpoint, and JVM options",
+                    "components": [
+                        "./docker/backend/Dockerfile"
+                    ]
                 },
                 {
                     "id": "D1_ST2",
-                    "agent": "DevOps",
-                    "desc": "DevOps Agent: Provision Kubernetes cluster on GCP using gcloud commands",
-                    "components": []
+                    "agent": "Coder",
+                    "desc": "Coder Agent: Create Dockerfile for Next.js frontend using node:20-alpine base, production build, nginx serving, and HEALTHCHECK endpoint",
+                    "components": [
+                        "./docker/frontend/Dockerfile"
+                    ]
                 },
                 {
                     "id": "D1_ST3",
-                    "agent": "Coder",
-                    "desc": "Coder Agent: Develop automated deployment script gcp/deployment.py to orchestrate GCP resources",
+                    "agent": "DevOps",
+                    "desc": "DevOps Agent: Create script to authenticate to GCP, tag images with project/region tags, push to Artifact Registry, and verify image existence",
                     "components": [
-                        "gcp/deployment.py"
+                        "./ci-cd/push-to-artifact-registry.sh"
                     ]
                 }
             ]
@@ -40,25 +44,66 @@
                 {
                     "id": "D2_ST1",
                     "agent": "Coder",
-                    "desc": "Coder Agent: Update docker-compose.yml with production image tags and resource limits",
+                    "desc": "Coder Agent: Create backend K8s deployment manifest with imagePullSecrets, 3 replicas, resource limits, health probes, and config/secret mounts",
                     "components": [
-                        "docker-compose.yml"
+                        "./k8s/backend-deployment.yaml"
                     ]
                 },
                 {
                     "id": "D2_ST2",
                     "agent": "Coder",
-                    "desc": "Coder Agent: Add security configurations (encryption settings, environment secrets) to config/prod.env and deployment script",
+                    "desc": "Coder Agent: Create backend ClusterIP service manifest exposing port 8080 with session affinity",
                     "components": [
-                        "config/prod.env",
-                        "gcp/deployment.py"
+                        "./k8s/backend-service.yaml"
                     ]
                 },
                 {
                     "id": "D2_ST3",
+                    "agent": "Coder",
+                    "desc": "Coder Agent: Create backend ConfigMap with Quarkus configuration, database, and Kafka connection details",
+                    "components": [
+                        "./k8s/backend-configmap.yaml"
+                    ]
+                },
+                {
+                    "id": "D2_ST4",
+                    "agent": "Coder",
+                    "desc": "Coder Agent: Create backend Secret manifest with GCP service account key and database passwords using Opaque type",
+                    "components": [
+                        "./k8s/backend-secret.yaml"
+                    ]
+                },
+                {
+                    "id": "D2_ST5",
+                    "agent": "Coder",
+                    "desc": "Coder Agent: Create frontend K8s deployment manifest with 2 replicas, resource requests, environment variables, and health probes",
+                    "components": [
+                        "./k8s/frontend-deployment.yaml"
+                    ]
+                },
+                {
+                    "id": "D2_ST6",
+                    "agent": "Coder",
+                    "desc": "Coder Agent: Create frontend NodePort service manifest exposing port 80 with external traffic policy",
+                    "components": [
+                        "./k8s/frontend-service.yaml"
+                    ]
+                },
+                {
+                    "id": "D2_ST7",
+                    "agent": "Coder",
+                    "desc": "Coder Agent: Create frontend ConfigMap with Next.js environment variables and size limits",
+                    "components": [
+                        "./k8s/frontend-configmap.yaml"
+                    ]
+                },
+                {
+                    "id": "D2_ST8",
                     "agent": "DevOps",
-                    "desc": "DevOps Agent: Apply GCP firewall rules and IAM policies for secure access",
-                    "components": []
+                    "desc": "DevOps Agent: Create script to authenticate to GKE, create namespace, apply manifests in order, wait for rollout, and validate services",
+                    "components": [
+                        "./ci-cd/deploy-to-gke.sh"
+                    ]
                 }
             ]
         },
@@ -70,23 +115,58 @@
                 {
                     "id": "D3_ST1",
                     "agent": "DevOps",
-                    "desc": "DevOps Agent: Deploy Kubernetes manifests (deployment.yaml, service.yaml) to the cluster",
+                    "desc": "DevOps Agent: Create Prometheus configuration with 15s scrape interval, backend/frontend/node exporter targets, and remote write settings",
                     "components": [
-                        "kubernetes/deployment.yaml",
-                        "kubernetes/service.yaml"
+                        "./monitoring/prometheus-config.yaml"
                     ]
                 },
                 {
                     "id": "D3_ST2",
                     "agent": "DevOps",
-                    "desc": "DevOps Agent: Configure GCP load balancer and enable Horizontal Pod Autoscaling",
-                    "components": []
+                    "desc": "DevOps Agent: Create Prometheus deployment manifest with latest image, config map mount, resource requests, and port exposure",
+                    "components": [
+                        "./k8s/prometheus-deployment.yaml"
+                    ]
                 },
                 {
                     "id": "D3_ST3",
                     "agent": "DevOps",
-                    "desc": "DevOps Agent: Set up Stackdriver monitoring, logging, and alerting for the application",
-                    "components": []
+                    "desc": "DevOps Agent: Create Prometheus ClusterIP service manifest exposing port 9090",
+                    "components": [
+                        "./k8s/prometheus-service.yaml"
+                    ]
+                },
+                {
+                    "id": "D3_ST4",
+                    "agent": "DevOps",
+                    "desc": "DevOps Agent: Create Grafana dashboard JSON with CPU/memory/HTTP/Kafka/DB panels, Prometheus datasource, and alert definitions",
+                    "components": [
+                        "./monitoring/grafana-dashboard.json"
+                    ]
+                },
+                {
+                    "id": "D3_ST5",
+                    "agent": "DevOps",
+                    "desc": "DevOps Agent: Create Grafana deployment manifest with latest image, dashboard config mount, and admin secret reference",
+                    "components": [
+                        "./k8s/grafana-deployment.yaml"
+                    ]
+                },
+                {
+                    "id": "D3_ST6",
+                    "agent": "DevOps",
+                    "desc": "DevOps Agent: Create Grafana NodePort service manifest exposing port 3000",
+                    "components": [
+                        "./k8s/grafana-service.yaml"
+                    ]
+                },
+                {
+                    "id": "D3_ST7",
+                    "agent": "DevOps",
+                    "desc": "DevOps Agent: Create Grafana secret manifest with admin credentials using Opaque type",
+                    "components": [
+                        "./k8s/grafana-secret.yaml"
+                    ]
                 }
             ]
         },
@@ -97,38 +177,162 @@
             "sub_tasks": [
                 {
                     "id": "D4_ST1",
-                    "agent": "Tester",
-                    "desc": "Tester Agent: Execute functional tests against production endpoints",
-                    "components": []
-                },
-                {
-                    "id": "D4_ST2",
-                    "agent": "Tester",
-                    "desc": "Tester Agent: Perform load testing to validate autoscaling behavior",
-                    "components": []
-                },
-                {
-                    "id": "D4_ST3",
-                    "agent": "Tester",
-                    "desc": "Tester Agent: Run security scans and verify firewall and encryption settings",
-                    "components": []
-                },
-                {
-                    "id": "D4_ST4",
-                    "agent": "Reviewer",
-                    "desc": "Reviewer Agent: Review deployment scripts, Docker configuration, and Kubernetes manifests for compliance",
+                    "agent": "DevOps",
+                    "desc": "DevOps Agent: Create Cloud Logging ConfigMap with fluent-bit configuration to tail container logs and forward to Cloud Logging with namespace allowlist",
                     "components": [
-                        "gcp/deployment.py",
-                        "docker-compose.yml",
-                        "kubernetes/deployment.yaml",
-                        "kubernetes/service.yaml"
+                        "./k8s/cloud-logging-configmap.yaml"
                     ]
                 },
                 {
-                    "id": "D4_ST5",
+                    "id": "D4_ST2",
+                    "agent": "DevOps",
+                    "desc": "DevOps Agent: Create OpenTelemetry configuration for backend with OTLP exporter to Google Trace endpoint and service name",
+                    "components": [
+                        "./src/main/resources/otel-config.yaml"
+                    ]
+                },
+                {
+                    "id": "D4_ST3",
+                    "agent": "DevOps",
+                    "desc": "DevOps Agent: Create OpenTelemetry configuration for frontend with OTLP exporter and API call instrumentation",
+                    "components": [
+                        "./frontend/otel-config.js"
+                    ]
+                },
+                {
+                    "id": "D4_ST4",
                     "agent": "Coder",
-                    "desc": "Coder Agent: Update project documentation to reflect production deployment steps and endpoints",
-                    "components": []
+                    "desc": "Coder Agent: Implement health resource with /q/health, /q/health/ready endpoints and dependency status checks",
+                    "components": [
+                        "./src/main/java/com/example/membershiphub/HealthResource.java"
+                    ]
+                }
+            ]
+        },
+        {
+            "day": 5,
+            "context_file": ".ai/.plan/.context/phase-5.context.blueprint.md",
+            "context_section": "DAY 5",
+            "sub_tasks": [
+                {
+                    "id": "D5_ST1",
+                    "agent": "DevOps",
+                    "desc": "DevOps Agent: Create GitHub Actions workflow with build, test, security-scan, push-to-registry, and deploy jobs triggered on push/pull_request",
+                    "components": [
+                        "/.github/workflows/ci-cd.yml"
+                    ]
+                },
+                {
+                    "id": "D5_ST2",
+                    "agent": "DevOps",
+                    "desc": "DevOps Agent: Define environment variables in CI/CD workflow for GCP project, region, cluster, artifact repo, image names, and tags",
+                    "components": [
+                        "/.github/workflows/ci-cd.yml"
+                    ]
+                },
+                {
+                    "id": "D5_ST3",
+                    "agent": "Coder",
+                    "desc": "Coder Agent: Implement ping resource with GET /ping endpoint returning status and timestamp with trace logging",
+                    "components": [
+                        "./src/main/java/com/example/membershiphub/PingResource.java"
+                    ]
+                }
+            ]
+        },
+        {
+            "day": 6,
+            "context_file": ".ai/.plan/.context/phase-5.context.blueprint.md",
+            "context_section": "DAY 6",
+            "sub_tasks": [
+                {
+                    "id": "D6_ST1",
+                    "agent": "Reviewer",
+                    "desc": "Reviewer Agent: Perform Trivy security scan on Dockerfiles for HIGH/CRITICAL vulnerabilities and fail build if critical issues found",
+                    "components": [
+                        "./docker/"
+                    ]
+                },
+                {
+                    "id": "D6_ST2",
+                    "agent": "Reviewer",
+                    "desc": "Reviewer Agent: Scan K8s manifests for hardcoded secrets using security tools and verify imagePullSecrets references",
+                    "components": [
+                        "./k8s/"
+                    ]
+                },
+                {
+                    "id": "D6_ST3",
+                    "agent": "Reviewer",
+                    "desc": "Reviewer Agent: Review backend secret for base64 encoding and GCP Secret Manager integration",
+                    "components": [
+                        "./k8s/backend-secret.yaml"
+                    ]
+                },
+                {
+                    "id": "D6_ST4",
+                    "agent": "Reviewer",
+                    "desc": "Reviewer Agent: Review frontend secret for base64 encoding and security compliance",
+                    "components": [
+                        "./k8s/frontend-secret.yaml"
+                    ]
+                },
+                {
+                    "id": "D6_ST5",
+                    "agent": "DevOps",
+                    "desc": "DevOps Agent: Create Binary Authorization policy manifest with enforcement enabled and allowlist of approved Artifact Registry images",
+                    "components": [
+                        "./k8s/binary-auth-policy.yaml"
+                    ]
+                }
+            ]
+        },
+        {
+            "day": 7,
+            "context_file": ".ai/.plan/.context/phase-5.context.blueprint.md",
+            "context_section": "DAY 7",
+            "sub_tasks": [
+                {
+                    "id": "D7_ST1",
+                    "agent": "Tester",
+                    "desc": "Tester Agent: Execute integration tests against deployed services using RestAssured/WebTestClient to validate endpoints, status codes, and response schemas",
+                    "components": [
+                        "./src/test/java/com/example/membershiphub/IntegrationTest.java"
+                    ]
+                },
+                {
+                    "id": "D7_ST2",
+                    "agent": "Tester",
+                    "desc": "Tester Agent: Create smoke test script to wait for pod readiness and execute curl tests against backend and frontend endpoints",
+                    "components": [
+                        "./ci-cd/smoke-test.sh"
+                    ]
+                },
+                {
+                    "id": "D7_ST3",
+                    "agent": "DevOps",
+                    "desc": "DevOps Agent: Create alerting rules for pod restarts and high request latency with Grafana dashboard integration and alert manager configuration",
+                    "components": [
+                        "./monitoring/alerting-rules.yaml"
+                    ]
+                },
+                {
+                    "id": "D7_ST4",
+                    "agent": "Reviewer",
+                    "desc": "Reviewer Agent: Review deployment guide documentation for build, push, deploy, rollback, and monitoring procedures",
+                    "components": [
+                        "./docs/deployment-guide.md"
+                    ]
+                },
+                {
+                    "id": "D7_ST5",
+                    "agent": "Reviewer",
+                    "desc": "Reviewer Agent: Conduct final code review of all artifacts for naming conventions, linting compliance, and security cleanliness",
+                    "components": [
+                        "./docker/",
+                        "./k8s/",
+                        "./ci-cd/"
+                    ]
                 }
             ]
         }

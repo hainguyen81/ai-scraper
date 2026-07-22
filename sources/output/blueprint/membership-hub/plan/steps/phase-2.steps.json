@@ -13,112 +13,223 @@
                 {
                     "id": "D1_ST1",
                     "agent": "Coder",
-                    "desc": "Coder Agent: Design the PostgreSQL database schema to support authentication, courses, attendance, and notifications.",
+                    "desc": "Coder Agent: Define JPA Entities & Repositories: Create User.java entity with @Entity, @Table(name='users'), fields id, email, passwordHash, provider, role, @OneToMany for Center ownership, implement equals/hashCode based on id",
                     "components": [
-                        "src/main/resources/schema.sql"
+                        "src/main/java/com/membershiphub/backend/model/User.java"
                     ]
                 },
                 {
                     "id": "D1_ST2",
                     "agent": "Coder",
-                    "desc": "Coder Agent: Implement RESTful endpoint for user authentication (/api/auth).",
+                    "desc": "Coder Agent: Define JPA Entities & Repositories: Create Center.java entity with @Entity, fields id, name, address, taxId, contactPhone, adminId (@ManyToOne to User), @OneToMany to Course list",
                     "components": [
-                        "src/main/java/com/membershiphub/auth/AuthResource.java"
+                        "src/main/java/com/membershiphub/backend/model/Center.java"
                     ]
                 },
                 {
                     "id": "D1_ST3",
                     "agent": "Coder",
-                    "desc": "Coder Agent: Implement RESTful endpoint for course management (/api/courses).",
+                    "desc": "Coder Agent: Define JPA Entities & Repositories: Create UserRepository.java extending JpaRepository<User, Long> with findByEmail and findByRole methods",
                     "components": [
-                        "src/main/java/com/membershiphub/course/CourseResource.java"
+                        "src/main/java/com/membershiphub/backend/repository/UserRepository.java"
                     ]
                 },
                 {
                     "id": "D1_ST4",
-                    "agent": "Coder",
-                    "desc": "Coder Agent: Implement RESTful endpoint for attendance tracking (/api/attendance).",
+                    "agent": "DevOps",
+                    "desc": "DevOps Agent: Initialize Quarkus Application & Basic Config: Configure application.properties with PostgreSQL datasource, Hibernate ddl-auto=none, JWT secret placeholder, Kafka bootstrap servers, OAuth client placeholders",
                     "components": [
-                        "src/main/java/com/membershiphub/attendance/AttendanceResource.java"
+                        "src/main/resources/application.properties"
                     ]
                 },
                 {
                     "id": "D1_ST5",
-                    "agent": "Coder",
-                    "desc": "Coder Agent: Implement RESTful endpoint for notification system (/api/notifications).",
+                    "agent": "DevOps",
+                    "desc": "DevOps Agent: Initialize Quarkus Application & Basic Config: Create multi-stage Dockerfile with Maven build stage, quarkus:2.15.0 runtime, port 8080 exposure, and /q/health endpoint",
                     "components": [
-                        "src/main/java/com/membershiphub/notification/NotificationResource.java"
+                        "src/main/docker/Dockerfile"
                     ]
                 },
                 {
                     "id": "D1_ST6",
-                    "agent": "Coder",
-                    "desc": "Coder Agent: Integrate Kafka producers and consumers for event‑driven notifications and attendance updates.",
+                    "agent": "Tester",
+                    "desc": "Tester Agent: Write Unit Tests for Entity Persistence: Create UserTest.java with @DataJpaTest for save/find operations, duplicate email constraint validation, role enum persistence verification",
                     "components": [
-                        "src/main/java/com/membershiphub/kafka/KafkaProducer.java",
-                        "src/main/java/com/membershiphub/kafka/KafkaConsumer.java"
+                        "src/test/java/com/membershiphub/backend/model/UserTest.java"
                     ]
                 },
                 {
                     "id": "D1_ST7",
                     "agent": "Tester",
-                    "desc": "Tester Agent: Create unit tests for the authentication API.",
+                    "desc": "Tester Agent: Write Unit Tests for Entity Persistence: Create UserRepositoryTest.java testing findByEmail returns expected user and findByRole filters users by role",
                     "components": [
-                        "src/test/java/com/membershiphub/auth/AuthResourceTest.java"
+                        "src/test/java/com/membershiphub/backend/repository/UserRepositoryTest.java"
+                    ]
+                }
+            ]
+        },
+        {
+            "day": 2,
+            "context_file": ".ai/.plan/.context/phase-2.context.blueprint.md",
+            "context_section": "DAY 2",
+            "sub_tasks": [
+                {
+                    "id": "D2_ST1",
+                    "agent": "Coder",
+                    "desc": "Coder Agent: Implement JWT Authentication Service: Create AuthService.java with generateToken method including sub, email, role, iat, exp claims, authenticateLocal with password verification, authenticateOAuth for provider lookup/creation",
+                    "components": [
+                        "src/main/java/com/membershiphub/backend/service/AuthService.java"
                     ]
                 },
                 {
-                    "id": "D1_ST8",
+                    "id": "D2_ST2",
+                    "agent": "Coder",
+                    "desc": "Coder Agent: Implement JWT Authentication Service: Create JwtTokenFilter.java extending ContainerRequestFilter to validate Authorization Bearer token header, extract claims, set SecurityContext with UserPrincipal and roles",
+                    "components": [
+                        "src/main/java/com/membershiphub/backend/security/JwtTokenFilter.java"
+                    ]
+                },
+                {
+                    "id": "D2_ST3",
+                    "agent": "Coder",
+                    "desc": "Coder Agent: Create OAuth2 Success Handlers for External Providers: Implement OAuth2SuccessHandler.java mapping Firebase/Google/Facebook user info to User entity, generating JWT response",
+                    "components": [
+                        "src/main/java/com/membershiphub/backend/security/OAuth2SuccessHandler.java"
+                    ]
+                },
+                {
+                    "id": "D2_ST4",
                     "agent": "Tester",
-                    "desc": "Tester Agent: Create unit tests for the course management API.",
+                    "desc": "Tester Agent: Write Integration Tests for Auth Flows: Create AuthResourceTest.java with QuarkusTest + TestHTTPEndpoint testing POST /api/auth/login valid/invalid credentials, POST /api/auth/oauth/google mock response, JWT token verification",
                     "components": [
-                        "src/test/java/com/membershiphub/course/CourseResourceTest.java"
+                        "src/test/java/com/membershiphub/backend/resource/AuthResourceTest.java"
                     ]
                 },
                 {
-                    "id": "D1_ST9",
-                    "agent": "Tester",
-                    "desc": "Tester Agent: Create unit tests for the attendance tracking API.",
-                    "components": [
-                        "src/test/java/com/membershiphub/attendance/AttendanceResourceTest.java"
-                    ]
-                },
-                {
-                    "id": "D1_ST10",
-                    "agent": "Tester",
-                    "desc": "Tester Agent: Create unit tests for the notification system API.",
-                    "components": [
-                        "src/test/java/com/membershiphub/notification/NotificationResourceTest.java"
-                    ]
-                },
-                {
-                    "id": "D1_ST11",
-                    "agent": "Tester",
-                    "desc": "Tester Agent: Create integration tests covering end‑to‑end API flows and Kafka event handling.",
-                    "components": [
-                        "src/test/java/com/membershiphub/integration/IntegrationTest.java"
-                    ]
-                },
-                {
-                    "id": "D1_ST12",
+                    "id": "D2_ST5",
                     "agent": "Reviewer",
-                    "desc": "Reviewer Agent: Perform code review for all newly added source files and ensure compliance with coding standards.",
-                    "components": []
-                },
-                {
-                    "id": "D1_ST13",
-                    "agent": "DevOps",
-                    "desc": "DevOps Agent: Set up development environment, configure Kafka broker, and add required properties.",
+                    "desc": "Reviewer Agent: Code Review of Authentication Layer: Review all security files and AuthService.java for BCrypt/Argon2 password hashing, token expiration logic, @RolesAllowed annotations, secure OAuth secret handling",
                     "components": [
-                        "docker-compose.yml",
-                        "src/main/resources/application.properties"
+                        "src/main/java/com/membershiphub/backend/security/",
+                        "src/main/java/com/membershiphub/backend/service/AuthService.java"
+                    ]
+                }
+            ]
+        },
+        {
+            "day": 3,
+            "context_file": ".ai/.plan/.context/phase-2.context.blueprint.md",
+            "context_section": "DAY 3",
+            "sub_tasks": [
+                {
+                    "id": "D3_ST1",
+                    "agent": "Coder",
+                    "desc": "Coder Agent: Implement Center Management REST Resources: Create CenterResource.java with GET/POST/PUT/DELETE endpoints for /api/centers, @RolesAllowed('SYSTEM_ADMIN') enforcement, request DTO validation",
+                    "components": [
+                        "src/main/java/com/membershiphub/backend/resource/CenterResource.java"
                     ]
                 },
                 {
-                    "id": "D1_ST14",
+                    "id": "D3_ST2",
+                    "agent": "Coder",
+                    "desc": "Coder Agent: Implement Center Management REST Resources: Create CenterService.java with CRUD operations delegating to CenterRepository and assignAdmin method with role update",
+                    "components": [
+                        "src/main/java/com/membershiphub/backend/service/CenterService.java"
+                    ]
+                },
+                {
+                    "id": "D3_ST3",
+                    "agent": "Coder",
+                    "desc": "Coder Agent: Implement Course, Teacher, Student & Attendance Resources: Create CourseResource.java with CRUD endpoints and teacher assignment, role restrictions for ADMIN/MANAGER",
+                    "components": [
+                        "src/main/java/com/membershiphub/backend/resource/CourseResource.java"
+                    ]
+                },
+                {
+                    "id": "D3_ST4",
+                    "agent": "Coder",
+                    "desc": "Coder Agent: Implement Course, Teacher, Student & Attendance Resources: Create TeacherResource.java with CRUD operations and course viewing, role restrictions for ADMIN/MANAGER/TEACHER",
+                    "components": [
+                        "src/main/java/com/membershiphub/backend/resource/TeacherResource.java"
+                    ]
+                },
+                {
+                    "id": "D3_ST5",
+                    "agent": "Coder",
+                    "desc": "Coder Agent: Implement Course, Teacher, Student & Attendance Resources: Create StudentResource.java with CRUD and course enrollment, role restrictions for ADMIN/MANAGER/STUDENT",
+                    "components": [
+                        "src/main/java/com/membershiphub/backend/resource/StudentResource.java"
+                    ]
+                },
+                {
+                    "id": "D3_ST6",
+                    "agent": "Coder",
+                    "desc": "Coder Agent: Implement Course, Teacher, Student & Attendance Resources: Create AttendanceResource.java with POST /api/attendance/qr accepting qrPayload, business logic for once-per-day recording, Kafka event emission",
+                    "components": [
+                        "src/main/java/com/membershiphub/backend/resource/AttendanceResource.java"
+                    ]
+                },
+                {
+                    "id": "D3_ST7",
+                    "agent": "Coder",
+                    "desc": "Coder Agent: Build Kafka Producer & Consumer Services: Create AttendanceEventProducer.java with KafkaProducer configuration and sendAttendanceEvent method with async send and callback logging",
+                    "components": [
+                        "src/main/java/com/membershiphub/backend/kafka/AttendanceEventProducer.java"
+                    ]
+                },
+                {
+                    "id": "D3_ST8",
+                    "agent": "Coder",
+                    "desc": "Coder Agent: Build Kafka Producer & Consumer Services: Create NotificationEventConsumer.java subscribing to notifications topic, invoking NotificationService.notifyZaloGroup and MobilePushService.sendPush",
+                    "components": [
+                        "src/main/java/com/membershiphub/backend/kafka/NotificationEventConsumer.java"
+                    ]
+                },
+                {
+                    "id": "D3_ST9",
+                    "agent": "Tester",
+                    "desc": "Tester Agent: Write Integration Tests for Core Resources: Create CenterResourceTest.java testing CRUD operations with role-based security and Kafka event emission verification",
+                    "components": [
+                        "src/test/java/com/membershiphub/backend/resource/CenterResourceTest.java"
+                    ]
+                },
+                {
+                    "id": "D3_ST10",
+                    "agent": "Tester",
+                    "desc": "Tester Agent: Write Integration Tests for Core Resources: Create AttendanceResourceTest.java simulating QR payload, asserting attendance record creation, duplicate rejection, and Kafka producer invocation",
+                    "components": [
+                        "src/test/java/com/membershiphub/backend/resource/AttendanceResourceTest.java"
+                    ]
+                },
+                {
+                    "id": "D3_ST11",
                     "agent": "DevOps",
-                    "desc": "DevOps Agent: Package and deploy the backend application to the staging environment.",
-                    "components": []
+                    "desc": "DevOps Agent: Finalize Docker Image & Health Checks: Update Dockerfile with COPY target/membership-hub-backend.jar app.jar, runtime arguments, and HEALTHCHECK command for /q/health endpoint",
+                    "components": [
+                        "src/main/docker/Dockerfile"
+                    ]
+                },
+                {
+                    "id": "D3_ST12",
+                    "agent": "DevOps",
+                    "desc": "DevOps Agent: Finalize Docker Image & Health Checks: Create docker-compose.yml with app, postgres, kafka services, network linking, and environment variables for DB, Kafka, JWT configuration",
+                    "components": [
+                        "docker-compose.yml"
+                    ]
+                },
+                {
+                    "id": "D3_ST13",
+                    "agent": "Reviewer",
+                    "desc": "Reviewer Agent: Final Code Review & Sign-off: Review all source files from Days 1-3 for Java 17 coding standards, OpenAPI annotations, security annotations, Kafka event schema consistency, and Docker image optimization",
+                    "components": [
+                        "src/main/java/com/membershiphub/backend/model/",
+                        "src/main/java/com/membershiphub/backend/repository/",
+                        "src/main/java/com/membershiphub/backend/service/",
+                        "src/main/java/com/membershiphub/backend/resource/",
+                        "src/main/java/com/membershiphub/backend/security/",
+                        "src/main/java/com/membershiphub/backend/kafka/",
+                        "src/main/docker/Dockerfile"
+                    ]
                 }
             ]
         }
