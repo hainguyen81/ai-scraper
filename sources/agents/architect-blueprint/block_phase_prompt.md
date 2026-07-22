@@ -19,6 +19,14 @@ You must align perfectly with the established Global Context and satisfy a subse
    - **DAY LEVEL:** Group all activities belonging to that specific calendar day.
    - **AGENT SUB-TASK LEVEL:** Inside each Day, split work strictly by Sub-Tasks. **Each Sub-Task belongs to exactly ONE unique Assigned Sub-Agent** (e.g., Coder, Tester, Reviewer, DevOps) who owns that specific execution context.
    - **TARGET COMPONENT LEVEL:** Inside each Agent's Sub-Task, list **ALL Target Paths (Components)** that the designated Agent is responsible for creating, modifying, or testing on that day.
+3. **STRICT TARGET PATH SYNTAX RULES FOR AGENTS:**
+   - **For CODER / DEVOPS / REVIEWER Agents:** Each component MUST be listed as a single relative file path.
+     *Example:* `Target Path: ./sources/backend/src/main/java/.../OrderService.java`
+   - **For TESTER Agent (JUnit / Integration Testing Context):** Each component MUST be declared as a strict semi-colon separated pair: `<source file path to verify by junit>;<source junit file to test>`.
+     *   **Rule for Unit Tests:** Use the exact physical path of the class being tested.
+         *Example:* `./sources/backend/src/main/java/.../OrderService.java;./sources/backend/src/test/java/.../OrderServiceTest.java`
+     *   **Rule for Integration / E2E Tests (No single source file):** You MUST use the literal string `INTEGRATION_SCOPE` as the first parameter to signal that this test verifies multi-component behaviors or API endpoints.
+         *Example:* `INTEGRATION_SCOPE;./sources/backend/src/test/java/.../ReconciliationIntegTest.java`
 
 Your output MUST follow this exact Markdown structure for Phase {{ phase_idx }}:
 # PHASE {{ phase_idx }} CONTEXT BLUEPRINT: {{ project_name }}
@@ -31,23 +39,25 @@ Your output MUST follow this exact Markdown structure for Phase {{ phase_idx }}:
 ### DAY [X]: [SHORT CAPITALIZED SPECIFIC OBJECTIVE NAME]
 
 #### SUB-TASK [X.1]: [Short description of work for the Agent]
-##### Assigned Sub-Agent: [Insert exactly ONE Agent: Coder OR Tester OR DevOps OR Reviewer]
+##### Assigned Sub-Agent: Coder
 ##### Targeted Components & Technical Requirements:
-
-*   **Target Path 1:** `[Relative path to file/endpoint 1, e.g., ./src/.../OrderController.java]`
+*   **Target Path:** `[Relative path to source file, e.g., ./src/main/java/.../ReconciliationService.java]`
     *   **Architectural Requirements:**
         *   [Rule 1: Detailed functional logic for this component]
-        *   [Rule 2: Expected input/output, validations, or constraints]
-*   **Target Path 2:** `[Relative path to file/endpoint 2, e.g., ./src/.../OrderService.java]`
-    *   **Architectural Requirements:**
-        *   [Rule 1: Business logic mapping, database interaction rules]
-        *   [Rule 2: Inter-dependency or sync logic linking with Target Path 1]
 
-#### SUB-TASK [X.2]: [Next sub-task for a DIFFERENT Agent on the same day, if applicable]
-##### Assigned Sub-Agent: [Insert exactly ONE Agent, e.g., Tester]
+#### SUB-TASK [X.2]: [Next sub-task for the Tester Agent - Unit Testing Scenario]
+##### Assigned Sub-Agent: Tester
 ##### Targeted Components & Technical Requirements:
-
-*   **Target Path 1:** `[Relative path to test file, e.g., ./src/test/.../OrderControllerTest.java]`
+*   **Target Path:** `./sources/backend/src/main/java/com/saas/recon/service/ReconciliationService.java;./sources/backend/src/test/java/com/saas/recon/service/ReconciliationServiceTest.java`
     *   **Architectural Requirements:**
-        *   [Rule 1: Specific unit testing instructions, mock configurations]
+        *   [Rule 1: Specify exact JUnit 5 / Mockito constraints to verify the paired source file]
+        *   [Rule 2: Boundary test cases required (e.g., handling Empty Excel rows, Null values)]
+
+#### SUB-TASK [X.3]: [Next sub-task for the Tester Agent - Integration Testing Scenario]
+##### Assigned Sub-Agent: Tester
+##### Targeted Components & Technical Requirements:
+*   **Target Path:** `INTEGRATION_SCOPE;./sources/backend/src/test/java/com/saas/recon/integration/ReconciliationIntegTest.java`
+    *   **Architectural Requirements:**
+        *   [Rule 1: Setup full context integration test using SpringBootTest and Testcontainers]
+        *   [Rule 2: Validate end-to-end HTTP Rest API endpoints and native database state transitions]
 
