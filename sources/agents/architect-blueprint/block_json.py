@@ -186,6 +186,7 @@ def convert_phases_to_json(client: OpenAI, model_name: str, project_name: str, n
     # 🎯 SCHEMA INJECTION: Dump expected structure configuration for the prompt injector
     json_schema_dump = json.dumps(PhaseStepsPlan.model_json_schema(), indent=2)
     global_context_file = project_context_file(project_name)
+    result = True if num_phases > 0 else False
     try:
         for phase_idx in range(1, num_phases + 1):
             log_phase_idx = phase_idx
@@ -362,6 +363,10 @@ def convert_phases_to_json(client: OpenAI, model_name: str, project_name: str, n
                 # dump_json_data = json.dumps(model_dump, indent=4, ensure_ascii=False)
                 # rint(f" │         { dump_json_data }")
                 
+                # validate if empty days
+                if not model_dump or len(model_dump.days) <= 0:
+                    print(f" │   └── 🎉 Phase {phase_idx} has no any day or task to do...")
+                    raise ValueError(f"Phase {phase_idx} has no any day or task to do")
             
                 # write steps
                 out_path = write_json_file(
@@ -382,13 +387,14 @@ def convert_phases_to_json(client: OpenAI, model_name: str, project_name: str, n
                     f.write(json.dumps(master_phase_plan, indent=4, ensure_ascii=False))
                     f.write("\n-------------------------------------------------\n")
                 print(f" │   └── ⚠️ Raw dump saved to diagnostic log file: {fallback_path}")
+                result = False
+                break
             
             # sleep to avoid 429 Too Many Requests
             if phase_idx < num_phases + 1:
                 print(f"⏳ Rate limit guard active... holding pipeline for { delay } seconds to clear AI TPM window...")
                 time.sleep(delay)
                 
-        result = True if num_phases > 0 else False
         return result # success or empty phases
     except Exception as e:
         print(f"❌ Failed to initiate chat/generate Phase {log_phase_idx} Steps JSON: {str(e)}")

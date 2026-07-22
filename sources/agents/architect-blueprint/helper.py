@@ -78,30 +78,47 @@ def render_prompt(prompt_template_path: str, context: dict) -> str:
     # substitute will throw error if missing variables, safely for production
     return tmpl.render(**context).strip()
 
+def validateOpenAIResponse(response):
+    if not response or not hasattr(response, 'choices') or not response.choices:
+        raise RuntimeError(f"[API Upstream Error 404]: No Response Found")
+    
+    # 1. Check response choices
+    choices_data = response.choices
+    if not isinstance(choices_data, list) or len(choices_data) <= 0:
+        raise RuntimeError(f"[API Upstream Error 404]: Response Choices is empty/None")
+    
+    # parse first choice
+    first_choice = choices_data[0]
+        
+    # 2. Check finish_reason or error response
+    if first_choice.finish_reason == 'error' or hasattr(response, 'error') or (hasattr(first_choice, 'error') and choice.error):
+        # parse error
+        err_detail = getattr(response, 'error', None) or getattr(first_choice, 'error', {})
+        err_msg = err_detail.get('message', 'Unknown upstream aggregator timeout')
+        err_code = err_detail.get('code', 500)
+        raise RuntimeError(f"[API Upstream Error {err_code}]: {err_msg}")
+        
+    # 3. check content whether is None (although finish_reason is `stop`)
+    if not hasattr(first_choice, 'message') or not first_choice.message or first_choice.message.content is None:
+        raise ValueError(f"[API Upstream Error 404]: AI response content is empty/None.")
+    
+    # Guard against malformed message blocks or unexpected payload closures
+    return first_choice
+
 def parseOpenAIResponseData(response):
     """
     Safely parses text responses from OpenAI completion models.
     Protects the runtime from attribute errors if content fields are blank or null.
     """
-    if not response or not hasattr(response, 'choices') or not response.choices:
-        return None
-        
-    choices_data = response.choices
+    first_choice = validateOpenAIResponse(response)
     
-    # Verify that choices structure matches standard list tracking behavior
-    if isinstance(choices_data, list) and len(choices_data) > 0:
-        first_choice = choices_data[0]
-        
-        # Guard against malformed message blocks or unexpected payload closures
-        if hasattr(first_choice, 'message') and first_choice.message:
-            message_obj = first_choice.message
-            if hasattr(message_obj, 'content') and message_obj.content:
-                return message_obj.content.strip()
-                
-        # Safe fallback if choice format changes or breaks unexpectedly
-        return str(first_choice).strip()
-        
-    return None
+    # Guard against malformed message blocks or unexpected payload closures
+    message_obj = first_choice.message
+    if hasattr(message_obj, 'content') and message_obj.content:
+        return message_obj.content.strip()
+    
+    # Safe fallback if choice format changes or breaks unexpectedly
+    return str(first_choice).strip()
 
 def splitOpenAIResponseJsonData(raw_data):
     clean_json_str = raw_data.strip()
