@@ -1,0 +1,240 @@
+{
+    "phase_id": 2,
+    "phase_name": "Phase 2",
+    "project_name": "financial-reconciliation",
+    "global_context_file": ".ai/.context/financial-reconciliation.global.blueprint.md",
+    "source_target_dir": "sources/",
+    "days": [
+        {
+            "day": 1,
+            "context_file": ".ai/.plan/.context/phase-2.context.blueprint.md",
+            "context_section": "DAY 1",
+            "sub_tasks": [
+                {
+                    "id": "D1_ST1",
+                    "agent": "Coder",
+                    "desc": "Coder Agent: Implement UploadController with file validation (size ≤ 100MB, MIME type application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, non-empty). Create and persist ReconciliationSession entity with status PENDING. Invoke async IngestionService.startBatch and return immediate response with sessionId and status.",
+                    "components": [
+                        "src/main/java/com/finrec/reconciliation/controller/UploadController.java"
+                    ]
+                },
+                {
+                    "id": "D1_ST2",
+                    "agent": "Tester",
+                    "desc": "Tester Agent: Write and execute UploadControllerIT integration test to verify file validation, session creation, and async trigger response.",
+                    "components": [
+                        "src/test/java/com/finrec/reconciliation/controller/UploadControllerIT.java"
+                    ]
+                },
+                {
+                    "id": "D1_ST3",
+                    "agent": "Coder",
+                    "desc": "Coder Agent: Build IngestionService with CompletableFuture<Void> processFiles method. Update session status to PROCESSING before launching batch and to COMPLETED/FAILED after job completion.",
+                    "components": [
+                        "src/main/java/com/finrec/reconciliation/service/IngestionService.java"
+                    ]
+                },
+                {
+                    "id": "D1_ST4",
+                    "agent": "Tester",
+                    "desc": "Tester Agent: Write and execute IngestionServiceTest to mock batch launch and verify session status transitions.",
+                    "components": [
+                        "src/test/java/com/finrec/reconciliation/service/IngestionServiceTest.java"
+                    ]
+                },
+                {
+                    "id": "D1_ST5",
+                    "agent": "DevOps",
+                    "desc": "DevOps Agent: Update application.yml with spring.batch.job.enabled=false, configure file-size limits, and set async pool sizes.",
+                    "components": [
+                        "src/main/resources/application.yml"
+                    ]
+                }
+            ]
+        },
+        {
+            "day": 2,
+            "context_file": ".ai/.plan/.context/phase-2.context.blueprint.md",
+            "context_section": "DAY 2",
+            "sub_tasks": [
+                {
+                    "id": "D2_ST1",
+                    "agent": "Coder",
+                    "desc": "Coder Agent: Configure Spring Batch ReconciliationBatchConfig with two independent steps: ShopeeStep and LogisticsStep. Define EasyExcel SAX-based readers for each file type.",
+                    "components": [
+                        "src/main/java/com/finrec/reconciliation/batch/ReconciliationBatchConfig.java"
+                    ]
+                },
+                {
+                    "id": "D2_ST2",
+                    "agent": "Coder",
+                    "desc": "Coder Agent: Implement ShopeeOrderItemProcessor and LogisticsOrderItemProcessor for simple POJO field mapping, ensuring zero loops over bulk data.",
+                    "components": [
+                        "src/main/java/com/finrec/reconciliation/batch/processor/ShopeeOrderItemProcessor.java",
+                        "src/main/java/com/finrec/reconciliation/batch/processor/LogisticsOrderItemProcessor.java"
+                    ]
+                },
+                {
+                    "id": "D2_ST3",
+                    "agent": "Coder",
+                    "desc": "Coder Agent: Implement JpaItemWriter for batch steps using TempShopeeOrderRepository and TempLogisticsOrderRepository.",
+                    "components": [
+                        "src/main/java/com/finrec/reconciliation/repository/TempShopeeOrderRepository.java",
+                        "src/main/java/com/finrec/reconciliation/repository/TempLogisticsOrderRepository.java"
+                    ]
+                },
+                {
+                    "id": "D2_ST4",
+                    "agent": "Tester",
+                    "desc": "Tester Agent: Write and execute BatchIntegrationTest with real Spring Batch job using tiny sample Excel files. Assert rows are correctly written to staging tables partitioned by session_id.",
+                    "components": [
+                        "src/test/java/com/finrec/reconciliation/batch/BatchIntegrationTest.java"
+                    ]
+                },
+                {
+                    "id": "D2_ST5",
+                    "agent": "DevOps",
+                    "desc": "DevOps Agent: Update pom.xml or build.gradle to declare easyexcel dependency (version ≥ 3.3.0) and exclude Apache POI.",
+                    "components": [
+                        "pom.xml",
+                        "build.gradle"
+                    ]
+                }
+            ]
+        },
+        {
+            "day": 3,
+            "context_file": ".ai/.plan/.context/phase-2.context.blueprint.md",
+            "context_section": "DAY 3",
+            "sub_tasks": [
+                {
+                    "id": "D3_ST1",
+                    "agent": "Coder",
+                    "desc": "Coder Agent: Create Thymeleaf UI upload.html with drag-and-drop zone and file inputs.",
+                    "components": [
+                        "src/main/resources/templates/upload.html"
+                    ]
+                },
+                {
+                    "id": "D3_ST2",
+                    "agent": "Coder",
+                    "desc": "Coder Agent: Implement upload.js with Axios POST to /upload and client-side polling of /session/{sessionId} every 2 seconds for real-time status updates.",
+                    "components": [
+                        "src/main/resources/static/js/upload.js"
+                    ]
+                },
+                {
+                    "id": "D3_ST3",
+                    "agent": "Tester",
+                    "desc": "Tester Agent: Execute PerformanceTest simulating a 10MB Excel file upload. Measure and verify upload response is <200ms and memory usage is stable (no OOM).",
+                    "components": [
+                        "src/test/java/com/finrec/reconciliation/PerformanceTest.java"
+                    ]
+                },
+                {
+                    "id": "D3_ST4",
+                    "agent": "Tester",
+                    "desc": "Tester Agent: Execute GuardrailTest for static analysis to check for prohibited loops and verify only EasyExcel dependency is used.",
+                    "components": [
+                        "src/test/java/com/finrec/reconciliation/GuardrailTest.java"
+                    ]
+                },
+                {
+                    "id": "D3_ST5",
+                    "agent": "DevOps",
+                    "desc": "DevOps Agent: Extend CI pipeline (.github/workflows/ci.yml) to run static analysis (SonarQube) with loop-detection rules and execute the full test suite.",
+                    "components": [
+                        ".github/workflows/ci.yml"
+                    ]
+                }
+            ]
+        },
+        {
+            "day": 4,
+            "context_file": ".ai/.plan/.context/phase-2.context.blueprint.md",
+            "context_section": "DAY 4",
+            "sub_tasks": [
+                {
+                    "id": "D4_ST1",
+                    "agent": "Reviewer",
+                    "desc": "Reviewer Agent: Conduct architectural review of the async pipeline. Verify session isolation via foreign keys, correct use of EasyExcel SAX streaming, and compliance with zero-loops guardrail.",
+                    "components": [
+                        "src/main/java/com/finrec/reconciliation/controller/UploadController.java",
+                        "src/main/java/com/finrec/reconciliation/service/IngestionService.java",
+                        "src/main/java/com/finrec/reconciliation/batch/ReconciliationBatchConfig.java"
+                    ]
+                },
+                {
+                    "id": "D4_ST2",
+                    "agent": "Reviewer",
+                    "desc": "Reviewer Agent: Validate security implementation: ensure CSRF protection on Thymeleaf forms, placeholder JWT auth is in place, and input sanitization is performed.",
+                    "components": [
+                        "src/main/java/com/finrec/reconciliation/controller/UploadController.java",
+                        "src/main/resources/templates/upload.html"
+                    ]
+                },
+                {
+                    "id": "D4_ST3",
+                    "agent": "DevOps",
+                    "desc": "DevOps Agent: Update Dockerfile for multi-stage build, copy JAR, and set JVM memory limits.",
+                    "components": [
+                        "Dockerfile"
+                    ]
+                },
+                {
+                    "id": "D4_ST4",
+                    "agent": "DevOps",
+                    "desc": "DevOps Agent: Add stubbed Prometheus metrics endpoint (/actuator/metrics) via MetricsService and create a Grafana dashboard template.",
+                    "components": [
+                        "src/main/java/com/finrec/reconciliation/metrics/MetricsService.java"
+                    ]
+                },
+                {
+                    "id": "D4_ST5",
+                    "agent": "DevOps",
+                    "desc": "DevOps Agent: Configure centralized logging with ELK placeholders in logback.xml.",
+                    "components": [
+                        "src/main/resources/logback.xml"
+                    ]
+                }
+            ]
+        },
+        {
+            "day": 5,
+            "context_file": ".ai/.plan/.context/phase-2.context.blueprint.md",
+            "context_section": "DAY 5",
+            "sub_tasks": [
+                {
+                    "id": "D5_ST1",
+                    "agent": "DevOps",
+                    "desc": "DevOps Agent: Provision staging environment (K8s/VM) with database credentials and configure async thread-pool size.",
+                    "components": []
+                },
+                {
+                    "id": "D5_ST2",
+                    "agent": "DevOps",
+                    "desc": "DevOps Agent: Verify deployed service meets SLA by testing upload endpoint for <200ms response time and checking logs for session creation and batch start events.",
+                    "components": []
+                },
+                {
+                    "id": "D5_ST3",
+                    "agent": "Tester",
+                    "desc": "Tester Agent: Document all test results (unit, integration, performance, guardrail) and sign off on readiness for Phase 3.",
+                    "components": []
+                },
+                {
+                    "id": "D5_ST4",
+                    "agent": "Reviewer",
+                    "desc": "Reviewer Agent: Approve all code changes after confirming CI pipeline passes and test suite is successful. Sign off Phase 2 deliverables.",
+                    "components": []
+                },
+                {
+                    "id": "D5_ST5",
+                    "agent": "Manager",
+                    "desc": "Manager Agent: Review Phase 2 scope, resource allocation, and timeline. Approve go/no-go decision to proceed to Phase 3 after all sub-agent sign-offs are received.",
+                    "components": []
+                }
+            ]
+        }
+    ]
+}
