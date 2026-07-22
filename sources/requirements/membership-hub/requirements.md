@@ -2,16 +2,16 @@
 
 *	**Requirements:**
 	- Project vừa web để quản lý, vừa mobile (app ĐT) để học viên xài.
-	- Project này xây dựng backend bằng quarkus, kafka, postgres, có thể scalable, build docker image, deploy GCP, GKE.
+	- Project này xây dựng backend bằng java 17, quarkus, kafka, postgres, có thể scalable, build docker image, deploy GCP, GKE.
 	- Hỗ trợ xác thực internal bằng email password, hoặc qua firebase, google, facebook. quản lý user internal lẫn login qua xác thực với các bên bên trên.
 	- Project này quản lý các học viên của trung tâm bất kỳ, dùng được cho nhiều trung tâm 1 lúc được.
 	- Các học viên của trung tâm khi tới học sẽ điểm danh qua QR. Điểm danh sẽ đánh dấu ngày đó học viên có đi học. Cho dù điểm danh nhiều lần cũng không vấn đề và chỉ xem như đã điểm danh ngày hôm đó.
 	- Sau khi điểm danh sẽ hiển thị thẻ học viên còn bao nhiêu ngày hiệu lực như kiểu trừ dần ngày tập gym chẳng hạn.
 	- Đồng thời lúc đó gửi tin nhắn qua số đt zalo của học viên và nhóm zalo có học viên đó tham gia, và cả notification của app mobile trên đt học viên.
-	- App mobile dùng next.js làm front end, hỗ trợ đa ngôn ngữ, build đc cho ios, android.
+	- App mobile dùng next.js làm frontend, hỗ trợ đa ngôn ngữ, build đc cho ios, android.
 	- Project này có phần SEO đa ngôn ngữ cho cả web, app mobile.
 	- Detect default locale ngôn ngữ nếu user đã chọn trước đó thì dùng nó, không thì dùng locale từ browser hay mobile.
-	- Phần web quản lý có quản lý lịch dạy và học, khuyến mãi các khóa học, thông báo của admin. Khi admin thông báo, tin nhắn sẽ được trigger gửi xuống group zalo của ac1c học viên, đồng thời thông báo xuống app trên dt của học viên.
+	- Phần web quản lý có quản lý lịch dạy và học, khuyến mãi các khóa học, thông báo của admin. Khi admin thông báo, tin nhắn sẽ được trigger gửi xuống group zalo của các học viên, đồng thời thông báo xuống app trên dt của học viên.
 	- Phần web quản lý cũng có quản lý tiết học như tiết đó thầy cô nào dạy, từ mấy giờ đến mấy giờ.
 	- Có quản lý điểm royalty của học viên. Học viên cứ đăng ký 1 khóa học sẽ được công 10 điểm. Có cả phần quản lý đăng ký khóa học, bao gồm học viên nào đăng ký khóa học nào do thầy cô nào dạy, thời gian khóa học từ ngày nào tới ngày nào.
 	- Phần web quản lý sẽ có các role:
