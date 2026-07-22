@@ -33,6 +33,7 @@ def generate_global_context(client: OpenAI, model_name: str, project_name: str, 
     max_days_per_phase = max_days_per_phase if max_days_per_phase > 0 else 7
     log_prompt = ""
     instruction = "You are an Elite Solution Architect. Define the global system truth and multi-agent guardrails."
+    model_name_safe = model_name if model_name else "gpt-4o"
     try:
         # parse prompt from template
         prompt_context = {
@@ -53,7 +54,6 @@ def generate_global_context(client: OpenAI, model_name: str, project_name: str, 
         # raw_data = response.text
         
         # OpenAI
-        model_name_safe = model_name if model_name else "gpt-4o"
         response = client.chat.completions.create(
             model=model_name_safe,
             messages=[
@@ -82,6 +82,6 @@ def generate_global_context(client: OpenAI, model_name: str, project_name: str, 
         return raw_data
     except Exception as e:
         print(f"❌ Failed to initiate chat/generate Global Blueprint: {e}")
-        write_log(0, instruction, log_prompt.replace('#', '##'), str(e), False)
+        write_log(0, instruction, log_prompt.replace('#', '##'), str(e), False, model_name_safe)
         return None
 

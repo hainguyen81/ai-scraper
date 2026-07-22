@@ -184,6 +184,7 @@ def convert_phases_to_json(client: OpenAI, model_name: str, project_name: str, n
     json_schema_dump = json.dumps(PhaseStepsPlan.model_json_schema(), indent=2)
     global_context_file = project_context_file(project_name)
     result = True if num_phases > 0 else False
+    model_name_safe = model_name if model_name else "gpt-4o"
     try:
         for phase_idx in range(1, num_phases + 1):
             log_phase_idx = phase_idx
@@ -259,7 +260,6 @@ def convert_phases_to_json(client: OpenAI, model_name: str, project_name: str, n
                 # json_data = json.loads(raw_data)
                 
                 # OpenAI
-                model_name_safe = model_name if model_name else "gpt-4o"
                 response = client.beta.chat.completions.parse(
                     model=model_name_safe,  # Standard heavy reasoning model for structured enterprise operations
                     messages=[
@@ -396,5 +396,5 @@ def convert_phases_to_json(client: OpenAI, model_name: str, project_name: str, n
         return result # success or empty phases
     except Exception as e:
         print(f"❌ Failed to initiate chat/generate Phase {log_phase_idx} Steps JSON: {str(e)}")
-        write_log(log_phase_idx, instruction, log_prompt.replace('#', '##'), str(e), True)
+        write_log(log_phase_idx, instruction, log_prompt.replace('#', '##'), str(e), True, model_name_safe)
         return False

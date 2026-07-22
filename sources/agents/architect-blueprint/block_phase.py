@@ -36,6 +36,7 @@ def generate_phase_contexts(client: OpenAI, model_name: str, project_name: str, 
     log_phase_idx = 0
     log_prompt = ""
     instruction = "You are an Elite Solution Architect. Isolate development boundaries so sub-agents never overlap."
+    model_name_safe = model_name if model_name else "gpt-4o"
     try:
         for phase_idx in range(1, num_phases + 1):
             log_phase_idx = phase_idx
@@ -62,7 +63,6 @@ def generate_phase_contexts(client: OpenAI, model_name: str, project_name: str, 
             # raw_data = response.text
             
             # OpenAI
-            model_name_safe = model_name if model_name else "gpt-4o"
             response = client.chat.completions.create(
                 model=model_name_safe,
                 messages=[
@@ -97,6 +97,6 @@ def generate_phase_contexts(client: OpenAI, model_name: str, project_name: str, 
         return result # success or empty phases
     except Exception as e:
         print(f"❌ Failed to initiate chat/generate Phase {log_phase_idx} Blueprint: {e}")
-        write_log(log_phase_idx, instruction, log_prompt.replace('#', '##'), str(e), False)
+        write_log(log_phase_idx, instruction, log_prompt.replace('#', '##'), str(e), False, model_name_safe)
         return False
 
