@@ -156,7 +156,11 @@ def run_architect_agent(
         # OpenAI
         client = OpenAI(
             base_url=api_endpoint,
-            api_key=api_key
+            api_key=api_key,
+            # 0 to turn off retries
+            max_retries=3, 
+            # timeout in seconds (600 seconds ~ 10 minutes)
+            timeout=600.0
         )
         
         max_days_per_phase = max_days_per_phase if max_days_per_phase > 0 else 7
