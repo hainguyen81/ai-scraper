@@ -357,15 +357,17 @@ def convert_phases_to_json(client: OpenAI, model_name: str, project_name: str, n
                 # 2. Parse and validate the string payload locally with Pydantic core engine
                 print(f" │   └── 🎉 Validate Phase {phase_idx} Standardized JSON...")
                 validated_pydantic_object = PhaseStepsPlan.model_validate(transform_json_data)
+                
+                # validate if empty days
+                if not validated_pydantic_object.days:
+                    print(f" │   └── 🎉 Phase {phase_idx} has no any day or task to do...")
+                    raise ValueError(f"Phase {phase_idx} has no any day or task to do")
+                
+                # dump model data
                 model_dump = validated_pydantic_object.model_dump()
                 # dump_json_data = json.dumps(model_dump, indent=4, ensure_ascii=False)
                 # print(f" │         { dump_json_data }")
                 
-                # validate if empty days
-                if not model_dump or len(model_dump.days) <= 0:
-                    print(f" │   └── 🎉 Phase {phase_idx} has no any day or task to do...")
-                    raise ValueError(f"Phase {phase_idx} has no any day or task to do")
-            
                 # write steps
                 out_path = write_json_file(
                     dir=steps_context_dir,
@@ -380,7 +382,7 @@ def convert_phases_to_json(client: OpenAI, model_name: str, project_name: str, n
                 
                 # Save the raw unparsed text payload directly to file for manual logging evaluation
                 with open(fallback_path, "w", encoding="utf-8") as f:
-                    f.write(raw_data)
+                    f.write(f"```text{raw_data}```")
                     f.write("\n-------------------------------------------------\n")
                     f.write(f"```text{json.dumps(master_phase_plan, indent=4, ensure_ascii=False)}```")
                     f.write("\n-------------------------------------------------\n")
