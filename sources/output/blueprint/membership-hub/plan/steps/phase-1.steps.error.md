@@ -1,7 +1,11 @@
+Based on the provided Markdown content, I will extract and translate the daily steps, checklists, and agent tasks into a precise, executable JSON schema.
+
+Here is the resulting JSON object:
+
 ```json
 {
   "phase_id": 1,
-  "phase_name": "membership-hub",
+  "phase_name": "Phase 1",
   "project_name": "membership-hub",
   "global_context_file": "./sources/.ai/.context/membership-hub.global.blueprint.md",
   "source_target_dir": "",
@@ -13,39 +17,13 @@
       "sub_tasks": [
         {
           "id": "1.1",
-          "agent": "Coder",
-          "desc": "Create Domain Entities with Multi‑Tenant & OWASP Controls",
-          "components": [
-            "./sources/backend/src/main/java/org/nlh4j/saas/membershiphub/domain/Tenant.java",
-            "./sources/backend/src/main/java/org/nlh4j/saas/membershiphub/domain/User.java",
-            "./sources/backend/src/main/java/org/nlh4j/saas/membershiphub/domain/Role.java",
-            "./sources/backend/src/test/java/org/nlh4j/saas/membershiphub/domain/TenantTest.java",
-            "./sources/backend/src/test/java/org/nlh4j/saas/membershiphub/domain/UserTest.java",
-            "./sources/backend/src/test/java/org/nlh4j/saas/membershiphub/domain/RoleTest.java"
-          ]
-        },
-        {
-          "id": "1.2",
-          "agent": "Docker",
-          "desc": "Build Multi‑Stage Docker Image",
-          "components": [
-            "./sources/backend/docker/Dockerfile"
-          ]
-        },
-        {
-          "id": "1.3",
-          "agent": "GCP",
-          "desc": "Provision GCP IAM Service Account",
-          "components": [
-            "./sources/backend/gcp/iam-config.yaml"
-          ]
-        },
-        {
-          "id": "1.4",
           "agent": "Manager",
-          "desc": "Orchestrate Phase 1 Deliverables",
+          "desc": "Initialize Maven skeleton and Quarkus configuration",
           "components": [
-            "./sources/backend/Phase1-Orchestration.md"
+            "./sources/backend/pom.xml",
+            "./sources/backend/src/main/resources/application.properties",
+            "./sources/backend/src/main/docker/Dockerfile.jvm",
+            "./sources/backend/.dockerignore"
           ]
         }
       ]
@@ -58,33 +36,30 @@
         {
           "id": "2.1",
           "agent": "Coder",
-          "desc": "Develop Core Authentication Service with OAuth & JWT",
+          "desc": "Develop User domain entity with tenant-scoped fields and encrypted password",
           "components": [
-            "./sources/backend/src/main/java/org/nlh4j/saas/membershiphub/service/AuthService.java"
+            "./sources/backend/src/main/java/org/nlh4j/saas/membershiphub/domain/User.java",
+            "./sources/backend/src/main/java/org/nlh4j/saas/membershiphub/repository/UserRepository.java",
+            "./sources/backend/src/main/java/org/nlh4j/saas/membershiphub/service/UserService.java",
+            "./sources/backend/src/main/java/org/nlh4j/saas/membershiphub/resource/UserResource.java"
           ]
-        },
+        }
+      ]
+    },
+    {
+      "day": 3,
+      "context_file": "./sources/.ai/.plan/.context/phase-1.context.blueprint.md",
+      "context_section": "DAY 3",
+      "sub_tasks": [
         {
-          "id": "2.2",
-          "agent": "Reviewer",
-          "desc": "Review Security & Code Quality",
+          "id": "3.1",
+          "agent": "Coder",
+          "desc": "Develop Course domain entity with tenant scoping and validation",
           "components": [
-            "./sources/backend/src/main/java/org/nlh4j/saas/membershiphub/service/AuthService.java"
-          ]
-        },
-        {
-          "id": "2.3",
-          "agent": "Tester",
-          "desc": "Unit Test Authentication Service",
-          "components": [
-            "AuthService.java;./sources/backend/src/test/java/org/nlh4j/saas/membershiphub/service/AuthServiceTest.java"
-          ]
-        },
-        {
-          "id": "2.4",
-          "agent": "GKE",
-          "desc": "Create GKE Deployment Manifests",
-          "components": [
-            "./sources/backend/kubernetes/deployment.yaml"
+            "./sources/backend/src/main/java/org/nlh4j/saas/membershiphub/domain/Course.java",
+            "./sources/backend/src/main/java/org/nlh4j/saas/membershiphub/repository/CourseRepository.java",
+            "./sources/backend/src/main/java/org/nlh4j/saas/membershiphub/service/CourseService.java",
+            "./sources/backend/src/main/java/org/nlh4j/saas/membershiphub/resource/CourseResource.java"
           ]
         }
       ]
@@ -92,6 +67,8 @@
   ]
 }
 ```
+
+Note that I have only included the tasks and components mentioned in the Markdown content, and have not added any additional information. Also, I have assumed that the `id` field in the `SubAgentTask` object is a unique identifier for each task, and have assigned a unique `id` to each task based on the day and task number.
 -------------------------------------------------
 ```text{
     "phase_id": 1,
@@ -108,39 +85,13 @@
             "sub_tasks": [
                 {
                     "id": "1.1",
-                    "agent": "Coder",
-                    "desc": "Create Domain Entities with Multi‑Tenant & OWASP Controls",
-                    "components": [
-                        "./sources/backend/src/main/java/org/nlh4j/saas/membershiphub/domain/Tenant.java",
-                        "./sources/backend/src/main/java/org/nlh4j/saas/membershiphub/domain/User.java",
-                        "./sources/backend/src/main/java/org/nlh4j/saas/membershiphub/domain/Role.java",
-                        "./sources/backend/src/test/java/org/nlh4j/saas/membershiphub/domain/TenantTest.java",
-                        "./sources/backend/src/test/java/org/nlh4j/saas/membershiphub/domain/UserTest.java",
-                        "./sources/backend/src/test/java/org/nlh4j/saas/membershiphub/domain/RoleTest.java"
-                    ]
-                },
-                {
-                    "id": "1.2",
-                    "agent": "Docker",
-                    "desc": "Build Multi‑Stage Docker Image",
-                    "components": [
-                        "./sources/backend/docker/Dockerfile"
-                    ]
-                },
-                {
-                    "id": "1.3",
-                    "agent": "GCP",
-                    "desc": "Provision GCP IAM Service Account",
-                    "components": [
-                        "./sources/backend/gcp/iam-config.yaml"
-                    ]
-                },
-                {
-                    "id": "1.4",
                     "agent": "Manager",
-                    "desc": "Orchestrate Phase 1 Deliverables",
+                    "desc": "Initialize Maven skeleton and Quarkus configuration",
                     "components": [
-                        "./sources/backend/Phase1-Orchestration.md"
+                        "./sources/backend/pom.xml",
+                        "./sources/backend/src/main/resources/application.properties",
+                        "./sources/backend/src/main/docker/Dockerfile.jvm",
+                        "./sources/backend/.dockerignore"
                     ]
                 }
             ]
@@ -153,33 +104,30 @@
                 {
                     "id": "2.1",
                     "agent": "Coder",
-                    "desc": "Develop Core Authentication Service with OAuth & JWT",
+                    "desc": "Develop User domain entity with tenant-scoped fields and encrypted password",
                     "components": [
-                        "./sources/backend/src/main/java/org/nlh4j/saas/membershiphub/service/AuthService.java"
+                        "./sources/backend/src/main/java/org/nlh4j/saas/membershiphub/domain/User.java",
+                        "./sources/backend/src/main/java/org/nlh4j/saas/membershiphub/repository/UserRepository.java",
+                        "./sources/backend/src/main/java/org/nlh4j/saas/membershiphub/service/UserService.java",
+                        "./sources/backend/src/main/java/org/nlh4j/saas/membershiphub/resource/UserResource.java"
                     ]
-                },
+                }
+            ]
+        },
+        {
+            "day": 3,
+            "context_file": "./sources/.ai/.plan/.context/phase-1.context.blueprint.md",
+            "context_section": "DAY 3",
+            "sub_tasks": [
                 {
-                    "id": "2.2",
-                    "agent": "Reviewer",
-                    "desc": "Review Security & Code Quality",
+                    "id": "3.1",
+                    "agent": "Coder",
+                    "desc": "Develop Course domain entity with tenant scoping and validation",
                     "components": [
-                        "./sources/backend/src/main/java/org/nlh4j/saas/membershiphub/service/AuthService.java"
-                    ]
-                },
-                {
-                    "id": "2.3",
-                    "agent": "Tester",
-                    "desc": "Unit Test Authentication Service",
-                    "components": [
-                        "AuthService.java;./sources/backend/src/test/java/org/nlh4j/saas/membershiphub/service/AuthServiceTest.java"
-                    ]
-                },
-                {
-                    "id": "2.4",
-                    "agent": "GKE",
-                    "desc": "Create GKE Deployment Manifests",
-                    "components": [
-                        "./sources/backend/kubernetes/deployment.yaml"
+                        "./sources/backend/src/main/java/org/nlh4j/saas/membershiphub/domain/Course.java",
+                        "./sources/backend/src/main/java/org/nlh4j/saas/membershiphub/repository/CourseRepository.java",
+                        "./sources/backend/src/main/java/org/nlh4j/saas/membershiphub/service/CourseService.java",
+                        "./sources/backend/src/main/java/org/nlh4j/saas/membershiphub/resource/CourseResource.java"
                     ]
                 }
             ]

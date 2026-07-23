@@ -1,145 +1,143 @@
 # PHASE 1 CONTEXT BLUEPRINT: membership-hub
 
 ## 1. Phase Operational Scope & Objectives
-- Establish the foundational Java 17 Quarkus backend with PostgreSQL multi‑tenant support (`tenant_id` column) and Kafka event bus connectivity.  
-- Implement core authentication handling internal email/password (Argon2id), Firebase Auth, Google OAuth 2.0, and Facebook OAuth 2.0; generate signed JWTs with lease expiration and revocation.  
-- Define role hierarchy (System Admin, Center Admin, Manager, Teacher, Student) and map them to JWT claims and tenant filtering.  
-- Create initial Docker multi‑stage image for the backend service and configure GCP IAM service account policies.  
-- Produce GKE deployment manifests and CI/CD pipeline seeds to enable subsequent phases.  
-- Embed OWASP A01‑A07 hardening (parameterized queries, tenant filtering, AES‑256 PII encryption at rest, secure OAuth flows) throughout all created components.
+- **Project Initialization:** Establish the foundational directory layout, Maven configuration, Quarkus application properties, and Docker resources under `./sources/` to satisfy the absolute workspace boundary rule.  
+- **Multi‑Tenancy & Security Baseline:** Embed OWASP‑compliant security controls at the infrastructure level: define a `tenant_id` scope for all data access, configure AES‑256 encryption for sensitive fields (e.g., passwords), and enable parameterized queries to prevent SQL injection.  
+- **User Management Service:** Implement a complete CRUD back‑end for internal users (System Admin, Admin, Manager, Teacher, Student) with role‑based access, secure credential storage, and Kafka event emission for user lifecycle changes.  
+- **Course Management Service:** Implement a full CRUD back‑end for courses, including time‑window validation, teacher assignment, student enrollment, and associated Kafka events.  
+- **Compliance & Integration:** Ensure all generated Java code follows the corporate package `org.nlh4j.saas.membershiphub` and the strict path‑to‑package mapping derived from the stripped project token `membershiphub`.  
 
 ## 2. Allowed Technical Scope & Directory Boundaries (Files, paths, and endpoints)
-- **Backend source tree** (`./sources/backend/`):  
-  - `./sources/backend/src/main/java/org/nlh4j/saas/membershiphub/` – Java domain, service, config.  
-  - `./sources/backend/src/test/java/org/nlh4j/saas/membershiphub/` – Unit tests.  
-  - `./sources/backend/src/main/resources/` – Application properties, Kafka client config.  
-  - `./sources/backend/docker/` – Dockerfile(s).  
-  - `./sources/backend/gcp/` – IAM service‑account YAML.  
-  - `./sources/backend/kubernetes/` – GKE deployment & service manifests.  
-- **Frontend source tree** (`./sources/frontend/`) – not required for Phase 1 but permitted for future integration.  
-- **REST endpoints** (to be defined in Phase 2):  
-  - `POST /api/v1/auth/login` (internal)  
-  - `POST /api/v1/auth/oauth/{provider}` (Firebase, Google, Facebook)  
-  - `GET /api/v1/tenants` (System Admin only)  
-  - `GET /api/v1/roles` (all authenticated)  
-- **Kafka topics** (pre‑created): `attendance`, `notifications`, `zalo-message`.  
+- **Backend Root:** `./sources/backend/` – contains Maven POM, Quarkus configuration, Java source (`src/main/java/org/nlh4j/saas/membershiphub/...`), resources, and test artifacts.  
+- **Frontend Root:** `./sources/frontend/` – not used in Phase 1; reserved for later phases.  
+- **Docker / Deployment Assets:** `./sources/backend/src/main/docker/Dockerfile.jvm` – used for local container builds (deployment handled in Phase 4).  
+- **Configuration Files:** `./sources/backend/src/main/resources/application.properties` – defines datasource URL, Kafka bootstrap servers, tenant defaults, and security settings.  
+- **REST Endpoint Patterns (Phase 1 Scope):**  
+  - `POST /api/v1/users` – create user (System Admin only)  
+  - `GET /api/v1/users/{id}` – retrieve user by ID (authenticated)  
+  - `PUT /api/v1/users/{id}` – update user (role‑restricted)  
+  - `DELETE /api/v1/users/{id}` – delete user (Admin/Manager)  
+  - `POST /api/v1/courses` – create course (Admin only)  
+  - `GET /api/v1/courses/{id}` – retrieve course details  
+  - `PUT /api/v1/courses/{id}` – update course (Admin)  
+  - `DELETE /api/v1/courses/{id}` – delete course (Admin)  
+- **Kafka Topics (Phase 1 Scope):** `user-events`, `course-events` – emitted on create/update/delete actions.  
 
-## 3. Dedicated Sub-Agent Functional Directives
-- **Coder**: Build domain entities (`Tenant`, `User`, `Role`) with `tenant_id` and OWASP‑compliant fields; implement `AuthService` handling internal password hashing (Argon2id), OAuth token exchange, JWT signing/lease, and role‑based claim injection.  
-- **Docker**: Produce a multi‑stage Dockerfile (`./sources/backend/docker/Dockerfile`) that copies compiled JAR, sets JVM options, defines non‑root user, and includes health‑check.  
-- **GCP**: Generate `iam-config.yaml` (`./sources/backend/gcp/iam-config.yaml`) defining a service account with `roles/cloudsql.client`, `roles/pubsub.subscriber`, `roles/secretmanager.secretAccessor` and enforce least‑privilege.  
-- **GKE**: Create `deployment.yaml` (`./sources/backend/kubernetes/deployment.yaml`) and `service.yaml` referencing the Docker image, exposing port 8080, and injecting `TENANT_ID` env var.  
-- **Manager**: Coordinate overall Phase 1 delivery, validate that all artifacts reside under `./sources/`, ensure OWASP hardening flags are present, and produce a Phase 1 orchestration summary (`./sources/backend/Phase1-Orchestration.md`).  
-- **Reviewer**: Perform security and code review of all Java source files, confirming tenant filtering, parameterized queries, and JWT best‑practices.  
-- **Tester**: Write unit tests for `AuthService` and domain entities, achieving ≥ 90 % line coverage and verifying OAuth flow mocks and role claim mapping.  
+## 3. Dedicated Sub-Agent Functional Directives (Specific tasks for Coder, Tester, Reviewer, Docker, GCP, GKE, Manager)
+- **Manager Agent:**  
+  - Create the Maven project skeleton (`pom.xml`) with Quarkus and necessary dependencies (Hibernate ORM, SmallRye JWT, Kafka client, PostgreSQL driver).  
+  - Generate `src/main/resources/application.properties` with datasource, Kafka, and multi‑tenancy defaults (`tenant_id` placeholder).  
+  - Add `.dockerignore` and base `Dockerfile.jvm` for local builds.  
+  - Validate that the project builds (`mvn clean compile`).  
+
+- **Coder Agent:**  
+  - **User Management:**  
+    - Implement `User` domain entity (`User.java`) with fields: `id`, `tenantId`, `email`, `passwordHash`, `role`, `fullName`, `contactInfo`. Apply AES‑256 encryption for `passwordHash` and enforce non‑null `tenantId`.  
+    - Implement `UserRepository` extending `PanacheRepository<User>` with parameterized queries and tenant‑scoped `findByTenantId`.  
+    - Implement `UserService` with business logic, role validation, and Kafka producer for `user-events`.  
+    - Implement `UserResource` REST resource exposing the CRUD endpoints defined above, with JAX‑RS annotations and JWT authentication.  
+  - **Course Management:**  
+    - Implement `Course` domain entity (`Course.java`) with fields: `id`, `tenantId`, `title`, `description`, `startDate`, `endDate`, `teacherId`, `maxStudents`. Enforce overlap validation in service layer.  
+    - Implement `CourseRepository` extending `PanacheRepository<Course>` with tenant‑scoped queries.  
+    - Implement `CourseService` with enrollment logic, teacher assignment, and Kafka producer for `course-events`.  
+    - Implement `CourseResource` REST resource exposing CRUD endpoints, with authorization checks (Admin/Manager).  
+
+- **Tester, Reviewer, Docker, GCP, GKE Agents:** Not assigned in Phase 1 (reserved for later phases).  
 
 ## 4. Phase Definition of Done (DoD)
-- All Java source files placed under `./sources/backend/src/main/java/org/nlh4j/saas/membershiphub/` with correct package naming.  
-- Domain entities include `tenant_id` and OWASP‑compliant field handling (encryption, validation).  
-- `AuthService` fully functional: internal login (Argon2id), OAuth providers, JWT issuance with expiration, role claims.  
-- Role definitions enumerated and mapped to JWT `roles` claim.  
-- Docker multi‑stage image built and pushed to artifact repository (simulated by Dockerfile existence).  
-- GCP IAM config file present with least‑privilege policies.  
-- GKE deployment manifests ready for rollout.  
-- Unit test suites exist for `AuthService` and entities, meeting ≥ 90 % coverage.  
-- Reviewer sign‑off confirming OWASP A01‑A07 compliance.  
-- Manager’s orchestration document summarizing completed artifacts and validation results.  
+- **Structural Milestones:**  
+  - All required files under `./sources/` exist with correct Java package layout (`org/nlh4j/saas/membershiphub`).  
+  - `pom.xml` builds successfully (`mvn clean compile`).  
+- **Security Milestones:**  
+  - Every Java entity includes a `tenantId` field and is used in repository queries to enforce multi‑tenancy.  
+  - Passwords are stored as AES‑256 encrypted hashes; encryption/decryption utilities are present.  
+  - All repository methods use parameterized queries (no string concatenation).  
+  - JWT authentication is configured for `UserResource` and `CourseResource`.  
+- **Functional Milestones:**  
+  - User CRUD endpoints are defined in `UserResource` with appropriate role checks.  
+  - Course CRUD endpoints are defined in `CourseResource` with overlap validation.  
+  - Kafka producers emit events for user and course create/update/delete actions.  
+- **Compliance Milestones:**  
+  - OWASP Top 10 controls (A01:2021 – Broken Access Control, A02:2021 – Cryptographic Failures, A03:2021 – Injection) are addressed per component.  
+  - All generated code passes static analysis (no linting violations).  
 
-## 5. DAY‑BY‑DAY ARCHITECTURAL EXECUTION LOGS
+## 5. DAY-BY-DAY ARCHITECTURAL EXECUTION LOGS
 
-### DAY 1: Establish Core Backend Foundations
-#### SUB‑TASK 1.1: Create Domain Entities with Multi‑Tenant & OWASP Controls
-##### Assigned Sub-Agent: Coder
-##### Targeted Components & Technical Requirements:
-*   **Target Path:** 
-    *   `./sources/backend/src/main/java/org/nlh4j/saas/membershiphub/domain/Tenant.java`
-    *   `./sources/backend/src/main/java/org/nlh4j/saas/membershiphub/domain/User.java`
-    *   `./sources/backend/src/main/java/org/nlh4j/saas/membershiphub/domain/Role.java`
-    *   `./sources/backend/src/test/java/org/nlh4j/saas/membershiphub/domain/TenantTest.java`
-    *   `./sources/backend/src/test/java/org/nlh4j/saas/membershiphub/domain/UserTest.java`
-    *   `./sources/backend/src/test/java/org/nlh4j/saas/membershiphub/domain/RoleTest.java`
-    *   **Architectural Requirements:**
-        *   Each entity includes a `Long tenantId` field annotated for PostgreSQL multi‑tenant filtering.
-        *   Sensitive fields (e.g., password hash, personal info) are marked for AES‑256 encryption at rest.
-        *   All JPA repositories use `@Query` with parameter placeholders to enforce parameterized queries (OWASP A03).
-        *   Implement `equals`/`hashCode` based on `tenantId` and identifier to avoid cross‑tenant data leakage.
-        *   Add validation annotations (e.g., `@NotNull`, `@Size`) per Jakarta Bean Validation.
-
-#### SUB‑TASK 1.2: Build Multi‑Stage Docker Image
-##### Assigned Sub-Agent: Docker
-##### Targeted Components & Technical Requirements:
-*   **Target Path:** `./sources/backend/docker/Dockerfile`
-    *   **Architectural Requirements:**
-        *   Use `eclipse-temurin:17-jdk-alpine` as base.
-        *   Copy `*.jar` from build stage, set `JAVA_OPTS` for container security.
-        *   Run as non‑root user (`appuser`).
-        *   Include health‑check endpoint (`/q/health`).
-        *   Embed OWASP‑recommended JVM flags (`-Djdk.tls.client.protocols=TLSv1.3`).
-
-#### SUB‑TASK 1.3: Provision GCP IAM Service Account
-##### Assigned Sub-Agent: GCP
-##### Targeted Components & Technical Requirements:
-*   **Target Path:** `./sources/backend/gcp/iam-config.yaml`
-    *   **Architectural Requirements:**
-        *   Define service account `membership-hub-backend@<project>.iam.gserviceaccount.com`.
-        *   Grant `roles/cloudsql.client`, `roles/pubsub.subscriber`, `roles/secretmanager.secretAccessor`.
-        *   Attach `iam.serviceAccountTokenCreator` for JWT signing if needed.
-        *   Include `lifecyclePolicy` to enforce retention and audit logging.
-
-#### SUB‑TASK 1.4: Orchestrate Phase 1 Deliverables
+### DAY 1: Establish Maven Project & Baseline Configuration
+#### SUB-TASK 1.1: Initialize Maven skeleton and Quarkus configuration (Manager)
 ##### Assigned Sub-Agent: Manager
 ##### Targeted Components & Technical Requirements:
-*   **Target Path:** `./sources/backend/Phase1-Orchestration.md`
+*   **Target Path:** ./sources/backend/pom.xml
     *   **Architectural Requirements:**
-        *   Summarize created artifacts (entities, Dockerfile, IAM config).
-        *   Validate all paths start with `./sources/`.
-        *   Confirm OWASP hardening flags are present in code.
-        *   Record completion status and any open action items for subsequent phases.
+        *   Include Quarkus platform version aligned with Java 17, dependencies for Hibernate ORM, SmallRye JWT, Kafka client, PostgreSQL JDBC driver, and Lombok.
+        *   Define `<groupId>org.nlh4j.saas</groupId>` and `<artifactId>membershiphub</artifactId>`.
+        *   Configure `<packaging>jar</packaging>` and enable Maven Compiler plugin for Java 17.
+*   **Target Path:** ./sources/backend/src/main/resources/application.properties
+    *   **Architectural Requirements:**
+        *   Set `quarkus.datasource.db-kind=postgresql`, `quarkus.datasource.username=membershiphub`, `quarkus.datasource.password=[ENCRYPTED]`, `quarkus.datasource.jdbc.url=jdbc:postgresql://localhost:5432/membershiphub`.
+        *   Define `quarkus.kafka.bootstrap-servers=localhost:9092`.
+        *   Add `membershiphub.tenant.default=public` and `membershiphub.security.password-encryption-key=[BASE64_KEY]`.
+        *   Enable `quarkus.hibernate-orm.multitenant=PER_TENANT` and `quarkus.hibernate-orm.tenant-id=` placeholder.
+*   **Target Path:** ./sources/backend/src/main/docker/Dockerfile.jvm
+    *   **Architectural Requirements:**
+        *   Use official Quarkus JVM base image, copy `target/*-runner.jar` as application jar, expose port `8080`.
+*   **Target Path:** ./sources/backend/.dockerignore
+    *   **Architectural Requirements:**
+        *   Exclude `target/`, `.git/`, `*.iml`, `pom.xml` to keep image lean.  
 
-### DAY 2: Implement Authentication, Roles, and Deploy to GKE
-#### SUB‑TASK 2.1: Develop Core Authentication Service with OAuth & JWT
+### DAY 2: Implement User Management Service (CRUD + Security)
+#### SUB-TASK 2.1: Develop User domain entity with tenant‑scoped fields and encrypted password (Coder)
 ##### Assigned Sub-Agent: Coder
 ##### Targeted Components & Technical Requirements:
-*   **Target Path:** `./sources/backend/src/main/java/org/nlh4j/saas/membershiphub/service/AuthService.java`
+*   **Target Path:** ./sources/backend/src/main/java/org/nlh4j/saas/membershiphub/domain/User.java
     *   **Architectural Requirements:**
-        *   Provide `login(String email, String password)` using Argon2id for password hashing verification.
-        *   Implement `oauthLogin(String provider, String idToken)` for Firebase, Google, Facebook; validate token via provider APIs.
-        *   Generate JWT with claims: `sub`, `tenant_id`, `roles` (comma‑separated), `exp`, `iat`.
-        *   Enforce token lease expiration ≤ 15 min; include revocation list check.
-        *   All DB queries use parameterized statements; JWT signing key stored in Secret Manager (OWASP A02).
-        *   Add `@RolesAllowed` annotations for role‑based access control.
+        *   Annotate with `@Entity`, `@Table(name = "users")`, `@TenantId` (custom annotation for multi‑tenancy).
+        *   Define fields: `id` (Long), `tenantId` (String), `email` (String, unique), `passwordHash` (String, encrypted via AES‑256), `role` (String, e.g., "SYS_ADMIN","ADMIN","MANAGER","TEACHER","STUDENT"), `fullName` (String), `contactInfo` (String).
+        *   Apply `@EncryptedField` annotation for `passwordHash` referencing a `EncryptionService`.
+        *   Include Lombok `@Data`, `@NoArgsConstructor`, `@AllArgsConstructor`.
+        *   Implement `Comparable<User>` for audit ordering.
+*   **Target Path:** ./sources/backend/src/main/java/org/nlh4j/saas/membershiphub/repository/UserRepository.java
+    *   **Architectural Requirements:**
+        *   Extend `PanacheRepository<User>` and add `List<User> findByTenantId(String tenantId);`.
+        *   Use `@Transactional` on query methods.
+        *   Apply `@Param` for all query parameters to enforce parameterized queries.
+*   **Target Path:** ./sources/backend/src/main/java/org/nlh4j/saas/membershiphub/service/UserService.java
+    *   **Architectural Requirements:**
+        *   Provide methods: `User createUser(User user, String requesterTenant)`, `User getUser(Long id, String tenant)`, `User updateUser(Long id, User updates, String tenant)`, `void deleteUser(Long id, String tenant)`.
+        *   Enforce role‑based access: only SYS_ADMIN can create users across tenants; ADMIN/MANAGER limited to own tenant.
+        *   Integrate `EncryptionService` for password hashing before persistence.
+        *   Emit Kafka event via `KafkaProducer` to `user-events` topic with key `userId`.
+*   **Target Path:** ./sources/backend/src/main/java/org/nlh4j/saas/membershiphub/resource/UserResource.java
+    *   **Architectural Requirements:**
+        *   Expose JAX‑RS endpoints: `POST /api/v1/users`, `GET /api/v1/users/{id}`, `PUT /api/v1/users/{id}`, `DELETE /api/v1/users/{id}`.
+        *   Secure with `@RolesAllowed` annotations matching the defined roles.
+        *   Validate request payload using Bean Validation (`@NotNull`, `@Email`).
+        *   Return appropriate HTTP status codes (201, 200, 404, 403).  
 
-#### SUB‑TASK 2.2: Review Security & Code Quality
-##### Assigned Sub-Agent: Reviewer
+### DAY 3: Implement Course Management Service (CRUD + Overlap Validation)
+#### SUB-TASK 3.1: Develop Course domain entity with tenant scoping and validation (Coder)
+##### Assigned Sub-Agent: Coder
 ##### Targeted Components & Technical Requirements:
-*   **Target Path:** `./sources/backend/src/main/java/org/nlh4j/saas/membershiphub/service/AuthService.java`
+*   **Target Path:** ./sources/backend/src/main/java/org/nlh4j/saas/membershiphub/domain/Course.java
     *   **Architectural Requirements:**
-        *   Verify tenant filtering on all data accesses.
-        *   Confirm JWT signing uses RS256 or ES256 with proper key rotation.
-        *   Validate Argon2id configuration matches OWASP password storage guidelines.
-        *   Ensure no hardcoded credentials or debug logs containing PII.
-        *   Check compliance with OWASP A01‑A07 across the reviewed file.
-
-#### SUB‑TASK 2.3: Unit Test Authentication Service
-##### Assigned Sub-Agent: Tester
-##### Targeted Components & Technical Requirements:
-*   **Target Path:** `./sources/backend/src/main/java/org/nlh4j/saas/membershiphub/service/AuthService.java;./sources/backend/src/test/java/org/nlh4j/saas/membershiphub/service/AuthServiceTest.java`
+        *   Annotate with `@Entity`, `@Table(name = "courses")`, `@TenantId`.
+        *   Fields: `id` (Long), `tenantId` (String), `title` (String, not null), `description` (String), `startDate` (LocalDateTime), `endDate` (LocalDateTime), `teacherId` (Long), `maxStudents` (Integer), `enrolledCount` (Integer, default 0).
+        *   Add `@NotNull` and `@FutureOrPresent` on `startDate`; enforce `endDate` > `startDate`.
+        *   Include Lombok `@Data`, `@NoArgsConstructor`, `@AllArgsConstructor`.
+        *   Implement `Comparable<Course>` for chronological ordering.
+*   **Target Path:** ./sources/backend/src/main/java/org/nlh4j/saas/membershiphub/repository/CourseRepository.java
     *   **Architectural Requirements:**
-        *   Mock internal user repository and OAuth provider clients.
-        *   Test successful internal login with correct credentials.
-        *   Test failed login with incorrect password.
-        *   Test OAuth flow for each provider (Firebase, Google, Facebook) with valid/invalid tokens.
-        *   Validate JWT claim population (tenant_id, roles) and expiration.
-        *   Ensure test coverage ≥ 90 % and no security‑sensitive test data leakage.
-
-#### SUB‑TASK 2.4: Create GKE Deployment Manifests
-##### Assigned Sub-Agent: GKE
-##### Targeted Components & Technical Requirements:
-*   **Target Path:** `./sources/backend/kubernetes/deployment.yaml`
+        *   Extend `PanacheRepository<Course>` and add `List<Course> findByTenantId(String tenantId);`.
+        *   Provide `List<Course> findOverlap(String tenantId, LocalDateTime start, LocalDateTime end);` using native query with tenant filter.
+*   **Target Path:** ./sources/backend/src/main/java/org/nlh4j/saas/membershiphub/service/CourseService.java
     *   **Architectural Requirements:**
-        *   Deploy container image `gcr.io/<project>/membership-hub-backend:latest`.
-        *   Define `ReplicaSet` with 3 pods, pod anti‑affinity to avoid co‑location.
-        *   Mount Secret Manager secret for JWT signing key.
-        *   Set environment variable `TENANT_ID` placeholder for multi‑tenant routing.
-        *   Include liveness and readiness probes (`/q/health`).
-        *   Apply `securityContext` to run containers as non‑root.
+        *   Methods: `Course createCourse(Course course, String tenant)`, `Course getCourse(Long id, String tenant)`, `Course updateCourse(Long id, Course updates, String tenant)`, `void deleteCourse(Long id, String tenant)`.
+        *   Validate course overlap using `CourseRepository.findOverlap`; throw `IllegalStateException` if conflict.
+        *   Manage teacher assignment: verify teacher exists and belongs to same tenant.
+        *   Integrate Kafka producer for `course-events` on create/update/delete.
+*   **Target Path:** ./sources/backend/src/main/java/org/nlh4j/saas/membershiphub/resource/CourseResource.java
+    *   **Architectural Requirements:**
+        *   Expose JAX‑RS endpoints: `POST /api/v1/courses`, `GET /api/v1/courses/{id}`, `PUT /api/v1/courses/{id}`, `DELETE /api/v1/courses/{id}`.
+        *   Secure with `@RolesAllowed("ADMIN","MANAGER")` for write operations; read accessible to all authenticated roles.
+        *   Validate payload with Bean Validation (`@NotBlank`, `@Future`).
+        *   Return appropriate HTTP status codes (201, 200, 404, 409 for overlap).
