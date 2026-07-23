@@ -6,44 +6,29 @@ The membership-hub project is a comprehensive web and mobile application designe
 ## 2. Global Guardrails & Enterprise Compliance Standards
 - **Absolute Workspace Boundary Rule:** The true repository workspace root is permanently fixed at the project root `./`.
 - **Mandatory Path Prefixing:** 
-  * Backend logic: `./sources/backend/`
-  * Frontend logic: `./sources/frontend/`
+  * Backend: `./sources/backend/`
+  * Frontend: `./sources/frontend/`
 - **Java Enterprise Package Standard:** `org.nlh4j.saas.membership-hub`
 - **Strict Package-to-Path Mapping:** Java files under `./sources/backend/src/main/java/` or `./sources/backend/src/test/java/` must follow the exact subdirectory layout matching the package tokens.
-- **Strict Tester Target Path Syntax (JUnit & Integration):** `<source_component>;<test_suite>` or `INTEGRATION_SCOPE;./sources/backend/src/test/java/.../IntegTest.java`
-- **Memory & Loop Constraints:** Avoid in-memory large dataset loops; use native database operations instead.
+- **Strict Tester Target Path Syntax:** `<source_component_or_token>;<test_suite_file_to_execute>`
+- **Memory, Ingestion, & Loop Constraints:** Avoid runtime in-memory large dataset loops and delegate complex processing to native database operations.
 
 ## 3. Standardized Sub-Agent Persona Definitions
-- **Manager Agent:** Cross-phase orchestration and timeline validation.
-- **Coder Agent:** Implementation of core features in `./sources/backend/src/main/` and `./sources/frontend/src/`.
-- **Tester Agent:** Code verification and emitting dual-path semi-colon format for units or prefixing with `INTEGRATION_SCOPE` for integration suites.
-- **Reviewer Agent (Compiler Fixer):** Static analysis, compliance validation, and automated compiler fixing.
-- **Docker Agent:** Writing multi-stage, secure container configurations.
-- **GCP Agent:** Google Cloud Platform identity access management and resource provisioning.
-- **GKE Agent:** Kubernetes orchestrations, deployment manifests, services, ingress configurations, and pipeline workflows.
+- **Manager Agent:** Oversees cross-phase orchestration and timeline validation.
+- **Coder Agent:** Implements core features in `./sources/backend/src/main/` and `./sources/frontend/src/`.
+- **Tester Agent:** Owns code verification and emits dual-path semi-colon formats for units or prefixes with `INTEGRATION_SCOPE` for system integration and automated UI/E2E test suites.
+- **Reviewer Agent:** Performs static analysis, validates compliance, and acts as an automated compiler fixer.
+- **Docker Agent:** Writes multi-stage, secure container configurations localized inside their workspace subdirectories.
+- **GCP Agent:** Handles Google Cloud Platform identity access management, cloud storage, and automated cloud resource provisioning setups.
+- **GKE Agent:** Responsible for Kubernetes orchestrations, writing deployment manifests, services, ingress configurations, and automated pipeline workflows.
 
 ## 4. Multi-Phase Segmentation Strategy Overview (Plan exactly 5 phases)
-### Phase 1: Project Setup and Backend Foundation (Day 1-3)
-- Initialize project structure with `./sources/backend/` and `./sources/frontend/`.
-- Set up Java 17, Quarkus, and Postgres for the backend.
-- Define the database schema and initial data models.
+The project will be segmented into exactly 5 phases, each with a specific focus:
+- **Phase 1 (Days 1-3):** Project setup, backend framework setup (Quarkus, Kafka, Postgres), and initial database schema design.
+- **Phase 2 (Days 4-5):** Frontend setup (Next.js), responsive design, and initial feature implementation for user management and course management.
+- **Phase 3 (Days 6-7):** Implementation of core features such as student registration, course enrollment, and payment processing.
+- **Phase 4 (Days 8-10):** Integration of Kafka for event-driven architecture, implementation of notification systems, and initial deployment on GKE.
+- **Phase 5 (Days 11-14):** Finalize frontend and backend integration, complete testing (unit, integration, E2E), and deploy the application on GCP.
 
-### Phase 2: Frontend Development and Integration (Day 4-5)
-- Develop the frontend using Next.js, focusing on responsive design and multi-language support.
-- Integrate the frontend with the backend API.
-
-### Phase 3: Feature Implementation and Testing (Day 6-7)
-- Implement core features for membership management, course management, and student information.
-- Write unit tests and integration tests for the implemented features.
-
-### Phase 4: Deployment and Security (Day 1-3)
-- Configure Docker for containerization.
-- Set up GCP and GKE for deployment.
-- Implement security measures, including authentication and authorization.
-
-### Phase 5: Final Testing, Review, and Deployment (Day 4-7)
-- Conduct thorough testing, including system integration testing.
-- Review the code for compliance and best practices.
-- Deploy the application to GCP using GKE.
-
-Each phase is designed to be completed within the 1-7 day limit, ensuring that the project is structured, scalable, and deployable within the given constraints.
+## 5. Phase-Specific Deliverables and Timeline
+Each phase will have specific deliverables and a strict timeline to ensure the project is completed within the required timeframe. The Manager Agent will oversee the progress and ensure that each phase is completed within the allocated time frame (maximum 7 days per phase).

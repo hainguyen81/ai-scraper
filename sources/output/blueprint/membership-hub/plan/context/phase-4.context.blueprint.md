@@ -1,137 +1,243 @@
 # PHASE 4 CONTEXT BLUEPRINT: membership-hub
+
 ## 1. Phase Operational Scope & Objectives
-The primary objective of Phase 4 is to focus on the deployment and security aspects of the membership-hub project. This phase involves configuring Docker for containerization, setting up Google Cloud Platform (GCP) and Google Kubernetes Engine (GKE) for deployment, and implementing security measures such as authentication and authorization.
+- Integrate Apache Kafka as the core event bus for real‑time communication across services (attendance, notifications, enrollment, etc.).
+- Implement a unified Notification Service that can dispatch emails, SMS/Zalo messages, and mobile push notifications based on Kafka events.
+- Build and configure Docker images for both backend and frontend services with security‑hardening best practices.
+- Provision a Google Kubernetes Engine (GKE) cluster on GCP and deploy the containerized services using Kubernetes manifests (Deployments, Services, ConfigMaps, Ingress).
+- Validate end‑to‑end event flow, notification delivery, and cluster health through automated unit, integration, and E2E test suites.
 
 ## 2. Allowed Technical Scope & Directory Boundaries (Files, paths, and endpoints)
-The technical scope for this phase includes:
-- Configuring Docker for containerization
-- Setting up GCP and GKE for deployment
-- Implementing security measures, including authentication and authorization
-- Ensuring compliance with the established Global Context and Raw Requirements
-
-The directory boundaries for this phase are strictly within the `./sources/backend/` and `./sources/frontend/` directories, adhering to the Mandatory Path Prefixing rule.
+- **Backend Java Stack** – All source files must reside under `./sources/backend/` and follow the strict package layout `/org/nlh4j/saas/membership-hub/`.
+- **Frontend Next.js Stack** – All UI, routing, and client‑side code must reside under `./sources/frontend/`.
+- **Configuration & Infrastructure** – YAML/JSON configs, Dockerfiles, GCP/GKE scripts, and Kubernetes manifests are allowed only under `./sources/backend/` or `./sources/frontend/` (e.g., `./sources/backend/Dockerfile`, `./sources/frontend/gcp-provision.sh`).
+- **Testing** – Unit tests under `./sources/backend/src/test/java/` and frontend tests under `./sources/frontend/tests/`.
+- **REST/GraphQL/Event Endpoints** – New Kafka topic definitions, producer/consumer REST endpoints, and notification HTTP APIs may be introduced under the existing backend service layer.
 
 ## 3. Dedicated Sub-Agent Functional Directives (Specific tasks for Coder, Tester, Reviewer, Docker, GCP, GKE)
-The tasks for each sub-agent are as follows:
-- **Coder Agent:** Implement security measures, including authentication and authorization, and ensure compliance with the established Global Context and Raw Requirements.
-- **Tester Agent:** Execute unit tests and integration tests for the implemented security measures.
-- **Reviewer Agent:** Review the code for compliance and best practices.
-- **Docker Agent:** Configure Docker for containerization.
-- **GCP Agent:** Set up GCP for deployment.
-- **GKE Agent:** Set up GKE for deployment and configure Kubernetes orchestrations, deployment manifests, services, ingress configurations, and pipeline workflows.
+- **Coder Agent** – Implements Kafka producers/consumers, Event POJOs, Notification Service, and integrates them. Writes all Java service classes, configuration files, and frontend notification UI components.
+- **Tester Agent** – Designs and executes unit tests for Kafka producers/consumers and Notification Service. Executes integration/E2E tests that verify event‑to‑notification pipelines and cross‑service workflows using `INTEGRATION_SCOPE`.
+- **Reviewer Agent** – Performs static code analysis, validates Java package‑to‑path compliance, checks Docker security best practices, and ensures all generated files adhere to the enterprise standards.
+- **Docker Agent** – Crafts multi‑stage, minimal‑footprint Dockerfiles for backend and frontend, includes health‑check probes, and ensures image layering follows security guidelines.
+- **GCP Agent** – Automates GKE cluster provisioning, sets up network policies, IAM roles, and storage resources required for the application. All provisioning scripts must be placed under `./sources/backend/`.
+- **GKE Agent** – Generates Kubernetes manifests (Deployment, Service, ConfigMap, Ingress) for both backend and frontend, prepares Helm charts if used, and orchestrates the deployment and verification of services on the GKE cluster.
 
 ## 4. Phase Definition of Done (DoD)
-The Definition of Done for Phase 4 includes:
-- Successful configuration of Docker for containerization
-- Successful setup of GCP and GKE for deployment
-- Implementation of security measures, including authentication and authorization
-- Completion of unit tests and integration tests for the implemented security measures
-- Review of the code for compliance and best practices
+- Kafka topics `attendance.events`, `notification.events` are defined and functional.
+- Producer service (`AttendanceEventProducer`) and consumer service (`EventProcessingService`) are implemented, unit‑tested, and integrated with Notification Service.
+- Notification Service supports email, SMS/Zalo, and mobile push; all dependencies are mocked/configurable.
+- Docker images for backend and frontend are built, scanned, and pushed to artifact registry.
+- GKE cluster is provisioned, IAM and network policies are applied.
+- Kubernetes manifests are applied; all pods reach `Ready` state and services are reachable.
+- Automated test suite passes: unit tests >90% coverage, integration tests verify event‑to‑notification flow, and E2E tests confirm UI notification display.
+- All code, configs, and manifests comply with Java package mapping, path prefix, and security guardrails.
 
-## 5. DAY-BY-DAY ARCHITECTURAL EXECUTION LOGS
+## 5. DAY‑BY‑DAY ARCHITECTURAL EXECUTION LOGS
 
-### DAY 1: INITIAL ENVIRONMENT & PIPELINE SETUP
-
-#### SUB-TASK 1.1: Configure Enterprise Multi-Module Backend
+### DAY 1: Kafka Infrastructure Setup & Event Models
+#### SUB‑TASK 1.1: Define Kafka configuration and topics
 ##### Assigned Sub-Agent: Coder
 ##### Targeted Components & Technical Requirements:
-*   **Target Path:** `./sources/backend/pom.xml`
+*   **Target Path:** ./sources/backend/src/main/resources/application.yml
     *   **Architectural Requirements:**
-        *   Define the core parent dependencies, Quarkus parent extensions, and Alibaba EasyExcel libraries.
-*   **Target Path:** `./sources/backend/src/main/java/org/nlh4j/saas//rest/HealthResource.java`
-    *   **Architectural Requirements:**
-        *   Expose `/api/v1/health` endpoint returning server infrastructure multi-tenant state.
+        *   Configure `spring.kafka.bootstrap-servers` to `kafka:9092`.
+        *   Define `spring.kafka.producer.properties` and `spring.kafka.consumer.properties` for idempotence and serialization.
+        *   Declare topic names `attendance.events` and `notification.events` with replication factor 1 and partition count 3.
 
-#### SUB-TASK 1.2: Initialize Core Multi-Stage Container Setup
+#### SUB‑TASK 1.2: Create Event POJOs for domain events
+##### Assigned Sub-Agent: Coder
+##### Targeted Components & Technical Requirements:
+*   **Target Path:** ./sources/backend/src/main/java/org/nlh4j/saas/membership-hub/model/AttendanceEvent.java
+    *   **Architectural Requirements:**
+        *   Annotate with `@KafkaSerializable` (custom marker) and include fields `studentId`, `timestamp`, `qrCodeData`, `centerId`.
+        *   Implement `toString()` and `equals()` for logging and testing.
+*   **Target Path:** ./sources/backend/src/main/java/org/nlh4j/saas/membership-hub/model/NotificationEvent.java
+    *   **Architectural Requirements:**
+        *   Include fields `eventType` (enum: EMAIL, SMS, PUSH), `recipient`, `payload`, `priority`.
+        *   Ensure serializable with Jackson annotations.
+
+#### SUB‑TASK 1.3: Static code review and compliance check
+##### Assigned Sub-Agent: Reviewer
+##### Targeted Components & Technical Requirements:
+*   **Target Path:** ./sources/backend/src/main/java/org/nlh4j/saas/membership-hub/model/AttendanceEvent.java
+*   **Target Path:** ./sources/backend/src/main/java/org/nlh4j/saas/membership-hub/model/NotificationEvent.java
+    *   **Architectural Requirements:**
+        *   Verify package‑to‑path mapping matches `/org/nlh4j/saas/membership-hub/`.
+        *   Ensure no unused imports, proper Lombok usage, and adherence to Java 17 coding standards.
+
+### DAY 2: Kafka Producer & Consumer Services
+#### SUB‑TASK 2.1: Implement Kafka producer for attendance events
+##### Assigned Sub-Agent: Coder
+##### Targeted Components & Technical Requirements:
+*   **Target Path:** ./sources/backend/src/main/java/org/nlh4j/saas/membership-hub/service/AttendanceEventProducer.java
+    *   **Architectural Requirements:**
+        *   Autowire `KafkaTemplate<String, AttendanceEvent>`.
+        *   Provide method `sendAttendanceEvent(AttendanceEvent event)` that logs and sends to `attendance.events`.
+        *   Use `@Retryable` for transient failures.
+
+#### SUB‑TASK 2.2: Implement Kafka consumer service to route events
+##### Assigned Sub-Agent: Coder
+##### Targeted Components & Technical Requirements:
+*   **Target Path:** ./sources/backend/src/main/java/org/nlh4j/saas/membership-hub/service/EventProcessingService.java
+    *   **Architectural Requirements:**
+        *   Subscribe to `attendance.events` via `@KafkaListener`.
+        *   Transform incoming `AttendanceEvent` into appropriate `NotificationEvent` based on event type.
+        *   Emit `NotificationEvent` to `notification.events` using a `KafkaTemplate`.
+
+#### SUB‑TASK 2.3: Unit tests for producer and consumer
+##### Assigned Sub-Agent: Tester
+##### Targeted Components & Technical Requirements:
+*   **Target Path:** ./sources/backend/src/main/java/org/nlh4j/saas/membership-hub/service/AttendanceEventProducer.java;./sources/backend/src/test/java/org/nlh4j/saas/membership-hub/service/AttendanceEventProducerTest.java
+    *   **Architectural Requirements:**
+        *   Mock `KafkaTemplate` and verify `send` calls.
+        *   Test retry logic with simulated exceptions.
+*   **Target Path:** ./sources/backend/src/main/java/org/nlh4j/saas/membership-hub/service/EventProcessingService.java;./sources/backend/src/test/java/org/nlh4j/saas/membership-hub/service/EventProcessingServiceTest.java
+    *   **Architectural Requirements:**
+        *   Verify listener processes events and publishes correct `NotificationEvent`.
+        *   Use `@EmbeddedKafka` for isolated testing.
+
+### DAY 3: Notification Service Implementation
+#### SUB‑TASK 3.1: Build Notification Service core
+##### Assigned Sub-Agent: Coder
+##### Targeted Components & Technical Requirements:
+*   **Target Path:** ./sources/backend/src/main/java/org/nlh4j/saas/membership-hub/service/NotificationService.java
+    *   **Architectural Requirements:**
+        *   Define methods `sendEmail(NotificationEvent)`, `sendSms(NotificationEvent)`, `sendPush(NotificationEvent)`.
+        *   Inject external clients (EmailClient, SmsClient, PushClient) via configuration.
+        *   Implement circuit‑breaker pattern for each channel.
+
+#### SUB‑TASK 3.2: Integrate Notification Service with Kafka consumer
+##### Assigned Sub-Agent: Coder
+##### Targeted Components & Technical Requirements:
+*   **Target Path:** ./sources/backend/src/main/java/org/nlh4j/saas/membership-hub/service/EventProcessingService.java
+    *   **Architectural Requirements:**
+        *   After publishing `NotificationEvent`, call `notificationService.dispatch(event)`.
+        *   Log successful dispatch and handle channel‑specific failures.
+
+#### SUB‑TASK 3.3: Frontend notification UI component
+##### Assigned Sub-Agent: Coder
+##### Targeted Components & Technical Requirements:
+*   **Target Path:** ./sources/frontend/src/components/NotificationCenter.tsx
+    *   **Architectural Requirements:**
+        *   Consume real‑time notifications via Server‑Sent Events or WebSocket.
+        *   Display list of notifications with timestamps and actionable buttons.
+        *   Support multi‑language i18n keys for notification messages.
+
+### DAY 4: Containerization
+#### SUB‑TASK 4.1: Create multi‑stage Dockerfile for backend
 ##### Assigned Sub-Agent: Docker
 ##### Targeted Components & Technical Requirements:
-*   **Target Path:** `./sources/backend/Dockerfile`
+*   **Target Path:** ./sources/backend/Dockerfile
     *   **Architectural Requirements:**
-        *   Build an optimized, multi-stage production container environment running Java 17 runtime layer.
+        *   Use `eclipse-temurin:17-jdk-alpine` as base for build stage.
+        *   Copy `pom.xml` and source, package with Maven.
+        *   Use `distroless/java-debian` as runtime image.
+        *   Include health‑check endpoint `/actuator/health`.
 
-#### SUB-TASK 1.3: Execute Core Unit and Ingestion Suite
+#### SUB‑TASK 4.2: Create multi‑stage Dockerfile for frontend
+##### Assigned Sub-Agent: Docker
+##### Targeted Components & Technical Requirements:
+*   **Target Path:** ./sources/frontend/Dockerfile
+    *   **Architectural Requirements:**
+        *   Use `node:20-alpine` for build stage, install dependencies, build Next.js.
+        *   Use `nginx:alpine` as runtime, copy built output.
+        *   Expose port `3000` and define `nginx -g 'daemon off;'` as entrypoint.
+
+#### SUB‑TASK 4.3: GCP provisioning script
+##### Assigned Sub-Agent: GCP
+##### Targeted Components & Technical Requirements:
+*   **Target Path:** ./sources/backend/gcp-provision.sh
+    *   **Architectural Requirements:**
+        *   Use `gcloud` SDK to create a GKE cluster named `membership-hub-cluster` with node pool `default-pool`.
+        *   Enable necessary APIs (`container.googleapis.com`, `pubsub.googleapis.com`).
+        *   Create a service account with `roles/container.admin` and `roles/pubsub.admin`.
+        *   Output cluster credentials to `~/.kube/config`.
+
+### DAY 5: Kubernetes Manifests & Integration Tests
+#### SUB‑TASK 5.1: Generate Kubernetes Deployment for backend
+##### Assigned Sub-Agent: GKE
+##### Targeted Components & Technical Requirements:
+*   **Target Path:** ./sources/backend/k8s/backend-deployment.yaml
+    *   **Architectural Requirements:**
+        *   Deploy using image `membership-hub-backend:latest`.
+        *   Mount ConfigMap for `application.yml`.
+        *   Set resource limits (CPU 500m, memory 1Gi).
+        *   Include liveness and readiness probes.
+
+#### SUB‑TASK 5.2: Generate Kubernetes Service for backend
+##### Assigned Sub-Agent: GKE
+##### Targeted Components & Technical Requirements:
+*   **Target Path:** ./sources/backend/k8s/backend-service.yaml
+    *   **Architectural Requirements:**
+        *   ClusterIP service exposing port 8080.
+        *   Selector matching backend deployment.
+
+#### SUB‑TASK 5.3: Generate Kubernetes Ingress for frontend
+##### Assigned Sub-Agent: GKE
+##### Targeted Components & Technical Requirements:
+*   **Target Path:** ./sources/frontend/k8s/frontend-ingress.yaml
+    *   **Architectural Requirements:**
+        *   Ingress with `nginx.ingress.kubernetes.io/rewrite-target: /$2` for SPA routing.
+        *   TLS enabled via secret `membership-hub-tls`.
+        *   Path prefixes `/api/*` routed to backend service, remaining to frontend.
+
+#### SUB‑TASK 5.4: Integration/E2E test for notification flow
 ##### Assigned Sub-Agent: Tester
 ##### Targeted Components & Technical Requirements:
-*   **Target Path:** `./sources/backend/src/main/java/org/nlh4j/saas//rest/HealthResource.java;./sources/backend/src/test/java/org/nlh4j/saas//rest/HealthResourceTest.java`
+*   **Target Path:** INTEGRATION_SCOPE;./sources/frontend/tests/notification.e2e.spec.ts
     *   **Architectural Requirements:**
-        *   Assert response status `200` and verify the internal health checking state metrics.
+        *   Simulate QR attendance via API, verify Kafka event is produced.
+        *   Validate NotificationEvent is consumed and notification appears in UI.
+        *   Assert email/SMS/Push mock calls are triggered.
 
-### DAY 2: SECURITY MEASURES IMPLEMENTATION
-
-#### SUB-TASK 2.1: Implement Authentication and Authorization
-##### Assigned Sub-Agent: Coder
-##### Targeted Components & Technical Requirements:
-*   **Target Path:** `./sources/backend/src/main/java/org/nlh4j/saas//security/SecurityConfig.java`
-    *   **Architectural Requirements:**
-        *   Implement authentication and authorization using Quarkus Security extensions.
-*   **Target Path:** `./sources/backend/src/main/java/org/nlh4j/saas//rest/SecureResource.java`
-    *   **Architectural Requirements:**
-        *   Expose `/api/v1/secure` endpoint with authentication and authorization.
-
-#### SUB-TASK 2.2: Execute Security Unit Tests
+### DAY 6: Notification Service Unit Tests & Final Review
+#### SUB‑TASK 6.1: Unit tests for NotificationService
 ##### Assigned Sub-Agent: Tester
 ##### Targeted Components & Technical Requirements:
-*   **Target Path:** `./sources/backend/src/main/java/org/nlh4j/saas//security/SecurityConfig.java;./sources/backend/src/test/java/org/nlh4j/saas//security/SecurityConfigTest.java`
+*   **Target Path:** ./sources/backend/src/main/java/org/nlh4j/saas/membership-hub/service/NotificationService.java;./sources/backend/src/test/java/org/nlh4j/saas/membership-hub/service/NotificationServiceTest.java
     *   **Architectural Requirements:**
-        *   Assert authentication and authorization functionality.
+        *   Mock external clients and verify correct channel invocation.
+        *   Test circuit‑breaker fallback behavior.
 
-### DAY 3: DEPLOYMENT SETUP
-
-#### SUB-TASK 3.1: Set up GCP and GKE
-##### Assigned Sub-Agent: GCP Agent
+#### SUB‑TASK 6.2: Static analysis and compliance review
+##### Assigned Sub-Agent: Reviewer
 ##### Targeted Components & Technical Requirements:
-*   **Target Path:** `./gcp-setup.sh`
+*   **Target Path:** ./sources/backend/src/main/java/org/nlh4j/saas/membership-hub/service/AttendanceEventProducer.java
+*   **Target Path:** ./sources/backend/src/main/java/org/nlh4j/saas/membership-hub/service/EventProcessingService.java
+*   **Target Path:** ./sources/backend/src/main/java/org/nlh4j/saas/membership-hub/service/NotificationService.java
+*   **Target Path:** ./sources/backend/Dockerfile
+*   **Target Path:** ./sources/frontend/Dockerfile
     *   **Architectural Requirements:**
-        *   Set up GCP project and enable necessary APIs.
-*   **Target Path:** `./gke-setup.sh`
-    *   **Architectural Requirements:**
-        *   Set up GKE cluster and configure node pools.
+        *   Validate Java package mapping.
+        *   Ensure Dockerfile best practices (non‑root user, minimal layers).
+        *   Confirm all file paths start with allowed prefixes.
 
-#### SUB-TASK 3.2: Configure Kubernetes Orchestrations
-##### Assigned Sub-Agent: GKE Agent
+### DAY 7: GKE Deployment & Phase Completion
+#### SUB‑TASK 7.1: Apply Kubernetes manifests to GKE cluster
+##### Assigned Sub-Agent: GKE
 ##### Targeted Components & Technical Requirements:
-*   **Target Path:** `./kubernetes/deployment.yaml`
+*   **Target Path:** ./sources/backend/k8s/backend-deployment.yaml
+*   **Target Path:** ./sources/backend/k8s/backend-service.yaml
+*   **Target Path:** ./sources/frontend/k8s/frontend-ingress.yaml
     *   **Architectural Requirements:**
-        *   Define deployment configuration for membership-hub application.
-*   **Target Path:** `./kubernetes/service.yaml`
-    *   **Architectural Requirements:**
-        *   Define service configuration for membership-hub application.
+        *   Use `kubectl apply -f` with `--context=gke_membership-hub_us-central1_cluster`.
+        *   Wait for pods to reach `Ready` status.
+        *   Capture any rollout failures and rollback if needed.
 
-### DAY 4: PIPELINE WORKFLOWS CONFIGURATION
-
-#### SUB-TASK 4.1: Configure CI/CD Pipeline
-##### Assigned Sub-Agent: GKE Agent
-##### Targeted Components & Technical Requirements:
-*   **Target Path:** `./pipeline.yaml`
-    *   **Architectural Requirements:**
-        *   Define CI/CD pipeline workflow for automated builds, tests, and deployments.
-
-#### SUB-TASK 4.2: Execute Pipeline Workflow
-##### Assigned Sub-Agent: GKE Agent
-##### Targeted Components & Technical Requirements:
-*   **Target Path:** `./pipeline.yaml`
-    *   **Architectural Requirements:**
-        *   Execute pipeline workflow to automate build, test, and deployment of membership-hub application.
-
-### DAY 5: REVIEW AND TESTING
-
-#### SUB-TASK 5.1: Review Code for Compliance and Best Practices
-##### Assigned Sub-Agent: Reviewer Agent
-##### Targeted Components & Technical Requirements:
-*   **Target Path:** `./sources/backend/src/main/java/org/nlh4j/saas//`
-    *   **Architectural Requirements:**
-        *   Review code for compliance with established Global Context and Raw Requirements.
-*   **Target Path:** `./sources/frontend/src/`
-    *   **Architectural Requirements:**
-        *   Review code for compliance with established Global Context and Raw Requirements.
-
-#### SUB-TASK 5.2: Execute Integration Tests
+#### SUB‑TASK 7.2: Verify service availability and notification delivery
 ##### Assigned Sub-Agent: Tester
 ##### Targeted Components & Technical Requirements:
-*   **Target Path:** `INTEGRATION_SCOPE;./sources/backend/src/test/java/org/nlh4j/saas//integration/ReconciliationIntegTest.java`
+*   **Target Path:** INTEGRATION_SCOPE;./sources/frontend/tests/service-health.spec.ts
     *   **Architectural Requirements:**
-        *   Execute integration tests to verify multi-component behaviors and API endpoints.
+        *   Perform `curl` to backend `/actuator/health` and frontend `/`.
+        *   Validate HTTP status 200 and expected JSON structure.
+        *   Trigger a mock attendance event via API and confirm notification appears in UI.
 
-### DAY 6-7: CONTINGENCY BUFFER
-
-These days are reserved as a contingency buffer to address any unexpected issues or delays that may arise during the execution of Phase 4 tasks.
+#### SUB‑TASK 7.3: Phase final sign‑off
+##### Assigned Sub-Agent: Manager
+##### Targeted Components & Technical Requirements:
+*   **Target Path:** ./sources/backend/phase4-summary.md
+    *   **Architectural Requirements:**
+        *   Document completed Kafka topics, producer/consumer services, Notification Service, Docker images, GKE deployments.
+        *   Include test results summary and compliance checklist.
+        *   Provide artifact references (image tags, cluster endpoint) for downstream phases.
