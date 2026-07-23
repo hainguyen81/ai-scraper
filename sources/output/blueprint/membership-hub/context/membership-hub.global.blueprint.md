@@ -1,49 +1,25 @@
 # GLOBAL PROJECT CONTEXT: membership-hub
 
 ## 1. Executive Summary & Tech Stack Blueprint
-The membership-hub project is a comprehensive web and mobile application designed for managing memberships, courses, and student information. The tech stack consists of Java 17, Quarkus, Kafka, Postgres, and Docker, with a scalable architecture deployable on Google Cloud Platform (GCP) using Google Kubernetes Engine (GKE). The frontend will be built using Next.js, supporting multiple languages and responsive design for both iOS and Android.
+The membership-hub project is a multi-tenant, scalable application with both web and mobile components. The tech stack consists of Java 17, Quarkus, Kafka, Postgres, and Docker, with deployment on Google Cloud Platform (GCP) and Google Kubernetes Engine (GKE). The project requires a robust authentication system, with support for internal authentication via email and password, as well as external authentication via Firebase, Google, and Facebook. The application will have various roles, including System Admin, Admin, Manager, Teacher, and Student, each with distinct permissions and access levels.
 
 ## 2. Global Guardrails & Enterprise Compliance Standards
 - **Absolute Workspace Boundary Rule:** The true repository workspace root is permanently fixed at the project root `./`.
-- **Mandatory Path Prefixing:** 
-  * Backend logic: `./sources/backend/`
-  * Frontend logic: `./sources/frontend/`
-- **Java Enterprise Package Standard:** `org.nlh4j.saas.membership-hub`
-- **Strict Package-to-Path Mapping:** Java files under `./sources/backend/src/main/java/` or `./sources/backend/src/test/java/` must follow the exact subdirectory layout matching the package tokens.
-- **Strict Tester Target Path Syntax (JUnit & Integration):** `<source_component>;<test_suite>` or `INTEGRATION_SCOPE;./sources/backend/src/test/java/.../IntegTest.java`
-- **Memory & Loop Constraints:** Avoid in-memory large dataset loops; use native database operations instead.
+- **Conditional Path Prefixing:** 
+  * All Backend service logics, microservices, configurations, database schemas, and backend tests must be prefixed with: `./sources/backend/`.
+  * All Frontend user interfaces, responsive views, mobile apps, state management packages, and client-side tests must be prefixed with: `./sources/frontend/`.
+- **Java Enterprise Package Standard:** All source codes MUST strictly reside within the corporate package foundation: `org.nlh4j.saas.membership-hub`.
+- **Strict Package-to-Path Mapping:** This package structure dictates that all physical Java files under `./sources/backend/src/main/java/` or `./sources/backend/src/test/java/` MUST follow the exact subdirectory layout matching the package tokens.
+- **Strict Tester Target Path Syntax:** Any component targeted by a Tester Sub-Agent must be structured as a strict semi-colon separated pair `<source_component_or_token>;<test_suite_file_to_execute>`.
+- **Memory, Ingestion, & Loop Constraints:** All generated code structures must strictly avoid runtime in-memory large dataset loops.
 
-## 3. Standardized Sub-Agent Persona Definitions
-- **Manager Agent:** Cross-phase orchestration and timeline validation.
-- **Coder Agent:** Implementation of core features in `./sources/backend/src/main/` and `./sources/frontend/src/`.
-- **Tester Agent:** Code verification and emitting dual-path semi-colon format for units or prefixing with `INTEGRATION_SCOPE` for integration suites.
-- **Reviewer Agent (Compiler Fixer):** Static analysis, compliance validation, and automated compiler fixing.
-- **Docker Agent:** Writing multi-stage, secure container configurations.
-- **GCP Agent:** Google Cloud Platform identity access management and resource provisioning.
-- **GKE Agent:** Kubernetes orchestrations, deployment manifests, services, ingress configurations, and pipeline workflows.
+## 3. High-Level Multi-Phase Architectural Synopsis Grid
+| Phase | Duration (Days) | Sub-Agent | Tasks |
+| --- | --- | --- | --- |
+| 1 | 3 | Coder Agent, Reviewer Agent | Implement authentication system, setup database schema, create backend services for user management |
+| 2 | 4 | Coder Agent, Tester Agent | Develop frontend components, implement responsive views, create mobile app, setup state management packages |
+| 3 | 2 | Coder Agent, Reviewer Agent | Implement business logic for course management, setup payment gateway, integrate with Kafka for event-driven architecture |
+| 4 | 3 | Tester Agent, Reviewer Agent | Perform unit testing, integration testing, and end-to-end testing, validate OWASP compliance |
+| 5 | 2 | GCP Agent, GKE Agent, Docker Agent | Setup GCP infrastructure, deploy application on GKE, create Docker containers, configure CI/CD pipeline |
 
-## 4. Multi-Phase Segmentation Strategy Overview (Plan exactly 5 phases)
-### Phase 1: Project Setup and Backend Foundation (Day 1-3)
-- Initialize project structure with `./sources/backend/` and `./sources/frontend/`.
-- Set up Java 17, Quarkus, and Postgres for the backend.
-- Define the database schema and initial data models.
-
-### Phase 2: Frontend Development and Integration (Day 4-5)
-- Develop the frontend using Next.js, focusing on responsive design and multi-language support.
-- Integrate the frontend with the backend API.
-
-### Phase 3: Feature Implementation and Testing (Day 6-7)
-- Implement core features for membership management, course management, and student information.
-- Write unit tests and integration tests for the implemented features.
-
-### Phase 4: Deployment and Security (Day 1-3)
-- Configure Docker for containerization.
-- Set up GCP and GKE for deployment.
-- Implement security measures, including authentication and authorization.
-
-### Phase 5: Final Testing, Review, and Deployment (Day 4-7)
-- Conduct thorough testing, including system integration testing.
-- Review the code for compliance and best practices.
-- Deploy the application to GCP using GKE.
-
-Each phase is designed to be completed within the 1-7 day limit, ensuring that the project is structured, scalable, and deployable within the given constraints.
+Note: The tasks and sub-agents assigned to each phase are based on the raw requirements and the detected project architecture layout. The duration of each phase is estimated and may vary depending on the complexity of the tasks.
