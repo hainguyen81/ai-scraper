@@ -22,6 +22,7 @@ from sources.agents.agent_helper import resolve_absolute_path
 from block_global import generate_global_context
 from block_phase import generate_phase_contexts
 from block_json import convert_phases_to_json
+from helper import delete_log
 
 # models list
 MODELS_POOL_PATH = resolve_absolute_path("sources/agents/models/models.json")
@@ -285,9 +286,12 @@ def run_architect_agent(
     # everything is ok
     else:
         print("\n🎉 [ PIPELINE SUCCESS ] Modular Enterprise Architecture Pipeline Executed Perfectly!")
+        
+        # remove log if necessary
+        delete_log(absolute_out_dir)
     
     # result should be good for all
-    return result_global and result_phase and result_steps
+    return everything_ok
 
 def str2bool(v):
     return str(v).lower() in ("yes", "true", "t", "1")

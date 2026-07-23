@@ -54,6 +54,13 @@ def write_log(phase_idx, instruction, prompt, raw_content, is_step, model_name=N
     with open(log_file, "a", encoding="utf-8") as file:
         file.write(log_content)
 
+def delete_log(out_dir=None):
+    log_file = agent_working_history_file
+    if out_dir and len(out_dir) > 0:
+        log_file = os.path.join(out_dir, "architecture-blueprint.md")
+    if os.path.exists(log_file):
+        os.remove(log_file)
+
 def render_prompt(prompt_template_path: str, context: dict) -> str:
     if not os.path.exists(prompt_template_path):
         return None
