@@ -1,243 +1,201 @@
 # PHASE 4 CONTEXT BLUEPRINT: membership-hub
 
 ## 1. Phase Operational Scope & Objectives
-- Integrate Apache Kafka as the core event bus for real‑time communication across services (attendance, notifications, enrollment, etc.).
-- Implement a unified Notification Service that can dispatch emails, SMS/Zalo messages, and mobile push notifications based on Kafka events.
-- Build and configure Docker images for both backend and frontend services with security‑hardening best practices.
-- Provision a Google Kubernetes Engine (GKE) cluster on GCP and deploy the containerized services using Kubernetes manifests (Deployments, Services, ConfigMaps, Ingress).
-- Validate end‑to‑end event flow, notification delivery, and cluster health through automated unit, integration, and E2E test suites.
+Implement a native mobile experience that mirrors the admin web UI while providing student‑centric features:
+
+- **Next.js‑based mobile UI** (iOS/Android via Capacitor) with role‑based routing, responsive design, and the same i18n/SEO stack as the web front‑end.  
+- **In‑app QR scanner** that invokes the existing backend QR attendance service (single‑day flag) and updates the student’s card UI in real time.  
+- **Student card UI** displaying remaining effective days, supporting manual day‑extension (enrollment) and reflecting attendance‑driven decrements.  
+- **Push notification handling** (FCM/APNs) with automatic token registration, secure storage, and delivery of attendance, announcement, and promotion alerts.  
+- **Mobile‑specific i18n & SEO** (hreflang, locale detection from device settings) and a lightweight Docker image for CI/CD that packages the mobile build artifacts for deployment on GCP GKE.  
+- **Docker multi‑stage image** for the mobile build pipeline, ready for artifact registry push and GKE rollout.  
+
+All work must stay within the `./sources/` workspace boundary, obey OWASP hardening (secure token storage, tenant isolation, parameterized calls), and be fully tested with unit and integration suites.
 
 ## 2. Allowed Technical Scope & Directory Boundaries (Files, paths, and endpoints)
-- **Backend Java Stack** – All source files must reside under `./sources/backend/` and follow the strict package layout `/org/nlh4j/saas/membership-hub/`.
-- **Frontend Next.js Stack** – All UI, routing, and client‑side code must reside under `./sources/frontend/`.
-- **Configuration & Infrastructure** – YAML/JSON configs, Dockerfiles, GCP/GKE scripts, and Kubernetes manifests are allowed only under `./sources/backend/` or `./sources/frontend/` (e.g., `./sources/backend/Dockerfile`, `./sources/frontend/gcp-provision.sh`).
-- **Testing** – Unit tests under `./sources/backend/src/test/java/` and frontend tests under `./sources/frontend/tests/`.
-- **REST/GraphQL/Event Endpoints** – New Kafka topic definitions, producer/consumer REST endpoints, and notification HTTP APIs may be introduced under the existing backend service layer.
+- **Frontend Mobile Root:** `./sources/frontend/mobile/`
+- **Mobile Source Tree:**  
+  - `./sources/frontend/mobile/src/`  
+  - `./sources/frontend/mobile/src/components/`  
+  - `./sources/frontend/mobile/src/services/`  
+  - `./sources/frontend/mobile/src/pages/`  
+  - `./sources/frontend/mobile/src/locales/` (i18n resources)  
+  - `./sources/frontend/mobile/public/` (manifest, icons)  
+- **Configuration & Build:**  
+  - `./sources/frontend/mobile/capacitor.config.json`  
+  - `./sources/frontend/mobile/package.json`  
+  - `./sources/frontend/mobile/tsconfig.json`  
+- **Docker Artifacts:**  
+  - `./sources/frontend/mobile/Dockerfile`  
+  - `./sources/frontend/mobile/.dockerignore`  
+- **Test Assets (Unit):**  
+  - `./sources/frontend/mobile/src/components/__tests__/StudentCard.test.tsx`  
+  - `./sources/frontend/mobile/src/components/__tests__/QRScanner.test.tsx`  
+  - `./sources/frontend/mobile/src/services/__tests__/PushNotificationService.test.tsx`  
+- **Test Assets (Integration / E2E):**  
+  - `./sources/frontend/mobile/e2e/attendance.spec.ts`  
+  - `./sources/frontend/mobile/e2e/push.spec.ts`  
+  - `./sources/frontend/mobile/e2e/fullflow.spec.ts`  
+- **Allowed Backend Endpoints (mobile consumption):**  
+  - `POST /api/v1/attendance/scan` (QR attendance)  
+  - `GET /api/v1/students/{studentId}/card` (remaining days)  
+  - `POST /api/v1/students/{studentId}/enroll` (day extension)  
+  - `POST /api/v1/mobile/register-token` (push token registration)  
+  - `GET /api/v1/i18n/{lang}` (i18n payload)  
 
-## 3. Dedicated Sub-Agent Functional Directives (Specific tasks for Coder, Tester, Reviewer, Docker, GCP, GKE)
-- **Coder Agent** – Implements Kafka producers/consumers, Event POJOs, Notification Service, and integrates them. Writes all Java service classes, configuration files, and frontend notification UI components.
-- **Tester Agent** – Designs and executes unit tests for Kafka producers/consumers and Notification Service. Executes integration/E2E tests that verify event‑to‑notification pipelines and cross‑service workflows using `INTEGRATION_SCOPE`.
-- **Reviewer Agent** – Performs static code analysis, validates Java package‑to‑path compliance, checks Docker security best practices, and ensures all generated files adhere to the enterprise standards.
-- **Docker Agent** – Crafts multi‑stage, minimal‑footprint Dockerfiles for backend and frontend, includes health‑check probes, and ensures image layering follows security guidelines.
-- **GCP Agent** – Automates GKE cluster provisioning, sets up network policies, IAM roles, and storage resources required for the application. All provisioning scripts must be placed under `./sources/backend/`.
-- **GKE Agent** – Generates Kubernetes manifests (Deployment, Service, ConfigMap, Ingress) for both backend and frontend, prepares Helm charts if used, and orchestrates the deployment and verification of services on the GKE cluster.
+All paths must be absolute to the workspace and prefixed with `./sources/`. No files may be placed directly under the repository root.
+
+## 3. Dedicated Sub-Agent Functional Directives (Specific tasks for Coder, Tester, Reviewer, Docker, GCP, GKE, Manager)
+- **Coder:** Implement all mobile UI components, services, i18n/SEO configuration, QR scanner integration, attendance API calls, student card logic, push registration, enrollment flow, and Capacitor plugins. Embed OWASP‑required secure storage (encrypted push token) and tenant‑aware API calls.  
+- **Tester:** Write unit tests for UI components and services; create integration/E2E tests for attendance scanning, push notification delivery, and end‑to‑end student workflows. Use the strict `<source>;<test>` syntax for unit tests and `INTEGRATION_SCOPE;<test>` for cross‑component flows.  
+- **Reviewer:** Perform security and code reviews, validating OWASP A01‑A07 controls (input validation, tenant filtering, token encryption, secure API communication) and ensuring all generated paths comply with the `./sources/` boundary.  
+- **Docker:** Craft a multi‑stage Dockerfile that builds Node.js, Capacitor, and native mobile assets, producing a lightweight image ready for artifact registry. Include `.dockerignore` to exclude build‑time artifacts.  
+- **GCP:** Push the resulting Docker image to Google Artifact Registry and configure IAM permissions for GKE service accounts.  
+- **GKE:** Update the existing GKE deployment manifests to roll out the mobile frontend service, applying the correct container image and resource limits.  
+- **Manager:** Orchestrate the phase, verify that every sub‑task’s target paths are correctly placed under `./sources/`, coordinate hand‑offs, and ensure the Phase Definition of Done (DoD) is met before progression.
 
 ## 4. Phase Definition of Done (DoD)
-- Kafka topics `attendance.events`, `notification.events` are defined and functional.
-- Producer service (`AttendanceEventProducer`) and consumer service (`EventProcessingService`) are implemented, unit‑tested, and integrated with Notification Service.
-- Notification Service supports email, SMS/Zalo, and mobile push; all dependencies are mocked/configurable.
-- Docker images for backend and frontend are built, scanned, and pushed to artifact registry.
-- GKE cluster is provisioned, IAM and network policies are applied.
-- Kubernetes manifests are applied; all pods reach `Ready` state and services are reachable.
-- Automated test suite passes: unit tests >90% coverage, integration tests verify event‑to‑notification flow, and E2E tests confirm UI notification display.
-- All code, configs, and manifests comply with Java package mapping, path prefix, and security guardrails.
+- **Functional Delivery:**  
+  - Mobile UI mirrors admin screens with role‑based routing.  
+  - QR scanner successfully triggers attendance API and updates card UI.  
+  - Student card displays accurate remaining days (attendance‑decremented + manual enrollment).  
+  - Push notification registration, token storage, and receipt handling functional on both Android and iOS.  
+  - Enrollment flow creates/updates student records and triggers push/announcement.  
+  - Mobile‑specific i18n/SEO (hreflang, locale detection) fully operational.  
+- **Containerization:**  
+  - Docker multi‑stage image built, tagged, and pushed to GCP Artifact Registry.  
+  - GKE deployment updated and service reachable.  
+- **Quality & Security:**  
+  - Unit test coverage ≥ 80 % for all mobile source files.  
+  - All integration/E2E tests passing.  
+  - OWASP A01‑A07 controls validated (input sanitization, tenant isolation, encrypted token storage, parameterized API calls).  
+  - No files generated outside `./sources/`.  
 
 ## 5. DAY‑BY‑DAY ARCHITECTURAL EXECUTION LOGS
 
-### DAY 1: Kafka Infrastructure Setup & Event Models
-#### SUB‑TASK 1.1: Define Kafka configuration and topics
+### DAY 1: Mobile Project Scaffold & i18n/SEO Setup
+#### SUB‑TASK 1.1: Create mobile project structure and Capacitor configuration
 ##### Assigned Sub-Agent: Coder
 ##### Targeted Components & Technical Requirements:
-*   **Target Path:** ./sources/backend/src/main/resources/application.yml
-    *   **Architectural Requirements:**
-        *   Configure `spring.kafka.bootstrap-servers` to `kafka:9092`.
-        *   Define `spring.kafka.producer.properties` and `spring.kafka.consumer.properties` for idempotence and serialization.
-        *   Declare topic names `attendance.events` and `notification.events` with replication factor 1 and partition count 3.
+*   **Target Path:** `./sources/frontend/mobile/`
+    *   **Architectural Requirements:** Initialize Next.js project with Capacitor integration, generate `capacitor.config.json` defining appId, appName, and platform targets (ios, android). Ensure all source files are placed under `./sources/frontend/mobile/src`.  
+    *   **Security Enforcement:** No hardcoded credentials; all environment variables for API endpoints must be injected via `.env` files (never committed).  
 
-#### SUB‑TASK 1.2: Create Event POJOs for domain events
+#### SUB‑TASK 1.2: Configure mobile‑specific i18n and SEO
 ##### Assigned Sub-Agent: Coder
 ##### Targeted Components & Technical Requirements:
-*   **Target Path:** ./sources/backend/src/main/java/org/nlh4j/saas/membership-hub/model/AttendanceEvent.java
-    *   **Architectural Requirements:**
-        *   Annotate with `@KafkaSerializable` (custom marker) and include fields `studentId`, `timestamp`, `qrCodeData`, `centerId`.
-        *   Implement `toString()` and `equals()` for logging and testing.
-*   **Target Path:** ./sources/backend/src/main/java/org/nlh4j/saas/membership-hub/model/NotificationEvent.java
-    *   **Architectural Requirements:**
-        *   Include fields `eventType` (enum: EMAIL, SMS, PUSH), `recipient`, `payload`, `priority`.
-        *   Ensure serializable with Jackson annotations.
+*   **Target Path:** `./sources/frontend/mobile/next-i18next.config.js`
+    *   **Architectural Requirements:** Extend web i18n config with mobile‑only locale detection (device settings → navigator.language → fallback). Generate hreflang `<link>` tags in `<Head>` for each supported language.  
+    *   **Security Enforcement:** Validate locale input against allowed list to prevent injection.  
 
-#### SUB‑TASK 1.3: Static code review and compliance check
+#### SUB‑TASK 1.3: Review mobile scaffold for OWASP compliance and path correctness
 ##### Assigned Sub-Agent: Reviewer
 ##### Targeted Components & Technical Requirements:
-*   **Target Path:** ./sources/backend/src/main/java/org/nlh4j/saas/membership-hub/model/AttendanceEvent.java
-*   **Target Path:** ./sources/backend/src/main/java/org/nlh4j/saas/membership-hub/model/NotificationEvent.java
-    *   **Architectural Requirements:**
-        *   Verify package‑to‑path mapping matches `/org/nlh4j/saas/membership-hub/`.
-        *   Ensure no unused imports, proper Lombok usage, and adherence to Java 17 coding standards.
+*   **Target Path:** `./sources/frontend/mobile/`
+    *   **Architectural Requirements:** Verify all generated files respect the `./sources/` boundary, no direct root artifacts, and that environment variables are not exposed in source code.  
+    *   **Security Enforcement:** Confirm secure storage pattern for any future tokens (encrypted via `secure-electron-store` or native Keychain).  
 
-### DAY 2: Kafka Producer & Consumer Services
-#### SUB‑TASK 2.1: Implement Kafka producer for attendance events
+### DAY 2: QR Scanner & Attendance Integration
+#### SUB‑TASK 2.1: Implement QRScanner component using Capacitor Camera plugin
 ##### Assigned Sub-Agent: Coder
 ##### Targeted Components & Technical Requirements:
-*   **Target Path:** ./sources/backend/src/main/java/org/nlh4j/saas/membership-hub/service/AttendanceEventProducer.java
-    *   **Architectural Requirements:**
-        *   Autowire `KafkaTemplate<String, AttendanceEvent>`.
-        *   Provide method `sendAttendanceEvent(AttendanceEvent event)` that logs and sends to `attendance.events`.
-        *   Use `@Retryable` for transient failures.
+*   **Target Path:** `./sources/frontend/mobile/src/components/QRScanner.tsx`
+    *   **Architectural Requirements:** Use `@capacitor/camera` to capture image, decode QR via `cordova-plugin-qrscanner` or a client‑side library, expose `scan()` method returning scanned payload.  
+    *   **Security Enforcement:** Validate scanned payload format (alphanumeric, length limits) before API call.  
 
-#### SUB‑TASK 2.2: Implement Kafka consumer service to route events
+#### SUB‑TASK 2.2: Create AttendanceService to invoke backend attendance endpoint
 ##### Assigned Sub-Agent: Coder
 ##### Targeted Components & Technical Requirements:
-*   **Target Path:** ./sources/backend/src/main/java/org/nlh4j/saas/membership-hub/service/EventProcessingService.java
-    *   **Architectural Requirements:**
-        *   Subscribe to `attendance.events` via `@KafkaListener`.
-        *   Transform incoming `AttendanceEvent` into appropriate `NotificationEvent` based on event type.
-        *   Emit `NotificationEvent` to `notification.events` using a `KafkaTemplate`.
+*   **Target Path:** `./sources/frontend/mobile/src/services/AttendanceService.ts`
+    *   **Architectural Requirements:** Implement `scanAttendance(studentId: string, qrPayload: string): Promise<void>` using `fetch` with tenant header (`x-tenant-id`) derived from JWT. Handle 409 (already scanned today) gracefully.  
+    *   **Security Enforcement:** Enforce tenant filtering via JWT claim; use parameterized fetch (no string interpolation).  
 
-#### SUB‑TASK 2.3: Unit tests for producer and consumer
+#### SUB‑TASK 2.3: Unit test QRScanner component
 ##### Assigned Sub-Agent: Tester
 ##### Targeted Components & Technical Requirements:
-*   **Target Path:** ./sources/backend/src/main/java/org/nlh4j/saas/membership-hub/service/AttendanceEventProducer.java;./sources/backend/src/test/java/org/nlh4j/saas/membership-hub/service/AttendanceEventProducerTest.java
-    *   **Architectural Requirements:**
-        *   Mock `KafkaTemplate` and verify `send` calls.
-        *   Test retry logic with simulated exceptions.
-*   **Target Path:** ./sources/backend/src/main/java/org/nlh4j/saas/membership-hub/service/EventProcessingService.java;./sources/backend/src/test/java/org/nlh4j/saas/membership-hub/service/EventProcessingServiceTest.java
-    *   **Architectural Requirements:**
-        *   Verify listener processes events and publishes correct `NotificationEvent`.
-        *   Use `@EmbeddedKafka` for isolated testing.
+*   **Target Path:** `./sources/frontend/mobile/src/components/QRScanner.tsx;./sources/frontend/mobile/src/components/__tests__/QRScanner.test.tsx`
+    *   **Architectural Requirements:** Mock Capacitor Camera plugin and verify scan method triggers decode.  
 
-### DAY 3: Notification Service Implementation
-#### SUB‑TASK 3.1: Build Notification Service core
+#### SUB‑TASK 2.4: Integration test for attendance API flow
+##### Assigned Sub-Agent: Tester
+##### Targeted Components & Technical Requirements:
+*   **Target Path:** INTEGRATION_SCOPE;./sources/frontend/mobile/e2e/attendance.spec.ts
+    *   **Architectural Requirements:** Simulate end‑to‑end QR scan, call `AttendanceService`, assert backend response and UI state update.  
+
+### DAY 3: Student Card UI, Push Registration & Enrollment Flow
+#### SUB‑TASK 3.1: Implement StudentCard component displaying remaining days
 ##### Assigned Sub-Agent: Coder
 ##### Targeted Components & Technical Requirements:
-*   **Target Path:** ./sources/backend/src/main/java/org/nlh4j/saas/membership-hub/service/NotificationService.java
-    *   **Architectural Requirements:**
-        *   Define methods `sendEmail(NotificationEvent)`, `sendSms(NotificationEvent)`, `sendPush(NotificationEvent)`.
-        *   Inject external clients (EmailClient, SmsClient, PushClient) via configuration.
-        *   Implement circuit‑breaker pattern for each channel.
+*   **Target Path:** `./sources/frontend/mobile/src/components/StudentCard.tsx`
+    *   **Architectural Requirements:** Consume `GET /api/v1/students/{studentId}/card` via a custom hook; render days left, apply countdown styling, allow manual enrollment via a modal.  
+    *   **Security Enforcement:** Include tenant header; sanitize studentId (UUID format).  
 
-#### SUB‑TASK 3.2: Integrate Notification Service with Kafka consumer
+#### SUB‑TASK 3.2: Implement PushNotificationService for token registration and handling
 ##### Assigned Sub-Agent: Coder
 ##### Targeted Components & Technical Requirements:
-*   **Target Path:** ./sources/backend/src/main/java/org/nlh4j/saas/membership-hub/service/EventProcessingService.java
-    *   **Architectural Requirements:**
-        *   After publishing `NotificationEvent`, call `notificationService.dispatch(event)`.
-        *   Log successful dispatch and handle channel‑specific failures.
+*   **Target Path:** `./sources/frontend/mobile/src/services/PushNotificationService.ts`
+    *   **Architectural Requirements:** Register with FCM (Android) / APNs (iOS) using `@capacitor/push-notifications`. Store token encrypted in native secure storage; expose `register()` and `onNotification()` methods.  
+    *   **Security Enforcement:** Encrypt token before persistence (AES‑256 with app‑specific key); rotate key per tenant if multi‑tenant.  
 
-#### SUB‑TASK 3.3: Frontend notification UI component
+#### SUB‑TASK 3.3: Implement enrollment page and day‑extension logic
 ##### Assigned Sub-Agent: Coder
 ##### Targeted Components & Technical Requirements:
-*   **Target Path:** ./sources/frontend/src/components/NotificationCenter.tsx
-    *   **Architectural Requirements:**
-        *   Consume real‑time notifications via Server‑Sent Events or WebSocket.
-        *   Display list of notifications with timestamps and actionable buttons.
-        *   Support multi‑language i18n keys for notification messages.
+*   **Target Path:** `./sources/frontend/mobile/src/pages/enrollment.tsx`
+    *   **Architectural Requirements:** Form to select additional days, POST to `/api/v1/students/{studentId}/enroll`. Show confirmation and update StudentCard via event bus.  
+    *   **Security Enforcement:** Validate day count (1‑365), enforce tenant header, CSRF token if applicable.  
 
-### DAY 4: Containerization
-#### SUB‑TASK 4.1: Create multi‑stage Dockerfile for backend
+#### SUB‑TASK 3.4: Unit test StudentCard component
+##### Assigned Sub-Agent: Tester
+##### Targeted Components & Technical Requirements:
+*   **Target Path:** `./sources/frontend/mobile/src/components/StudentCard.tsx;./sources/frontend/mobile/src/components/__tests__/StudentCard.test.tsx`
+    *   **Architectural Requirements:** Mock attendance API response and verify days rendering.  
+
+#### SUB‑TASK 3.5: Unit test PushNotificationService
+##### Assigned Sub-Agent: Tester
+##### Targeted Components & Technical Requirements:
+*   **Target Path:** `./sources/frontend/mobile/src/services/PushNotificationService.ts;./sources/frontend/mobile/src/services/__tests__/PushNotificationService.test.tsx`
+    *   **Architectural Requirements:** Stub native plugins, assert token encryption and registration call.  
+
+#### SUB‑TASK 3.6: Security review of push token storage
+##### Assigned Sub-Agent: Reviewer
+##### Targeted Components & Technical Requirements:
+*   **Target Path:** `./sources/frontend/mobile/src/services/PushNotificationService.ts`
+    *   **Architectural Requirements:** Validate encryption implementation, key management, and secure storage usage.  
+    *   **Security Enforcement:** Ensure token is not logged or stored in plain text; key is not hard‑coded.  
+
+### DAY 4: Dockerization, CI/CD & Final Sign‑off
+#### SUB‑TASK 4.1: Create multi‑stage Dockerfile for mobile build
 ##### Assigned Sub-Agent: Docker
 ##### Targeted Components & Technical Requirements:
-*   **Target Path:** ./sources/backend/Dockerfile
-    *   **Architectural Requirements:**
-        *   Use `eclipse-temurin:17-jdk-alpine` as base for build stage.
-        *   Copy `pom.xml` and source, package with Maven.
-        *   Use `distroless/java-debian` as runtime image.
-        *   Include health‑check endpoint `/actuator/health`.
+*   **Target Path:** `./sources/frontend/mobile/Dockerfile`
+    *   **Architectural Requirements:** Stage 1 – Node.js build (`npm ci`, `next build`, `capacitor build`), Stage 2 – Minimal runtime image (`nginx` or `serve`) copying compiled assets and native binaries. Include `.dockerignore` to exclude `node_modules`, `.git`, and build artifacts.  
+    *   **Security Enforcement:** Use non‑root user, minimal layers, scan for vulnerabilities (`trivy`).  
 
-#### SUB‑TASK 4.2: Create multi‑stage Dockerfile for frontend
-##### Assigned Sub-Agent: Docker
-##### Targeted Components & Technical Requirements:
-*   **Target Path:** ./sources/frontend/Dockerfile
-    *   **Architectural Requirements:**
-        *   Use `node:20-alpine` for build stage, install dependencies, build Next.js.
-        *   Use `nginx:alpine` as runtime, copy built output.
-        *   Expose port `3000` and define `nginx -g 'daemon off;'` as entrypoint.
-
-#### SUB‑TASK 4.3: GCP provisioning script
+#### SUB‑TASK 4.2: Push Docker image to GCP Artifact Registry
 ##### Assigned Sub-Agent: GCP
 ##### Targeted Components & Technical Requirements:
-*   **Target Path:** ./sources/backend/gcp-provision.sh
-    *   **Architectural Requirements:**
-        *   Use `gcloud` SDK to create a GKE cluster named `membership-hub-cluster` with node pool `default-pool`.
-        *   Enable necessary APIs (`container.googleapis.com`, `pubsub.googleapis.com`).
-        *   Create a service account with `roles/container.admin` and `roles/pubsub.admin`.
-        *   Output cluster credentials to `~/.kube/config`.
+*   **Target Path:** `./sources/frontend/mobile/Dockerfile`
+    *   **Architectural Requirements:** Build image with `gcloud builds submit --tag <region>-docker.pkg.dev/<project>/mobile-app:latest`. Configure IAM service account with `artifactregistry.images.create` permission.  
+    *   **Security Enforcement:** Ensure build service account has least‑privilege access; tag image with commit SHA for traceability.  
 
-### DAY 5: Kubernetes Manifests & Integration Tests
-#### SUB‑TASK 5.1: Generate Kubernetes Deployment for backend
+#### SUB‑TASK 4.3: Update GKE deployment manifest for mobile frontend
 ##### Assigned Sub-Agent: GKE
 ##### Targeted Components & Technical Requirements:
-*   **Target Path:** ./sources/backend/k8s/backend-deployment.yaml
-    *   **Architectural Requirements:**
-        *   Deploy using image `membership-hub-backend:latest`.
-        *   Mount ConfigMap for `application.yml`.
-        *   Set resource limits (CPU 500m, memory 1Gi).
-        *   Include liveness and readiness probes.
+*   **Target Path:** `./sources/frontend/mobile/k8s/mobile-deployment.yaml`
+    *   **Architectural Requirements:** Define Deployment with container image `<region>-docker.pkg.dev/<project>/mobile-app:latest`, resource limits, environment variables for API endpoints, and tenant‑aware secret mounts.  
+    *   **Security Enforcement:** Apply PodSecurityPolicy or Seccomp profile; enforce `readOnlyRootFilesystem` where possible.  
 
-#### SUB‑TASK 5.2: Generate Kubernetes Service for backend
-##### Assigned Sub-Agent: GKE
-##### Targeted Components & Technical Requirements:
-*   **Target Path:** ./sources/backend/k8s/backend-service.yaml
-    *   **Architectural Requirements:**
-        *   ClusterIP service exposing port 8080.
-        *   Selector matching backend deployment.
-
-#### SUB‑TASK 5.3: Generate Kubernetes Ingress for frontend
-##### Assigned Sub-Agent: GKE
-##### Targeted Components & Technical Requirements:
-*   **Target Path:** ./sources/frontend/k8s/frontend-ingress.yaml
-    *   **Architectural Requirements:**
-        *   Ingress with `nginx.ingress.kubernetes.io/rewrite-target: /$2` for SPA routing.
-        *   TLS enabled via secret `membership-hub-tls`.
-        *   Path prefixes `/api/*` routed to backend service, remaining to frontend.
-
-#### SUB‑TASK 5.4: Integration/E2E test for notification flow
+#### SUB‑TASK 4.4: End‑to‑end test suite for full mobile workflow
 ##### Assigned Sub-Agent: Tester
 ##### Targeted Components & Technical Requirements:
-*   **Target Path:** INTEGRATION_SCOPE;./sources/frontend/tests/notification.e2e.spec.ts
-    *   **Architectural Requirements:**
-        *   Simulate QR attendance via API, verify Kafka event is produced.
-        *   Validate NotificationEvent is consumed and notification appears in UI.
-        *   Assert email/SMS/Push mock calls are triggered.
+*   **Target Path:** INTEGRATION_SCOPE;./sources/frontend/mobile/e2e/fullflow.spec.ts
+    *   **Architectural Requirements:** Simulate login (mock auth), QR scan, attendance submission, push token registration, enrollment, and verification of UI updates.  
 
-### DAY 6: Notification Service Unit Tests & Final Review
-#### SUB‑TASK 6.1: Unit tests for NotificationService
-##### Assigned Sub-Agent: Tester
-##### Targeted Components & Technical Requirements:
-*   **Target Path:** ./sources/backend/src/main/java/org/nlh4j/saas/membership-hub/service/NotificationService.java;./sources/backend/src/test/java/org/nlh4j/saas/membership-hub/service/NotificationServiceTest.java
-    *   **Architectural Requirements:**
-        *   Mock external clients and verify correct channel invocation.
-        *   Test circuit‑breaker fallback behavior.
-
-#### SUB‑TASK 6.2: Static analysis and compliance review
-##### Assigned Sub-Agent: Reviewer
-##### Targeted Components & Technical Requirements:
-*   **Target Path:** ./sources/backend/src/main/java/org/nlh4j/saas/membership-hub/service/AttendanceEventProducer.java
-*   **Target Path:** ./sources/backend/src/main/java/org/nlh4j/saas/membership-hub/service/EventProcessingService.java
-*   **Target Path:** ./sources/backend/src/main/java/org/nlh4j/saas/membership-hub/service/NotificationService.java
-*   **Target Path:** ./sources/backend/Dockerfile
-*   **Target Path:** ./sources/frontend/Dockerfile
-    *   **Architectural Requirements:**
-        *   Validate Java package mapping.
-        *   Ensure Dockerfile best practices (non‑root user, minimal layers).
-        *   Confirm all file paths start with allowed prefixes.
-
-### DAY 7: GKE Deployment & Phase Completion
-#### SUB‑TASK 7.1: Apply Kubernetes manifests to GKE cluster
-##### Assigned Sub-Agent: GKE
-##### Targeted Components & Technical Requirements:
-*   **Target Path:** ./sources/backend/k8s/backend-deployment.yaml
-*   **Target Path:** ./sources/backend/k8s/backend-service.yaml
-*   **Target Path:** ./sources/frontend/k8s/frontend-ingress.yaml
-    *   **Architectural Requirements:**
-        *   Use `kubectl apply -f` with `--context=gke_membership-hub_us-central1_cluster`.
-        *   Wait for pods to reach `Ready` status.
-        *   Capture any rollout failures and rollback if needed.
-
-#### SUB‑TASK 7.2: Verify service availability and notification delivery
-##### Assigned Sub-Agent: Tester
-##### Targeted Components & Technical Requirements:
-*   **Target Path:** INTEGRATION_SCOPE;./sources/frontend/tests/service-health.spec.ts
-    *   **Architectural Requirements:**
-        *   Perform `curl` to backend `/actuator/health` and frontend `/`.
-        *   Validate HTTP status 200 and expected JSON structure.
-        *   Trigger a mock attendance event via API and confirm notification appears in UI.
-
-#### SUB‑TASK 7.3: Phase final sign‑off
+#### SUB‑TASK 4.5: Final phase sign‑off and compliance validation
 ##### Assigned Sub-Agent: Manager
 ##### Targeted Components & Technical Requirements:
-*   **Target Path:** ./sources/backend/phase4-summary.md
-    *   **Architectural Requirements:**
-        *   Document completed Kafka topics, producer/consumer services, Notification Service, Docker images, GKE deployments.
-        *   Include test results summary and compliance checklist.
-        *   Provide artifact references (image tags, cluster endpoint) for downstream phases.
+*   **Target Path:** `./sources/frontend/mobile/`
+    *   **Architectural Requirements:** Verify all files reside under `./sources/`, confirm Docker image built and pushed, ensure GKE deployment applied, and that all unit/integration tests pass.  
+    *   **Security Enforcement:** Run OWASP ZAP scan against deployed mobile backend endpoints, validate tenant isolation, and confirm encrypted token storage.  
+
+---
