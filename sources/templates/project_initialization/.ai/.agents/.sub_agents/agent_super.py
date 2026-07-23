@@ -4,6 +4,7 @@ import sys
 import json
 import re
 import argparse
+from datetime import datetime
 from openai import OpenAI
 from abc import ABC, abstractmethod
 
@@ -13,11 +14,11 @@ from abc import ABC, abstractmethod
 # Programmatically appends the parent directory (.ai/.agents/) into Python's runtime
 # search path array. This completely unlocks importing 'agent_helper.py'.
 # ==============================================================================
-# request agent_helper from `site-packages/load_modules.pth`
-agent_helper = sys.modules["agent_helper"]
+# request agent_helper from `.libs/project_agents_package_loader.py`
+from _ai._agents import agent_helper
 
 # Now Python can seamlessly see and import the centralized helper utility cleanly!
-from helper import write_log_history, write_file, read_json_file, read_file_raw, render_prompt, parseOpenAIResponseData
+from _ai._agents._sub_agents.helper import write_log_history, write_file, read_json_file, read_file_raw, render_prompt, parseOpenAIResponseData
 
 # ==============================================================================
 # GLOBAL CONFIGURATION PATHS - CONFIG HERE TO CUSTOMIZE DIRECTORY STRUCTURE
@@ -26,8 +27,7 @@ MODELS_POOL_PATH            = agent_helper.resolve_absolute_path(".ai/.agents/.m
 STEPS_PLAN_DIR              = agent_helper.resolve_absolute_path(".ai/.plan/.steps")
 
 class AbstractAgent(ABC):
-    def __init__(self, project_name, agent_id, phase_str, day_num):
-        self.project_name = project_name.replace(' ', '-')
+    def __init__(self, agent_id, phase_str, day_num):
         self.agent_id = agent_id if agent_id else "Super"
         self.phase_str = phase_str
         self.day_num = int(day_num)
@@ -126,16 +126,16 @@ class AbstractAgent(ABC):
     def user_prompt_template(self) -> str:
         pass
     
-    def build_system_prompt_context(self, global_context, day_context, target_component, **kwargs):
+    def build_system_prompt_context(self, project_name, global_context, day_context, target_component, **kwargs):
         return {
-            "project_name": self.project_name,
+            "project_name": project_name,
             "global_context": global_context,
             "day_context": day_context,
             "target_component": target_component
             **kwargs
         }
     
-    def build_user_prompt_context(self, source_component, target_component, sub_tasks, **kwargs):
+    def build_user_prompt_context(self, project_name, source_component, target_component, sub_tasks, **kwargs):
         if os.path.exists(source_component):
             lang_code = "typescript" if source_component.endswith(('.ts', '.tsx', '.js')) else "java"
             _, source_payload = read_file_raw(source_component.strip())
@@ -144,7 +144,7 @@ class AbstractAgent(ABC):
             source_component = "INTEGRATION_SCOPE"
             source_payload = None
         return {
-            "project_name": self.project_name,
+            "project_name": project_name,
             "source_component": source_component,
             "source_payload": source_payload,
             "sub_tasks": sub_tasks.strip(),
@@ -180,13 +180,13 @@ class AbstractAgent(ABC):
         )
         print(f"[ ✅ {self.agent_id} Agent - SUCCESS | Model {self.current_model_config['model_name']} | API Endpoint {self.current_model_config['api_endpoint']} | Day {self.day_num} ] Committed to: { target_component }")
     
-    def execute_task(self, global_context, day_context, source_component, target_component, sub_tasks):
+    def execute_task(self, project_name, global_context, day_context, source_component, target_component, sub_tasks):
         # build system prompt
-        system_prompt_context = self.build_system_prompt_context(global_context, day_context, target_component)
+        system_prompt_context = self.build_system_prompt_context(project_name, global_context, day_context, target_component)
         system_prompt = render_prompt(self.system_prompt_template(), system_prompt_context)
         
         # build user prompt
-        user_prompt_context = self.build_user_prompt_context(source_component, target_component, sub_tasks)
+        user_prompt_context = self.build_user_prompt_context(project_name, source_component, target_component, sub_tasks)
         user_prompt = render_prompt(self.user_prompt_template(), user_prompt_context)
         
         # agent do job
@@ -224,12 +224,20 @@ class AbstractAgent(ABC):
             print(f"[ 💀 {self.agent_id} Agent | CRITICAL ERROR ] Not found phase steps JSON file { phase_step_file }")
             sys.exit(1)
         
+        # parse project name from phase steps data
+        datetimeStr = datetime.now().strftime("%Y%m%d%H%M%S")
+        defaultPrjName = f"project-{datetimeStr}"
+        project_name = steps_data["project_name"] if steps_data["project_name"] else defaultPrjName
+        
         # check agent from JSON steps
         target_day = next((d for d in steps_data["days"] if d["day"] == self.day_num), None)
         is_matched_agent = target_day and (self.agent_id == target_day["agent"] or target_day["desc"].startswith(self.agent_id))
         if not is_matched_agent:
             print(f"[ 💀 {self.agent_id} Agent | CRITICAL WARN ] Step Day { self.day_num }, File { phase_step_file } has no any task!")
             sys.exit(0)
+        
+        # tracing
+        print(f"[ 💀 {self.agent_id} Agent | INFO ] Step Day { self.day_num }, File { phase_step_file }, Execute Agent Project {project_name}...")
         
         # pre-execute
         self.pre_execute()
@@ -281,11 +289,12 @@ class AbstractAgent(ABC):
                         
                         # check if invalid target component
                         if len(target_component) <= 0:
-                            print(f"[ 💀 {self.agent_id} Agent - CRITICAL WARN ] Step Day { self.day_num }, File { phase_step_file }, Target Component not found to do")
+                            print(f"[ 💀 {self.agent_id} Agent | CRITICAL WARN ] Step Day { self.day_num }, File { phase_step_file }, Target Component not found to do")
                             continue
                         
                         # execute task
                         success, system_prompt, user_prompt, raw_response = self.execute_task(
+                            project_name=project_name,
                             global_context=global_context,
                             day_context=day_context,
                             source_component=source_component,

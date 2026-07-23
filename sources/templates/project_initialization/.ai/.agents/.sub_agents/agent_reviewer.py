@@ -16,27 +16,26 @@ from openai import OpenAI
 # Programmatically appends the parent directory (.ai/.agents/) into Python's runtime
 # search path array. This completely unlocks importing 'agent_helper.py'.
 # ==============================================================================
-# request agent_helper from `site-packages/load_modules.pth`
-agent_helper = sys.modules["agent_helper"]
+# request agent_helper from `.libs/project_agents_package_loader.py`
+from _ai._agents import agent_helper
 
 # Now Python can seamlessly see and import the centralized helper utility cleanly!
-from helper import render_prompt
+from _ai._agents._sub_agents.helper import render_prompt
 
 # super agent
-from agent_super import AbstractAgent
+from _ai._agents._sub_agents.agent_super import AbstractAgent
 
 # ==============================================================================
 # GLOBAL CONFIGURATION PATHS - CONFIG HERE TO CUSTOMIZE DIRECTORY STRUCTURE
 # ==============================================================================
 SYSTEM_PROMPT_FILE          = agent_helper.resolve_absolute_path(".ai/.agents/.sub_agents/agent_reviewer.prompt.system.md")
 USER_PROMPT_FILE            = agent_helper.resolve_absolute_path(".ai/.agents/.sub_agents/agent_reviewer.prompt.user.md")
-BACKEND_WORKSPACE           = resolve_absolute_path("sources/backend")
-FRONTEND_WORKSPACE          = resolve_absolute_path("sources/frontend")
+BACKEND_WORKSPACE           = agent_helper.resolve_absolute_path("sources/backend")
+FRONTEND_WORKSPACE          = agent_helper.resolve_absolute_path("sources/frontend")
 
 class BugFixerAgent(AbstractAgent):
-    def __init__(self, project_name, phase_str, day_num):
+    def __init__(self, phase_str, day_num):
         super().__init__(
-            project_name=project_name,
             agent_id="Reviewer",
             phase_str=phase_str,
             day_num=day_num
@@ -148,10 +147,10 @@ class BugFixerAgent(AbstractAgent):
             # if not found package.json, it means project empty or be initializing
             return (os.path.exists(package_path), package_path)
     
-    def execute_task(self, global_context, day_context, source_component, target_component, sub_tasks):
+    def execute_task(self, project_name, global_context, day_context, source_component, target_component, sub_tasks):
         # check whether project had been initialized
         project_initialized, project_main_component = self.check_project_initialized(target_component)
-        print(f"[ ℹ️ {self.agent_id} Agent | F.Y.I ] Project had been initialized?. {project_initialized} - Project Main Component: {project_main_component}")
+        print(f"[ ℹ️ {self.agent_id} Agent | F.Y.I ] Project {project_name} had been initialized?. {project_initialized} - Project Main Component: {project_main_component}")
         print(f"            - Target Component: {target_component}")
         
         # build system prompt
@@ -208,8 +207,8 @@ if __name__ == "__main__":
     parser.add_argument("--phase", required=True)
     parser.add_argument("--day", required=True)
     args = parser.parse_args()
+    print(f"🩹 Initiating compiler analysis and automated code healing routines for Phase { args.phase } Day { args.day }...")
     BugFixerAgent(
-        project_name=args.project_name,
         phase_str=args.phase,
         day_num=args.day
     ).execute()

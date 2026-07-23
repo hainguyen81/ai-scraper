@@ -11,11 +11,11 @@ import subprocess
 # Programmatically appends the parent directory (.ai/.agents/) into Python's runtime
 # search path array. This completely unlocks importing 'agent_helper.py'.
 # ==============================================================================
-# request agent_helper from `site-packages/load_modules.pth`
-agent_helper = sys.modules["agent_helper"]
+# request agent_helper from `.libs/project_agents_package_loader.py`
+from _ai._agents import agent_helper
 
 # super agent
-from agent_super import AbstractAgent
+from _ai._agents._sub_agents.agent_super import AbstractAgent
 
 # ==============================================================================
 # GLOBAL CONFIGURATION PATHS - CONFIG HERE TO CUSTOMIZE DIRECTORY STRUCTURE
@@ -24,9 +24,8 @@ BACKEND_DOCKERFILE          = agent_helper.resolve_absolute_path("sources/backen
 FRONTEND_DOCKERFILE         = agent_helper.resolve_absolute_path("sources/frontend/Dockerfile")
 
 class DockerHubAgent(AbstractAgent):
-    def __init__(self, project_name, phase_str, day_num):
+    def __init__(self, phase_str, day_num):
         super().__init__(
-            project_name=project_name,
             agent_id="Docker",
             phase_str=phase_str,
             day_num=day_num
@@ -86,7 +85,7 @@ class DockerHubAgent(AbstractAgent):
         # log-in repository
         self.authenticate_dockerhub()
 
-    def execute_task(self, global_context, day_context, source_component, target_component, sub_tasks):
+    def execute_task(self, project_name, global_context, day_context, source_component, target_component, sub_tasks):
         is_backend = "backend" in target_component
         dockerfile_path = BACKEND_DOCKERFILE if is_backend else FRONTEND_DOCKERFILE
         workspace_path = agent_helper.resolve_absolute_path("sources/backend") if is_backend else agent_helper.resolve_absolute_path("sources/frontend")
@@ -112,10 +111,9 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument("--phase", required=True)
     parser.add_argument("--day", required=True)
-    parser.add_argument("--project-name", required=True)
     args = parser.parse_args()
+    print(f"🐳 Launching Docker Hub container build and registry publication pipes for Phase { args.phase } Day { args.day }...")
     DockerHubAgent(
-        project_name=args.project_name,
         phase_str=args.phase,
         day_num=args.day
     ).execute()

@@ -136,6 +136,7 @@ jobs:
           BLUEPRINT_DIR: ${{ inputs.blueprint }}
           REQUIREMENTS_FILE: ${{ inputs.requirements_file }}
           LIBS_FOLDER: 'sources/libs'
+          MODELS_FOLDER: 'sources/agents/models'
         run: |
           echo "📂 Creating isolated temporary sync-workspace..."
           # 🧼 Create an isolated temporary synchronization workspace directory
@@ -154,6 +155,11 @@ jobs:
           fi
           if [ -f "$REQUIREMENTS_FILE" ]; then
             cp -r $REQUIREMENTS_FILE ../sync-workspace/docs/requirements/
+          fi
+          
+          # Copy models for AI agents in new project
+          if [ -d "$MODELS_FOLDER" ]; then
+            cp -r $MODELS_FOLDER/ ../sync-workspace/.ai/.agents/.models
           fi
           
           # Copy libs for AI agents in new project

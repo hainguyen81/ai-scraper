@@ -12,11 +12,11 @@ from openai import OpenAI
 # Programmatically appends the parent directory (.ai/.agents/) into Python's runtime
 # search path array. This completely unlocks importing 'agent_helper.py'.
 # ==============================================================================
-# request agent_helper from `site-packages/load_modules.pth`
-agent_helper = sys.modules["agent_helper"]
+# request agent_helper from `.libs/project_agents_package_loader.py`
+from _ai._agents import agent_helper
 
 # super agent
-from agent_super import AbstractAgent
+from _ai._agents._sub_agents.agent_super import AbstractAgent
 
 # ==============================================================================
 # GLOBAL CONFIGURATION PATHS - CONFIG HERE TO CUSTOMIZE DIRECTORY STRUCTURE
@@ -25,9 +25,8 @@ SYSTEM_PROMPT_FILE          = agent_helper.resolve_absolute_path(".ai/.agents/.s
 USER_PROMPT_FILE            = agent_helper.resolve_absolute_path(".ai/.agents/.sub_agents/agent_tester.prompt.user.md")
 
 class TesterAgent(AbstractAgent):
-    def __init__(self, project_name, phase_str, day_num):
+    def __init__(self, phase_str, day_num):
         super().__init__(
-            project_name=project_name,
             agent_id="Tester",
             phase_str=phase_str,
             day_num=day_num
@@ -52,10 +51,9 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument("--phase", required=True)
     parser.add_argument("--day", required=True)
-    parser.add_argument("--project-name", required=True)
     args = parser.parse_args()
+    print(f"🧪 Activating quality assurance testing synthesis engine for Phase { args.phase } Day { args.day }...")
     TesterAgent(
-        project_name=args.project_name,
         phase_str=args.phase,
         day_num=args.day
     ).execute()
