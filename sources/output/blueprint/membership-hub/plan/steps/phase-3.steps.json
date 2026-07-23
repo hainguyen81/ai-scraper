@@ -12,30 +12,27 @@
             "sub_tasks": [
                 {
                     "id": "D1_ST1",
-                    "agent": "Coder",
-                    "desc": "Coder Agent: Create Next.js web app skeleton and i18n infrastructure. Initialize Next.js app with `NextIntlProvider` for i18n, import global CSS, and embed a `<Layout>` component that enforces role‑based routing. Implement OWASP‑compliant meta tags via `<Head>` (Content‑Security‑Policy, X‑Frame‑Options) and sanitize any user‑provided locale query parameters. Override `Document.getInitialProps` to inject tenant‑aware `tenant_id` into HTML attributes for logging and security auditing. Configure `next-i18next` with resources for `en`, `vi`, etc., and implement locale detection middleware (user pref → browser → default) as per requirements. Apply input validation on locale strings to prevent injection. Detect request locale, set `x-tenant-id` header based on authenticated user’s tenant, and enforce CSP via `next-headers`.",
+                    "agent": "coder",
+                    "desc": "coder Agent: Initialize Next.js Project & i18n Configuration: Configure basePath, trailingSlash, and output directory for production builds. Integrate i18n with locales (en, vi) and defaultLocale detection from user preference, browser, or device. Enable OWASP-compliant CSP headers via headers() to mitigate XSS. Implement react-i18next with namespace-based resource loading. Add locale detection middleware that reads Accept-Language header and user-stored preference. Sanitize locale values to prevent injection attacks.",
                     "components": [
-                        "./sources/frontend/web/src/pages/_app.tsx",
-                        "./sources/frontend/web/src/pages/_document.tsx",
-                        "./sources/frontend/web/src/lib/i18n.ts",
-                        "./sources/frontend/web/src/middleware.ts"
+                        "./sources/frontend/next.config.js",
+                        "./sources/frontend/src/lib/i18n.ts"
                     ]
                 },
                 {
                     "id": "D1_ST2",
-                    "agent": "Tester",
-                    "desc": "Tester Agent: Write unit tests for i18n detection and middleware. Verify locale resolution logic matches the priority order (user pref → browser → default). Ensure tenant isolation by checking that `tenant_id` is correctly propagated in request headers. Test CSP header injection and locale header setting for various incoming request scenarios.",
+                    "agent": "coder",
+                    "desc": "coder Agent: Create Frontend State Management Layer: Set up Redux Toolkit with root reducer combining feature slices. Persist auth tokens and user roles using redux-persist with secure storage (AsyncStorage for mobile, localStorage for web). Enforce token expiration and refresh logic following OWASP A07:2021 – Identification and Authentication Failures.",
                     "components": [
-                        "./sources/frontend/web/src/lib/i18n.ts;./sources/frontend/web/src/lib/i18n.test.ts",
-                        "./sources/frontend/web/src/middleware.ts;./sources/frontend/web/src/middleware.test.ts"
+                        "./sources/frontend/src/store/index.ts"
                     ]
                 },
                 {
                     "id": "D1_ST3",
-                    "agent": "Docker",
-                    "desc": "Docker Agent: Build Docker image for the web front‑end. Use Node‑20 Alpine base, install dependencies via `--prefer-offline`, run `next build`, and set production `NODE_ENV`. Include security best‑practice: non‑root user, minimal layers, and explicit `CVP` (Content Security Policy) headers in `nginx` config if used.",
+                    "agent": "doc",
+                    "desc": "doc Agent: Generate Frontend Architecture Documentation: Document project structure, routing, i18n setup, state management, API client patterns. Include OWASP security controls applied at the frontend layer. Provide component interaction diagrams and data flow sketches.",
                     "components": [
-                        "./sources/frontend/web/Dockerfile"
+                        "./sources/frontend/docs/FRONTEND_ARCHITECTURE.md"
                     ]
                 }
             ]
@@ -47,45 +44,26 @@
             "sub_tasks": [
                 {
                     "id": "D2_ST1",
-                    "agent": "Coder",
-                    "desc": "Coder Agent: Implement core layout and role‑based navigation. Render navigation links filtered by `user.role` (System Admin, Admin, Manager, Teacher, Student) per requirement matrix. Enforce OWASP A03 (Injection) by sanitizing all navigation parameters and A05 (Broken Access Control) via role checks. Include `<MetaTags>` component for page‑specific SEO.",
+                    "agent": "coder",
+                    "desc": "coder Agent: Implement Admin Center Management Screen: Build CRUD UI for centers (list, add, edit, delete) with form validation. Integrate CSRF token in form submissions; sanitize all user inputs. Apply role-based access control (only System Admin can access).",
                     "components": [
-                        "./sources/frontend/web/src/components/Layout.tsx"
+                        "./sources/frontend/src/pages/admin/centers.tsx"
                     ]
                 },
                 {
                     "id": "D2_ST2",
-                    "agent": "Coder",
-                    "desc": "Coder Agent: Develop AI CSKH chat widget component. Integrate with AI service endpoint, provide real‑time message handling, and enforce input sanitization to prevent XSS (OWASP A01). Implement responsive design and accessibility attributes.",
+                    "agent": "tester",
+                    "desc": "tester Agent: Write Unit Tests for Center Management Component: Test rendering of center list, form fields, and validation logic. Verify OWASP input sanitization via mocked API responses. Ensure component re-renders correctly on store updates.",
                     "components": [
-                        "./sources/frontend/web/src/components/AIWidget.tsx"
+                        "./sources/frontend/src/pages/admin/centers.tsx;./sources/frontend/tests/pages/admin/centers.test.tsx"
                     ]
                 },
                 {
                     "id": "D2_ST3",
-                    "agent": "Coder",
-                    "desc": "Coder Agent: Create SSE service for dashboard real‑time updates. Establish EventSource connection to `/api/dashboard/stream`, handle reconnection logic, and parse JSON events. Apply tenant‑aware headers (`x-tenant-id`) for security. Generate `<title>` and meta description per locale using `next-seo` or equivalent. Ensure no duplicate meta tags and validate Open Graph tags for each language.",
+                    "agent": "coder",
+                    "desc": "coder Agent: Implement Manager Dashboard with Course & Student Assignment: UI for selecting existing courses and assigning students. Use secure API client with JWT token interception. Enforce minimum password complexity for auto-generated Teacher accounts (OWASP A02:2021 – Cryptographic Failures).",
                     "components": [
-                        "./sources/frontend/web/src/lib/sse.ts",
-                        "./sources/frontend/web/src/lib/seo.ts"
-                    ]
-                },
-                {
-                    "id": "D2_ST4",
-                    "agent": "Reviewer",
-                    "desc": "Reviewer Agent: Security review of front‑end components. Verify role‑based access control logic, confirm tenant isolation, and validate CSP header injection. Confirm input sanitization, output encoding, and rate‑limiting of AI requests to mitigate abuse.",
-                    "components": [
-                        "./sources/frontend/web/src/components/Layout.tsx",
-                        "./sources/frontend/web/src/components/AIWidget.tsx"
-                    ]
-                },
-                {
-                    "id": "D2_ST5",
-                    "agent": "Tester",
-                    "desc": "Tester Agent: Unit tests for AI widget and SSE. Simulate user messages, verify response parsing, and ensure sanitized output. Mock EventSource, test reconnection flows, and confirm tenant header inclusion.",
-                    "components": [
-                        "./sources/frontend/web/src/components/AIWidget.tsx;./sources/frontend/web/src/components/AIWidget.test.tsx",
-                        "./sources/frontend/web/src/lib/sse.ts;./sources/frontend/web/src/lib/sse.test.ts"
+                        "./sources/frontend/src/components/manager/CourseAssignment.tsx"
                     ]
                 }
             ]
@@ -97,37 +75,26 @@
             "sub_tasks": [
                 {
                     "id": "D3_ST1",
-                    "agent": "Coder",
-                    "desc": "Coder Agent: Scaffold Capacitor mobile app with mirrored UI. Set up React Native / Next.js mobile entry, wrap with `RoleProvider`, and implement responsive layout for iOS/Android. Enforce OWASP A05 by validating deep‑link parameters used for navigation. Port web AI widget with mobile‑optimized styling, integrate with native push notification bridge. Register FCM token, handle incoming push notifications, and forward them to Zalo group messaging via backend API.",
+                    "agent": "coder",
+                    "desc": "coder Agent: Build Mobile Student Dashboard with QR Scanner & Token Expiry: Implement QR code scanning using react-native-camera or equivalent. On scan, call attendance API and display remaining token days. Store token expiry locally using secure storage (RNSecureStorage) and enforce expiration warnings. Integrate push notifications via Firebase Cloud Messaging (FCM) with token refresh handling.",
                     "components": [
-                        "./sources/frontend/mobile/src/app/_layout.tsx",
-                        "./sources/frontend/mobile/src/components/AIWidget.tsx",
-                        "./sources/frontend/mobile/src/lib/push.ts"
+                        "./sources/frontend/mobile/src/screens/StudentDashboard.tsx"
                     ]
                 },
                 {
                     "id": "D3_ST2",
-                    "agent": "Docker",
-                    "desc": "Docker Agent: Build Docker image for mobile front‑end. Use Node‑20 Alpine, install Capacitor CLI, build the mobile bundle, and include `capacitord` runtime for native plugins. Apply non‑root user and minimal layers for security.",
+                    "agent": "tester",
+                    "desc": "tester Agent: Write Mobile Integration/E2E Tests: Simulate QR scan flow, attendance submission, and token expiry display. Validate push notification receipt and UI update. Ensure tests run on both iOS and Android emulators.",
                     "components": [
-                        "./sources/frontend/mobile/Dockerfile"
+                        "INTEGRATION_SCOPE;./sources/frontend/tests/mobile/StudentDashboard.e2e.ts"
                     ]
                 },
                 {
                     "id": "D3_ST3",
-                    "agent": "GCP",
-                    "desc": "GCP Agent: Generate Kubernetes manifests for front‑end services. Define Deployment with container image referencing the built web Docker image. Include environment variables: `TENANT_ID`, `NOTIFICATION_WEBHOOK`, `SSE_ENDPOINT`, `AI_SERVICE_URL`. Apply resource limits, liveness/readiness probes, and securityContext (runAsNonRoot). Expose service on port 80, label with app=membership-hub-frontend, and attach appropriate Ingress rules for multi‑tenant routing.",
+                    "agent": "reviewer",
+                    "desc": "reviewer Agent: Perform Static Code Analysis & Security Review: Run ESLint, Prettier, and Snyk checks for vulnerabilities. Verify implementation of OWASP A03:2021 – Injection (SQL/GraphQL) mitigations in login payload. Confirm secure password handling (bcrypt hashing on client-side token storage).",
                     "components": [
-                        "./sources/backend/k8s/frontend-deployment.yaml",
-                        "./sources/backend/k8s/frontend-service.yaml"
-                    ]
-                },
-                {
-                    "id": "D3_ST4",
-                    "agent": "Manager",
-                    "desc": "Manager Agent: Execute final integration smoke test. Navigate through each role‑protected page, verify i18n locale switching, confirm AI widget renders, and assert SSE connection establishment. Validate push notification registration on mobile (if mobile test environment available). Capture any OWASP violations via automated security scanner integration.",
-                    "components": [
-                        "INTEGRATION_SCOPE;./sources/frontend/web/tests/smoke.spec.ts"
+                        "./sources/frontend/src/components/auth/Login.tsx"
                     ]
                 }
             ]

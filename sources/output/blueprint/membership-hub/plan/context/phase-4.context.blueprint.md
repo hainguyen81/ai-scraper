@@ -1,284 +1,235 @@
 # PHASE 4 CONTEXT BLUEPRINT: membership-hub
 
 ## 1. Phase Operational Scope & Objectives
-Implement advanced enrollment, assignment, promotion/announcement management, real‑time dashboard refresh, multi‑language SEO, Kafka‑driven notifications, tenant‑aware isolation, and push‑delivery verification. Core goals:
-- Auto‑create Student and Teacher accounts during enrollment; assign teachers to courses.
-- CRUD for Promotions and Announcements with expiry; trigger Zalo group + FCM push notifications on creation/update.
-- Real‑time dashboard refresh every 15 min via scheduled job; include tenant‑filtered data.
-- Multi‑language SEO meta tags for promotion/announcement pages (Next.js).
-- Kafka event streaming for all notification payloads; verify delivery to Zalo and mobile clients.
-- Advanced tenant isolation checks in repository queries; AES‑256 PII encryption for sensitive fields.
-- End‑to‑end test coverage and OWASP hardening (A01‑A07) for new endpoints.
+- Integrate backend payment microservice with existing authentication, authorization, and Kafka notification layers.
+- Implement a secure, multi-tenant payment gateway supporting card, digital wallet, and internal credit methods.
+- Develop frontend payment UI and integration flows (Next.js/React) that consume the payment API and display real‑time transaction status.
+- Establish end‑to‑end integration tests covering payment creation, webhook handling, and Kafka event propagation.
+- Generate comprehensive technical documentation, Docker/Kubernetes manifests, and CI/CD pipelines for deployment on GCP Cloud Run and GKE.
+- Perform static security analysis, OWASP compliance validation, and final verification of all integrated components.
 
 ## 2. Allowed Technical Scope & Directory Boundaries
-- **Backend Java (Quarkus) components**
-  - `./sources/backend/src/main/java/org/nlhj/saas/membershippub/` (core services, entities, repositories)
-  - `./sources/backend/src/main/resources/application.yml` (Kafka, tenant, notification configs)
-  - `./sources/backend/src/test/java/org/nlhj/saas/membershippub/` (unit tests)
-  - `./sources/backend/docker/` (multi‑stage Dockerfile)
-- **Frontend (Next.js) components**
-  - `./sources/frontend/src/pages/en/` and `./sources/frontend/src/pages/vi/` (promotion, announcement, dashboard pages with SEO)
-  - `./sources/frontend/src/components/` (role‑based UI, AI chat widget)
-  - `./sources/frontend/tests/` (Cypress/Playwright spec files)
-- **Configuration & Integration**
-  - `./sources/backend/src/main/resources/kafka/` (producer/consumer configs)
-  - `./sources/backend/src/main/resources/tenancy/` (tenant isolation filters)
-- **Docker / GCP / GKE**
-  - `./sources/backend/docker/Dockerfile` (final image)
-  - `./sources/backend/k8s/` (GKE deployment & cronjob manifests)
-  - `./sources/backend/gcp/` (IAM & service‑account configs)
-
-All paths must start with `./sources/`. No files may be placed directly under the repository root.
+- **Backend Java Services (Quarkus)**
+  - `./sources/backend/src/main/java/org/nlh4j/saas/membershiphub/` – core service & controller packages
+  - `./sources/backend/src/test/java/org/nlh4j/saas/membershiphub/` – unit & integration test packages
+  - `./sources/backend/resources/application.yml` – Quarkus configuration
+  - `./sources/backend/src/main/resources/db/migration/V*__*.sql` – Flyway migration scripts
+- **Frontend (Next.js)**
+  - `./sources/frontend/src/pages/payments.tsx` – payment UI page
+  - `./sources/frontend/src/components/PaymentForm.tsx` – reusable payment form
+  - `./sources/frontend/tests/payment.e2e.spec.ts` – Playwright/E2E test suite
+- **Documentation**
+  - `./sources/backend/docs/payment-api.md` – REST API specification
+  - `./sources/backend/docs/integration-guide.md` – integration & deployment guide
+- **Container & Cloud**
+  - `./sources/backend/Dockerfile` – multi‑stage build for payment service
+  - `./sources/backend/docker-compose.yml` – local dev stack
+  - `./sources/backend/gcp/payment-service.yaml` – Cloud Run service definition
+  - `./sources/backend/k8s/payment-deployment.yaml` – GKE deployment manifest
+- **Allowed Endpoints**
+  - `POST /api/v1/payments` – create payment (JSON body: amount, currency, method, tenantId)
+  - `GET /api/v1/payments/{id}` – retrieve payment status
+  - `POST /api/v1/payments/{id}/webhook` – external gateway webhook callback
+  - All endpoints require `Authorization: Bearer <token>` and enforce tenant‑scope via `X-Tenant-ID` header.
 
 ## 3. Dedicated Sub-Agent Functional Directives
-- **Coder**: Implement enrollment service, auto‑account creation, teacher assignment, promotion/announcement CRUD, Kafka producers, scheduled dashboard refresh, tenant‑aware repository methods, AES‑256 PII encryption, parameterized queries, multi‑language SEO meta generation in Next.js.
-- **Tester**: Write unit tests for enrollment, promotion, announcement services; integration tests for Kafka notification flow; UI tests for promotion/announcement pages; verify tenant isolation and delivery verification.
-- **Reviewer**: Conduct OWASP compliance review (A01‑A07), validate tenant filtering, encryption usage, injection safety, and JWT token handling for new endpoints.
-- **Docker**: Update multi‑stage Dockerfile to include scheduled job dependencies; add health‑check probes; ensure image size optimization.
-- **GCP**: Configure Kafka connector on GCP (if using managed Kafka), set up Pub/Sub topics for notification events, define IAM roles for services, create Cloud Scheduler job for 15‑min refresh.
-- **GKE**: Deploy backend and scheduled job as K8s CronJob; expose services via Ingress; configure autoscaling; apply security policies (PodSecurityPolicy).
-- **Manager**: Orchestrate cross‑team integration, validate enrollment workflow end‑to‑end, confirm notification delivery to Zalo groups and mobile apps, approve production readiness sign‑off.
+- **coder**
+  - Implement `PaymentService` with AES‑256 encryption for card data, parameterized queries, and tenant‑isolated persistence.
+  - Implement `PaymentController` exposing the allowed REST endpoints, injecting `PaymentService`, and applying OWASP A01/A02 controls (input validation, rate limiting, CSRF tokens for web UI).
+  - Develop Next.js payment UI components (`PaymentForm`, `payments` page) that call the payment API and display real‑time status via Kafka events.
+- **tester**
+  - Write unit test for `PaymentService` (`PaymentServiceTest.java`) covering business logic, encryption, and tenant isolation.
+  - Write integration/E2E test for payment flow using `INTEGRATION_SCOPE;./sources/frontend/tests/payment.e2e.spec.ts`.
+- **reviewer**
+  - Perform static code analysis on `PaymentService.java` and `PaymentController.java` for OWASP compliance, SQL injection prevention, and secure coding standards.
+- **doc**
+  - Produce `payment-api.md` documenting all payment endpoints, request/response schemas, authentication requirements, and error codes.
+  - Produce `integration-guide.md` describing backend‑frontend integration, Kafka event contracts, and deployment steps.
+- **docker**
+  - Update `Dockerfile` to include payment service binary, copy configuration, and define health‑check endpoint.
+  - Update `docker-compose.yml` to start payment service, PostgreSQL, and Kafka for local testing.
+- **GCP**
+  - Create `payment-service.yaml` defining Cloud Run service, memory/cpu limits, IAM service account with `cloudsql.user` role, and Cloud SQL connection.
+- **GKE**
+  - Create `payment-deployment.yaml` defining Deployment, Service, ConfigMap (application.yml), and Secret (DB credentials) for GKE cluster.
 
 ## 4. Phase Definition of Done (DoD)
-- Enrollment creates Student/Teacher accounts with correct tenant isolation and triggers Kafka event.
-- Teacher assignment to courses persists and notifies via Kafka.
-- Promotion/Announcement CRUD supports multi‑language SEO meta tags; expiry logic enforced; notifications sent to Zalo groups and FCM.
-- Real‑time dashboard refreshes every 15 min with tenant‑filtered data; scheduled job runs in GKE CronJob.
-- All new endpoints enforce OWASP controls: parameterized queries, AES‑256 PII encryption, tenant filtering, JWT validation.
-- 100 % unit test coverage for backend services; integration/E2E tests for notification flow and UI.
-- Docker images built, scanned, and deployed to GKE with successful health checks.
-- GCP IAM and GKE policies applied; audit logs enabled.
-- Final sign‑off by Manager confirming all requirements satisfied.
+- Payment microservice fully functional with secure CRUD operations and tenant isolation.
+- Frontend payment UI integrated, responsive, and capable of creating/retrieving payments.
+- All unit tests passing (>90% coverage) and integration/E2E tests passing.
+- OWASP compliance verified: input validation, output encoding, encryption, parameterized queries, rate limiting, and secure headers.
+- Technical documentation (`payment-api.md`, `integration-guide.md`) completed and stored in `./sources/backend/docs/`.
+- Docker images built, tested locally, and pushed to artifact registry.
+- Cloud Run and GKE deployments configured, tested, and ready for production traffic.
+- Performance profiling indicates sub‑second latency for payment creation and <1% error rate.
 
-## 5. DAY‑BY‑DAY ARCHITECTURAL EXECUTION LOGS
+## 5. DAY-BY-DAY ARCHITECTURAL EXECUTION LOGS
 
-### DAY 1: Manager Student Enrollment & Auto‑Account Creation
-#### SUB‑TASK 1.1: Implement Enrollment Service with Auto‑Account Creation
-##### Assigned Sub-Agent: Coder
+### DAY 1: BACKEND PAYMENT CORE IMPLEMENTATION
+#### SUB-TASK 1.1: Implement PaymentService with OWASP security controls
+##### Assigned Sub-Agent: coder
 ##### Targeted Components & Technical Requirements:
-* **Target Path:** ./sources/backend/src/main/java/org/nlhj/saas/membershippub/service/EnrollmentService.java
-    * **Architectural Requirements:**
-        * Use Quarkus JAX‑RS @Transactional and @RolesAllowed("Manager") for endpoint security.
-        * Apply tenant isolation via @TenantFilter(tenantId = "tenant_id") on repository calls.
-        * Encrypt PII fields (student SSN, contact) using AES‑256 before persistence.
-        * Generate Kafka event EnrollmentCreatedEvent with tenantId, studentId, courseId.
-        * Auto‑create User account (role Student) with Argon2 password hash; assign to tenant.
-    * **Security Enforcement:**
-        * OWASP A01: Input validation & sanitization for enrollment payload.
-        * OWASP A07: Use parameterized queries in Repository layer.
-
-#### SUB‑TASK 1.2: Create Kafka Producer for Enrollment Notifications
-##### Assigned Sub-Agent: Coder
+*   **Target Path:** ./sources/backend/src/main/java/org/nlh4j/saas/membershiphub/service/PaymentService.java
+    *   **Architectural Requirements:**
+        *   Use AES‑256 encryption for sensitive payment fields (card numbers, CVV) with key stored in Quarkus Vault.
+        *   Implement tenant‑scoped JPA queries using `tenant_id` filter to enforce multi‑tenancy.
+        *   Apply parameterized queries via Spring Data JPA to prevent SQL injection.
+        *   Include validation annotations (e.g., `@NotNull`, `@Positive`) and throw `ValidationException` on invalid input.
+        *   Emit Kafka event `PaymentCreatedEvent` with encrypted payload for downstream notifications.
+#### SUB-TASK 1.2: Implement PaymentController REST endpoints
+##### Assigned Sub-Agent: coder
 ##### Targeted Components & Technical Requirements:
-* **Target Path:** ./sources/backend/src/main/java/org/nlhj/saas/membershippub/kafka/EnrollmentEventProducer.java
-    * **Architectural Requirements:**
-        * Configure KafkaProducer with idempotent enabled and acks=all.
-        * Serialize events using Jackson with tenantId header for routing.
-        * Emit event to topic "enrollment-events".
-    * **Security Enforcement:**
-        * Ensure producer credentials are stored in application.yml (no hard‑coded secrets).
-
-#### SUB‑TASK 1.3: Write Unit Tests for Enrollment Service & Producer
-##### Assigned Sub-Agent: Tester
+*   **Target Path:** ./sources/backend/src/main/java/org/nlh4j/saas/membershiphub/controller/PaymentController.java
+    *   **Architectural Requirements:**
+        *   Expose `POST /api/v1/payments` accepting JSON body with fields `amount`, `currency`, `method`, `tenantId`.
+        *   Validate `tenantId` against authenticated user’s tenant scope.
+        *   Apply rate limiting (100 requests/minute per tenant) using Quarkus `RateLimit` interceptor.
+        *   Return `201 Created` with payment ID and location header.
+        *   Include CSRF token validation for web UI POST requests.
+#### SUB-TASK 1.3: Create payment API documentation
+##### Assigned Sub-Agent: doc
 ##### Targeted Components & Technical Requirements:
-* **Target Path:** ./sources/backend/src/main/java/org/nlhj/saas/membershippub/service/EnrollmentService.java;./sources/backend/src/test/java/org/nlhj/saas/membershippub/service/EnrollmentServiceTest.java
-    * **Architectural Requirements:**
-        * Mock Repository and KafkaProducer to verify event emission.
-        * Assert tenant isolation by checking tenant_id filter usage.
-        * Validate PII encryption by checking encrypted fields in persisted entity.
-
-#### SUB‑TASK 1.4: Update Multi‑Stage Dockerfile
-##### Assigned Sub-Agent: Docker
+*   **Target Path:** ./sources/backend/docs/payment-api.md
+    *   **Architectural Requirements:**
+        *   Document endpoint URLs, HTTP methods, request/response schemas, error codes, and authentication headers.
+        *   Include example payloads, security considerations, and OWASP compliance notes.
+#### SUB-TASK 1.4: Update Dockerfile for payment service
+##### Assigned Sub-Agent: docker
 ##### Targeted Components & Technical Requirements:
-* **Target Path:** ./sources/backend/docker/Dockerfile
-    * **Architectural Requirements:**
-        * Add stage for building Quarkus app with Maven.
-        * Include Kafka client libraries and JCA for TLS.
-        * Add health‑check endpoint `/q/health`.
-        * Reduce image size with jlink.
+*   **Target Path:** ./sources/backend/Dockerfile
+    *   **Architectural Requirements:**
+        *   Use multi‑stage build: first stage for Maven compile, second stage for lightweight Quarkus runner.
+        *   Copy `target/membershiphub-payment-service-runner.jar` as application binary.
+        *   Set JVM flags for memory limits (`-Xmx512m`).
+        *   Define health‑check endpoint `/q/health` for container orchestration.
 
-#### SUB‑TASK 1.5: Configure GCP IAM & Service Account
+### DAY 2: FRONTEND UI & TESTING FOUNDATION
+#### SUB-TASK 2.1: Develop Next.js payment UI components
+##### Assigned Sub-Agent: coder
+##### Targeted Components & Technical Requirements:
+*   **Target Path:** ./sources/frontend/src/components/PaymentForm.tsx
+    *   **Architectural Requirements:**
+        *   Build a controlled form with fields for amount, payment method (card/digital wallet), and tenant selection.
+        *   Integrate with `POST /api/v1/payments` via `fetch` with automatic `Authorization` header injection.
+        *   Display real‑time validation errors and success messages.
+        *   Include CSRF token in form submission for web security.
+*   **Target Path:** ./sources/frontend/src/pages/payments.tsx
+    *   **Architectural Requirements:**
+        *   Render `PaymentForm` and a list of recent payments fetched via `GET /api/v1/payments` (filtered by tenant).
+        *   Subscribe to Kafka WebSocket (via `socket.io`) to receive `PaymentCreatedEvent` updates and update UI instantly.
+#### SUB-TASK 2.2: Write unit test for PaymentService
+##### Assigned Sub-Agent: tester
+##### Targeted Components & Technical Requirements:
+*   **Target Path:** ./sources/backend/src/main/java/org/nlh4j/saas/membershiphub/service/PaymentService.java;./sources/backend/src/test/java/org/nlh4j/saas/membershiphub/service/PaymentServiceTest.java
+    *   **Architectural Requirements:**
+        *   Verify encryption/decryption round‑trip for card data.
+        *   Validate tenant isolation by asserting queries filter on `tenant_id`.
+        *   Test parameterized query safety by attempting injection payloads (should be sanitized).
+        *   Mock Kafka producer to confirm event emission.
+#### SUB-TASK 2.3: Perform static security analysis on PaymentService
+##### Assigned Sub-Agent: reviewer
+##### Targeted Components & Technical Requirements:
+*   **Target Path:** ./sources/backend/src/main/java/org/nlh4j/saas/membershiphub/service/PaymentService.java
+    *   **Architectural Requirements:**
+        *   Run OWASP Dependency Check for vulnerable libraries.
+        *   Validate absence of hardcoded credentials.
+        *   Ensure all SQL queries use JPA criteria or native query placeholders.
+        *   Confirm encryption key not stored in source code.
+#### SUB-TASK 2.4: Configure Cloud Run service definition
 ##### Assigned Sub-Agent: GCP
 ##### Targeted Components & Technical Requirements:
-* **Target Path:** ./sources/backend/gcp/iam-config.yml
-    * **Architectural Requirements:**
-        * Create service account "membershiphub-kafka" with roles "Kafka Admin", "Pub/Sub Publisher".
-        * Attach service account to Kubernetes service account via Workload Identity.
+*   **Target Path:** ./sources/backend/gcp/payment-service.yaml
+    *   **Architectural Requirements:**
+        *   Define container image repository (`gcr.io/<project>/membershiphub-payment`).
+        *   Set memory/cpu limits (`512Mi`, `1vCPU`).
+        *   Attach Cloud SQL instance service account with `cloudsql.user` role.
+        *   Configure environment variables for `TENANT_INTERVAL` and `KAFKA_BOOTSTRAP_SERVERS`.
+        *   Enable public invocation with IAM authentication.
 
-#### SUB‑TASK 1.6: Manager Orchestration & Validation
-##### Assigned Sub-Agent: Manager
+### DAY 3: INTEGRATION TESTING & DEPLOYMENT PREP
+#### SUB-TASK 3.1: Execute end‑to‑end payment flow test
+##### Assigned Sub-Agent: tester
 ##### Targeted Components & Technical Requirements:
-* **Target Path:** ./sources/backend/docs/enrollment-workflow.md
-    * **Architectural Requirements:**
-        * Document end‑to‑end enrollment flow, required permissions, and expected Kafka event structure.
-        * Validate that enrollment creates student account and triggers notification.
-
-### DAY 2: Promotion/Announcement CRUD & Multi‑Language SEO
-#### SUB‑TASK 2.1: Implement Promotion & Announcement Entities & Services
-##### Assigned Sub-Agent: Coder
+*   **Target Path:** INTEGRATION_SCOPE;./sources/frontend/tests/payment.e2e.spec.ts
+    *   **Architectural Requirements:**
+        *   Launch local Docker stack (via `docker-compose.yml`).
+        *   Authenticate as a test tenant, create a payment via UI, verify success toast.
+        *   Validate payment persisted via backend `/api/v1/payments/{id}` endpoint.
+        *   Confirm Kafka event received and UI updates in real time.
+        *   Clean up test data after each scenario.
+#### SUB-TASK 3.2: Update docker-compose for payment service
+##### Assigned Sub-Agent: docker
 ##### Targeted Components & Technical Requirements:
-* **Target Path:** ./sources/backend/src/main/java/org/nlhj/saas/membershippub/entity/Promotion.java
-* **Target Path:** ./sources/backend/src/main/java/org/nlhj/saas/membershippub/entity/Announcement.java
-* **Target Path:** ./sources/backend/src/main/java/org/nlhj/saas/membershippub/service/PromotionService.java
-* **Target Path:** ./sources/backend/src/main/java/org/nlhj/saas/membershippub/service/AnnouncementService.java
-    * **Architectural Requirements:**
-        * Define @TenantEntity with tenant_id discriminator column.
-        * Add expiry LocalDateTime fields; enforce validation (expiry >= now).
-        * Provide CRUD methods with @RolesAllowed("Admin","Manager").
-        * Emit Kafka events PromotionCreatedEvent / AnnouncementCreatedEvent.
-        * Use @Transactional for atomic writes.
-    * **Security Enforcement:**
-        * OWASP A03: SQL injection prevention via @QueryAnnotation with parameter binding.
-        * OWASP A02: Validate input length and content for XSS‑prone fields.
-
-#### SUB‑TASK 2.2: Create Kafka Producers for Promotion & Announcement Events
-##### Assigned Sub-Agent: Coder
-##### Targeted Components & Technical Requirements:
-* **Target Path:** ./sources/backend/src/main/java/org/nlhj/saas/membershippub/kafka/PromotionEventProducer.java
-* **Target Path:** ./sources/backend/src/main/java/org/nlhj/saas/membershippub/kafka/AnnouncementEventProducer.java
-    * **Architectural Requirements:**
-        * Configure separate Kafka topics "promotion-events" and "announcement-events".
-        * Include tenantId header for multi‑tenant routing.
-    * **Security Enforcement:**
-        * Secure producer configs via application.yml; rotate credentials via GCP Secret Manager.
-
-#### SUB‑TASK 2.3: Implement Multi‑Language SEO Meta Tags in Next.js
-##### Assigned Sub-Agent: Coder
-##### Targeted Components & Technical Requirements:
-* **Target Path:** ./sources/frontend/src/pages/promotions/[id].tsx
-* **Target Path:** ./sources/frontend/src/pages/announcements/[id].tsx
-    * **Architectural Requirements:**
-        * Generate `<meta>` tags per locale (en/vi) using `next/head`.
-        * Pull promotion/announcement title, description, and expiry from API; include `og:image` if available.
-        * Use `useRouter` to detect locale from URL path.
-    * **Security Enforcement:**
-        * Sanitize user‑provided content before embedding in meta tags to prevent XSS.
-
-#### SUB‑TASK 2.4: Write Unit Tests for Promotion & Announcement Services
-##### Assigned Sub-Agent: Tester
-##### Targeted Components & Technical Requirements:
-* **Target Path:** ./sources/backend/src/main/java/org/nlhj/saas/membershippub/service/PromotionService.java;./sources/backend/src/test/java/org/nlhj/saas/membershippub/service/PromotionServiceTest.java
-* **Target Path:** ./sources/backend/src/main/java/org/nlhj/saas/membershippub/service/AnnouncementService.java;./sources/backend/src/test/java/org/nlhj/saas/membershippub/service/AnnouncementServiceTest.java
-    * **Architectural Requirements:**
-        * Mock repository and Kafka producers.
-        * Verify expiry validation throws IllegalArgumentException.
-        * Assert tenant isolation via tenant_id filter.
-
-#### SUB‑TASK 2.5: Write Integration / UI Tests for Notification Flow
-##### Assigned Sub-Agent: Tester
-##### Targeted Components & Technical Requirements:
-* **Target Path:** INTEGRATION_SCOPE;./sources/frontend/tests/promotion.spec.ts
-    * **Architectural Requirements:**
-        * End‑to‑end test creating a promotion via API, verifying Kafka event triggers, and checking notification appears in UI.
-        * Use Cypress fixtures for multi‑language content.
-
-#### SUB‑TASK 2.6: Update GKE Deployment Manifests
+*   **Target Path:** ./sources/backend/docker-compose.yml
+    *   **Architectural Requirements:**
+        *   Define services: `payment-service`, `postgres`, `kafka`.
+        *   Link payment-service to PostgreSQL and Kafka networks.
+        *   Set environment variables for DB connection and Kafka bootstrap.
+        *   Include healthcheck for payment-service using `/q/health`.
+#### SUB-TASK 3.3: Create GKE deployment manifest
 ##### Assigned Sub-Agent: GKE
 ##### Targeted Components & Technical Requirements:
-* **Target Path:** ./sources/backend/k8s/deployment.yml
-    * **Architectural Requirements:**
-        * Add environment variables for Kafka bootstrap servers.
-        * Mount secret for GCP credentials.
-        * Apply PodSecurityPolicy to enforce non‑root user.
-
-#### SUB‑TASK 2.7: Manager Cross‑Team Validation
-##### Assigned Sub-Agent: Manager
+*   **Target Path:** ./sources/backend/k8s/payment-deployment.yaml
+    *   **Architectural Requirements:**
+        *   Deployment with image `gcr.io/<project>/membershiphub-payment:latest`.
+        *   Resource requests/limits matching Cloud Run spec.
+        *   ConfigMap referencing `application.yml`.
+        *   Secret for DB credentials (mounted as files).
+        *   Service exposing port 8080 with clusterIP.
+        *   Ingress rule for `/api/v1/payments/*`.
+#### SUB-TASK 3.4: Update integration guide documentation
+##### Assigned Sub-Agent: doc
 ##### Targeted Components & Technical Requirements:
-* **Target Path:** ./sources/backend/docs/promotion-announcement-validation.md
-    * **Architectural Requirements:**
-        * Verify CRUD endpoints respond with correct HTTP status codes.
-        * Confirm notifications sent to Zalo groups and FCM via Kafka consumer logs.
-        * Approve SEO meta tag generation for both languages.
+*   **Target Path:** ./sources/backend/docs/integration-guide.md
+    *   **Architectural Requirements:**
+        *   Step‑by‑step instructions to run local stack (`docker-compose up`).
+        *   Deployment flow to GCP Cloud Run and GKE.
+        *   Monitoring and logging setup (Cloud Monitoring, Loki).
+        *   Troubleshooting sections for payment failures and Kafka connectivity.
 
-### DAY 3: Real‑Time Dashboard Refresh, Advanced Tenant Isolation & Push Delivery Verification
-#### SUB‑TASK 3.1: Implement Scheduled Dashboard Refresh Job
-##### Assigned Sub-Agent: Coder
+### DAY 4: FINAL VERIFICATION, SECURITY & PRODUCTION READINESS
+#### SUB-TASK 4.1: Security lint on PaymentController
+##### Assigned Sub-Agent: reviewer
 ##### Targeted Components & Technical Requirements:
-* **Target Path:** ./sources/backend/src/main/java/org/nlhj/saas/membershippub/job/DashboardRefreshJob.java
-    * **Architectural Requirements:**
-        * Use Quarkus Scheduler @Scheduled(cron = "0 */15 * * * *") for 15‑min interval.
-        * Aggregate tenant‑filtered counts of active courses, enrollments, upcoming announcements.
-        * Store results in Redis cache key "dashboard:summary".
-    * **Security Enforcement:**
-        * Ensure job runs with minimal privileges; use tenantId from security context.
-
-#### SUB‑TASK 3.2: Add Advanced Tenant Isolation Filters
-##### Assigned Sub-Agent: Coder
+*   **Target Path:** ./sources/backend/src/main/java/org/nlh4j/saas/membershiphub/controller/PaymentController.java
+    *   **Architectural Requirements:**
+        *   Run OWASP Zap scan for common web vulnerabilities (SQLi, XSS, CSRF).
+        *   Validate input sanitization and output encoding.
+        *   Ensure proper HTTP status codes and error handling.
+        *   Confirm CORS policy restricts to allowed origins.
+#### SUB-TASK 4.2: Finalize Dockerfile multi‑stage build
+##### Assigned Sub-Agent: docker
 ##### Targeted Components & Technical Requirements:
-* **Target Path:** ./sources/backend/src/main/java/org/nlhj/saas/membershippub/repository/BaseRepository.java
-    * **Architectural Requirements:**
-        * Implement generic tenant filter method applyTenantFilter(Specification<T> spec, String tenantId).
-        * Override findAll() in all entity repositories to auto‑apply filter.
-    * **Security Enforcement:**
-        * OWASP A01: Prevent data leakage via tenantId injection using parameterized filter.
-
-#### SUB‑TASK 3.3: Implement Push Notification Delivery Verification
-##### Assigned Sub-Agent: Coder
-##### Targeted Components & Technical Requirements:
-* **Target Path:** ./sources/backend/src/main/java/org/nlhj/saas/membershippub/service/NotificationDeliveryVerifier.java
-    * **Architectural Requirements:**
-        * Call Zalo API and FCM endpoints; capture response codes.
-        * Implement retry logic (max 3 attempts) with exponential backoff.
-        * Log delivery status to audit table with tenantId.
-    * **Security Enforcement:**
-        * Store API keys in GCP Secret Manager; inject via application.yml.
-        * Validate webhook signatures from Zalo to prevent spoofing.
-
-#### SUB‑TASK 3.4: Write Unit Tests for Scheduled Job & Delivery Verifier
-##### Assigned Sub-Agent: Tester
-##### Targeted Components & Technical Requirements:
-* **Target Path:** ./sources/backend/src/main/java/org/nlhj/saas/membershippub/job/DashboardRefreshJob.java;./sources/backend/src/test/java/org/nlhj/saas/membershippub/job/DashboardRefreshJobTest.java
-* **Target Path:** ./sources/backend/src/main/java/org/nlhj/saas/membershippub/service/NotificationDeliveryVerifier.java;./sources/backend/src/test/java/org/nlhj/saas/membershippub/service/NotificationDeliveryVerifierTest.java
-    * **Architectural Requirements:**
-        * Mock Redis cache and scheduler trigger.
-        * Verify tenant filter applied in repository calls.
-        * Assert retry logic on failed external API calls.
-
-#### SUB‑TASK 3.5: Conduct OWASP Compliance Review
-##### Assigned Sub-Agent: Reviewer
-##### Targeted Components & Technical Requirements:
-* **Target Path:** ./sources/backend/src/main/java/org/nlhj/saas/membershippub/service/EnrollmentService.java
-* **Target Path:** ./sources/backend/src/main/java/org/nlhj/saas/membershippub/service/PromotionService.java
-* **Target Path:** ./sources/backend/src/main/java/org/nlhj/saas/membershippub/service/AnnouncementService.java
-* **Target Path:** ./sources/backend/src/main/java/org/nlhj/saas/membershippub/service/NotificationDeliveryVerifier.java
-    * **Architectural Requirements:**
-        * Verify parameterized queries, input validation, output encoding.
-        * Confirm JWT token verification includes audience and issuer checks.
-        * Ensure all sensitive fields are encrypted at rest.
-    * **Security Enforcement:**
-        * Document any findings and required remediation.
-
-#### SUB‑TASK 3.6: Update Dockerfile for Scheduled Job Dependencies
-##### Assigned Sub-Agent: Docker
-##### Targeted Components & Technical Requirements:
-* **Target Path:** ./sources/backend/docker/Dockerfile
-    * **Architectural Requirements:**
-        * Add JMX and metrics exporters (micrometer).
-        * Include Redis client libraries.
-        * Set JVM options for cron job isolation.
-
-#### SUB‑TASK 3.7: Configure Cloud Scheduler & GKE CronJob
+*   **Target Path:** ./sources/backend/Dockerfile
+    *   **Architectural Requirements:**
+        *   Add stage for building native image (`quarkus-native`) for reduced footprint.
+        *   Include `COPY --from=build /workspace/application/quarkus-run.jar`.
+        *   Set `ENTRYPOINT ["java","-jar","/quarkus-run.jar"]`.
+        *   Add `USER 1001` for non‑root execution.
+#### SUB-TASK 4.3: Deploy to Cloud Run
 ##### Assigned Sub-Agent: GCP
 ##### Targeted Components & Technical Requirements:
-* **Target Path:** ./sources/backend/gcp/cloudscheduler.yml
-    * **Architectural Requirements:**
-        * Create Cloud Scheduler job triggering GKE CronJob "dashboard-refresh" every 15 minutes.
-        * Set service account with roles "Cloud Scheduler Admin", "Kubernetes Engine Developer".
-
-#### SUB‑TASK 3.8: GKE Deployment & Security Policies
+*   **Target Path:** ./sources/backend/gcp/deploy-payment.sh
+    *   **Architectural Requirements:**
+        *   Authenticate with GCP (`gcloud auth activate-service-account`).
+        *   Build and push container image (`gcloud builds submit --tag gcr.io/<project>/membershiphub-payment`).
+        *   Deploy service (`gcloud run deploy payment-service --image gcr.io/<project>/membershiphub-payment --platform managed --region us-central1 --allow-unauthenticated`).
+        *   Update Cloud SQL instance private IP in service env.
+#### SUB-TASK 4.4: Deploy to GKE
 ##### Assigned Sub-Agent: GKE
 ##### Targeted Components & Technical Requirements:
-* **Target Path:** ./sources/backend/k8s/cronjob.yml
-    * **Architectural Requirements:**
-        * Define CronJob resource with image from updated Dockerfile.
-        * Apply PodSecurityPolicy restricting privileged containers.
-        * Enable audit logging via GCP Cloud Audit Logs.
-
-#### SUB‑TASK 3.9: Manager Final Sign‑Off
-##### Assigned Sub-Agent: Manager
+*   **Target Path:** ./sources/backend/k8s/deploy.sh
+    *   **Architectural Requirements:**
+        *   Configure kubectl context to GKE cluster.
+        *   Apply `payment-deployment.yaml` and `payment-service.yaml`.
+        *   Verify rollout status (`kubectl rollout status deployment/payment-service`).
+        *   Expose via Ingress with TLS.
+#### SUB-TASK 4.5: Finalize payment API documentation
+##### Assigned Sub-Agent: doc
 ##### Targeted Components & Technical Requirements:
-* **Target Path:** ./sources/backend/docs/phase4-final-signoff.md
-    * **Architectural Requirements:**
-        * Confirm all Phase 4 features implemented per requirements.
-        * Validate end‑to‑end test results (unit, integration, UI).
-        * Approve deployment to production GKE cluster.
+*   **Target Path:** ./sources/backend/docs/payment-api-final.md
+    *   **Architectural Requirements:**
+        *   Consolidate all endpoint details, request/response schemas, error codes.
+        *   Add security headers, rate limits, and tenant isolation notes.
+        *   Include sample curl commands and OpenAPI snippet.
+        *   Append deployment URLs (Cloud Run, GKE) for reference.

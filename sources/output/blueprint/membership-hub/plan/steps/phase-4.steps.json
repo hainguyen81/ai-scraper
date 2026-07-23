@@ -12,50 +12,34 @@
             "sub_tasks": [
                 {
                     "id": "D1_ST1",
-                    "agent": "Coder",
-                    "desc": "Coder Agent: No description provided",
+                    "agent": "coder",
+                    "desc": "coder Agent: No description provided",
                     "components": [
-                        "./sources/backend/src/main/java/org/nlhj/saas/membershippub/service/EnrollmentService.java"
+                        "./sources/backend/src/main/java/org/nlh4j/saas/membershiphub/service/PaymentService.java"
                     ]
                 },
                 {
                     "id": "D1_ST2",
-                    "agent": "Coder",
-                    "desc": "Coder Agent: No description provided",
+                    "agent": "coder",
+                    "desc": "coder Agent: No description provided",
                     "components": [
-                        "./sources/backend/src/main/java/org/nlhj/saas/membershippub/kafka/EnrollmentEventProducer.java"
+                        "./sources/backend/src/main/java/org/nlh4j/saas/membershiphub/controller/PaymentController.java"
                     ]
                 },
                 {
                     "id": "D1_ST3",
-                    "agent": "Tester",
-                    "desc": "Tester Agent: No description provided",
+                    "agent": "doc",
+                    "desc": "doc Agent: No description provided",
                     "components": [
-                        "./sources/backend/src/main/java/org/nlhj/saas/membershippub/service/EnrollmentService.java;./sources/backend/src/test/java/org/nlhj/saas/membershippub/service/EnrollmentServiceTest.java"
+                        "./sources/backend/docs/payment-api.md"
                     ]
                 },
                 {
                     "id": "D1_ST4",
-                    "agent": "Docker",
-                    "desc": "Docker Agent: No description provided",
+                    "agent": "docker",
+                    "desc": "docker Agent: No description provided",
                     "components": [
-                        "./sources/backend/docker/Dockerfile"
-                    ]
-                },
-                {
-                    "id": "D1_ST5",
-                    "agent": "GCP",
-                    "desc": "GCP Agent: No description provided",
-                    "components": [
-                        "./sources/backend/gcp/iam-config.yml"
-                    ]
-                },
-                {
-                    "id": "D1_ST6",
-                    "agent": "Manager",
-                    "desc": "Manager Agent: No description provided",
-                    "components": [
-                        "./sources/backend/docs/enrollment-workflow.md"
+                        "./sources/backend/Dockerfile"
                     ]
                 }
             ]
@@ -67,64 +51,35 @@
             "sub_tasks": [
                 {
                     "id": "D2_ST1",
-                    "agent": "Coder",
-                    "desc": "Coder Agent: No description provided",
+                    "agent": "coder",
+                    "desc": "coder Agent: No description provided",
                     "components": [
-                        "./sources/backend/src/main/java/org/nlhj/saas/membershippub/entity/Promotion.java",
-                        "./sources/backend/src/main/java/org/nlhj/saas/membershippub/entity/Announcement.java",
-                        "./sources/backend/src/main/java/org/nlhj/saas/membershippub/service/PromotionService.java",
-                        "./sources/backend/src/main/java/org/nlhj/saas/membershippub/service/AnnouncementService.java"
+                        "./sources/frontend/src/components/PaymentForm.tsx",
+                        "./sources/frontend/src/pages/payments.tsx"
                     ]
                 },
                 {
                     "id": "D2_ST2",
-                    "agent": "Coder",
-                    "desc": "Coder Agent: No description provided",
+                    "agent": "tester",
+                    "desc": "tester Agent: No description provided",
                     "components": [
-                        "./sources/backend/src/main/java/org/nlhj/saas/membershippub/kafka/PromotionEventProducer.java",
-                        "./sources/backend/src/main/java/org/nlhj/saas/membershippub/kafka/AnnouncementEventProducer.java"
+                        "./sources/backend/src/main/java/org/nlh4j/saas/membershiphub/service/PaymentService.java;./sources/backend/src/test/java/org/nlh4j/saas/membershiphub/service/PaymentServiceTest.java"
                     ]
                 },
                 {
                     "id": "D2_ST3",
-                    "agent": "Coder",
-                    "desc": "Coder Agent: No description provided",
+                    "agent": "reviewer",
+                    "desc": "reviewer Agent: No description provided",
                     "components": [
-                        "./sources/frontend/src/pages/promotions/[id].tsx",
-                        "./sources/frontend/src/pages/announcements/[id].tsx"
+                        "./sources/backend/src/main/java/org/nlh4j/saas/membershiphub/service/PaymentService.java"
                     ]
                 },
                 {
                     "id": "D2_ST4",
-                    "agent": "Tester",
-                    "desc": "Tester Agent: No description provided",
+                    "agent": "GCP",
+                    "desc": "GCP Agent: No description provided",
                     "components": [
-                        "./sources/backend/src/main/java/org/nlhj/saas/membershippub/service/PromotionService.java;./sources/backend/src/test/java/org/nlhj/saas/membershippub/service/PromotionServiceTest.java",
-                        "./sources/backend/src/main/java/org/nlhj/saas/membershippub/service/AnnouncementService.java;./sources/backend/src/test/java/org/nlhj/saas/membershippub/service/AnnouncementServiceTest.java"
-                    ]
-                },
-                {
-                    "id": "D2_ST5",
-                    "agent": "Tester",
-                    "desc": "Tester Agent: No description provided",
-                    "components": [
-                        "INTEGRATION_SCOPE;./sources/frontend/tests/promotion.spec.ts"
-                    ]
-                },
-                {
-                    "id": "D2_ST6",
-                    "agent": "GKE",
-                    "desc": "GKE Agent: No description provided",
-                    "components": [
-                        "./sources/backend/k8s/deployment.yml"
-                    ]
-                },
-                {
-                    "id": "D2_ST7",
-                    "agent": "Manager",
-                    "desc": "Manager Agent: No description provided",
-                    "components": [
-                        "./sources/backend/docs/promotion-announcement-validation.md"
+                        "./sources/backend/gcp/payment-service.yaml"
                     ]
                 }
             ]
@@ -136,78 +91,81 @@
             "sub_tasks": [
                 {
                     "id": "D3_ST1",
-                    "agent": "Coder",
-                    "desc": "Coder Agent: No description provided",
+                    "agent": "tester",
+                    "desc": "tester Agent: No description provided",
                     "components": [
-                        "./sources/backend/src/main/java/org/nlhj/saas/membershippub/job/DashboardRefreshJob.java"
+                        "INTEGRATION_SCOPE;./sources/frontend/tests/payment.e2e.spec.ts"
                     ]
                 },
                 {
                     "id": "D3_ST2",
-                    "agent": "Coder",
-                    "desc": "Coder Agent: No description provided",
+                    "agent": "docker",
+                    "desc": "docker Agent: No description provided",
                     "components": [
-                        "./sources/backend/src/main/java/org/nlhj/saas/membershippub/repository/BaseRepository.java"
+                        "./sources/backend/docker-compose.yml"
                     ]
                 },
                 {
                     "id": "D3_ST3",
-                    "agent": "Coder",
-                    "desc": "Coder Agent: No description provided",
+                    "agent": "GKE",
+                    "desc": "GKE Agent: No description provided",
                     "components": [
-                        "./sources/backend/src/main/java/org/nlhj/saas/membershippub/service/NotificationDeliveryVerifier.java"
+                        "./sources/backend/k8s/payment-deployment.yaml"
                     ]
                 },
                 {
                     "id": "D3_ST4",
-                    "agent": "Tester",
-                    "desc": "Tester Agent: No description provided",
+                    "agent": "doc",
+                    "desc": "doc Agent: No description provided",
                     "components": [
-                        "./sources/backend/src/main/java/org/nlhj/saas/membershippub/job/DashboardRefreshJob.java;./sources/backend/src/test/java/org/nlhj/saas/membershippub/job/DashboardRefreshJobTest.java",
-                        "./sources/backend/src/main/java/org/nlhj/saas/membershippub/service/NotificationDeliveryVerifier.java;./sources/backend/src/test/java/org/nlhj/saas/membershippub/service/NotificationDeliveryVerifierTest.java"
+                        "./sources/backend/docs/integration-guide.md"
+                    ]
+                }
+            ]
+        },
+        {
+            "day": 4,
+            "context_file": ".ai/.plan/.context/phase-4.context.blueprint.md",
+            "context_section": "DAY 4",
+            "sub_tasks": [
+                {
+                    "id": "D4_ST1",
+                    "agent": "reviewer",
+                    "desc": "reviewer Agent: No description provided",
+                    "components": [
+                        "./sources/backend/src/main/java/org/nlh4j/saas/membershiphub/controller/PaymentController.java"
                     ]
                 },
                 {
-                    "id": "D3_ST5",
-                    "agent": "Reviewer",
-                    "desc": "Reviewer Agent: No description provided",
+                    "id": "D4_ST2",
+                    "agent": "docker",
+                    "desc": "docker Agent: No description provided",
                     "components": [
-                        "./sources/backend/src/main/java/org/nlhj/saas/membershippub/service/EnrollmentService.java",
-                        "./sources/backend/src/main/java/org/nlhj/saas/membershippub/service/PromotionService.java",
-                        "./sources/backend/src/main/java/org/nlhj/saas/membershippub/service/AnnouncementService.java",
-                        "./sources/backend/src/main/java/org/nlhj/saas/membershippub/service/NotificationDeliveryVerifier.java"
+                        "./sources/backend/Dockerfile"
                     ]
                 },
                 {
-                    "id": "D3_ST6",
-                    "agent": "Docker",
-                    "desc": "Docker Agent: No description provided",
-                    "components": [
-                        "./sources/backend/docker/Dockerfile"
-                    ]
-                },
-                {
-                    "id": "D3_ST7",
+                    "id": "D4_ST3",
                     "agent": "GCP",
                     "desc": "GCP Agent: No description provided",
                     "components": [
-                        "./sources/backend/gcp/cloudscheduler.yml"
+                        "./sources/backend/gcp/deploy-payment.sh"
                     ]
                 },
                 {
-                    "id": "D3_ST8",
+                    "id": "D4_ST4",
                     "agent": "GKE",
                     "desc": "GKE Agent: No description provided",
                     "components": [
-                        "./sources/backend/k8s/cronjob.yml"
+                        "./sources/backend/k8s/deploy.sh"
                     ]
                 },
                 {
-                    "id": "D3_ST9",
-                    "agent": "Manager",
-                    "desc": "Manager Agent: No description provided",
+                    "id": "D4_ST5",
+                    "agent": "doc",
+                    "desc": "doc Agent: No description provided",
                     "components": [
-                        "./sources/backend/docs/phase4-final-signoff.md"
+                        "./sources/backend/docs/payment-api-final.md"
                     ]
                 }
             ]
