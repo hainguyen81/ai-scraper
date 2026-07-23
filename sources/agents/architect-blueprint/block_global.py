@@ -65,7 +65,7 @@ def generate_global_context(client: OpenAI, model_name: str, project_name: str, 
         raw_data = parseOpenAIResponseData(response)
         
         # write context
-        safe_name = project_name.replace(' ', '-')
+        safe_name = project_name.replace(' ', '-').lowwer()
         out_path = write_file(
             dir=os.path.join(out_dir, "context"),
             file_name=f"{safe_name}.global.blueprint.md",
@@ -73,12 +73,12 @@ def generate_global_context(client: OpenAI, model_name: str, project_name: str, 
         )
         
         # write log
-        write_log(0, instruction, log_prompt.replace('#', '##'), raw_data.replace('#', '##') if raw_data else "-", False, model_name_safe)
+        write_log(0, instruction, log_prompt.replace('#', '##'), raw_data.replace('#', '##') if raw_data else "-", False, model_name_safe, out_dir)
         
         print(f"✅ [BLOCK 1 SUCCESS] Saved Global Blueprint: {out_path}")
         return raw_data
     except Exception as e:
         print(f"❌ Failed to initiate chat/generate Global Blueprint: {e}")
-        write_log(0, instruction, log_prompt.replace('#', '##'), str(e), False, model_name_safe)
+        write_log(0, instruction, log_prompt.replace('#', '##'), str(e), False, model_name_safe, out_dir)
         return None
 

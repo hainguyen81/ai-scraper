@@ -30,7 +30,7 @@ def write_json_file(dir, file_name, json_data, append=False):
         json.dump(json_data, f, ensure_ascii=False, indent=4)
     return out_path # full path of file
 
-def write_log(phase_idx, instruction, prompt, raw_content, is_step, model_name=None):
+def write_log(phase_idx, instruction, prompt, raw_content, is_step, model_name=None, out_dir=None):
     pattern = r"\{.*\}|\[.*\]"
     raw_content = json_raw_content(raw_content)
     is_json = bool(re.search(pattern, raw_content, re.DOTALL))
@@ -47,8 +47,11 @@ def write_log(phase_idx, instruction, prompt, raw_content, is_step, model_name=N
     else:
         response_block = f"# Raw Response / Exception:\n\n```text\n{raw_content}\n```\n\n"
     log_content = header_title + instruction_block + response_block
-    os.makedirs(os.path.dirname(agent_working_history_file), exist_ok=True)
-    with open(agent_working_history_file, "a", encoding="utf-8") as file:
+    log_file = agent_working_history_file
+    if out_dir and len(out_dir) > 0:
+        log_file = os.path.join(out_dir, "architecture-blueprint.md")
+    os.makedirs(os.path.dirname(log_file), exist_ok=True)
+    with open(log_file, "a", encoding="utf-8") as file:
         file.write(log_content)
 
 def render_prompt(prompt_template_path: str, context: dict) -> str:

@@ -56,7 +56,8 @@ class PhaseStepsPlan(BaseModel):
     days: List[DailyStep] = Field(description="Day-by-day engineering tracking steps.")
 
 def project_context_file(project_name: str):
-    return f".ai/.context/{ project_name.lower() }.global.blueprint.md"
+    safe_name = project_name.replace(' ', '-').strip().lower()
+    return f".ai/.context/{ safe_name }.global.blueprint.md"
 
 def phase_context_file(phase_idx: int):
     return f".ai/.plan/.context/phase-{ phase_idx }.context.blueprint.md"
@@ -71,7 +72,7 @@ def dynamic_transform(json_data, project_name: str, phase_idx: int, template_fil
         # custom field mapping
         # print(f" │   └── ⚠️ The mapping JSON template: {template_content}")
         # print(f" │         { template_content }")
-        json_data['project_name'] = project_name.lower()
+        json_data['project_name'] = project_name.strip()
         json_data['global_context_file'] = project_context_file(project_name)
         json_data['phase_idx'] = phase_idx
         json_data['phase_context_file'] = phase_context_file(phase_idx)
@@ -117,7 +118,7 @@ def manual_transform(json_data, project_name: str, phase_idx: int):
     transform_json_data = {
         "phase_id": phase_idx,
         "phase_name": json_data.get("phase", f"Phase {phase_idx}"),
-        "project_name": project_name.lower(),
+        "project_name": project_name.strip(),
         "global_context_file": project_context_file(project_name),
         "source_target_dir": "sources/",
         "days": []
@@ -205,7 +206,7 @@ def convert_phases_to_json(client: OpenAI, model_name: str, project_name: str, n
             master_phase_plan = {
                 "phase_id": phase_idx,
                 "phase_name": f"Phase {phase_idx}",
-                "project_name": project_name.lower(),
+                "project_name": project_name.strip(),
                 "global_context_file": global_context_file,
                 "source_target_dir": "sources/",
                 "objectives": [],
@@ -232,7 +233,7 @@ def convert_phases_to_json(client: OpenAI, model_name: str, project_name: str, n
                 is_chunked_mode = True if DAYS_PER_CHUNK > 0 else False
                 prompt_context = {
                     "is_chunked": is_chunked_mode,
-                    "project_name": project_name,
+                    "project_name": project_name.strip(),
                     "phase_idx": phase_idx,
                     "current_start_day": current_start_day,
                     "current_end_day": current_end_day,
@@ -283,7 +284,7 @@ def convert_phases_to_json(client: OpenAI, model_name: str, project_name: str, n
                 # print(f" │         { dump_json_data }")
                 
                 # write log
-                write_log(log_phase_idx, instruction, log_prompt.replace('#', '##'), raw_data, True, model_name_safe)
+                write_log(log_phase_idx, instruction, log_prompt.replace('#', '##'), raw_data, True, model_name_safe, out_dir)
                 
                 # # Accumulate stream markers for audit logging preservation
                 # accumulated_raw_data += f"\n--- CHUNK {chunk_counter} RAW ---\n" + (raw_data if raw_data else "")
@@ -398,5 +399,5 @@ def convert_phases_to_json(client: OpenAI, model_name: str, project_name: str, n
         return result # success or empty phases
     except Exception as e:
         print(f"❌ Failed to initiate chat/generate Phase {log_phase_idx} Steps JSON: {str(e)}")
-        write_log(log_phase_idx, instruction, log_prompt.replace('#', '##'), str(e), True, model_name_safe)
+        write_log(log_phase_idx, instruction, log_prompt.replace('#', '##'), str(e), True, model_name_safe, out_dir)
         return False
