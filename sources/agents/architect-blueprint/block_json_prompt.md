@@ -50,7 +50,7 @@ Extract and translate ALL daily steps, checklists, and agent tasks from the enti
      *   Example correct JSON entry: `"components": ["./sources/backend/src/main/java/.../Service.java;./sources/backend/src/test/java/.../ServiceTest.java"]`
      *   Example for Integration Tests: `"components": ["INTEGRATION_SCOPE;./sources/backend/src/test/java/.../IntegTest.java"]`
    - **For 'Reviewer' tasks (Compiler Fixer Modality):** The 'components' array MUST contain the target file path requiring compilation fix, security hardening, or auto-patching. The path must be absolute to the module (e.g., `"components": ["./sources/backend/src/main/java/.../AttendanceService.java"]`).
-   - **Java Package Enforcement for Ingestion:** When parsing backend components ('Coder', 'Tester', 'Reviewer') into the 'components' array, you MUST verify that every single Java source or test file path strictly contains the enterprise package path segment: `/org/nlh4j/saas/{{ project_name }}/`.
+   - **Java Package Enforcement for Ingestion (Conditional):** ONLY if the backend technological stack uses Java, you MUST verify that every single Java source or test file path parsed into the 'components' array strictly contains the corporate package path segment: `/org/nlh4j/saas/{{ project_name }}/`.
          * *Correct Example:* `"components": ["./sources/backend/src/main/java/org/nlh4j/saas/cashflow/excel/EasyExcelReader.java"]`
          * If the source markdown omits this package prefix due to brevity, you MUST automatically inject and expand the path to include `/org/nlh4j/saas/{{ project_name }}/` based on Java package standards.
    - **For 'Docker' tasks:** The 'components' array MUST only contain Dockerfile configurations localized exactly inside their workspace subdirectories. 
@@ -60,7 +60,7 @@ Extract and translate ALL daily steps, checklists, and agent tasks from the enti
 
 ## 7. Context Fields: For each day object, set 'day' as the integer value of that day, set 'context_file' to '{{ project_phase_context_file }}', and set 'context_section' to 'DAY ' followed by the day number.
 ## 8. CHRONOLOGICAL TIMELINE RESET MANDATE (ABSOLUTE):
-Regardless of the actual day numbers documented in the source Markdown content (e.g., even if the text states "Days 4-7" or "Day 4 to Day 7"), you MUST reset the timeline timeline sequence internally for this JSON output so that it strictly starts from integer 1.
+Regardless of the actual day numbers documented in the source Markdown content (e.g., even if the text states "Days 4-7" or "Day 4 to Day 7"), you MUST reset the timeline sequence internally for this JSON output so that it strictly starts from integer 1.
    - The first operational day processed inside this Phase MUST always be gaged as "day": 1.
    - Sequential days must progress logically as 2, 3, 4, etc.
    - Example Transformation: Map "Day 4" to "day": 1, "Day 5" to "day": 2, "Day 6" to "day": 3, and "Day 7" to "day": 4.

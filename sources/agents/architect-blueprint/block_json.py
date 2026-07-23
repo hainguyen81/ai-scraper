@@ -382,7 +382,7 @@ def convert_phases_to_json(client: OpenAI, model_name: str, project_name: str, n
                 with open(fallback_path, "w", encoding="utf-8") as f:
                     f.write(raw_data)
                     f.write("\n-------------------------------------------------\n")
-                    f.write(json.dumps(master_phase_plan, indent=4, ensure_ascii=False))
+                    f.write(f"```text{json.dumps(master_phase_plan, indent=4, ensure_ascii=False)}```")
                     f.write("\n-------------------------------------------------\n")
                 print(f" │   └── ⚠️ Raw dump saved to diagnostic log file: {fallback_path}")
                 result = False
