@@ -350,16 +350,16 @@ def convert_phases_to_json(client: OpenAI, model_name: str, project_name: str, n
             try:
                 # transform mapping
                 transform_json_data = dynamic_transform(master_phase_plan, project_name, phase_idx, json_mapping, transform_log_path)
-                # dump_json_data = json.dumps(transform_json_data, indent=4, ensure_ascii=False) if transform_json_data else "Invalid JSON Data"
-                # print(f" │   └── 🎉 Transform Phase {phase_idx} Standardized JSON:")
-                # print(f" │         { dump_json_data }")
+                dump_json_data = json.dumps(transform_json_data, indent=4, ensure_ascii=False) if transform_json_data else "Invalid JSON Data"
+                print(f" │   └── 🎉 Transform Phase {phase_idx} Standardized JSON:")
+                print(f" │         { dump_json_data }")
                 
                 # 2. Parse and validate the string payload locally with Pydantic core engine
                 print(f" │   └── 🎉 Validate Phase {phase_idx} Standardized JSON...")
                 validated_pydantic_object = PhaseStepsPlan.model_validate(transform_json_data)
                 model_dump = validated_pydantic_object.model_dump()
                 # dump_json_data = json.dumps(model_dump, indent=4, ensure_ascii=False)
-                # rint(f" │         { dump_json_data }")
+                # print(f" │         { dump_json_data }")
                 
                 # validate if empty days
                 if not model_dump or len(model_dump.days) <= 0:
