@@ -374,7 +374,9 @@ jobs:
           
           # Execute the python architect core script with the dynamic paths
           python sources/agents/architect-blueprint/main.py \
-              --project-name "$PROJECT_NAME" --req "$REQUIREMENTS_FILE" --phases $NUM_PHASES --out "$OUT_DIR" \
+              --project-name "$PROJECT_NAME" \
+              --req "$REQUIREMENTS" --phases $NUM_PHASES \
+              --out "$OUT_DIR" \
               --api-key "$MODEL_KEY" --api-endpoint "$MODEL_ENDPOINT" \
               --api-model-global-context "$MODEL_GLOBAL" \
               --api-model-phase-context "$MODEL_PHASE" \
