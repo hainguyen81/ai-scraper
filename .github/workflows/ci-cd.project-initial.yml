@@ -135,6 +135,7 @@ jobs:
           TEMPLATE_DIR: ${{ inputs.template }}
           BLUEPRINT_DIR: ${{ inputs.blueprint }}
           REQUIREMENTS_FILE: ${{ inputs.requirements_file }}
+          LIBS_FOLDER: 'sources/libs'
         run: |
           echo "📂 Creating isolated temporary sync-workspace..."
           # 🧼 Create an isolated temporary synchronization workspace directory
@@ -153,6 +154,11 @@ jobs:
           fi
           if [ -f "$REQUIREMENTS_FILE" ]; then
             cp -r $REQUIREMENTS_FILE ../sync-workspace/docs/requirements/
+          fi
+          
+          # Copy libs for AI agents in new project
+          if [ -d "$LIBS_FOLDER" ]; then
+            cp -r $LIBS_FOLDER ../sync-workspace/.libs
           fi
           
           # 🔀 Change context directory to the decoupled target initialization workspace
