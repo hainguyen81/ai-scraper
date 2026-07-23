@@ -16,4 +16,5 @@ def load_project_agents_package():
         print(f"❌ Not found enviroment 'AGENTS_PACKAGE_PATH' or its value is not an existing folder to load...")
 
 # load agents package
-importlib.import_module(load_project_agents_package())
+if __name__ == "__main__":
+    importlib.import_module(load_project_agents_package())

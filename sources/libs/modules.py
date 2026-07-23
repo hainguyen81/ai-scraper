@@ -87,4 +87,5 @@ def load_folder_as_package(folder_path):
     return root_package
 
 # load current folder as python package
-importlib.import_module(load_folder_as_package(os.path.dirname(os.path.abspath(__file__))))
+if __name__ == "__main__":
+    importlib.import_module(load_folder_as_package(os.path.dirname(os.path.abspath(__file__))))
