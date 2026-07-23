@@ -11,12 +11,12 @@ on:
         type: boolean
       project_name:
         description: '📁 Project Name'
-        required: false
+        required: true
         default: 'test-ai-architecture'
         type: string
       requirements_file:
         description: '📄 Path to the project requirements file (Ex: sources/requirements/test-requirements.md)'
-        required: true
+        required: false
         default: ''
         type: string
       phases:
@@ -96,12 +96,12 @@ on:
         type: boolean
       project_name:
         description: '📁 Project Name'
-        required: false
+        required: true
         default: 'test-ai-architecture'
         type: string
       requirements_file:
         description: '📄 Path to the project requirements file (Ex: sources/requirements/test-requirements.md)'
-        required: true
+        required: false
         default: ''
         type: string
       phases:
