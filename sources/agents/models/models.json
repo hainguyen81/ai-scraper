@@ -163,21 +163,6 @@
         "api_endpoint": "https://openrouter.ai/api/v1"
     },
     {
-        "model_name": "openai/gpt-5-nano",
-        "provider": "OpenRouter AI",
-        "api_endpoint": "https://openrouter.ai/api/v1"
-    },
-    {
-        "model_name": "openai/gpt-4.1-nano",
-        "provider": "OpenRouter AI",
-        "api_endpoint": "https://openrouter.ai/api/v1"
-    },
-    {
-        "model_name": "openai/gpt-5.4-nano",
-        "provider": "OpenRouter AI",
-        "api_endpoint": "https://openrouter.ai/api/v1"
-    },
-    {
         "model_name": "openai/gpt-5.1-codex-mini",
         "provider": "OpenRouter AI",
         "api_endpoint": "https://openrouter.ai/api/v1"
@@ -586,11 +571,6 @@
     },
     {
         "model_name": "openai/gpt-4.1-mini",
-        "provider": "GitHub Merketplace Models",
-        "api_endpoint": "https://models.github.ai/inference"
-    },
-    {
-        "model_name": "openai/gpt-4.1-nano",
         "provider": "GitHub Merketplace Models",
         "api_endpoint": "https://models.github.ai/inference"
     },
