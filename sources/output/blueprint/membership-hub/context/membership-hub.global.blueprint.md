@@ -1,83 +1,36 @@
 # GLOBAL PROJECT CONTEXT: membership-hub
 
 ## 1. Executive Summary & Tech Stack Blueprint
-The membership-hub project is a multi-tenant, scalable application built using Java 17, Quarkus, Kafka, and Postgres. The tech stack includes:
+**Detected Architecture:** Multi‑platform hybrid (Java 17 Quarkus backend + Next.js TypeScript mobile/web frontend) with Kafka‑driven event streaming, PostgreSQL multi‑tenant data store, Docker containerization, and GCP GKE orchestration.  
 
-* Backend: Java 17, Quarkus, Kafka, Postgres
-* Frontend: Next.js, React
-* Mobile App: Next.js, React Native
-* Deployment: Docker, GCP, GKE
-* Security: OWASP, Multi-tenancy, Encryption
+**Core Tech Stack:**  
+- **Backend:** Quarkus (Jakarta EE), Java 17, Hibernate ORM, SmallRye Kafka, PostgreSQL JDBC, Argon2id password hashing, AES‑256‑GCM PII encryption, JWT (HS256) for internal auth, OAuth2 adapters for Firebase, Google, Facebook.  
+- **Frontend/Mobile:** Next.js (React), TypeScript, Tailwind CSS, i18n‑next for multi‑language SEO, React‑Query for API state, WebSocket/FCM bridge for push, QR‑scanner library, float AI chat widget (OpenAI/Anthropic SDK).  
+- **DevOps:** Maven/Gradle, Docker multi‑stage, Kubernetes manifests, GCP Cloud Build, Artifact Registry, IAM & Service Accounts, GKE deployment, CI/CD pipelines, Prometheus/Grafana monitoring.  
+- **Security & Compliance:** OWASP‑aligned hardening, tenant‑isolated `tenant_id` discriminator, Argon2id hashing, AES‑256‑GCM encryption, parameterized queries, rate‑limiting, token revocation, audit logging.  
 
-The project architecture is a microservices-based system, with separate services for user management, course management, and notification management.
+**System Truth:** A unified SaaS platform serving independent education centers as isolated tenants, with role‑based access, real‑time attendance via QR, point‑based student incentives, and omnichannel notifications (Zalo SMS, mobile push). All components are containerized, auto‑scalable on GKE, and globally SEO‑optimized for multiple locales.
 
 ## 2. Global Guardrails & Enterprise Compliance Standards
-The project must adhere to the following guardrails and standards:
+- **Absolute Workspace Boundary Rule:** The true repository workspace root is permanently fixed at the project root `./`. AI agents are strictly forbidden from emitting relative paths that assume a sub‑module directory is the root.  
+- **Mandatory Path Subdirectory Rule (Absolute Hard Constraint):** Every single file path, configuration, script, or test asset generated across all prompts MUST be strictly placed inside the `./sources/` directory. Generating files directly under the repository root (e.g., `./Dockerfile`) is permanently BANNED.  
+- **Conditional Path Prefixing (Apply ONLY where applicable to the project topology):** 
+  * All Backend service logics, microservices, configurations, database schemas, and backend tests must be prefixed with: `./sources/backend/` (If Microservices topology is detected, you MUST strictly use the alphanumeric lower‑case service name from requirements as the sub‑folder path, e.g., `./sources/backend/<service-name>/`). 
+  * All Frontend user interfaces, responsive views, mobile apps, state management packages, and client‑side tests must be prefixed with: `./sources/frontend/` (or `./sources/frontend/<app-name>/` if multiple apps exist. Skip entirely if project is Backend‑only). 
+  * For other project topologies (AI/Data, IoT, Embedded), paths must strictly map to logical root subdirectories matching the service domain under `./sources/`.  
+- **Java Enterprise Package Standard (Conditional - Apply ONLY to files with '.java' extension):** If the techstack utilizes Java/Quarkus/Spring, Java source codes MUST strictly reside within the corporate package foundation: `org.nlh4j.saas.<project_name_alphanumeric_lowercase>`. You MUST dynamically convert the string "membership-hub" by stripping out all whitespaces, hyphens, underscores, and special characters, transforming it into a strict pure alphanumeric lowercase token. This rule is STRICTLY BANNED from applying to non‑Java languages (e.g., Go, Python, Rust, TypeScript).  
+- **Strict Package‑to‑Path Mapping (Conditional - Apply ONLY to files with '.java' extension):** All physical Java files under `./sources/backend/src/main/java/` or `./sources/backend/src/test/java/` MUST follow the exact subdirectory layout matching the calculated lowercase token. 
+  * *Example Correct Path (if project name is "E‑Commerce‑App"):* `./sources/backend/src/main/java/org/nlh4j/saas/ecommerceapp/service/ReconciliationService.java`  
+- **Strict Tester Target Path Syntax (Polyglot Test Suites):** Any component targeted by a Tester Sub‑Agent must be structured as a strict semi‑colon separated pair `<source_component_or_token>;<test_suite_file_to_execute>`. Both paths inside the pair MUST be absolute to the workspace and begin with `./sources/`. 
+  * *For Unit Testing:* Match the exact physical class/component file path with its corresponding unit test path (e.g., `./sources/backend/src/main/...;./sources/backend/src/test/...`). 
+  * *For Integration / E2E / UI Testing:* If no single source file is isolated (e.g., cross‑component workflows, Kafka pipelines, API network loops, or UI flows), you MUST use the literal placeholder token `INTEGRATION_SCOPE` as the first parameter (e.g., `INTEGRATION_SCOPE;./sources/frontend/tests/auth.spec.ts`).  
+- **Memory, Ingestion, & Loop Constraints:** All generated code structures must strictly avoid runtime in‑memory large dataset loops (for‑loops over massive collections). Complex multi‑dataset processing or multi‑ledger matching must be delegated directly to native, indexed database relational operations (JOINs) or optimized stream‑based bulk processes. Standard heavy DOM‑mapping file‑parsing tools are banned; event‑driven stream‑based parsing configurations (such as SAX/StAX model or stream‑oriented high‑throughput parsers native to the techstack) must be strictly implemented for high‑throughput ingestion pipelines.  
 
-* **Absolute Workspace Boundary Rule:** The repository workspace root is fixed at the project root `./`.
-* **Mandatory Path Subdirectory Rule:** All files must be placed inside the `./sources/` directory.
-* **Conditional Path Prefixing:** Backend services must be prefixed with `./sources/backend/`, while frontend services must be prefixed with `./sources/frontend/`.
-* **Java Enterprise Package Standard:** Java source codes must reside within the corporate package foundation: `org.nlh4j.saas.membershiphub`.
-* **Strict Package-to-Path Mapping:** Java files must follow the exact subdirectory layout matching the calculated lowercase token.
-* **Strict Tester Target Path Syntax:** Tester sub-agents must use the literal placeholder token `INTEGRATION_SCOPE` for integration testing.
-
-## 3. High-Level Multi-Phase Architectural Synopsis Grid
-The project will be divided into exactly 5 phases, with each phase completed within a duration of 1-7 days. The phase breakdown is as follows:
-
-| Phase | Duration (Days) | Sub-Agent | Tasks |
-| --- | --- | --- | --- |
-| 1 | 3 | Manager Agent, Coder Agent | Project setup, backend service implementation (user management, course management) |
-| 2 | 2 | Coder Agent, Tester Agent | Frontend service implementation (Next.js, React), unit testing |
-| 3 | 4 | Coder Agent, Reviewer Agent | Mobile app implementation (Next.js, React Native), integration testing |
-| 4 | 3 | GCP Agent, GKE Agent | Deployment setup (Docker, GCP, GKE), security configuration |
-| 5 | 5 | Manager Agent, Reviewer Agent | Cross-system integration, performance profiling, OWASP security verification, production deployment |
-
-The tasks and sub-agents are assigned based on the detected project architecture and tech stack. The final phase is reserved for cross-system integration, security verification, and production deployment.
-
-## 4. Phase 1: Project Setup and Backend Service Implementation
-In this phase, the project setup will be completed, and the backend services for user management and course management will be implemented.
-
-* Tasks:
-	+ Project setup (Manager Agent)
-	+ Backend service implementation (user management, course management) (Coder Agent)
-* Sub-Agents: Manager Agent, Coder Agent
-* Duration: 3 days
-
-## 5. Phase 2: Frontend Service Implementation and Unit Testing
-In this phase, the frontend services will be implemented using Next.js and React, and unit testing will be completed.
-
-* Tasks:
-	+ Frontend service implementation (Next.js, React) (Coder Agent)
-	+ Unit testing (Tester Agent)
-* Sub-Agents: Coder Agent, Tester Agent
-* Duration: 2 days
-
-## 6. Phase 3: Mobile App Implementation and Integration Testing
-In this phase, the mobile app will be implemented using Next.js and React Native, and integration testing will be completed.
-
-* Tasks:
-	+ Mobile app implementation (Next.js, React Native) (Coder Agent)
-	+ Integration testing (Tester Agent)
-* Sub-Agents: Coder Agent, Tester Agent
-* Duration: 4 days
-
-## 7. Phase 4: Deployment Setup and Security Configuration
-In this phase, the deployment setup will be completed, and security configuration will be implemented.
-
-* Tasks:
-	+ Deployment setup (Docker, GCP, GKE) (GCP Agent)
-	+ Security configuration (GKE Agent)
-* Sub-Agents: GCP Agent, GKE Agent
-* Duration: 3 days
-
-## 8. Phase 5: Cross-System Integration, Performance Profiling, and Production Deployment
-In this phase, cross-system integration will be completed, performance profiling will be conducted, and the production deployment will be implemented.
-
-* Tasks:
-	+ Cross-system integration (Manager Agent)
-	+ Performance profiling (Reviewer Agent)
-	+ Production deployment (GKE Agent)
-* Sub-Agents: Manager Agent, Reviewer Agent, GKE Agent
-* Duration: 5 days
-
-The project will be completed within the specified 5 phases, with each phase building on the previous one to ensure a comprehensive and secure implementation of the membership-hub system.
+## 3. High‑Level Multi‑Phase Architectural Synopsis Grid
+| Phase | Duration (Days) | Primary Sub‑Agents | Core Features / Requirement Coverage |
+|-------|-----------------|--------------------|-------------------------------------|
+| **Phase 1 – Infrastructure & Foundation** | 3 | Manager, Coder, Docker, GCP, GKE | • Quarkus backend skeleton & Maven/Gradle build <br>• PostgreSQL schema with `tenant_id` discriminator (centers, users, roles, courses, enrollments, attendance, points, promotions, announcements) <br>• Kafka topics (notifications, attendance events) <br>• Authentication service (email/password + OAuth2 adapters for Firebase/Google/Facebook) with JWT issuance & verification <br>• Role‑based access control (System Admin, Admin, Manager, Teacher, Student) with tenant isolation <br>• Multi‑language locale detection & per‑user default locale storage <br>• SEO meta‑tag generation for multi‑lang pages <br>• Base Dockerfiles & GCP/GKE manifest placeholders under `./sources/` |
+| **Phase 2 – Student, Course & Attendance Core** | 2 | Coder, Tester, Docker | • Student registration, profile, card validity days & extension API <br>• Course CRUD (Admin), schedule definition, teacher assignment, overlap‑prevention validation <br>• Enrollment (Manager/Student), point accrual (10 pts per registration) <br>• QR code generation per student & scan endpoint (idempotent daily attendance) <br>• Remaining‑days calculation after attendance <br>• Notification pipeline (Zalo group SMS & mobile push) on enrollment, attendance, schedule changes <br>• Unit tests for attendance logic & point accrual |
+| **Phase 3 – Teacher, Center, Promotions & Announcements** | 2 | Coder, Tester, Docker, GCP | • Teacher CRUD, course assignment, notifications on assignment <br>• Center management UI (list, edit, assign Admin/Manager) – System Admin only visibility <br>• Promotions management (create/edit/delete, validity windows) <br>• Announcements management (create/edit/delete, validity windows) <br>• Dashboard: today’s courses, teacher, student card days, promotions, auto‑refresh every 15 min (environment‑driven interval) <br>• Broadcast notifications to all roles (except System Admin) via Zalo groups & mobile push <br>• Integration tests for promotion/announcement triggers |
+| **Phase 4 – Mobile Front‑end & AI CSKH** | 3 | Coder, Tester, Docker, GCP | • Next.js mobile app (iOS/Android) with responsive screens mirroring admin UI <br>• Role‑specific UI guards (Student, Teacher, Manager, Admin, System Admin) <br>• Multi‑language support, locale persistence, SEO for mobile <br>• Push notification receiver (WebSocket/FCM) & display <br>• Float AI chat widget integrated with backend APIs for course/teacher/center queries <br>• QR scanner component for attendance <br>• UI tests (E2E) for navigation, enrollment, chat, push receipt |
+| **Phase 5 – Integration, Security Hardening & Production Deployment** | 2 | Manager, Reviewer, Docker, GCP, GKE, Tester | • End‑to‑end integration test suites covering all requirement flows <br>• Multi‑tenant data leakage validation (tenant_id filtering audits) <br>• OWASP hardening: input validation, AES‑256‑GCM PII encryption, Argon2id password hashing, parameterized queries, injection defense, auth failure handling <br>• Multi‑stage Dockerfile for backend (`./sources/backend/Dockerfile`) and frontend (`./sources/frontend/Dockerfile`) <br>• GKE deployment YAMLs (Deployments, Services, Ingress, HPA) under `./sources/` <br>• GCP IAM policies, Service Accounts, Cloud Storage buckets, Cloud Build pipelines <br>• Performance profiling, scaling tests, monitoring stack (Prometheus/Grafana) <br>• Final sign‑off: 100 % requirement coverage, production‑ready artifact, security audit clearance |

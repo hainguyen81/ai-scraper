@@ -1,195 +1,167 @@
 # PHASE 5 CONTEXT BLUEPRINT: membership-hub
 
 ## 1. Phase Operational Scope & Objectives
-- **Cross-System Integration (Manager):** Establish end‑to‑end data flow and request routing across all microservices (user, course, notification), frontend, and mobile components. Implement tenant‑aware context propagation, health‑check orchestration, and integration test scripts to validate functional consistency.
-- **Performance Profiling (Reviewer):** Deploy a lightweight profiling utility that captures response latency, memory consumption, and thread metrics across all services. Configure thresholds, export data to monitoring (Prometheus), and enforce OWASP security hardening (parameterized queries, input validation, AES‑256 PII encryption, multi‑tenant isolation).
-- **Production Deployment (GKE):** Containerize the backend services, create Docker images, and publish them to GCR. Define Kubernetes Deployments, Services, Autoscaling, and CI/CD pipelines in GitHub Actions. Deploy to GKE, run validation scripts, and ensure zero‑downtime rollout with rollback capability.
+- **End‑to‑End Integration Testing:** Build and execute comprehensive integration test suites that validate all cross‑service flows (student enrollment, course assignment, QR attendance, point accrual, multi‑tenant notifications, promotion/announcement broadcasting, and AI chat widget interactions).  
+- **Multi‑Tenant Data Leakage Validation:** Develop automated audit scripts to verify tenant isolation across all data access paths, ensuring `tenant_id` filtering is enforced and no cross‑center data leakage occurs.  
+- **OWASP Hardening Implementation:** Enforce input validation, output encoding, AES‑256‑GCM PII encryption, Argon2id password hashing, parameterized queries, injection defenses, and robust authentication failure handling across the Quarkus backend.  
+- **Containerization & Multi‑Stage Docker Builds:** Produce production‑ready Dockerfiles for the Java backend (`./sources/backend/Dockerfile`) and the Next.js frontend (`./sources/frontend/Dockerfile`) with minimal image layers and security best‑practices.  
+- **GKE Production Deployment:** Generate Kubernetes manifests (Deployments, Services, Ingress, HPA, ConfigMaps, Secrets) under `./sources/` for both backend and frontend services, integrated with auto‑scaling and resource limits.  
+- **GCP Infrastructure & CI/CD:** Define IAM policies, service accounts, Cloud Storage buckets, and Cloud Build pipelines to automate build, test, and deploy workflows.  
+- **Monitoring & Performance Validation:** Instrument Prometheus/Grafana monitoring, run scaling tests, and verify performance metrics meet SLA targets.  
+- **Final Sign‑Off:** Achieve 100 % requirement coverage, secure artifact generation, and complete security audit clearance.
 
-## 2. Allowed Technical Scope & Directory Boundaries (Files, paths, and endpoints)
-- **Backend Java Services (under `./sources/backend/`):**
-  - `./sources/backend/src/main/java/org/nlh4j/saas/membershiphub/` – all domain, security, integration, monitoring, and repository components.
-  - `./sources/backend/src/main/resources/` – configuration (integration‑flow.yml, profiling‑config.yml, application‑properties).
-  - `./sources/backend/src/test/` – unit/integration test suites (if any).
-  - `./sources/backend/docker/` – Dockerfile(s) for each service.
-  - `./sources/backend/kubernetes/` – GKE Deployment, Service, Autoscaling, and ConfigMap manifests.
-  - `./sources/backend/scripts/` – deployment, validation, and integration test orchestration scripts.
-- **Frontend (under `./sources/frontend/`):** Not directly modified in Phase 5; existing Next.js/React assets remain unchanged.
-- **CI/CD (under `./sources/backend/.github/workflows/`):** Deploy‑to‑GKE pipeline YAML.
-- **Security Scan Reports:** `./sources/backend/security/` – OWASP scan report JSON.
-- **REST/GraphQL Endpoint Patterns (allowed for integration verification):**
-  - `POST /api/v1/auth/login`
-  - `GET /api/v1/users/{tenantId}/{userId}`
-  - `POST /api/v1/courses`
-  - `GET /api/v1/courses/{tenantId}`
-  - `POST /api/v1/notifications`
-  - `GET /api/v1/health`
-  - `GET /api/v1/metrics` (Prometheus endpoint)
+## 2. Allowed Technical Scope & Directory Boundaries
+- **Backend Java Sources:** `./sources/backend/src/main/java/org/nlh4j/saas/membershippub/` (all service, security, validation, encryption, and utility classes).  
+- **Backend Tests:** `./sources/backend/src/test/java/org/nlh4j/saas/membershippub/` (unit, integration, and security audit tests).  
+- **Frontend Sources:** `./sources/frontend/src/` (Next.js pages, components, API routes, i18n resources).  
+- **Frontend Tests:** `./sources/frontend/tests/` (Cypress/E2E specs, Jest unit tests).  
+- **Docker Files:** `./sources/backend/Dockerfile`, `./sources/frontend/Dockerfile`.  
+- **Kubernetes Manifests:** `./sources/gke/` (backend‑deployment.yaml, frontend‑deployment.yaml, service.yaml, ingress.yaml, hpa.yaml, configmap.yaml, secret.yaml).  
+- **GCP Infrastructure:** `./sources/gcp/` (iam-policy.yaml, service‑account.yaml, storage‑buckets.yaml, cloudbuild.yaml).  
+- **Monitoring & Profiling:** `./sources/monitoring/` (prometheus‑config.yaml, grafana‑dashboard.json).  
+- **Phase Documentation:** `./sources/phase5-signoff.md`.
 
-## 3. Dedicated Sub-Agent Functional Directives (Specific tasks for Coder, Tester, Reviewer, Docker, GCP, GKE, Manager)
-- **Manager Agent:** Lead cross‑system integration orchestration, define tenant‑aware routing, create integration flow configuration, health‑check services, and integration test scripts. Ensure all integration points enforce multi‑tenant `tenant_id` scopes and secure context propagation.
-- **Reviewer Agent:** Implement performance profiling utilities, configure monitoring thresholds, conduct OWASP security verification (scan for injection, XSS, CSRF, insecure deserialization), and apply security hardening (parameterized queries, input validation, AES‑256 encryption for PII, tenant isolation). Generate a security‑scan report and profiling metrics.
-- **GKE Agent:** Build Docker images (`Dockerfile`), define Kubernetes manifests (Deployments, Services, Autoscaling, ConfigMaps), create CI/CD pipeline (`.github/workflows/deploy-to-gke.yml`), execute deployment to GKE, run validation scripts, and manage rollback procedures.
+## 3. Dedicated Sub-Agent Functional Directives
+- **Coder:** Implement OWASP hardening utilities (AES‑256‑GCM encryption, Argon2id password hashing, input validation filters, parameterized query helpers), create integration test suite skeletons, and develop tenant‑isolation audit scripts.  
+- **Tester:** Execute integration test suites, run performance & scaling tests, validate monitoring stack, and perform security audit test runs.  
+- **Reviewer:** Conduct multi‑tenant data leakage audits, verify OWASP compliance of all code changes, and approve security hardening artifacts.  
+- **Docker:** Craft multi‑stage Dockerfiles with non‑root user, slimmed‑down base images, and security labels; build and push images to Artifact Registry.  
+- **GCP:** Define IAM roles, service accounts with least‑privilege, Cloud Storage buckets for artifacts, and Cloud Build triggers for CI/CD pipelines.  
+- **GKE:** Generate Kubernetes Deployment, Service, Ingress, HPA, ConfigMap, and Secret manifests; configure resource requests/limits and auto‑scaling policies.  
+- **Manager:** Orchestrate the overall Phase 5 workflow, coordinate agent hand‑offs, ensure all artifacts are placed under `./sources/`, and produce the final sign‑off documentation confirming 100 % coverage and audit clearance.
 
 ## 4. Phase Definition of Done (DoD)
-- **Integration:** All cross‑system workflows validated via integration scripts; health‑check endpoints return `200 OK` for each service; tenant isolation verified; no functional regression.
-- **Performance:** Profiling utility captures metrics; average response time ≤ 200 ms for critical endpoints; memory usage stable; profiling thresholds met; metrics exported to Prometheus and viewable.
-- **Security:** OWASP scan passes with zero high‑severity findings; security‑scan report generated; all components enforce parameterized queries, input validation, AES‑256 encryption for PII, and multi‑tenant scopes; security hardening applied.
-- **Deployment:** Docker images built and pushed to GCR; Kubernetes Deployments rolled out with zero‑downtime; Autoscaling configured; CI/CD pipeline executes successfully; validation scripts confirm service availability; rollback capability tested.
+- **Integration Coverage:** All core business flows exercised by integration tests; test pass rate ≥ 99 %.  
+- **Security Hardening:** OWASP top‑10 controls implemented (input validation, encryption, password hashing, parameterized queries, injection defense, auth failure handling).  
+- **Tenant Isolation:** Automated leakage audit passes with zero cross‑tenant data exposure.  
+- **Container Images:** Successful build of backend and frontend Docker images, scanned and compliant with vulnerability thresholds.  
+- **GKE Deployments:** All Kubernetes manifests applied, services reachable, HPA functional, resource limits enforced.  
+- **GCP Infrastructure:** IAM policies applied, service accounts scoped, Cloud Build pipeline triggers functional, artifact storage operational.  
+- **Monitoring & Performance:** Prometheus metrics collected, Grafana dashboards populated, scaling tests meet target latency and throughput.  
+- **Sign‑Off:** Phase 5 sign‑off document generated under `./sources/phase5-signoff.md` with checklist confirming all above milestones and 100 % requirement coverage.
 
 ## 5. DAY‑BY‑DAY ARCHITECTURAL EXECUTION LOGS
 
-### DAY 1: Establish Integration Orchestration and Container Images
-#### SUB‑TASK 1.1: Create Integration Orchestrator Component
-##### Assigned Sub-Agent: Manager
-##### Targeted Components & Technical Requirements:
-*   **Target Path:** ./sources/backend/src/main/java/org/nlh4j/saas/membershiphub/integration/IntegrationOrchestrator.java
-    *   **Architectural Requirements:**
-        *   Implement a singleton service that coordinates calls between user, course, and notification microservices.
-        *   Inject tenant‑aware `tenant_id` context into each outbound request.
-        *   Use reactive HTTP clients for non‑blocking integration.
-        *   **OWASP Compliance:** Ensure all inter‑service calls use parameterized payloads and validate incoming data against a schema to prevent injection attacks.
+### DAY 1: Integration Test Suite Construction & OWASP Hardening
 
-#### SUB‑TASK 1.2: Build Backend Docker Image
-##### Assigned Sub-Agent: GKE
+#### SUB-TASK 1.1: Implement OWASP Hardening Utilities (Encryption, Password Hashing, Input Validation)
+##### Assigned Sub-Agent: Coder
 ##### Targeted Components & Technical Requirements:
-*   **Target Path:** ./sources/backend/docker/Dockerfile
+*   **Target Path:** ./sources/backend/src/main/java/org/nlh4j/saas/membershippub/security/EncryptionService.java
     *   **Architectural Requirements:**
-        *   Base image: `eclipse-temurin:17-jdk-alpine`.
-        *   Copy compiled JAR (`target/*.jar`) to `/app/app.jar`.
-        *   Set JVM flags for container memory limits.
-        *   Expose port `8080`.
-        *   Define entrypoint to run Quarkus via `java -jar /app/app.jar`.
+        *   Provide AES‑256‑GCM encryption/decryption methods for PII fields with key management via GCP Secret Manager.
+        *   Enforce OWASP A03:2021 – Injection by using parameterized queries via Hibernate native query interfaces.
+        *   Implement Argon2id password hashing with salt length ≥ 16 bytes and iteration count ≥ 3 × 2⁸.
+        *   Add request/response validation filters that reject malformed JSON and enforce max payload size.
+*   **Target Path:** ./sources/backend/src/main/java/org/nlh4j/saas/membershippub/security/PasswordService.java
+    *   **Architectural Requirements:**
+        *   Centralize Argon2id hashing for all user credentials; integrate with Quarkus security event listeners.
+        *   Store hash with salt and version; enforce minimum work factor per OWASP guidelines.
+*   **Target Path:** ./sources/backend/src/main/java/org/nlh4j/saas/membershippub/filter/InputValidationFilter.java
+    *   **Architectural Requirements:**
+        *   Apply OWASP input validation patterns (SQL injection, XSS, LDAP injection) using Jakarta Validation API.
+        *   Log validation failures for audit; return 400 with generic error messages.
 
-#### SUB‑TASK 1.3: Define GKE Deployment Manifest
-##### Assigned Sub-Agent: GKE
+#### SUB-TASK 1.2: Create Integration Test Suite for Core Business Flows
+##### Assigned Sub-Agent: Coder
 ##### Targeted Components & Technical Requirements:
-*   **Target Path:** ./sources/backend/kubernetes/gke-deployment.yaml
+*   **Target Path:** ./sources/backend/src/test/java/org/nlh4j/saas/membershippub/integration/MembershipHubIntegrationTest.java
     *   **Architectural Requirements:**
-        *   Deploy the backend as a Deployment with 3 replicas.
-        *   Use the Docker image built in SUB‑TASK 1.2.
-        *   Mount ConfigMap for external properties.
-        *   Configure liveness and readiness probes (`/api/v1/health`).
-        *   Enforce resource limits (CPU 250m, Memory 512Mi) and autoscaling policies.
+        *   Use Testcontainers to spin PostgreSQL and Kafka for isolated integration testing.
+        *   Validate student enrollment → point accrual (10 pts) flow.
+        *   Verify QR attendance endpoint idempotency and remaining‑days calculation.
+        *   Test promotion/announcement broadcast to tenant groups and mobile push.
+        *   Include security checks for tenant isolation (ensure data of tenant‑A not accessible by tenant‑B).
 
-### DAY 2: Deploy Integration Flow Config and Implement Profiling Utility
-#### SUB‑TASK 2.1: Define Integration Flow Configuration
-##### Assigned Sub-Agent: Manager
+#### SUB-TASK 1.3: Execute Integration Test Suite
+##### Assigned Sub-Agent: Tester
 ##### Targeted Components & Technical Requirements:
-*   **Target Path:** ./sources/backend/src/main/resources/integration-flow.yml
+*   **Target Path:** INTEGRATION_SCOPE;./sources/backend/src/test/java/org/nlh4j/saas/membershippub/integration/MembershipHubIntegrationTest.java
     *   **Architectural Requirements:**
-        *   Declare service endpoints, retry policies, and timeout values.
-        *   Specify tenant isolation rules (header `X-Tenant-ID` propagation).
-        *   Document data transformation mappings for user, course, and notification payloads.
+        *   Run the suite against a temporary GKE cluster using KinD; capture pass/fail metrics.
+        *   Ensure all tenant‑isolation assertions pass; report any leakage.
 
-#### SUB‑TASK 2.2: Implement Performance Profiler Utility
+#### SUB-TASK 1.4: Perform Multi‑Tenant Data Leakage Audit
 ##### Assigned Sub-Agent: Reviewer
 ##### Targeted Components & Technical Requirements:
-*   **Target Path:** ./sources/backend/src/main/java/org/nlh4j/saas/membershiphub/monitoring/PerformanceProfiler.java
+*   **Target Path:** ./sources/backend/src/test/java/org/nlh4j/saas/membershippub/security/TenantIsolationAuditTest.java
     *   **Architectural Requirements:**
-        *   Capture JVM metrics (GC time, thread count), HTTP response times, and custom business metrics.
-        *   Export metrics via Prometheus `CollectorRegistry`.
-        *   **OWASP Compliance:** Ensure profiler does not log sensitive data; sanitize any collected request attributes.
-    *   **Security Enforcement:**
-        *   Apply AES‑256 encryption for any persisted metric snapshots.
-        *   Enforce role‑based access for profiler endpoints (`/api/v1/metrics` only accessible by `SysAdmin`).
+        *   Write queries that attempt cross‑tenant access on each entity (centers, users, courses, enrollments, attendance, points, promotions, announcements).
+        *   Assert that all such queries return zero rows, confirming `tenant_id` filtering enforcement.
+        *   Generate a compliance report stored in `./sources/tenant‑leakage‑report.json`.
 
-#### SUB‑TASK 2.3: Configure Profiling Thresholds
-##### Assigned Sub-Agent: Reviewer
+### DAY 2: Containerization, GKE Deployment, GCP Infrastructure & Final Sign‑Off
+
+#### SUB-TASK 2.1: Build Multi‑Stage Dockerfiles for Backend & Frontend
+##### Assigned Sub-Agent: Docker
 ##### Targeted Components & Technical Requirements:
-*   **Target Path:** ./sources/backend/src/main/resources/profiling-config.yml
+*   **Target Path:** ./sources/backend/Dockerfile
     *   **Architectural Requirements:**
-        *   Define alert thresholds (e.g., response time > 500 ms, memory usage > 80 % of limit).
-        *   Set export interval (30 seconds) and Prometheus endpoint (`http://prometheus:9090`).
-    *   **OWASP Compliance:** Validate configuration file content to prevent injection of malicious YAML scripts.
+        *   Use `eclipse-temurin:17-jdk-alpine` as base; copy Maven wrapper and project; run `mvn package -DskipTests`; create a distroless runtime image with non‑root user.
+        *   Include security labels (`org.opencontainers.image.base.name`, `org.nlh4j.saas.security=true`).
+*   **Target Path:** ./sources/frontend/Dockerfile
+    *   **Architectural Requirements:**
+        *   Use `node:20-alpine` as builder; install dependencies, build Next.js app; copy to nginx Alpine image; expose port 80; run as non‑root user.
+        *   Apply `nginx` security hardening (disable unnecessary modules, limit CPU/Memory).
 
-### DAY 3: Health‑Check Services and Deployment Automation
-#### SUB‑TASK 3.1: Create Health‑Check Service
+#### SUB-TASK 2.2: Generate GKE Deployment Manifests
+##### Assigned Sub-Agent: GKE
+##### Targeted Components & Technical Requirements:
+*   **Target Path:** ./sources/gke/backend-deployment.yaml
+    *   **Architectural Requirements:**
+        *   Deploy Quarkus app with 3 replicas, resource requests/limits (CPU 500m/1000m, Memory 1Gi/2Gi).
+        *   Use `imagePullSecrets` for Artifact Registry authentication.
+        *   Include liveness/readiness probes.
+*   **Target Path:** ./sources/gke/frontend-deployment.yaml
+    *   **Architectural Requirements:**
+        *   Deploy Next.js via nginx with 2 replicas, similar resource limits.
+        *   Mount ConfigMap for environment variables (e.g., `APP_ENV`, `LOCALE_DEFAULT`).
+*   **Target Path:** ./sources/gke/service.yaml
+    *   **Architectural Requirements:**
+        *   Expose backend on port 8080, frontend on port 80; set appropriate `sessionAffinity` for tenant sticky sessions.
+*   **Target Path:** ./sources/gke/ingress.yaml
+    *   **Architectural Requirements:**
+        *   Define Ingress with TLS, host rules for `membership-hub.internal` and `membership-hub.com`.
+*   **Target Path:** ./sources/gke/hpa.yaml
+    *   **Architectural Requirements:**
+        *   Configure Horizontal Pod Autoscaler based on CPU and custom metrics (e.g., Kafka lag).
+
+#### SUB-TASK 2.3: Define GCP IAM, Service Accounts & Cloud Build Pipelines
+##### Assigned Sub-Agent: GCP
+##### Targeted Components & Technical Requirements:
+*   **Target Path:** ./sources/gcp/iam-policy.yaml
+    *   **Architectural Requirements:**
+        *   Create service accounts `backend-sa` and `frontend-sa` with roles `CloudDeployer`, `ArtifactRegistry.Writer`, `CloudSQL.User`, `Pub/Sub.Publisher`, `Pub/Sub.Subscriber`.
+        *   Enforce least‑privilege; attach `tenant‑specific` role constraints.
+*   **Target Path:** ./sources/gcp/service-account-backend.yaml
+    *   **Architectural Requirements:**
+        *   Define JSON key template for backend service account; store in Secret Manager.
+*   **Target Path:** ./sources/gcp/service-account-frontend.yaml
+    *   **Architectural Requirements:**
+        *   Define JSON key template for frontend service account; store in Secret Manager.
+*   **Target Path:** ./sources/gcp/cloudbuild.yaml
+    *   **Architectural Requirements:**
+        *   Trigger builds on source changes; steps: `mvn clean package`, `docker build -f ./sources/backend/Dockerfile`, `docker build -f ./sources/frontend/Dockerfile`, push to Artifact Registry, invoke Cloud Deploy release.
+
+#### SUB-TASK 2.4: Run Performance & Scaling Tests, Validate Monitoring Stack
+##### Assigned Sub-Agent: Tester
+##### Targeted Components & Technical Requirements:
+*   **Target Path:** INTEGRATION_SCOPE;./sources/backend/tests/PerformanceTest.java
+    *   **Architectural Requirements:**
+        *   Simulate concurrent enrollment and attendance requests (e.g., 500 RPS) using Gatling.
+        *   Measure response times, error rates, and throughput; assert p95 < 200 ms.
+*   **Target Path:** INTEGRATION_SCOPE;./sources/monitoring/prometheus-config.yaml
+    *   **Architectural Requirements:**
+        *   Define metrics for Quarkus (JVM, HTTP, Kafka) and Next.js (request duration, error rate).
+*   **Target Path:** INTEGRATION_SCOPE;./sources/monitoring/grafana-dashboard.json
+    *   **Architectural Requirements:**
+        *   Create panels for active tenants, enrollment rate, attendance count, point accrual, and AI chat usage.
+
+#### SUB-TASK 2.5: Produce Phase 5 Sign‑Off Documentation
 ##### Assigned Sub-Agent: Manager
 ##### Targeted Components & Technical Requirements:
-*   **Target Path:** ./sources/backend/src/main/java/org/nlh4j/saas/membershiphub/integration/HealthCheckService.java
+*   **Target Path:** ./sources/phase5-signoff.md
     *   **Architectural Requirements:**
-        *   Expose `/api/v1/health` endpoint returning status of each downstream service.
-        *   Perform tenant‑scoped checks using the `tenant_id` from request headers.
-        *   Return structured JSON with overall status and per‑service details.
-    *   **Security Enforcement:** Ensure health endpoint does not leak internal stack traces; return generic status codes.
-
-#### SUB‑TASK 3.2: Define Docker Compose for Local Validation
-##### Assigned Sub-Agent: GKE
-##### Targeted Components & Technical Requirements:
-*   **Target Path:** ./sources/backend/docker-compose.yml
-    *   **Architectural Requirements:**
-        *   Define services for backend, PostgreSQL, Kafka, and Prometheus.
-        *   Use environment variables for configuration (e.g., `TENANT_ID`).
-        *   Ensure network isolation for backend service.
-
-#### SUB‑TASK 3.3: Configure GKE Autoscaling
-##### Assigned Sub-Agent: GKE
-##### Targeted Components & Technical Requirements:
-*   **Target Path:** ./sources/backend/kubernetes/autoscaling.yaml
-    *   **Architectural Requirements:**
-        *   Define Horizontal Pod Autoscaler targeting CPU utilization > 70 %.
-        *   Set minimum replicas to 2, maximum to 10.
-        *   Bind autoscaler to the backend Deployment.
-
-### DAY 4: Security Hardening and OWASP Verification
-#### SUB‑TASK 4.1: Implement Tenant‑Aware Routing Filter
-##### Assigned Sub-Agent: Manager
-##### Targeted Components & Technical Requirements:
-*   **Target Path:** ./sources/backend/src/main/java/org/nlh4j/saas/membershiphub/security/TenantRoutingFilter.java
-    *   **Architectural Requirements:**
-        *   Intercept all inbound requests, extract `X-Tenant-ID` header.
-        *   Validate tenant existence and assign to security context.
-        *   Propagate tenant ID to downstream service calls.
-    *   **OWASP Compliance:** Sanitize tenant ID input (alphanumeric only) to prevent injection.
-
-#### SUB‑TASK 4.2: Conduct OWASP Security Scan and Generate Report
-##### Assigned Sub-Agent: Reviewer
-##### Targeted Components & Technical Requirements:
-*   **Target Path:** ./sources/backend/security/owasp-scan-report.json
-    *   **Architectural Requirements:**
-        *   Run static analysis (SonarQube) and dependency check (OWASP Dependency‑Check).
-        *   Capture findings, severity levels, and remediation suggestions.
-    *   **OWASP Compliance:** Ensure scan includes checks for A01:2021‑Broken Access Control, A03:2021‑Injection, A07:2021‑Identification and Authentication Failures.
-    *   **Security Enforcement:** Apply fixes for high‑severity issues (e.g., replace string concatenation with prepared statements, enforce password complexity).
-
-#### SUB‑TASK 4.3: Create Secure Repository Component
-##### Assigned Sub-Agent: Reviewer
-##### Targeted Components & Technical Requirements:
-*   **Target Path:** ./sources/backend/src/main/java/org/nlh4j/saas/membershiphub/repository/SecureUserRepository.java
-    *   **Architectural Requirements:**
-        *   Use Spring Data JPA with `@Query` annotations employing named parameters.
-        *   Implement method-level `@PreAuthorize("hasRole('ADMIN')")` for sensitive operations.
-        *   Encrypt PII fields at rest using AES‑256 with a tenant‑specific key.
-    *   **OWASP Compliance:** All queries are parameterized; no dynamic SQL concatenation.
-
-### DAY 5: Final Integration Validation and Production Deployment
-#### SUB‑TASK 5.1: Execute End‑to‑End Integration Test Suite
-##### Assigned Sub-Agent: Manager
-##### Targeted Components & Technical Requirements:
-*   **Target Path:** ./sources/backend/scripts/integration-test.sh
-    *   **Architectural Requirements:**
-        *   Invoke the IntegrationOrchestrator to simulate a full user‑course‑notification flow.
-        *   Validate data consistency across services using health‑check endpoints.
-        *   Assert tenant isolation by running parallel requests with different `X-Tenant-ID`s.
-    *   **Security Enforcement:** Ensure test script does not expose credentials; use environment variables for secrets.
-
-#### SUB‑TASK 5.2: Deploy to GKE via CI/CD Pipeline
-##### Assigned Sub-Agent: GKE
-##### Targeted Components & Technical Requirements:
-*   **Target Path:** ./sources/backend/.github/workflows/deploy-to-gke.yml
-    *   **Architectural Requirements:**
-        *   Trigger on `main` branch push.
-        *   Build Docker image, push to GCR.
-        *   Apply Kubernetes manifests (`gke-deployment.yaml`, `autoscaling.yaml`).
-        *   Wait for rollout status and perform health‑check verification.
-    *   **Security Enforcement:** Use workload identity for GKE service account; restrict pipeline permissions to required resources.
-
-#### SUB‑TASK 5.3: Validate Deployment and Execute Rollback if Needed
-##### Assigned Sub-Agent: GKE
-##### Targeted Components & Technical Requirements:
-*   **Target Path:** ./sources/backend/scripts/validate-deployment.sh
-    *   **Architectural Requirements:**
-        *   Query GKE deployment status (`kubectl get deployment backend`).
-        *   Hit `/api/v1/health` and `/api/v1/metrics` endpoints; verify HTTP 200 and expected metric patterns.
-        *   If any check fails, trigger rollback to previous stable version (`kubectl rollout undo deployment/backend`).
-    *   **Security Enforcement:** Log validation results to a secure audit bucket; ensure scripts run with least‑privilege service account.
+        *   Summarize all completed sub‑tasks, list passed test suites, confirm OWASP hardening checklist items.
+        *   Attach links to Docker images in Artifact Registry, GKE deployment URLs, and monitoring dashboards.
+        *   Declare 100 % requirement coverage and security audit clearance.

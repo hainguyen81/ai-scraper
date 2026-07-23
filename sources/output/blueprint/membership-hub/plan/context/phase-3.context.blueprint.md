@@ -1,174 +1,389 @@
 # PHASE 3 CONTEXT BLUEPRINT: membership-hub
 
 ## 1. Phase Operational Scope & Objectives
-Phase 3 delivers the native mobile experience for membership‑hub using a unified Next.js/React Native codebase. The implementation must provide role‑based UI, multi‑language support, QR‑based attendance capture, real‑time push notifications, and seamless integration with the existing Java/Quarkus backend services (user, course, notification APIs). All mobile components are built under the `./sources/frontend/` hierarchy, with dedicated mobile sub‑folders to keep web and app code isolated while sharing common utilities and i18n configuration. Integration testing validates end‑to‑end workflows across the mobile client, backend APIs, and external services (Zalo groups, push notification gateways). The phase concludes with a fully functional mobile app that passes OWASP‑aligned security checks and achieves ≥ 80 % integration test coverage.
+Implement Teacher, Center, Promotions & Announcements management capabilities for the multi‑tenant SaaS platform. This phase delivers:
 
-## 2. Allowed Technical Scope & Directory Boundaries (Files, paths, and endpoints)
-- `./sources/frontend/` – root for all front‑end assets (web + mobile).  
-- `./sources/frontend/mobile/` – mobile‑specific source tree.  
-- `./sources/frontend/mobile/src/` – entry point (`App.js`/`_app.tsx`), navigation, and core modules.  
-- `./sources/frontend/mobile/src/screens/` – role‑specific screen components (StudentDashboard, TeacherSchedule, AdminCenter, etc.).  
-- `./sources/frontend/mobile/src/components/` – reusable UI primitives (QRScanner, NotificationBadge, RoleGuard, etc.).  
-- `./sources/frontend/mobile/src/services/` – API client wrappers for attendance, user, course, notification endpoints (expects HTTPS, tenant_id header, JWT auth).  
-- `./sources/frontend/mobile/src/utils/` – i18n configuration, secure storage helpers, QR validation, and OWASP‑compliant crypto utilities.  
-- `./sources/frontend/tests/` – test suites; integration tests use the `INTEGRATION_SCOPE` token.  
-- `./sources/frontend/tests/mobile.integration.spec.ts` – end‑to‑end test file verifying attendance flow, notifications, and role‑based navigation.  
+* **Teacher CRUD & Course Assignment** – Create/Read/Update/Delete teacher records, assign/unassign teachers to courses, and emit real‑time notifications to teachers via Zalo groups and mobile push.  
+* **Center Management UI** – System‑Admin‑only console for listing, editing, and assigning Admins/Managers to centers; tenant‑isolated data access.  
+* **Promotions Management** – Full lifecycle (create/edit/delete) of promotional programs with validity windows; broadcast to all non‑System‑Admin roles.  
+* **Announcements Management** – Parallel CRUD for admin announcements with validity windows; same broadcast semantics as promotions.  
+* **Dashboard Integration** – Consolidated view of today’s courses/teachers, student card remaining days, active promotions/announcements; auto‑refresh every 15 min driven by environment variable.  
+* **Broadcast Notification Service** – Unified backend service that pushes messages to Zalo groups and mobile push (FCM/WebSocket) for all relevant role groups.  
+* **Integration Test Coverage** – End‑to‑end verification of promotion/announcement triggers, tenant isolation, and notification delivery.
 
-*Backend API contracts are assumed to exist under `./sources/backend/...` and are referenced by the mobile services; no backend source creation is required in this phase.*
+All components must obey OWASP hardening (parameterized queries, tenant_id isolation, AES‑256‑GCM PII encryption where applicable) and follow the Java package convention `org.nlh4j.saas.membershiphub`.
+
+## 2. Allowed Technical Scope & Directory Boundaries
+* **Backend Service** – Single monolithic service named `membership-hub`.  
+  * `./sources/backend/membership-hub/src/main/java/org/nlh4j/saas/membershiphub/` – Java domain models, services, controllers.  
+  * `./sources/backend/membership-hub/src/main/resources/` – Quarkus config, schema migrations (Flyway/Liquibase).  
+  * `./sources/backend/membership-hub/src/test/java/org/nlh4j/saas/membershiphub/` – Unit/Integration test suites.  
+  * `./sources/backend/membership-hub/Dockerfile` – Multi‑stage container image.  
+  * `./sources/backend/membership-hub/src/main/docker/` – Optional Kafka/connect configs.  
+
+* **Frontend Web & Mobile Apps** – Unified Next.js codebase.  
+  * `./sources/frontend/src/` – React components, pages, i18n resources, state (React‑Query).  
+  * `./sources/frontend/src/components/` – Role‑based UI guards, dashboard, teacher/center/promotion/announcement forms.  
+  * `./sources/frontend/src/services/` – API client, WebSocket/FCM bridges, notification stream.  
+  * `./sources/frontend/src/tests/` – Jest/React‑Testing‑Library unit & integration tests.  
+  * `./sources/frontend/Dockerfile` – Container image for web/mobile serving.  
+
+* **DevOps & Orchestration** –  
+  * `./sources/backend/membership-hub/k8s/` – GKE Deployment, Service, Ingress, HPA manifests.  
+  * `./sources/frontend/k8s/` – Corresponding frontend service definitions.  
+  * `./sources/infra/` – GCP Cloud Build pipelines, IAM policies, Service Accounts, Artifact Registry configs.  
+
+All paths are absolute to the workspace root and strictly under `./sources/`.
 
 ## 3. Dedicated Sub-Agent Functional Directives
-- **Coder Agent** – Build the mobile application stack: project scaffolding, authentication flow, navigation, screen implementations, QR scanner integration, push‑notification handling, multi‑language i18n, and secure data storage. Embed OWASP compliance (multi‑tenancy `tenant_id` headers, AES‑256 encryption for PII, input validation, secure token storage, and parameterized API calls). Ensure all components follow the `./sources/frontend/` topology and are testable.
-- **Tester Agent** – Execute integration testing for the mobile client: validate attendance QR scanning, notification delivery, role‑based UI access, and cross‑service API calls. Use the `INTEGRATION_SCOPE` token for multi‑component workflow verification. Generate a comprehensive test report meeting ≥ 80 % coverage and OWASP security validation.
+* **Coder** – Implement domain entities, Spring‑Boot (Quarkus) services, REST controllers, notification dispatch logic, and frontend React components. Inject OWASP compliance (parameterized queries, tenant_id filtering, AES‑256‑GCM for PII).  
+* **Tester** – Write unit tests for service logic and integration/E2E tests for promotion/announcement workflows; use `INTEGRATION_SCOPE` where tests span multiple components.  
+* **Docker** – Update multi‑stage Dockerfiles for backend and frontend, ensure proper JVM/Memory settings, and add health‑check probes.  
+* **GCP** – Create/ amend Cloud Build triggers, IAM Service Accounts, and Artifact Registry repositories; configure GKE namespace and resource quotas.  
+* **GKE** – Produce Kubernetes manifests for deployments, services, ingress, and HPA; embed tenant‑aware resource limits.  
+* **Manager** – Oversee cross‑component integration, validate tenant isolation, and ensure all generated artifacts conform to the `./sources/` boundary rule.
 
 ## 4. Phase Definition of Done (DoD)
-- **Functional Milestones**  
-  - Mobile app entry point (`./sources/frontend/mobile/src/App.js`) bootstraps with role‑based router.  
-  - Authentication module (`./sources/frontend/mobile/src/services/authService.js`) securely stores JWT, includes `tenant_id` header, and enforces password complexity.  
-  - QR scanner component (`./sources/frontend/mobile/src/components/QRScanner.js`) validates scanned data per OWASP A03 (Injection) and triggers attendance API.  
-  - Attendance service (`./sources/frontend/mobile/src/services/attendanceService.js`) calls backend `/api/v1/attendance` with encrypted payload and tenant context.  
-  - Notification service (`./sources/frontend/mobile/src/services/notificationService.js`) integrates with push gateways and Zalo group APIs.  
-  - Multi‑language support (`./sources/frontend/mobile/src/utils/i18n.js`) detects device locale, persists user choice, and renders UI strings.  
-  - Role‑guard component (`./sources/frontend/mobile/src/components/RoleGuard.js`) enforces access per defined roles (Student, Teacher, Admin, Manager).  
-- **Testing Milestones**  
-  - Integration test suite (`./sources/frontend/tests/mobile.integration.spec.ts`) executes and covers attendance flow, notification delivery, and role‑based navigation (≥ 80 % feature coverage).  
-  - All OWASP security checks pass (no hardcoded credentials, proper encryption, input validation, secure storage).  
-- **Deliverables**  
-  - Complete mobile source tree under `./sources/frontend/mobile/`.  
-  - Integration test report and OWASP compliance sign‑off.  
+* All Teacher, Center, Promotion, and Announcement CRUD operations functional with proper role‑based access control.  
+* Backend services secured with OWASP A01‑A09 controls (parameterized queries, tenant isolation, encryption).  
+* Frontend UI mirrors admin functionality, respects role guards, and supports multi‑language SEO.  
+* Dashboard auto‑refreshes every 15 min via environment‑driven interval; displays required aggregates.  
+* Broadcast notification pipeline successfully pushes to Zalo groups and mobile push for all targeted roles.  
+* 100 % unit test coverage for new backend services; integration/E2E test suites pass for promotion/announcement triggers.  
+* Docker images built, GKE deployments ready, and GCP CI/CD pipelines updated.  
+* All artifacts placed under `./sources/` with correct Java package layout (`org.nlh4j.saas.membershiphub`).  
 
 ## 5. DAY‑BY‑DAY ARCHITECTURAL EXECUTION LOGS
 
-### DAY 1: MOBILE PROJECT SKELETON & AUTH INFRASTRUCTURE
-#### SUB‑TASK 1.1: Initialize React Native project and configure Next.js hybrid structure
+### DAY 1: Teacher CRUD & Course Assignment
+#### SUB‑TASK 1.1: Implement Teacher Entity & Repository
 ##### Assigned Sub-Agent: Coder
 ##### Targeted Components & Technical Requirements:
-*   **Target Path:** ./sources/frontend/mobile/src/App.js
+*   **Target Path:** ./sources/backend/membership-hub/src/main/java/org/nlh4j/saas/membershiphub/domain/Teacher.java
     *   **Architectural Requirements:**
-        *   Set up React Native entry with Next.js App Router for hybrid rendering; define root navigation stack using React Navigation.
-        *   Integrate `react-native-safe-area-context` and `react-native-screens` for native look‑and‑feel.
-        *   Embed multi‑tenant `tenant_id` header injection via an Axios interceptor for all API calls.
-        *   Implement JWT token storage using `react-native-secure-store` with AES‑256 encryption for sensitive fields (OWASP A02:2021 – Cryptographic Failures).
-        *   Configure locale detection: read device locale, fallback to `en`, persist user preference in secure storage.
+        *   Annotate with `@TenantEntity` discriminator (`tenant_id` column) and `@EncryptedField` for PII fields (e.g., SSN).  
+        *   Use Lombok `@Data`/`@Entity`; enforce `@Size`/`@Email` validation per OWASP A03.  
+        *   Implement `equals`/`hashCode` based on composite key (`id`, `tenantId`).  
+*   **Target Path:** ./sources/backend/membership-hub/src/main/java/org/nlh4j/saas/membershiphub/repository/TeacherRepository.java
+    *   **Architectural Requirements:**
+        *   Extend `JpaRepository<Teacher, Long>`; add custom query methods filtered by `tenantId`.  
+        *   Use `@Query` with parameter binding to prevent injection.  
+        *   Include tenant isolation via `@TenantFilter` annotation.  
 
-#### SUB‑TASK 1.2: Build authentication service and login screen
+#### SUB‑TASK 1.2: Create Teacher Service & REST Controller
 ##### Assigned Sub-Agent: Coder
 ##### Targeted Components & Technical Requirements:
-*   **Target Path:** ./sources/frontend/mobile/src/services/authService.js
+*   **Target Path:** ./sources/backend/membership-hub/src/main/java/org/nlh4j/saas/membershiphub/service/TeacherService.java
     *   **Architectural Requirements:**
-        *   Provide `login(credentials)` that sends POST to `/api/v1/auth/login` with `tenant_id` header and `x-client-role` header.
-        *   Validate response for `access_token` and refresh token; store tokens encrypted via `react-native-secure-store`.
-        *   Implement token refresh logic with automatic logout on invalid refresh.
-        *   Enforce password complexity (min 8 chars, mix of letters/numbers) per OWASP A07:2021 – Identification and Authentication Failures.
-        *   Log authentication events (success/failure) for audit trails.
-*   **Target Path:** ./sources/frontend/mobile/src/screens/LoginScreen.js
+        *   Implement CRUD methods (`createTeacher`, `updateTeacher`, `deleteTeacher`).  
+        *   Apply `@Transactional` with read‑only flags where appropriate.  
+        *   Enforce business rule: teacher can only belong to a single center per tenant.  
+        *   Log all changes via `@AuditLog` for OWASP A12.  
+*   **Target Path:** ./sources/backend/membership-hub/src/main/java/org/nlh4j/saas/membershiphub/controller/TeacherController.java
     *   **Architectural Requirements:**
-        *   Render email/password fields with client‑side validation (required, email format).
-        *   Integrate OAuth buttons for Google/Facebook via Firebase Auth (use Firebase SDK, store provider tokens securely).
-        *   Display loading spinner and error messages; redirect to appropriate role‑based dashboard after successful login.
+        *   Expose `POST /api/teachers`, `PUT /api/teachers/{id}`, `DELETE /api/teachers/{id}`.  
+        *   Validate request payloads with `@Valid`.  
+        *   Return `201/200/404` with appropriate `ResponseEntity`.  
+        *   Include `X-Tenant-ID` header validation.  
 
-### DAY 2: ROLE‑BASED NAVIGATION & CORE UI COMPONENTS
-#### SUB‑TASK 2.1: Implement role‑guard and dynamic navigation based on user role
-##### Assigned Sub-Agent: Coder
-##### Targeted Components & Technical Requirements:
-*   **Target Path:** ./sources/frontend/mobile/src/components/RoleGuard.js
-    *   **Architectural Requirements:**
-        *   Accept `allowedRoles` prop; read encrypted user role from secure storage.
-        *   Redirect unauthenticated users to `/login`.
-        *   Enforce role‑based access per specification (System Admin, Admin, Manager, Teacher, Student).
-        *   Log unauthorized access attempts for security monitoring (OWASP A09:2021 – Security Misconfiguration).
-
-#### SUB‑TASK 2.2: Create main dashboard screens for each role
-##### Assigned Sub-Agent: Coder
-##### Targeted Components & Technical Requirements:
-*   **Target Path:** ./sources/frontend/mobile/src/screens/StudentDashboard.js
-    *   **Architectural Requirements:**
-        *   Display student ID, remaining class days, and QR scanner button.
-        *   Integrate `QRScanner` component to capture attendance.
-        *   Show push notifications list; implement swipe‑to‑dismiss.
-        *   Support language toggle using i18n context.
-*   **Target Path:** ./sources/frontend/mobile/src/screens/TeacherDashboard.js
-    *   **Architectural Requirements:**
-        *   Show schedule of assigned courses, list of enrolled students per course.
-        *   Provide button to generate QR code for class session (backend endpoint `/api/v1/qr/generate`).
-        *   Enforce teacher‑only access via `RoleGuard`.
-*   **Target Path:** ./sources/frontend/mobile/src/screens/AdminDashboard.js
-    *   **Architectural Requirements:**
-        *   Render center management UI (list of centers, add/edit/delete).
-        *   Access control: only System Admin and Admin roles permitted.
-        *   Include navigation to Manager, Teacher, Student management screens.
-
-#### SUB‑TASK 2.3: Build QR scanner component with secure input handling
-##### Assigned Sub-Agent: Coder
-##### Targeted Components & Technical Requirements:
-*   **Target Path:** ./sources/frontend/mobile/src/components/QRScanner.js
-    *   **Architectural Requirements:**
-        *   Use `react-native-camera` for live preview.
-        *   Parse scanned result; validate format (alphanumeric, length ≤ 64) to mitigate injection (OWASP A03).
-        *   Call attendance service (`./sources/frontend/mobile/src/services/attendanceService.js`) with encrypted payload.
-        *   Provide visual feedback (success/error toast) and store last scan locally (secure storage) for offline reference.
-
-### DAY 3: ATTENDANCE, NOTIFICATIONS & BACKEND INTEGRATION
-#### SUB‑TASK 3.1: Implement attendance service with tenant‑aware API calls
-##### Assigned Sub-Agent: Coder
-##### Targeted Components & Technical Requirements:
-*   **Target Path:** ./sources/frontend/mobile/src/services/attendanceService.js
-    *   **Architectural Requirements:**
-        *   Export `scanQRCode(payload)` that POSTs to `/api/v1/attendance` with `tenant_id` header and encrypted `payload` (AES‑256).
-        *   Validate server response; handle 4xx/5xx with user‑friendly alerts.
-        *   Cache successful attendance locally (secure storage) for offline sync.
-        *   Implement retry logic with exponential backoff for network failures.
-        *   Log attendance events (including tenant_id, user_id, timestamp) for audit (OWASP A12:2023 – Security Logging).
-
-#### SUB‑TASK 3.2: Build notification service and real‑time push handling
-##### Assigned Sub-Agent: Coder
-##### Targeted Components & Technical Requirements:
-*   **Target Path:** ./sources/frontend/mobile/src/services/notificationService.js
-    *   **Architectural Requirements:**
-        *   Subscribe to push notification channel (React Native Push Notification) for both local and remote alerts.
-        *   Forward remote notifications to Zalo group API (`/api/v1/notifications/zalo`) with tenant context.
-        *   Encrypt sensitive notification payload fields (e.g., student PII) before storage.
-        *   Provide `markAsRead(id)` to update local state and sync with backend.
-*   **Target Path:** ./sources/frontend/mobile/src/components/NotificationBadge.js
-    *   **Architectural Requirements:**
-        *   Display badge count of unread notifications; update via NotificationService.
-        *   Implement swipe actions to open notification details.
-        *   Ensure badge UI respects accessibility and screen reader.
-
-#### SUB‑TASK 3.3: Integrate multi‑language i18n and theme configuration
-##### Assigned Sub-Agent: Coder
-##### Targeted Components & Technical Requirements:
-*   **Target Path:** ./sources/frontend/mobile/src/utils/i18n.js
-    *   **Architectural Requirements:**
-        *   Load resources from `./sources/frontend/mobile/src/locales/`.  
-        *   Detect device locale (`react-native-device-info`); fallback to `en`.  
-        *   Persist user language choice in secure storage.  
-        *   Provide `useTranslation` hook for component consumption.  
-*   **Target Path:** ./sources/frontend/mobile/src/components/LanguageToggle.js
-    *   **Architectural Requirements:**
-        *   Render a button to switch between supported locales; trigger i18n change and re‑render UI.
-
-### DAY 4: INTEGRATION TESTING & OWASP VALIDATION
-#### SUB‑TASK 4.1: Execute end‑to‑end integration test suite for mobile workflows
+#### SUB‑TASK 1.3: Write Unit Tests for Teacher Service
 ##### Assigned Sub-Agent: Tester
 ##### Targeted Components & Technical Requirements:
-*   **Target Path:** INTEGRATION_SCOPE;./sources/frontend/tests/mobile.integration.spec.ts
+*   **Target Path:** ./sources/backend/membership-hub/src/main/java/org/nlh4j/saas/membershiphub/service/TeacherService.java;./sources/backend/membership-hub/src/test/java/org/nlh4j/saas/membershiphub/service/TeacherServiceTest.java
     *   **Architectural Requirements:**
-        *   Simulate login for each role (Student, Teacher, Admin) using mocked auth service.  
-        *   Verify role‑guard redirects unauthorized users.  
-        *   Trigger QR scan flow: invoke scanner component, mock attendance API call, assert attendance creation.  
-        *   Validate notification delivery: mock push gateway and Zalo API, confirm UI update.  
-        *   Test language switching: assert UI strings reflect selected locale.  
-        *   Capture all network requests for tenant_id header presence and encrypted payload compliance.  
-        *   Generate test report with ≥ 80 % feature coverage and flag any OWASP violations (e.g., missing tenant header, insecure storage).
+        *   Cover happy path and edge cases (duplicate email, invalid tenant).  
+        *   Mock `TeacherRepository` and verify tenant isolation.  
+        *   Assert encryption usage for PII fields via mock verification.  
 
-#### SUB‑TASK 4.2: Perform OWASP security validation on mobile components
+### DAY 2: Teacher‑Course Assignment & Notifications
+#### SUB‑TASK 2.1: Implement Course‑Teacher Join Entity & Service
+##### Assigned Sub-Agent: Coder
+##### Targeted Components & Technical Requirements:
+*   **Target Path:** ./sources/backend/membership-hub/src/main/java/org/nlh4j/saas/membershiphub/domain/CourseTeacher.java
+    *   **Architectural Requirements:**
+        *   Composite primary key (`courseId`, `teacherId`, `tenantId`).  
+        *   `@TenantEntity` and `@CreatedBy` audit fields.  
+*   **Target Path:** ./sources/backend/membership-hub/src/main/java/org/nlh4j/saas/membershiphub/service/TeacherCourseService.java
+    *   **Architectural Requirements:**
+        *   Methods `assignTeacherToCourse`, `unassignTeacher`.  
+        *   Emit `TeacherAssignedEvent` to Kafka topic `teacher-assignments`.  
+        *   Validate overlapping assignments per tenant.  
+
+#### SUB‑TASK 2.2: Create Notification Dispatcher for Teacher Assignments
+##### Assigned Sub-Agent: Coder
+##### Targeted Components & Technical Requirements:
+*   **Target Path:** ./sources/backend/membership-hub/src/main/java/org/nlh4j/saas/membershiphub/service/NotificationService.java
+    *   **Architectural Requirements:**
+        *   Consume `TeacherAssignedEvent` via SmallRye Kafka.  
+        *   Build payload with tenant‑specific Zalo group ID and FCM token.  
+        *   Use `@Transactional` for atomic send; implement retry logic.  
+        *   Log all outbound notifications for audit (OWASP A12).  
+
+#### SUB‑TASK 2.3: Frontend Teacher Assignment UI Component
+##### Assigned Sub-Agent: Coder
+##### Targeted Components & Technical Requirements:
+*   **Target Path:** ./sources/frontend/src/components/teacher/TeacherAssignmentForm.tsx
+    *   **Architectural Requirements:**
+        *   Form fields: Select Teacher, Select Course (filtered by tenant).  
+        *   Role guard: only Admin/Manager can assign.  
+        *   i18n support with `useTranslation`.  
+        *   Submit calls `POST /api/teacher-courses`.  
+
+#### SUB‑TASK 2.4: Integration Test for Assignment Notification Flow
 ##### Assigned Sub-Agent: Tester
 ##### Targeted Components & Technical Requirements:
-*   **Target Path:** ./sources/frontend/mobile/src/services/authService.js;./sources/frontend/tests/mobile.integration.spec.ts
+*   **Target Path:** INTEGRATION_SCOPE;./sources/frontend/tests/teacherAssignment.spec.ts
     *   **Architectural Requirements:**
-        *   Verify JWT tokens are stored encrypted (AES‑256) and not exposed in device logs.  
-        *   Confirm password complexity rules enforced client‑side and transmitted securely.  
-        *   Validate that all API calls include `tenant_id` header and use HTTPS.  
-        *   Check QR input validation for injection attempts; ensure sanitized before API call.  
-        *   Review secure storage usage (no plaintext tokens).  
-        *   Document findings and ensure remediation before phase sign‑off.
+        *   Simulate admin user login, assign teacher to course, verify Kafka event emission (mock).  
+        *   Assert notification service receives event and triggers push (mock).  
+        *   Validate UI reflects assignment instantly.  
+
+### DAY 3: Center Management UI (System Admin Only)
+#### SUB‑TASK 3.1: Define Center Entity & Repository
+##### Assigned Sub-Agent: Coder
+##### Targeted Components & Technical Requirements:
+*   **Target Path:** ./sources/backend/membership-hub/src/main/java/org/nlh4j/saas/membershiphub/domain/Center.java
+    *   **Architectural Requirements:**
+        *   `@TenantEntity` with `tenantId` discriminator.  
+        *   Fields: name, address, phone, taxId (encrypted).  
+        *   Validation: non‑blank name, regex phone.  
+*   **Target Path:** ./sources/backend/membership-hub/src/main/java/org/nlh4j/saas/membershiphub/repository/CenterRepository.java
+    *   **Architectural Requirements:**
+        *   JpaRepository with tenant‑filtered queries.  
+        *   Custom `findByTenantId` method.  
+
+#### SUB‑TASK 3.2: Implement Center Service & REST Endpoints
+##### Assigned Sub-Agent: Coder
+##### Targeted Components & Technical Requirements:
+*   **Target Path:** ./sources/backend/membership-hub/src/main/java/org/nlh4j/saas/membershiphub/service/CenterService.java
+    *   **Architectural Requirements:**
+        *   CRUD operations (`createCenter`, `updateCenter`, `deleteCenter`).  
+        *   Assign/unassign Admin/Manager via dedicated methods.  
+        *   Enforce that only System‑Admin can modify centers (`@PreAuthorize("hasRole('SYSADMIN')")`).  
+        *   Log all changes.  
+*   **Target Path:** ./sources/backend/membership-hub/src/main/java/org/nlh4j/saas/membershiphub/controller/CenterController.java
+    *   **Architectural Requirements:**
+        *   Expose `GET /api/centers`, `POST /api/centers`, `PUT /api/centers/{id}`, `DELETE /api/centers/{id}`.  
+        *   Return paginated results with `Pageable`.  
+        *   Include `X-Tenant-ID` validation; filter results by tenant unless SYSADMIN.  
+
+#### SUB‑TASK 3.3: Frontend Center Management Page
+##### Assigned Sub-Agent: Coder
+##### Targeted Components & Technical Requirements:
+*   **Target Path:** ./sources/frontend/src/pages/center/CenterManagement.tsx
+    *   **Architectural Requirements:**
+        *   Table listing centers with edit/delete actions.  
+        *   Modal for adding/editing centers.  
+        *   Dropdown to assign/unassign Admin/Manager (only visible to SYSADMIN).  
+        *   Role guard: hide component if not SYSADMIN.  
+        *   i18n and SEO meta tags via `_app` wrapper.  
+
+#### SUB‑TASK 3.4: Unit Tests for Center Service
+##### Assigned Sub-Agent: Tester
+##### Targeted Components & Technical Requirements:
+*   **Target Path:** ./sources/backend/membership-hub/src/main/java/org/nlh4j/saas/membershiphub/service/CenterService.java;./sources/backend/membership-hub/src/test/java/org/nlh4j/saas/membershiphub/service/CenterServiceTest.java
+    *   **Architectural Requirements:**
+        *   Verify tenant isolation in CRUD operations.  
+        *   Assert authorization checks block non‑SYSADMIN users.  
+        *   Mock repository calls and verify correct logging.  
+
+### DAY 4: Promotions Management
+#### SUB‑TASK 4.1: Create Promotion Entity & Repository
+##### Assigned Sub-Agent: Coder
+##### Targeted Components & Technical Requirements:
+*   **Target Path:** ./sources/backend/membership-hub/src/main/java/org/nlh4j/saas/membershiphub/domain/Promotion.java
+    *   **Architectural Requirements:**
+        *   `@TenantEntity` with fields: name, description, conditionJson (encrypted), startDate, endDate (nullable).  
+        *   Validation: startDate ≤ endDate if provided.  
+*   **Target Path:** ./sources/backend/membership-hub/src/main/java/org/nlh4j/saas/membershiphub/repository/PromotionRepository.java
+    *   **Architectural Requirements:**
+        *   JpaRepository with tenant filter; add `findActivePromotions(LocalDate date)`.  
+
+#### SUB‑TASK 4.2: Implement Promotion Service & Broadcast Logic
+##### Assigned Sub-Agent: Coder
+##### Targeted Components & Technical Requirements:
+*   **Target Path:** ./sources/backend/membership-hub/src/main/java/org/nlh4j/saas/membershiphub/service/PromotionService.java
+    *   **Architectural Requirements:**
+        *   CRUD methods (`createPromotion`, `updatePromotion`, `deletePromotion`).  
+        *   On create/update, emit `PromotionEvent` to Kafka topic `promotions`.  
+        *   Validate promotion windows against current date; enforce tenant isolation.  
+        *   Use `@Transactional` and audit logging.  
+*   **Target Path:** ./sources/backend/membership-hub/src/main/java/org/nlh4j/saas/membershiphub/listener/PromotionEventListener.java
+    *   **Architectural Requirements:**
+        *   Consume `PromotionEvent`; trigger broadcast to all roles except SYSADMIN via `NotificationService`.  
+
+#### SUB‑TASK 4.3: Frontend Promotions Management UI
+##### Assigned Sub-Agent: Coder
+##### Targeted Components & Technical Requirements:
+*   **Target Path:** ./sources/frontend/src/components/promotion/PromotionForm.tsx
+    *   **Architectural Requirements:**
+        *   Form fields for name, description, condition, start/end dates.  
+        *   Role guard: Admin/Manager only.  
+        *   Submit calls `POST/PUT /api/promotions`.  
+        *   Show validation errors with i18n.  
+
+#### SUB‑TASK 4.4: Integration Test for Promotion Broadcast
+##### Assigned Sub-Agent: Tester
+##### Targeted Components & Technical Requirements:
+*   **Target Path:** INTEGRATION_SCOPE;./sources/frontend/tests/promotionBroadcast.spec.ts
+    *   **Architectural Requirements:**
+        *   Simulate creation of a promotion, verify Kafka event emission (mock).  
+        *   Confirm notification service receives event and sends push to target roles.  
+        *   Assert UI updates reflect new promotion instantly.  
+
+### DAY 5: Announcements Management
+#### SUB‑TASK 5.1: Define Announcement Entity & Repository
+##### Assigned Sub-Agent: Coder
+##### Targeted Components & Technical Requirements:
+*   **Target Path:** ./sources/backend/membership-hub/src/main/java/org/nlh4j/saas/membershiphub/domain/Announcement.java
+    *   **Architectural Requirements:**
+        *   `@TenantEntity` with fields: title, content (encrypted), startDate, endDate (nullable).  
+        *   Validation similar to Promotion.  
+*   **Target Path:** ./sources/backend/membership-hub/src/main/java/org/nlh4j/saas/membershiphub/repository/AnnouncementRepository.java
+    *   **Architectural Requirements:**
+        *   JpaRepository with tenant filter; add `findActiveAnnouncements(LocalDate date)`.  
+
+#### SUB‑TASK 5.2: Implement Announcement Service & Event Emission
+##### Assigned Sub-Agent: Coder
+##### Targeted Components & Technical Requirements:
+*   **Target Path:** ./sources/backend/membership-hub/src/main/java/org/nlh4j/saas/membershiphub/service/AnnouncementService.java
+    *   **Architectural Requirements:**
+        *   CRUD methods (`createAnnouncement`, `updateAnnouncement`, `deleteAnnouncement`).  
+        *   Emit `AnnouncementEvent` to Kafka topic `announcements`.  
+        *   Enforce tenant isolation and audit logging.  
+*   **Target Path:** ./sources/backend/membership-hub/src/main/java/org/nlh4j/saas/membershiphub/listener/AnnouncementEventListener.java
+    *   **Architectural Requirements:**
+        *   Consume `AnnouncementEvent`; delegate broadcast via `NotificationService`.  
+
+#### SUB‑TASK 5.3: Frontend Announcements Management UI
+##### Assigned Sub-Agent: Coder
+##### Targeted Components & Technical Requirements:
+*   **Target Path:** ./sources/frontend/src/components/announcement/AnnouncementForm.tsx
+    *   **Architectural Requirements:**
+        *   Form fields for title, content, dates.  
+        *   Role guard: Admin/Manager only.  
+        *   Submit calls `POST/PUT /api/announcements`.  
+
+#### SUB‑TASK 5.4: Unit Tests for Announcement Service
+##### Assigned Sub-Agent: Tester
+##### Targeted Components & Technical Requirements:
+*   **Target Path:** ./sources/backend/membership-hub/src/main/java/org/nlh4j/saas/membershiphub/service/AnnouncementService.java;./sources/backend/membership-hub/src/test/java/org/nlh4j/saas/membershiphub/service/AnnouncementServiceTest.java
+    *   **Architectural Requirements:**
+        *   Verify CRUD operations and event emission.  
+        *   Validate tenant filtering and encryption of content.  
+
+### DAY 6: Dashboard Integration & Auto‑Refresh
+#### SUB‑TASK 6.1: Create Dashboard Service Aggregator
+##### Assigned Sub-Agent: Coder
+##### Targeted Components & Technical Requirements:
+*   **Target Path:** ./sources/backend/membership-hub/src/main/java/org/nlh4j/saas/membershiphub/service/DashboardService.java
+    *   **Architectural Requirements:**
+        *   Methods: `getTodayCourses`, `getTodayTeachers`, `getStudentCardDays`, `getActivePromotions`, `getActiveAnnouncements`.  
+        *   All queries filtered by authenticated tenant (or SYSADMIN bypass).  
+        *   Use native SQL/JPQL for performance; avoid in‑memory loops.  
+        *   Return DTOs with encrypted fields where needed.  
+
+#### SUB‑TASK 6.2: Implement Dashboard REST Endpoint
+##### Assigned Sub-Agent: Coder
+##### Targeted Components & Technical Requirements:
+*   **Target Path:** ./sources/backend/membership-hub/src/main/java/org/nlh4j/saas/membershiphub/controller/DashboardController.java
+    *   **Architectural Requirements:**
+        *   Expose `GET /api/dashboard`.  
+        *   Inject `X-Tenant-ID` header; enforce role‑based visibility.  
+        *   Cache response for 5 minutes using Quarkus cache annotation.  
+
+#### SUB‑TASK 6.3: Frontend Dashboard Component with Auto‑Refresh
+##### Assigned Sub-Agent: Coder
+##### Targeted Components & Technical Requirements:
+*   **Target Path:** ./sources/frontend/src/components/dashboard/Dashboard.tsx
+    *   **Architectural Requirements:**
+        *   Fetch data from `/api/dashboard` using React‑Query.  
+        *   Implement auto‑refresh based on environment variable `DASHBOARD_REFRESH_INTERVAL` (default 90000ms).  
+        *   Role‑specific rendering: student sees card days; admin/manager sees course/teacher lists.  
+        *   Integrate i18n and SEO meta tags.  
+
+#### SUB‑TASK 6.4: Integration Test for Dashboard Data Consistency
+##### Assigned Sub-Agent: Tester
+##### Targeted Components & Technical Requirements:
+*   **Target Path:** INTEGRATION_SCOPE;./sources/frontend/tests/dashboard.spec.ts
+    *   **Architectural Requirements:**
+        *   Simulate logged‑in user, verify dashboard fields populate correctly.  
+        *   Mock auto‑refresh timer and assert data re‑fetches.  
+        *   Validate tenant isolation (different tenants see different data).  
+
+### DAY 7: Final Integration, Security Hardening & Production Prep
+#### SUB‑TASK 7.1: Update Backend Dockerfile & Health Checks
+##### Assigned Sub-Agent: Docker
+##### Targeted Components & Technical Requirements:
+*   **Target Path:** ./sources/backend/membership-hub/Dockerfile
+    *   **Architectural Requirements:**
+        *   Multi‑stage build: Maven compile → slim JRE.  
+        *   Add JVM flags for memory limits (`-Xmx512m`).  
+        *   Include health‑check endpoint (`/q/health`).  
+        *   Set non‑root user for security.  
+
+#### SUB‑TASK 7.2: Update Frontend Dockerfile & Nginx Config
+##### Assigned Sub-Agent: Docker
+##### Targeted Components & Technical Requirements:
+*   **Target Path:** ./sources/frontend/Dockerfile
+    *   **Architectural Requirements:**
+        *   Node‑alpine build stage → production optimized.  
+        *   Use Nginx for static serving; configure proxy to backend.  
+        *   Add security headers (CSP, HSTS).  
+
+#### SUB‑TASK 7.3: Create GKE Deployment YAMLs
+##### Assigned Sub-Agent: GKE
+##### Targeted Components & Technical Requirements:
+*   **Target Path:** ./sources/backend/membership-hub/k8s/Deployment.yaml
+    *   **Architectural Requirements:**
+        *   Deploy backend as `membership-hub` with resource limits (CPU/Memory).  
+        *   Include `env` for `TENANT_ID`, `DASHBOARD_REFRESH_INTERVAL`.  
+        *   Add `readinessProbe`/`livenessProbe` using `/q/health`.  
+        *   Use `imagePullSecrets` for Artifact Registry.  
+*   **Target Path:** ./sources/frontend/k8s/Deployment.yaml
+    *   **Architectural Requirements:**
+        *   Deploy Next.js as `membership-hub-frontend`.  
+        *   Configure HPA based on CPU utilization.  
+
+#### SUB‑TASK 7.4: Update GCP CI/CD Pipeline Config
+##### Assigned Sub-Agent: GCP
+##### Targeted Components & Technical Requirements:
+*   **Target Path:** ./sources/infra/cloudbuild.yaml
+    *   **Architectural Requirements:**
+        *   Define steps: Maven build → Docker build (backend) → Docker build (frontend) → push to Artifact Registry.  
+        *   Include `substitutions` for `PROJECT_ID`, `LOCATION`.  
+        *   Trigger on `main` branch; apply GKE deployments via `kubectl`.  
+
+#### SUB‑TASK 7.5: Security Review & OWASP Hardening Checklist
+##### Assigned Sub-Agent: Reviewer
+##### Targeted Components & Technical Requirements:
+*   **Target Path:** ./sources/backend/membership-hub/src/main/java/org/nlh4j/saas/membershiphub/config/SecurityConfig.java
+    *   **Architectural Requirements:**
+        *   Enable CSRF protection (`@EnableWebSecurity`).  
+        *   Configure CORS per tenant origins.  
+        *   Implement rate‑limiting using Quarkus `RateLimit` interceptor.  
+        *   Enforce password policy with Argon2id hashing.  
+        *   Set JWT token expiration and revocation list.  
+*   **Target Path:** ./sources/backend/membership-hub/src/main/java/org/nlh4j/saas/membershiphub/util/AesEncryptionUtil.java
+    *   **Architectural Requirements:**
+        *   Provide AES‑256‑GCM utility for PII fields.  
+        *   Centralize key management via GCP Secret Manager.  
+
+#### SUB‑TASK 7.6: End‑to‑End Integration Test Suite
+##### Assigned Sub-Agent: Tester
+##### Targeted Components & Technical Requirements:
+*   **Target Path:** INTEGRATION_SCOPE;./sources/frontend/tests/e2e/fullFlow.spec.ts
+    *   **Architectural Requirements:**
+        *   Simulate System‑Admin login, create a center, assign admin, add teacher, assign to course, create promotion, create announcement.  
+        *   Verify each step triggers appropriate Kafka events and notifications (mock).  
+        *   Validate tenant isolation across created entities.  
+        *   Assert UI reflects all changes in real time.  
+
+#### SUB‑TASK 7.7: Manager Orchestration Validation
+##### Assigned Sub-Agent: Manager
+##### Targeted Components & Technical Requirements:
+*   **Target Path:** ./sources/infra/phase3-orchestration.md
+    *   **Architectural Requirements:**
+        *   Document day‑by‑day task completion, agent assignments, and target paths.  
+        *   Capture any deviations from the `./sources/` boundary rule and corrective actions.  
+        *   Provide sign‑off checklist confirming all Phase 3 objectives met, OWASP compliance, and test coverage.
