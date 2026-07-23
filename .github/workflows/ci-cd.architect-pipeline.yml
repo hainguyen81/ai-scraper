@@ -194,6 +194,7 @@ jobs:
       - name: 🛡️ Gatekeeper - Validate Parameters
         env:
           REQUIREMENTS_FILE: ${{ inputs.requirements_file }}
+          PROJECT_NAME: ${{ inputs.project_name }}
         if: success() && inputs.exec_mode != '🚫 None'          # if previous step is successful
         run: |
           # check requirements
