@@ -1,0 +1,205 @@
+{
+    "phase_id": 1,
+    "phase_name": "Phase 1",
+    "project_name": "membership-hub",
+    "global_context_file": ".ai/.context/membership-hub.global.blueprint.md",
+    "source_target_dir": "sources/",
+    "days": [
+        {
+            "day": 1,
+            "context_file": ".ai/.plan/.context/phase-1.context.blueprint.md",
+            "context_section": "DAY 1",
+            "sub_tasks": [
+                {
+                    "id": "D1_ST1",
+                    "agent": "Coder",
+                    "desc": "Coder Agent: Create Quarkus project structure and corporate Java package. Use Maven with Quarkus platform 3.2.0; generate basic `pom.xml` with necessary extensions (Quarkus, JDBC PostgreSQL, Kafka, OpenTelemetry). Enforce OWASP A03 (SQL Injection) by configuring JPA repositories with `spring-data-jpa` and using derived queries; avoid native queries unless parameterized. Apply OWASP A07 (Cryptographic Failures) by marking password fields for Argon2 hashing and storing JWT secrets in environment variables.",
+                    "components": [
+                        "./sources/backend/src/main/java/org/nlh4j/saas/membershiphub/"
+                    ]
+                },
+                {
+                    "id": "D1_ST2",
+                    "agent": "Coder",
+                    "desc": "Coder Agent: Define Flyway migration for tenant‑aware PostgreSQL schema. Create tables `tenants`, `roles`, `users`, `courses`, `teachers`, `students`, `enrollments`, `attendance`, `student_cards` with `tenant_id` column as `UUID` (or `INTEGER`) and primary key. Add `tenant_id` foreign keys referencing `tenants(id)`; enforce `NOT NULL` on `tenant_id` for row‑level isolation. Apply OWASP A01 (Broken Access Control) by adding a `tenant_filter` view or stored procedure that restricts data access per tenant.",
+                    "components": [
+                        "./sources/backend/src/main/resources/db/migration/V1__init_schema.sql"
+                    ]
+                },
+                {
+                    "id": "D1_ST3",
+                    "agent": "Coder",
+                    "desc": "Coder Agent: Implement User entity with Argon2 hashing and JWT generation. Annotate with `@TenantFilter` and `@Entity`; include fields `id`, `email`, `passwordHash`, `tenantId`, `role`. Use `org.passay.PasswordEncoder` with Argon2 implementation for `passwordHash`. Provide method `generateJwt()` using SmallRye JWT (sign with HS256, set `tenant_id` claim). Enforce OWASP A02 (Broken Authentication) by validating token signature and expiration in a security filter.",
+                    "components": [
+                        "./sources/backend/src/main/java/org/nlh4j/saas/membershiphub/domain/User.java"
+                    ]
+                },
+                {
+                    "id": "D1_ST4",
+                    "agent": "Coder",
+                    "desc": "Coder Agent: Create AuthResource REST endpoints (login, register, logout). Define `@POST /api/v1/auth/login` – accept `email`/`password`, authenticate via `UserService`, return JWT. Define `@POST /api/v1/auth/register` – create `User` with Argon2 hashed password; enforce role `STUDENT` for self‑registration; apply OWASP A05 (Broken Access Control) by checking caller’s role (System Admin can create any role). Define `@POST /api/v1/auth/logout` – invalidate token via blacklist or JWT revocation list. Apply `@RolesAllowed` annotations for protected methods; use `@TenantFilter` to scope operations.",
+                    "components": [
+                        "./sources/backend/src/main/java/org/nlh4j/saas/membershiphub/resource/AuthResource.java"
+                    ]
+                },
+                {
+                    "id": "D1_ST5",
+                    "agent": "Coder",
+                    "desc": "Coder Agent: Implement TenantResource for tenant listing with isolation. Define `@GET /api/v1/tenants` – return list of tenants visible to authenticated user. Apply tenant filtering via `TenantRepository.findByTenantId(currentTenantId)`; enforce OWASP A01 (Broken Access Control) by ensuring users cannot view tenants they do not belong to.",
+                    "components": [
+                        "./sources/backend/src/main/java/org/nlh4j/saas/membershiphub/resource/TenantResource.java"
+                    ]
+                }
+            ]
+        },
+        {
+            "day": 2,
+            "context_file": ".ai/.plan/.context/phase-1.context.blueprint.md",
+            "context_section": "DAY 2",
+            "sub_tasks": [
+                {
+                    "id": "D2_ST1",
+                    "agent": "Coder",
+                    "desc": "Coder Agent: Configure Kafka producer/consumer and NotificationService. Use Apache Kafka client (version 3.5) with `KafkaProducer` for `membershiphub.notifications` and `KafkaConsumer` for `membershiphub.auth.events`. Serialize events to JSON via Jackson; include `tenant_id` header for routing. Implement `sendNotification(NotificationEvent event)` method; enforce OWASP A03 by validating event payload size and content.",
+                    "components": [
+                        "./sources/backend/src/main/java/org/nlh4j/saas/membershiphub/service/NotificationService.java"
+                    ]
+                },
+                {
+                    "id": "D2_ST2",
+                    "agent": "Coder",
+                    "desc": "Coder Agent: Create Kafka Connect configuration for notification pipeline. Define connector class `io.confluent.connect.jdbc.JdbcSourceConnector` (if needed) or `org.apache.kafka.connect.file.FileStreamSinkConnector`. Set topics, consumer group, offset storage, and secure credential placeholders (no hardcoded secrets). Apply OWASP A06 (Vulnerable Crypto) by ensuring TLS settings for Kafka broker connection.",
+                    "components": [
+                        "./sources/backend/src/main/resources/kafka/connect-notify.properties"
+                    ]
+                },
+                {
+                    "id": "D2_ST3",
+                    "agent": "Docker",
+                    "desc": "Docker Agent: Build multi‑stage JVM Docker image. Base image `eclipse-temurin:21-jdk-alpine`. Copy `pom.xml` and source, compile with `mvn package -DskipTests`. Create non‑root user `appuser`; set ownership of application files. Expose port `8080`; add health‑check `curl http://localhost:8080/q/health`. Enforce OWASP A12 (Insufficient Logging) by configuring logging to stdout/stderr.",
+                    "components": [
+                        "./sources/backend/docker/Dockerfile.jvm"
+                    ]
+                },
+                {
+                    "id": "D2_ST4",
+                    "agent": "Docker",
+                    "desc": "Docker Agent: Build native Docker image. Base image `quay.io/quarkus/ubi9-quarkus-native-image:22.3.0-java21`. Copy compiled native binary; expose port `8080`; add health‑check. Ensure image size minimized and no debug symbols.",
+                    "components": [
+                        "./sources/backend/docker/Dockerfile.native"
+                    ]
+                },
+                {
+                    "id": "D2_ST5",
+                    "agent": "GCP",
+                    "desc": "GCP Agent: Draft GCP IAM policy YAML. Define service account `membershiphub-sa`. Grant roles: `roles/cloudsql.client`, `roles/pubsub.subscriber`, `roles/pubsub.publisher`, `roles/container.admin`. Apply principle of least privilege; enforce OWASP A01 via role‑based access control.",
+                    "components": [
+                        "./sources/backend/infrastructure/gcp/iam.yml"
+                    ]
+                },
+                {
+                    "id": "D2_ST6",
+                    "agent": "GKE",
+                    "desc": "GKE Agent: Draft GKE cluster manifest YAML. Cluster name `membershiphub-gke`; location `us-central1`. Enable autoscaling, workload identity, network policies. Define node pools for `default` and `spot` (cost‑optimized). Enforce network isolation; apply OWASP A05 (Broken Access Control) by restricting `cluster-admin` role to System Admin only.",
+                    "components": [
+                        "./sources/backend/infrastructure/gcp/gke-cluster.yml"
+                    ]
+                }
+            ]
+        },
+        {
+            "day": 3,
+            "context_file": ".ai/.plan/.context/phase-1.context.blueprint.md",
+            "context_section": "DAY 3",
+            "sub_tasks": [
+                {
+                    "id": "D3_ST1",
+                    "agent": "Coder",
+                    "desc": "Coder Agent: Integrate OAuth2 providers (Firebase, Google, Facebook). Configure SmallRye OAuth2 with OIDC providers: `firebase`, `google`, `facebook`. Load client IDs and secrets from environment variables (`OAUTH_FIREBASE_CLIENT_ID`, etc.). Validate ID tokens using provider‑specific JWKS; enforce OWASP A02 (Broken Authentication) by verifying token issuer and audience.",
+                    "components": [
+                        "./sources/backend/src/main/java/org/nlh4j/saas/membershiphub/security/OAuth2Config.java"
+                    ]
+                },
+                {
+                    "id": "D3_ST2",
+                    "agent": "Coder",
+                    "desc": "Coder Agent: Implement RoleService with role definitions and permission checks. Define enum `AppRole {SYSTEM_ADMIN, ADMIN, MANAGER, TEACHER, STUDENT}`. Provide method `boolean hasPermission(User user, Resource resource, Action action)`. Enforce OWASP A01 (Broken Access Control) by checking tenant and role hierarchy.",
+                    "components": [
+                        "./sources/backend/src/main/java/org/nlh4j/saas/membershiphub/service/RoleService.java"
+                    ]
+                },
+                {
+                    "id": "D3_ST3",
+                    "agent": "Coder",
+                    "desc": "Coder Agent: Create JwtSecurityPolicy for tenant filtering and RBAC. Intercept inbound requests via `ContainerRequestFilter`. Extract `tenant_id` and `roles` from JWT; attach to `SecurityContext`. Apply tenant isolation in repository queries; enforce OWASP A01.",
+                    "components": [
+                        "./sources/backend/src/main/java/org/nlh4j/saas/membershiphub/security/JwtSecurityPolicy.java"
+                    ]
+                },
+                {
+                    "id": "D3_ST4",
+                    "agent": "Tester",
+                    "desc": "Tester Agent: Write unit tests for AuthResource. Use JUnit 5 and MockMVC; mock `UserService` and `JwtService`. Test login with valid credentials returns JWT; test registration hashes password with Argon2; test logout invalidates token. Enforce OWASP A03 by using parameterized test data and avoiding SQL injection in mocks.",
+                    "components": [
+                        "./sources/backend/src/main/java/org/nlh4j/saas/membershiphub/resource/AuthResource.java;./sources/backend/src/test/java/org/nlh4j/saas/membershiphub/resource/AuthResourceTest.java"
+                    ]
+                },
+                {
+                    "id": "D3_ST5",
+                    "agent": "Tester",
+                    "desc": "Tester Agent: Write integration test for TenantResource. Use Testcontainers for PostgreSQL and Kafka; spin up a fresh database per test. Verify tenant listing respects tenant isolation (users see only their tenants). Enforce OWASP A01 by ensuring test data does not leak other tenants’ records.",
+                    "components": [
+                        "./sources/backend/src/main/java/org/nlh4j/saas/membershiphub/resource/TenantResource.java;./sources/backend/src/test/java/org/nlh4j/saas/membershiphub/resource/TenantResourceIT.java"
+                    ]
+                },
+                {
+                    "id": "D3_ST6",
+                    "agent": "Reviewer",
+                    "desc": "Reviewer Agent: Perform security code review. Scan all Java files for hardcoded credentials, insecure JWT secret storage, missing `@TenantFilter`, lack of input validation, and unsafe SQL queries. Verify Argon2 usage and proper password hashing salt handling. Ensure OWASP A01‑A07 controls are present; flag any violations for remediation.",
+                    "components": [
+                        "./sources/backend/src/main/java/org/nlh4j/saas/membershiphub/"
+                    ]
+                }
+            ]
+        },
+        {
+            "day": 4,
+            "context_file": ".ai/.plan/.context/phase-1.context.blueprint.md",
+            "context_section": "DAY 4",
+            "sub_tasks": [
+                {
+                    "id": "D4_ST1",
+                    "agent": "Docker",
+                    "desc": "Docker Agent: Build and test JVM Docker image locally. Execute `docker build -t membershiphub-backend .` from `./sources/backend/docker`. Run container with `-p 8080:8080` and perform health‑check `curl http://localhost:8080/q/health` expecting `UP`. Validate logs contain no sensitive data; enforce OWASP A12 (Insufficient Logging) by checking that all security events are logged.",
+                    "components": [
+                        "./sources/backend/docker/Dockerfile.jvm"
+                    ]
+                },
+                {
+                    "id": "D4_ST2",
+                    "agent": "GCP",
+                    "desc": "GCP Agent: Validate GCP IAM policy syntax. Run `gcloud iam policies validate --policy-file=iam.yml`. Ensure no overly permissive roles (e.g., `roles/*` with `*` wildcard) remain. Apply least‑privilege principle; enforce OWASP A01 via role‑based access control.",
+                    "components": [
+                        "./sources/backend/infrastructure/gcp/iam.yml"
+                    ]
+                },
+                {
+                    "id": "D4_ST3",
+                    "agent": "GKE",
+                    "desc": "GKE Agent: Validate GKE cluster manifest with dry‑run. Execute `kubectl apply --dry-run=client -f gke-cluster.yml`. Verify resource quotas, network policies, and workload identity configuration. Enforce OWASP A05 (Broken Access Control) by confirming cluster admin role is restricted.",
+                    "components": [
+                        "./sources/backend/infrastructure/gcp/gke-cluster.yml"
+                    ]
+                },
+                {
+                    "id": "D4_ST4",
+                    "agent": "Manager",
+                    "desc": "Manager Agent: Generate Phase‑1 completion report and sign‑off. List all created files (Java sources, configs, Dockerfiles, IAM/GKE manifests, test suites). Summarize agent contributions, OWASP compliance status, test coverage metrics, and any open issues. Ensure all artifacts reside under `./sources/` and no root‑level files exist. Provide final sign‑off confirmation for progression to Phase 2.",
+                    "components": [
+                        "./sources/backend/phase1-completion-report.md"
+                    ]
+                }
+            ]
+        }
+    ]
+}

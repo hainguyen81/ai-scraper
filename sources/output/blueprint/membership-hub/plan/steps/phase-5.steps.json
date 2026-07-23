@@ -1,0 +1,149 @@
+{
+    "phase_id": 5,
+    "phase_name": "Phase 5",
+    "project_name": "membership-hub",
+    "global_context_file": ".ai/.context/membership-hub.global.blueprint.md",
+    "source_target_dir": "sources/",
+    "days": [
+        {
+            "day": 1,
+            "context_file": ".ai/.plan/.context/phase-5.context.blueprint.md",
+            "context_section": "DAY 1",
+            "sub_tasks": [
+                {
+                    "id": "D1_ST1",
+                    "agent": "Coder",
+                    "desc": "Coder Agent: Implement OWASP Security Filters in Quarkus. Add Quarkus `HttpInterceptor` to enforce access control (role‑based checks per tenant), input validation (JSR‑380), and CSRF protection. Integrate OWASP `Cryptography` utilities for AES‑256 PII encryption at rest. Apply parameterized queries via Panache to prevent SQL injection. Ensure all security controls are scoped to the current `tenant_id` for multi‑tenant isolation.",
+                    "components": [
+                        "./sources/backend/src/main/java/org/nlh4j/saas/membershiphub/security/OwaspSecurityFilter.java"
+                    ]
+                },
+                {
+                    "id": "D1_ST2",
+                    "agent": "Reviewer",
+                    "desc": "Reviewer Agent: Review OWASP Filter Implementation. Verify that all OWASP A01‑A07 controls are addressed per the design in SUB‑TASK 1.1. Confirm tenant filtering is applied consistently across all endpoints. Validate that PII encryption keys are managed via GCP Secret Manager.",
+                    "components": [
+                        "./sources/backend/src/main/java/org/nlh4j/saas/membershiphub/security/OwaspSecurityFilter.java"
+                    ]
+                },
+                {
+                    "id": "D1_ST3",
+                    "agent": "Docker",
+                    "desc": "Docker Agent: Create Hardened Multi‑Stage Dockerfile. Use `java:21-jdk-slim` as base, copy Maven wrapper and pom, perform offline Maven build. Switch to a non‑root user (`appuser`) for runtime. Add `trivy` or `grype` scan step in the build stage to fail on critical CVEs. Include `jlink` to produce a custom runtime for reduced attack surface. Expose port `8080` and set health‑check endpoint (`/q/health`).",
+                    "components": [
+                        "./sources/backend/src/main/docker/Dockerfile"
+                    ]
+                }
+            ]
+        },
+        {
+            "day": 2,
+            "context_file": ".ai/.plan/.context/phase-5.context.blueprint.md",
+            "context_section": "DAY 2",
+            "sub_tasks": [
+                {
+                    "id": "D2_ST1",
+                    "agent": "Coder",
+                    "desc": "Coder Agent: Implement Argon2 Password Hashing Service. Use `org.apache.commons.codec.digest.Argon2` with configurable salt length and memory. Store hashed passwords in the user table; never store plain text or weak hashes. Provide `verify(String password, String hash)` method. Integrate with Quarkus security realm for password validation.",
+                    "components": [
+                        "./sources/backend/src/main/java/org/nlh4j/saas/membershiphub/security/Argon2PasswordService.java"
+                    ]
+                },
+                {
+                    "id": "D2_ST2",
+                    "agent": "Coder",
+                    "desc": "Coder Agent: Add Audit Logging Interceptor for Auth Events. Implement `ContainerRequestFilter` to capture login attempts, token issuance, revocation, and role changes. Log tenant‑scoped user actions with timestamps, IP, and user agent. Write logs to GCP Cloud Logging via structured JSON; ensure immutable storage. Include correlation ID for traceability across services.",
+                    "components": [
+                        "./sources/backend/src/main/java/org/nlh4j/saas/membershiphub/interceptor/AuditLoggingInterceptor.java"
+                    ]
+                },
+                {
+                    "id": "D2_ST3",
+                    "agent": "Tester",
+                    "desc": "Tester Agent: Write Unit Tests for Argon2 Hashing & Token Revocation. Test hash generation, verification, and resistance to brute‑force (salt uniqueness). Validate token revocation endpoint returns `204` on successful logout. Ensure audit logs contain expected fields for each auth event.",
+                    "components": [
+                        "./sources/backend/src/main/java/org/nlh4j/saas/membershiphub/security/Argon2PasswordService.java;./sources/backend/src/test/java/org/nlh4j/saas/membershiphub/security/Argon2PasswordServiceTest.java"
+                    ]
+                },
+                {
+                    "id": "D2_ST4",
+                    "agent": "Reviewer",
+                    "desc": "Reviewer Agent: Review Audit Logging Implementation. Confirm all authentication and authorization events are intercepted. Verify log format complies with GCP Cloud Logging structured JSON schema. Validate tenant isolation of logs (no cross‑tenant leakage).",
+                    "components": [
+                        "./sources/backend/src/main/java/org/nlh4j/saas/membershiphub/interceptor/AuditLoggingInterceptor.java"
+                    ]
+                }
+            ]
+        },
+        {
+            "day": 3,
+            "context_file": ".ai/.plan/.context/phase-5.context.blueprint.md",
+            "context_section": "DAY 3",
+            "sub_tasks": [
+                {
+                    "id": "D3_ST1",
+                    "agent": "Docker",
+                    "desc": "Docker Agent: Update Dockerfile with Security Scan Step. Insert a dedicated `SCAN` stage that runs `trivy fs --severity HIGH,CRITICAL .` on the built image. Fail the build if any HIGH or CRITICAL vulnerabilities are found. Tag the final image with `${PROJECT_ID}/membership-hub:${COMMIT_SHA}`.",
+                    "components": [
+                        "./sources/backend/src/main/docker/Dockerfile"
+                    ]
+                },
+                {
+                    "id": "D3_ST2",
+                    "agent": "GCP",
+                    "desc": "GCP Agent: Define GCP Cloud Build Pipeline. Trigger on `main` branch push. Steps: `mvn clean package`, `docker build`, `trivy scan`, `docker push` to Artifact Registry. Include `gcloud run deploy` or `gcloud kubernetes deploy` step to GKE. Store build logs and images in specified GCP project/region.",
+                    "components": [
+                        "./sources/backend/cloudbuild.yaml"
+                    ]
+                },
+                {
+                    "id": "D3_ST3",
+                    "agent": "GKE",
+                    "desc": "GKE Agent: Create GKE Deployment & Service Manifests. Deploy Quarkus pod with image `${PROJECT_ID}/membership-hub:${COMMIT_SHA}`. Set resource limits (`cpu: 250m`, `memory: 512Mi`) and pod security policy that runs as non‑root. Include `tenant_id` label for multi‑tenant routing. Configure liveness and readiness probes (`/q/health`).",
+                    "components": [
+                        "./sources/backend/k8s/deployment.yaml"
+                    ]
+                },
+                {
+                    "id": "D3_ST4",
+                    "agent": "Manager",
+                    "desc": "Manager Agent: Manager Orchestrates CI/CD and Deploys to GKE. Execute `gcloud builds submit --config=cloudbuild.yaml`. Wait for build completion and image push. Apply Kubernetes manifests (`kubectl apply -f k8s/`). Verify deployment status (`kubectl get deployments membership-hub`). Trigger integration test suite post‑deployment.",
+                    "components": [
+                        "./sources/backend/scripts/deploy.sh"
+                    ]
+                }
+            ]
+        },
+        {
+            "day": 4,
+            "context_file": ".ai/.plan/.context/phase-5.context.blueprint.md",
+            "context_section": "DAY 4",
+            "sub_tasks": [
+                {
+                    "id": "D4_ST1",
+                    "agent": "Tester",
+                    "desc": "Tester Agent: Run Integration/E2E Security Test Suite. Execute UI tests covering login with internal email/password (Argon2), OAuth2 redirects, token revocation logout, and role‑based access controls. Validate audit log presence via backend API calls. Confirm that unauthorized endpoints return `403` for mismatched tenants.",
+                    "components": [
+                        "INTEGRATION_SCOPE;./sources/frontend/tests/security.spec.ts"
+                    ]
+                },
+                {
+                    "id": "D4_ST2",
+                    "agent": "Reviewer",
+                    "desc": "Reviewer Agent: Perform Final Security Scan Verification. Review Trivy scan report attached to the Docker image. Ensure no HIGH or CRITICAL vulnerabilities remain post‑build. Sign off on Dockerfile compliance.",
+                    "components": [
+                        "./sources/backend/src/main/docker/Dockerfile"
+                    ]
+                },
+                {
+                    "id": "D4_ST3",
+                    "agent": "Manager",
+                    "desc": "Manager Agent: Generate Production Readiness Sign‑Off Document. Summarize OWASP hardening status, test results, scan outcomes, and deployment verification. Include quantitative metrics: unit test coverage ≥ 80 %, zero high‑severity CVEs, audit log retention configured. Provide approval signatures from Coder, Reviewer, and Tester. Mark phase complete and ready for production traffic.",
+                    "components": [
+                        "./sources/phase5-readiness-signoff.md"
+                    ]
+                }
+            ]
+        }
+    ]
+}
