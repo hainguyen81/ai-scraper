@@ -1,201 +1,174 @@
 # PHASE 3 CONTEXT BLUEPRINT: membership-hub
 
 ## 1. Phase Operational Scope & Objectives
-- **Next.js Web UI Construction** – Create the admin dashboard and all management screens (Centers, Courses, Teachers, Students, Promotions, Notifications, AI CSKH chat) using Next.js SSG/SSR patterns.  
-- **i18n & SEO Integration** – Configure `next-i18next` for multi‑language support (en, vi, …), generate hreflang tags, locale detection from user preference → browser → fallback, and embed SEO metadata per page.  
-- **Role‑Based UI Routing & Permission Guards** – Implement a guard that reads the JWT `roles` claim and `tenant_id`, enforces the defined RBAC matrix, and redirects unauthorized users.  
-- **Real‑Time Dashboard Auto‑Refresh** – Add a 15‑minute interval fetch for dashboard widgets (course count, active teachers, student day counters, promotions, announcements) using a custom React hook.  
-- **API Integration** – Expose/Consume REST endpoints for QR attendance scanning, student day‑counter updates, and notification triggers (Zalo SMS, FCM push). The UI will call these endpoints to drive attendance and notification flows.  
-- **Docker Multi‑Stage Build** – Produce optimized Docker images for the Quarkus backend and Next.js frontend, ready for GKE deployment.  
+Phase 3 delivers the native mobile experience for membership‑hub using a unified Next.js/React Native codebase. The implementation must provide role‑based UI, multi‑language support, QR‑based attendance capture, real‑time push notifications, and seamless integration with the existing Java/Quarkus backend services (user, course, notification APIs). All mobile components are built under the `./sources/frontend/` hierarchy, with dedicated mobile sub‑folders to keep web and app code isolated while sharing common utilities and i18n configuration. Integration testing validates end‑to‑end workflows across the mobile client, backend APIs, and external services (Zalo groups, push notification gateways). The phase concludes with a fully functional mobile app that passes OWASP‑aligned security checks and achieves ≥ 80 % integration test coverage.
 
-## 2. Allowed Technical Scope & Directory Boundaries
-- **Frontend** (`./sources/frontend/`):  
-  - `./sources/frontend/next-i18next.config.js` – i18n configuration.  
-  - `./sources/frontend/next.config.js` – SEO & i18n routes.  
-  - `./sources/frontend/pages/` – All Next.js pages (`_app.tsx`, `dashboard.tsx`, `centers.tsx`, `courses.tsx`, `teachers.tsx`, `students.tsx`, `promotions.tsx`, `notifications.tsx`, `admin/[...slug].tsx`).  
-  - `./sources/frontend/components/RoleBasedGuard.tsx` – RBAC guard.  
-  - `./sources/frontend/lib/api.ts` – API client for attendance & notification services.  
-  - `./sources/frontend/hooks/useRealtimeDashboard.ts` – 15‑min refresh logic.  
-  - `./sources/frontend/public/locales/` – translation JSON files.  
-  - `./sources/frontend/tests/` – unit & integration test suites.  
-- **Backend Integration** (`./sources/backend/`):  
-  - `./sources/backend/src/main/java/org/nlh4j/saas/memberhub/controller/AttendanceController.java` – REST endpoints for QR scan & day‑counter.  
-  - `./sources/backend/src/main/java/org/nlh4j/saas/memberhub/controller/NotificationController.java` – REST endpoints for sending notifications.  
-  - `./sources/backend/src/main/java/org/nlh4j/saas/memberhub/service/AttendanceService.java` – Business logic (single‑day flag, day‑counter decrement).  
-  - `./sources/backend/src/main/java/org/nlh4j/saas/memberhub/service/NotificationService.java` – Kafka publishing to `attendance`, `notifications`, `zalo-message`.  
-  - `./sources/backend/src/main/java/org/nlh4j/saas/memberhub/dto/AttendanceDto.java` – Data transfer objects.  
-  - `./sources/backend/src/main/java/org/nlh4j/saas/memberhub/dto/NotificationDto.java`.  
-  - `./sources/backend/src/test/java/org/nlh4j/saas/memberhub/controller/AttendanceControllerTest.java` – Unit tests.  
-  - `./sources/backend/src/test/java/org/nlh4j/saas/memberhub/controller/NotificationControllerTest.java`.  
-- **Docker** (`./sources/backend/Dockerfile`, `./sources/frontend/Dockerfile`) – Multi‑stage images.  
-- **CI/CD / GKE** (`./sources/backend/k8s/`, `./sources/frontend/k8s/`) – Deployment manifests.  
+## 2. Allowed Technical Scope & Directory Boundaries (Files, paths, and endpoints)
+- `./sources/frontend/` – root for all front‑end assets (web + mobile).  
+- `./sources/frontend/mobile/` – mobile‑specific source tree.  
+- `./sources/frontend/mobile/src/` – entry point (`App.js`/`_app.tsx`), navigation, and core modules.  
+- `./sources/frontend/mobile/src/screens/` – role‑specific screen components (StudentDashboard, TeacherSchedule, AdminCenter, etc.).  
+- `./sources/frontend/mobile/src/components/` – reusable UI primitives (QRScanner, NotificationBadge, RoleGuard, etc.).  
+- `./sources/frontend/mobile/src/services/` – API client wrappers for attendance, user, course, notification endpoints (expects HTTPS, tenant_id header, JWT auth).  
+- `./sources/frontend/mobile/src/utils/` – i18n configuration, secure storage helpers, QR validation, and OWASP‑compliant crypto utilities.  
+- `./sources/frontend/tests/` – test suites; integration tests use the `INTEGRATION_SCOPE` token.  
+- `./sources/frontend/tests/mobile.integration.spec.ts` – end‑to‑end test file verifying attendance flow, notifications, and role‑based navigation.  
+
+*Backend API contracts are assumed to exist under `./sources/backend/...` and are referenced by the mobile services; no backend source creation is required in this phase.*
 
 ## 3. Dedicated Sub-Agent Functional Directives
-- **Coder** – Implement all Next.js pages, i18n config, role‑guard component, API client, real‑time hook, and backend REST controllers/services. Embed OWASP A01 (Injection) & A03 (Sensitive Data Exposure) mitigations (parameterized queries, tenant filtering, JWT validation).  
-- **Tester** – Write unit tests for `RoleBasedGuard`, `useRealtimeDashboard`, and backend controllers; write integration/E2E tests for attendance & notification flows using `INTEGRATION_SCOPE` where cross‑component verification is required.  
-- **Reviewer** – Perform security review of JWT claim parsing, tenant isolation in backend APIs, and OWASP A05 (Security Misconfiguration) checks on Docker images and K8s manifests.  
-- **Docker** – Craft multi‑stage Dockerfiles for Quarkus (`./sources/backend/Dockerfile`) and Next.js (`./sources/frontend/Dockerfile`), ensuring non‑root user, minimal layers, and health‑check endpoints.  
-- **GCP** – Configure Cloud Build triggers that invoke the Docker builds, push images to Artifact Registry, and generate build logs.  
-- **GKE** – Produce K8s deployment and service YAMLs (`./sources/backend/k8s/deployment.yaml`, `./sources/frontend/k8s/deployment.yaml`) with resource limits, pod security policies, and tenant‑aware environment variables.  
-- **Manager** – Coordinate cross‑agent hand‑offs, validate that all generated paths respect `./sources/` boundaries, and ensure the Phase‑level DoD metrics are tracked.  
+- **Coder Agent** – Build the mobile application stack: project scaffolding, authentication flow, navigation, screen implementations, QR scanner integration, push‑notification handling, multi‑language i18n, and secure data storage. Embed OWASP compliance (multi‑tenancy `tenant_id` headers, AES‑256 encryption for PII, input validation, secure token storage, and parameterized API calls). Ensure all components follow the `./sources/frontend/` topology and are testable.
+- **Tester Agent** – Execute integration testing for the mobile client: validate attendance QR scanning, notification delivery, role‑based UI access, and cross‑service API calls. Use the `INTEGRATION_SCOPE` token for multi‑component workflow verification. Generate a comprehensive test report meeting ≥ 80 % coverage and OWASP security validation.
 
 ## 4. Phase Definition of Done (DoD)
-- **UI Completion** – All admin screens (Centers, Courses, Teachers, Students, Promotions, Notifications, AI CSKH) rendered with correct RBAC guards; i18n keys present for at least two languages; hreflang tags generated.  
-- **Security & Compliance** – JWT `roles`/`tenant_id` enforced; OWASP A01‑A07 checks passed (input validation, parameterized queries, encryption at rest, secure headers).  
-- **Real‑Time Dashboard** – Dashboard widgets auto‑refresh every 15 minutes; API calls include tenant filtering; no in‑memory large‑dataset loops.  
-- **API Integration** – Backend controllers expose `/api/attendance/scan` and `/api/notifications/send`; frontend client consumes them with proper error handling; unit test coverage ≥ 80 % for new code.  
-- **Docker & Deployment** – Multi‑stage Docker images built, tagged, and pushed to GCP Artifact Registry; K8s manifests deployed to GKE with correct service accounts and IAM policies.  
-- **Testing** – All unit tests passing; integration/E2E tests covering attendance scan, notification delivery, and role‑based access; test coverage ≥ 80 % for new components.  
-- **CI/CD** – Cloud Build pipeline triggers on code changes, builds both Docker images, runs security scans, and deploys to GKE automatically.  
+- **Functional Milestones**  
+  - Mobile app entry point (`./sources/frontend/mobile/src/App.js`) bootstraps with role‑based router.  
+  - Authentication module (`./sources/frontend/mobile/src/services/authService.js`) securely stores JWT, includes `tenant_id` header, and enforces password complexity.  
+  - QR scanner component (`./sources/frontend/mobile/src/components/QRScanner.js`) validates scanned data per OWASP A03 (Injection) and triggers attendance API.  
+  - Attendance service (`./sources/frontend/mobile/src/services/attendanceService.js`) calls backend `/api/v1/attendance` with encrypted payload and tenant context.  
+  - Notification service (`./sources/frontend/mobile/src/services/notificationService.js`) integrates with push gateways and Zalo group APIs.  
+  - Multi‑language support (`./sources/frontend/mobile/src/utils/i18n.js`) detects device locale, persists user choice, and renders UI strings.  
+  - Role‑guard component (`./sources/frontend/mobile/src/components/RoleGuard.js`) enforces access per defined roles (Student, Teacher, Admin, Manager).  
+- **Testing Milestones**  
+  - Integration test suite (`./sources/frontend/tests/mobile.integration.spec.ts`) executes and covers attendance flow, notification delivery, and role‑based navigation (≥ 80 % feature coverage).  
+  - All OWASP security checks pass (no hardcoded credentials, proper encryption, input validation, secure storage).  
+- **Deliverables**  
+  - Complete mobile source tree under `./sources/frontend/mobile/`.  
+  - Integration test report and OWASP compliance sign‑off.  
 
 ## 5. DAY‑BY‑DAY ARCHITECTURAL EXECUTION LOGS
 
-### DAY 1: Next.js Project Initialization & Docker Base Images
-#### SUB-TASK 1.1: Initialize Next.js frontend with i18n and basic page scaffolding
+### DAY 1: MOBILE PROJECT SKELETON & AUTH INFRASTRUCTURE
+#### SUB‑TASK 1.1: Initialize React Native project and configure Next.js hybrid structure
 ##### Assigned Sub-Agent: Coder
 ##### Targeted Components & Technical Requirements:
-* **Target Path:** ./sources/frontend/next-i18next.config.js
-    * **Architectural Requirements:** Configure `next-i18next` with `locales` (en, vi), `defaultLocale`, and `ns` for translation keys; embed `i18n.routing` for Next.js App Router compatibility.
-* **Target Path:** ./sources/frontend/next.config.js
-    * **Architectural Requirements:** Enable i18n routing (`i18n: { locales: ['en','vi'], defaultLocale: 'en', localeDetection: true }`), generate `hreflang` `<link>` tags via `asyncRewrites`, and set `experimental: { optimizeCss: true }` for performance.
-* **Target Path:** ./sources/frontend/pages/_app.tsx
-    * **Architectural Requirements:** Import `appWithTranslation` from `react-i18next`, wrap component with `I18nextProvider`, and include global error boundary for unauthorized access.
-* **Target Path:** ./sources/frontend/pages/dashboard.tsx
-    * **Architectural Requirements:** Server‑side render dashboard widgets using `getServerSideProps` with tenant‑filtered data fetch; embed `<RoleBasedGuard>` to restrict to `Admin|Manager|Teacher|Student`.
-* **Target Path:** ./sources/frontend/pages/centers.tsx, ./sources/frontend/pages/courses.tsx, ./sources/frontend/pages/teachers.tsx, ./sources/frontend/pages/students.tsx, ./sources/frontend/pages/promotions.tsx, ./sources/frontend/pages/notifications.tsx
-    * **Architectural Requirements:** Each page implements `getServerSideProps` with tenant isolation, uses `useTranslation` for UI strings, and includes `<RoleBasedGuard>` with appropriate allowed roles per raw requirement.
-#### SUB-TASK 1.2: Create multi‑stage Dockerfiles for backend and frontend
-##### Assigned Sub-Agent: Docker
-##### Targeted Components & Technical Requirements:
-* **Target Path:** ./sources/backend/Dockerfile
-    * **Architectural Requirements:** Multi‑stage: builder (Maven compile), runtime (distroless Java 17), expose port 8080, set non‑root user, include health‑check `curl` endpoint.
-* **Target Path:** ./sources/frontend/Dockerfile
-    * **Architectural Requirements:** Multi‑stage: builder (npm ci, next build), runtime (nginx serve), expose port 3000, set non‑root user, include `nginx.conf` for static assets.
-#### SUB-TASK 1.3: Validate workspace path compliance and directory structure
-##### Assigned Sub-Agent: Manager
-##### Targeted Components & Technical Requirements:
-* **Target Path:** ./sources/
-    * **Architectural Requirements:** Ensure all generated files reside strictly under `./sources/`; no files placed directly at repository root; confirm Java package token `memberhub` used for any `.java` files.
+*   **Target Path:** ./sources/frontend/mobile/src/App.js
+    *   **Architectural Requirements:**
+        *   Set up React Native entry with Next.js App Router for hybrid rendering; define root navigation stack using React Navigation.
+        *   Integrate `react-native-safe-area-context` and `react-native-screens` for native look‑and‑feel.
+        *   Embed multi‑tenant `tenant_id` header injection via an Axios interceptor for all API calls.
+        *   Implement JWT token storage using `react-native-secure-store` with AES‑256 encryption for sensitive fields (OWASP A02:2021 – Cryptographic Failures).
+        *   Configure locale detection: read device locale, fallback to `en`, persist user preference in secure storage.
 
-### DAY 2: Role‑Based Guard & API Integration
-#### SUB-TASK 2.1: Implement RoleBasedGuard component with JWT claim validation
+#### SUB‑TASK 1.2: Build authentication service and login screen
 ##### Assigned Sub-Agent: Coder
 ##### Targeted Components & Technical Requirements:
-* **Target Path:** ./sources/frontend/components/RoleBasedGuard.tsx
-    * **Architectural Requirements:** Read `jwt` from cookies, decode `roles` and `tenant_id`, compare against allowedRoles prop, redirect to `/login` if unauthorized; embed OWASP A07 (Identification & Authentication Failures) mitigation (strict JWT signature verification, token expiration check).
-#### SUB-TASK 2.2: Create API client for attendance and notification services
+*   **Target Path:** ./sources/frontend/mobile/src/services/authService.js
+    *   **Architectural Requirements:**
+        *   Provide `login(credentials)` that sends POST to `/api/v1/auth/login` with `tenant_id` header and `x-client-role` header.
+        *   Validate response for `access_token` and refresh token; store tokens encrypted via `react-native-secure-store`.
+        *   Implement token refresh logic with automatic logout on invalid refresh.
+        *   Enforce password complexity (min 8 chars, mix of letters/numbers) per OWASP A07:2021 – Identification and Authentication Failures.
+        *   Log authentication events (success/failure) for audit trails.
+*   **Target Path:** ./sources/frontend/mobile/src/screens/LoginScreen.js
+    *   **Architectural Requirements:**
+        *   Render email/password fields with client‑side validation (required, email format).
+        *   Integrate OAuth buttons for Google/Facebook via Firebase Auth (use Firebase SDK, store provider tokens securely).
+        *   Display loading spinner and error messages; redirect to appropriate role‑based dashboard after successful login.
+
+### DAY 2: ROLE‑BASED NAVIGATION & CORE UI COMPONENTS
+#### SUB‑TASK 2.1: Implement role‑guard and dynamic navigation based on user role
 ##### Assigned Sub-Agent: Coder
 ##### Targeted Components & Technical Requirements:
-* **Target Path:** ./sources/frontend/lib/api.ts
-    * **Architectural Requirements:** Define `fetchAttendanceScan(payload)` and `sendNotification(payload)` functions using `fetch` with tenant header `x-tenant-id`; implement retry logic and error mapping; enforce OWASP A03 (Sensitive Data Exposure) by not logging payloads.
-#### SUB-TASK 2.3: Add backend REST controllers to expose attendance & notification endpoints
+*   **Target Path:** ./sources/frontend/mobile/src/components/RoleGuard.js
+    *   **Architectural Requirements:**
+        *   Accept `allowedRoles` prop; read encrypted user role from secure storage.
+        *   Redirect unauthenticated users to `/login`.
+        *   Enforce role‑based access per specification (System Admin, Admin, Manager, Teacher, Student).
+        *   Log unauthorized access attempts for security monitoring (OWASP A09:2021 – Security Misconfiguration).
+
+#### SUB‑TASK 2.2: Create main dashboard screens for each role
 ##### Assigned Sub-Agent: Coder
 ##### Targeted Components & Technical Requirements:
-* **Target Path:** ./sources/backend/src/main/java/org/nlh4j/saas/memberhub/controller/AttendanceController.java
-    * **Architectural Requirements:** `@RestController @RequestMapping("/api/attendance")`, `@PostMapping("/scan"` with `@RequestBody AttendanceDto dto`, enforce `@TenantFilter` to restrict data to `dto.tenantId`, return `ResponseEntity<AttendanceDto>`, embed OWASP A01 (SQL Injection) via `@Query` parameterization.
-* **Target Path:** ./sources/backend/src/main/java/org/nlh4j/saas/memberhub/controller/NotificationController.java
-    * **Architectural Requirements:** `@RestController @RequestMapping("/api/notifications")`, `@PostMapping("/send"` with `@RequestBody NotificationDto dto`, enforce tenant filtering, publish to Kafka topics `attendance`, `notifications`, `zalo-message`, embed OWASP A02 (Broken Authentication) by validating JWT `Authorization` header.
-#### SUB-TASK 2.4: Write unit tests for RoleBasedGuard and API client
+*   **Target Path:** ./sources/frontend/mobile/src/screens/StudentDashboard.js
+    *   **Architectural Requirements:**
+        *   Display student ID, remaining class days, and QR scanner button.
+        *   Integrate `QRScanner` component to capture attendance.
+        *   Show push notifications list; implement swipe‑to‑dismiss.
+        *   Support language toggle using i18n context.
+*   **Target Path:** ./sources/frontend/mobile/src/screens/TeacherDashboard.js
+    *   **Architectural Requirements:**
+        *   Show schedule of assigned courses, list of enrolled students per course.
+        *   Provide button to generate QR code for class session (backend endpoint `/api/v1/qr/generate`).
+        *   Enforce teacher‑only access via `RoleGuard`.
+*   **Target Path:** ./sources/frontend/mobile/src/screens/AdminDashboard.js
+    *   **Architectural Requirements:**
+        *   Render center management UI (list of centers, add/edit/delete).
+        *   Access control: only System Admin and Admin roles permitted.
+        *   Include navigation to Manager, Teacher, Student management screens.
+
+#### SUB‑TASK 2.3: Build QR scanner component with secure input handling
+##### Assigned Sub-Agent: Coder
+##### Targeted Components & Technical Requirements:
+*   **Target Path:** ./sources/frontend/mobile/src/components/QRScanner.js
+    *   **Architectural Requirements:**
+        *   Use `react-native-camera` for live preview.
+        *   Parse scanned result; validate format (alphanumeric, length ≤ 64) to mitigate injection (OWASP A03).
+        *   Call attendance service (`./sources/frontend/mobile/src/services/attendanceService.js`) with encrypted payload.
+        *   Provide visual feedback (success/error toast) and store last scan locally (secure storage) for offline reference.
+
+### DAY 3: ATTENDANCE, NOTIFICATIONS & BACKEND INTEGRATION
+#### SUB‑TASK 3.1: Implement attendance service with tenant‑aware API calls
+##### Assigned Sub-Agent: Coder
+##### Targeted Components & Technical Requirements:
+*   **Target Path:** ./sources/frontend/mobile/src/services/attendanceService.js
+    *   **Architectural Requirements:**
+        *   Export `scanQRCode(payload)` that POSTs to `/api/v1/attendance` with `tenant_id` header and encrypted `payload` (AES‑256).
+        *   Validate server response; handle 4xx/5xx with user‑friendly alerts.
+        *   Cache successful attendance locally (secure storage) for offline sync.
+        *   Implement retry logic with exponential backoff for network failures.
+        *   Log attendance events (including tenant_id, user_id, timestamp) for audit (OWASP A12:2023 – Security Logging).
+
+#### SUB‑TASK 3.2: Build notification service and real‑time push handling
+##### Assigned Sub-Agent: Coder
+##### Targeted Components & Technical Requirements:
+*   **Target Path:** ./sources/frontend/mobile/src/services/notificationService.js
+    *   **Architectural Requirements:**
+        *   Subscribe to push notification channel (React Native Push Notification) for both local and remote alerts.
+        *   Forward remote notifications to Zalo group API (`/api/v1/notifications/zalo`) with tenant context.
+        *   Encrypt sensitive notification payload fields (e.g., student PII) before storage.
+        *   Provide `markAsRead(id)` to update local state and sync with backend.
+*   **Target Path:** ./sources/frontend/mobile/src/components/NotificationBadge.js
+    *   **Architectural Requirements:**
+        *   Display badge count of unread notifications; update via NotificationService.
+        *   Implement swipe actions to open notification details.
+        *   Ensure badge UI respects accessibility and screen reader.
+
+#### SUB‑TASK 3.3: Integrate multi‑language i18n and theme configuration
+##### Assigned Sub-Agent: Coder
+##### Targeted Components & Technical Requirements:
+*   **Target Path:** ./sources/frontend/mobile/src/utils/i18n.js
+    *   **Architectural Requirements:**
+        *   Load resources from `./sources/frontend/mobile/src/locales/`.  
+        *   Detect device locale (`react-native-device-info`); fallback to `en`.  
+        *   Persist user language choice in secure storage.  
+        *   Provide `useTranslation` hook for component consumption.  
+*   **Target Path:** ./sources/frontend/mobile/src/components/LanguageToggle.js
+    *   **Architectural Requirements:**
+        *   Render a button to switch between supported locales; trigger i18n change and re‑render UI.
+
+### DAY 4: INTEGRATION TESTING & OWASP VALIDATION
+#### SUB‑TASK 4.1: Execute end‑to‑end integration test suite for mobile workflows
 ##### Assigned Sub-Agent: Tester
 ##### Targeted Components & Technical Requirements:
-* **Target Path:** ./sources/frontend/tests/roleGuard.test.tsx;./sources/frontend/tests/api.test.ts
-    * **Architectural Requirements:** For RoleBasedGuard, mock JWT decode with various `roles`/`tenant_id` combos and assert navigation; for API client, mock `fetch` responses and verify correct headers and payload serialization.
-#### SUB-TASK 2.5: Security review of JWT handling and tenant filtering
-##### Assigned Sub-Agent: Reviewer
-##### Targeted Components & Technical Requirements:
-* **Target Path:** ./sources/frontend/components/RoleBasedGuard.tsx, ./sources/backend/src/main/java/org/nlh4j/saas/memberhub/controller/AttendanceController.java, ./sources/backend/src/main/java/org/nlh4j/saas/memberhub/controller/NotificationController.java
-    * **Architectural Requirements:** Validate JWT signature verification, token expiration, and `tenant_id` claim usage; ensure no hard‑coded credentials; confirm parameterized queries in JPA repositories; embed OWASP A05 (Security Misconfiguration) checks.
+*   **Target Path:** INTEGRATION_SCOPE;./sources/frontend/tests/mobile.integration.spec.ts
+    *   **Architectural Requirements:**
+        *   Simulate login for each role (Student, Teacher, Admin) using mocked auth service.  
+        *   Verify role‑guard redirects unauthorized users.  
+        *   Trigger QR scan flow: invoke scanner component, mock attendance API call, assert attendance creation.  
+        *   Validate notification delivery: mock push gateway and Zalo API, confirm UI update.  
+        *   Test language switching: assert UI strings reflect selected locale.  
+        *   Capture all network requests for tenant_id header presence and encrypted payload compliance.  
+        *   Generate test report with ≥ 80 % feature coverage and flag any OWASP violations (e.g., missing tenant header, insecure storage).
 
-### DAY 3: Real‑Time Dashboard Refresh & Integration Tests
-#### SUB-TASK 3.1: Implement useRealtimeDashboard hook for 15‑minute auto‑refresh
-##### Assigned Sub-Agent: Coder
-##### Targeted Components & Technical Requirements:
-* **Target Path:** ./sources/frontend/hooks/useRealtimeDashboard.ts
-    * **Architectural Requirements:** `useEffect(() => { const interval = setInterval(() => { fetch('/api/dashboard')... }, 15*60*1000); return () => clearInterval(interval); }`, include tenant header, cache‑bust query param to avoid stale data.
-#### SUB-TASK 3.2: Add dashboard API endpoint in backend
-##### Assigned Sub-Agent: Coder
-##### Targeted Components & Technical Requirements:
-* **Target Path:** ./sources/backend/src/main/java/org/nlh4j/saas/memberhub/controller/DashboardController.java
-    * **Architectural Requirements:** `@RestController @RequestMapping("/api/dashboard")`, `@GetMapping` returns aggregated counts (courses today, teachers on duty, student day counters), apply tenant filter, embed OWASP A04 (Insecure Design) by limiting exposed fields.
-#### SUB-TASK 3.3: Write integration test for dashboard refresh and attendance flow
+#### SUB‑TASK 4.2: Perform OWASP security validation on mobile components
 ##### Assigned Sub-Agent: Tester
 ##### Targeted Components & Technical Requirements:
-* **Target Path:** INTEGRATION_SCOPE;./sources/frontend/tests/dashboardRefresh.spec.ts
-    * **Architectural Requirements:** Simulate user login, trigger attendance scan via API, verify dashboard widget updates within interval, assert tenant‑specific data visibility.
-#### SUB-TASK 3.4: Review security of real‑time data fetching
-##### Assigned Sub-Agent: Reviewer
-##### Targeted Components & Technical Requirements:
-* **Target Path:** ./sources/frontend/hooks/useRealtimeDashboard.ts, ./sources/backend/src/main/java/org/nlh4j/saas/memberhub/controller/DashboardController.java
-    * **Architectural Requirements:** Ensure no CORS misconfiguration, validate tenant header on each request, enforce rate limiting via Spring Security `HttpRateLimiter`, embed OWASP A06 (Vulnerable Components) by using latest dependency versions.
-
-### DAY 4: Docker Image Build & CI/CD Pipeline Setup
-#### SUB-TASK 4.1: Build and push Docker images to GCP Artifact Registry via Cloud Build
-##### Assigned Sub-Agent: GCP
-##### Targeted Components & Technical Requirements:
-* **Target Path:** ./sources/backend/cloudbuild-backend.yaml
-    * **Architectural Requirements:** Define Cloud Build step: `docker build -f ./sources/backend/Dockerfile --tag gcr.io/${PROJECT_ID}/membership-hub-backend:${SHORT_SHA} .`, `docker push`, apply `gcloud run deploy` with IAM service account.
-* **Target Path:** ./sources/frontend/cloudbuild-frontend.yaml
-    * **Architectural Requirements:** Similar steps for frontend image `gcr.io/${PROJECT_ID}/membership-hub-frontend:${SHORT_SHA}`.
-#### SUB-TASK 4.2: Configure CI/CD triggers in repository
-##### Assigned Sub-Agent: Manager
-##### Targeted Components & Technical Requirements:
-* **Target Path:** ./.github/workflows/ci-cd.yml
-    * **Architectural Requirements:** Trigger on `push` to main, invoke Cloud Build for backend and frontend, wait for success, then apply K8s manifests.
-#### SUB-TASK 4.3: Create K8s deployment manifests for backend and frontend
-##### Assigned Sub-Agent: GKE
-##### Targeted Components & Technical Requirements:
-* **Target Path:** ./sources/backend/k8s/deployment.yaml
-    * **Architectural Requirements:** `apiVersion: apps/v1`, `kind: Deployment`, container image `gcr.io/${PROJECT_ID}/membership-hub-backend:${SHORT_SHA}`, resource limits, env vars for `TENANT_ID`, `JWT_SECRET`, readiness/liveness probes.
-* **Target Path:** ./sources/frontend/k8s/deployment.yaml
-    * **Architectural Requirements:** Similar for Next.js, expose port 3000, mount configMap for `NEXT_PUBLIC_API_URL`, enforce pod security policy `restricted`.
-
-### DAY 5: Security Hardening & OWASP Validation
-#### SUB-TASK 5.1: Run OWASP ZAP scan against deployed services
-##### Assigned Sub-Agent: Reviewer
-##### Targeted Components & Technical Requirements:
-* **Target Path:** ZAP_SCAN_REPORT.md
-    * **Architectural Requirements:** Generate scan report, remediate high‑risk findings (e.g., missing security headers, insecure cookies), update Docker images with patched base layers.
-#### SUB-TASK 5.2: Apply encryption at rest for PII in PostgreSQL
-##### Assigned Sub-Agent: Coder
-##### Targeted Components & Technical Requirements:
-* **Target Path:** ./sources/backend/src/main/java/org/nlh4j/saas/memberhub/config/DatabaseEncryptionConfig.java
-    * **Architectural Requirements:** Configure Spring Data JPA with `AES-256` column-level encryption for fields marked `@SensitiveField`, embed key management via GCP Secret Manager.
-#### SUB-TASK 5.3: Validate tenant isolation across all API endpoints
-##### Assigned Sub-Agent: Reviewer
-##### Targeted Components & Technical Requirements:
-* **Target Path:** ./sources/backend/src/main/java/org/nlh4j/saas/memberhub/interceptor/TenantInterceptor.java
-    * **Architectural Requirements:** Intercept all `/api/**` requests, extract `x-tenant-id` header, compare with JWT `tenant_id`, reject mismatched requests, log audit trail.
-
-### DAY 6: End‑to‑End Testing & Performance Validation
-#### SUB-TASK 6.1: Execute E2E tests for attendance scan and notification delivery
-##### Assigned Sub-Agent: Tester
-##### Targeted Components & Technical Requirements:
-* **Target Path:** INTEGRATION_SCOPE;./sources/frontend/tests/e2e/attendance.spec.ts
-    * **Architectural Requirements:** Use Playwright to login as Student, scan QR (mock API), verify attendance flag set, check notification appears in UI and Kafka topic `attendance` is published.
-#### SUB-TASK 6.2: Load test critical paths (dashboard refresh, attendance API)
-##### Assigned Sub-Agent: Tester
-##### Targeted Components & Technical Requirements:
-* **Target Path:** ./sources/backend/src/test/java/org/nlh4j/saas/memberhub/performance/DashboardLoadTest.java
-    * **Architectural Requirements:** Use JUnit 5 with `Testcontainers` PostgreSQL and Kafka, simulate 100 concurrent dashboard requests, assert response time < 200ms, ensure no memory leaks.
-#### SUB-TASK 6.3: Review performance results and adjust scaling
-##### Assigned Sub-Agent: Manager
-##### Targeted Components & Technical Requirements:
-* **Target Path:** PERFORMANCE_REPORT.md
-    * **Architectural Requirements:** Summarize throughput, identify bottlenecks, recommend horizontal pod autoscaling rules in K8s HPA.
-
-### DAY 7: Final Sign‑Off & Release
-#### SUB-TASK 7.1: Consolidate all artifacts and generate release manifest
-##### Assigned Sub-Agent: Manager
-##### Targeted Components & Technical Requirements:
-* **Target Path:** RELEASE_MANIFEST.md
-    * **Architectural Requirements:** List all implemented files, Docker image digests, K8s deployment revisions, test coverage metrics, OWASP remediation status.
-#### SUB-TASK 7.2: Deploy final images to GKE and verify service health
-##### Assigned Sub-Agent: GKE
-##### Targeted Components & Technical Requirements:
-* **Target Path:** ./sources/backend/k8s/deployment.yaml, ./sources/frontend/k8s/deployment.yaml
-    * **Architectural Requirements:** Apply `kubectl apply -f`, verify pods ready, check service endpoints, run health‑check curl against `/actuator/health`.
-#### SUB-TASK 7.3: Final compliance audit
-##### Assigned Sub-Agent: Reviewer
-##### Targeted Components & Technical Requirements:
-* **Target Path:** COMPLIANCE_AUDIT_CHECKLIST.md
-    * **Architectural Requirements:** Confirm all raw requirements from Phase 3 are satisfied, OWASP A01‑A07 controls present, RBAC enforced, multi‑tenant isolation validated, i18n/SEO functional, Docker images scanned, CI/CD pipeline passes.
+*   **Target Path:** ./sources/frontend/mobile/src/services/authService.js;./sources/frontend/tests/mobile.integration.spec.ts
+    *   **Architectural Requirements:**
+        *   Verify JWT tokens are stored encrypted (AES‑256) and not exposed in device logs.  
+        *   Confirm password complexity rules enforced client‑side and transmitted securely.  
+        *   Validate that all API calls include `tenant_id` header and use HTTPS.  
+        *   Check QR input validation for injection attempts; ensure sanitized before API call.  
+        *   Review secure storage usage (no plaintext tokens).  
+        *   Document findings and ensure remediation before phase sign‑off.
