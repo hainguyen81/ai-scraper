@@ -205,6 +205,17 @@ class AbstractAgent(ABC):
         # result
         return (success, system_prompt, user_prompt, latest_response)
     
+    def __handle_execute_exception__(self, e, **kwargs):
+        print(f"[ 💀 {self.agent_id} Agent | ERROR ] Exception caught on model {self.current_model_config['model_name']}: {exception_stacktrace(e)}")
+        # write log
+        self.write_log(
+            data=exception_stacktrace(e),
+            append=True
+        )
+        self.active_model_index += 1
+        if not self.rotate_model():
+            sys.exit(1)
+    
     def execute(self, **kwargs):
         # pre-execute
         kwargs = self.pre_execute(**kwargs)
@@ -220,13 +231,5 @@ class AbstractAgent(ABC):
                 # done tasks
                 return success
             except Exception as e:
-                print(f"[ 💀 {self.agent_id} Agent | ERROR ] Exception caught on model {self.current_model_config['model_name']}: {exception_stacktrace(e)}")
-                # write log
-                self.write_log(
-                    data=exception_stacktrace(e),
-                    append=True
-                )
-                self.active_model_index += 1
-                if not self.rotate_model():
-                    return False
+                self.__handle_execute_exception__(e, **kwargs)
 
