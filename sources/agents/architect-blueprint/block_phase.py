@@ -12,8 +12,7 @@ import time
 from openai import OpenAI
 
 # Now Python can seamlessly see and import the centralized helper utility cleanly!
-from sources.agents.agent_helper import resolve_absolute_path, exception_stacktrace
-from helper import write_log, write_file, render_prompt, parseOpenAIResponseData
+from sources.agents.agent_helper import resolve_absolute_path, exception_stacktrace, write_blueprint_log, write_file, render_prompt, parseOpenAIResponseData
 
 # ==============================================================================
 # GLOBAL CONFIGURATION PATHS - CONFIG HERE TO CUSTOMIZE DIRECTORY STRUCTURE
@@ -81,7 +80,7 @@ def generate_phase_contexts(client: OpenAI, model_name: str, project_name: str, 
             )
         
             # write log
-            write_log(log_phase_idx, instruction, log_prompt.replace('#', '##'), raw_data.replace('#', '##') if raw_data else "-", False, model_name_safe, out_dir)
+            write_blueprint_log(log_phase_idx, instruction, log_prompt.replace('#', '##'), raw_data.replace('#', '##') if raw_data else "-", False, model_name_safe, out_dir)
             
             print(f" │   ├── ✅ Saved Phase {phase_idx} MD: {out_path}")
             
@@ -94,6 +93,6 @@ def generate_phase_contexts(client: OpenAI, model_name: str, project_name: str, 
         return result # success or empty phases
     except Exception as e:
         print(f"❌ Failed to initiate chat/generate Phase {log_phase_idx} Blueprint: {exception_stacktrace(e)}")
-        write_log(log_phase_idx, instruction, log_prompt.replace('#', '##'), exception_stacktrace(e), False, model_name_safe, out_dir)
+        write_blueprint_log(log_phase_idx, instruction, log_prompt.replace('#', '##'), exception_stacktrace(e), False, model_name_safe, out_dir)
         return False
 

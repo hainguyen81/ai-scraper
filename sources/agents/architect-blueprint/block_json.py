@@ -20,8 +20,7 @@ from openai import OpenAI
 from jinja2 import Template
 
 # Now Python can seamlessly see and import the centralized helper utility cleanly!
-from sources.agents.agent_helper import resolve_absolute_path, exception_stacktrace
-from helper import write_log, write_json_file, render_prompt, parseOpenAIResponseJsonData
+from sources.agents.agent_helper import resolve_absolute_path, exception_stacktrace, write_blueprint_log, write_json_file, render_prompt, parseOpenAIResponseJsonData
 
 # ==============================================================================
 # GLOBAL CONFIGURATION PATHS - CONFIG HERE TO CUSTOMIZE DIRECTORY STRUCTURE
@@ -284,7 +283,7 @@ def convert_phases_to_json(client: OpenAI, model_name: str, project_name: str, n
                 # print(f" │         { dump_json_data }")
                 
                 # write log
-                write_log(log_phase_idx, instruction, log_prompt.replace('#', '##'), raw_data, True, model_name_safe, out_dir)
+                write_blueprint_log(log_phase_idx, instruction, log_prompt.replace('#', '##'), raw_data, True, model_name_safe, out_dir)
                 
                 # # Accumulate stream markers for audit logging preservation
                 # accumulated_raw_data += f"\n--- CHUNK {chunk_counter} RAW ---\n" + (raw_data if raw_data else "")
@@ -399,5 +398,5 @@ def convert_phases_to_json(client: OpenAI, model_name: str, project_name: str, n
         return result # success or empty phases
     except Exception as e:
         print(f"❌ Failed to initiate chat/generate Phase {log_phase_idx} Steps JSON: {exception_stacktrace(e)}")
-        write_log(log_phase_idx, instruction, log_prompt.replace('#', '##'), exception_stacktrace(e), True, model_name_safe, out_dir)
+        write_blueprint_log(log_phase_idx, instruction, log_prompt.replace('#', '##'), exception_stacktrace(e), True, model_name_safe, out_dir)
         return False

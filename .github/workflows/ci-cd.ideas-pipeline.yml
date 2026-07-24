@@ -1,0 +1,143 @@
+name: 💡 Agent - Execute Ideas AI Generator
+
+# Trigger the workflow when requirements change or via manual trigger
+on:
+  workflow_dispatch:
+    inputs:
+      domain:
+        description: '🌐 Domain'
+        required: false
+        type: string
+      quantity:
+        description: '🔢 Number of ideas'
+        required: false
+        default: 3
+        type: number
+      language:
+        description: '🗣️ Language'
+        required: false
+        default: '🇻🇳 Vietnamese'
+        type: choice
+        options:
+          - "🇻🇳 Vietnamese"
+          - "🇺🇸 English"
+          - "🇩🇪 Germany"
+          - "🇯🇵 Japanese"
+    
+  # allow other workflow call into (inputs same as workflow_dispatch but required)
+  workflow_call:
+    inputs:
+      domain:
+        description: '🌐 Domain'
+        required: false
+        type: string
+      quantity:
+        description: '🔢 Number of ideas'
+        required: false
+        default: 3
+        type: number
+      language:
+        description: '🗣️ Language'
+        required: false
+        default: '🇻🇳 Vietnamese'
+        type: string
+
+# permissions for GitHub Actions READ/WRITE
+permissions:
+  actions: write
+  contents: write
+  packages: write
+
+# enviroment
+env:
+  LANG: 'C.UTF-8'
+  LC_ALL: 'C.UTF-8'
+
+jobs:
+  # 🏗️ System Architecture & Phase Planner
+  generate-blueprint:
+    name: 💡 Expert Idea Generation
+    runs-on: ubuntu-latest
+    
+    steps:
+      # Step 1: Checkout the repository code into the runner workspace
+      - name: 📥 Checkout Repository
+        uses: actions/checkout@v7
+        with:
+            fetch-depth: 0
+
+      # Step 2: Initialize a clean Python runtime environment
+      - name: 🐍 Set up Python Environment
+        if: success()                             # if previous step is successful
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+          cache: 'pip'
+
+      # Step 3: Upgrade pip and install the official Google GenAI SDK
+      - name: 📦 Install Python Dependencies
+        if: success()                             # if previous step is successful
+        run: |
+          python -m pip install --upgrade pip
+          
+          # GEMINI
+          # pip install google-genai
+          
+          # OpenAI
+          pip install requests google-generativeai openai anthropic pydantic
+          
+          # mapping JSON
+          pip install jinja2
+
+      # Step 4: Execute agent
+      - name: 💡 Execute Expert Idea Generation
+        if: success()                             # if previous step is successful
+        env:
+          # Secrets contains the AI endpoint and AI API key JSON
+          AI_MODELS_KEYS_JSON: ${{ secrets.AI_MODELS_KEYS_JSON }}
+          
+          # Python environment
+          PYTHONPATH: ${{ github.workspace }} # force Python load folder structure, including 'sources'
+          
+          # Project Information
+          INPUTS_DOMAIN: ${{ inputs.domain }}
+          INPUTS_QUANTITY: ${{ inputs.quantity }}
+          INPUTS_LANGUAGE: ${{ inputs.language }}
+        run: |
+          echo "⚡ Kicking off AI Ideas Generation..."
+          python sources/agents/ideas/agent_idea_generator.py \
+              --domain "$INPUTS_DOMAIN" \
+              --quantity $INPUTS_QUANTITY \
+              --language "$INPUTS_LANGUAGE"
+
+      # Step 5: Automatically stage, commit, and push changes
+      - name: 🚀 Commit and Push Changes
+        if: always()
+        env:
+          INPUTS_DOMAIN: ${{ inputs.domain }}
+          INPUTS_LANGUAGE: ${{ inputs.language }}
+        run: |
+          # 1. Bot user GitHub
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          
+          # 2. Add everything into Stage
+          git add .
+          
+          # 3. Use status to check file changes
+          if [ -n "$(git status --porcelain)" ]; then
+            echo "📝 Committing system state changes..."
+            git commit -m "chore(ai): auto-generate some expert ideas for [ $INPUTS_DOMAIN ] under [ $INPUTS_LANGUAGE ] [skip ci]"
+            
+            # ✅ ENTERPRISE HOTFIX: Pull new changes and rebase to avoid conflicts fast-forward
+            echo "🔄 Pulling latest upstream tree and executing explicit contextual rebase..."
+            git pull --rebase -X theirs origin ${{ github.ref_name }}
+            
+            # 💡 Use github.ref_name to push safely
+            echo "📤 Pushing secure data changes upstream to repository branch..."
+            git push origin HEAD:${{ github.ref_name }}
+            echo "🎯 Success! Architecture files successfully committed and pushed back to the repository."
+          
+          else
+            echo "ℹ️ Notice: No architecture structural updates or modifications were detected."
+          fi

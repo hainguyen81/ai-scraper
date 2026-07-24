@@ -1,0 +1,219 @@
+# .ai/.agents/.sub-agents/agent-tester.py
+import os
+import sys
+import json
+import re
+import argparse
+from datetime import datetime
+from openai import OpenAI
+from abc import ABC, abstractmethod
+
+# agent helper
+from sources.agents.agent_helper import resolve_absolute_path, write_file, read_json_file, read_file_raw, render_prompt, parseOpenAIResponseData
+
+# ==============================================================================
+# GLOBAL CONFIGURATION PATHS - CONFIG HERE TO CUSTOMIZE DIRECTORY STRUCTURE
+# ==============================================================================
+MODELS_POOL_PATH            = resolve_absolute_path(".ai/.agents/.models/models.json")
+STEPS_PLAN_DIR              = resolve_absolute_path(".ai/.plan/.steps")
+
+class AbstractAgent(ABC):
+    def __init__(self, agent_id, **kwargs):
+        self.agent_id = agent_id if agent_id else "Super"
+        self.kwargs = kwargs
+        self.secrets_key = self.agent_secrets_key()
+        self.secrets = self.load_secrets(self.secrets_key)
+        self.initialize()
+    
+    def initialize(self):
+        self.models_secrets_key = self.agent_models_secrets_key()
+        self.models_secrets = self.load_secrets(self.models_secrets_key)
+        self.models_pool = self.load_models_pool()
+        self.active_model_index = 0
+        self.client = None
+        self.current_model_config = None
+        self.rotate_model()
+    
+    def get_kwargs(self, key: str):
+        return (self.kwargs or {}).get(key) if key else None
+    
+    def agent_models_secrets_key(self) -> str:
+        return "AI_MODELS_KEYS_JSON"
+    
+    @abstractmethod
+    def agent_secrets_key(self) -> str:
+        pass
+    
+    def agent_secrets(self, key, defVal=None):
+        return self.secrets.get(key, defVal) if self.secrets and key and len(key) > 0 else defVal
+    
+    def load_secrets(self, secrets_key):
+        if not secrets_key or len(secrets_key) <= 0:
+            print(f"[ 💀 {self.agent_id} Agent | WARN ] Invalid secrets key to load secrets!")
+            return None
+        
+        # load secrets from environment
+        raw_secrets = os.environ.get(secrets_key)
+        if not raw_secrets:
+            print(f"[ 💀 {self.agent_id} Agent | CRITICAL ] The environment variable '{secrets_key}' is completely absent.")
+            sys.exit(1)
+        
+        # parse secrets to JSON
+        try:
+            return json.loads(raw_secrets)
+        except Exception as e:
+            print(f"[ 💀 {self.agent_id} Agent | CRITICAL ] Failed to parse environment '{secrets_key}' JSON string: {exception_stacktrace(e)}")
+            sys.exit(1)
+    
+    def load_models_pool(self):
+        return read_json_file(MODELS_POOL_PATH)
+    
+    def rotate_model(self):
+        if not self.models_secrets or len(self.models_secrets) <= 0:
+            print(f"[ 💀 {self.agent_id} Agent | WARN ] Not found any models secrets to rotate!")
+            return False
+
+        while 0 <= self.active_model_index < len(self.models_pool):
+            config = self.models_pool[self.active_model_index]
+            # target_model_name = config["model_name"]
+            # target_model_endpoint = config["api_endpoint"]
+            target_model_name = config.get("model_name") if isinstance(config, dict) else None
+            target_model_endpoint = config.get("api_endpoint") if isinstance(config, dict) else None
+            
+            print("==============================================")
+            print("🔍 DEBUG: 'config':")
+            try:
+                print(json.dumps(config, indent=4, ensure_ascii=False))
+            except Exception:
+                print(f"⚠️ Exception while dump 'config' json: {type(config)} - Config: {config}")
+            print("==============================================")
+            
+            # If endpoint is missing, None, empty "", or just whitespaces "   ", skip it cleanly
+            if not target_model_name or not target_model_endpoint or not str(target_model_endpoint).strip():
+                print(f"⚠️ {self.agent_id} Agent | Ignore this config due to invalid 'model_name': {target_model_name} or 'model_endpoint': {target_model_endpoint}")
+                self.active_model_index += 1
+                continue # 🔄 Immediately jumps to the next iteration of the while loop
+            
+            api_key = self.models_secrets.get(target_model_endpoint)
+            if api_key:
+                self.current_model_config = config
+                self.client = OpenAI(api_key=api_key, base_url=target_model_endpoint)
+                print(f"[ 💀 {self.agent_id} Agent | FAILOVER ENGAGED ] Successfully authenticated model: {target_model_name} | endpoint: {target_model_endpoint}")
+                return True
+            self.active_model_index += 1
+        print(f"[ 💀 {self.agent_id} Agent | CRITICAL ERROR ] Exhausted all registered fallback models: model_interation {self.active_model_index} models number {len(self.models_pool)}")
+        return False
+    
+    @abstractmethod
+    def agent_log_file(self) -> str:
+        pass
+    
+    def write_log(self, data, append=False):
+        return write_file(
+            file=self.agent_log_file(),
+            day=data,
+            append=append
+        )
+    
+    @abstractmethod
+    def system_prompt_template(self) -> str:
+        pass
+    
+    def build_system_prompt_context(self, **kwargs):
+        return { **kwargs }
+    
+    def build_system_prompt(self, **kwargs) -> str:
+        system_prompt_context = self.build_system_prompt_context(**kwargs)
+        return render_prompt(self.system_prompt_template(), system_prompt_context)
+    
+    @abstractmethod
+    def user_prompt_template(self) -> str:
+        pass
+    
+    def build_user_prompt_context(self, **kwargs):
+        return { **kwargs }
+    
+    def build_user_prompt(self, **kwargs) -> str:
+        user_prompt_context = self.build_user_prompt_context(**kwargs)
+        return render_prompt(self.user_prompt_template(), user_prompt_context)
+    
+    def agent_temperature(self):
+        return 0.1
+    
+    def chat(self, system_prompt, user_prompt, **kwargs):
+        response = self.client.chat.completions.create(
+            model=self.current_model_config["model_name"],
+            messages=[{"role": "system", "content": system_prompt}, {"role": "user", "content": user_prompt}],
+            temperature=self.agent_temperature()
+        )
+        raw_response = parseOpenAIResponseData(response)
+        return (raw_response, self.clean_response(raw_response, **kwargs))
+    
+    def clean_response(self, raw_response, **kwargs):
+        return raw_response
+    
+    @abstractmethod
+    def process_chat(self, response_data, **kwargs):
+        pass
+    
+    @abstractmethod
+    def pre_execute(self):
+        pass
+    
+    def __execute__(self, **kwargs):
+        # agent do job
+        system_prompt = None
+        user_prompt = None
+        latest_response = None
+        success = False
+        try:
+            # build system prompt
+            system_prompt = self.build_system_prompt(**kwargs)
+            
+            # build user prompt
+            user_prompt = self.build_user_prompt(**kwargs)
+            
+            # ask AI
+            raw_response, clean_response = self.chat(
+                system_prompt=system_prompt,
+                user_prompt=user_prompt,
+                **kwargs
+            )
+            latest_response = raw_response
+            
+            # process AI response
+            self.process_chat(clean_response, **kwargs)
+            print(f"[ ✅ {self.agent_id} Agent - SUCCESS | Model {self.current_model_config['model_name']} | API Endpoint {self.current_model_config['api_endpoint']} ] Process successfully!")
+            success = True
+        except Exception as e:
+            print(f"[ 💀 {self.agent_id} Agent | ERROR ] Exception caught on model {self.current_model_config['model_name']}: {exception_stacktrace(e)}")
+            latest_response = exception_stacktrace(e) if not latest_response else latest_response
+        
+        # result
+        return (success, system_prompt, user_prompt, latest_response)
+    
+    def execute(self, **kwargs):
+        # pre-execute
+        self.pre_execute()
+        
+        # execute
+        while True:
+            try:
+                # internal execution
+                success, system_prompt, user_prompt, raw_response = self.__execute__(**kwargs)
+                if not success:
+                    raise RuntimeError(raw_response) # response is exception stack-trace from `__execute__`
+                
+                # done tasks
+                return success
+            except Exception as e:
+                print(f"[ 💀 {self.agent_id} Agent | ERROR ] Exception caught on model {self.current_model_config['model_name']}: {exception_stacktrace(e)}")
+                # write log
+                self.write_log(
+                    data=exception_stacktrace(e),
+                    append=True
+                )
+                self.active_model_index += 1
+                if not self.rotate_model():
+                    return False
+

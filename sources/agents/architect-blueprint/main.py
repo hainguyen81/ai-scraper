@@ -17,13 +17,12 @@ import glob
 from openai import OpenAI
 
 # Now Python can seamlessly see and import the centralized helper utility cleanly!
-from sources.agents.agent_helper import resolve_absolute_path
+from sources.agents.agent_helper import resolve_absolute_path, delete_log, read_json_file, write_json_file, count_files_by_pattern, read_file_raw
 
 # Import decoupled functional components cleanly
 from block_global import generate_global_context
 from block_phase import generate_phase_contexts
 from block_json import convert_phases_to_json
-from helper import delete_log, read_json_file, write_json_file, count_files_by_pattern, read_file_raw
 
 # models list
 MODELS_POOL_PATH    = resolve_absolute_path("sources/agents/models/models.json")
