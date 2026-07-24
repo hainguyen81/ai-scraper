@@ -17,7 +17,7 @@ IDEAS_USER_PROMPT_TEMPLATE  = resolve_absolute_path("sources/agents/ideas/agent_
 IDEAS_HISTORY_FILE          = resolve_absolute_path("sources/storage/ideas/history_ideas.json")
 IDEAS_FILE                  = "sources/output/ideas/ideas.md"
 IDEAS_LOG_FILE              = resolve_absolute_path("sources/output/ideas/ideas_log.md")
-DEFAULT_IDEAS_DOMAIN        = "Any high-value industry or sector (e.g., Logistics, Real Estate, Healthcare, Finance, etc.) where a lightweight software solution, Micro-SaaS, or AI tool can be rapidly deployed to solve a major pain point with high immediate ROI (MVP built within 2-4 weeks)"
+DEFAULT_IDEAS_DOMAIN        = "Any high-momentum, trending industry in 2026 (such as AI Agents, Automation Web-apps, Renewable Energy tech, Spatial Computing, Web3/Fintech, etc.) where a lightweight software solution or Micro-SaaS can be rapidly deployed to capture immediate market demand with an MVP built within 2-4 weeks"
 DEFAULT_IDEAS_QUNATITY      = 3
 DEFAULT_IDEAS_LANGUAGE      = "English"
 
