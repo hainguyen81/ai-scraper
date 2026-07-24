@@ -17,8 +17,7 @@ from sources.agents.agent_helper import resolve_absolute_path, write_file, read_
 # ==============================================================================
 # GLOBAL CONFIGURATION PATHS - CONFIG HERE TO CUSTOMIZE DIRECTORY STRUCTURE
 # ==============================================================================
-MODELS_POOL_PATH            = resolve_absolute_path(".ai/.agents/.models/models.json")
-STEPS_PLAN_DIR              = resolve_absolute_path(".ai/.plan/.steps")
+MODELS_POOL_PATH            = resolve_absolute_path("sources/agents/models/models.json")
 
 class AbstractAgent(ABC):
     def __init__(self, agent_id, **kwargs):
