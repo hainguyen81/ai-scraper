@@ -209,7 +209,8 @@ class AbstractAgent(ABC):
         return (success, system_prompt, user_prompt, latest_response)
     
     def __handle_execute_exception__(self, e, **kwargs):
-        print(f"[ 💀 {self.agent_id} Agent | ERROR ] Exception caught on model {self.current_model_config['model_name']}: {exception_stacktrace(e)}")
+        model_name = self.current_model_config['model_name'] if self.current_model_config else None
+        print(f"[ 💀 {self.agent_id} Agent | ERROR ] Exception caught on model {model_name}: {exception_stacktrace(e)}")
         # write log
         self.write_log(
             data=exception_stacktrace(e),
