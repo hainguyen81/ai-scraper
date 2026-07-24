@@ -1,0 +1,7 @@
+{
+    "project_name": "financial-reconciliation",
+    "requirements": "sources/requirements/financial-reconciliation/requirements.md",
+    "num_phases": 0,
+    "total_days": 0,
+    "phases": []
+}
