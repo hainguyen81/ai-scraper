@@ -176,6 +176,27 @@ class AbstractAgent(ABC):
     def pre_execute(self, **kwargs):
         pass
     
+    def __ai_execute__(self, **kwargs):
+        # ask AI
+        raw_response, clean_response = self.chat(
+            system_prompt=kwargs_by_key(key="system_prompt", **kwargs),
+            user_prompt=kwargs_by_key(key="user_prompt", **kwargs),
+            **kwargs
+        )
+        latest_response = raw_response
+        
+        # process AI response
+        self.process_chat(clean_response, **kwargs)
+        print(f"[ ✅ {self.agent_id} Agent - SUCCESS | Model {self.current_model_config['model_name']} | API Endpoint {self.current_model_config['api_endpoint']} ] Process successfully!")
+        
+        # return new values kwargs
+        return {
+            **kwargs,
+            "clean_response": clean_response,
+            "raw_response": raw_response,
+            "latest_response": latest_response
+        }
+    
     def __execute__(self, **kwargs):
         # agent do job
         system_prompt = None
@@ -185,21 +206,19 @@ class AbstractAgent(ABC):
         try:
             # build system prompt
             system_prompt = self.build_system_prompt(**kwargs)
-            
             # build user prompt
             user_prompt = self.build_user_prompt(**kwargs)
             
-            # ask AI
-            raw_response, clean_response = self.chat(
-                system_prompt=system_prompt,
-                user_prompt=user_prompt,
-                **kwargs
-            )
-            latest_response = raw_response
+            # build new values kwargs
+            kwargs = {
+                **kwargs,
+                "system_prompt": system_prompt,
+                "user_prompt": user_prompt
+            }
             
-            # process AI response
-            self.process_chat(clean_response, **kwargs)
-            print(f"[ ✅ {self.agent_id} Agent - SUCCESS | Model {self.current_model_config['model_name']} | API Endpoint {self.current_model_config['api_endpoint']} ] Process successfully!")
+            # ask AI execution
+            kwargs = self.__ai_execute__(**kwargs)
+            latest_response = kwargs_by_key(key="latest_response", **kwargs)
             success = True
         except Exception as e:
             print(f"[ 💀 {self.agent_id} Agent | ERROR ] Exception caught on model {self.current_model_config['model_name']}: {exception_stacktrace(e)}")
