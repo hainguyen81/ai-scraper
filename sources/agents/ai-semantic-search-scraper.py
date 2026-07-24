@@ -8,7 +8,7 @@ from typing import List, Dict, Any
 from exa_py import Exa
 
 # Now Python can seamlessly see and import the centralized helper utility cleanly!
-from agent_helper import resolve_absolute_path, json_raw_content
+from sources.agents.agent_helper import resolve_absolute_path, json_raw_content
 
 # logger
 logger = logging.getLogger("MultiSourceSearchScraper")

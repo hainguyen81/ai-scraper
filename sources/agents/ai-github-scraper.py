@@ -8,7 +8,7 @@ import urllib.request
 import urllib.error
 
 # Now Python can seamlessly see and import the centralized helper utility cleanly!
-from agent_helper import resolve_absolute_path, json_raw_content, exception_stacktrace
+from sources.agents.agent_helper import resolve_absolute_path, json_raw_content, exception_stacktrace
 
 # logger
 logger = logging.getLogger("GitHubScraper")
