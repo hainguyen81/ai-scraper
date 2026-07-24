@@ -1,7 +1,7 @@
 {
     "project_name": "membership-hub",
     "requirements": "sources/requirements/membership-hub/requirements.md",
-    "num_phases": 0,
+    "num_phases": 5,
     "phases": [
         {
             "phase": 1,
