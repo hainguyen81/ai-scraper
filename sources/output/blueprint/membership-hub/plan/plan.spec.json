@@ -2,6 +2,7 @@
     "project_name": "membership-hub",
     "requirements": "sources/requirements/membership-hub/requirements.md",
     "num_phases": 5,
+    "total_days": 19,
     "phases": [
         {
             "phase": 1,
