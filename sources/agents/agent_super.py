@@ -224,13 +224,12 @@ class AbstractAgent(ABC):
             raise RuntimeError(raw_response) # response is exception stack-trace from `__execute__`
         
         # done tasks
-        kwargs = {
+        return {
             **kwargs,
             "system_prompt": system_prompt,
             "user_prompt": user_prompt,
             "raw_response": raw_response
         }
-        return (success, kwargs)
     
     def execute(self, **kwargs):
         # pre-execute
@@ -240,9 +239,9 @@ class AbstractAgent(ABC):
         while True:
             try:
                 # internal execution
-                success, kwargs = self.__do_execute__(**kwargs)
+                kwargs = self.__do_execute__(**kwargs)
                 # done tasks
-                return success
+                return True
             except Exception as e:
                 self.__handle_execute_exception__(e, **kwargs)
                 # rotate next model
