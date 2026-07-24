@@ -23,7 +23,7 @@ from sources.agents.agent_helper import resolve_absolute_path
 from block_global import generate_global_context
 from block_phase import generate_phase_contexts
 from block_json import convert_phases_to_json
-from helper import delete_log, read_json_file, write_json_file, count_files_by_pattern
+from helper import delete_log, read_json_file, write_json_file, count_files_by_pattern, read_file_raw
 
 # models list
 MODELS_POOL_PATH    = resolve_absolute_path("sources/agents/models/models.json")
@@ -86,15 +86,26 @@ def run_architect_agent(
     exec_mode: int, exec_delay: int, daysPerChunk: int,
     rotate_model: bool
 ):
+    # check arguments
+    max_days_per_phase = max_days_per_phase if max_days_per_phase > 0 else 7
+    exec_mode = exec_mode if exec_mode >= 0 and exec_mode <= 4 else 0
+    exec_delay = exec_delay if exec_delay else 3
+    is_build_plan_spec = not exec_mode in (0, 1, 2, 3)
+    is_build_all = exec_mode == 0
+    is_build_global = exec_mode in (0, 1)
+    is_build_phase = exec_mode in (0, 2)
+    is_build_steps = exec_mode in (0, 3)
+    
     # check requirements
     absolute_requirements_path = resolve_absolute_path(requirements_path)
-    if not os.path.exists(absolute_requirements_path):
+    if not is_build_plan_spec and not os.path.exists(absolute_requirements_path):
         print(f"❌ Target requirements file not found at: {absolute_requirements_path}")
         return
     
     # read requirements
-    with open(absolute_requirements_path, "r", encoding="utf-8") as f:
-        project_requirements = f.read()
+    project_requirements = None
+    if not is_build_plan_spec:
+        _, project_requirements = read_file_raw(absolute_requirements_path)
     
     # safely project name
     safe_name = project_name.replace(' ', '-')
@@ -116,7 +127,7 @@ def run_architect_agent(
     json_ai_models = None
     json_ai_keys = None
     # need to rotate, so loading models / api keys configuration
-    if rotate_model:
+    if not is_build_plan_spec and rotate_model:
         json_ai_models = load_models_pool()
         json_ai_keys = load_models_keys()
     model_idx = -1
@@ -153,16 +164,12 @@ def run_architect_agent(
             api_model_steps = api_model_steps if api_model_steps else api_model_phase
             api_model_steps = api_model_steps if api_model_steps else api_model_global
         
-        max_days_per_phase = max_days_per_phase if max_days_per_phase > 0 else 7
-        exec_mode = exec_mode if exec_mode >= 0 and exec_mode <= 4 else 0
-        exec_delay = exec_delay if exec_delay else 3
-        
         # GEMINI
         # client = genai.Client(api_key=api_key)
         
         # OpenAI
         client = None
-        if exec_mode in (0, 1, 2, 3):
+        if not is_build_plan_spec:
             client = OpenAI(
                 base_url=api_endpoint,
                 api_key=api_key,
@@ -188,7 +195,7 @@ def run_architect_agent(
         # -------------------------------------------------
         # 1. Execute Block 1 Module
         # -------------------------------------------------
-        if exec_mode in (0, 1) and not result_global:
+        if is_build_global and not result_global:
             result_global = generate_global_context(
                 client=client,
                 model_name=api_model_global,
@@ -205,14 +212,14 @@ def run_architect_agent(
                 time.sleep(exec_delay)
         
         # no need AI, just reading from existing context file
-        elif exec_mode != 4 and not result_global:
+        elif not is_build_plan_spec and not result_global:
             context_dir = os.path.join(absolute_out_dir, "context")
             global_context_file = os.path.join(context_dir, f"{safe_name}.global.blueprint.md")
             with open(global_context_file, "r", encoding="utf-8") as f:
                 result_global = f.read()
         
         # if failed, check whether should rotate model
-        if exec_mode != 4 and not result_global:
+        if not is_build_plan_spec and not result_global:
             print(f"\n[ 🤖💬 PIPELINE WARN ] Modular Enterprise Architecture Pipeline Executed: Fail to generate project global context!")
             
             # should rotate to find other models
@@ -224,13 +231,13 @@ def run_architect_agent(
             break
         
         # fake global context if building plan spec
-        elif exec_mode == 4:
+        elif is_build_plan_spec:
             result_global = f"\n[ 🤖💬 PIPELINE WARN ] No need project global context, due to building plan spec!"
         
         # -------------------------------------------------
         # 2. Execute Block 2 Module
         # -------------------------------------------------
-        if exec_mode in (0, 2) and not result_phase:
+        if is_build_phase and not result_phase:
             global_context_text = result_global
             result_phase = generate_phase_contexts(
                 client=client,
@@ -261,13 +268,13 @@ def run_architect_agent(
                 break
         
         # fake phase result if building plan spec
-        elif exec_mode == 4:
+        elif is_build_plan_spec:
             result_phase = True
         
         # -------------------------------------------------
         # 3. Execute Block 3 Module
         # -------------------------------------------------
-        if exec_mode in (0, 3) and not result_steps:
+        if is_build_steps and not result_steps:
             result_steps = convert_phases_to_json(
                 client=client,
                 model_name=api_model_steps,
@@ -291,7 +298,7 @@ def run_architect_agent(
                 break
         
         # fake phase steps if building plan spec
-        elif exec_mode == 4:
+        elif is_build_plan_spec:
             result_steps = True
         
         # check everything whether is ok
@@ -302,7 +309,7 @@ def run_architect_agent(
         # -------------------------------------------------
         plan_num_phases = num_phases
         plan_context_dir = os.path.join(absolute_out_dir, "plan")
-        if exec_mode == 4:
+        if is_build_plan_spec:
             phase_file_pattern = "phase-*.context.blueprint.md"
             plan_num_phases = count_files_by_pattern(plan_context_dir, phase_file_pattern) if everything_ok else 0
         plan_spec = {
@@ -311,7 +318,8 @@ def run_architect_agent(
             "num_phases": plan_num_phases,
             "phases" []
         }
-        if everything_ok and exec_mode in (0, 4):
+        # if everything is ok, should building plan spec
+        if everything_ok:
             # build plan spec
             steps_context_dir = os.path.join(plan_context_dir, "steps")
             for phase_idx in range(1, num_phases + 1):
