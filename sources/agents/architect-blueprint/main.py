@@ -315,6 +315,7 @@ def run_architect_agent(
             "project_name": project_name,
             "requirements": requirements_path,
             "num_phases": num_phases,
+            "total_days": 0
             "phases": []
         }
         # if everything is ok, should building plan spec
@@ -328,6 +329,9 @@ def run_architect_agent(
                     "phase": phase_idx,
                     "days": len(steps_data.get("days", [])) if steps_data else 0
                 })
+        
+        # sum total_days
+        plan_spec["total_days"] += sum(item["days"] for item in plan_spec["phases"])
         
         # write plan spec
         print(f"\n🎉 [ INFO ] Modular Enterprise Architecture Plan Spec: {json.dumps(plan_spec, indent=4, ensure_ascii=False)}")
