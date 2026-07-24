@@ -38,6 +38,9 @@ class AbstractAgent(ABC):
     def initialize(self):
         self.models_secrets_key = self.agent_models_secrets_key()
         self.models_secrets = self.load_secrets(self.models_secrets_key)
+        self.initialize_models()
+    
+    def initialize_models(self):
         self.models_pool = self.load_models_pool()
         self.active_model_index = 0
         self.client = None
