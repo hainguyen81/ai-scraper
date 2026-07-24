@@ -86,7 +86,7 @@ def exception_stacktrace(e) -> str:
     stacktrace = traceback.format_exception(type(e), e, e.__traceback__) if isinstance(e, BaseException) or isinstance(e, Exception) else None
     return None if not e else f"{str(e)}: {stacktrace}" if stacktrace else str(e)
 
-def write_file(dir, file, data, append=False):
+def write_file(file, data, dir=None, append=False):
     checked_dir = dir if dir else os.path.dirname(file)
     checked_file = os.path.basename(file) if not dir else file
     opts = "a" if append else "w"
@@ -96,7 +96,7 @@ def write_file(dir, file, data, append=False):
         f.write(str(data))
     return out_path # full path of file
 
-def write_json_file(dir, file, json_data, append=False):
+def write_json_file(file, json_data, dir=None, append=False):
     checked_dir = dir if dir else os.path.dirname(file)
     checked_file = os.path.basename(file) if not dir else file
     opts = "a" if append else "w"
