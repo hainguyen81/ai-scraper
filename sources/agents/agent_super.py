@@ -70,7 +70,8 @@ class AbstractAgent(ABC):
             sys.exit(1)
     
     def load_models_pool(self):
-        return read_json_file(MODELS_POOL_PATH)
+        _, models_json = read_json_file(MODELS_POOL_PATH)
+        return models_json
     
     def rotate_model(self):
         if not self.models_secrets or len(self.models_secrets) <= 0:
