@@ -40,6 +40,7 @@ on:
           - "🌐 Global Context"
           - "📈 Phase Context"
           - "🔢 Phase Steps"
+          - "📜 Plan Spec"
       exec_delay:
         description: "💤 Execution Delay (in seconds)"
         required: false
@@ -356,6 +357,9 @@ jobs:
           fi
           if [ "$EXEC_MODE" = "🔢 Phase Steps" ]; then
             EXE_MODE=3
+          fi
+          if [ "$EXEC_MODE" = "📜 Plan Spec" ]; then
+            EXE_MODE=4
           fi
           EXE_DELAY="$EXEC_DELAY"
           if [ -z "$EXE_DELAY" ]; then

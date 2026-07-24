@@ -30,6 +30,22 @@ def write_json_file(dir, file_name, json_data, append=False):
         json.dump(json_data, f, ensure_ascii=False, indent=4)
     return out_path # full path of file
 
+def read_json_file(file_path):
+    if not os.path.exists(file_path):
+        return (None, None)
+    
+    # read json file
+    with open(file_path, "r", encoding="utf-8") as f:
+        return (file_path, json.load(f))
+
+def read_file_raw(file_path):
+    if not os.path.exists(file_path):
+        return (None, None)
+    
+    # read file
+    with open(file_path, "r", encoding="utf-8") as f:
+        return (file_path, f.read())
+
 def write_log(phase_idx, instruction, prompt, raw_content, is_step, model_name=None, out_dir=None):
     pattern = r"\{.*\}|\[.*\]"
     raw_content = json_raw_content(raw_content)

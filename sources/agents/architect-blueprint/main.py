@@ -22,10 +22,11 @@ from sources.agents.agent_helper import resolve_absolute_path
 from block_global import generate_global_context
 from block_phase import generate_phase_contexts
 from block_json import convert_phases_to_json
-from helper import delete_log
+from helper import delete_log, read_json_file, write_json_file
 
 # models list
-MODELS_POOL_PATH = resolve_absolute_path("sources/agents/models/models.json")
+MODELS_POOL_PATH    = resolve_absolute_path("sources/agents/models/models.json")
+PLAN_SPEC_FILE      = "plan.spec.json"
 
 def load_models_pool():
     # empty model
@@ -151,28 +152,32 @@ def run_architect_agent(
             api_model_steps = api_model_steps if api_model_steps else api_model_phase
             api_model_steps = api_model_steps if api_model_steps else api_model_global
         
+        max_days_per_phase = max_days_per_phase if max_days_per_phase > 0 else 7
+        exec_mode = exec_mode if exec_mode >= 0 and exec_mode <= 4 else 0
+        exec_delay = exec_delay if exec_delay else 3
+        
         # GEMINI
         # client = genai.Client(api_key=api_key)
         
         # OpenAI
-        client = OpenAI(
-            base_url=api_endpoint,
-            api_key=api_key,
-            # 0 to turn off retries
-            max_retries=3, 
-            # timeout in seconds (600 seconds ~ 10 minutes)
-            timeout=600.0
-        )
+        client = None
+        if exec_mode in (0, 1, 2, 3):
+            client = OpenAI(
+                base_url=api_endpoint,
+                api_key=api_key,
+                # 0 to turn off retries
+                max_retries=3, 
+                # timeout in seconds (600 seconds ~ 10 minutes)
+                timeout=600.0
+            )
         
-        max_days_per_phase = max_days_per_phase if max_days_per_phase > 0 else 7
-        exec_mode = exec_mode if exec_mode >= 0 and exec_mode <= 3 else 0
-        exec_delay = exec_delay if exec_delay else 3
         print("=============================================================================")
         print(f"🤖 AI: Endpoint {api_endpoint}. Mode '0' for all.")
         print(f"    - Global Context:               {api_model_global}. Mode 1")
         print(f"    - Phase Context:                {api_model_phase}.  Mode 2")
         print(f"    - Phase JSON Steps:             {api_model_steps}.  Mode 3")
         print(f"    - Phase JSON Steps Mapping:     {api_model_steps_mapping}")
+        print(f"    - Build Plan Spec:              {api_model_steps}.  Mode 4")
         print(f"    - Execution Mode:               {exec_mode}")
         print(f"    - Execution Delay:              {exec_delay}")
         print("=============================================================================")
@@ -199,15 +204,15 @@ def run_architect_agent(
                 time.sleep(exec_delay)
         
         # no need AI, just reading from existing context file
-        elif not result_global:
+        elif exec_mode != 4 and not result_global:
             context_dir = os.path.join(absolute_out_dir, "context")
             global_context_file = os.path.join(context_dir, f"{safe_name}.global.blueprint.md")
             with open(global_context_file, "r", encoding="utf-8") as f:
                 result_global = f.read()
         
         # if failed, check whether should rotate model
-        if not result_global:
-            print("\n[ 🤖💬 PIPELINE WARN ] Modular Enterprise Architecture Pipeline Executed: Fail to generate project global context!")
+        if exec_mode != 4 and not result_global:
+            print(f"\n[ 🤖💬 PIPELINE WARN ] Modular Enterprise Architecture Pipeline Executed: Fail to generate project global context!")
             
             # should rotate to find other models
             if rotate_model:
@@ -216,6 +221,10 @@ def run_architect_agent(
             
             # out of function if not rotating
             break
+        
+        # fake global context if building plan spec
+        elif exec_mode == 4:
+            result_global = f"\n[ 🤖💬 PIPELINE WARN ] No need project global context, due to building plan spec!"
         
         # -------------------------------------------------
         # 2. Execute Block 2 Module
@@ -250,6 +259,10 @@ def run_architect_agent(
                 # out of function if not rotating
                 break
         
+        # fake phase result if building plan spec
+        elif exec_mode == 4:
+            result_phase = True
+        
         # -------------------------------------------------
         # 3. Execute Block 3 Module
         # -------------------------------------------------
@@ -276,8 +289,32 @@ def run_architect_agent(
                 # out of function if not rotating
                 break
         
+        # fake phase steps if building plan spec
+        elif exec_mode == 4:
+            result_steps = True
+        
         # check everything whether is ok
         everything_ok = result_global and result_phase and result_steps
+        
+        # -------------------------------------------------
+        # 4. Re-build Plan Spec
+        # -------------------------------------------------
+        plan_spec = []
+        plan_context_dir = os.path.join(absolute_out_dir, "plan")
+        if everything_ok and exec_mode in (0, 4):
+            # build plan spec
+            steps_context_dir = os.path.join(plan_context_dir, "steps")
+            for phase_idx in range(1, num_phases + 1):
+                phase_steps_file = os.path.join(steps_context_dir, f"phase-{phase_idx}.steps.json")
+                _, steps_data = read_json_file(phase_steps_file)
+                plan_spec.append({
+                    "phase": phase_idx,
+                    "days": len(steps_data.get("days", [])) if steps_data else 0
+                })
+        
+        # write plan spec
+        print(f"\n🎉 [ INFO ] Modular Enterprise Architecture Plan Spec: {json.dumps(plan_spec, indent=4, ensure_ascii=False)}")
+        write_json_file(plan_context_dir, PLAN_SPEC_FILE, plan_spec)
     
     # log for tracing
     if not everything_ok:
