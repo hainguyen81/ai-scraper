@@ -18,7 +18,8 @@ from sources.agents.agent_helper import (
     read_json_file,
     render_prompt,
     parseOpenAIResponseData,
-    exception_stacktrace
+    exception_stacktrace,
+    kwargs_by_key
 )
 
 # ==============================================================================
@@ -46,7 +47,7 @@ class AbstractAgent(ABC):
             sys.exit(1)
     
     def get_kwargs(self, key: str):
-        return (self.kwargs or {}).get(key) if key else None
+        return kwargs_by_key(self.kwargs, key)
     
     def agent_models_secrets_key(self) -> str:
         return "AI_MODELS_KEYS_JSON"
@@ -169,7 +170,7 @@ class AbstractAgent(ABC):
         pass
     
     @abstractmethod
-    def pre_execute(self):
+    def pre_execute(self, **kwargs):
         pass
     
     def __execute__(self, **kwargs):
@@ -206,7 +207,7 @@ class AbstractAgent(ABC):
     
     def execute(self, **kwargs):
         # pre-execute
-        self.pre_execute()
+        kwargs = self.pre_execute(**kwargs)
         
         # execute
         while True:
