@@ -20,7 +20,7 @@ from openai import OpenAI
 from jinja2 import Template
 
 # Now Python can seamlessly see and import the centralized helper utility cleanly!
-from sources.agents.agent_helper import resolve_absolute_path
+from sources.agents.agent_helper import resolve_absolute_path, exceptionStackTrace
 from helper import write_log, write_json_file, render_prompt, parseOpenAIResponseJsonData
 
 # ==============================================================================
@@ -398,6 +398,6 @@ def convert_phases_to_json(client: OpenAI, model_name: str, project_name: str, n
                 
         return result # success or empty phases
     except Exception as e:
-        print(f"❌ Failed to initiate chat/generate Phase {log_phase_idx} Steps JSON: {str(e)}")
-        write_log(log_phase_idx, instruction, log_prompt.replace('#', '##'), str(e), True, model_name_safe, out_dir)
+        print(f"❌ Failed to initiate chat/generate Phase {log_phase_idx} Steps JSON: {exceptionStackTrace(e)}")
+        write_log(log_phase_idx, instruction, log_prompt.replace('#', '##'), exceptionStackTrace(e), True, model_name_safe, out_dir)
         return False

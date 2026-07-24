@@ -8,7 +8,7 @@ import urllib.request
 from typing import List, Dict, Any, Optional
 
 # Now Python can seamlessly see and import the centralized helper utility cleanly!
-from agent_helper import resolve_absolute_path, json_raw_content
+from agent_helper import resolve_absolute_path, json_raw_content, exceptionStackTrace
 
 # logger
 logger = logging.getLogger("CommunityForumScraper")
@@ -98,8 +98,8 @@ class HackerNewsTechScraper:
             return matching_threads
             
         except Exception as network_err:
-            logger.error(f"Critical interface crash monitoring community pipeline: {str(network_err)}")
-            self.write_log(str(network_err))
+            logger.error(f"Critical interface crash monitoring community pipeline: {exceptionStackTrace(network_err)}")
+            self.write_log(exceptionStackTrace(network_err))
             return []
 
 if __name__ == "__main__":

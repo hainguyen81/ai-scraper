@@ -10,6 +10,7 @@ import sys
 import json
 import logging
 import re
+import traceback
 
 # ==============================================================================
 # 🏢 ENTERPRISE INTER-PACKAGE ROUTING LAYER
@@ -70,3 +71,7 @@ def json_raw_content(raw_content):
                 pass
     
     return str(raw_content)
+
+def exceptionStackTrace(e) -> str:
+    stacktrace = traceback.format_exception(type(e), e, e.__traceback__) if isinstance(e, BaseException) or isinstance(e, Exception) else None
+    return None if not e else f"{str(e)}: {stacktrace}" if stacktrace else str(e)
