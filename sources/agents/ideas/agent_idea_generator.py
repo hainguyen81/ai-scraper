@@ -72,7 +72,7 @@ class IdeaGeneratorAgent(AbstractAgent):
         return 0.8 # high ides
     
     # @override
-    def pre_execute(self):
+    def pre_execute(self, **kwargs):
         pass
     
     # @override
