@@ -95,6 +95,7 @@ class IdeaGeneratorAgent(AbstractAgent):
                     "idea": clean_idea_name
                 })
                 history_ideas_len += 1
+        self.history_ideas = history_ideas
                 
         print(f"🎯 Found / Extracted {len(ideas)} new ideas.")
         return ideas
