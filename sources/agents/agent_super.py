@@ -217,6 +217,21 @@ class AbstractAgent(ABC):
         self.active_model_index += 1
         return self.rotate_model()
     
+    def __do_execute__(self, **kwargs):
+        # internal execution
+        success, system_prompt, user_prompt, raw_response = self.__execute__(**kwargs)
+        if not success:
+            raise RuntimeError(raw_response) # response is exception stack-trace from `__execute__`
+        
+        # done tasks
+        kwargs = {
+            **kwargs,
+            "system_prompt": system_prompt,
+            "user_prompt": user_prompt,
+            "raw_response": raw_response
+        }
+        return (success, kwargs)
+    
     def execute(self, **kwargs):
         # pre-execute
         kwargs = self.pre_execute(**kwargs)
@@ -225,10 +240,7 @@ class AbstractAgent(ABC):
         while True:
             try:
                 # internal execution
-                success, system_prompt, user_prompt, raw_response = self.__execute__(**kwargs)
-                if not success:
-                    raise RuntimeError(raw_response) # response is exception stack-trace from `__execute__`
-                
+                success, kwargs = self.__do_execute__(**kwargs)
                 # done tasks
                 return success
             except Exception as e:
