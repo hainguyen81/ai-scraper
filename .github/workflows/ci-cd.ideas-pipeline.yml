@@ -56,7 +56,7 @@ env:
 jobs:
   # 🏗️ System Architecture & Phase Planner
   generate-blueprint:
-    name: 💡 Expert Idea Generation
+    name: 💡 Expert Ideas Generation
     runs-on: ubuntu-latest
     
     steps:
@@ -90,7 +90,7 @@ jobs:
           pip install jinja2
 
       # Step 4: Execute agent
-      - name: 💡 Execute Expert Idea Generation
+      - name: 💡 Execute Expert Ideas Generation
         if: success()                             # if previous step is successful
         env:
           # Secrets contains the AI endpoint and AI API key JSON

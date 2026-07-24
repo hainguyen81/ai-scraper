@@ -36,18 +36,23 @@ class IdeaGeneratorAgent(AbstractAgent):
     def load_history_ideas(self):
         return read_json_file(IDEAS_HISTORY_FILE)
     
+    # @override
     def agent_secrets_key(self) -> str:
         pass
     
+    # @override
     def agent_log_file(self) -> str:
         return IDEAS_LOG_FILE
     
+    # @override
     def system_prompt_template(self) -> str:
         pass
     
+    # @override
     def build_system_prompt(self, **kwargs) -> str:
         return "You are a creative and strict Idea Generation Agent. Never replicate past ideas."
     
+    # @override
     def build_user_prompt_context(self, **kwargs):
         return {
             "domain": self.domain,
@@ -56,12 +61,19 @@ class IdeaGeneratorAgent(AbstractAgent):
             "language": self.language
         }
     
+    # @override
     def user_prompt_template(self) -> str:
         return IDEAS_USER_PROMPT_TEMPLATE
     
+    # @override
     def agent_temperature(self):
         return 0.8 # high ides
     
+    # @override
+    def pre_execute(self):
+        pass
+    
+    # @override
     def clean_response(self, raw_response, **kwargs):
         # extract idea names
         pattern = r"\[IDEA_NAME\]:\s*(.*)"
@@ -78,6 +90,7 @@ class IdeaGeneratorAgent(AbstractAgent):
         print(f"🎯 Found / Extracted {len(ideas)} new ideas.")
         return ideas
     
+    # @override
     def process_chat(self, response_data, **kwargs):
         # export new ideas
         write_file(
