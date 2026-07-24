@@ -10,7 +10,7 @@ from typing import Dict, Any
 from openai import OpenAI
 
 # Now Python can seamlessly see and import the centralized helper utility cleanly!
-from agent_helper import resolve_absolute_path, json_raw_content, exceptionStackTrace
+from agent_helper import resolve_absolute_path, json_raw_content, exception_stacktrace
 
 # logger
 logger = logging.getLogger("DynamicAIScraper")
@@ -50,7 +50,7 @@ class DynamicScraperAgent:
                 
             return soup.get_text(separator=" ", strip=True)
         except Exception as fetch_err:
-            logger.error(f"Failed to ingest raw data structures from target URL: {exceptionStackTrace(fetch_err)}")
+            logger.error(f"Failed to ingest raw data structures from target URL: {exception_stacktrace(fetch_err)}")
             return ""
     
     def write_log(self, raw_content, prompt_instruction):
@@ -101,7 +101,7 @@ class DynamicScraperAgent:
                 logger.info(f"💾 RAW RESPONSE MATRIX CAPTURED:\n{raw_response_string}")
             except Exception as log_err:
                 # Fallback to standard string casting if complex nested serialization handshakes fail
-                logger.info(f"💾 RAW RESPONSE STRING CASTING FALLBACK:\n{exceptionStackTrace(response)}")
+                logger.info(f"💾 RAW RESPONSE STRING CASTING FALLBACK:\n{exception_stacktrace(response)}")
                 self.write_log(str(response), prompt_instruction)
             
             # parse response JSON
@@ -127,8 +127,8 @@ class DynamicScraperAgent:
             
             return json.loads(response.choices.message.content)
         except Exception as llm_err:
-            logger.error(f"Structured inference schema parsing crashed: {exceptionStackTrace(llm_err)}")
-            return {"free_providers": [], "status": "failed", "error": f"Structured inference schema parsing crashed: {exceptionStackTrace(llm_err)}"}
+            logger.error(f"Structured inference schema parsing crashed: {exception_stacktrace(llm_err)}")
+            return {"free_providers": [], "status": "failed", "error": f"Structured inference schema parsing crashed: {exception_stacktrace(llm_err)}"}
 
     def save_output(self, dataset: Dict[str, Any], filepath: str) -> None:
         """Ensure destination space existence and securely persist data objects on disk storage."""
@@ -141,7 +141,7 @@ class DynamicScraperAgent:
                 json.dump(dataset, f, indent=4, ensure_ascii=False)
             logger.info(f"Persistent payload successfully deployed to target: {filepath}")
         except IOError as io_err:
-            logger.error(f"Disk storage access interface crashed: {exceptionStackTrace(io_err)}")
+            logger.error(f"Disk storage access interface crashed: {exception_stacktrace(io_err)}")
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Dynamic Multi-Provider AI Ingestion Core Engine")

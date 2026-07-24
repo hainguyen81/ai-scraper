@@ -8,7 +8,7 @@ import urllib.request
 import urllib.error
 
 # Now Python can seamlessly see and import the centralized helper utility cleanly!
-from agent_helper import resolve_absolute_path, json_raw_content, exceptionStackTrace
+from agent_helper import resolve_absolute_path, json_raw_content, exception_stacktrace
 
 # logger
 logger = logging.getLogger("GitHubScraper")
@@ -61,15 +61,15 @@ class GitHubModelScraper:
                     return None
         except urllib.error.URLError as url_err:
             logger.error(f"Network transport layer error or malformed URL: {url_err.reason}")
-            self.write_log(exceptionStackTrace(url_err))
+            self.write_log(exception_stacktrace(url_err))
             return None
         except json.JSONDecodeError as json_err:
             logger.error(f"Failed to parse source payload. Invalid JSON structure: {json_err.msg}")
-            self.write_log(exceptionStackTrace(json_err))
+            self.write_log(exception_stacktrace(json_err))
             return None
         except Exception as general_err:
             logger.error(f"Unexpected operational anomaly during download: {str(general_err)}")
-            self.write_log(exceptionStackTrace(general_err))
+            self.write_log(exception_stacktrace(general_err))
             return None
 
     def process_and_standardize(self, raw_providers: List[Dict[str, Any]]) -> List[Dict[str, Any]]:
@@ -161,7 +161,7 @@ class GitHubModelScraper:
                 logger.info("Payload isolated as raw string format. Executing second layer JSON deserialization...")
                 raw_data = json.loads(raw_data)
             except Exception as parse_inner_err:
-                logger.error(f"Failed to process internal character token blocks: {exceptionStackTrace(parse_inner_err)}")
+                logger.error(f"Failed to process internal character token blocks: {exception_stacktrace(parse_inner_err)}")
         
         # ==============================================================================
         # 🩹 ENTERPRISE CORE FIX: Extract the nested array under the 'providers' key
@@ -188,8 +188,8 @@ class GitHubModelScraper:
             logger.info(f"Pipeline executed successfully. Exported {len(processed_data)} free models to: {output_filepath}")
             return True
         except IOError as io_err:
-            logger.error(f"Disk I/O failure while writing structured payload: {exceptionStackTrace(io_err)}")
-            self.write_log(exceptionStackTrace(io_err))
+            logger.error(f"Disk I/O failure while writing structured payload: {exception_stacktrace(io_err)}")
+            self.write_log(exception_stacktrace(io_err))
             return False
 
 # Application entry point for executing Block 1 pipeline testing

@@ -88,8 +88,8 @@ class SemanticSearchScraper:
             return scraped_payload
             
         except Exception as search_err:
-            logger.error(f"Failed to execute semantic search pipeline: {exceptionStackTrace(search_err)}")
-            self.write_log("!!! EXA URL !!!", search_query, exceptionStackTrace(search_err))
+            logger.error(f"Failed to execute semantic search pipeline: {exception_stacktrace(search_err)}")
+            self.write_log("!!! EXA URL !!!", search_query, exception_stacktrace(search_err))
             return []
 
     def save_raw_corpus(self, data: List[Dict[str, Any]], filename: str = "web_search_corpus.json") -> None:
@@ -99,7 +99,7 @@ class SemanticSearchScraper:
                 json.dump(data, f, indent=4, ensure_ascii=False)
             logger.info(f"Scraped knowledge corpus successfully dumped to: {filename}")
         except IOError as io_err:
-            logger.error(f"File system I/O error writing corpus payload: {exceptionStackTrace(io_err)}")
+            logger.error(f"File system I/O error writing corpus payload: {exception_stacktrace(io_err)}")
 
 if __name__ == "__main__":
     # Substitute with your actual Exa AI token key credentials
