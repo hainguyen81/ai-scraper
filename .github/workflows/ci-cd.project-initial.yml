@@ -152,6 +152,8 @@ jobs:
             [ -d "$BLUEPRINT_DIR/${{ env.PROJECT_NAME }}/plan/steps" ] && \
                 cp -r $BLUEPRINT_DIR/${{ env.PROJECT_NAME }}/plan/steps/. ../sync-workspace/.ai/.plan/.steps/ && \
                 cp -r $BLUEPRINT_DIR/${{ env.PROJECT_NAME }}/plan/steps/. ../sync-workspace/.ai/.agents/.steps/
+            [ -f "$BLUEPRINT_DIR/${{ env.PROJECT_NAME }}/plan/plan.spec.json" ] && \
+                cp $BLUEPRINT_DIR/${{ env.PROJECT_NAME }}/plan/plan.spec.json ../sync-workspace/.ai/.plan/
           fi
           if [ -f "$REQUIREMENTS_FILE" ]; then
             cp -r $REQUIREMENTS_FILE ../sync-workspace/docs/requirements/
