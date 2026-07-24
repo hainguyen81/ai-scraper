@@ -57,7 +57,7 @@ class IdeaGeneratorAgent(AbstractAgent):
         return {
             "domain": self.domain,
             "quantity": self.quantity,
-            "ideas_history": self.history_ideas,
+            "ideas_history": [ idea["idea"] for idea in self.history_ideas if self.history_ideas else [] ],
             "language": self.language
         }
     
@@ -76,16 +76,23 @@ class IdeaGeneratorAgent(AbstractAgent):
     # @override
     def clean_response(self, raw_response, **kwargs):
         # extract idea names
-        pattern = r"\[IDEA_NAME\]:\s*(.*)"
+        pattern = r"####\s*\[IDEA_\d+\]\s*(.*)"
         
         # find all idea names match prefix from AI response
         idea_names = re.findall(pattern, raw_response)
         ideas = []
+        history_ideas = self.history_ideas if self.history_ideas else []
+        history_ideas_len = len(history_ideas)
         for idea_name in idea_names:
-            clean_idea_name = name.strip()
+            clean_idea_name = idea_name.strip()
             if clean_idea_name:
+                clean_idea_name = clean_idea_name.replace("**", "").strip()
                 ideas.append(clean_idea_name)
-                self.history_ideas.add(clean_idea_name)
+                history_ideas.append({
+                    "id": f"IDEA_{history_ideas_len + 1}"
+                    "idea": clean_idea_name
+                })
+                history_ideas_len += 1
                 
         print(f"🎯 Found / Extracted {len(ideas)} new ideas.")
         return ideas
