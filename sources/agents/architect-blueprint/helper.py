@@ -2,6 +2,7 @@ import os
 import sys
 import re
 import json
+from pathlib import Path
 
 # to load prompt template
 from jinja2 import Template as JinjaTemplate
@@ -207,3 +208,10 @@ def parseOpenAIResponseJsonData(response):
         print(f"⚠️  [PARSER WARNING] Local string-to-json mapping failed: {final_error}")
         return (raw_data, None)
 
+def count_files_by_pattern(dir, file_filter_pattern) -> int:
+    folder_path = Path(dir).resolve()
+    if not folder_path.is_dir():
+        return 0
+    
+    file_pattern = file_filter_pattern.strip() if file_filter_pattern.strip() else "*"
+    return sum(1 for item in folder_path.glob(file_pattern) if item.is_file())

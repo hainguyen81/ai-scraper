@@ -7,6 +7,7 @@ import re
 import argparse
 from datetime import datetime
 import time
+import glob
 
 # GEMINI
 #from google import genai
@@ -22,7 +23,7 @@ from sources.agents.agent_helper import resolve_absolute_path
 from block_global import generate_global_context
 from block_phase import generate_phase_contexts
 from block_json import convert_phases_to_json
-from helper import delete_log, read_json_file, write_json_file
+from helper import delete_log, read_json_file, write_json_file, count_files_by_pattern
 
 # models list
 MODELS_POOL_PATH    = resolve_absolute_path("sources/agents/models/models.json")
@@ -299,15 +300,24 @@ def run_architect_agent(
         # -------------------------------------------------
         # 4. Re-build Plan Spec
         # -------------------------------------------------
-        plan_spec = []
+        plan_num_phases = num_phases
         plan_context_dir = os.path.join(absolute_out_dir, "plan")
+        if exec_mode == 4:
+            phase_file_pattern = "phase-*.context.blueprint.md"
+            plan_num_phases = count_files_by_pattern(plan_context_dir, phase_file_pattern) if everything_ok else 0
+        plan_spec = {
+            "project_name": project_name,
+            "requirements": requirements_path,
+            "num_phases": plan_num_phases,
+            "phases" []
+        }
         if everything_ok and exec_mode in (0, 4):
             # build plan spec
             steps_context_dir = os.path.join(plan_context_dir, "steps")
             for phase_idx in range(1, num_phases + 1):
                 phase_steps_file = os.path.join(steps_context_dir, f"phase-{phase_idx}.steps.json")
                 _, steps_data = read_json_file(phase_steps_file)
-                plan_spec.append({
+                plan_spec["phases"].append({
                     "phase": phase_idx,
                     "days": len(steps_data.get("days", [])) if steps_data else 0
                 })
