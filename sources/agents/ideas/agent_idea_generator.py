@@ -91,7 +91,7 @@ class IdeaGeneratorAgent(AbstractAgent):
                 clean_idea_name = clean_idea_name.replace("**", "").strip()
                 ideas.append(clean_idea_name)
                 history_ideas.append({
-                    "id": f"IDEA_{history_ideas_len + 1}"
+                    "id": f"IDEA_{history_ideas_len + 1}",
                     "idea": clean_idea_name
                 })
                 history_ideas_len += 1
