@@ -316,7 +316,7 @@ def run_architect_agent(
             "project_name": project_name,
             "requirements": requirements_path,
             "num_phases": plan_num_phases,
-            "phases" []
+            "phases": []
         }
         # if everything is ok, should building plan spec
         if everything_ok:
