@@ -322,7 +322,7 @@ def run_architect_agent(
         if everything_ok:
             # build plan spec
             steps_context_dir = os.path.join(plan_context_dir, "steps")
-            for phase_idx in range(1, num_phases + 1):
+            for phase_idx in range(1, plan_num_phases + 1):
                 phase_steps_file = os.path.join(steps_context_dir, f"phase-{phase_idx}.steps.json")
                 _, steps_data = read_json_file(phase_steps_file)
                 plan_spec["phases"].append({
