@@ -123,7 +123,7 @@ class AbstractAgent(ABC):
     def write_log(self, data, append=False):
         return write_file(
             file=self.agent_log_file(),
-            day=data,
+            data=data,
             append=append
         )
     
