@@ -307,22 +307,21 @@ def run_architect_agent(
         # -------------------------------------------------
         # 4. Re-build Plan Spec
         # -------------------------------------------------
-        plan_num_phases = num_phases
         plan_context_dir = os.path.join(absolute_out_dir, "plan")
         if is_build_plan_spec:
             phase_file_pattern = "phase-*.context.blueprint.md"
-            plan_num_phases = count_files_by_pattern(plan_context_dir, phase_file_pattern) if everything_ok else 0
+            num_phases = count_files_by_pattern(os.path.join(plan_context_dir, "context"), phase_file_pattern) if everything_ok else 0
         plan_spec = {
             "project_name": project_name,
             "requirements": requirements_path,
-            "num_phases": plan_num_phases,
+            "num_phases": num_phases,
             "phases": []
         }
         # if everything is ok, should building plan spec
         if everything_ok:
             # build plan spec
             steps_context_dir = os.path.join(plan_context_dir, "steps")
-            for phase_idx in range(1, plan_num_phases + 1):
+            for phase_idx in range(1, num_phases + 1):
                 phase_steps_file = os.path.join(steps_context_dir, f"phase-{phase_idx}.steps.json")
                 _, steps_data = read_json_file(phase_steps_file)
                 plan_spec["phases"].append({
