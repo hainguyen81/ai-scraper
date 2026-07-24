@@ -95,7 +95,7 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument("--domain", type=str, help="Domain to find ideas")
     parser.add_argument("--quantity", type=int, help="The number of ideas")
-    parser.add_argument("--language", type=int, help="Translate found ideas to language. Ex: Vietnamese, English, etc.")
+    parser.add_argument("--language", type=str, help="Translate found ideas to language. Ex: Vietnamese, English, etc.")
     args = parser.parse_args()
     IdeaGeneratorAgent(
         domain=args.domain,
