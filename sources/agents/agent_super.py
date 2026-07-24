@@ -156,10 +156,14 @@ class AbstractAgent(ABC):
     def agent_temperature(self):
         return 0.1
     
-    def chat(self, system_prompt, user_prompt, **kwargs):
+    def chat(self, **kwargs):
         response = self.client.chat.completions.create(
             model=self.current_model_config["model_name"],
-            messages=[{"role": "system", "content": system_prompt}, {"role": "user", "content": user_prompt}],
+            messages=[{
+                "role": "system", "content": kwargs_by_key(key="system_prompt", **kwargs)
+            }, {
+                "role": "user", "content": kwargs_by_key(key="user_prompt", **kwargs)
+            }],
             temperature=self.agent_temperature()
         )
         raw_response = parseOpenAIResponseData(response)
@@ -178,11 +182,7 @@ class AbstractAgent(ABC):
     
     def __ai_execute__(self, **kwargs):
         # ask AI
-        raw_response, clean_response = self.chat(
-            system_prompt=kwargs_by_key(key="system_prompt", **kwargs),
-            user_prompt=kwargs_by_key(key="user_prompt", **kwargs),
-            **kwargs
-        )
+        raw_response, clean_response = self.chat(**kwargs)
         latest_response = raw_response
         
         # process AI response
