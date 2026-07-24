@@ -213,6 +213,10 @@ class AbstractAgent(ABC):
             append=True
         )
     
+    def __rotate_next_model__(self):
+        self.active_model_index += 1
+        return self.rotate_model()
+    
     def execute(self, **kwargs):
         # pre-execute
         kwargs = self.pre_execute(**kwargs)
@@ -230,7 +234,6 @@ class AbstractAgent(ABC):
             except Exception as e:
                 self.__handle_execute_exception__(e, **kwargs)
                 # rotate next model
-                self.active_model_index += 1
-                if not self.rotate_model():
+                if not self.__rotate_next_model__():
                     return False
 
