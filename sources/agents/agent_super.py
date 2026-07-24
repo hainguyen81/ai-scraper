@@ -35,7 +35,9 @@ class AbstractAgent(ABC):
         self.active_model_index = 0
         self.client = None
         self.current_model_config = None
-        self.rotate_model()
+        if not self.rotate_model():
+            print(f"[ 💀 {self.agent_id} Agent | CRITICAL ] Not found any available AI models to execute!")
+            sys.exit(1)
     
     def get_kwargs(self, key: str):
         return (self.kwargs or {}).get(key) if key else None
