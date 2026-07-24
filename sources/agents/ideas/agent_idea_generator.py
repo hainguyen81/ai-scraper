@@ -55,11 +55,11 @@ class IdeaGeneratorAgent(AbstractAgent):
     # @override
     def build_user_prompt_context(self, **kwargs):
         ideas_history = self.history_ideas if self.history_ideas else []
-        ideas = [ idea["idea"] for idea in ideas_history ]
+        ideas = [ idea["idea"] for idea in ideas_history if idea and isinstance(idea, dict) and "idea" in idea ]
         return {
             "domain": self.domain,
             "quantity": self.quantity,
-            "ideas_history": ideas,
+            "ideas_history": ideas if ideas else None,
             "language": self.language
         }
     
