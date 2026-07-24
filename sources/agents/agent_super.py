@@ -212,8 +212,6 @@ class AbstractAgent(ABC):
             data=exception_stacktrace(e),
             append=True
         )
-        self.active_model_index += 1
-        return self.rotate_model()
     
     def execute(self, **kwargs):
         # pre-execute
@@ -230,6 +228,9 @@ class AbstractAgent(ABC):
                 # done tasks
                 return success
             except Exception as e:
-                if not self.__handle_execute_exception__(e, **kwargs):
+                self.__handle_execute_exception__(e, **kwargs)
+                # rotate next model
+                self.active_model_index += 1
+                if not self.rotate_model():
                     return False
 
