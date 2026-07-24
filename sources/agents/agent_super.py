@@ -12,8 +12,14 @@ from openai import OpenAI
 from abc import ABC, abstractmethod
 
 # agent helper
-from sources.agents.agent_helper
-    import resolve_absolute_path, write_file, read_json_file, render_prompt, parseOpenAIResponseData, exception_stacktrace
+from sources.agents.agent_helper import (
+    resolve_absolute_path,
+    write_file,
+    read_json_file,
+    render_prompt,
+    parseOpenAIResponseData,
+    exception_stacktrace
+)
 
 # ==============================================================================
 # GLOBAL CONFIGURATION PATHS - CONFIG HERE TO CUSTOMIZE DIRECTORY STRUCTURE
