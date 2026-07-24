@@ -1,4 +1,5 @@
-# .ai/.agents/.sub-agents/agent-tester.py
+# sources/agents/agent_super.py
+
 import os
 import sys
 import json
@@ -6,6 +7,8 @@ import re
 import argparse
 from datetime import datetime
 from openai import OpenAI
+
+# for abstract class
 from abc import ABC, abstractmethod
 
 # agent helper
