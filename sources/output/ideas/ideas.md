@@ -1,0 +1,1 @@
+['EcoSync – Hệ thống tự động hóa quản lý năng lượng tái tạo cho hộ gia đình', 'AgriBot – Trợ lý nông nghiệp thông minh cho nông dân nhỏ lẻ', 'HealthGuard – Hệ thống giám sát sức khỏe từ xa cho người cao tuổi']
