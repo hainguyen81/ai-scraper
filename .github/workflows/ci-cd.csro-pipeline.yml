@@ -5,16 +5,16 @@ on:
   workflow_dispatch:
     inputs:
       idea:
-        description: '💡 Idea (The idea identity from storage - sources/storage/ideas)'
-        required: false
+        description: '📁 Project Name / 💡 Idea (The idea identity from storage - sources/storage/ideas)'
+        required: true
         type: string
     
   # allow other workflow call into (inputs same as workflow_dispatch but required)
   workflow_call:
     inputs:
       idea:
-        description: '💡 Idea (The idea identity from storage - sources/storage/ideas)'
-        required: false
+        description: '📁 Project Name / 💡 Idea (The idea identity from storage - sources/storage/ideas)'
+        required: true
         type: string
 
 # permissions for GitHub Actions READ/WRITE

@@ -6,7 +6,7 @@ on:
     inputs:
       idea:
         description: '💡 Idea (The idea identity from storage - sources/storage/ideas)'
-        required: false
+        required: true
         type: string
       language:
         description: '🗣️ SRS Language'
@@ -24,7 +24,7 @@ on:
     inputs:
       idea:
         description: '💡 Idea (The idea identity from storage - sources/storage/ideas)'
-        required: false
+        required: true
         type: string
       language:
         description: '🗣️ SRS Language'
