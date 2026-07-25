@@ -136,7 +136,7 @@ class PrincipalBusinessAnalysisAgent(AbstractAgent):
         # return cleaned/prepared data
         return {
             **srs_info,
-            "requirements": resolve_absolute_path(abs_requirements_file)
+            "requirements": resolve_absolute_path(abs_requirements_file),
             "project_info": { **project_info }
         }
     
