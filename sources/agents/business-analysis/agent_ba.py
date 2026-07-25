@@ -24,8 +24,8 @@ from sources.agents.agent_super import AbstractAgent
 SYSTEM_PROMPT_TEMPLATE      = resolve_absolute_path("sources/agents/business-analysis/agent_ba.prompt.system.md")
 USER_PROMPT_TEMPLATE        = resolve_absolute_path("sources/agents/business-analysis/agent_ba.prompt.user.md")
 IDEAS_STORAGE_PATH          = resolve_absolute_path("sources/storage/ideas")
+SRS_STORAGE_PATH            = resolve_absolute_path("sources/storage/business-analysis")
 BA_OUTPUT_PATH              = resolve_absolute_path("sources/output/business-analysis")
-SRS_STORAGE_PATH            = resolve_absolute_path("sources/requirements")
 SRS_STORAGE_FILE            = "requirements.md"
 SRS_INFO_FILE               = "project-info.json"
 BA_RAW_FILE                 = os.path.join(BA_OUTPUT_PATH, "ba.md")
