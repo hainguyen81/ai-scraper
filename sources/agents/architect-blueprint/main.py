@@ -34,8 +34,7 @@ from block_json import convert_phases_to_json
 # ==============================================================================
 # GLOBAL CONFIGURATION PATHS - CONFIG HERE TO CUSTOMIZE DIRECTORY STRUCTURE
 # ==============================================================================
-BA_STORAGE_PATH             = os.path.join(STORAGE_PATH, "business-analysis")
-CSRO_STORAGE_PATH           = os.path.join(STORAGE_PATH, "chief-solution")
+BA_STORAGE_PATH             = os.path.join("sources", "storage", "business-analysis")
 PROJECTS_SUMMARY_FILE       = os.path.join(BA_STORAGE_PATH, "projects-summary.json")
 PROJECTS_SUMMARY_FILE_PATH  = resolve_absolute_path(PROJECTS_SUMMARY_FILE)
 REQUIREMENTS_STORAGE_PATH   = "sources/requirements"
