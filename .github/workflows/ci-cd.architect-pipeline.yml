@@ -189,32 +189,33 @@ jobs:
         with:
             fetch-depth: 0
       
-      # validate parameters
-      - name: 🛡️ Gatekeeper - Validate Parameters
-        env:
-          REQUIREMENTS_FILE: ${{ inputs.requirements_file }}
-          PROJECT_NAME: ${{ inputs.project_name }}
-        if: success() && inputs.exec_mode != '🚫 None'          # if previous step is successful
-        run: |
-          # check requirements
-          REQUIREMENTS="$REQUIREMENTS_FILE"
-          if [[ -z "$REQUIREMENTS" && -n "$PROJECT_NAME" ]]; then
-            REQUIREMENTS="sources/requirements/$PROJECT_NAME/requirements.md"
-            if [ ! -f "$REQUIREMENTS" ]; then
-              echo "❌ Not found project requirements at: $REQUIREMENTS"
-              exit 1
-            fi
-          
-          elif [ -z "$REQUIREMENTS" ]; then
-            echo "❌ Project requirements file is REQUIRED!"
-            exit 1
-          
-          elif [ ! -f "$REQUIREMENTS" ]; then
-            echo "❌ Not found project requirements at: $REQUIREMENTS"
-            exit 1
-          fi
-          
-          echo "🎉 Found project $PROJECT_NAME requirements at $REQUIREMENTS"
+      # No need to check requirements here, due to agent will check it
+      # # validate parameters
+      # - name: 🛡️ Gatekeeper - Validate Parameters
+      #   env:
+      #     REQUIREMENTS_FILE: ${{ inputs.requirements_file }}
+      #     PROJECT_NAME: ${{ inputs.project_name }}
+      #   if: success() && inputs.exec_mode != '🚫 None'          # if previous step is successful
+      #   run: |
+      #     # check requirements
+      #     REQUIREMENTS="$REQUIREMENTS_FILE"
+      #     if [[ -z "$REQUIREMENTS" && -n "$PROJECT_NAME" ]]; then
+      #       REQUIREMENTS="sources/requirements/$PROJECT_NAME/requirements.md"
+      #       if [ ! -f "$REQUIREMENTS" ]; then
+      #         echo "❌ Not found project requirements at: $REQUIREMENTS"
+      #         exit 1
+      #       fi
+      #     
+      #     elif [ -z "$REQUIREMENTS" ]; then
+      #       echo "❌ Project requirements file is REQUIRED!"
+      #       exit 1
+      #     
+      #     elif [ ! -f "$REQUIREMENTS" ]; then
+      #       echo "❌ Not found project requirements at: $REQUIREMENTS"
+      #       exit 1
+      #     fi
+      #     
+      #     echo "🎉 Found project $PROJECT_NAME requirements at $REQUIREMENTS"
 
       # Step 2: Initialize a clean Python runtime environment
       - name: 🐍 Set up Python Environment
