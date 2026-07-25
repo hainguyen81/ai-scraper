@@ -371,7 +371,7 @@ def convert_phases_to_json(client: OpenAI, model_name: str, project_name: str, n
                 # write steps
                 out_path = write_json_file(
                     dir=steps_context_dir,
-                    file_name=f"phase-{phase_idx}.steps.json",
+                    file=f"phase-{phase_idx}.steps.json",
                     json_data=model_dump
                 )
                     

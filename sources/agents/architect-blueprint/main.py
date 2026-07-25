@@ -381,7 +381,7 @@ def run_architect_agent(
         
         # write plan spec
         print(f"\n🎉 [ INFO ] Modular Enterprise Architecture Plan Spec: {json.dumps(plan_spec, indent=4, ensure_ascii=False)}")
-        write_json_file(plan_context_dir, PLAN_SPEC_FILE, plan_spec)
+        write_json_file(dir=plan_context_dir, file=PLAN_SPEC_FILE, json_data=plan_spec)
     
     # log for tracing
     if not everything_ok:
