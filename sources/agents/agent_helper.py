@@ -142,7 +142,7 @@ def write_blueprint_log(phase_idx, instruction, prompt, raw_content, is_step, mo
     log_file = resolve_absolute_path(BLUEPRINT_WORKING_HISTORY_FILE)
     if out_dir and len(out_dir) > 0:
         log_file = os.path.join(out_dir, "architecture-blueprint.md")
-    write_file(os.path.dirname(log_file), os.path.basename(log_file), log_content, append=True)
+    write_file(file=log_file, data=log_content, append=True)
 
 def delete_log(out_dir=None):
     log_file = resolve_absolute_path(BLUEPRINT_WORKING_HISTORY_FILE)

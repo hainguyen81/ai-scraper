@@ -75,7 +75,7 @@ def generate_phase_contexts(client: OpenAI, model_name: str, project_name: str, 
             # write context
             out_path = write_file(
                 dir=os.path.join(out_dir, "plan", "context"),
-                file_name=f"phase-{phase_idx}.context.blueprint.md",
+                file=f"phase-{phase_idx}.context.blueprint.md",
                 data=raw_data
             )
         
