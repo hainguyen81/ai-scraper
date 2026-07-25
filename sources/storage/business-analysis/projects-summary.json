@@ -1,0 +1,10 @@
+[
+    {
+        "technical_codename": "autosellhub-automation",
+        "descriptive_name": "AutoSellHub - Nền tảng tự động hóa thương mại điện tử",
+        "brand_name": "AutoSellHub",
+        "idea": "idea_74af2134f309",
+        "location": "sources/storage/business-analysis/autosellhub-automation",
+        "requirements": "sources/storage/business-analysis/autosellhub-automation/requirements.md"
+    }
+]
