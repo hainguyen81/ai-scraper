@@ -20,7 +20,7 @@ from sources.agents.agent_helper import (
 from sources.agents.agent_super import AbstractAgent
 
 # models list
-IDEAS_USER_PROMPT_TEMPLATE  = resolve_absolute_path("sources/agents/ideas/agent_idea_generator.prompt.md")
+USER_PROMPT_TEMPLATE  = resolve_absolute_path("sources/agents/ideas/agent_idea_generator.prompt.md")
 IDEAS_STORAGE_PATH          = resolve_absolute_path("sources/storage/ideas")
 IDEAS_OUTPUT_PATH           = resolve_absolute_path("sources/output/ideas")
 IDEAS_HISTORY_FILE          = os.path.join(IDEAS_STORAGE_PATH, "history_ideas.json")
@@ -74,7 +74,7 @@ class IdeaGeneratorAgent(AbstractAgent):
     
     # @override
     def user_prompt_template(self) -> str:
-        return IDEAS_USER_PROMPT_TEMPLATE
+        return USER_PROMPT_TEMPLATE
     
     # @override
     def agent_temperature(self):
