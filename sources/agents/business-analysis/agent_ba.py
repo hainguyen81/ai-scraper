@@ -123,11 +123,12 @@ class PrincipalBusinessAnalysisAgent(AbstractAgent):
         project_storage_path = os.path.join(ABS_SRS_STORAGE_PATH, project_name)
         
         # initial project info
+        abs_requirements_file = os.path.join(project_storage_path, SRS_STORAGE_FILE)
         project_info = {
             **project_info,
             "idea": self.idea_id,
             "location": project_storage_path,
-            "requirements": os.path.join(project_storage_path, SRS_STORAGE_FILE)
+            "requirements": abs_requirements_file
         }
         srss_summary.append(project-info)
         self.srss_summary = srss_summary
@@ -135,7 +136,7 @@ class PrincipalBusinessAnalysisAgent(AbstractAgent):
         # return cleaned/prepared data
         return {
             **srs_info,
-            "requirements": resolve_absolute_path(project_info.get("requirements"))
+            "requirements": resolve_absolute_path(abs_requirements_file)
             "project_info": { **project_info }
         }
     
