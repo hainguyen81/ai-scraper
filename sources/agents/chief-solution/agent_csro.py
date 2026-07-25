@@ -75,7 +75,7 @@ class AbstractCrewEnterpriseSuperAgent(AbstractAgent):
             sys.exit(1)
         
         # find project information
-        project_info = next((pi for pi in projects if instance(pi, dict) and pi.get("idea") == idea_id), None)
+        project_info = next((pi for pi in projects if isinstance(pi, dict) and pi.get("idea") == idea_id), None)
         if not projects:
             print(f"[ 💀 {self.agent_id} Agent | CRITICAL ERROR ] (3) Not found project information by idea { idea_id }")
             sys.exit(1)

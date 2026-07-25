@@ -17,7 +17,14 @@ import glob
 from openai import OpenAI
 
 # Now Python can seamlessly see and import the centralized helper utility cleanly!
-from sources.agents.agent_helper import resolve_absolute_path, delete_log, read_json_file, write_json_file, count_files_by_pattern, read_file_raw
+from sources.agents.agent_helper import (
+    resolve_absolute_path,
+    delete_log,
+    read_json_file,
+    write_json_file,
+    count_files_by_pattern,
+    read_file_raw
+)
 
 # Import decoupled functional components cleanly
 from block_global import generate_global_context
@@ -27,9 +34,12 @@ from block_json import convert_phases_to_json
 # ==============================================================================
 # GLOBAL CONFIGURATION PATHS - CONFIG HERE TO CUSTOMIZE DIRECTORY STRUCTURE
 # ==============================================================================
-# models list
-MODELS_POOL_PATH    = resolve_absolute_path("sources/agents/models/models.json")
-PLAN_SPEC_FILE      = "plan.spec.json"
+BA_STORAGE_PATH             = os.path.join(STORAGE_PATH, "business-analysis")
+CSRO_STORAGE_PATH           = os.path.join(STORAGE_PATH, "chief-solution")
+PROJECTS_SUMMARY_FILE       = os.path.join(BA_STORAGE_PATH, "projects-summary.json")
+PROJECTS_SUMMARY_FILE_PATH  = resolve_absolute_path(PROJECTS_SUMMARY_FILE)
+MODELS_POOL_PATH            = resolve_absolute_path("sources/agents/models/models.json")
+PLAN_SPEC_FILE              = "plan.spec.json"
 
 def load_models_pool():
     # empty model
@@ -76,10 +86,29 @@ def rotate_matching_model(json_ai_models, json_ai_keys, model_idx):
             print(f"[ 💀 FAILOVER ENGAGED ] Found AI model: {target_model_name} | endpoint: {target_model_endpoint}")
             return (model_idx, config, api_key)
         else:
-            print(f"[ ⚠️ WARNING] API key missing inside GitHub JSON for model: {target_model_name} | endpoint: {target_model_endpoint}. Skipping tier.")
+            print(f"[ ⚠️ WARNING ] API key missing inside GitHub JSON for model: {target_model_name} | endpoint: {target_model_endpoint}. Skipping tier.")
             model_idx += 1
     
     return (-1, None, None)
+
+def find_project_requirements(project_name: str):
+    if not project_name:
+        print("[ ⚠️ WARNING ] Invalid project_name to search. Skipping tier.")
+        return (None, None)
+    
+    # read projects summaize
+    _, projects = read_json_file(file_path=PROJECTS_SUMMARY_FILE_PATH)
+    if not projects:
+        print(f"[ ⚠️ WARNING ] Not found {PROJECTS_SUMMARY_FILE} to search. Skipping tier.")
+        return (None, None)
+    
+    # filter to find project
+    project_info = next((pi for pi in projects if isinstance(pi, dict) and project_name in [ pi.get("technical_codename"), pi.get("idea"), pi.get("brand_name") ]), None)
+    if not project_info:
+        print(f"[ ⚠️ WARNING ] Not found {project_name} from projects list of BA. Skipping tier.")
+        return (None, None)
+    
+    return (project_info.get("technical_codename"), project_info.get("requirements"))
 
 def run_architect_agent(
     project_name: str, requirements_path: str,
@@ -98,16 +127,26 @@ def run_architect_agent(
     is_build_phase = exec_mode in (0, 2)
     is_build_steps = exec_mode in (0, 3)
     
+    # try to detect project if not found its requirements
+    physical_requirements_path = resolve_absolute_path(requirements_path)
+    if not os.path.exists(physical_requirements_path):
+        detected_project_name, detected_requirements_file = find_project_requirements(project_name)
+        # if found, should re-update inputted parameters
+        if detected_project_name and detected_requirements_file:
+            project_name = detected_project_name
+            requirements_path = detected_requirements_file
+            physical_requirements_path = resolve_absolute_path(requirements_path)
+            print(f"\n🎉 [ INFO ] Found matching project {project_name} with requirements {requirements_path}")
+    
     # check requirements
-    absolute_requirements_path = resolve_absolute_path(requirements_path)
-    if not is_build_plan_spec and not os.path.exists(absolute_requirements_path):
-        print(f"❌ Target requirements file not found at: {absolute_requirements_path}")
+    if not is_build_plan_spec and not os.path.exists(physical_requirements_path):
+        print(f"❌ Target requirements file not found at: {requirements_path}")
         return
     
     # read requirements
     project_requirements = None
     if not is_build_plan_spec:
-        _, project_requirements = read_file_raw(absolute_requirements_path)
+        _, project_requirements = read_file_raw(physical_requirements_path)
     
     # safely project name
     safe_name = project_name.replace(' ', '-')
