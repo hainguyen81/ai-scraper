@@ -130,7 +130,7 @@ class PrincipalBusinessAnalysisAgent(AbstractAgent):
             "location": project_storage_path,
             "requirements": abs_requirements_file
         }
-        srss_summary.append(project-info)
+        srss_summary.append(project_info)
         self.srss_summary = srss_summary
         
         # return cleaned/prepared data
