@@ -1,0 +1,17 @@
+# CONTEXT
+I have a raw, high-level product idea that needs to be engineered into a production-ready specification document. 
+
+# INPUTS
+- **Raw Idea**: 
+---------
+{{ raw_idea_content }}
+---------
+- **Target Language**: {{ language }}
+
+# INSTRUCTIONS AND STRICT LIMITS
+1. Act as our Principal BA / Product Strategist. Review the raw idea provided above.
+2. **Project Naming**: Propose 3 tailored project names (Technical Codename, Descriptive Name, and Brand Name) and populate them into the "project_names" keys of the JSON object.
+3. Fill in all implicit technical gaps, infrastructure needs, and logical holes that were omitted in the raw text.
+4. Author a highly detailed, flawless Software Requirements Specification (SRS) based on the 5-section structure defined in your System Prompt.
+5. **CRITICAL**: The text inside the "srs_content_markdown" key MUST be written entirely in {{ language }}.
+6. **STRICT ZERO-THINKING POLICY**: Do not include any explanation, introductory words, markdown backticks (```), or conversational filler. Output ONLY the raw JSON block.
