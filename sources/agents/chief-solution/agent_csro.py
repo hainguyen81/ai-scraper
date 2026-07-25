@@ -229,6 +229,10 @@ class EnterpriseBusinessAnalystAgent(AbstractCrewEnterpriseSuperAgent):
             agent=self.agent,
             context=kwargs_by_key(key="context_tasks_ba" **kwargs)
         )
+    
+    # @override
+    def __ai_execute__(self, **kwargs):
+        pass
 
 
 # =====================================================================
@@ -257,7 +261,11 @@ class EnterpriseSystemArchitectAgent(AbstractCrewEnterpriseSuperAgent):
             expected_output=kwargs_by_key(key="expected_output_ba", **kwargs),
             agent=self.agent,
             context=kwargs_by_key(key="context_tasks_ba" **kwargs)
-        ):
+        )
+    
+    # @override
+    def __ai_execute__(self, **kwargs):
+        pass
 
 
 # =====================================================================
