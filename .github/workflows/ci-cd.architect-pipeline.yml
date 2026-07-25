@@ -10,9 +10,8 @@ on:
         default: false
         type: boolean
       project_name:
-        description: '📁 Project Name'
+        description: '📁 Project Name / 💡 Idea Identity'
         required: true
-        default: 'test-ai-architecture'
         type: string
       requirements_file:
         description: '📄 Path to the project requirements file (Ex: sources/requirements/test-requirements.md)'
@@ -96,9 +95,8 @@ on:
         default: false
         type: boolean
       project_name:
-        description: '📁 Project Name'
+        description: '📁 Project Name / 💡 Idea Identity'
         required: true
-        default: 'test-ai-architecture'
         type: string
       requirements_file:
         description: '📄 Path to the project requirements file (Ex: sources/requirements/test-requirements.md)'
@@ -366,11 +364,12 @@ jobs:
             EXE_DELAY=3
           fi
           
-          # check requirements
-          REQUIREMENTS="$REQUIREMENTS_FILE"
-          if [[ -z "$REQUIREMENTS" && -n "$PROJECT_NAME" ]]; then
-            REQUIREMENTS="sources/requirements/$PROJECT_NAME/requirements.md"
-          fi
+          # No need to check requirements here, due to agent will check it
+          # # check requirements if not building plan-spec
+          # REQUIREMENTS="$REQUIREMENTS_FILE"
+          # if [[ -z "$REQUIREMENTS" && -n "$PROJECT_NAME" && "$EXEC_MODE" != 4 ]]; then
+          #   REQUIREMENTS="sources/requirements/$PROJECT_NAME/requirements.md"
+          # fi
           
           echo "⚡ Kicking off AI Agent orchestration..."
           echo "🔢 Requested Execution Phases: $NUM_PHASES"

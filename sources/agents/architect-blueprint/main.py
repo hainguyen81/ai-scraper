@@ -38,6 +38,8 @@ BA_STORAGE_PATH             = os.path.join(STORAGE_PATH, "business-analysis")
 CSRO_STORAGE_PATH           = os.path.join(STORAGE_PATH, "chief-solution")
 PROJECTS_SUMMARY_FILE       = os.path.join(BA_STORAGE_PATH, "projects-summary.json")
 PROJECTS_SUMMARY_FILE_PATH  = resolve_absolute_path(PROJECTS_SUMMARY_FILE)
+REQUIREMENTS_STORAGE_PATH   = "sources/requirements"
+REQUIREMENTS_FILE           = "requirements.md"
 MODELS_POOL_PATH            = resolve_absolute_path("sources/agents/models/models.json")
 PLAN_SPEC_FILE              = "plan.spec.json"
 
@@ -127,6 +129,10 @@ def run_architect_agent(
     is_build_phase = exec_mode in (0, 2)
     is_build_steps = exec_mode in (0, 3)
     
+    # build requirements path if not input
+    if not requirements_path:
+        requirements_path = os.path.join(REQUIREMENTS_STORAGE_PATH, project_name, REQUIREMENTS_FILE)
+    
     # try to detect project if not found its requirements
     physical_requirements_path = resolve_absolute_path(requirements_path)
     if not os.path.exists(physical_requirements_path):
@@ -141,7 +147,7 @@ def run_architect_agent(
     # check requirements
     if not is_build_plan_spec and not os.path.exists(physical_requirements_path):
         print(f"❌ Target requirements file not found at: {requirements_path}")
-        return
+        sys.exit(1)
     
     # read requirements
     project_requirements = None
@@ -397,10 +403,8 @@ def str2bool(v):
 
 if __name__ == "__main__":
     # Configure CLI arguments parsing to allow dynamic inputs for requirements path, phase count, and output location.
-    datetimeStr = datetime.now().strftime("%Y%m%d%H%M%S")
-    defaultPrjName = f"project-architecture-{datetimeStr}"
     parser = argparse.ArgumentParser(description="AI Solution / Lead Architect Agent Configuration")
-    parser.add_argument("--project-name", type=str, default=defaultPrjName, help="Project name")
+    parser.add_argument("--project-name", type=str, required=True, help="Project Name / Idea Identity")
     parser.add_argument("--req", type=str, default="sources/requirements/test-requirements.md", help="Path to the raw project requirements file")
     parser.add_argument("--phases", type=int, default=3, help="Total number of execution phases to segment")
     parser.add_argument("--out", type=str, default="sources/output/blueprint", help="Target output directory for the generated blueprint")
