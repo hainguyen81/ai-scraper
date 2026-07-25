@@ -46,7 +46,7 @@ env:
 jobs:
   # 🏗️ System Architecture & Phase Planner
   generate-blueprint:
-    name: 💡 Expert Business Analysis Generation
+    name: 💡🎯 Expert Business Analysis Generation
     runs-on: ubuntu-latest
     
     steps:
