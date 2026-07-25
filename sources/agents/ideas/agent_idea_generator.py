@@ -124,7 +124,7 @@ class IdeaGeneratorAgent(AbstractAgent):
         # update ideas history
         write_json_file(
             file=IDEAS_HISTORY_FILE,
-            data=self.history_ideas
+            json_data=self.history_ideas
         )
 
 if __name__ == "__main__":
