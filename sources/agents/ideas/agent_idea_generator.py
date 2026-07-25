@@ -7,7 +7,12 @@ from datetime import datetime
 from openai import OpenAI
 
 # Now Python can seamlessly see and import the centralized helper utility cleanly!
-from sources.agents.agent_helper import resolve_absolute_path, read_json_file
+from sources.agents.agent_helper import (
+    resolve_absolute_path,
+    read_json_file,
+    write_json_file,
+    write_file
+)
 
 # super agent
 from sources.agents.agent_super import AbstractAgent
