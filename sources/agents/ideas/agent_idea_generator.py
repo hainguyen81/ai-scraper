@@ -19,9 +19,12 @@ from sources.agents.agent_helper import (
 # super agent
 from sources.agents.agent_super import AbstractAgent
 
-# models list
-USER_PROMPT_TEMPLATE  = resolve_absolute_path("sources/agents/ideas/agent_idea_generator.prompt.md")
-IDEAS_STORAGE_PATH          = resolve_absolute_path("sources/storage/ideas")
+# ==============================================================================
+# GLOBAL CONFIGURATION PATHS - CONFIG HERE TO CUSTOMIZE DIRECTORY STRUCTURE
+# ==============================================================================
+USER_PROMPT_TEMPLATE        = resolve_absolute_path("sources/agents/ideas/agent_idea_generator.prompt.md")
+ABSOLUTE_IDEAS_STORAGE_PATH = "sources/storage/ideas"
+IDEAS_STORAGE_PATH          = resolve_absolute_path(ABSOLUTE_IDEAS_STORAGE_PATH)
 IDEAS_OUTPUT_PATH           = resolve_absolute_path("sources/output/ideas")
 IDEAS_HISTORY_FILE          = os.path.join(IDEAS_STORAGE_PATH, "history_ideas.json")
 IDEAS_OUTPUT_FILE           = os.path.join(IDEAS_OUTPUT_PATH, "ideas.md")
@@ -113,15 +116,17 @@ class IdeaGeneratorAgent(AbstractAgent):
             # idea unique identity
             unique_id = hashlib.md5(clean_idea_name.encode("utf-8")).hexdigest()[:12]
             idea_id = f"idea_{unique_id}"
-            idea_file = os.path.join(IDEAS_STORAGE_PATH, f"{idea_id}.md")
+            abs_idea_file = os.path.join(ABSOLUTE_IDEAS_STORAGE_PATH, f"{idea_id}.md")
+            idea_file = resolve_absolute_path(abs_idea_file)
             idea_content = f"# {clean_idea_name}\n\n{clean_idea_desc}"
             idea_item = {
                 "id": idea_id,
                 "idea": clean_idea_name,
-                "file": idea_file
+                "file": abs_idea_file
             }
             ideas.append({
                 **idea_item,
+                "physical_file": idea_file,
                 "content": idea_content
             })
             history_ideas.append({ **idea_item })
@@ -135,7 +140,7 @@ class IdeaGeneratorAgent(AbstractAgent):
         # export new ideas as md files
         for idea in response_data:
             write_file(
-                file=idea.get("file"),
+                file=idea.get("physical_file"),
                 data=idea.get("content")
             )
         

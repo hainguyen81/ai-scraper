@@ -19,7 +19,7 @@ on:
         default: 'sources/requirements/test-requirements.md'
         type: string
       blueprint:
-        description: "🌐 Project BluePrint Folder to Publish (Ex: sources/output/blueprint)"
+        description: "🌐 Project BluePrint Folder to Publish (Ex: sources/storage/blueprint)"
         required: false
         default: ''
         type: string
@@ -47,7 +47,7 @@ on:
         default: 'sources/requirements/test-requirements.md'
         type: string
       blueprint:
-        description: "🌐 Project BluePrint Folder to Publish (Ex: sources/output/blueprint)"
+        description: "🌐 Project BluePrint Folder to Publish (Ex: sources/storage/blueprint)"
         required: false
         default: ''
         type: string

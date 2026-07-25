@@ -24,6 +24,9 @@ from block_global import generate_global_context
 from block_phase import generate_phase_contexts
 from block_json import convert_phases_to_json
 
+# ==============================================================================
+# GLOBAL CONFIGURATION PATHS - CONFIG HERE TO CUSTOMIZE DIRECTORY STRUCTURE
+# ==============================================================================
 # models list
 MODELS_POOL_PATH    = resolve_absolute_path("sources/agents/models/models.json")
 PLAN_SPEC_FILE      = "plan.spec.json"

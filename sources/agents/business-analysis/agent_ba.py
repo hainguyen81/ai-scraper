@@ -20,6 +20,9 @@ from sources.agents.agent_helper import (
 # super agent
 from sources.agents.agent_super import AbstractAgent
 
+# ==============================================================================
+# GLOBAL CONFIGURATION PATHS - CONFIG HERE TO CUSTOMIZE DIRECTORY STRUCTURE
+# ==============================================================================
 # models list
 SYSTEM_PROMPT_TEMPLATE      = resolve_absolute_path("sources/agents/business-analysis/agent_ba.prompt.system.md")
 USER_PROMPT_TEMPLATE        = resolve_absolute_path("sources/agents/business-analysis/agent_ba.prompt.user.md")
