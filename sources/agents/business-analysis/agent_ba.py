@@ -130,8 +130,10 @@ class PrincipalBusinessAnalysisAgent(AbstractAgent):
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
+    parser.add_argument("--idea", type=str, help="Idea Identity for searching")
     parser.add_argument("--language", type=str, help="Translate SRS to language. Ex: Vietnamese, English, etc.")
     args = parser.parse_args()
     PrincipalBusinessAnalysisAgent(
+        idea=args.idea,
         language=args.language
     ).execute()
