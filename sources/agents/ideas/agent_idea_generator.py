@@ -2,6 +2,7 @@ import os
 import sys
 import json
 import re
+import hashlib
 import argparse
 from datetime import datetime
 from openai import OpenAI
@@ -11,7 +12,8 @@ from sources.agents.agent_helper import (
     resolve_absolute_path,
     read_json_file,
     write_json_file,
-    write_file
+    write_file,
+    kwargs_by_key
 )
 
 # super agent
@@ -19,9 +21,11 @@ from sources.agents.agent_super import AbstractAgent
 
 # models list
 IDEAS_USER_PROMPT_TEMPLATE  = resolve_absolute_path("sources/agents/ideas/agent_idea_generator.prompt.md")
-IDEAS_HISTORY_FILE          = resolve_absolute_path("sources/storage/ideas/history_ideas.json")
-IDEAS_FILE                  = "sources/output/ideas/ideas.md"
-IDEAS_LOG_FILE              = resolve_absolute_path("sources/output/ideas/ideas_log.md")
+IDEAS_STORAGE_PATH          = resolve_absolute_path("sources/storage/ideas")
+IDEAS_OUTPUT_PATH           = resolve_absolute_path("sources/output/ideas")
+IDEAS_HISTORY_FILE          = os.path.join(IDEAS_STORAGE_PATH, "history_ideas.json")
+IDEAS_OUTPUT_FILE           = os.path.join(IDEAS_OUTPUT_PATH, "ideas.md")
+IDEAS_LOG_FILE              = os.path.join(IDEAS_OUTPUT_PATH, "ideas_log.md")
 DEFAULT_IDEAS_DOMAIN        = "Any high-momentum, trending industry in 2026 (such as AI Agents, Automation Web-apps, Renewable Energy tech, Spatial Computing, Web3/Fintech, etc.) where a lightweight software solution or Micro-SaaS can be rapidly deployed to capture immediate market demand with an MVP built within 2-4 weeks"
 DEFAULT_IDEAS_QUNATITY      = 3
 DEFAULT_IDEAS_LANGUAGE      = "English"
@@ -82,8 +86,11 @@ class IdeaGeneratorAgent(AbstractAgent):
     
     # @override
     def clean_response(self, raw_response, **kwargs):
-        # extract idea names
-        pattern = r"####\s*\[IDEA_\d+\]\s*(.*)"
+        # extract idea blocks
+        pattern_block = (
+            r"####\s*\[IDEA_\d+\]\s*(.*?)\n(.*?)(?=####\s*\[IDEA_\d+\]|$)"
+        )
+        ideas_blocks = re.findall(pattern_block, raw_response, re.DOTALL)
         
         # check history ideas
         history_ideas = []
@@ -96,18 +103,28 @@ class IdeaGeneratorAgent(AbstractAgent):
         history_ideas_len = len(history_ideas)
         
         # find all idea names match prefix from AI response
-        idea_names = re.findall(pattern, raw_response)
         ideas = []
-        for idea_name in idea_names:
-            clean_idea_name = idea_name.strip()
-            if clean_idea_name:
-                clean_idea_name = clean_idea_name.replace("**", "").strip()
-                ideas.append(clean_idea_name)
-                history_ideas.append({
-                    "id": f"IDEA_{history_ideas_len + 1}",
-                    "idea": clean_idea_name
-                })
-                history_ideas_len += 1
+        for raw_name, raw_desc in ideas_blocks:
+            clean_idea_name = raw_name.replace("**", "").strip()
+            clean_idea_desc = raw_desc.strip()
+            if not clean_idea_name:
+                continue
+            
+            # idea unique identity
+            unique_id = hashlib.md5(clean_idea_name.encode("utf-8")).hexdigest()[:12]
+            idea_id = f"idea_{unique_id}"
+            idea_file = os.path.join(IDEAS_STORAGE_PATH, f"{idea_id}.md")
+            idea_content = f"# {clean_idea_name}\n\n{clean_idea_desc}"
+            idea_item = {
+                "id": idea_id,
+                "idea": clean_idea_name,
+                "file": idea_file
+            }
+            ideas.append({
+                **idea_item,
+                "content": idea_content
+            })
+            history_ideas.append({ **idea_item })
         self.history_ideas = history_ideas
                 
         print(f"[ 🎯 {self.agent_id} Agent ] Found / Extracted: {len(ideas)} new ideas.")
@@ -115,17 +132,26 @@ class IdeaGeneratorAgent(AbstractAgent):
     
     # @override
     def process_chat(self, response_data, **kwargs):
-        # export new ideas
-        write_file(
-            file=resolve_absolute_path(IDEAS_FILE),
-            data=response_data
-        )
+        # export new ideas as md files
+        for idea in response_data:
+            write_file(
+                file=idea.get("file"),
+                data=idea.get("content")
+            )
         
         # update ideas history
         write_json_file(
             file=IDEAS_HISTORY_FILE,
             json_data=self.history_ideas
         )
+        
+        # export raw response if necessary as log tracing
+        raw_response = kwargs_by_key(key="raw_response", **kwargs)
+        if raw_response:
+            write_file(
+                file=IDEAS_OUTPUT_FILE,
+                data=raw_response
+            )
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
