@@ -1,1 +1,1 @@
-['EcoSync – Hệ thống tự động hóa quản lý năng lượng tái tạo cho hộ gia đình', 'AgriBot – Trợ lý nông nghiệp thông minh cho nông dân nhỏ lẻ', 'HealthGuard – Hệ thống giám sát sức khỏe từ xa cho người cao tuổi']
+['Trợ lý tài chính AI cho người làm tự do', 'Công cụ tạo quy trình tự động không mã cho cửa hàng thương mại điện tử', 'Trình xem sản phẩm nội thất thực tế ảo (AR) cho nhà bán lẻ đồ nội thất']
