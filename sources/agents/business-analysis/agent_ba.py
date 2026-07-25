@@ -105,7 +105,7 @@ class PrincipalBusinessAnalysisAgent(AbstractAgent):
         defaultPrjName = f"project-{datetimeStr}"
         project_info = response_data.get("project_names") or {}
         project_name = project_info.get("technical_codename") or defaultPrjName
-        project_storage_path = os.path.join(BA_OUTPUT_PATH, project_name)
+        project_storage_path = os.path.join(SRS_STORAGE_PATH, project_name)
         
         # export requirements
         requirements_file = os.path.join(project_storage_path, SRS_STORAGE_FILE)
