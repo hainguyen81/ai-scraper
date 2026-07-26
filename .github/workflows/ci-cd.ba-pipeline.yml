@@ -7,7 +7,8 @@ on:
       idea:
         description: |
           💡 Idea
-          (from storage - sources/storage/ideas)
+          (Storage: sources/storage/ideas)
+        placeholder: "e.g., sources/storage/ideas/idea-id.md"
         required: true
         type: string
       language:
@@ -25,7 +26,10 @@ on:
   workflow_call:
     inputs:
       idea:
-        description: '💡 Idea (The idea identity from storage - sources/storage/ideas)'
+        description: |
+          💡 Idea
+          (Storage: sources/storage/ideas)
+        placeholder: "e.g., sources/storage/ideas/idea-id.md"
         required: true
         type: string
       language:
