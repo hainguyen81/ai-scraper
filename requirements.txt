@@ -8,4 +8,4 @@ langchain-community>=0.0.38
 pydantic>=2.12.5
 requests>=2.34.2
 exa-py>=2.16.0
-beautifulsoup4>=4.15.0
+beautifulsoup4
