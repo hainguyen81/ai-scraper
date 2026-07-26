@@ -211,10 +211,11 @@ class EnterpriseSolutionSentinelAgent(AbstractCrewEnterpriseSuperAgent):
     
     # @override
     def __create_llm_agent__(self, **kwargs):
+        backstory = kwargs_by_key(key="prompt_solution_sentinel", **kwargs)
         self.agent = Agent(
             role="Enterprise Solution Sentinel & Principal / Senior Architecture Gatekeeper",
             goal="Audit system alignment across Idea, SRS, and Blueprint. Detect loopholes and enforce structural fixes.",
-            backstory=kwargs_by_key(key="prompt_solution_sentinel", **kwargs),
+            backstory=backstory,
             llm=kwargs_by_key(key="llm", **kwargs),
             verbose=True,
             max_iter=1,                 # maximum 1 interation
@@ -227,11 +228,12 @@ class EnterpriseSolutionSentinelAgent(AbstractCrewEnterpriseSuperAgent):
         """
         Generates the core evaluation task with injectible document payloads.
         """
+        prompt = kwargs_by_key(key="prompt_solution_sentinel", **kwargs)
         return Task(
             description=(
                 "You must audit the injected documents payload. "
                 "Execute the MANDATORY TRIPLE-CHECK AUDIT PROTOCOL strictly. "
-                f"Your internal thought and rules are defined here:\n{kwargs_by_key(key="prompt_solution_sentinel", **kwargs)}"
+                f"Your internal thought and rules are defined here:\n{prompt}"
             ),
             expected_output=kwargs_by_key(key="expected_output_solution_sentinel", **kwargs),
             agent=self.agent
@@ -261,10 +263,11 @@ class EnterpriseBusinessAnalystAgent(AbstractCrewEnterpriseSuperAgent):
     
     # @override
     def __create_llm_agent__(self, **kwargs):
+        backstory = kwargs_by_key(key="prompt_ba", **kwargs)
         self.agent = Agent(
             role="Enterprise Business Analyst",
             goal="Author and overhaul software requirements specifications ensuring absolute alignment with product ideas.",
-            backstory=kwargs_by_key(key="prompt_ba", **kwargs),
+            backstory=backstory,
             llm=kwargs_by_key(key="llm", **kwargs),
             verbose=True,
             max_iter=1,                 # maximum 1 interation
@@ -274,8 +277,9 @@ class EnterpriseBusinessAnalystAgent(AbstractCrewEnterpriseSuperAgent):
 
     # @override
     def __create_agent_task__(self, **kwargs) -> Task:
+        prompt = kwargs_by_key(key="prompt_ba", **kwargs)
         return Task(
-            description=f"Analyze the review signals and rewrite the SRS based on these instructions:\n{kwargs_by_key(key="prompt_ba", **kwargs)}",
+            description=f"Analyze the review signals and rewrite the SRS based on these instructions:\n{prompt}",
             expected_output=kwargs_by_key(key="expected_output_ba", **kwargs),
             agent=self.agent,
             context=kwargs_by_key(key="context_tasks_ba", **kwargs)
@@ -306,10 +310,11 @@ class EnterpriseSystemArchitectAgent(AbstractCrewEnterpriseSuperAgent):
     
     # @override
     def __create_llm_agent__(self, **kwargs):
+        backstory = kwargs_by_key(key="prompt_sa", **kwargs)
         self.agent = Agent(
             role="Enterprise System Architect",
             goal="Architect and refactor system blueprint infrastructures to match software specifications.",
-            backstory=kwargs_by_key(key="prompt_sa", **kwargs),
+            backstory=backstory,
             llm=kwargs_by_key(key="llm", **kwargs),
             verbose=False,
             max_iter=1,                 # maximum 1 interation
@@ -319,8 +324,9 @@ class EnterpriseSystemArchitectAgent(AbstractCrewEnterpriseSuperAgent):
 
     # @override
     def __create_agent_task__(self, **kwargs) -> Task:
+        prompt = kwargs_by_key(key="prompt_sa", **kwargs)
         return Task(
-            description=f"Overhaul the System Architecture Blueprint based on these instructions:\n{kwargs_by_key(key="prompt_sa", **kwargs)}",
+            description=f"Overhaul the System Architecture Blueprint based on these instructions:\n{prompt}",
             expected_output=kwargs_by_key(key="expected_output_sa", **kwargs),
             agent=self.agent,
             context=kwargs_by_key(key="context_tasks_sa", **kwargs)
