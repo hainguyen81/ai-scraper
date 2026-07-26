@@ -123,7 +123,7 @@ class AbstractCrewEnterpriseSuperAgent(AbstractAgent):
             api_key=self.__config_api_key__(),
             provider="openrouter",                  # force LLM provider
             temperature=self.agent_temperature
-        ) if model_name else None
+        )
     
     @abstractmethod
     def __create_llm_agent__(self, **kwargs):
