@@ -78,16 +78,8 @@ jobs:
       - name: 📦 Install Python Dependencies
         if: success()                             # if previous step is successful
         run: |
+          # from `requirements.txt`
           python -m pip install --upgrade pip
-          
-          # GEMINI
-          # pip install google-genai
-          
-          # OpenAI
-          pip install requests google-generativeai openai anthropic pydantic
-          
-          # mapping JSON
-          pip install jinja2
 
       # Step 4: Execute agent
       - name: 💡 Execute Expert Ideas Generation

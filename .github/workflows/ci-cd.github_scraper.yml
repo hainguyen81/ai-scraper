@@ -72,7 +72,13 @@ jobs:
         with:
           python-version: "3.11"
 
-      # Step 3: Run standard library processing script (Zero external dependencies required)
+      # Step 3: Upgrade pip binary interfaces and securely bind external libraries
+      - name: "🛠️ Install operational dependencies"
+        run: |
+          # from `requirements.txt`
+          python -m pip install --upgrade pip
+
+      # Step 4: Run standard library processing script (Zero external dependencies required)
       - name: "🐍 Run GitHub open-source model discovery core"
         run: |
           echo "🔥 Booting local pipeline engine..."
@@ -80,7 +86,7 @@ jobs:
           python sources/agents/ai-github-scraper.py
           echo "✅ Repository scanning completed successfully!"
 
-      # Step 4: Dynamically organize directory, rename file by system date, and commit changes
+      # Step 5: Dynamically organize directory, rename file by system date, and commit changes
       - name: "🚀 Commit and Push structured data to repository storage"
         env:
           FILE_NAME: "free_models_by_github_scraper"

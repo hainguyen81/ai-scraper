@@ -76,9 +76,8 @@ jobs:
       # Step 3: Upgrade pip binary interfaces and securely bind external libraries
       - name: "🛠️ Install operational dependencies"
         run: |
-          echo "🔥 Upgrading package managers and resolving required core modules..."
+          # from `requirements.txt`
           python -m pip install --upgrade pip
-          pip install exa_py
 
       # Step 4: Inject encrypted credentials from repository vault and trigger ingestion core
       - name: "🤖 Execute multi-source semantic web discovery pipeline"
