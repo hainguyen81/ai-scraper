@@ -100,6 +100,12 @@ class FolderPackageFinder(MetaPathFinder):
     def alias(self) -> str:
         return self.root_alias
     
+    def is_matched(self, item, part):
+        # - stem: base file name without extension
+        # - name: folder name
+        cleaned_item_name = ModuleNameMapper.encode(item.stem) if item.is_file() and item.suffix == '.py' else ModuleNameMapper.encode(item.name) if item.is_dir() else None
+        return (cleaned_item_name == part, cleaned_item_name, item)
+    
     # find spec
     def find_spec(self, fullname, path, target=None):
         # Support python -m including trap extension .__main__
@@ -120,22 +126,35 @@ class FolderPackageFinder(MetaPathFinder):
         # mapping from alias to real folder structure
         # (**Note:** because alias already encoded special characters, so we must scan folder to find matching)
         current_phys_path = self.folder_path
+        print(f"✅ Search from root {current_phys_path} | Alias: {self.root_alias} | Packages: {search_name}")
         
         # loop to find
         for part in parts[1:]:
             # check folder/file after replacing '.' to '_' that matched with 'part'
             found = False
+            
+            # CASE 1: current path is folder -> scan sub-folder/sub-file
             if current_phys_path.is_dir():
-                for item in current_phys_path.iterdir():
-                    cleaned_item_name = ModuleNameMapper.encode(item.stem) if item.is_file() else ModuleNameMapper.encode(item.name)
-                    if cleaned_item_name == part:
-                        current_phys_path = item
-                        found = True
+                # loop folder via sub-folders/files recursively
+                for item in current_phys_path.rgblog("*"):
+                    found, cleaned_item_name, found_path = self.is_matched(item=item, part=part)
+                    print(f"- ✅ Package {item.name} | Alias: {cleaned_item_name} | Matched-Part: {part}?. {found}")
+                    if found:
+                        current_phys_path = found_path
                         break
+                        
+            # CASE 2: current path is file -> 'part' is Class/Function in file
+            elif current_phys_path.is_file() and current_phys_path.suffix == '.py':
+                found, cleaned_item_name, found_path = self.is_matched(item=current_phys_path, part=part)
+                print(f"- ✅ Module {found_path.stem} | Alias: {cleaned_item_name} | Matched-Part: {part}?. {found}")
+                if found:
+                    break
+            
+            # if 
             if not found:
                 print(f"⛔ (2) Package/Module {part} is not found from registered root package: {self.root_alias}")
                 return None # not found any physical matching file/folder
-
+        
         # 3. if found, return matching spec
         if current_phys_path.is_dir():
             # process package (folder)
@@ -160,7 +179,7 @@ class FolderPackageFinder(MetaPathFinder):
 
 # register list of packages
 def register_packages(packages):
-    if not packages or not instance(packages, list):
+    if not packages or not isinstance(packages, list):
         return
     
     for package in packages:
