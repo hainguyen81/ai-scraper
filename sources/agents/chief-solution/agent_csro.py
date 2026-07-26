@@ -423,7 +423,7 @@ class CrewEnterpriseSolutionWorkflowAgent(AbstractCrewEnterpriseSuperAgent):
     # @override
     def __ai_execute__(self, **kwargs):
         # build prompts
-        kwargs = self.build_prompts(kwargs)
+        kwargs = self.build_prompts(**kwargs)
         
         # initialize LLM model
         llm = self.config_llm()
