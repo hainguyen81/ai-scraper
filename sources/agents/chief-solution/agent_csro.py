@@ -386,7 +386,7 @@ class CrewEnterpriseSolutionWorkflowAgent(AbstractCrewEnterpriseSuperAgent):
         }
     
     # @override
-     def __communicate_ai__(self, **kwargs):
+    def __communicate_ai__(self, **kwargs):
         # create CrewAI
         crew_ai = Crew(
             agents=kwargs_by_key(key="agents", **kwargs),
