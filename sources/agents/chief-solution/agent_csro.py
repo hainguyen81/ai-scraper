@@ -255,10 +255,10 @@ class EnterpriseBusinessAnalystAgent(AbstractCrewEnterpriseSuperAgent):
     # @override
     def __create_agent_task__(self, **kwargs) -> Task:
         return Task(
-            description=kwargs_by_key(key="prompt_ba" **kwargs),
+            description=kwargs_by_key(key="prompt_ba", **kwargs),
             expected_output=kwargs_by_key(key="expected_output_ba", **kwargs),
             agent=self.agent,
-            context=kwargs_by_key(key="context_tasks_ba" **kwargs)
+            context=kwargs_by_key(key="context_tasks_ba", **kwargs)
         )
     
     # @override
@@ -298,10 +298,10 @@ class EnterpriseSystemArchitectAgent(AbstractCrewEnterpriseSuperAgent):
     # @override
     def __create_agent_task__(self, **kwargs) -> Task:
         return Task(
-            description=kwargs_by_key(key="prompt_sa" **kwargs),
+            description=kwargs_by_key(key="prompt_sa", **kwargs),
             expected_output=kwargs_by_key(key="expected_output_sa", **kwargs),
             agent=self.agent,
-            context=kwargs_by_key(key="context_tasks_ba" **kwargs)
+            context=kwargs_by_key(key="context_tasks_ba", **kwargs)
         )
     
     # @override
