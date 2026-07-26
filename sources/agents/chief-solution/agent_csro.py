@@ -339,16 +339,13 @@ class CrewEnterpriseSolutionWorkflowAgent(AbstractCrewEnterpriseSuperAgent):
         }
     
     # @override
-    def __pre_initialize__(self):
-        super().__pre_initialize__()
-        
-        # initial agents
-        self.agent_solution_sentinel = EnterpriseSolutionSentinelAgent(**self.kwargs)
-        self.agent_business_analyst = EnterpriseBusinessAnalystAgent(**self.kwargs)
-        self.agent_system_architect = EnterpriseSystemArchitectAgent(**self.kwargs)
-    
-    # @override
     def __create_llm_agent__(self, **kwargs):
+        # re-initialialize agent classes to release memory
+        self.agent_solution_sentinel = EnterpriseSolutionSentinelAgent(**kwargs)
+        self.agent_business_analyst = EnterpriseBusinessAnalystAgent(**kwargs)
+        self.agent_system_architect = EnterpriseSystemArchitectAgent(**kwargs)
+        
+        # create internal agents
         self.agent_solution_sentinel.__create_llm_agent__(**kwargs)
         self.agent_business_analyst.__create_llm_agent__(**kwargs)
         self.agent_system_architect.__create_llm_agent__(**kwargs)
