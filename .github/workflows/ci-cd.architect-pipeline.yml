@@ -14,17 +14,19 @@ on:
         required: true
         type: string
       requirements_file:
-        description: '📄 Path to the project requirements file (Ex: sources/requirements/test-requirements.md)'
+        description: |
+          📄 Path to the project requirements file
+          (Ex: sources/requirements/requirements.md)
         required: false
         default: ''
         type: string
       phases:
-        description: '🔢 Number of phases to split the project'
+        description: '🔢 Number of phases'
         required: true
         default: 5
         type: number
       output_dir:
-        description: '📂 Target directory path to save the generated blueprint'
+        description: '📂 Target directory path to save'
         required: false
         default: 'sources/storage/blueprint'
         type: string
@@ -46,7 +48,9 @@ on:
         default: 3
         type: number
       model_endpoint:
-        description: '🔗 AI Endpoint - OpenAI (Ex: https://openrouter.ai/api/v1)'
+        description: |
+          🔗 AI Endpoint - OpenAI
+          (Ex: https://openrouter.ai/api/v1)
         required: false
         type: string
       model_key:
@@ -54,29 +58,41 @@ on:
         required: false
         type: string
       model_global:
-        description: '🌐 Global Context Model - OpenAI (Ex: meta-llama/llama-3.3-70b-instruct:free)'
+        description: |
+          🌐 Global Context Model - OpenAI
+          (Ex: meta-llama/llama-3.3-70b-instruct:free)
         required: false
         type: string
       model_phase:
-        description: '📈 Phase Context Model - OpenAI (Ex: meta-llama/llama-3.3-70b-instruct:free)'
+        description: |
+          📈 Phase Context Model - OpenAI
+          (Ex: meta-llama/llama-3.3-70b-instruct:free)
         required: false
         type: string
       model_phase_max_days:
-        description: '🌞 Maximum Days Per Phase - OpenAI (Ex: 1,2,3, or default 7)'
+        description: |
+          🌞 Maximum Days Per Phase - OpenAI
+          (Ex: 1,2,3, or default 7)
         required: false
         default: 7
         type: number
       model_steps:
-        description: '🔢 Phase Steps Json Context Model - OpenAI (Ex: meta-llama/llama-3.3-70b-instruct:free)'
+        description: |
+          🔢 Phase Steps Json - OpenAI
+          (Ex: meta-llama/llama-3.3-70b-instruct:free)
         required: false
         type: string
       model_steps_mapping_config:
-        description: '📜 JSON Configuration for mapping Phase Steps Context (Ex: sources/agents/architect-blueprint/blueprint.config.map.json)'
+        description: |
+          📜 JSON Configuration for mapping Phase Steps
+          (Ex: sources/agents/architect-blueprint/blueprint.config.map.json)
         required: false
         type: string
         default: 'sources/agents/architect-blueprint/blueprint.config.map.json'
       model_steps_days_per_chunk:
-        description: '⛓️ Phase Steps Days Per AI Request - OpenAI (Ex: 1,2,3, or 0 for unlimitted)'
+        description: |
+          ⛓️ Phase Steps Days Chunk - OpenAI
+          (Ex: 1,2,3, or 0 for unlimitted)
         required: false
         default: 0
         type: number
@@ -99,17 +115,19 @@ on:
         required: true
         type: string
       requirements_file:
-        description: '📄 Path to the project requirements file (Ex: sources/requirements/test-requirements.md)'
+        description: |
+          📄 Path to the project requirements file
+          (Ex: sources/requirements/requirements.md)
         required: false
         default: ''
         type: string
       phases:
-        description: '🔢 Number of phases to split the project'
+        description: '🔢 Number of phases'
         required: true
         default: 3
         type: number
       output_dir:
-        description: '📂 Target directory path to save the generated blueprint'
+        description: '📂 Target directory path to save'
         required: false
         default: 'sources/storage/blueprint'
         type: string
@@ -124,7 +142,9 @@ on:
         default: 3
         type: number
       model_endpoint:
-        description: '🔗 AI Endpoint - OpenAI (Ex: https://openrouter.ai/api/v1)'
+        description: |
+          🔗 AI Endpoint - OpenAI
+          (Ex: https://openrouter.ai/api/v1)
         required: false
         type: string
       model_key:
@@ -132,29 +152,41 @@ on:
         required: false
         type: string
       model_global:
-        description: '🌐 Global Context Model - OpenAI (Ex: meta-llama/llama-3.3-70b-instruct:free)'
+        description: |
+          🌐 Global Context Model - OpenAI
+          (Ex: meta-llama/llama-3.3-70b-instruct:free)
         required: false
         type: string
       model_phase:
-        description: '📈 Phase Context Model - OpenAI (Ex: meta-llama/llama-3.3-70b-instruct:free)'
+        description: |
+          📈 Phase Context Model - OpenAI
+          (Ex: meta-llama/llama-3.3-70b-instruct:free)
         required: false
         type: string
       model_phase_max_days:
-        description: '🌞 Maximum Days Per Phase - OpenAI (Ex: 1,2,3, or default 7)'
+        description: |
+          🌞 Maximum Days Per Phase - OpenAI
+          (Ex: 1,2,3, or default 7)
         required: false
         default: 7
         type: number
       model_steps:
-        description: '🔢 Phase Steps Json Context Model - OpenAI (Ex: meta-llama/llama-3.3-70b-instruct:free)'
+        description: |
+          🔢 Phase Steps Json - OpenAI
+          (Ex: meta-llama/llama-3.3-70b-instruct:free)
         required: false
         type: string
       model_steps_mapping_config:
-        description: '📜 JSON Configuration for mapping Phase Steps Context (Ex: sources/agents/architect-blueprint/blueprint.config.map.json)'
+        description: |
+          📜 JSON Configuration for mapping Phase Steps
+          (Ex: sources/agents/architect-blueprint/blueprint.config.map.json)
         required: false
         type: string
         default: 'sources/agents/architect-blueprint/blueprint.config.map.json'
       model_steps_days_per_chunk:
-        description: '⛓️ Phase Steps Days Per AI Request - OpenAI (Ex: 1,2,3, or 0 for unlimitted)'
+        description: |
+          ⛓️ Phase Steps Days Chunk - OpenAI
+          (Ex: 1,2,3, or 0 for unlimitted)
         required: false
         default: 0
         type: number

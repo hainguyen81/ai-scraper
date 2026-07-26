@@ -6,7 +6,9 @@ on:
   workflow_dispatch:
     inputs:
       scan_limit:
-        description: "🔍 Maximum number of recent community threads to scan sequentially"
+        description: |
+          🔍 Maximum number of recent community threads
+          to scan sequentially
         required: false
         default: 50
         type: number
@@ -15,7 +17,9 @@ on:
   workflow_call:
     inputs:
       scan_limit:
-        description: "🔍 Maximum number of recent community threads to scan sequentially"
+        description: |
+          🔍 Maximum number of recent community threads
+          to scan sequentially
         required: false
         default: 50
         type: number

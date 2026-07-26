@@ -5,7 +5,9 @@ on:
   workflow_dispatch:
     inputs:
       idea:
-        description: '💡 Idea (The idea identity from storage - sources/storage/ideas)'
+        description: |
+          💡 Idea
+          (from storage - sources/storage/ideas)
         required: true
         type: string
       language:

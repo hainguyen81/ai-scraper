@@ -5,7 +5,7 @@ on:
   workflow_dispatch:
     inputs:
       agent_selection:
-        description: "🤖 Select Target Execution Component"
+        description: "🤖 Target Execution"
         required: true
         default: "All"
         type: choice
@@ -16,7 +16,7 @@ on:
           - "🐙 GitHub Repository Scraper"
           - "🤖 AI Web Scraper"
       scan_limit_default:
-        description: "🕵️ Sequence parsing scan limit (For Forum/Repo Agents)"
+        description: "🕵️ Scan limit (For Forum/Repo Agents)"
         required: true
         default: 50
         type: number

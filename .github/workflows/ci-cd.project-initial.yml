@@ -5,11 +5,15 @@ on:
   workflow_dispatch:
     inputs:
       new_repo_name:
-        description: "📛 The name of the target repository to create (e.g., membership-hub)"
+        description: |
+          📛 The name of the target repository
+          to create (e.g., membership-hub)
         required: true
         type: string
       is_private:
-        description: "🔒 Enforce strict enterprise privacy guardrails (True = 🔑 Private, False = 🌐 Public)"
+        description: |
+          🔒 Enforce strict enterprise privacy guardrails
+          (True = 🔑 Private, False = 🌐 Public)
         required: true
         default: true
         type: boolean
@@ -19,7 +23,9 @@ on:
         default: 'sources/requirements/test-requirements.md'
         type: string
       blueprint:
-        description: "🌐 Project BluePrint Folder to Publish (Ex: sources/storage/blueprint)"
+        description: |
+          🌐 Project BluePrint Folder to Publish
+          (Ex: sources/storage/blueprint)
         required: false
         default: ''
         type: string
@@ -33,11 +39,15 @@ on:
   workflow_call:
     inputs:
       new_repo_name:
-        description: "📛 The name of the target repository to create (e.g., membership-hub)"
+        description: |
+          📛 The name of the target repository
+          to create (e.g., membership-hub)
         required: true
         type: string
       is_private:
-        description: "🔒 Enforce strict enterprise privacy guardrails (True = 🔑 Private, False = 🌐 Public)"
+        description: |
+          🔒 Enforce strict enterprise privacy guardrails
+          (True = 🔑 Private, False = 🌐 Public)
         required: true
         default: true
         type: boolean
@@ -47,7 +57,9 @@ on:
         default: 'sources/requirements/test-requirements.md'
         type: string
       blueprint:
-        description: "🌐 Project BluePrint Folder to Publish (Ex: sources/storage/blueprint)"
+        description: |
+          🌐 Project BluePrint Folder to Publish
+          (Ex: sources/storage/blueprint)
         required: false
         default: ''
         type: string
