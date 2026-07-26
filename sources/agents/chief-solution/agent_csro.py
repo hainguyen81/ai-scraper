@@ -167,7 +167,7 @@ class AbstractCrewEnterpriseSuperAgent(AbstractAgent):
     
     # @override
     def agent_temperature(self):
-        return 0.8
+        return 0.3
     
     # @override
     def process_communication(self, response_data, **kwargs):
