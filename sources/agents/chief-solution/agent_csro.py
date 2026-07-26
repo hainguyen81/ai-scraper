@@ -21,7 +21,7 @@ from sources.agents.agent_helper import (
     write_json_file,
     write_file,
     kwargs_by_key,
-    render_prompt
+    render_kwargs_prompt
 )
 
 # super agent
@@ -313,9 +313,9 @@ class CrewEnterpriseSolutionWorkflowAgent(AbstractCrewEnterpriseSuperAgent):
     def build_prompts(self, **kwargs):
         return {
             **kwargs,
-            "prompt_solution_sentinel": render_prompt(PROMPT_TEMPLATE_SOLUTION_SENTINEL, **kwargs),
-            "prompt_ba": render_prompt(PROMPT_TEMPLATE_BA, **kwargs),
-            "prompt_sa": render_prompt(PROMPT_TEMPLATE_SA, **kwargs)
+            "prompt_solution_sentinel": render_kwargs_prompt(PROMPT_TEMPLATE_SOLUTION_SENTINEL, **kwargs),
+            "prompt_ba": render_kwargs_prompt(PROMPT_TEMPLATE_BA, **kwargs),
+            "prompt_sa": render_kwargs_prompt(PROMPT_TEMPLATE_SA, **kwargs)
         }
     
     # @override
