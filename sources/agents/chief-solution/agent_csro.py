@@ -457,18 +457,17 @@ class CrewEnterpriseSolutionWorkflowAgent(AbstractCrewEnterpriseSuperAgent):
             if hasattr(crewai_event_bus, '_events'):
                 crewai_event_bus._events = {}
             print("[ ✅ CLEAN ] Reset present Event Stack to rotate new model.")
+            return True
         except Exception as e:
             print(f"[ ❌ ERROR ] Could not reset Event Bus: {str(e)}")
-            # self.__handle_execute_exception__(e=clean_err)
-        
-        # continue
-        return True
+            return False
     
     # @override
     def __rotate_next_model__(self):
         # require clear event stack to avoid events stuck before rotating new model
-        self.__reset_crew_event_bus_to_rotate_model__():
-        return super().__rotate_next_model__()
+        if self.__reset_crew_event_bus_to_rotate_model__():
+            return super().__rotate_next_model__()
+        return False
     
     # @override
     def __communicate_ai__(self, **kwargs):
