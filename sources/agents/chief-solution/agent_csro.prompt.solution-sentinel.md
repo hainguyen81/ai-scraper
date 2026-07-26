@@ -28,6 +28,9 @@ Below are the live engineering assets under evaluation:
 #### 📐 [Asset 3: System Architecture Blueprint]
 {{ raw_blueprint_content }}
 
+#### 🔄 [Asset 4: Continuous Workflow Context]
+{{ context }}
+
 ---
 
 ### 🚨 MANDATORY TRIPLE-CHECK AUDIT PROTOCOL
