@@ -77,6 +77,7 @@ jobs:
         run: |
           # from `requirements.txt`
           python -m pip install --upgrade pip
+          pip install -r requirements.txt --upgrade
 
       # Step 4: Run standard library processing script (Zero external dependencies required)
       - name: "🐍 Run GitHub open-source model discovery core"

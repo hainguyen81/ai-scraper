@@ -94,6 +94,7 @@ jobs:
         run: |
           # from `requirements.txt`
           python -m pip install --upgrade pip
+          pip install -r requirements.txt --upgrade
 
       # Step 4: Run asynchronous API listener via standard library runtime context
       - name: "🕵️‍♂️ Run community scanning monitoring pipeline"
