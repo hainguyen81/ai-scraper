@@ -167,7 +167,7 @@ class AbstractCrewEnterpriseSuperAgent(AbstractAgent):
         return 0.8
     
     # @override
-    def process_chat(self, response_data, **kwargs):
+    def process_communication(self, response_data, **kwargs):
         pass
     
     # @override
