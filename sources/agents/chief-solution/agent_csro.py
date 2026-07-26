@@ -39,6 +39,9 @@ from sources.agents.agent_super import AbstractAgent
 PROMPT_TEMPLATE_SOLUTION_SENTINEL   = resolve_absolute_path("sources/agents/chief-solution/agent_csro.prompt.solution-sentinel.md")
 PROMPT_TEMPLATE_BA                  = resolve_absolute_path("sources/agents/chief-solution/agent_csro.prompt.ba.md")
 PROMPT_TEMPLATE_SA                  = resolve_absolute_path("sources/agents/chief-solution/agent_csro.prompt.sa.md")
+TASK_DESC_SOLUTION_SENTINEL         = "Perform the Mandatory Triple-Check Audit Protocol on the injected input documents payload immediately. Generate the Technical Audit Report following the exact Markdown structure specified."
+TASK_DESC_BA                        = "Analyze the incoming review signals and rewrite the SRS into a comprehensive, bulletproof Enterprise SRS document addressing all flaws."
+TASK_DESC_SA                        = "Analyze the incoming architecture review signals and overhaul the System Architecture Blueprint perfectly."
 # `MANDATORY OUTPUT FORMAT` is a section in PROMPT
 EXPECTED_OUTPUT_SOLUTION_SENTINEL   = "The complete technical audit report formatted exactly as specified in the MANDATORY OUTPUT FORMAT section above."
 EXPECTED_OUTPUT_BA                  = "A newly minted, flawless Enterprise SRS document syncing perfectly with the original Idea."
@@ -204,11 +207,7 @@ class EnterpriseSolutionSentinelAgent(AbstractCrewEnterpriseSuperAgent):
         self.agent = Agent(
             role="Enterprise Solution Sentinel & Principal / Senior Architecture Gatekeeper",
             goal="Audit system alignment across Idea, SRS, and Blueprint. Detect loopholes and enforce structural fixes.",
-            backstory=(
-                "You are the ultimate Technical Governance Board in an automated ecosystem. "
-                "With 20+ years of Enterprise Architecture experience, you analyze engineering assets "
-                "with absolute precision. If layers mismatch, you issue mandatory rewrite orders."
-            ),
+            backstory=kwargs_by_key(key="prompt_solution_sentinel", **kwargs),
             llm=kwargs_by_key(key="llm", **kwargs),
             verbose=True,
             max_iter=1,                 # maximum 1 interation
@@ -222,7 +221,7 @@ class EnterpriseSolutionSentinelAgent(AbstractCrewEnterpriseSuperAgent):
         Generates the core evaluation task with injectible document payloads.
         """
         return Task(
-            description=kwargs_by_key(key="prompt_solution_sentinel", **kwargs),
+            description=TASK_DESC_SOLUTION_SENTINEL,
             expected_output=kwargs_by_key(key="expected_output_solution_sentinel", **kwargs),
             agent=self.agent
         )
@@ -254,7 +253,7 @@ class EnterpriseBusinessAnalystAgent(AbstractCrewEnterpriseSuperAgent):
         self.agent = Agent(
             role="Enterprise Business Analyst",
             goal="Author and overhaul software requirements specifications ensuring absolute alignment with product ideas.",
-            backstory="Senior BA specializing in Fortune-500 scale system requirements. Processes review failures instantly to patch gaps.",
+            backstory=kwargs_by_key(key="prompt_ba", **kwargs),
             llm=kwargs_by_key(key="llm", **kwargs),
             verbose=True,
             max_iter=1,                 # maximum 1 interation
@@ -265,7 +264,7 @@ class EnterpriseBusinessAnalystAgent(AbstractCrewEnterpriseSuperAgent):
     # @override
     def __create_agent_task__(self, **kwargs) -> Task:
         return Task(
-            description=kwargs_by_key(key="prompt_ba", **kwargs),
+            description=TASK_DESC_BA,
             expected_output=kwargs_by_key(key="expected_output_ba", **kwargs),
             agent=self.agent,
             context=kwargs_by_key(key="context_tasks_ba", **kwargs)
@@ -299,7 +298,7 @@ class EnterpriseSystemArchitectAgent(AbstractCrewEnterpriseSuperAgent):
         self.agent = Agent(
             role="Enterprise System Architect",
             goal="Architect and refactor system blueprint infrastructures to match software specifications.",
-            backstory="Principal Solutions Architect. Re-engineers database models and microservices whenever requirements change.",
+            backstory=kwargs_by_key(key="prompt_sa", **kwargs),
             llm=kwargs_by_key(key="llm", **kwargs),
             verbose=False,
             max_iter=1,                 # maximum 1 interation
@@ -310,7 +309,7 @@ class EnterpriseSystemArchitectAgent(AbstractCrewEnterpriseSuperAgent):
     # @override
     def __create_agent_task__(self, **kwargs) -> Task:
         return Task(
-            description=kwargs_by_key(key="prompt_sa", **kwargs),
+            description=TASK_DESC_SA,
             expected_output=kwargs_by_key(key="expected_output_sa", **kwargs),
             agent=self.agent,
             context=kwargs_by_key(key="context_tasks_sa", **kwargs)
