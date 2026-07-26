@@ -4,6 +4,7 @@ import json
 import re
 import hashlib
 import argparse
+import asyncio
 from datetime import datetime
 from openai import OpenAI
 
@@ -483,8 +484,20 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument("--idea", type=str, help="Idea Identity for searching")
     args = parser.parse_args()
-    CrewEnterpriseSolutionWorkflowAgent(
+    
+    # initializ workflow agent
+    workflow_agent = CrewEnterpriseSolutionWorkflowAgent(
         idea=args.idea,
-    ).execute()
+    )
+    
+    # use asyncio to run safely while CI/CD doesn't have loop under background
+    try:
+        loop = asyncio.get_event_loop()
+    except RuntimeError:
+        loop = asyncio.new_event_loop()
+        asyncio.set_event_loop(loop)
+        
+    # execute workflow
+    loop.run_until_complete(asyncio.to_thread(workflow_agent.execute))
 
 
