@@ -39,13 +39,20 @@ from sources.agents.agent_super import AbstractAgent
 PROMPT_TEMPLATE_SOLUTION_SENTINEL   = resolve_absolute_path("sources/agents/chief-solution/agent_csro.prompt.solution-sentinel.md")
 PROMPT_TEMPLATE_BA                  = resolve_absolute_path("sources/agents/chief-solution/agent_csro.prompt.ba.md")
 PROMPT_TEMPLATE_SA                  = resolve_absolute_path("sources/agents/chief-solution/agent_csro.prompt.sa.md")
-TASK_DESC_SOLUTION_SENTINEL         = "Perform the Mandatory Triple-Check Audit Protocol on the injected input documents payload immediately. Generate the Technical Audit Report following the exact Markdown structure specified."
-TASK_DESC_BA                        = "Analyze the incoming review signals and rewrite the SRS into a comprehensive, bulletproof Enterprise SRS document addressing all flaws."
-TASK_DESC_SA                        = "Analyze the incoming architecture review signals and overhaul the System Architecture Blueprint perfectly."
 # `MANDATORY OUTPUT FORMAT` is a section in PROMPT
-EXPECTED_OUTPUT_SOLUTION_SENTINEL   = "The complete technical audit report formatted exactly as specified in the MANDATORY OUTPUT FORMAT section above."
-EXPECTED_OUTPUT_BA                  = "A newly minted, flawless Enterprise SRS document syncing perfectly with the original Idea."
-EXPECTED_OUTPUT_SA                  = "The complete technical audit report formatted exactly as specified in the MANDATORY OUTPUT FORMAT section above."
+EXPECTED_OUTPUT_SOLUTION_SENTINEL   = (
+    "The complete technical audit report formatted EXACTLY as specified "
+    "in the 'MANDATORY OUTPUT FORMAT' section of your system instructions. "
+    "It must contain the Overall Status (PASSED/FAILED) and Detailed Loopholes with Gap-IDs."
+)
+EXPECTED_OUTPUT_BA                  = (
+    "The complete, flawless Enterprise SRS document formatted EXACTLY "
+    "as specified in the 'MANDATORY OUTPUT FORMAT (Markdown Enterprise SRS)' section."
+)
+EXPECTED_OUTPUT_SA                  = (
+    "The complete Enterprise Global Blueprint Report formatted EXACTLY "
+    "as specified in the 'MANDATORY OUTPUT FORMAT (Markdown Blueprint)' section."
+)
 STORAGE_PATH                        = resolve_absolute_path("sources/storage")
 IDEAS_STORAGE_PATH                  = os.path.join(STORAGE_PATH, "ideas")
 BA_STORAGE_PATH                     = os.path.join(STORAGE_PATH, "business-analysis")
@@ -221,7 +228,11 @@ class EnterpriseSolutionSentinelAgent(AbstractCrewEnterpriseSuperAgent):
         Generates the core evaluation task with injectible document payloads.
         """
         return Task(
-            description=TASK_DESC_SOLUTION_SENTINEL,
+            description=(
+                "You must audit the injected documents payload. "
+                "Execute the MANDATORY TRIPLE-CHECK AUDIT PROTOCOL strictly. "
+                f"Your internal thought and rules are defined here:\n{kwargs_by_key(key="prompt_solution_sentinel", **kwargs)}"
+            ),
             expected_output=kwargs_by_key(key="expected_output_solution_sentinel", **kwargs),
             agent=self.agent
         )
@@ -264,7 +275,7 @@ class EnterpriseBusinessAnalystAgent(AbstractCrewEnterpriseSuperAgent):
     # @override
     def __create_agent_task__(self, **kwargs) -> Task:
         return Task(
-            description=TASK_DESC_BA,
+            description=f"Analyze the review signals and rewrite the SRS based on these instructions:\n{kwargs_by_key(key="prompt_ba", **kwargs)}",
             expected_output=kwargs_by_key(key="expected_output_ba", **kwargs),
             agent=self.agent,
             context=kwargs_by_key(key="context_tasks_ba", **kwargs)
@@ -309,7 +320,7 @@ class EnterpriseSystemArchitectAgent(AbstractCrewEnterpriseSuperAgent):
     # @override
     def __create_agent_task__(self, **kwargs) -> Task:
         return Task(
-            description=TASK_DESC_SA,
+            description=f"Overhaul the System Architecture Blueprint based on these instructions:\n{kwargs_by_key(key="prompt_sa", **kwargs)}",
             expected_output=kwargs_by_key(key="expected_output_sa", **kwargs),
             agent=self.agent,
             context=kwargs_by_key(key="context_tasks_sa", **kwargs)
