@@ -116,10 +116,12 @@ class AbstractCrewEnterpriseSuperAgent(AbstractAgent):
             print(f"[ 💀 {self.agent_id} Agent | CRITICAL ERROR ] (6) Not found BLUEPRINT file {self.blueprint_file}")
             sys.exit(1)
     
-    def config_llm(self):
-        model_name = self.config_model_name()
+    def __create_ai_client__(self):
         return LLM(
-            model=model_name,
+            model=self.config_model_name(),
+            base_url=self.config_api_endpoint(),
+            api_key=self.__config_api_key__(),
+            provider="openrouter",                  # force LLM provider
             temperature=self.agent_temperature
         ) if model_name else None
     
@@ -218,6 +220,10 @@ class EnterpriseSolutionSentinelAgent(AbstractCrewEnterpriseSuperAgent):
         )
     
     # @override
+    def __create_ai_client__(self):
+        pass
+    
+    # @override
     def __ai_execute__(self, **kwargs):
         pass
 
@@ -254,6 +260,10 @@ class EnterpriseBusinessAnalystAgent(AbstractCrewEnterpriseSuperAgent):
             agent=self.agent,
             context=kwargs_by_key(key="context_tasks_ba" **kwargs)
         )
+    
+    # @override
+    def __create_ai_client__(self):
+        pass
     
     # @override
     def __ai_execute__(self, **kwargs):
@@ -293,6 +303,10 @@ class EnterpriseSystemArchitectAgent(AbstractCrewEnterpriseSuperAgent):
             agent=self.agent,
             context=kwargs_by_key(key="context_tasks_ba" **kwargs)
         )
+    
+    # @override
+    def __create_ai_client__(self):
+        pass
     
     # @override
     def __ai_execute__(self, **kwargs):
@@ -386,12 +400,45 @@ class CrewEnterpriseSolutionWorkflowAgent(AbstractCrewEnterpriseSuperAgent):
             "expected_output_sa": EXPECTED_OUTPUT_SA
         }
     
+    def __build_arguments_for_communicating__(self, **kwargs):
+        # initialize LLM model, belongs to rotating models
+        built_kwargs = {
+            **kwargs,
+            "llm": self.client
+        }
+        
+        # create internal LLM agents
+        self.__create_llm_agent__(**built_kwargs)
+        
+        # create task
+        self.__create_agent_task__(**built_kwargs)
+        
+        # initial crew with internal agent, task
+        agents = [
+            self.agent_solution_sentinel.agent,
+            self.agent_business_analyst.agent,
+            self.agent_system_architect.agent,
+        ]
+        tasks = [
+            self.task_solution_sentinel,
+            self.task_business_analyst,
+            self.task_system_architect
+        ]
+        return {
+            **built_kwargs,
+            "agents": agents,
+            "tasks": tasks
+        }
+    
     # @override
     def __communicate_ai__(self, **kwargs):
+        # build arguments
+        built_kwargs = self.__build_arguments_for_communicating__(**kwargs)
+        
         # create CrewAI
         crew_ai = Crew(
-            agents=kwargs_by_key(key="agents", **kwargs),
-            tasks=kwargs_by_key(key="tasks", **kwargs),
+            agents=kwargs_by_key(key="agents", **built_kwargs),
+            tasks=kwargs_by_key(key="tasks", **built_kwargs),
             process=Process.sequential
         )
         
@@ -423,38 +470,10 @@ class CrewEnterpriseSolutionWorkflowAgent(AbstractCrewEnterpriseSuperAgent):
     
     # @override
     def __ai_execute__(self, **kwargs):
-        # build prompts
+        # build prompts first
         kwargs = self.build_prompts(**kwargs)
         
-        # initialize LLM model
-        llm = self.config_llm()
-        kwargs = {
-            **kwargs,
-            "llm": llm
-        }
-        
-        # create internal LLM agents
-        self.__create_llm_agent__(**kwargs)
-        
-        # create task
-        self.__create_agent_task__(**kwargs)
-        
-        # initial crew with internal agent, task
-        agents = [
-            self.agent_solution_sentinel.agent,
-            self.agent_business_analyst.agent,
-            self.agent_system_architect.agent,
-        ]
-        tasks = [
-            self.task_solution_sentinel,
-            self.task_business_analyst,
-            self.task_system_architect
-        ]
-        kwargs = {
-            **kwargs,
-            "agents": agents,
-            "tasks": tasks
-        }
+        # execute
         return super().__ai_execute__(**kwargs)
 
 if __name__ == "__main__":
