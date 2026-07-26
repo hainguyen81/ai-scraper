@@ -429,7 +429,7 @@ class CrewEnterpriseSolutionWorkflowAgent(AbstractCrewEnterpriseSuperAgent):
             "expected_output_solution_sentinel": EXPECTED_OUTPUT_SOLUTION_SENTINEL,
             "expected_output_ba": EXPECTED_OUTPUT_BA,
             "expected_output_sa": EXPECTED_OUTPUT_SA,
-            "fixed_blueprint_file": self.fixed_blueprint_file(prefix=now.strftime("%Y%m%d%H%M%S"))
+            "fixed_blueprint_file": self.fixed_file_blueprint(prefix=now.strftime("%Y%m%d%H%M%S"))
         }
     
     def __build_arguments_for_communicating__(self, **kwargs):
