@@ -25,6 +25,7 @@ from sources.agents.agent_helper import (
     read_file_raw,
     write_json_file,
     write_file,
+    delete_file,
     kwargs_by_key,
     render_kwargs_prompt
 )
@@ -514,6 +515,17 @@ class CrewEnterpriseSolutionWorkflowAgent(AbstractCrewEnterpriseSuperAgent):
         
         # execute
         return super().__ai_execute__(**kwargs)
+    
+    # @override
+    def __do_execute__(self, **kwargs):
+        # execute
+        result = super().__do_execute__(**kwargs)
+        
+        # success, due to not reach exception from super function, do delete log if neccessary
+        delete_file(file=self.agent_log_file())
+        
+        # return result
+        return result
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
