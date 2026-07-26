@@ -204,7 +204,9 @@ class EnterpriseSolutionSentinelAgent(AbstractCrewEnterpriseSuperAgent):
                 "with absolute precision. If layers mismatch, you issue mandatory rewrite orders."
             ),
             llm=kwargs_by_key(key="llm", **kwargs),
-            verbose=True
+            verbose=True,
+            max_iter=1,                 # maximum 1 interation
+            allow_delegation=False      # to avoid loop
         )
         return self.agent
     
@@ -248,7 +250,9 @@ class EnterpriseBusinessAnalystAgent(AbstractCrewEnterpriseSuperAgent):
             goal="Author and overhaul software requirements specifications ensuring absolute alignment with product ideas.",
             backstory="Senior BA specializing in Fortune-500 scale system requirements. Processes review failures instantly to patch gaps.",
             llm=kwargs_by_key(key="llm", **kwargs),
-            verbose=True
+            verbose=True,
+            max_iter=1,                 # maximum 1 interation
+            allow_delegation=False      # to avoid loop
         )
         return self.agent
 
@@ -291,7 +295,9 @@ class EnterpriseSystemArchitectAgent(AbstractCrewEnterpriseSuperAgent):
             goal="Architect and refactor system blueprint infrastructures to match software specifications.",
             backstory="Principal Solutions Architect. Re-engineers database models and microservices whenever requirements change.",
             llm=kwargs_by_key(key="llm", **kwargs),
-            verbose=True
+            verbose=True,
+            max_iter=1,                 # maximum 1 interation
+            allow_delegation=False      # to avoid loop
         )
         return self.agent
 
