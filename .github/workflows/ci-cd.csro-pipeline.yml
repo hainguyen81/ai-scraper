@@ -1,4 +1,4 @@
-name: 🏛️ Agent - Execute Chief Solution Review Officer CSRO
+name: 🏛️ Agent - CSRO | Execute Chief Solution Review Officer
 
 # Trigger the workflow when requirements change or via manual trigger
 on:
@@ -35,7 +35,7 @@ env:
 jobs:
   # 🏗️ System Architecture & Phase Planner
   generate-blueprint:
-    name: 🤖🏛️ Chief Solution Review Officer CSRO
+    name: 🤖🏛️ Chief Solution Review Officer
     runs-on: ubuntu-latest
     
     steps:
