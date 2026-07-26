@@ -40,19 +40,9 @@ PROMPT_TEMPLATE_SOLUTION_SENTINEL   = resolve_absolute_path("sources/agents/chie
 PROMPT_TEMPLATE_BA                  = resolve_absolute_path("sources/agents/chief-solution/agent_csro.prompt.ba.md")
 PROMPT_TEMPLATE_SA                  = resolve_absolute_path("sources/agents/chief-solution/agent_csro.prompt.sa.md")
 # `MANDATORY OUTPUT FORMAT` is a section in PROMPT
-EXPECTED_OUTPUT_SOLUTION_SENTINEL   = (
-    "The complete technical audit report formatted EXACTLY as specified "
-    "in the 'MANDATORY OUTPUT FORMAT' section of your system instructions. "
-    "It must contain the Overall Status (PASSED/FAILED) and Detailed Loopholes with Gap-IDs."
-)
-EXPECTED_OUTPUT_BA                  = (
-    "The complete, flawless Enterprise SRS document formatted EXACTLY "
-    "as specified in the 'MANDATORY OUTPUT FORMAT (Markdown Enterprise SRS)' section."
-)
-EXPECTED_OUTPUT_SA                  = (
-    "The complete Enterprise Global Blueprint Report formatted EXACTLY "
-    "as specified in the 'MANDATORY OUTPUT FORMAT (Markdown Blueprint)' section."
-)
+EXPECTED_TEMPLATE_SOLUTION_SENTINEL = resolve_absolute_path("sources/agents/chief-solution/agent_csro.expected.solution-sentinel.md")
+EXPECTED_TEMPLATE_BA                = resolve_absolute_path("sources/agents/chief-solution/agent_csro.expected.ba.md")
+EXPECTED_TEMPLATE_SA                = resolve_absolute_path("sources/agents/chief-solution/agent_csro.expected.sa.md")
 STORAGE_PATH                        = resolve_absolute_path("sources/storage")
 IDEAS_STORAGE_PATH                  = os.path.join(STORAGE_PATH, "ideas")
 BA_STORAGE_PATH                     = os.path.join(STORAGE_PATH, "business-analysis")
@@ -419,6 +409,18 @@ class CrewEnterpriseSolutionWorkflowAgent(AbstractCrewEnterpriseSuperAgent):
         blueprint_f = resolve_absolute_path(self.blueprint_file)
         _, raw_blueprint_content = read_file_raw(file_path=blueprint_f)
         
+        # read expected sentinel
+        expected_sentinel_f = resolve_absolute_path(EXPECTED_TEMPLATE_SOLUTION_SENTINEL)
+        _, raw_expected_sentinel_content = read_file_raw(file_path=expected_sentinel_f)
+        
+        # read expected BA
+        expected_ba_f = resolve_absolute_path(EXPECTED_TEMPLATE_BA)
+        _, raw_expected_ba_content = read_file_raw(file_path=expected_ba_f)
+        
+        # read expected SA
+        expected_sa_f = resolve_absolute_path(EXPECTED_TEMPLATE_SA)
+        _, raw_expected_sa_content = read_file_raw(file_path=expected_sa_f)
+        
         # return merged new values
         now = datetime.now()
         return {
@@ -428,9 +430,9 @@ class CrewEnterpriseSolutionWorkflowAgent(AbstractCrewEnterpriseSuperAgent):
             "raw_idea_content": raw_idea_content,
             "raw_srs_content": raw_ba_content,
             "raw_blueprint_content": raw_blueprint_content,
-            "expected_output_solution_sentinel": EXPECTED_OUTPUT_SOLUTION_SENTINEL,
-            "expected_output_ba": EXPECTED_OUTPUT_BA,
-            "expected_output_sa": EXPECTED_OUTPUT_SA,
+            "expected_output_solution_sentinel": raw_expected_sentinel_content,
+            "expected_output_ba": raw_expected_ba_content,
+            "expected_output_sa": raw_expected_sa_content,
             "fixed_blueprint_file": self.fixed_file_blueprint(prefix=now.strftime("%Y%m%d%H%M%S"))
         }
     

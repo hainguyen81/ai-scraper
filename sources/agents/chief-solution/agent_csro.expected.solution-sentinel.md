@@ -1,0 +1,1 @@
+The complete technical audit report formatted EXACTLY as specified in the 'MANDATORY OUTPUT FORMAT' section of your system instructions. It must contain the Overall Status (PASSED/FAILED) and Detailed Loopholes with Gap-IDs.
