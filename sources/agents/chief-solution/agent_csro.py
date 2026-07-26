@@ -8,7 +8,7 @@ from datetime import datetime
 from openai import OpenAI
 
 # internal agent CrewAI
-from crewai import Agent, Task, Crew, Process
+from crewai import Agent, Crew, Process, Task, LLM
 
 # Now Python can seamlessly see and import the centralized helper utility cleanly!
 from sources.agents.agent_helper import (
@@ -110,12 +110,16 @@ class AbstractCrewEnterpriseSuperAgent(AbstractAgent):
         if not os.path.exists(resolve_absolute_path(self.blueprint_file)):
             print(f"[ 💀 {self.agent_id} Agent | CRITICAL ERROR ] (6) Not found BLUEPRINT file {self.blueprint_file}")
             sys.exit(1)
-        
-        # initialize the internal CrewAI Agent instance
-        self.agent = self.__agent_initialize__() or print(f"[ 💀 {self.agent_id} Agent | WARN ] (7) Invalid Agent Initialization!")
+    
+    def config_llm(self):
+        model_name = self.config_model_name()
+        return LLM(
+            model=model_name,
+            temperature=self.agent_temperature
+        ) if model_name else None
     
     @abstractmethod
-    def __agent_initialize__(self):
+    def __create_llm_agent__(self, **kwargs):
         pass
     
     @abstractmethod
@@ -155,6 +159,10 @@ class AbstractCrewEnterpriseSuperAgent(AbstractAgent):
         pass
     
     # @override
+    def agent_temperature(self):
+        return 0.8
+    
+    # @override
     def process_chat(self, response_data, **kwargs):
         pass
     
@@ -175,7 +183,7 @@ class EnterpriseSolutionSentinelAgent(AbstractCrewEnterpriseSuperAgent):
         super().__init__(agent_id='EnterpriseSolutionSentinel', **kwargs)
     
     # @override
-    def __agent_initialize__(self):
+    def __create_llm_agent__(self, **kwargs):
         self.agent = Agent(
             role="Enterprise Solution Sentinel & Principal / Senior Architecture Gatekeeper",
             goal="Audit system alignment across Idea, SRS, and Blueprint. Detect loopholes and enforce structural fixes.",
@@ -184,8 +192,10 @@ class EnterpriseSolutionSentinelAgent(AbstractCrewEnterpriseSuperAgent):
                 "With 20+ years of Enterprise Architecture experience, you analyze engineering assets "
                 "with absolute precision. If layers mismatch, you issue mandatory rewrite orders."
             ),
+            llm=kwargs_by_key(key="llm", **kwargs),
             verbose=True
         )
+        return self.agent
     
     # @override
     def __create_agent_task__(self, **kwargs) -> Task:
@@ -213,13 +223,15 @@ class EnterpriseBusinessAnalystAgent(AbstractCrewEnterpriseSuperAgent):
         super().__init__(agent_id='EnterpriseBusinessAnalyst', **kwargs)
     
     # @override
-    def __agent_initialize__(self):
+    def __create_llm_agent__(self, **kwargs):
         self.agent = Agent(
             role="Enterprise Business Analyst",
             goal="Author and overhaul software requirements specifications ensuring absolute alignment with product ideas.",
             backstory="Senior BA specializing in Fortune-500 scale system requirements. Processes review failures instantly to patch gaps.",
+            llm=kwargs_by_key(key="llm", **kwargs),
             verbose=True
         )
+        return self.agent
 
     # @override
     def __create_agent_task__(self, **kwargs) -> Task:
@@ -246,13 +258,15 @@ class EnterpriseSystemArchitectAgent(AbstractCrewEnterpriseSuperAgent):
         super().__init__(agent_id='EnterpriseSystemArchitect', **kwargs)
     
     # @override
-    def __agent_initialize__(self):
+    def __create_llm_agent__(self, **kwargs):
         self.agent = Agent(
             role="Enterprise System Architect",
             goal="Architect and refactor system blueprint infrastructures to match software specifications.",
             backstory="Principal Solutions Architect. Re-engineers database models and microservices whenever requirements change.",
+            llm=kwargs_by_key(key="llm", **kwargs),
             verbose=True
         )
+        return self.agent
 
     # @override
     def __create_agent_task__(self, **kwargs) -> Task:
@@ -288,10 +302,19 @@ class CrewEnterpriseSolutionWorkflowAgent(AbstractCrewEnterpriseSuperAgent):
         }
     
     # @override
-    def __agent_initialize__(self):
+    def __pre_initialize__(self):
+        super().__pre_initialize__()
+        
+        # initial agents
         self.agent_solution_sentinel = EnterpriseSolutionSentinelAgent()
         self.agent_business_analyst = EnterpriseBusinessAnalystAgent()
         self.agent_system_architect = EnterpriseSystemArchitectAgent()
+    
+    # @override
+    def __create_llm_agent__(self, **kwargs):
+        self.agent_solution_sentinel.__create_llm_agent__(**kwargs)
+        self.agent_business_analyst.__create_llm_agent__(**kwargs)
+        self.agent_system_architect.__create_llm_agent__(**kwargs)
         return None
     
     # @override
@@ -348,6 +371,16 @@ class CrewEnterpriseSolutionWorkflowAgent(AbstractCrewEnterpriseSuperAgent):
     def chat(self, **kwargs):
         # build prompts
         kwargs = self.build_prompts(kwargs)
+        
+        # initialize LLM model
+        llm = self.config_llm()
+        kwargs = {
+            **kwargs,
+            "llm": llm
+        }
+        
+        # create internal LLM agents
+        self.__create_llm_agent__(**kwargs)
         
         # create task
         self.__create_agent_task__(**kwargs)
