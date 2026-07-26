@@ -122,7 +122,7 @@ class AbstractCrewEnterpriseSuperAgent(AbstractAgent):
             base_url=self.config_api_endpoint(),
             api_key=self.__config_api_key__(),
             provider="openrouter",                  # force LLM provider
-            temperature=self.agent_temperature
+            temperature=self.agent_temperature()
         )
     
     @abstractmethod
@@ -167,7 +167,7 @@ class AbstractCrewEnterpriseSuperAgent(AbstractAgent):
     
     # @override
     def agent_temperature(self):
-        return 0.3
+        return 0.8
     
     # @override
     def process_communication(self, response_data, **kwargs):
