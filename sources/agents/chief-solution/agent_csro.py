@@ -299,7 +299,7 @@ class EnterpriseSystemArchitectAgent(AbstractCrewEnterpriseSuperAgent):
             goal="Architect and refactor system blueprint infrastructures to match software specifications.",
             backstory="Principal Solutions Architect. Re-engineers database models and microservices whenever requirements change.",
             llm=kwargs_by_key(key="llm", **kwargs),
-            verbose=True,
+            verbose=False,
             max_iter=1,                 # maximum 1 interation
             allow_delegation=False      # to avoid loop
         )
