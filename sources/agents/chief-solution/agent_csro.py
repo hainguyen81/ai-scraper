@@ -384,7 +384,42 @@ class CrewEnterpriseSolutionWorkflowAgent(AbstractCrewEnterpriseSuperAgent):
         }
     
     # @override
-    def chat(self, **kwargs):
+    def __chat__(self, **kwargs):
+        # create CrewAI
+        crew_ai = Crew(
+            agents=kwargs_by_key(key="agents", **kwargs),
+            tasks=kwargs_by_key(key="tasks", **kwargs),
+            process=Process.sequential
+        )
+        
+        # kick-off CrewAI
+        return crew_ai.kickoff()
+    
+    # @override
+    def __parse_ai_response__(self, response):
+        return response
+    
+    # @override
+    def process_chat(self, response_data, **kwargs):
+        if not response_data:
+            raise RuntimeError(f"[ 💀 {self.agent_id} Agent | CRITICAL ERROR ] (7) Invalid AI raw response.")
+        
+        # export storage audit report
+        project_name = self.project_name()
+        timestamp = kwargs_by_key(key="current_timestamp_2", **kwargs)
+        csro_report_file = os.path.join(CSRO_STORAGE_PATH, project_name, f"{timestamp}_chief-solution-report.md")
+        write_file(file=csro_report_file, data=response_data)
+        
+        # export raw response if necessary as log tracing
+        raw_response = kwargs_by_key(key="raw_response", **kwargs)
+        if raw_response:
+            write_file(
+                file=CSRO_RAW_FILE,
+                data=raw_response
+            )
+    
+    # @override
+    def __ai_execute__(self, **kwargs):
         # build prompts
         kwargs = self.build_prompts(kwargs)
         
@@ -412,34 +447,12 @@ class CrewEnterpriseSolutionWorkflowAgent(AbstractCrewEnterpriseSuperAgent):
             self.task_business_analyst,
             self.task_system_architect
         ]
-        crew_ai = Crew(
-            agents=agents,
-            tasks=tasks,
-            process=Process.sequential
-        )
-        
-        # kick-off CrewAI review
-        raw_response = crew_ai.kickoff()
-        return (raw_response, self.clean_response(raw_response, **kwargs))
-    
-    # @override
-    def process_chat(self, response_data, **kwargs):
-        if not response_data:
-            raise RuntimeError(f"[ 💀 {self.agent_id} Agent | CRITICAL ERROR ] (7) Invalid AI raw response.")
-        
-        # export storage audit report
-        project_name = self.project_name()
-        timestamp = kwargs_by_key(key="current_timestamp_2", **kwargs)
-        csro_report_file = os.path.join(CSRO_STORAGE_PATH, project_name, f"{timestamp}_chief-solution-report.md")
-        write_file(file=csro_report_file, data=response_data)
-        
-        # export raw response if necessary as log tracing
-        raw_response = kwargs_by_key(key="raw_response", **kwargs)
-        if raw_response:
-            write_file(
-                file=CSRO_RAW_FILE,
-                data=raw_response
-            )
+        kwargs = {
+            **kwargs,
+            "agents": agents,
+            "tasks": tasks
+        }
+        return super().__ai_execute__(**kwargs)
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()

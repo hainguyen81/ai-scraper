@@ -170,8 +170,8 @@ class AbstractAgent(ABC):
     def clean_response(self, raw_response, **kwargs):
         return raw_response
     
-    def chat(self, **kwargs):
-        response = self.client.chat.completions.create(
+    def __chat__(self, **kwargs):
+        return self.client.chat.completions.create(
             model=self.config_model_name(),
             messages=[{
                 "role": "system", "content": kwargs_by_key(key="system_prompt", **kwargs)
@@ -180,7 +180,25 @@ class AbstractAgent(ABC):
             }],
             temperature=self.agent_temperature()
         )
-        raw_response = parseOpenAIResponseData(response)
+    
+    def __parse_ai_response__(self, response):
+        return parseOpenAIResponseData(response)
+    
+    def chat(self, **kwargs):
+        response = None
+        
+        # only rotate on communitating with AI
+        while True:
+            try:
+                response = self.__chat__(**kwargs)
+            except Exception as e:
+                self.__handle_execute_exception__(e, **kwargs)
+                # rotate next model
+                if not self.__rotate_next_model__():
+                    raise # re-throw exception to super
+        
+        # parse AI response
+        raw_response = self.__parse_ai_response__(response) if response else None
         return (raw_response, self.clean_response(raw_response, **kwargs))
     
     @abstractmethod
@@ -196,13 +214,10 @@ class AbstractAgent(ABC):
         raw_response, clean_response = self.chat(**kwargs)
         latest_response = raw_response
         
-        # process AI response. try catch here to avoid rotate model if it occurs exception, due to AI was successful
-        try:
-            kwargs = { **kwargs, "raw_response": raw_response }
-            self.process_chat(clean_response, **kwargs)
-            print(f"[ ✅ {self.agent_id} Agent - SUCCESS | Model {self.config_model_name()} | API Endpoint {self.config_api_endpoint()} ] Process successfully!")
-        except Exception as e:
-            print(f"[ 💀 {self.agent_id} Agent | ERROR ] Exception caught on PROCESSING {self.config_model_name()} response: {exception_stacktrace(e)}")
+        # process AI response
+        kwargs = { **kwargs, "raw_response": raw_response }
+        self.process_chat(clean_response, **kwargs)
+        print(f"[ ✅ {self.agent_id} Agent - SUCCESS | Model {self.config_model_name()} | API Endpoint {self.config_api_endpoint()} ] Process successfully!")
         
         # return new values kwargs
         return {
@@ -274,15 +289,11 @@ class AbstractAgent(ABC):
         safe_kwargs = self.pre_execute(**safe_kwargs) or {}
         
         # execute
-        while True:
-            try:
-                # internal execution
-                safe_kwargs = self.__do_execute__(**safe_kwargs) or {}
-                # done tasks
-                return True
-            except Exception as e:
-                self.__handle_execute_exception__(e, **safe_kwargs)
-                # rotate next model
-                if not self.__rotate_next_model__():
-                    return False
-
+        try:
+            # internal execution
+            safe_kwargs = self.__do_execute__(**safe_kwargs) or {}
+            # done tasks
+            return True
+        except Exception as e:
+            self.__handle_execute_exception__(e, **safe_kwargs)
+            sys.exit(1)
