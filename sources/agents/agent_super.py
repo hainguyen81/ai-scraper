@@ -200,10 +200,11 @@ class AbstractAgent(ABC):
         response = None
         
         # only rotate on communitating with AI
-        while True:
+        success= False
+        while not success:
             try:
                 response = self.__communicate_ai__(**kwargs)
-                break   # success
+                success = True   # success
             except Exception as e:
                 self.__handle_execute_exception__(e, **kwargs)
                 # rotate next model
