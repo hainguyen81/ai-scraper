@@ -7,6 +7,9 @@ import argparse
 from datetime import datetime
 from openai import OpenAI
 
+# for abstract class
+from abc import ABC, abstractmethod
+
 # internal agent CrewAI
 from crewai import Agent, Crew, Process, Task, LLM
 
