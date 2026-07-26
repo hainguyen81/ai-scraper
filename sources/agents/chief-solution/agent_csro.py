@@ -288,7 +288,7 @@ class EnterpriseSystemArchitectAgent(AbstractCrewEnterpriseSuperAgent):
     def __create_agent_task__(self, **kwargs) -> Task:
         return Task(
             description=kwargs_by_key(key="prompt_sa" **kwargs),
-            expected_output=kwargs_by_key(key="expected_output_ba", **kwargs),
+            expected_output=kwargs_by_key(key="expected_output_sa", **kwargs),
             agent=self.agent,
             context=kwargs_by_key(key="context_tasks_ba" **kwargs)
         )
@@ -380,11 +380,13 @@ class CrewEnterpriseSolutionWorkflowAgent(AbstractCrewEnterpriseSuperAgent):
             "raw_idea_content": raw_idea_content,
             "raw_srs_content": raw_ba_content,
             "raw_blueprint_content": raw_blueprint_content,
-            "expected_output": SYSTEM_EXPECTED_OUTPUT
+            "expected_output_solution_sentinel": EXPECTED_OUTPUT_SOLUTION_SENTINEL,
+            "expected_output_ba": EXPECTED_OUTPUT_BA,
+            "expected_output_sa": EXPECTED_OUTPUT_SA
         }
     
     # @override
-    def __chat__(self, **kwargs):
+     def __communicate_ai__(self, **kwargs):
         # create CrewAI
         crew_ai = Crew(
             agents=kwargs_by_key(key="agents", **kwargs),
@@ -400,7 +402,7 @@ class CrewEnterpriseSolutionWorkflowAgent(AbstractCrewEnterpriseSuperAgent):
         return response
     
     # @override
-    def process_chat(self, response_data, **kwargs):
+    def process_communication(self, response_data, **kwargs):
         if not response_data:
             raise RuntimeError(f"[ 💀 {self.agent_id} Agent | CRITICAL ERROR ] (7) Invalid AI raw response.")
         
