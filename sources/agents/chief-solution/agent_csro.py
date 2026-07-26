@@ -410,16 +410,13 @@ class CrewEnterpriseSolutionWorkflowAgent(AbstractCrewEnterpriseSuperAgent):
         _, raw_blueprint_content = read_file_raw(file_path=blueprint_f)
         
         # read expected sentinel
-        expected_sentinel_f = resolve_absolute_path(EXPECTED_TEMPLATE_SOLUTION_SENTINEL)
-        _, raw_expected_sentinel_content = read_file_raw(file_path=expected_sentinel_f)
+        _, raw_expected_sentinel_content = read_file_raw(file_path=EXPECTED_TEMPLATE_SOLUTION_SENTINEL)
         
         # read expected BA
-        expected_ba_f = resolve_absolute_path(EXPECTED_TEMPLATE_BA)
-        _, raw_expected_ba_content = read_file_raw(file_path=expected_ba_f)
+        _, raw_expected_ba_content = read_file_raw(file_path=EXPECTED_TEMPLATE_BA)
         
         # read expected SA
-        expected_sa_f = resolve_absolute_path(EXPECTED_TEMPLATE_SA)
-        _, raw_expected_sa_content = read_file_raw(file_path=expected_sa_f)
+        _, raw_expected_sa_content = read_file_raw(file_path=EXPECTED_TEMPLATE_SA)
         
         # return merged new values
         now = datetime.now()
