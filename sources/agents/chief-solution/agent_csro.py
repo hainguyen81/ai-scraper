@@ -14,6 +14,8 @@ from abc import ABC, abstractmethod
 # internal agent CrewAI
 from crewai import Agent, Crew, Process, Task, LLM
 from crewai.events.event_bus import crewai_event_bus
+from crewai.events.base_events import reset_emission_counter
+from crewai.events.event_context import _event_id_stack, EventContextConfig, _event_context_config
 
 # Now Python can seamlessly see and import the centralized helper utility cleanly!
 from sources.agents.agent_helper import (
@@ -435,9 +437,20 @@ class CrewEnterpriseSolutionWorkflowAgent(AbstractCrewEnterpriseSuperAgent):
             "tasks": tasks
         }
     
-    def __release_crew_event_bus_to_rotate_model__(self):
+    def __reset_crew_event_bus_to_rotate_model__(self):
         try:
-            # reset status and stack counter of present Event Bus
+            # 1. reset events counter of CrewAI
+            reset_emission_counter()
+            
+            # 2. for ContextVar contains Event ID Stack to empty tuple ()
+            _event_id_stack.set(()) 
+            _event_context_config.set(EventContextConfig())
+            
+            # 3. reset stuck sync/async handlers / events
+            if hasattr(crewai_event_bus, '_sync_handlers'):
+                crewai_event_bus._sync_handlers.clear()
+            if hasattr(crewai_event_bus, '_async_handlers'):
+                crewai_event_bus._async_handlers.clear()
             if hasattr(crewai_event_bus, '_event_scopes'):
                 crewai_event_bus._event_scopes = []
             if hasattr(crewai_event_bus, '_events'):
@@ -452,7 +465,7 @@ class CrewEnterpriseSolutionWorkflowAgent(AbstractCrewEnterpriseSuperAgent):
     # @override
     def __rotate_next_model__(self):
         # require clear event stack to avoid events stuck before rotating new model
-        if self.__release_crew_event_bus_to_rotate_model__():
+        if self.__reset_crew_event_bus_to_rotate_model__():
             return super().__rotate_next_model__()
         return False
     
