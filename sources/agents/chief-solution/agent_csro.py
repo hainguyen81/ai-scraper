@@ -5,6 +5,7 @@ import re
 import hashlib
 import argparse
 import asyncio
+import litellm
 from datetime import datetime
 from openai import OpenAI
 
@@ -456,18 +457,18 @@ class CrewEnterpriseSolutionWorkflowAgent(AbstractCrewEnterpriseSuperAgent):
             if hasattr(crewai_event_bus, '_events'):
                 crewai_event_bus._events = {}
             print("[ ✅ CLEAN ] Reset present Event Stack to rotate new model.")
-            return True
-        except Exception as clean_err:
-            print(f"[ ❌ ERROR ] Could not reset Event Bus: {clean_err}")
-            self.__handle_execute_exception__(e=clean_err)
-            return False
+        except Exception as e:
+            print(f"[ ❌ ERROR ] Could not reset Event Bus: {str(e)}")
+            # self.__handle_execute_exception__(e=clean_err)
+        
+        # continue
+        return True
     
     # @override
     def __rotate_next_model__(self):
         # require clear event stack to avoid events stuck before rotating new model
-        if self.__reset_crew_event_bus_to_rotate_model__():
-            return super().__rotate_next_model__()
-        return False
+        self.__reset_crew_event_bus_to_rotate_model__():
+        return super().__rotate_next_model__()
     
     # @override
     def __communicate_ai__(self, **kwargs):
@@ -519,6 +520,10 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument("--idea", type=str, help="Idea Identity for searching")
     args = parser.parse_args()
+    
+    # force litellm stop collecting old exceptions to metadata
+    litellm.suppress_helper_warnings = True
+    litellm.drop_params = True
     
     # initializ workflow agent
     workflow_agent = CrewEnterpriseSolutionWorkflowAgent(
