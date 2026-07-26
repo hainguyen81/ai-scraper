@@ -88,6 +88,11 @@ class AbstractCrewEnterpriseSuperAgent(AbstractAgent):
         project_name = self.project_name()
         return os.path.join(BLUEPRINT_STORAGE_PATH, project_name, "context", f"{project_name}.global.blueprint.md") if project_name else None
     
+    def fixed_file_blueprint(self, prefix):
+        project_name = self.project_name()
+        prefix = prefix if prefix else "fixed"
+        return os.path.join(BLUEPRINT_STORAGE_PATH, project_name, "context", f"{prefix}.{project_name}.global.blueprint.md") if project_name else None
+    
     def load_project_info(self, **kwargs):
         idea_id = kwargs_by_key(key="idea", **kwargs)
         _, projects = read_json_file(BA_SUMMARY_FILE)
@@ -329,7 +334,8 @@ class EnterpriseSystemArchitectAgent(AbstractCrewEnterpriseSuperAgent):
             description=f"Overhaul the System Architecture Blueprint based on these instructions:\n{prompt}",
             expected_output=kwargs_by_key(key="expected_output_sa", **kwargs),
             agent=self.agent,
-            context=kwargs_by_key(key="context_tasks_sa", **kwargs)
+            context=kwargs_by_key(key="context_tasks_sa", **kwargs),
+            output_file=kwargs_by_key(key="fixed_blueprint_file", **kwargs)
         )
     
     # @override
@@ -422,7 +428,8 @@ class CrewEnterpriseSolutionWorkflowAgent(AbstractCrewEnterpriseSuperAgent):
             "raw_blueprint_content": raw_blueprint_content,
             "expected_output_solution_sentinel": EXPECTED_OUTPUT_SOLUTION_SENTINEL,
             "expected_output_ba": EXPECTED_OUTPUT_BA,
-            "expected_output_sa": EXPECTED_OUTPUT_SA
+            "expected_output_sa": EXPECTED_OUTPUT_SA,
+            "fixed_blueprint_file": self.fixed_blueprint_file(prefix=now.strftime("%Y%m%d%H%M%S"))
         }
     
     def __build_arguments_for_communicating__(self, **kwargs):
