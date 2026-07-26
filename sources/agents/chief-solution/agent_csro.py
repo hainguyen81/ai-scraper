@@ -61,6 +61,8 @@ BA_SUMMARY_FILE                     = resolve_absolute_path(os.path.join(BA_STOR
 BLUEPRINT_STORAGE_PATH              = os.path.join(STORAGE_PATH, "blueprint")
 CSRO_OUTPUT_PATH                    = resolve_absolute_path("sources/output/chief-solution")
 CSRO_RAW_FILE                       = os.path.join(CSRO_OUTPUT_PATH, "chief-solution-review.md")
+CSRO_BA_RAW_FILE                    = os.path.join(CSRO_OUTPUT_PATH, "chief-solution-review-ba.md")
+CSRO_SA_RAW_FILE                    = os.path.join(CSRO_OUTPUT_PATH, "chief-solution-review-sa.md")
 CSRO_LOG_FILE                       = os.path.join(CSRO_OUTPUT_PATH, "chief-solution-review_log.md")
 
 
@@ -480,10 +482,10 @@ class CrewEnterpriseSolutionWorkflowAgent(AbstractCrewEnterpriseSuperAgent):
                 crewai_event_bus._event_scopes = []
             if hasattr(crewai_event_bus, '_events'):
                 crewai_event_bus._events = {}
-            print("[ ✅ CLEAN ] Reset present Event Stack to rotate new model.")
+            print(f"[ ✅ {self.agent_id} Agent | CLEAN ] Reset present Event Stack to rotate new model.")
             return True
         except Exception as e:
-            print(f"[ ❌ ERROR ] Could not reset Event Bus: {str(e)}")
+            print(f"[ ❌ {self.agent_id} Agent | ERROR ] Could not reset Event Bus: {str(e)}")
             return False
     
     # @override
@@ -510,18 +512,58 @@ class CrewEnterpriseSolutionWorkflowAgent(AbstractCrewEnterpriseSuperAgent):
     
     # @override
     def __parse_ai_response__(self, response):
-        return response
+        # 🔥 Extract output of tasks
+        raw_sentinel_response = None
+        raw_ba_response = None
+        raw_sa_response = None
+        try:
+            # Task 1 (Sentinel) response - Audit Report
+            raw_sentinel_response = self.task_solution_sentinel.output.raw
+            
+            # Task 2 (Business Analyst) response
+            raw_ba_response = self.task_business_analyst.output.raw
+            
+            # Task 3 (System Architect) response - fixed blueprint
+            raw_sa_response = self.task_system_architect.output.raw
+        except Exception as e:
+            print(f"[ ❌ {self.agent_id} Agent | ERROR ] Could extract task output: {str(e)}")
+
+        # parsed responses
+        return {
+            "kickoff": response,
+            "report_sentinel": raw_sentinel_response,
+            "report_ba": raw_ba_response,
+            "report_sa": raw_sa_response
+        }
     
     # @override
     def process_communication(self, response_data, **kwargs):
-        if not response_data:
+        if not response_data or not isinstance(response_data, dict):
             raise RuntimeError(f"[ 💀 {self.agent_id} Agent | CRITICAL ERROR ] (7) Invalid AI raw response.")
         
-        # export storage audit report
+        # project info
         project_name = self.project_name()
         timestamp = kwargs_by_key(key="current_timestamp_2", **kwargs)
-        csro_report_file = os.path.join(CSRO_STORAGE_PATH, project_name, f"{timestamp}_chief-solution-report.md")
-        write_file(file=csro_report_file, data=response_data)
+        
+        # export storage audit report
+        if "kickoff" in response_data and response_data.get("kickoff"):
+            file = os.path.join(CSRO_STORAGE_PATH, project_name, f"{timestamp}_chief-solution-report.md")
+            write_file(file=file, data=response_data.get("kickoff"))
+        
+        # export task sentinel response
+        if "report_sentinel" in response_data and response_data.get("report_sentinel"):
+            file = os.path.join(CSRO_STORAGE_PATH, project_name, f"{timestamp}_chief-solution-report-sentinel.md")
+            write_file(file=file, data=response_data.get("report_sentinel"))
+        
+        # export task BA response
+        if "report_ba" in response_data and response_data.get("report_ba"):
+            file = os.path.join(CSRO_STORAGE_PATH, project_name, f"{timestamp}_chief-solution-report-ba.md")
+            write_file(file=file, data=response_data.get("report_ba"))
+        
+        # export task SA response
+        if "report_sa" in response_data and response_data.get("report_sa"):
+            file = os.path.join(CSRO_STORAGE_PATH, project_name, f"{timestamp}_chief-solution-report-sa.md")
+            write_file(file=file, data=response_data.get("report_sa"))
         
         # export raw response if necessary as log tracing
         raw_response = kwargs_by_key(key="raw_response", **kwargs)
