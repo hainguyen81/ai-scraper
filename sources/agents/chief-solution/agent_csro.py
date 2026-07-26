@@ -186,6 +186,10 @@ class EnterpriseSolutionSentinelAgent(AbstractCrewEnterpriseSuperAgent):
         super().__init__(agent_id='EnterpriseSolutionSentinel', **kwargs)
     
     # @override
+    def initialize(self):
+        pass # no need to initialize, just need creating agent/task
+    
+    # @override
     def __create_llm_agent__(self, **kwargs):
         self.agent = Agent(
             role="Enterprise Solution Sentinel & Principal / Senior Architecture Gatekeeper",
@@ -226,6 +230,10 @@ class EnterpriseBusinessAnalystAgent(AbstractCrewEnterpriseSuperAgent):
         super().__init__(agent_id='EnterpriseBusinessAnalyst', **kwargs)
     
     # @override
+    def initialize(self):
+        pass # no need to initialize, just need creating agent/task
+    
+    # @override
     def __create_llm_agent__(self, **kwargs):
         self.agent = Agent(
             role="Enterprise Business Analyst",
@@ -259,6 +267,10 @@ class EnterpriseSystemArchitectAgent(AbstractCrewEnterpriseSuperAgent):
     """
     def __init__(self, **kwargs):
         super().__init__(agent_id='EnterpriseSystemArchitect', **kwargs)
+    
+    # @override
+    def initialize(self):
+        pass # no need to initialize, just need creating agent/task
     
     # @override
     def __create_llm_agent__(self, **kwargs):
