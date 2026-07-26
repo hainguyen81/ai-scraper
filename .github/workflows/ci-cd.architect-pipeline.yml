@@ -10,8 +10,7 @@ on:
         default: false
         type: boolean
       project_name:
-        description: "📁 Project Name / 💡 Idea Identity"
-        placeholder: "e.g., sources/storage/ideas/idea-id.md"
+        description: "📁 Project Name / 💡 Idea"
         required: true
         type: string
       requirements_file:
@@ -112,8 +111,7 @@ on:
         default: false
         type: boolean
       project_name:
-        description: "📁 Project Name / 💡 Idea Identity"
-        placeholder: "e.g., sources/storage/ideas/idea-id.md"
+        description: "📁 Project Name / 💡 Idea"
         required: true
         type: string
       requirements_file:

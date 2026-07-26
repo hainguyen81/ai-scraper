@@ -8,7 +8,6 @@ on:
         description: |
           📁 Project Name / 💡 Idea
           (Storage: sources/storage/ideas)
-        placeholder: "e.g., sources/storage/ideas/idea-id.md"
         required: true
         type: string
     
@@ -19,7 +18,6 @@ on:
         description: |
           📁 Project Name / 💡 Idea
           (Storage: - sources/storage/ideas)
-        placeholder: "e.g., sources/storage/ideas/idea-id.md"
         required: true
         type: string
 
