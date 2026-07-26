@@ -13,6 +13,7 @@ from abc import ABC, abstractmethod
 
 # internal agent CrewAI
 from crewai import Agent, Crew, Process, Task, LLM
+from crewai.events.event_bus import crewai_event_bus
 
 # Now Python can seamlessly see and import the centralized helper utility cleanly!
 from sources.agents.agent_helper import (
@@ -433,6 +434,27 @@ class CrewEnterpriseSolutionWorkflowAgent(AbstractCrewEnterpriseSuperAgent):
             "agents": agents,
             "tasks": tasks
         }
+    
+    def __release_crew_event_bus_to_rotate_model__(self):
+        try:
+            # reset status and stack counter of present Event Bus
+            if hasattr(crewai_event_bus, '_event_scopes'):
+                crewai_event_bus._event_scopes = []
+            if hasattr(crewai_event_bus, '_events'):
+                crewai_event_bus._events = {}
+            print("[ ✅ CLEAN ] Reset present Event Stack to rotate new model.")
+            return True
+        except Exception as clean_err:
+            print(f"[ ❌ ERROR ] Could not reset Event Bus: {clean_err}")
+            self.__handle_execute_exception__(e=clean_err)
+            return False
+    
+    # @override
+    def __rotate_next_model__(self):
+        # require clear event stack to avoid events stuck before rotating new model
+        if self.__release_crew_event_bus_to_rotate_model__():
+            return super().__rotate_next_model__()
+        return False
     
     # @override
     def __communicate_ai__(self, **kwargs):
