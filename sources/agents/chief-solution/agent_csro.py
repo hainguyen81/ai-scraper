@@ -422,6 +422,10 @@ class CrewEnterpriseSolutionWorkflowAgent(AbstractCrewEnterpriseSuperAgent):
         now = datetime.now()
         return {
             **kwargs,
+            "idea_id": self.idea_id,
+            "idea_description": self.project_info.get(),
+            "project_name": self.project_info.get("technical_codename") or "-",
+            "project_description": self.project_info.get("descriptive_name") or "-",
             "current_timestamp": now.strftime("%Y/%m/%d %H:%M:%S"),
             "current_timestamp_2": now.strftime("%Y%m%d%H%M%S"),
             "raw_idea_content": raw_idea_content,

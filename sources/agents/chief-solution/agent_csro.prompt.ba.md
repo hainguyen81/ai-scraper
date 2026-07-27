@@ -49,6 +49,16 @@ Analyze the incoming engineering and auditing assets below to perform your requi
 
 # SOFTWARE REQUIREMENTS SPECIFICATION (SRS)
 
+## 📊 Document Information
+- **Idea ID**: {{ idea_id }}
+- **Project Name**: {{ project_name }}
+- **Project Description**: {{ project_description }}
+- **Document ID**: SRS-{{ current_timestamp_2 }}
+- **Version**: 1.0 (Refactored)
+- **Date**: {{ current_timestamp }}
+- **Author**: Enterprise BA Agent (Automated Pipeline)
+- **Approval**: Approved by Chief Solution Review Officer (CSRO)
+
 ## 📊 1. System Overview & Scope
 - **System Purpose**: [Detailed, technical explanation of why this system exists and the enterprise problems it solves]
 - **Core Scope Boundaries**: Explicitly state what is IN-SCOPE and what is OUT-OF-SCOPE.
