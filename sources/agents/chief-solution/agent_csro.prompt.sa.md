@@ -47,6 +47,16 @@ Below is the live engineering context injected into your workspace automatically
 
 ### 📐 ENTERPRISE GLOBAL BLUEPRINT REPORT
 
+## 📊 Document Control
+- **Blueprint ID**: ARCH-{{ current_timestamp_2 }}
+- **Idea ID**: {{ idea_id }}
+- **Project Name**: {{ project_name }}
+- **Project Description**: {{ project_description }}
+- **Version**: 1.0 (Aligned)
+- **Date/Time**: {{ current_timestamp }}
+- **Author**: Enterprise System Architect (SA Agent)
+- **Approval**: Pending Review by Chief Solution Review Officer (CSRO)
+
 #### 📊 1. Architectural Alignment Summary
 - **Target Technology Stack**: [List the language, framework, databases, and message brokers used]
 - **Architecture Pattern**: [e.g., Distributed Event-Driven Microservices]

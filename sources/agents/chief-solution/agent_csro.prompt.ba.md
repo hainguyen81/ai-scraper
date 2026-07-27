@@ -50,10 +50,10 @@ Analyze the incoming engineering and auditing assets below to perform your requi
 # SOFTWARE REQUIREMENTS SPECIFICATION (SRS)
 
 ## 📊 Document Information
+- **Document ID**: SRS-{{ current_timestamp_2 }}
 - **Idea ID**: {{ idea_id }}
 - **Project Name**: {{ project_name }}
 - **Project Description**: {{ project_description }}
-- **Document ID**: SRS-{{ current_timestamp_2 }}
 - **Version**: 1.0 (Refactored)
 - **Date**: {{ current_timestamp }}
 - **Author**: Enterprise BA Agent (Automated Pipeline)
