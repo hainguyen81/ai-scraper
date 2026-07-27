@@ -407,6 +407,7 @@ class EnterpriseBluePrintDiffAnalyzerAgent(AbstractCrewEnterpriseSuperAgent):
     # @override
     def __create_agent_task__(self, **kwargs) -> Task:
         context_tasks_da = kwargs_by_key(key="context_tasks_da", **kwargs)
+        print(f"- Context Tasks DA: {str(context_tasks_da)}")
         if  not context_tasks_da or not isinstance(context_tasks_da, list) or len(context_tasks_da) <= 0:
             print(f"[ 💀 {self.agent_id} Agent | CRITICAL ERROR ] Invalid tasks context to do blueprint analysis.")
             raise RuntimeError("Invalid tasks context to do blueprint analysis.")
@@ -422,7 +423,7 @@ class EnterpriseBluePrintDiffAnalyzerAgent(AbstractCrewEnterpriseSuperAgent):
             description=task,
             expected_output=kwargs_by_key(key="expected_output_da", **kwargs),
             agent=self.agent,
-            context=kwargs_by_key(key="context_tasks_da", **kwargs)
+            context=context_tasks_da
         )
     
     # @override
