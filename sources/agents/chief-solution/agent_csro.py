@@ -88,6 +88,11 @@ class AbstractCrewEnterpriseSuperAgent(AbstractAgent):
         prefix = prefix if prefix else "_"
         return os.path.join(BLUEPRINT_STORAGE_PATH, project_name, "context", f"{prefix}-csro.{project_name}.global.blueprint.md") if project_name else None
     
+    def file_blueprint_diff_analysis(self, prefix):
+        project_name = self.project_name()
+        prefix = prefix if prefix else "_"
+        return os.path.join(BLUEPRINT_STORAGE_PATH, project_name, "context", f"{prefix}-diff-analysis.{project_name}.global.blueprint.md") if project_name else None
+    
     def file_ba_approval(self, prefix):
         project_name = self.project_name()
         prefix = prefix if prefix else "_"
@@ -102,6 +107,11 @@ class AbstractCrewEnterpriseSuperAgent(AbstractAgent):
         project_name = self.project_name()
         prefix = prefix if prefix else "_"
         return os.path.join(CSRO_STORAGE_PATH, project_name, f"{prefix}.chief-solution-report-sa.md") if project_name else None
+    
+    def file_report_da_approval(self, prefix):
+        project_name = self.project_name()
+        prefix = prefix if prefix else "_"
+        return os.path.join(CSRO_STORAGE_PATH, project_name, f"{prefix}.chief-solution-report-diff-analysis.md") if project_name else None
     
     def file_report_sentinel_approval(self, prefix):
         project_name = self.project_name()
@@ -642,22 +652,38 @@ class CrewEnterpriseSolutionWorkflowAgent(AbstractCrewEnterpriseSuperAgent):
         # export storage audit report
         if "kickoff" in response_data and response_data.get("kickoff"):
             write_file(file=self.file_report_kickoff(prefix=timestamp), data=response_data.get("kickoff"))
+        else:
+            print(f"[ 💀 {self.agent_id} Agent | WARN ] No any kickoff report!")
         
         # export task sentinel response
         if "report_sentinel" in response_data and response_data.get("report_sentinel"):
             write_file(file=self.file_report_sentinel_approval(prefix=timestamp), data=response_data.get("report_sentinel"))
+        else:
+            print(f"[ 💀 {self.agent_id} Agent | WARN ] No any sentinel report!")
         
         # export task BA response
         if "report_ba" in response_data and response_data.get("report_ba"):
             response_ba = response_data.get("report_ba")
             write_file(file=self.file_report_ba_approval(prefix=timestamp), data=response_ba)
             write_file(file=self.file_ba_approval(prefix=timestamp), data=response_ba)
+        else:
+            print(f"[ 💀 {self.agent_id} Agent | WARN ] No any business-analysis report!")
         
         # export task SA response
         if "report_sa" in response_data and response_data.get("report_sa"):
             response_sa = response_data.get("report_sa")
             write_file(file=self.file_report_sa_approval(prefix=timestamp), data=response_sa)
             write_file(file=self.file_blueprint_approval(prefix=timestamp), data=response_sa)
+        else:
+            print(f"[ 💀 {self.agent_id} Agent | WARN ] No any system-architect report!")
+        
+        # export task DA response
+        if "report_da" in response_data and response_data.get("report_da"):
+            response_da = response_data.get("report_da")
+            write_file(file=self.file_report_da_approval(prefix=timestamp), data=response_da)
+            write_file(file=self.file_blueprint_diff_analysis(prefix=timestamp), data=response_da)
+        else:
+            print(f"[ 💀 {self.agent_id} Agent | WARN ] No any diff-blueprint analysis report!")
         
         # export raw response if necessary as log tracing
         raw_response = kwargs_by_key(key="raw_response", **kwargs)
