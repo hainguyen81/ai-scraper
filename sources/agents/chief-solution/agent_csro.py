@@ -17,6 +17,8 @@ from crewai import Agent, Crew, Process, Task, LLM
 from crewai.events.event_bus import crewai_event_bus
 from crewai.events.base_events import reset_emission_counter
 from crewai.events.event_context import _event_id_stack, EventContextConfig, _event_context_config
+# use flow for blueprint diff analysis
+from crewai.flow.runtime import Flow, listen, start, on
 
 # Now Python can seamlessly see and import the centralized helper utility cleanly!
 from sources.agents.agent_helper import (
@@ -57,6 +59,7 @@ CSRO_RAW_FILE                       = os.path.join(CSRO_OUTPUT_PATH, "chief-solu
 CSRO_BA_RAW_FILE                    = os.path.join(CSRO_OUTPUT_PATH, "chief-solution-review-ba.md")
 CSRO_SA_RAW_FILE                    = os.path.join(CSRO_OUTPUT_PATH, "chief-solution-review-sa.md")
 CSRO_LOG_FILE                       = os.path.join(CSRO_OUTPUT_PATH, "chief-solution-review_log.md")
+CSRO_LOG_DA_FILE                    = os.path.join(CSRO_OUTPUT_PATH, "chief-solution-diff-analysis_log.md")
 
 
 # =====================================================================
@@ -377,201 +380,27 @@ class EnterpriseSystemArchitectAgent(AbstractCrewEnterpriseSuperAgent):
 
 
 # =====================================================================
-# 📐 CLASS 4: SYSTEM ARCHITECT DIFF ANALYZER AGENT
+# 🕵️‍♂️ CLASS 4: THE SUPREME SYSTEM ARCHITECTURE WORKFLOW AGENT (ENTERPRISE WORKFLOW)
 # =====================================================================
-class EnterpriseBluePrintDiffAnalyzerAgent(AbstractCrewEnterpriseSuperAgent):
-    """
-    A Class-based Agent responsible for structural and infrastructural Blueprints.
-    """
-    def __init__(self, **kwargs):
-        super().__init__(agent_id='EnterpriseBluePrintDiffAnalyzer', **kwargs)
-    
-    # @override
-    def initialize(self):
-        pass # no need to initialize, just need creating agent/task
-    
-    # @override
-    def __create_llm_agent__(self, **kwargs):
-        backstory = kwargs_by_key(key="prompt_blueprint_da", **kwargs)
-        self.agent = Agent(
-            role="Principal Enterprise Systems Auditor",
-            goal="Execute independent triple-check architectural audits on system blueprints.",
-            backstory=backstory,
-            llm=kwargs_by_key(key="llm", **kwargs),
-            verbose=False,
-            max_iter=1,                 # maximum 1 interation
-            allow_delegation=False      # to avoid loop
-        )
-        return self.agent
-    
-    # @override
-    def __create_agent_task__(self, **kwargs) -> Task:
-        # check context tasks to request task SA raw response
-        context_tasks_da = kwargs_by_key(key="context_tasks_da", **kwargs)
-        if  not context_tasks_da or not isinstance(context_tasks_da, list) or len(context_tasks_da) <= 0:
-            print(f"[ 💀 {self.agent_id} Agent | CRITICAL ERROR ] Invalid tasks context to do blueprint analysis.")
-            raise RuntimeError("Invalid tasks context to do blueprint analysis.")
-        
-        task = Task(
-            # use callback function to dynamic task prompt
-            description="Placeholder description - Will be overwritten at runtime.",
-            expected_output=kwargs_by_key(key="expected_output_da", **kwargs),
-            agent=self.agent,
-            context=context_tasks_da
-        )
-        
-        def __agent_task_callback__(task_output=None):
-            # check context tasks to request task SA raw response
-            if not context_tasks_da[0] or not context_tasks_da[0].output or not context_tasks_da[0].output.raw:
-                print(f"[ 💀 {self.agent_id} Agent | CRITICAL ERROR ] Invalid SA Task response for the fixed/approved blueprint to analyze.")
-                raise RuntimeError("Invalid SA Task response for the fixed/approved blueprint to analyze.")
-            
-            # render prompt for this agent task
-            kwargs = { **kwargs, "raw_csro_blueprint_content": context_tasks_da[0].output.raw }
-            task.description = render_kwargs_prompt(TASK_TEMPLATE_SA_DIFF_ANALYZER, **kwargs)
-        
-        # task callback hook
-        task.callback = __agent_task_callback__
-        return task
-    
-    # @override
-    def __create_ai_client__(self):
-        pass
-    
-    # @override
-    def __ai_execute__(self, **kwargs):
-        pass
-
-
-# =====================================================================
-# 🕵️‍♂️ FINAL: THE SUPREME WORKFLOW AGENT (ENTERPRISE WORKFLOW)
-# =====================================================================
-class CrewEnterpriseSolutionWorkflowAgent(AbstractCrewEnterpriseSuperAgent):
+class AbstractCrewEnterpriseWorkflowAgent(AbstractCrewEnterpriseSuperAgent):
     """
     A Class-based Agent representing the Supreme Gatekeeper.
     It scans Idea, SRS, and Blueprint files for gaps, loopholes, and enterprise compliance.
     """
-    def __init__(self, **kwargs):
-        super().__init__(agent_id='CrewEnterpriseSolutionWorkflowReviewer', **kwargs)
+    def __init__(self, agent_id, **kwargs):
+        super().__init__(agent_id=agent_id, **kwargs)
     
+    @abstractmethod
     def build_prompts(self, **kwargs):
-        return {
-            **kwargs,
-            "prompt_solution_sentinel": render_kwargs_prompt(PROMPT_TEMPLATE_SOLUTION_SENTINEL, **kwargs),
-            "prompt_ba": render_kwargs_prompt(PROMPT_TEMPLATE_BA, **kwargs),
-            "prompt_sa": render_kwargs_prompt(PROMPT_TEMPLATE_SA, **kwargs),
-            "prompt_blueprint_da": render_kwargs_prompt(PROMPT_TEMPLATE_SA_DIFF_ANALYZER, **kwargs),
-            "expected_output_solution_sentinel": render_kwargs_prompt(EXPECTED_TEMPLATE_SOLUTION_SENTINEL, **kwargs),
-            "expected_output_ba": render_kwargs_prompt(EXPECTED_TEMPLATE_BA, **kwargs),
-            "expected_output_sa": render_kwargs_prompt(EXPECTED_TEMPLATE_SA, **kwargs),
-            "expected_output_da": render_kwargs_prompt(EXPECTED_TEMPLATE_SA_DIFF_ANALYZER, **kwargs)
-        }
-    
-    # @override
-    def __create_llm_agent__(self, **kwargs):
-        # re-initialialize agent classes to release memory
-        self.agent_solution_sentinel = EnterpriseSolutionSentinelAgent(**kwargs)
-        self.agent_business_analyst = EnterpriseBusinessAnalystAgent(**kwargs)
-        self.agent_system_architect = EnterpriseSystemArchitectAgent(**kwargs)
-        self.agent_blueprint_analyzer = EnterpriseBluePrintDiffAnalyzerAgent(**kwargs)
-        
-        # create internal agents
-        self.agent_solution_sentinel.__create_llm_agent__(**kwargs)
-        self.agent_business_analyst.__create_llm_agent__(**kwargs)
-        self.agent_system_architect.__create_llm_agent__(**kwargs)
-        self.agent_blueprint_analyzer.__create_llm_agent__(**kwargs)
-        return None
-    
-    # @override
-    def __create_agent_task__(self, **kwargs) -> Task:
-        # solution sentinel task
-        self.task_solution_sentinel = self.agent_solution_sentinel.__create_agent_task__(**kwargs)
-        
-        # business analyst task
-        kwargs = {
-            **kwargs,
-            "context_tasks_ba": [ self.task_solution_sentinel ]
-        }
-        self.task_business_analyst = self.agent_business_analyst.__create_agent_task__(**kwargs)
-        
-        # system architect task
-        kwargs = {
-            **kwargs,
-            "context_tasks_sa": [ self.task_solution_sentinel, self.task_business_analyst ]
-        }
-        self.task_system_architect = self.agent_system_architect.__create_agent_task__(**kwargs)
-        
-        # blueprint analyzer task
-        kwargs = {
-            **kwargs,
-            "context_tasks_da": [ self.task_system_architect ]
-        }
-        self.task_blueprint_analyzer = self.agent_blueprint_analyzer.__create_agent_task__(**kwargs)
-        return None
+        pass
     
     # @override
     def agent_log_file(self) -> str:
         return CSRO_LOG_FILE
     
-    # @override
-    def pre_execute(self, **kwargs):
-        # read idea file
-        idea_f = resolve_absolute_path(self.idea_file)
-        _, raw_idea_content = read_file_raw(file_path=idea_f)
-        
-        # read BA file
-        ba_f = resolve_absolute_path(self.ba_file)
-        _, raw_ba_content = read_file_raw(file_path=ba_f)
-        
-        # read BluePrint file
-        blueprint_f = resolve_absolute_path(self.blueprint_file)
-        _, raw_blueprint_content = read_file_raw(file_path=blueprint_f)
-        
-        # return merged new values
-        now = datetime.now()
-        return {
-            **kwargs,
-            "idea_id": self.idea_id,
-            "project_name": self.project_info.get("technical_codename") or "-",
-            "project_description": self.project_info.get("descriptive_name") or "-",
-            "current_timestamp": now.strftime("%Y/%m/%d %H:%M:%S"),
-            "current_timestamp_2": now.strftime("%Y%m%d%H%M%S"),
-            "raw_idea_content": raw_idea_content,
-            "raw_srs_content": raw_ba_content,
-            "raw_blueprint_content": raw_blueprint_content
-        }
-    
+    @abstractmethod
     def __build_arguments_for_communicating__(self, **kwargs):
-        # initialize LLM model, belongs to rotating models
-        built_kwargs = {
-            **kwargs,
-            "llm": self.client
-        }
-        
-        # create internal LLM agents
-        self.__create_llm_agent__(**built_kwargs)
-        
-        # create task
-        self.__create_agent_task__(**built_kwargs)
-        
-        # initial crew with internal agent, task
-        agents = [
-            self.agent_solution_sentinel.agent,
-            self.agent_business_analyst.agent,
-            self.agent_system_architect.agent,
-            self.agent_blueprint_analyzer.agent,
-        ]
-        tasks = [
-            self.task_solution_sentinel,
-            self.task_business_analyst,
-            self.task_system_architect,
-            self.task_blueprint_analyzer,
-        ]
-        return {
-            **built_kwargs,
-            "agents": agents,
-            "tasks": tasks
-        }
+        pass
     
     def __reset_crew_event_bus_to_rotate_model__(self):
         try:
@@ -607,7 +436,7 @@ class CrewEnterpriseSolutionWorkflowAgent(AbstractCrewEnterpriseSuperAgent):
     # @override
     def __communicate_ai__(self, **kwargs):
         # build arguments
-        built_kwargs = self.__build_arguments_for_communicating__(**kwargs)
+        built_kwargs = self.__build_arguments_for_communicating__(**kwargs) or {}
         
         # create CrewAI
         crew_ai = Crew(
@@ -618,6 +447,141 @@ class CrewEnterpriseSolutionWorkflowAgent(AbstractCrewEnterpriseSuperAgent):
         
         # kick-off CrewAI
         return crew_ai.kickoff()
+    
+    # @override
+    def __ai_execute__(self, **kwargs):
+        # build prompts first
+        kwargs = self.build_prompts(**kwargs)
+        
+        # execute
+        return super().__ai_execute__(**kwargs)
+    
+    # @override
+    def __do_execute__(self, **kwargs):
+        # execute
+        kwargs = super().__do_execute__(**kwargs)
+        
+        # success, due to not reach exception from super function, do delete log if neccessary
+        delete_file(file=self.agent_log_file())
+        
+        # return result
+        return kwargs
+
+
+# =====================================================================
+# 🕵️‍♂️ CLASS 5: THE SUPREME SYSTEM ARCHITECTURE WORKFLOW AGENT (ENTERPRISE WORKFLOW)
+# =====================================================================
+class CrewEnterpriseSolutionWorkflowAgent(AbstractCrewEnterpriseWorkflowAgent):
+    """
+    A Class-based Agent representing the Supreme Gatekeeper.
+    It scans Idea, SRS, and Blueprint files for gaps, loopholes, and enterprise compliance.
+    """
+    def __init__(self, **kwargs):
+        super().__init__(agent_id='CrewEnterpriseSolutionWorkflowReviewer', **kwargs)
+    
+    # @override
+    def build_prompts(self, **kwargs):
+        return {
+            **kwargs,
+            "prompt_solution_sentinel": render_kwargs_prompt(PROMPT_TEMPLATE_SOLUTION_SENTINEL, **kwargs),
+            "prompt_ba": render_kwargs_prompt(PROMPT_TEMPLATE_BA, **kwargs),
+            "prompt_sa": render_kwargs_prompt(PROMPT_TEMPLATE_SA, **kwargs),
+            "expected_output_solution_sentinel": render_kwargs_prompt(EXPECTED_TEMPLATE_SOLUTION_SENTINEL, **kwargs),
+            "expected_output_ba": render_kwargs_prompt(EXPECTED_TEMPLATE_BA, **kwargs),
+            "expected_output_sa": render_kwargs_prompt(EXPECTED_TEMPLATE_SA, **kwargs)
+        }
+    
+    # @override
+    def __create_llm_agent__(self, **kwargs):
+        # re-initialialize agent classes to release memory
+        self.agent_solution_sentinel = EnterpriseSolutionSentinelAgent(**kwargs)
+        self.agent_business_analyst = EnterpriseBusinessAnalystAgent(**kwargs)
+        self.agent_system_architect = EnterpriseSystemArchitectAgent(**kwargs)
+        
+        # create internal agents
+        self.agent_solution_sentinel.__create_llm_agent__(**kwargs)
+        self.agent_business_analyst.__create_llm_agent__(**kwargs)
+        self.agent_system_architect.__create_llm_agent__(**kwargs)
+        return None
+    
+    # @override
+    def __create_agent_task__(self, **kwargs) -> Task:
+        # solution sentinel task
+        self.task_solution_sentinel = self.agent_solution_sentinel.__create_agent_task__(**kwargs)
+        
+        # business analyst task
+        kwargs = {
+            **kwargs,
+            "context_tasks_ba": [ self.task_solution_sentinel ]
+        }
+        self.task_business_analyst = self.agent_business_analyst.__create_agent_task__(**kwargs)
+        
+        # system architect task
+        kwargs = {
+            **kwargs,
+            "context_tasks_sa": [ self.task_solution_sentinel, self.task_business_analyst ]
+        }
+        self.task_system_architect = self.agent_system_architect.__create_agent_task__(**kwargs)
+        return None
+    
+    # @override
+    def pre_execute(self, **kwargs):
+        # read idea file
+        idea_f = resolve_absolute_path(self.idea_file)
+        _, raw_idea_content = read_file_raw(file_path=idea_f)
+        
+        # read BA file
+        ba_f = resolve_absolute_path(self.ba_file)
+        _, raw_ba_content = read_file_raw(file_path=ba_f)
+        
+        # read BluePrint file
+        blueprint_f = resolve_absolute_path(self.blueprint_file)
+        _, raw_blueprint_content = read_file_raw(file_path=blueprint_f)
+        
+        # return merged new values
+        now = datetime.now()
+        return {
+            **kwargs,
+            "idea_id": self.idea_id,
+            "project_name": self.project_info.get("technical_codename") or "-",
+            "project_description": self.project_info.get("descriptive_name") or "-",
+            "current_timestamp": now.strftime("%Y/%m/%d %H:%M:%S"),
+            "current_timestamp_2": now.strftime("%Y%m%d%H%M%S"),
+            "raw_idea_content": raw_idea_content,
+            "raw_srs_content": raw_ba_content,
+            "raw_blueprint_content": raw_blueprint_content
+        }
+    
+    # @override
+    def __build_arguments_for_communicating__(self, **kwargs):
+        # initialize LLM model, belongs to rotating models
+        built_kwargs = {
+            **kwargs,
+            "llm": self.client
+        }
+        
+        # create internal LLM agents
+        self.__create_llm_agent__(**built_kwargs)
+        
+        # create task
+        self.__create_agent_task__(**built_kwargs)
+        
+        # initial crew with internal agent, task
+        agents = [
+            self.agent_solution_sentinel.agent,
+            self.agent_business_analyst.agent,
+            self.agent_system_architect.agent,
+        ]
+        tasks = [
+            self.task_solution_sentinel,
+            self.task_business_analyst,
+            self.task_system_architect,
+        ]
+        return {
+            **built_kwargs,
+            "agents": agents,
+            "tasks": tasks
+        }
     
     # @override
     def __parse_ai_response__(self, response):
@@ -634,9 +598,6 @@ class CrewEnterpriseSolutionWorkflowAgent(AbstractCrewEnterpriseSuperAgent):
             
             # Task 3 (System Architect) response - fixed blueprint
             raw_sa_response = self.task_system_architect.output.raw
-            
-            # Task 4 (Diff Analyzer) response - report diff analysis
-            raw_da_response = self.task_blueprint_analyzer.output.raw
         except Exception as e:
             print(f"[ ❌ {self.agent_id} Agent | ERROR ] Could extract task output: {str(e)}")
 
@@ -645,8 +606,7 @@ class CrewEnterpriseSolutionWorkflowAgent(AbstractCrewEnterpriseSuperAgent):
             "kickoff": response,
             "report_sentinel": raw_sentinel_response,
             "report_ba": raw_ba_response,
-            "report_sa": raw_sa_response,
-            "report_da": raw_da_response
+            "report_sa": raw_sa_response
         }
     
     # @override
@@ -686,13 +646,108 @@ class CrewEnterpriseSolutionWorkflowAgent(AbstractCrewEnterpriseSuperAgent):
         else:
             print(f"[ 💀 {self.agent_id} Agent | WARN ] No any system-architect report!")
         
+        # export raw response if necessary as log tracing
+        raw_response = kwargs_by_key(key="raw_response", **kwargs)
+        if raw_response:
+            write_file(
+                file=CSRO_RAW_FILE,
+                data=raw_response
+            )
+        
+        return { **kwargs }
+
+
+# =====================================================================
+# 📐 CLASS 6: SYSTEM ARCHITECT DIFF ANALYZER AGENT
+# =====================================================================
+class CrewEnterpriseBluePrintDiffAnalyzerAgent(AbstractCrewEnterpriseWorkflowAgent):
+    """
+    A Class-based Agent representing the Supreme Gatekeeper.
+    It scans Idea, SRS, and Blueprint files for gaps, loopholes, and enterprise compliance.
+    """
+    def __init__(self, **kwargs):
+        super().__init__(agent_id='CrewEnterpriseBluePrintDiffAnalyzer', **kwargs)
+    
+    # @override
+    def build_prompts(self, **kwargs):
+        return {
+            **kwargs,
+            "task_blueprint_da": render_kwargs_prompt(TASK_TEMPLATE_SA_DIFF_ANALYZER, **kwargs),
+            "prompt_blueprint_da": render_kwargs_prompt(PROMPT_TEMPLATE_SA_DIFF_ANALYZER, **kwargs),
+            "expected_output_da": render_kwargs_prompt(EXPECTED_TEMPLATE_SA_DIFF_ANALYZER, **kwargs)
+        }
+    
+    # @override
+    def __create_llm_agent__(self, **kwargs):
+        self.agent = Agent(
+            role="Principal Enterprise Systems Auditor",
+            goal="Execute independent triple-check architectural audits on system blueprints.",
+            backstory=kwargs_by_key(key="prompt_blueprint_da", **kwargs),
+            llm=kwargs_by_key(key="llm", **kwargs),
+            verbose=False,
+            max_iter=1,                 # maximum 1 interation
+            allow_delegation=False      # to avoid loop
+        )
+        return self.agent
+    
+    # @override
+    def __create_agent_task__(self, **kwargs) -> Task:
+        return Task(
+            description=kwargs_by_key(key="task_blueprint_da", **kwargs),
+            expected_output=kwargs_by_key(key="expected_output_da", **kwargs),
+            agent=self.agent
+        )
+    
+    # @override
+    def agent_log_file(self) -> str:
+        return CSRO_LOG_DA_FILE
+    
+    # @override
+    def pre_execute(self, **kwargs):
+        # read BluePrint file
+        blueprint_f = resolve_absolute_path(self.blueprint_file)
+        _, raw_blueprint_content = read_file_raw(file_path=blueprint_f)
+        
+        # return merged new values
+        now = datetime.now()
+        return {
+            **kwargs,
+            "idea_id": self.idea_id,
+            "project_name": self.project_info.get("technical_codename") or "-",
+            "project_description": self.project_info.get("descriptive_name") or "-",
+            "current_timestamp": now.strftime("%Y/%m/%d %H:%M:%S"),
+            "current_timestamp_2": now.strftime("%Y%m%d%H%M%S"),
+            "raw_blueprint_content": raw_blueprint_content
+        }
+    
+    def __build_arguments_for_communicating__(self, **kwargs):
+        # initialize LLM model, belongs to rotating models
+        built_kwargs = {
+            **kwargs,
+            "llm": self.client
+        }
+        
+        # initial crew with internal agent, task
+        agents = [ self.__create_llm_agent__(**built_kwargs) ]
+        tasks = [ self.__create_agent_task__(**built_kwargs) ]
+        return {
+            **built_kwargs,
+            "agents": agents,
+            "tasks": tasks
+        }
+    
+    # @override
+    def process_communication(self, **kwargs):
+        response_data = kwargs_by_key(key="clean_response", **kwargs)
+        if not response_data or not isinstance(response_data, dict):
+            raise RuntimeError(f"[ 💀 {self.agent_id} Agent | CRITICAL ERROR ] (7) Invalid AI raw response.")
+        
+        # project info
+        timestamp = kwargs_by_key(key="current_timestamp_2", **kwargs)
+        
         # export task DA response
-        if "report_da" in response_data and response_data.get("report_da"):
-            response_da = response_data.get("report_da")
-            write_file(file=self.file_report_da_approval(prefix=timestamp), data=response_da)
-            write_file(file=self.file_blueprint_diff_analysis(prefix=timestamp), data=response_da)
-        else:
-            print(f"[ 💀 {self.agent_id} Agent | WARN ] No any diff-blueprint analysis report!")
+        write_file(file=self.file_report_da_approval(prefix=timestamp), data=response_data)
+        write_file(file=self.file_blueprint_diff_analysis(prefix=timestamp), data=response_data)
         
         # export raw response if necessary as log tracing
         raw_response = kwargs_by_key(key="raw_response", **kwargs)
@@ -701,25 +756,48 @@ class CrewEnterpriseSolutionWorkflowAgent(AbstractCrewEnterpriseSuperAgent):
                 file=CSRO_RAW_FILE,
                 data=raw_response
             )
-    
-    # @override
-    def __ai_execute__(self, **kwargs):
-        # build prompts first
-        kwargs = self.build_prompts(**kwargs)
         
-        # execute
-        return super().__ai_execute__(**kwargs)
-    
-    # @override
-    def __do_execute__(self, **kwargs):
-        # execute
-        result = super().__do_execute__(**kwargs)
-        
-        # success, due to not reach exception from super function, do delete log if neccessary
-        delete_file(file=self.agent_log_file())
-        
-        # return result
-        return result
+        return { **kwargs }
+
+
+# =====================================================================
+# 🕵️‍♂️ FINAL: THE SUPREME WORKFLOW AGENT (ENTERPRISE WORKFLOW)
+# =====================================================================
+class CrewEnterpriseGovernanceFlow(Flow):
+    """
+    An asynchronous, stateful event-driven workflow execution layer.
+    Utilizes native CrewAI Flow hooks (@start, @listen) to eliminate 
+    Pydantic re-validation failure loops and preserve clean memory handoffs.
+    """
+
+    def __init__(self, **kwargs):
+        super().__init__()
+        # Inject pre-initialized custom wrappers containing the actual CrewAI Agents
+        self.kwargs = kwargs or {}
+        self.agent_solution_review = CrewEnterpriseSolutionWorkflowAgent(**self.kwargs)
+        self.agent_diff_analyzer = CrewEnterpriseBluePrintDiffAnalyzerAgent(**self.kwargs)
+
+    @start()
+    def execute_solution_review(self):
+        """
+        STAGE 1: Kicks off the linear 3-Agent generation sub-crew (Sentinel -> BA -> SA).
+        Returns the raw modified blueprint string fetched directly from SA's RAM cache.
+        """
+        print("[ 🚀 SOLUTION ARCHITECT REVIEW ] Enterprise Solution Architecture Review CSRO...")
+        return self.agent_solution_review.execute() or {}
+
+    @listen(execute_solution_review)
+    def execute_blueprint_diff_analysis(self, solution_architect_review_result):
+        """
+        STAGE 2: Explicitly triggered via native event hooks once STAGE 1 returns successfully.
+        Ingests the fixed blueprint payload into your explicit custom template keyword.
+        """
+        print("[ 🔎 BLUEPRINT CHANGES ANALYSIS ] Analyze new changes of Solution Architecture Report...")
+        return self.agent_diff_analyzer.execute({
+            **solution_architect_review_result,
+            "raw_csro_blueprint_content": solution_architect_review_result.get("report_sa", solution_architect_review_result.get("kickoff", None))
+        }) or {}
+
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
@@ -731,9 +809,7 @@ if __name__ == "__main__":
     litellm.drop_params = True
     
     # initializ workflow agent
-    workflow_agent = CrewEnterpriseSolutionWorkflowAgent(
-        idea=args.idea,
-    )
+    enterprise_workflow_agent = CrewEnterpriseGovernanceFlow(idea=args.idea)
     
     # use asyncio to run safely while CI/CD doesn't have loop under background
     try:
@@ -743,6 +819,6 @@ if __name__ == "__main__":
         asyncio.set_event_loop(loop)
         
     # execute workflow
-    loop.run_until_complete(asyncio.to_thread(workflow_agent.execute))
+    loop.run_until_complete(asyncio.to_thread(enterprise_workflow_agent.execute))
 
 
