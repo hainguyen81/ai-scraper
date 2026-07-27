@@ -290,6 +290,7 @@ class AbstractAgent(ABC):
         # internal execution
         kwargs = self.__execute__(**kwargs) or {}
         if not kwargs or not kwargs.get("success"):
+            raw_response = kwargs_by_key(key="raw_response", **kwargs)
             raise RuntimeError(raw_response) # response is exception stack-trace from `__execute__`
         
         # done tasks
