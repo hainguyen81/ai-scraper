@@ -83,12 +83,12 @@ class AbstractCrewEnterpriseSuperAgent(AbstractAgent):
     def file_blueprint_approval(self, prefix):
         project_name = self.project_name()
         prefix = prefix if prefix else "_"
-        return os.path.join(BLUEPRINT_STORAGE_PATH, project_name, "context", f"{prefix}.CSRO.{project_name}.global.blueprint.md") if project_name else None
+        return os.path.join(BLUEPRINT_STORAGE_PATH, project_name, "context", f"{prefix}-csro.{project_name}.global.blueprint.md") if project_name else None
     
     def file_ba_approval(self, prefix):
         project_name = self.project_name()
         prefix = prefix if prefix else "_"
-        return os.path.join(BA_STORAGE_PATH, project_name, f"{prefix}.CSRO.requirements.md") if project_name else None
+        return os.path.join(BA_STORAGE_PATH, project_name, f"{prefix}-csro.requirements.md") if project_name else None
     
     def file_report_ba_approval(self, prefix):
         project_name = self.project_name()
@@ -379,7 +379,10 @@ class CrewEnterpriseSolutionWorkflowAgent(AbstractCrewEnterpriseSuperAgent):
             **kwargs,
             "prompt_solution_sentinel": render_kwargs_prompt(PROMPT_TEMPLATE_SOLUTION_SENTINEL, **kwargs),
             "prompt_ba": render_kwargs_prompt(PROMPT_TEMPLATE_BA, **kwargs),
-            "prompt_sa": render_kwargs_prompt(PROMPT_TEMPLATE_SA, **kwargs)
+            "prompt_sa": render_kwargs_prompt(PROMPT_TEMPLATE_SA, **kwargs),
+            "expected_output_solution_sentinel": render_kwargs_prompt(EXPECTED_TEMPLATE_SOLUTION_SENTINEL, **kwargs),
+            "expected_output_ba": render_kwargs_prompt(EXPECTED_TEMPLATE_BA, **kwargs),
+            "expected_output_sa": render_kwargs_prompt(EXPECTED_TEMPLATE_SA, **kwargs)
         }
     
     # @override
@@ -433,15 +436,6 @@ class CrewEnterpriseSolutionWorkflowAgent(AbstractCrewEnterpriseSuperAgent):
         blueprint_f = resolve_absolute_path(self.blueprint_file)
         _, raw_blueprint_content = read_file_raw(file_path=blueprint_f)
         
-        # read expected sentinel
-        _, raw_expected_sentinel_content = read_file_raw(file_path=EXPECTED_TEMPLATE_SOLUTION_SENTINEL)
-        
-        # read expected BA
-        _, raw_expected_ba_content = read_file_raw(file_path=EXPECTED_TEMPLATE_BA)
-        
-        # read expected SA
-        _, raw_expected_sa_content = read_file_raw(file_path=EXPECTED_TEMPLATE_SA)
-        
         # return merged new values
         now = datetime.now()
         return {
@@ -453,10 +447,7 @@ class CrewEnterpriseSolutionWorkflowAgent(AbstractCrewEnterpriseSuperAgent):
             "current_timestamp_2": now.strftime("%Y%m%d%H%M%S"),
             "raw_idea_content": raw_idea_content,
             "raw_srs_content": raw_ba_content,
-            "raw_blueprint_content": raw_blueprint_content,
-            "expected_output_solution_sentinel": raw_expected_sentinel_content,
-            "expected_output_ba": raw_expected_ba_content,
-            "expected_output_sa": raw_expected_sa_content
+            "raw_blueprint_content": raw_blueprint_content
         }
     
     def __build_arguments_for_communicating__(self, **kwargs):
