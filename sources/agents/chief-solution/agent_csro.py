@@ -208,7 +208,7 @@ class AbstractCrewEnterpriseSuperAgent(AbstractAgent):
         return 0.1 # require strickly, exact requirements
     
     # @override
-    def process_communication(self, response_data, **kwargs):
+    def process_communication(self, **kwargs):
         pass
     
     # @override
@@ -553,7 +553,8 @@ class CrewEnterpriseSolutionWorkflowAgent(AbstractCrewEnterpriseSuperAgent):
         }
     
     # @override
-    def process_communication(self, response_data, **kwargs):
+    def process_communication(self, **kwargs):
+        response_data = kwargs_by_key(key="clean_response", **built_kwargs)
         if not response_data or not isinstance(response_data, dict):
             raise RuntimeError(f"[ 💀 {self.agent_id} Agent | CRITICAL ERROR ] (7) Invalid AI raw response.")
         
