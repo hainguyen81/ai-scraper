@@ -819,6 +819,6 @@ if __name__ == "__main__":
         asyncio.set_event_loop(loop)
         
     # execute workflow
-    loop.run_until_complete(asyncio.to_thread(enterprise_workflow_agent.execute))
+    loop.run_until_complete(asyncio.to_thread(enterprise_workflow_agent.kickoff))
 
 
