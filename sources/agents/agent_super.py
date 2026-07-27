@@ -246,7 +246,6 @@ class AbstractAgent(ABC):
         # agent do job
         system_prompt = None
         user_prompt = None
-        latest_response = None
         success = False
         try:
             # build system prompt
@@ -266,7 +265,6 @@ class AbstractAgent(ABC):
             success = True
         except Exception as e:
             print(f"[ 💀 {self.agent_id} Agent | ERROR ] Exception caught on model {self.config_model_name()}: {exception_stacktrace(e)}")
-            latest_response = exception_stacktrace(e) if not latest_response else latest_response
         
         # result
         return {
@@ -277,8 +275,10 @@ class AbstractAgent(ABC):
     def __handle_execute_exception__(self, e, **kwargs):
         print(f"[ 💀 {self.agent_id} Agent | ERROR ] Exception caught on model {self.config_model_name()}: {exception_stacktrace(e)}")
         # write log
+        last_response = kwargs_by_key(key="raw_response", **kwargs)
+        last_response = last_response if last_response else "No Response"
         self.write_log(
-            data=exception_stacktrace(e),
+            data=f"# Lastest Response:\n{last_response}\n\n# Exception: {exception_stacktrace(e)}\n\n",
             append=True
         )
     
