@@ -25,6 +25,7 @@ from sources.agents.agent_helper import (
 # ==============================================================================
 # GLOBAL CONFIGURATION PATHS - CONFIG HERE TO CUSTOMIZE DIRECTORY STRUCTURE
 # ==============================================================================
+VERBOSE_MODELS              = False
 MODELS_POOL_PATH            = resolve_absolute_path("sources/agents/models/models.json")
 
 class AbstractAgent(ABC):
@@ -100,13 +101,14 @@ class AbstractAgent(ABC):
             target_model_name = config.get("model_name") if isinstance(config, dict) else None
             target_model_endpoint = config.get("api_endpoint") if isinstance(config, dict) else None
             
-            print("==============================================")
-            print("🔍 DEBUG: 'config':")
-            try:
-                print(json.dumps(config, indent=4, ensure_ascii=False))
-            except Exception:
-                print(f"⚠️ Exception while dump 'config' json: {type(config)} - Config: {config}")
-            print("==============================================")
+            if VERBOSE_MODELS:
+                print("==============================================")
+                print("🔍 DEBUG: 'config':")
+                try:
+                    print(json.dumps(config, indent=4, ensure_ascii=False))
+                except Exception:
+                    print(f"⚠️ Exception while dump 'config' json: {type(config)} - Config: {config}")
+                print("==============================================")
             
             # If endpoint is missing, None, empty "", or just whitespaces "   ", skip it cleanly
             if not target_model_name or not target_model_endpoint or not str(target_model_endpoint).strip():
