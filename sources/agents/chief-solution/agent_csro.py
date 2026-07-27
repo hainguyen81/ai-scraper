@@ -403,11 +403,10 @@ class EnterpriseBluePrintDiffAnalyzerAgent(AbstractCrewEnterpriseSuperAgent):
             allow_delegation=False      # to avoid loop
         )
         return self.agent
-
-    # @override
-    def __create_agent_task__(self, **kwargs) -> Task:
+    
+    def __create_agent_task_prompt__(self, **kwargs):
+        # check context tasks to request task SA raw response
         context_tasks_da = kwargs_by_key(key="context_tasks_da", **kwargs)
-        print(f"- Context Tasks DA: {str(context_tasks_da)}")
         if  not context_tasks_da or not isinstance(context_tasks_da, list) or len(context_tasks_da) <= 0:
             print(f"[ 💀 {self.agent_id} Agent | CRITICAL ERROR ] Invalid tasks context to do blueprint analysis.")
             raise RuntimeError("Invalid tasks context to do blueprint analysis.")
@@ -416,11 +415,15 @@ class EnterpriseBluePrintDiffAnalyzerAgent(AbstractCrewEnterpriseSuperAgent):
             print(f"[ 💀 {self.agent_id} Agent | CRITICAL ERROR ] Invalid SA Task response for the fixed/approved blueprint to analyze.")
             raise RuntimeError("Invalid SA Task response for the fixed/approved blueprint to analyze.")
         
-        # prompt/task description is the response of task SA
+        # render prompt for this agent task
         kwargs = { **kwargs, "raw_csro_blueprint_content": context_tasks_da[0].output.raw }
-        task = render_kwargs_prompt(TASK_TEMPLATE_SA_DIFF_ANALYZER, **kwargs)
+        return render_kwargs_prompt(TASK_TEMPLATE_SA_DIFF_ANALYZER, **kwargs)
+    
+    # @override
+    def __create_agent_task__(self, **kwargs) -> Task:
         return Task(
-            description=task,
+            # use callback function to dynamic task prompt
+            description=self.__create_agent_task_prompt__(**kwargs),
             expected_output=kwargs_by_key(key="expected_output_da", **kwargs),
             agent=self.agent,
             context=context_tasks_da
