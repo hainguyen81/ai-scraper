@@ -80,10 +80,35 @@ class AbstractCrewEnterpriseSuperAgent(AbstractAgent):
         project_name = self.project_name()
         return os.path.join(BLUEPRINT_STORAGE_PATH, project_name, "context", f"{project_name}.global.blueprint.md") if project_name else None
     
-    def fixed_file_blueprint(self, prefix):
+    def file_blueprint_approval(self, prefix):
         project_name = self.project_name()
-        prefix = prefix if prefix else "fixed"
-        return os.path.join(BLUEPRINT_STORAGE_PATH, project_name, "context", f"{prefix}.{project_name}.global.blueprint.md") if project_name else None
+        prefix = prefix if prefix else "_"
+        return os.path.join(BLUEPRINT_STORAGE_PATH, project_name, "context", f"{prefix}.CSRO.{project_name}.global.blueprint.md") if project_name else None
+    
+    def file_ba_approval(self, prefix):
+        project_name = self.project_name()
+        prefix = prefix if prefix else "_"
+        return os.path.join(BA_STORAGE_PATH, project_name, f"{prefix}.CSRO.requirements.md") if project_name else None
+    
+    def file_report_ba_approval(self, prefix):
+        project_name = self.project_name()
+        prefix = prefix if prefix else "_"
+        return os.path.join(CSRO_STORAGE_PATH, project_name, f"{prefix}.chief-solution-report-ba.md") if project_name else None
+    
+    def file_report_sa_approval(self, prefix):
+        project_name = self.project_name()
+        prefix = prefix if prefix else "_"
+        return os.path.join(CSRO_STORAGE_PATH, project_name, f"{prefix}.chief-solution-report-sa.md") if project_name else None
+    
+    def file_report_sentinel_approval(self, prefix):
+        project_name = self.project_name()
+        prefix = prefix if prefix else "_"
+        return os.path.join(CSRO_STORAGE_PATH, project_name, f"{prefix}.chief-solution-report-sentinel.md") if project_name else None
+    
+    def file_report_kickoff(self, prefix):
+        project_name = self.project_name()
+        prefix = prefix if prefix else "_"
+        return os.path.join(CSRO_STORAGE_PATH, project_name, f"{prefix}.chief-solution-kickoff.md") if project_name else None
     
     def load_project_info(self, **kwargs):
         idea_id = kwargs_by_key(key="idea", **kwargs)
@@ -326,8 +351,7 @@ class EnterpriseSystemArchitectAgent(AbstractCrewEnterpriseSuperAgent):
             description=f"Overhaul the System Architecture Blueprint based on these instructions:\n{prompt}",
             expected_output=kwargs_by_key(key="expected_output_sa", **kwargs),
             agent=self.agent,
-            context=kwargs_by_key(key="context_tasks_sa", **kwargs),
-            output_file=kwargs_by_key(key="fixed_blueprint_file", **kwargs)
+            context=kwargs_by_key(key="context_tasks_sa", **kwargs)
         )
     
     # @override
@@ -433,8 +457,7 @@ class CrewEnterpriseSolutionWorkflowAgent(AbstractCrewEnterpriseSuperAgent):
             "raw_blueprint_content": raw_blueprint_content,
             "expected_output_solution_sentinel": raw_expected_sentinel_content,
             "expected_output_ba": raw_expected_ba_content,
-            "expected_output_sa": raw_expected_sa_content,
-            "fixed_blueprint_file": self.fixed_file_blueprint(prefix=now.strftime("%Y%m%d%H%M%S"))
+            "expected_output_sa": raw_expected_sa_content
         }
     
     def __build_arguments_for_communicating__(self, **kwargs):
@@ -545,28 +568,27 @@ class CrewEnterpriseSolutionWorkflowAgent(AbstractCrewEnterpriseSuperAgent):
             raise RuntimeError(f"[ 💀 {self.agent_id} Agent | CRITICAL ERROR ] (7) Invalid AI raw response.")
         
         # project info
-        project_name = self.project_name()
         timestamp = kwargs_by_key(key="current_timestamp_2", **kwargs)
         
         # export storage audit report
         if "kickoff" in response_data and response_data.get("kickoff"):
-            file = os.path.join(CSRO_STORAGE_PATH, project_name, f"{timestamp}_chief-solution-report.md")
-            write_file(file=file, data=response_data.get("kickoff"))
+            write_file(file=self.file_report_kickoff(prefix=timestamp), data=response_data.get("kickoff"))
         
         # export task sentinel response
         if "report_sentinel" in response_data and response_data.get("report_sentinel"):
-            file = os.path.join(CSRO_STORAGE_PATH, project_name, f"{timestamp}_chief-solution-report-sentinel.md")
-            write_file(file=file, data=response_data.get("report_sentinel"))
+            write_file(file=self.file_report_sentinel_approval(prefix=timestamp), data=response_data.get("report_sentinel"))
         
         # export task BA response
         if "report_ba" in response_data and response_data.get("report_ba"):
-            file = os.path.join(CSRO_STORAGE_PATH, project_name, f"{timestamp}_chief-solution-report-ba.md")
-            write_file(file=file, data=response_data.get("report_ba"))
+            response_ba = response_data.get("report_ba")
+            write_file(file=self.file_report_ba_approval(prefix=timestamp), data=response_ba)
+            write_file(file=self.file_ba_approval(prefix=timestamp), data=response_ba)
         
         # export task SA response
         if "report_sa" in response_data and response_data.get("report_sa"):
-            file = os.path.join(CSRO_STORAGE_PATH, project_name, f"{timestamp}_chief-solution-report-sa.md")
-            write_file(file=file, data=response_data.get("report_sa"))
+            response_sa = response_data.get("report_sa")
+            write_file(file=self.file_report_sa_approval(prefix=timestamp), data=response_sa)
+            write_file(file=self.file_blueprint_approval(prefix=timestamp), data=response_sa)
         
         # export raw response if necessary as log tracing
         raw_response = kwargs_by_key(key="raw_response", **kwargs)
