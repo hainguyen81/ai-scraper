@@ -49,17 +49,20 @@ Below are the live engineering assets under evaluation:
 
 ## 📤 3. MANDATORY OUTPUT FORMAT (Markdown Report)
 
-# TECHNICAL AUDIT REPORT
+# TECHNICAL AUDIT REPORT: {{ project_name }}
 
 ## 📊 Document Control
-- **Report ID**: AUDIT-{{ current_timestamp_2 }}
-- **Idea ID**: {{ idea_id }}
-- **Project Name**: {{ project_name }}
-- **Project Description**: {{ project_description }}
-- **Version**: 1.0 (Automated Governance)
-- **Date/Time**: {{ current_timestamp }}
-- **Author**: Chief Solution Review Officer (CSRO Agent)
-- **Approval**: Certified by Enterprise Technical Governance Board
+
+| Item | Details |
+| :--- | :--- |
+| **Report ID** | AUDIT-{{ current_timestamp_2 }} |
+| **Idea ID** | {{ idea_id }} |
+| **Project Name** | {{ project_name }} |
+| **Project Description** | {{ project_description }} |
+| **Version** | 1.0 (Automated Governance) |
+| **Date/Time** | {{ current_timestamp }} |
+| **Author** | Chief Solution Review Officer (CSRO Agent) |
+| **Approval** | Certified by Enterprise Technical Governance Board |
 
 ### 📊 1. Executive Summary
 - **Overall Status**: [✅ AUDIT STATUS: PASSED] OR [❌ AUDIT STATUS: FAILED - REVISION MANDATORY]

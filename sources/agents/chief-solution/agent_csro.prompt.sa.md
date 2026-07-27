@@ -44,17 +44,20 @@ Below is the live engineering context injected into your workspace automatically
 
 ## 📤 4. MANDATORY OUTPUT FORMAT (Markdown Blueprint)
 
-# [Insert Original Main Project Header from {{ raw_blueprint_content }} here]
+# GLOBAL PROJECT CONTEXT: {{ project_name }}
 
 ## 📊 Document Control
-- **Blueprint ID**: ARCH-{{ current_timestamp_2 }}
-- **Idea ID**: {{ idea_id }}
-- **Project Name**: {{ project_name }}
-- **Project Description**: {{ project_description }}
-- **Version**: 1.0 (Aligned)
-- **Date/Time**: {{ current_timestamp }}
-- **Author**: Enterprise System Architect (SA Agent)
-- **Approval**: Pending Review by Chief Solution Review Officer (CSRO)
+
+| Item | Details |
+| :--- | :--- |
+| **Blueprint ID** | ARCH-{{ current_timestamp_2 }} |
+| **Idea ID** | {{ idea_id }} |
+| **Project Name** | {{ project_name }} |
+| **Project Description** | {{ project_description }} |
+| **Version** | 1.0 (Aligned) |
+| **Date/Time** | {{ current_timestamp }} |
+| **Author** | Enterprise System Architect (SA Agent) |
+| **Approval** | Pending Review by Chief Solution Review Officer (CSRO) |
 
 ## 📊 1. Architectural Alignment Summary
 - **Target Technology Stack**: [Preserve and list the exact languages, databases, and message brokers extracted from {{ raw_blueprint_content }}]
