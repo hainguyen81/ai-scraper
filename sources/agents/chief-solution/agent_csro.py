@@ -554,7 +554,7 @@ class CrewEnterpriseSolutionWorkflowAgent(AbstractCrewEnterpriseSuperAgent):
     
     # @override
     def process_communication(self, **kwargs):
-        response_data = kwargs_by_key(key="clean_response", **built_kwargs)
+        response_data = kwargs_by_key(key="clean_response", **kwargs)
         if not response_data or not isinstance(response_data, dict):
             raise RuntimeError(f"[ 💀 {self.agent_id} Agent | CRITICAL ERROR ] (7) Invalid AI raw response.")
         
