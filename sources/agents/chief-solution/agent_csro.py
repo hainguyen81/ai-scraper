@@ -406,6 +406,12 @@ class EnterpriseBluePrintDiffAnalyzerAgent(AbstractCrewEnterpriseSuperAgent):
     
     # @override
     def __create_agent_task__(self, **kwargs) -> Task:
+        # check context tasks to request task SA raw response
+        context_tasks_da = kwargs_by_key(key="context_tasks_da", **kwargs)
+        if  not context_tasks_da or not isinstance(context_tasks_da, list) or len(context_tasks_da) <= 0:
+            print(f"[ 💀 {self.agent_id} Agent | CRITICAL ERROR ] Invalid tasks context to do blueprint analysis.")
+            raise RuntimeError("Invalid tasks context to do blueprint analysis.")
+        
         task = Task(
             # use callback function to dynamic task prompt
             description="Placeholder description - Will be overwritten at runtime.",
@@ -416,12 +422,7 @@ class EnterpriseBluePrintDiffAnalyzerAgent(AbstractCrewEnterpriseSuperAgent):
         
         def __agent_task_callback__(task_output=None):
             # check context tasks to request task SA raw response
-            context_tasks_da = kwargs_by_key(key="context_tasks_da", **kwargs)
-            if  not context_tasks_da or not isinstance(context_tasks_da, list) or len(context_tasks_da) <= 0:
-                print(f"[ 💀 {self.agent_id} Agent | CRITICAL ERROR ] Invalid tasks context to do blueprint analysis.")
-                raise RuntimeError("Invalid tasks context to do blueprint analysis.")
-            
-            elif not context_tasks_da[0] or not context_tasks_da[0].output or not context_tasks_da[0].output.raw:
+            if not context_tasks_da[0] or not context_tasks_da[0].output or not context_tasks_da[0].output.raw:
                 print(f"[ 💀 {self.agent_id} Agent | CRITICAL ERROR ] Invalid SA Task response for the fixed/approved blueprint to analyze.")
                 raise RuntimeError("Invalid SA Task response for the fixed/approved blueprint to analyze.")
             
