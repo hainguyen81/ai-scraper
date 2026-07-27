@@ -18,7 +18,7 @@ from crewai.events.event_bus import crewai_event_bus
 from crewai.events.base_events import reset_emission_counter
 from crewai.events.event_context import _event_id_stack, EventContextConfig, _event_context_config
 # use flow for blueprint diff analysis
-from crewai.flow.runtime import Flow, listen, start, on
+from crewai.flow import Flow, listen, start, router
 
 # Now Python can seamlessly see and import the centralized helper utility cleanly!
 from sources.agents.agent_helper import (
