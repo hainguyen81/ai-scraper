@@ -808,7 +808,7 @@ class CrewEnterpriseGovernanceFlow(Flow):
         print("[ 🔎 BLUEPRINT CHANGES ANALYSIS ] Analyze new changes of Solution Architecture Report...")
         kwargs = {
             **solution_architect_review_result,
-            "raw_csro_blueprint_content": solution_architect_review_result.get("report_sa", solution_architect_review_result.get("kickoff", None))
+            "raw_csro_blueprint_content": solution_architect_review_result.get("report_sa", None)
         }
         return __execute_function_until_complete__(func_pointer=self.agent_diff_analyzer.execute, **kwargs) or {}
 
