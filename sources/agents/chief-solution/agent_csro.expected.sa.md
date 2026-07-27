@@ -1,7 +1,9 @@
-The updated and expanded System Architecture Blueprint file for the project.
-
-## MANDATORY COMPLIANCE RULES:
-1. **Project Integrity**: You MUST keep the exact project title `# GLOBAL PROJECT CONTEXT: autosellhub-automation` and the core tech stack (Node.js, Express.js, MongoDB, Docker).
-2. **No Data Loss**: DO NOT delete or rewrite any existing phases (Phase 1 to Phase 5) from the original blueprint.
-3. **Architectural Refactoring**: Based on the auditor's review, modify and expand the technical routing to break any circular dependencies. Use a Hub-and-Spoke topology or an asynchronous Message Queue structure.
-4. **Format Restriction**: The output must be raw, valid Markdown text only. Do not wrap the entire response in extra markdown code blocks (```markdown ... ```), and do not include conversational filler words (e.g., "Here is your file...").
+The complete Enterprise Global Blueprint Report. Your output MUST start exactly with a top-level Markdown header (e.g., # GLOBAL PROJECT CONTEXT or the main project title) followed immediately by a '## 📊 Document Control' (or '## 📊 Document Information' or '## 📊 Document Revision') section containing all metadata keys specified in your system instructions.
+                
+## CRITICAL ARCHITECTURAL RULES:
+1. Core tech stack MUST remain 100% identical to the original technologies specified in the original blueprint (read from {{ raw_blueprint_content }}). Do not change the programming language, databases, or frameworks.
+2. DO NOT delete, shorten, or remove ANY existing phases from the original blueprint. You must preserve ALL existing phases intact.
+3. You must audit every existing phase against the new SRS requirements, identify gaps, and supplement that specific phase with technical solutions.
+Additionally, if and ONLY if a critical gap cannot be resolved within the existing phases, you are permitted to append new, highly specific architectural phases at the very end of the document.
+Every new phase MUST have concrete technical deliverables and clear justification; do not generate generic filler phases or structural garbage.
+4. Provide raw, valid Markdown text only. No wrapping in extra ```markdown blocks, and no conversational filler words.

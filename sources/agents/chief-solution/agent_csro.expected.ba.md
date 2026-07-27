@@ -1,1 +1,1 @@
-The complete, flawless Enterprise SRS document formatted EXACTLY as specified in the 'MANDATORY OUTPUT FORMAT (Markdown Enterprise SRS)' section.
+The complete, flawless Enterprise SRS document. Your output MUST start exactly with the header '# SOFTWARE REQUIREMENTS SPECIFICATION (SRS)' followed immediately by a '## 📊 Document Information' (or '## 📊 Document Control' or '## 📊 Document Revision') section containing all metadata fields specified in your system instructions. Raw Markdown text only.
