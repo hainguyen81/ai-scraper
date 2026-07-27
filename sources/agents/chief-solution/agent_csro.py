@@ -39,10 +39,13 @@ from sources.agents.agent_super import AbstractAgent
 PROMPT_TEMPLATE_SOLUTION_SENTINEL   = resolve_absolute_path("sources/agents/chief-solution/agent_csro.prompt.solution-sentinel.md")
 PROMPT_TEMPLATE_BA                  = resolve_absolute_path("sources/agents/chief-solution/agent_csro.prompt.ba.md")
 PROMPT_TEMPLATE_SA                  = resolve_absolute_path("sources/agents/chief-solution/agent_csro.prompt.sa.md")
+PROMPT_TEMPLATE_SA_DIFF_ANALYZER    = resolve_absolute_path("sources/agents/chief-solution/agent_csro.prompt.diff-blueprint-analyzer.md")
 # `MANDATORY OUTPUT FORMAT` is a section in PROMPT
 EXPECTED_TEMPLATE_SOLUTION_SENTINEL = resolve_absolute_path("sources/agents/chief-solution/agent_csro.expected.solution-sentinel.md")
 EXPECTED_TEMPLATE_BA                = resolve_absolute_path("sources/agents/chief-solution/agent_csro.expected.ba.md")
 EXPECTED_TEMPLATE_SA                = resolve_absolute_path("sources/agents/chief-solution/agent_csro.expected.sa.md")
+EXPECTED_TEMPLATE_SA_DIFF_ANALYZER  = resolve_absolute_path("sources/agents/chief-solution/agent_csro.expected.diff-blueprint-analyzer.md")
+TASK_TEMPLATE_SA_DIFF_ANALYZER      = resolve_absolute_path("sources/agents/chief-solution/agent_csro.task.diff-blueprint-analyzer.md")
 STORAGE_PATH                        = resolve_absolute_path("sources/storage")
 IDEAS_STORAGE_PATH                  = os.path.join(STORAGE_PATH, "ideas")
 BA_STORAGE_PATH                     = os.path.join(STORAGE_PATH, "business-analysis")
@@ -364,7 +367,65 @@ class EnterpriseSystemArchitectAgent(AbstractCrewEnterpriseSuperAgent):
 
 
 # =====================================================================
-# 🕵️‍♂️ CLASS 4: THE SUPREME WORKFLOW AGENT (ENTERPRISE WORKFLOW)
+# 📐 CLASS 4: SYSTEM ARCHITECT DIFF ANALYZER AGENT
+# =====================================================================
+class EnterpriseBluePrintDiffAnalyzerAgent(AbstractCrewEnterpriseSuperAgent):
+    """
+    A Class-based Agent responsible for structural and infrastructural Blueprints.
+    """
+    def __init__(self, **kwargs):
+        super().__init__(agent_id='EnterpriseBluePrintDiffAnalyzer', **kwargs)
+    
+    # @override
+    def initialize(self):
+        pass # no need to initialize, just need creating agent/task
+    
+    # @override
+    def __create_llm_agent__(self, **kwargs):
+        backstory = kwargs_by_key(key="prompt_blueprint_da", **kwargs)
+        self.agent = Agent(
+            role="Principal Enterprise Systems Auditor",
+            goal="Execute independent triple-check architectural audits on system blueprints.",
+            backstory=backstory,
+            llm=kwargs_by_key(key="llm", **kwargs),
+            verbose=False,
+            max_iter=1,                 # maximum 1 interation
+            allow_delegation=False      # to avoid loop
+        )
+        return self.agent
+
+    # @override
+    def __create_agent_task__(self, **kwargs) -> Task:
+        context_tasks_da = kwargs_by_key(key="context_tasks_da", **kwargs)
+        if  not context_tasks_da or not isinstance(context_tasks_da, list) or len(context_tasks_da) <= 0:
+            print(f"[ 💀 {self.agent_id} Agent | CRITICAL ERROR ] Invalid tasks context to do blueprint analysis.")
+            raise RuntimeError("Invalid tasks context to do blueprint analysis.")
+        
+        elif not context_tasks_da[0] or not context_tasks_da[0].output or not context_tasks_da[0].output.raw:
+            print(f"[ 💀 {self.agent_id} Agent | CRITICAL ERROR ] Invalid SA Task response for the fixed/approved blueprint to analyze.")
+            raise RuntimeError("Invalid SA Task response for the fixed/approved blueprint to analyze.")
+        
+        # prompt/task description is the response of task SA
+        kwargs = { **kwargs, "raw_csro_blueprint_content": context_tasks_da[0].output.raw }
+        task = render_kwargs_prompt(TASK_TEMPLATE_SA_DIFF_ANALYZER, **kwargs)
+        return Task(
+            description=task,
+            expected_output=kwargs_by_key(key="expected_output_da", **kwargs),
+            agent=self.agent,
+            context=kwargs_by_key(key="context_tasks_da", **kwargs)
+        )
+    
+    # @override
+    def __create_ai_client__(self):
+        pass
+    
+    # @override
+    def __ai_execute__(self, **kwargs):
+        pass
+
+
+# =====================================================================
+# 🕵️‍♂️ FINAL: THE SUPREME WORKFLOW AGENT (ENTERPRISE WORKFLOW)
 # =====================================================================
 class CrewEnterpriseSolutionWorkflowAgent(AbstractCrewEnterpriseSuperAgent):
     """
@@ -380,9 +441,11 @@ class CrewEnterpriseSolutionWorkflowAgent(AbstractCrewEnterpriseSuperAgent):
             "prompt_solution_sentinel": render_kwargs_prompt(PROMPT_TEMPLATE_SOLUTION_SENTINEL, **kwargs),
             "prompt_ba": render_kwargs_prompt(PROMPT_TEMPLATE_BA, **kwargs),
             "prompt_sa": render_kwargs_prompt(PROMPT_TEMPLATE_SA, **kwargs),
+            "prompt_blueprint_da": render_kwargs_prompt(PROMPT_TEMPLATE_SA_DIFF_ANALYZER, **kwargs),
             "expected_output_solution_sentinel": render_kwargs_prompt(EXPECTED_TEMPLATE_SOLUTION_SENTINEL, **kwargs),
             "expected_output_ba": render_kwargs_prompt(EXPECTED_TEMPLATE_BA, **kwargs),
-            "expected_output_sa": render_kwargs_prompt(EXPECTED_TEMPLATE_SA, **kwargs)
+            "expected_output_sa": render_kwargs_prompt(EXPECTED_TEMPLATE_SA, **kwargs),
+            "expected_output_da": render_kwargs_prompt(EXPECTED_TEMPLATE_SA_DIFF_ANALYZER, **kwargs)
         }
     
     # @override
@@ -391,11 +454,13 @@ class CrewEnterpriseSolutionWorkflowAgent(AbstractCrewEnterpriseSuperAgent):
         self.agent_solution_sentinel = EnterpriseSolutionSentinelAgent(**kwargs)
         self.agent_business_analyst = EnterpriseBusinessAnalystAgent(**kwargs)
         self.agent_system_architect = EnterpriseSystemArchitectAgent(**kwargs)
+        self.agent_blueprint_analyzer = EnterpriseBluePrintDiffAnalyzerAgent(**kwargs)
         
         # create internal agents
         self.agent_solution_sentinel.__create_llm_agent__(**kwargs)
         self.agent_business_analyst.__create_llm_agent__(**kwargs)
         self.agent_system_architect.__create_llm_agent__(**kwargs)
+        self.agent_blueprint_analyzer.__create_llm_agent__(**kwargs)
         return None
     
     # @override
@@ -413,9 +478,16 @@ class CrewEnterpriseSolutionWorkflowAgent(AbstractCrewEnterpriseSuperAgent):
         # system architect task
         kwargs = {
             **kwargs,
-            "context_tasks_sa": [ self.task_business_analyst ]
+            "context_tasks_sa": [ self.task_solution_sentinel, self.task_business_analyst ]
         }
         self.task_system_architect = self.agent_system_architect.__create_agent_task__(**kwargs)
+        
+        # blueprint analyzer task
+        kwargs = {
+            **kwargs,
+            "context_tasks_da": [ self.task_system_architect ]
+        }
+        self.task_blueprint_analyzer = self.agent_blueprint_analyzer.__create_agent_task__(**kwargs)
         return None
     
     # @override
@@ -468,11 +540,13 @@ class CrewEnterpriseSolutionWorkflowAgent(AbstractCrewEnterpriseSuperAgent):
             self.agent_solution_sentinel.agent,
             self.agent_business_analyst.agent,
             self.agent_system_architect.agent,
+            self.agent_blueprint_analyzer.agent,
         ]
         tasks = [
             self.task_solution_sentinel,
             self.task_business_analyst,
-            self.task_system_architect
+            self.task_system_architect,
+            self.task_blueprint_analyzer,
         ]
         return {
             **built_kwargs,
@@ -541,6 +615,9 @@ class CrewEnterpriseSolutionWorkflowAgent(AbstractCrewEnterpriseSuperAgent):
             
             # Task 3 (System Architect) response - fixed blueprint
             raw_sa_response = self.task_system_architect.output.raw
+            
+            # Task 4 (Diff Analyzer) response - report diff analysis
+            raw_da_response = self.task_blueprint_analyzer.output.raw
         except Exception as e:
             print(f"[ ❌ {self.agent_id} Agent | ERROR ] Could extract task output: {str(e)}")
 
@@ -549,7 +626,8 @@ class CrewEnterpriseSolutionWorkflowAgent(AbstractCrewEnterpriseSuperAgent):
             "kickoff": response,
             "report_sentinel": raw_sentinel_response,
             "report_ba": raw_ba_response,
-            "report_sa": raw_sa_response
+            "report_sa": raw_sa_response,
+            "report_da": raw_da_response
         }
     
     # @override
