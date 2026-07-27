@@ -62,6 +62,19 @@ CSRO_LOG_FILE                       = os.path.join(CSRO_OUTPUT_PATH, "chief-solu
 CSRO_LOG_DA_FILE                    = os.path.join(CSRO_OUTPUT_PATH, "chief-solution-diff-analysis_log.md")
 
 
+# support for executing workflow
+def __execute_function_until_complete__(func_pointer, **kwargs):
+    # use asyncio to run safely while CI/CD doesn't have loop under background
+    try:
+        loop = asyncio.get_event_loop()
+    except RuntimeError:
+        loop = asyncio.new_event_loop()
+        asyncio.set_event_loop(loop)
+        
+    # execute workflow
+    return loop.run_until_complete(asyncio.to_thread(func_pointer, **kwargs)) or {}
+
+
 # =====================================================================
 # 🕵️‍♂️ SUPER: THE SUPREME AGENT (ENTERPRISE SOLUTION SUPER AGENT)
 # =====================================================================
@@ -784,7 +797,7 @@ class CrewEnterpriseGovernanceFlow(Flow):
         Returns the raw modified blueprint string fetched directly from SA's RAM cache.
         """
         print("[ 🚀 SOLUTION ARCHITECT REVIEW ] Enterprise Solution Architecture Review CSRO...")
-        return self.agent_solution_review.execute() or {}
+        return __execute_function_until_complete__(func_pointer=self.agent_solution_review.execute) or {}
 
     @listen(execute_solution_review)
     def execute_blueprint_diff_analysis(self, solution_architect_review_result):
@@ -793,10 +806,11 @@ class CrewEnterpriseGovernanceFlow(Flow):
         Ingests the fixed blueprint payload into your explicit custom template keyword.
         """
         print("[ 🔎 BLUEPRINT CHANGES ANALYSIS ] Analyze new changes of Solution Architecture Report...")
-        return self.agent_diff_analyzer.execute({
+        kwargs = {
             **solution_architect_review_result,
             "raw_csro_blueprint_content": solution_architect_review_result.get("report_sa", solution_architect_review_result.get("kickoff", None))
-        }) or {}
+        }
+        return __execute_function_until_complete__(func_pointer=self.agent_diff_analyzer.execute, **kwargs) or {}
 
 
 if __name__ == "__main__":
@@ -811,14 +825,7 @@ if __name__ == "__main__":
     # initializ workflow agent
     enterprise_workflow_agent = CrewEnterpriseGovernanceFlow(idea=args.idea)
     
-    # use asyncio to run safely while CI/CD doesn't have loop under background
-    try:
-        loop = asyncio.get_event_loop()
-    except RuntimeError:
-        loop = asyncio.new_event_loop()
-        asyncio.set_event_loop(loop)
-        
     # execute workflow
-    loop.run_until_complete(asyncio.to_thread(enterprise_workflow_agent.kickoff))
+    __execute_function_until_complete__(enterprise_workflow_agent.kickoff)
 
 
