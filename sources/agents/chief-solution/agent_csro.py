@@ -432,6 +432,7 @@ class EnterpriseBluePrintDiffAnalyzerAgent(AbstractCrewEnterpriseSuperAgent):
         
         # task callback hook
         task.callback = __agent_task_callback__
+        return task
     
     # @override
     def __create_ai_client__(self):
