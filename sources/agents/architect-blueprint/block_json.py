@@ -20,7 +20,14 @@ from openai import OpenAI
 from jinja2 import Template
 
 # Now Python can seamlessly see and import the centralized helper utility cleanly!
-from sources.agents.agent_helper import resolve_absolute_path, exception_stacktrace, write_blueprint_log, write_json_file, render_prompt, parseOpenAIResponseJsonData
+from sources.agents.agent_helper import (
+    resolve_absolute_path,
+    exception_stacktrace,
+    write_blueprint_log,
+    write_json_file,
+    render_prompt,
+    parseAIResponseJsonData
+)
 
 # ==============================================================================
 # GLOBAL CONFIGURATION PATHS - CONFIG HERE TO CUSTOMIZE DIRECTORY STRUCTURE
@@ -277,7 +284,7 @@ def convert_phases_to_json(client: OpenAI, model_name: str, project_name: str, n
                 )
                 
                 # if response is ok, parse json
-                raw_data, json_data = parseOpenAIResponseJsonData(response)
+                raw_data, json_data = parseAIResponseJsonData(response)
                 # dump_json_data = json.dumps(json_data, indent=4, ensure_ascii=False) if json_data else "Invalid JSON Data"
                 # print(f" │   └── 🎉 Response Phase {phase_idx} Standardized JSON:")
                 # print(f" │         { dump_json_data }")

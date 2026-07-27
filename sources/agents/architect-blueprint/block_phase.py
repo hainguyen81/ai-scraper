@@ -12,7 +12,14 @@ import time
 from openai import OpenAI
 
 # Now Python can seamlessly see and import the centralized helper utility cleanly!
-from sources.agents.agent_helper import resolve_absolute_path, exception_stacktrace, write_blueprint_log, write_file, render_prompt, parseOpenAIResponseData
+from sources.agents.agent_helper import (
+    resolve_absolute_path,
+    exception_stacktrace,
+    write_blueprint_log,
+    write_file,
+    render_prompt,
+    parseAIResponseData
+)
 
 # ==============================================================================
 # GLOBAL CONFIGURATION PATHS - CONFIG HERE TO CUSTOMIZE DIRECTORY STRUCTURE
@@ -70,7 +77,7 @@ def generate_phase_contexts(client: OpenAI, model_name: str, project_name: str, 
                 ],
                 temperature=0.2
             )
-            raw_data = parseOpenAIResponseData(response)
+            raw_data = parseAIResponseData(response)
             
             # write context
             out_path = write_file(

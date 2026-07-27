@@ -11,7 +11,13 @@ import sys
 from openai import OpenAI
 
 # Now Python can seamlessly see and import the centralized helper utility cleanly!
-from sources.agents.agent_helper import resolve_absolute_path, write_blueprint_log, write_file, render_prompt, parseOpenAIResponseData
+from sources.agents.agent_helper import (
+    resolve_absolute_path,
+    write_blueprint_log,
+    write_file,
+    render_prompt,
+    parseAIResponseData
+)
 
 # ==============================================================================
 # GLOBAL CONFIGURATION PATHS - CONFIG HERE TO CUSTOMIZE DIRECTORY STRUCTURE
@@ -61,7 +67,7 @@ def generate_global_context(client: OpenAI, model_name: str, project_name: str, 
             ],
             temperature=0.2
         )
-        raw_data = parseOpenAIResponseData(response)
+        raw_data = parseAIResponseData(response)
         
         # write context
         safe_name = project_name.replace(' ', '-').lower()
