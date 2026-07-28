@@ -107,7 +107,7 @@ jobs:
           
           echo "🧠 AI Agent successfully initialized. Booting extraction graph workflow..."
           # Execute the enterprise script payload safely passing the verified API key parameters
-          python sources/agents/ai-llm-web-scraper.py --api-key "$API_KEY" --api-endpoint "$API_ENDPONT" --api-model "$API_MODEL"
+          python sources/agents/scrapers/ai-llm-web-scraper.py --api-key "$API_KEY" --api-endpoint "$API_ENDPONT" --api-model "$API_MODEL"
           echo "✅ AI parsing complete. Extraction graph closed successfully."
 
       # Step 5: Dynamically organize directory, rename file by system date, and commit changes
