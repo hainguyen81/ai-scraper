@@ -153,7 +153,7 @@ if __name__ == "__main__":
     parser.add_argument("--idea", type=str, help="Idea Identity / Project Name for searching")
     parser.add_argument("--buffer-ratio", type=float, default=1.5, help="Estimation with buffer ratio. Ex: 1.5")
     args = parser.parse_args()
-    PrincipalBusinessAnalysisAgent(
+    EnterpriseAutonomousProjectEstimatorAgent(
         idea=args.idea,
         project=args.idea,
         buffer=args.buffer_ratio
