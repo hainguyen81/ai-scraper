@@ -13,5 +13,6 @@ I have a raw, high-level product idea that needs to be engineered into a product
 2. **Project Naming**: Propose 3 tailored project names (Technical Codename, Descriptive Name, and Brand Name) and populate them into the "project_names" keys of the JSON object.
 3. Fill in all implicit technical gaps, infrastructure needs, and logical holes that were omitted in the raw text.
 4. Author a highly detailed, flawless Software Requirements Specification (SRS) based on the 5-section structure defined in your System Prompt.
-5. **CRITICAL**: The text inside the "srs_content_markdown" key MUST be written entirely in {{ language }}.
-6. **STRICT ZERO-THINKING POLICY**: Do not include any explanation, introductory words, markdown backticks (```), or conversational filler. Output ONLY the raw JSON block.
+5. **CRITICAL FOR TRACEABILITY**: Ensure that EVERY SINGLE user story, acceptance criteria group, exception flow, architectural constraint, and non-functional metric inside "srs_content_markdown" is strictly assigned an incremental Tag ID ([REQ-XXX], [ARC-XXX], [EXC-XXX], [NFR-XXX]) as instructed. Double-check that no requirement is left unnumbered.
+6. **CRITICAL**: The text inside the "srs_content_markdown" key MUST be written entirely in {{ language }}.
+7. **STRICT ZERO-THINKING POLICY**: Do not include any explanation, introductory words, markdown backticks (```), or conversational filler. Output ONLY the raw JSON block.
