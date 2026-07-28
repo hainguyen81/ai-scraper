@@ -92,7 +92,7 @@ storage_info = {
         "absolute_agents": ABS_AGENTS_PATH,
         "agents": AGENTS_PATH,
         
-        "absolute_ideas" ABS_AGENT_IDEAS_PATH,
+        "absolute_ideas": ABS_AGENT_IDEAS_PATH,
         "storage_ideas": AGENT_IDEAS_PATH,
         
         "absolute_blueprint": ABS_AGENT_BLUEPRINT_PATH,
