@@ -51,7 +51,7 @@ class AbstractSubAgent(AbstractAgent):
     def __agents_path__(self, storage_name, file) -> str:
         return os.path.join(self.storage_agents.get(storage_name), file)
     
-    def __read_storage_file__(self, storage_name, file, ignore_not_found=False):
+    def __read_storage_file__(self, storage_name, file, ignore_not_found=False) -> str:
         storage_file = self.__storage_path__(storage_name=storage_name, file=file)
         if not ignore_not_found and not os.path.exists(storage_file):
             self.logger.critical(f"[ 💀 ERROR ] Not found storage '{storage_name}' file { file }")
@@ -91,10 +91,10 @@ class AbstractSubAgent(AbstractAgent):
             None
         )
     
-    def __current_project_name__(self):
+    def __current_project_name__(self) -> str:
         return self.project_info.get("technical_codename", None)
     
-    def __current_project_description__(self):
+    def __current_project_description__(self) -> str:
         return self.project_info.get("descriptive_name", None)
     
     def __idea_files__(self):
@@ -108,23 +108,23 @@ class AbstractSubAgent(AbstractAgent):
             physical_file = self.__storage_path__(storage_name="storage_requirements", file=f"{self.project_name}/requirements.md")
         return (None, None) if not os.path.exists(physical_file) else (absolute_file, physical_file)
     
-    def __ba_file__(self):
+    def __ba_file__(self) -> str:
         return self.project_info.get("requirements", None) if self.project_info else None
     
-    def __sa_file__(self):
+    def __sa_file__(self) -> str:
         project_name = self.__current_project_name__()
         return self.__storage_path__(storage_name="storage_sa", file=f"{project_name}/context/{project_name}.global.blueprint.md") if project_name else None
     
-    def __projects_summary_path__(self):
+    def __projects_summary_path__(self) -> str:
         return self.__storage_path__(storage_name="storage_ba", file="projects-summary.json")
     
-    def __ideas_history_path__(self):
+    def __ideas_history_path__(self) -> str:
         return self.__storage_path__(storage_name="storage_ideas", file="history_ideas.json")
 
-    def __read_idea__(self, ignore_not_found=False): -> str:
+    def __read_idea__(self, ignore_not_found=False) -> str:
         return self.__read_storage_file__(storage_name="storage_ideas", file=f"{self.idea_id}.md", ignore_not_found=ignore_not_found)
 
-    def __read_requirements__(self, ignore_not_found=False): -> str:
+    def __read_requirements__(self, ignore_not_found=False) -> str:
         return self.__read_storage_file__(storage_name="storage_requirements", file=f"{self.project_name}/requirements.md", ignore_not_found=ignore_not_found)
     
     def __read_idea_or_requirements__(self, ignore_not_found=False):
@@ -134,20 +134,20 @@ class AbstractSubAgent(AbstractAgent):
             requirements = self.__read_requirements__(ignore_not_found=ignore_not_found)
         return (idea_is_project, requirements)
 
-    def __read_srs__(self, ignore_not_found=False): -> str:
+    def __read_srs__(self, ignore_not_found=False) -> str:
         project_name = self.__current_project_name__()
         project_name = project_name if project_name else self.project_name
         return self.__read_storage_file__(storage_name="storage_ba", file=f"{project_name}/requirements.md", ignore_not_found=ignore_not_found)
 
-    def __read_blueprint__(self, ignore_not_found=False): -> str:
+    def __read_blueprint__(self, ignore_not_found=False) -> str:
         project_name = self.__current_project_name__()
         project_name = project_name if project_name else self.project_name
         return self.__read_storage_file__(storage_name="storage_blueprint", file=f"{project_name}/context/{project_name}.global.blueprint.md", ignore_not_found=ignore_not_found)
 
-    def __read_projects_info__(self, ignore_not_found=False): -> str:
+    def __read_projects_info__(self, ignore_not_found=False) -> str:
         return self.__read_storage_json__(storage_name="storage_ba", file="projects-summary.json", ignore_not_found=ignore_not_found)
 
-    def __read_ideas_history__(self, ignore_not_found=False): -> str:
+    def __read_ideas_history__(self, ignore_not_found=False) -> str:
         return self.__read_storage_json__(storage_name="storage_ideas", file="history_ideas.json", ignore_not_found=ignore_not_found)
 
 
