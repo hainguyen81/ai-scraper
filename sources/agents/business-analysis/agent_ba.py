@@ -28,6 +28,8 @@ SYSTEM_PROMPT_TEMPLATE      = resolve_absolute_path("sources/agents/business-ana
 USER_PROMPT_TEMPLATE        = resolve_absolute_path("sources/agents/business-analysis/agent_ba.prompt.user.md")
 ABS_IDEAS_STORAGE_PATH      = "sources/storage/ideas"
 IDEAS_STORAGE_PATH          = resolve_absolute_path(ABS_IDEAS_STORAGE_PATH)
+ABS_REQ_STORAGE_PATH        = "sources/requirements"
+REQ_STORAGE_PATH            = resolve_absolute_path(ABS_REQ_STORAGE_PATH)
 ABS_SRS_STORAGE_PATH        = "sources/storage/business-analysis"
 SRS_STORAGE_PATH            = resolve_absolute_path(ABS_SRS_STORAGE_PATH)
 BA_OUTPUT_PATH              = resolve_absolute_path("sources/output/business-analysis")
@@ -46,7 +48,7 @@ class PrincipalBusinessAnalysisAgent(AbstractAgent):
         # require idea identity to analyze
         self.idea_id = self.get_kwargs("idea") or self.get_kwargs("idea_id")
         if not self.idea_id:
-            raise RuntimeError("- Invalid idea identity to analyze!")
+            raise RuntimeError("- Invalid idea identity / project name to analyze!")
         
         # start initialization
         super().initialize()
@@ -58,10 +60,13 @@ class PrincipalBusinessAnalysisAgent(AbstractAgent):
 
     def read_idea_from_file(self, file: str) -> str:
         """read idea from file (Txt, MD, v.v.)."""
-        if not os.path.exists(file):
-            raise FileNotFoundError(f"Not found idea file: {file}")
-        _, idea_content = read_file_raw(file_path=file)
+        _, idea_content = read_file_raw(file_path=file) if os.path.exists(file) else (None, None)
         return idea_content
+    
+    def read_project_requirements(self, file: str) -> str:
+        """read idea from file (Txt, MD, v.v.)."""
+        _, requirements_content = read_file_raw(file_path=file) if os.path.exists(file) else (None, None)
+        return requirements_content
     
     # @override
     def agent_secrets_key(self) -> str:
@@ -87,6 +92,9 @@ class PrincipalBusinessAnalysisAgent(AbstractAgent):
     def pre_execute(self, **kwargs):
         abs_idea_file = os.path.join(ABS_IDEAS_STORAGE_PATH, f"{self.idea_id}.md")
         idea_file = resolve_absolute_path(abs_idea_file)
+        if not os.path.exists(idea_file):
+            abs_idea_file = os.path.join(ABS_REQ_STORAGE_PATH, f"{self.idea_id}", "requirements.md")
+            idea_file = resolve_absolute_path(abs_idea_file)
         if not os.path.exists(idea_file):
             print(f"[ 💀 {self.agent_id} Agent | CRITICAL ERROR ] Not found IDEA file { idea_file }")
             sys.exit(1)

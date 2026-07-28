@@ -6,8 +6,8 @@ on:
     inputs:
       idea:
         description: |
-          💡 Idea
-          (Storage: sources/storage/ideas)
+          📁 Project Name / 💡 Idea
+          (Storage: sources/storage/ideas or sources/requirements)
         required: true
         type: string
       language:
@@ -26,8 +26,8 @@ on:
     inputs:
       idea:
         description: |
-          💡 Idea
-          (Storage: sources/storage/ideas)
+          📁 Project Name / 💡 Idea
+          (Storage: sources/storage/ideas or sources/requirements)
         required: true
         type: string
       language:
