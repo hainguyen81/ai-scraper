@@ -12,7 +12,7 @@ import subprocess
 # search path array. This completely unlocks importing 'agent_helper.py'.
 # ==============================================================================
 # request agent_helper from `.libs/project_agents_package_loader.py`
-from _ai._agents import agent_helper
+from _0d_ai._0d_agents import agent_helper
 
 # ==============================================================================
 # GLOBAL CONFIGURATION PATHS - CONFIG HERE TO CUSTOMIZE DIRECTORY STRUCTURE
@@ -65,13 +65,16 @@ class EnterpriseMultiAgentManager:
             sys.exit(0)
         
         print(f"[ {self.agent_id} Agent | GIT ] All pipeline validation thresholds passed. Committing structural assets...")
+        
         # add components to push GIT
         for component in pushed_components:
             pushed_component = agent_helper.resolve_absolute_path(component)
             subprocess.run(["git", "add", pushed_component], capture_output=True)
+        
         # commit GIT
         commit_msg = f"feat(day-{self.day_num}): complete enterprise sub-tasks for day {self.day_num} [AI Pipeline]"
         subprocess.run(["git", "commit", "-m", commit_msg], capture_output=True)
+        
         # push GIT
         subprocess.run(["git", "push", "origin", self.target_branch], capture_output=True)
         print(f"[ ✅ {self.agent_id} Agent | SUCCESS ] Isolated feature branch {self.target_branch} pushed safely to remote origin!")

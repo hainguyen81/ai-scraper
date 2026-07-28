@@ -12,29 +12,27 @@ import subprocess
 # search path array. This completely unlocks importing 'agent_helper.py'.
 # ==============================================================================
 # request agent_helper from `.libs/project_agents_package_loader.py`
-from _ai._agents import agent_helper
+from _0d_ai._0d_agents.agent_0u_helper import (
+    resolve_absolute_path,
+    exception_stacktrace,
+    kwargs_by_key
+)
 
 # super agent
-from _ai._agents._sub_agents.agent_gcp import GcpAgent
+from _0d_ai._0d_agents._0d_sub_0u_agents.agent_0u_gcp import GcpAgent
+
+# ==============================================================================
+# GLOBAL CONFIGURATION PATHS - CONFIG HERE TO CUSTOMIZE DIRECTORY STRUCTURE
+# ==============================================================================
+AGENT_ID    = "GKE"
 
 class GkeAgent(GcpAgent):
     def __init__(self, phase_str, day_num):
         super().__init__(
-            agent_id="Docker",
+            agent_id=AGENT_ID,
             phase_str=phase_str,
             day_num=day_num
         )
-    
-    def initialize(self):
-        super().initialize()
-        self.gke_deployment_name = self.gke_cloud_deployment_name()
-        self.gke_cluster_name = self.gke_cloud_cluster()
-    
-    def agent_secrets_key(self) -> str:
-        return "GKE_SECRETS"
-    
-    def agent_log_file(self) -> str:
-        return agent_helper.resolve_absolute_path(f".ai/.history/agent-gke-day-{self.day_num}.md")
     
     def authenticate_gcp(self):
         self.configure_gke_credentials()
@@ -55,16 +53,40 @@ class GkeAgent(GcpAgent):
     def gke_cloud_cluster(self) -> str:
         return self.agent_secrets("GKE_CLUSTER_NAME")
     
-    def pre_execute(self):
+    # @override
+    def initialize(self):
+        super().initialize()
+        self.gke_deployment_name = self.gke_cloud_deployment_name()
+        self.gke_cluster_name = self.gke_cloud_cluster()
+    
+    # @override
+    def agent_secrets_key(self) -> str:
+        return "GKE_SECRETS"
+    
+    # @override
+    def agent_log_file(self) -> str:
+        return resolve_absolute_path(f".ai/.history/agent-gke-day-{self.day_num}.md")
+    
+    # @ override
+    def pre_execute(self, **kwargs):
         # validate repository
         if not self.gke_deployment_name or len(self.gke_deployment_name.strip()) <= 0:
             print(f"[ ⚠️ {self.agent_id} Agent | SKIP ] Not found 'GKE_DEPLOYMENT_NAME' enviroment. Step is explicitly marked as 'none'. Skipping GKE cluster rollout update loops framework entirely.")
             sys.exit(0)
         
         # as super
-        super().pre_execute()
-    
-    def execute_task(self, project_name, global_context, day_context, source_component, target_component, sub_tasks):
+        return super().pre_execute()
+
+    # @ override
+    def __execute__(self, **kwargs):
+        # extract arguments
+        project_name = kwargs_by_key(key="project_name", **kwargs)
+        global_context = kwargs_by_key(key="global_context", **kwargs)
+        day_context = kwargs_by_key(key="day_context", **kwargs)
+        source_component = kwargs_by_key(key="source_component", **kwargs)
+        target_component = kwargs_by_key(key="target_component", **kwargs)
+        sub_tasks = kwargs_by_key(key="sub_tasks", **kwargs)
+        
         # Standard Microservice Application Rollout Logic using your custom prefixed parameters name (e.g. gke-membership-hub-backend)
         is_backend = "backend" in target_component
         app_domain = f"{self.project_name}-backend" if is_backend else "{self.project_name}-frontend"
@@ -72,10 +94,19 @@ class GkeAgent(GcpAgent):
         # Check if the target day represents a dedicated infrastructure day targeting raw K8s deployment manifests (like Day 23)
         if "infrastructure/k8s" in target_component:
             print(f"[ {self.agent_id} Agent ] Applying raw enterprise infrastructure update manifests: {target_component}")
-            target_component = agent_helper.resolve_absolute_path(target_component)
+            target_component = resolve_absolute_path(target_component)
             subprocess.run(["kubectl", "apply", "-f", target_component], check=True)
             print(f"[ ✅ {self.agent_id} Agent | SUCCESS ] Cloud infrastructure manifest rules applied securely on GKE compute pools!")
-            return (True, None, None, "Cloud infrastructure manifest rules applied securely on GKE compute pools!")
+            
+            # result
+            return {
+                **kwargs,
+                "system_prompt": None,
+                "user_prompt": None,
+                "latest_system_prompt": None,
+                "latest_user_prompt": None,
+                "raw_response": "Cloud infrastructure manifest rules applied securely on GKE compute pools!"
+            }
         
         print(f"[ {self.agent_id} Agent | ROLLOUT ] Activating safe, zero-downtime rolling update across container workloads for deployment: {self.gke_deployment_name}")
         subprocess.run([
@@ -87,7 +118,12 @@ class GkeAgent(GcpAgent):
         print(f"[ ✅ {self.agent_id} Agent | SUCCESS ] Successfully deployed container version {self.image_tag} to GKE pods clusters!")
         
         # result
-        return (True, None, None, f"Successfully deployed container version {self.image_tag} to GKE pods clusters!")
+        return {
+            **kwargs,
+            "system_prompt": None,
+            "user_prompt": None,
+            "raw_response": f"Successfully deployed container version {self.image_tag} to GKE pods clusters!"
+        }
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()

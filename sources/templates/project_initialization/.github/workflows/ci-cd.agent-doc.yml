@@ -11,11 +11,11 @@ on:
   workflow_call:
     inputs:
       phase:
-        description: '🗂️ Target Phase indicator passed from master pipeline'
+        description: '🌗 Target Phase indicator passed from master pipeline'
         required: true
         type: string
       day:
-        description: '📆 Target operational execution Day number'
+        description: '🗓️ Target operational execution Day number'
         required: true
         type: string
 
@@ -52,7 +52,7 @@ jobs:
       - name: "📦 Clone Workspace Branch Assets"
         uses: actions/checkout@v7
         with:
-          ref: "features/development-day-${{ inputs.day }}"
+          ref: "features/development-phase-${{ inputs.phase }}-day-${{ inputs.day }}"
           path: '.'
           fetch-depth: 0
           clean: true
@@ -88,23 +88,48 @@ jobs:
       - name: "🛠️ Install Enterprise Cloud API Connecting Libraries"
         working-directory: ${{ env.PROJECT_WORKSPACE }}
         run: |
+          echo "⚡ Upgrading deployment packet management frameworks..."
           python -m pip install --upgrade pip
+          
+          echo "📦 Securing vendor connection pipelines for generative network systems..."
           pip install requests google-generativeai openai anthropic
+          
+          # mapping JSON
+          pip install jinja2
+          
+          # to check sql file
+          pip install sqlfluff
+          
+          # to check YAML, YML
+          pip install PyYAML
+          
+          # to check properties
+          pip install jproperties
       
       # Step 4: Generate high-precision system documentation artifacts in English markdown formats
       - name: "📝 Trigger Senior Tech Writer Documentation Pipeline"
         working-directory: ${{ env.PROJECT_WORKSPACE }}
         env:
+          # specify root path to load modules
           PROJECT_WORKSPACE: ${{ env.PROJECT_WORKSPACE }}
+          PYTHONPATH: ${{ env.PROJECT_WORKSPACE }}
+          
+          # specify agents folder path to load by `.libs/project_agents_package_loader.py`
+          AGENTS_PACKAGE_PATH: ${{ env.PROJECT_WORKSPACE }}/.ai
+          
+          # model API keys
           AI_MODELS_KEYS_JSON: ${{ secrets.AI_MODELS_KEYS_JSON }}
         run: |
           echo "📝 Activating technical documentation parsing and synchronization..."
-          python3 .ai/.agents/.sub_agents/agent_doc.py --phase "${{ inputs.phase }}" --day "${{ inputs.day }}"
+          # `_0d_ai._0d_agents._0d_sub_0u_agents.agent_0u_doc` --> `.ai/.agents/.sub_agents/agent_doc.py`
+          python3 .libs/agent_launcher.py _0d_ai._0d_agents._0d_sub_0u_agents.agent_0u_doc --phase "${{ inputs.phase }}" --day "${{ inputs.day }}"
       
       # if running stanalone
       - name: "🚀 Standalone Push - Secure Isolated Code Assets"
         # conditions in run script
         shell: bash
+        env:
+          BRANCH_NAME: 'features/development-phase-${{ inputs.phase }}-day-${{ inputs.day }}'
         run: |
           echo "🧩 Executing immediate isolated branch push for Coder Agent..."
           
@@ -115,8 +140,23 @@ jobs:
           # add all agent works
           git add -A
           
-          # Commit/Push to branch
-          BRANCH_NAME="features/development-day-${{ inputs.day }}"
-          git commit -m "feat(coder-standalone): dynamic architecture layer compiled for Day ${{ inputs.day }} [AI Test]" || true
-          git push origin HEAD:"refs/heads/$BRANCH_NAME" --force
-          echo "✅ Standalone assets successfully pushed upstream to origin/$BRANCH_NAME"
+          # Only commit if there are explicit architectural diff changes detected
+          if git diff --cached --quiet; then
+              echo "⚠️ Operational Notice: No data state changes detected. Skipping repository commit."
+          else
+              echo "📝 Committing system state changes..."
+              git commit -m "feat(standalone): [ AI Doc Agent ] dynamic architecture layer compiled for Phase ${{ inputs.phase }} Day ${{ inputs.day }}" || true
+              
+              # ✅ ENTERPRISE HOTFIX: Pull new changes and rebase to avoid conflicts fast-forward
+              echo "🔄 Checking if remote branch $BRANCH_NAME exists..."
+              if git show-ref --verify --quiet refs/remotes/origin/$BRANCH_NAME; then
+                  echo "🔄 Pulling latest upstream tree from $BRANCH_NAME and executing explicit contextual rebase..."
+                  git pull --rebase -X theirs origin $BRANCH_NAME
+              else
+                  echo "ℹ️ Remote branch $BRANCH_NAME does not exist yet. Skipping rebase."
+              fi
+              
+              echo "📤 Pushing secure data changes upstream to repository branch..."
+              git push origin HEAD:"refs/heads/$BRANCH_NAME"
+              echo "✅ Standalone assets successfully pushed upstream to origin/$BRANCH_NAME"
+          fi

@@ -17,44 +17,31 @@ from openai import OpenAI
 # search path array. This completely unlocks importing 'agent_helper.py'.
 # ==============================================================================
 # request agent_helper from `.libs/project_agents_package_loader.py`
-from _ai._agents import agent_helper
-
-# Now Python can seamlessly see and import the centralized helper utility cleanly!
-from _ai._agents._sub_agents.helper import render_prompt
+from _0d_ai._0d_agents.agent_0u_helper import (
+    resolve_absolute_path,
+    exception_stacktrace,
+    kwargs_by_key
+)
 
 # super agent
-from _ai._agents._sub_agents.agent_super import AbstractAgent
+from _0d_ai._0d_agents._0d_sub_0u_agents.agent_0u_super import AbstractSubAgent
 
 # ==============================================================================
 # GLOBAL CONFIGURATION PATHS - CONFIG HERE TO CUSTOMIZE DIRECTORY STRUCTURE
 # ==============================================================================
-SYSTEM_PROMPT_FILE          = agent_helper.resolve_absolute_path(".ai/.agents/.sub_agents/agent_reviewer.prompt.system.md")
-USER_PROMPT_FILE            = agent_helper.resolve_absolute_path(".ai/.agents/.sub_agents/agent_reviewer.prompt.user.md")
-BACKEND_WORKSPACE           = agent_helper.resolve_absolute_path("sources/backend")
-FRONTEND_WORKSPACE          = agent_helper.resolve_absolute_path("sources/frontend")
+AGENT_ID                    = "Reviewer"
+SYSTEM_PROMPT_FILE          = resolve_absolute_path(".ai/.agents/.sub_agents/agent_reviewer.prompt.system.md")
+USER_PROMPT_FILE            = resolve_absolute_path(".ai/.agents/.sub_agents/agent_reviewer.prompt.user.md")
+BACKEND_WORKSPACE           = resolve_absolute_path("sources/backend")
+FRONTEND_WORKSPACE          = resolve_absolute_path("sources/frontend")
 
-class BugFixerAgent(AbstractAgent):
+class BugFixerAgent(AbstractSubAgent):
     def __init__(self, phase_str, day_num):
         super().__init__(
-            agent_id="Reviewer",
+            agent_id=AGENT_ID,
             phase_str=phase_str,
             day_num=day_num
         )
-    
-    def agent_secrets_key(self) -> str:
-        pass
-
-    def agent_log_file(self) -> str:
-        return agent_helper.resolve_absolute_path(f".ai/.history/agent-reviewer-day-{self.day_num}.md")
-    
-    def system_prompt_template(self) -> str:
-        return SYSTEM_PROMPT_FILE
-    
-    def user_prompt_template(self) -> str:
-        return USER_PROMPT_FILE
-    
-    def pre_execute(self):
-        pass
     
     def run_compile_check(self, target_path, check_by_compile):
         # parse file extension (ex: '.sql', '.json')
@@ -80,7 +67,7 @@ class BugFixerAgent(AbstractAgent):
                 if not check_by_compile:
                     return (True, "YAML: Cú pháp hoàn toàn hợp lệ.")
             except yaml.YAMLError as e:
-                return (False, f"YAML Syntax Error:\n{str(e)}")
+                return (False, f"YAML Syntax Error:\n{exception_stacktrace(e)}")
         
         # if XML file
         elif file_extension == '.xml' and file_name != 'pom.xml':
@@ -90,7 +77,7 @@ class BugFixerAgent(AbstractAgent):
                 if not check_by_compile:
                     return (True, "XML: XML Syntax correct.")
             except ET.ParseError as e:
-                return (False, f"XML Syntax Error: {str(e)}")
+                return (False, f"XML Syntax Error: {exception_stacktrace(e)}")
         
         # if properties file
         elif file_extension == '.properties' or file_extension == '.env':
@@ -102,7 +89,7 @@ class BugFixerAgent(AbstractAgent):
                 if not check_by_compile:
                     return (True, "Properties: Syntax correct.")
             except Exception as e:
-                return (False, f"Properties Syntax Error: {str(e)}")
+                return (False, f"Properties Syntax Error: {exception_stacktrace(e)}")
         
         # if file JSON
         elif file_extension == '.json':
@@ -114,7 +101,7 @@ class BugFixerAgent(AbstractAgent):
                 if not check_by_compile:
                     return (True, "JSON Validated Successfully")
             except Exception as e:
-                return (False, f"JSON Syntax Error: {str(e)}")
+                return (False, f"JSON Syntax Error: {exception_stacktrace(e)}")
         
         # check by build project
         pom_path = os.path.join(BACKEND_WORKSPACE, "pom.xml")
@@ -147,15 +134,50 @@ class BugFixerAgent(AbstractAgent):
             # if not found package.json, it means project empty or be initializing
             return (os.path.exists(package_path), package_path)
     
-    def execute_task(self, project_name, global_context, day_context, source_component, target_component, sub_tasks):
+    # @override
+    def agent_secrets_key(self) -> str:
+        pass
+
+    # @override
+    def agent_log_file(self) -> str:
+        return resolve_absolute_path(f".ai/.history/agent-reviewer-day-{self.day_num}.md")
+    
+    # @override
+    def system_prompt_template(self) -> str:
+        return SYSTEM_PROMPT_FILE
+    
+    # @override
+    def user_prompt_template(self) -> str:
+        return USER_PROMPT_FILE
+    
+    # @ override
+    def __do_task_component__(self, **kwargs):
+        # parse parameters
+        project_name = kwargs_by_key(key="project_name", **kwargs)
+        target_component = kwargs_by_key(key="target_component", **kwargs)
+        
         # check whether project had been initialized
         project_initialized, project_main_component = self.check_project_initialized(target_component)
         print(f"[ ℹ️ {self.agent_id} Agent | F.Y.I ] Project {project_name} had been initialized?. {project_initialized} - Project Main Component: {project_main_component}")
         print(f"            - Target Component: {target_component}")
         
+        # execute super
+        kwargs = {
+            **kwargs,
+            "project_initialized": project_initialized,
+            "project_main_component": project_main_component
+        }
+        return super().__do_task_component__(**kwargs)
+    
+    #def execute_task(self, project_name, global_context, day_context, source_component, target_component, sub_tasks):
+    def __execute__(self, **kwargs):
+        # parse arguments
+        project_initialized = kwargs_by_key(key="project_initialized", **kwargs)
+        source_component = kwargs_by_key(key="source_component", **kwargs)
+        target_component = kwargs_by_key(key="target_component", **kwargs)
+        
         # build system prompt
-        system_prompt_context = self.build_system_prompt_context(global_context, day_context, target_component)
-        system_prompt = render_prompt(self.system_prompt_template(), system_prompt_context)
+        system_prompt = self.build_system_prompt(**kwargs)
         
         # test component 3 time(s)
         user_prompt = None
@@ -173,33 +195,30 @@ class BugFixerAgent(AbstractAgent):
             
             # build user prompt
             print(f"[ ⚠️ {self.agent_id} Agent | WARNING ] Build check failed on validation loop: {iteration}. Ingesting raw error logs...")
-            user_prompt_context = self.build_user_prompt_context(source_component, target_component, sub_tasks, compiler_error_logs=compiler_log)
-            user_prompt = render_prompt(self.user_prompt_template(), user_prompt_context)
+            user_prompt = self.build_user_prompt(**kwargs)
             
-            # agent do job
+            # build new values kwargs
+            kwargs = {
+                **kwargs,
+                "system_prompt": system_prompt,
+                "user_prompt": user_prompt
+            }
+            
+            # execute AI
             try:
-                raw_response, clean_response = self.chat(
-                    system_prompt=system_prompt,
-                    user_prompt=user_prompt
-                )
-                latest_response = raw_response
-                
-                # write generated code
-                self.process_chat(
-                    target_component=target_component,
-                    response_data=clean_response
-                )
+                kwargs = self.__ai_execute__(**kwargs)
+                latest_response = kwargs_by_key(key="latest_response", **kwargs)
                 success = True
             except Exception as e:
-                print(f"[ 💀 {self.agent_id} Agent | RECOVERY ] API transaction exception caught. Swapping model: {str(e)}")
+                print(f"[ 💀 {self.agent_id} Agent | RECOVERY ] API transaction exception caught. Swapping model: {exception_stacktrace(e)}")
                 latest_response = str(e) if not latest_response else latest_response
-                self.active_model_index += 1
-                if not self.rotate_model():
+                # rotate next model
+                if not self.__rotate_next_model__():
                     success = False
                     break
         
         if not success:
-            print("[ 💀 {self.agent_id} Agent | CRITICAL ] Structural compiler repairs failed within maximum iteration bounds.")
+            print(f"[ 💀 {self.agent_id} Agent | CRITICAL ] Structural compiler repairs failed within maximum iteration bounds.")
         return (success, system_prompt, user_prompt, latest_response)
 
 if __name__ == "__main__":
