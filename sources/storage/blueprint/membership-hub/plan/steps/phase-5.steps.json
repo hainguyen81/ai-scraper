@@ -1,0 +1,95 @@
+{
+    "phase_id": 5,
+    "phase_name": "Phase 5",
+    "project_name": "membership-hub",
+    "global_context_file": ".ai/.context/membership-hub.global.blueprint.md",
+    "source_target_dir": "sources/",
+    "days": [
+        {
+            "day": 1,
+            "context_file": ".ai/.plan/.context/phase-5.context.blueprint.md",
+            "context_section": "DAY 1",
+            "sub_tasks": [
+                {
+                    "id": "D1_ST1",
+                    "agent": "docker",
+                    "desc": "docker Agent: Create hardened multi-stage Dockerfile with Trivy vulnerability scanning integration, build image with Git commit SHA tagging, and push to Google Artifact Registry (us-central1-docker.pkg.dev/<project>/membership-hub/backend:${GIT_COMMIT})",
+                    "targeted_tags": [],
+                    "components": [
+                        "./sources/backend/Dockerfile",
+                        "./sources/backend/docker-build.sh"
+                    ]
+                }
+            ]
+        },
+        {
+            "day": 2,
+            "context_file": ".ai/.plan/.context/phase-5.context.blueprint.md",
+            "context_section": "DAY 2",
+            "sub_tasks": [
+                {
+                    "id": "D2_ST1",
+                    "agent": "GKE",
+                    "desc": "GKE Agent: Provision GKE cluster (membership-hub-prod) with VPC-native mode, enable Workload Identity, apply Network Policies, enforce PodSecurityStandards (baseline), configure IAM service accounts, create node pools, and install ingress-controller (GCP Cloud Load Balancer)",
+                    "targeted_tags": [],
+                    "components": [
+                        "./sources/backend/k8s/cluster.yaml",
+                        "./sources/backend/k8s/helm-chart/values.yaml"
+                    ]
+                }
+            ]
+        },
+        {
+            "day": 3,
+            "context_file": ".ai/.plan/.context/phase-5.context.blueprint.md",
+            "context_section": "DAY 3",
+            "sub_tasks": [
+                {
+                    "id": "D3_ST1",
+                    "agent": "GKE",
+                    "desc": "GKE Agent: Apply Kubernetes manifests (deployment.yaml, service.yaml, ingress.yaml) to deploy backend and expose externally",
+                    "targeted_tags": [],
+                    "components": [
+                        "./sources/backend/k8s/deployment.yaml",
+                        "./sources/backend/k8s/service.yaml",
+                        "./sources/backend/k8s/ingress.yaml"
+                    ]
+                }
+            ]
+        },
+        {
+            "day": 4,
+            "context_file": ".ai/.plan/.context/phase-5.context.blueprint.md",
+            "context_section": "DAY 4",
+            "sub_tasks": [
+                {
+                    "id": "D4_ST1",
+                    "agent": "reviewer",
+                    "desc": "reviewer Agent: Perform static code analysis on SecurityConfig.java and unit test to verify OWASP compliance (password encoding, parameterized queries, CORS configuration, CSRF protection, secure headers), run Trivy on Docker image, validate no high-severity vulnerabilities",
+                    "targeted_tags": [],
+                    "components": [
+                        "./sources/backend/src/main/java/org/nlh4j/saas/membershiphub/security/SecurityConfig.java",
+                        "./sources/backend/src/test/java/org/nlh4j/saas/membershiphub/security/SecurityConfigTest.java"
+                    ]
+                }
+            ]
+        },
+        {
+            "day": 5,
+            "context_file": ".ai/.plan/.context/phase-5.context.blueprint.md",
+            "context_section": "DAY 5",
+            "sub_tasks": [
+                {
+                    "id": "D5_ST1",
+                    "agent": "doc",
+                    "desc": "doc Agent: Compile deployment runbooks, architecture diagrams, and operational procedures into phase5-deployment-guide.md",
+                    "targeted_tags": [],
+                    "components": [
+                        "./sources/docs/deployment-architecture.puml",
+                        "./sources/docs/phase5-deployment-guide.md"
+                    ]
+                }
+            ]
+        }
+    ]
+}

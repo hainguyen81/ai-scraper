@@ -1,0 +1,61 @@
+{
+    "phase_id": 2,
+    "phase_name": "Phase 2",
+    "project_name": "membership-hub",
+    "global_context_file": ".ai/.context/membership-hub.global.blueprint.md",
+    "source_target_dir": "sources/",
+    "days": [
+        {
+            "day": 1,
+            "context_file": ".ai/.plan/.context/phase-2.context.blueprint.md",
+            "context_section": "DAY 1",
+            "sub_tasks": [
+                {
+                    "id": "D1_ST1",
+                    "agent": "coder",
+                    "desc": "coder Agent: Scaffold Next.js project and define page routes for check-in and dashboard. Use Next.js 13+ with App Router; set reactStrictMode true. Configure eslint with OWASP security lint rules. Include tailwindcss for responsive mobile UI.",
+                    "targeted_tags": [],
+                    "components": [
+                        "./sources/frontend/package.json"
+                    ]
+                },
+                {
+                    "id": "D1_ST2",
+                    "agent": "coder",
+                    "desc": "coder Agent: Create check-in page with QR scanner and status display. Implement a functional component that renders a QR scanner (using react-qr-reader). On successful scan, invoke api.checkIn(centerId, studentId, qrPayload) with tenant-scoped centerId. Validate QR payload format (UUID) and enforce OWASP A03:2021 (Injection) via regex. Store scanned result in secure local storage using AES-256 (key derived from environment variable).",
+                    "targeted_tags": [],
+                    "components": [
+                        "./sources/frontend/src/pages/checkin.tsx"
+                    ]
+                },
+                {
+                    "id": "D1_ST3",
+                    "agent": "coder",
+                    "desc": "coder Agent: Create membership dashboard page for status and validity. Render MembershipCard component populated by api.getMembership(centerId, studentId). Display remaining validity days with a countdown timer. Apply tenant isolation: ensure centerId is taken from authenticated context, not user-modifiable.",
+                    "targeted_tags": [],
+                    "components": [
+                        "./sources/frontend/src/pages/dashboard.tsx"
+                    ]
+                },
+                {
+                    "id": "D1_ST4",
+                    "agent": "doc",
+                    "desc": "doc Agent: Document project architecture and API contracts. Include diagram of Next.js mobile app flow, QR check-in process, and API endpoints. List request/response schemas for /api/v1/centers/{centerId}/students/{studentId}/checkin and /api/v1/centers/{centerId}/students/{studentId}/membership. Note OWASP security controls applied (input validation, encryption, tenant isolation).",
+                    "targeted_tags": [],
+                    "components": [
+                        "./sources/frontend/docs/architecture.md"
+                    ]
+                },
+                {
+                    "id": "D1_ST5",
+                    "agent": "tester",
+                    "desc": "tester Agent: Write unit tests for check-in page and membership card. Use Jest + React-Testing-Library to render page, simulate QR scan, and verify API call. Mock api.checkIn and assert correct tenant parameters. Include security test for malformed QR payload (reject with validation error).",
+                    "targeted_tags": [],
+                    "components": [
+                        "./sources/frontend/src/pages/checkin.tsx;./sources/frontend/src/tests/pages/checkin.test.tsx"
+                    ]
+                }
+            ]
+        }
+    ]
+}

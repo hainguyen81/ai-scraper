@@ -1,0 +1,57 @@
+{
+    "phase_id": 3,
+    "phase_name": "Phase 3",
+    "project_name": "membership-hub",
+    "global_context_file": ".ai/.context/membership-hub.global.blueprint.md",
+    "source_target_dir": "sources/",
+    "days": [
+        {
+            "day": 1,
+            "context_file": ".ai/.plan/.context/phase-3.context.blueprint.md",
+            "context_section": "DAY 1",
+            "sub_tasks": [
+                {
+                    "id": "D1_ST1",
+                    "agent": "coder",
+                    "desc": "coder Agent: Develop CourseService and CourseRepository",
+                    "targeted_tags": [],
+                    "components": [
+                        "./sources/backend/src/main/java/org/nlh4j/saas/membershiphub/course/CourseService.java",
+                        "./sources/backend/src/main/java/org/nlh4j/saas/membershiphub/course/CourseRepository.java",
+                        "./sources/backend/src/main/java/org/nlh4j/saas/membershiphub/course/CourseResource.java"
+                    ]
+                }
+            ]
+        },
+        {
+            "day": 2,
+            "context_file": ".ai/.plan/.context/phase-3.context.blueprint.md",
+            "context_section": "DAY 2",
+            "sub_tasks": [
+                {
+                    "id": "D2_ST1",
+                    "agent": "coder",
+                    "desc": "coder Agent: Develop StudentService and StudentRepository",
+                    "targeted_tags": [],
+                    "components": [
+                        "./sources/backend/src/main/java/org/nlh4j/saas/membershiphub/student/StudentService.java",
+                        "./sources/backend/src/main/java/org/nlh4j/saas/membershiphub/student/StudentRepository.java",
+                        "./sources/backend/src/main/java/org/nlh4j/saas/membershiphub/student/StudentResource.java"
+                    ]
+                },
+                {
+                    "id": "D2_ST2",
+                    "agent": "tester",
+                    "desc": "tester Agent: Write Unit Tests for Course and Student Services",
+                    "targeted_tags": [],
+                    "components": [
+                        "./sources/backend/src/main/java/org/nlh4j/saas/membershiphub/course/CourseService.java;./sources/backend/src/test/java/org/nlh4j/saas/membershiphub/course/CourseServiceTest.java",
+                        "./sources/backend/src/main/java/org/nlh4j/saas/membershiphub/course/CourseRepository.java;./sources/backend/src/test/java/org/nlh4j/saas/membershiphub/course/CourseRepositoryTest.java",
+                        "./sources/backend/src/main/java/org/nlh4j/saas/membershiphub/student/StudentService.java;./sources/backend/src/test/java/org/nlh4j/saas/membershiphub/student/StudentServiceTest.java",
+                        "./sources/backend/src/main/java/org/nlh4j/saas/membershiphub/student/StudentRepository.java;./sources/backend/src/test/java/org/nlh4j/saas/membershiphub/student/StudentRepositoryTest.java"
+                    ]
+                }
+            ]
+        }
+    ]
+}
