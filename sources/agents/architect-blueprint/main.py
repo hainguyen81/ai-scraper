@@ -23,7 +23,8 @@ from sources.agents.agent_helper import (
     read_json_file,
     write_json_file,
     count_files_by_pattern,
-    read_file_raw
+    read_file_raw,
+    get_logger
 )
 
 # Import decoupled functional components cleanly
@@ -42,19 +43,16 @@ REQUIREMENTS_FILE           = "requirements.md"
 MODELS_POOL_PATH            = resolve_absolute_path("sources/agents/models/models.json")
 PLAN_SPEC_FILE              = "plan.spec.json"
 
+logger = get_logger("EnterpriseSystemArchitectureAgent")
+
 def load_models_pool():
-    # empty model
-    if not os.path.exists(MODELS_POOL_PATH):
-        return None
-    
-    # load models list from file
-    with open(MODELS_POOL_PATH, "r", encoding="utf-8") as f:
-        return json.load(f)
+    _, models_json = read_json_file(MODELS_POOL_PATH)
+    return models_json
 
 def load_models_keys():
     json_key_secrets = os.environ.get("AI_MODELS_KEYS_JSON")
     if not json_key_secrets:
-        print("[ ⚠️ CRITICAL WARN ] The environment variable 'AI_MODELS_KEYS_JSON' is completely absent.")
+        logger.warn("[ ⚠️ WARN ] The environment variable 'AI_MODELS_KEYS_JSON' is completely absent.")
         return None
     
     return json.loads(json_key_secrets)
@@ -67,46 +65,46 @@ def rotate_matching_model(json_ai_models, json_ai_keys, model_idx):
         target_model_name = config.get("model_name") if isinstance(config, dict) else None
         target_model_endpoint = config.get("api_endpoint") if isinstance(config, dict) else None
         
-        print("==============================================")
-        print("🔍 DEBUG: 'config':")
+        logger.debug("==============================================")
+        logger.debug("🔍 DEBUG: 'config':")
         try:
-            print(json.dumps(config, indent=4, ensure_ascii=False))
+            logger.debug(json.dumps(config, indent=4, ensure_ascii=False))
         except Exception:
-            print(f"⚠️ Exception while dump 'config' json: {type(config)} - Config: {config}")
-        print("==============================================")
+            logger.error(f"⚠️ Exception while dump 'config' json: {type(config)} - Config: {config}")
+        logger.debug("==============================================")
         
         # If endpoint is missing, None, empty "", or just whitespaces "   ", skip it cleanly
         if not target_model_name or not target_model_endpoint or not str(target_model_endpoint).strip():
-            print(f"⚠️ Ignore this config due to invalid 'model_name': {target_model_name} or 'model_endpoint': {target_model_endpoint}")
+            logger.warn(f"⚠️ Ignore this config due to invalid 'model_name': {target_model_name} or 'model_endpoint': {target_model_endpoint}")
             model_idx += 1
             continue # 🔄 Immediately jumps to the next iteration of the while loop
         
         # Lookup the API Key inside the GitHub Secret JSON dictionary using the model_name from models.json
         api_key = json_ai_keys.get(target_model_endpoint)
         if api_key:
-            print(f"[ 💀 FAILOVER ENGAGED ] Found AI model: {target_model_name} | endpoint: {target_model_endpoint}")
+            logger.info(f"[ 💀 FAILOVER ENGAGED ] Found AI model: {target_model_name} | endpoint: {target_model_endpoint}")
             return (model_idx, config, api_key)
         else:
-            print(f"[ ⚠️ WARNING ] API key missing inside GitHub JSON for model: {target_model_name} | endpoint: {target_model_endpoint}. Skipping tier.")
+            logger.warn(f"[ ⚠️ WARNING ] API key missing inside GitHub JSON for model: {target_model_name} | endpoint: {target_model_endpoint}. Skipping tier.")
             model_idx += 1
     
     return (-1, None, None)
 
 def find_project_requirements(project_name: str):
     if not project_name:
-        print("[ ⚠️ WARNING ] Invalid project_name to search. Skipping tier.")
+        logger.warn("[ ⚠️ WARNING ] Invalid project_name to search. Skipping tier.")
         return (None, None)
     
     # read projects summaize
     _, projects = read_json_file(file_path=PROJECTS_SUMMARY_FILE_PATH)
     if not projects:
-        print(f"[ ⚠️ WARNING ] Not found {PROJECTS_SUMMARY_FILE} to search. Skipping tier.")
+        logger.warn(f"[ ⚠️ WARNING ] Not found {PROJECTS_SUMMARY_FILE} to search. Skipping tier.")
         return (None, None)
     
     # filter to find project
     project_info = next((pi for pi in projects if isinstance(pi, dict) and project_name in [ pi.get("technical_codename"), pi.get("idea"), pi.get("brand_name") ]), None)
     if not project_info:
-        print(f"[ ⚠️ WARNING ] Not found {project_name} from projects list of BA. Skipping tier.")
+        logger.warn(f"[ ⚠️ WARNING ] Not found {project_name} from projects list of BA. Skipping tier.")
         return (None, None)
     
     return (project_info.get("technical_codename"), project_info.get("requirements"))
@@ -141,11 +139,11 @@ def run_architect_agent(
             project_name = detected_project_name
             requirements_path = detected_requirements_file
             physical_requirements_path = resolve_absolute_path(requirements_path)
-            print(f"\n🎉 [ INFO ] Found matching project {project_name} with requirements {requirements_path}")
+            logger.info(f"\n🎉 [ INFO ] Found matching project {project_name} with requirements {requirements_path}")
     
     # check requirements
     if not is_build_plan_spec and not os.path.exists(physical_requirements_path):
-        print(f"❌ Target requirements file not found at: {requirements_path}")
+        logger.critical(f"❌ [ CRITICAL ] Target requirements file not found at: {requirements_path}")
         sys.exit(1)
     
     # read requirements
@@ -190,7 +188,7 @@ def run_architect_agent(
             # not found any registered matching AI model
             rotate_idx, config, rotate_api_key = rotate_matching_model(json_ai_models, json_ai_keys, model_idx)
             if rotate_idx < 0 or not config or not rotate_api_key:
-                print("[ 💀 CRITICAL SHUTDOWN ] Not found any more registered AI models with valid keys.")
+                logger.critical("[ 💀 CRITICAL ] Not found any more registered AI models with valid keys.")
                 break
             
             # found registered matching AI model, but information is invalid
@@ -201,7 +199,7 @@ def run_architect_agent(
             api_endpoint = config.get("api_endpoint") if isinstance(config, dict) else None
             api_key = rotate_api_key
             if not api_model_global or not api_endpoint or not api_key:
-                print("[ 💀 CRITICAL SHUTDOWN ] Invalid registered AI models. Missing Endpoint, Model or API Key.")
+                logger.critical("[ 💀 CRITICAL ] Invalid registered AI models. Missing Endpoint, Model or API Key.")
                 break
         
         # first time
@@ -225,18 +223,18 @@ def run_architect_agent(
                 timeout=600.0
             )
         
-        print("=============================================================================")
-        print(f"🤖 AI: Endpoint {api_endpoint}. Mode '0' for all.")
-        print(f"    - Global Context:               {api_model_global}. Mode 1")
-        print(f"    - Phase Context:                {api_model_phase}.  Mode 2")
-        print(f"    - Phase JSON Steps:             {api_model_steps}.  Mode 3")
-        print(f"    - Phase JSON Steps Mapping:     {api_model_steps_mapping}")
-        print(f"    - Build Plan Spec:              {api_model_steps}.  Mode 4")
-        print(f"    - Execution Mode:               {exec_mode}")
-        print(f"    - Execution Delay:              {exec_delay}")
-        print("=============================================================================")
-        print(f"    - ROTATE MODEL INTEGRATION:     {model_idx}")
-        print("=============================================================================")
+        logger.info("=============================================================================")
+        logger.info(f"🤖 AI: Endpoint {api_endpoint}. Mode '0' for all.")
+        logger.info(f"    - Global Context:               {api_model_global}. Mode 1")
+        logger.info(f"    - Phase Context:                {api_model_phase}.  Mode 2")
+        logger.info(f"    - Phase JSON Steps:             {api_model_steps}.  Mode 3")
+        logger.info(f"    - Phase JSON Steps Mapping:     {api_model_steps_mapping}")
+        logger.info(f"    - Build Plan Spec:              {api_model_steps}.  Mode 4")
+        logger.info(f"    - Execution Mode:               {exec_mode}")
+        logger.info(f"    - Execution Delay:              {exec_delay}")
+        logger.info("=============================================================================")
+        logger.info(f"    - ROTATE MODEL INTEGRATION:     {model_idx}")
+        logger.info("=============================================================================")
         
         # -------------------------------------------------
         # 1. Execute Block 1 Module
@@ -254,7 +252,7 @@ def run_architect_agent(
             
             # sleep to avoid 429 Too Many Requests
             if result_global:
-                print(f"⏳ Rate limit guard active... holding pipeline for { exec_delay } seconds to clear AI TPM window...")
+                logger.debug(f"⏳ Rate limit guard active... holding pipeline for { exec_delay } seconds to clear AI TPM window...")
                 time.sleep(exec_delay)
         
         # no need AI, just reading from existing context file
@@ -266,7 +264,7 @@ def run_architect_agent(
         
         # if failed, check whether should rotate model
         if not is_build_plan_spec and not result_global:
-            print(f"\n[ 🤖💬 PIPELINE WARN ] Modular Enterprise Architecture Pipeline Executed: Fail to generate project global context!")
+            logger.warn(f"\n[ 🤖💬 WARN ] Modular Enterprise Architecture Pipeline Executed: Fail to generate project global context!")
             
             # should rotate to find other models
             if rotate_model:
@@ -278,7 +276,7 @@ def run_architect_agent(
         
         # fake global context if building plan spec
         elif is_build_plan_spec:
-            result_global = f"\n[ 🤖💬 PIPELINE WARN ] No need project global context, due to building plan spec!"
+            result_global = f"\n[ 🤖💬 WARN ] No need project global context, due to building plan spec!"
         
         # -------------------------------------------------
         # 2. Execute Block 2 Module
@@ -299,11 +297,11 @@ def run_architect_agent(
             
             # sleep to avoid 429 Too Many Requests
             if result_phase:
-                print("⏳ Rate limit guard active... holding pipeline for 15 seconds to clear AI TPM window...")
+                logger.debug("⏳ Rate limit guard active... holding pipeline for 15 seconds to clear AI TPM window...")
                 time.sleep(5)
             
             else:
-                print("\n[ 🤖💬 PIPELINE WARN ] Modular Enterprise Architecture Pipeline Executed: Fail to generate project phase contexts!")
+                logger.warn("\n[ 🤖💬 WARN ] Modular Enterprise Architecture Pipeline Executed: Fail to generate project phase contexts!")
                 
                 # should rotate to find other models
                 if rotate_model:
@@ -333,7 +331,7 @@ def run_architect_agent(
                 daysPerChunk=daysPerChunk
             )
             if not result_steps:
-                print("\n[ 🤖💬 PIPELINE WARN ] Modular Enterprise Architecture Pipeline Executed: Fail to generate project phase JSON steps!")
+                logger.warn("\n[ 🤖💬 WARN ] Modular Enterprise Architecture Pipeline Executed: Fail to generate project phase JSON steps!")
                 
                 # should rotate to find other models
                 if rotate_model:
@@ -380,16 +378,16 @@ def run_architect_agent(
         plan_spec["total_days"] += sum(item["days"] for item in plan_spec["phases"])
         
         # write plan spec
-        print(f"\n🎉 [ INFO ] Modular Enterprise Architecture Plan Spec: {json.dumps(plan_spec, indent=4, ensure_ascii=False)}")
+        logger.info(f"\n🎉 [ INFO ] Modular Enterprise Architecture Plan Spec: {json.dumps(plan_spec, indent=4, ensure_ascii=False)}")
         write_json_file(dir=plan_context_dir, file=PLAN_SPEC_FILE, json_data=plan_spec)
     
     # log for tracing
     if not everything_ok:
-        print(f"\n❌ [ PIPELINE FAILED ] Modular Enterprise Architecture Pipeline Executed Failed: Global?. { True if result_global else False } - Phase { result_phase } - Steps { result_steps }")
+        logger.error(f"\n❌ [ FAILED ] Modular Enterprise Architecture Pipeline Executed Failed: Global?. { True if result_global else False } - Phase { result_phase } - Steps { result_steps }")
     
     # everything is ok
     else:
-        print("\n🎉 [ PIPELINE SUCCESS ] Modular Enterprise Architecture Pipeline Executed Perfectly!")
+        logger.info("\n🎉 [ SUCCESS ] Modular Enterprise Architecture Pipeline Executed Perfectly!")
         
         # remove log if necessary
         delete_log(absolute_out_dir)

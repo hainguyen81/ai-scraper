@@ -26,13 +26,15 @@ from sources.agents.agent_helper import (
     write_blueprint_log,
     write_json_file,
     render_prompt,
-    parseAIResponseJsonData
+    parseAIResponseJsonData,
+    get_logger
 )
 
 # ==============================================================================
 # GLOBAL CONFIGURATION PATHS - CONFIG HERE TO CUSTOMIZE DIRECTORY STRUCTURE
 # ==============================================================================
 PROMPT_TEMPLATE_PATH = resolve_absolute_path("sources/agents/architect-blueprint/block_json_prompt.md")
+logger = get_logger("EnterpriseSystemArchitectureAgent")
 
 # --- Validated Schemas for Structured JSON Output ---
 class SubAgentTask(BaseModel):
@@ -77,13 +79,13 @@ def phase_context_file(phase_idx: int):
 def dynamic_transform(json_data, project_name: str, phase_idx: int, template_file_path: str, log_file_path: str):
     # check json mapping whether existed
     if not template_file_path or not os.path.exists(template_file_path):
-        print(f" │   └── ⚠️ The mapping JSON file not found: {template_file_path}. So using manual transform...")
+        logger.warn(f" │   └── ⚠️ The mapping JSON file not found: {template_file_path}. So using manual transform...")
         return manual_transform(json_data, project_name, phase_idx)
     
     try:
         # custom field mapping
-        # print(f" │   └── ⚠️ The mapping JSON template: {template_content}")
-        # print(f" │         { template_content }")
+        # logger.debug(f" │   └── ⚠️ The mapping JSON template: {template_content}")
+        # logger.debug(f" │         { template_content }")
         json_data['project_name'] = project_name.strip()
         json_data['global_context_file'] = project_context_file(project_name)
         json_data['phase_idx'] = phase_idx
@@ -97,8 +99,8 @@ def dynamic_transform(json_data, project_name: str, phase_idx: int, template_fil
         # wrap AI json data to variable `ai` in mapping config file to use
         jinja_template = Template(template_content)
         rendered_str = jinja_template.render(ai=json_data)
-        # print(f" │   └── ⚠️ The mapping JSON Rendered String:")
-        # print(f" │         { rendered_str }")
+        # logger.debug(f" │   └── ⚠️ The mapping JSON Rendered String:")
+        # logger.debug(f" │         { rendered_str }")
         
         # write log for tracing
         # if os.path.exists(log_file_path):
@@ -112,8 +114,8 @@ def dynamic_transform(json_data, project_name: str, phase_idx: int, template_fil
         cleaned_str = re.sub(r',\s*\]', ']', rendered_str)
         cleaned_str = re.sub(r'\[\s*,', '[', cleaned_str)
         cleaned_str = re.sub(r',\s*\}', '}', cleaned_str)
-        # print(f" │   └── ⚠️ The mapping JSON Cleaned String:")
-        # print(f" │         { cleaned_str }")
+        # logger.debug(f" │   └── ⚠️ The mapping JSON Cleaned String:")
+        # logger.debug(f" │         { cleaned_str }")
         
         # write log for tracing
         # if os.path.exists(log_file_path):
@@ -123,7 +125,7 @@ def dynamic_transform(json_data, project_name: str, phase_idx: int, template_fil
         # 4. Parse result JSON after rendering by Jinja
         return json.loads(cleaned_str)
     except json.JSONDecodeError as e:
-        print(f" │   └── ❌ Exception while mapping JSON: { str(e) }. So using manual transform...")
+        logger.warn(f" │   └── ❌ Exception while mapping JSON: { str(e) }. So using manual transform...")
         return manual_transform(json_data, project_name, phase_idx)
 
 def manual_transform(json_data, project_name: str, phase_idx: int):
@@ -180,7 +182,7 @@ def convert_phases_to_json(client: OpenAI, model_name: str, project_name: str, n
     BLOCK 3: Consumes the physical localized markdown outputs and structuralized them into strictly-typed JSON.
     Guarantees no invalid text pollution using Pydantic typing patterns.
     """
-    print(f"⚙️  [BLOCK 3] Translating Phase Markdown files into Structured Daily Steps JSON trackers...")
+    logger.info(f"⚙️  [BLOCK 3] Translating Phase Markdown files into Structured Daily Steps JSON trackers...")
     
     steps_context_dir = os.path.join(out_dir, "plan", "steps")
     os.makedirs(steps_context_dir, exist_ok=True)
@@ -206,13 +208,13 @@ def convert_phases_to_json(client: OpenAI, model_name: str, project_name: str, n
             md_path = os.path.join(phase_context_dir, f"phase-{phase_idx}.context.blueprint.md")
             
             if not os.path.exists(md_path):
-                print(f" │   └── ❌ Skipped Phase {phase_idx}: Source Markdown file not found.")
+                logger.warn(f" │   └── ❌ Skipped Phase {phase_idx}: Source Markdown file not found.")
                 continue
                 
             with open(md_path, "r", encoding="utf-8") as f:
                 phase_markdown_content = f.read()
                 
-            print(f" │   ├── 🔀 Parsing Phase {phase_idx} MD -> Compiling phase-{phase_idx}.steps.json...")
+            logger.info(f" │   ├── 🔀 Parsing Phase {phase_idx} MD -> Compiling phase-{phase_idx}.steps.json...")
             
             # 🎯 CHUNKING MEMORY STORAGE: Initialize temporary dictionary repository to hold aggregated elements
             project_phase_context_file = phase_context_file(phase_idx)
@@ -238,9 +240,9 @@ def convert_phases_to_json(client: OpenAI, model_name: str, project_name: str, n
             while has_more_days:
                 current_end_day = current_start_day + DAYS_PER_CHUNK - 1
                 if DAYS_PER_CHUNK > 0:
-                    print(f" │       ├── 📦 Chunk {chunk_counter}: Extracting Days {current_start_day} to {current_end_day}...")
+                    logger.info(f" │       ├── 📦 Chunk {chunk_counter}: Extracting Days {current_start_day} to {current_end_day}...")
                 else:
-                    print(f" │       ├── 📦 Chunk {chunk_counter}: Extracting All Days...")
+                    logger.info(f" │       ├── 📦 Chunk {chunk_counter}: Extracting All Days...")
                 
                 # parse prompt from template
                 is_chunked_mode = True if DAYS_PER_CHUNK > 0 else False
@@ -309,7 +311,7 @@ def convert_phases_to_json(client: OpenAI, model_name: str, project_name: str, n
                 
                 # Guard against corrupted extractions
                 if not json_data or not isinstance(json_data, dict):
-                    print(f" │       └── ⚠️ Chunk {chunk_counter} failed to yield clean data object. Halting scroll vector.")
+                    logger.warn(f" │       └── ⚠️ Chunk {chunk_counter} failed to yield clean data object. Halting scroll vector.")
                     has_more_days = False
                     break
                 
@@ -318,7 +320,7 @@ def convert_phases_to_json(client: OpenAI, model_name: str, project_name: str, n
                 
                 # Termination trigger: If array is missing or empty, the entire markdown blueprint context has been fully scanned
                 if not chunk_steps_array:
-                    print(f" │       └── 🏁 Reached timeline boundary. No data mapped for Day {current_start_day}+.")
+                    logger.warn(f" │       └── 🏁 Reached timeline boundary. No data mapped for Day {current_start_day}+.")
                     has_more_days = False
                     break
                 
@@ -337,13 +339,13 @@ def convert_phases_to_json(client: OpenAI, model_name: str, project_name: str, n
                 
                 # Incremental shift parameters mapping to the next chronological segment index
                 if DAYS_PER_CHUNK == 0:
-                    print(f" │       └── 🎉 Monolithic processing complete. Total days extracted: {new_days_added_in_this_chunk}. Halting.")
+                    logger.info(f" │       └── 🎉 Monolithic processing complete. Total days extracted: {new_days_added_in_this_chunk}. Halting.")
                     has_more_days = False
                     break
                 else:
                     # not found any days
                     if new_days_added_in_this_chunk == 0:
-                        print(f" │       └── 🏁 No new valid days matched the current span [{current_start_day}-{current_end_day}]. Ending scroll vector.")
+                        logger.warn(f" │       └── 🏁 No new valid days matched the current span [{current_start_day}-{current_end_day}]. Ending scroll vector.")
                         break
                     
                     # loop chunk
@@ -369,12 +371,12 @@ def convert_phases_to_json(client: OpenAI, model_name: str, project_name: str, n
                 # print(f" │         { dump_json_data }")
                 
                 # 2. Parse and validate the string payload locally with Pydantic core engine
-                print(f" │   └── 🎉 Validate Phase {phase_idx} Standardized JSON...")
+                logger.info(f" │   └── 🎉 Validate Phase {phase_idx} Standardized JSON...")
                 validated_pydantic_object = PhaseStepsPlan.model_validate(transform_json_data)
                 
                 # validate if empty days
                 if not validated_pydantic_object.days:
-                    print(f" │   └── 🎉 Phase {phase_idx} has no any day or task to do...")
+                    logger.error(f" │   └── 🎉 Phase {phase_idx} has no any day or task to do...")
                     raise ValueError(f"Phase {phase_idx} has no any day or task to do")
                 
                 # dump model data
@@ -389,10 +391,10 @@ def convert_phases_to_json(client: OpenAI, model_name: str, project_name: str, n
                     json_data=model_dump
                 )
                     
-                print(f" │   └── 🎉 Saved Phase {phase_idx} Standardized JSON Tracker: {out_path}")
+                logger.info(f" │   └── 🎉 Saved Phase {phase_idx} Standardized JSON Tracker: {out_path}")
                 
             except Exception as pydantic_error:
-                print(f" │   └── ❌ Local Validation Failed for Phase {phase_idx}: {pydantic_error}")
+                logger.error(f" │   └── ❌ Local Validation Failed for Phase {phase_idx}: {pydantic_error}")
                 
                 # Save the raw unparsed text payload directly to file for manual logging evaluation
                 with open(fallback_path, "w", encoding="utf-8") as f:
@@ -400,17 +402,17 @@ def convert_phases_to_json(client: OpenAI, model_name: str, project_name: str, n
                     f.write("\n-------------------------------------------------\n")
                     f.write(f"```text{json.dumps(master_phase_plan, indent=4, ensure_ascii=False)}```")
                     f.write("\n-------------------------------------------------\n")
-                print(f" │   └── ⚠️ Raw dump saved to diagnostic log file: {fallback_path}")
+                logger.error(f" │   └── ⚠️ Raw dump saved to diagnostic log file: {fallback_path}")
                 result = False
                 break
             
             # sleep to avoid 429 Too Many Requests
             if phase_idx < num_phases + 1:
-                print(f"⏳ Rate limit guard active... holding pipeline for { delay } seconds to clear AI TPM window...")
+                logger.debug(f"⏳ Rate limit guard active... holding pipeline for { delay } seconds to clear AI TPM window...")
                 time.sleep(delay)
                 
         return result # success or empty phases
     except Exception as e:
-        print(f"❌ Failed to initiate chat/generate Phase {log_phase_idx} Steps JSON: {exception_stacktrace(e)}")
+        logger.error(f"❌ Failed to initiate chat/generate Phase {log_phase_idx} Steps JSON: {exception_stacktrace(e)}")
         write_blueprint_log(log_phase_idx, instruction, log_prompt.replace('#', '##'), exception_stacktrace(e), True, model_name_safe, out_dir)
         return False

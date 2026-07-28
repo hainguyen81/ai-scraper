@@ -37,12 +37,6 @@ class PrincipalBusinessAnalysisAgent(AbstractSubAgent):
     
     # @override
     def initialize(self):
-        # require idea identity to analyze
-        self.idea_id = self.get_kwargs("idea") or self.get_kwargs("idea_id")
-        self.idea_is_project = False
-        if not self.idea_id:
-            raise RuntimeError("- Invalid idea identity / project name to analyze!")
-        
         # start initialization
         super().initialize()
         self.language = self.get_kwargs("language") or DEFAULT_IDEAS_LANGUAGE
@@ -78,7 +72,7 @@ class PrincipalBusinessAnalysisAgent(AbstractSubAgent):
         
         # no idea also no requirements
         if not file_content:
-            print(f"[ 💀 {self.agent_id} Agent | CRITICAL ERROR ] Not found IDEA / Requirements file to process")
+            self.logger.critical(f"[ 💀 CRITICAL ] Not found IDEA / Requirements file to process")
             sys.exit(1)
         
         # return merged new values
@@ -159,7 +153,7 @@ class PrincipalBusinessAnalysisAgent(AbstractSubAgent):
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
-    parser.add_argument("--idea", type=str, help="Idea Identity for searching")
+    parser.add_argument("--idea", type=str, help="Idea Identity / Project Name for searching")
     parser.add_argument("--language", type=str, help="Translate SRS to language. Ex: Vietnamese, English, etc.")
     args = parser.parse_args()
     PrincipalBusinessAnalysisAgent(

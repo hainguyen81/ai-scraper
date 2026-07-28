@@ -18,13 +18,15 @@ from sources.agents.agent_helper import (
     write_blueprint_log,
     write_file,
     render_prompt,
-    parseAIResponseData
+    parseAIResponseData,
+    get_logger
 )
 
 # ==============================================================================
 # GLOBAL CONFIGURATION PATHS - CONFIG HERE TO CUSTOMIZE DIRECTORY STRUCTURE
 # ==============================================================================
 PROMPT_TEMPLATE_PATH = resolve_absolute_path("sources/agents/architect-blueprint/block_phase_prompt.md")
+logger = get_logger("EnterpriseSystemArchitectureAgent")
 
 # GEMINI
 # def generate_phase_contexts(client: genai.Client, project_name: str, requirements: str, global_context: str, num_phases: int, out_dir: str):
@@ -35,7 +37,7 @@ def generate_phase_contexts(client: OpenAI, model_name: str, project_name: str, 
     BLOCK 2: Decomposes requirements into segmented, sandbox-ready development boundaries.
     Executes raw isolated stateless calls per loop item to bypass sequence length degradation.
     """
-    print(f"🔄 [BLOCK 2] Decomposing requirements into {num_phases} isolated Phase Markdowns...")
+    logger.info(f"🔄 [BLOCK 2] Decomposing requirements into {num_phases} isolated Phase Markdowns...")
     
     delay = delay if delay else 3
     max_days_per_phase = max_days_per_phase if max_days_per_phase > 0 else 7
@@ -46,7 +48,7 @@ def generate_phase_contexts(client: OpenAI, model_name: str, project_name: str, 
     try:
         for phase_idx in range(1, num_phases + 1):
             log_phase_idx = phase_idx
-            print(f" │   ├── 📝 Compiling Context Markdown for Phase {phase_idx} of {num_phases}...")
+            logger.info(f" │   ├── 📝 Compiling Context Markdown for Phase {phase_idx} of {num_phases}...")
             
             # parse prompt from template
             prompt_context = {
@@ -89,17 +91,17 @@ def generate_phase_contexts(client: OpenAI, model_name: str, project_name: str, 
             # write log
             write_blueprint_log(log_phase_idx, instruction, log_prompt.replace('#', '##'), raw_data.replace('#', '##') if raw_data else "-", False, model_name_safe, out_dir)
             
-            print(f" │   ├── ✅ Saved Phase {phase_idx} MD: {out_path}")
+            logger.info(f" │   ├── ✅ Saved Phase {phase_idx} MD: {out_path}")
             
             # sleep to avoid 429 Too Many Requests
             if phase_idx < num_phases + 1:
-                print(f"⏳ Rate limit guard active... holding pipeline for { delay } seconds to clear AI TPM window...")
+                logger.debug(f"⏳ Rate limit guard active... holding pipeline for { delay } seconds to clear AI TPM window...")
                 time.sleep(delay)
             
         result = True if num_phases > 0 else False
         return result # success or empty phases
     except Exception as e:
-        print(f"❌ Failed to initiate chat/generate Phase {log_phase_idx} Blueprint: {exception_stacktrace(e)}")
+        logger.error(f"❌ Failed to initiate chat/generate Phase {log_phase_idx} Blueprint: {exception_stacktrace(e)}")
         write_blueprint_log(log_phase_idx, instruction, log_prompt.replace('#', '##'), exception_stacktrace(e), False, model_name_safe, out_dir)
         return False
 

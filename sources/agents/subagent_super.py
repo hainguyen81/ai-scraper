@@ -38,6 +38,9 @@ class AbstractSubAgent(AbstractAgent):
     def initialize_projects(self):
         self.projects_summary = self.__read_projects_info__(ignore_not_found=True) or []
         self.project_info = self.__project_info__()
+        if self.project_info:
+            self.idea_id = self.project_info.get("idea", self.idea_id)
+            self.project_name = self.project_info.get("technical_codename", self.project_name)
     
     def __storage_path__(self, storage_name, file) -> str:
         return os.path.join(self.storage.get(storage_name), file))
