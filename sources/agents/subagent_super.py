@@ -43,13 +43,13 @@ class AbstractSubAgent(AbstractAgent):
             self.project_name = self.project_info.get("technical_codename", self.project_name)
     
     def __storage_path__(self, storage_name, file) -> str:
-        return os.path.join(self.storage.get(storage_name), file))
+        return os.path.join(self.storage.get(storage_name), file)
     
     def __output_storage_path__(self, storage_name, file) -> str:
-        return os.path.join(self.storage_output.get(storage_name), file))
+        return os.path.join(self.storage_output.get(storage_name), file)
     
     def __agents_path__(self, storage_name, file) -> str:
-        return os.path.join(self.storage_agents.get(storage_name), file))
+        return os.path.join(self.storage_agents.get(storage_name), file)
     
     def __read_storage_file__(self, storage_name, file, ignore_not_found=False):
         storage_file = self.__storage_path__(storage_name=storage_name, file=file)
