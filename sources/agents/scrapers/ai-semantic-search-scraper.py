@@ -8,16 +8,24 @@ from typing import List, Dict, Any
 from exa_py import Exa
 
 # Now Python can seamlessly see and import the centralized helper utility cleanly!
-from sources.agents.agent_helper import resolve_absolute_path, json_raw_content
+from sources.agents.agent_helper import (
+    json_raw_content,
+    storage_info,
+    get_logger
+)
 
 # logger
-logger = logging.getLogger("MultiSourceSearchScraper")
+logger = get_logger("MultiSourceSearchScraper")
+# storage
+storage = storage_info
 
 # ==============================================================================
 # GLOBAL CONFIGURATION PATHS - CONFIG HERE TO CUSTOMIZE DIRECTORY STRUCTURE
 # ==============================================================================
-output_scraper_data_file        = resolve_absolute_path("sources/output/web_search_corpus.json")
-agent_working_history_file      = resolve_absolute_path("sources/output/web_search_corpus.md")
+output_file_name                = "web_search_corpus"
+output_scraper_data_file        = os.path.join(storage.get("output", {}).get("output_scraper", ""), f"{output_file_name}.json")
+agent_working_history_file      = os.path.join(storage.get("output", {}).get("output_scraper", ""), f"{output_file_name}.md")
+
 
 class SemanticSearchScraper:
     """Enterprise-grade semantic scraper using Exa AI to discover and scrape raw data from hundreds of tech sites simultaneously."""

@@ -8,16 +8,24 @@ import urllib.request
 from typing import List, Dict, Any, Optional
 
 # Now Python can seamlessly see and import the centralized helper utility cleanly!
-from sources.agents.agent_helper import resolve_absolute_path, json_raw_content, exception_stacktrace
+from sources.agents.agent_helper import (
+    json_raw_content,
+    exception_stacktrace,
+    storage_info,
+    get_logger
+)
 
 # logger
-logger = logging.getLogger("CommunityForumScraper")
+logger = get_logger("CommunityForumScraper")
+# storage
+storage = storage_info
 
 # ==============================================================================
 # GLOBAL CONFIGURATION PATHS - CONFIG HERE TO CUSTOMIZE DIRECTORY STRUCTURE
 # ==============================================================================
-output_scraper_data_file        = resolve_absolute_path("sources/output/discovered-community-endpoints.json")
-agent_working_history_file      = resolve_absolute_path("sources/output/discovered-community-endpoints.md")
+output_file_name                = "discovered-community-endpoints"
+output_scraper_data_file        = os.path.join(storage.get("output", {}).get("output_scraper", ""), f"{output_file_name}.json")
+agent_working_history_file      = os.path.join(storage.get("output", {}).get("output_scraper", ""), f"{output_file_name}.md")
 
 HN_ITEM_URL                     = "https://hacker-news.firebaseio.com/v0/item/"
 HN_STORIES_JSON_URL             = "https://hacker-news.firebaseio.com/v0/showstories.json" 

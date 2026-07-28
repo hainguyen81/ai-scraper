@@ -10,19 +10,31 @@ from typing import Dict, Any
 from openai import OpenAI
 
 # Now Python can seamlessly see and import the centralized helper utility cleanly!
-from sources.agents.agent_helper import resolve_absolute_path, json_raw_content, exception_stacktrace
+from sources.agents.agent_helper import (
+    json_raw_content,
+    exception_stacktrace,
+    storage_info,
+    get_logger
+)
 
 # logger
-logger = logging.getLogger("DynamicAIScraper")
+logger = get_logger("DynamicAIScraper")
+# storage
+storage = storage_info
 
-output_scraper_data_file        = resolve_absolute_path("sources/output/free_models_by_llm_web_scraper.json")
-agent_working_history_file      = resolve_absolute_path("sources/output/free_models_by_llm_web_scraper.md")
+# ==============================================================================
+# GLOBAL CONFIGURATION PATHS - CONFIG HERE TO CUSTOMIZE DIRECTORY STRUCTURE
+# ==============================================================================
+output_file_name                = "free_models_by_llm_web_scraper"
+output_scraper_data_file        = os.path.join(storage.get("output", {}).get("output_scraper", ""), f"{output_file_name}.json")
+agent_working_history_file      = os.path.join(storage.get("output", {}).get("output_scraper", ""), f"{output_file_name}.md")
 
 # ==============================================================================
 # 🎛️ CENTRALIZED AI ENDPOINT CONFIGURATION LAYER
 # Swap providers instantly by changing these 2 variables. The API Key is passed via CLI.
 # ==============================================================================
 SOURCE_LLM_MODELS_FREE_URL = "https://github.com/open-free-llm-api/awesome-freellm-apis"
+
 
 class DynamicScraperAgent:
     """Enterprise-grade dynamic agent designed to switch LLM providers effortlessly by modifying endpoint configurations."""

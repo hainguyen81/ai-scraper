@@ -8,18 +8,31 @@ import urllib.request
 import urllib.error
 
 # Now Python can seamlessly see and import the centralized helper utility cleanly!
-from sources.agents.agent_helper import resolve_absolute_path, json_raw_content, exception_stacktrace
+from sources.agents.agent_helper import (
+    json_raw_content,
+    exception_stacktrace,
+    storage_info,
+    get_logger
+)
 
 # logger
-logger = logging.getLogger("GitHubScraper")
+logger = get_logger("GitHubScraper")
+# storage
+storage = storage_info
 
 # ==============================================================================
 # GLOBAL CONFIGURATION PATHS - CONFIG HERE TO CUSTOMIZE DIRECTORY STRUCTURE
 # ==============================================================================
-output_scraper_data_file        = resolve_absolute_path("sources/output/free_models_by_github_scraper.json")
-agent_working_history_file      = resolve_absolute_path("sources/output/free_models_by_github_scraper.md")
+output_file_name                = "free_models_by_github_scraper"
+output_scraper_data_file        = os.path.join(storage.get("output", {}).get("output_scraper", ""), f"{output_file_name}.json")
+agent_working_history_file      = os.path.join(storage.get("output", {}).get("output_scraper", ""), f"{output_file_name}.md")
 
+# ==============================================================================
+# 🎛️ CENTRALIZED AI ENDPOINT CONFIGURATION LAYER
+# Swap providers instantly by changing these 2 variables. The API Key is passed via CLI.
+# ==============================================================================
 GITHUB_LLM_MODELS_JSON_URL      = "https://raw.githubusercontent.com/mnfst/awesome-free-llm-apis/main/data.json"
+
 
 class GitHubModelScraper:
     """Enterprise automation class to fetch and standardize free AI model providers from GitHub."""

@@ -22,44 +22,33 @@ from crewai.flow import Flow, listen, start, router
 
 # Now Python can seamlessly see and import the centralized helper utility cleanly!
 from sources.agents.agent_helper import (
-    resolve_absolute_path,
-    read_json_file,
-    read_file_raw,
-    write_json_file,
     write_file,
     delete_file,
-    kwargs_by_key,
-    render_kwargs_prompt
+    render_kwargs_prompt,
+    get_logger
 )
 
 # super agent
-from sources.agents.agent_super import AbstractAgent
+from sources.agents.subagent_super import AbstractSubAgent
 
 # ==============================================================================
 # GLOBAL CONFIGURATION PATHS - CONFIG HERE TO CUSTOMIZE DIRECTORY STRUCTURE
 # ==============================================================================
-PROMPT_TEMPLATE_SOLUTION_SENTINEL   = resolve_absolute_path("sources/agents/chief-solution/agent_csro.prompt.solution-sentinel.md")
-PROMPT_TEMPLATE_BA                  = resolve_absolute_path("sources/agents/chief-solution/agent_csro.prompt.ba.md")
-PROMPT_TEMPLATE_SA                  = resolve_absolute_path("sources/agents/chief-solution/agent_csro.prompt.sa.md")
-PROMPT_TEMPLATE_SA_DIFF_ANALYZER    = resolve_absolute_path("sources/agents/chief-solution/agent_csro.prompt.diff-blueprint-analyzer.md")
+PROMPT_TEMPLATE_SOLUTION_SENTINEL   = "agent_csro.prompt.solution-sentinel.md"
+PROMPT_TEMPLATE_BA                  = "agent_csro.prompt.ba.md"
+PROMPT_TEMPLATE_SA                  = "agent_csro.prompt.sa.md"
+PROMPT_TEMPLATE_SA_DIFF_ANALYZER    = "agent_csro.prompt.diff-blueprint-analyzer.md"
+
 # `MANDATORY OUTPUT FORMAT` is a section in PROMPT
-EXPECTED_TEMPLATE_SOLUTION_SENTINEL = resolve_absolute_path("sources/agents/chief-solution/agent_csro.expected.solution-sentinel.md")
-EXPECTED_TEMPLATE_BA                = resolve_absolute_path("sources/agents/chief-solution/agent_csro.expected.ba.md")
-EXPECTED_TEMPLATE_SA                = resolve_absolute_path("sources/agents/chief-solution/agent_csro.expected.sa.md")
-EXPECTED_TEMPLATE_SA_DIFF_ANALYZER  = resolve_absolute_path("sources/agents/chief-solution/agent_csro.expected.diff-blueprint-analyzer.md")
-TASK_TEMPLATE_SA_DIFF_ANALYZER      = resolve_absolute_path("sources/agents/chief-solution/agent_csro.task.diff-blueprint-analyzer.md")
-STORAGE_PATH                        = resolve_absolute_path("sources/storage")
-IDEAS_STORAGE_PATH                  = os.path.join(STORAGE_PATH, "ideas")
-BA_STORAGE_PATH                     = os.path.join(STORAGE_PATH, "business-analysis")
-CSRO_STORAGE_PATH                   = os.path.join(STORAGE_PATH, "chief-solution")
-BA_SUMMARY_FILE                     = resolve_absolute_path(os.path.join(BA_STORAGE_PATH, "projects-summary.json"))
-BLUEPRINT_STORAGE_PATH              = os.path.join(STORAGE_PATH, "blueprint")
-CSRO_OUTPUT_PATH                    = resolve_absolute_path("sources/output/chief-solution")
-CSRO_RAW_FILE                       = os.path.join(CSRO_OUTPUT_PATH, "chief-solution-review.md")
-CSRO_BA_RAW_FILE                    = os.path.join(CSRO_OUTPUT_PATH, "chief-solution-review-ba.md")
-CSRO_SA_RAW_FILE                    = os.path.join(CSRO_OUTPUT_PATH, "chief-solution-review-sa.md")
-CSRO_LOG_FILE                       = os.path.join(CSRO_OUTPUT_PATH, "chief-solution-review_log.md")
-CSRO_LOG_DA_FILE                    = os.path.join(CSRO_OUTPUT_PATH, "chief-solution-diff-analysis_log.md")
+EXPECTED_TEMPLATE_SOLUTION_SENTINEL = "agent_csro.expected.solution-sentinel.md"
+EXPECTED_TEMPLATE_BA                = "agent_csro.expected.ba.md"
+EXPECTED_TEMPLATE_SA                = "agent_csro.expected.sa.md"
+EXPECTED_TEMPLATE_SA_DIFF_ANALYZER  = "agent_csro.expected.diff-blueprint-analyzer.md"
+TASK_TEMPLATE_SA_DIFF_ANALYZER      = "agent_csro.task.diff-blueprint-analyzer.md"
+
+# CSRO log files
+CSRO_LOG_FILE                       = "chief-solution-review_log.md"
+CSRO_LOG_DA_FILE                    = "chief-solution-diff-analysis_log.md"
 
 
 # support for executing workflow
@@ -78,7 +67,7 @@ def __execute_function_until_complete__(func_pointer, **kwargs):
 # =====================================================================
 # 🕵️‍♂️ SUPER: THE SUPREME AGENT (ENTERPRISE SOLUTION SUPER AGENT)
 # =====================================================================
-class AbstractCrewEnterpriseSuperAgent(AbstractAgent):
+class AbstractCrewEnterpriseSuperAgent(AbstractSubAgent):
     """
     A Class-based Agent representing the Supreme Gatekeeper.
     It scans Idea, SRS, and Blueprint files for gaps, loopholes, and enterprise compliance.
@@ -86,101 +75,121 @@ class AbstractCrewEnterpriseSuperAgent(AbstractAgent):
     def __init__(self, agent_id, **kwargs):
         super().__init__(agent_id=agent_id, **kwargs)
     
-    def project_name(self):
-        return self.project_info.get("technical_codename") if self.project_info else None
-    
-    def file_idea(self):
-        return os.path.join(IDEAS_STORAGE_PATH, f"{self.idea_id}.md")
-    
-    def file_ba(self):
-        return self.project_info.get("requirements") if self.project_info else None
-    
-    def file_blueprint(self):
-        project_name = self.project_name()
-        return os.path.join(BLUEPRINT_STORAGE_PATH, project_name, "context", f"{project_name}.global.blueprint.md") if project_name else None
-    
     def file_blueprint_approval(self, prefix):
-        project_name = self.project_name()
+        project_name = self.__current_project_name__()
         prefix = prefix if prefix else "_"
-        return os.path.join(BLUEPRINT_STORAGE_PATH, project_name, "context", f"{prefix}-csro.{project_name}.global.blueprint.md") if project_name else None
+        return self.__storage_path__(
+            storage_name="storage_sa",
+            file=f"{project_name}/context/{prefix}-csro.{project_name}.global.blueprint.md"
+        ) if project_name else None
     
     def file_blueprint_diff_analysis(self, prefix):
-        project_name = self.project_name()
+        project_name = self.__current_project_name__()
         prefix = prefix if prefix else "_"
-        return os.path.join(BLUEPRINT_STORAGE_PATH, project_name, "context", f"{prefix}-diff-analysis.{project_name}.global.blueprint.md") if project_name else None
+        return self.__storage_path__(
+            storage_name="storage_sa",
+            file=f"{project_name}/context/{prefix}-diff-analysis.{project_name}.global.blueprint.md"
+        ) if project_name else None
     
     def file_ba_approval(self, prefix):
-        project_name = self.project_name()
+        project_name = self.__current_project_name__()
         prefix = prefix if prefix else "_"
-        return os.path.join(BA_STORAGE_PATH, project_name, f"{prefix}-csro.requirements.md") if project_name else None
+        return self.__storage_path__(
+            storage_name="storage_ba",
+            file=f"{project_name}/{prefix}-csro.requirements.md"
+        ) if project_name else None
     
     def file_report_ba_approval(self, prefix):
-        project_name = self.project_name()
+        project_name = self.__current_project_name__()
         prefix = prefix if prefix else "_"
-        return os.path.join(CSRO_STORAGE_PATH, project_name, f"{prefix}.chief-solution-report-ba.md") if project_name else None
+        return self.__storage_path__(
+            storage_name="storage_csro",
+            file=f"{project_name}/{prefix}.chief-solution-report-ba.md"
+        ) if project_name else None
     
     def file_report_sa_approval(self, prefix):
-        project_name = self.project_name()
+        project_name = self.__current_project_name__()
         prefix = prefix if prefix else "_"
-        return os.path.join(CSRO_STORAGE_PATH, project_name, f"{prefix}.chief-solution-report-sa.md") if project_name else None
+        return self.__storage_path__(
+            storage_name="storage_csro",
+            file=f"{project_name}/{prefix}.chief-solution-report-sa.md"
+        ) if project_name else None
     
     def file_report_da_approval(self, prefix):
-        project_name = self.project_name()
+        project_name = self.__current_project_name__()
         prefix = prefix if prefix else "_"
-        return os.path.join(CSRO_STORAGE_PATH, project_name, f"{prefix}.chief-solution-report-diff-analysis.md") if project_name else None
+        return self.__storage_path__(
+            storage_name="storage_csro",
+            file=f"{project_name}/{prefix}.chief-solution-report-diff-analysis.md"
+        ) if project_name else None
     
     def file_report_sentinel_approval(self, prefix):
-        project_name = self.project_name()
+        project_name = self.__current_project_name__()
         prefix = prefix if prefix else "_"
-        return os.path.join(CSRO_STORAGE_PATH, project_name, f"{prefix}.chief-solution-report-sentinel.md") if project_name else None
+        return self.__storage_path__(
+            storage_name="storage_csro",
+            file=f"{project_name}/{prefix}.chief-solution-report-sentinel.md"
+        ) if project_name else None
     
     def file_report_kickoff(self, prefix):
-        project_name = self.project_name()
+        project_name = self.__current_project_name__()
         prefix = prefix if prefix else "_"
-        return os.path.join(CSRO_STORAGE_PATH, project_name, f"{prefix}.chief-solution-kickoff.md") if project_name else None
+        return self.__storage_path__(
+            storage_name="storage_csro",
+            file=f"{project_name}/{prefix}.chief-solution-kickoff.md"
+        ) if project_name else None
     
-    def load_project_info(self, **kwargs):
-        idea_id = kwargs_by_key(key="idea", **kwargs)
-        _, projects = read_json_file(BA_SUMMARY_FILE)
-        if not projects:
-            print(f"[ 💀 {self.agent_id} Agent | CRITICAL ERROR ] (2) Not found project information by idea { idea_id }")
-            sys.exit(1)
-        
-        # find project information
-        project_info = next((pi for pi in projects if isinstance(pi, dict) and idea_id in [ pi.get("technical_codename"), pi.get("idea"), pi.get("brand_name") ]), None)
-        if not projects:
-            print(f"[ 💀 {self.agent_id} Agent | CRITICAL ERROR ] (3) Not found project information by idea { idea_id }")
-            sys.exit(1)
-        
-        # return project information
-        return project_info
+    def template_prompt_sentinel(self):
+        return self.__agents_path__(storage_name="storage_csro", file=PROMPT_TEMPLATE_SOLUTION_SENTINEL)
+    
+    def template_prompt_ba(self):
+        return self.__agents_path__(storage_name="storage_csro", file=PROMPT_TEMPLATE_BA)
+    
+    def template_prompt_sa(self):
+        return self.__agents_path__(storage_name="storage_csro", file=PROMPT_TEMPLATE_SA)
+    
+    def template_prompt_sa_diff_analysis(self):
+        return self.__agents_path__(storage_name="storage_csro", file=PROMPT_TEMPLATE_SA_DIFF_ANALYZER)
+    
+    def template_exptected_sentinel(self):
+        return self.__agents_path__(storage_name="storage_csro", file=EXPECTED_TEMPLATE_SOLUTION_SENTINEL)
+    
+    def template_expected_ba(self):
+        return self.__agents_path__(storage_name="storage_csro", file=EXPECTED_TEMPLATE_BA)
+    
+    def template_expected_sa(self):
+        return self.__agents_path__(storage_name="storage_csro", file=EXPECTED_TEMPLATE_SA)
+    
+    def template_expected_sa_diff_analysis(self):
+        return self.__agents_path__(storage_name="storage_csro", file=EXPECTED_TEMPLATE_SA_DIFF_ANALYZER)
+    
+    def template_task_sa_diff_analysis(self):
+        return self.__agents_path__(storage_name="storage_csro", file=TASK_TEMPLATE_SA_DIFF_ANALYZER)
     
     def __pre_initialize__(self):
         # require idea identity to analyze
-        self.idea_id = self.get_kwargs("idea") or self.get_kwargs("idea_id")
-        if not self.idea_id:
-            print(f"[ 💀 {self.agent_id} Agent | CRITICAL ERROR ] (1) Invalid idea identity to analyze!")
+        if not self.project_info:
+            print(f"[ 💀 {self.agent_id} Agent | CRITICAL ERROR ] (1) Invalid idea identity / project name to analyze!")
             sys.exit(1)
-        
-        # load project_info by idea
-        self.project_info = self.load_project_info(**{ "idea": self.idea_id })
         
         # check idea file
-        self.idea_file = self.file_idea()
-        if not os.path.exists(resolve_absolute_path(self.idea_file)):
-            print(f"[ 💀 {self.agent_id} Agent | CRITICAL ERROR ] (4) Not found IDEA file {self.idea_file}")
+        abs_idea_file, phys_idea_file = self.__idea_files__()
+        if not os.path.exists(phys_idea_file):
+            print(f"[ 💀 {self.agent_id} Agent | CRITICAL ERROR ] (4) Not found IDEA file {abs_idea_file}")
             sys.exit(1)
+        else:
+            self.idea_file = abs_idea_file
         
         # check requirments file
-        self.ba_file = self.file_ba()
-        if not os.path.exists(resolve_absolute_path(self.ba_file)):
-            print(f"[ 💀 {self.agent_id} Agent | CRITICAL ERROR ] (5) Not found BA file {self.ba_file}")
+        self.ba_file = self.__ba_file__()
+        if not os.path.exists(self.ba_file):
+            print(f"[ 💀 {self.agent_id} Agent | CRITICAL ERROR ] (5) Not found BA file by idea identity / project name '{self.idea_id}'")
             sys.exit(1)
         
         # check blueprint file
-        self.blueprint_file = self.file_blueprint()
-        if not os.path.exists(resolve_absolute_path(self.blueprint_file)):
-            print(f"[ 💀 {self.agent_id} Agent | CRITICAL ERROR ] (6) Not found BLUEPRINT file {self.blueprint_file}")
+        self.blueprint_file = self.__sa_file__()
+        if not os.path.exists(self.blueprint_file):
+            print(f"[ 💀 {self.agent_id} Agent | CRITICAL ERROR ] (6) Not found BLUEPRINT file by idea identity / project name '{self.idea_id}")
             sys.exit(1)
     
     def __create_ai_client__(self):
@@ -262,12 +271,12 @@ class EnterpriseSolutionSentinelAgent(AbstractCrewEnterpriseSuperAgent):
     
     # @override
     def __create_llm_agent__(self, **kwargs):
-        backstory = kwargs_by_key(key="prompt_solution_sentinel", **kwargs)
+        backstory = self.get_kwargs_by_key(key="prompt_solution_sentinel", **kwargs)
         self.agent = Agent(
             role="Enterprise Solution Sentinel & Principal / Senior Architecture Gatekeeper",
             goal="Audit system alignment across Idea, SRS, and Blueprint. Detect loopholes and enforce structural fixes.",
             backstory=backstory,
-            llm=kwargs_by_key(key="llm", **kwargs),
+            llm=self.get_kwargs_by_key(key="llm", **kwargs),
             verbose=True,
             max_iter=1,                 # maximum 1 interation
             allow_delegation=False      # to avoid loop
@@ -279,14 +288,14 @@ class EnterpriseSolutionSentinelAgent(AbstractCrewEnterpriseSuperAgent):
         """
         Generates the core evaluation task with injectible document payloads.
         """
-        prompt = kwargs_by_key(key="prompt_solution_sentinel", **kwargs)
+        prompt = self.get_kwargs_by_key(key="prompt_solution_sentinel", **kwargs)
         return Task(
             description=(
                 "You must audit the injected documents payload. "
                 "Execute the MANDATORY TRIPLE-CHECK AUDIT PROTOCOL strictly. "
                 f"Your internal thought and rules are defined here:\n{prompt}"
             ),
-            expected_output=kwargs_by_key(key="expected_output_solution_sentinel", **kwargs),
+            expected_output=self.get_kwargs_by_key(key="expected_output_solution_sentinel", **kwargs),
             agent=self.agent
         )
     
@@ -314,12 +323,12 @@ class EnterpriseBusinessAnalystAgent(AbstractCrewEnterpriseSuperAgent):
     
     # @override
     def __create_llm_agent__(self, **kwargs):
-        backstory = kwargs_by_key(key="prompt_ba", **kwargs)
+        backstory = self.get_kwargs_by_key(key="prompt_ba", **kwargs)
         self.agent = Agent(
             role="Enterprise Business Analyst",
             goal="Author and overhaul software requirements specifications ensuring absolute alignment with product ideas.",
             backstory=backstory,
-            llm=kwargs_by_key(key="llm", **kwargs),
+            llm=self.get_kwargs_by_key(key="llm", **kwargs),
             verbose=True,
             max_iter=1,                 # maximum 1 interation
             allow_delegation=False      # to avoid loop
@@ -328,12 +337,12 @@ class EnterpriseBusinessAnalystAgent(AbstractCrewEnterpriseSuperAgent):
 
     # @override
     def __create_agent_task__(self, **kwargs) -> Task:
-        prompt = kwargs_by_key(key="prompt_ba", **kwargs)
+        prompt = self.get_kwargs_by_key(key="prompt_ba", **kwargs)
         return Task(
             description=f"Analyze the review signals and rewrite the SRS based on these instructions:\n{prompt}",
-            expected_output=kwargs_by_key(key="expected_output_ba", **kwargs),
+            expected_output=self.get_kwargs_by_key(key="expected_output_ba", **kwargs),
             agent=self.agent,
-            context=kwargs_by_key(key="context_tasks_ba", **kwargs)
+            context=self.get_kwargs_by_key(key="context_tasks_ba", **kwargs)
         )
     
     # @override
@@ -361,12 +370,12 @@ class EnterpriseSystemArchitectAgent(AbstractCrewEnterpriseSuperAgent):
     
     # @override
     def __create_llm_agent__(self, **kwargs):
-        backstory = kwargs_by_key(key="prompt_sa", **kwargs)
+        backstory = self.get_kwargs_by_key(key="prompt_sa", **kwargs)
         self.agent = Agent(
             role="Enterprise System Architect",
             goal="Architect and refactor system blueprint infrastructures to match software specifications.",
             backstory=backstory,
-            llm=kwargs_by_key(key="llm", **kwargs),
+            llm=self.get_kwargs_by_key(key="llm", **kwargs),
             verbose=False,
             max_iter=1,                 # maximum 1 interation
             allow_delegation=False      # to avoid loop
@@ -375,12 +384,12 @@ class EnterpriseSystemArchitectAgent(AbstractCrewEnterpriseSuperAgent):
 
     # @override
     def __create_agent_task__(self, **kwargs) -> Task:
-        prompt = kwargs_by_key(key="prompt_sa", **kwargs)
+        prompt = self.get_kwargs_by_key(key="prompt_sa", **kwargs)
         return Task(
             description=f"Overhaul the System Architecture Blueprint based on these instructions:\n{prompt}",
-            expected_output=kwargs_by_key(key="expected_output_sa", **kwargs),
+            expected_output=self.get_kwargs_by_key(key="expected_output_sa", **kwargs),
             agent=self.agent,
-            context=kwargs_by_key(key="context_tasks_sa", **kwargs)
+            context=self.get_kwargs_by_key(key="context_tasks_sa", **kwargs)
         )
     
     # @override
@@ -409,7 +418,7 @@ class AbstractCrewEnterpriseWorkflowAgent(AbstractCrewEnterpriseSuperAgent):
     
     # @override
     def agent_log_file(self) -> str:
-        return CSRO_LOG_FILE
+        return self.__output_storage_path__(storage_name="output_csro", CSRO_LOG_FILE)
     
     @abstractmethod
     def __build_arguments_for_communicating__(self, **kwargs):
@@ -453,8 +462,8 @@ class AbstractCrewEnterpriseWorkflowAgent(AbstractCrewEnterpriseSuperAgent):
         
         # create CrewAI
         crew_ai = Crew(
-            agents=kwargs_by_key(key="agents", **built_kwargs),
-            tasks=kwargs_by_key(key="tasks", **built_kwargs),
+            agents=self.get_kwargs_by_key(key="agents", **built_kwargs),
+            tasks=self.get_kwargs_by_key(key="tasks", **built_kwargs),
             process=Process.sequential
         )
         
@@ -496,12 +505,12 @@ class CrewEnterpriseSolutionWorkflowAgent(AbstractCrewEnterpriseWorkflowAgent):
     def build_prompts(self, **kwargs):
         return {
             **kwargs,
-            "prompt_solution_sentinel": render_kwargs_prompt(PROMPT_TEMPLATE_SOLUTION_SENTINEL, **kwargs),
-            "prompt_ba": render_kwargs_prompt(PROMPT_TEMPLATE_BA, **kwargs),
-            "prompt_sa": render_kwargs_prompt(PROMPT_TEMPLATE_SA, **kwargs),
-            "expected_output_solution_sentinel": render_kwargs_prompt(EXPECTED_TEMPLATE_SOLUTION_SENTINEL, **kwargs),
-            "expected_output_ba": render_kwargs_prompt(EXPECTED_TEMPLATE_BA, **kwargs),
-            "expected_output_sa": render_kwargs_prompt(EXPECTED_TEMPLATE_SA, **kwargs)
+            "prompt_solution_sentinel": render_kwargs_prompt(self.template_prompt_sentinel(), **kwargs),
+            "prompt_ba": render_kwargs_prompt(self.template_prompt_ba(), **kwargs),
+            "prompt_sa": render_kwargs_prompt(self.template_prompt_sa(), **kwargs),
+            "expected_output_solution_sentinel": render_kwargs_prompt(self.template_exptected_sentinel(), **kwargs),
+            "expected_output_ba": render_kwargs_prompt(self.template_expected_ba(), **kwargs),
+            "expected_output_sa": render_kwargs_prompt(self.template_expected_sa(), **kwargs)
         }
     
     # @override
@@ -540,24 +549,26 @@ class CrewEnterpriseSolutionWorkflowAgent(AbstractCrewEnterpriseWorkflowAgent):
     # @override
     def pre_execute(self, **kwargs):
         # read idea file
-        idea_f = resolve_absolute_path(self.idea_file)
-        _, raw_idea_content = read_file_raw(file_path=idea_f)
+        _, raw_idea_content = self.__read_idea_or_requirements__(ignore_not_found=True)
+        
+        # no idea also no requirements
+        if not file_content:
+            print(f"[ 💀 {self.agent_id} Agent | CRITICAL ERROR ] Not found IDEA / Requirements file to process")
+            sys.exit(1)
         
         # read BA file
-        ba_f = resolve_absolute_path(self.ba_file)
-        _, raw_ba_content = read_file_raw(file_path=ba_f)
+        raw_ba_content = self.__read_srs__(ignore_not_found=False)
         
         # read BluePrint file
-        blueprint_f = resolve_absolute_path(self.blueprint_file)
-        _, raw_blueprint_content = read_file_raw(file_path=blueprint_f)
+        raw_blueprint_content = self.__read_blueprint__(ignore_not_found=False)
         
         # return merged new values
         now = datetime.now()
         return {
             **kwargs,
             "idea_id": self.idea_id,
-            "project_name": self.project_info.get("technical_codename") or "-",
-            "project_description": self.project_info.get("descriptive_name") or "-",
+            "project_name": self.__current_project_name__() or "-",
+            "project_description": self.__current_project_description__() or "-",
             "current_timestamp": now.strftime("%Y/%m/%d %H:%M:%S"),
             "current_timestamp_2": now.strftime("%Y%m%d%H%M%S"),
             "raw_idea_content": raw_idea_content,
@@ -612,7 +623,7 @@ class CrewEnterpriseSolutionWorkflowAgent(AbstractCrewEnterpriseWorkflowAgent):
             # Task 3 (System Architect) response - fixed blueprint
             raw_sa_response = self.task_system_architect.output.raw
         except Exception as e:
-            print(f"[ ❌ {self.agent_id} Agent | ERROR ] Could extract task output: {str(e)}")
+            self.logger.error(f"[ ❌ ERROR ] Could extract task output: {str(e)}")
 
         # parsed responses
         return {
@@ -624,24 +635,24 @@ class CrewEnterpriseSolutionWorkflowAgent(AbstractCrewEnterpriseWorkflowAgent):
     
     # @override
     def process_communication(self, **kwargs):
-        response_data = kwargs_by_key(key="clean_response", **kwargs)
+        response_data = self.get_kwargs_by_key(key="clean_response", **kwargs)
         if not response_data or not isinstance(response_data, dict):
-            raise RuntimeError(f"[ 💀 {self.agent_id} Agent | CRITICAL ERROR ] (7) Invalid AI raw response.")
+            raise RuntimeError(f"[ 💀 CRITICAL ] (7) Invalid AI raw response.")
         
         # project info
-        timestamp = kwargs_by_key(key="current_timestamp_2", **kwargs)
+        timestamp = self.get_kwargs_by_key(key="current_timestamp_2", **kwargs)
         
         # export storage audit report
         if "kickoff" in response_data and response_data.get("kickoff"):
             write_file(file=self.file_report_kickoff(prefix=timestamp), data=response_data.get("kickoff"))
         else:
-            print(f"[ 💀 {self.agent_id} Agent | WARN ] No any kickoff report!")
+            self.logger.warn(f"[ 💀 WARN ] No any kickoff report!")
         
         # export task sentinel response
         if "report_sentinel" in response_data and response_data.get("report_sentinel"):
             write_file(file=self.file_report_sentinel_approval(prefix=timestamp), data=response_data.get("report_sentinel"))
         else:
-            print(f"[ 💀 {self.agent_id} Agent | WARN ] No any sentinel report!")
+            self.logger.warn(f"[ 💀 WARN ] No any sentinel report!")
         
         # export task BA response
         if "report_ba" in response_data and response_data.get("report_ba"):
@@ -649,7 +660,7 @@ class CrewEnterpriseSolutionWorkflowAgent(AbstractCrewEnterpriseWorkflowAgent):
             write_file(file=self.file_report_ba_approval(prefix=timestamp), data=response_ba)
             write_file(file=self.file_ba_approval(prefix=timestamp), data=response_ba)
         else:
-            print(f"[ 💀 {self.agent_id} Agent | WARN ] No any business-analysis report!")
+            self.logger.warn(f"[ 💀 WARN ] No any business-analysis report!")
         
         # export task SA response
         if "report_sa" in response_data and response_data.get("report_sa"):
@@ -657,13 +668,13 @@ class CrewEnterpriseSolutionWorkflowAgent(AbstractCrewEnterpriseWorkflowAgent):
             write_file(file=self.file_report_sa_approval(prefix=timestamp), data=response_sa)
             write_file(file=self.file_blueprint_approval(prefix=timestamp), data=response_sa)
         else:
-            print(f"[ 💀 {self.agent_id} Agent | WARN ] No any system-architect report!")
+            self.logger.warn(f"[ 💀 WARN ] No any system-architect report!")
         
         # export raw response if necessary as log tracing
-        raw_response = kwargs_by_key(key="raw_response", **kwargs)
+        raw_response = self.get_kwargs_by_key(key="raw_response", **kwargs)
         if raw_response:
             write_file(
-                file=CSRO_RAW_FILE,
+                file=self.__output_storage_path__(storage_name="output_csro", CSRO_RAW_FILE),
                 data=raw_response
             )
         
@@ -685,9 +696,9 @@ class CrewEnterpriseBluePrintDiffAnalyzerAgent(AbstractCrewEnterpriseWorkflowAge
     def build_prompts(self, **kwargs):
         return {
             **kwargs,
-            "task_blueprint_da": render_kwargs_prompt(TASK_TEMPLATE_SA_DIFF_ANALYZER, **kwargs),
-            "prompt_blueprint_da": render_kwargs_prompt(PROMPT_TEMPLATE_SA_DIFF_ANALYZER, **kwargs),
-            "expected_output_da": render_kwargs_prompt(EXPECTED_TEMPLATE_SA_DIFF_ANALYZER, **kwargs)
+            "task_blueprint_da": render_kwargs_prompt(self.template_task_sa_diff_analysis(), **kwargs),
+            "prompt_blueprint_da": render_kwargs_prompt(self.template_prompt_sa_diff_analysis(), **kwargs),
+            "expected_output_da": render_kwargs_prompt(self.template_expected_sa_diff_analysis(), **kwargs)
         }
     
     # @override
@@ -695,8 +706,8 @@ class CrewEnterpriseBluePrintDiffAnalyzerAgent(AbstractCrewEnterpriseWorkflowAge
         self.agent = Agent(
             role="Principal Enterprise Systems Auditor",
             goal="Execute independent triple-check architectural audits on system blueprints.",
-            backstory=kwargs_by_key(key="prompt_blueprint_da", **kwargs),
-            llm=kwargs_by_key(key="llm", **kwargs),
+            backstory=self.get_kwargs_by_key(key="prompt_blueprint_da", **kwargs),
+            llm=self.get_kwargs_by_key(key="llm", **kwargs),
             verbose=False,
             max_iter=1,                 # maximum 1 interation
             allow_delegation=False      # to avoid loop
@@ -706,28 +717,27 @@ class CrewEnterpriseBluePrintDiffAnalyzerAgent(AbstractCrewEnterpriseWorkflowAge
     # @override
     def __create_agent_task__(self, **kwargs) -> Task:
         return Task(
-            description=kwargs_by_key(key="task_blueprint_da", **kwargs),
-            expected_output=kwargs_by_key(key="expected_output_da", **kwargs),
+            description=self.get_kwargs_by_key(key="task_blueprint_da", **kwargs),
+            expected_output=self.get_kwargs_by_key(key="expected_output_da", **kwargs),
             agent=self.agent
         )
     
     # @override
     def agent_log_file(self) -> str:
-        return CSRO_LOG_DA_FILE
+        return self.__output_storage_path__(storage_name="output_csro", CSRO_LOG_DA_FILE)
     
     # @override
     def pre_execute(self, **kwargs):
         # read BluePrint file
-        blueprint_f = resolve_absolute_path(self.blueprint_file)
-        _, raw_blueprint_content = read_file_raw(file_path=blueprint_f)
+        raw_blueprint_content = self.__read_blueprint__()
         
         # return merged new values
         now = datetime.now()
         return {
             **kwargs,
             "idea_id": self.idea_id,
-            "project_name": self.project_info.get("technical_codename") or "-",
-            "project_description": self.project_info.get("descriptive_name") or "-",
+            "project_name": self.__current_project_name__() or "-",
+            "project_description": self.__current_project_description__() or "-",
             "current_timestamp": now.strftime("%Y/%m/%d %H:%M:%S"),
             "current_timestamp_2": now.strftime("%Y%m%d%H%M%S"),
             "raw_blueprint_content": raw_blueprint_content
@@ -751,19 +761,19 @@ class CrewEnterpriseBluePrintDiffAnalyzerAgent(AbstractCrewEnterpriseWorkflowAge
     
     # @override
     def process_communication(self, **kwargs):
-        response_data = kwargs_by_key(key="clean_response", **kwargs)
+        response_data = self.get_kwargs_by_key(key="clean_response", **kwargs)
         if not response_data or not isinstance(response_data, dict):
             raise RuntimeError(f"[ 💀 {self.agent_id} Agent | CRITICAL ERROR ] (7) Invalid AI raw response.")
         
         # project info
-        timestamp = kwargs_by_key(key="current_timestamp_2", **kwargs)
+        timestamp = self.get_kwargs_by_key(key="current_timestamp_2", **kwargs)
         
         # export task DA response
         write_file(file=self.file_report_da_approval(prefix=timestamp), data=response_data)
         write_file(file=self.file_blueprint_diff_analysis(prefix=timestamp), data=response_data)
         
         # export raw response if necessary as log tracing
-        raw_response = kwargs_by_key(key="raw_response", **kwargs)
+        raw_response = self.get_kwargs_by_key(key="raw_response", **kwargs)
         if raw_response:
             write_file(
                 file=CSRO_RAW_FILE,
@@ -787,6 +797,7 @@ class CrewEnterpriseGovernanceFlow(Flow):
         super().__init__()
         # Inject pre-initialized custom wrappers containing the actual CrewAI Agents
         self.kwargs = kwargs or {}
+        self.logger = get_logger("CrewEnterpriseGovernanceFlow")
         self.agent_solution_review = CrewEnterpriseSolutionWorkflowAgent(**self.kwargs)
         self.agent_diff_analyzer = CrewEnterpriseBluePrintDiffAnalyzerAgent(**self.kwargs)
 
@@ -796,7 +807,7 @@ class CrewEnterpriseGovernanceFlow(Flow):
         STAGE 1: Kicks off the linear 3-Agent generation sub-crew (Sentinel -> BA -> SA).
         Returns the raw modified blueprint string fetched directly from SA's RAM cache.
         """
-        print("[ 🚀 SOLUTION ARCHITECT REVIEW ] Enterprise Solution Architecture Review CSRO...")
+        self.logger.info("[ 🚀 SOLUTION ARCHITECT REVIEW ] Enterprise Solution Architecture Review CSRO...")
         return __execute_function_until_complete__(func_pointer=self.agent_solution_review.execute) or {}
 
     @listen(execute_solution_review)
@@ -805,7 +816,7 @@ class CrewEnterpriseGovernanceFlow(Flow):
         STAGE 2: Explicitly triggered via native event hooks once STAGE 1 returns successfully.
         Ingests the fixed blueprint payload into your explicit custom template keyword.
         """
-        print("[ 🔎 BLUEPRINT CHANGES ANALYSIS ] Analyze new changes of Solution Architecture Report...")
+        self.logger.info("[ 🔎 BLUEPRINT CHANGES ANALYSIS ] Analyze new changes of Solution Architecture Report...")
         kwargs = {
             **solution_architect_review_result,
             "raw_csro_blueprint_content": solution_architect_review_result.get("report_sa", None)
