@@ -41,7 +41,7 @@ class EnterpriseAutonomousProjectEstimatorAgent(AbstractSubAgent):
     
     # @override
     def agent_log_file(self) -> str:
-        return self.__output_storage_path__(storage_name="output_estimation", EST_LOG_FILE)
+        return self.__output_storage_path__(storage_name="output_estimation", file=EST_LOG_FILE)
     
     # @override
     def system_prompt_template(self) -> str:
@@ -135,7 +135,7 @@ class EnterpriseAutonomousProjectEstimatorAgent(AbstractSubAgent):
         
         # write output file
         write_file(
-            file=self.__output_storage_path__(storage_name="output_estimation", EST_RAW_FILE),
+            file=self.__output_storage_path__(storage_name="output_estimation", file=EST_RAW_FILE),
             data=response_data
         )
         

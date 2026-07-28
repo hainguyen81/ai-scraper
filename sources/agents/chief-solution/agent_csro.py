@@ -418,7 +418,7 @@ class AbstractCrewEnterpriseWorkflowAgent(AbstractCrewEnterpriseSuperAgent):
     
     # @override
     def agent_log_file(self) -> str:
-        return self.__output_storage_path__(storage_name="output_csro", CSRO_LOG_FILE)
+        return self.__output_storage_path__(storage_name="output_csro", file=CSRO_LOG_FILE)
     
     @abstractmethod
     def __build_arguments_for_communicating__(self, **kwargs):
@@ -674,7 +674,7 @@ class CrewEnterpriseSolutionWorkflowAgent(AbstractCrewEnterpriseWorkflowAgent):
         raw_response = self.get_kwargs_by_key(key="raw_response", **kwargs)
         if raw_response:
             write_file(
-                file=self.__output_storage_path__(storage_name="output_csro", CSRO_RAW_FILE),
+                file=self.__output_storage_path__(storage_name="output_csro", file=CSRO_RAW_FILE),
                 data=raw_response
             )
         
@@ -724,7 +724,7 @@ class CrewEnterpriseBluePrintDiffAnalyzerAgent(AbstractCrewEnterpriseWorkflowAge
     
     # @override
     def agent_log_file(self) -> str:
-        return self.__output_storage_path__(storage_name="output_csro", CSRO_LOG_DA_FILE)
+        return self.__output_storage_path__(storage_name="output_csro", file=CSRO_LOG_DA_FILE)
     
     # @override
     def pre_execute(self, **kwargs):

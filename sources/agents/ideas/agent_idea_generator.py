@@ -56,7 +56,7 @@ class EnterpriseIdeaGeneratorAgent(AbstractSubAgent):
     
     # @override
     def agent_log_file(self) -> str:
-        return self.__output_storage_path__(storage_name="output_ideas", IDEAS_LOG_FILE)
+        return self.__output_storage_path__(storage_name="output_ideas", file=IDEAS_LOG_FILE)
     
     # @override
     def system_prompt_template(self) -> str:
@@ -160,7 +160,7 @@ class EnterpriseIdeaGeneratorAgent(AbstractSubAgent):
         raw_response = self.get_kwargs_by_key(key="raw_response", **kwargs)
         if raw_response:
             write_file(
-                file=self.__output_storage_path__(storage_name="output_ideas", IDEAS_OUTPUT_FILE),
+                file=self.__output_storage_path__(storage_name="output_ideas", file=IDEAS_OUTPUT_FILE),
                 data=raw_response
             )
 
