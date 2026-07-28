@@ -52,11 +52,10 @@ Evaluate the context tracking mechanics based strictly on the chunk configuratio
    - **Case A: If is_chunked is FALSE:** Regardless of the actual day numbers documented in the source Markdown content (e.g., even if the text states "Days 4-7"), you MUST reset the timeline sequence internally so that the first operational day inside this Phase always starts from integer 1. Progression follows sequentially as 2, 3, 4, etc. Map "Day 4" to "day": 1, and 'context_section' to "DAY 1".
    - **Case B: If is_chunked is TRUE:** You MUST PRESERVE the exact absolute chronological day index requested. The first parsed day object must match the integer value of {{ current_start_day }}, and progress incrementally up to {{ current_end_day }}. Under Case B, you are STRICTLY BANNED from resetting the day value to 1. Map "Day 4" to "day": 4, and its 'context_section' to "DAY 4".
 
-# 🛑 MANDATORY STRUCTURE ENFORCEMENT FOR TRACEABILITY TAGS:
-When extracting sub-tasks, you MUST inject an array field named "targeted_tags" into the schema of EACH sub-task object node. 
-- You MUST scan the task description in the Markdown text, extract all corresponding Tag IDs (`[REQ-XXX]`, `[ARC-XXX]`, etc.) associated with that task, and populate them as clean string elements inside this "targeted_tags" array (e.g., `"targeted_tags": ["[REQ-001]", "[ARC-002]"]`).
-- If a task lists multiple tags, you MUST split them into individual array elements. You are STRICTLY BANNED from bundling them into a single string (e.g., NO `["[REQ-001], [REQ-002]"]`).
-- If no tags are found for a task (which violates previous constraints), use the Fallback Rule to map it to the active high-level requirements of that day. Leaving the "targeted_tags" array empty `[]` or null is strictly prohibited.
+# 🛑 MANDATORY STRUCTURE ENFORCEMENT FOR TRACEABILITY TAGS (CRITICAL):
+When extracting sub-tasks, you MUST populate the exact inherited BA/SA Tag IDs (`[REQ-XXX]`, `[ARC-XXX]`, etc.) directly into the "targeted_tags" array field of EACH sub-task object node inside the JSON schema.
+- Scan the source Markdown text, extract all corresponding Tag IDs for that sub-task, and populate them as clean individual string elements inside the "targeted_tags" array (e.g., `"targeted_tags": ["[REQ-001]", "[ARC-002]"]`).
+- You are STRICTLY BANNED from leaving the "targeted_tags" array empty `[]` or bundling tags into a single string (e.g., NO `["[REQ-001], [REQ-002]"]`). Every tag must be its own array element.
 
 You MUST conform strictly to your required JSON Schema layout design structure:
 {{ phase_steps_json_schema }}
