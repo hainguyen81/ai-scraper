@@ -1,10 +1,4 @@
-{
-  "project_names": {
-    "technical_codename": "membership-hub",
-    "descriptive_name": "Membership Hub Management Platform",
-    "brand_name": "MemberSync"
-  },
-  "srs_content_markdown": "## 1. PROJECT OVERVIEW
+## 1. PROJECT OVERVIEW
 - **Product Objectives & Core Values**
   - Provide a unified platform for multi‑center membership management.
   - Enable real‑time attendance tracking via QR code scanning.
@@ -276,5 +270,4 @@
 | | end_date | DATE | optional | Effective end |
 | SystemSettings | setting_key | VARCHAR(50) | PK | Configuration key |
 | | setting_value | TEXT | not null | Configuration value |
-| | description | VARCHAR(200) | optional | Meaning of setting |"
-}
+| | description | VARCHAR(200) | optional | Meaning of setting |
