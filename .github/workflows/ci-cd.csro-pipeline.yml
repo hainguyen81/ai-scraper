@@ -74,7 +74,7 @@ jobs:
           # Project Information
           INPUTS_IDEA: ${{ inputs.idea }}
         run: |
-          echo "⚡ Kicking off AI Ideas Generation..."
+          echo "⚡ Kicking off AI Enterprise Solution Review..."
           python sources/agents/chief-solution/agent_csro.py \
               --idea "$INPUTS_IDEA"
 

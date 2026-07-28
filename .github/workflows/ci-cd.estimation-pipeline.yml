@@ -72,7 +72,7 @@ jobs:
           pip install -r requirements.txt --upgrade
 
       # Step 4: Execute agent
-      - name: 👷 Execute Expert Business Analysis Generation
+      - name: 👷 Execute Expert Principal IT Project Estimator
         if: success()                             # if previous step is successful
         env:
           # Secrets contains the AI endpoint and AI API key JSON
@@ -85,7 +85,7 @@ jobs:
           INPUTS_IDEA: ${{ inputs.idea }}
           INPUTS_BUFFER: ${{ inputs.buffer }}
         run: |
-          echo "⚡ Kicking off AI Ideas Generation..."
+          echo "⚡ Kicking off AI Expert Principal IT Project Estimator..."
           python sources/agents/estimation/agent_estimator.py \
               --idea "$INPUTS_IDEA" \
               --buffer-ratio $INPUTS_BUFFER

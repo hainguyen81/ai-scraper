@@ -97,7 +97,7 @@ jobs:
           INPUTS_QUANTITY: ${{ inputs.quantity }}
           INPUTS_LANGUAGE: ${{ inputs.language }}
         run: |
-          echo "⚡ Kicking off AI Ideas Generation..."
+          echo "⚡ Kicking off AI Expert Ideas Generation..."
           python sources/agents/ideas/agent_idea_generator.py \
               --domain "$INPUTS_DOMAIN" \
               --quantity $INPUTS_QUANTITY \
