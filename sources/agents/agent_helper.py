@@ -30,141 +30,6 @@ PARENT_AGENTS_DIR  = os.path.abspath(os.path.join(CURRENT_SCRIPT_DIR, "../")) # 
 if PARENT_AGENTS_DIR not in sys.path:
     sys.path.insert(0, PARENT_AGENTS_DIR)
 
-# ==============================================================================
-# GLOBAL CONFIGURATION PATHS - CONFIG HERE TO CUSTOMIZE DIRECTORY STRUCTURE
-# ==============================================================================
-ABS_AGENTS_PATH                         = "sources/agents"
-AGENTS_PATH                             = resolve_absolute_path(ABS_AGENTS_PATH)
-
-ABS_REQ_STORAGE_PATH                    = "sources/requirements"
-REQ_STORAGE_PATH                        = resolve_absolute_path(ABS_REQ_STORAGE_PATH)
-
-ABS_STORAGE_PATH                        = "sources/storage"
-STORAGE_PATH                            = resolve_absolute_path(ABS_REQ_STORAGE_PATH)
-
-ABS_OUTPUT_PATH                         = "sources/output"
-OUTPUT_PATH                             = resolve_absolute_path(ABS_OUTPUT_PATH)
-
-ABS_AGENT_IDEAS_PATH                    = os.path.join(AGENTS_PATH, "ideas")
-ABS_AGENT_BLUEPRINT_PATH                = os.path.join(AGENTS_PATH, "architect-blueprint")
-ABS_AGENT_BA_PATH                       = os.path.join(AGENTS_PATH, "business-analysis")
-ABS_AGENT_EST_PATH                      = os.path.join(AGENTS_PATH, "estimation")
-ABS_AGENT_CSRO_PATH                     = os.path.join(AGENTS_PATH, "chief-solution")
-
-ABS_IDEAS_STORAGE_PATH                  = os.path.join(STORAGE_PATH, "ideas")
-ABS_BLUEPRINT_STORAGE_PATH              = os.path.join(STORAGE_PATH, "blueprint")
-ABS_BA_STORAGE_PATH                     = os.path.join(STORAGE_PATH, "business-analysis")
-ABS_EST_STORAGE_PATH                    = os.path.join(STORAGE_PATH, "estimation")
-ABS_CSRO_STORAGE_PATH                   = os.path.join(STORAGE_PATH, "chief-solution")
-
-ABS_OUTPUT_SCRAPER_STORAGE_PATH         = os.path.join(OUTPUT_PATH, "scrapers")
-ABS_OUTPUT_IDEAS_STORAGE_PATH           = os.path.join(OUTPUT_PATH, "ideas")
-ABS_OUTPUT_BLUEPRINT_STORAGE_PATH       = os.path.join(OUTPUT_PATH, "blueprint")
-ABS_OUTPUT_BA_STORAGE_PATH              = os.path.join(OUTPUT_PATH, "business-analysis")
-ABS_OUTPUT_EST_STORAGE_PATH             = os.path.join(OUTPUT_PATH, "estimation")
-ABS_OUTPUT_CSRO_STORAGE_PATH            = os.path.join(OUTPUT_PATH, "chief-solution")
-
-AGENT_IDEAS_PATH                        = resolve_absolute_path(ABS_AGENT_IDEAS_PATH)
-AGENT_BLUEPRINT_PATH                    = resolve_absolute_path(ABS_AGENT_BLUEPRINT_PATH)
-AGENT_BA_PATH                           = resolve_absolute_path(ABS_AGENT_BA_PATH)
-AGENT_EST_PATH                          = resolve_absolute_path(ABS_AGENT_EST_PATH)
-AGENT_CSRO_PATH                         = resolve_absolute_path(ABS_AGENT_CSRO_PATH)
-
-IDEAS_STORAGE_PATH                      = resolve_absolute_path(ABS_IDEAS_STORAGE_PATH)
-BLUEPRINT_STORAGE_PATH                  = resolve_absolute_path(ABS_BLUEPRINT_STORAGE_PATH)
-BA_STORAGE_PATH                         = resolve_absolute_path(ABS_BA_STORAGE_PATH)
-EST_STORAGE_PATH                        = resolve_absolute_path(ABS_EST_STORAGE_PATH)
-CSRO_STORAGE_PATH                       = resolve_absolute_path(ABS_CSRO_STORAGE_PATH)
-
-OUTPUT_SCRAPER_STORAGE_PATH             = resolve_absolute_path(ABS_OUTPUT_SCRAPER_STORAGE_PATH)
-OUTPUT_IDEAS_STORAGE_PATH               = resolve_absolute_path(ABS_OUTPUT_IDEAS_STORAGE_PATH)
-OUTPUT_BLUEPRINT_STORAGE_PATH           = resolve_absolute_path(ABS_OUTPUT_BLUEPRINT_STORAGE_PATH)
-OUTPUT_BA_STORAGE_PATH                  = resolve_absolute_path(ABS_OUTPUT_BA_STORAGE_PATH)
-OUTPUT_EST_STORAGE_PATH                 = resolve_absolute_path(ABS_OUTPUT_EST_STORAGE_PATH)
-OUTPUT_CSRO_STORAGE_PATH                = resolve_absolute_path(ABS_OUTPUT_CSRO_STORAGE_PATH)
-
-ABS_BLUEPRINT_WORKING_HISTORY_FILE      = os.path.join(ABS_OUTPUT_BLUEPRINT_STORAGE_PATH, "architecture-blueprint.md")
-BLUEPRINT_WORKING_HISTORY_FILE          = resolve_absolute_path(ABS_BLUEPRINT_WORKING_HISTORY_FILE)
-
-# defined global storage information
-storage_info = {
-    "agents": {
-        "absolute_agents": ABS_AGENTS_PATH,
-        "agents": AGENTS_PATH,
-        
-        "absolute_ideas": ABS_AGENT_IDEAS_PATH,
-        "storage_ideas": AGENT_IDEAS_PATH,
-        
-        "absolute_blueprint": ABS_AGENT_BLUEPRINT_PATH,
-        "storage_blueprint": AGENT_BLUEPRINT_PATH,
-        
-        "absolute_ba": ABS_AGENT_BA_PATH,
-        "storage_ba": AGENT_BA_PATH,
-        
-        "absolute_estimation": ABS_AGENT_EST_PATH,
-        "storage_estimation": AGENT_EST_PATH,
-        
-        "absolute_csro": ABS_AGENT_CSRO_PATH,
-        "storage_csro": AGENT_CSRO_PATH
-    },
-    
-    "storage": {
-        "absolute_storage": ABS_STORAGE_PATH,
-        "storage": STORAGE_PATH,
-        
-        "absolute_ideas": ABS_IDEAS_STORAGE_PATH,
-        "storage_ideas": IDEAS_STORAGE_PATH,
-        
-        "absolute_blueprint": ABS_BLUEPRINT_STORAGE_PATH,
-        "storage_blueprint": BLUEPRINT_STORAGE_PATH,
-        
-        "absolute_ba": ABS_BA_STORAGE_PATH,
-        "storage_ba": BA_STORAGE_PATH,
-        
-        "absolute_estimation": ABS_EST_STORAGE_PATH,
-        "storage_estimation": EST_STORAGE_PATH,
-        
-        "absolute_csro": ABS_CSRO_STORAGE_PATH,
-        "storage_csro": CSRO_STORAGE_PATH,
-        
-        "absolute_requirements": ABS_REQ_STORAGE_PATH,
-        "storage_requirements": REQ_STORAGE_PATH
-    },
-    
-    "output": {
-        "absolute_output": ABS_OUTPUT_PATH,
-        "storage_output": OUTPUT_PATH,
-        
-        "absolute_scraper": ABS_OUTPUT_SCRAPER_STORAGE_PATH,
-        "output_scraper": OUTPUT_SCRAPER_STORAGE_PATH,
-        
-        "absolute_ideas": ABS_OUTPUT_IDEAS_STORAGE_PATH,
-        "output_ideas": OUTPUT_IDEAS_STORAGE_PATH,
-        
-        "absolute_blueprint": ABS_OUTPUT_BLUEPRINT_STORAGE_PATH,
-        "output_blueprint": OUTPUT_BLUEPRINT_STORAGE_PATH,
-        
-        "absolute_ba": ABS_OUTPUT_BA_STORAGE_PATH,
-        "output_ba": OUTPUT_BA_STORAGE_PATH,
-        
-        "absolute_estimation": ABS_OUTPUT_EST_STORAGE_PATH,
-        "output_estimation": OUTPUT_EST_STORAGE_PATH,
-        
-        "absolute_csro": ABS_OUTPUT_CSRO_STORAGE_PATH,
-        "output_csro": OUTPUT_CSRO_STORAGE_PATH
-    }
-}
-
-# logging configuration
-# logging.basicConfig(level=logging.INFO, format="%(asctime)s [%(levelname)s]: %(message)s")
-logging.basicConfig(
-    level=logging.INFO,
-    format="%(asctime)s [%(levelname)s] %(name)s: %(message)s",
-    datefmt="%Y-%m-%d %H:%M:%S"
-)
-def get_logger(logger_name="Helper"):
-    return logging.getLogger("CommunityForumScraper")
-
 
 def resolve_absolute_path(relative_target_path):
     """
@@ -442,4 +307,141 @@ def count_files_by_pattern(dir, file_filter_pattern) -> int:
 
 def kwargs_by_key(key: str, **kwargs):
     return (kwargs or {}).get(key) if key else None
+
+
+
+# ==============================================================================
+# GLOBAL CONFIGURATION PATHS - CONFIG HERE TO CUSTOMIZE DIRECTORY STRUCTURE
+# ==============================================================================
+ABS_AGENTS_PATH                         = "sources/agents"
+AGENTS_PATH                             = resolve_absolute_path(ABS_AGENTS_PATH)
+
+ABS_REQ_STORAGE_PATH                    = "sources/requirements"
+REQ_STORAGE_PATH                        = resolve_absolute_path(ABS_REQ_STORAGE_PATH)
+
+ABS_STORAGE_PATH                        = "sources/storage"
+STORAGE_PATH                            = resolve_absolute_path(ABS_REQ_STORAGE_PATH)
+
+ABS_OUTPUT_PATH                         = "sources/output"
+OUTPUT_PATH                             = resolve_absolute_path(ABS_OUTPUT_PATH)
+
+ABS_AGENT_IDEAS_PATH                    = os.path.join(AGENTS_PATH, "ideas")
+ABS_AGENT_BLUEPRINT_PATH                = os.path.join(AGENTS_PATH, "architect-blueprint")
+ABS_AGENT_BA_PATH                       = os.path.join(AGENTS_PATH, "business-analysis")
+ABS_AGENT_EST_PATH                      = os.path.join(AGENTS_PATH, "estimation")
+ABS_AGENT_CSRO_PATH                     = os.path.join(AGENTS_PATH, "chief-solution")
+
+ABS_IDEAS_STORAGE_PATH                  = os.path.join(STORAGE_PATH, "ideas")
+ABS_BLUEPRINT_STORAGE_PATH              = os.path.join(STORAGE_PATH, "blueprint")
+ABS_BA_STORAGE_PATH                     = os.path.join(STORAGE_PATH, "business-analysis")
+ABS_EST_STORAGE_PATH                    = os.path.join(STORAGE_PATH, "estimation")
+ABS_CSRO_STORAGE_PATH                   = os.path.join(STORAGE_PATH, "chief-solution")
+
+ABS_OUTPUT_SCRAPER_STORAGE_PATH         = os.path.join(OUTPUT_PATH, "scrapers")
+ABS_OUTPUT_IDEAS_STORAGE_PATH           = os.path.join(OUTPUT_PATH, "ideas")
+ABS_OUTPUT_BLUEPRINT_STORAGE_PATH       = os.path.join(OUTPUT_PATH, "blueprint")
+ABS_OUTPUT_BA_STORAGE_PATH              = os.path.join(OUTPUT_PATH, "business-analysis")
+ABS_OUTPUT_EST_STORAGE_PATH             = os.path.join(OUTPUT_PATH, "estimation")
+ABS_OUTPUT_CSRO_STORAGE_PATH            = os.path.join(OUTPUT_PATH, "chief-solution")
+
+AGENT_IDEAS_PATH                        = resolve_absolute_path(ABS_AGENT_IDEAS_PATH)
+AGENT_BLUEPRINT_PATH                    = resolve_absolute_path(ABS_AGENT_BLUEPRINT_PATH)
+AGENT_BA_PATH                           = resolve_absolute_path(ABS_AGENT_BA_PATH)
+AGENT_EST_PATH                          = resolve_absolute_path(ABS_AGENT_EST_PATH)
+AGENT_CSRO_PATH                         = resolve_absolute_path(ABS_AGENT_CSRO_PATH)
+
+IDEAS_STORAGE_PATH                      = resolve_absolute_path(ABS_IDEAS_STORAGE_PATH)
+BLUEPRINT_STORAGE_PATH                  = resolve_absolute_path(ABS_BLUEPRINT_STORAGE_PATH)
+BA_STORAGE_PATH                         = resolve_absolute_path(ABS_BA_STORAGE_PATH)
+EST_STORAGE_PATH                        = resolve_absolute_path(ABS_EST_STORAGE_PATH)
+CSRO_STORAGE_PATH                       = resolve_absolute_path(ABS_CSRO_STORAGE_PATH)
+
+OUTPUT_SCRAPER_STORAGE_PATH             = resolve_absolute_path(ABS_OUTPUT_SCRAPER_STORAGE_PATH)
+OUTPUT_IDEAS_STORAGE_PATH               = resolve_absolute_path(ABS_OUTPUT_IDEAS_STORAGE_PATH)
+OUTPUT_BLUEPRINT_STORAGE_PATH           = resolve_absolute_path(ABS_OUTPUT_BLUEPRINT_STORAGE_PATH)
+OUTPUT_BA_STORAGE_PATH                  = resolve_absolute_path(ABS_OUTPUT_BA_STORAGE_PATH)
+OUTPUT_EST_STORAGE_PATH                 = resolve_absolute_path(ABS_OUTPUT_EST_STORAGE_PATH)
+OUTPUT_CSRO_STORAGE_PATH                = resolve_absolute_path(ABS_OUTPUT_CSRO_STORAGE_PATH)
+
+ABS_BLUEPRINT_WORKING_HISTORY_FILE      = os.path.join(ABS_OUTPUT_BLUEPRINT_STORAGE_PATH, "architecture-blueprint.md")
+BLUEPRINT_WORKING_HISTORY_FILE          = resolve_absolute_path(ABS_BLUEPRINT_WORKING_HISTORY_FILE)
+
+# defined global storage information
+storage_info = {
+    "agents": {
+        "absolute_agents": ABS_AGENTS_PATH,
+        "agents": AGENTS_PATH,
+        
+        "absolute_ideas": ABS_AGENT_IDEAS_PATH,
+        "storage_ideas": AGENT_IDEAS_PATH,
+        
+        "absolute_blueprint": ABS_AGENT_BLUEPRINT_PATH,
+        "storage_blueprint": AGENT_BLUEPRINT_PATH,
+        
+        "absolute_ba": ABS_AGENT_BA_PATH,
+        "storage_ba": AGENT_BA_PATH,
+        
+        "absolute_estimation": ABS_AGENT_EST_PATH,
+        "storage_estimation": AGENT_EST_PATH,
+        
+        "absolute_csro": ABS_AGENT_CSRO_PATH,
+        "storage_csro": AGENT_CSRO_PATH
+    },
+    
+    "storage": {
+        "absolute_storage": ABS_STORAGE_PATH,
+        "storage": STORAGE_PATH,
+        
+        "absolute_ideas": ABS_IDEAS_STORAGE_PATH,
+        "storage_ideas": IDEAS_STORAGE_PATH,
+        
+        "absolute_blueprint": ABS_BLUEPRINT_STORAGE_PATH,
+        "storage_blueprint": BLUEPRINT_STORAGE_PATH,
+        
+        "absolute_ba": ABS_BA_STORAGE_PATH,
+        "storage_ba": BA_STORAGE_PATH,
+        
+        "absolute_estimation": ABS_EST_STORAGE_PATH,
+        "storage_estimation": EST_STORAGE_PATH,
+        
+        "absolute_csro": ABS_CSRO_STORAGE_PATH,
+        "storage_csro": CSRO_STORAGE_PATH,
+        
+        "absolute_requirements": ABS_REQ_STORAGE_PATH,
+        "storage_requirements": REQ_STORAGE_PATH
+    },
+    
+    "output": {
+        "absolute_output": ABS_OUTPUT_PATH,
+        "storage_output": OUTPUT_PATH,
+        
+        "absolute_scraper": ABS_OUTPUT_SCRAPER_STORAGE_PATH,
+        "output_scraper": OUTPUT_SCRAPER_STORAGE_PATH,
+        
+        "absolute_ideas": ABS_OUTPUT_IDEAS_STORAGE_PATH,
+        "output_ideas": OUTPUT_IDEAS_STORAGE_PATH,
+        
+        "absolute_blueprint": ABS_OUTPUT_BLUEPRINT_STORAGE_PATH,
+        "output_blueprint": OUTPUT_BLUEPRINT_STORAGE_PATH,
+        
+        "absolute_ba": ABS_OUTPUT_BA_STORAGE_PATH,
+        "output_ba": OUTPUT_BA_STORAGE_PATH,
+        
+        "absolute_estimation": ABS_OUTPUT_EST_STORAGE_PATH,
+        "output_estimation": OUTPUT_EST_STORAGE_PATH,
+        
+        "absolute_csro": ABS_OUTPUT_CSRO_STORAGE_PATH,
+        "output_csro": OUTPUT_CSRO_STORAGE_PATH
+    }
+}
+
+# logging configuration
+# logging.basicConfig(level=logging.INFO, format="%(asctime)s [%(levelname)s]: %(message)s")
+logging.basicConfig(
+    level=logging.INFO,
+    format="%(asctime)s [%(levelname)s] %(name)s: %(message)s",
+    datefmt="%Y-%m-%d %H:%M:%S"
+)
+def get_logger(logger_name="Helper"):
+    return logging.getLogger("CommunityForumScraper")
 
