@@ -40,6 +40,12 @@ class SubAgentTask(BaseModel):
     agent: str = Field(description="Target sub-agent role executing the task.")
     desc: str = Field(description="Literal, low-level technical step assigned to the agent.")
     
+    # 🛑 to store requirement tagId
+    targeted_tags: List[str] = Field(
+        default_factory=list,
+        description="Flat string array of exact inherited BA Tag IDs that this specific sub-task implements or verifies (e.g. ['[REQ-001]', '[ARC-002]']). MUST match the raw requirements 1:1."
+    )
+    
     # 🎯 FLAT STRING ARRAY - DEFAULTS TO EMPTY []
     # list of source file paths that sub-agent should do
     components: List[str] = Field(
@@ -156,6 +162,7 @@ def manual_transform(json_data, project_name: str, phase_idx: int):
                 "id": f"D{day_val}_ST{t_idx}",
                 "agent": role,
                 "desc": desc,
+                "targeted_tags": t.get("targeted_tags", t.get("tags", [])),
                 "components": t.get("components", t.get("files", t.get("targets", [])))
             })
             t_idx = t_idx + 1
