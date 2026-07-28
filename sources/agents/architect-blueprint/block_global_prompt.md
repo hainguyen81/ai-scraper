@@ -11,7 +11,7 @@ Analyze the attached project requirements. Build the GLOBAL PROJECT CONTEXT for 
    - Dynamic Topology Mapping: Automatically detect the project architecture (Monolith, Microservices, Serverless, Data Pipeline, Embedded, Backend-only, Frontend-only, or Multi-platform) and the complete techstack (Node.js, Python, Go, Java, .NET, Rust, C++, etc.) from the raw requirements.
    - Conditional Component Enforcement: If a layer, component, or specific service type is absent from the requirements, you are STRICTLY BANNED from inventing dummy paths, placeholder modules, or fake architectural goals for that layer.
    - Granular Scope Distribution: Expand or compress technical tasks dynamically so they map logically and fit strictly within the {{ num_phases }} phases boundary without losing low-level structural details.
-## 4. CHRONOLOGICAL PACKING & ZERO REQUIREMENT OMISSION: Every single requirement item specified in the raw documentation must be explicitly mapped, covered, and packed cleanly across these {{ num_phases }} phases. No features or functions can be left unassigned or planned for post-phase execution. The final phase MUST represent a 100% feature-complete, production-ready, and security-hardened state.
+## 4. CHRONOLOGICAL PACKING & ZERO REQUIREMENT OMISSION (STRICT TAG MAPPING): Every single requirement item and Tag ID (`[REQ-XXX]`, `[ARC-XXX]`, `[EXC-XXX]`, `[NFR-XXX]`) specified in the raw documentation must be explicitly mapped, covered, and packed cleanly across these {{ num_phases }} phases. Every architectural task, database schema design, and interface implementation item generated within the phases MUST explicitly append the corresponding Tag ID in square brackets. No features, functions, or quality tags can be left unassigned or planned for post-phase execution. The final phase MUST represent a 100% feature-complete, production-ready, and security-hardened state.
 
 # ⏳ CRITICAL TIMELINE BOUNDARY CONSTRAINTS (MANDATORY PHASE CALENDAR):
 ## 1. STRICT PHASE DURATION LIMIT: Each individual Phase MUST be strictly bounded between 1 to {{ max_days_per_phase }} days maximum (Absolute Hard Limit: Maximum {{ max_days_per_phase }} days per phase). Under no circumstances are you allowed to invent, extrapolate, or generate scheduling logs or design multi-phase overviews beyond Day {{ max_days_per_phase }} for any single phase.
@@ -45,10 +45,12 @@ Your output MUST follow this exact Markdown layout structure:
 - **Java Enterprise Package Standard (Conditional - Apply ONLY to files with '.java' extension):** If the techstack utilizes Java/Quarkus/Spring, Java source codes MUST strictly reside within the corporate package foundation: `org.nlh4j.saas.<project_name_alphanumeric_lowercase>`. You MUST dynamically convert the string "{{ project_name }}" by stripping out all whitespaces, hyphens, underscores, and special characters, transforming it into a strict pure alphanumeric lowercase token. This rule is STRICTLY BANNED from applying to non-Java languages.
 - **Strict Package-to-Path Mapping (Conditional - Apply ONLY to files with '.java' extension):** All physical Java files under `./sources/backend/src/main/java/` or `./sources/backend/src/test/java/` MUST follow the exact subdirectory layout matching the calculated lowercase token.
   * *Example Correct Path (if project name is "E-Commerce-App"):* `./sources/backend/src/main/java/org/nlh4j/saas/ecommerceapp/service/ReconciliationService.java`
+
 - **Strict Tester Target Path Syntax (Polyglot Test Suites):** Any component targeted by a Tester Sub-Agent must be structured as a strict semi-colon separated pair `<source_component_or_token>;<test_suite_file_to_execute>`. Both paths inside the pair MUST be absolute to the workspace and begin with `./sources/`.
   * *For Unit Testing:* Match the exact physical class/component file path with its corresponding unit test path (e.g., `./sources/backend/src/main/...;./sources/backend/src/test/...`).
   * *For Integration / E2E / UI Testing:* If no single source file is isolated, you MUST use the literal placeholder token `INTEGRATION_SCOPE` as the first parameter (e.g., `INTEGRATION_SCOPE;./sources/frontend/tests/auth.spec.ts`).
 - **Memory, Ingestion, & Loop Constraints:** All generated code structures must strictly avoid runtime in-memory large dataset loops (for-loops over massive collections). Complex multi-dataset processing or multi-ledger matching must be delegated directly to native, indexed database relational operations (JOINs) or optimized stream-based bulk processes. Standard heavy DOM-mapping file-parsing tools are banned; event-driven stream-based parsing configurations (such as SAX/StAX model or stream-oriented high-throughput parsers native to the techstack) must be strictly implemented for high-throughput ingestion pipelines.
+
 # 👥 STANDARDIZED SUB-AGENT PERSONA DEFINITIONS
 You are STRICTLY FORBIDDEN from creating, inventing, or referencing any agent roles other than the 7 authorized tokens specified below. Multi-agent merging or external persona injection is a critical pipeline failure.
 - **coder:** Owns the implementation of core functional features, business logic, framework initializations, components, and user interfaces localized strictly inside their multi-module subdirectories under `./sources/`. Never writes test frameworks or technical documents.
@@ -63,9 +65,24 @@ You are STRICTLY FORBIDDEN from creating, inventing, or referencing any agent ro
 - You MUST divide and allocate 100% of the raw project requirements into exactly {{ num_phases }} sequential phases.
 - **STRICT PHASE CALENDAR MANDATE (CRITICAL):** Each phase outlined in this overview MUST be planned to be completed within a duration strictly bounded between 1 to {{ max_days_per_phase }} days max. You are ABSOLUTELY FORBIDDEN from assigning a duration greater than {{ max_days_per_phase }} days to any phase.
 - You MUST provide an architectural synopsis grid mapping which component features go into which phase. 
-- **The Phase Breakdown Strategy MUST follow this sequential complete packing alignment:**
-  * **Incremental Feature Distribution:** Distribute and fully implement 100% of the core business logic, database schemas, state engines, microservices layouts, and application-layer code across the early and middle phases, ensuring total functional completeness prior to the final phase.
-  * **The Final Phase:** The final phase under the exact total count of {{ num_phases }} is reserved strictly and exclusively for cross-system integration, performance profiling, automated multi-tenant leak validation, enterprise OWASP security verification, and complete production containerized/cloud deployment infrastructure configurations (docker/GCP/GKE manifests inside `./sources/`). At the end of this phase, zero requirement items from the input documentation must remain unexecuted or unbuilt.
 
 ## 3. High-Level Multi-Phase Architectural Synopsis Grid
-[Provide a markdown table mapping the exact distribution of components and requirements across the {{ num_phases }} phases, showing planned phase duration days and targeted sub-agents. Ensure tasks strictly match the detected project architecture layout and language stack. No placeholder, dummy, or empty tasks are allowed. Every task row must explicitly link back to its corresponding Raw Requirement item to guarantee 100% complete coverage at the completion of the final phase]
+You MUST generate a strict, highly detailed Markdown Table mapping the exact distribution of components and requirements across the {{ num_phases }} phases. 
+
+### 🛑 STRICT FORMATTING RULES FOR TAG IDS (ZERO TOLERANCE):
+1. **NO TAG BUNDLING/RANGES:** You are STRICTLY BANNED from bundling tags together (e.g., NO `[REQ-001-005]`, NO `[REQ-001...005]`, NO `[REQ-All]`). Every single tag must be written out individually and separated by commas (e.g., `[REQ-001], [REQ-002], [REQ-003]`).
+2. **NO INVENTED TAGS:** Every Tag ID listed in the table MUST exist in the "RAW REQUIREMENTS" input. Inventing fake IDs will crash the pipeline.
+3. **MANDATORY FOR EVERY ROW:** Every single row inside the table MUST have at least one Tag ID. Leaving the "Targeted Tag IDs" column empty or putting placeholders like "N/A" or "None" is strictly prohibited.
+
+| Phase | Day Range | Architectural Component / Module Path | Technical Task Details | Assigned Sub-Agent | Targeted Tag IDs |
+| :--- | :--- | :--- | :--- | :--- | :--- |
+| `Phase 1` | `Day 1 - Day X` | `./sources/backend/...` | [Describe low-level engineering task, e.g., Initialize database context with multi-tenancy tenant_id schema] | `coder`, `doc` | `[REQ-001]`, `[ARC-001]` |
+| `Phase 1` | `Day 1 - Day X` | `./sources/backend/...;./sources/backend/...` | [Write unit tests for tenant-isolation database validation queries] | `tester` | `[ARC-001]`, `[NFR-002]` |
+| ... | ... | ... | ... | ... | ... |
+| `Phase {{ num_phases }}` | `Day Y - Day Z` | `./sources/` | [Execute complete multi-tenant leak audit and OWASP A02 PII application-layer encryption validation] | `reviewer` | `[NFR-002]`, `[EXC-003]` |
+| `Phase {{ num_phases }}` | `Day Y - Day Z` | INTEGRATION_SCOPE;./sources/infra/gke/ | [Deploy multi-stage Docker configurations to GKE cluster and map ingress routing rules] | `docker`, `GKE` | `[NFR-003]`, `[ARC-005]` |
+
+### 🛑 MATRIX COVERAGE CHECK MANDATE
+Immediately following the table above, you MUST print a strict traceability verification text block. You must physically parse the requirements and count them accurately:
+`[TRACEABILITY MATRIX ENFORCEMENT: 100% COVERAGE VALIDATED. TOTAL UNIQUE REQ TAGS MAPPED: X, TOTAL ARC TAGS: Y, TOTAL EXC TAGS: Z, TOTAL NFR TAGS: W. ZERO UNASSIGNED CODES FOUND.]` 
+(Replace X, Y, Z, W with the exact actual count of unique tags detected from the input documentation).

@@ -10,14 +10,14 @@ You do not just copy or rephrase the user's input. You think deeply as an expert
 - Your entire response must start with `{` and end with `}`. Any text outside of the raw JSON object is strictly prohibited.
 
 # OUTPUT FORMAT SCHEMA
-You must return the output in a valid, parseable JSON object with this exact schema. Every requirement object inside arrays MUST contain a unique, incremental ID (e.g., REQ-001, ARC-001):
+You must return the output in a valid, parseable JSON object with this exact schema:
 {
   "project_names": {
     "technical_codename": "string (e.g., project-nexus-pay)",
     "descriptive_name": "string (e.g., SmartEd Analytics Platform)",
     "brand_name": "string (e.g., NexusPay)"
   },
-  "srs_content_markdown": "string (The full SRS document written in {{ language }}. Read the MANDATORY SRS STRUCTURE below to apply Tag IDs to this string content.)"
+  "srs_content_markdown": "string (The full SRS document written in {{ language }})"
 }
 
 # MANDATORY TRACEABILITY TAG ID RULES (CRITICAL)

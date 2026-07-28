@@ -9,6 +9,11 @@ You must align perfectly with the established Global Context and satisfy a subse
 {{ project_requirements }}
 ----------------------------------
 
+# 🛑 ANTI-CREATIVE TAGGING & INHERITANCE MANDATE (CRITICAL):
+1. You are STRICTLY BANNED from inventing, generating, or guessing any new Tag IDs. 
+2. Every Tag ID you reference (`[REQ-XXX]`, `[ARC-XXX]`, `[EXC-XXX]`, `[NFR-XXX]`) MUST be a 100% exact string match to the tags found inside the `--- RAW REQUIREMENTS REFERENCE ---` or `--- GLOBAL CONTEXT REFERENCE ---` sections. 
+3. If a tag is not present in the input documentation, it DOES NOT EXIST. Do not create placeholder tags or secondary sequence systems.
+
 # CRITICAL TIMELINE BOUNDARY CONSTRAINTS:
 ## 1. STRICT PHASE DURATION LIMIT: Each individual Phase MUST be strictly bounded between 1 to {{ max_days_per_phase }} days maximum (Absolute Hard Limit: Maximum {{ max_days_per_phase }} days per phase). Under no circumstances are you allowed to invent, extrapolate, or generate scheduling logs or design multi-phase overviews beyond Day {{ max_days_per_phase }} for this phase.
 ## 2. PROGRESSION STOPPING CRITERION (ZERO FILLER DAYS): Stop generating daily logs immediately once the core technical objectives allocated for this current Phase are satisfied. Do NOT duplicate, loop, or inject placeholder tasks (such as generic reviews, documentation padding, or empty syncs) just to inflate the calendar. If the technical work is logically complete on Day 1, freeze the output and exit immediately.
@@ -19,6 +24,7 @@ You must align perfectly with the established Global Context and satisfy a subse
    - **DAY LEVEL:** Group all activities belonging to that specific calendar day.
    - **AGENT SUB-TASK LEVEL:** Inside each Day, split work strictly by Sub-Tasks. **Each Sub-Task belongs to exactly ONE unique Assigned Sub-Agent literal token: 'coder' OR 'tester' OR 'reviewer' OR 'doc' OR 'docker' OR 'GCP' OR 'GKE'**. You are ABSOLUTELY BANNED from inventing external agent personas (e.g., 'Manager' or 'DevOps' are permanently banned).
    - **TARGET COMPONENT LEVEL:** Inside each Agent's Sub-Task, list **ALL Target Paths (Components)** that the designated Agent is responsible for creating, modifying, testing, or documenting on that day.
+
 3. **STRICT TARGET PATH SYNTAX RULES FOR AGENTS:**
    - **For coder / doc / docker / GCP / GKE Agents:** Each component MUST be listed as a single relative file path string starting strictly with `./sources/`.
      *   *CRITICAL DOC AGENT RULE:* If the assigned agent is 'doc', the target path must represent an explicit documentation asset, business specification, flow architecture file, or diagram asset (e.g., `.md`, `.json`, `.puml`, `.drawio`) placed inside the dedicated documentation or module folders under `./sources/`.
@@ -37,7 +43,8 @@ You must align perfectly with the established Global Context and satisfy a subse
 # COMPLIANCE MANDATES AND CRITICAL CONSTRAINTS (ABSOLUTE)
 1. **Strict Content Purity:** You are ABSOLUTELY BANNED from including any internal thinking processes, chain-of-thought markdown segments, reasoning explanations, or notes like "Here is a thinking process", "Analyze User Input", or "Based on requirements...". 
 2. **Direct Output Mandate:** Start the output response IMMEDIATELY with the primary title text `# PHASE {{ phase_idx }} CONTEXT BLUEPRINT: {{ project_name }}`. Do NOT wrap the entire response inside any markdown codeblocks (no ` ```markdown ` wrapping). Any conversational filler text, greetings, or reasoning logs before or after this markdown structure will result in an immediate application pipeline failure.
-Your output MUST follow this exact Markdown abstract layout structure for Phase {{ phase_idx }}:
+
+Your output MUST follow this exact Markdown layout structure:
 
 # PHASE {{ phase_idx }} CONTEXT BLUEPRINT: {{ project_name }}
 
@@ -58,10 +65,12 @@ Your output MUST follow this exact Markdown abstract layout structure for Phase 
 ### DAY [X]: [CAPITALIZED SHORT OBJECTIVE FOR THIS OPERATIONAL CALENDAR DAY]
 [INSTRUCTION: Evaluate the current target phase requirements. Stop generating daily logs immediately when objectives are met; do not pad days. Generate sub-tasks dynamically using ONLY the minimum required authorized agent tokens ('coder' | 'tester' | 'reviewer' | 'doc' | 'docker' | 'GCP' | 'GKE') to fulfill that day's objective. If a day requires only N sub-tasks, generate exactly N sub-task blocks. You are STRICTLY BANNED from generating placeholder, duplicate, or empty tasks. Follow the structural syntax for Sub-Tasks below iteratively for each valid sub-task on this day:]
 
-#### SUB-TASK [X.Y]: [Clear, low-level engineering description of the specific sub-task goal, explicitly embedding OWASP compliance rules and tracing numbers from the raw documentation]
+#### SUB-TASK [X.Y]: [Clear, low-level engineering description of the specific sub-task goal, explicitly embedding OWASP compliance rules]
 ##### Assigned Sub-Agent: [Insert exactly ONE unique literal Agent token: coder | tester | reviewer | doc | docker | GCP | GKE]
 ##### Targeted Components & Technical Requirements:
 *   **Target Path:** [Insert explicit physical file path starting with `./sources/` or Tester pair syntax adhering strictly to the constraints. If 'reviewer', path must target a single code file, never a folder.]
     *   **Architectural Requirements:**
         *   [Explicit technical design rule, framework-specific convention, or implementation instruction]
         *   [Explicit security enforcement parameter, e.g., OWASP A01/A02 implementation rule if handling data entry or state changes]
+    *   **DAILY LOGS TRACEABILITY RULES (ZERO TOLERANCE FOR BUNDLING):**
+        *   **Targeted Tag IDs:** [You MUST explicitly list the exact inherited BA Tag IDs that this specific sub-task implements or verifies. Write each tag out individually separated by commas, e.g., `[REQ-001], [ARC-002]`. You are STRICTLY BANNED from leaving this field blank, using placeholder text like "N/A"/"None", using ranges like `[REQ-001...005]`, or inventing new tags not found in the raw requirements reference.]

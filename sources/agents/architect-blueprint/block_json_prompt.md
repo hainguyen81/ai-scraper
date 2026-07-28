@@ -9,6 +9,11 @@ Extract and translate ALL daily steps, checklists, and agent tasks from the enti
 ## 1. STRICT PHASE DURATION LIMIT: Individual Phase MUST be bounded between 1 to {{ max_days_per_phase }} days maximum. Never generate scheduling logs beyond Day {{ max_days_per_phase }}.
 ## 2. PROGRESSION STOPPING CRITERION: Stop generating immediately once the core objectives are satisfied. Do NOT duplicate or loop previous task structures. Freeze output and exit.
 
+# 🛑 ANTI-CREATIVE TAGGING & INHERITANCE MANDATE (CRITICAL):
+1. You are STRICTLY BANNED from inventing, generating, omitting, or modifying any requirement Tag IDs (`[REQ-XXX]`, `[ARC-XXX]`, `[EXC-XXX]`, `[NFR-XXX]`).
+2. Every Tag ID present in the source Phase Markdown content MUST be perfectly preserved and mapped 1:1 into the corresponding task node inside the JSON output. 
+3. Under no circumstances should you strip out or abstract away these tracking codes.
+
 # 🔒 AGENT ATOMICITY & COMPONENT MANDATES (ABSOLUTE):
 - **ATOMIC AGENT ASSIGNMENT:** Every single object inside the 'sub_tasks' array MUST have exactly ONE sub-agent role (string) assigned to the 'agent' field. Dual-agent or multi-agent assignments within a single task object are strictly forbidden.
 - **NO ZERO-COMPONENT TASKS (ABSOLUTE HARD LIMIT):** You are STRICTLY BANNED from generating any sub-task object where the 'components' array is empty `[]`, null, or missing. If an Agent does not have any physical files or target paths to create, modify, test, or document on that specific day, you MUST NOT generate that sub-task object at all. No components means NO task. Every file path inside 'components' must be prefixed with `./sources/`.
@@ -26,7 +31,7 @@ Extract and translate ALL daily steps, checklists, and agent tasks from the enti
 - **COMPONENT COMPLETENESS:** Every 'Target Path' listed in source Markdown must have a 1:1 mapping into 'components' array. Do not aggregate, abbreviate, or omit files.
 - **STRICT CONTENT PURITY:** Output ONLY the pure raw executable JSON string matching schema. Response must start with `{` and end exactly with `}`. Banned from including thinking processes, chain-of-thought, conversational texts, introductions, wrapping inside markdown codeblocks (no ` ```json ` wrapping), or post-generation notes.
 - **STRICT LITERAL FIELD VALUES:** Populate exact string "./sources/{{ global_context_file }}" into 'global_context_file'. Populate exact empty string "" into 'source_target_dir' field. (Enforcing an empty string ensures that all paths inside the 'components' array must maintain their full, explicit absolute repository reference starting with `./sources/` from the workspace root directory).
-- **TASK DETAILS:** 'task' field must contain sequential description text preserving all embedded OWASP security tags (A01, A02, etc.) and requirement tracking tokens. Do not truncate or abstract them away.
+- **TASK DETAILS:** The 'task' field must contain sequential description text preserving all embedded OWASP security tags (A01, A02, etc.). You do not need to include requirement tags here if they are successfully extracted into the 'targeted_tags' array.
 - **AGENT FIELD VALUES:** 'agent' field MUST contain exactly one literal string token matching the authorized schema: 'coder', 'tester', 'reviewer', 'doc', 'docker', 'GCP', 'GKE'. Any other values (such as 'Manager' or 'DevOps') are strictly banned and will break the execution engine.
 - **WORKSPACE PREFIX RULE:** Every path in 'components' array MUST strictly begin with `./sources/`. Generating files directly under repository root (e.g., `./Dockerfile`) is permanently BANNED.
 - **FOR 'coder' TASKS:** 'components' array must contain relative file paths starting with `./sources/backend/` or `./sources/frontend/` using lowercase alphanumeric structures matching the project layout.
@@ -46,6 +51,12 @@ Extract and translate ALL daily steps, checklists, and agent tasks from the enti
 Evaluate the context tracking mechanics based strictly on the chunk configuration:
    - **Case A: If is_chunked is FALSE:** Regardless of the actual day numbers documented in the source Markdown content (e.g., even if the text states "Days 4-7"), you MUST reset the timeline sequence internally so that the first operational day inside this Phase always starts from integer 1. Progression follows sequentially as 2, 3, 4, etc. Map "Day 4" to "day": 1, and 'context_section' to "DAY 1".
    - **Case B: If is_chunked is TRUE:** You MUST PRESERVE the exact absolute chronological day index requested. The first parsed day object must match the integer value of {{ current_start_day }}, and progress incrementally up to {{ current_end_day }}. Under Case B, you are STRICTLY BANNED from resetting the day value to 1. Map "Day 4" to "day": 4, and its 'context_section' to "DAY 4".
+
+# 🛑 MANDATORY STRUCTURE ENFORCEMENT FOR TRACEABILITY TAGS:
+When extracting sub-tasks, you MUST inject an array field named "targeted_tags" into the schema of EACH sub-task object node. 
+- You MUST scan the task description in the Markdown text, extract all corresponding Tag IDs (`[REQ-XXX]`, `[ARC-XXX]`, etc.) associated with that task, and populate them as clean string elements inside this "targeted_tags" array (e.g., `"targeted_tags": ["[REQ-001]", "[ARC-002]"]`).
+- If a task lists multiple tags, you MUST split them into individual array elements. You are STRICTLY BANNED from bundling them into a single string (e.g., NO `["[REQ-001], [REQ-002]"]`).
+- If no tags are found for a task (which violates previous constraints), use the Fallback Rule to map it to the active high-level requirements of that day. Leaving the "targeted_tags" array empty `[]` or null is strictly prohibited.
 
 You MUST conform strictly to your required JSON Schema layout design structure:
 {{ phase_steps_json_schema }}
