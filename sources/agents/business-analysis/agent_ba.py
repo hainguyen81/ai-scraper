@@ -141,7 +141,8 @@ class PrincipalBusinessAnalysisAgent(AbstractAgent):
         }
     
     # @override
-    def process_chat(self, response_data, **kwargs):
+    def process_communication(self, **kwargs):
+        response_data = self.get_kwargs_by_key(key="clean_response", **kwargs)
         if not response_data:
             raise RuntimeError("- Invalid AI raw response. Not a valid JSON format data.")
         
