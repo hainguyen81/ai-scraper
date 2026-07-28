@@ -112,7 +112,7 @@ storage_info = {
         "absolute_storage": ABS_STORAGE_PATH,
         "storage": STORAGE_PATH,
         
-        "absolute_ideas" ABS_IDEAS_STORAGE_PATH,
+        "absolute_ideas": ABS_IDEAS_STORAGE_PATH,
         "storage_ideas": IDEAS_STORAGE_PATH,
         
         "absolute_blueprint": ABS_BLUEPRINT_STORAGE_PATH,
