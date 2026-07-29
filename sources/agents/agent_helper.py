@@ -321,7 +321,7 @@ REL_REQ_STORAGE_PATH                    = "sources/requirements"
 REQ_STORAGE_PATH                        = resolve_absolute_path(REL_REQ_STORAGE_PATH)
 
 REL_STORAGE_PATH                        = "sources/storage"
-STORAGE_PATH                            = resolve_absolute_path(REL_REQ_STORAGE_PATH)
+STORAGE_PATH                            = resolve_absolute_path(REL_STORAGE_PATH)
 
 REL_OUTPUT_PATH                         = "sources/output"
 OUTPUT_PATH                             = resolve_absolute_path(REL_OUTPUT_PATH)

@@ -1,7 +1,6 @@
 import os
 import sys
 import runpy
-from pathlib import Path
 
 from modules import register_packages
 
