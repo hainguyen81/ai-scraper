@@ -110,10 +110,10 @@ class EnterpriseAutonomousProjectEstimatorAgent(AbstractSubAgent):
         
         # extract information to debug
         exchange_rate = float(metrics_dict.get("exchange_rate", 0) if metrics_dict else 0)
-        ent_cost_usd = list(metrics_dict.get("enterprise_cost_usd", 0) if metrics_dict else 0)
-        free_cost_usd = list(metrics_dict.get("freelance_cost_usd", 0) if metrics_dict else 0)
-        ent_time = list(metrics_dict.get("enterprise_months", 0) if metrics_dict else 0)
-        free_time = list(metrics_dict.get("freelance_months", 0) if metrics_dict else 0)
+        ent_cost_usd = list(metrics_dict.get("enterprise_cost_usd", []) if metrics_dict else [])
+        free_cost_usd = list(metrics_dict.get("freelance_cost_usd", []) if metrics_dict else [])
+        ent_time = list(metrics_dict.get("enterprise_months", []) if metrics_dict else [])
+        free_time = list(metrics_dict.get("freelance_months", []) if metrics_dict else [])
 
         self.logger.debug(f"[ 📊 DATA EXTRACTED ] Live Exchange Rate Captured: 1 USD = {exchange_rate} VND")
         self.logger.debug(f"| Enterprise Costs: {ent_cost_usd} | Freelance Costs: {free_cost_usd}")
@@ -172,10 +172,10 @@ class EnterpriseAutonomousProjectEstimatorAgent(AbstractSubAgent):
         
         # extract metrics information
         exchange_rate = float(metrics.get("exchange_rate", 0))
-        ent_cost_usd = list(metrics.get("enterprise_cost_usd", 0))
-        free_cost_usd = list(metrics.get("freelance_cost_usd", 0))
-        ent_time = list(metrics.get("enterprise_months", 0))
-        free_time = list(metrics.get("freelance_months", 0))
+        ent_cost_usd = list(metrics.get("enterprise_cost_usd", []))
+        free_cost_usd = list(metrics.get("freelance_cost_usd", []))
+        ent_time = list(metrics.get("enterprise_months", []))
+        free_time = list(metrics.get("freelance_months", []))
         
         plt.rcParams['figure.dpi'] = 300
         plt.rcParams['text.color'] = '#2c3e50'
