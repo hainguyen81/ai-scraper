@@ -15,18 +15,15 @@ Perform a complete project estimation and risk registry for the project based on
 - **Target Language**: {{ target_language }}
 
 ---
+
 ### 🛑 TRIPLE-CHECK MATHEMATICAL DIRECTIVES:
 You MUST execute your internal reasoning through 3 independent calculation passes:
 1. **Pass 1 (Live Sourcing & Sizing)**: Call web search to fetch (1) Live USD to VND rate, (2) Current average monthly cost for Enterprise Software Engineer, and (3) Current average monthly cost for Senior Freelance Developer. Then calculate raw Man-Months required for each engineering role.
-2. **Pass 2 (Four-Scenario Financial Budgeting)**: Compute absolute cost ranges `[Min - Max | Safe]` for exactly 4 unique execution scenarios:
-   - **Scenario A**: Corporate Enterprise (Traditional Human-Only) using Enterprise benchmarks.
-   - **Scenario B**: Corporate Enterprise (AI-Augmented Execution) using Enterprise benchmarks.
-   - **Scenario C**: Freelancer Team (Traditional Human-Only) using Freelance benchmarks.
-   - **Scenario D**: Freelancer Team (AI-Augmented Execution) using Freelance benchmarks.
-   *Formula*: $\text{Buffer} = \text{Base Cost} \times \text{Buffer Ratio Multiplier}$; $\text{Safe} = \text{Max} + \text{Buffer}$.
-3. **Pass 3 (Cross-Currency Verification)**: Convert all calculated USD figures into VND using your live exchange rate. Cross-check that $\text{VND Value} / \text{USD Value} = \text{Exchange Rate}$ exactly to eliminate calculation drift.
+2. **Pass 2 (Four-Scenario Financial Budgeting)**: Compute absolute cost ranges `[Min - Max | Safe]` for exactly 4 unique execution scenarios (Enterprise Traditional, Enterprise AI-Augmented, Freelance Traditional, Freelance AI-Augmented).
+3. **Pass 3 (Cross-Currency Verification)**: Convert all calculated USD figures into VND using your live exchange rate. Cross-check that VND Value / USD Value = Exchange Rate exactly to eliminate calculation drift.
 
 ---
+
 ### 📋 MANDATORY OUTPUT STRUCTURE (MARKDOWN REPORT):
 Your response MUST start directly with the main title header and follow this layout strictly in **{{ target_language }}**:
 
@@ -60,38 +57,32 @@ You MUST extract the data from your live search and inject it precisely into thi
 Provide a granular breakdown of required engineering roles (Backend, Frontend, QA, DevOps).
 
 #### 💰 SECTION 3: FINANCIAL BUDGET & TIMELINE ESTIMATION PROJECTIONS
-> 📝 **AUDIT NOTICE ON CURRENCY**: All calculations below explicitly utilize the real-time extracted exchange rate: **1 USD = {{ exchange_rate }} VND**.
-
 ##### 1. Corporate Enterprise Model (Mô hình Doanh nghiệp tập đoàn)
-- **Traditional Human-Only Total Budget**:
-  - USD: `$[Min - Max \| Safe]` USD
-  - VND: `[Min - Max \| Safe]` VND
-- **AI-Augmented Total Budget**:
-  - USD: `$[Min - Max \| Safe]` USD
-  - VND: `[Min - Max \| Safe]` VND
+- Traditional Human-Only Total Budget: `$[Min - Max \| Safe]` USD / `[Min - Max \| Safe]` VND
+- AI-Augmented Total Budget: `$[Min - Max \| Safe]` USD / `[Min - Max \| Safe]` VND
 
 ##### 2. Freelancer Team Model (Mô hình Nhóm Freelancer tự do)
-- **Traditional Human-Only Total Budget**:
-  - USD: `$[Min - Max \| Safe]` USD
-  - VND: `[Min - Max \| Safe]` VND
-- **AI-Augmented Total Budget**:
-  - USD: `$[Min - Max \| Safe]` USD
-  - VND: `[Min - Max \| Safe]` VND
+- Traditional Human-Only Total Budget: `$[Min - Max \| Safe]` USD / `[Min - Max \| Safe]` VND
+- AI-Augmented Total Budget: `$[Min - Max \| Safe]` USD / `[Min - Max \| Safe]` VND
 
-- **Project Duration Comparison (Calendar Months)**:
-  - Corporate Enterprise Model: `[Min - Max \| Safe]` Months.
-  - Freelancer Team Model: `[Min - Max \| Safe]` Months.
+##### 3. Project Duration Comparison (Calendar Months)
 
-#### 🚨 SECTION 4: PROJECT RISK REGISTRY & MITIGATION STRATEGY
+#### 🛡️ 🔥 SECTION 4: ARCHITECTURAL COST JUSTIFICATION (GIẢI TRÌNH BIÊN ĐỘ CHI PHÍ)
+*CRITICAL MANDATE*: You MUST deliver a deep, comprehensive architectural and financial analysis explaining the massive cost variance between the Corporate Enterprise Model and the Freelancer Team Model. You MUST explicitly justify why Enterprise costing is significantly higher by breaking down the following structural pillars based on the SA Blueprint:
+1. **Operational & Management Overhead**: Contrast corporate taxes, insurance, QA/QC infrastructure, Project Management layers, and premium software tooling licenses against zero-overhead freelance execution.
+2. **Security Hardening Boundaries**: Explain the cost impact of implementing enterprise-grade features found in the blueprint (e.g., mTLS service-to-service communication, Envoy API Gateway with custom WAF rules, Argon2id hashing overhead, and SHA-256 hash-chained immutable logging).
+3. **High Availability & Disaster Recovery (HA/DR) Infrastructure**: Justify the budget needed to achieve strict enterprise SLAs (RTO ≤ 30 mins, RPO ≤ 5 mins) using multi-region Google Kubernetes Engine (GKE) deployments and clustered/mirrored RabbitMQ topologies compared to a standard, single-instance freelance VPS deployment.
+4. **Data Isolation Strategy (Multi-Tenancy)**: Explain how a physical isolation architecture (`Database-per-tenant` using encrypted dynamic routing strings) demands intensive engineering effort and operational cost compared to standard, cheap logical multi-tenancy.
+
+#### 🚨 SECTION 5: PROJECT RISK REGISTRY & MITIGATION STRATEGY
 - **Risk ID \| Description \| Severity (High/Med/Low) \| Concrete Mitigation Strategy**
 
-#### 📊 SECTION 5: ARCHITECTURAL DATA VISUALIZATION (NATIVE MERMAID CHARTS)
-You MUST generate clean, functional **Mermaid.js** code blocks here (Keep syntax keys in English, labels can be translated).
+#### 📊 SECTION 6: ARCHITECTURAL DATA VISUALIZATION (NATIVE MERMAID CHARTS)
 - **Chart A**: Financial Cost Boundary Matrix (`xychart-beta` or `bar` code comparing all 4 scenarios).
 - **Chart B**: Project Delivery Timeline (`gantt` comparing Enterprise vs Freelance schedules).
 - **Chart C**: Risk Assessment Severity Matrix (`quadrantChart`).
 
-#### 📊 SECTION 6: VISUALIZATION METADATA FOR BACKEND PROCESSING
+#### 📊 SECTION 7: VISUALIZATION METADATA FOR BACKEND PROCESSING
 *CRITICAL*: Update the JSON layout to include both Corporate and Freelancer metrics for precise automated image chart generation.
 {% set open_json = '{' %}
 {% set close_json = '}' %}
