@@ -39,11 +39,11 @@ class PrincipalBusinessAnalysisAgent(AbstractSubAgent):
         self.language = self.get_kwargs("language") or DEFAULT_SRS_LANGUAGE
     
     def ba_output_raw_file(self):
-        return self.__output_storage_path__(storage_name="storage_ba", file=BA_RAW_FILE)
+        return self.__output_storage_path__(storage_name="output_ba", file=BA_RAW_FILE)
     
     # @override
     def agent_log_file(self) -> str:
-        return self.__output_storage_path__(storage_name="storage_ba", file=BA_LOG_FILE)
+        return self.__output_storage_path__(storage_name="output_ba", file=BA_LOG_FILE)
     
     # @override
     def system_prompt_template(self) -> str:
