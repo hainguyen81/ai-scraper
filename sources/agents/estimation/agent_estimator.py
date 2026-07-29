@@ -56,7 +56,7 @@ class EnterpriseAutonomousProjectEstimatorAgent(AbstractSubAgent):
         
         # no idea also no requirements
         if not raw_idea_content:
-            self.logger.critical(f"[ 💀 CRITICAL ] Not found IDEA / Requirements file to process")
+            self.logger.critical(f"💀 Not found IDEA / Requirements file to process")
             sys.exit(1)
         
         # read ba/SRS
