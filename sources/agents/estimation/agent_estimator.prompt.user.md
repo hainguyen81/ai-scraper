@@ -129,36 +129,45 @@ Render this table fully in "{{ target_language }}". Financial Impact and Resourc
 - DO NOT insert translated or accented characters inside the mermaid blocks, otherwise the compilation pipeline will crash.
 
 ##### Chart A: Financial Cost Boundary Matrix (USD)
-Use the official `xychart-beta` syntax. You MUST dynamically evaluate your calculated labor costs to determine the upper bound value for the y-axis. Replace the y-axis placeholder with the nearest rounded integer representing thousands of USD based on your actual Safe Cost calculation pass. Output raw integer series arrays representing the three sequential points [Min, Max, Safe] for each scenario under the bar directive.
+Use the official `xychart-beta` syntax. You MUST evaluate labor costs to find the maximum value for the y-axis, rounded up to the nearest hundred. Replace the upper bound placeholder with this integer. Output exactly FOUR distinct `bar` lines representing the 4 scenarios. Each `bar` line MUST contain exactly three comma-separated raw numbers inside brackets representing [Min, Max, Safe] bounds (e.g., bar [10, 20, 30]). Do NOT include string tokens inside the final brackets.
+
 ```mermaid
 xychart-beta
 title "Total Cost Comparison Bounds (in Thousands USD)"
 x-axis ["Min Cost", "Max Cost", "Safe Cost"]
 y-axis "USD (Thousands)"
-0 --> [Insert_Dynamic_Y_Axis_Maximum_Integer]
-bar [Min_Int, Max_Int, Safe_Int]
-bar [Min_Int, Max_Int, Safe_Int]
-bar [Min_Int, Max_Int, Safe_Int]
-bar [Min_Int, Max_Int, Safe_Int]
+0 --> [Insert_Calculated_Max_Integer_Value_Here]
+bar [Insert_Min_Int, Insert_Max_Int, Insert_Safe_Int]
+bar [Insert_Min_Int, Insert_Max_Int, Insert_Safe_Int]
+bar [Insert_Min_Int, Insert_Max_Int, Insert_Safe_Int]
+bar [Insert_Min_Int, Insert_Max_Int, Insert_Safe_Int]
 ```
 
 ##### Chart B: Project Delivery Timeline (Dynamic Gantt Chart)
-Define unique milestone IDs for each section to isolate dependencies. Use `dateFormat X` and present calculated schedules using raw numeric days offsets matching your Pass 2 execution parameters.
+To prevent syntax errors in Mermaid version 11+, you MUST use a fixed project start date format (YYYY-MM-DD) and define tasks strictly using duration in days (e.g., 30d). Do NOT use complex token dependencies or raw un-suffixed integers. Use the current year-month-day for the start milestone.
+
 ```mermaid
 gantt
 title Project Timeline Acceleration Matrix
-dateFormat X
+dateFormat YYYY-MM-DD
 axisFormat %d days
 section Enterprise Traditional
-Phase 1 Execution :ent_p1, 0, [Insert_Calculated_Days_Int]
-Phase 2 Execution :ent_p2, after ent_p1, [Insert_Calculated_Days_Int]
+Phase 1 Execution :active, ent_p1, 2026-07-29, [Insert_Calculated_Days_Int]d
+Phase 2 Execution :ent_p2, after ent_p1, [Insert_Calculated_Days_Int]d
 section Enterprise AI
-Phase 1 Execution :ent_ai1, 0, [Insert_Calculated_Days_Int]
-Phase 2 Execution :ent_ai2, after ent_ai1, [Insert_Calculated_Days_Int]
+Phase 1 Execution :active, ent_ai1, 2026-07-29, [Insert_Calculated_Days_Int]d
+Phase 2 Execution :ent_ai2, after ent_ai1, [Insert_Calculated_Days_Int]d
+section Freelance Traditional
+Phase 1 Execution :active, free_p1, 2026-07-29, [Insert_Calculated_Days_Int]d
+Phase 2 Execution :free_p2, after free_p1, [Insert_Calculated_Days_Int]d
+section Freelance AI
+Phase 1 Execution :active, free_ai1, 2026-07-29, [Insert_Calculated_Days_Int]d
+Phase 2 Execution :free_ai2, after free_ai1, [Insert_Calculated_Days_Int]d
 ```
 
 ##### Chart C: Risk Assessment Severity Matrix
-Use the official `quadrantChart` syntax with English coordinates. Map identified system engineering risks dynamically using exact calculated probability and impact float floats inside the boundary elements.
+Use the official `quadrantChart` syntax with English coordinates. Map identified system engineering risks dynamically using exact calculated probability and impact float parameters inside the boundary elements.
+
 ```mermaid
 quadrantChart
 title Risk Assessment Matrix (Probability vs Impact)
@@ -168,7 +177,7 @@ quadrant-1 "Critical Risks"
 quadrant-2 "Major Risks"
 quadrant-3 "Minor Risks"
 quadrant-4 "Monitor Risks"
-"R-001: Data Leakage" : [Insert_Probability_Float, Insert_Impact_Float]
+"R-001: Data Leakage" : [[Insert_Probability_Float], [Insert_Impact_Float]]
 ```
 
 #### SECTION 7: VISUALIZATION METADATA FOR BACKEND PROCESSING
