@@ -128,8 +128,14 @@ Render this table fully in "{{ target_language }}". Financial Impact and Resourc
 - ALL text labels, title keys, quadrant strings, and task details INSIDE the mermaid code blocks MUST be written in plain, unaccented English (e.g., "Min Cost", "Max Cost", "Safe Cost").
 - DO NOT insert translated or accented characters inside the mermaid blocks, otherwise the compilation pipeline will crash.
 
+#### SECTION 6: ARCHITECTURAL DATA VISUALIZATION (NATIVE MERMAID CHARTS)
+*CRITICAL MANDATE FOR SYNTAX COMPLIANCE*: You MUST generate clean, functional, and valid Mermaid.js blocks.
+- ALL text labels, title keys, quadrant strings, and task details INSIDE the mermaid code blocks MUST be written in plain, unaccented English (e.g., "Min Cost", "Max Cost", "Safe Cost").
+- DO NOT insert translated or accented characters inside the mermaid blocks, otherwise the compilation pipeline will crash.
+
 ##### Chart A: Financial Cost Boundary Matrix (USD)
-Use the official `xychart-beta` syntax. You MUST evaluate labor costs to find the maximum value for the y-axis, rounded up to the nearest hundred. Replace the upper bound placeholder with this integer. Output exactly FOUR distinct `bar` lines representing the 4 scenarios. Each `bar` line MUST contain exactly three comma-separated raw numbers inside brackets representing [Min, Max, Safe] bounds (e.g., bar [10, 20, 30]). Do NOT include string tokens inside the final brackets.
+Use the official `xychart-beta` syntax. You MUST evaluate labor costs to find the maximum value for the y-axis, rounded up to the nearest hundred, and replace the upper bound placeholder with this integer. 
+CRITICAL MERMAID v11 SYNTAX RULE: The `bar` directive MUST NOT contain any brackets or parentheses. Output exactly FOUR distinct `bar` lines representing the 4 scenarios. Each `bar` line MUST be followed immediately by exactly three comma-separated raw numbers WITHOUT any brackets (e.g., write `bar 150, 250, 320` instead of `bar [150, 250, 320]`).
 
 ```mermaid
 xychart-beta
@@ -137,10 +143,10 @@ title "Total Cost Comparison Bounds (in Thousands USD)"
 x-axis ["Min Cost", "Max Cost", "Safe Cost"]
 y-axis "USD (Thousands)"
 0 --> [Insert_Calculated_Max_Integer_Value_Here]
-bar [Insert_Min_Int, Insert_Max_Int, Insert_Safe_Int]
-bar [Insert_Min_Int, Insert_Max_Int, Insert_Safe_Int]
-bar [Insert_Min_Int, Insert_Max_Int, Insert_Safe_Int]
-bar [Insert_Min_Int, Insert_Max_Int, Insert_Safe_Int]
+bar Insert_Min_Int, Insert_Max_Int, Insert_Safe_Int
+bar Insert_Min_Int, Insert_Max_Int, Insert_Safe_Int
+bar Insert_Min_Int, Insert_Max_Int, Insert_Safe_Int
+bar Insert_Min_Int, Insert_Max_Int, Insert_Safe_Int
 ```
 
 ##### Chart B: Project Delivery Timeline (Dynamic Gantt Chart)
