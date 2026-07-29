@@ -155,7 +155,7 @@ bar [Insert_Min_Int, Insert_Max_Int, Insert_Safe_Int]
 ```
 
 ##### Chart B: Project Delivery Timeline (Dynamic Gantt Chart)
-To prevent syntax errors in Mermaid version 11+, you MUST use a fixed project start date format (YYYY-MM-DD) and define tasks strictly using duration in days (e.g., 30d). Do NOT use complex token dependencies or raw un-suffixed integers. Use the current year-month-day for the start milestone.
+To prevent syntax errors in Mermaid version 11+, you MUST use a dynamic project start date format (YYYY-MM-DD) and define tasks strictly using duration in days (e.g., 30d). You MUST dynamically extract the active current date from the computation environment and inject it into the start milestone placeholder below. Do NOT use static or hardcoded dates.
 
 ```mermaid
 gantt
@@ -163,16 +163,16 @@ title Project Timeline Acceleration Matrix
 dateFormat YYYY-MM-DD
 axisFormat %d days
 section Enterprise Traditional
-Phase 1 Execution :active, ent_p1, 2026-07-29, [Insert_Calculated_Days_Int]d
+Phase 1 Execution :active, ent_p1, [Insert_Current_Date_Here_YYYY-MM-DD], [Insert_Calculated_Days_Int]d
 Phase 2 Execution :ent_p2, after ent_p1, [Insert_Calculated_Days_Int]d
 section Enterprise AI
-Phase 1 Execution :active, ent_ai1, 2026-07-29, [Insert_Calculated_Days_Int]d
+Phase 1 Execution :active, ent_ai1, [Insert_Current_Date_Here_YYYY-MM-DD], [Insert_Calculated_Days_Int]d
 Phase 2 Execution :ent_ai2, after ent_ai1, [Insert_Calculated_Days_Int]d
 section Freelance Traditional
-Phase 1 Execution :active, free_p1, 2026-07-29, [Insert_Calculated_Days_Int]d
+Phase 1 Execution :active, free_p1, [Insert_Current_Date_Here_YYYY-MM-DD], [Insert_Calculated_Days_Int]d
 Phase 2 Execution :free_p2, after free_p1, [Insert_Calculated_Days_Int]d
 section Freelance AI
-Phase 1 Execution :active, free_ai1, 2026-07-29, [Insert_Calculated_Days_Int]d
+Phase 1 Execution :active, free_ai1, [Insert_Current_Date_Here_YYYY-MM-DD], [Insert_Calculated_Days_Int]d
 Phase 2 Execution :free_ai2, after free_ai1, [Insert_Calculated_Days_Int]d
 ```
 
