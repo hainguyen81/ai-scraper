@@ -68,28 +68,30 @@ class AbstractSubAgent(AbstractAgent):
     def __read_storage_file__(self, storage_name, file, ignore_not_found=False) -> str:
         storage_file = self.__storage_path__(storage_name=storage_name, file=file)
         if not ignore_not_found and not os.path.exists(storage_file):
-            self.logger.critical(f"[ 💀 ERROR ] Not found storage '{storage_name}' file { file }")
+            self.logger.critical(f"[ 💀 ERROR ] Not found file '{ file }' in storage '{storage_name}': { storage_file }")
             sys.exit(1)
         
         elif not os.path.exists(storage_file):
-            self.logger.critical(f"[ 💀 WARN ] Not found storage '{storage_name}' file { file }")
+            self.logger.warn(f"[ 💀 WARN ] Not found file '{ file }' in storage '{storage_name}': { storage_file }")
             return None
         
         # read idea file to build user prompt
+        self.logger.info(f"[ 💀 INFO ] Read RAW file { file } from '{storage_name}': { storage_file }")
         _, storage_file_content = read_file_raw(file_path=storage_file)
         return storage_file_content
     
     def __read_storage_json__(self, storage_name, file, ignore_not_found=False):
         storage_file = self.__storage_path__(storage_name=storage_name, file=file)
         if not ignore_not_found and not os.path.exists(storage_file):
-            self.logger.critical(f"[ 💀 ERROR ] Not found storage '{storage_name}' file { file }")
+            self.logger.critical(f"[ 💀 ERROR ] Not found file '{ file }' in storage '{storage_name}': { storage_file }")
             sys.exit(1)
         
         elif not os.path.exists(storage_file):
-            self.logger.warn(f"[ 💀 WARN ] Not found storage '{storage_name}' file { file }")
+            self.logger.warn(f"[ 💀 WARN ] Not found file '{ file }' in storage '{storage_name}': { storage_file }")
             return None
         
         # read idea file to build user prompt
+        self.logger.info(f"[ 💀 INFO ] Read JSON file { file } from '{storage_name}': { storage_file }")
         _, storage_json = read_json_file(file_path=storage_file)
         return storage_json
     
