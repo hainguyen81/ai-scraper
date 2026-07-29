@@ -452,7 +452,7 @@ LOG_COLORS = {
     'CRITICAL': '\033[95m',     # Magenta (Critical system failures)
     'RESET':    '\033[0m'       # Reset to default terminal text color
 }
-LOG_EMOJI = {
+LOG_EMOJIS = {
     'TRACE':    '🔍',            # Magnifying glass for deep tracing
     'DEBUG':    '⚙️',            # Gear for debugging details
     'INFO':     'ℹ️',            # Information source icon
