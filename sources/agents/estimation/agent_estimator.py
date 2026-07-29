@@ -4,7 +4,8 @@ import json
 import argparse
 from datetime import datetime
 
-import urllib.parse
+import base64
+import requests
 import requests
 import matplotlib.pyplot as plt
 import numpy as np
@@ -33,6 +34,8 @@ EST_VISUALIZATION_FILES     = [ "cost_chart.svg", "timeline_chart.svg", "risk_ma
 DEFAULT_BUFFER_RATION       = 1.5
 
 DEFAULT_EST_LANGUAGE        = "English"
+
+MERMAID_URL                 = "https://mermaid.ink/svg/base64:"
 
 
 class EnterpriseAutonomousProjectEstimatorAgent(AbstractSubAgent):
@@ -140,101 +143,132 @@ class EnterpriseAutonomousProjectEstimatorAgent(AbstractSubAgent):
         
         # extract information
         exchange_rate = float(metrics_dict.get("exchange_rate", 25500))
-        ent_cost_usd = self.__safe_parse_float_numbers_list__(raw_value=metrics_dict.get("enterprise_cost_usd"))
-        free_cost_usd = self.__safe_parse_float_numbers_list__(raw_value=metrics_dict.get("freelance_cost_usd"))
-        ent_time = self.__safe_parse_float_numbers_list__(raw_value=metrics_dict.get("enterprise_months"))
-        free_time = self.__safe_parse_float_numbers_list__(raw_value=metrics_dict.get("freelance_months"))
+        enterprise_human_cost_usd = self.__safe_parse_float_numbers_list__(raw_value=metrics_dict.get("enterprise_cost_usd"))
+        enterprise_ai_cost_usd = self.__safe_parse_float_numbers_list__(raw_value=metrics_dict.get("enterprise_ai_cost_usd"))
+        freelance_human_cost_usd = self.__safe_parse_float_numbers_list__(raw_value=metrics_dict.get("freelance_human_cost_usd"))
+        freelance_ai_cost_usd = self.__safe_parse_float_numbers_list__(raw_value=metrics_dict.get("freelance_ai_cost_usd"))
+        enterprise_human_months = self.__safe_parse_float_numbers_list__(raw_value=metrics_dict.get("enterprise_human_months"))
+        enterprise_ai_months = self.__safe_parse_float_numbers_list__(raw_value=metrics_dict.get("enterprise_ai_months"))
+        freelance_human_months = self.__safe_parse_float_numbers_list__(raw_value=metrics_dict.get("freelance_human_months"))
+        freelance_ai_months = self.__safe_parse_float_numbers_list__(raw_value=metrics_dict.get("freelance_ai_months"))
         
-        self.logger.debug(f"[ 📊 DATA EXTRACTED ] Live Exchange Rate Captured: 1 USD = {exchange_rate} VND")
-        self.logger.debug(f"| Enterprise Costs: {ent_cost_usd} | Freelance Costs: {free_cost_usd}")
-        self.logger.debug(f"| Enterprise Timelines: {ent_time} | Freelance Timelines: {free_time}")
         self.logger.info(f"- 📊 Extracted Metrics: {json_tostring(metrics_dict)}")
         return {
             "exchange_rate": exchange_rate,
-            "enterprise_cost_usd": ent_cost_usd,
-            "freelance_cost_usd": free_cost_usd,
-            "enterprise_months": ent_time,
-            "freelance_months": free_time
+            "enterprise_human_cost_usd": enterprise_human_cost_usd,
+            "enterprise_ai_cost_usd": enterprise_ai_cost_usd,
+            "freelance_human_cost_usd": freelance_human_cost_usd,
+            "freelance_ai_cost_usd": freelance_ai_cost_usd,
+            "enterprise_human_months": enterprise_human_months,
+            "enterprise_ai_months": enterprise_ai_months,
+            "freelance_human_months": freelance_human_months,
+            "freelance_ai_months": freelance_ai_months
         }
-    
+
     def __extract_mermaid_visualizations__(self, raw_response):
+        """
+        Extracts all Mermaid code blocks from the AI markdown response,
+        compiles them into high-res SVG vectors via the Mermaid.ink API using Base64 encoding,
+        and returns a dictionary mapping target filenames to their raw binary SVG content.
+        """
         # Non-greedy regex mapping to sweep all markdown blocks bounded by mermaid tags
         mermaid_blocks = re.findall(r'```mermaid\s*(.*?)\s*```', raw_response, re.DOTALL)
         if not mermaid_blocks:
             self.logger.warning("⚠️ Zero functional mermaid visualization blocks detected inside the markdown body.")
-        
-        # Explicit fallback architectural name arrays
+            return {}
+
         self.logger.info(f"[ 📊 MERMAID ENGINE ] Intercepted {len(mermaid_blocks)} dynamic diagrams. Running vector compilation pipeline...")
-        self.logger.info(f"- Extracted Visualizations: {json_tostring(mermaid_blocks)}")
         visualizations_data = {}
+        chart_names = EST_VISUALIZATION_FILES  # Ensured this array is pre-defined within your class
         
-        if mermaid_blocks:
-            chart_names = EST_VISUALIZATION_FILES
-            for idx, code in enumerate(mermaid_blocks):
-                clean_code = code.strip()
+        for idx, code in enumerate(mermaid_blocks):
+            clean_code = code.strip()
+            if not clean_code:
+                continue
                 
-                # URL-encode the raw code content safe string character array payloads
-                encoded_code = urllib.parse.quote(clean_code)
-                render_url = f"https://mermaid.ink/svg/{encoded_code}"
+            try:
+                # CRITICAL FIX: Encode the raw string into UTF-8 bytes, then convert to standard URL-safe Base64 string
+                code_bytes = clean_code.encode('utf-8')
+                base64_bytes = base64.b64encode(code_bytes)
+                base64_string = base64_bytes.decode('utf-8')
+                
+                # Construct the polymorphic render URL utilizing the explicit 'base64:' protocol descriptor
+                render_url = f"{MERMAID_URL}{base64_string}"
                 
                 # Polymorphic file naming boundaries to protect extra diagrams generated by AI
                 file_name = chart_names[idx] if idx < len(chart_names) else f"custom_governance_chart_{idx}.svg"
-                
                 self.logger.info(f"⏳ Querying dynamic vector graph data for layout file: {file_name}...")
-                try:
-                    custom_headers = {
-                        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36"
-                    }
-                    img_response = requests.get(render_url, headers=custom_headers, timeout=25)
-                    if img_response.status_code == 200 and b"<svg" in img_response.content:
-                        visualizations_data = {
-                            **visualizations_data,
-                            file_name: img_response.content.strip()
-                        }
-                        self.logger.info(f"💾 Highly-scalable vector graphic successfully extracted at index: {idx}")
-                    else:
-                        self.logger.warning(f"⚠️ Render pipeline returned invalid metadata block structure at index: {idx}")
-                except Exception as net_err:
-                    self.logger.warning(f"⚠️ Network exception or latency spike during chart extraction: {str(net_err)}")
-        
+                self.logger.info(f"  - URL: {render_url}")
+                
+                custom_headers = {
+                    "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36"
+                }
+                img_response = requests.get(render_url, headers=custom_headers, timeout=25)
+                
+                # Validate response status and strictly verify the payload contains XML vector text schemas
+                if img_response.status_code == 200 and b"<svg" in img_response.content:
+                    visualizations_data[file_name] = img_response.content.strip()
+                    self.logger.info(f"💾 Highly-scalable vector graphic successfully extracted at index: {idx}")
+                else:
+                    self.logger.warning(f"⚠️ Render pipeline returned invalid metadata or compilation failed at index: {idx}. HTTP Status: {img_response.status_code}")
+                    self.logger.debug(f"Source code causing compilation error: \n{clean_code}")
+                    
+            except Exception as net_err:
+                self.logger.warning(f"⚠️ Network exception or latency spike during chart extraction: {str(net_err)}")
+                
         return visualizations_data
-    
+
     def __generate_sharp_summary_chart_v2__(self, output_image_path, metrics):
         """
-        Generates an ultra-sharp 4-Scenario comparison matrix chart 
-        (Enterprise Human/AI vs Freelance Human/AI) using the dynamically extracted exchange rate.
+        Generates an ultra-sharp 4-Scenario comparison matrix chart (Enterprise Human/AI vs Freelance Human/AI)
+        using the dynamically extracted exchange rate and eliminates the sequence multiplication crash.
         """
         if not metrics:
             self.logger.warning("⚠️ Invalid metrics JSON to generate chart. Skipping chart plotting.")
             return
-        
+
         try:
-            # extract metrics information
-            exchange_rate = float(metrics.get("exchange_rate", 0))
-            ent_cost_usd = list(metrics.get("enterprise_cost_usd", []))
-            free_cost_usd = list(metrics.get("freelance_cost_usd", []))
-            ent_time = list(metrics.get("enterprise_months", []))
-            free_time = list(metrics.get("freelance_months", []))
+            # 1. Safely extract live financial exchange rate
+            exchange_rate = float(metrics.get("exchange_rate", 25500.0))
             
+            # 2. Extract flat array bounds (Each list contains exactly 3 sequential points: Min, Max, Safe)
+            ent_human_cost = list(metrics.get("enterprise_human_cost_usd", []))
+            ent_ai_cost = list(metrics.get("enterprise_ai_cost_usd", []))
+            free_human_cost = list(metrics.get("freelance_human_cost_usd", []))
+            free_ai_cost = list(metrics.get("freelance_ai_cost_usd", []))
+            
+            ent_human_time = list(metrics.get("enterprise_human_months", []))
+            ent_ai_time = list(metrics.get("enterprise_ai_months", []))
+            free_human_time = list(metrics.get("freelance_human_months", []))
+            free_ai_time = list(metrics.get("freelance_ai_months", []))
+
+            # Fallback mechanism: Guarantee exactly 3 array points to prevent out-of-bounds IndexError
+            for cost_list in [ent_human_cost, ent_ai_cost, free_human_cost, free_ai_cost]:
+                while len(cost_list) < 3: cost_list.append(0.0)
+            for time_list in [ent_human_time, ent_ai_time, free_human_time, free_ai_time]:
+                while len(time_list) < 3: time_list.append(0.0)
+
+            # 3. Initialize high-resolution rendering canvas properties
             plt.rcParams['figure.dpi'] = 300
             plt.rcParams['text.color'] = '#2c3e50'
-            
             fig, (ax1, ax3) = plt.subplots(1, 2, figsize=(16, 6))
+            
             fig.suptitle(f'Project Estimation Summary Matrix (1 USD = {exchange_rate:,} VND)', fontsize=14, fontweight='bold', y=0.98)
             
-            categories = ['Min', 'Max', 'Safe']
+            categories = ['Min Bound', 'Max Bound', 'Safe Bound']
             x = np.arange(len(categories))
-            width = 0.20 # Narrower bars to fit 4 scenarios
+            width = 0.18  # Narrow bar size to scale all 4 granular scenarios horizontally
+
+            # -----------------------------------------------------------------
+            # SUBPLOT 1: 4-SCENARIO FINANCIAL BUDGET MATRIX DUAL-CURRENCY ($ vs ₫)
+            # -----------------------------------------------------------------
+            # Render corporate enterprise bars (Red gradient scale)
+            ax1.bar(x - width * 1.5, ent_human_cost, width, label='Enterprise Human', color='#c0392b', alpha=0.85)
+            ax1.bar(x - width / 2, ent_ai_cost, width, label='Enterprise AI', color='#e74c3c', alpha=0.85)
             
-            # -----------------------------------------------------------------
-            # SUBPLOT 1: 4-SCENARIO FINANCIAL BUDGET PROJECTION ($ vs ₫)
-            # -----------------------------------------------------------------
-            # Enterprise Bars
-            ax1.bar(x - width*1.5, ent_cost_usd[0], width, label='Enterprise Human', color='#c0392b', alpha=0.85)
-            ax1.bar(x - width/2, ent_cost_usd[1], width, label='Enterprise AI', color='#e74c3c', alpha=0.85)
-            # Freelancer Bars
-            ax1.bar(x + width/2, free_cost_usd[0], width, label='Freelance Human', color='#27ae60', alpha=0.85)
-            ax1.bar(x + width*1.5, free_cost_usd[1], width, label='Freelance AI', color='#2ecc71', alpha=0.85)
+            # Render freelance team bars (Green gradient scale)
+            ax1.bar(x + width / 2, free_human_cost, width, label='Freelance Human', color='#27ae60', alpha=0.85)
+            ax1.bar(x + width * 1.5, free_ai_cost, width, label='Freelance AI', color='#2ecc71', alpha=0.85)
             
             ax1.set_ylabel('Total Cost in USD ($)', fontsize=11, fontweight='bold')
             ax1.set_title('Financial Budget Bounds (Corporate vs Freelance)', fontsize=11, pad=10, fontweight='bold')
@@ -242,32 +276,46 @@ class EnterpriseAutonomousProjectEstimatorAgent(AbstractSubAgent):
             ax1.set_xticklabels(categories, fontsize=10)
             ax1.grid(axis='y', linestyle='--', alpha=0.3)
             ax1.legend(loc='upper left', frameon=True, facecolor='#f8f9fa')
+
+            # CRITICAL FIX: Extract explicit float boundary bounds to decouple tuple multiplication
+            ax1_ymin, ax1_ymax = ax1.get_ylim()
             
-            # Dual-Axis for VND Representation
+            # Construct dual axis framework for real-time local currency presentation
             ax2 = ax1.twinx()
             ax2.set_ylabel('Equivalent Cost in VND (₫)', fontsize=11, fontweight='bold')
-            ax2.set_ylim(ax1.get_ylim() * exchange_rate, ax1.get_ylim() * exchange_rate)
+            # Apply standard numerical scalar math across individual elements to eliminate tuple crash
+            ax2.set_ylim(ax1_ymin * exchange_rate, ax1_ymax * exchange_rate)
             ax2.get_yaxis().set_major_formatter(plt.FuncFormatter(lambda val, loc: f"{int(val):,}"))
 
             # -----------------------------------------------------------------
-            # SUBPLOT 2: TIMELINE DURATION COMPARISON (MONTHS)
+            # SUBPLOT 2: 4-SCENARIO DELIVERY TIMELINE TRACKING (MONTHS)
             # -----------------------------------------------------------------
-            ax3.bar(x - width, ent_time, width*2, label='Enterprise Delivery', color='#34495e', alpha=0.9)
-            ax3.bar(x + width, free_time, width*2, label='Freelance Delivery', color='#3498db', alpha=0.9)
+            # Render corporate calendar months execution velocity profiles
+            ax3.bar(x - width * 1.5, ent_human_time, width, label='Enterprise Human', color='#2c3e50', alpha=0.9)
+            ax3.bar(x - width / 2, ent_ai_time, width, label='Enterprise AI', color='#5d6d7e', alpha=0.8)
+            
+            # Render agile freelance team delivery milestones
+            ax3.bar(x + width / 2, free_human_time, width, label='Freelance Human', color='#2980b9', alpha=0.9)
+            ax3.bar(x + width * 1.5, free_ai_time, width, label='Freelance AI', color='#3498db', alpha=0.8)
+            
             ax3.set_ylabel('Duration (Calendar Months)', fontsize=11, fontweight='bold')
             ax3.set_title('Delivery Timeline Projections', fontsize=11, pad=10, fontweight='bold')
             ax3.set_xticks(x)
             ax3.set_xticklabels(categories, fontsize=10)
             ax3.grid(axis='y', linestyle='--', alpha=0.3)
             ax3.legend(loc='upper left', frameon=True, facecolor='#f8f9fa')
-            
+
+            # 4. Export consolidated high-definition asset to file path destinations
             plt.tight_layout()
             output_image_path.parent.mkdir(parents=True, exist_ok=True)
             plt.savefig(output_image_path, bbox_inches='tight')
             plt.close()
+            
             self.logger.info(f"[ 💾 SHARP CHART GENERATED ] 4-Scenario Dual-Currency matrix exported to: {output_image_path}")
+            
         except Exception as e:
             self.logger.warning(f"⚠️ Exception while generating pilot chart to file {output_image_path}: {str(e)}")
+
     
     # @override
     def clean_response(self, raw_response, **kwargs):
