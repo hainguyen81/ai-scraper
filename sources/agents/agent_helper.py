@@ -91,6 +91,12 @@ def exception_stacktrace(e) -> str:
     stacktrace = traceback.format_exception(type(e), e, e.__traceback__, limit=10) if isinstance(e, BaseException) or isinstance(e, Exception) else None
     return None if not e else f"{str(e)}: {stacktrace}" if stacktrace else str(e)
 
+def makedirs(path):
+    checked_dir = path
+    if os.path.isfile(checked_dir):
+        checked_dir = os.path.dirname(checked_dir)
+    os.makedirs(checked_dir, exist_ok=True)
+
 def write_file(file, data, dir=None, append=False):
     checked_dir = dir if dir else os.path.dirname(file)
     checked_file = os.path.basename(file) if not dir else file

@@ -12,7 +12,7 @@ import numpy as np
 # Now Python can seamlessly see and import the centralized helper utility cleanly!
 from sources.agents.agent_helper import (
     write_file,
-    json_tostring
+    makedirs
 )
 
 # super agent
@@ -322,7 +322,7 @@ class EnterpriseAutonomousProjectEstimatorAgent(AbstractSubAgent):
 
             # 6. Clean layout margins and export the 3-panel sharp asset to disk destinations
             plt.tight_layout()
-            output_image_path.parent.mkdir(parents=True, exist_ok=True)
+            makedirs(output_image_path)
             plt.savefig(output_image_path, bbox_inches='tight')
             plt.close()
             
