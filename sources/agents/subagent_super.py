@@ -86,7 +86,7 @@ class AbstractSubAgent(AbstractAgent):
             sys.exit(1)
         
         elif not os.path.exists(storage_file):
-            self.logger.critical(f"[ 💀 WARN ] Not found storage '{storage_name}' file { file }")
+            self.logger.warn(f"[ 💀 WARN ] Not found storage '{storage_name}' file { file }")
             return None
         
         # read idea file to build user prompt
