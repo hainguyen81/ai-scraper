@@ -37,7 +37,7 @@ DEFAULT_EST_LANGUAGE        = "English"
 
 class EnterpriseAutonomousProjectEstimatorAgent(AbstractSubAgent):
     def __init__(self, **kwargs):
-        super().__init__(agent_id='EnterpriseAutonomousProjectEstimator', **kwargs)
+        super().__init__(agent_id='👷 EnterpriseAutonomousProjectEstimatorAgent', **kwargs)
     
     # @override
     def initialize(self):

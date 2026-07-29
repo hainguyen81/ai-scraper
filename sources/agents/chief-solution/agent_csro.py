@@ -259,7 +259,7 @@ class EnterpriseSolutionSentinelAgent(AbstractCrewEnterpriseSuperAgent):
     It scans Idea, SRS, and Blueprint files for gaps, loopholes, and enterprise compliance.
     """
     def __init__(self, **kwargs):
-        super().__init__(agent_id='EnterpriseSolutionSentinel', **kwargs)
+        super().__init__(agent_id='🕵️‍♂️ EnterpriseSolutionSentinelAgent', **kwargs)
     
     # @override
     def initialize(self):
@@ -311,7 +311,7 @@ class EnterpriseBusinessAnalystAgent(AbstractCrewEnterpriseSuperAgent):
     A Class-based Agent responsible for authoring and revising the SRS.
     """
     def __init__(self, **kwargs):
-        super().__init__(agent_id='EnterpriseBusinessAnalyst', **kwargs)
+        super().__init__(agent_id='📋 EnterpriseBusinessAnalystAgent', **kwargs)
     
     # @override
     def initialize(self):
@@ -358,7 +358,7 @@ class EnterpriseSystemArchitectAgent(AbstractCrewEnterpriseSuperAgent):
     A Class-based Agent responsible for structural and infrastructural Blueprints.
     """
     def __init__(self, **kwargs):
-        super().__init__(agent_id='EnterpriseSystemArchitect', **kwargs)
+        super().__init__(agent_id='📐 EnterpriseSystemArchitectAgent', **kwargs)
     
     # @override
     def initialize(self):
@@ -495,7 +495,7 @@ class CrewEnterpriseSolutionWorkflowAgent(AbstractCrewEnterpriseWorkflowAgent):
     It scans Idea, SRS, and Blueprint files for gaps, loopholes, and enterprise compliance.
     """
     def __init__(self, **kwargs):
-        super().__init__(agent_id='CrewEnterpriseSolutionWorkflowReviewer', **kwargs)
+        super().__init__(agent_id='🤖🏛️ EnterpriseSolutionWorkflowReviewerAgent', **kwargs)
     
     # @override
     def agent_log_file(self) -> str:
@@ -690,7 +690,7 @@ class CrewEnterpriseBluePrintDiffAnalyzerAgent(AbstractCrewEnterpriseWorkflowAge
     It scans Idea, SRS, and Blueprint files for gaps, loopholes, and enterprise compliance.
     """
     def __init__(self, **kwargs):
-        super().__init__(agent_id='CrewEnterpriseBluePrintDiffAnalyzer', **kwargs)
+        super().__init__(agent_id='🤖🔬 EnterpriseBluePrintDiffAnalyzerAgent', **kwargs)
     
     # @override
     def build_prompts(self, **kwargs):

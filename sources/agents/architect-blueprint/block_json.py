@@ -33,7 +33,7 @@ from sources.agents.agent_helper import (
 # GLOBAL CONFIGURATION PATHS - CONFIG HERE TO CUSTOMIZE DIRECTORY STRUCTURE
 # ==============================================================================
 PROMPT_TEMPLATE_PATH = resolve_absolute_path("sources/agents/architect-blueprint/block_json_prompt.md")
-logger = get_logger("EnterpriseSystemArchitectureAgent")
+logger = get_logger("🏗️ EnterpriseSystemArchitectureStepsAgent")
 
 # --- Validated Schemas for Structured JSON Output ---
 class SubAgentTask(BaseModel):

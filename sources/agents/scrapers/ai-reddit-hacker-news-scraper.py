@@ -14,7 +14,7 @@ from sources.agents.agent_helper import (
 )
 
 # logger
-logger = get_logger("CommunityForumScraper")
+logger = get_logger("🕵️ HackerNewScraperAgent")
 # storage
 storage = storage_info
 

@@ -40,7 +40,7 @@ REQUIREMENTS_FILE           = "requirements.md"
 MODELS_POOL_PATH            = resolve_absolute_path("sources/agents/models/models.json")
 PLAN_SPEC_FILE              = "plan.spec.json"
 
-logger = get_logger("EnterpriseSystemArchitectureAgent")
+logger = get_logger("🏗️ EnterpriseSystemArchitectureAgent")
 
 def load_models_pool():
     _, models_json = read_json_file(MODELS_POOL_PATH)

@@ -14,7 +14,7 @@ from sources.agents.agent_helper import (
 )
 
 # logger
-logger = get_logger("MultiSourceSearchScraper")
+logger = get_logger("🕸️ SemanticSearchScraperAgent")
 # storage
 storage = storage_info
 

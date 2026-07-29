@@ -16,7 +16,7 @@ from sources.agents.agent_helper import (
 )
 
 # logger
-logger = get_logger("DynamicAIScraper")
+logger = get_logger("🤖 DynamicAIScraperAgent")
 # storage
 storage = storage_info
 

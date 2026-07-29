@@ -24,7 +24,7 @@ from sources.agents.agent_helper import (
 # GLOBAL CONFIGURATION PATHS - CONFIG HERE TO CUSTOMIZE DIRECTORY STRUCTURE
 # ==============================================================================
 PROMPT_TEMPLATE_PATH = resolve_absolute_path("sources/agents/architect-blueprint/block_global_prompt.md")
-logger = get_logger("EnterpriseSystemArchitectureAgent")
+logger = get_logger("🏗️ EnterpriseSystemArchitectureGlobalAgent")
 
 # GEMINI
 # def generate_global_context(client: genai.Client, project_name: str, requirements: str, num_phases: int, out_dir: str) -> str:

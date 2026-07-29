@@ -14,7 +14,7 @@ from sources.agents.agent_helper import (
 )
 
 # logger
-logger = get_logger("GitHubScraper")
+logger = get_logger("🐙 GitHubScraperAgent")
 # storage
 storage = storage_info
 

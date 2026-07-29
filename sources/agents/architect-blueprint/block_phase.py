@@ -25,7 +25,7 @@ from sources.agents.agent_helper import (
 # GLOBAL CONFIGURATION PATHS - CONFIG HERE TO CUSTOMIZE DIRECTORY STRUCTURE
 # ==============================================================================
 PROMPT_TEMPLATE_PATH = resolve_absolute_path("sources/agents/architect-blueprint/block_phase_prompt.md")
-logger = get_logger("EnterpriseSystemArchitectureAgent")
+logger = get_logger("🏗️ EnterpriseSystemArchitecturePhaseAgent")
 
 # GEMINI
 # def generate_phase_contexts(client: genai.Client, project_name: str, requirements: str, global_context: str, num_phases: int, out_dir: str):
