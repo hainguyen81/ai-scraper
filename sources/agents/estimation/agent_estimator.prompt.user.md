@@ -93,12 +93,14 @@ gantt
 Use a Mermaid `quadrantChart` or block diagram to visually map your registered project risks based on Impact vs Probability.
 
 #### 📊 SECTION 6: VISUALIZATION METADATA FOR BACKEND PROCESSING
+{% set open_json = '{{' %}
+{% set close_json = '}}' %}
 ```json
-{ {
+{{ open_json }}
   "exchange_rate": [Insert raw float rate you found online],
   "human_cost_usd": [[Min_USD], [Max_USD], [Safe_USD]],
   "ai_cost_usd": [[Min_USD], [Max_USD], [Safe_USD]],
   "human_months": [[Min_Months], [Max_Months], [Safe_Months]],
   "ai_months": [[Min_Months], [Max_Months], [Safe_Months]]
-} }
+{{ close_json }}
 ```
