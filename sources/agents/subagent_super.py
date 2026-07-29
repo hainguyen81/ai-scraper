@@ -46,11 +46,11 @@ class AbstractSubAgent(AbstractAgent):
         self.project_info = self.__project_info__()
         logger.debug(f"- Projects: {json_tostring(self.projects_summary)}")
         if self.project_info:
-            logger.debug(f"--> Found project info: {json_tostring(self.project_info)}")
+            self.logger.debug(f"--> Found project info: {json_tostring(self.project_info)}")
             self.idea_id = self.project_info.get("idea", self.idea_id)
             self.project_name = self.project_info.get("technical_codename", self.project_name)
         else:
-            logger.warn(f"--> Not Found project by idea/name: {self.idea_id}")
+            self.logger.warn(f"--> Not Found project by idea/name: {self.idea_id}")
     
     # @override
     def agent_secrets_key(self) -> str:
