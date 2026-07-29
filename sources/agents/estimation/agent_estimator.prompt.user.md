@@ -61,19 +61,26 @@ Every header and table parameter below MUST be translated and naturally rendered
 | **Approval** | Certified by Enterprise Technical Governance Board |
 
 #### SECTION 1: DOCUMENT CONTROL & PROVENANCE METADATA
-Dynamically inject the real-time sourced values and their exact data lineage details into this table (Translate table headers and parameters fully into "{{ target_language }}"):
+Dynamically inject the real-time sourced values and their exact data lineage details into this table. 
+
+CRITICAL INTERFACE DESIGN MANDATE: 
+- To prevent Markdown table rendering layout from breaking, the "Information Details" column MUST strictly contain ONLY the numeric raw value and currency symbol. 
+- You MUST absolutely move all live hyperlinks, website provenance targets, and extraction timestamps down into a bulleted "Footnotes & Sources" list immediately below the table block. 
+- All hyperlinks inside the footnotes list MUST be masked cleanly using brief, high-readability Markdown anchor tags (e.g., use "[xe.com](url)" or "[Payscale](url)" instead of rendering raw lengthy URL strings).
+- Completely translate the entire section, including table headers, row parameters, and footnote labels naturally into "{{ target_language }}".
 
 | Audit Parameter | Information Details |
 | :--- | :--- |
 | **Live Exchange Rate Applied** | 1 USD = [Insert Exact Integer Rate Found Online] VND |
 | **Enterprise Cost / Man-Month** | $[Insert Current Market Enterprise Rate Found Online] USD / Month |
 | **Freelancer Cost / Man-Month** | $[Insert Current Market Freelancer Rate Found Online] USD / Month |
-| **Sourced AI Tooling Allocation / Month** | Enterprise: $[Insert Online Found Rate] USD | Freelance: $[Insert Online Found Rate] USD |
-| **Sourced Cloud Infrastructure Benchmarks** | Enterprise Multi-Region GKE: $[Rate]/mo | Freelancer VPS: $[Rate]/mo |
+| **Sourced AI Tooling Allocation / Month** | Enterprise: $[Insert Online Found Rate] USD \| Freelance: $[Insert Online Found Rate] USD |
+| **Sourced Cloud Infrastructure Benchmarks** | Enterprise Multi-Region GKE: $[Rate]/mo \| Freelancer VPS: $[Rate]/mo |
 | **Computation Timestamp** | [Insert System Execution Date/Time] |
-| **Data Provenance Sources & Links** | [Insert Website Names and Live URLs for exchange rate, developer salary, cloud providers, and AI subscription packages] |
-| **Verification Method** | Independent Multi-Layer Triple-Check (Pass 1 -> Pass 2 -> Pass 3) |
 | **Status** | Sourced, Audited & Validated |
+
+**[Render "Footnotes & Sources" Title in "{{ target_language }}"]:**
+- [Insert Cleanly Masked Markdown Hyperlink Sources for each of the parameters audited above, with their respective extraction timestamps, formatted neatly on separate lines].
 
 #### SECTION 2: RESOURCE CAPACITY PLANNING & SKILL MATRIX
 In "{{ target_language }}", provide a highly granular engineering capacity planning and necessary technical skill matrix. List all required engineering roles (Backend, Frontend, QA, DevOps), allocate specific Man-Months for both Traditional vs AI-Augmented paths, and list the target expertise level (Junior/Mid/Senior) with tech stacks.
@@ -82,26 +89,22 @@ In "{{ target_language }}", provide a highly granular engineering capacity plann
 > 📝 [Render Currency Audit Notice In "{{ target_language }}"]: All calculations below explicitly utilize the real-time extracted exchange rate: **1 USD = {{ exchange_rate }} VND**.
 
 ##### 1. Corporate Enterprise Model
-- **Traditional Human-Only Total Budget**:
-  - USD: $[Min_USD] - $[Max_USD] | Safe: $[Safe_USD] USD
-  - VND: [Min_VND] - [Max_VND] | Safe: [Safe_VND] VND
-- **AI-Augmented Total Budget**:
-  - USD: $[Min_USD] - $[Max_USD] | Safe: $[Safe_USD] USD
-  - VND: [Min_VND] - [Max_VND] | Safe: [Safe_VND] VND
-- **Monthly Cloud Infrastructure OpEx Projection**:
-  - USD: $[Min_USD] - $[Max_USD] | Safe: $[Safe_USD] USD / Month
-  - VND: [Min_VND] - [Max_VND] | Safe: [Safe_VND] VND / Month
+[Render a clear introductory sentence in "{{ target_language }}"]
+
+| Scenario / Metric | Budget Range (USD) | Budget Range (VND) | Safe Bound (USD / VND) |
+| :--- | :--- | :--- | :--- |
+| **Traditional Human-Only Labor** | $[Min_USD] - $[Max_USD] | [Min_VND] - [Max_VND] | $[Safe_USD] USD / [Safe_VND] VND |
+| **AI-Augmented Labor** | $[Min_USD] - $[Max_USD] | [Min_VND] - [Max_VND] | $[Safe_USD] USD / [Safe_VND] VND |
+| **Monthly Cloud Infrastructure OpEx** | $[Min_USD] - $[Max_USD] / mo | [Min_VND] - [Max_VND] / mo | $[Safe_USD] USD / [Safe_VND] VND per mo |
 
 ##### 2. Freelancer Team Model
-- **Traditional Human-Only Total Budget**:
-  - USD: $[Min_USD] - $[Max_USD] | Safe: $[Safe_USD] USD
-  - VND: [Min_VND] - [Max_VND] | Safe: [Safe_VND] VND
-- **AI-Augmented Total Budget**:
-  - USD: $[Min_USD] - $[Max_USD] | Safe: $[Safe_USD] USD
-  - VND: [Min_VND] - [Max_VND] | Safe: [Safe_VND] VND
-- **Monthly Cloud Infrastructure OpEx Projection**:
-  - USD: $[Min_USD] - $[Max_USD] | Safe: $[Safe_USD] USD / Month
-  - VND: [Min_VND] - [Max_VND] | Safe: [Safe_VND] VND / Month
+[Render a clear introductory sentence in "{{ target_language }}"]
+
+| Scenario / Metric | Budget Range (USD) | Budget Range (VND) | Safe Bound (USD / VND) |
+| :--- | :--- | :--- | :--- |
+| **Traditional Human-Only Labor** | $[Min_USD] - $[Max_USD] | [Min_VND] - [Max_VND] | $[Safe_USD] USD / [Safe_VND] VND |
+| **AI-Augmented Labor** | $[Min_USD] - $[Max_USD] | [Min_VND] - [Max_VND] | $[Safe_USD] USD / [Safe_VND] VND |
+| **Monthly Cloud Infrastructure OpEx** | $[Min_USD] - $[Max_USD] / mo | [Min_VND] - [Max_VND] / mo | $[Safe_USD] USD / [Safe_VND] VND per mo |
 
 ##### 3. Delivery Timeline Duration Projections
 Output the calendar months range for all 4 scenarios in "{{ target_language }}". AI-Augmented paths MUST be 35% - 50% shorter than Traditional paths.
