@@ -41,10 +41,6 @@ class PrincipalBusinessAnalysisAgent(AbstractSubAgent):
         super().initialize()
         self.language = self.get_kwargs("language") or DEFAULT_IDEAS_LANGUAGE
     
-    # @override
-    def agent_secrets_key(self) -> str:
-        pass
-    
     def ba_output_raw_file(self):
         return self.__output_storage_path__(storage_name="storage_ba", file=BA_RAW_FILE)
     

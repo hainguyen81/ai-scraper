@@ -51,10 +51,6 @@ class EnterpriseIdeaGeneratorAgent(AbstractSubAgent):
         pass
     
     # @override
-    def agent_secrets_key(self) -> str:
-        pass
-    
-    # @override
     def agent_log_file(self) -> str:
         return self.__output_storage_path__(storage_name="output_ideas", file=IDEAS_LOG_FILE)
     

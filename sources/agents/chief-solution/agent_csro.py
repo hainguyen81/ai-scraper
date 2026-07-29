@@ -218,10 +218,6 @@ class AbstractCrewEnterpriseSuperAgent(AbstractSubAgent):
         super().initialize()
     
     # @override
-    def agent_secrets_key(self) -> str:
-        pass
-    
-    # @override
     def agent_log_file(self) -> str:
         pass
     

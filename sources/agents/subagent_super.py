@@ -42,6 +42,10 @@ class AbstractSubAgent(AbstractAgent):
             self.idea_id = self.project_info.get("idea", self.idea_id)
             self.project_name = self.project_info.get("technical_codename", self.project_name)
     
+    # @override
+    def agent_secrets_key(self) -> str:
+        pass
+    
     def __storage_path__(self, storage_name, file) -> str:
         return os.path.join(self.storage.get(storage_name), file)
     
