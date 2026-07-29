@@ -6,7 +6,6 @@ from datetime import datetime
 
 import base64
 import requests
-import requests
 import matplotlib.pyplot as plt
 import numpy as np
 
@@ -121,48 +120,38 @@ class EnterpriseAutonomousProjectEstimatorAgent(AbstractSubAgent):
     
     def __extract_metrics_and_plot_matplotlib_chart__(self, raw_response):
         """
-        Scans the AI response string in RAM, extracts the strict JSON metadata block,
-        and dynamically passes the arrays into matplotlib to plot a local high-res chart.
+        Scans the AI response string, extracts the strict JSON metadata block safely,
+        and returns a clean dictionary. All comments are in English.
         """
-        # Extract ```json { ... } ``` at the end of AI response
+        # Use a highly resilient regex to capture only the valid JSON structural boundaries
         json_match = re.search(r'```json\s*(\{.*?\})\s*```', raw_response, re.DOTALL)
         if not json_match:
-            self.logger.warning("⚠️ Metadata JSON block not found in AI response memory. Skipping chart plotting.")
-            return None
+            self.logger.warning("⚠️ Metadata JSON block not found in AI response memory.")
+            return {}
 
         metrics_dict = None
         try:
-            # map to JSON Python
-            metrics_dict = json.loads(json_match.group(1))
+            # Strip latent trailing whitespaces or markdown leaks before loading
+            json_content = json_match.group(1).strip()
+            metrics_dict = json.loads(json_content)
         except Exception as json_err:
             self.logger.warning(f"⚠️ Failed to parse JSON RAM metrics object: {str(json_err)}")
-        
-        # invalid
-        if not metrics_dict:
             return {}
+
+        # Extract dynamic properties securely with hard fallback safeguards
+        exchange_rate = float(metrics_dict.get("exchange_rate", 25500.0))
         
-        # extract information
-        exchange_rate = float(metrics_dict.get("exchange_rate", 25500))
-        enterprise_human_cost_usd = self.__safe_parse_float_numbers_list__(raw_value=metrics_dict.get("enterprise_cost_usd"))
-        enterprise_ai_cost_usd = self.__safe_parse_float_numbers_list__(raw_value=metrics_dict.get("enterprise_ai_cost_usd"))
-        freelance_human_cost_usd = self.__safe_parse_float_numbers_list__(raw_value=metrics_dict.get("freelance_human_cost_usd"))
-        freelance_ai_cost_usd = self.__safe_parse_float_numbers_list__(raw_value=metrics_dict.get("freelance_ai_cost_usd"))
-        enterprise_human_months = self.__safe_parse_float_numbers_list__(raw_value=metrics_dict.get("enterprise_human_months"))
-        enterprise_ai_months = self.__safe_parse_float_numbers_list__(raw_value=metrics_dict.get("enterprise_ai_months"))
-        freelance_human_months = self.__safe_parse_float_numbers_list__(raw_value=metrics_dict.get("freelance_human_months"))
-        freelance_ai_months = self.__safe_parse_float_numbers_list__(raw_value=metrics_dict.get("freelance_ai_months"))
-        
-        self.logger.info(f"- 📊 Extracted Metrics: {json_tostring(metrics_dict)}")
+        # Process flat arrays safely through the robust parser function
         return {
             "exchange_rate": exchange_rate,
-            "enterprise_human_cost_usd": enterprise_human_cost_usd,
-            "enterprise_ai_cost_usd": enterprise_ai_cost_usd,
-            "freelance_human_cost_usd": freelance_human_cost_usd,
-            "freelance_ai_cost_usd": freelance_ai_cost_usd,
-            "enterprise_human_months": enterprise_human_months,
-            "enterprise_ai_months": enterprise_ai_months,
-            "freelance_human_months": freelance_human_months,
-            "freelance_ai_months": freelance_ai_months
+            "enterprise_human_cost_usd": self.__safe_parse_float_numbers_list__(metrics_dict.get("enterprise_human_cost_usd")),
+            "enterprise_ai_cost_usd": self.__safe_parse_float_numbers_list__(metrics_dict.get("enterprise_ai_cost_usd")),
+            "freelance_human_cost_usd": self.__safe_parse_float_numbers_list__(metrics_dict.get("freelance_human_cost_usd")),
+            "freelance_ai_cost_usd": self.__safe_parse_float_numbers_list__(metrics_dict.get("freelance_ai_cost_usd")),
+            "enterprise_human_months": self.__safe_parse_float_numbers_list__(metrics_dict.get("enterprise_human_months")),
+            "enterprise_ai_months": self.__safe_parse_float_numbers_list__(metrics_dict.get("enterprise_ai_months")),
+            "freelance_human_months": self.__safe_parse_float_numbers_list__(metrics_dict.get("freelance_human_months")),
+            "freelance_ai_months": self.__safe_parse_float_numbers_list__(metrics_dict.get("freelance_ai_months"))
         }
 
     def __extract_mermaid_visualizations__(self, raw_response):
