@@ -148,7 +148,7 @@ xychart-beta
 title "Total Cost Comparison Bounds (in Thousands USD)"
 x-axis ["Min Cost", "Max Cost", "Safe Cost"]
 y-axis "USD (Thousands)"
-0 --> [Insert_Calculated_Max_Integer_Value_Here]
+0 --> Insert_Calculated_Max_Integer_Value_Here
 bar [Insert_Min_Int, Insert_Max_Int, Insert_Safe_Int]
 bar [Insert_Min_Int, Insert_Max_Int, Insert_Safe_Int]
 bar [Insert_Min_Int, Insert_Max_Int, Insert_Safe_Int]
@@ -189,7 +189,7 @@ quadrant-1 "Critical Risks"
 quadrant-2 "Major Risks"
 quadrant-3 "Minor Risks"
 quadrant-4 "Monitor Risks"
-"R-001: Data Leakage" : [[Insert_Probability_Float], [Insert_Impact_Float]]
+"R-001: Data Leakage" : [Insert_Probability_Float, Insert_Impact_Float]
 ```
 
 #### SECTION 7: VISUALIZATION METADATA FOR BACKEND PROCESSING
