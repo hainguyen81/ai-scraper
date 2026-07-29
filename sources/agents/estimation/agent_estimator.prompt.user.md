@@ -17,10 +17,14 @@ Perform a complete project estimation and risk registry for the project based on
 ---
 
 ### 🛑 TRIPLE-CHECK MATHEMATICAL DIRECTIVES:
-You MUST execute your internal reasoning through 3 independent calculation passes:
-1. **Pass 1 (Live Sourcing & Sizing)**: Call web search to fetch (1) Live USD to VND rate, (2) Current average monthly cost for Enterprise Software Engineer, and (3) Current average monthly cost for Senior Freelance Developer. Then calculate raw Man-Months required for each engineering role.
-2. **Pass 2 (Four-Scenario Financial Budgeting)**: Compute absolute cost ranges `[Min - Max | Safe]` for exactly 4 unique execution scenarios (Enterprise Traditional, Enterprise AI-Augmented, Freelance Traditional, Freelance AI-Augmented).
-3. **Pass 3 (Cross-Currency Verification)**: Convert all calculated USD figures into VND using your live exchange rate. Cross-check that VND Value / USD Value = Exchange Rate exactly to eliminate calculation drift.
+You MUST execute your internal reasoning through 3 independent calculation passes and strictly enforce these mathematical logic rules:
+
+1. **Pass 1 (Live Sourcing & Sizing)**: Call web search to fetch live exchange rates and cost parameters. 
+2. **Pass 2 (AI Acceleration & Logic Constraints)**: Calculate the effort for all 4 scenarios. 
+   - *CRITICAL INEQUALITY RULE 1*: For both Enterprise and Freelancer models, the AI-Augmented scenario MUST have a significantly lower total Man-Months and shorter Project Duration than the Traditional Human-Only scenario (typically 35% to 50% reduction due to AI-assisted coding/testing). 
+   - *CRITICAL INEQUALITY RULE 2*: Total Cost and Project Duration for AI-Augmented MUST NOT, under any circumstances, be equal to Traditional Human-Only. If they are equal, your calculation is fundamentally broken.
+   - *Formula*: Buffer = Base Cost * Buffer Ratio Multiplier; Safe = Max + Buffer.
+3. **Pass 3 (Cross-Currency Verification)**: Convert all calculated USD figures into VND using your live exchange rate. Cross-check that VND Value / USD Value = Exchange Rate exactly for every range boundary to eliminate calculation drift.
 
 ---
 
@@ -57,15 +61,30 @@ You MUST extract the data from your live search and inject it precisely into thi
 Provide a granular breakdown of required engineering roles (Backend, Frontend, QA, DevOps).
 
 #### 💰 SECTION 3: FINANCIAL BUDGET & TIMELINE ESTIMATION PROJECTIONS
+> 📝 **AUDIT NOTICE ON CURRENCY**: All calculations below explicitly utilize the real-time extracted exchange rate: **1 USD = {{ exchange_rate }} VND**.
+
 ##### 1. Corporate Enterprise Model (Mô hình Doanh nghiệp tập đoàn)
-- Traditional Human-Only Total Budget: `$[Min - Max | Safe]` USD / `[Min - Max | Safe]` VND
-- AI-Augmented Total Budget: `$[Min - Max | Safe]` USD / `[Min - Max | Safe]` VND
+- **Traditional Human-Only Total Budget**:
+  - USD: $[Min_USD - Max_USD | Safe_USD] USD
+  - VND: [Min_VND - Max_VND | Safe_VND] VND
+- **AI-Augmented Total Budget** (MUST be cheaper and have less man-months than Traditional):
+  - USD: $[Min_USD - Max_USD | Safe_USD] USD
+  - VND: [Min_VND - Max_VND | Safe_VND] VND
 
 ##### 2. Freelancer Team Model (Mô hình Nhóm Freelancer tự do)
-- Traditional Human-Only Total Budget: `$[Min - Max | Safe]` USD / `[Min - Max | Safe]` VND
-- AI-Augmented Total Budget: `$[Min - Max | Safe]` USD / `[Min - Max | Safe]` VND
+- **Traditional Human-Only Total Budget**:
+  - USD: $[Min_USD - Max_USD | Safe_USD] USD
+  - VND: [Min_VND - Max_VND | Safe_VND] VND
+- **AI-Augmented Total Budget** (MUST be cheaper and have less man-months than Traditional):
+  - USD: $[Min_USD - Max_USD | Safe_USD] USD
+  - VND: [Min_VND - Max_VND | Safe_VND] VND
 
-##### 3. Project Duration Comparison (Calendar Months)
+##### 3. Delivery Timeline Duration Projections (So sánh Thời gian hoàn thành dự án)
+You MUST calculate and explicitly output the calendar months range for all 4 scenarios below. Remember that AI-Augmented paths MUST be significantly shorter than Traditional paths.
+- **Corporate Enterprise (Traditional Human-Only)**: [Min - Max | Safe] Calendar Months
+- **Corporate Enterprise (AI-Augmented)**: [Min - Max | Safe] Calendar Months (MUST be 35% - 50% shorter)
+- **Freelancer Team (Traditional Human-Only)**: [Min - Max | Safe] Calendar Months
+- **Freelancer Team (AI-Augmented)**: [Min - Max | Safe] Calendar Months (MUST be 35% - 50% shorter)
 
 #### 🛡️ 🔥 SECTION 4: ARCHITECTURAL COST JUSTIFICATION (GIẢI TRÌNH BIÊN ĐỘ CHI PHÍ)
 *CRITICAL MANDATE*: You MUST deliver a deep, comprehensive architectural and financial analysis explaining the massive cost variance between the Corporate Enterprise Model and the Freelancer Team Model. You MUST explicitly justify why Enterprise costing is significantly higher by breaking down the following structural pillars based on the SA Blueprint:
