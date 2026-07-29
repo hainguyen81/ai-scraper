@@ -467,10 +467,11 @@ class FullColorFormatter(logging.Formatter):
         color = LOG_COLORS.get(record.levelname, LOG_COLORS['RESET'])
         reset = LOG_COLORS['RESET']
         emoji = LOG_EMOJIS.get(record.levelname, '')
+        emoji_level = f"{emoji} {record.levelname}" if emoji else record.levelname
         
         # Place the color code at the very beginning and the reset code at the very end
         # This forces the entire log line to inherit the level color
-        log_format = f"{color}%(asctime)s [ %(name)s | {emoji} %(levelname)s ] %(message)s{reset}"
+        log_format = f"{color}%(asctime)s [ %(name)s | {emoji_level} ] %(message)s{reset}"
         
         formatter = logging.Formatter(log_format, datefmt='%Y-%m-%d %H:%M:%S')
         return formatter.format(record)
