@@ -47,9 +47,9 @@ class AbstractAgent(ABC):
     
     def initialize_storage(self):
         self.storage_info = { **storage_info }
-        self.storage = self.storage.get("storage", None)
-        self.storage_output = self.storage.get("output", None)
-        self.storage_agents = self.storage.get("agents", None)
+        self.storage = self.storage_info.get("storage", None)
+        self.storage_output = self.storage_info.get("output", None)
+        self.storage_agents = self.storage_info.get("agents", None)
     
     def initialize_models(self):
         self.models_pool = self.load_models_pool()
