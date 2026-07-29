@@ -170,63 +170,66 @@ class EnterpriseAutonomousProjectEstimatorAgent(AbstractSubAgent):
             self.logger.warn("⚠️ Invalid metrics JSON to generate chart. Skipping chart plotting.")
             return
         
-        # extract metrics information
-        exchange_rate = float(metrics.get("exchange_rate", 0))
-        ent_cost_usd = list(metrics.get("enterprise_cost_usd", []))
-        free_cost_usd = list(metrics.get("freelance_cost_usd", []))
-        ent_time = list(metrics.get("enterprise_months", []))
-        free_time = list(metrics.get("freelance_months", []))
-        
-        plt.rcParams['figure.dpi'] = 300
-        plt.rcParams['text.color'] = '#2c3e50'
-        
-        fig, (ax1, ax3) = plt.subplots(1, 2, figsize=(16, 6))
-        fig.suptitle(f'Project Estimation Summary Matrix (1 USD = {exchange_rate:,} VND)', fontsize=14, fontweight='bold', y=0.98)
-        
-        categories = ['Min', 'Max', 'Safe']
-        x = np.arange(len(categories))
-        width = 0.20 # Narrower bars to fit 4 scenarios
-        
-        # -----------------------------------------------------------------
-        # SUBPLOT 1: 4-SCENARIO FINANCIAL BUDGET PROJECTION ($ vs ₫)
-        # -----------------------------------------------------------------
-        # Enterprise Bars
-        ax1.bar(x - width*1.5, ent_cost_usd[0], width, label='Enterprise Human', color='#c0392b', alpha=0.85)
-        ax1.bar(x - width/2, ent_cost_usd[1], width, label='Enterprise AI', color='#e74c3c', alpha=0.85)
-        # Freelancer Bars
-        ax1.bar(x + width/2, free_cost_usd[0], width, label='Freelance Human', color='#27ae60', alpha=0.85)
-        ax1.bar(x + width*1.5, free_cost_usd[1], width, label='Freelance AI', color='#2ecc71', alpha=0.85)
-        
-        ax1.set_ylabel('Total Cost in USD ($)', fontsize=11, fontweight='bold')
-        ax1.set_title('Financial Budget Bounds (Corporate vs Freelance)', fontsize=11, pad=10, fontweight='bold')
-        ax1.set_xticks(x)
-        ax1.set_xticklabels(categories, fontsize=10)
-        ax1.grid(axis='y', linestyle='--', alpha=0.3)
-        ax1.legend(loc='upper left', frameon=True, facecolor='#f8f9fa')
-        
-        # Dual-Axis for VND Representation
-        ax2 = ax1.twinx()
-        ax2.set_ylabel('Equivalent Cost in VND (₫)', fontsize=11, fontweight='bold')
-        ax2.set_ylim(ax1.get_ylim() * exchange_rate, ax1.get_ylim() * exchange_rate)
-        ax2.get_yaxis().set_major_formatter(plt.FuncFormatter(lambda val, loc: f"{int(val):,}"))
+        try:
+            # extract metrics information
+            exchange_rate = float(metrics.get("exchange_rate", 0))
+            ent_cost_usd = list(metrics.get("enterprise_cost_usd", []))
+            free_cost_usd = list(metrics.get("freelance_cost_usd", []))
+            ent_time = list(metrics.get("enterprise_months", []))
+            free_time = list(metrics.get("freelance_months", []))
+            
+            plt.rcParams['figure.dpi'] = 300
+            plt.rcParams['text.color'] = '#2c3e50'
+            
+            fig, (ax1, ax3) = plt.subplots(1, 2, figsize=(16, 6))
+            fig.suptitle(f'Project Estimation Summary Matrix (1 USD = {exchange_rate:,} VND)', fontsize=14, fontweight='bold', y=0.98)
+            
+            categories = ['Min', 'Max', 'Safe']
+            x = np.arange(len(categories))
+            width = 0.20 # Narrower bars to fit 4 scenarios
+            
+            # -----------------------------------------------------------------
+            # SUBPLOT 1: 4-SCENARIO FINANCIAL BUDGET PROJECTION ($ vs ₫)
+            # -----------------------------------------------------------------
+            # Enterprise Bars
+            ax1.bar(x - width*1.5, ent_cost_usd[0], width, label='Enterprise Human', color='#c0392b', alpha=0.85)
+            ax1.bar(x - width/2, ent_cost_usd[1], width, label='Enterprise AI', color='#e74c3c', alpha=0.85)
+            # Freelancer Bars
+            ax1.bar(x + width/2, free_cost_usd[0], width, label='Freelance Human', color='#27ae60', alpha=0.85)
+            ax1.bar(x + width*1.5, free_cost_usd[1], width, label='Freelance AI', color='#2ecc71', alpha=0.85)
+            
+            ax1.set_ylabel('Total Cost in USD ($)', fontsize=11, fontweight='bold')
+            ax1.set_title('Financial Budget Bounds (Corporate vs Freelance)', fontsize=11, pad=10, fontweight='bold')
+            ax1.set_xticks(x)
+            ax1.set_xticklabels(categories, fontsize=10)
+            ax1.grid(axis='y', linestyle='--', alpha=0.3)
+            ax1.legend(loc='upper left', frameon=True, facecolor='#f8f9fa')
+            
+            # Dual-Axis for VND Representation
+            ax2 = ax1.twinx()
+            ax2.set_ylabel('Equivalent Cost in VND (₫)', fontsize=11, fontweight='bold')
+            ax2.set_ylim(ax1.get_ylim() * exchange_rate, ax1.get_ylim() * exchange_rate)
+            ax2.get_yaxis().set_major_formatter(plt.FuncFormatter(lambda val, loc: f"{int(val):,}"))
 
-        # -----------------------------------------------------------------
-        # SUBPLOT 2: TIMELINE DURATION COMPARISON (MONTHS)
-        # -----------------------------------------------------------------
-        ax3.bar(x - width, ent_time, width*2, label='Enterprise Delivery', color='#34495e', alpha=0.9)
-        ax3.bar(x + width, free_time, width*2, label='Freelance Delivery', color='#3498db', alpha=0.9)
-        ax3.set_ylabel('Duration (Calendar Months)', fontsize=11, fontweight='bold')
-        ax3.set_title('Delivery Timeline Projections', fontsize=11, pad=10, fontweight='bold')
-        ax3.set_xticks(x)
-        ax3.set_xticklabels(categories, fontsize=10)
-        ax3.grid(axis='y', linestyle='--', alpha=0.3)
-        ax3.legend(loc='upper left', frameon=True, facecolor='#f8f9fa')
-        
-        plt.tight_layout()
-        output_image_path.parent.mkdir(parents=True, exist_ok=True)
-        plt.savefig(output_image_path, bbox_inches='tight')
-        plt.close()
-        self.logger.info(f"[ 💾 SHARP CHART GENERATED ] 4-Scenario Dual-Currency matrix exported to: {output_image_path}")
+            # -----------------------------------------------------------------
+            # SUBPLOT 2: TIMELINE DURATION COMPARISON (MONTHS)
+            # -----------------------------------------------------------------
+            ax3.bar(x - width, ent_time, width*2, label='Enterprise Delivery', color='#34495e', alpha=0.9)
+            ax3.bar(x + width, free_time, width*2, label='Freelance Delivery', color='#3498db', alpha=0.9)
+            ax3.set_ylabel('Duration (Calendar Months)', fontsize=11, fontweight='bold')
+            ax3.set_title('Delivery Timeline Projections', fontsize=11, pad=10, fontweight='bold')
+            ax3.set_xticks(x)
+            ax3.set_xticklabels(categories, fontsize=10)
+            ax3.grid(axis='y', linestyle='--', alpha=0.3)
+            ax3.legend(loc='upper left', frameon=True, facecolor='#f8f9fa')
+            
+            plt.tight_layout()
+            output_image_path.parent.mkdir(parents=True, exist_ok=True)
+            plt.savefig(output_image_path, bbox_inches='tight')
+            plt.close()
+            self.logger.info(f"[ 💾 SHARP CHART GENERATED ] 4-Scenario Dual-Currency matrix exported to: {output_image_path}")
+        except Exception as e:
+            self.logger.warn(f"⚠️ Exception while generating pilot chart to file {output_image_path}: {str(e)}")
     
     # @override
     def clean_response(self, raw_response, **kwargs):
