@@ -98,25 +98,31 @@ class EnterpriseAutonomousProjectEstimatorAgent(AbstractSubAgent):
         if raw_value is None:
             return []
         
-        # to_string raw
+        # if value already was array
+        if isinstance(raw_value, list):
+            float_list = []
+            for val in raw_value:
+                try:
+                    clean_val = re.sub(r'[^\d\.]', '', str(val).strip())
+                    if clean_val:
+                        float_list.append(float(clean_val))
+                except ValueError:
+                    float_list.append(0.0)
+            return float_list
+        
+        # try to convert
         raw_str = str(raw_value)
-        
-        # remove [, ], {}, $, space
-        clean_str = re.sub(r'[\[\]\s\$\'\"]', '', raw_str)
-        
-        # split to number parts
+        clean_str = re.sub(r'[^\d\.,]', '', raw_str)
+        clean_str = clean_str.replace(',', '')
         tokens = clean_str.split(',')
         
-        # force converting to float, ignore empty item
         float_list = []
         for token in tokens:
-            token_clean = token.strip()
-            if token_clean:
+            if token.strip():
                 try:
-                    float_list.append(float(token_clean))
+                    float_list.append(float(token.strip()))
                 except ValueError:
-                    float_list.append(0)
-                    continue # ignore exception
+                    float_list.append(0.0)
         return float_list
     
     def __extract_metrics_and_plot_matplotlib_chart__(self, raw_response):
@@ -178,15 +184,10 @@ class EnterpriseAutonomousProjectEstimatorAgent(AbstractSubAgent):
                 continue
                 
             try:
-                # 1. Encode into standard UTF-8 bytes
+                clean_code = re.sub(r'[\?\u200b-\u200d\uFEFF]', '', clean_code)
                 code_bytes = clean_code.encode('utf-8')
-                
-                # CRITICAL FIX: Use urlsafe_b64encode to replace '+' and '/' with '-' and '_'
                 base64_bytes = base64.urlsafe_b64encode(code_bytes)
-                base64_string = base64_bytes.decode('utf-8')
-                
-                # CRITICAL FIX: Strip trailing padding '=' characters which trigger the 400 bad request status error
-                base64_clean = base64_string.rstrip('=')
+                base64_clean = base64_bytes.decode('utf-8').rstrip('=')
                 
                 # Construct the polymorphic render URL utilizing the explicit 'base64:' protocol descriptor
                 render_url = f"{MERMAID_URL}{base64_clean}"
