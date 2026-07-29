@@ -452,15 +452,25 @@ LOG_COLORS = {
     'CRITICAL': '\033[95m',     # Magenta (Critical system failures)
     'RESET':    '\033[0m'       # Reset to default terminal text color
 }
+LOG_EMOJI = {
+    'TRACE':    '🔍',            # Magnifying glass for deep tracing
+    'DEBUG':    '⚙️',            # Gear for debugging details
+    'INFO':     'ℹ️',            # Information source icon
+    'SUCCESS':  '✅',            # Check mark for successful operations
+    'WARNING':  '⚠️',            # Warning sign for non-critical alerts
+    'ERROR':    '❌',            # Cross mark for runtime errors
+    'CRITICAL': '🚨'             # Police car light for critical failures
+}
 
 class FullColorFormatter(logging.Formatter):
     def format(self, record):
         color = LOG_COLORS.get(record.levelname, LOG_COLORS['RESET'])
         reset = LOG_COLORS['RESET']
+        emoji = LOG_EMOJIS.get(record.levelname, '')
         
         # Place the color code at the very beginning and the reset code at the very end
         # This forces the entire log line to inherit the level color
-        log_format = f"{color}%(asctime)s [ %(name)s | %(levelname)s ] %(message)s{reset}"
+        log_format = f"{color}%(asctime)s [ %(name)s | {emoji} %(levelname)s ] %(message)s{reset}"
         
         formatter = logging.Formatter(log_format, datefmt='%Y-%m-%d %H:%M:%S')
         return formatter.format(record)
