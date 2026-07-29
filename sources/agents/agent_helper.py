@@ -359,12 +359,12 @@ STORAGE_BA_PATH                         = resolve_absolute_path(REL_STORAGE_BA_P
 STORAGE_EST_PATH                        = resolve_absolute_path(REL_STORAGE_EST_PATH)
 STORAGE_CSRO_PATH                       = resolve_absolute_path(REL_STORAGE_CSRO_PATH)
 
-OUTPUT_SCRAPER_PATH                     = resolve_absolute_path(REL_OUTPUT_SCRAPER_STORAGE_PATH)
-OUTPUT_IDEAS_PATH                       = resolve_absolute_path(REL_OUTPUT_IDEAS_STORAGE_PATH)
-OUTPUT_BLUEPRINT_PATH                   = resolve_absolute_path(REL_OUTPUT_BLUEPRINT_STORAGE_PATH)
-OUTPUT_BA_PATH                          = resolve_absolute_path(REL_OUTPUT_BA_STORAGE_PATH)
-OUTPUT_EST_PATH                         = resolve_absolute_path(REL_OUTPUT_EST_STORAGE_PATH)
-OUTPUT_CSRO_PATH                        = resolve_absolute_path(REL_OUTPUT_CSRO_STORAGE_PATH)
+OUTPUT_SCRAPER_PATH                     = resolve_absolute_path(REL_OUTPUT_SCRAPER_PATH)
+OUTPUT_IDEAS_PATH                       = resolve_absolute_path(REL_OUTPUT_IDEAS_PATH)
+OUTPUT_BLUEPRINT_PATH                   = resolve_absolute_path(REL_OUTPUT_BLUEPRINT_PATH)
+OUTPUT_BA_PATH                          = resolve_absolute_path(REL_OUTPUT_BA_PATH)
+OUTPUT_EST_PATH                         = resolve_absolute_path(REL_OUTPUT_EST_PATH)
+OUTPUT_CSRO_PATH                        = resolve_absolute_path(REL_OUTPUT_CSRO_PATH)
 
 REL_BLUEPRINT_WORKING_HISTORY_FILE      = os.path.join(REL_OUTPUT_BLUEPRINT_PATH, "architecture-blueprint.md")
 BLUEPRINT_WORKING_HISTORY_FILE          = resolve_absolute_path(REL_BLUEPRINT_WORKING_HISTORY_FILE)
@@ -478,11 +478,11 @@ class FullColorFormatter(logging.Formatter):
 
 # logging configuration
 # logging.basicConfig(level=logging.INFO, format="%(asctime)s [%(levelname)s]: %(message)s")
-logging.basicConfig(
-    level=logging.INFO,
-    format="%(asctime)s [ %(name)s | %(levelname)s ] %(message)s",
-    datefmt="%Y-%m-%d %H:%M:%S"
-)
+# logging.basicConfig(
+#     level=logging.INFO,
+#     format="%(asctime)s [ %(name)s | %(levelname)s ] %(message)s",
+#     datefmt="%Y-%m-%d %H:%M:%S"
+# )
 def get_logger(logger_name="Helper"):
     logger = logging.getLogger(logger_name)
     handler = logging.StreamHandler()
