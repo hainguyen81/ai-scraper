@@ -114,7 +114,7 @@ class EnterpriseIdeaGeneratorAgent(AbstractSubAgent):
             # idea unique identity
             unique_id = hashlib.md5(clean_idea_name.encode("utf-8")).hexdigest()[:12]
             idea_id = f"idea_{unique_id}"
-            abs_idea_file = self.__storage_path__(storage_name="absolute_ideas", file=f"{self.idea_id}.md")
+            abs_idea_file = self.__storage_path__(storage_name="relative_ideas", file=f"{self.idea_id}.md")
             idea_file = self.__storage_path__(storage_name="storage_ideas", file=f"{self.idea_id}.md")
             idea_content = f"# {clean_idea_name}\n\n{clean_idea_desc}"
             idea_item = {

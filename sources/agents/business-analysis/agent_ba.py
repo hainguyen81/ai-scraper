@@ -107,8 +107,8 @@ class PrincipalBusinessAnalysisAgent(AbstractSubAgent):
         project_info = {
             **project_info,
             "idea": idea_id,
-            "location": self.__storage_path__(storage_name="absolute_ba", file=project_name),
-            "requirements": self.__storage_path__(storage_name="absolute_ba", file=f"{project_name}/{SRS_FILE}")
+            "location": self.__storage_path__(storage_name="relative_ba", file=project_name),
+            "requirements": self.__storage_path__(storage_name="relative_ba", file=f"{project_name}/{SRS_FILE}")
         }
         projects.append(project_info)
         self.projects_summary = projects

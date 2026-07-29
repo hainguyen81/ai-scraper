@@ -114,13 +114,13 @@ class AbstractSubAgent(AbstractAgent):
         return self.project_info.get("descriptive_name", None) if self.project_info else None
     
     def __idea_files__(self):
-        absolute_file = self.__storage_path__(storage_name="absolute_ideas", file=f"{self.idea_id}.md")
+        absolute_file = self.__storage_path__(storage_name="relative_ideas", file=f"{self.idea_id}.md")
         physical_file = self.__storage_path__(storage_name="storage_ideas", file=f"{self.idea_id}.md")
         if not os.path.exists(physical_file):
-            absolute_file = self.__storage_path__(storage_name="absolute_requirements", file=f"{self.idea_id}/requirements.md")
+            absolute_file = self.__storage_path__(storage_name="relative_requirements", file=f"{self.idea_id}/requirements.md")
             physical_file = self.__storage_path__(storage_name="storage_requirements", file=f"{self.idea_id}/requirements.md")
         if not os.path.exists(physical_file):
-            absolute_file = self.__storage_path__(storage_name="absolute_requirements", file=f"{self.project_name}/requirements.md")
+            absolute_file = self.__storage_path__(storage_name="relative_requirements", file=f"{self.project_name}/requirements.md")
             physical_file = self.__storage_path__(storage_name="storage_requirements", file=f"{self.project_name}/requirements.md")
         return (None, None) if not os.path.exists(physical_file) else (absolute_file, physical_file)
     
