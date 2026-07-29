@@ -286,7 +286,7 @@ class AbstractAgent(ABC):
             success = True
         except Exception as e:
             self.logger.error(f"💀 Exception caught on model {self.config_model_name()}: {exception_stacktrace(e)}")
-            if not "exception" in kwargs:
+            if "exception" not in kwargs:
                 kwargs = { **kwargs, "exception": exception_stacktrace(e) }
         
         # result

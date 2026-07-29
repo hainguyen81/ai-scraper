@@ -91,6 +91,31 @@ class EnterpriseAutonomousProjectEstimatorAgent(AbstractSubAgent):
             "raw_blueprint_content": raw_blueprint_content
         }
     
+    def __safe_parse_float_numbers_list__(self, raw_value):
+        if raw_value is None:
+            return []
+        
+        # to_string raw
+        raw_str = str(raw_value)
+        
+        # remove [, ], {}, $, space
+        clean_str = re.sub(r'[\[\]\s\$\'\"]', '', raw_str)
+        
+        # split to number parts
+        tokens = clean_str.split(',')
+        
+        # force converting to float, ignore empty item
+        float_list = []
+        for token in tokens:
+            token_clean = token.strip()
+            if token_clean:
+                try:
+                    float_list.append(float(token_clean))
+                except ValueError:
+                    float_list.append(float(0))
+                    continue # ignore exception
+        return float_list
+    
     def __extract_metrics_and_plot_matplotlib_chart__(self, raw_response):
         """
         Scans the AI response string in RAM, extracts the strict JSON metadata block,
@@ -109,12 +134,16 @@ class EnterpriseAutonomousProjectEstimatorAgent(AbstractSubAgent):
         except Exception as json_err:
             self.logger.warning(f"⚠️ Failed to parse JSON RAM metrics object: {str(json_err)}")
         
+        # invalid
+        if not metrics_dict:
+            return {}
+        
         # extract information
         exchange_rate = float(metrics_dict.get("exchange_rate", 25500))
-        ent_cost_usd = [float(str(val).strip()) for val in metrics_dict.get("enterprise_cost_usd", [])]
-        free_cost_usd = [float(str(val).strip()) for val in metrics_dict.get("freelance_cost_usd", [])]
-        ent_time = [float(str(val).strip()) for val in metrics_dict.get("enterprise_months", [])]
-        free_time = [float(str(val).strip()) for val in metrics_dict.get("freelance_months", [])]
+        ent_cost_usd = self.__safe_parse_float_numbers_list__(raw_value=metrics_dict.get("enterprise_cost_usd"))
+        free_cost_usd = self.__safe_parse_float_numbers_list__(raw_value=metrics_dict.get("freelance_cost_usd"))
+        ent_time = self.__safe_parse_float_numbers_list__(raw_value=metrics_dict.get("enterprise_months"))
+        free_time = self.__safe_parse_float_numbers_list__(raw_value=metrics_dict.get("freelance_months"))
         
         self.logger.debug(f"[ 📊 DATA EXTRACTED ] Live Exchange Rate Captured: 1 USD = {exchange_rate} VND")
         self.logger.debug(f"| Enterprise Costs: {ent_cost_usd} | Freelance Costs: {free_cost_usd}")
@@ -243,7 +272,6 @@ class EnterpriseAutonomousProjectEstimatorAgent(AbstractSubAgent):
     # @override
     def clean_response(self, raw_response, **kwargs):
         return {
-            **kwargs,
             "visualizations": self.__extract_mermaid_visualizations__(raw_response=raw_response),
             "metrics": self.__extract_metrics_and_plot_matplotlib_chart__(raw_response=raw_response)
         }
