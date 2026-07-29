@@ -52,19 +52,19 @@ Your response MUST start directly with '# Project Sizing, Cost Estimation & Risk
 
 #### 👥 SECTION 2: RESOURCE CAPACITY PLANNING (MAN-MONTHS)
 Provide a granular breakdown of required engineering roles.
-- Traditional Human-Only: `[Min - Max \| Safe]` Man-Months.
-- AI-Augmented: `[Min - Max \| Safe]` Man-Months.
+- Traditional Human-Only: `[ Min - Max | Safe ]` Man-Months.
+- AI-Augmented: `[ Min - Max | Safe ]` Man-Months.
 
 #### 💰 SECTION 3: FINANCIAL BUDGET PROJECTIONS (DUAL-CURRENCY MAPPING)
 - **Traditional Human-Only Total Budget**:
-  - **USD**: `$[Min - Max \| Safe]` USD
-  - **VND**: `[Min - Max \| Safe]` VND
+  - **USD**: `$[ Min - Max | Safe ]` USD
+  - **VND**: `[ Min - Max | Safe ]` VND
 - **AI-Augmented Total Budget**:
-  - **USD**: `$[Min - Max \| Safe]` USD
-  - **VND**: `[Min - Max \| Safe]` VND
+  - **USD**: `$[ Min - Max | Safe ]` USD
+  - **VND**: `[ Min - Max | Safe ]` VND
 
 #### 🚨 SECTION 4: PROJECT RISK REGISTRY & MITIGATION STRATEGY
-- **Risk ID \| Description \| Severity (High/Med/Low) \| Concrete Mitigation Strategy**
+- **Risk ID | Description | Severity (High/Med/Low) | Concrete Mitigation Strategy**
 
 #### 📊 SECTION 5: ARCHITECTURAL DATA VISUALIZATION (NATIVE MERMAID CHARTS)
 You MUST generate clean, functional, and syntactically correct **Mermaid.js** code blocks inside this section.
