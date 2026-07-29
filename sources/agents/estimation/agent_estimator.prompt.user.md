@@ -135,9 +135,9 @@ Render this table fully in "{{ target_language }}". Financial Impact and Resourc
 | R-001 | | | | | | |
 
 #### SECTION 6: ARCHITECTURAL DATA VISUALIZATION (NATIVE MERMAID CHARTS)
-*CRITICAL MANDATE FOR SYNTAX COMPLIANCE*: You MUST generate clean, functional, and valid Mermaid.js blocks.
-- ALL text labels, title keys, quadrant strings, and task details INSIDE the mermaid code blocks MUST be written in plain, unaccented English (e.g., "Min Cost", "Max Cost", "Safe Cost").
-- DO NOT insert translated or accented characters inside the mermaid blocks, otherwise the compilation pipeline will crash.
+*CRITICAL MANDATE FOR SYNTAX COMPLIANCE*: You MUST generate clean, functional, and valid Mermaid.js blocks in accordance with the GLOBAL MERMAID SYNTAX PROTECTION MANDATE.
+- Ensure all chart titles, labels, and sections are naturally translated into "{{ target_language }}".
+- Ensure ALL structural syntax keywords and logic tokens remain strictly in unaccented plain English.
 
 ##### Chart A: Financial Cost Boundary Matrix (USD)
 Use the official `xychart-beta` syntax. You MUST evaluate labor costs to find the maximum value for the y-axis, rounded up to the nearest hundred, and replace the upper bound placeholder with this integer.
