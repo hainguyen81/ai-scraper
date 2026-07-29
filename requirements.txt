@@ -11,3 +11,5 @@ exa-py>=2.16.0
 beautifulsoup4
 litellm
 cryptography
+matplotlib
+numpy
