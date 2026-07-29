@@ -13,3 +13,4 @@ litellm
 cryptography
 matplotlib
 numpy
+mermaidx[v8]
