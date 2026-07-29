@@ -188,12 +188,13 @@ quadrant-4 "Monitor Risks"
 
 #### SECTION 7: VISUALIZATION METADATA FOR BACKEND PROCESSING
 *CRITICAL*: Provide a clean, single-level flat valid JSON metadata block at the absolute end of the response. Do NOT use multi-dimensional nested arrays. Output numbers as flat floats or ints inside single arrays representing the 3 sequential points [Min, Max, Safe] for each scenario.
+CRITICAL ENFORCEMENT RULE: The "exchange_rate" key MUST contain a raw single float number value only (e.g., 25500.0). Do NOT wrap the exchange_rate value inside brackets or arrays.
 
 {% set open_json = '{' %}
 {% set close_json = '}' %}
 ```json
 {{ open_json }}
-"exchange_rate": [Insert_Raw_Sourced_Exchange_Rate_Float],
+"exchange_rate": Insert_Raw_Sourced_Exchange_Rate_Float_Directly,
 "enterprise_human_cost_usd": [Min_Enterprise_Human_USD_Float, Max_Enterprise_Human_USD_Float, Safe_Enterprise_Human_USD_Float],
 "enterprise_ai_cost_usd": [Min_Enterprise_AI_USD_Float, Max_Enterprise_AI_USD_Float, Safe_Enterprise_AI_USD_Float],
 "freelance_human_cost_usd": [Min_Freelance_Human_USD_Float, Max_Freelance_Human_USD_Float, Safe_Freelance_Human_USD_Float],
