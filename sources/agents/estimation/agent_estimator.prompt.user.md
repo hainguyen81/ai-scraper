@@ -1,11 +1,11 @@
-Perform a complete project estimation, architectural costing analysis, automated Cloud OpEx projection, Jira-compliant task breakdown, and a mathematically derived financial risk registry based strictly on the provided documents. The entire output response, without any exception, MUST be rendered fully and exclusively in the target language specified by the variable: **{{ target_language }}**.
+Perform a complete project estimation, architectural costing analysis, and dynamic risk registry based strictly on the provided documents. The entire output response, without a single exception, MUST be written fully and exclusively in the language defined by the variable: **{{ target_language }}**.
 
 ========================================================================
-🚨 SYSTEM-WIDE ABSOLUTE MANDATE ON OUTPUT LANGUAGE (CRITICAL)
-- The target language for the entire output report is strictly defined by the variable: "{{ target_language }}".
-- EVERY single sentence, structural header, table cell, analytical commentary, parameter description, and text token OUTSIDE of raw JSON blocks and raw Mermaid code blocks MUST be rendered fully, naturally, and exclusively in "{{ target_language }}".
-- Do NOT preserve any English static headers or layout templates from this prompt. Every title and label must be dynamically translated and written in "{{ target_language }}".
-- Strictly DO NOT mix multiple languages or introduce any intermediate foreign commentary outside the designated code blocks. Failure to comply violates system governance.
+🚨 SYSTEM GOVERNANCE MANDATE ON OUTPUT LANGUAGE (STRICT LOCKDOWN)
+- The target language for this entire execution is: "{{ target_language }}".
+- EVERY single word, header, table cell, analysis, and sentence OUTSIDE of raw JSON and Mermaid code blocks MUST be rendered fully and exclusively in "{{ target_language }}".
+- Strictly DO NOT mix languages. Do NOT include any English, Persian, Arabic, or mixed translation hints (e.g., do NOT write "Thành phần / Component"). 
+- Translate all dynamic template indicators below directly into "{{ target_language }}". Any output containing foreign language leakage outside code blocks will fail the compilation audit.
 ========================================================================
 
 ### [Asset 1: Core Product Idea]
@@ -18,44 +18,38 @@ Perform a complete project estimation, architectural costing analysis, automated
 {{ raw_blueprint_content }}
 
 ### [Asset 4: Costing Controls & Benchmarks]
-- Buffer Ratio Multiplier: {{ buffer_ratio }} (Add this safety margin to the max bounds: Safe Bound = Max Bound + Buffer)
+- Buffer Ratio Multiplier: {{ buffer_ratio }}
 - Target Output Language: {{ target_language }}
+
 ---
 
 ### 🛑 REAL-TIME SOURCING & TRIPLE-CHECK MATHEMATICAL DIRECTIVES:
 You MUST execute your internal reasoning through 3 independent calculation passes and apply your web search tool. If your outputs fail these logic equations, the compilation pipeline will crash:
 
-1. PASS 1 (Live Sourcing, Provenance Mapping & Sizing):
-   - You MUST query the internet to capture real-time market standard pricing data for the current active calendar year:
-     * Current exact USD to VND exchange rate.
-     * Average market cost/salary per Man-Month (MM) for software engineers based on Corporate Enterprise environments and Freelancer Teams.
-     * Current real-time monthly cost allocations for AI Dev Tooling & Token consumption (e.g., GitHub AI Credits, OpenAI API, Anthropic Claude Enterprise).
-     * Current runtime compute, networking, and data egress pricing models for Google Cloud Platform (GCP) or AWS tailored to standard Kubernetes (GKE), clustered messaging queues, and database engines mentioned in the architecture.
-   - For every rate captured, you MUST document the exact source details: Website Names, Live Destination URLs, and the Extraction Timestamp.
+1. PASS 1 (Live Sourcing & Provenance Mapping):
+   - Query the internet to capture real-time market standard pricing data for the current calendar year: exact USD to VND exchange rate, average market cost/salary per Man-Month (MM) for engineers (Corporate vs Freelance), and real-time monthly cost allocations for AI Dev Tooling/Tokens.
+   - You MUST document the exact source details: Website Names, Live Destination URLs, and the Extraction Timestamp.
 
 2. PASS 2 (AI Acceleration & Strict Logic Inequality Constraints):
-   - Calculate total Man-Months, Project Duration, Total Labor Budget, and Cloud OpEx for all 4 scenarios.
    - Total Labor Budget for AI-Augmented scenarios MUST apply a strict 35% to 50% velocity reduction factor.
-   - Calculate Cloud Infrastructure OpEx per month. Corporate Enterprise MUST reflect multi-region GKE high-availability pricing setups, while Freelancer reflects single-instance node VPS setups.
-   - CRITICAL INEQUALITY RULE: (AI-Augmented Total Labor Budget) MUST BE STRICTLY LESS THAN (Traditional Human-Only Total Labor Budget) and (AI-Augmented Months) MUST BE STRICTLY LESS THAN (Traditional Human-Only Months). They CANNOT under any circumstances be equal.
-   - Formula for Safety Margin: Buffer = Base Max Value * Buffer Ratio Multiplier; Safe Bound = Max Bound + Buffer. This formula applies independently to Labor Costs, Timelines, and Cloud OpEx arrays.
-   - Ensure range continuity across all metrics: Min Bound < Max Bound < Safe Bound.
+   - Calculate Monthly Cloud Infrastructure OpEx. Corporate Enterprise MUST reflect multi-region GKE HA pricing, while Freelancer reflects single-instance VPS setups.
+   - CRITICAL INEQUALITY: (AI-Augmented Total Budget) < (Traditional Human-Only Total Budget) and (AI-Augmented Months) < (Traditional Human-Only Months). They CANNOT be equal.
+   - Formula for Safety Margin: Buffer = Base Max Value * Buffer Ratio Multiplier; Safe Bound = Max Bound + Buffer.
 
-3. PASS 3 (Cross-Currency Verification & Monte Carlo Risk Costing):
+3. PASS 3 (Cross-Currency Verification):
    - Convert all calculated USD figures into VND using your real-time extracted exchange rate. Cross-check that for every range boundary: (VND Value) / (USD Value) = Exchange Rate EXACTLY.
-   - Financial Impact in Section 5 MUST be mathematically derived from the sourced Man-Month rates multiplied by the projected Resource Impact (Man-Months) required for risk remediation, simulating a worst-case additive compounding scenario.
-   - Every single numerical value displayed in the Markdown Section 3 MUST match the values provided in the JSON Section 7 exactly.
+   - Every single numerical value displayed in the Markdown report MUST match the values provided in the JSON Section 7 exactly.
 
 ---
 
 ### 📋 MANDATORY OUTPUT STRUCTURE (MARKDOWN REPORT):
-Every header and cell item below must be translated and rendered into "{{ target_language }}":
+Every header and table parameter below MUST be translated and naturally rendered into "{{ target_language }}":
 
-# [Render_Main_Report_Title_In_Target_Language]
+# PROJECT ESTIMATION & RISK REGISTRY REPORT
 
-#### [Render_Document_Information_Header_In_Target_Language]
+#### REPORT METADATA INFORMATION
 
-| [Render_Component_In_Target_Language] | [Render_Details_In_Target_Language] |
+| Parameter | Details |
 | :--- | :--- |
 | **Report ID** | AUDIT-{{ current_timestamp_2 }} |
 | **Idea ID** | {{ idea_id }} |
@@ -67,9 +61,9 @@ Every header and cell item below must be translated and rendered into "{{ target
 | **Approval** | Certified by Enterprise Technical Governance Board |
 
 #### SECTION 1: DOCUMENT CONTROL & PROVENANCE METADATA
-Dynamically inject the real-time sourced values and their exact data lineage details into this table (Translate table headers and parameters into "{{ target_language }}"):
+Dynamically inject the real-time sourced values and their exact data lineage details into this table (Translate table headers and parameters fully into "{{ target_language }}"):
 
-| [Render_Audit_Parameter_In_Target_Language] | [Render_Information_Details_In_Target_Language] |
+| Audit Parameter | Information Details |
 | :--- | :--- |
 | **Live Exchange Rate Applied** | 1 USD = [Insert Exact Integer Rate Found Online] VND |
 | **Enterprise Cost / Man-Month** | $[Insert Current Market Enterprise Rate Found Online] USD / Month |
@@ -82,13 +76,10 @@ Dynamically inject the real-time sourced values and their exact data lineage det
 | **Status** | Sourced, Audited & Validated |
 
 #### SECTION 2: RESOURCE CAPACITY PLANNING & SKILL MATRIX
-In "{{ target_language }}", provide a highly granular engineering capacity planning and necessary technical skill matrix. 
-1. List required engineering roles (Backend, Frontend, QA, DevOps).
-2. Allocate specific Man-Months for both Traditional vs AI-Augmented paths across both operational models.
-3. Explicitly list the target expertise level (Junior/Mid/Senior) and necessary technology stacks derived from the System Architecture Blueprint.
+In "{{ target_language }}", provide a highly granular engineering capacity planning and necessary technical skill matrix. List all required engineering roles (Backend, Frontend, QA, DevOps), allocate specific Man-Months for both Traditional vs AI-Augmented paths, and list the target expertise level (Junior/Mid/Senior) with tech stacks.
 
 #### SECTION 3: FINANCIAL BUDGET, CLOUD OPEX & TIMELINE PROJECTIONS
-> 📝 [Render_Currency_Audit_Notice_In_Target_Language]: All calculations below explicitly utilize the real-time extracted exchange rate: **1 USD = {{ exchange_rate }} VND**.
+> 📝 [Render Currency Audit Notice In "{{ target_language }}"]: All calculations below explicitly utilize the real-time extracted exchange rate: **1 USD = {{ exchange_rate }} VND**.
 
 ##### 1. Corporate Enterprise Model
 - **Traditional Human-Only Total Budget**:
@@ -120,12 +111,10 @@ Output the calendar months range for all 4 scenarios in "{{ target_language }}".
 - Freelancer Team (AI-Augmented): [Min - Max | Safe] Calendar Months
 
 #### SECTION 4: ARCHITECTURAL COST JUSTIFICATION & JIRA WBS ROADMAP
-In "{{ target_language }}", deliver a deep analytical justification mapping technical choices to cost boundaries.
-1. **Four Structural Pillars**: Break down the financial delta using Operational Overhead, Security Boundaries (mTLS, WAF, Argon2id, SHA-256), HA/DR Topology (Multi-region GKE vs Single VPS), and Data Isolation (`Database-per-tenant`).
-2. **Jira-Compliant Work Breakdown Structure (WBS)**: Generate a structural, nested hierarchical roadmap mapped into three tiers: Epic, Task, and Sub-task. Ensure architecture implementation blocks (e.g., configuring mTLS routing, dynamic schema migration) are explicitly broken down as actionable, discrete tickets.
+In "{{ target_language }}", deliver a deep analytical justification mapping technical choices to cost boundaries. Break down the financial delta using Operational Overhead, Security Hardening Boundaries (mTLS, WAF, Argon2id, SHA-256), HA/DR Topology (Multi-region GKE vs Single VPS), and Data Isolation. Generate a structural, nested hierarchical roadmap mapped into three tiers: Epic, Task, and Sub-task as actionable Jira tickets.
 
 #### SECTION 5: PROJECT RISK REGISTRY & COMPOUNDING IMPACT MATRIX
-Render this table in "{{ target_language }}". Financial Impact and Resource Impact MUST be mathematically calculated using Pass 3 directives to simulate compounding operational worst-case failure models:
+Render this table fully in "{{ target_language }}". Financial Impact and Resource Impact MUST be mathematically calculated using Pass 3 directives:
 
 | Risk ID | Description | Severity | Financial Impact (USD / VND) | Resource Impact (Man-Months) | Worst-Case Additive Cost | Concrete Mitigation Strategy |
 | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
