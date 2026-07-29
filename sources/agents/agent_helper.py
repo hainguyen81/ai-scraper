@@ -10,7 +10,6 @@ import sys
 import json
 import logging
 import re
-import json
 import traceback
 from pathlib import Path
 
@@ -31,24 +30,28 @@ if PARENT_AGENTS_DIR not in sys.path:
     sys.path.insert(0, PARENT_AGENTS_DIR)
 
 
+def repo_root_path() -> str:
+    # 🚀 CORE RAIL: Ingest the absolute repository root path straight from GitHub infrastructure
+    # Fallback to current working directory (os.getcwd()) if executing on a local machine
+    # current_directory_path = os.getcwd()
+    # github_workspace = os.environ.get("GITHUB_WORKSPACE", '')
+    # project_workspace = os.environ.get("PROJECT_WORKSPACE", '')
+    # print(f"CURRENT WORKING DIR: { current_directory_path } | GITHUB_WORKSPACE: { github_workspace } | PROJECT_WORKSPACE: { project_workspace }")
+    return os.environ.get("PROJECT_WORKSPACE", os.environ.get("GITHUB_WORKSPACE", os.getcwd()))
+        
 def resolve_absolute_path(relative_target_path):
     """
     Ingests a relative path string and safely interpolates it using the absolute 
     workspace anchor provided natively by the GitHub Actions Runner environment.
     """
     # 🚀 CORE RAIL: Ingest the absolute repository root path straight from GitHub infrastructure
-    # Fallback to current working directory (os.getcwd()) if executing on a local machine
-    current_directory_path = os.getcwd()
-    github_workspace = os.environ.get("GITHUB_WORKSPACE", '')
-    project_workspace = os.environ.get("PROJECT_WORKSPACE", '')
-    # print(f"CURRENT WORKING DIR: { current_directory_path } | GITHUB_WORKSPACE: { github_workspace } | PROJECT_WORKSPACE: { project_workspace }")
-    repo_root_path = os.environ.get("PROJECT_WORKSPACE", os.environ.get("GITHUB_WORKSPACE", os.getcwd()))
+    root_path = repo_root_path()
     
     # Clean up the incoming string parameters by removing leading path descriptors
     cleaned_relative_path = relative_target_path.removeprefix("./")
     
     # Synthesize the non-negotiable absolute hardware computing path destinations
-    absolute_hardware_path = os.path.join(repo_root_path, cleaned_relative_path)
+    absolute_hardware_path = os.path.join(root_path, cleaned_relative_path)
     
     # full path from root workspace
     return absolute_hardware_path
@@ -59,15 +62,10 @@ def resolve_relative_path(absolute_target_path):
     workspace anchor provided natively by the GitHub Actions Runner environment.
     """
     # 🚀 CORE RAIL: Ingest the absolute repository root path straight from GitHub infrastructure
-    # Fallback to current working directory (os.getcwd()) if executing on a local machine
-    current_directory_path = os.getcwd()
-    github_workspace = os.environ.get("GITHUB_WORKSPACE", '')
-    project_workspace = os.environ.get("PROJECT_WORKSPACE", '')
-    # print(f"CURRENT WORKING DIR: { current_directory_path } | GITHUB_WORKSPACE: { github_workspace } | PROJECT_WORKSPACE: { project_workspace }")
-    repo_root_path = os.environ.get("PROJECT_WORKSPACE", os.environ.get("GITHUB_WORKSPACE", os.getcwd()))
+    root_path = repo_root_path()
     
     # Clean up the incoming string parameters by removing leading path descriptors
-    return absolute_target_path.removeprefix("./").removeprefix(repo_root_path)
+    return absolute_target_path.removeprefix("./").removeprefix(root_path)
 
 def json_raw_content(raw_content):
     """Securely serialize input telemetry payloads into structural double-quoted strings."""
@@ -281,7 +279,7 @@ def parseAIResponseJsonData(response):
     # Fixes the broken greedy regex logic to ensure text outside the curly braces is safely ignored
     try:
         return (raw_data, json.loads(splitOpenAIResponseJsonData(raw_data)))
-    except Exception as e:
+    except Exception:
         json_match = re.search(r"(\{[\s\S]*\})", raw_data, re.DOTALL)
         if json_match:
             try:
@@ -297,7 +295,7 @@ def parseAIResponseJsonData(response):
     try:
         return (raw_data, json.loads(raw_data.strip()))
     except Exception as final_error:
-        print(f"⚠️  [PARSER WARNING] Local string-to-json mapping failed: {final_error}")
+        print(f"[ ⚠️ PARSER WARNING ] Local string-to-json mapping failed: {final_error}")
         return (raw_data, None)
 
 def count_files_by_pattern(dir, file_filter_pattern) -> int:
@@ -459,7 +457,7 @@ LOG_EMOJIS = {
     'SUCCESS':  '✅',            # Check mark for successful operations
     'WARNING':  '⚠️',            # Warning sign for non-critical alerts
     'ERROR':    '❌',            # Cross mark for runtime errors
-    'CRITICAL': '🚨'             # Police car light for critical failures
+    'CRITICAL': '💀'             # Police car light for critical failures
 }
 
 class FullColorFormatter(logging.Formatter):

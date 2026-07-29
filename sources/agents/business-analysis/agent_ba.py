@@ -1,11 +1,8 @@
-import os
 import sys
 import json
-import re
 import hashlib
 import argparse
 from datetime import datetime
-from openai import OpenAI
 
 # Now Python can seamlessly see and import the centralized helper utility cleanly!
 from sources.agents.agent_helper import (
@@ -39,7 +36,7 @@ class PrincipalBusinessAnalysisAgent(AbstractSubAgent):
     def initialize(self):
         # start initialization
         super().initialize()
-        self.language = self.get_kwargs("language") or DEFAULT_IDEAS_LANGUAGE
+        self.language = self.get_kwargs("language") or DEFAULT_SRS_LANGUAGE
     
     def ba_output_raw_file(self):
         return self.__output_storage_path__(storage_name="storage_ba", file=BA_RAW_FILE)
@@ -123,7 +120,7 @@ class PrincipalBusinessAnalysisAgent(AbstractSubAgent):
     
     # @override
     def process_communication(self, **kwargs):
-        response_data = self.get_self.get_kwargs_by_key(key="clean_response", **kwargs)
+        response_data = self.get_kwargs_by_key(key="clean_response", **kwargs)
         if not response_data:
             raise RuntimeError("- Invalid AI raw response. Not a valid JSON format data.")
         

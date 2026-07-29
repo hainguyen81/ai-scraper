@@ -1,7 +1,6 @@
 # BLOCK 1: GENERATES GLOBAL CONTEXT
 
 import os
-import sys
 
 # GEMINI
 # from google import genai
@@ -17,6 +16,7 @@ from sources.agents.agent_helper import (
     write_file,
     render_prompt,
     parseAIResponseData,
+    exception_stacktrace,
     get_logger
 )
 

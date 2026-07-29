@@ -1,7 +1,6 @@
 # BLOCK 3: CONVERTS PHASE MARKDOWN TO STEPS JSON
 
 import os
-import sys
 import json
 import time
 import re

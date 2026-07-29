@@ -1,11 +1,6 @@
-import os
-import sys
-import json
 import re
 import hashlib
 import argparse
-from datetime import datetime
-from openai import OpenAI
 
 # Now Python can seamlessly see and import the centralized helper utility cleanly!
 from sources.agents.agent_helper import (
@@ -101,7 +96,6 @@ class EnterpriseIdeaGeneratorAgent(AbstractSubAgent):
         elif self.history_ideas:
             history_ideas = list(self.history_ideas)
         history_ideas = [ i for i in history_ideas if isinstance(i, dict) ]
-        history_ideas_len = len(history_ideas)
         
         # find all idea names match prefix from AI response
         ideas = []
@@ -137,7 +131,7 @@ class EnterpriseIdeaGeneratorAgent(AbstractSubAgent):
     def process_communication(self, **kwargs):
         response_data = self.get_kwargs_by_key(key="clean_response", **kwargs)
         if not response_data:
-            raise RuntimeError("- Invalid AI raw response. Not a valid JSON format data.")
+            raise RuntimeError("❌ Invalid AI raw response. Not a valid JSON format data.")
         
         # export new ideas as md files
         for idea in response_data:
@@ -148,7 +142,7 @@ class EnterpriseIdeaGeneratorAgent(AbstractSubAgent):
         
         # update ideas history
         write_json_file(
-            file=IDEAS_HISTORY_FILE,
+            file=self.__ideas_history_path__(),
             json_data=self.history_ideas
         )
         
@@ -166,7 +160,7 @@ if __name__ == "__main__":
     parser.add_argument("--quantity", type=int, help="The number of ideas")
     parser.add_argument("--language", type=str, help="Translate found ideas to language. Ex: Vietnamese, English, etc.")
     args = parser.parse_args()
-    IdeaGeneratorAgent(
+    EnterpriseIdeaGeneratorAgent(
         domain=args.domain,
         quantity=args.quantity,
         language=args.language

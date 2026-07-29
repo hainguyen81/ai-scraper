@@ -1,7 +1,5 @@
 import os
-import sys
 import json
-import logging
 import argparse
 import re
 import urllib.request
@@ -113,7 +111,7 @@ class DynamicScraperAgent:
                 logger.info(f"💾 RAW RESPONSE MATRIX CAPTURED:\n{raw_response_string}")
             except Exception as log_err:
                 # Fallback to standard string casting if complex nested serialization handshakes fail
-                logger.info(f"💾 RAW RESPONSE STRING CASTING FALLBACK:\n{exception_stacktrace(response)}")
+                logger.info(f"💾 RAW RESPONSE STRING CASTING FALLBACK:\n{exception_stacktrace(log_err)}")
                 self.write_log(str(response), prompt_instruction)
             
             # parse response JSON

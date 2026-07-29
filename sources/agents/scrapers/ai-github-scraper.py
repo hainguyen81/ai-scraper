@@ -1,7 +1,5 @@
 import os
-import sys
 import json
-import logging
 import re
 from typing import Dict, List, Any, Optional
 import urllib.request

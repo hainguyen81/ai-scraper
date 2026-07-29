@@ -1,16 +1,14 @@
 import os
 import sys
-import json
-import re
-import hashlib
 import argparse
 import asyncio
-import litellm
 from datetime import datetime
-from openai import OpenAI
 
 # for abstract class
-from abc import ABC, abstractmethod
+from abc import abstractmethod
+
+# LLM
+import litellm
 
 # internal agent CrewAI
 from crewai import Agent, Crew, Process, Task, LLM
@@ -18,7 +16,7 @@ from crewai.events.event_bus import crewai_event_bus
 from crewai.events.base_events import reset_emission_counter
 from crewai.events.event_context import _event_id_stack, EventContextConfig, _event_context_config
 # use flow for blueprint diff analysis
-from crewai.flow import Flow, listen, start, router
+from crewai.flow import Flow, listen, start
 
 # Now Python can seamlessly see and import the centralized helper utility cleanly!
 from sources.agents.agent_helper import (
@@ -47,7 +45,9 @@ EXPECTED_TEMPLATE_SA_DIFF_ANALYZER  = "agent_csro.expected.diff-blueprint-analyz
 TASK_TEMPLATE_SA_DIFF_ANALYZER      = "agent_csro.task.diff-blueprint-analyzer.md"
 
 # CSRO log files
+CSRO_RAW_FILE                       = "chief-solution-review.md"
 CSRO_LOG_FILE                       = "chief-solution-review_log.md"
+CSRO_DA_FILE                        = "chief-solution-diff-analysis.md"
 CSRO_LOG_DA_FILE                    = "chief-solution-diff-analysis_log.md"
 
 
@@ -169,13 +169,13 @@ class AbstractCrewEnterpriseSuperAgent(AbstractSubAgent):
     def __pre_initialize__(self):
         # require idea identity to analyze
         if not self.project_info:
-            print(f"[ 💀 {self.agent_id} Agent | CRITICAL ERROR ] (1) Invalid idea identity / project name to analyze!")
+            self.logger.critical(f"💀 (1) Invalid idea identity / project name to analyze!")
             sys.exit(1)
         
         # check idea file
         abs_idea_file, phys_idea_file = self.__idea_files__()
         if not os.path.exists(phys_idea_file):
-            print(f"[ 💀 {self.agent_id} Agent | CRITICAL ERROR ] (4) Not found IDEA file {abs_idea_file}")
+            self.logger.critical(f"💀 (4) Not found IDEA file {abs_idea_file}")
             sys.exit(1)
         else:
             self.idea_file = abs_idea_file
@@ -183,13 +183,13 @@ class AbstractCrewEnterpriseSuperAgent(AbstractSubAgent):
         # check requirments file
         self.ba_file = self.__ba_file__()
         if not os.path.exists(self.ba_file):
-            print(f"[ 💀 {self.agent_id} Agent | CRITICAL ERROR ] (5) Not found BA file by idea identity / project name '{self.idea_id}'")
+            self.logger.critical(f"💀 (5) Not found BA file by idea identity / project name '{self.idea_id}'")
             sys.exit(1)
         
         # check blueprint file
         self.blueprint_file = self.__sa_file__()
         if not os.path.exists(self.blueprint_file):
-            print(f"[ 💀 {self.agent_id} Agent | CRITICAL ERROR ] (6) Not found BLUEPRINT file by idea identity / project name '{self.idea_id}")
+            self.logger.critical(f"💀 (6) Not found BLUEPRINT file by idea identity / project name '{self.idea_id}")
             sys.exit(1)
     
     def __create_ai_client__(self):
@@ -498,6 +498,10 @@ class CrewEnterpriseSolutionWorkflowAgent(AbstractCrewEnterpriseWorkflowAgent):
         super().__init__(agent_id='CrewEnterpriseSolutionWorkflowReviewer', **kwargs)
     
     # @override
+    def agent_log_file(self) -> str:
+        return self.__output_storage_path__(storage_name="output_csro", file=CSRO_LOG_FILE)
+    
+    # @override
     def build_prompts(self, **kwargs):
         return {
             **kwargs,
@@ -548,8 +552,8 @@ class CrewEnterpriseSolutionWorkflowAgent(AbstractCrewEnterpriseWorkflowAgent):
         _, raw_idea_content = self.__read_idea_or_requirements__(ignore_not_found=True)
         
         # no idea also no requirements
-        if not file_content:
-            print(f"[ 💀 {self.agent_id} Agent | CRITICAL ERROR ] Not found IDEA / Requirements file to process")
+        if not raw_idea_content:
+            self.logger.critical(f"💀 Not found IDEA / Requirements file to process")
             sys.exit(1)
         
         # read BA file
@@ -619,7 +623,7 @@ class CrewEnterpriseSolutionWorkflowAgent(AbstractCrewEnterpriseWorkflowAgent):
             # Task 3 (System Architect) response - fixed blueprint
             raw_sa_response = self.task_system_architect.output.raw
         except Exception as e:
-            self.logger.error(f"[ ❌ ERROR ] Could extract task output: {str(e)}")
+            self.logger.error(f"❌ Could extract task output: {str(e)}")
 
         # parsed responses
         return {
@@ -633,7 +637,7 @@ class CrewEnterpriseSolutionWorkflowAgent(AbstractCrewEnterpriseWorkflowAgent):
     def process_communication(self, **kwargs):
         response_data = self.get_kwargs_by_key(key="clean_response", **kwargs)
         if not response_data or not isinstance(response_data, dict):
-            raise RuntimeError(f"[ 💀 CRITICAL ] (7) Invalid AI raw response.")
+            raise RuntimeError(f"💀 (7) Invalid AI raw response.")
         
         # project info
         timestamp = self.get_kwargs_by_key(key="current_timestamp_2", **kwargs)
@@ -642,13 +646,13 @@ class CrewEnterpriseSolutionWorkflowAgent(AbstractCrewEnterpriseWorkflowAgent):
         if "kickoff" in response_data and response_data.get("kickoff"):
             write_file(file=self.file_report_kickoff(prefix=timestamp), data=response_data.get("kickoff"))
         else:
-            self.logger.warn(f"[ 💀 WARN ] No any kickoff report!")
+            self.logger.warn(f"⚠️ No any kickoff report!")
         
         # export task sentinel response
         if "report_sentinel" in response_data and response_data.get("report_sentinel"):
             write_file(file=self.file_report_sentinel_approval(prefix=timestamp), data=response_data.get("report_sentinel"))
         else:
-            self.logger.warn(f"[ 💀 WARN ] No any sentinel report!")
+            self.logger.warn(f"⚠️ No any sentinel report!")
         
         # export task BA response
         if "report_ba" in response_data and response_data.get("report_ba"):
@@ -656,7 +660,7 @@ class CrewEnterpriseSolutionWorkflowAgent(AbstractCrewEnterpriseWorkflowAgent):
             write_file(file=self.file_report_ba_approval(prefix=timestamp), data=response_ba)
             write_file(file=self.file_ba_approval(prefix=timestamp), data=response_ba)
         else:
-            self.logger.warn(f"[ 💀 WARN ] No any business-analysis report!")
+            self.logger.warn(f"⚠️ No any business-analysis report!")
         
         # export task SA response
         if "report_sa" in response_data and response_data.get("report_sa"):
@@ -664,7 +668,7 @@ class CrewEnterpriseSolutionWorkflowAgent(AbstractCrewEnterpriseWorkflowAgent):
             write_file(file=self.file_report_sa_approval(prefix=timestamp), data=response_sa)
             write_file(file=self.file_blueprint_approval(prefix=timestamp), data=response_sa)
         else:
-            self.logger.warn(f"[ 💀 WARN ] No any system-architect report!")
+            self.logger.warn(f"⚠️ No any system-architect report!")
         
         # export raw response if necessary as log tracing
         raw_response = self.get_kwargs_by_key(key="raw_response", **kwargs)
@@ -772,7 +776,7 @@ class CrewEnterpriseBluePrintDiffAnalyzerAgent(AbstractCrewEnterpriseWorkflowAge
         raw_response = self.get_kwargs_by_key(key="raw_response", **kwargs)
         if raw_response:
             write_file(
-                file=CSRO_RAW_FILE,
+                file=self.__output_storage_path__(storage_name="output_csro", file=CSRO_DA_FILE),
                 data=raw_response
             )
         

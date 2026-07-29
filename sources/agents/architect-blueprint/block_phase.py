@@ -1,7 +1,6 @@
 # BLOCK 2: GENERATES PHASE MARKDOWN
 
 import os
-import sys
 import time
 
 # GEMINI

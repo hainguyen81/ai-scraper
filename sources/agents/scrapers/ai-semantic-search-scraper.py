@@ -1,7 +1,5 @@
 import os
-import sys
 import json
-import logging
 import re
 import argparse
 from typing import List, Dict, Any
@@ -11,6 +9,7 @@ from exa_py import Exa
 from sources.agents.agent_helper import (
     json_raw_content,
     storage_info,
+    exception_stacktrace,
     get_logger
 )
 
