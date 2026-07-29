@@ -51,9 +51,9 @@ class AbstractAgent(ABC):
         self.storage = self.storage_info.get("storage", None) or {}
         self.storage_output = self.storage_info.get("output", None) or {}
         self.storage_agents = self.storage_info.get("agents", None) or {}
-        self.logger.info(f"- Storage: { json_tostring(self.storage) }")
-        self.logger.info(f"- Output: { json_tostring(self.storage_output) }")
-        self.logger.info(f"- Agents: { json_tostring(self.storage_agents) }")
+        self.logger.debug(f"- Storage: { json_tostring(self.storage) }")
+        self.logger.debug(f"- Output: { json_tostring(self.storage_output) }")
+        self.logger.debug(f"- Agents: { json_tostring(self.storage_agents) }")
     
     def initialize_models(self):
         self.models_pool = self.load_models_pool()
