@@ -151,7 +151,9 @@ class EnterpriseAutonomousProjectEstimatorAgent(AbstractSubAgent):
             "enterprise_human_months": self.__safe_parse_float_numbers_list__(metrics_dict.get("enterprise_human_months")),
             "enterprise_ai_months": self.__safe_parse_float_numbers_list__(metrics_dict.get("enterprise_ai_months")),
             "freelance_human_months": self.__safe_parse_float_numbers_list__(metrics_dict.get("freelance_human_months")),
-            "freelance_ai_months": self.__safe_parse_float_numbers_list__(metrics_dict.get("freelance_ai_months"))
+            "freelance_ai_months": self.__safe_parse_float_numbers_list__(metrics_dict.get("freelance_ai_months")),
+            "enterprise_cloud_opex_usd": self.__safe_parse_float_numbers_list__(metrics_dict.get("enterprise_cloud_opex_usd")),
+            "freelance_cloud_opex_usd": self.__safe_parse_float_numbers_list__(metrics_dict.get("freelance_cloud_opex_usd"))
         }
 
     def __extract_mermaid_visualizations__(self, raw_response):
@@ -206,11 +208,14 @@ class EnterpriseAutonomousProjectEstimatorAgent(AbstractSubAgent):
                 self.logger.warning(f"⚠️ Network exception or latency spike during chart extraction: {str(net_err)}")
                 
         return visualizations_data
-
+    
     def __generate_sharp_summary_chart_v2__(self, output_image_path, metrics):
         """
-        Generates an ultra-sharp 4-Scenario comparison matrix chart (Enterprise Human/AI vs Freelance Human/AI)
-        using the dynamically extracted exchange rate and eliminates the sequence multiplication crash.
+        Generates an ultra-sharp 3-panel summary matrix chart including:
+        1. Financial Labor Budgets (4 Scenarios - Dual Currency)
+        2. Cloud Infrastructure OpEx Projections (Corporate HA vs Freelance VPS)
+        3. Delivery Timeline Projections (4 Scenarios)
+        Safely handles dynamic exchange rates and eliminates tuple multiplication crashes.
         """
         if not metrics:
             self.logger.warning("⚠️ Invalid metrics JSON to generate chart. Skipping chart plotting.")
@@ -220,91 +225,111 @@ class EnterpriseAutonomousProjectEstimatorAgent(AbstractSubAgent):
             # 1. Safely extract live financial exchange rate
             exchange_rate = float(metrics.get("exchange_rate", 25500.0))
             
-            # 2. Extract flat array bounds (Each list contains exactly 3 sequential points: Min, Max, Safe)
+            # 2. Extract core financial labor cost flat arrays
             ent_human_cost = list(metrics.get("enterprise_human_cost_usd", []))
             ent_ai_cost = list(metrics.get("enterprise_ai_cost_usd", []))
             free_human_cost = list(metrics.get("freelance_human_cost_usd", []))
             free_ai_cost = list(metrics.get("freelance_ai_cost_usd", []))
             
+            # 3. Extract core timeline duration flat arrays
             ent_human_time = list(metrics.get("enterprise_human_months", []))
             ent_ai_time = list(metrics.get("enterprise_ai_months", []))
             free_human_time = list(metrics.get("freelance_human_months", []))
             free_ai_time = list(metrics.get("freelance_ai_months", []))
 
-            # Fallback mechanism: Guarantee exactly 3 array points to prevent out-of-bounds IndexError
-            for cost_list in [ent_human_cost, ent_ai_cost, free_human_cost, free_ai_cost]:
-                while len(cost_list) < 3: cost_list.append(0.0)
-            for time_list in [ent_human_time, ent_ai_time, free_human_time, free_ai_time]:
-                while len(time_list) < 3: time_list.append(0.0)
+            # 4. Extract newly added automated Cloud OpEx infrastructure flat arrays
+            ent_cloud_opex = list(metrics.get("enterprise_cloud_opex_usd", []))
+            free_cloud_opex = list(metrics.get("freelance_cloud_opex_usd", []))
 
-            # 3. Initialize high-resolution rendering canvas properties
+            # Fallback safeguard: Guarantee exactly 3 array data points [Min, Max, Safe] for all lists
+            all_metric_lists = [
+                ent_human_cost, ent_ai_cost, free_human_cost, free_ai_cost,
+                ent_human_time, ent_ai_time, free_human_time, free_ai_time,
+                ent_cloud_opex, free_cloud_opex
+            ]
+            for data_list in all_metric_lists:
+                while len(data_list) < 3: 
+                    data_list.append(0.0)
+
+            # 5. Initialize high-resolution rendering canvas with a 3-panel matrix framework (1 row, 3 subplots)
             plt.rcParams['figure.dpi'] = 300
             plt.rcParams['text.color'] = '#2c3e50'
-            fig, (ax1, ax3) = plt.subplots(1, 2, figsize=(16, 6))
+            fig, (ax1, ax3, ax5) = plt.subplots(1, 3, figsize=(22, 6))
             
-            fig.suptitle(f'Project Estimation Summary Matrix (1 USD = {exchange_rate:,} VND)', fontsize=14, fontweight='bold', y=0.98)
+            fig.suptitle(f'Project Estimation & Cloud Governance Summary Matrix (1 USD = {exchange_rate:,} VND)', fontsize=14, fontweight='bold', y=0.98)
             
             categories = ['Min Bound', 'Max Bound', 'Safe Bound']
             x = np.arange(len(categories))
-            width = 0.18  # Narrow bar size to scale all 4 granular scenarios horizontally
+            width = 0.18  # Narrow bar width to prevent chart overlap when scaling variables
 
             # -----------------------------------------------------------------
-            # SUBPLOT 1: 4-SCENARIO FINANCIAL BUDGET MATRIX DUAL-CURRENCY ($ vs ₫)
+            # SUBPLOT 1: 4-SCENARIO FINANCIAL LABOR BUDGET MATRIX ($ vs ₫)
             # -----------------------------------------------------------------
-            # Render corporate enterprise bars (Red gradient scale)
             ax1.bar(x - width * 1.5, ent_human_cost, width, label='Enterprise Human', color='#c0392b', alpha=0.85)
             ax1.bar(x - width / 2, ent_ai_cost, width, label='Enterprise AI', color='#e74c3c', alpha=0.85)
-            
-            # Render freelance team bars (Green gradient scale)
             ax1.bar(x + width / 2, free_human_cost, width, label='Freelance Human', color='#27ae60', alpha=0.85)
             ax1.bar(x + width * 1.5, free_ai_cost, width, label='Freelance AI', color='#2ecc71', alpha=0.85)
             
             ax1.set_ylabel('Total Cost in USD ($)', fontsize=11, fontweight='bold')
-            ax1.set_title('Financial Budget Bounds (Corporate vs Freelance)', fontsize=11, pad=10, fontweight='bold')
+            ax1.set_title('Labor Financial Budget Bounds', fontsize=11, pad=10, fontweight='bold')
             ax1.set_xticks(x)
             ax1.set_xticklabels(categories, fontsize=10)
             ax1.grid(axis='y', linestyle='--', alpha=0.3)
             ax1.legend(loc='upper left', frameon=True, facecolor='#f8f9fa')
 
-            # CRITICAL FIX: Extract explicit float boundary bounds to decouple tuple multiplication
+            # CRITICAL FIX: Decouple get_ylim tuple to prevent the mathematical string sequence crash
             ax1_ymin, ax1_ymax = ax1.get_ylim()
-            
-            # Construct dual axis framework for real-time local currency presentation
             ax2 = ax1.twinx()
             ax2.set_ylabel('Equivalent Cost in VND (₫)', fontsize=11, fontweight='bold')
-            # Apply standard numerical scalar math across individual elements to eliminate tuple crash
             ax2.set_ylim(ax1_ymin * exchange_rate, ax1_ymax * exchange_rate)
             ax2.get_yaxis().set_major_formatter(plt.FuncFormatter(lambda val, loc: f"{int(val):,}"))
 
             # -----------------------------------------------------------------
-            # SUBPLOT 2: 4-SCENARIO DELIVERY TIMELINE TRACKING (MONTHS)
+            # SUBPLOT 2: NEWLY ADDED CLOUD INFRASTRUCTURE OPEX PROJECTIONS ($ vs ₫)
             # -----------------------------------------------------------------
-            # Render corporate calendar months execution velocity profiles
-            ax3.bar(x - width * 1.5, ent_human_time, width, label='Enterprise Human', color='#2c3e50', alpha=0.9)
-            ax3.bar(x - width / 2, ent_ai_time, width, label='Enterprise AI', color='#5d6d7e', alpha=0.8)
+            # Render the infrastructure cost variance (Multi-region GKE HA vs Single Instance VPS)
+            ax3.bar(x - width, ent_cloud_opex, width * 2, label='Enterprise Cloud (GKE HA)', color='#8e44ad', alpha=0.85)
+            ax3.bar(x + width, free_cloud_opex, width * 2, label='Freelance Cloud (VPS)', color='#2980b9', alpha=0.85)
             
-            # Render agile freelance team delivery milestones
-            ax3.bar(x + width / 2, free_human_time, width, label='Freelance Human', color='#2980b9', alpha=0.9)
-            ax3.bar(x + width * 1.5, free_ai_time, width, label='Freelance AI', color='#3498db', alpha=0.8)
-            
-            ax3.set_ylabel('Duration (Calendar Months)', fontsize=11, fontweight='bold')
-            ax3.set_title('Delivery Timeline Projections', fontsize=11, pad=10, fontweight='bold')
+            ax3.set_ylabel('Monthly Cloud OpEx in USD ($)', fontsize=11, fontweight='bold')
+            ax3.set_title('Monthly Cloud Infrastructure OpEx', fontsize=11, pad=10, fontweight='bold')
             ax3.set_xticks(x)
             ax3.set_xticklabels(categories, fontsize=10)
             ax3.grid(axis='y', linestyle='--', alpha=0.3)
             ax3.legend(loc='upper left', frameon=True, facecolor='#f8f9fa')
 
-            # 4. Export consolidated high-definition asset to file path destinations
+            # Decouple ax3 ylim to apply currency conversion on the cloud infrastructure dashboard subplot
+            ax3_ymin, ax3_ymax = ax3.get_ylim()
+            ax4 = ax3.twinx()
+            ax4.set_ylabel('Equivalent OpEx in VND (₫)', fontsize=11, fontweight='bold')
+            ax4.set_ylim(ax3_ymin * exchange_rate, ax3_ymax * exchange_rate)
+            ax4.get_yaxis().set_major_formatter(plt.FuncFormatter(lambda val, loc: f"{int(val):,}"))
+
+            # -----------------------------------------------------------------
+            # SUBPLOT 3: 4-SCENARIO DELIVERY TIMELINE TRACKING (MONTHS)
+            # -----------------------------------------------------------------
+            ax5.bar(x - width * 1.5, ent_human_time, width, label='Enterprise Human', color='#2c3e50', alpha=0.9)
+            ax5.bar(x - width / 2, ent_ai_time, width, label='Enterprise AI', color='#5d6d7e', alpha=0.8)
+            ax5.bar(x + width / 2, free_human_time, width, label='Freelance Human', color='#16a085', alpha=0.9)
+            ax5.bar(x + width * 1.5, free_ai_time, width, label='Freelance AI', color='#1abc9c', alpha=0.8)
+            
+            ax5.set_ylabel('Duration (Calendar Months)', fontsize=11, fontweight='bold')
+            ax5.set_title('Delivery Timeline Projections', fontsize=11, pad=10, fontweight='bold')
+            ax5.set_xticks(x)
+            ax5.set_xticklabels(categories, fontsize=10)
+            ax5.grid(axis='y', linestyle='--', alpha=0.3)
+            ax5.legend(loc='upper left', frameon=True, facecolor='#f8f9fa')
+
+            # 6. Clean layout margins and export the 3-panel sharp asset to disk destinations
             plt.tight_layout()
             output_image_path.parent.mkdir(parents=True, exist_ok=True)
             plt.savefig(output_image_path, bbox_inches='tight')
             plt.close()
             
-            self.logger.info(f"[ 💾 SHARP CHART GENERATED ] 4-Scenario Dual-Currency matrix exported to: {output_image_path}")
+            self.logger.info(f"[ 💾 SHARP CHART GENERATED ] 3-Panel Consolidated Governance chart exported to: {output_image_path}")
             
         except Exception as e:
             self.logger.warning(f"⚠️ Exception while generating pilot chart to file {output_image_path}: {str(e)}")
-
     
     # @override
     def clean_response(self, raw_response, **kwargs):
