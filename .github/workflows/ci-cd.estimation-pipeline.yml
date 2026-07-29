@@ -15,6 +15,16 @@ on:
         required: false
         default: 1.5
         type: number
+      language:
+        description: '🗣️ Estimation Language'
+        required: false
+        default: '🇻🇳 Vietnamese'
+        type: choice
+        options:
+          - "🇻🇳 Vietnamese"
+          - "🇺🇸 English"
+          - "🇩🇪 Germany"
+          - "🇯🇵 Japanese"
     
   # allow other workflow call into (inputs same as workflow_dispatch but required)
   workflow_call:
@@ -30,6 +40,11 @@ on:
         required: false
         default: 1.5
         type: number
+      language:
+        description: '🗣️ Estimation Language'
+        required: false
+        default: '🇻🇳 Vietnamese'
+        type: string
 
 # permissions for GitHub Actions READ/WRITE
 permissions:
@@ -84,11 +99,13 @@ jobs:
           # Project Information
           INPUTS_IDEA: ${{ inputs.idea }}
           INPUTS_BUFFER: ${{ inputs.buffer }}
+          INPUTS_LANGUAGE: ${{ inputs.language }}
         run: |
           echo "⚡ Kicking off AI Expert Principal IT Project Estimator..."
           python sources/agents/estimation/agent_estimator.py \
               --idea "$INPUTS_IDEA" \
-              --buffer-ratio $INPUTS_BUFFER
+              --buffer-ratio $INPUTS_BUFFER \
+              --language "$INPUTS_LANGUAGE"
 
       # Step 5: Automatically stage, commit, and push changes
       - name: 🚀 Commit and Push Changes

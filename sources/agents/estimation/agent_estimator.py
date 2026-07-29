@@ -25,6 +25,8 @@ EST_LOG_FILE                = "estimation_log.md"
 
 DEFAULT_BUFFER_RATION       = 1.5
 
+DEFAULT_EST_LANGUAGE        = "English"
+
 
 class EnterpriseAutonomousProjectEstimatorAgent(AbstractSubAgent):
     def __init__(self, **kwargs):
@@ -35,6 +37,7 @@ class EnterpriseAutonomousProjectEstimatorAgent(AbstractSubAgent):
         # start initialization
         super().initialize()
         self.buffer_ratio = self.get_kwargs("buffer") or DEFAULT_BUFFER_RATION
+        self.language = self.get_kwargs("language") or DEFAULT_EST_LANGUAGE
     
     # @override
     def agent_log_file(self) -> str:
@@ -69,6 +72,7 @@ class EnterpriseAutonomousProjectEstimatorAgent(AbstractSubAgent):
         now = datetime.now()
         return {
             **kwargs,
+            "target_language": self.language,
             "idea_id": self.idea_id,
             "project_name": self.__current_project_name__() or "-",
             "project_description": self.__current_project_description__() or "-",
@@ -149,9 +153,11 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument("--idea", type=str, help="Idea Identity / Project Name for searching")
     parser.add_argument("--buffer-ratio", type=float, default=1.5, help="Estimation with buffer ratio. Ex: 1.5")
+    parser.add_argument("--language", type=str, help="Translate Estimation to language. Ex: Vietnamese, English, etc.")
     args = parser.parse_args()
     EnterpriseAutonomousProjectEstimatorAgent(
         idea=args.idea,
         project=args.idea,
+        language=args.language,
         buffer=args.buffer_ratio
     ).execute()
