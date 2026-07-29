@@ -443,5 +443,5 @@ logging.basicConfig(
     datefmt="%Y-%m-%d %H:%M:%S"
 )
 def get_logger(logger_name="Helper"):
-    return logging.getLogger("CommunityForumScraper")
+    return logging.getLogger(logger_name)
 
