@@ -438,13 +438,44 @@ storage_info = {
     }
 }
 
+# ==============================================================================
+# GLOBAL CONFIGURATION LOGGER
+# ==============================================================================
+# Color ANSI table of log levels
+LOG_COLORS = {
+    'TRACE':    '\033[90m',     # Dark Gray (Highly detailed logs)
+    'DEBUG':    '\033[94m',     # Light Blue (Debugging information)
+    'INFO':     '\033[92m',     # Green (Normal operational messages)
+    'SUCCESS':  '\033[96m',     # Cyan (Successful operations)
+    'WARNING':  '\033[93m',     # Yellow (Warnings/non-critical issues)
+    'ERROR':    '\033[91m',     # Red (Errors/runtime exceptions)
+    'CRITICAL': '\033[95m',     # Magenta (Critical system failures)
+    'RESET':    '\033[0m'       # Reset to default terminal text color
+}
+
+class FullColorFormatter(logging.Formatter):
+    def format(self, record):
+        color = LOG_COLORS.get(record.levelname, LOG_COLORS['RESET'])
+        reset = LOG_COLORS['RESET']
+        
+        # Place the color code at the very beginning and the reset code at the very end
+        # This forces the entire log line to inherit the level color
+        log_format = f"{color}%(asctime)s [ %(name)s | %(levelname)s ] %(message)s{reset}"
+        
+        formatter = logging.Formatter(log_format, datefmt='%Y-%m-%d %H:%M:%S')
+        return formatter.format(record)
+
 # logging configuration
 # logging.basicConfig(level=logging.INFO, format="%(asctime)s [%(levelname)s]: %(message)s")
 logging.basicConfig(
     level=logging.INFO,
-    format="%(asctime)s [%(levelname)s] %(name)s: %(message)s",
+    format="%(asctime)s [ %(name)s | %(levelname)s ] %(message)s",
     datefmt="%Y-%m-%d %H:%M:%S"
 )
 def get_logger(logger_name="Helper"):
-    return logging.getLogger(logger_name)
+    logger = logging.getLogger(logger_name)
+    handler = logging.StreamHandler()
+    handler.setFormatter(FullColorFormatter())
+    logger.addHandler(handler)
+    return logger
 
