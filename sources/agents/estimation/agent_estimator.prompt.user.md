@@ -137,34 +137,36 @@ Render this table in "{{ target_language }}". Financial Impact and Resource Impa
 - DO NOT insert translated or accented characters inside the mermaid blocks, otherwise the compilation pipeline will crash.
 
 ##### Chart A: Financial Cost Boundary Matrix (USD)
-Use the official `xychart-beta` syntax. y-axis values MUST be raw integers representing thousands of USD.
+Use the official `xychart-beta` syntax. You MUST dynamically evaluate your calculated labor costs to determine the upper bound value for the y-axis. Replace the y-axis placeholder with the nearest rounded integer representing thousands of USD based on your actual Safe Cost calculation pass. Output raw integer series arrays representing the three sequential points [Min, Max, Safe] for each scenario under the bar directive.
 ```mermaid
 xychart-beta
 title "Total Cost Comparison Bounds (in Thousands USD)"
 x-axis ["Min Cost", "Max Cost", "Safe Cost"]
 y-axis "USD (Thousands)"
-0 --> 500
-bar
-bar
+0 --> [Insert_Dynamic_Y_Axis_Maximum_Integer]
+bar [Min_Int, Max_Int, Safe_Int]
+bar [Min_Int, Max_Int, Safe_Int]
+bar [Min_Int, Max_Int, Safe_Int]
+bar [Min_Int, Max_Int, Safe_Int]
 ```
 
 ##### Chart B: Project Delivery Timeline (Dynamic Gantt Chart)
-Define unique milestone IDs for each section. Use `dateFormat X` and simple numeric days offsets.
+Define unique milestone IDs for each section to isolate dependencies. Use `dateFormat X` and present calculated schedules using raw numeric days offsets matching your Pass 2 execution parameters.
 ```mermaid
 gantt
 title Project Timeline Acceleration Matrix
 dateFormat X
 axisFormat %d days
 section Enterprise Traditional
-Phase 1 Execution :ent_p1, 0, 30
-Phase 2 Execution :ent_p2, after ent_p1, 45
+Phase 1 Execution :ent_p1, 0, [Insert_Calculated_Days_Int]
+Phase 2 Execution :ent_p2, after ent_p1, [Insert_Calculated_Days_Int]
 section Enterprise AI
-Phase 1 Execution :ent_ai1, 0, 18
-Phase 2 Execution :ent_ai2, after ent_ai1, 25
+Phase 1 Execution :ent_ai1, 0, [Insert_Calculated_Days_Int]
+Phase 2 Execution :ent_ai2, after ent_ai1, [Insert_Calculated_Days_Int]
 ```
 
 ##### Chart C: Risk Assessment Severity Matrix
-Use the official `quadrantChart` syntax with English coordinates.
+Use the official `quadrantChart` syntax with English coordinates. Map identified system engineering risks dynamically using exact calculated probability and impact float floats inside the boundary elements.
 ```mermaid
 quadrantChart
 title Risk Assessment Matrix (Probability vs Impact)
@@ -174,7 +176,7 @@ quadrant-1 "Critical Risks"
 quadrant-2 "Major Risks"
 quadrant-3 "Minor Risks"
 quadrant-4 "Monitor Risks"
-"R-001: Data Leakage" : [0.8, 0.9]
+"R-001: Data Leakage" : [Insert_Probability_Float, Insert_Impact_Float]
 ```
 
 #### SECTION 7: VISUALIZATION METADATA FOR BACKEND PROCESSING
