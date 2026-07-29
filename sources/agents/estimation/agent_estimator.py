@@ -11,7 +11,8 @@ import numpy as np
 
 # Now Python can seamlessly see and import the centralized helper utility cleanly!
 from sources.agents.agent_helper import (
-    write_file
+    write_file,
+    json_tostring
 )
 
 # super agent
@@ -118,6 +119,7 @@ class EnterpriseAutonomousProjectEstimatorAgent(AbstractSubAgent):
         self.logger.debug(f"[ 📊 DATA EXTRACTED ] Live Exchange Rate Captured: 1 USD = {exchange_rate} VND")
         self.logger.debug(f"| Enterprise Costs: {ent_cost_usd} | Freelance Costs: {free_cost_usd}")
         self.logger.debug(f"| Enterprise Timelines: {ent_time} | Freelance Timelines: {free_time}")
+        self.logger.info(f"- 📊 Extracted Metrics: {json_tostring(metrics_dict)}")
         return metrics_dict
     
     def __extract_mermaid_visualizations__(self, raw_response):
@@ -128,6 +130,7 @@ class EnterpriseAutonomousProjectEstimatorAgent(AbstractSubAgent):
         
         # Explicit fallback architectural name arrays
         self.logger.info(f"[ 📊 MERMAID ENGINE ] Intercepted {len(mermaid_blocks)} dynamic diagrams. Running vector compilation pipeline...")
+        self.logger.info(f"- Extracted Visualizations: {json_tostring(mermaid_blocks)}")
         visualizations_data = {}
         
         if mermaid_blocks:
