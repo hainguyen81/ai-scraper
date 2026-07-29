@@ -1,11 +1,11 @@
-Perform a complete project estimation, architectural costing analysis, and financial risk registry based strictly on the provided documents. The entire output response, without a single exception, MUST be written fully and exclusively in the target language defined by the variable: **{{ target_language }}**.
+Perform a complete project estimation, architectural costing analysis, and dynamic risk registry based strictly on the provided documents. The entire output response, without a single exception, MUST be written fully and exclusively in the language defined by the variable: **{{ target_language }}**.
 
 ========================================================================
-🚨 SYSTEM GOVERNANCE MANDATE ON OUTPUT LANGUAGE (STRICT LOCKDOWN)
+🚨 SYSTEM GOVERNANCE MANDATE ON OUTPUT STRUCTURE (STRICT LOCKDOWN)
 - The target language for this entire execution is: "{{ target_language }}".
 - EVERY single word, header, table cell, analysis, and sentence OUTSIDE of raw JSON and Mermaid code blocks MUST be rendered fully and exclusively in "{{ target_language }}".
-- CRITICAL FORMATTING RULE: When rendering currency or numbers in "{{ target_language }}", you MUST strictly use plain integer numbers or standard dot separators (e.g., write 2928580000 or 2.928.580.000). Never insert text artifacts, question marks, or broken symbols (like ?,?) inside tables or data parameters.
-- Any output containing foreign language leakage or formatting corruption outside code blocks will fail the compilation audit.
+- CRITICAL FORMATTING LOCKDOWN: You MUST start your response directly with the main title header `# PROJECT ESTIMATION & RISK REGISTRY REPORT`. Do NOT include any introductory greetings, markdown code block wrappers around the entire response, hidden reasoning steps, text thinking blocks (e.g., do NOT use <thought> or thinking tags), scratchpads, analyze commentaries, or conversational prefaces. 
+- ABSOLUTE CODE BAN: Do NOT output, print, or render any Python code blocks, script fragments, raw programming code, or internal computation code execution summaries in the final output text. Any leak of executable code blocks or analytical thinking artifacts outside Section 6 and Section 7 triggers an instant governance rejection.
 ========================================================================
 
 ### [Asset 1: Core Product Idea]
@@ -23,22 +23,21 @@ Perform a complete project estimation, architectural costing analysis, and finan
 
 ---
 
-### 🛑 REAL-TIME SOURCING & TRIPLE-CHECK MATHEMATICAL DIRECTIVES:
-You MUST execute your internal reasoning through 3 independent calculation passes and apply your web search tool. If your outputs fail these logic equations, the compilation pipeline will crash:
+### 🛑 REAL-TIME DATA SOURCING & FINANCIAL EQUATION DIRECTIVES:
+Execute your computational analysis through invisible backend math processing and apply your web search tool to guarantee 100% mathematical precision. Do NOT output your internal calculation steps or workflow logs:
 
-1. PASS 1 (Live Sourcing & Provenance Mapping):
-   - Query the internet to capture real-time market standard pricing data for the current calendar year: exact USD to VND exchange rate, average market cost/salary per Man-Month (MM) for engineers (Corporate vs Freelance), and real-time monthly cost allocations for AI Dev Tooling/Tokens.
-   - Document the exact source details: Website Names, Live Destination URLs, and the Extraction Timestamp.
+1. PASS 1 (Live Sourcing & Provenance Retrieval):
+   - Search the internet to find current market-accurate figures for: exact USD to VND exchange rate, standard tech engineering salaries per Man-Month (Corporate vs Freelance operational models), and actual monthly subscription rates for top AI Dev packages and Cloud platform nodes matching the architecture components. 
+   - Document these sources (Website domains and active links) inside Section 1 footnotes.
 
-2. PASS 2 (AI Acceleration & Strict Logic Inequality Constraints):
-   - Total Labor Budget for AI-Augmented scenarios MUST apply a strict 35% to 50% velocity reduction factor.
-   - Calculate Monthly Cloud Infrastructure OpEx. Corporate Enterprise MUST reflect multi-region GKE HA pricing, while Freelancer reflects single-instance VPS setups.
-   - CRITICAL INEQUALITY: (AI-Augmented Total Budget) < (Traditional Human-Only Total Budget) and (AI-Augmented Months) < (Traditional Human-Only Months). They CANNOT be equal.
-   - Formula for Safety Margin: Buffer = Base Max Value * Buffer Ratio Multiplier; Safe Bound = Max Bound + Buffer.
+2. PASS 2 (Agile Labor Velocity & Cloud OpEx Equations):
+   - Apply a strict 35% to 50% labor Man-Month optimization compression factor for AI-Augmented execution paths compared to Traditional paths.
+   - Mathematically enforce that (AI-Augmented Labor Cost) < (Traditional Labor Cost) and (AI-Augmented Months) < (Traditional Months) across all models.
+   - Formulate Safety Margins cleanly using the logic boundary rule: Safe Bound = Max Bound * (1 + Buffer Ratio Multiplier).
 
-3. PASS 3 (Cross-Currency Verification & Strict Number Formatting):
-   - Convert all calculated USD figures into VND using your real-time extracted exchange rate. Cross-check that for every range boundary: (VND Value) / (USD Value) = Exchange Rate EXACTLY.
-   - CRITICAL: Every numerical value displayed in the Markdown report tables MUST be written using pure plain digits or clear dot notations (e.g., 5336100000). Absolutely no corrupted symbols like "?" or ",?" are allowed. Values in Section 3 MUST match Section 7 exactly.
+3. PASS 3 (Cross-Currency Synchronization Validation):
+   - Convert USD bounds to VND bounds using the extracted live exchange rate. Cross-check that for every single range tier: (VND Value) / (USD Value) = Exchange Rate EXACTLY.
+   - Guarantee that every raw numeric figure declared inside the Markdown Section 3 report tables matches the JSON structural values in Section 7 down to the exact float digit.
 
 ---
 
@@ -65,10 +64,10 @@ Dynamically inject the real-time sourced values and their exact data lineage det
 
 | Audit Parameter | Information Details |
 | :--- | :--- |
-| **Live Exchange Rate Applied** | 1 USD = [Insert Raw Digit Rate] VND |
-| **Enterprise Cost / Man-Month** | $[Insert Raw Digit Rate] USD / Month |
-| **Freelancer Cost / Man-Month** | $[Insert Raw Digit Rate] USD / Month |
-| **Sourced AI Tooling Allocation / Month** | Enterprise: $[Insert Raw Digit Rate] USD | Freelance: $[Insert Raw Digit Rate] USD |
+| **Live Exchange Rate Applied** | 1 USD = [Insert Exact Integer Rate Found Online] VND |
+| **Enterprise Cost / Man-Month** | $[Insert Current Market Enterprise Rate Found Online] USD / Month |
+| **Freelancer Cost / Man-Month** | $[Insert Current Market Freelancer Rate Found Online] USD / Month |
+| **Sourced AI Tooling Allocation / Month** | Enterprise: $[Insert Online Found Rate] USD | Freelance: $[Insert Online Found Rate] USD |
 | **Sourced Cloud Infrastructure Benchmarks** | Enterprise Multi-Region GKE: $[Rate]/mo | Freelancer VPS: $[Rate]/mo |
 | **Computation Timestamp** | [Insert System Execution Date/Time] |
 | **Status** | Sourced, Audited & Validated |
@@ -99,14 +98,34 @@ In "{{ target_language }}", provide a highly granular engineering capacity plann
 | **Monthly Cloud Infrastructure OpEx** | $[Min_USD] - $[Max_USD] / mo | [Min_VND] - [Max_VND] / mo | $[Safe_USD] USD / [Safe_VND] VND per mo |
 
 ##### 3. Delivery Timeline Duration Projections
-Output the calendar months range for all 4 scenarios in "{{ target_language }}". AI-Augmented paths MUST be 35% - 50% shorter than Traditional paths.
-- Corporate Enterprise (Traditional Human-Only): [Min - Max | Safe] Calendar Months
-- Corporate Enterprise (AI-Augmented): [Min - Max | Safe] Calendar Months
-- Freelancer Team (Traditional Human-Only): [Min - Max | Safe] Calendar Months
-- Freelancer Team (AI-Augmented): [Min - Max | Safe] Calendar Months
+Output the calendar months range for all 4 scenarios strictly using this structured table format in "{{ target_language }}":
+
+| Operational Model | Traditional Human-Only Duration | AI-Augmented Duration | Safety Safe Bound |
+| :--- | :--- | :--- | :--- |
+| **Corporate Enterprise** | [Min - Max] Calendar Months | [Min - Max] Calendar Months | [Safe] Calendar Months |
+| **Freelancer Team** | [Min - Max] Calendar Months | [Min - Max] Calendar Months | [Safe] Calendar Months |
 
 #### SECTION 4: ARCHITECTURAL COST JUSTIFICATION & JIRA WBS ROADMAP
-In "{{ target_language }}", deliver a deep analytical justification mapping technical choices to cost boundaries. Break down the financial delta using Operational Overhead, Security Hardening Boundaries (mTLS, WAF, Argon2id, SHA-256), HA/DR Topology (Multi-region GKE vs Single VPS), and Data Isolation. Generate a structural, nested hierarchical roadmap mapped into three tiers: Epic, Task, and Sub-task as actionable Jira tickets.
+Deliver a deep analytical justification and an actionable roadmap structured exclusively into two distinct table blocks in "{{ target_language }}":
+
+##### 1. Architectural Cost Justification Matrix
+[Render a brief introductory sentence in "{{ target_language }}"]
+
+| Architectural Pillar | Core Technical Requirements | Projected Financial & Complexity Impact |
+| :--- | :--- | :--- |
+| **Operational & Management Overhead** | Corporate infrastructure overhead vs zero-overhead freelance execution | [Insert Calculated Sourced OpEx Impact] |
+| **Security Hardening Boundaries** | Implementation of mTLS, custom Envoy WAF, Argon2id, and SHA-256 hash-chained immutable logging | [Insert Sourced Complexity % Impact] |
+| **High Availability & Disaster Recovery (HA/DR)** | Multi-region GKE deployment with clustered RabbitMQ topologies vs Single-instance VPS | [Insert Sourced Cloud Cost Multiplier Impact] |
+| **Data Isolation Strategy** | Database-per-tenant isolation using dynamic dynamic encrypted routing strings | [Insert Sourced Engineering Effort % Impact] |
+
+##### 2. Jira-Compliant Work Breakdown Structure (WBS) Roadmap
+[Render a brief introductory sentence in "{{ target_language }}"]
+
+| Jira Epic Token | Actionable Task Target | Discrete Sub-task Execution Items |
+| :--- | :--- | :--- |
+| **[Insert Epic Name]** | [Insert Task Name, e.g., OAuth2 Implementation] | - [Sub-task 1]\n- [Sub-task 2] |
+| **[Insert Epic Name]** | [Insert Task Name, e.g., JWT Token Management] | - [Sub-task 1]\n- [Sub-task 2] |
+| **[Insert Epic Name]** | [Insert Task Name, e.g., Multi-Tenancy Routing] | - [Sub-task 1]\n- [Sub-task 2] |
 
 #### SECTION 5: PROJECT RISK REGISTRY & COMPOUNDING IMPACT MATRIX
 Render this table fully in "{{ target_language }}". Financial Impact and Resource Impact MUST be mathematically calculated using Pass 3 directives:
@@ -119,22 +138,26 @@ Render this table fully in "{{ target_language }}". Financial Impact and Resourc
 *CRITICAL MANDATE FOR SYNTAX COMPLIANCE*: You MUST generate clean, functional, and valid Mermaid.js blocks.
 - ALL text labels, title keys, quadrant strings, and task details INSIDE the mermaid code blocks MUST be written in plain, unaccented English (e.g., "Min Cost", "Max Cost", "Safe Cost").
 - DO NOT insert translated or accented characters inside the mermaid blocks, otherwise the compilation pipeline will crash.
-- CRITICAL MERMAID v11 SYNTAX RULE: The `bar` directive MUST NOT contain any brackets or parentheses. Each `bar` line MUST be followed immediately by exactly three comma-separated raw integer numbers representing thousands of USD without any string placeholders (e.g., bar 150, 220, 310).
 
 ##### Chart A: Financial Cost Boundary Matrix (USD)
+Use the official `xychart-beta` syntax. You MUST evaluate labor costs to find the maximum value for the y-axis, rounded up to the nearest hundred, and replace the upper bound placeholder with this integer.
+CRITICAL MERMAID v11 SYNTAX RULE: Each `bar` directive MUST contain exactly three comma-separated raw integer numbers wrapped strictly inside single brackets representing [Min, Max, Safe] bounds (e.g., bar [150, 220, 310]). Output exactly FOUR distinct `bar` lines representing the 4 scenarios. Do NOT include any string characters inside the final generated brackets.
+
 ```mermaid
 xychart-beta
 title "Total Cost Comparison Bounds (in Thousands USD)"
 x-axis ["Min Cost", "Max Cost", "Safe Cost"]
 y-axis "USD (Thousands)"
 0 --> [Insert_Calculated_Max_Integer_Value_Here]
-bar Insert_Min_Int, Insert_Max_Int, Insert_Safe_Int
-bar Insert_Min_Int, Insert_Max_Int, Insert_Safe_Int
-bar Insert_Min_Int, Insert_Max_Int, Insert_Safe_Int
-bar Insert_Min_Int, Insert_Max_Int, Insert_Safe_Int
+bar [Insert_Min_Int, Insert_Max_Int, Insert_Safe_Int]
+bar [Insert_Min_Int, Insert_Max_Int, Insert_Safe_Int]
+bar [Insert_Min_Int, Insert_Max_Int, Insert_Safe_Int]
+bar [Insert_Min_Int, Insert_Max_Int, Insert_Safe_Int]
 ```
 
 ##### Chart B: Project Delivery Timeline (Dynamic Gantt Chart)
+To prevent syntax errors in Mermaid version 11+, you MUST use a fixed project start date format (YYYY-MM-DD) and define tasks strictly using duration in days (e.g., 30d). Do NOT use complex token dependencies or raw un-suffixed integers. Use the current year-month-day for the start milestone.
+
 ```mermaid
 gantt
 title Project Timeline Acceleration Matrix
@@ -155,6 +178,8 @@ Phase 2 Execution :free_ai2, after free_ai1, [Insert_Calculated_Days_Int]d
 ```
 
 ##### Chart C: Risk Assessment Severity Matrix
+Use the official `quadrantChart` syntax with English coordinates. Map identified system engineering risks dynamically using exact calculated probability and impact float parameters inside the boundary elements.
+
 ```mermaid
 quadrantChart
 title Risk Assessment Matrix (Probability vs Impact)

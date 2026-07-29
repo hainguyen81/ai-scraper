@@ -92,10 +92,23 @@ def exception_stacktrace(e) -> str:
     return None if not e else f"{str(e)}: {stacktrace}" if stacktrace else str(e)
 
 def makedirs(path):
-    checked_dir = path
-    if os.path.isfile(checked_dir):
-        checked_dir = os.path.dirname(checked_dir)
-    os.makedirs(checked_dir, exist_ok=True)
+    """
+    Safely resolves the absolute directory path from any given file or folder path
+    and creates the underlying directory tree structure on disk memory if it does not exist.
+    Fixed the latent bug where non-existent file paths were evaluated as directories.
+    """
+    # Convert the raw string path into a structured Path object boundary
+    target_path = Path(path)
+    
+    # CRITICAL FIX: If the path target explicitly contains a file extension suffix (e.g., .png, .svg)
+    # or if you explicitly know it represents a target file destination, safely extract its parent directory
+    if target_path.suffix or os.path.isfile(path):
+        resolved_dir = target_path.parent
+    else:
+        resolved_dir = target_path
+
+    # Execute atomic file system creation with native concurrency protections
+    resolved_dir.mkdir(parents=True, exist_ok=True)
 
 def write_file(file, data, dir=None, append=False):
     checked_dir = dir if dir else os.path.dirname(file)
