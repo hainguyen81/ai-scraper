@@ -260,7 +260,7 @@ class EnterpriseAutonomousProjectEstimatorAgent(AbstractSubAgent):
             
             categories = ['Min Bound', 'Max Bound', 'Safe Bound']
             x = np.arange(len(categories))
-            width = 0.18  # Narrow bar width to prevent chart overlap when scaling variables
+            width = 0.16  # Optimized bar width to prevent spatial overlapping across 4 scenario series
 
             # -----------------------------------------------------------------
             # SUBPLOT 1: 4-SCENARIO FINANCIAL LABOR BUDGET MATRIX ($ vs ₫)
@@ -287,9 +287,9 @@ class EnterpriseAutonomousProjectEstimatorAgent(AbstractSubAgent):
             # -----------------------------------------------------------------
             # SUBPLOT 2: NEWLY ADDED CLOUD INFRASTRUCTURE OPEX PROJECTIONS ($ vs ₫)
             # -----------------------------------------------------------------
-            # Render the infrastructure cost variance (Multi-region GKE HA vs Single Instance VPS)
-            ax3.bar(x - width, ent_cloud_opex, width * 2, label='Enterprise Cloud (GKE HA)', color='#8e44ad', alpha=0.85)
-            ax3.bar(x + width, free_cloud_opex, width * 2, label='Freelance Cloud (VPS)', color='#2980b9', alpha=0.85)
+            # CRITICAL FIX: Aligned width constraints to width/2 offsets to prevent bar overlapping anomalies
+            ax3.bar(x - width / 2, ent_cloud_opex, width, label='Enterprise Cloud (GKE HA)', color='#8e44ad', alpha=0.85)
+            ax3.bar(x + width / 2, free_cloud_opex, width, label='Freelance Cloud (VPS)', color='#2980b9', alpha=0.85)
             
             ax3.set_ylabel('Monthly Cloud OpEx in USD ($)', fontsize=11, fontweight='bold')
             ax3.set_title('Monthly Cloud Infrastructure OpEx', fontsize=11, pad=10, fontweight='bold')
@@ -330,7 +330,7 @@ class EnterpriseAutonomousProjectEstimatorAgent(AbstractSubAgent):
             
         except Exception as e:
             self.logger.warning(f"⚠️ Exception while generating pilot chart to file {output_image_path}: {str(e)}")
-    
+
     # @override
     def clean_response(self, raw_response, **kwargs):
         return {
