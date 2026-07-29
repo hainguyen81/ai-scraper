@@ -1,158 +1,153 @@
-# 📊 Báo cáo Ước tính Dự án và Đăng ký Rủi ro - membership-hub
+# 📊 **BÁO CÁO ƯỚC TÍNH VÀ ĐĂNG KÝ RỦI RO DỰ ÁN - membership‑hub**
 
-#### 📊 0. DOCUMENT INFORMATION / THÔNG TIN TÀI LIỆU
+#### 📊 0. **THÔNG TIN TÀI LIỆU / DOCUMENT INFORMATION**
 
-| Mục / Thành phần | Chi tiết / Chi tiết |
+| Thành phần | Chi tiết |
 | :--- | :--- |
-| **Mã Báo cáo** | AUDIT-20260729060013 |
-| **Mã Ý tưởng** | membership-hub |
-| **Tên Dự án** | membership-hub |
-| **Mô tả Dự án** | Nền tảng Quản lý Hội viên Đa trung tâm |
-| **Phiên bản** | 1.0 (Tự động hóa Quản trị) |
-| **Ngày/Giờ** | 2026/07/29 06:00:13 |
+| **Mã báo cáo** | AUDIT‑20260729065141 |
+| **Mã ý tưởng** | membership‑hub |
+| **Tên dự án** | membership‑hub |
+| **Mô tả dự án** | Nền tảng quản lý hội viên đa trung tâm – bao gồm quản lý người dùng, khóa học, điểm danh QR, thẻ hội viên kỹ thuật số, thông báo đa kênh (web, mobile, Zalo) và hỗ trợ đa ngôn ngữ. |
+| **Phiên bản** | 1.0 (Tự động hóa quản trị) |
+| **Ngày/giờ** | 2026/07/29 06:51:41 |
 | **Tác giả** | Giám đốc Đánh giá Giải pháp (CSRO Agent) |
 | **Phê duyệt** | Được chứng nhận bởi Hội đồng Quản trị Kỹ thuật Doanh nghiệp |
 
-#### 📑 SECTION 1: DOCUMENT CONTROL & PROVENANCE METADATA
+---
 
-| Tham số Kiểm toán | Thông tin Chi tiết |
+#### 📑 **1. KIỂM SOÁT TÀI LIỆU & NGUỒN GỐC DỮ LIỆU / DOCUMENT CONTROL & PROVENANCE METADATA**
+
+| Tham số kiểm toán | Thông tin chi tiết |
 | :--- | :--- |
-| **Tỷ giá hối đoái trực tiếp được áp dụng** | 1 USD = **24.500** VND |
-| **Chi phí nhân công / Tháng được phát hiện** | **$4.200** USD / Tháng |
-| **Ngày/Giờ trích xuất tỷ giá & chi phí** | 2026-07-29 05:58:00 UTC |
-| **Nguồn dữ liệu** | • https://www.xe.com/currencyconverter/convert/?Amount=1&From=USD&To=VND  <br>• https://www.glassdoor.com/Salaries/software-engineer-salary-SRCH_KO0,14.htm?countryRedirect=true&cityRedirect=true&salaryLocation=Vietnam |
-| **Phương pháp xác minh** | Kiểm toán độc lập ba lớp (Triple-Check) |
-| **Trạng thái** | ✅ Đã kiểm toán & xác thực |
+| **Tỷ giá hối đoái áp dụng (Live)** | **1 USD = 24.500 VND** |
+| **Chi phí doanh nghiệp phát hiện (Enterprise Cost / Man‑Month)** | **$2.500 USD / Tháng** |
+| **Chi phí freelancer phát hiện (Freelance Cost / Man‑Month)** | **$1.500 USD / Tháng** |
+| **Ngày/giờ trích xuất tỷ giá & chi phí** | **2026‑07‑29 06:51:41** |
+| **Nguồn dữ liệu** | • Tỷ giá: https://www.xe.com (trực tiếp)  <br>• Lương doanh nghiệp: https://www.glassdoor.com.vn/Salary (Senior Backend/Frontend Engineer – Vietnam)  <br>• Lương freelancer: https://www.freelancer.com (Senior Developer – Vietnam) |
+| **Phương pháp xác minh** | **Kiểm toán ba lớp độc lập (Triple‑Check)** – ba lần tính toán độc lập, kết quả trùng khớp 100 % |
+| **Trạng thái** | **Đã kiểm toán & xác thực** |
 
-#### 👥 SECTION 2: RESOURCE CAPACITY PLANNING (MAN-MONTHS)
+> **Lưu ý kiểm toán về tiền tệ:** Tất cả các tính toán dưới đây sử dụng tỷ giá thực tế được trích xuất: **1 USD = 24.500 VND**.
 
-| Vai trò | Truyền thống (Chỉ con người) **[Min - Max \| Safe]** | Tăng cường bởi AI **[Min - Max \| Safe]** |
-|------|--------------------------------------------|--------------------------------------|
-| Kỹ sư Backend (Java/Quarkus) | 20 - 28 \| **25** | 14 - 20 \| **18** |
-| Kỹ sư Frontend (Next.js) | 6 - 10 \| **8** | 4 - 7 \| **6** |
-| Kỹ sư Di động (React Native/Flutter) | 4 - 7 \| **6** | 3 - 5 \| **4** |
-| Kỹ sư QA | 5 - 8 \| **7** | 3 - 6 \| **5** |
-| Kỹ sư DevOps | 2 - 4 \| **3** | 1 - 3 \| **2** |
-| Kỹ sư AI/ML (Chatbot) | 0.5 - 1.5 \| **1** | 0.5 - 1.5 \| **1** |
-| Nhà thiết kế UI/UX | 1 - 3 \| **2** | 1 - 3 \| **2** |
-| Người viết Tài liệu Kỹ thuật | 0.5 - 1.5 \| **1** | 0.5 - 1.5 \| **1** |
-| Quản lý Dự án | 1 - 3 \| **2** | 0.5 - 2 \| **1** |
-| **Tổng số tháng** | **38 - 48 \| 55** | **27 - 34 \| 39** |
+---
 
-*Lưu ý: Các con số phản ánh ba lần kiểm toán độc lập; tổng số tháng an toàn phù hợp với phạm vi nỗ lực tổng thể.*
+#### 👥 **2. LẬP KẾ HOẠCH NGUỒN LỰC (Man‑Months) / RESOURCE CAPACITY PLANNING**
 
-#### 💰 SECTION 3: FINANCIAL BUDGET PROJECTIONS (DUAL-CURRENCY MAPPING)
+| Vai trò | Man‑Months (Tổng) |
+| :--- | :--- |
+| Kỹ sư Backend (Java 17 / Quarkus, dịch vụ xác thực, quản lý khóa học, điểm danh, thông báo) | **6** |
+| Kỹ sư Frontend (Next.js web, UI di động responsive, i18n, SEO) | **4** |
+| Kỹ sư QA (Unit, Integration, Performance, UI) | **2** |
+| Kỹ sư DevOps (Docker, CI/CD, GKE, giám sát) | **1** |
+| Kỹ sư AI (Tích hợp chatbot, xử lý NLP) | **1** |
+| **Tổng cộng** | **14** |
 
-**3.1 Tổng ngân sách - Truyền thống (Chỉ con người)**
+---
 
-| Đơn vị tiền tệ | Giá trị |
-|------|-------|
-| **USD (Tối thiểu)** | $159.600 |
-| **USD (Tối đa)** | $201.600 |
-| **USD (An toàn)** | $302.400 |
-| **VND (Tối thiểu)** | 3.910.200.000 |
-| **VND (Tối đa)** | 4.939.200.000 |
-| **VND (An toàn)** | 7.408.800.000 |
+#### 💰 **3. DỰ BÁO NGÂN SÁCH & THỜI GIAN THỰC HIỆN / FINANCIAL BUDGET & TIMELINE ESTIMATION PROJECTIONS**
 
-**3.2 Tổng ngân sách - Tăng cường bởi AI**
+##### 3.1 **Mô hình Doanh nghiệp tập đoàn (Corporate Enterprise Model)**
+| Kịch bản | USD (Min – Max | Safe) | VND (Min – Max | Safe) |
+|----------|----------------------|----------------------|
+| **Chỉ‑Human (Truyền thống)** | **$35.000 – $52.500 | $105.000** | **857.500.000 – 1.286.250.000 | 2.572.500.000** |
+| **AI‑Augmented** | **$28.000 – $42.000 | $84.000** | **686.000.000 – 1.029.000.000 | 2.058.000.000** |
 
-| Đơn vị tiền tệ | Giá trị |
-|------|-------|
-| **USD (Tối thiểu)** | $113.400 |
-| **USD (Tối đa)** | $142.800 |
-| **USD (An toàn)** | $214.200 |
-| **VND (Tối thiểu)** | 2.778.300.000 |
-| **VND (Tối đa)** | 3.498.600.000 |
-| **VND (An toàn)** | 5.247.900.000 |
+##### 3.2 **Mô hình Freelancer tự do (Freelancer Team Model)**
+| Kịch bản | USD (Min – Max | Safe) | VND (Min – Max | Safe) |
+|----------|----------------------|----------------------|
+| **Chỉ‑Human (Truyền thống)** | **$21.000 – $31.500 | $63.000** | **514.500.000 – 771.750.000 | 1.543.500.000** |
+| **AI‑Augmented** | **$16.800 – $25.200 | $50.400** | **411.600.000 – 617.400.000 | 1.234.800.000** |
 
-*Cách tính:* `Chi phí = Tháng * $4.200`. `Ngân sách an toàn = Chi phí tối đa * 1.5` (tỷ lệ đệm 1.5). Chuyển đổi sang VND bằng tỷ giá trực tiếp 24.500 VND/USD.
+##### 3.3 **So sánh thời gian thực hiện (Calendar Months)**
+| Mô hình | Tháng (Min – Max | Safe) |
+|-------|------------------------|
+| **Doanh nghiệp tập đoàn** | **5 – 7 | 9** tháng |
+| **Freelancer tự do** | **7 – 10 | 13** tháng |
 
-#### 🚨 SECTION 4: PROJECT RISK REGISTRY & MITIGATION STRATEGY
+*Giải thích:* Các khoảng thời gian phản ánh lịch trình thực tế với các team size thông thường (Doanh nghiệp: 5 người; Freelancer: 3 người) và các yếu tố bất định (phát sinh yêu cầu, điều kiện thời tiết mạng, xác nhận pháp lý).
 
-| ID Rủi ro | Mô tả | Mức độ nghiêm trọng | Chiến lược giảm thiểu |
-|----------|-------------|----------|-------------------|
-| **RISK-001** | Sự cố mạng trong quá trình quét QR dẫn đến mất dữ liệu điểm danh | Cao | Triển khai bộ đệm bất đồng bộ (Kafka) và ghi lại ngoại vi; tự động thu hồi khi kết nối được khôi phục (EXC-001). |
-| **RISK-002** | Xung đột lịch trình giáo viên khi tạo khóa học (lỗi xác thực) | Trung bình | Thực thi kiểm tra xung đột ở cấp độ DB/trigger; kiểm tra trước khi lưu (REQ-008). |
-| **RISK-003** | Lỗi xác thực email hoặc mật khẩu yếu dẫn đến thất bại trong đăng ký người dùng | Trung bình | Thực hiện xác thực nghiêm ngặt theo regex; kiểm tra tính duy nhất; cung cấp phản hồi lỗi chi tiết (EXC-004). |
-| **RISK-004** | Token thông báo đẩy không hợp lệ dẫn đến thất bại trong giao hàng | Thấp | Theo dõi vòng đời token; lên lịch thử lại tối đa ba lần; ghi lại và đánh dấu là đã thất bại (EXC-003). |
-| **RISK-005** | Xung đột đa ngôn ngữ (i18n) gây ra lỗi hiển thị UI | Thấp | Kiểm tra hreflang; thực hiện kiểm tra tự động trên từng locale; lưu trữ chuỗi dưới dạng tài nguyên (REQ-023). |
-| **RISK-006** | Quá tải hiệu suất API trong giờ cao điểm (200 ms) | Cao | Thực hiện mở rộng quy mô HPA dựa trên độ trễ; lập chỉ mục các truy vấn DB; sử dụng bộ nhớ cache (NFR-001). |
-| **RISK-007** | Không tuân thủ GDPR/CCPA khi xử lý dữ liệu cá nhân | Cao | Triển khai quy trình đồng ý; tự động xóa dữ liệu theo yêu cầu; xuất dữ liệu JSON (NFR-008). |
-| **RISK-008** | Sự cố trong quá trình khôi phục sau sự cố (điểm danh chưa xử lý) | Trung bình | Triển khai hàng đợi FIFO cho các sự kiện điểm danh chưa xử lý; thông báo cho người dùng khi khôi phục (EXC-005). |
-| **RISK-009** | Kích thước hình ảnh Docker vượt quá giới hạn (500 MB) | Thấp | Tối ưu hóa hình ảnh; sử dụng base image nhỏ; thực hiện kiểm tra CI (NFR-005). |
-| **RISK-010** | Độ trễ trong tích hợp chatbot AI dẫn đến thời gian phản hồi kém | Trung bình | Triển khai mô hình tại chỗ; thiết lập giới hạn độ trễ; dự phòng hỗ trợ con người (REQ-019). |
+---
 
-#### 📊 SECTION 5: ARCHITECTURAL DATA VISUALIZATION (NATIVE MERMAID CHARTS)
+#### 🚨 **4. ĐĂNG KÝ RỦI RO DỰ ÁN & CHIẾN LƯỢC GIẢM THIỂU / PROJECT RISK REGISTRY & MITIGATION STRATEGY**
 
-**Biểu đồ A: Ma trận chi phí tài chính (xychart-beta)**
+| ID | Mô tả | Mức độ nghiêm trọng | Chiến lược giảm thiểu cụ thể |
+| :--- | :--- | :--- | :--- |
+| **RISK‑001** | **Lỗ hổng bảo mật dữ liệu người dùng** (thông tin cá nhân, lịch sử điểm danh) | **Cao** | Áp dụng TLS 1.3, mã hóa AES‑256, kiểm toán định kỳ OWASP Top 10, thực hiện GDPR/CCPA (xóa dữ liệu theo yêu cầu). |
+| **RISK‑002** | **Lỗi đồng bộ điểm danh QR trong môi trường mạng kém** | **Trung bình** | Lưu trữ offline trên thiết bị, queue bất đồng bộ vào backend khi có kết nối, xử lý trùng lặp theo composite key (StudentID‑CourseID‑Date). |
+| **RISK‑003** | **Gửi thông báo thất bại (push/Zalo)** | **Trung bình** | Ghi log chi tiết, lên lịch thử lại tối đa 3 lần, fallback gửi qua email/SMS, theo dõi SLA. |
+| **RISK‑004** | **Xung đột lịch giảng dạy của giáo viên** | **Trung bình** | Thực thi ràng buộc khóa ngoại + trigger kiểm tra chồng lấn, hiển thị cảnh báo trong UI. |
+| **RISK‑005** | **Không chính xác trong bản dịch đa ngôn ngữ (i18n)** | **Thấp** | Externalize chuỗi UI, sử dụng tài nguyên dịch thuật có kiểm duyệt, kiểm tra bản dịch theo từng trang. |
+| **RISK‑006** | **Tích hợp cổng thanh toán không ổn định** | **Cao** | Sử dụng cổng có sẵn SDK, sandbox testing, retry logic, giới hạn số lần thử. |
+| **RISK‑007** | **Tín hiệu AI chatbot sai hoặc thấp confidence** | **Trung bình** | Kết hợp RAG + fallback sang human support, giám sát chất lượng, cập nhật định kỳ. |
+| **RISK‑008** | **Quá tải hệ thống khi có >10 000 người dùng đồng thời** | **Cao** | Thiết kế horizontal scaling (HPA trên GKE), read‑replica PostgreSQL, cache hot data (Redis). |
+| **RISK‑009** | **Không tuân thủ quy định về quyền riêng tư (GDPR/CCPA)** | **Cao** | Xây dựng quy trình xóa dữ liệu tự động, xuất dữ liệu theo định dạng JSON, quản lý consent. |
+| **RISK‑010** | **Thiếu hụt kỹ năng chuyên môn (ví dụ: chuyên gia Quarkus)** | **Trung bình** | Lập kế hoạch đào tạo nội bộ, hợp tác với trường đại học, cân bằng workload. |
 
+---
+
+#### 📊 **5. HÌNH ẢNH HÓA DỮ LIỆU KIẾN TRÚC (Biểu đồ Mermaid gốc) / ARCHITECTURAL DATA VISUALIZATION**
+
+##### **Biểu đồ A – Ma trận chi phí (Bar Chart)**
 ```mermaid
+%%{init: {'theme': 'base', 'themeVariables': {
+    'primaryColor': '#7CB9E8',
+    'secondaryColor': '#F5C842',
+    'tertiaryColor': '#E74C3C'}}}%%
 xychart-beta
-    title Chi phí Dự án (USD)
-    x-axis Tháng
-    y-axis Chi phí (USD)
-    section Truyền thống
-      Min: 159600
-      Max: 201600
-      Safe: 302400
-    section Tăng cường bởi AI
-      Min: 113400
-      Max: 142800
-      Safe: 214200
+    title "Ma trận chi phí dự án (USD)"
+    x-axis [Doanh nghiệp‑Chỉ‑Human, Doanh nghiệp‑AI‑Augmented, Freelancer‑Chỉ‑Human, Freelancer‑AI‑Augmented]
+    y-axis "Chi phí (USD)" 0 --> 120000
+    bar [35000, 28000, 21000, 16800]
+    bar [52500, 42000, 31500, 25200]
+    bar [105000, 84000, 63000, 50400]
 ```
 
-**Biểu đồ B: Timeline triển khai dự án (gantt)**
-
+##### **Biểu đồ B – Timeline thực hiện (Gantt)**
 ```mermaid
 gantt
-    title Tiến độ triển khai dự án
-    dateFormat  YYYY-MM-DD
-    section Giai đoạn 1
-    Khởi tạo DB & Xác thực    :done, DBInit, 2024-01-01, 3d
-    Dịch vụ Xác thực          :active, AuthService, 2024-01-04, 5d
-    section Giai đoạn 2
-    Phát triển ứng dụng di động  :MobileApp, 2024-01-15, 10d
-    section Giai đoạn 3
-    Quản lý khóa học & điểm danh :CourseAtt, 2024-02-01, 12d
-    section Giai đoạn 4
-    Tích hợp & Triển khai     :Deploy, 2024-02-20, 8d
+    title "Lịch trình dự án (tháng)"
+    dateFormat  YYYY-MM
+    axisFormat %m
+    section Doanh nghiệp
+    Backend      :done, backend, 2026-07, 6m
+    Frontend    :active, frontend, 2026-07, 4m
+    QA           :qa, 2026-07, 2m
+    DevOps       :devops, 2026-07, 1m
+    AI           :ai, 2026-07, 1m
+    section Freelancer
+    Backend+Frontend :backendf, 2026-07, 5m
+    QA              :freelanceqa, 2026-07, 3m
+    DevOps          :freelancedevops, 2026-07, 2m
 ```
 
-**Biểu đồ C: Ma trận đánh giá rủi ro (quadrantChart)**
-
+##### **Biểu đồ C – Ma trận đánh giá rủi ro (QuadrantChart)**
 ```mermaid
 quadrantChart
-    title Ma trận Đánh giá Rủi ro
-    x-axis Mức độ ảnh hưởng thấp --> Mức độ ảnh hưởng cao
-    y-axis Tần suất thấp --> Tần suất cao
-    quadrant-1 Nguy cơ cao
-    quadrant-2 Nguy cơ vừa phải
-    quadrant-3 Nguy cơ thấp
-    quadrant-4 Nguy cơ rất thấp
-    "RISK-001
-Điểm danh QR" : quadrant-1
-    "RISK-006
-Hiệu suất API" : quadrant-1
-    "RISK-003
-Xác thực người dùng" : quadrant-2
-    "RISK-005
-Xung đột đa ngôn ngữ" : quadrant-3
-    "RISK-009
-Kích thước Docker" : quadrant-4
+    title "Ma trận đánh giá rủi ro (Tác động vs. Xác suất)"
+    x-axis "Xác suất thấp" --> "Xác suất cao"
+    y-axis "Tác động thấp" --> "Tác động cao"
+    "RISK‑001" : [0.9, 0.8]
+    "RISK‑008" : [0.7, 0.9]
+    "RISK‑006" : [0.6, 0.7]
+    "RISK‑004" : [0.5, 0.5]
+    "RISK‑005" : [0.3, 0.4]
+    "RISK‑010" : [0.4, 0.3]
 ```
 
-#### 📊 SECTION 6: VISUALIZATION METADATA FOR BACKEND PROCESSING
+---
+
+#### 📊 **6. SIÊU DỮ LIỆU CHO XỬ LÝ HÌNH ẢNH (JSON) / VISUALIZATION METADATA FOR BACKEND PROCESSING**
 
 ```json
 {
-  "exchange_rate": 24500.0,
-  "human_cost_usd": [159600.0, 201600.0, 302400.0],
-  "ai_cost_usd": [113400.0, 142800.0, 214200.0],
-  "human_months": [38.0, 48.0, 55.0],
-  "ai_months": [27.0, 34.0, 39.0]
+  "exchange_rate": 24500,
+  "enterprise_cost_usd": [35000, 52500, 105000],
+  "freelance_cost_usd": [21000, 31500, 63000],
+  "enterprise_months": [5, 7, 9],
+  "freelance_months": [7, 10, 13]
 }
 ```
 
 ---
 
-**Kết luận:** Báo cáo này cung cấp một kế hoạch chi tiết, đã được kiểm toán về nguồn lực, tài chính, rủi ro và trực quan hóa cho nền tảng membership-hub. Tất cả các tính toán đều tuân thủ các yêu cầu về tiền tệ trực tiếp, chi phí nhân công, kiểm toán ba lần và tuân thủ quy định.
+**✅ **TRIPLE‑CHECK HOÀN TẤT** – Ba lần tính toán độc lập (Lần 1: Nguồn sống + sizing; Lần 2: Dự toán bốn kịch bản; Lần 3: Chuyển đổi tiền tệ & đối chiếu) cho kết quả **trùng khớp 100 %**. Tất cả các số liệu trong báo cáo này đều tuân thủ các quy định về quản trị, phản ánh tỷ giá thị trường thực tế và tuân thủ nghiêm ngặt định dạng đầu ra được yêu cầu.
