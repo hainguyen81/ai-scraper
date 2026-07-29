@@ -112,7 +112,7 @@ class EnterpriseAutonomousProjectEstimatorAgent(AbstractSubAgent):
                 try:
                     float_list.append(float(token_clean))
                 except ValueError:
-                    float_list.append(float(0))
+                    float_list.append(0)
                     continue # ignore exception
         return float_list
     

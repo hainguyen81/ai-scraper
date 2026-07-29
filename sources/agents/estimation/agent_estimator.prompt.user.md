@@ -31,7 +31,7 @@ You MUST execute your internal reasoning through 3 independent calculation passe
 ### 📋 MANDATORY OUTPUT STRUCTURE (MARKDOWN REPORT):
 Your response MUST start directly with the main title header and follow this layout strictly in **{{ target_language }}**:
 
-#### 📊 0. DOCUMENT INFORMATION / THÔNG TIN TÀI LIỆU
+#### 📊 DOCUMENT INFORMATION / THÔNG TIN TÀI LIỆU
 
 | Item / Thành phần | Details / Chi tiết |
 | :--- | :--- |
