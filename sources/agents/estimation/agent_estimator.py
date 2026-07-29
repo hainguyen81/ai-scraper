@@ -31,6 +31,7 @@ EST_CHART_FILE              = "estimation_pilot_chart.png"
 EST_VISUALIZATION_FILES     = [ "cost_chart.svg", "timeline_chart.svg", "risk_matrix.svg" ]
 
 DEFAULT_BUFFER_RATION       = 1.5
+DEFAULT_EXCHANGE_RATE       = 25500.0
 
 DEFAULT_EST_LANGUAGE        = "English"
 
@@ -129,32 +130,31 @@ class EnterpriseAutonomousProjectEstimatorAgent(AbstractSubAgent):
             self.logger.warning("⚠️ Metadata JSON block not found in AI response memory.")
             return {}
 
-        metrics_dict = None
         try:
             # Strip latent trailing whitespaces or markdown leaks before loading
             json_content = json_match.group(1).strip()
             metrics_dict = json.loads(json_content)
+
+            # Extract dynamic properties securely with hard fallback safeguards
+            exchange_rate = float(metrics_dict.get("exchange_rate", DEFAULT_EXCHANGE_RATE))
+            
+            # Process flat arrays safely through the robust parser function
+            return {
+                "exchange_rate": exchange_rate,
+                "enterprise_human_cost_usd": self.__safe_parse_float_numbers_list__(metrics_dict.get("enterprise_human_cost_usd")),
+                "enterprise_ai_cost_usd": self.__safe_parse_float_numbers_list__(metrics_dict.get("enterprise_ai_cost_usd")),
+                "freelance_human_cost_usd": self.__safe_parse_float_numbers_list__(metrics_dict.get("freelance_human_cost_usd")),
+                "freelance_ai_cost_usd": self.__safe_parse_float_numbers_list__(metrics_dict.get("freelance_ai_cost_usd")),
+                "enterprise_human_months": self.__safe_parse_float_numbers_list__(metrics_dict.get("enterprise_human_months")),
+                "enterprise_ai_months": self.__safe_parse_float_numbers_list__(metrics_dict.get("enterprise_ai_months")),
+                "freelance_human_months": self.__safe_parse_float_numbers_list__(metrics_dict.get("freelance_human_months")),
+                "freelance_ai_months": self.__safe_parse_float_numbers_list__(metrics_dict.get("freelance_ai_months")),
+                "enterprise_cloud_opex_usd": self.__safe_parse_float_numbers_list__(metrics_dict.get("enterprise_cloud_opex_usd")),
+                "freelance_cloud_opex_usd": self.__safe_parse_float_numbers_list__(metrics_dict.get("freelance_cloud_opex_usd"))
+            }
         except Exception as json_err:
             self.logger.warning(f"⚠️ Failed to parse JSON RAM metrics object: {str(json_err)}")
             return {}
-
-        # Extract dynamic properties securely with hard fallback safeguards
-        exchange_rate = float(metrics_dict.get("exchange_rate", 25500.0))
-        
-        # Process flat arrays safely through the robust parser function
-        return {
-            "exchange_rate": exchange_rate,
-            "enterprise_human_cost_usd": self.__safe_parse_float_numbers_list__(metrics_dict.get("enterprise_human_cost_usd")),
-            "enterprise_ai_cost_usd": self.__safe_parse_float_numbers_list__(metrics_dict.get("enterprise_ai_cost_usd")),
-            "freelance_human_cost_usd": self.__safe_parse_float_numbers_list__(metrics_dict.get("freelance_human_cost_usd")),
-            "freelance_ai_cost_usd": self.__safe_parse_float_numbers_list__(metrics_dict.get("freelance_ai_cost_usd")),
-            "enterprise_human_months": self.__safe_parse_float_numbers_list__(metrics_dict.get("enterprise_human_months")),
-            "enterprise_ai_months": self.__safe_parse_float_numbers_list__(metrics_dict.get("enterprise_ai_months")),
-            "freelance_human_months": self.__safe_parse_float_numbers_list__(metrics_dict.get("freelance_human_months")),
-            "freelance_ai_months": self.__safe_parse_float_numbers_list__(metrics_dict.get("freelance_ai_months")),
-            "enterprise_cloud_opex_usd": self.__safe_parse_float_numbers_list__(metrics_dict.get("enterprise_cloud_opex_usd")),
-            "freelance_cloud_opex_usd": self.__safe_parse_float_numbers_list__(metrics_dict.get("freelance_cloud_opex_usd"))
-        }
 
     def __extract_mermaid_visualizations__(self, raw_response):
         """
@@ -208,7 +208,7 @@ class EnterpriseAutonomousProjectEstimatorAgent(AbstractSubAgent):
                 self.logger.warning(f"⚠️ Network exception or latency spike during chart extraction: {str(net_err)}")
                 
         return visualizations_data
-    
+
     def __generate_sharp_summary_chart_v2__(self, output_image_path, metrics):
         """
         Generates an ultra-sharp 3-panel summary matrix chart including:
