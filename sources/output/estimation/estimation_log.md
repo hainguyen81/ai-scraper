@@ -96,3 +96,57 @@ can't multiply sequence by non-int of type 'float': ['Traceback (most recent cal
 
 ---
 
+# Exception:
+
+could not convert string to float: '[360000, 360000, 540000]': ['Traceback (most recent call last):
+', '  File "/home/runner/work/enterprise-it-ai/enterprise-it-ai/sources/agents/agent_super.py", line 285, in __execute__
+    kwargs = self.__ai_execute__(**kwargs) or {}
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+', '  File "/home/runner/work/enterprise-it-ai/enterprise-it-ai/sources/agents/agent_super.py", line 257, in __ai_execute__
+    kwargs = self.communicate(**kwargs) or {}
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^
+', '  File "/home/runner/work/enterprise-it-ai/enterprise-it-ai/sources/agents/agent_super.py", line 239, in communicate
+    clean_response = self.clean_response(raw_response=raw_response, **kwargs) if raw_response else None
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+', '  File "/home/runner/work/enterprise-it-ai/enterprise-it-ai/sources/agents/estimation/agent_estimator.py", line 248, in clean_response
+    "metrics": self.__extract_metrics_and_plot_matplotlib_chart__(raw_response=raw_response)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+', '  File "/home/runner/work/enterprise-it-ai/enterprise-it-ai/sources/agents/estimation/agent_estimator.py", line 114, in __extract_metrics_and_plot_matplotlib_chart__
+    ent_cost_usd = [float(str(val).strip()) for val in metrics_dict.get("enterprise_cost_usd", [])]
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+', '  File "/home/runner/work/enterprise-it-ai/enterprise-it-ai/sources/agents/estimation/agent_estimator.py", line 114, in <listcomp>
+    ent_cost_usd = [float(str(val).strip()) for val in metrics_dict.get("enterprise_cost_usd", [])]
+                    ^^^^^^^^^^^^^^^^^^^^^^^
+', "ValueError: could not convert string to float: '[360000, 360000, 540000]'
+"]: ['Traceback (most recent call last):
+', '  File "/home/runner/work/enterprise-it-ai/enterprise-it-ai/sources/agents/agent_super.py", line 328, in execute
+    return self.__do_execute__(**safe_kwargs) or {}
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+', '  File "/home/runner/work/enterprise-it-ai/enterprise-it-ai/sources/agents/agent_super.py", line 315, in __do_execute__
+    raise RuntimeError(exception) # response is exception stack-trace from `__execute__`
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+', 'RuntimeError: could not convert string to float: \'[360000, 360000, 540000]\': [\'Traceback (most recent call last):\
+\', \'  File "/home/runner/work/enterprise-it-ai/enterprise-it-ai/sources/agents/agent_super.py", line 285, in __execute__\
+    kwargs = self.__ai_execute__(**kwargs) or {}\
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\
+\', \'  File "/home/runner/work/enterprise-it-ai/enterprise-it-ai/sources/agents/agent_super.py", line 257, in __ai_execute__\
+    kwargs = self.communicate(**kwargs) or {}\
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^\
+\', \'  File "/home/runner/work/enterprise-it-ai/enterprise-it-ai/sources/agents/agent_super.py", line 239, in communicate\
+    clean_response = self.clean_response(raw_response=raw_response, **kwargs) if raw_response else None\
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\
+\', \'  File "/home/runner/work/enterprise-it-ai/enterprise-it-ai/sources/agents/estimation/agent_estimator.py", line 248, in clean_response\
+    "metrics": self.__extract_metrics_and_plot_matplotlib_chart__(raw_response=raw_response)\
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\
+\', \'  File "/home/runner/work/enterprise-it-ai/enterprise-it-ai/sources/agents/estimation/agent_estimator.py", line 114, in __extract_metrics_and_plot_matplotlib_chart__\
+    ent_cost_usd = [float(str(val).strip()) for val in metrics_dict.get("enterprise_cost_usd", [])]\
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\
+\', \'  File "/home/runner/work/enterprise-it-ai/enterprise-it-ai/sources/agents/estimation/agent_estimator.py", line 114, in <listcomp>\
+    ent_cost_usd = [float(str(val).strip()) for val in metrics_dict.get("enterprise_cost_usd", [])]\
+                    ^^^^^^^^^^^^^^^^^^^^^^^\
+\', "ValueError: could not convert string to float: \'[360000, 360000, 540000]\'\
+"]
+']
+
+---
+
