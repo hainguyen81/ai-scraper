@@ -12,7 +12,8 @@ from openai import OpenAI
 from sources.agents.agent_helper import (
     read_json_file,
     read_file_raw,
-    kwargs_by_key
+    kwargs_by_key,
+    json_tostring
 )
 
 # super agent
@@ -43,9 +44,13 @@ class AbstractSubAgent(AbstractAgent):
     def initialize_projects(self):
         self.projects_summary = self.__read_projects_info__(ignore_not_found=True) or []
         self.project_info = self.__project_info__()
+        logger.debug(f"- Projects: {json_tostring(self.projects_summary)}")
         if self.project_info:
+            logger.debug(f"--> Found project info: {json_tostring(self.project_info)}")
             self.idea_id = self.project_info.get("idea", self.idea_id)
             self.project_name = self.project_info.get("technical_codename", self.project_name)
+        else:
+            logger.warn(f"--> Not Found project by idea/name: {self.idea_id}")
     
     # @override
     def agent_secrets_key(self) -> str:
@@ -101,10 +106,10 @@ class AbstractSubAgent(AbstractAgent):
         )
     
     def __current_project_name__(self) -> str:
-        return self.project_info.get("technical_codename", None)
+        return self.project_info.get("technical_codename", None) if self.project_info else None
     
     def __current_project_description__(self) -> str:
-        return self.project_info.get("descriptive_name", None)
+        return self.project_info.get("descriptive_name", None) if self.project_info else None
     
     def __idea_files__(self):
         absolute_file = self.__storage_path__(storage_name="absolute_ideas", file=f"{self.idea_id}.md")

@@ -86,6 +86,9 @@ def json_raw_content(raw_content):
     
     return str(raw_content)
 
+def json_tostring(json_data) -> str:
+    return json.dumps(json_data, indent=4, ensure_ascii=False) if json_data else "- No data (None)"
+
 def exception_stacktrace(e) -> str:
     stacktrace = traceback.format_exception(type(e), e, e.__traceback__, limit=10) if isinstance(e, BaseException) or isinstance(e, Exception) else None
     return None if not e else f"{str(e)}: {stacktrace}" if stacktrace else str(e)
