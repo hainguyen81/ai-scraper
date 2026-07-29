@@ -379,7 +379,7 @@ class EnterpriseAutonomousProjectEstimatorAgent(AbstractSubAgent):
             
             # to output
             self.__generate_sharp_summary_chart_v2__(
-                output_image_path=self.__storage_path__(storage_name="output_estimation", file=EST_CHART_FILE),
+                output_image_path=self.__output_storage_path__(storage_name="output_estimation", file=EST_CHART_FILE),
                 metrics=metrics
             )
         else:
