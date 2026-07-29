@@ -99,7 +99,7 @@ class EnterpriseAutonomousProjectEstimatorAgent(AbstractSubAgent):
         # Extract ```json { ... } ``` at the end of AI response
         json_match = re.search(r'```json\s*(\{.*?\})\s*```', raw_response, re.DOTALL)
         if not json_match:
-            self.logger.warn("⚠️ Metadata JSON block not found in AI response memory. Skipping chart plotting.")
+            self.logger.warning("⚠️ Metadata JSON block not found in AI response memory. Skipping chart plotting.")
             return None
 
         metrics_dict = None
@@ -107,26 +107,32 @@ class EnterpriseAutonomousProjectEstimatorAgent(AbstractSubAgent):
             # map to JSON Python
             metrics_dict = json.loads(json_match.group(1))
         except Exception as json_err:
-            self.logger.warn(f"⚠️ Failed to parse JSON RAM metrics object: {str(json_err)}")
+            self.logger.warning(f"⚠️ Failed to parse JSON RAM metrics object: {str(json_err)}")
         
-        # extract information to debug
-        exchange_rate = float(metrics_dict.get("exchange_rate", 0) if metrics_dict else 0)
-        ent_cost_usd = list(metrics_dict.get("enterprise_cost_usd", []) if metrics_dict else [])
-        free_cost_usd = list(metrics_dict.get("freelance_cost_usd", []) if metrics_dict else [])
-        ent_time = list(metrics_dict.get("enterprise_months", []) if metrics_dict else [])
-        free_time = list(metrics_dict.get("freelance_months", []) if metrics_dict else [])
-
+        # extract information
+        exchange_rate = float(metrics_dict.get("exchange_rate", 25500))
+        ent_cost_usd = [float(str(val).strip()) for val in metrics_dict.get("enterprise_cost_usd", [])]
+        free_cost_usd = [float(str(val).strip()) for val in metrics_dict.get("freelance_cost_usd", [])]
+        ent_time = [float(str(val).strip()) for val in metrics_dict.get("enterprise_months", [])]
+        free_time = [float(str(val).strip()) for val in metrics_dict.get("freelance_months", [])]
+        
         self.logger.debug(f"[ 📊 DATA EXTRACTED ] Live Exchange Rate Captured: 1 USD = {exchange_rate} VND")
         self.logger.debug(f"| Enterprise Costs: {ent_cost_usd} | Freelance Costs: {free_cost_usd}")
         self.logger.debug(f"| Enterprise Timelines: {ent_time} | Freelance Timelines: {free_time}")
         self.logger.info(f"- 📊 Extracted Metrics: {json_tostring(metrics_dict)}")
-        return metrics_dict
+        return {
+            "exchange_rate": exchange_rate,
+            "enterprise_cost_usd": ent_cost_usd,
+            "freelance_cost_usd": free_cost_usd,
+            "enterprise_months": ent_time,
+            "freelance_months": free_time
+        }
     
     def __extract_mermaid_visualizations__(self, raw_response):
         # Non-greedy regex mapping to sweep all markdown blocks bounded by mermaid tags
         mermaid_blocks = re.findall(r'```mermaid\s*(.*?)\s*```', raw_response, re.DOTALL)
         if not mermaid_blocks:
-            self.logger.warn("⚠️ Zero functional mermaid visualization blocks detected inside the markdown body.")
+            self.logger.warning("⚠️ Zero functional mermaid visualization blocks detected inside the markdown body.")
         
         # Explicit fallback architectural name arrays
         self.logger.info(f"[ 📊 MERMAID ENGINE ] Intercepted {len(mermaid_blocks)} dynamic diagrams. Running vector compilation pipeline...")
@@ -158,9 +164,9 @@ class EnterpriseAutonomousProjectEstimatorAgent(AbstractSubAgent):
                         }
                         self.logger.info(f"💾 Highly-scalable vector graphic successfully extracted at index: {idx}")
                     else:
-                        self.logger.warn(f"⚠️ Render pipeline returned invalid metadata block structure at index: {idx}")
+                        self.logger.warning(f"⚠️ Render pipeline returned invalid metadata block structure at index: {idx}")
                 except Exception as net_err:
-                    self.logger.warn(f"⚠️ Network exception or latency spike during chart extraction: {str(net_err)}")
+                    self.logger.warning(f"⚠️ Network exception or latency spike during chart extraction: {str(net_err)}")
         
         return visualizations_data
     
@@ -170,7 +176,7 @@ class EnterpriseAutonomousProjectEstimatorAgent(AbstractSubAgent):
         (Enterprise Human/AI vs Freelance Human/AI) using the dynamically extracted exchange rate.
         """
         if not metrics:
-            self.logger.warn("⚠️ Invalid metrics JSON to generate chart. Skipping chart plotting.")
+            self.logger.warning("⚠️ Invalid metrics JSON to generate chart. Skipping chart plotting.")
             return
         
         try:
@@ -232,7 +238,7 @@ class EnterpriseAutonomousProjectEstimatorAgent(AbstractSubAgent):
             plt.close()
             self.logger.info(f"[ 💾 SHARP CHART GENERATED ] 4-Scenario Dual-Currency matrix exported to: {output_image_path}")
         except Exception as e:
-            self.logger.warn(f"⚠️ Exception while generating pilot chart to file {output_image_path}: {str(e)}")
+            self.logger.warning(f"⚠️ Exception while generating pilot chart to file {output_image_path}: {str(e)}")
     
     # @override
     def clean_response(self, raw_response, **kwargs):
@@ -270,7 +276,7 @@ class EnterpriseAutonomousProjectEstimatorAgent(AbstractSubAgent):
                     data=data
                 )
         else:
-            self.logger.warn("⚠️ No any visualizations to process.")
+            self.logger.warning("⚠️ No any visualizations to process.")
         
         # export pilot chart
         metrics = cleaned_response.get("metrics", None) if cleaned_response else None
@@ -287,7 +293,7 @@ class EnterpriseAutonomousProjectEstimatorAgent(AbstractSubAgent):
                 metrics=metrics
             )
         else:
-            self.logger.warn("⚠️ No any metrics to process.")
+            self.logger.warning("⚠️ No any metrics to process.")
 
 
 if __name__ == "__main__":

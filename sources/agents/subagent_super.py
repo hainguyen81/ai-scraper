@@ -42,7 +42,7 @@ class AbstractSubAgent(AbstractAgent):
             self.idea_id = self.project_info.get("idea", self.idea_id)
             self.project_name = self.project_info.get("technical_codename", self.project_name)
         else:
-            self.logger.warn(f"--> Not Found project by idea/name: {self.idea_id}")
+            self.logger.warning(f"--> Not Found project by idea/name: {self.idea_id}")
     
     # @override
     def agent_secrets_key(self) -> str:
@@ -64,7 +64,7 @@ class AbstractSubAgent(AbstractAgent):
             sys.exit(1)
         
         elif not os.path.exists(storage_file):
-            self.logger.warn(f"⚠️ Not found file '{ file }' in storage '{storage_name}': { storage_file }")
+            self.logger.warning(f"⚠️ Not found file '{ file }' in storage '{storage_name}': { storage_file }")
             return None
         
         # read idea file to build user prompt
@@ -79,7 +79,7 @@ class AbstractSubAgent(AbstractAgent):
             sys.exit(1)
         
         elif not os.path.exists(storage_file):
-            self.logger.warn(f"⚠️ Not found file '{ file }' in storage '{storage_name}': { storage_file }")
+            self.logger.warning(f"⚠️ Not found file '{ file }' in storage '{storage_name}': { storage_file }")
             return None
         
         # read idea file to build user prompt

@@ -646,13 +646,13 @@ class CrewEnterpriseSolutionWorkflowAgent(AbstractCrewEnterpriseWorkflowAgent):
         if "kickoff" in response_data and response_data.get("kickoff"):
             write_file(file=self.file_report_kickoff(prefix=timestamp), data=response_data.get("kickoff"))
         else:
-            self.logger.warn(f"⚠️ No any kickoff report!")
+            self.logger.warning(f"⚠️ No any kickoff report!")
         
         # export task sentinel response
         if "report_sentinel" in response_data and response_data.get("report_sentinel"):
             write_file(file=self.file_report_sentinel_approval(prefix=timestamp), data=response_data.get("report_sentinel"))
         else:
-            self.logger.warn(f"⚠️ No any sentinel report!")
+            self.logger.warning(f"⚠️ No any sentinel report!")
         
         # export task BA response
         if "report_ba" in response_data and response_data.get("report_ba"):
@@ -660,7 +660,7 @@ class CrewEnterpriseSolutionWorkflowAgent(AbstractCrewEnterpriseWorkflowAgent):
             write_file(file=self.file_report_ba_approval(prefix=timestamp), data=response_ba)
             write_file(file=self.file_ba_approval(prefix=timestamp), data=response_ba)
         else:
-            self.logger.warn(f"⚠️ No any business-analysis report!")
+            self.logger.warning(f"⚠️ No any business-analysis report!")
         
         # export task SA response
         if "report_sa" in response_data and response_data.get("report_sa"):
@@ -668,7 +668,7 @@ class CrewEnterpriseSolutionWorkflowAgent(AbstractCrewEnterpriseWorkflowAgent):
             write_file(file=self.file_report_sa_approval(prefix=timestamp), data=response_sa)
             write_file(file=self.file_blueprint_approval(prefix=timestamp), data=response_sa)
         else:
-            self.logger.warn(f"⚠️ No any system-architect report!")
+            self.logger.warning(f"⚠️ No any system-architect report!")
         
         # export raw response if necessary as log tracing
         raw_response = self.get_kwargs_by_key(key="raw_response", **kwargs)

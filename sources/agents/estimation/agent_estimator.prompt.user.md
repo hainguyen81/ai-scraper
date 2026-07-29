@@ -58,12 +58,12 @@ Provide a granular breakdown of required engineering roles (Backend, Frontend, Q
 
 #### 💰 SECTION 3: FINANCIAL BUDGET & TIMELINE ESTIMATION PROJECTIONS
 ##### 1. Corporate Enterprise Model (Mô hình Doanh nghiệp tập đoàn)
-- Traditional Human-Only Total Budget: `$[Min - Max \| Safe]` USD / `[Min - Max \| Safe]` VND
-- AI-Augmented Total Budget: `$[Min - Max \| Safe]` USD / `[Min - Max \| Safe]` VND
+- Traditional Human-Only Total Budget: `$[Min - Max | Safe]` USD / `[Min - Max | Safe]` VND
+- AI-Augmented Total Budget: `$[Min - Max | Safe]` USD / `[Min - Max | Safe]` VND
 
 ##### 2. Freelancer Team Model (Mô hình Nhóm Freelancer tự do)
-- Traditional Human-Only Total Budget: `$[Min - Max \| Safe]` USD / `[Min - Max \| Safe]` VND
-- AI-Augmented Total Budget: `$[Min - Max \| Safe]` USD / `[Min - Max \| Safe]` VND
+- Traditional Human-Only Total Budget: `$[Min - Max | Safe]` USD / `[Min - Max | Safe]` VND
+- AI-Augmented Total Budget: `$[Min - Max | Safe]` USD / `[Min - Max | Safe]` VND
 
 ##### 3. Project Duration Comparison (Calendar Months)
 
@@ -75,12 +75,62 @@ Provide a granular breakdown of required engineering roles (Backend, Frontend, Q
 4. **Data Isolation Strategy (Multi-Tenancy)**: Explain how a physical isolation architecture (`Database-per-tenant` using encrypted dynamic routing strings) demands intensive engineering effort and operational cost compared to standard, cheap logical multi-tenancy.
 
 #### 🚨 SECTION 5: PROJECT RISK REGISTRY & MITIGATION STRATEGY
-- **Risk ID \| Description \| Severity (High/Med/Low) \| Concrete Mitigation Strategy**
+- **Risk ID | Description | Severity (High/Med/Low) | Concrete Mitigation Strategy**
 
 #### 📊 SECTION 6: ARCHITECTURAL DATA VISUALIZATION (NATIVE MERMAID CHARTS)
 - **Chart A**: Financial Cost Boundary Matrix (`xychart-beta` or `bar` code comparing all 4 scenarios).
 - **Chart B**: Project Delivery Timeline (`gantt` comparing Enterprise vs Freelance schedules).
 - **Chart C**: Risk Assessment Severity Matrix (`quadrantChart`).
+
+*CRITICAL MANDATE FOR SYNTAX COMPLIANCE*: You MUST generate clean, functional, and strictly valid Mermaid.js code blocks. 
+- ALL text labels, title keys, quadrant strings, and task details INSIDE the mermaid code blocks MUST be written in plain, unaccented English (e.g., use "Probability", "Impact", "Budget", "Duration"). 
+- DO NOT insert Vietnamese or accented characters inside the mermaid blocks, otherwise the compilation pipeline will crash.
+
+##### Chart A: Financial Cost Boundary Matrix (USD)
+You MUST use the official `xychart-beta` syntax. The y-axis values MUST be raw integers representing thousands of USD (do not include dollar signs or ranges in the y-axis data rows).
+Format exactly like this example template:
+```mermaid
+xychart-beta
+    title "Total Cost Comparison Bounds (in Thousands USD)"
+    x-axis ["Min Cost", "Max Cost", "Safe Cost"]
+    y-axis "USD (Thousands)" 0 --> 300
+    bar [180, 270, 330]
+    bar [120, 180, 210]
+```
+
+##### Chart B: Project Delivery Timeline (Dynamic Gantt Chart)
+You MUST define unique milestone IDs for each section to prevent overlap.
+Format exactly like this example template:
+```mermaid
+gantt
+    title Project Timeline Acceleration Matrix
+    dateFormat  X
+    axisFormat %d days
+    
+    section Enterprise Team
+    Phase 1 Execution :ent_p1, 0, 15
+    Phase 2 Execution :ent_p2, after ent_p1, 20
+    
+    section Freelance Team
+    Phase 1 Execution :free_p1, 0, 8
+    Phase 2 Execution :free_p2, after free_p1, 12
+```
+
+##### Chart C: Risk Assessment Severity Matrix
+You MUST use the official `quadrantChart` syntax with English coordinates.
+Format exactly like this example template:
+```mermaid
+quadrantChart
+    title Risk Assessment Matrix (Probability vs Impact)
+    x-axis "Low Probability" --> "High Probability"
+    y-axis "Low Impact" --> "High Impact"
+    quadrant-1 "Critical Risks"
+    quadrant-2 "Major Risks"
+    quadrant-3 "Minor Risks"
+    quadrant-4 "Monitor Risks"
+    "R-001: Data Leakage" : [0.8, 0.9]
+    "R-002: Token Exhaustion" : [0.7, 0.6]
+```
 
 #### 📊 SECTION 7: VISUALIZATION METADATA FOR BACKEND PROCESSING
 *CRITICAL*: Update the JSON layout to include both Corporate and Freelancer metrics for precise automated image chart generation.
