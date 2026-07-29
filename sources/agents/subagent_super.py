@@ -29,11 +29,16 @@ class AbstractSubAgent(AbstractAgent):
         self.idea_id = self.get_kwargs("idea") or self.get_kwargs("idea") or None
         self.project_name = self.get_kwargs("project") or self.get_kwargs("project_name") or None
         
-        # initialize projects information
-        self.initialize_projects()
-        
         # start initialization
         super().initialize()
+    
+    # @override
+    def initialize_storage(self):
+        # initialize storage
+        super().initialize_storage()
+        
+        # initialize projects information
+        self.initialize_projects()
     
     def initialize_projects(self):
         self.projects_summary = self.__read_projects_info__(ignore_not_found=True) or []
