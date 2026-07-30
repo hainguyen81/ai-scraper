@@ -23,16 +23,17 @@ Analyze the incoming engineering and auditing assets below to perform your requi
 ### 🚨 MANDATORY REQUIREMENT REFACTORING PROTOCOLS
 *You must fully overhaul and expand the Software Requirements Specification (SRS) by strictly implementing exactly three engineering protocols:*
 
-#### 🎯 PROTOCOL 1: Precision Metrics & Thresholds
-- Eliminate all subjective or vague words (e.g., "fast", "secure", "user-friendly", "highly scalable").
+#### 🎯 PROTOCOL 1: Precision Metrics & Targeted Scoping Guardrail
+- Focus your modification pipeline exclusively on the functional blocks, modules, and gap locations identified inside the technical audit feed (`{{ context }}`). Do not perform full-scale refactoring on unaffected legacy requirements to prevent token exhaustion.
+- Within the targeted gap scopes, completely eliminate all subjective or vague words (e.g., "fast", "secure", "user-friendly", "highly scalable").
 - Replace them with concrete, measurable, and testable metrics (e.g., "API response time under 200ms at 10,000 RPS", "99__DOT__99% uptime availability", "password hashing using Argon2id").
 
 #### 🔄 PROTOCOL 2: Edge-Case & State Lifecycle Mapping
-- Detail explicit user behavior use-cases and exception flows. What happens if payment fails? What happens if network timeout occurs?
+- Detail explicit user behavior use-cases and exception flows for the updated scopes. What happens if payment fails? What happens if network timeout occurs?
 - Define a strict lifecycle state-machine matrix for every core business entity to guide the System Architect's database constraints.
 
 #### 🧮 PROTOCOL 3: Vertical Traceability Alignment
-- Ensure 100% functional alignment with the [Core Product Idea]. Every business goal in the Idea File must map to a specific functional block in your output.
+- Ensure 100% functional alignment with the [Core Product Idea]. Every business goal in the Idea File related to the audited gaps must map to a specific functional block in your output.
 
 # ⛓️ TRACEABILITY CONTINUITY AND SEQUENTIAL TAGGING GUARDRAIL
 # This rule forces the agent to align its incremental tag counts with the inherited context from previous agents.
