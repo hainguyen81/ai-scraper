@@ -1,8 +1,8 @@
 {
     "technical_codename": "membership-hub",
-    "descriptive_name": "Unified Membership Management Platform",
-    "brand_name": "MembHub",
-    "idea": "idea_4688fa3cebd8",
+    "descriptive_name": "Hệ thống Quản lý Thành viên Đa trung tâm",
+    "brand_name": "HubMember",
+    "idea": "idea_8fd82fa6953b",
     "location": "sources/storage/business-analysis/membership-hub",
     "requirements": "sources/storage/business-analysis/membership-hub/requirements.md"
 }
