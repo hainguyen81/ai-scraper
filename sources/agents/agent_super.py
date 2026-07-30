@@ -207,10 +207,17 @@ class AbstractAgent(ABC):
         return raw_response
     
     def __communicate_ai__(self, **kwargs):
+        # tracing
         system_prompt = kwargs_by_key(key="system_prompt", **kwargs)
         self.logger.debug("- 🤷 System Prompt: %s", system_prompt)
+        if not system_prompt:
+            self.logger.error("➡️➡️➡️ 💀 Invalid System Prompt. So the AI reponse maybe wrong your expectation!")
         user_prompt = kwargs_by_key(key="user_prompt", **kwargs)
         self.logger.debug("- 🤷 User Prompt: %s", user_prompt)
+        if not user_prompt:
+            self.logger.error("➡️➡️➡️ 💀 Invalid User Prompt. So the AI reponse maybe wrong your expectation!")
+        
+        # communicate with AI
         return self.client.chat.completions.create(
             model=self.config_model_name(),
             messages=[{
