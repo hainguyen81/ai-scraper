@@ -5,13 +5,17 @@ Extract and translate ALL daily steps, checklists, and agent tasks starting from
 Extract and translate ALL daily steps, checklists, and agent tasks from the entire document.
 {% endif %}
 
+# ⏳ CRITICAL CHUNK BOUNDARY ALIGNMENT RULE
+# This rule applies ONLY if the chunk configuration is active (is_chunked is TRUE).
+- **Boundary Execution Context:** When parsing tasks that span across boundary calendar days, you MUST exclusively extract and document the operational steps and sub-tasks that are actively executed within the requested window of Day {{ current_start_day }} to Day {{ current_end_day }}. Do not duplicate previous states or omit ongoing workflows.
+
 # ⏳ CRITICAL TIMELINE BOUNDARY CONSTRAINTS:
 ## 1. STRICT PHASE DURATION LIMIT: Individual Phase MUST be bounded between 1 to {{ max_days_per_phase }} days maximum. Never generate scheduling logs beyond Day {{ max_days_per_phase }}.
 ## 2. PROGRESSION STOPPING CRITERION: Stop generating immediately once the core objectives are satisfied. Do NOT duplicate or loop previous task structures. Freeze output and exit.
 
 # 🛑 ANTI-CREATIVE TAGGING & INHERITANCE MANDATE (CRITICAL):
-1. You are STRICTLY BANNED from inventing, generating, omitting, or modifying any requirement Tag IDs (`[REQ-XXX]`, `[ARC-XXX]`, `[EXC-XXX]`, `[NFR-XXX]`).
-2. Every Tag ID present in the source Phase Markdown content MUST be perfectly preserved and mapped 1:1 into the corresponding task node inside the JSON output. 
+1. You are STRICTLY BANNED from inventing, generating, omitting, or modifying any requirement Tag IDs (`[REQ-XXX]`, `[ARC-XXX]`, `[EXC-XXX]`, `[DAT-XXX]`, `[NFR-XXX]`).
+2. Every Tag ID present in the source Phase Markdown content MUST be perfectly preserved and mapped 1:1 into the corresponding task node inside the JSON output.
 3. Under no circumstances should you strip out or abstract away these tracking codes.
 
 # 🔒 AGENT ATOMICITY & COMPONENT MANDATES (ABSOLUTE):
@@ -30,34 +34,40 @@ Extract and translate ALL daily steps, checklists, and agent tasks from the enti
 - **NO ESCAPE HATCH:** Do NOT return empty array for 'days' if markdown text is present. Parse descriptions into sub-tasks utilizing Fallback Rule if paths are missing.
 - **COMPONENT COMPLETENESS:** Every 'Target Path' listed in source Markdown must have a 1:1 mapping into 'components' array. Do not aggregate, abbreviate, or omit files.
 - **STRICT CONTENT PURITY:** Output ONLY the pure raw executable JSON string matching schema. Response must start with `{` and end exactly with `}`. Banned from including thinking processes, chain-of-thought, conversational texts, introductions, wrapping inside markdown codeblocks (no ` ```json ` wrapping), or post-generation notes.
-- **STRICT LITERAL FIELD VALUES:** Populate exact string "./sources/{{ global_context_file }}" into 'global_context_file'. Populate exact empty string "" into 'source_target_dir' field. (Enforcing an empty string ensures that all paths inside the 'components' array must maintain their full, explicit absolute repository reference starting with `./sources/` from the workspace root directory).
-- **TASK DETAILS:** The 'task' field must contain sequential description text preserving all embedded OWASP security tags (A01, A02, etc.). You do not need to include requirement tags here if they are successfully extracted into the 'targeted_tags' array.
-- **AGENT FIELD VALUES:** 'agent' field MUST contain exactly one literal string token matching the authorized schema: 'coder', 'tester', 'reviewer', 'doc', 'docker', 'GCP', 'GKE'. Any other values (such as 'Manager' or 'DevOps') are strictly banned and will break the execution engine.
-- **WORKSPACE PREFIX RULE:** Every path in 'components' array MUST strictly begin with `./sources/`. Generating files directly under repository root (e.g., `./Dockerfile`) is permanently BANNED.
+- **STRICT LITERAL FIELD VALUES:** Populate exact string `./sources/{{ global_context_file }}` into 'global_context_file'. Populate exact empty string "" into 'source_target_dir' field. (All paths inside the 'components' array must maintain their full, explicit absolute repository reference starting with `./sources/` from the workspace root directory).
+
+- **HIGH-DENSITY TECHNICAL SPECIFICATION:** The 'task' field MUST contain an exhaustive, granular engineering instruction. If the sub-task involves an API route, integration endpoint, database query, or message block, you MUST explicitly inline the complete technical contract (e.g., Request/Response Payload Schemas, Data Types, Error Status Codes, or Queue names) directly inside this string. Vague high-level bullet summaries are forbidden.
+- **AGENT FIELD VALUES:** 'agent' field MUST contain exactly one literal string token matching the authorized schema: 'coder', 'tester', 'reviewer', 'doc', 'docker', 'GCP', 'GKE'. Any other values are strictly banned.
+- **WORKSPACE PREFIX RULE:** Every path in 'components' array MUST strictly begin with `./sources/`. Generating files directly under repository root is permanently BANNED.
 - **FOR 'coder' TASKS:** 'components' array must contain relative file paths starting with `./sources/backend/` or `./sources/frontend/` using lowercase alphanumeric structures matching the project layout.
-- **FOR 'reviewer' TASKS (Strict Single File Mandate):** The 'components' array MUST exclusively contain targeted individual code file paths requiring compilation fix, security hardening, or auto-patching (e.g., `"components": ["./sources/backend/src/main/java/.../AttendanceService.java"]`). You are ABSOLUTELY BANNED from parsing directory paths or parent folder paths into a reviewer task component array. It must resolve to an individual physical code file asset.
-- **FOR 'doc' TASKS:** 'components' array must contain technical documents, process diagrams, workflow logs, metadata files, or structural layouts under `./sources/`. (e.g., `"components": ["./sources/docs/architecture_blueprint.md"]` or workflow files).
-- **FOR 'tester' TASKS:** You MUST strictly preserve the semi-colon separated string format exactly as documented in source Markdown. Every single file path component on BOTH sides of the semi-colon character inside the string element MUST be strictly prefixed with `./sources/`.
-     *   Do NOT split a `<source>;<test>` pair into two separate array elements. It MUST be emitted as a single string element inside the 'components' array.
-     *   Example correct JSON entry: `"components": ["./sources/backend/src/main/java/.../Service.java;./sources/backend/src/test/java/.../ServiceTest.java"]`
-     *   Example for Integration Tests: `"components": ["INTEGRATION_SCOPE;./sources/frontend/tests/auth.spec.ts"]`
-- **JAVA PACKAGE ENFORCEMENT:** ONLY if the file path extension targets a Java component (`.java`), you MUST verify that the path contains the package layout directory segment derived from a pure alphanumeric lowercase format of the project name: `/org/nlh4j/saas/<stripped_lowercase_project_name>/`. For all non-Java files, this package segment is STRICTLY BANNED from being injected.
-- **FOR docker TASKS:** The 'components' array MUST only contain Dockerfile configurations localized exactly inside their workspace subdirectories under `./sources/`. (e.g., `"components": ["./sources/backend/Dockerfile"]`).
-- **FOR GCP AND GKE TASKS:** All architecture, orchestration manifests, IAM configurations, or deployment workflows must reside within their respective module enterprise folders starting with `./sources/`.
+- **FOR 'reviewer' TASKS (Strict Single File Mandate):** The 'components' array MUST exclusively contain targeted individual code file paths requiring compilation fix, security hardening, or auto-patching. You are ABSOLUTELY BANNED from parsing directory paths or parent folder paths into a reviewer task component array.
+- **FOR 'doc' TASKS:** 'components' array must contain technical documents, process diagrams, workflow logs, metadata files, or structural layouts under `./sources/`.
+- **FOR 'tester' TASKS:** You MUST strictly preserve the semi-colon separated string format `<source>;<test>` exactly as documented in source Markdown. 
+  * **Workspace Prefix Rule with Token Exception:** Every single physical file path component on BOTH sides of the semi-colon character inside the string element MUST be strictly prefixed with `./sources/`. 
+  * **CRITICAL EXCEPTION:** If the first parameter before the semi-colon character is the literal string token `INTEGRATION_SCOPE`, you MUST leave that token completely unmodified. Do NOT append any path prefix to it (e.g., `"components": ["INTEGRATION_SCOPE;./sources/frontend/tests/auth.spec.ts"]`). Appending `./sources/` to the database placeholder or literal integration token is strictly banned.
+- **FOR docker / GCP / GKE TASKS:** The 'components' array MUST exclusively contain targeted DevOps manifests localized inside the dedicated infrastructure subdirectory layer (e.g., `"components": ["./sources/infra/gke/deployment.yaml"]`).
 
-## 7. Context Fields: For each day object, set 'day' to its calculated integer value, set 'context_file' to './sources/{{ project_phase_context_file }}', and set 'context_section' to 'DAY ' followed by the calculated day number.
+# [CONDITION: JAVA_STACK_ONLY] Java Directory Integrity Verification
+# Explicit regex rule to ensure 100% path consistency across distinct sub-agent execution pipelines.
+- **Calculated Lowercase Token Rule:** To compute the package layouts, you MUST strictly apply a deterministic regex execution pattern: Remove all non-alphanumeric characters, strip out whitespaces, underscores, hyphens, and force-convert the remaining string token entirely into 100% pure lowercase alphanumeric characters.
+- Only if the file path extension targets a Java component (.java), you MUST verify that the path contains the calculated package segment: `/org/nlh4j/saas/<calculated_lowercase_token>/`. For all non-Java files, this package segment is STRICTLY BANNED.
 
-## 8. CHRONOLOGICAL TIMELINE SEQUENCING MANDATE (ABSOLUTE):
-Evaluate the context tracking mechanics based strictly on the chunk configuration:
-   - **Case A: If is_chunked is FALSE:** Regardless of the actual day numbers documented in the source Markdown content (e.g., even if the text states "Days 4-7"), you MUST reset the timeline sequence internally so that the first operational day inside this Phase always starts from integer 1. Progression follows sequentially as 2, 3, 4, etc. Map "Day 4" to "day": 1, and 'context_section' to "DAY 1".
-   - **Case B: If is_chunked is TRUE:** You MUST PRESERVE the exact absolute chronological day index requested. The first parsed day object must match the integer value of {{ current_start_day }}, and progress incrementally up to {{ current_end_day }}. Under Case B, you are STRICTLY BANNED from resetting the day value to 1. Map "Day 4" to "day": 4, and its 'context_section' to "DAY 4".
+## 7. Chronological Timeline and Section Sequencing Mandate
+# Evaluate the context tracking mechanics based strictly on the chunk configuration to prevent logical conflicts.
+# The 'day' integer and 'context_section' string MUST be resolved atomically within the specific cases below.
+- **Case A: If is_chunked is FALSE:**
+  * Regardless of the actual day numbers documented in the source Markdown content (e.g., even if text states "Days 4-7"), you MUST reset the timeline sequence internally so that the first operational day inside this Phase always starts from integer 1. Progression follows sequentially as 2, 3, 4, etc. 
+  * Map the first targeted day to `"day": 1`, set 'context_file' to `"./sources/{{ project_phase_context_file }}"`, and strictly set 'context_section' to `"DAY 1"`. Incremental days follow this relative baseline.
+- **Case B: If is_chunked is TRUE:**
+  * You MUST PRESERVE the exact absolute chronological day index requested from the template parameters. The first parsed day object must match the integer value of {{ current_start_day }}, and progress incrementally up to {{ current_end_day }}. 
+  * Under Case B, you are STRICTLY BANNED from resetting the day value to 1. Map the absolute day index to the `"day"` field, set 'context_file' to `"./sources/{{ project_phase_context_file }}"`, and set 'context_section' to `"DAY "` followed exactly by that calculated absolute day number (e.g., `"DAY 4"`).
 
 # 🛑 MANDATORY STRUCTURE ENFORCEMENT FOR TRACEABILITY TAGS (CRITICAL):
-When extracting sub-tasks, you MUST populate the exact inherited BA/SA Tag IDs (`[REQ-XXX]`, `[ARC-XXX]`, etc.) directly into the "targeted_tags" array field of EACH sub-task object node inside the JSON schema.
-- Scan the source Markdown text, extract all corresponding Tag IDs for that sub-task, and populate them as clean individual string elements inside the "targeted_tags" array (e.g., `"targeted_tags": ["[REQ-001]", "[ARC-002]"]`).
+When extracting sub-tasks, you MUST populate the exact inherited BA/SA Tag IDs (`[REQ-XXX]`, `[EXC-XXX]`, `[DAT-XXX]`, `[ARC-XXX]`, `[NFR-XXX]`) directly into the "targeted_tags" array field of EACH sub-task object node inside the JSON schema.
+- Scan the source Markdown text, extract all corresponding Tag IDs for that sub-task, and populate them as clean individual string elements inside the "targeted_tags" array (e.g., `"targeted_tags": ["[REQ-001]", "[DAT-005]", "[EXC-002]"]`).
 - You are STRICTLY BANNED from leaving the "targeted_tags" array empty `[]` or bundling tags into a single string (e.g., NO `["[REQ-001], [REQ-002]"]`). Every tag must be its own array element.
 
-You MUST conform strictly to your required JSON Schema layout design structure:
+You must conform strictly to your required JSON Schema layout design structure:
 {{ phase_steps_json_schema }}
 
 --- PHASE {{ phase_idx }} CONTEXT MARKDOWN ---
