@@ -273,7 +273,7 @@ def convert_phases_to_json(client: OpenAI, model_name: str, project_name: str, n
                 #     )
                 # )
                 # raw_data = response.text
-                # json_data = json.loads(raw_data)
+                # json_data = json_loads(raw_data)
                 
                 # OpenAI
                 response = client.beta.chat.completions.parse(
