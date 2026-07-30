@@ -235,8 +235,12 @@ class AbstractAgent(ABC):
                     raise # re-throw exception to super
         
         # remove old raw_response if existing
-        kwargs.pop("raw_response", None)
-        clean_response = self.clean_response(raw_response=raw_response, **kwargs) if raw_response else None
+        clean_response = None
+        try:
+            kwargs.pop("raw_response", None)
+            clean_response = self.clean_response(raw_response=raw_response, **kwargs) if raw_response else None
+        except Exception as e:
+            self.logger.error(f"💀 Exception parsing raw response: {exception_stacktrace(e)}")
         return {
             **kwargs,
             # adapt new raw response
