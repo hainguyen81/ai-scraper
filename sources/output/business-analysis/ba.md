@@ -1,4 +1,10 @@
-## 1. PROJECT OVERVIEW
+{
+  "project_names": {
+    "technical_codename": "membership-hub",
+    "descriptive_name": "Unified Membership Management Platform",
+    "brand_name": "MembHub"
+  },
+  "srs_content_markdown": "## 1. PROJECT OVERVIEW
 - **Product Objectives & Core Values**
   - Cung cấp một nền tảng thống nhất để quản lý hội viên đa trung tâm.
   - Cho phép theo dõi điểm danh thời gian thực thông qua quét mã QR.
@@ -286,4 +292,5 @@
 | | end_date | DATE | tùy chọn | Ngày hiệu lực kết thúc |
 | Cài đặt hệ thống | setting_key | VARCHAR(50) | PK | Khóa cấu hình |
 | | setting_value | TEXT | không null | Giá trị cấu hình |
-| | description | VARCHAR(200) | tùy chọn | Ý nghĩa của cài đặt |
+| | description | VARCHAR(200) | tùy chọn | Ý nghĩa của cài đặt |"
+}
