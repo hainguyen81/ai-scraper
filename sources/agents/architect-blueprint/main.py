@@ -51,7 +51,7 @@ def load_models_pool():
 def load_models_keys():
     json_key_secrets = os.environ.get("AI_MODELS_KEYS_JSON")
     if not json_key_secrets:
-        logger.warn("[ ⚠️ WARN ] The environment variable 'AI_MODELS_KEYS_JSON' is completely absent.")
+        logger.warning("[ ⚠️ WARN ] The environment variable 'AI_MODELS_KEYS_JSON' is completely absent.")
         return None
     
     return json_loads(json_key_secrets)
@@ -74,7 +74,7 @@ def rotate_matching_model(json_ai_models, json_ai_keys, model_idx):
         
         # If endpoint is missing, None, empty "", or just whitespaces "   ", skip it cleanly
         if not target_model_name or not target_model_endpoint or not str(target_model_endpoint).strip():
-            logger.warn(f"⚠️ Ignore this config due to invalid 'model_name': {target_model_name} or 'model_endpoint': {target_model_endpoint}")
+            logger.warning(f"⚠️ Ignore this config due to invalid 'model_name': {target_model_name} or 'model_endpoint': {target_model_endpoint}")
             model_idx += 1
             continue # 🔄 Immediately jumps to the next iteration of the while loop
         
@@ -84,26 +84,26 @@ def rotate_matching_model(json_ai_models, json_ai_keys, model_idx):
             logger.info(f"[ 💀 FAILOVER ENGAGED ] Found AI model: {target_model_name} | endpoint: {target_model_endpoint}")
             return (model_idx, config, api_key)
         else:
-            logger.warn(f"[ ⚠️ WARNING ] API key missing inside GitHub JSON for model: {target_model_name} | endpoint: {target_model_endpoint}. Skipping tier.")
+            logger.warning(f"[ ⚠️ WARNING ] API key missing inside GitHub JSON for model: {target_model_name} | endpoint: {target_model_endpoint}. Skipping tier.")
             model_idx += 1
     
     return (-1, None, None)
 
 def find_project_requirements(project_name: str):
     if not project_name:
-        logger.warn("[ ⚠️ WARNING ] Invalid project_name to search. Skipping tier.")
+        logger.warning("[ ⚠️ WARNING ] Invalid project_name to search. Skipping tier.")
         return (None, None)
     
     # read projects summaize
     _, projects = read_json_file(file_path=PROJECTS_SUMMARY_FILE_PATH)
     if not projects:
-        logger.warn(f"[ ⚠️ WARNING ] Not found {PROJECTS_SUMMARY_FILE} to search. Skipping tier.")
+        logger.warning(f"[ ⚠️ WARNING ] Not found {PROJECTS_SUMMARY_FILE} to search. Skipping tier.")
         return (None, None)
     
     # filter to find project
     project_info = next((pi for pi in projects if isinstance(pi, dict) and project_name in [ pi.get("technical_codename"), pi.get("idea"), pi.get("brand_name") ]), None)
     if not project_info:
-        logger.warn(f"[ ⚠️ WARNING ] Not found {project_name} from projects list of BA. Skipping tier.")
+        logger.warning(f"[ ⚠️ WARNING ] Not found {project_name} from projects list of BA. Skipping tier.")
         return (None, None)
     
     return (project_info.get("technical_codename"), project_info.get("requirements"))
@@ -119,28 +119,31 @@ def run_architect_agent(
     max_days_per_phase = max_days_per_phase if max_days_per_phase > 0 else 7
     exec_mode = exec_mode if exec_mode >= 0 and exec_mode <= 4 else 0
     exec_delay = exec_delay if exec_delay else 3
-    is_build_plan_spec = not exec_mode in (0, 1, 2, 3)
     is_build_all = exec_mode == 0
-    is_build_global = exec_mode in (0, 1)
-    is_build_phase = exec_mode in (0, 2)
-    is_build_steps = exec_mode in (0, 3)
+    is_build_global = is_build_all or exec_mode in (0, 1)
+    is_build_phase = is_build_all or exec_mode in (0, 2)
+    is_build_steps = is_build_all or exec_mode in (0, 3)
+    is_build_plan_spec = is_build_all or exec_mode not in (0, 1, 2, 3)
     
-    # build requirements path if not input
+    # -------------------------------------------------
+    # Should detect project first to request requirements from BA
+    # -------------------------------------------------
+    # not specify requirements file
     if not requirements_path:
-        requirements_path = os.path.join(REQUIREMENTS_STORAGE_PATH, project_name, REQUIREMENTS_FILE)
-    
-    # try to detect project if not found its requirements
-    physical_requirements_path = resolve_absolute_path(requirements_path)
-    if not os.path.exists(physical_requirements_path):
+        # detect requirements based on project name from BA storage
         detected_project_name, detected_requirements_file = find_project_requirements(project_name)
         # if found, should re-update inputted parameters
         if detected_project_name and detected_requirements_file:
             project_name = detected_project_name
             requirements_path = detected_requirements_file
-            physical_requirements_path = resolve_absolute_path(requirements_path)
             logger.info(f"\n🎉 [ INFO ] Found matching project {project_name} with requirements {requirements_path}")
+        
+        # else not found requirements from BA storage, then detecting from requirements storage
+        else:
+            requirements_path = os.path.join(REQUIREMENTS_STORAGE_PATH, project_name, REQUIREMENTS_FILE)
     
-    # check requirements
+    # if need to build project context/steps, then checking the existing requirements file
+    physical_requirements_path = resolve_absolute_path(requirements_path)
     if not is_build_plan_spec and not os.path.exists(physical_requirements_path):
         logger.critical(f"❌ [ CRITICAL ] Target requirements file not found at: {requirements_path}")
         sys.exit(1)
@@ -162,10 +165,8 @@ def run_architect_agent(
     if api_model_steps_mapping and os.path.exists(resolve_absolute_path(api_model_steps_mapping)):
         absolute_api_model_steps_mapping = resolve_absolute_path(api_model_steps_mapping)
     
-    """
-    Master pipeline orchestrator that runs individual functional blocks in sequence.
-    Provides pristine separation of concerns and protects engine runtime stability.
-    """
+    # Master pipeline orchestrator that runs individual functional blocks in sequence.
+    # Provides pristine separation of concerns and protects engine runtime stability.
     
     json_ai_models = None
     json_ai_keys = None
@@ -263,7 +264,7 @@ def run_architect_agent(
         
         # if failed, check whether should rotate model
         if not is_build_plan_spec and not result_global:
-            logger.warn(f"\n[ 🤖💬 WARN ] Modular Enterprise Architecture Pipeline Executed: Fail to generate project global context!")
+            logger.warning(f"\n[ 🤖💬 WARN ] Modular Enterprise Architecture Pipeline Executed: Fail to generate project global context!")
             
             # should rotate to find other models
             if rotate_model:
@@ -300,7 +301,7 @@ def run_architect_agent(
                 time.sleep(5)
             
             else:
-                logger.warn("\n[ 🤖💬 WARN ] Modular Enterprise Architecture Pipeline Executed: Fail to generate project phase contexts!")
+                logger.warning("\n[ 🤖💬 WARN ] Modular Enterprise Architecture Pipeline Executed: Fail to generate project phase contexts!")
                 
                 # should rotate to find other models
                 if rotate_model:
@@ -330,7 +331,7 @@ def run_architect_agent(
                 daysPerChunk=daysPerChunk
             )
             if not result_steps:
-                logger.warn("\n[ 🤖💬 WARN ] Modular Enterprise Architecture Pipeline Executed: Fail to generate project phase JSON steps!")
+                logger.warning("\n[ 🤖💬 WARN ] Modular Enterprise Architecture Pipeline Executed: Fail to generate project phase JSON steps!")
                 
                 # should rotate to find other models
                 if rotate_model:

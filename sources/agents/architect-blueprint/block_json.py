@@ -79,7 +79,7 @@ def phase_context_file(phase_idx: int):
 def dynamic_transform(json_data, project_name: str, phase_idx: int, template_file_path: str, log_file_path: str):
     # check json mapping whether existed
     if not template_file_path or not os.path.exists(template_file_path):
-        logger.warn(f" │   └── ⚠️ The mapping JSON file not found: {template_file_path}. So using manual transform...")
+        logger.warning(f" │   └── ⚠️ The mapping JSON file not found: {template_file_path}. So using manual transform...")
         return manual_transform(json_data, project_name, phase_idx)
     
     try:
@@ -125,7 +125,7 @@ def dynamic_transform(json_data, project_name: str, phase_idx: int, template_fil
         # 4. Parse result JSON after rendering by Jinja
         return json_loads(cleaned_str)
     except Exception as e:
-        logger.warn(f" │   └── ❌ Exception while mapping JSON: { str(e) }. So using manual transform...")
+        logger.warning(f" │   └── ❌ Exception while mapping JSON: { str(e) }. So using manual transform...")
         return manual_transform(json_data, project_name, phase_idx)
 
 def manual_transform(json_data, project_name: str, phase_idx: int):
@@ -208,7 +208,7 @@ def convert_phases_to_json(client: OpenAI, model_name: str, project_name: str, n
             md_path = os.path.join(phase_context_dir, f"phase-{phase_idx}.context.blueprint.md")
             
             if not os.path.exists(md_path):
-                logger.warn(f" │   └── ❌ Skipped Phase {phase_idx}: Source Markdown file not found.")
+                logger.warning(f" │   └── ❌ Skipped Phase {phase_idx}: Source Markdown file not found.")
                 continue
                 
             with open(md_path, "r", encoding="utf-8") as f:
@@ -311,7 +311,7 @@ def convert_phases_to_json(client: OpenAI, model_name: str, project_name: str, n
                 
                 # Guard against corrupted extractions
                 if not json_data or not isinstance(json_data, dict):
-                    logger.warn(f" │       └── ⚠️ Chunk {chunk_counter} failed to yield clean data object. Halting scroll vector.")
+                    logger.warning(f" │       └── ⚠️ Chunk {chunk_counter} failed to yield clean data object. Halting scroll vector.")
                     has_more_days = False
                     break
                 
@@ -320,7 +320,7 @@ def convert_phases_to_json(client: OpenAI, model_name: str, project_name: str, n
                 
                 # Termination trigger: If array is missing or empty, the entire markdown blueprint context has been fully scanned
                 if not chunk_steps_array:
-                    logger.warn(f" │       └── 🏁 Reached timeline boundary. No data mapped for Day {current_start_day}+.")
+                    logger.warning(f" │       └── 🏁 Reached timeline boundary. No data mapped for Day {current_start_day}+.")
                     has_more_days = False
                     break
                 
@@ -345,7 +345,7 @@ def convert_phases_to_json(client: OpenAI, model_name: str, project_name: str, n
                 else:
                     # not found any days
                     if new_days_added_in_this_chunk == 0:
-                        logger.warn(f" │       └── 🏁 No new valid days matched the current span [{current_start_day}-{current_end_day}]. Ending scroll vector.")
+                        logger.warning(f" │       └── 🏁 No new valid days matched the current span [{current_start_day}-{current_end_day}]. Ending scroll vector.")
                         break
                     
                     # loop chunk
