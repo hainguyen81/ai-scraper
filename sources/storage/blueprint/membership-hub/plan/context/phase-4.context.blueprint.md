@@ -1,160 +1,139 @@
 # PHASE 4 CONTEXT BLUEPRINT: membership-hub
 
 ## 1. Phase Operational Scope & Objectives
-- Consolidate the three core backend microservices—**Authentication**, **Course Management**, and **Student Management**—into a unified integration layer that provides end‑to‑end service orchestration for the membership‑hub platform.
-- Ensure the integration layer respects **multi‑tenant isolation** (`tenant_id` scopes), enforces **OWASP‑compliant security controls** (AES‑256 PII encryption, parameterized queries, input validation), and maintains **scalable, loosely‑coupled communication** via the existing Kafka event bus.
-- Deliver a single, coherent API surface that can be consumed by the web admin UI, mobile student app, and any future client extensions while preserving the existing service contracts.
-- Validate the integrated flow through comprehensive **integration tests** that exercise authentication token issuance, course enrollment workflows, and student record updates across service boundaries.
+Phase 4 focuses on integrating Firebase Cloud Messaging (FCM) for push notifications and deploying the application to Google Cloud Platform (GCP) using Google Kubernetes Engine (GKE). This phase ensures that the system can reliably deliver real-time notifications to mobile users and is deployed in a scalable, production-ready environment. The integration must support multi-tenancy and adhere to security standards, including encrypted payloads and proper tenant isolation in notification routing. Deployment must include containerization, ingress configuration, and environment-specific variables for GKE.
 
 ## 2. Allowed Technical Scope & Directory Boundaries (Files, paths, and endpoints)
-- **Backend Java artifacts** must reside under:
-  - `./sources/backend/src/main/java/org/nlh4j/saas/membershiphub/` (service, controller, config)
-  - `./sources/backend/src/main/resources/` (application.yml, kafka topics)
-  - `./sources/backend/src/test/java/org/nlh4j/saas/membershiphub/` (unit & integration tests)
-  - `./sources/backend/src/test/resources/` (test configs)
-- **REST endpoint patterns** (all prefixed with `/api/v1`):
-  - `POST /auth/token` – authentication integration entry point
-  - `GET /courses` – course management retrieval
-  - `POST /students` – student management creation
-  - `PUT /students/{id}/enroll` – enrollment linking courses to students
-- **Kafka topics** (pre‑existing, no creation required):
-  - `auth-events`, `course-events`, `student-events`
-- **Frontend assets** are **not** part of this phase; only backend integration and its integration tests are in scope.
+- **Backend Notification Service:** `./sources/backend/src/main/java/org/nlh4j/saas/membershiphub/service/NotificationService.java`
+- **Firebase Configuration:** `./sources/backend/src/main/resources/firebase-service-account.json`
+- **GKE Deployment Manifests:** `./sources/infra/gke/deployment.yaml`, `./sources/infra/gke/service.yaml`, `./sources/infra/gke/ingress.yaml`
+- **Docker Configuration:** `./sources/backend/Dockerfile`, `./sources/frontend/Dockerfile`
+- **Environment Configuration:** `./sources/backend/src/main/resources/application-prod.properties`
+- **API Endpoints:** `/api/notifications/send` (POST for sending notifications), `/api/notifications/register` (POST for device token registration)
 
-## 3. Dedicated Sub-Agent Functional Directives
-| Agent | Functional Directives for Phase 4 |
-|-------|-----------------------------------|
-| **coder** | Implement the integration layer that wires Authentication, Course Management, and Student Management services together. Ensure OWASP A01–A03 controls (multi‑tenant `tenant_id`, AES‑256 encryption for sensitive data, parameterized queries) are embedded in every service call. |
-| **tester** | Develop integration test suites that validate end‑to‑end workflows across the three services. Tests must cover authentication token flow, course enrollment, and student record updates, exercising Kafka event propagation and tenant isolation. |
-| **reviewer** | Perform static code analysis and compiler checks on each Java source file created/modified by the **coder** agent. Verify OWASP compliance annotations and package naming conventions. |
-| **doc** | Produce comprehensive technical documentation for the new integration layer: API contracts, data flow diagrams, security controls matrix, and integration test reports. All documentation must be stored under `./sources/backend/docs/`. |
-| **docker** | No tasks assigned in this phase. |
-| **GCP** | No tasks assigned in this phase. |
-| **GKE** | No tasks assigned in this phase. |
+## 3. Dedicated Sub-Agent Functional Directives (Specific tasks for coder, tester, reviewer, doc, docker, GCP, GKE)
+- **docker:** Responsible for creating and optimizing Dockerfiles for backend and frontend, ensuring image size compliance (<500 MB) and multi-stage builds.
+- **GKE:** Handles GKE-specific deployment manifests, including Kubernetes deployments, services, ingress rules, and environment variable injection for production.
+- **coder:** Implements Firebase integration logic, including notification sending and device token registration, with multi-tenant support and error handling.
+- **doc:** Creates deployment guides and notification flow documentation under `./sources/docs/`.
+- **reviewer:** Performs static analysis on individual code files for security compliance, focusing on OWASP Top 10 issues like injection and data exposure.
+- **tester:** Writes and executes integration tests for notification services and deployment configurations.
 
 ## 4. Phase Definition of Done (DoD)
-- **Integration Layer**: A fully functional `IntegrationService` (or equivalent) that orchestrates Authentication, Course Management, and Student Management with tenant‑aware routing and security controls.
-- **Security Compliance**: All integration code includes explicit OWASP controls (multi‑tenant `tenant_id` scopes, AES‑256 encryption for PII, parameterized queries) and passes static security linting.
-- **Integration Test Coverage**: End‑to‑end integration tests for authentication token issuance, course enrollment, and student record updates achieve **≥ 95 %** functional coverage and validate Kafka event propagation.
-- **Documentation**: Complete technical docs (`./sources/backend/docs/IntegrationLayer.adoc`) describing APIs, data flows, security controls, and test results.
-- **Code Quality**: All Java source files conform to the package layout `org.nlh4j.saas.membershiphub` and pass reviewer validation without compilation errors.
+- Firebase integration is complete, with push notifications successfully sent to registered devices via FCM.
+- Backend and frontend are containerized with Docker images under 500 MB.
+- Application is deployed to GKE with functional ingress, services, and environment-specific configurations.
+- All notification-related code passes OWASP security checks and includes multi-tenancy validation.
+- Documentation for deployment and notification flows is created and stored in `./sources/docs/`.
+- Integration tests verify notification delivery and deployment stability.
 
-## 5. DAY‑BY‑DAY ARCHITECTURAL EXECUTION LOGS
+## 5. DAY-BY-DAY ARCHITECTURAL EXECUTION LOGS
 
-### DAY 1: Establish Authentication Integration
-#### SUB‑TASK 1.1: Implement Authentication Service Integration
+### DAY 1: FIREBASE INTEGRATION SETUP AND NOTIFICATION SERVICE IMPLEMENTATION
+#### SUB-TASK 1.1: Implement Firebase notification service with multi-tenant support
 ##### Assigned Sub-Agent: coder
 ##### Targeted Components & Technical Requirements:
-*   **Target Path:** `./sources/backend/src/main/java/org/nlh4j/saas/membershiphub/service/AuthenticationIntegrationService.java`
+*   **Target Path:** `./sources/backend/src/main/java/org/nlh4j/saas/membershiphub/service/NotificationService.java`
     *   **Architectural Requirements:**
-        *   Expose a method `authenticate(String tenantId, AuthRequest request)` that delegates to the existing `AuthenticationService` while injecting the `tenantId` into the request context for multi‑tenant isolation.
-        *   Apply **AES‑256** encryption to any sensitive tokens returned (e.g., refresh tokens) using a tenant‑specific key.
-        *   Use **parameterized queries** for all database accesses within this service.
-        *   Emit an `auth-events` Kafka record containing the authentication outcome and tenant identifier.
+        *   Use Firebase Admin SDK to send push notifications with encrypted payloads.
+        *   Implement tenant isolation by including `tenant_id` in notification metadata.
     *   **DAILY LOGS TRACEABILITY RULES (ZERO TOLERANCE FOR BUNDLING):**
-        *   **Targeted Tag IDs:** [REQ-004], [ARC-004], [NFR-006]
+        *   **Targeted Tag IDs:** [REQ-009], [REQ-016], [REQ-021], [NFR-003]
 
-#### SUB‑TASK 1.2: Integration Test for Authentication Flow
-##### Assigned Sub-Agent: tester
-##### Targeted Components & Technical Requirements:
-*   **Target Path:** `INTEGRATION_SCOPE;./sources/backend/tests/AuthenticationIntegrationTest.java`
-    *   **Architectural Requirements:**
-        *   Simulate a multi‑tenant authentication request, verify token encryption, and assert that the correct `auth-events` Kafka message is produced.
-        *   Validate tenant isolation by ensuring a tenant cannot access another tenant’s authentication data.
-    *   **DAILY LOGS TRACEABILITY RULES (ZERO TOLERANCE FOR BUNDLING):**
-        *   **Targeted Tag IDs:** [ARC-004], [NFR-007]
-
-### DAY 2: Integrate Course Management Service
-#### SUB‑TASK 2.1: Implement Course Management Integration
+#### SUB-TASK 1.2: Create Firebase service account configuration
 ##### Assigned Sub-Agent: coder
 ##### Targeted Components & Technical Requirements:
-*   **Target Path:** `./sources/backend/src/main/java/org/nlh4j/saas/membershiphub/service/CourseManagementIntegrationService.java`
+*   **Target Path:** `./sources/backend/src/main/resources/firebase-service-account.json`
     *   **Architectural Requirements:**
-        *   Provide CRUD operations (`listCourses(tenantId)`, `createCourse(tenantId, CourseDto)`, `assignTeacher(tenantId, courseId, teacherId)`) that call the underlying `CourseManagementService`.
-        *   Enforce **parameterized queries** for all course data accesses.
-        *   Store course metadata encrypted at rest using **AES‑256** with a tenant‑scoped key.
-        *   Emit `course-events` Kafka messages for each state change.
+        *   Store service account JSON with restricted permissions and encrypt sensitive fields.
+        *   Ensure the file is excluded from version control via `.gitignore`.
     *   **DAILY LOGS TRACEABILITY RULES (ZERO TOLERANCE FOR BUNDLING):**
-        *   **Targeted Tag IDs:** [REQ-004], [ARC-004], [NFR-006]
+        *   **Targeted Tag IDs:** [REQ-009], [NFR-003]
 
-#### SUB‑TASK 2.2: Integration Test for Course Management Workflow
-##### Assigned Sub-Agent: tester
+### DAY 2: DOCKERIZATION AND IMAGE OPTIMIZATION
+#### SUB-TASK 2.1: Create optimized Dockerfile for backend
+##### Assigned Sub-Agent: docker
 ##### Targeted Components & Technical Requirements:
-*   **Target Path:** `INTEGRATION_SCOPE;./sources/backend/tests/CourseManagementIntegrationTest.java`
+*   **Target Path:** `./sources/backend/Dockerfile`
     *   **Architectural Requirements:**
-        *   Exercise the full course lifecycle (create, list, assign teacher) across two different tenants.
-        *   Verify encryption of sensitive course fields and that `course-events` are correctly published.
+        *   Use multi-stage build to reduce image size below 500 MB.
+        *   Include only necessary dependencies and set non-root user for security.
     *   **DAILY LOGS TRACEABILITY RULES (ZERO TOLERANCE FOR BUNDLING):**
-        *   **Targeted Tag IDs:** [ARC-004], [NFR-007]
+        *   **Targeted Tag IDs:** [NFR-003], [NFR-005]
 
-### DAY 3: Integrate Student Management Service
-#### SUB‑TASK 3.1: Implement Student Management Integration
+#### SUB-TASK 2.2: Create optimized Dockerfile for frontend
+##### Assigned Sub-Agent: docker
+##### Targeted Components & Technical Requirements:
+*   **Target Path:** `./sources/frontend/Dockerfile`
+    *   **Architectural Requirements:**
+        *   Use lightweight Node.js base image and optimize static asset delivery.
+        *   Ensure environment variables for API endpoints are configurable at runtime.
+    *   **DAILY LOGS TRACEABILITY RULES (ZERO TOLERANCE FOR BUNDLING):**
+        *   **Targeted Tag IDs:** [NFR-003], [NFR-005]
+
+### DAY 3: GKE DEPLOYMENT CONFIGURATION
+#### SUB-TASK 3.1: Create Kubernetes deployment manifests
+##### Assigned Sub-Agent: GKE
+##### Targeted Components & Technical Requirements:
+*   **Target Path:** `./sources/infra/gke/deployment.yaml`
+    *   **Architectural Requirements:**
+        *   Define resource limits, liveness probes, and environment variables for backend and frontend.
+        *   Include `tenant_id` as a configurable environment variable for multi-tenancy.
+    *   **DAILY LOGS TRACEABILITY RULES (ZERO TOLERANCE FOR BUNDLING):**
+        *   **Targeted Tag IDs:** [NFR-003], [ARC-005]
+
+#### SUB-TASK 3.2: Create Kubernetes service and ingress manifests
+##### Assigned Sub-Agent: GKE
+##### Targeted Components & Technical Requirements:
+*   **Target Path:** `./sources/infra/gke/service.yaml`
+    *   **Architectural Requirements:**
+        *   Configure internal services for backend and frontend with proper port mappings.
+    *   **DAILY LOGS TRACEABILITY RULES (ZERO TOLERANCE FOR BUNDLING):**
+        *   **Targeted Tag IDs:** [NFR-003], [ARC-005]
+*   **Target Path:** `./sources/infra/gke/ingress.yaml`
+    *   **Architectural Requirements:**
+        *   Set up HTTPS ingress with TLS termination and path-based routing for APIs and frontend.
+    *   **DAILY LOGS TRACEABILITY RULES (ZERO TOLERANCE FOR BUNDLING):**
+        *   **Targeted Tag IDs:** [NFR-003], [ARC-005]
+
+### DAY 4: ENVIRONMENT CONFIGURATION AND SECURITY REVIEW
+#### SUB-TASK 4.1: Create production environment configuration
 ##### Assigned Sub-Agent: coder
 ##### Targeted Components & Technical Requirements:
-*   **Target Path:** `./sources/backend/src/main/java/org/nlh4j/saas/membershiphub/service/StudentManagementIntegrationService.java`
+*   **Target Path:** `./sources/backend/src/main/resources/application-prod.properties`
     *   **Architectural Requirements:**
-        *   Expose methods `enrollStudent(tenantId, StudentDto)`, `updateStudentRecord(tenantId, studentId, updates)`, and `getStudentStatus(tenantId, studentId)`.
-        *   Apply **multi‑tenant `tenant_id` scoping** to all queries and enforce **parameterized queries** to prevent SQL injection.
-        *   Encrypt personal identifiers (e.g., SSN, contact info) using **AES‑256** with tenant‑specific keys.
-        *   Emit `student-events` Kafka messages for enrollment and status changes.
+        *   Define production database URLs, Firebase settings, and encryption keys.
+        *   Ensure all sensitive values are placeholderized for Kubernetes secret injection.
     *   **DAILY LOGS TRACEABILITY RULES (ZERO TOLERANCE FOR BUNDLING):**
-        *   **Targeted Tag IDs:** [REQ-004], [ARC-004], [NFR-006]
+        *   **Targeted Tag IDs:** [NFR-003], [NFR-006]
 
-#### SUB‑TASK 3.2: Integration Test for Student Management Workflow
-##### Assigned Sub-Agent: tester
-##### Targeted Components & Technical Requirements:
-*   **Target Path:** `INTEGRATION_SCOPE;./sources/backend/tests/StudentManagementIntegrationTest.java`
-    *   **Architectural Requirements:**
-        *   Validate student enrollment, record updates, and status retrieval across multiple tenants.
-        *   Confirm encryption of PII fields and proper emission of `student-events`.
-    *   **DAILY LOGS TRACEABILITY RULES (ZERO TOLERANCE FOR BUNDLING):**
-        *   **Targeted Tag IDs:** [ARC-004], [NFR-007]
-
-### DAY 4: Consolidate Integration Documentation & Review
-#### SUB‑TASK 4.1: Produce Integration Layer Documentation
-##### Assigned Sub-Agent: doc
-##### Targeted Components & Technical Requirements:
-*   **Target Path:** `./sources/backend/docs/IntegrationLayer.adoc`
-    *   **Architectural Requirements:**
-        *   Include API contracts for Authentication, Course, and Student integration endpoints.
-        *   Document data flow diagrams, Kafka event schemas, and security controls (tenant isolation, AES‑256 encryption, parameterized queries).
-        *   Capture test results and coverage metrics.
-    *   **DAILY LOGS TRACEABILITY RULES (ZERO TOLERANCE FOR BUNDLING):**
-        *   **Targeted Tag IDs:** [ARC-004], [NFR-006]
-
-#### SUB‑TASK 4.2: Static Code Review of Integration Services
+#### SUB-TASK 4.2: Perform security review on notification service
 ##### Assigned Sub-Agent: reviewer
 ##### Targeted Components & Technical Requirements:
-*   **Target Path:** `./sources/backend/src/main/java/org/nlh4j/saas/membershiphub/service/AuthenticationIntegrationService.java`
-*   **Target Path:** `./sources/backend/src/main/java/org/nlh4j/saas/membershiphub/service/CourseManagementIntegrationService.java`
-*   **Target Path:** `./sources/backend/src/main/java/org/nlh4j/saas/membershiphub/service/StudentManagementIntegrationService.java`
+*   **Target Path:** `./sources/backend/src/main/java/org/nlh4j/saas/membershiphub/service/NotificationService.java`
     *   **Architectural Requirements:**
-        *   Verify package naming (`org.nlh4j.saas.membershiphub`), OWASP compliance annotations, and absence of hardcoded credentials.
-        *   Ensure all database calls use parameterized queries.
+        *   Validate input sanitization to prevent injection attacks in notification payloads.
+        *   Ensure JWT tokens are validated for tenant scope in notification requests.
     *   **DAILY LOGS TRACEABILITY RULES (ZERO TOLERANCE FOR BUNDLING):**
-        *   **Targeted Tag IDs:** [ARC-004], [NFR-006]
+        *   **Targeted Tag IDs:** [NFR-003], [OWASP A01]
 
-### DAY 5: Final Integration Validation & Sign‑off
-#### SUB‑TASK 5.1: End‑to‑End Integration Test Suite Execution
+### DAY 5: INTEGRATION TESTING AND DOCUMENTATION
+#### SUB-TASK 5.1: Write integration tests for notification service
 ##### Assigned Sub-Agent: tester
 ##### Targeted Components & Technical Requirements:
-*   **Target Path:** `INTEGRATION_SCOPE;./sources/backend/tests/FullIntegrationTestSuite.java`
+*   **Target Path:** INTEGRATION_SCOPE;`./sources/backend/src/test/java/org/nlh4j/saas/membershiphub/service/NotificationServiceIT.java`
     *   **Architectural Requirements:**
-        *   Run the three integration test scenarios sequentially, verifying cross‑service data consistency and Kafka event propagation.
-        *   Assert tenant isolation and encryption safeguards across all three domains.
+        *   Test notification delivery with mocked Firebase responses and verify tenant isolation.
+        *   Cover edge cases like invalid device tokens and network failures.
     *   **DAILY LOGS TRACEABILITY RULES (ZERO TOLERANCE FOR BUNDLING):**
-        *   **Targeted Tag IDs:** [ARC-004], [NFR-007]
+        *   **Targeted Tag IDs:** [REQ-009], [EXC-003]
 
-#### SUB‑TASK 5.2: Documentation Review & Archive
+#### SUB-TASK 5.2: Create deployment and notification flow documentation
 ##### Assigned Sub-Agent: doc
 ##### Targeted Components & Technical Requirements:
-*   **Target Path:** `./sources/backend/docs/IntegrationLayer.adoc`
+*   **Target Path:** `./sources/docs/gke-deployment-guide.md`
     *   **Architectural Requirements:**
-        *   Incorporate reviewer comments, update diagrams, and finalize test result annexes.
-        *   Ensure all OWASP control references are explicitly listed.
+        *   Detail steps for building Docker images, deploying to GKE, and configuring ingress.
+        *   Include diagrams for notification flow using PlantUML or similar.
     *   **DAILY LOGS TRACEABILITY RULES (ZERO TOLERANCE FOR BUNDLING):**
-        *   **Targeted Tag IDs:** [ARC-004], [NFR-006]
-
---- 
-
-*Phase 4 execution complete upon fulfillment of all DoD criteria and successful passage of the integration test suite.*
+        *   **Targeted Tag IDs:** [NFR-003], [ARC-008]

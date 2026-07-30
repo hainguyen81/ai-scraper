@@ -1,125 +1,195 @@
 # PHASE 3 CONTEXT BLUEPRINT: membership-hub
 
 ## 1. Phase Operational Scope & Objectives
-- Establish a unified frontend foundation using Next.js (web) and React Native (mobile) to support multi‑tenant membership management.
-- Implement responsive, role‑based UI screens for **System Admin, Admin, Manager, Teacher, and Student** covering all required management functions (centers, courses, teachers, students, promotions, announcements, AI chat, QR attendance, token expiry, push notifications).
-- Deploy client‑side state management (Redux Toolkit / Zustand) and internationalization (i18n) with locale detection from user preference, browser, or device.
-- Ensure OWASP‑compliant frontend security: input sanitization, CSRF tokens, XSS protection, secure storage of tokens, and safe API calls.
-- Generate comprehensive technical documentation and client‑side test suites achieving ≥80 % coverage.
+Phase 3 focuses on developing the core membership data management capabilities for the membership-hub platform. This includes implementing backend API endpoints for CRUD operations on membership-related entities and building corresponding frontend user interface components. The phase strictly targets requirements [REQ-005], [REQ-006], [REQ-007], and [REQ-008], ensuring multi-tenancy isolation through tenant_id enforcement at the data access layer. All implementations must adhere to OAuth2 JWT token validation and role-based access control (RBAC) as defined in the global context.
 
 ## 2. Allowed Technical Scope & Directory Boundaries (Files, paths, and endpoints)
-- **Web UI:** `./sources/frontend/src/pages/`, `./sources/frontend/src/components/`, `./sources/frontend/src/features/`, `./sources/frontend/src/lib/` (i18n, api utilities).
-- **Mobile UI:** `./sources/frontend/mobile/src/screens/`, `./sources/frontend/mobile/src/components/`, `./sources/frontend/mobile/src/services/`.
-- **State Management:** `./sources/frontend/src/store/` (Redux slices) and `./sources/frontend/src/hooks/` (custom hooks).
-- **Testing:** `./sources/frontend/tests/` (Jest unit tests), `./sources/frontend/tests/e2e/` (Cypress/Detox integration).
-- **Documentation:** `./sources/frontend/docs/` (architecture, component APIs, deployment notes).
-- **Configuration:** `./sources/frontend/next.config.js`, `./sources/frontend/package.json`, `./sources/frontend/mobile/package.json`.
-- **Endpoints (client‑facing):** All REST/GraphQL calls are abstracted via `./sources/frontend/src/lib/apiClient.ts`; no direct path exposure beyond `./sources/`.
+- **Backend Scope:** All Java source files must reside under `./sources/backend/src/main/java/org/nlh4j/saas/membershiphub/` with subdirectories matching package structure (e.g., `service/`, `repository/`, `entity/`). API endpoints must follow REST conventions with base path `/api/v1/`.
+- **Frontend Scope:** All React components and pages must be under `./sources/frontend/src/` with subdirectories `components/`, `pages/`, and `services/`.
+- **Strict Path Boundaries:**
+  - Backend: `./sources/backend/`
+  - Frontend: `./sources/frontend/`
+- **API Endpoints:**
+  - `GET /api/v1/centers` - List centers ([REQ-004])
+  - `POST/PUT/DELETE /api/v1/centers` - Manage centers ([REQ-005])
+  - `POST/DELETE /api/v1/centers/{centerId}/admins` - Assign center admins ([REQ-006])
+  - `GET /api/v1/courses` - List courses ([REQ-007])
+  - `POST/PUT/DELETE /api/v1/courses` - Manage courses ([REQ-008])
 
-## 3. Dedicated Sub-Agent Functional Directives
-- **coder:** Create source files, implement UI components, configure i18n, set up state management, build mobile screens, integrate QR scanner, push notification services, and embed OWASP security controls (input validation, CSRF tokens, secure token storage).
-- **tester:** Write unit tests for React components, integration/E2E tests for multi‑screen workflows, and ensure test coverage meets ≥80 % for each module.
-- **doc:** Produce markdown architecture docs, component READMEs, and API usage guides placed under `./sources/frontend/docs/`.
-- **reviewer:** Perform static code analysis, linting, and security scanning on individual source files (e.g., auth, API client) to enforce coding standards and OWASP compliance.
+## 3. Dedicated Sub-Agent Functional Directives (Specific tasks for coder, tester, reviewer, doc, docker, GCP, GKE)
+- **coder:** Implements backend services, repositories, entities, and frontend components. Must enforce tenant isolation via `tenant_id` in all SQL queries and apply OWASP input validation.
+- **tester:** Writes and executes unit tests for backend services and frontend components. Tests must validate multi-tenancy data segregation and RBAC rules.
+- **reviewer:** Performs static code analysis on individual Java files for security flaws (SQL injection, XSS) and compiler errors.
+- **doc:** Creates technical documentation for API endpoints, data models, and UI components.
+- **docker, GCP, GKE:** Not allocated in this phase.
 
 ## 4. Phase Definition of Done (DoD)
-- All required web and mobile screens implemented and responsive across devices.
-- Multi‑language support functional with locale detection and fallback.
-- State management centralized; all role‑based data flows secured.
-- OWASP baseline controls applied (XSS mitigation, CSRF tokens, secure storage, input sanitization).
-- Client‑side test suites executed with ≥80 % coverage; integration/E2E tests pass.
-- Technical documentation generated for architecture, components, and deployment.
-- Mobile builds configured for iOS/Android (Metro bundler, native modules).
-- No open linting or security violations in reviewed source files.
+- Backend APIs for center and course management implemented with full CRUD operations and tenant isolation.
+- Frontend UI components for center and course management built and integrated with backend APIs.
+- 100% unit test coverage for all new backend services and repositories, verifying multi-tenancy constraints.
+- All code passes static analysis with zero OWASP Top 10 vulnerabilities (SQL injection, XSS).
+- API documentation generated in OpenAPI format.
 
-## 5. DAY‑BY‑DAY ARCHITECTURAL EXECUTION LOGS
+## 5. DAY-BY-DAY ARCHITECTURAL EXECUTION LOGS
 
-### DAY 1: Foundational Frontend Setup & Documentation
-#### SUB‑TASK 1.1: Initialize Next.js Project & i18n Configuration
+### DAY 1: BACKEND CENTER MANAGEMENT API IMPLEMENTATION
+
+#### SUB-TASK 1.1: Implement Center entity and JPA repository with tenant_id filtering
 ##### Assigned Sub-Agent: coder
 ##### Targeted Components & Technical Requirements:
-*   **Target Path:** ./sources/frontend/next.config.js
+*   **Target Path:** `./sources/backend/src/main/java/org/nlh4j/saas/membershiphub/entity/Center.java`
     *   **Architectural Requirements:**
-        *   Configure basePath, trailingSlash, and output directory for production builds.
-        *   Integrate i18n with `locales` (en, vi) and `defaultLocale` detection from user preference, browser, or device.
-        *   Enable OWASP‑compliant CSP headers via `headers()` to mitigate XSS.
-*   **Target Path:** ./sources/frontend/src/lib/i18n.ts
-    *   **Architectural Requirements:**
-        *   Implement `react-i18next` with namespace-based resource loading.
-        *   Add locale detection middleware that reads `Accept-Language` header and user‑stored preference.
-        *   Sanitize locale values to prevent injection attacks.
+        *   JPA entity with fields: center_id (UUID), name (String), address (String), tax_id (String), contact_phone (String), contact_email (String), tenant_id (UUID)
+        *   Apply `@TenantId` annotation or equivalent for automatic multi-tenancy filtering
+    *   **DAILY LOGS TRACEABILITY RULES (ZERO TOLERANCE FOR BUNDLING):**
+        *   **Targeted Tag IDs:** [REQ-005], [ARC-001], [NFR-002]
 
-#### SUB‑TASK 1.2: Create Frontend State Management Layer
+#### SUB-TASK 1.2: Create CenterRepository with custom queries for tenant isolation
 ##### Assigned Sub-Agent: coder
 ##### Targeted Components & Technical Requirements:
-*   **Target Path:** ./sources/frontend/src/store/index.ts
+*   **Target Path:** `./sources/backend/src/main/java/org/nlh4j/saas/membershiphub/repository/CenterRepository.java`
     *   **Architectural Requirements:**
-        *   Set up Redux Toolkit with root reducer combining feature slices.
-        *   Persist auth tokens and user roles using `redux-persist` with secure storage (AsyncStorage for mobile, localStorage for web).
-        *   Enforce token expiration and refresh logic following OWASP A07:2021 – Identification and Authentication Failures.
+        *   Extend JpaRepository with custom method `findAllByTenantId(UUID tenantId)`
+        *   All methods must include `tenant_id` in WHERE clauses to enforce data isolation
+    *   **DAILY LOGS TRACEABILITY RULES (ZERO TOLERANCE FOR BUNDLING):**
+        *   **Targeted Tag IDs:** [REQ-005], [ARC-002], [NFR-002]
 
-#### SUB‑TASK 1.3: Generate Frontend Architecture Documentation
-##### Assigned Sub-Agent: doc
-##### Targeted Components & Technical Requirements:
-*   **Target Path:** ./sources/frontend/docs/FRONTEND_ARCHITECTURE.md
-    *   **Architectural Requirements:**
-        *   Document project structure, routing, i18n setup, state management, API client patterns.
-        *   Include OWASP security controls applied at the frontend layer.
-        *   Provide component interaction diagrams and data flow sketches.
-
-### DAY 2: Core Web UI Implementation & Testing
-#### SUB‑TASK 2.1: Implement Admin Center Management Screen
+#### SUB-TASK 1.3: Implement CenterService with business logic and validation
 ##### Assigned Sub-Agent: coder
 ##### Targeted Components & Technical Requirements:
-*   **Target Path:** ./sources/frontend/src/pages/admin/centers.tsx
+*   **Target Path:** `./sources/backend/src/main/java/org/nlh4j/saas/membershiphub/service/CenterService.java`
     *   **Architectural Requirements:**
-        *   Build CRUD UI for centers (list, add, edit, delete) with form validation.
-        *   Integrate CSRF token in form submissions; sanitize all user inputs.
-        *   Apply role‑based access control (only System Admin can access).
+        *   Service methods for create, update, delete with tax_id uniqueness validation
+        *   Inject tenant_id from JWT token context into all operations
+    *   **DAILY LOGS TRACEABILITY RULES (ZERO TOLERANCE FOR BUNDLING):**
+        *   **Targeted Tag IDs:** [REQ-005], [REQ-006], [NFR-003]
 
-#### SUB‑TASK 2.2: Write Unit Tests for Center Management Component
-##### Assigned Sub-Agent: tester
-##### Targeted Components & Technical Requirements:
-*   **Target Path:** ./sources/frontend/src/pages/admin/centers.tsx;./sources/frontend/tests/pages/admin/centers.test.tsx
-    *   **Architectural Requirements:**
-        *   Test rendering of center list, form fields, and validation logic.
-        *   Verify OWASP input sanitization via mocked API responses.
-        *   Ensure component re‑renders correctly on store updates.
-
-#### SUB‑TASK 2.3: Implement Manager Dashboard with Course & Student Assignment
+#### SUB-TASK 1.4: Create CenterController with REST endpoints
 ##### Assigned Sub-Agent: coder
 ##### Targeted Components & Technical Requirements:
-*   **Target Path:** ./sources/frontend/src/components/manager/CourseAssignment.tsx
+*   **Target Path:** `./sources/backend/src/main/java/org/nlh4j/saas/membershiphub/controller/CenterController.java`
     *   **Architectural Requirements:**
-        *   UI for selecting existing courses and assigning students.
-        *   Use secure API client with JWT token interception.
-        *   Enforce minimum password complexity for auto‑generated Teacher accounts (OWASP A02:2021 – Cryptographic Failures).
+        *   Implement endpoints: GET /centers, POST /centers, PUT /centers/{id}, DELETE /centers/{id}
+        *   Apply @RolesAllowed annotation with "SYSTEM_ADMIN" role for mutating operations
+    *   **DAILY LOGS TRACEABILITY RULES (ZERO TOLERANCE FOR BUNDLING):**
+        *   **Targeted Tag IDs:** [REQ-004], [REQ-005], [REQ-006]
 
-### DAY 3: Mobile App Development, Integration Testing & Code Review
-#### SUB‑TASK 3.1: Build Mobile Student Dashboard with QR Scanner & Token Expiry
+### DAY 2: BACKEND COURSE MANAGEMENT API IMPLEMENTATION
+
+#### SUB-TASK 2.1: Implement Course entity with teacher assignment and date validation
 ##### Assigned Sub-Agent: coder
 ##### Targeted Components & Technical Requirements:
-*   **Target Path:** ./sources/frontend/mobile/src/screens/StudentDashboard.tsx
+*   **Target Path:** `./sources/backend/src/main/java/org/nlh4j/saas/membershiphub/entity/Course.java`
     *   **Architectural Requirements:**
-        *   Implement QR code scanning using `react-native-camera` or equivalent.
-        *   On scan, call attendance API and display remaining token days.
-        *   Store token expiry locally using secure storage (RNSecureStorage) and enforce expiration warnings.
-        *   Integrate push notifications via Firebase Cloud Messaging (FCM) with token refresh handling.
+        *   JPA entity with fields: course_id (UUID), title (String), description (Text), start_date (Date), end_date (Date), teacher_id (UUID), max_students (Integer), tenant_id (UUID)
+        *   Add @Constraint validation for end_date >= start_date
+    *   **DAILY LOGS TRACEABILITY RULES (ZERO TOLERANCE FOR BUNDLING):**
+        *   **Targeted Tag IDs:** [REQ-008], [ARC-003]
 
-#### SUB‑TASK 3.2: Write Mobile Integration/E2E Tests
-##### Assigned Sub-Agent: tester
+#### SUB-TASK 2.2: Create CourseRepository with teacher schedule conflict detection
+##### Assigned Sub-Agent: coder
 ##### Targeted Components & Technical Requirements:
-*   **Target Path:** INTEGRATION_SCOPE;./sources/frontend/tests/mobile/StudentDashboard.e2e.ts
+*   **Target Path:** `./sources/backend/src/main/java/org/nlh4j/saas/membershiphub/repository/CourseRepository.java`
     *   **Architectural Requirements:**
-        *   Simulate QR scan flow, attendance submission, and token expiry display.
-        *   Validate push notification receipt and UI update.
-        *   Ensure tests run on both iOS and Android emulators.
+        *   Custom query method `findTeacherScheduleConflicts(UUID teacherId, Date startDate, Date endDate, UUID tenantId)`
+        *   Native SQL query to detect overlapping date ranges for the same teacher
+    *   **DAILY LOGS TRACEABILITY RULES (ZERO TOLERANCE FOR BUNDLING):**
+        *   **Targeted Tag IDs:** [REQ-008], [NFR-001]
 
-#### SUB‑TASK 3.3: Perform Static Code Analysis & Security Review
-##### Assigned Sub-Agent: reviewer
+#### SUB-TASK 2.3: Implement CourseService with teacher conflict validation
+##### Assigned Sub-Agent: coder
 ##### Targeted Components & Technical Requirements:
-*   **Target Path:** ./sources/frontend/src/components/auth/Login.tsx
+*   **Target Path:** `./sources/backend/src/main/java/org/nlh4j/saas/membershiphub/service/CourseService.java`
     *   **Architectural Requirements:**
-        *   Run ESLint, Prettier, and Snyk checks for vulnerabilities.
-        *   Verify implementation of OWASP A03:2021 – Injection (SQL/GraphQL) mitigations in login payload.
-        *   Confirm secure password handling (bcrypt hashing on client‑side token storage).
+        *   Business logic to check for teacher schedule conflicts before create/update
+        *   Throw custom exception `TeacherScheduleConflictException` when conflicts detected
+    *   **DAILY LOGS TRACEABILITY RULES (ZERO TOLERANCE FOR BUNDLING):**
+        *   **Targeted Tag IDs:** [REQ-008], [EXC-004]
+
+#### SUB-TASK 2.4: Create CourseController with RBAC enforcement
+##### Assigned Sub-Agent: coder
+##### Targeted Components & Technical Requirements:
+*   **Target Path:** `./sources/backend/src/main/java/org/nlh4j/saas/membershiphub/controller/CourseController.java`
+    *   **Architectural Requirements:**
+        *   Implement endpoints: GET /courses, POST /courses, PUT /courses/{id}, DELETE /courses/{id}
+        *   Apply @RolesAllowed with "SYSTEM_ADMIN" and "CENTER_ADMIN" roles for mutating operations
+    *   **DAILY LOGS TRACEABILITY RULES (ZERO TOLERANCE FOR BUNDLING):**
+        *   **Targeted Tag IDs:** [REQ-007], [REQ-008], [ARC-002]
+
+### DAY 3: FRONTEND CENTER MANAGEMENT UI COMPONENTS
+
+#### SUB-TASK 3.1: Create CenterList component with data table
+##### Assigned Sub-Agent: coder
+##### Targeted Components & Technical Requirements:
+*   **Target Path:** `./sources/frontend/src/components/CenterList.tsx`
+    *   **Architectural Requirements:**
+        *   React component with Material-UI DataGrid displaying centers
+        *   Fetch data from GET /api/v1/centers endpoint
+    *   **DAILY LOGS TRACEABILITY RULES (ZERO TOLERANCE FOR BUNDLING):**
+        *   **Targeted Tag IDs:** [REQ-004]
+
+#### SUB-TASK 3.2: Implement CenterForm component for create/edit operations
+##### Assigned Sub-Agent: coder
+##### Targeted Components & Technical Requirements:
+*   **Target Path:** `./sources/frontend/src/components/CenterForm.tsx`
+    *   **Architectural Requirements:**
+        *   Form with validation for all center fields (name, address, tax_id, etc.)
+        *   Submit to POST/PUT /api/v1/centers endpoints
+    *   **DAILY LOGS TRACEABILITY RULES (ZERO TOLERANCE FOR BUNDLING):**
+        *   **Targeted Tag IDs:** [REQ-005]
+
+#### SUB-TASK 3.3: Create CenterAdminAssignment component
+##### Assigned Sub-Agent: coder
+##### Targeted Components & Technical Requirements:
+*   **Target Path:** `./sources/frontend/src/components/CenterAdminAssignment.tsx`
+    *   **Architectural Requirements:**
+        *   UI for selecting users and assigning them as center admins
+        *   Integration with POST/DELETE /api/v1/centers/{centerId}/admins
+    *   **DAILY LOGS TRACEABILITY RULES (ZERO TOLERANCE FOR BUNDLING):**
+        *   **Targeted Tag IDs:** [REQ-006]
+
+### DAY 4: FRONTEND COURSE MANAGEMENT UI COMPONENTS
+
+#### SUB-TASK 4.1: Create CourseList component with filtering
+##### Assigned Sub-Agent: coder
+##### Targeted Components & Technical Requirements:
+*   **Target Path:** `./sources/frontend/src/components/CourseList.tsx`
+    *   **Architectural Requirements:**
+        *   Data grid showing courses with teacher names and date ranges
+        *   Support filtering by teacher, date range, and status
+    *   **DAILY LOGS TRACEABILITY RULES (ZERO TOLERANCE FOR BUNDLING):**
+        *   **Targeted Tag IDs:** [REQ-007]
+
+#### SUB-TASK 4.2: Implement CourseForm with teacher conflict validation
+##### Assigned Sub-Agent: coder
+##### Targeted Components & Technical Requirements:
+*   **Target Path:** `./sources/frontend/src/components/CourseForm.tsx`
+    *   **Architectural Requirements:**
+        *   Form with date pickers and teacher selection
+        *   Client-side validation for date consistency and teacher availability checking
+    *   **DAILY LOGS TRACEABILITY RULES (ZERO TOLERANCE FOR BUNDLING):**
+        *   **Targeted Tag IDs:** [REQ-008]
+
+#### SUB-TASK 4.3: Create API service classes for center and course operations
+##### Assigned Sub-Agent: coder
+##### Targeted Components & Technical Requirements:
+*   **Target Path:** `./sources/frontend/src/services/centerService.ts`
+    *   **Architectural Requirements:**
+        *   TypeScript service class with methods for all center API operations
+        *   Proper error handling and response typing
+    *   **DAILY LOGS TRACEABILITY RULES (ZERO TOLERANCE FOR BUNDLING):**
+        *   **Targeted Tag IDs:** [REQ-004], [REQ-005], [REQ-006]
+
+#### SUB-TASK 4.4: Create API service for course operations
+##### Assigned Sub-Agent: coder
+##### Targeted Components & Technical Requirements:
+*   **Target Path:** `./sources/frontend/src/services/courseService.ts`
+    *   **Architectural Requirements:**
+        *   TypeScript service class with methods for all course API operations
+        *   Includes teacher conflict detection API calls
+    *   **DAILY LOGS TRACEABILITY RULES (ZERO TOLERANCE FOR BUNDLING):**
+        *   **Targeted Tag IDs:** [REQ-007], [REQ-008]
+
+### DAY 5: UNIT TESTING AND CODE REVIEW
+
+#### SUB-TASK

@@ -12,12 +12,29 @@
             "sub_tasks": [
                 {
                     "id": "D1_ST1",
-                    "agent": "docker",
-                    "desc": "docker Agent: Create hardened multi-stage Dockerfile with Trivy vulnerability scanning integration, build image with Git commit SHA tagging, and push to Google Artifact Registry (us-central1-docker.pkg.dev/<project>/membership-hub/backend:${GIT_COMMIT})",
+                    "agent": "reviewer",
+                    "desc": "reviewer Agent: Execute static code analysis on Java services handling tenant_id scope enforcement. Validate all database queries include tenant_id filter in WHERE clauses. Ensure no raw SQL concatenation; use only parameterized queries.",
                     "targeted_tags": [],
                     "components": [
-                        "./sources/backend/Dockerfile",
-                        "./sources/backend/docker-build.sh"
+                        "./sources/backend/src/main/java/org/nlh4j/saas/membershiphub/service/AttendanceService.java"
+                    ]
+                },
+                {
+                    "id": "D1_ST2",
+                    "agent": "reviewer",
+                    "desc": "reviewer Agent: Audit frontend components for PII exposure in API calls. Confirm all PII (email, full_name) encrypted before transmission via HTTPS. Validate no sensitive data stored in browser local storage unencrypted.",
+                    "targeted_tags": [],
+                    "components": [
+                        "./sources/frontend/src/components/MemberCard.tsx"
+                    ]
+                },
+                {
+                    "id": "D1_ST3",
+                    "agent": "doc",
+                    "desc": "doc Agent: Generate multi-tenant audit report. Include findings from reviewer tasks with severity ratings. Document encryption methods used for PII fields.",
+                    "targeted_tags": [],
+                    "components": [
+                        "./sources/docs/security/multi-tenant-audit-report.md"
                     ]
                 }
             ]
@@ -29,64 +46,29 @@
             "sub_tasks": [
                 {
                     "id": "D2_ST1",
+                    "agent": "docker",
+                    "desc": "docker Agent: Create optimized multi-stage Dockerfile for backend. Use JVM slim base image to keep size <200 MB. Include health checks and non-root user execution.",
+                    "targeted_tags": [],
+                    "components": [
+                        "./sources/infra/gke/backend/Dockerfile"
+                    ]
+                },
+                {
+                    "id": "D2_ST2",
                     "agent": "GKE",
-                    "desc": "GKE Agent: Provision GKE cluster (membership-hub-prod) with VPC-native mode, enable Workload Identity, apply Network Policies, enforce PodSecurityStandards (baseline), configure IAM service accounts, create node pools, and install ingress-controller (GCP Cloud Load Balancer)",
+                    "desc": "GKE Agent: Deploy Kubernetes manifests with HPA configuration. Configure HPA to scale based on CPU >70% or latency >300 ms. Set resource limits and requests for all containers.",
                     "targeted_tags": [],
                     "components": [
-                        "./sources/backend/k8s/cluster.yaml",
-                        "./sources/backend/k8s/helm-chart/values.yaml"
+                        "./sources/infra/gke/production/deployment.yaml"
                     ]
-                }
-            ]
-        },
-        {
-            "day": 3,
-            "context_file": ".ai/.plan/.context/phase-5.context.blueprint.md",
-            "context_section": "DAY 3",
-            "sub_tasks": [
+                },
                 {
-                    "id": "D3_ST1",
+                    "id": "D2_ST3",
                     "agent": "GKE",
-                    "desc": "GKE Agent: Apply Kubernetes manifests (deployment.yaml, service.yaml, ingress.yaml) to deploy backend and expose externally",
+                    "desc": "GKE Agent: Set up ingress routing with TLS termination. Configure TLS 1.3 with GCP-managed certificates. Route /api/* to backend services and /* to frontend.",
                     "targeted_tags": [],
                     "components": [
-                        "./sources/backend/k8s/deployment.yaml",
-                        "./sources/backend/k8s/service.yaml",
-                        "./sources/backend/k8s/ingress.yaml"
-                    ]
-                }
-            ]
-        },
-        {
-            "day": 4,
-            "context_file": ".ai/.plan/.context/phase-5.context.blueprint.md",
-            "context_section": "DAY 4",
-            "sub_tasks": [
-                {
-                    "id": "D4_ST1",
-                    "agent": "reviewer",
-                    "desc": "reviewer Agent: Perform static code analysis on SecurityConfig.java and unit test to verify OWASP compliance (password encoding, parameterized queries, CORS configuration, CSRF protection, secure headers), run Trivy on Docker image, validate no high-severity vulnerabilities",
-                    "targeted_tags": [],
-                    "components": [
-                        "./sources/backend/src/main/java/org/nlh4j/saas/membershiphub/security/SecurityConfig.java",
-                        "./sources/backend/src/test/java/org/nlh4j/saas/membershiphub/security/SecurityConfigTest.java"
-                    ]
-                }
-            ]
-        },
-        {
-            "day": 5,
-            "context_file": ".ai/.plan/.context/phase-5.context.blueprint.md",
-            "context_section": "DAY 5",
-            "sub_tasks": [
-                {
-                    "id": "D5_ST1",
-                    "agent": "doc",
-                    "desc": "doc Agent: Compile deployment runbooks, architecture diagrams, and operational procedures into phase5-deployment-guide.md",
-                    "targeted_tags": [],
-                    "components": [
-                        "./sources/docs/deployment-architecture.puml",
-                        "./sources/docs/phase5-deployment-guide.md"
+                        "./sources/infra/gke/production/ingress.yaml"
                     ]
                 }
             ]

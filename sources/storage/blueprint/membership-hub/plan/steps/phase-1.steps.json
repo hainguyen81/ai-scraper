@@ -13,19 +13,19 @@
                 {
                     "id": "D1_ST1",
                     "agent": "coder",
-                    "desc": "coder Agent: Create Flyway Migration for Multi‑Tenant Schema. Define tenants table with id, name, tenant_id (UUID) and created_at. Add tenant_id column to users, courses, enrollments, centers tables using ALTER TABLE. Include CREATE INDEX idx_users_tenant_id for performance. Use REVOKE ALL on public schema and grant per‑tenant roles. Enforce OWASP A03:2021 – Injection by using PREPARED STATEMENT patterns in migration scripts.",
+                    "desc": "coder Agent: Create foundational database migration script with tenant_id columns. Define all tables from Preliminary Data Dictionary with additional tenant_id UUID NOT NULL column. Implement foreign key constraint tenant_id references a tenants table (to be created in Phase 2). Use parameterized SQL expressions exclusively; no string concatenation in dynamic SQL.",
                     "targeted_tags": [],
                     "components": [
-                        "./sources/backend/src/main/resources/db/migration/V1__init_multi_tenant.sql"
+                        "./sources/backend/src/main/resources/db/migration/V1_0_0__init_multitenant_schema.sql"
                     ]
                 },
                 {
                     "id": "D1_ST2",
-                    "agent": "doc",
-                    "desc": "doc Agent: Draft Multi‑Tenancy Architecture Documentation. Document schema design, tenant isolation strategy, and data access layer (Repository) using tenant_id filters. Include security considerations: row‑level security, principle of least privilege, and OWASP A01‑A09 mapping. Provide diagram (text‑based) of tenant‑aware data flow.",
+                    "agent": "coder",
+                    "desc": "coder Agent: Implement row-level security policies in PostgreSQL. Enable RLS on all core tables (users, centers, courses, enrollments, attendances, student_cards). Create policies that restrict SELECT, INSERT, UPDATE, DELETE to rows where tenant_id matches current tenant. Use CURRENT_SETTING('app.current_tenant_id') to dynamically set tenant context per transaction.",
                     "targeted_tags": [],
                     "components": [
-                        "./sources/backend/docs/MultiTenancyArchitecture.md"
+                        "./sources/backend/src/main/resources/db/migration/V1_0_1__enable_rls_policies.sql"
                     ]
                 }
             ]
@@ -38,19 +38,19 @@
                 {
                     "id": "D2_ST1",
                     "agent": "coder",
-                    "desc": "coder Agent: Build AuthenticationService with Internal & External Provider Support. Implement login(String email, String password) using BCrypt password verification. Implement authenticateWithFirebase(String idToken), authenticateWithGoogle(String code), authenticateWithFacebook(String code) delegating to respective OAuth2 clients. Generate JWT (io.smallrye.jwt.build.Jwt) containing sub, tenant_id, roles, and expiration. Apply OWASP A07:2021 – Identification and Authentication Failures mitigations: account lockout, strong password policy, secure session handling. Use @RolesAllowed and jakarta.annotation.security.DeclareRoles for role‑based access control.",
+                    "desc": "coder Agent: Create Java entity classes with tenantId field. Annotate tenantId field with @Column(nullable = false). Implement equals/hashCode methods that include tenantId for proper cache isolation.",
                     "targeted_tags": [],
                     "components": [
-                        "./sources/backend/src/main/java/org/nlh4j/saas/membershiphub/service/AuthenticationService.java"
+                        "./sources/backend/src/main/java/org/nlh4j/saas/membershiphub/entity/User.java"
                     ]
                 },
                 {
                     "id": "D2_ST2",
-                    "agent": "doc",
-                    "desc": "doc Agent: Document Auth API Specification. Define request/response payloads for /api/v1/auth/login, /api/v1/auth/token. Include error schemas (401, 400) and security scheme (HTTP Bearer JWT). Capture external provider endpoints and token exchange flows. Highlight OWASP security controls (rate‑limiting, CSRF tokens) applied per endpoint.",
+                    "agent": "coder",
+                    "desc": "coder Agent: Create tenant-scoped repository interfaces. Extend JpaRepository<User, UUID> with custom @Query methods that include AND tenant_id = :tenantId. Use Spring Data's @Param annotation to safely bind tenantId parameter.",
                     "targeted_tags": [],
                     "components": [
-                        "./sources/backend/docs/AuthApiSpec.md"
+                        "./sources/backend/src/main/java/org/nlh4j/saas/membershiphub/repository/UserRepository.java"
                     ]
                 }
             ]
@@ -63,10 +63,19 @@
                 {
                     "id": "D3_ST1",
                     "agent": "tester",
-                    "desc": "tester Agent: Unit Test TenantRepository Query Isolation. Verify findByTenantId(String tenantId) returns only rows matching the supplied tenant_id. Ensure cross‑tenant data leakage is prevented (assert empty result when mismatched tenant). Use parameterized queries in repository methods to mitigate OWASP A03:2021 – Injection. Include test cases for edge conditions (null tenant_id, duplicate tenant_id).",
+                    "desc": "tester Agent: Write unit tests for tenant isolation validation. Test that users from tenant A cannot access users from tenant B via repository methods. Verify that findByEmail queries automatically include tenant_id scope. Use Testcontainers for isolated PostgreSQL testing instance.",
                     "targeted_tags": [],
                     "components": [
-                        "./sources/backend/src/main/java/org/nlh4j/saas/membershiphub/repository/TenantRepository.java;./sources/backend/src/test/java/org/nlh4j/saas/membershiphub/repository/TenantRepositoryTest.java"
+                        "./sources/backend/src/main/java/org/nlh4j/saas/membershiphub/repository/UserRepository.java;./sources/backend/src/test/java/org/nlh4j/saas/membershiphub/repository/UserRepositoryTest.java"
+                    ]
+                },
+                {
+                    "id": "D3_ST2",
+                    "agent": "doc",
+                    "desc": "doc Agent: Create technical documentation for multi-tenancy implementation. Document the database schema with emphasis on tenant_id column placement. Explain row-level security policy implementation and runtime behavior. Include diagrams showing data isolation between tenants.",
+                    "targeted_tags": [],
+                    "components": [
+                        "./sources/backend/docs/multi-tenancy-architecture.md"
                     ]
                 }
             ]

@@ -12,19 +12,29 @@
             "sub_tasks": [
                 {
                     "id": "D1_ST1",
-                    "agent": "coder",
-                    "desc": "coder Agent: No description provided",
+                    "agent": "reviewer",
+                    "desc": "reviewer Agent: Execute static code analysis on Java services handling tenant_id scope enforcement. Validate all database queries include tenant_id filter in WHERE clauses. Ensure no raw SQL concatenation; use only parameterized queries.",
+                    "targeted_tags": [],
                     "components": [
-                        "./sources/backend/src/main/docker/Dockerfile"
+                        "./sources/backend/src/main/java/org/nlh4j/saas/membershiphub/service/AttendanceService.java"
                     ]
                 },
                 {
                     "id": "D1_ST2",
-                    "agent": "docker",
-                    "desc": "docker Agent: No description provided",
+                    "agent": "reviewer",
+                    "desc": "reviewer Agent: Audit frontend components for PII exposure in API calls. Confirm all PII (email, full_name) encrypted before transmission via HTTPS. Validate no sensitive data stored in browser local storage unencrypted.",
+                    "targeted_tags": [],
                     "components": [
-                        "./sources/backend/src/main/docker/.dockerignore",
-                        "./sources/scripts/build-push.sh"
+                        "./sources/frontend/src/components/MemberCard.tsx"
+                    ]
+                },
+                {
+                    "id": "D1_ST3",
+                    "agent": "doc",
+                    "desc": "doc Agent: Generate multi-tenant audit report. Include findings from reviewer tasks with severity ratings. Document encryption methods used for PII fields.",
+                    "targeted_tags": [],
+                    "components": [
+                        "./sources/docs/security/multi-tenant-audit-report.md"
                     ]
                 }
             ]
@@ -36,103 +46,29 @@
             "sub_tasks": [
                 {
                     "id": "D2_ST1",
-                    "agent": "GCP",
-                    "desc": "GCP Agent: No description provided",
+                    "agent": "docker",
+                    "desc": "docker Agent: Create optimized multi-stage Dockerfile for backend. Use JVM slim base image to keep size <200 MB. Include health checks and non-root user execution.",
+                    "targeted_tags": [],
                     "components": [
-                        "./sources/infrastructure/gcp/cloudbuild.yaml"
+                        "./sources/infra/gke/backend/Dockerfile"
                     ]
                 },
                 {
                     "id": "D2_ST2",
-                    "agent": "GCP",
-                    "desc": "GCP Agent: No description provided",
-                    "components": [
-                        "./sources/infrastructure/gcp/artifact-registry.yaml"
-                    ]
-                }
-            ]
-        },
-        {
-            "day": 3,
-            "context_file": ".ai/.plan/.context/phase-5.context.blueprint.md",
-            "context_section": "DAY 3",
-            "sub_tasks": [
-                {
-                    "id": "D3_ST1",
                     "agent": "GKE",
-                    "desc": "GKE Agent: No description provided",
+                    "desc": "GKE Agent: Deploy Kubernetes manifests with HPA configuration. Configure HPA to scale based on CPU >70% or latency >300 ms. Set resource limits and requests for all containers.",
+                    "targeted_tags": [],
                     "components": [
-                        "./sources/infrastructure/gke/cluster.yaml"
+                        "./sources/infra/gke/production/deployment.yaml"
                     ]
                 },
                 {
-                    "id": "D3_ST2",
+                    "id": "D2_ST3",
                     "agent": "GKE",
-                    "desc": "GKE Agent: No description provided",
+                    "desc": "GKE Agent: Set up ingress routing with TLS termination. Configure TLS 1.3 with GCP-managed certificates. Route /api/* to backend services and /* to frontend.",
+                    "targeted_tags": [],
                     "components": [
-                        "./sources/infrastructure/gke/deployment.yaml"
-                    ]
-                }
-            ]
-        },
-        {
-            "day": 4,
-            "context_file": ".ai/.plan/.context/phase-5.context.blueprint.md",
-            "context_section": "DAY 4",
-            "sub_tasks": [
-                {
-                    "id": "D4_ST1",
-                    "agent": "coder",
-                    "desc": "coder Agent: No description provided",
-                    "components": [
-                        "./sources/scripts/load-test.js"
-                    ]
-                },
-                {
-                    "id": "D4_ST2",
-                    "agent": "tester",
-                    "desc": "tester Agent: No description provided",
-                    "components": [
-                        "INTEGRATION_SCOPE;./sources/tests/performance/load-test.spec.js"
-                    ]
-                }
-            ]
-        },
-        {
-            "day": 5,
-            "context_file": ".ai/.plan/.context/phase-5.context.blueprint.md",
-            "context_section": "DAY 5",
-            "sub_tasks": [
-                {
-                    "id": "D5_ST1",
-                    "agent": "reviewer",
-                    "desc": "reviewer Agent: No description provided",
-                    "components": [
-                        "./sources/backend/src/main/java/org/nlh4j/saas/membershiphub/service/AuthService.java"
-                    ]
-                },
-                {
-                    "id": "D5_ST2",
-                    "agent": "reviewer",
-                    "desc": "reviewer Agent: No description provided",
-                    "components": [
-                        "./sources/backend/src/main/java/org/nlh4j/saas/membershiphub/config/AppConfig.java"
-                    ]
-                },
-                {
-                    "id": "D5_ST3",
-                    "agent": "doc",
-                    "desc": "doc Agent: No description provided",
-                    "components": [
-                        "./sources/docs/phase5-readiness.md"
-                    ]
-                },
-                {
-                    "id": "D5_ST4",
-                    "agent": "doc",
-                    "desc": "doc Agent: No description provided",
-                    "components": [
-                        "./sources/docs/incident-runbook.md"
+                        "./sources/infra/gke/production/ingress.yaml"
                     ]
                 }
             ]

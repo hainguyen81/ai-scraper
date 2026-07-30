@@ -13,33 +13,19 @@
                 {
                     "id": "D1_ST1",
                     "agent": "coder",
-                    "desc": "coder Agent: No description provided",
+                    "desc": "coder Agent: Implement Firebase notification service with multi-tenant support using Firebase Admin SDK to send push notifications with encrypted payloads and implement tenant isolation by including tenant_id in notification metadata.",
+                    "targeted_tags": [],
                     "components": [
-                        "./sources/backend/src/main/java/org/nlh4j/saas/membershiphub/service/PaymentService.java"
+                        "./sources/backend/src/main/java/org/nlh4j/saas/membershiphub/service/NotificationService.java"
                     ]
                 },
                 {
                     "id": "D1_ST2",
                     "agent": "coder",
-                    "desc": "coder Agent: No description provided",
+                    "desc": "coder Agent: Create Firebase service account configuration storing service account JSON with restricted permissions and encrypt sensitive fields, ensuring the file is excluded from version control via .gitignore.",
+                    "targeted_tags": [],
                     "components": [
-                        "./sources/backend/src/main/java/org/nlh4j/saas/membershiphub/controller/PaymentController.java"
-                    ]
-                },
-                {
-                    "id": "D1_ST3",
-                    "agent": "doc",
-                    "desc": "doc Agent: No description provided",
-                    "components": [
-                        "./sources/backend/docs/payment-api.md"
-                    ]
-                },
-                {
-                    "id": "D1_ST4",
-                    "agent": "docker",
-                    "desc": "docker Agent: No description provided",
-                    "components": [
-                        "./sources/backend/Dockerfile"
+                        "./sources/backend/src/main/resources/firebase-service-account.json"
                     ]
                 }
             ]
@@ -51,35 +37,20 @@
             "sub_tasks": [
                 {
                     "id": "D2_ST1",
-                    "agent": "coder",
-                    "desc": "coder Agent: No description provided",
+                    "agent": "docker",
+                    "desc": "docker Agent: Create optimized Dockerfile for backend using multi-stage build to reduce image size below 500 MB and include only necessary dependencies and set non-root user for security.",
+                    "targeted_tags": [],
                     "components": [
-                        "./sources/frontend/src/components/PaymentForm.tsx",
-                        "./sources/frontend/src/pages/payments.tsx"
+                        "./sources/backend/Dockerfile"
                     ]
                 },
                 {
                     "id": "D2_ST2",
-                    "agent": "tester",
-                    "desc": "tester Agent: No description provided",
+                    "agent": "docker",
+                    "desc": "docker Agent: Create optimized Dockerfile for frontend using lightweight Node.js base image and optimize static asset delivery, ensuring environment variables for API endpoints are configurable at runtime.",
+                    "targeted_tags": [],
                     "components": [
-                        "./sources/backend/src/main/java/org/nlh4j/saas/membershiphub/service/PaymentService.java;./sources/backend/src/test/java/org/nlh4j/saas/membershiphub/service/PaymentServiceTest.java"
-                    ]
-                },
-                {
-                    "id": "D2_ST3",
-                    "agent": "reviewer",
-                    "desc": "reviewer Agent: No description provided",
-                    "components": [
-                        "./sources/backend/src/main/java/org/nlh4j/saas/membershiphub/service/PaymentService.java"
-                    ]
-                },
-                {
-                    "id": "D2_ST4",
-                    "agent": "GCP",
-                    "desc": "GCP Agent: No description provided",
-                    "components": [
-                        "./sources/backend/gcp/payment-service.yaml"
+                        "./sources/frontend/Dockerfile"
                     ]
                 }
             ]
@@ -91,34 +62,21 @@
             "sub_tasks": [
                 {
                     "id": "D3_ST1",
-                    "agent": "tester",
-                    "desc": "tester Agent: No description provided",
+                    "agent": "GKE",
+                    "desc": "GKE Agent: Create Kubernetes deployment manifests defining resource limits, liveness probes, and environment variables for backend and frontend, including tenant_id as a configurable environment variable for multi-tenancy.",
+                    "targeted_tags": [],
                     "components": [
-                        "INTEGRATION_SCOPE;./sources/frontend/tests/payment.e2e.spec.ts"
+                        "./sources/infra/gke/deployment.yaml"
                     ]
                 },
                 {
                     "id": "D3_ST2",
-                    "agent": "docker",
-                    "desc": "docker Agent: No description provided",
-                    "components": [
-                        "./sources/backend/docker-compose.yml"
-                    ]
-                },
-                {
-                    "id": "D3_ST3",
                     "agent": "GKE",
-                    "desc": "GKE Agent: No description provided",
+                    "desc": "GKE Agent: Create Kubernetes service and ingress manifests configuring internal services for backend and frontend with proper port mappings and setting up HTTPS ingress with TLS termination and path-based routing for APIs and frontend.",
+                    "targeted_tags": [],
                     "components": [
-                        "./sources/backend/k8s/payment-deployment.yaml"
-                    ]
-                },
-                {
-                    "id": "D3_ST4",
-                    "agent": "doc",
-                    "desc": "doc Agent: No description provided",
-                    "components": [
-                        "./sources/backend/docs/integration-guide.md"
+                        "./sources/infra/gke/service.yaml",
+                        "./sources/infra/gke/ingress.yaml"
                     ]
                 }
             ]
@@ -130,42 +88,45 @@
             "sub_tasks": [
                 {
                     "id": "D4_ST1",
-                    "agent": "reviewer",
-                    "desc": "reviewer Agent: No description provided",
+                    "agent": "coder",
+                    "desc": "coder Agent: Create production environment configuration defining production database URLs, Firebase settings, and encryption keys, ensuring all sensitive values are placeholderized for Kubernetes secret injection.",
+                    "targeted_tags": [],
                     "components": [
-                        "./sources/backend/src/main/java/org/nlh4j/saas/membershiphub/controller/PaymentController.java"
+                        "./sources/backend/src/main/resources/application-prod.properties"
                     ]
                 },
                 {
                     "id": "D4_ST2",
-                    "agent": "docker",
-                    "desc": "docker Agent: No description provided",
+                    "agent": "reviewer",
+                    "desc": "reviewer Agent: Perform security review on notification service validating input sanitization to prevent injection attacks in notification payloads and ensuring JWT tokens are validated for tenant scope in notification requests.",
+                    "targeted_tags": [],
                     "components": [
-                        "./sources/backend/Dockerfile"
+                        "./sources/backend/src/main/java/org/nlh4j/saas/membershiphub/service/NotificationService.java"
+                    ]
+                }
+            ]
+        },
+        {
+            "day": 5,
+            "context_file": ".ai/.plan/.context/phase-4.context.blueprint.md",
+            "context_section": "DAY 5",
+            "sub_tasks": [
+                {
+                    "id": "D5_ST1",
+                    "agent": "tester",
+                    "desc": "tester Agent: Write integration tests for notification service testing notification delivery with mocked Firebase responses and verifying tenant isolation, covering edge cases like invalid device tokens and network failures.",
+                    "targeted_tags": [],
+                    "components": [
+                        "INTEGRATION_SCOPE;./sources/backend/src/test/java/org/nlh4j/saas/membershiphub/service/NotificationServiceIT.java"
                     ]
                 },
                 {
-                    "id": "D4_ST3",
-                    "agent": "GCP",
-                    "desc": "GCP Agent: No description provided",
-                    "components": [
-                        "./sources/backend/gcp/deploy-payment.sh"
-                    ]
-                },
-                {
-                    "id": "D4_ST4",
-                    "agent": "GKE",
-                    "desc": "GKE Agent: No description provided",
-                    "components": [
-                        "./sources/backend/k8s/deploy.sh"
-                    ]
-                },
-                {
-                    "id": "D4_ST5",
+                    "id": "D5_ST2",
                     "agent": "doc",
-                    "desc": "doc Agent: No description provided",
+                    "desc": "doc Agent: Create deployment and notification flow documentation detailing steps for building Docker images, deploying to GKE, and configuring ingress, including diagrams for notification flow using PlantUML or similar.",
+                    "targeted_tags": [],
                     "components": [
-                        "./sources/backend/docs/payment-api-final.md"
+                        "./sources/docs/gke-deployment-guide.md"
                     ]
                 }
             ]

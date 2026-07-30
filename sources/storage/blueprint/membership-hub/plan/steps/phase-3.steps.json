@@ -13,12 +13,37 @@
                 {
                     "id": "D1_ST1",
                     "agent": "coder",
-                    "desc": "coder Agent: Develop CourseService and CourseRepository",
+                    "desc": "coder Agent: Implement Center entity and JPA repository with tenant_id filtering",
                     "targeted_tags": [],
                     "components": [
-                        "./sources/backend/src/main/java/org/nlh4j/saas/membershiphub/course/CourseService.java",
-                        "./sources/backend/src/main/java/org/nlh4j/saas/membershiphub/course/CourseRepository.java",
-                        "./sources/backend/src/main/java/org/nlh4j/saas/membershiphub/course/CourseResource.java"
+                        "./sources/backend/src/main/java/org/nlh4j/saas/membershiphub/entity/Center.java"
+                    ]
+                },
+                {
+                    "id": "D1_ST2",
+                    "agent": "coder",
+                    "desc": "coder Agent: Create CenterRepository with custom queries for tenant isolation",
+                    "targeted_tags": [],
+                    "components": [
+                        "./sources/backend/src/main/java/org/nlh4j/saas/membershiphub/repository/CenterRepository.java"
+                    ]
+                },
+                {
+                    "id": "D1_ST3",
+                    "agent": "coder",
+                    "desc": "coder Agent: Implement CenterService with business logic and validation",
+                    "targeted_tags": [],
+                    "components": [
+                        "./sources/backend/src/main/java/org/nlh4j/saas/membershiphub/service/CenterService.java"
+                    ]
+                },
+                {
+                    "id": "D1_ST4",
+                    "agent": "coder",
+                    "desc": "coder Agent: Create CenterController with REST endpoints",
+                    "targeted_tags": [],
+                    "components": [
+                        "./sources/backend/src/main/java/org/nlh4j/saas/membershiphub/controller/CenterController.java"
                     ]
                 }
             ]
@@ -31,24 +56,114 @@
                 {
                     "id": "D2_ST1",
                     "agent": "coder",
-                    "desc": "coder Agent: Develop StudentService and StudentRepository",
+                    "desc": "coder Agent: Implement Course entity with teacher assignment and date validation",
                     "targeted_tags": [],
                     "components": [
-                        "./sources/backend/src/main/java/org/nlh4j/saas/membershiphub/student/StudentService.java",
-                        "./sources/backend/src/main/java/org/nlh4j/saas/membershiphub/student/StudentRepository.java",
-                        "./sources/backend/src/main/java/org/nlh4j/saas/membershiphub/student/StudentResource.java"
+                        "./sources/backend/src/main/java/org/nlh4j/saas/membershiphub/entity/Course.java"
                     ]
                 },
                 {
                     "id": "D2_ST2",
-                    "agent": "tester",
-                    "desc": "tester Agent: Write Unit Tests for Course and Student Services",
+                    "agent": "coder",
+                    "desc": "coder Agent: Create CourseRepository with teacher schedule conflict detection",
                     "targeted_tags": [],
                     "components": [
-                        "./sources/backend/src/main/java/org/nlh4j/saas/membershiphub/course/CourseService.java;./sources/backend/src/test/java/org/nlh4j/saas/membershiphub/course/CourseServiceTest.java",
-                        "./sources/backend/src/main/java/org/nlh4j/saas/membershiphub/course/CourseRepository.java;./sources/backend/src/test/java/org/nlh4j/saas/membershiphub/course/CourseRepositoryTest.java",
-                        "./sources/backend/src/main/java/org/nlh4j/saas/membershiphub/student/StudentService.java;./sources/backend/src/test/java/org/nlh4j/saas/membershiphub/student/StudentServiceTest.java",
-                        "./sources/backend/src/main/java/org/nlh4j/saas/membershiphub/student/StudentRepository.java;./sources/backend/src/test/java/org/nlh4j/saas/membershiphub/student/StudentRepositoryTest.java"
+                        "./sources/backend/src/main/java/org/nlh4j/saas/membershiphub/repository/CourseRepository.java"
+                    ]
+                },
+                {
+                    "id": "D2_ST3",
+                    "agent": "coder",
+                    "desc": "coder Agent: Implement CourseService with teacher conflict validation",
+                    "targeted_tags": [],
+                    "components": [
+                        "./sources/backend/src/main/java/org/nlh4j/saas/membershiphub/service/CourseService.java"
+                    ]
+                },
+                {
+                    "id": "D2_ST4",
+                    "agent": "coder",
+                    "desc": "coder Agent: Create CourseController with RBAC enforcement",
+                    "targeted_tags": [],
+                    "components": [
+                        "./sources/backend/src/main/java/org/nlh4j/saas/membershiphub/controller/CourseController.java"
+                    ]
+                }
+            ]
+        },
+        {
+            "day": 3,
+            "context_file": ".ai/.plan/.context/phase-3.context.blueprint.md",
+            "context_section": "DAY 3",
+            "sub_tasks": [
+                {
+                    "id": "D3_ST1",
+                    "agent": "coder",
+                    "desc": "coder Agent: Create CenterList component with data table",
+                    "targeted_tags": [],
+                    "components": [
+                        "./sources/frontend/src/components/CenterList.tsx"
+                    ]
+                },
+                {
+                    "id": "D3_ST2",
+                    "agent": "coder",
+                    "desc": "coder Agent: Implement CenterForm component for create/edit operations",
+                    "targeted_tags": [],
+                    "components": [
+                        "./sources/frontend/src/components/CenterForm.tsx"
+                    ]
+                },
+                {
+                    "id": "D3_ST3",
+                    "agent": "coder",
+                    "desc": "coder Agent: Create CenterAdminAssignment component",
+                    "targeted_tags": [],
+                    "components": [
+                        "./sources/frontend/src/components/CenterAdminAssignment.tsx"
+                    ]
+                }
+            ]
+        },
+        {
+            "day": 4,
+            "context_file": ".ai/.plan/.context/phase-3.context.blueprint.md",
+            "context_section": "DAY 4",
+            "sub_tasks": [
+                {
+                    "id": "D4_ST1",
+                    "agent": "coder",
+                    "desc": "coder Agent: Create CourseList component with filtering",
+                    "targeted_tags": [],
+                    "components": [
+                        "./sources/frontend/src/components/CourseList.tsx"
+                    ]
+                },
+                {
+                    "id": "D4_ST2",
+                    "agent": "coder",
+                    "desc": "coder Agent: Implement CourseForm with teacher conflict validation",
+                    "targeted_tags": [],
+                    "components": [
+                        "./sources/frontend/src/components/CourseForm.tsx"
+                    ]
+                },
+                {
+                    "id": "D4_ST3",
+                    "agent": "coder",
+                    "desc": "coder Agent: Create API service classes for center and course operations",
+                    "targeted_tags": [],
+                    "components": [
+                        "./sources/frontend/src/services/centerService.ts"
+                    ]
+                },
+                {
+                    "id": "D4_ST4",
+                    "agent": "coder",
+                    "desc": "coder Agent: Create API service for course operations",
+                    "targeted_tags": [],
+                    "components": [
+                        "./sources/frontend/src/services/courseService.ts"
                     ]
                 }
             ]

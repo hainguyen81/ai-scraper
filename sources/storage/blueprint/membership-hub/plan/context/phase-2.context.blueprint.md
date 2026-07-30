@@ -1,91 +1,139 @@
 # PHASE 2 CONTEXT BLUEPRINT: membership-hub
 
 ## 1. Phase Operational Scope & Objectives
-- Develop a cross‑platform mobile application using Next.js that enables students to check‑in via QR code and view their membership status (remaining validity days, card UI).  
-- Implement unit tests for all mobile app components to guarantee functional correctness and OWASP‑compliant handling of user input and API calls.  
-- Produce comprehensive technical documentation covering project structure, API contracts, and testing strategies.
+Phase 2 focuses on implementing the core authentication and authorization system using OAuth 2.0 with JWT tokens for the backend, and developing the corresponding user interface components for login and registration on the frontend. This phase establishes secure multi-tenant access control aligned with RBAC matrix [ARC-001] to [ARC-005]. Backend implementation must support local email/password registration [REQ-001], social authentication via Firebase, Google, and Facebook OAuth2 [REQ-002], and JWT token generation/validation with 15-minute access tokens and 7-day refresh tokens [NFR-003]. Frontend must provide responsive login/registration UI with validation for email format, password strength, and terms acceptance [REQ-001], and OAuth2 provider integration flows [REQ-002]. All components must enforce TLS 1.3 [NFR-003] and prevent OWASP Top 10 vulnerabilities.
 
-## 2. Allowed Technical Scope & Directory Boundaries
-- **Frontend source tree:** `./sources/frontend/`  
-  - `./sources/frontend/src/` – React/Next.js source (pages, components, hooks)  
-  - `./sources/frontend/src/pages/` – Next.js page routes (`./sources/frontend/src/pages/checkin.tsx`, `./sources/frontend/src/pages/dashboard.tsx`)  
-  - `./sources/frontend/src/components/` – UI primitives (`MembershipCard.tsx`, `QRScanner.tsx`)  
-  - `./sources/frontend/src/services/` – API client (`api.ts`)  
-  - `./sources/frontend/src/tests/` – Jest/React‑Testing‑Library unit tests  
-  - `./sources/frontend/public/` – static assets (QR code icons, app icons)  
-- **Backend API contracts (read‑only scope for this phase):**  
-  - `POST /api/v1/centers/{centerId}/students/{studentId}/checkin` – triggers student check‑in  
-  - `GET /api/v1/centers/{centerId}/students/{studentId}/membership` – returns membership status and remaining days  
-- All paths must respect the `./sources/` root and the `./sources/frontend/` prefix.
+## 2. Allowed Technical Scope & Directory Boundaries (Files, paths, and endpoints)
+- **Backend Paths:** `./sources/backend/src/main/java/org/nlh4j/saas/membershiphub/` (Java source), `./sources/backend/src/test/java/org/nlh4j/saas/membershiphub/` (Java tests), `./sources/backend/config/` (OAuth2 configurations)
+- **Frontend Paths:** `./sources/frontend/src/app/` (Next.js pages/components), `./sources/frontend/src/lib/` (authentication utilities), `./sources/frontend/src/styles/` (UI styles)
+- **REST Endpoints:** `/api/auth/register` (POST), `/api/auth/login` (POST), `/api/auth/oauth/{provider}` (POST), `/api/auth/refresh` (POST), `/api/auth/logout` (POST)
+- **Static Assets:** `./sources/frontend/public/` (OAuth2 provider icons/scripts)
 
-## 3. Dedicated Sub-Agent Functional Directives
-- **coder:** Build the Next.js mobile front‑end, implement QR‑based check‑in UI, membership card display, and client‑side API integration. Ensure OWASP‑compliant input validation, secure storage of tenant identifiers, and AES‑256 encryption for sensitive PII on the client side.  
-- **tester:** Author unit tests for page components, service calls, and validation logic. Achieve ≥ 90 % line coverage and enforce security‑focused test cases (e.g., malformed QR payloads, tenant‑id tampering).  
-- **doc:** Generate end‑to‑end technical documentation (architecture diagram, API contract spec, README, and test‑report summary) stored under `./sources/frontend/docs/`.
+## 3. Dedicated Sub-Agent Functional Directives (Specific tasks for coder, tester, reviewer, doc, docker, GCP, GKE)
+- **coder:** Implements backend OAuth2/JWT logic and frontend UI components. Must inject parameterized queries, bcrypt password hashing, and JWT signature validation.
+- **tester:** Writes unit/integration tests for authentication flows. Tests must verify token expiration, social provider integration, and input validation errors.
+- **reviewer:** Performs static analysis on individual Java/TypeScript files to ensure OWASP compliance and absence of hardcoded secrets.
+- **doc:** Creates technical documentation for authentication architecture, API specs, and OAuth2 setup guides. All docs must reside under `./sources/docs/`.
 
 ## 4. Phase Definition of Done (DoD)
-- Mobile app runs locally, supports QR check‑in and displays membership validity.  
-- All unit tests pass with ≥ 90 % coverage on `./sources/frontend/src/`.  
-- OWASP A01–A09 controls are embedded (input validation, tenant isolation, encrypted storage, secure headers).  
-- Documentation assets exist in `./sources/frontend/docs/` and are referenced from `./sources/frontend/README.md`.
+- Backend passes all unit tests for [REQ-001], [REQ-002], [ARC-006] with 100% coverage.
+- Frontend login/registration components implement all validation rules from [REQ-001].
+- JWT tokens include `tenant_id` and `role` claims enforcing [ARC-001]-[ARC-005].
+- OAuth2 providers (Firebase/Google/Facebook) integrated and functional.
+- All code reviewed for OWASP A01, A02, A07 compliance [NFR-003].
+- Documentation created for authentication flows and security protocols.
 
-## 5. DAY‑BY‑DAY ARCHITECTURAL EXECUTION LOGS
+## 5. DAY-BY-DAY ARCHITECTURAL EXECUTION LOGS
 
-### DAY 1: Initialize Next.js mobile app and create core UI components
-#### SUB‑TASK 1.1: Scaffold Next.js project and define page routes for check‑in and dashboard
+### DAY 4: BACKEND OAUTH2 PROVIDER CONFIGURATION
+#### SUB-TASK 4.1: Implement OAuth2 client configurations for Firebase, Google, and Facebook
 ##### Assigned Sub-Agent: coder
 ##### Targeted Components & Technical Requirements:
-* **Target Path:** `./sources/frontend/package.json`
-    * **Architectural Requirements:**
-        * Use Next.js 13+ with App Router; set `reactStrictMode` true.  
-        * Configure `eslint` with OWASP security lint rules.  
-        * Include `tailwindcss` for responsive mobile UI.  
-    * **DAILY LOGS TRACEABILITY RULES (ZERO TOLERANCE FOR BUNDLING):**
-        * **Targeted Tag IDs:** [REQ-002], [ARC-002]
+*   **Target Path:** `./sources/backend/src/main/java/org/nlh4j/saas/membershiphub/config/OAuth2Config.java`
+    *   **Architectural Requirements:**
+        *   Use Quarkus OIDC extension with `@ConfigMapping` for provider credentials
+        *   Store client secrets in GCP Secret Manager with environment variable injection
+    *   **DAILY LOGS TRACEABILITY RULES (ZERO TOLERANCE FOR BUNDLING):**
+        *   **Targeted Tag IDs:** [REQ-002], [ARC-006]
 
-#### SUB‑TASK 1.2: Create check‑in page with QR scanner and status display
+#### SUB-TASK 4.2: Create social authentication service with token exchange and user profile mapping
 ##### Assigned Sub-Agent: coder
 ##### Targeted Components & Technical Requirements:
-* **Target Path:** `./sources/frontend/src/pages/checkin.tsx`
-    * **Architectural Requirements:**
-        * Implement a functional component that renders a QR scanner (using `react-qr-reader`).  
-        * On successful scan, invoke `api.checkIn(centerId, studentId, qrPayload)` with tenant‑scoped `centerId`.  
-        * Validate QR payload format (UUID) and enforce OWASP A03:2021 (Injection) via regex.  
-        * Store scanned result in secure local storage using AES‑256 (key derived from environment variable).  
-    * **DAILY LOGS TRACEABILITY RULES (ZERO TOLERANCE FOR BUNDLING):**
-        * **Targeted Tag IDs:** [REQ-002], [ARC-002]
+*   **Target Path:** `./sources/backend/src/main/java/org/nlh4j/saas/membershiphub/service/SocialAuthService.java`
+    *   **Architectural Requirements:**
+        *   Implement idempotent user creation/update using `provider`+`provider_id` unique constraint
+        *   Validate OAuth2 tokens against provider endpoints to prevent token injection
+    *   **DAILY LOGS TRACEABILITY RULES (ZERO TOLERANCE FOR BUNDLING):**
+        *   **Targeted Tag IDs:** [REQ-002], [ARC-006]
 
-#### SUB‑TASK 1.3: Create membership dashboard page for status and validity
-##### Assigned Sub-Agent: coder
-##### Targeted Components & Technical Requirements:
-* **Target Path:** `./sources/frontend/src/pages/dashboard.tsx`
-    * **Architectural Requirements:**
-        * Render `MembershipCard` component populated by `api.getMembership(centerId, studentId)`.  
-        * Display remaining validity days with a countdown timer.  
-        * Apply tenant isolation: ensure `centerId` is taken from authenticated context, not user‑modifiable.  
-    * **DAILY LOGS TRACEABILITY RULES (ZERO TOLERANCE FOR BUNDLING):**
-        * **Targeted Tag IDs:** [REQ-002], [ARC-002]
-
-#### SUB‑TASK 1.4: Document project architecture and API contracts
-##### Assigned Sub-Agent: doc
-##### Targeted Components & Technical Requirements:
-* **Target Path:** `./sources/frontend/docs/architecture.md`
-    * **Architectural Requirements:**
-        * Include diagram of Next.js mobile app flow, QR check‑in process, and API endpoints.  
-        * List request/response schemas for `/api/v1/centers/{centerId}/students/{studentId}/checkin` and `/api/v1/centers/{centerId}/students/{studentId}/membership`.  
-        * Note OWASP security controls applied (input validation, encryption, tenant isolation).  
-    * **DAILY LOGS TRACEABILITY RULES (ZERO TOLERANCE FOR BUNDLING):**
-        * **Targeted Tag IDs:** [REQ-002], [ARC-002], [NFR-003]
-
-#### SUB‑TASK 1.5: Write unit tests for check‑in page and membership card
+#### SUB-TASK 4.3: Write unit tests for OAuth2 configuration and token validation
 ##### Assigned Sub-Agent: tester
 ##### Targeted Components & Technical Requirements:
-* **Target Path:** `./sources/frontend/src/pages/checkin.tsx;./sources/frontend/src/tests/pages/checkin.test.tsx`
-    * **Architectural Requirements:**
-        * Use Jest + React‑Testing‑Library to render page, simulate QR scan, and verify API call.  
-        * Mock `api.checkIn` and assert correct tenant parameters.  
-        * Include security test for malformed QR payload (reject with validation error).  
-    * **DAILY LOGS TRACEABILITY RULES (ZERO TOLERANCE FOR BUNDLING):**
-        * **Targeted Tag IDs:** [ARC-002], [NFR-003]
+*   **Target Path:** `./sources/backend/src/main/java/org/nlh4j/saas/membershiphub/config/OAuth2Config.java;./sources/backend/src/test/java/org/nlh4j/saas/membershiphub/config/OAuth2ConfigTest.java`
+    *   **Architectural Requirements:**
+        *   Mock provider endpoints to simulate token exchange flows
+        *   Verify error handling for invalid tokens and provider outages
+    *   **DAILY LOGS TRACEABILITY RULES (ZERO TOLERANCE FOR BUNDLING):**
+        *   **Targeted Tag IDs:** [REQ-002], [NFR-003]
 
-Phase 2 objectives are fully satisfied on Day 1; no further daily logs are required.
+### DAY 5: JWT TOKEN GENERATION AND VALIDATION
+#### SUB-TASK 5.1: Implement JWT token provider with tenant_id and role claims
+##### Assigned Sub-Agent: coder
+##### Targeted Components & Technical Requirements:
+*   **Target Path:** `./sources/backend/src/main/java/org/nlh4j/saas/membershiphub/service/JwtTokenService.java`
+    *   **Architectural Requirements:**
+        *   Use RSA256 signatures with keys rotated every 90 days
+        *   Include `tenant_id` claim from user's center assignment for multi-tenancy
+    *   **DAILY LOGS TRACEABILITY RULES (ZERO TOLERANCE FOR BUNDLING):**
+        *   **Targeted Tag IDs:** [ARC-002], [ARC-006], [NFR-003]
+
+#### SUB-TASK 5.2: Create authentication filter for JWT validation on protected endpoints
+##### Assigned Sub-Agent: coder
+##### Targeted Components & Technical Requirements:
+*   **Target Path:** `./sources/backend/src/main/java/org/nlh4j/saas/membershiphub/filter/AuthenticationFilter.java`
+    *   **Architectural Requirements:**
+        *   Validate token signature and expiration using jjwt library
+        *   Reject tokens missing required claims (`tenant_id`, `role`)
+    *   **DAILY LOGS TRACEABILITY RULES (ZERO TOLERANCE FOR BUNDLING):**
+        *   **Targeted Tag IDs:** [ARC-001], [ARC-002], [NFR-003]
+
+#### SUB-TASK 5.3: Test token generation and validation with edge cases
+##### Assigned Sub-Agent: tester
+##### Targeted Components & Technical Requirements:
+*   **Target Path:** `./sources/backend/src/main/java/org/nlh4j/saas/membershiphub/service/JwtTokenService.java;./sources/backend/src/test/java/org/nlh4j/saas/membershiphub/service/JwtTokenServiceTest.java`
+    *   **Architectural Requirements:**
+        *   Verify token expiration after 15 minutes and refresh token after 7 days
+        *   Test token rejection for invalid signatures and missing claims
+    *   **DAILY LOGS TRACEABILITY RULES (ZERO TOLERANCE FOR BUNDLING):**
+        *   **Targeted Tag IDs:** [NFR-003]
+
+### DAY 6: FRONTEND LOGIN AND REGISTRATION UI
+#### SUB-TASK 6.1: Create responsive login form with email/password and OAuth2 provider buttons
+##### Assigned Sub-Agent: coder
+##### Targeted Components & Technical Requirements:
+*   **Target Path:** `./sources/frontend/src/app/login/page.tsx`
+    *   **Architectural Requirements:**
+        *   Implement real-time validation for email format and password strength
+        *   Include Firebase, Google, Facebook OAuth2 buttons with provider logos
+    *   **DAILY LOGS TRACEABILITY RULES (ZERO TOLERANCE FOR BUNDLING):**
+        *   **Targeted Tag IDs:** [REQ-001], [REQ-002]
+
+#### SUB-TASK 6.2: Build registration form with terms acceptance and validation
+##### Assigned Sub-Agent: coder
+##### Targeted Components & Technical Requirements:
+*   **Target Path:** `./sources/frontend/src/app/register/page.tsx`
+    *   **Architectural Requirements:**
+        *   Enforce password complexity: 8+ chars, uppercase, lowercase, number, special char
+        *   Require terms checkbox and provide link to terms document
+    *   **DAILY LOGS TRACEABILITY RULES (ZERO TOLERANCE FOR BUNDLING):**
+        *   **Targeted Tag IDs:** [REQ-001]
+
+#### SUB-TASK 6.3: Implement authentication context and token management
+##### Assigned Sub-Agent: coder
+##### Targeted Components & Technical Requirements:
+*   **Target Path:** `./sources/frontend/src/lib/auth.ts`
+    *   **Architectural Requirements:**
+        *   Store JWT tokens in secure HTTP-only cookies
+        *   Implement automatic token refresh before expiration
+    *   **DAILY LOGS TRACEABILITY RULES (ZERO TOLERANCE FOR BUNDLING):**
+        *   **Targeted Tag IDs:** [ARC-006], [NFR-003]
+
+#### SUB-TASK 6.4: Review authentication service for security vulnerabilities
+##### Assigned Sub-Agent: reviewer
+##### Targeted Components & Technical Requirements:
+*   **Target Path:** `./sources/backend/src/main/java/org/nlh4j/saas/membershiphub/service/JwtTokenService.java`
+    *   **Architectural Requirements:**
+        *   Verify no hardcoded secrets or weak algorithm configurations
+        *   Ensure all database queries use parameterized statements
+    *   **DAILY LOGS TRACEABILITY RULES (ZERO TOLERANCE FOR BUNDLING):**
+        *   **Targeted Tag IDs:** [NFR-003]
+
+#### SUB-TASK 6.5: Create authentication architecture documentation
+##### Assigned Sub-Agent: doc
+##### Targeted Components & Technical Requirements:
+*   **Target Path:** `./sources/docs/authentication-architecture.md`
+    *   **Architectural Requirements:**
+        *   Document OAuth2 flow diagrams and JWT claim structure
+        *   Include setup instructions for each social provider
+    *   **DAILY LOGS TRACEABILITY RULES (ZERO TOLERANCE FOR BUNDLING):**
+        *   **Targeted Tag IDs:** [REQ-002], [ARC-006]

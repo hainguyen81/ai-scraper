@@ -1,94 +1,102 @@
 # PHASE 1 CONTEXT BLUEPRINT: membership-hub
 
 ## 1. Phase Operational Scope & Objectives
-- **Database Context Initialization:** Design and apply a multi‑tenant PostgreSQL schema with a `tenant_id` column across all core tables (users, courses, enrollments, etc.) to guarantee data isolation per center. Generate Flyway/Liquibase migration scripts under `./sources/backend/src/main/resources/db/migration/`.
-- **Authentication Service Implementation:** Build a Quarkus‑based authentication microservice supporting internal email/password login, and external providers (Firebase, Google, Facebook) using OAuth2/OpenID Connect. Produce JWT tokens with tenant‑scoped claims, enforce password hashing (bcrypt), and integrate CSRF/rate‑limiting per OWASP guidelines.
-- **Tenant‑Isolation Validation Tests:** Write unit tests that verify SQL queries respect tenant boundaries (e.g., SELECT * FROM users WHERE tenant_id = ?). Ensure test coverage for isolation, data leakage prevention, and parameterized query usage.
+Phase 1 focuses exclusively on initializing the multi-tenancy database context with tenant isolation schema enforcement. This includes creating the foundational PostgreSQL database schema with mandatory `tenant_id` columns across all core tables, implementing strict row-level security policies, and writing comprehensive unit tests to validate tenant-isolation at the database query level. The phase ensures that all subsequent data operations are inherently scoped to the correct tenant, preventing cross-tenant data leaks from the ground up. This phase directly supports the RBAC model where center administrators have full authority only within their assigned tenant boundary.
 
 ## 2. Allowed Technical Scope & Directory Boundaries (Files, paths, and endpoints)
-- **Backend Java Sources:** `./sources/backend/src/main/java/org/nlh4j/saas/membershiphub/` (domain, repository, service, config)
-- **Backend Test Sources:** `./sources/backend/src/test/java/org/nlh4j/saas/membershiphub/` (unit & integration tests)
-- **Database Migration Scripts:** `./sources/backend/src/main/resources/db/migration/`
-- **Configuration & Resources:** `./sources/backend/src/main/resources/application.yml`, `./sources/backend/src/main/resources/application-dev.yml`
-- **Docker & Container Files:** `./sources/backend/Dockerfile`, `./sources/backend/docker-compose.yml`
-- **Documentation Assets:** `./sources/backend/docs/` (Markdown, diagrams)
-- **REST Endpoints (allowed for this phase):** `POST /api/v1/auth/login`, `POST /api/v1/auth/token`, `GET /api/v1/tenants/{id}/schema`, `GET /api/v1/health`, `GET /api/v1/metrics`
+*   **Backend Database Schema:** `./sources/backend/src/main/resources/db/migration/`
+*   **Java Entity Classes:** `./sources/backend/src/main/java/org/nlh4j/saas/membershiphub/entity/`
+*   **Java Repository Interfaces:** `./sources/backend/src/main/java/org/nlh4j/saas/membershiphub/repository/`
+*   **Unit Test Classes:** `./sources/backend/src/test/java/org/nlh4j/saas/membershiphub/repository/`
+*   **Database Configuration:** `./sources/backend/src/main/resources/application.properties`
+*   **SQL Row-Level Security Policies:** Embedded within database migration scripts under `./sources/backend/src/main/resources/db/migration/`
 
 ## 3. Dedicated Sub-Agent Functional Directives (Specific tasks for coder, tester, reviewer, doc, docker, GCP, GKE)
-- **coder:** Responsible for all Java code creation, DB migration scripts, authentication service logic, security configuration, and Docker file generation. Must embed OWASP compliance (parameterized queries, bcrypt hashing, JWT tenant claims, rate‑limiting, CSRF tokens).
-- **doc:** Generates comprehensive technical documentation (architecture diagrams, API spec, security design) under `./sources/backend/docs/`. Must reference the same functional tags as coder tasks.
-- **tester:** Writes unit tests that validate tenant‑isolation SQL queries and authentication flows. Must follow the strict pair syntax `<source file>;<test file>` and include OWASP security assertions.
-- **reviewer, docker, GCP, GKE:** Not assigned for Phase 1; remain idle.
+*   **coder:** Implements all database migration scripts, Java entity classes with `tenant_id` fields, and repository interfaces with tenant-scoped query methods. Must enforce parameterized queries to prevent SQL injection.
+*   **tester:** Writes and executes JUnit tests that verify tenant isolation by attempting cross-tenant data access and asserting failures. Tests must cover both positive (same-tenant) and negative (cross-tenant) scenarios.
+*   **doc:** Creates technical documentation detailing the multi-tenancy schema design, row-level security policies, and tenant isolation validation approach. All docs must be placed in `./sources/backend/docs/`.
+*   **reviewer:** (Not allocated in Phase 1 per global context)
+*   **docker:** (Not allocated in Phase 1 per global context)
+*   **GCP:** (Not allocated in Phase 1 per global context)
+*   **GKE:** (Not allocated in Phase 1 per global context)
 
 ## 4. Phase Definition of Done (DoD)
-- **Database:** All core tables contain a `tenant_id` column; Flyway migration scripts applied successfully; tenant‑isolation verified via unit tests.
-- **Authentication:** AuthenticationService implements login, token issuance, external provider delegation; JWT includes `tenant_id` claim; passwords stored using bcrypt; CSRF and rate‑limiting enabled; OpenAPI spec generated.
-- **Security & Compliance:** All SQL uses parameterized queries; input validation and sanitization applied; OWASP Top‑10 mitigations (A01‑A09) enforced; documentation includes security considerations.
-- **Testing:** 100 % unit‑test coverage for TenantRepository and AuthenticationService; tenant‑isolation tests pass; test suite executes without failures.
-- **Artifacts:** Migration scripts, Java source files, documentation Markdown files, and Dockerfiles reside under `./sources/` with correct package layout (`org.nlh4j.saas.membershiphub`).
+*   All database tables include a NOT NULL `tenant_id` column of type UUID.
+*   Row-level security policies are implemented in PostgreSQL to enforce tenant isolation on `SELECT`, `INSERT`, `UPDATE`, `DELETE`.
+*   Java entity classes have `tenantId` fields with appropriate JPA annotations.
+*   Repository interfaces include custom query methods that automatically scope operations by `tenantId`.
+*   Unit tests achieve 100% coverage of tenant isolation scenarios, with zero cross-tenant data leak possibilities.
+*   Technical documentation comprehensively describes the multi-tenancy architecture and validation procedures.
+*   All implementations are free from SQL injection vulnerabilities (OWASP A01).
 
 ## 5. DAY-BY-DAY ARCHITECTURAL EXECUTION LOGS
 
-### DAY 1: Initialize Multi‑Tenant Database Schema and Base Authentication Skeleton
-#### SUB-TASK 1.1: Create Flyway Migration for Multi‑Tenant Schema
+### DAY 1: DATABASE SCHEMA INITIALIZATION WITH TENANT ISOLATION
+
+#### SUB-TASK 1.1: Create foundational database migration script with tenant_id columns
 ##### Assigned Sub-Agent: coder
 ##### Targeted Components & Technical Requirements:
-* **Target Path:** `./sources/backend/src/main/resources/db/migration/V1__init_multi_tenant.sql`
-    * **Architectural Requirements:**
-        * Define `tenants` table with `id`, `name`, `tenant_id` (UUID) and `created_at`.
-        * Add `tenant_id` column to `users`, `courses`, `enrollments`, `centers` tables using `ALTER TABLE`.
-        * Include `CREATE INDEX idx_users_tenant_id` for performance.
-        * Use `REVOKE ALL` on public schema and grant per‑tenant roles.
-        * Enforce **OWASP A03:2021 – Injection** by using `PREPARED STATEMENT` patterns in migration scripts.
-    * **DAILY LOGS TRACEABILITY RULES (ZERO TOLERANCE FOR BUNDLING):**
-        * **Targeted Tag IDs:** [REQ-001], [ARC-001], [NFR-001]
+*   **Target Path:** `./sources/backend/src/main/resources/db/migration/V1_0_0__init_multitenant_schema.sql`
+    *   **Architectural Requirements:**
+        *   Define all tables from Preliminary Data Dictionary with additional `tenant_id UUID NOT NULL` column.
+        *   Implement foreign key constraint `tenant_id` references a `tenants` table (to be created in Phase 2).
+        *   Use parameterized SQL expressions exclusively; no string concatenation in dynamic SQL.
+    *   **DAILY LOGS TRACEABILITY RULES (ZERO TOLERANCE FOR BUNDLING):**
+        *   **Targeted Tag IDs:** [ARC-001], [NFR-002]
 
-#### SUB-TASK 1.2: Draft Multi‑Tenancy Architecture Documentation
-##### Assigned Sub-Agent: doc
-##### Targeted Components & Technical Requirements:
-* **Target Path:** `./sources/backend/docs/MultiTenancyArchitecture.md`
-    * **Architectural Requirements:**
-        * Document schema design, tenant isolation strategy, and data access layer (Repository) using `tenant_id` filters.
-        * Include security considerations: row‑level security, principle of least privilege, and OWASP A01‑A09 mapping.
-        * Provide diagram (text‑based) of tenant‑aware data flow.
-    * **DAILY LOGS TRACEABILITY RULES (ZERO TOLERANCE FOR BUNDLING):**
-        * **Targeted Tag IDs:** [REQ-001], [ARC-001], [NFR-001]
-
-### DAY 2: Implement Core Authentication Service and Security Configuration
-#### SUB-TASK 2.1: Build AuthenticationService with Internal & External Provider Support
+#### SUB-TASK 1.2: Implement row-level security policies in PostgreSQL
 ##### Assigned Sub-Agent: coder
 ##### Targeted Components & Technical Requirements:
-* **Target Path:** `./sources/backend/src/main/java/org/nlh4j/saas/membershiphub/service/AuthenticationService.java`
-    * **Architectural Requirements:**
-        * Implement `login(String email, String password)` using BCrypt password verification.
-        * Implement `authenticateWithFirebase(String idToken)`, `authenticateWithGoogle(String code)`, `authenticateWithFacebook(String code)` delegating to respective OAuth2 clients.
-        * Generate JWT (`io.smallrye.jwt.build.Jwt`) containing `sub`, `tenant_id`, `roles`, and expiration.
-        * Apply **OWASP A07:2021 – Identification and Authentication Failures** mitigations: account lockout, strong password policy, secure session handling.
-        * Use `@RolesAllowed` and `jakarta.annotation.security.DeclareRoles` for role‑based access control.
-    * **DAILY LOGS TRACEABILITY RULES (ZERO TOLERANCE FOR BUNDLING):**
-        * **Targeted Tag IDs:** [REQ-001], [ARC-001], [NFR-001]
+*   **Target Path:** `./sources/backend/src/main/resources/db/migration/V1_0_1__enable_rls_policies.sql`
+    *   **Architectural Requirements:**
+        *   Enable RLS on all core tables (`users`, `centers`, `courses`, `enrollments`, `attendances`, `student_cards`).
+        *   Create policies that restrict `SELECT`, `INSERT`, `UPDATE`, `DELETE` to rows where `tenant_id` matches current tenant.
+        *   Use `CURRENT_SETTING('app.current_tenant_id')` to dynamically set tenant context per transaction.
+    *   **DAILY LOGS TRACEABILITY RULES (ZERO TOLERANCE FOR BUNDLING):**
+        *   **Targeted Tag IDs:** [ARC-001], [NFR-002]
 
-#### SUB-TASK 2.2: Document Auth API Specification
-##### Assigned Sub-Agent: doc
+### DAY 2: JAVA ENTITY AND REPOSITORY LAYER IMPLEMENTATION
+
+#### SUB-TASK 2.1: Create Java entity classes with tenantId field
+##### Assigned Sub-Agent: coder
 ##### Targeted Components & Technical Requirements:
-* **Target Path:** `./sources/backend/docs/AuthApiSpec.md`
-    * **Architectural Requirements:**
-        * Define request/response payloads for `/api/v1/auth/login`, `/api/v1/auth/token`.
-        * Include error schemas (401, 400) and security scheme (HTTP Bearer JWT).
-        * Capture external provider endpoints and token exchange flows.
-        * Highlight OWASP security controls (rate‑limiting, CSRF tokens) applied per endpoint.
-    * **DAILY LOGS TRACEABILITY RULES (ZERO TOLERANCE FOR BUNDLING):**
-        * **Targeted Tag IDs:** [REQ-001], [ARC-001], [NFR-001]
+*   **Target Path:** `./sources/backend/src/main/java/org/nlh4j/saas/membershiphub/entity/User.java`
+    *   **Architectural Requirements:**
+        *   Annotate `tenantId` field with `@Column(nullable = false)`.
+        *   Implement equals/hashCode methods that include `tenantId` for proper cache isolation.
+    *   **DAILY LOGS TRACEABILITY RULES (ZERO TOLERANCE FOR BUNDLING):**
+        *   **Targeted Tag IDs:** [ARC-001], [NFR-002]
 
-### DAY 3: Write Unit Tests for Tenant‑Isolation Database Validation
-#### SUB-TASK 3.1: Unit Test TenantRepository Query Isolation
+#### SUB-TASK 2.2: Create tenant-scoped repository interfaces
+##### Assigned Sub-Agent: coder
+##### Targeted Components & Technical Requirements:
+*   **Target Path:** `./sources/backend/src/main/java/org/nlh4j/saas/membershiphub/repository/UserRepository.java`
+    *   **Architectural Requirements:**
+        *   Extend `JpaRepository<User, UUID>` with custom `@Query` methods that include `AND tenant_id = :tenantId`.
+        *   Use Spring Data's `@Param` annotation to safely bind tenantId parameter.
+    *   **DAILY LOGS TRACEABILITY RULES (ZERO TOLERANCE FOR BUNDLING):**
+        *   **Targeted Tag IDs:** [ARC-001], [NFR-002]
+
+### DAY 3: TENANT ISOLATION VALIDATION AND UNIT TESTING
+
+#### SUB-TASK 3.1: Write unit tests for tenant isolation validation
 ##### Assigned Sub-Agent: tester
 ##### Targeted Components & Technical Requirements:
-* **Target Path:** `./sources/backend/src/main/java/org/nlh4j/saas/membershiphub/repository/TenantRepository.java;./sources/backend/src/test/java/org/nlh4j/saas/membershiphub/repository/TenantRepositoryTest.java`
-    * **Architectural Requirements:**
-        * Verify `findByTenantId(String tenantId)` returns only rows matching the supplied `tenant_id`.
-        * Ensure cross‑tenant data leakage is prevented (assert empty result when mismatched tenant).
-        * Use **parameterized queries** in repository methods to mitigate **OWASP A03:2021 – Injection**.
-        * Include test cases for edge conditions (null tenant_id, duplicate tenant_id).
-    * **DAILY LOGS TRACEABILITY RULES (ZERO TOLERANCE FOR BUNDLING):**
-        * **Targeted Tag IDs:** [ARC-001], [NFR-002]
+*   **Target Path:** `./sources/backend/src/main/java/org/nlh4j/saas/membershiphub/repository/UserRepository.java;./sources/backend/src/test/java/org/nlh4j/saas/membershiphub/repository/UserRepositoryTest.java`
+    *   **Architectural Requirements:**
+        *   Test that users from tenant A cannot access users from tenant B via repository methods.
+        *   Verify that `findByEmail` queries automatically include tenant_id scope.
+        *   Use Testcontainers for isolated PostgreSQL testing instance.
+    *   **DAILY LOGS TRACEABILITY RULES (ZERO TOLERANCE FOR BUNDLING):**
+        *   **Targeted Tag IDs:** [ARC-001], [NFR-002]
+
+#### SUB-TASK 3.2: Create technical documentation for multi-tenancy implementation
+##### Assigned Sub-Agent: doc
+##### Targeted Components & Technical Requirements:
+*   **Target Path:** `./sources/backend/docs/multi-tenancy-architecture.md`
+    *   **Architectural Requirements:**
+        *   Document the database schema with emphasis on `tenant_id` column placement.
+        *   Explain row-level security policy implementation and runtime behavior.
+        *   Include diagrams showing data isolation between tenants.
+    *   **DAILY LOGS TRACEABILITY RULES (ZERO TOLERANCE FOR BUNDLING):**
+        *   **Targeted Tag IDs:** [ARC-001], [NFR-002]

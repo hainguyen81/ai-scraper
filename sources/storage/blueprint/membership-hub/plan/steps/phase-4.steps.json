@@ -13,19 +13,19 @@
                 {
                     "id": "D1_ST1",
                     "agent": "coder",
-                    "desc": "coder Agent: Implement Authentication Service Integration: Expose a method authenticate(String tenantId, AuthRequest request) that delegates to the existing AuthenticationService while injecting the tenantId into the request context for multi-tenant isolation. Apply AES-256 encryption to any sensitive tokens returned (e.g., refresh tokens) using a tenant-specific key. Use parameterized queries for all database accesses within this service. Emit an auth-events Kafka record containing the authentication outcome and tenant identifier.",
+                    "desc": "coder Agent: Implement Firebase notification service with multi-tenant support using Firebase Admin SDK to send push notifications with encrypted payloads and implement tenant isolation by including tenant_id in notification metadata.",
                     "targeted_tags": [],
                     "components": [
-                        "./sources/backend/src/main/java/org/nlh4j/saas/membershiphub/service/AuthenticationIntegrationService.java"
+                        "./sources/backend/src/main/java/org/nlh4j/saas/membershiphub/service/NotificationService.java"
                     ]
                 },
                 {
                     "id": "D1_ST2",
-                    "agent": "tester",
-                    "desc": "tester Agent: Integration Test for Authentication Flow: Simulate a multi-tenant authentication request, verify token encryption, and assert that the correct auth-events Kafka message is produced. Validate tenant isolation by ensuring a tenant cannot access another tenant's authentication data.",
+                    "agent": "coder",
+                    "desc": "coder Agent: Create Firebase service account configuration storing service account JSON with restricted permissions and encrypt sensitive fields, ensuring the file is excluded from version control via .gitignore.",
                     "targeted_tags": [],
                     "components": [
-                        "INTEGRATION_SCOPE;./sources/backend/tests/AuthenticationIntegrationTest.java"
+                        "./sources/backend/src/main/resources/firebase-service-account.json"
                     ]
                 }
             ]
@@ -37,20 +37,20 @@
             "sub_tasks": [
                 {
                     "id": "D2_ST1",
-                    "agent": "coder",
-                    "desc": "coder Agent: Implement Course Management Integration: Provide CRUD operations (listCourses(tenantId), createCourse(tenantId, CourseDto), assignTeacher(tenantId, courseId, teacherId)) that call the underlying CourseManagementService. Enforce parameterized queries for all course data accesses. Store course metadata encrypted at rest using AES-256 with a tenant-scoped key. Emit course-events Kafka messages for each state change.",
+                    "agent": "docker",
+                    "desc": "docker Agent: Create optimized Dockerfile for backend using multi-stage build to reduce image size below 500 MB and include only necessary dependencies and set non-root user for security.",
                     "targeted_tags": [],
                     "components": [
-                        "./sources/backend/src/main/java/org/nlh4j/saas/membershiphub/service/CourseManagementIntegrationService.java"
+                        "./sources/backend/Dockerfile"
                     ]
                 },
                 {
                     "id": "D2_ST2",
-                    "agent": "tester",
-                    "desc": "tester Agent: Integration Test for Course Management Workflow: Exercise the full course lifecycle (create, list, assign teacher) across two different tenants. Verify encryption of sensitive course fields and that course-events are correctly published.",
+                    "agent": "docker",
+                    "desc": "docker Agent: Create optimized Dockerfile for frontend using lightweight Node.js base image and optimize static asset delivery, ensuring environment variables for API endpoints are configurable at runtime.",
                     "targeted_tags": [],
                     "components": [
-                        "INTEGRATION_SCOPE;./sources/backend/tests/CourseManagementIntegrationTest.java"
+                        "./sources/frontend/Dockerfile"
                     ]
                 }
             ]
@@ -62,20 +62,21 @@
             "sub_tasks": [
                 {
                     "id": "D3_ST1",
-                    "agent": "coder",
-                    "desc": "coder Agent: Implement Student Management Integration: Expose methods enrollStudent(tenantId, StudentDto), updateStudentRecord(tenantId, studentId, updates), and getStudentStatus(tenantId, studentId). Apply multi-tenant tenant_id scoping to all queries and enforce parameterized queries to prevent SQL injection. Encrypt personal identifiers (e.g., SSN, contact info) using AES-256 with tenant-specific keys. Emit student-events Kafka messages for enrollment and status changes.",
+                    "agent": "GKE",
+                    "desc": "GKE Agent: Create Kubernetes deployment manifests defining resource limits, liveness probes, and environment variables for backend and frontend, including tenant_id as a configurable environment variable for multi-tenancy.",
                     "targeted_tags": [],
                     "components": [
-                        "./sources/backend/src/main/java/org/nlh4j/saas/membershiphub/service/StudentManagementIntegrationService.java"
+                        "./sources/infra/gke/deployment.yaml"
                     ]
                 },
                 {
                     "id": "D3_ST2",
-                    "agent": "tester",
-                    "desc": "tester Agent: Integration Test for Student Management Workflow: Validate student enrollment, record updates, and status retrieval across multiple tenants. Confirm encryption of PII fields and proper emission of student-events.",
+                    "agent": "GKE",
+                    "desc": "GKE Agent: Create Kubernetes service and ingress manifests configuring internal services for backend and frontend with proper port mappings and setting up HTTPS ingress with TLS termination and path-based routing for APIs and frontend.",
                     "targeted_tags": [],
                     "components": [
-                        "INTEGRATION_SCOPE;./sources/backend/tests/StudentManagementIntegrationTest.java"
+                        "./sources/infra/gke/service.yaml",
+                        "./sources/infra/gke/ingress.yaml"
                     ]
                 }
             ]
@@ -87,22 +88,20 @@
             "sub_tasks": [
                 {
                     "id": "D4_ST1",
-                    "agent": "doc",
-                    "desc": "doc Agent: Produce Integration Layer Documentation: Include API contracts for Authentication, Course, and Student integration endpoints. Document data flow diagrams, Kafka event schemas, and security controls (tenant isolation, AES-256 encryption, parameterized queries). Capture test results and coverage metrics.",
+                    "agent": "coder",
+                    "desc": "coder Agent: Create production environment configuration defining production database URLs, Firebase settings, and encryption keys, ensuring all sensitive values are placeholderized for Kubernetes secret injection.",
                     "targeted_tags": [],
                     "components": [
-                        "./sources/backend/docs/IntegrationLayer.adoc"
+                        "./sources/backend/src/main/resources/application-prod.properties"
                     ]
                 },
                 {
                     "id": "D4_ST2",
                     "agent": "reviewer",
-                    "desc": "reviewer Agent: Static Code Review of Integration Services: Verify package naming (org.nlh4j.saas.membershiphub), OWASP compliance annotations, and absence of hardcoded credentials. Ensure all database calls use parameterized queries.",
+                    "desc": "reviewer Agent: Perform security review on notification service validating input sanitization to prevent injection attacks in notification payloads and ensuring JWT tokens are validated for tenant scope in notification requests.",
                     "targeted_tags": [],
                     "components": [
-                        "./sources/backend/src/main/java/org/nlh4j/saas/membershiphub/service/AuthenticationIntegrationService.java",
-                        "./sources/backend/src/main/java/org/nlh4j/saas/membershiphub/service/CourseManagementIntegrationService.java",
-                        "./sources/backend/src/main/java/org/nlh4j/saas/membershiphub/service/StudentManagementIntegrationService.java"
+                        "./sources/backend/src/main/java/org/nlh4j/saas/membershiphub/service/NotificationService.java"
                     ]
                 }
             ]
@@ -115,19 +114,19 @@
                 {
                     "id": "D5_ST1",
                     "agent": "tester",
-                    "desc": "tester Agent: End-to-End Integration Test Suite Execution: Run the three integration test scenarios sequentially, verifying cross-service data consistency and Kafka event propagation. Assert tenant isolation and encryption safeguards across all three domains.",
+                    "desc": "tester Agent: Write integration tests for notification service testing notification delivery with mocked Firebase responses and verifying tenant isolation, covering edge cases like invalid device tokens and network failures.",
                     "targeted_tags": [],
                     "components": [
-                        "INTEGRATION_SCOPE;./sources/backend/tests/FullIntegrationTestSuite.java"
+                        "INTEGRATION_SCOPE;./sources/backend/src/test/java/org/nlh4j/saas/membershiphub/service/NotificationServiceIT.java"
                     ]
                 },
                 {
                     "id": "D5_ST2",
                     "agent": "doc",
-                    "desc": "doc Agent: Documentation Review & Archive: Incorporate reviewer comments, update diagrams, and finalize test result annexes. Ensure all OWASP control references are explicitly listed.",
+                    "desc": "doc Agent: Create deployment and notification flow documentation detailing steps for building Docker images, deploying to GKE, and configuring ingress, including diagrams for notification flow using PlantUML or similar.",
                     "targeted_tags": [],
                     "components": [
-                        "./sources/backend/docs/IntegrationLayer.adoc"
+                        "./sources/docs/gke-deployment-guide.md"
                     ]
                 }
             ]
