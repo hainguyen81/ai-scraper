@@ -33,6 +33,8 @@ Execute your computational analysis through invisible backend math processing an
    - Convert USD bounds to VND bounds using the extracted live exchange rate. Cross-check that for every single range tier: (VND Value) / (USD Value) = Exchange Rate EXACTLY.
    - Guarantee that every raw numeric figure declared inside the Markdown Section 3 report tables matches the JSON structural values in Section 7 down to the exact float digit.
 
+---
+
 ### 📋 MANDATORY OUTPUT STRUCTURE (MARKDOWN REPORT):
 Every header and table parameter below MUST be translated and naturally rendered into "{{ target_language }}":
 
@@ -108,7 +110,7 @@ Deliver a deep analytical justification and an actionable roadmap structured exc
 | **Operational & Management Overhead** | Corporate infrastructure overhead vs zero-overhead freelance execution | [Insert Calculated Sourced OpEx Impact] |
 | **Security Hardening Boundaries** | Implementation of mTLS, custom Envoy WAF, Argon2id, and SHA-256 hash-chained immutable logging | [Insert Sourced Complexity % Impact] |
 | **High Availability & Disaster Recovery (HA/DR)** | Multi-region GKE deployment with clustered RabbitMQ topologies vs Single-instance VPS | [Insert Sourced Cloud Cost Multiplier Impact] |
-| **Data Isolation Strategy** | Database-per-tenant isolation using dynamic dynamic encrypted routing strings | [Insert Sourced Engineering Effort % Impact] |
+| **Data Isolation Strategy** | Database-per-tenant isolation using dynamic encrypted routing strings (You MUST explicitly scan and cite the exact traceable logical entity tags `[DAT-XXX]` extracted from {{ raw_srs_content }} that govern the multi-tenancy models) | [Insert Sourced Engineering Effort % Impact based on the identified DAT tags] |
 
 ##### 2. Jira-Compliant Work Breakdown Structure (WBS) Roadmap
 [Render a brief introductory sentence in "{{ target_language }}"]
@@ -138,7 +140,8 @@ Use the official `xychart-beta` syntax. You MUST evaluate labor costs to find th
 xychart-beta
 title "Total Cost Comparison Bounds (in Thousands USD)"
 x-axis ["Min Cost", "Max Cost", "Safe Cost"]
-y-axis "USD (Thousands)" 0 --> Insert_Calculated_Max_Integer_Value_Here
+y-axis "USD (Thousands)"
+0 --> Insert_Calculated_Max_Integer_Value_Here
 bar [Insert_Min_Int, Insert_Max_Int, Insert_Safe_Int]
 bar [Insert_Min_Int, Insert_Max_Int, Insert_Safe_Int]
 bar [Insert_Min_Int, Insert_Max_Int, Insert_Safe_Int]

@@ -27,7 +27,8 @@ You MUST execute the analysis in 3 sequential, independent verification layers b
 You MUST deliver the final audit report strictly formatted in Markdown, written entirely in **Technical English**, using high-density **Compact Technical Telegraphy** language (eliminate filler adjectives and passive voice), and structured exactly into the following 6 engineering sections. Do not include any introductory conversational filler text. Start directly with the main section headers.
 
 #### 📑 SECTION 0: DOCUMENT CONTROL & AUDIT METADATA
-You MUST inject this structured metadata table at the very top of your output file, resolving all dynamic parameter variables without leaving placeholders:
+# Enforce strict metadata synchronization across the workflow loops.
+# You MUST dynamically extract the exact Target Blueprint ID from the header block of the incoming `{{ raw_csro_blueprint_content }}` file instead of generating a new timestamp token.
 
 | Audit Parameter | Information Details |
 | :--- | :--- |
@@ -35,7 +36,7 @@ You MUST inject this structured metadata table at the very top of your output fi
 | **Idea ID** | {{ idea_id }} |
 | **Project Name** | {{ project_name }} |
 | **Project Description** | {{ project_description }} |
-| **Target Blueprint ID** | ARCH-{{ current_timestamp_2 }} |
+| **Target Blueprint ID** | [Dynamically extract the exact ARCH-ID token string found inside raw_csro_blueprint_content] |
 | **Verification Method** | Independent Multi-Layer Triple-Check Pattern |
 | **Auditor Identity** | [Insert your exact assigned sub-agent persona token dynamically] |
 | **Audit Date/Time** | {{ current_timestamp }} |
