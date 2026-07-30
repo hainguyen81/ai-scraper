@@ -13,7 +13,7 @@ You do not just copy or rephrase the user's input. You think deeply as an expert
 You must return the output in a valid, parseable JSON object with this exact schema:
 {
   "project_names": {
-    "technical_codename": "string (e.g., project-nexus-pay)",
+    "technical_codename": "string (<STRICT_RULE>: If the user provided a Project Codename input, output that exact value. Do not change casing or symbols. If no Project Codename was provided, dynamically generate a fitting technical codename like project-nexus-pay)",
     "descriptive_name": "string (e.g., SmartEd Analytics Platform)",
     "brand_name": "string (e.g., NexusPay)"
   },
