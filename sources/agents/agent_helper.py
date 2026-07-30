@@ -81,14 +81,12 @@ def __load_jsons__(data, silent=True):
             raise e
         else:
             print(f"Exception while loading JSON: {str(e)}")
-            print(f"- JSON: {str(data)}")
 
 def json_loads(data):
     # try to parse json
     if not data:
         return None
     
-    print(f"- Load JSON: {str(data)}")
     try:
         return __load_jsons__(data=data, silent=False)
     except:
