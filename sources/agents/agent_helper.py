@@ -87,11 +87,10 @@ def json_loads(data):
     if not data:
         return None
     
-    try:
-        return __load_jsons__(data=data, silent=False)
-    except:
-        # fail to load at the first time, so trying to fix data and re-load it
-        return __load_jsons__(data=data, silent=True)
+    json_data = __load_jsons__(data=data, silent=True)
+    if not json_data:
+        json_data = __load_jsons__(data=__fix_json__(data), silent=False)
+    return json_data
 
 def json_raw_content(raw_content):
     """Securely serialize input telemetry payloads into structural double-quoted strings."""

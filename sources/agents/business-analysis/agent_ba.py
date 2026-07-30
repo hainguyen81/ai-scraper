@@ -83,6 +83,8 @@ class PrincipalBusinessAnalysisAgent(AbstractSubAgent):
     # @override
     def clean_response(self, raw_response, **kwargs):
         srs_info = json_loads(raw_response.strip()) if raw_response else None
+        if not srs_info:
+            raise RuntimeError("- Invalid AI raw response. Not a valid JSON format data.")
         
         # check srss summary
         projects = []

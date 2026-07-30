@@ -261,6 +261,9 @@ class AbstractAgent(ABC):
             clean_response = self.clean_response(raw_response=raw_response, **kwargs) if raw_response else None
         except Exception as e:
             self.logger.error(f"💀 Exception parsing raw response: {exception_stacktrace(e)}")
+        
+        # result
+        self.logger.debug("   - Parsed/Extracted: %s", clean_response)
         return {
             **kwargs,
             # adapt new raw response
