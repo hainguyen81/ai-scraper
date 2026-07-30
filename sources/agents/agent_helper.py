@@ -88,6 +88,7 @@ def json_loads(data):
     if not data:
         return None
     
+    print(f"- Load JSON: {str(data)}")
     try:
         return __load_jsons__(data=data, silent=False)
     except:
