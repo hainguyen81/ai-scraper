@@ -525,10 +525,20 @@ class FullColorFormatter(logging.Formatter):
 # )
 def get_logger(logger_name="Helper"):
     logger = logging.getLogger(logger_name)
-    logger.setLevel(logging.INFO) 
+    logger.setLevel(logging.INFO)
     if not logger.handlers:
         handler = logging.StreamHandler()
         handler.setFormatter(FullColorFormatter())
         logger.addHandler(handler)
     return logger
+
+def enabledLogLevel(logger, level=logging.INFO):
+    try:
+        logger.setLevel(level)
+        return True
+    except Exception:
+        return False
+
+def enabledLogDebug(logger):
+    return enabledLogLevel(logger=logger, level=logging.DEBUG)
 

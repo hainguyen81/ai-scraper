@@ -8,7 +8,8 @@ from datetime import datetime
 from sources.agents.agent_helper import (
     write_json_file,
     write_file,
-    json_loads
+    json_loads,
+    enabledLogDebug
 )
 
 # super agent
@@ -38,6 +39,7 @@ class PrincipalBusinessAnalysisAgent(AbstractSubAgent):
         # start initialization
         super().initialize()
         self.language = self.get_kwargs("language") or DEFAULT_SRS_LANGUAGE
+        self.enabled_log_debug()
     
     def ba_output_raw_file(self):
         return self.__output_storage_path__(storage_name="output_ba", file=BA_RAW_FILE)
@@ -121,8 +123,6 @@ class PrincipalBusinessAnalysisAgent(AbstractSubAgent):
     
     # @override
     def process_communication(self, **kwargs):
-        raw_response = self.get_kwargs_by_key(key="raw_response", **kwargs)
-        self.logger.info(raw_response)
         response_data = self.get_kwargs_by_key(key="clean_response", **kwargs)
         if not response_data:
             raise RuntimeError("- Invalid AI raw response. Not a valid JSON format data.")

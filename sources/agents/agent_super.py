@@ -22,7 +22,8 @@ from sources.agents.agent_helper import (
     storage_info,
     get_logger,
     json_tostring,
-    json_loads
+    json_loads,
+    enabledLogDebug
 )
 
 # ==============================================================================
@@ -63,6 +64,9 @@ class AbstractAgent(ABC):
         if not self.rotate_model():
             self.logger.critical(f"💀 Not found any available AI models to execute!")
             sys.exit(1)
+    
+    def enabled_log_debug(self):
+        enabledLogDebug(self.logger)
     
     def get_kwargs_by_key(self, key: str, **kwargs):
         return kwargs_by_key(key=key, **kwargs)
@@ -203,12 +207,16 @@ class AbstractAgent(ABC):
         return raw_response
     
     def __communicate_ai__(self, **kwargs):
+        system_prompt = kwargs_by_key(key="system_prompt", **kwargs)
+        self.logger.debug("- 🤷 System Prompt: %s", system_prompt)
+        user_prompt = kwargs_by_key(key="user_prompt", **kwargs)
+        self.logger.debug("- 🤷 User Prompt: %s", user_prompt)
         return self.client.chat.completions.create(
             model=self.config_model_name(),
             messages=[{
-                "role": "system", "content": kwargs_by_key(key="system_prompt", **kwargs)
+                "role": "system", "content": system_prompt
             }, {
-                "role": "user", "content": kwargs_by_key(key="user_prompt", **kwargs)
+                "role": "user", "content": user_prompt
             }],
             temperature=self.agent_temperature()
         )
@@ -224,8 +232,11 @@ class AbstractAgent(ABC):
         success= False
         while not success:
             try:
+                self.logger.info("📞 Communicate to AI...")
                 response = self.__communicate_ai__(**kwargs)
+                
                 # parse AI response, due to AI could return 404, at that moment, should rotate model
+                self.logger.info("⚙️ Parse AI Raw Response...")
                 raw_response = self.__parse_ai_response__(response=response) if response else None
                 success = True   # success
             except Exception as e:
@@ -237,6 +248,8 @@ class AbstractAgent(ABC):
         # remove old raw_response if existing
         clean_response = None
         try:
+            self.logger.info("⚙️ Clean/Extract AI Raw Response...")
+            self.logger.debug("   - Raw Response: %s", raw_response)
             kwargs.pop("raw_response", None)
             clean_response = self.clean_response(raw_response=raw_response, **kwargs) if raw_response else None
         except Exception as e:
