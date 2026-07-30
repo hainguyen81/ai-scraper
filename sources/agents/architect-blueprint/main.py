@@ -38,6 +38,9 @@ STORAGE                         = storage_info.get("storage") or {}
 STORAGE_AGENTS                  = storage_info.get("agents") or {}
 STORAGE_OUTPUT                  = storage_info.get("output") or {}
 
+REL_STORAGE_BLUEPRINT           = STORAGE.get("relative_blueprint") or {}
+STORAGE_BLUEPRINT               = resolve_absolute_path(REL_STORAGE_BLUEPRINT)
+
 REL_BA_STORAGE_PATH             = STORAGE.get("relative_ba") or {}
 REL_PROJECTS_SUMMARY_FILE       = os.path.join(REL_BA_STORAGE_PATH, "projects-summary.json")
 PROJECTS_SUMMARY_FILE           = resolve_absolute_path(REL_PROJECTS_SUMMARY_FILE)
@@ -266,6 +269,11 @@ def run_architect_agent(
         elif not is_build_plan_spec and not result_global:
             context_dir = os.path.join(absolute_out_dir, "context")
             global_context_file = os.path.join(context_dir, f"{safe_name}.global.blueprint.md")
+            if not os.path.exists(global_context_file):
+                global_context_file = os.path.join(
+                    STORAGE_BLUEPRINT, safe_name, "context", f"{safe_name}.global.blueprint.md")
+            
+            # read existing global context
             with open(global_context_file, "r", encoding="utf-8") as f:
                 result_global = f.read()
         
@@ -362,6 +370,10 @@ def run_architect_agent(
         if is_build_plan_spec:
             phase_file_pattern = "phase-*.context.blueprint.md"
             num_phases = count_files_by_pattern(os.path.join(plan_context_dir, "context"), phase_file_pattern) if everything_ok else 0
+            # try to detect from storage blueprint
+            if num_phases <= 0:
+                num_phases = count_files_by_pattern(
+                    os.path.join(STORAGE_BLUEPRINT, safe_name, "context"), phase_file_pattern) if everything_ok else 0
         plan_spec = {
             "project_name": project_name,
             "requirements": requirements_path,
@@ -384,8 +396,11 @@ def run_architect_agent(
         # sum total_days
         plan_spec["total_days"] += sum(item["days"] for item in plan_spec["phases"])
         
-        # write plan spec
+        # write to storage
         logger.info(f"\n🎉 [ INFO ] Modular Enterprise Architecture Plan Spec: {json.dumps(plan_spec, indent=4, ensure_ascii=False)}")
+        write_json_file(dir=os.path.join(STORAGE_BLUEPRINT, safe_name, "plan"), file=PLAN_SPEC_FILE, json_data=plan_spec)
+        
+        # write output plan spec
         write_json_file(dir=plan_context_dir, file=PLAN_SPEC_FILE, json_data=plan_spec)
     
     # log for tracing

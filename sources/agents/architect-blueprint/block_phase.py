@@ -29,6 +29,9 @@ STORAGE                             = storage_info.get("storage") or {}
 STORAGE_AGENTS                      = storage_info.get("agents") or {}
 STORAGE_OUTPUT                      = storage_info.get("output") or {}
 
+REL_STORAGE_BLUEPRINT               = STORAGE.get("relative_blueprint") or {}
+STORAGE_BLUEPRINT                   = resolve_absolute_path(REL_STORAGE_BLUEPRINT)
+
 REL_STORAGE_AGENT_BLUEPRINT         = STORAGE_AGENTS.get("relative_blueprint") or {}
 REL_PHASE_USER_PROMPT_TEMPLATE_PATH = os.path.join(REL_STORAGE_AGENT_BLUEPRINT, "block_phase_prompt.md")
 PHASE_SYSTEM_PROMPT                 = "You are an Enterprise / Principal / Elite Solution Architect. Isolate development boundaries so sub-agents never overlap."
@@ -88,11 +91,22 @@ def generate_phase_contexts(client: OpenAI, model_name: str, project_name: str, 
                 temperature=0.2
             )
             raw_data = parseAIResponseData(response)
+
+            # convert project name
+            safe_name = project_name.replace(' ', '-').lower()
+            phase_blueprint_file = f"phase-{phase_idx}.context.blueprint.md"
             
-            # write context
+            # export to storage
+            out_path = write_file(
+                dir=os.path.join(STORAGE_BLUEPRINT, safe_name, "plan", "context"),
+                file=phase_blueprint_file,
+                data=raw_data
+            )
+            
+            # export output context
             out_path = write_file(
                 dir=os.path.join(out_dir, "plan", "context"),
-                file=f"phase-{phase_idx}.context.blueprint.md",
+                file=phase_blueprint_file,
                 data=raw_data
             )
         

@@ -24,9 +24,12 @@ from sources.agents.agent_helper import (
 # ==============================================================================
 # GLOBAL CONFIGURATION PATHS - CONFIG HERE TO CUSTOMIZE DIRECTORY STRUCTURE
 # ==============================================================================
-STORAGE                             = storage_info.get("storage") or {}
-STORAGE_AGENTS                      = storage_info.get("agents") or {}
-STORAGE_OUTPUT                      = storage_info.get("output") or {}
+STORAGE                                 = storage_info.get("storage") or {}
+STORAGE_AGENTS                          = storage_info.get("agents") or {}
+STORAGE_OUTPUT                          = storage_info.get("output") or {}
+
+REL_STORAGE_BLUEPRINT                   = STORAGE.get("relative_blueprint") or {}
+STORAGE_BLUEPRINT                       = resolve_absolute_path(REL_STORAGE_BLUEPRINT)
 
 REL_STORAGE_AGENT_BLUEPRINT             = STORAGE_AGENTS.get("relative_blueprint") or {}
 REL_GLOBAL_USER_PROMPT_TEMPLATE_PATH    = os.path.join(REL_STORAGE_AGENT_BLUEPRINT, "block_global_prompt.md")
@@ -80,11 +83,21 @@ def generate_global_context(client: OpenAI, model_name: str, project_name: str, 
         )
         raw_data = parseAIResponseData(response)
         
-        # write context
+        # convert project name
         safe_name = project_name.replace(' ', '-').lower()
+        blueprint_file = f"{safe_name}.global.blueprint.md"
+        
+        # export to storage
+        out_path = write_file(
+            dir=os.path.join(STORAGE_BLUEPRINT, safe_name, "context"),
+            file=blueprint_file,
+            data=raw_data
+        )
+        
+        # export to output path
         out_path = write_file(
             dir=os.path.join(out_dir, "context"),
-            file=f"{safe_name}.global.blueprint.md",
+            file=blueprint_file,
             data=raw_data
         )
         

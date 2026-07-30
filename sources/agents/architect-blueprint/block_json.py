@@ -38,6 +38,9 @@ STORAGE                             = storage_info.get("storage") or {}
 STORAGE_AGENTS                      = storage_info.get("agents") or {}
 STORAGE_OUTPUT                      = storage_info.get("output") or {}
 
+REL_STORAGE_BLUEPRINT               = STORAGE.get("relative_blueprint") or {}
+STORAGE_BLUEPRINT                   = resolve_absolute_path(REL_STORAGE_BLUEPRINT)
+
 REL_STORAGE_AGENT_BLUEPRINT         = STORAGE_AGENTS.get("relative_blueprint") or {}
 REL_STEPS_USER_PROMPT_TEMPLATE_PATH = os.path.join(REL_STORAGE_AGENT_BLUEPRINT, "block_json_prompt.md")
 STEPS_SYSTEM_PROMPT                 = "You are a rigid technical translator. Map high-level Markdown workflows into precise, executable JSON schemas."
@@ -393,10 +396,21 @@ def convert_phases_to_json(client: OpenAI, model_name: str, project_name: str, n
                 # dump_json_data = json.dumps(model_dump, indent=4, ensure_ascii=False)
                 # print(f" │         { dump_json_data }")
                 
-                # write steps
+                # convert project name
+                safe_name = project_name.replace(' ', '-').lower()
+                steps_json_file = f"phase-{phase_idx}.steps.json"
+                
+                # export to storage
+                out_path = write_json_file(
+                    dir=os.path.join(STORAGE_BLUEPRINT, safe_name, "plan", "steps"),
+                    file=steps_json_file,
+                    json_data=model_dump
+                )
+                
+                # export output context
                 out_path = write_json_file(
                     dir=steps_context_dir,
-                    file=f"phase-{phase_idx}.steps.json",
+                    file=steps_json_file,
                     json_data=model_dump
                 )
                     
