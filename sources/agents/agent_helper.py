@@ -12,6 +12,7 @@ import logging
 import re
 import traceback
 import argparse
+from datetime import datetime
 from pathlib import Path
 
 # to load prompt template
@@ -29,6 +30,19 @@ PARENT_AGENTS_DIR  = os.path.abspath(os.path.join(CURRENT_SCRIPT_DIR, "../")) # 
 # jump to `agent_helper.py` folder path
 if PARENT_AGENTS_DIR not in sys.path:
     sys.path.insert(0, PARENT_AGENTS_DIR)
+
+
+def datetime_for_prompts(dt=datetime.now()):
+    dt = dt or datetime.now()
+    return dt.strftime("%Y/%m/%d %H:%M:%S")
+
+def datetime_for_docid(dt=datetime.now()):
+    dt = dt or datetime.now()
+    return dt.strftime("%Y%m%d%H%M%S")
+
+def datetime_for_agent(dt=datetime.now()):
+    dt = dt or datetime.now()
+    return (datetime_for_prompts(dt), datetime_for_docid(dt))
 
 
 def parse_unknown_args_to_dict(unknown_args):
@@ -428,6 +442,7 @@ OUTPUT_PATH                             = resolve_absolute_path(REL_OUTPUT_PATH)
 
 REL_AGENT_IDEAS_PATH                    = os.path.join(REL_AGENTS_PATH, "ideas")
 REL_AGENT_BLUEPRINT_PATH                = os.path.join(REL_AGENTS_PATH, "architect-blueprint")
+REL_AGENT_BLUEPRINT_PROMPTS_PATH        = os.path.join(REL_AGENT_BLUEPRINT_PATH, "prompts")
 REL_AGENT_BA_PATH                       = os.path.join(REL_AGENTS_PATH, "business-analysis")
 REL_AGENT_EST_PATH                      = os.path.join(REL_AGENTS_PATH, "estimation")
 REL_AGENT_CSRO_PATH                     = os.path.join(REL_AGENTS_PATH, "chief-solution")
@@ -447,6 +462,7 @@ REL_OUTPUT_CSRO_PATH                    = os.path.join(REL_OUTPUT_PATH, "chief-s
 
 AGENT_IDEAS_PATH                        = resolve_absolute_path(REL_AGENT_IDEAS_PATH)
 AGENT_BLUEPRINT_PATH                    = resolve_absolute_path(REL_AGENT_BLUEPRINT_PATH)
+AGENT_BLUEPRINT_PROMPTS_PATH            = resolve_absolute_path(REL_AGENT_BLUEPRINT_PROMPTS_PATH)
 AGENT_BA_PATH                           = resolve_absolute_path(REL_AGENT_BA_PATH)
 AGENT_EST_PATH                          = resolve_absolute_path(REL_AGENT_EST_PATH)
 AGENT_CSRO_PATH                         = resolve_absolute_path(REL_AGENT_CSRO_PATH)
@@ -478,6 +494,8 @@ storage_info = {
         
         "relative_blueprint": REL_AGENT_BLUEPRINT_PATH,
         "storage_blueprint": AGENT_BLUEPRINT_PATH,
+        "relative_blueprint_prompts": REL_AGENT_BLUEPRINT_PROMPTS_PATH,
+        "storage_blueprint_prompts": AGENT_BLUEPRINT_PROMPTS_PATH,
         
         "relative_ba": REL_AGENT_BA_PATH,
         "storage_ba": AGENT_BA_PATH,

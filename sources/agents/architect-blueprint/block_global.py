@@ -18,7 +18,8 @@ from sources.agents.agent_helper import (
     parseAIResponseData,
     exception_stacktrace,
     get_logger,
-    storage_info
+    storage_info,
+    datetime_for_agent
 )
 
 # ==============================================================================
@@ -28,13 +29,13 @@ STORAGE                                 = storage_info.get("storage") or {}
 STORAGE_AGENTS                          = storage_info.get("agents") or {}
 STORAGE_OUTPUT                          = storage_info.get("output") or {}
 
-REL_STORAGE_BLUEPRINT                   = STORAGE.get("relative_blueprint") or {}
-STORAGE_BLUEPRINT                       = resolve_absolute_path(REL_STORAGE_BLUEPRINT)
+STORAGE_BLUEPRINT                       = STORAGE.get("storage_blueprint") or {}
+STORAGE_AGENT_BLUEPRINT_PROMPTS         = STORAGE_AGENTS.get("storage_blueprint_prompts") or {}
 
-REL_STORAGE_AGENT_BLUEPRINT             = STORAGE_AGENTS.get("relative_blueprint") or {}
-REL_GLOBAL_USER_PROMPT_TEMPLATE_PATH    = os.path.join(REL_STORAGE_AGENT_BLUEPRINT, "block_global_prompt.md")
-GLOBAL_SYSTEM_PROMPT                    = "You are an Enterprise / Principal / Elite Solution Architect. Define the global system truth and multi-agent guardrails."
-GLOBAL_USER_PROMPT_TEMPLATE_PATH        = resolve_absolute_path(REL_GLOBAL_USER_PROMPT_TEMPLATE_PATH)
+GLOBAL_SYSTEM_PROMPT_TEMPLATE_PATH      = os.path.join(STORAGE_AGENT_BLUEPRINT_PROMPTS, "block_global_prompt.system.md")
+GLOBAL_USER_PROMPT_TEMPLATE_PATH        = os.path.join(STORAGE_AGENT_BLUEPRINT_PROMPTS, "block_global_prompt.user.md")
+
+DEFAULT_BLUEPRINT_LANGUAGE              = "English"
 
 logger = get_logger("🏗️ EnterpriseSystemArchitectureGlobalAgent")
 
@@ -42,7 +43,7 @@ logger = get_logger("🏗️ EnterpriseSystemArchitectureGlobalAgent")
 # def generate_global_context(client: genai.Client, project_name: str, requirements: str, num_phases: int, out_dir: str) -> str:
 
 # OpenAI
-def generate_global_context(client: OpenAI, model_name: str, project_name: str, requirements: str, num_phases: int, max_days_per_phase: int, out_dir: str) -> str:
+def generate_global_context(client: OpenAI, model_name: str, project_name: str, requirements: str, num_phases: int, max_days_per_phase: int, language: str, out_dir: str) -> str:
     """
     BLOCK 1: Transforms raw text requirements into the supreme global project blueprint.
     Operates inside an isolated transactional API request to maximize logic token efficiency.
@@ -51,15 +52,29 @@ def generate_global_context(client: OpenAI, model_name: str, project_name: str, 
     
     max_days_per_phase = max_days_per_phase if max_days_per_phase > 0 else 7
     log_prompt = ""
-    system_prompt = GLOBAL_SYSTEM_PROMPT
+    log_system_prompt = ""
     model_name_safe = model_name if model_name else "gpt-4o"
     try:
-        # parse prompt from template
+        datetime_prompt, datetime_docid = datetime_for_agent()
+        
+        # parse system prompt from template
+        system_prompt_context = {
+            "project_name": project_name,
+            "num_phases": num_phases,
+            "max_days_per_phase": max_days_per_phase,
+            "language": language or DEFAULT_BLUEPRINT_LANGUAGE
+        }
+        system_prompt = render_prompt(GLOBAL_SYSTEM_PROMPT_TEMPLATE_PATH, system_prompt_context)
+        log_system_prompt = system_prompt
+        
+        # parse user prompt from template
         user_prompt_context = {
             "project_name": project_name,
             "project_requirements": requirements,
             "num_phases": num_phases,
-            "max_days_per_phase": max_days_per_phase
+            "max_days_per_phase": max_days_per_phase,
+            "doc_id": datetime_docid,
+            "current_timestamp": datetime_prompt
         }
         user_prompt = render_prompt(GLOBAL_USER_PROMPT_TEMPLATE_PATH, user_prompt_context)
         log_prompt = user_prompt
@@ -108,6 +123,6 @@ def generate_global_context(client: OpenAI, model_name: str, project_name: str, 
         return raw_data
     except Exception as e:
         logger.error(f"❌ Failed to initiate chat/generate Global Blueprint: {exception_stacktrace(e)}")
-        write_blueprint_log(0, system_prompt, log_prompt.replace('#', '##'), exception_stacktrace(e), False, model_name_safe, out_dir)
+        write_blueprint_log(0, log_system_prompt, log_prompt.replace('#', '##'), exception_stacktrace(e), False, model_name_safe, out_dir)
         return None
 
