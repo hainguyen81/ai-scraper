@@ -8,7 +8,7 @@ Perform a complete project estimation, architectural costing analysis, and dynam
 - EVERY single word, header, table cell, analysis, and sentence OUTSIDE of raw JSON and Mermaid code blocks MUST be rendered fully and exclusively in "{{ target_language }}".
 - CRITICAL FORMATTING LOCKDOWN: You MUST start your response directly with the main title header `# PROJECT ESTIMATION & RISK REGISTRY REPORT`. Do NOT include any introductory greetings, markdown code block wrappers around the entire response, hidden reasoning steps, text thinking blocks (e.g., do NOT use <thought> or thinking tags), scratchpads, analyze commentaries, or conversational prefaces.
 - ABSOLUTE CODE BAN: Do NOT output, print, or render any Python code blocks, script fragments, raw programming code, or internal computation code execution summaries in the final output text. Any leak of executable code blocks or analytical thinking artifacts outside Section 6 and Section 7 triggers an instant governance rejection.
-- STRICT DOT-DECIMAL ENFORCER: Regardless of the target language translations in the markdown body, ALL numeric float values inside the final JSON block and Mermaid charts MUST strictly utilize the dot character `__DOT__` as the unique decimal separator (e.g., 25500__DOT__0). You are strictly forbidden from converting the decimal dot into a comma separator.
+- STRICT DOT-DECIMAL ENFORCER: Regardless of the target language translations in the markdown body, ALL numeric float values inside the final JSON block and Mermaid charts MUST strictly utilize the dot character `.` as the unique decimal separator (e.g., 25500.0). You are strictly forbidden from converting the decimal dot into a comma separator.
 ========================================================================
 
 ### [Asset 1: Core Product Idea] {{ raw_idea_content }}
@@ -24,7 +24,7 @@ Perform a complete project estimation, architectural costing analysis, and dynam
 Execute your computational analysis through invisible backend math processing and apply your web search tool to guarantee 100% mathematical precision. Do NOT output your internal calculation steps or workflow logs:
 1. PASS 1 (Live Sourcing & Provenance Retrieval):
    - Utilize your consolidated search directives to fetch live accurate figures for: exact USD to VND exchange rate, standard tech engineering salaries per Man-Month (Corporate vs Freelance operational models), and actual monthly subscription rates for top AI Dev packages and Cloud platform nodes matching the architecture components.
-   - Document these sources (Website domains and active links using `__HTTPS__` and `__SLASH__`) inside Section 1 footnotes.
+   - Document these sources (Website domains and active links using `__HTTPS__` and `/`) inside Section 1 footnotes.
 2. PASS 2 (Agile Labor Velocity & Cloud OpEx Equations):
    - Apply a strict 35% to 50% labor Man-Month optimization compression factor for AI-Augmented execution paths compared to Traditional paths.
    - Mathematically enforce that (AI-Augmented Labor Cost) < (Traditional Labor Cost) and (AI-Augmented Months) < (Traditional Months) across all models.
@@ -46,9 +46,9 @@ Every header and table parameter below MUST be translated and naturally rendered
 | **Idea ID** | {{ idea_id }} |
 | **Project Name** | {{ project_name }} |
 | **Project Description** | {{ project_description }} |
-| **Version** | 1__DOT__0 (Automated Governance) |
-| **Date__SLASH__Time** | {{ current_timestamp }} |
-| **Author** | [Insert your exact assigned sub-agent CRO/CFO persona token dynamically] |
+| **Version** | 1.0 (Automated Governance) |
+| **Date/Time** | {{ current_timestamp }} |
+| **Author** | Enterprise BA Agent (Automated Pipeline) |
 | **Approval** | Certified by Enterprise Technical Governance Board |
 
 #### SECTION 1: DOCUMENT CONTROL & PROVENANCE METADATA
@@ -57,37 +57,37 @@ Dynamically inject the real-time sourced values and their exact data lineage det
 | Audit Parameter | Information Details |
 | :--- | :--- |
 | **Live Exchange Rate Applied** | 1 USD = [Insert Exact Integer Rate Found Online] VND |
-| **Enterprise Cost__SLASH__Man-Month** | $[Insert Current Market Enterprise Rate Found Online] USD __SLASH__ Month |
-| **Freelancer Cost__SLASH__Man-Month** | $[Insert Current Market Freelancer Rate Found Online] USD __SLASH__ Month |
-| **Sourced AI Tooling Allocation__SLASH__Month** | Enterprise: $[Insert Online Found Rate] USD \| Freelance: $[Insert Online Found Rate] USD |
-| **Sourced Cloud Infrastructure Benchmarks** | Enterprise Multi-Region GKE: $[Rate]__SLASH__mo \| Freelancer VPS: $[Rate]__SLASH__mo |
-| **Computation Timestamp** | [Insert System Execution Date__SLASH__Time] |
+| **Enterprise Cost/Man-Month** | $[Insert Current Market Enterprise Rate Found Online] USD / Month |
+| **Freelancer Cost/Man-Month** | $[Insert Current Market Freelancer Rate Found Online] USD / Month |
+| **Sourced AI Tooling Allocation/Month** | Enterprise: $[Insert Online Found Rate] USD \| Freelance: $[Insert Online Found Rate] USD |
+| **Sourced Cloud Infrastructure Benchmarks** | Enterprise Multi-Region GKE: $[Rate]/mo \| Freelancer VPS: $[Rate]/mo |
+| **Computation Timestamp** | [Insert System Execution Date/Time] |
 | **Status** | Sourced, Audited & Validated |
 
 **Footnotes & Sources:**
 - [Insert clean Markdown links for sources using escaped routing strings]
 
 #### SECTION 2: RESOURCE CAPACITY PLANNING & SKILL MATRIX
-In "{{ target_language }}", provide a highly granular engineering capacity planning and necessary technical skill matrix. List all required engineering roles (Backend, Frontend, QA, DevOps), allocate specific Man-Months for both Traditional vs AI-Augmented paths, and list the target expertise level (Junior__SLASH__Mid__SLASH__Senior) with tech stacks.
+In "{{ target_language }}", provide a highly granular engineering capacity planning and necessary technical skill matrix. List all required engineering roles (Backend, Frontend, QA, DevOps), allocate specific Man-Months for both Traditional vs AI-Augmented paths, and list the target expertise level (Junior/Mid/Senior) with tech stacks.
 
 #### SECTION 3: FINANCIAL BUDGET, CLOUD OPEX & TIMELINE PROJECTIONS
 > 📝 [Render Currency Audit Notice In "{{ target_language }}"]: All calculations below explicitly utilize the real-time extracted exchange rate.
 
 ##### 1. Corporate Enterprise Model
 
-| Scenario__SLASH__Metric | Budget Range (USD) | Budget Range (VND) | Safe Bound (USD__SLASH__VND) |
+| Scenario/Metric | Budget Range (USD) | Budget Range (VND) | Safe Bound (USD/VND) |
 | :--- | :--- | :--- | :--- |
-| **Traditional Human-Only Labor** | $[Min_USD] - $[Max_USD] | [Min_VND] - [Max_VND] | $[Safe_USD] USD __SLASH__ [Safe_VND] VND |
-| **AI-Augmented Labor** | $[Min_USD] - $[Max_USD] | [Min_VND] - [Max_VND] | $[Safe_USD] USD __SLASH__ [Safe_VND] VND |
-| **Monthly Cloud Infrastructure OpEx** | $[Min_USD] - $[Max_USD] __SLASH__ mo | [Min_VND] - [Max_VND] __SLASH__ mo | $[Safe_USD] USD __SLASH__ [Safe_VND] VND per mo |
+| **Traditional Human-Only Labor** | $[Min_USD] - $[Max_USD] | [Min_VND] - [Max_VND] | $[Safe_USD] USD / [Safe_VND] VND |
+| **AI-Augmented Labor** | $[Min_USD] - $[Max_USD] | [Min_VND] - [Max_VND] | $[Safe_USD] USD / [Safe_VND] VND |
+| **Monthly Cloud Infrastructure OpEx** | $[Min_USD] - $[Max_USD] / mo | [Min_VND] - [Max_VND] / mo | $[Safe_USD] USD / [Safe_VND] VND per mo |
 
 ##### 2. Freelancer Team Model
 
-| Scenario__SLASH__Metric | Budget Range (USD) | Budget Range (VND) | Safe Bound (USD__SLASH__VND) |
+| Scenario/Metric | Budget Range (USD) | Budget Range (VND) | Safe Bound (USD/VND) |
 | :--- | :--- | :--- | :--- |
-| **Traditional Human-Only Labor** | $[Min_USD] - $[Max_USD] | [Min_VND] - [Max_VND] | $[Safe_USD] USD __SLASH__ [Safe_VND] VND |
-| **AI-Augmented Labor** | $[Min_USD] - $[Max_USD] | [Min_VND] - [Max_VND] | $[Safe_USD] USD __SLASH__ [Safe_VND] VND |
-| **Monthly Cloud Infrastructure OpEx** | $[Min_USD] - $[Max_USD] __SLASH__ mo | [Min_VND] - [Max_VND] __SLASH__ mo | $[Safe_USD] USD __SLASH__ [Safe_VND] VND per mo |
+| **Traditional Human-Only Labor** | $[Min_USD] - $[Max_USD] | [Min_VND] - [Max_VND] | $[Safe_USD] USD / [Safe_VND] VND |
+| **AI-Augmented Labor** | $[Min_USD] - $[Max_USD] | [Min_VND] - [Max_VND] | $[Safe_USD] USD / [Safe_VND] VND |
+| **Monthly Cloud Infrastructure OpEx** | $[Min_USD] - $[Max_USD] / mo | [Min_VND] - [Max_VND] / mo | $[Safe_USD] USD / [Safe_VND] VND per mo |
 
 ##### 3. Delivery Timeline Duration Projections
 Output the calendar months range for all 4 scenarios strictly using this structured table format in "{{ target_language }}":
@@ -107,7 +107,7 @@ Deliver a deep analytical justification and an actionable roadmap structured exc
 | :--- | :--- | :--- |
 | **Operational & Management Overhead** | Corporate infrastructure overhead vs zero-overhead freelance execution | [Insert Calculated Sourced OpEx Impact] |
 | **Security Hardening Boundaries** | Implementation of mTLS, custom Envoy WAF, Argon2id, and SHA-256 hash-chained immutable logging | [Insert Sourced Complexity % Impact] |
-| **High Availability & Disaster Recovery (HA__SLASH__DR)** | Multi-region GKE deployment with clustered RabbitMQ topologies vs Single-instance VPS | [Insert Sourced Cloud Cost Multiplier Impact] |
+| **High Availability & Disaster Recovery (HA/DR)** | Multi-region GKE deployment with clustered RabbitMQ topologies vs Single-instance VPS | [Insert Sourced Cloud Cost Multiplier Impact] |
 | **Data Isolation Strategy** | Database-per-tenant isolation using dynamic dynamic encrypted routing strings | [Insert Sourced Engineering Effort % Impact] |
 
 ##### 2. Jira-Compliant Work Breakdown Structure (WBS) Roadmap
@@ -115,22 +115,24 @@ Deliver a deep analytical justification and an actionable roadmap structured exc
 
 | Jira Epic Token | Actionable Task Target | Discrete Sub-task Execution Items |
 | :--- | :--- | :--- |
-| **[Insert Epic Name]** | [Insert Task Name] | - [Sub-task 1]\n- [Sub-task 2] |
+| **[Insert Epic Name]** | [Insert Task Name, e.g., OAuth2 Implementation] | - [Sub-task 1]\n- [Sub-task 2] |
+| **[Insert Epic Name]** | [Insert Task Name, e.g., JWT Token Management] | - [Sub-task 1]\n- [Sub-task 2] |
+| **[Insert Epic Name]** | [Insert Task Name, e.g., Multi-Tenancy Routing] | - [Sub-task 1]\n- [Sub-task 2] |
 
 #### SECTION 5: PROJECT RISK REGISTRY & COMPOUNDING IMPACT MATRIX
 Render this table fully in "{{ target_language }}". Financial Impact and Resource Impact MUST be mathematically calculated using Pass 3 directives:
 
-| Risk ID | Description | Severity | Financial Impact (USD __SLASH__ VND) | Resource Impact (Man-Months) | Worst-Case Additive Cost | Concrete Mitigation Strategy |
+| Risk ID | Description | Severity | Financial Impact (USD / VND) | Resource Impact (Man-Months) | Worst-Case Additive Cost | Concrete Mitigation Strategy |
 | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
 | R-001 | | | | | | |
 
 #### SECTION 6: ARCHITECTURAL DATA VISUALIZATION (NATIVE MERMAID CHARTS)
-*CRITICAL MANDATE FOR SYNTAX COMPLIANCE*: You MUST generate clean, functional, and valid Mermaid__DOT__js blocks.
+*CRITICAL MANDATE FOR SYNTAX COMPLIANCE*: You MUST generate clean, functional, and valid Mermaid.js blocks in accordance with the GLOBAL MERMAID SYNTAX PROTECTION MANDATE.
 - Ensure all chart titles, labels, and sections are naturally translated into "{{ target_language }}".
 - Ensure ALL structural syntax keywords and logic tokens remain strictly in unaccented plain English.
 
 ##### Chart A: Financial Cost Boundary Matrix (USD)
-Use the official `xychart-beta` syntax. You MUST evaluate labor costs to find the maximum value for the y-axis, rounded up to the nearest hundred, and replace the upper bound placeholder with this integer. Each `bar` directive MUST contain exactly three comma-separated raw integer numbers wrapped strictly inside single brackets representing [Min, Max, Safe] bounds (e.g., bar). Output exactly FOUR distinct `bar` lines representing the 4 scenarios. Do NOT include any string characters inside the final generated brackets.
+Use the official `xychart-beta` syntax. You MUST evaluate labor costs to find the maximum value for the y-axis, rounded up to the nearest hundred, and replace the upper bound placeholder with this integer. CRITICAL MERMAID v11 SYNTAX RULE: Each `bar` directive MUST contain exactly three comma-separated raw integer numbers wrapped strictly inside single brackets representing [Min, Max, Safe] bounds (e.g., bar [150, 220, 310]). Output exactly FOUR distinct `bar` lines representing the 4 scenarios. Do NOT include any string characters inside the final generated brackets.
 
 ```mermaid
 xychart-beta
@@ -144,7 +146,7 @@ bar [Insert_Min_Int, Insert_Max_Int, Insert_Safe_Int]
 ```
 
 ##### Chart B: Project Delivery Timeline (Dynamic Gantt Chart)
-To prevent syntax errors in Mermaid version 11+, you MUST use a dynamic project start date format (YYYY-MM-DD) and define tasks strictly using duration in days (e.g., 30d). You MUST dynamically extract the active current date from the computation environment and inject it into the start milestone placeholder below. Do NOT use static or hardcoded dates. Ensure unique task IDs across parallel tracks.
+To prevent syntax errors in Mermaid version 11+, you MUST use a dynamic project start date format (YYYY-MM-DD) and define tasks strictly using duration in days (e.g., 30d). You MUST dynamically extract the active current date from the computation environment and inject it into the start milestone placeholder below. Do NOT use static or hardcoded dates.
 
 ```mermaid
 gantt
@@ -183,7 +185,7 @@ quadrant-4 "Monitor Risks"
 #### SECTION 7: VISUALIZATION METADATA FOR BACKEND PROCESSING
 *TERMINAL JSON ISOLATION BLOCK*: Provide a clean, single-level flat valid JSON metadata block at the absolute end of the response. Output numbers as flat floats or ints inside single arrays representing the 3 sequential points [Min, Max, Safe] for each scenario.
 
-CRITICAL ENFORCEMENT RULE: The "exchange_rate" key MUST contain a raw single float number value only (e.g., 25500__DOT__0). Do NOT wrap the exchange_rate value inside brackets. Ensure 100% data alignment between Section 3 tables and this JSON payload.
+CRITICAL ENFORCEMENT RULE: The "exchange_rate" key MUST contain a raw single float number value only (e.g., 25500.0). Do NOT wrap the exchange_rate value inside brackets. Ensure 100% data alignment between Section 3 tables and this JSON payload.
 
 {% set open_json = '{' %}
 {% set close_json = '}' %}
