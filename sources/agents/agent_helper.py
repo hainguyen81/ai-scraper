@@ -79,9 +79,12 @@ def parse_args(description=None, parser_callback=None):
         
     # 3. parse known/un-known arguments
     args, unknown_args = parser.parse_known_args()
+    print(f"- Known arguments: {str(unknown_args)}")
+    print(f"- Unknown arguments: {str(unknown_args)}")
     
     # 4. convert unknown_args from List to Dict
     unknown_args = parse_unknown_args_to_dict(unknown_args)
+    print(f"- Parsed unknown arguments: {str(unknown_args)}")
     
     # 5. result (known_args, unknown_dict)
     return args, unknown_args
