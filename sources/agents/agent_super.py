@@ -242,7 +242,8 @@ class AbstractAgent(ABC):
         success= False
         while not success:
             try:
-                self.logger.info("📞 Communicate to AI...")
+                self.logger.info("📞 Communicate to AI [%s - %s]...",
+                                 self.config_model_name(), self.config_api_endpoint())
                 response = self.__communicate_ai__(**kwargs)
                 
                 # parse AI response, due to AI could return 404, at that moment, should rotate model
