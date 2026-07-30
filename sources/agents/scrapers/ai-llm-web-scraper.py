@@ -2,9 +2,9 @@ import os
 import json
 import argparse
 import re
+from typing import Dict, Any
 import urllib.request
 from bs4 import BeautifulSoup
-from typing import Dict, Any
 from openai import OpenAI
 
 # Now Python can seamlessly see and import the centralized helper utility cleanly!
@@ -13,7 +13,8 @@ from sources.agents.agent_helper import (
     exception_stacktrace,
     storage_info,
     get_logger,
-    json_loads
+    json_loads,
+    parse_args
 )
 
 # logger
@@ -155,13 +156,15 @@ class DynamicScraperAgent:
             logger.error(f"Disk storage access interface crashed: {exception_stacktrace(io_err)}")
 
 if __name__ == "__main__":
-    parser = argparse.ArgumentParser(description="Dynamic Multi-Provider AI Ingestion Core Engine")
-    # Kept argument name '--api-key' to retain 100% backward compatibility with your GitHub Workflow files
-    parser.add_argument("--api-key", required=True)
-    parser.add_argument("--api-endpoint", required=True)
-    parser.add_argument("--api-model", required=True)
-    args = parser.parse_args()
+    def add_known_arguments(parser):
+        parser.add_argument("--api-key", required=True)
+        parser.add_argument("--api-endpoint", required=True)
+        parser.add_argument("--api-model", required=True)
     
+    args, unknown_args = parse_args(
+        description="🤖 DynamicAIScraperAgent: Dynamic Multi-Provider AI Ingestion Core Engine",
+        parser_callback=add_known_arguments
+    )
     target_webpage = SOURCE_LLM_MODELS_FREE_URL
     
     # Instantiate the agent dynamically passing centralized provider attributes

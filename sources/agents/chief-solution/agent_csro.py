@@ -23,7 +23,8 @@ from sources.agents.agent_helper import (
     write_file,
     delete_file,
     render_kwargs_prompt,
-    get_logger
+    get_logger,
+    parse_args
 )
 
 # super agent
@@ -825,16 +826,20 @@ class CrewEnterpriseGovernanceFlow(Flow):
 
 
 if __name__ == "__main__":
-    parser = argparse.ArgumentParser()
-    parser.add_argument("--idea", type=str, help="Idea Identity for searching")
-    args = parser.parse_args()
+    def add_known_arguments(parser):
+        parser.add_argument("--idea", type=str, help="Idea Identity for searching")
+    
+    args, unknown_args = parse_args(
+        description="🕵️‍♂️ CrewEnterpriseGovernanceFlow",
+        parser_callback=add_known_arguments
+    )
     
     # force litellm stop collecting old exceptions to metadata
     litellm.suppress_helper_warnings = True
     litellm.drop_params = True
     
     # initializ workflow agent
-    enterprise_workflow_agent = CrewEnterpriseGovernanceFlow(idea=args.idea)
+    enterprise_workflow_agent = CrewEnterpriseGovernanceFlow(idea=args.idea, **unknown_args)
     
     # execute workflow
     __execute_function_until_complete__(enterprise_workflow_agent.kickoff)

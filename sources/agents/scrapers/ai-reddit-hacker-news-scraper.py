@@ -11,7 +11,8 @@ from sources.agents.agent_helper import (
     exception_stacktrace,
     storage_info,
     get_logger,
-    json_loads
+    json_loads,
+    parse_args
 )
 
 # logger
@@ -110,10 +111,13 @@ class HackerNewsTechScraper:
             return []
 
 if __name__ == "__main__":
-    parser = argparse.ArgumentParser()
-    parser.add_argument("--scan-limit", required=True)
-    args = parser.parse_args()
+    def add_known_arguments(parser):
+        parser.add_argument("--scan-limit", required=True)
     
+    args, unknown_args = parse_args(
+        description="🕵️ HackerNewScraperAgent",
+        parser_callback=add_known_arguments
+    )
     scan_limit = args.scan_limit
     try:
         scan_limit = int(scan_limit)

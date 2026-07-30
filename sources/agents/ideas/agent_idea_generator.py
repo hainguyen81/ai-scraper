@@ -5,7 +5,8 @@ import argparse
 # Now Python can seamlessly see and import the centralized helper utility cleanly!
 from sources.agents.agent_helper import (
     write_json_file,
-    write_file
+    write_file,
+    parse_args
 )
 
 # super agent
@@ -27,7 +28,7 @@ DEFAULT_IDEAS_LANGUAGE      = "English"
 
 class EnterpriseIdeaGeneratorAgent(AbstractSubAgent):
     def __init__(self, **kwargs):
-        super().__init__(agent_id='EnterpriseIdeaGenerator', **kwargs)
+        super().__init__(agent_id='💡 EnterpriseIdeaGeneratorAgent', **kwargs)
     
     # @override
     def initialize(self):
@@ -155,13 +156,18 @@ class EnterpriseIdeaGeneratorAgent(AbstractSubAgent):
             )
 
 if __name__ == "__main__":
-    parser = argparse.ArgumentParser()
-    parser.add_argument("--domain", type=str, help="Domain to find ideas")
-    parser.add_argument("--quantity", type=int, help="The number of ideas")
-    parser.add_argument("--language", type=str, help="Translate found ideas to language. Ex: Vietnamese, English, etc.")
-    args = parser.parse_args()
+    def add_known_arguments(parser):
+        parser.add_argument("--domain", type=str, help="Domain to find ideas")
+        parser.add_argument("--quantity", type=int, help="The number of ideas")
+        parser.add_argument("--language", type=str, help="Translate found ideas to language. Ex: Vietnamese, English, etc.")
+    
+    args, unknown_args = parse_args(
+        description="💡 EnterpriseIdeaGeneratorAgent",
+        parser_callback=add_known_arguments
+    )
     EnterpriseIdeaGeneratorAgent(
         domain=args.domain,
         quantity=args.quantity,
-        language=args.language
+        language=args.language,
+        **unknown_args
     ).execute()

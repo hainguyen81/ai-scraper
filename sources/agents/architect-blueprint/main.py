@@ -22,7 +22,8 @@ from sources.agents.agent_helper import (
     count_files_by_pattern,
     read_file_raw,
     get_logger,
-    json_loads
+    json_loads,
+    parse_args
 )
 
 # Import decoupled functional components cleanly
@@ -53,7 +54,7 @@ def load_models_keys():
         logger.warn("[ ⚠️ WARN ] The environment variable 'AI_MODELS_KEYS_JSON' is completely absent.")
         return None
     
-    return json_loadsjson.loads(json_key_secrets)
+    return json_loads(json_key_secrets)
 
 def rotate_matching_model(json_ai_models, json_ai_keys, model_idx):
     models_len = len(json_ai_models) if json_ai_models else 0
@@ -397,26 +398,28 @@ def str2bool(v):
     return str(v).lower() in ("yes", "true", "t", "1")
 
 if __name__ == "__main__":
-    # Configure CLI arguments parsing to allow dynamic inputs for requirements path, phase count, and output location.
-    parser = argparse.ArgumentParser(description="AI Solution / Lead Architect Agent Configuration")
-    parser.add_argument("--project-name", type=str, required=True, help="Project Name / Idea Identity")
-    parser.add_argument("--req", type=str, default="sources/requirements/test-requirements.md", help="Path to the raw project requirements file")
-    parser.add_argument("--phases", type=int, default=3, help="Total number of execution phases to segment")
-    parser.add_argument("--out", type=str, default="sources/output/blueprint", help="Target output directory for the generated blueprint")
-    parser.add_argument("--api-key", type=str, required=True, help="AI API Key is required")
-    parser.add_argument("--api-endpoint", type=str, required=True, help="AI API Endpoint is required")
-    parser.add_argument("--api-model-global-context", type=str, default="gpt-4o", help="AI API Model to support global Markdown context")
-    parser.add_argument("--api-model-phase-context", type=str, default="gpt-4o", help="AI API Model to support phase Markdown context")
-    parser.add_argument("--api-model-phase-max-days", type=int, default=5, help="Maximum days per phase")
-    parser.add_argument("--api-model-phase-steps-json", type=str, default="gpt-4o", help="AI API Model to support phase steps JSON context")
-    parser.add_argument("--api-model-phase-steps-json-mapping", type=str, default="", help="AI phase steps JSON ampping configuration")
-    parser.add_argument("--api-model-phase-steps-days-per-chunk", type=int, default=5, help="Execution Days per AI Request Chunk")
-    parser.add_argument("--exec-mode", type=int, default=0, help="AI Execution Mode: Global / Phase Context / Steps. Acceptable values: 0, 1, 2, 3")
-    parser.add_argument("--exec-delay", type=int, default=3, help="AI Execution Delay in seconds")
-    # use method `str2bool` to parse argument
-    parser.add_argument("--exec-rotate-model", type=str2bool, default=False,  help="Specify whether should rotate models if exceeding rate limit")
+    def add_known_arguments(parser):
+        parser.add_argument("--project-name", type=str, required=True, help="Project Name / Idea Identity")
+        parser.add_argument("--req", type=str, default="sources/requirements/test-requirements.md", help="Path to the raw project requirements file")
+        parser.add_argument("--phases", type=int, default=3, help="Total number of execution phases to segment")
+        parser.add_argument("--out", type=str, default="sources/output/blueprint", help="Target output directory for the generated blueprint")
+        parser.add_argument("--api-key", type=str, required=True, help="AI API Key is required")
+        parser.add_argument("--api-endpoint", type=str, required=True, help="AI API Endpoint is required")
+        parser.add_argument("--api-model-global-context", type=str, default="gpt-4o", help="AI API Model to support global Markdown context")
+        parser.add_argument("--api-model-phase-context", type=str, default="gpt-4o", help="AI API Model to support phase Markdown context")
+        parser.add_argument("--api-model-phase-max-days", type=int, default=5, help="Maximum days per phase")
+        parser.add_argument("--api-model-phase-steps-json", type=str, default="gpt-4o", help="AI API Model to support phase steps JSON context")
+        parser.add_argument("--api-model-phase-steps-json-mapping", type=str, default="", help="AI phase steps JSON ampping configuration")
+        parser.add_argument("--api-model-phase-steps-days-per-chunk", type=int, default=5, help="Execution Days per AI Request Chunk")
+        parser.add_argument("--exec-mode", type=int, default=0, help="AI Execution Mode: Global / Phase Context / Steps. Acceptable values: 0, 1, 2, 3")
+        parser.add_argument("--exec-delay", type=int, default=3, help="AI Execution Delay in seconds")
+        # use method `str2bool` to parse argument
+        parser.add_argument("--exec-rotate-model", type=str2bool, default=False,  help="Specify whether should rotate models if exceeding rate limit")
     
-    args = parser.parse_args()
+    args, unknown_args = parse_args(
+        description="🏗️ EnterpriseSystemArchitectureAgent",
+        parser_callback=add_known_arguments
+    )
     
     # Trigger the primary agent orchestration function.
     run_architect_agent(

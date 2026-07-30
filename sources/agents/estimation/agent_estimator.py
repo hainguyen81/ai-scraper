@@ -11,7 +11,8 @@ import mermaidx
 from sources.agents.agent_helper import (
     write_file,
     makedirs,
-    json_loads
+    json_loads,
+    parse_args
 )
 
 # super agent
@@ -385,14 +386,19 @@ class EnterpriseAutonomousProjectEstimatorAgent(AbstractSubAgent):
 
 
 if __name__ == "__main__":
-    parser = argparse.ArgumentParser()
-    parser.add_argument("--idea", type=str, help="Idea Identity / Project Name for searching")
-    parser.add_argument("--buffer-ratio", type=float, default=1.5, help="Estimation with buffer ratio. Ex: 1.5")
-    parser.add_argument("--language", type=str, help="Translate Estimation to language. Ex: Vietnamese, English, etc.")
-    args = parser.parse_args()
+    def add_known_arguments(parser):
+        parser.add_argument("--idea", type=str, help="Idea Identity / Project Name for searching")
+        parser.add_argument("--buffer-ratio", type=float, default=1.5, help="Estimation with buffer ratio. Ex: 1.5")
+        parser.add_argument("--language", type=str, help="Translate Estimation to language. Ex: Vietnamese, English, etc.")
+    
+    args, unknown_args = parse_args(
+        description="👷 EnterpriseAutonomousProjectEstimatorAgent",
+        parser_callback=add_known_arguments
+    )
     EnterpriseAutonomousProjectEstimatorAgent(
         idea=args.idea,
         project=args.idea,
         language=args.language,
-        buffer=args.buffer_ratio
+        buffer=args.buffer_ratio,
+        **unknown_args
     ).execute()

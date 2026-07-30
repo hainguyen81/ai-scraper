@@ -1,5 +1,4 @@
 import sys
-import json
 import hashlib
 import argparse
 from datetime import datetime
@@ -9,7 +8,7 @@ from sources.agents.agent_helper import (
     write_json_file,
     write_file,
     json_loads,
-    enabledLogDebug
+    parse_args
 )
 
 # super agent
@@ -39,7 +38,6 @@ class PrincipalBusinessAnalysisAgent(AbstractSubAgent):
         # start initialization
         super().initialize()
         self.language = self.get_kwargs("language") or DEFAULT_SRS_LANGUAGE
-        # self.enabled_log_debug()
     
     def ba_output_raw_file(self):
         return self.__output_storage_path__(storage_name="output_ba", file=BA_RAW_FILE)
@@ -150,12 +148,17 @@ class PrincipalBusinessAnalysisAgent(AbstractSubAgent):
             )
 
 if __name__ == "__main__":
-    parser = argparse.ArgumentParser()
-    parser.add_argument("--idea", type=str, help="Idea Identity / Project Name for searching")
-    parser.add_argument("--language", type=str, help="Translate SRS to language. Ex: Vietnamese, English, etc.")
-    args = parser.parse_args()
+    def add_known_arguments(parser):
+        parser.add_argument("--idea", type=str, help="Idea Identity / Project Name for searching")
+        parser.add_argument("--language", type=str, help="Translate SRS to language. Ex: Vietnamese, English, etc.")
+    
+    args, unknown_args = parse_args(
+        description="💡🎯 PrincipalBusinessAnalysisAgent",
+        parser_callback=add_known_arguments
+    )
     PrincipalBusinessAnalysisAgent(
         idea=args.idea,
         project=args.idea,
-        language=args.language
+        language=args.language,
+        **unknown_args
     ).execute()

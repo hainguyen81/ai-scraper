@@ -10,7 +10,8 @@ from sources.agents.agent_helper import (
     json_raw_content,
     storage_info,
     exception_stacktrace,
-    get_logger
+    get_logger,
+    parse_args
 )
 
 # logger
@@ -109,13 +110,14 @@ class SemanticSearchScraper:
             logger.error(f"File system I/O error writing corpus payload: {exception_stacktrace(io_err)}")
 
 if __name__ == "__main__":
-    # Substitute with your actual Exa AI token key credentials
-    parser = argparse.ArgumentParser()
-    parser.add_argument("--exa-api-key", required=True)
-    args = parser.parse_args()
+    def add_known_arguments(parser):
+        parser.add_argument("--exa-api-key", required=True)
     
+    args, unknown_args = parse_args(
+        description="🕸️ SemanticSearchScraperAgent",
+        parser_callback=add_known_arguments
+    )
     exaApiKey = args.exa_api_key if args else None
-    
     if exaApiKey:
         scraper = SemanticSearchScraper(exa_api_key=exaApiKey)
         raw_corpus = scraper.discover_and_scrape_sources()
