@@ -46,8 +46,8 @@ Below is the live engineering context injected into your workspace automatically
 | **Idea ID** | {{ idea_id }} |
 | **Project Name** | {{ project_name }} |
 | **Project Description** | {{ project_description }} |
-| **Version** | 1__DOT__0 (Aligned) |
-| **Date__SLASH__Time** | {{ current_timestamp }} |
+| **Version** | 1.0 (Aligned) |
+| **Date/Time** | {{ current_timestamp }} |
 | **Author** | Enterprise System Architect (SA Agent) |
 | **Approval** | Pending Review by Chief Solution Review Officer (CSRO) |
 

@@ -49,8 +49,8 @@ Below are the live engineering assets under evaluation:
 | **Idea ID** | {{ idea_id }} |
 | **Project Name** | {{ project_name }} |
 | **Project Description** | {{ project_description }} |
-| **Version** | 1__DOT__0 (Automated Governance) |
-| **Date__SLASH__Time** | {{ current_timestamp }} |
+| **Version** | 1.0 (Automated Governance) |
+| **Date/Time** | {{ current_timestamp }} |
 | **Author** | Chief Solution Review Officer (CSRO Agent) |
 | **Approval** | Certified by Enterprise Technical Governance Board |
 
@@ -67,9 +67,9 @@ Below are the live engineering assets under evaluation:
 
 ### 🔍 3. Detailed Loopholes & Gaps (Required if FAILED)
 - **[Gap-ID]**: Name of the flaw (Must explicitly cite the broken or missing structural tags, e.g., `[REQ-002]` or `[DAT-005]`)
-  - **Location**: [Target File] -> [Section__SLASH__Module__SLASH__Phase]
+  - **Location**: [Target File] -> [Section/Module/Phase]
   - **Technical Description**: Deep logical analysis of the architectural failure, schema omission, or requirement contradiction.
-  - **System Impact**: Potential failures, race conditions, or security__SLASH__compliance breaches if left unfixed in production.
+  - **System Impact**: Potential failures, race conditions, or security/compliance breaches if left unfixed in production.
 
 ### 🔄 4. Automated Remediation Directives (Actionable Commands)
 - **If Idea vs. SRS misalignment is present**:
