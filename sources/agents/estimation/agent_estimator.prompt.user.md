@@ -48,7 +48,7 @@ Every header and table parameter below MUST be translated and naturally rendered
 | **Project Description** | {{ project_description }} |
 | **Version** | 1.0 (Automated Governance) |
 | **Date/Time** | {{ current_timestamp }} |
-| **Author** | Enterprise BA Agent (Automated Pipeline) |
+| **Author** | [Insert your exact assigned sub-agent CRO/CFO role token dynamically] |
 | **Approval** | Certified by Enterprise Technical Governance Board |
 
 #### SECTION 1: DOCUMENT CONTROL & PROVENANCE METADATA
@@ -132,7 +132,7 @@ Render this table fully in "{{ target_language }}". Financial Impact and Resourc
 - Ensure ALL structural syntax keywords and logic tokens remain strictly in unaccented plain English.
 
 ##### Chart A: Financial Cost Boundary Matrix (USD)
-Use the official `xychart-beta` syntax. You MUST evaluate labor costs to find the maximum value for the y-axis, rounded up to the nearest hundred, and replace the upper bound placeholder with this integer. CRITICAL MERMAID v11 SYNTAX RULE: Each `bar` directive MUST contain exactly three comma-separated raw integer numbers wrapped strictly inside single brackets representing [Min, Max, Safe] bounds (e.g., bar [150, 220, 310]). Output exactly FOUR distinct `bar` lines representing the 4 scenarios. Do NOT include any string characters inside the final generated brackets.
+Use the official `xychart-beta` syntax. You MUST evaluate labor costs to find the maximum value for the y-axis, rounded up to the nearest hundred, and replace the upper bound placeholder with this integer. CRITICAL MERMAID v11 SYNTAX RULE: Each `bar` directive MUST contain exactly three comma-separated raw integer numbers wrapped strictly inside single brackets representing [Min, Max, Safe] bounds (e.g., bar). Output exactly FOUR distinct `bar` lines representing the 4 scenarios. Do NOT include any string characters inside the final generated brackets.
 
 ```mermaid
 xychart-beta
@@ -185,7 +185,7 @@ quadrant-4 "Monitor Risks"
 #### SECTION 7: VISUALIZATION METADATA FOR BACKEND PROCESSING
 *TERMINAL JSON ISOLATION BLOCK*: Provide a clean, single-level flat valid JSON metadata block at the absolute end of the response. Output numbers as flat floats or ints inside single arrays representing the 3 sequential points [Min, Max, Safe] for each scenario.
 
-CRITICAL ENFORCEMENT RULE: The "exchange_rate" key MUST contain a raw single float number value only (e.g., 25500.0). Do NOT wrap the exchange_rate value inside brackets. Ensure 100% data alignment between Section 3 tables and this JSON payload.
+CRITICAL ENFORCEMENT RULE: The "exchange_rate" key MUST contain a raw single float number value only (e.g., 25500.0). Do NOT wrap the exchange_rate value inside brackets. Ensure 100% data alignment between Section 3 tables and this JSON payload. All numeric primitives inside arrays must be clean integers or floats.
 
 {% set open_json = '{' %}
 {% set close_json = '}' %}
