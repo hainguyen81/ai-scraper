@@ -1,10 +1,4 @@
-{
-  "project_names": {
-    "technical_codename": "project-nexus-edu",
-    "descriptive_name": "Nền tảng quản lý hội viên đa trung tâm thông minh",
-    "brand_name": "EduNexus"
-  },
-  "srs_content_markdown": "## 1. PROJECT OVERVIEW
+## 1. PROJECT OVERVIEW
 
 - **Product Objectives & Core Values**
   - Cung cấp nền tảng quản lý hội viên đa trung tâm thống nhất.
@@ -327,5 +321,3 @@
 | Cài đặt hệ thống | setting_key | VARCHAR(50) | PK | Khóa cấu hình |
 | | setting_value | TEXT | not null | Giá trị cấu hình |
 | | description | VARCHAR(200) | optional | Ý nghĩa của cài đặt |
-"
-}
