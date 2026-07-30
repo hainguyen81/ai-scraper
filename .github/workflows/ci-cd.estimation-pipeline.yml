@@ -110,7 +110,7 @@ jobs:
           INPUTS_IDEA: ${{ inputs.idea }}
           INPUTS_BUFFER: ${{ inputs.buffer }}
           INPUTS_LANGUAGE: ${{ inputs.language }}
-          INPUTS_VERBOSE: ${{ inputs.verbose == 'true' && '--verbose' || '' }}
+          INPUTS_VERBOSE: ${{ inputs.verbose == true && '--verbose' || '' }}
         run: |
           echo "⚡ Kicking off AI Expert Principal IT Project Estimator..."
           python sources/agents/estimation/agent_estimator.py \

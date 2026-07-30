@@ -99,7 +99,7 @@ jobs:
           # Project Information
           INPUTS_IDEA: ${{ inputs.idea }}
           INPUTS_LANGUAGE: ${{ inputs.language }}
-          INPUTS_VERBOSE: ${{ inputs.verbose == 'true' && '--verbose' || '' }}
+          INPUTS_VERBOSE: ${{ inputs.verbose == true && '--verbose' || '' }}
         run: |
           echo "⚡ Kicking off AI Expert Business Analysis Generation..."
           python sources/agents/business-analysis/agent_ba.py \

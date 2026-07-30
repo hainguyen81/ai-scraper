@@ -83,7 +83,7 @@ jobs:
           
           # Project Information
           INPUTS_IDEA: ${{ inputs.idea }}
-          INPUTS_VERBOSE: ${{ inputs.verbose == 'true' && '--verbose' || '' }}
+          INPUTS_VERBOSE: ${{ inputs.verbose == true && '--verbose' || '' }}
         run: |
           echo "⚡ Kicking off AI Enterprise Solution Review..."
           python sources/agents/chief-solution/agent_csro.py \
