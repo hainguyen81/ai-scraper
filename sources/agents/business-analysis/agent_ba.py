@@ -39,7 +39,7 @@ class PrincipalBusinessAnalysisAgent(AbstractSubAgent):
         # start initialization
         super().initialize()
         self.language = self.get_kwargs("language") or DEFAULT_SRS_LANGUAGE
-        self.enabled_log_debug()
+        # self.enabled_log_debug()
     
     def ba_output_raw_file(self):
         return self.__output_storage_path__(storage_name="output_ba", file=BA_RAW_FILE)
