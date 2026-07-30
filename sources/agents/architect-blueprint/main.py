@@ -23,13 +23,14 @@ from sources.agents.agent_helper import (
     get_logger,
     json_loads,
     parse_args,
-    storage_info
+    storage_info,
+    enabledLogDebug
 )
 
 # Import decoupled functional components cleanly
-from block_global import generate_global_context
-from block_phase import generate_phase_contexts
-from block_json import convert_phases_to_json
+from block_global import generate_global_context, logger as global_logger
+from block_phase import generate_phase_contexts, logger as phase_logger
+from block_json import convert_phases_to_json, logger as steps_logger
 
 # ==============================================================================
 # GLOBAL CONFIGURATION PATHS - CONFIG HERE TO CUSTOMIZE DIRECTORY STRUCTURE
@@ -443,6 +444,12 @@ if __name__ == "__main__":
         description="🏗️ EnterpriseSystemArchitectureAgent",
         parser_callback=add_known_arguments
     )
+    verbose = unknown_args.get("verbose", None) if unknown_args else False
+    if verbose:
+        enabledLogDebug(logger)
+        enabledLogDebug(global_logger)
+        enabledLogDebug(phase_logger)
+        enabledLogDebug(steps_logger)
     
     # Trigger the primary agent orchestration function.
     run_architect_agent(
