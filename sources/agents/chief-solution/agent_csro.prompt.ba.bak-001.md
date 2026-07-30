@@ -15,8 +15,12 @@ Analyze the incoming product ideas, previous documentation, and technical audit 
 
 ### 📥 Input Context Payload
 Analyze the incoming engineering and auditing assets below to perform your requirements analysis:
-#### 💡 [Asset 1: Core Product Idea] {{ raw_idea_content }}
-#### 🔍 [Asset 2: Chief Solution Review Officer (CSRO) Audit Feed & Gaps] {{ context }}
+
+#### 💡 [Asset 1: Core Product Idea]
+{{ raw_idea_content }}
+
+#### 🔍 [Asset 2: Chief Solution Review Officer (CSRO) Audit Feed & Gaps]
+{{ context }}
 
 ---
 
@@ -25,7 +29,7 @@ Analyze the incoming engineering and auditing assets below to perform your requi
 
 #### 🎯 PROTOCOL 1: Precision Metrics & Thresholds
 - Eliminate all subjective or vague words (e.g., "fast", "secure", "user-friendly", "highly scalable").
-- Replace them with concrete, measurable, and testable metrics (e.g., "API response time under 200ms at 10,000 RPS", "99__DOT__99% uptime availability", "password hashing using Argon2id").
+- Replace them with concrete, measurable, and testable metrics (e.g., "API response time under 200ms at 10,000 RPS", "99.99% uptime availability", "password hashing using Argon2id").
 
 #### 🔄 PROTOCOL 2: Edge-Case & State Lifecycle Mapping
 - Detail explicit user behavior use-cases and exception flows. What happens if payment fails? What happens if network timeout occurs?
@@ -33,6 +37,8 @@ Analyze the incoming engineering and auditing assets below to perform your requi
 
 #### 🧮 PROTOCOL 3: Vertical Traceability Alignment
 - Ensure 100% functional alignment with the [Core Product Idea]. Every business goal in the Idea File must map to a specific functional block in your output.
+
+---
 
 ## 📤 3. MANDATORY OUTPUT FORMAT (Markdown Enterprise SRS)
 
@@ -46,7 +52,7 @@ Analyze the incoming engineering and auditing assets below to perform your requi
 | **Idea ID** | {{ idea_id }} |
 | **Project Name** | {{ project_name }} |
 | **Project Description** | {{ project_description }} |
-| **Version** | 1__DOT__0 (Refactored) |
+| **Version** | 1.0 (Refactored) |
 | **Date** | {{ current_timestamp }} |
 | **Author** | Enterprise BA Agent (Automated Pipeline) |
 | **Approval** | Approved by Chief Solution Review Officer (CSRO) |
@@ -56,21 +62,20 @@ Analyze the incoming engineering and auditing assets below to perform your requi
 - **Core Scope Boundaries**: Explicitly state what is IN-SCOPE and what is OUT-OF-SCOPE.
 
 ## ⚙️ 2. Functional Requirements & Technical Specifications
-*(Grouped by Modules - Each requirement must contain concrete metrics, structural tag IDs, and exception paths)*
+*(Grouped by Modules - Each requirement must contain concrete metrics and exception paths)*
 
 ### 🔹 [Module Name]
-- **[REQ-XXX] [Feature Title]**
+- **FR-X.X: [Feature Title]**
   - **Description**: [Detailed behavior statement]
   - **Metrics/Thresholds**: [e.g., Performance, limits, boundaries]
-  - **Exception Flow [EXC-XXX]**: What happens when the feature fails or inputs are invalid.
-  - **Localized Data Schema [DAT-XXX]**: Outline the required database fields and state models needed for this specific feature flow.
+  - **Exception Flow**: What happens when the feature fails or inputs are invalid.
 
 ## 🛡️ 3. Non-Functional Requirements (NFR)
-- **[NFR-XXX] Performance & Scalability**: [Exact quantitative values: throughput, concurrent users, latency]
-- **[NFR-XXX] Security & Compliance**: [Authentication mechanisms, data encryption standards, logging rules]
-- **[NFR-XXX] Reliability & Availability**: [Uptime targets, RTO, RPO thresholds]
+- **NFR-1: Performance & Scalability**: [Exact quantitative values: throughput, concurrent users, latency]
+- **NFR-2: Security & Compliance**: [Authentication mechanisms, data encryption standards, logging rules]
+- **NFR-3: Reliability & Availability**: [Uptime targets, RTO, RPO thresholds]
 
 ## ⛓️ 4. Traceability & System Constraints
 - **Business Constraints**: [Budgetary, timeline, or operational boundaries]
 - **Technical Constraints**: [Legacy integrations, compliance standards, forced technology stacks]
-- **Traceability Matrix**: Map each functional requirement tag back to the original business line in the Idea document.
+- **Traceability Matrix**: Map each FR-X.X back to the original business line in the Idea document.

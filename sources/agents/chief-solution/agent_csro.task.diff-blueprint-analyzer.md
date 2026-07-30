@@ -1,4 +1,3 @@
-
 # Blueprint Diff Analyzer Agent Configuration
 
 ## 👥 1. AGENT BACKSTORY & IDENTITY

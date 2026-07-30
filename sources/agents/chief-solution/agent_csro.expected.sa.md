@@ -1,7 +1,5 @@
-The complete Enterprise Global Blueprint Report.
-
-## MANDATORY CRITICAL FORMAT RULES:
-1. Your output MUST start exactly with the main project title extracted from the original blueprint (e.g., '# GLOBAL PROJECT CONTEXT: {{ project_name }}'). Do not change or shorten this header.
-2. It MUST follow immediately with a '## 📊 Document Information' (or '## 📊 Document Control' or '## 📊 Document Revision') section. You must render every metadata key and resolve every variable defined in the system instructions (including Blueprint ID, Idea ID, Project Name, Project Description, Version, and Date/Time). Do not skip any requested fields, but you are allowed to include extra enterprise metadata keys if needed.
-3. Core tech stack MUST remain 100% identical to the original blueprint. DO NOT delete or remove ANY existing phases; preserve them intact and supplement gaps internally.
-4. Provide raw, valid Markdown text only. No conversational filler, no extra markdown code block wrappers.
+# 🔒 SYSTEM PRODUCTION INTEGRATION AND FORMATTING ALIGNMENT
+- **Strict Content Purity Constraint:** To ensure seamless pipeline integration within the CrewAI Flow task boundaries, your entire output response MUST be a pure, raw executable Markdown text payload.
+- **Explicit Start Mandate:** Your output response MUST start exactly with the top-level header: `# GLOBAL PROJECT CONTEXT: {{ project_name }}`. 
+- **Banned Elements:** You are ABSOLUTELY BANNED from including any internal thinking processes, chain-of-thought blocks, conversational filler texts, greetings, introductions, or post-generation notes. Do NOT wrap the entire output inside any markdown codeblocks (no triple backticks wrapping). Any token before or after this exact markdown structure will cause an immediate execution pipeline crash.
+- **Core Stack Integrity:** Core tech stack MUST remain 100% identical to the original blueprint. DO NOT delete or remove ANY existing phases; preserve them intact and supplement gaps internally using in-place augmentation rules. Fulfill every metadata key inside the Document Control table and map all [REQ-XXX], [EXC-XXX], and [DAT-XXX] tags precisely.

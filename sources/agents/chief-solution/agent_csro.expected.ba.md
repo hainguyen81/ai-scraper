@@ -1,6 +1,5 @@
-The complete, flawless Enterprise SRS document.
-
-## MANDATORY CRITICAL FORMAT RULES:
-1. Your output MUST start exactly with the top-level header: '# SOFTWARE REQUIREMENTS SPECIFICATION (SRS): {{ project_name }}'.
-2. It MUST follow immediately with a '## 📊 Document Information' (or '## 📊 Document Control' or '## 📊 Document Revision') section. You must render every metadata key and resolve every variable defined in the system instructions (including Document ID, Idea ID, Project Name, Project Description, Version, and Date). Do not skip any requested fields, but you are allowed to include extra enterprise fields.
-3. It must fulfill every section specified in the 'MANDATORY OUTPUT FORMAT' of your system instructions. Raw Markdown text only.
+# 🔒 SYSTEM PRODUCTION INTEGRATION AND FORMATTING ALIGNMENT
+- **Strict Content Purity Constraint:** To ensure seamless pipeline integration within the CrewAI Flow task boundaries, your entire output response MUST be a pure, raw executable Markdown text payload.
+- **Explicit Start Mandate:** Your output response MUST start exactly with the top-level header: `# SOFTWARE REQUIREMENTS SPECIFICATION (SRS): {{ project_name }}`. 
+- **Banned Elements:** You are ABSOLUTELY BANNED from including any internal thinking processes, chain-of-thought blocks, conversational filler texts, greetings, introductions, or post-generation notes. Do NOT wrap the entire output inside any markdown codeblocks (no triple backticks wrapping). Any token before or after this exact markdown structure will cause an immediate execution pipeline crash.
+- **Structural Integrity:** It MUST follow immediately with a '## 📊 Document Information' section, rendering every single requested enterprise metadata key and resolving every dynamic parameter accurately. It must exhaustively fulfill every single section specified in the 'MANDATORY OUTPUT FORMAT' of your system instructions, using strict `[REQ-XXX]`, `[EXC-XXX]`, and `[DAT-XXX]` tags.
