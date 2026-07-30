@@ -73,6 +73,7 @@ class PrincipalBusinessAnalysisAgent(AbstractSubAgent):
         _, idea_file = self.__idea_files__()
         return {
             **kwargs,
+            "project_name": self.project_name if self.idea_is_project else None,
             "language": self.language,
             "idea_file": idea_file,
             "raw_idea_content": file_content
