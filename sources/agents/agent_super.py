@@ -3,13 +3,12 @@
 import os
 import sys
 import json
-import re
-import argparse
-from datetime import datetime
-from openai import OpenAI
 
 # for abstract class
 from abc import ABC, abstractmethod
+
+# openAI
+from openai import OpenAI
 
 # agent helper
 from sources.agents.agent_helper import (
@@ -22,7 +21,8 @@ from sources.agents.agent_helper import (
     kwargs_by_key,
     storage_info,
     get_logger,
-    json_tostring
+    json_tostring,
+    json_loads
 )
 
 # ==============================================================================
@@ -93,7 +93,7 @@ class AbstractAgent(ABC):
         
         # parse secrets to JSON
         try:
-            return json.loads(raw_secrets)
+            return json_loads(raw_secrets)
         except Exception as e:
             self.logger.critical(f"💀 Failed to parse environment '{secrets_key}' JSON string: {exception_stacktrace(e)}")
             sys.exit(1)

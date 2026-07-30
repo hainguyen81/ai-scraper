@@ -67,6 +67,23 @@ def resolve_relative_path(absolute_target_path):
     # Clean up the incoming string parameters by removing leading path descriptors
     return absolute_target_path.removeprefix("./").removeprefix(root_path)
 
+def json_tostring(json_data) -> str:
+    return json.dumps(json_data, indent=4, ensure_ascii=False) if json_data else "- No data (None)"
+
+def __fix_json__(data):
+    return re.sub(r'("(?:[^"\\]|\\.)*")', lambda m: m.group(1).replace('\n', '\\n'), str(data).strip())
+
+def json_loads(data):
+    # try to parse json
+    if not data:
+        return None
+    
+    try:
+        return json.loads(str(data))
+    except Exception:
+        # fail to load at the first time, so trying to fix data and re-load it
+        return json.loads(__fix_json__(data))
+
 def json_raw_content(raw_content):
     """Securely serialize input telemetry payloads into structural double-quoted strings."""
     # If the payload is already a memory object list or dictionary
@@ -78,14 +95,11 @@ def json_raw_content(raw_content):
         # If it is a stringified JSON layout, decode and encode with indentation rules
         if (cleaned_str.startswith("{") or cleaned_str.startswith("[")) and '"' in cleaned_str:
             try:
-                return json.dumps(json.loads(cleaned_str), indent=4, ensure_ascii=False)
+                return json.dumps(json_loads(cleaned_str), indent=4, ensure_ascii=False)
             except Exception:
                 pass
     
     return str(raw_content)
-
-def json_tostring(json_data) -> str:
-    return json.dumps(json_data, indent=4, ensure_ascii=False) if json_data else "- No data (None)"
 
 def exception_stacktrace(e) -> str:
     stacktrace = traceback.format_exception(type(e), e, e.__traceback__, limit=10) if isinstance(e, BaseException) or isinstance(e, Exception) else None
@@ -281,7 +295,7 @@ def parseAIResponseJsonData(response):
     if json_match:
         try:
             clean_json_str = json_match.group(1).strip()
-            return (raw_data, json.loads(clean_json_str))
+            return (raw_data, json_loads(clean_json_str))
         except Exception:
             pass # Continue evaluating alternative pattern structures if parsing breaks
             
@@ -290,20 +304,20 @@ def parseAIResponseJsonData(response):
     if json_match:
         try:
             clean_json_str = json_match.group(1).strip()
-            return (raw_data, json.loads(clean_json_str))
+            return (raw_data, json_loads(clean_json_str))
         except Exception:
             pass
 
     # Pattern 3: Hardened bracket boundary locator leveraging non-greedy isolation
     # Fixes the broken greedy regex logic to ensure text outside the curly braces is safely ignored
     try:
-        return (raw_data, json.loads(splitOpenAIResponseJsonData(raw_data)))
+        return (raw_data, json_loads(splitOpenAIResponseJsonData(raw_data)))
     except Exception:
         json_match = re.search(r"(\{[\s\S]*\})", raw_data, re.DOTALL)
         if json_match:
             try:
                 clean_json_str = json_match.group(1).strip()
-                return (raw_data, json.loads(clean_json_str))
+                return (raw_data, json_loads(clean_json_str))
             except Exception:
                 pass
         
@@ -312,7 +326,7 @@ def parseAIResponseJsonData(response):
             
     # Final Fallback Layer: Treat the whole string as literal plain text payload
     try:
-        return (raw_data, json.loads(raw_data.strip()))
+        return (raw_data, json_loads(raw_data.strip()))
     except Exception as final_error:
         print(f"[ ⚠️ PARSER WARNING ] Local string-to-json mapping failed: {final_error}")
         return (raw_data, None)

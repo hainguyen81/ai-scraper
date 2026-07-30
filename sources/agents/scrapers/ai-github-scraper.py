@@ -10,7 +10,8 @@ from sources.agents.agent_helper import (
     json_raw_content,
     exception_stacktrace,
     storage_info,
-    get_logger
+    get_logger,
+    json_loads
 )
 
 # logger
@@ -66,7 +67,7 @@ class GitHubModelScraper:
             with urllib.request.urlopen(req, timeout=self.timeout_seconds) as response:
                 if response.status == 200:
                     logger.info("Raw configuration data fetched successfully from GitHub.")
-                    return json.loads(response.read().decode("utf-8"))
+                    return json_loads(response.read().decode("utf-8"))
                 else:
                     logger.error(f"Invalid server response status code received: {response.status}")
                     return None
@@ -170,7 +171,7 @@ class GitHubModelScraper:
         if isinstance(raw_data, str):
             try:
                 logger.info("Payload isolated as raw string format. Executing second layer JSON deserialization...")
-                raw_data = json.loads(raw_data)
+                raw_data = json_loads(raw_data)
             except Exception as parse_inner_err:
                 logger.error(f"Failed to process internal character token blocks: {exception_stacktrace(parse_inner_err)}")
         

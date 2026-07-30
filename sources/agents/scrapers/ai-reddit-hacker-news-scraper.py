@@ -10,7 +10,8 @@ from sources.agents.agent_helper import (
     json_raw_content,
     exception_stacktrace,
     storage_info,
-    get_logger
+    get_logger,
+    json_loads
 )
 
 # logger
@@ -59,7 +60,7 @@ class HackerNewsTechScraper:
             req = urllib.request.Request(resolved_list_url, headers={"User-Agent": "EnterpriseMonitor/1.0"})
             with urllib.request.urlopen(req) as resp:
                 raw_data = resp.read().decode("utf-8")
-                json_story_ids = json.loads(raw_data)
+                json_story_ids = json_loads(raw_data)
                 log_data['story_ids'] = json_story_ids if json_story_ids else raw_data
                 story_ids: List[int] = json_story_ids[:scan_limit]
                 
@@ -74,7 +75,7 @@ class HackerNewsTechScraper:
                     
                     with urllib.request.urlopen(item_req) as item_resp:
                         raw_item_data = item_resp.read().decode("utf-8")
-                        item_data = json.loads(raw_item_data)
+                        item_data = json_loads(raw_item_data)
                         if not item_data:
                             log_data['threads'].append({ "id": item_id, "raw_data": raw_item_data })
                             continue

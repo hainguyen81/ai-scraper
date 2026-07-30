@@ -7,7 +7,8 @@ from datetime import datetime
 # Now Python can seamlessly see and import the centralized helper utility cleanly!
 from sources.agents.agent_helper import (
     write_json_file,
-    write_file
+    write_file,
+    json_loads
 )
 
 # super agent
@@ -79,7 +80,7 @@ class PrincipalBusinessAnalysisAgent(AbstractSubAgent):
     
     # @override
     def clean_response(self, raw_response, **kwargs):
-        srs_info = json.loads(raw_response.strip()) if raw_response else None
+        srs_info = json_loads(raw_response.strip()) if raw_response else None
         
         # check srss summary
         projects = []

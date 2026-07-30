@@ -21,7 +21,8 @@ from sources.agents.agent_helper import (
     write_json_file,
     count_files_by_pattern,
     read_file_raw,
-    get_logger
+    get_logger,
+    json_loads
 )
 
 # Import decoupled functional components cleanly
@@ -52,7 +53,7 @@ def load_models_keys():
         logger.warn("[ ⚠️ WARN ] The environment variable 'AI_MODELS_KEYS_JSON' is completely absent.")
         return None
     
-    return json.loads(json_key_secrets)
+    return json_loadsjson.loads(json_key_secrets)
 
 def rotate_matching_model(json_ai_models, json_ai_keys, model_idx):
     models_len = len(json_ai_models) if json_ai_models else 0

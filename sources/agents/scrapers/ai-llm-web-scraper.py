@@ -12,7 +12,8 @@ from sources.agents.agent_helper import (
     json_raw_content,
     exception_stacktrace,
     storage_info,
-    get_logger
+    get_logger,
+    json_loads
 )
 
 # logger
@@ -133,9 +134,9 @@ class DynamicScraperAgent:
             json_match = re.search(r'\{.*\}', raw_content, re.DOTALL)
             if json_match:
                 clean_json_str = json_match.group(0)
-                return json.loads(clean_json_str)
+                return json_loads(clean_json_str)
             
-            return json.loads(response.choices.message.content)
+            return json_loads(response.choices.message.content)
         except Exception as llm_err:
             logger.error(f"Structured inference schema parsing crashed: {exception_stacktrace(llm_err)}")
             return {"free_providers": [], "status": "failed", "error": f"Structured inference schema parsing crashed: {exception_stacktrace(llm_err)}"}

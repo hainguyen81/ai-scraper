@@ -26,7 +26,8 @@ from sources.agents.agent_helper import (
     write_json_file,
     render_prompt,
     parseAIResponseJsonData,
-    get_logger
+    get_logger,
+    json_loads
 )
 
 # ==============================================================================
@@ -122,8 +123,8 @@ def dynamic_transform(json_data, project_name: str, phase_idx: int, template_fil
         #         f.write(f"## Cleaned JSON:\n\n```json{ cleaned_str }```\n\n")
         
         # 4. Parse result JSON after rendering by Jinja
-        return json.loads(cleaned_str)
-    except json.JSONDecodeError as e:
+        return json_loads(cleaned_str)
+    except Exception as e:
         logger.warn(f" │   └── ❌ Exception while mapping JSON: { str(e) }. So using manual transform...")
         return manual_transform(json_data, project_name, phase_idx)
 

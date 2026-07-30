@@ -1,11 +1,8 @@
 import sys
 import re
-import json
 import argparse
 from datetime import datetime
 
-import base64
-import requests
 import matplotlib.pyplot as plt
 import numpy as np
 import mermaidx
@@ -13,7 +10,8 @@ import mermaidx
 # Now Python can seamlessly see and import the centralized helper utility cleanly!
 from sources.agents.agent_helper import (
     write_file,
-    makedirs
+    makedirs,
+    json_loads
 )
 
 # super agent
@@ -140,7 +138,7 @@ class EnterpriseAutonomousProjectEstimatorAgent(AbstractSubAgent):
         try:
             # Strip latent trailing whitespaces or markdown leaks before loading
             json_content = json_match.group(1).strip()
-            metrics_dict = json.loads(json_content)
+            metrics_dict = json_loads(json_content)
 
             # Extract dynamic properties securely with hard fallback safeguards
             exchange_rate = float(metrics_dict.get("exchange_rate", DEFAULT_EXCHANGE_RATE))
