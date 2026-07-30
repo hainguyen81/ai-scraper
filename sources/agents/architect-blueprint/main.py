@@ -3,7 +3,6 @@
 import os
 import sys
 import json
-import argparse
 import time
 
 # GEMINI
@@ -23,7 +22,8 @@ from sources.agents.agent_helper import (
     read_file_raw,
     get_logger,
     json_loads,
-    parse_args
+    parse_args,
+    storage_info
 )
 
 # Import decoupled functional components cleanly
@@ -34,13 +34,20 @@ from block_json import convert_phases_to_json
 # ==============================================================================
 # GLOBAL CONFIGURATION PATHS - CONFIG HERE TO CUSTOMIZE DIRECTORY STRUCTURE
 # ==============================================================================
-BA_STORAGE_PATH             = os.path.join("sources", "storage", "business-analysis")
-PROJECTS_SUMMARY_FILE       = os.path.join(BA_STORAGE_PATH, "projects-summary.json")
-PROJECTS_SUMMARY_FILE_PATH  = resolve_absolute_path(PROJECTS_SUMMARY_FILE)
-REQUIREMENTS_STORAGE_PATH   = "sources/requirements"
-REQUIREMENTS_FILE           = "requirements.md"
-MODELS_POOL_PATH            = resolve_absolute_path("sources/agents/models/models.json")
-PLAN_SPEC_FILE              = "plan.spec.json"
+STORAGE                         = storage_info.get("storage") or {}
+STORAGE_AGENTS                  = storage_info.get("agents") or {}
+STORAGE_OUTPUT                  = storage_info.get("output") or {}
+
+REL_BA_STORAGE_PATH             = STORAGE.get("relative_ba") or {}
+REL_PROJECTS_SUMMARY_FILE       = os.path.join(REL_BA_STORAGE_PATH, "projects-summary.json")
+PROJECTS_SUMMARY_FILE           = resolve_absolute_path(REL_PROJECTS_SUMMARY_FILE)
+
+REL_REQUIREMENTS_STORAGE_PATH   = STORAGE.get("relative_requirements") or {}
+REQUIREMENTS_FILE               = "requirements.md"
+
+MODELS_POOL_PATH                = resolve_absolute_path("sources/agents/models/models.json")
+MODELS_SECRETS_ENV_KEY          = "AI_MODELS_KEYS_JSON"
+PLAN_SPEC_FILE                  = "plan.spec.json"
 
 logger = get_logger("🏗️ EnterpriseSystemArchitectureAgent")
 
@@ -49,9 +56,9 @@ def load_models_pool():
     return models_json
 
 def load_models_keys():
-    json_key_secrets = os.environ.get("AI_MODELS_KEYS_JSON")
+    json_key_secrets = os.environ.get(MODELS_SECRETS_ENV_KEY)
     if not json_key_secrets:
-        logger.warning("[ ⚠️ WARN ] The environment variable 'AI_MODELS_KEYS_JSON' is completely absent.")
+        logger.warning(f"[ ⚠️ WARN ] The environment variable '{MODELS_SECRETS_ENV_KEY}' is completely absent.")
         return None
     
     return json_loads(json_key_secrets)
@@ -95,9 +102,9 @@ def find_project_requirements(project_name: str):
         return (None, None)
     
     # read projects summaize
-    _, projects = read_json_file(file_path=PROJECTS_SUMMARY_FILE_PATH)
+    _, projects = read_json_file(file_path=PROJECTS_SUMMARY_FILE)
     if not projects:
-        logger.warning(f"[ ⚠️ WARNING ] Not found {PROJECTS_SUMMARY_FILE} to search. Skipping tier.")
+        logger.warning(f"[ ⚠️ WARNING ] Not found %s to search. Skipping tier.", PROJECTS_SUMMARY_FILE)
         return (None, None)
     
     # filter to find project
@@ -123,7 +130,7 @@ def run_architect_agent(
     is_build_global = is_build_all or exec_mode in (0, 1)
     is_build_phase = is_build_all or exec_mode in (0, 2)
     is_build_steps = is_build_all or exec_mode in (0, 3)
-    is_build_plan_spec = is_build_all or exec_mode not in (0, 1, 2, 3)
+    is_build_plan_spec = exec_mode not in (0, 1, 2, 3)
     
     # -------------------------------------------------
     # Should detect project first to request requirements from BA
@@ -136,13 +143,13 @@ def run_architect_agent(
         if detected_project_name and detected_requirements_file:
             project_name = detected_project_name
             requirements_path = detected_requirements_file
-            logger.info(f"\n🎉 [ INFO ] Found matching project {project_name} with requirements {requirements_path}")
         
-        # else not found requirements from BA storage, then detecting from requirements storage
-        else:
-            requirements_path = os.path.join(REQUIREMENTS_STORAGE_PATH, project_name, REQUIREMENTS_FILE)
+    # not found requirements from BA storage, then detecting from requirements storage
+    if not requirements_path:
+        requirements_path = os.path.join(REL_REQUIREMENTS_STORAGE_PATH, project_name, REQUIREMENTS_FILE)
     
     # if need to build project context/steps, then checking the existing requirements file
+    logger.info(f"\n🎉 Analyze project {project_name} with requirements {requirements_path}...")
     physical_requirements_path = resolve_absolute_path(requirements_path)
     if not is_build_plan_spec and not os.path.exists(physical_requirements_path):
         logger.critical(f"❌ [ CRITICAL ] Target requirements file not found at: {requirements_path}")

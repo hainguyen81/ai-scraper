@@ -17,13 +17,22 @@ from sources.agents.agent_helper import (
     render_prompt,
     parseAIResponseData,
     exception_stacktrace,
-    get_logger
+    get_logger,
+    storage_info
 )
 
 # ==============================================================================
 # GLOBAL CONFIGURATION PATHS - CONFIG HERE TO CUSTOMIZE DIRECTORY STRUCTURE
 # ==============================================================================
-PROMPT_TEMPLATE_PATH = resolve_absolute_path("sources/agents/architect-blueprint/block_global_prompt.md")
+STORAGE                             = storage_info.get("storage") or {}
+STORAGE_AGENTS                      = storage_info.get("agents") or {}
+STORAGE_OUTPUT                      = storage_info.get("output") or {}
+
+REL_STORAGE_AGENT_BLUEPRINT             = STORAGE_AGENTS.get("relative_blueprint") or {}
+REL_GLOBAL_USER_PROMPT_TEMPLATE_PATH    = os.path.join(REL_STORAGE_AGENT_BLUEPRINT, "block_global_prompt.md")
+GLOBAL_SYSTEM_PROMPT                    = "You are an Enterprise / Principal / Elite Solution Architect. Define the global system truth and multi-agent guardrails."
+GLOBAL_USER_PROMPT_TEMPLATE_PATH        = resolve_absolute_path(REL_GLOBAL_USER_PROMPT_TEMPLATE_PATH)
+
 logger = get_logger("🏗️ EnterpriseSystemArchitectureGlobalAgent")
 
 # GEMINI
@@ -39,24 +48,24 @@ def generate_global_context(client: OpenAI, model_name: str, project_name: str, 
     
     max_days_per_phase = max_days_per_phase if max_days_per_phase > 0 else 7
     log_prompt = ""
-    instruction = "You are an Elite Solution Architect. Define the global system truth and multi-agent guardrails."
+    system_prompt = GLOBAL_SYSTEM_PROMPT
     model_name_safe = model_name if model_name else "gpt-4o"
     try:
         # parse prompt from template
-        prompt_context = {
+        user_prompt_context = {
             "project_name": project_name,
             "project_requirements": requirements,
             "num_phases": num_phases,
             "max_days_per_phase": max_days_per_phase
         }
-        prompt = render_prompt(PROMPT_TEMPLATE_PATH, prompt_context)
-        log_prompt = prompt
+        user_prompt = render_prompt(GLOBAL_USER_PROMPT_TEMPLATE_PATH, user_prompt_context)
+        log_prompt = user_prompt
         
         # GEMINI
         # response = client.models.generate_content(
         #     model='gemini-2.5-pro',
         #     contents=prompt,
-        #     config=types.GenerateContentConfig(system_instruction=instruction, temperature=0.2)
+        #     config=types.GenerateContentConfig(system_instruction=system_prompt, temperature=0.2)
         # )
         # raw_data = response.text
         
@@ -64,8 +73,8 @@ def generate_global_context(client: OpenAI, model_name: str, project_name: str, 
         response = client.chat.completions.create(
             model=model_name_safe,
             messages=[
-                {"role": "system", "content": instruction},
-                {"role": "user", "content": prompt}
+                {"role": "system", "content": system_prompt},
+                {"role": "user", "content": user_prompt}
             ],
             temperature=0.2
         )
@@ -80,12 +89,12 @@ def generate_global_context(client: OpenAI, model_name: str, project_name: str, 
         )
         
         # write log
-        write_blueprint_log(0, instruction, log_prompt.replace('#', '##'), raw_data.replace('#', '##') if raw_data else "-", False, model_name_safe, out_dir)
+        write_blueprint_log(0, system_prompt, log_prompt.replace('#', '##'), raw_data.replace('#', '##') if raw_data else "-", False, model_name_safe, out_dir)
         
         logger.info(f"✅ [BLOCK 1 SUCCESS] Saved Global Blueprint: {out_path}")
         return raw_data
     except Exception as e:
         logger.error(f"❌ Failed to initiate chat/generate Global Blueprint: {exception_stacktrace(e)}")
-        write_blueprint_log(0, instruction, log_prompt.replace('#', '##'), exception_stacktrace(e), False, model_name_safe, out_dir)
+        write_blueprint_log(0, system_prompt, log_prompt.replace('#', '##'), exception_stacktrace(e), False, model_name_safe, out_dir)
         return None
 

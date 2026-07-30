@@ -28,7 +28,7 @@ on:
       output_dir:
         description: '📂 Target directory path to save'
         required: false
-        default: 'sources/storage/blueprint'
+        default: 'sources/output/blueprint'
         type: string
       exec_mode:
         description: "🤖 Execution Mode"
@@ -129,7 +129,7 @@ on:
       output_dir:
         description: '📂 Target directory path to save'
         required: false
-        default: 'sources/storage/blueprint'
+        default: 'sources/output/blueprint'
         type: string
       exec_mode:
         description: "🤖 Execution Mode"

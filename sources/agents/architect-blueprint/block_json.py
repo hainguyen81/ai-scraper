@@ -27,13 +27,22 @@ from sources.agents.agent_helper import (
     render_prompt,
     parseAIResponseJsonData,
     get_logger,
-    json_loads
+    json_loads,
+    storage_info
 )
 
 # ==============================================================================
 # GLOBAL CONFIGURATION PATHS - CONFIG HERE TO CUSTOMIZE DIRECTORY STRUCTURE
 # ==============================================================================
-PROMPT_TEMPLATE_PATH = resolve_absolute_path("sources/agents/architect-blueprint/block_json_prompt.md")
+STORAGE                             = storage_info.get("storage") or {}
+STORAGE_AGENTS                      = storage_info.get("agents") or {}
+STORAGE_OUTPUT                      = storage_info.get("output") or {}
+
+REL_STORAGE_AGENT_BLUEPRINT         = STORAGE_AGENTS.get("relative_blueprint") or {}
+REL_STEPS_USER_PROMPT_TEMPLATE_PATH = os.path.join(REL_STORAGE_AGENT_BLUEPRINT, "block_json_prompt.md")
+STEPS_SYSTEM_PROMPT                 = "You are a rigid technical translator. Map high-level Markdown workflows into precise, executable JSON schemas."
+STEPS_USER_PROMPT_TEMPLATE_PATH     = resolve_absolute_path(REL_STEPS_USER_PROMPT_TEMPLATE_PATH)
+
 logger = get_logger("🏗️ EnterpriseSystemArchitectureStepsAgent")
 
 # --- Validated Schemas for Structured JSON Output ---
@@ -191,7 +200,7 @@ def convert_phases_to_json(client: OpenAI, model_name: str, project_name: str, n
     max_days_per_phase = max_days_per_phase if max_days_per_phase > 0 else 7
     log_phase_idx = 0
     log_prompt = ""
-    instruction = "You are a rigid technical translator. Map high-level Markdown workflows into precise, executable JSON schemas."
+    system_prompt = STEPS_SYSTEM_PROMPT
     
     # 🎯 CONFIG: Define safe day span bounds per API transaction window
     DAYS_PER_CHUNK = daysPerChunk if daysPerChunk and daysPerChunk > 0 else 0
@@ -246,7 +255,7 @@ def convert_phases_to_json(client: OpenAI, model_name: str, project_name: str, n
                 
                 # parse prompt from template
                 is_chunked_mode = True if DAYS_PER_CHUNK > 0 else False
-                prompt_context = {
+                user_prompt_context = {
                     "is_chunked": is_chunked_mode,
                     "project_name": project_name.strip(),
                     "phase_idx": phase_idx,
@@ -258,15 +267,15 @@ def convert_phases_to_json(client: OpenAI, model_name: str, project_name: str, n
                     "global_context_file": global_context_file,
                     "project_phase_context_file": project_phase_context_file
                 }
-                prompt = render_prompt(PROMPT_TEMPLATE_PATH, prompt_context)
-                log_prompt = prompt  # Stores the latest prompt state for error block fallback capture
+                user_prompt = render_prompt(STEPS_USER_PROMPT_TEMPLATE_PATH, user_prompt_context)
+                log_prompt = user_prompt  # Stores the latest prompt state for error block fallback capture
                 
                 # GEMINI
                 # response = client.models.generate_content(
                 #     model='gemini-2.5-pro',
                 #     contents=prompt,
                 #     config=types.GenerateContentConfig(
-                #         system_instruction=instruction,
+                #         system_instruction=system_prompt,
                 #         temperature=0.1,
                 #         response_mime_type="application/json",
                 #         response_schema=PhaseStepsPlan
@@ -279,8 +288,8 @@ def convert_phases_to_json(client: OpenAI, model_name: str, project_name: str, n
                 response = client.beta.chat.completions.parse(
                     model=model_name_safe,  # Standard heavy reasoning model for structured enterprise operations
                     messages=[
-                        {"role": "system", "content": instruction},
-                        {"role": "user", "content": prompt}
+                        {"role": "system", "content": system_prompt},
+                        {"role": "user", "content": user_prompt}
                     ],
                     temperature=0.1,
                     # response_format=PhaseStepsPlan, # Injects the pydantic model schema ruleset natively
@@ -299,7 +308,7 @@ def convert_phases_to_json(client: OpenAI, model_name: str, project_name: str, n
                 # print(f" │         { dump_json_data }")
                 
                 # write log
-                write_blueprint_log(log_phase_idx, instruction, log_prompt.replace('#', '##'), raw_data, True, model_name_safe, out_dir)
+                write_blueprint_log(log_phase_idx, system_prompt, log_prompt.replace('#', '##'), raw_data, True, model_name_safe, out_dir)
                 
                 # # Accumulate stream markers for audit logging preservation
                 # accumulated_raw_data += f"\n--- CHUNK {chunk_counter} RAW ---\n" + (raw_data if raw_data else "")
@@ -414,5 +423,5 @@ def convert_phases_to_json(client: OpenAI, model_name: str, project_name: str, n
         return result # success or empty phases
     except Exception as e:
         logger.error(f"❌ Failed to initiate chat/generate Phase {log_phase_idx} Steps JSON: {exception_stacktrace(e)}")
-        write_blueprint_log(log_phase_idx, instruction, log_prompt.replace('#', '##'), exception_stacktrace(e), True, model_name_safe, out_dir)
+        write_blueprint_log(log_phase_idx, system_prompt, log_prompt.replace('#', '##'), exception_stacktrace(e), True, model_name_safe, out_dir)
         return False
