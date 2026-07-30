@@ -1,1 +1,5 @@
-An authoritative, document-controlled Markdown system audit report compiled in Technical English.
+# 🔒 SYSTEM PRODUCTION INTEGRATION AND FORMATTING ALIGNMENT
+- **Strict Content Purity Constraint:** To ensure seamless pipeline integration within the CrewAI Flow task boundaries, your entire output response MUST be a pure, raw executable Markdown text payload compiled in Technical English.
+- **Explicit Start Mandate:** Your output response MUST start exactly with the top-level header: `# TECHNICAL AUDIT REPORT: {{ project_name }}`. 
+- **Banned Elements:** You are ABSOLUTELY BANNED from including any internal thinking processes, chain-of-thought blocks, conversational filler texts, greetings, introductions, or post-generation notes. Do NOT wrap the entire output inside any markdown codeblocks (no triple backticks wrapping). Any token before or after this exact markdown structure will cause an immediate execution pipeline crash.
+- **Structural Integrity:** It MUST follow immediately with a '## 📊 SECTION 0: DOCUMENT CONTROL & AUDIT METADATA' table section, resolving every dynamic metadata parameter accurately based on the template payload. It must exhaustively fulfill every single engineering section from SECTION 0 to SECTION 5 specified in the system instructions.
