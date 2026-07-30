@@ -13,19 +13,28 @@
                 {
                     "id": "D1_ST1",
                     "agent": "coder",
-                    "desc": "coder Agent: Implement Firebase notification service with multi-tenant support using Firebase Admin SDK to send push notifications with encrypted payloads and implement tenant isolation by including tenant_id in notification metadata.",
+                    "desc": "coder Agent: Develop CourseBrowse component: Render responsive grid of courses fetched via GET /api/courses with search/filter fields, client-side validation, CSRF token integration, OWASP XSS mitigation by sanitizing user-provided filter text, and tenant isolation by attaching authenticated tenant_id to API requests. API contract: GET /api/courses returns { courses: [{ id: string, title: string, description: string, tenant_id: string }] } with 200 status code or 401/403/500 errors.",
                     "targeted_tags": [],
                     "components": [
-                        "./sources/backend/src/main/java/org/nlh4j/saas/membershiphub/service/NotificationService.java"
+                        "./sources/frontend/src/components/CourseBrowse.tsx"
                     ]
                 },
                 {
                     "id": "D1_ST2",
                     "agent": "coder",
-                    "desc": "coder Agent: Create Firebase service account configuration storing service account JSON with restricted permissions and encrypt sensitive fields, ensuring the file is excluded from version control via .gitignore.",
+                    "desc": "coder Agent: Develop StudentCard component: Fetch student card data via GET /api/student-cards/{studentId}, compute and display remaining validity days using server-provided remaining_days, implement client-side validation for renewal input, secure API calls with JWT and tenant context, ensure PII protection. API contract: GET /api/student-cards/{studentId} returns { card_id: string, student_id: string, issue_date: string, expiry_date: string, remaining_days: number, tenant_id: string } with 200 status code or 401/403/404/500 errors.",
                     "targeted_tags": [],
                     "components": [
-                        "./sources/backend/src/main/resources/firebase-service-account.json"
+                        "./sources/frontend/src/components/StudentCard.tsx"
+                    ]
+                },
+                {
+                    "id": "D1_ST3",
+                    "agent": "doc",
+                    "desc": "doc Agent: Create technical documentation for CourseBrowse and StudentCard: Document component purpose, props, state management, API contract, security considerations including tenant isolation, CSRF usage, OWASP mitigations, and reference requirement tags and data dictionary entries ([DAT-003], [DAT-006]).",
+                    "targeted_tags": [],
+                    "components": [
+                        "./sources/frontend/docs/course-browse.md"
                     ]
                 }
             ]
@@ -37,20 +46,29 @@
             "sub_tasks": [
                 {
                     "id": "D2_ST1",
-                    "agent": "docker",
-                    "desc": "docker Agent: Create optimized Dockerfile for backend using multi-stage build to reduce image size below 500 MB and include only necessary dependencies and set non-root user for security.",
+                    "agent": "coder",
+                    "desc": "coder Agent: Develop EnrollmentForm component: Provide form for selecting course and submitting enrollment via POST /api/enrollments with required field validation, business rule enforcement against duplicate enrollments, CSRF token integration, JWT authentication, tenant context, and integration with CourseBrowse component. API contract: POST /api/enrollments payload { course_id: string, student_id: string } returns { enrollment_id: string, status: 'success'|'error', message?: string } with 201 status code or 400/401/403/409/500 errors.",
                     "targeted_tags": [],
                     "components": [
-                        "./sources/backend/Dockerfile"
+                        "./sources/frontend/src/components/EnrollmentForm.tsx"
                     ]
                 },
                 {
                     "id": "D2_ST2",
-                    "agent": "docker",
-                    "desc": "docker Agent: Create optimized Dockerfile for frontend using lightweight Node.js base image and optimize static asset delivery, ensuring environment variables for API endpoints are configurable at runtime.",
+                    "agent": "coder",
+                    "desc": "coder Agent: Develop CardRenewal component: Offer UI for selecting renewal days (1-365) with input validation, initiate stubbed payment, call PUT /api/student-cards/{cardId}/renew with CSRF protection, update local card state, display confirmation notification, ensure tenant isolation and PII protection. API contract: PUT /api/student-cards/{cardId}/renew payload { renewal_days: number } returns { card_id: string, new_expiry_date: string, status: 'success'|'error' } with 200 status code or 400/401/403/404/500 errors.",
                     "targeted_tags": [],
                     "components": [
-                        "./sources/frontend/Dockerfile"
+                        "./sources/frontend/src/components/CardRenewal.tsx"
+                    ]
+                },
+                {
+                    "id": "D2_ST3",
+                    "agent": "doc",
+                    "desc": "doc Agent: Update technical documentation for EnrollmentForm and CardRenewal: Document component designs, API payloads, error handling, security notes including CSRF, input validation, tenant isolation, and reference data dictionaries ([DAT-004], [DAT-006]) and requirement tags.",
+                    "targeted_tags": [],
+                    "components": [
+                        "./sources/frontend/docs/enrollment.md"
                     ]
                 }
             ]
@@ -62,71 +80,38 @@
             "sub_tasks": [
                 {
                     "id": "D3_ST1",
-                    "agent": "GKE",
-                    "desc": "GKE Agent: Create Kubernetes deployment manifests defining resource limits, liveness probes, and environment variables for backend and frontend, including tenant_id as a configurable environment variable for multi-tenancy.",
+                    "agent": "tester",
+                    "desc": "tester Agent: End-to-end integration test for course browsing: Authenticate as Student ([ARC-004]), fetch courses via GET /api/courses, verify UI renders list, validate tenant isolation by checking only courses for authenticated tenant appear, assert OWASP XSS protections by ensuring filter input is properly escaped, confirm API response matches data dictionary ([DAT-003]) and requirements ([REQ-010], [REQ-007]).",
                     "targeted_tags": [],
                     "components": [
-                        "./sources/infra/gke/deployment.yaml"
+                        "./sources/frontend/src/components/CourseBrowse.tsx;./sources/frontend/tests/course-browse.spec.ts"
                     ]
                 },
                 {
                     "id": "D3_ST2",
-                    "agent": "GKE",
-                    "desc": "GKE Agent: Create Kubernetes service and ingress manifests configuring internal services for backend and frontend with proper port mappings and setting up HTTPS ingress with TLS termination and path-based routing for APIs and frontend.",
-                    "targeted_tags": [],
-                    "components": [
-                        "./sources/infra/gke/service.yaml",
-                        "./sources/infra/gke/ingress.yaml"
-                    ]
-                }
-            ]
-        },
-        {
-            "day": 4,
-            "context_file": ".ai/.plan/.context/phase-4.context.blueprint.md",
-            "context_section": "DAY 4",
-            "sub_tasks": [
-                {
-                    "id": "D4_ST1",
-                    "agent": "coder",
-                    "desc": "coder Agent: Create production environment configuration defining production database URLs, Firebase settings, and encryption keys, ensuring all sensitive values are placeholderized for Kubernetes secret injection.",
-                    "targeted_tags": [],
-                    "components": [
-                        "./sources/backend/src/main/resources/application-prod.properties"
-                    ]
-                },
-                {
-                    "id": "D4_ST2",
-                    "agent": "reviewer",
-                    "desc": "reviewer Agent: Perform security review on notification service validating input sanitization to prevent injection attacks in notification payloads and ensuring JWT tokens are validated for tenant scope in notification requests.",
-                    "targeted_tags": [],
-                    "components": [
-                        "./sources/backend/src/main/java/org/nlh4j/saas/membershiphub/service/NotificationService.java"
-                    ]
-                }
-            ]
-        },
-        {
-            "day": 5,
-            "context_file": ".ai/.plan/.context/phase-4.context.blueprint.md",
-            "context_section": "DAY 5",
-            "sub_tasks": [
-                {
-                    "id": "D5_ST1",
                     "agent": "tester",
-                    "desc": "tester Agent: Write integration tests for notification service testing notification delivery with mocked Firebase responses and verifying tenant isolation, covering edge cases like invalid device tokens and network failures.",
+                    "desc": "tester Agent: End-to-end integration test for enrollment: Simulate student login, select course, submit enrollment via POST /api/enrollments, verify enrollment record creation in backend ([DAT-004]) and success notification, validate input sanitization and CSRF token handling, ensure duplicate enrollment is rejected per EXC-004.",
                     "targeted_tags": [],
                     "components": [
-                        "INTEGRATION_SCOPE;./sources/backend/src/test/java/org/nlh4j/saas/membershiphub/service/NotificationServiceIT.java"
+                        "./sources/frontend/src/components/EnrollmentForm.tsx;./sources/frontend/tests/enrollment.spec.ts"
                     ]
                 },
                 {
-                    "id": "D5_ST2",
-                    "agent": "doc",
-                    "desc": "doc Agent: Create deployment and notification flow documentation detailing steps for building Docker images, deploying to GKE, and configuring ingress, including diagrams for notification flow using PlantUML or similar.",
+                    "id": "D3_ST3",
+                    "agent": "tester",
+                    "desc": "tester Agent: End-to-end integration test for student card display: Authenticate Student, request card data via GET /api/student-cards/{studentId}, verify UI displays total validity, days used, and remaining days per [DAT-006], confirm PII is encrypted at rest (AES-256) and only necessary fields exposed (NFR-003), validate tenant isolation and GDPR compliance (NFR-008).",
                     "targeted_tags": [],
                     "components": [
-                        "./sources/docs/gke-deployment-guide.md"
+                        "./sources/frontend/src/components/StudentCard.tsx;./sources/frontend/tests/student-card.spec.ts"
+                    ]
+                },
+                {
+                    "id": "D3_ST4",
+                    "agent": "tester",
+                    "desc": "tester Agent: End-to-end integration test for card renewal: Login as Student, initiate renewal with valid days, mock payment success, verify backend updates StudentCards end date and logs action (NFR-006), confirm notification is queued for student (REQ-016), validate CSRF token and input validation (EXC-004).",
+                    "targeted_tags": [],
+                    "components": [
+                        "./sources/frontend/src/components/CardRenewal.tsx;./sources/frontend/tests/card-renewal.spec.ts"
                     ]
                 }
             ]

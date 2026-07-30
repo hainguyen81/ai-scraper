@@ -1,139 +1,151 @@
 # PHASE 2 CONTEXT BLUEPRINT: membership-hub
 
 ## 1. Phase Operational Scope & Objectives
-Phase 2 focuses on implementing the core authentication and authorization system using OAuth 2.0 with JWT tokens for the backend, and developing the corresponding user interface components for login and registration on the frontend. This phase establishes secure multi-tenant access control aligned with RBAC matrix [ARC-001] to [ARC-005]. Backend implementation must support local email/password registration [REQ-001], social authentication via Firebase, Google, and Facebook OAuth2 [REQ-002], and JWT token generation/validation with 15-minute access tokens and 7-day refresh tokens [NFR-003]. Frontend must provide responsive login/registration UI with validation for email format, password strength, and terms acceptance [REQ-001], and OAuth2 provider integration flows [REQ-002]. All components must enforce TLS 1.3 [NFR-003] and prevent OWASP Top 10 vulnerabilities.
+Implement the complete user authentication experience for the membership‑hub platform within the allocated Phase 2 window. This includes:
 
-## 2. Allowed Technical Scope & Directory Boundaries (Files, paths, and endpoints)
-- **Backend Paths:** `./sources/backend/src/main/java/org/nlh4j/saas/membershiphub/` (Java source), `./sources/backend/src/test/java/org/nlh4j/saas/membershiphub/` (Java tests), `./sources/backend/config/` (OAuth2 configurations)
-- **Frontend Paths:** `./sources/frontend/src/app/` (Next.js pages/components), `./sources/frontend/src/lib/` (authentication utilities), `./sources/frontend/src/styles/` (UI styles)
-- **REST Endpoints:** `/api/auth/register` (POST), `/api/auth/login` (POST), `/api/auth/oauth/{provider}` (POST), `/api/auth/refresh` (POST), `/api/auth/logout` (POST)
-- **Static Assets:** `./sources/frontend/public/` (OAuth2 provider icons/scripts)
+- **User Registration** – capture email/password (or social) with strict validation, hash passwords, issue a JWT (15‑min expiry) and create a local user record with the default “Student” role (REQ‑001).  
+- **Social Authentication** – integrate Firebase, Google, and Facebook OAuth2 flows, exchange provider tokens for user info, map or create local accounts, and return JWT tokens (REQ‑002).  
+- **User Role Assignment** – expose an admin‑driven endpoint to change a user’s role (System Admin, Center Admin, Manager, Teacher, Student) and enforce the new permissions immediately (REQ‑003).  
+- **Frontend‑Backend Integration** – connect the Next.js UI to the auth services, manage bearer‑token state, and provide seamless login/register UI with error handling.  
+- **OWASP & Non‑Functional Compliance** – apply input validation, parameterized queries, password hashing, JWT best‑practice, CSRF tokens, XSS prevention, and audit logging. Ensure GDPR/CCPA data‑handling rules (consent, deletion, export) are respected (NFR‑003, NFR‑008).  
 
-## 3. Dedicated Sub-Agent Functional Directives (Specific tasks for coder, tester, reviewer, doc, docker, GCP, GKE)
-- **coder:** Implements backend OAuth2/JWT logic and frontend UI components. Must inject parameterized queries, bcrypt password hashing, and JWT signature validation.
-- **tester:** Writes unit/integration tests for authentication flows. Tests must verify token expiration, social provider integration, and input validation errors.
-- **reviewer:** Performs static analysis on individual Java/TypeScript files to ensure OWASP compliance and absence of hardcoded secrets.
-- **doc:** Creates technical documentation for authentication architecture, API specs, and OAuth2 setup guides. All docs must reside under `./sources/docs/`.
+All artifacts must be confined to the `./sources/` workspace boundary and follow the mandatory path prefixes (`./sources/frontend/`, `./sources/backend/`, `./sources/docs/`).
+
+## 2. Allowed Technical Scope & Directory Boundaries
+- **Frontend** – `./sources/frontend/` (React/Next.js pages, components, services, tests).  
+- **Backend** – `./sources/backend/` (Java/Quarkus or Spring Boot services, following the `/org/nlh4j/saas/<lowercase‑token>/` package layout).  
+- **Documentation** – `./sources/docs/` (Markdown specifications, architecture diagrams, security notes).  
+- **Endpoints** – All auth APIs are REST under `/api/auth/*` (e.g., `POST /api/auth/register`, `POST /api/auth/login`, `POST /api/auth/social/{provider}`).  
+- **Testing** – Unit tests reside under `./sources/backend/src/test/...`; UI/integration tests under `./sources/frontend/tests/`.  
+
+No other directories or root‑level files are permitted.
+
+## 3. Dedicated Sub-Agent Functional Directives
+- **Coder** – Build the registration/login UI components, backend auth services, and enforce OWASP mitigations (input validation, password hashing, JWT handling, tenant_id scoping, CSRF tokens). Ensure GDPR fields are handled per consent.  
+- **Doc** – Produce comprehensive documentation: authentication flow diagrams, API request/response schemas, security considerations, and OWASP compliance notes. Store all docs under `./sources/docs/`.  
+- **Tester** – Write unit tests for registration/login services and integration tests for end‑to‑end auth flows. Include security‑focused tests (SQL injection attempts, XSS payloads, CSRF bypass) and verify error handling per EXC‑004.  
+
+All sub‑tasks must reference the exact BA tag IDs from the raw requirements and stay within the `./sources/` boundary.
 
 ## 4. Phase Definition of Done (DoD)
-- Backend passes all unit tests for [REQ-001], [REQ-002], [ARC-006] with 100% coverage.
-- Frontend login/registration components implement all validation rules from [REQ-001].
-- JWT tokens include `tenant_id` and `role` claims enforcing [ARC-001]-[ARC-005].
-- OAuth2 providers (Firebase/Google/Facebook) integrated and functional.
-- All code reviewed for OWASP A01, A02, A07 compliance [NFR-003].
-- Documentation created for authentication flows and security protocols.
+- **Functional** – All registration, login, and social auth endpoints return valid JWTs, enforce role assignment, and respect multi‑tenancy (`tenant_id`).  
+- **Security** – OWASP Top 10 mitigations applied (parameterized queries, password hashing, JWT expiry, CSRF tokens, XSS prevention). GDPR/CCPA data‑handling controls implemented.  
+- **Testing** – Unit test coverage for auth modules ≥ 80 % (or defined metric), integration tests pass, security tests confirm no injection/CSRF vulnerabilities.  
+- **Documentation** – Authentication flow, API spec, and security‑consideration documents created and reviewed.  
+- **Compliance** – All referenced BA tags (`[REQ-001]`, `[REQ-002]`, `[REQ-003]`, `[EXC-004]`, `[DAT-001]`, `[DAT-008]`, `[NFR-003]`, etc.) are fully addressed.  
 
-## 5. DAY-BY-DAY ARCHITECTURAL EXECUTION LOGS
+## 5. DAY‑BY‑DAY ARCHITECTURAL EXECUTION LOGS
 
-### DAY 4: BACKEND OAUTH2 PROVIDER CONFIGURATION
-#### SUB-TASK 4.1: Implement OAuth2 client configurations for Firebase, Google, and Facebook
+### DAY 1: Implement registration UI and initial documentation
+#### SUB-TASK 1.1: Build frontend registration page with validation
 ##### Assigned Sub-Agent: coder
 ##### Targeted Components & Technical Requirements:
-*   **Target Path:** `./sources/backend/src/main/java/org/nlh4j/saas/membershiphub/config/OAuth2Config.java`
-    *   **Architectural Requirements:**
-        *   Use Quarkus OIDC extension with `@ConfigMapping` for provider credentials
-        *   Store client secrets in GCP Secret Manager with environment variable injection
-    *   **DAILY LOGS TRACEABILITY RULES (ZERO TOLERANCE FOR BUNDLING):**
-        *   **Targeted Tag IDs:** [REQ-002], [ARC-006]
+* **Target Path:** ./sources/frontend/src/pages/RegisterPage.tsx
+* **Architectural Requirements:**
+  * Implement form fields for email, password, terms acceptance.
+  * Apply client‑side validation matching REQ‑001 rules (email format, password complexity).
+  * Integrate API call to `POST /api/auth/register` and handle JWT storage (http‑only cookies or secure localStorage).
+  * Enforce CSRF token inclusion in request headers.
+  * Log registration attempts for audit (NFR‑006).
+* **DAILY LOGS TRACEABILITY RULES (ZERO TOLERANCE FOR BUNDLING):**
+  * **Targeted Tag IDs:** [REQ-001], [EXC-004], [DAT-001], [NFR-003]
 
-#### SUB-TASK 4.2: Create social authentication service with token exchange and user profile mapping
-##### Assigned Sub-Agent: coder
-##### Targeted Components & Technical Requirements:
-*   **Target Path:** `./sources/backend/src/main/java/org/nlh4j/saas/membershiphub/service/SocialAuthService.java`
-    *   **Architectural Requirements:**
-        *   Implement idempotent user creation/update using `provider`+`provider_id` unique constraint
-        *   Validate OAuth2 tokens against provider endpoints to prevent token injection
-    *   **DAILY LOGS TRACEABILITY RULES (ZERO TOLERANCE FOR BUNDLING):**
-        *   **Targeted Tag IDs:** [REQ-002], [ARC-006]
-
-#### SUB-TASK 4.3: Write unit tests for OAuth2 configuration and token validation
-##### Assigned Sub-Agent: tester
-##### Targeted Components & Technical Requirements:
-*   **Target Path:** `./sources/backend/src/main/java/org/nlh4j/saas/membershiphub/config/OAuth2Config.java;./sources/backend/src/test/java/org/nlh4j/saas/membershiphub/config/OAuth2ConfigTest.java`
-    *   **Architectural Requirements:**
-        *   Mock provider endpoints to simulate token exchange flows
-        *   Verify error handling for invalid tokens and provider outages
-    *   **DAILY LOGS TRACEABILITY RULES (ZERO TOLERANCE FOR BUNDLING):**
-        *   **Targeted Tag IDs:** [REQ-002], [NFR-003]
-
-### DAY 5: JWT TOKEN GENERATION AND VALIDATION
-#### SUB-TASK 5.1: Implement JWT token provider with tenant_id and role claims
-##### Assigned Sub-Agent: coder
-##### Targeted Components & Technical Requirements:
-*   **Target Path:** `./sources/backend/src/main/java/org/nlh4j/saas/membershiphub/service/JwtTokenService.java`
-    *   **Architectural Requirements:**
-        *   Use RSA256 signatures with keys rotated every 90 days
-        *   Include `tenant_id` claim from user's center assignment for multi-tenancy
-    *   **DAILY LOGS TRACEABILITY RULES (ZERO TOLERANCE FOR BUNDLING):**
-        *   **Targeted Tag IDs:** [ARC-002], [ARC-006], [NFR-003]
-
-#### SUB-TASK 5.2: Create authentication filter for JWT validation on protected endpoints
-##### Assigned Sub-Agent: coder
-##### Targeted Components & Technical Requirements:
-*   **Target Path:** `./sources/backend/src/main/java/org/nlh4j/saas/membershiphub/filter/AuthenticationFilter.java`
-    *   **Architectural Requirements:**
-        *   Validate token signature and expiration using jjwt library
-        *   Reject tokens missing required claims (`tenant_id`, `role`)
-    *   **DAILY LOGS TRACEABILITY RULES (ZERO TOLERANCE FOR BUNDLING):**
-        *   **Targeted Tag IDs:** [ARC-001], [ARC-002], [NFR-003]
-
-#### SUB-TASK 5.3: Test token generation and validation with edge cases
-##### Assigned Sub-Agent: tester
-##### Targeted Components & Technical Requirements:
-*   **Target Path:** `./sources/backend/src/main/java/org/nlh4j/saas/membershiphub/service/JwtTokenService.java;./sources/backend/src/test/java/org/nlh4j/saas/membershiphub/service/JwtTokenServiceTest.java`
-    *   **Architectural Requirements:**
-        *   Verify token expiration after 15 minutes and refresh token after 7 days
-        *   Test token rejection for invalid signatures and missing claims
-    *   **DAILY LOGS TRACEABILITY RULES (ZERO TOLERANCE FOR BUNDLING):**
-        *   **Targeted Tag IDs:** [NFR-003]
-
-### DAY 6: FRONTEND LOGIN AND REGISTRATION UI
-#### SUB-TASK 6.1: Create responsive login form with email/password and OAuth2 provider buttons
-##### Assigned Sub-Agent: coder
-##### Targeted Components & Technical Requirements:
-*   **Target Path:** `./sources/frontend/src/app/login/page.tsx`
-    *   **Architectural Requirements:**
-        *   Implement real-time validation for email format and password strength
-        *   Include Firebase, Google, Facebook OAuth2 buttons with provider logos
-    *   **DAILY LOGS TRACEABILITY RULES (ZERO TOLERANCE FOR BUNDLING):**
-        *   **Targeted Tag IDs:** [REQ-001], [REQ-002]
-
-#### SUB-TASK 6.2: Build registration form with terms acceptance and validation
-##### Assigned Sub-Agent: coder
-##### Targeted Components & Technical Requirements:
-*   **Target Path:** `./sources/frontend/src/app/register/page.tsx`
-    *   **Architectural Requirements:**
-        *   Enforce password complexity: 8+ chars, uppercase, lowercase, number, special char
-        *   Require terms checkbox and provide link to terms document
-    *   **DAILY LOGS TRACEABILITY RULES (ZERO TOLERANCE FOR BUNDLING):**
-        *   **Targeted Tag IDs:** [REQ-001]
-
-#### SUB-TASK 6.3: Implement authentication context and token management
-##### Assigned Sub-Agent: coder
-##### Targeted Components & Technical Requirements:
-*   **Target Path:** `./sources/frontend/src/lib/auth.ts`
-    *   **Architectural Requirements:**
-        *   Store JWT tokens in secure HTTP-only cookies
-        *   Implement automatic token refresh before expiration
-    *   **DAILY LOGS TRACEABILITY RULES (ZERO TOLERANCE FOR BUNDLING):**
-        *   **Targeted Tag IDs:** [ARC-006], [NFR-003]
-
-#### SUB-TASK 6.4: Review authentication service for security vulnerabilities
-##### Assigned Sub-Agent: reviewer
-##### Targeted Components & Technical Requirements:
-*   **Target Path:** `./sources/backend/src/main/java/org/nlh4j/saas/membershiphub/service/JwtTokenService.java`
-    *   **Architectural Requirements:**
-        *   Verify no hardcoded secrets or weak algorithm configurations
-        *   Ensure all database queries use parameterized statements
-    *   **DAILY LOGS TRACEABILITY RULES (ZERO TOLERANCE FOR BUNDLING):**
-        *   **Targeted Tag IDs:** [NFR-003]
-
-#### SUB-TASK 6.5: Create authentication architecture documentation
+#### SUB-TASK 1.2: Document authentication flow overview
 ##### Assigned Sub-Agent: doc
 ##### Targeted Components & Technical Requirements:
-*   **Target Path:** `./sources/docs/authentication-architecture.md`
-    *   **Architectural Requirements:**
-        *   Document OAuth2 flow diagrams and JWT claim structure
-        *   Include setup instructions for each social provider
-    *   **DAILY LOGS TRACEABILITY RULES (ZERO TOLERANCE FOR BUNDLING):**
-        *   **Targeted Tag IDs:** [REQ-002], [ARC-006]
+* **Target Path:** ./sources/docs/authentication-flow.md
+* **Architectural Requirements:**
+  * Provide step‑by‑step flow from user registration to JWT issuance.
+  * Include request/response schemas for `POST /api/auth/register`.
+  * Highlight OWASP mitigations (input validation, password hashing, CSRF).
+  * Reference GDPR/CCPA data handling notes.
+* **DAILY LOGS TRACEABILITY RULES (ZERO TOLERANCE FOR BUNDLING):**
+  * **Targeted Tag IDs:** [REQ-001], [REQ-002], [REQ-003], [EXC-004], [DAT-001], [DAT-008], [NFR-003]
+
+#### SUB-TASK 1.3: Write unit test for registration service
+##### Assigned Sub-Agent: tester
+##### Targeted Components & Technical Requirements:
+* **Target Path:** ./sources/backend/src/main/java/org/nlh4j/saas/authservice/AuthService.java;./sources/backend/src/test/java/org/nlh4j/saas/authservice/AuthServiceTest.java
+* **Architectural Requirements:**
+  * Implement test cases covering successful registration, duplicate email, invalid password, and malformed input.
+  * Verify password hashing (bcrypt) and JWT token generation with 15‑min expiry.
+  * Assert that validation errors return appropriate HTTP status codes.
+* **DAILY LOGS TRACEABILITY RULES (ZERO TOLERANCE FOR BUNDLING):**
+  * **Targeted Tag IDs:** [REQ-001], [EXC-004], [DAT-001], [NFR-003]
+
+### DAY 2: Implement login UI, API spec, and integration testing
+#### SUB-TASK 2.1: Build frontend login page with token management
+##### Assigned Sub-Agent: coder
+##### Targeted Components & Technical Requirements:
+* **Target Path:** ./sources/frontend/src/pages/LoginPage.tsx
+* **Architectural Requirements:**
+  * Create email/password input fields with client‑side validation.
+  * Integrate `POST /api/auth/login` and store JWT (secure, http‑only).
+  * Implement logout that clears token and redirects.
+  * Add CSRF token handling for state‑changing actions.
+  * Log login attempts for audit (NFR‑006).
+* **DAILY LOGS TRACEABILITY RULES (ZERO TOLERANCE FOR BUNDLING):**
+  * **Targeted Tag IDs:** [REQ-001], [REQ-002], [EXC-004], [DAT-001], [NFR-003]
+
+#### SUB-TASK 2.2: Document auth API specification
+##### Assigned Sub-Agent: doc
+##### Targeted Components & Technical Requirements:
+* **Target Path:** ./sources/docs/auth-api-spec.md
+* **Architectural Requirements:**
+  * Detail all `/api/auth/*` endpoints (register, login, social/{provider}).
+  * Include request/response payloads, HTTP status codes, and error formats.
+  * Highlight security headers, JWT validation, and rate‑limiting considerations.
+  * Reference OWASP and GDPR compliance notes.
+* **DAILY LOGS TRACEABILITY RULES (ZERO TOLERANCE FOR BUNDLING):**
+  * **Targeted Tag IDs:** [REQ-001], [REQ-002], [REQ-003], [EXC-004], [DAT-001], [DAT-008], [NFR-003]
+
+#### SUB-TASK 2.3: Perform end‑to‑end integration test for authentication flows
+##### Assigned Sub-Agent: tester
+##### Targeted Components & Technical Requirements:
+* **Target Path:** INTEGRATION_SCOPE;./sources/frontend/tests/auth.integration.spec.ts
+* **Architectural Requirements:**
+  * Simulate user registration, login, and social auth (mock provider).
+  * Verify JWT receipt, token expiration, and protected route access.
+  * Validate error handling for invalid credentials and duplicate accounts.
+  * Include security checks for CSRF and XSS in request/response.
+* **DAILY LOGS TRACEABILITY RULES (ZERO TOLERANCE FOR BUNDLING):**
+  * **Targeted Tag IDs:** [REQ-001], [REQ-002], [REQ-003], [EXC-004], [DAT-001], [DAT-008], [NFR-003]
+
+### DAY 3: Implement backend auth services and security documentation
+#### SUB-TASK 3.1: Develop backend registration & login service layer
+##### Assigned Sub-Agent: coder
+##### Targeted Components & Technical Requirements:
+* **Target Path:** ./sources/backend/src/main/java/org/nlh4j/saas/authservice/AuthService.java
+* **Architectural Requirements:**
+  * Implement `register(UserRegistrationDto)` – validate inputs, hash password (bcrypt), persist `Users` record with role “Student”, generate JWT (15‑min) and refresh token (7‑day).
+  * Implement `login(AuthenticationDto)` – verify credentials, issue JWT/refresh, enforce multi‑tenancy `tenant_id` scoping.
+  * Use parameterized queries to prevent SQL injection.
+  * Include audit logging for registration/login events (NFR‑006).
+  * Apply OWASP mitigations: input sanitization, rate limiting, secure password storage.
+* **DAILY LOGS TRACEABILITY RULES (ZERO TOLERANCE FOR BUNDLING):**
+  * **Targeted Tag IDs:** [REQ-001], [REQ-002], [REQ-003], [EXC-004], [DAT-001], [DAT-008], [NFR-003]
+
+#### SUB-TASK 3.2: Update security considerations documentation
+##### Assigned Sub-Agent: doc
+##### Targeted Components & Technical Requirements:
+* **Target Path:** ./sources/docs/security-considerations.md
+* **Architectural Requirements:**
+  * Detail JWT handling, token rotation, and expiry policies.
+  * Document password hashing algorithm and salt management.
+  * Outline input validation and CSRF protection implementation.
+  * Include OWASP Top 10 mapping for auth module.
+  * Reference GDPR/CCPA data‑protection measures (consent, deletion).
+* **DAILY LOGS TRACEABILITY RULES (ZERO TOLERANCE FOR BUNDLING):**
+  * **Targeted Tag IDs:** [NFR-003], [EXC-004], [DAT-001], [DAT-008]
+
+#### SUB-TASK 3.3: Write unit test for login service
+##### Assigned Sub-Agent: tester
+##### Targeted Components & Technical Requirements:
+* **Target Path:** ./sources/backend/src/main/java/org/nlh4j/saas/loginservice/LoginService.java;./sources/backend/src/test/java/org/nlh4j/saas/loginservice/LoginServiceTest.java
+* **Architectural Requirements:**
+  * Test successful authentication, invalid credentials, locked account scenarios.
+  * Verify JWT payload claims and expiry.
+  * Ensure password verification uses constant‑time comparison.
+  * Validate error responses for malformed input.
+* **DAILY LOGS TRACEABILITY RULES (ZERO TOLERANCE FOR BUNDLING):**
+  * **Targeted Tag IDs:** [REQ-001], [REQ-002], [EXC-004], [DAT-001], [NFR-003]

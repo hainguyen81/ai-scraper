@@ -1,89 +1,64 @@
 # PHASE 5 CONTEXT BLUEPRINT: membership-hub
 
 ## 1. Phase Operational Scope & Objectives
-Phase 5 finalizes the membership-hub platform by executing a comprehensive multi-tenant security audit and deploying the fully integrated application to Google Kubernetes Engine (GKE). The phase focuses on validating tenant isolation, ensuring OWASP A02 compliance for PII encryption at the application layer, and establishing production-grade infrastructure with proper ingress routing and scalability configurations. This phase ensures all functional and non-functional requirements related to security, deployment, and operational readiness are met before go-live.
+Phase 5 executes the final security hardening and production deployment for the membership‑hub platform. It consists of two tightly scoped work‑streams:
+- **Security Audit & Encryption Validation (Reviewer):** Perform a comprehensive multi‑tenant leak audit across the source code base, validate OWASP A02 PII application‑layer encryption, and ensure all data‑handling components comply with GDPR/CCPA encryption mandates.
+- **Infrastructure Deployment (Docker & GKE):** Build a multi‑stage Docker image that respects size constraints (< 500 MB) and security best‑practices, then deploy the image to Google Kubernetes Engine, configuring Ingress routing with TLS and enforcing the defined RBAC/tenant isolation policies.
+
+The phase delivers a production‑ready, audited, and compliant stack ready for go‑live.
 
 ## 2. Allowed Technical Scope & Directory Boundaries (Files, paths, and endpoints)
-- **Backend Security Audit Files:** `./sources/backend/src/main/java/org/nlh4j/saas/membershiphub/` (Java entities, services, repositories)
-- **Frontend Security Audit Files:** `./sources/frontend/src/components/`, `./sources/frontend/src/pages/` (React components handling PII)
-- **Infrastructure Deployment Files:** `./sources/infra/gke/` (Dockerfiles, Kubernetes manifests, ingress configurations)
-- **API Endpoints:** All REST endpoints under `/api/` (e.g., `/api/attendance`, `/api/users`) for multi-tenant leak validation
-- **Database Schema Files:** `./sources/backend/src/main/resources/db/migration/` (Flyway/Vert.x schema scripts)
+- **Source Code Audit Scope:** All `.java`, `.ts`, `.py`, `.go` files under `./sources/` (e.g., `./sources/backend/`, `./sources/frontend/`). No files outside `./sources/` may be accessed for audit.
+- **Docker Build Scope:** Configuration assets under `./sources/infra/docker/` (e.g., `Dockerfile`, `docker-compose.yml`, build scripts). No root‑level Dockerfiles or CI configs.
+- **GKE Deployment Scope:** Kubernetes manifests under `./sources/infra/gke/` (e.g., `deployment.yaml`, `service.yaml`, `ingress.yaml`). No external Helm charts or cloud‑provider plugin files.
+- **Endpoint Validation:** The audit must verify REST endpoints defined in `./sources/backend/src/main/java/org/nlh4j/saas/membershiphub/controller/` and `./sources/frontend/src/api/` for proper tenant isolation and PII encryption headers.
 
-## 3. Dedicated Sub-Agent Functional Directives (Specific tasks for coder, tester, reviewer, doc, docker, GKE)
-- **reviewer:** Execute static code analysis and security linting on individual Java/TypeScript files to validate tenant isolation and PII encryption. Strictly prohibited from targeting directories.
-- **docker:** Author and optimize multi-stage Docker configurations for backend and frontend, ensuring image size compliance (<500 MB).
-- **GKE:** Deploy Kubernetes manifests to GKE cluster, configure ingress routing rules, and set up horizontal pod autoscaling (HPA) based on CPU/latency metrics.
-- **doc:** Generate technical audit reports and deployment runbooks placed under `./sources/docs/security/` and `./sources/docs/deployment/`.
+## 3. Dedicated Sub-Agent Functional Directives
+- **Reviewer Agent:** Conducts static code analysis, security linting, and OWASP A02 validation on a single source file. Must enforce multi‑tenant `tenant_id` scoping, verify AES‑256 encryption usage for PII fields, and ensure no hard‑coded credentials or debug statements exist. Output must be a pass/fail report linked to the exact file path.
+- **Docker Agent:** Constructs a multi‑stage Docker image that layers build, test, and runtime stages. Must keep base image < 200 MB, final image < 500 MB, include non‑root user, health‑check endpoints, and embed security labels (e.g., `runAsNonRoot:true`). The image is tagged and pushed to the artifact repository.
+- **GKE Agent:** Applies Kubernetes manifests from `./sources/infra/gke/` to a GKE cluster, configures Ingress with TLS certificates, sets resource quotas, and validates tenant‑aware RBAC policies. Must ensure all services expose the required REST endpoints and that the cluster meets the 99.9 % availability SLA via node pooling and auto‑healing.
 
 ## 4. Phase Definition of Done (DoD)
-- Multi-tenant data leak audit completes with zero critical vulnerabilities detected.
-- OWASP A02 validation confirms all PII fields encrypted using AES-256 at application layer.
-- GKE deployment successful with all services running, ingress routing operational, and HPA configured.
-- Allocated requirements [NFR-002], [EXC-003], [NFR-003], [ARC-005] show 100% test coverage and compliance.
+- **Security Audit Completed:** Zero critical findings; all OWASP A02 controls satisfied; PII encryption verified across the audited file; multi‑tenant leak checks passed.
+- **Docker Image Built & Pushed:** Image size < 500 MB; security best‑practices applied; image successfully pushed to registry; image digest recorded.
+- **GKE Deployment Live:** All services deployed; Ingress routing rules active; TLS certificates provisioned; cluster health checks passing; tenant isolation confirmed via RBAC; 99.9 % uptime target validated via GKE autoscaling metrics.
+- **Compliance Documentation:** Reviewer’s audit report, Docker security scan results, and GKE deployment manifest versions stored under `./sources/` for audit trail.
 
-## 5. DAY-BY-DAY ARCHITECTURAL EXECUTION LOGS
+## 5. DAY‑BY‑DAY ARCHITECTURAL EXECUTION LOGS
 
-### DAY 1: MULTI-TENANT SECURITY AUDIT & PII ENCRYPTION VALIDATION
-
-#### SUB-TASK 1.1: Execute static code analysis on Java services handling tenant_id scope enforcement
+### DAY 1: SECURITY AUDIT & ENCRYPTION VALIDATION
+#### SUB‑TASK 1.1: Conduct OWASP A02 PII encryption validation on the core encryption service
 ##### Assigned Sub-Agent: reviewer
 ##### Targeted Components & Technical Requirements:
-*   **Target Path:** `./sources/backend/src/main/java/org/nlh4j/saas/membershiphub/service/AttendanceService.java`
-    *   **Architectural Requirements:**
-        *   Validate all database queries include `tenant_id` filter in WHERE clauses.
-        *   Ensure no raw SQL concatenation; use only parameterized queries.
-    *   **DAILY LOGS TRACEABILITY RULES (ZERO TOLERANCE FOR BUNDLING):**
-        *   **Targeted Tag IDs:** [NFR-002], [ARC-001]
+* **Target Path:** `./sources/backend/src/main/java/org/nlh4j/saas/membershiphub/security/PiiEncryptionService.java`
+* **Architectural Requirements:**
+  * Implement AES‑256 in GCM mode for all PII fields; store keys in a secret manager with rotation policy.
+  * Ensure all encryption/decryption calls are wrapped in try‑catch blocks with logging per NFR‑006.
+  * Apply multi‑tenant `tenant_id` scoping to encryption keys to isolate data per center.
+* **DAILY LOGS TRACEABILITY RULES (ZERO TOLERANCE FOR BUNDLING):**
+  * **Targeted Tag IDs:** [NFR-002], [EXC-003]
 
-#### SUB-TASK 1.2: Audit frontend components for PII exposure in API calls
-##### Assigned Sub-Agent: reviewer
-##### Targeted Components & Technical Requirements:
-*   **Target Path:** `./sources/frontend/src/components/MemberCard.tsx`
-    *   **Architectural Requirements:**
-        *   Confirm all PII (email, full_name) encrypted before transmission via HTTPS.
-        *   Validate no sensitive data stored in browser local storage unencrypted.
-    *   **DAILY LOGS TRACEABILITY RULES (ZERO TOLERANCE FOR BUNDLING):**
-        *   **Targeted Tag IDs:** [NFR-003], [EXC-003]
-
-#### SUB-TASK 1.3: Generate multi-tenant audit report
-##### Assigned Sub-Agent: doc
-##### Targeted Components & Technical Requirements:
-*   **Target Path:** `./sources/docs/security/multi-tenant-audit-report.md`
-    *   **Architectural Requirements:**
-        *   Include findings from reviewer tasks with severity ratings.
-        *   Document encryption methods used for PII fields.
-    *   **DAILY LOGS TRACEABILITY RULES (ZERO TOLERANCE FOR BUNDLING):**
-        *   **Targeted Tag IDs:** [NFR-002], [NFR-003]
-
-### DAY 2: GKE DEPLOYMENT CONFIGURATION & INGRESS SETUP
-
-#### SUB-TASK 2.1: Create optimized multi-stage Dockerfile for backend
+### DAY 2: INFRASTRUCTURE DEPLOYMENT
+#### SUB‑TASK 2.1: Build and push multi‑stage Docker image with security hardening
 ##### Assigned Sub-Agent: docker
 ##### Targeted Components & Technical Requirements:
-*   **Target Path:** `./sources/infra/gke/backend/Dockerfile`
-    *   **Architectural Requirements:**
-        *   Use JVM slim base image to keep size <200 MB.
-        *   Include health checks and non-root user execution.
-    *   **DAILY LOGS TRACEABILITY RULES (ZERO TOLERANCE FOR BUNDLING):**
-        *   **Targeted Tag IDs:** [NFR-005], [ARC-005]
+* **Target Path:** `./sources/infra/docker/Dockerfile`
+* **Architectural Requirements:**
+  * Use a minimal base image (e.g., `eclipse-temurin:21-jdk-alpine`) for the build stage; copy Maven/Gradle wrapper and source, run tests, package.
+  * In the runtime stage, copy only the packaged JAR/WAR and a non‑root user; set `USER=1001`.
+  * Include a health‑check endpoint (`/actuator/health`) and enforce `readOnlyRootFilesystem:true`.
+  * Generate a SBOM and scan for vulnerabilities; fail build on high‑severity findings.
+* **DAILY LOGS TRACEABILITY RULES (ZERO TOLERANCE FOR BUNDLING):**
+  * **Targeted Tag IDs:** [NFR-003], [ARC-005]
 
-#### SUB-TASK 2.2: Deploy Kubernetes manifests with HPA configuration
+#### SUB‑TASK 2.2: Deploy to GKE and configure Ingress routing with TLS
 ##### Assigned Sub-Agent: GKE
 ##### Targeted Components & Technical Requirements:
-*   **Target Path:** `./sources/infra/gke/production/deployment.yaml`
-    *   **Architectural Requirements:**
-        *   Configure HPA to scale based on CPU >70% or latency >300 ms.
-        *   Set resource limits and requests for all containers.
-    *   **DAILY LOGS TRACEABILITY RULES (ZERO TOLERANCE FOR BUNDLING):**
-        *   **Targeted Tag IDs:** [NFR-004], [ARC-005]
-
-#### SUB-TASK 2.3: Set up ingress routing with TLS termination
-##### Assigned Sub-Agent: GKE
-##### Targeted Components & Technical Requirements:
-*   **Target Path:** `./sources/infra/gke/production/ingress.yaml`
-    *   **Architectural Requirements:**
-        *   Configure TLS 1.3 with GCP-managed certificates.
-        *   Route `/api/*` to backend services and `/*` to frontend.
-    *   **DAILY LOGS TRACEABILITY RULES (ZERO TOLERANCE FOR BUNDLING):**
-        *   **Targeted Tag IDs:** [NFR-003], [NFR-004]
+* **Target Path:** `./sources/infra/gke/deployment.yaml`
+* **Architectural Requirements:**
+  * Apply manifests using `kubectl apply -f ./sources/infra/gke/` targeting the production namespace.
+  * Configure Ingress (`./sources/infra/gke/ingress.yaml`) with `tls` block referencing managed certificates for *.membershiphub.com.
+  * Enable HPA based on CPU > 70 % and latency > 300 ms per NFR‑004.
+  * Validate tenant isolation by checking that each ServiceAccount has `rbac.authorization.k8s.io/role-ref` to the appropriate Center‑Admin role.
+* **DAILY LOGS TRACEABILITY RULES (ZERO TOLERANCE FOR BUNDLING):**
+  * **Targeted Tag IDs:** [NFR-003], [ARC-005]

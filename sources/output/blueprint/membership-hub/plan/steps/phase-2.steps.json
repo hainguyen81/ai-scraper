@@ -13,28 +13,28 @@
                 {
                     "id": "D1_ST1",
                     "agent": "coder",
-                    "desc": "coder Agent: Implement OAuth2 client configurations for Firebase, Google, and Facebook using Quarkus OIDC extension with @ConfigMapping for provider credentials. Store client secrets in GCP Secret Manager with environment variable injection.",
+                    "desc": "coder Agent: Implement form fields for email, password, terms acceptance in RegisterPage.tsx. Apply client-side validation matching REQ-001 rules (email format, password complexity). Integrate API call to POST /api/auth/register with payload { email: string, password: string, termsAccepted: boolean } and handle JWT storage in http-only cookies or secure localStorage. Enforce CSRF token inclusion in request headers. Log registration attempts for audit with event { timestamp: string, email: string, status: string }.",
                     "targeted_tags": [],
                     "components": [
-                        "./sources/backend/src/main/java/org/nlh4j/saas/membershiphub/config/OAuth2Config.java"
+                        "./sources/frontend/src/pages/RegisterPage.tsx"
                     ]
                 },
                 {
                     "id": "D1_ST2",
-                    "agent": "coder",
-                    "desc": "coder Agent: Create social authentication service with token exchange and user profile mapping. Implement idempotent user creation/update using provider+provider_id unique constraint. Validate OAuth2 tokens against provider endpoints to prevent token injection.",
+                    "agent": "doc",
+                    "desc": "doc Agent: Provide step-by-step flow from user registration to JWT issuance in authentication-flow.md. Include request/response schemas for POST /api/auth/register: Request { email: string, password: string, termsAccepted: boolean }, Response { jwt: string, refreshToken: string, userId: string }. Highlight OWASP mitigations (input validation, password hashing with bcrypt, CSRF protection). Reference GDPR/CCPA data handling notes for consent and data deletion procedures.",
                     "targeted_tags": [],
                     "components": [
-                        "./sources/backend/src/main/java/org/nlh4j/saas/membershiphub/service/SocialAuthService.java"
+                        "./sources/docs/authentication-flow.md"
                     ]
                 },
                 {
                     "id": "D1_ST3",
                     "agent": "tester",
-                    "desc": "tester Agent: Write unit tests for OAuth2 configuration and token validation. Mock provider endpoints to simulate token exchange flows. Verify error handling for invalid tokens and provider outages.",
+                    "desc": "tester Agent: Implement test cases in AuthServiceTest.java covering successful registration with valid input { email: 'test@example.com', password: 'ValidPass123!', termsAccepted: true }, duplicate email scenario returning HTTP 409, invalid password complexity returning HTTP 400, and malformed input returning HTTP 422. Verify password hashing using bcrypt with cost factor 12 and JWT token generation with 15-min expiry. Assert validation errors return appropriate HTTP status codes with error payload { error: string, message: string }.",
                     "targeted_tags": [],
                     "components": [
-                        "./sources/backend/src/main/java/org/nlh4j/saas/membershiphub/config/OAuth2Config.java;./sources/backend/src/test/java/org/nlh4j/saas/membershiphub/config/OAuth2ConfigTest.java"
+                        "./sources/backend/src/main/java/org/nlh4j/saas/authservice/AuthService.java;./sources/backend/src/test/java/org/nlh4j/saas/authservice/AuthServiceTest.java"
                     ]
                 }
             ]
@@ -47,28 +47,28 @@
                 {
                     "id": "D2_ST1",
                     "agent": "coder",
-                    "desc": "coder Agent: Implement JWT token provider with tenant_id and role claims. Use RSA256 signatures with keys rotated every 90 days. Include tenant_id claim from user's center assignment for multi-tenancy.",
+                    "desc": "coder Agent: Create email/password input fields in LoginPage.tsx with client-side validation matching REQ-001 rules. Integrate POST /api/auth/login with payload { email: string, password: string } and store JWT in secure, http-only cookies. Implement logout functionality that clears token and redirects to login page. Add CSRF token handling for state-changing actions using X-CSRF-Token header. Log login attempts for audit with event { timestamp: string, email: string, status: string, ipAddress: string }.",
                     "targeted_tags": [],
                     "components": [
-                        "./sources/backend/src/main/java/org/nlh4j/saas/membershiphub/service/JwtTokenService.java"
+                        "./sources/frontend/src/pages/LoginPage.tsx"
                     ]
                 },
                 {
                     "id": "D2_ST2",
-                    "agent": "coder",
-                    "desc": "coder Agent: Create authentication filter for JWT validation on protected endpoints. Validate token signature and expiration using jjwt library. Reject tokens missing required claims (tenant_id, role).",
+                    "agent": "doc",
+                    "desc": "doc Agent: Detail all /api/auth/* endpoints in auth-api-spec.md: POST /api/auth/register (Request: { email: string, password: string, termsAccepted: boolean }, Response: { jwt: string, refreshToken: string, userId: string }), POST /api/auth/login (Request: { email: string, password: string }, Response: { jwt: string, refreshToken: string }), POST /api/auth/social/{provider} (Request: { providerToken: string }, Response: { jwt: string, refreshToken: string }). Include HTTP status codes (200, 400, 401, 409, 422) and error formats { error: string, message: string }. Highlight security headers (X-CSRF-Token, Authorization), JWT validation, and rate-limiting considerations (max 5 attempts per minute). Reference OWASP and GDPR compliance notes.",
                     "targeted_tags": [],
                     "components": [
-                        "./sources/backend/src/main/java/org/nlh4j/saas/membershiphub/filter/AuthenticationFilter.java"
+                        "./sources/docs/auth-api-spec.md"
                     ]
                 },
                 {
                     "id": "D2_ST3",
                     "agent": "tester",
-                    "desc": "tester Agent: Test token generation and validation with edge cases. Verify token expiration after 15 minutes and refresh token after 7 days. Test token rejection for invalid signatures and missing claims.",
+                    "desc": "tester Agent: Simulate user registration with payload { email: 'test@example.com', password: 'ValidPass123!', termsAccepted: true }, login with { email: 'test@example.com', password: 'ValidPass123!' }, and social auth with mock provider token { providerToken: 'mock_google_token' } in auth.integration.spec.ts. Verify JWT receipt with payload { exp: number, sub: string, roles: string[] }, token expiration after 15 minutes, and protected route access using Authorization: Bearer <token>. Validate error handling for invalid credentials returning HTTP 401 and duplicate accounts returning HTTP 409. Include security checks for CSRF using X-CSRF-Token header validation and XSS prevention through input sanitization.",
                     "targeted_tags": [],
                     "components": [
-                        "./sources/backend/src/main/java/org/nlh4j/saas/membershiphub/service/JwtTokenService.java;./sources/backend/src/test/java/org/nlh4j/saas/membershiphub/service/JwtTokenServiceTest.java"
+                        "INTEGRATION_SCOPE;./sources/frontend/tests/auth.integration.spec.ts"
                     ]
                 }
             ]
@@ -81,46 +81,28 @@
                 {
                     "id": "D3_ST1",
                     "agent": "coder",
-                    "desc": "coder Agent: Create responsive login form with email/password and OAuth2 provider buttons. Implement real-time validation for email format and password strength. Include Firebase, Google, Facebook OAuth2 buttons with provider logos.",
+                    "desc": "coder Agent: Implement register(UserRegistrationDto) in AuthService.java: validate inputs using Bean Validation (@Email, @Size(min=8)), hash password with bcrypt (cost 12), persist Users record with role 'Student' and tenant_id scoping, generate JWT with 15-min expiry and refresh token with 7-day expiry using HS256 algorithm. Implement login(AuthenticationDto): verify credentials using constant-time comparison, issue JWT/refresh tokens, enforce multi-tenancy tenant_id scoping through JWT claims. Use parameterized queries with JPA Criteria API to prevent SQL injection. Include audit logging for registration/login events with { eventType: string, userId: string, timestamp: string, ipAddress: string }. Apply OWASP mitigations: input sanitization with OWASP Java Encoder, rate limiting with @RateLimit annotation, secure password storage with bcrypt.",
                     "targeted_tags": [],
                     "components": [
-                        "./sources/frontend/src/app/login/page.tsx"
+                        "./sources/backend/src/main/java/org/nlh4j/saas/authservice/AuthService.java"
                     ]
                 },
                 {
                     "id": "D3_ST2",
-                    "agent": "coder",
-                    "desc": "coder Agent: Build registration form with terms acceptance and validation. Enforce password complexity: 8+ chars, uppercase, lowercase, number, special char. Require terms checkbox and provide link to terms document.",
+                    "agent": "doc",
+                    "desc": "doc Agent: Detail JWT handling in security-considerations.md: token rotation using refresh tokens, expiry policies (15-min access, 7-day refresh), blacklisting revoked tokens. Document password hashing algorithm (bcrypt with cost 12) and salt management. Outline input validation using Bean Validation and custom validators, CSRF protection using synchronizer token pattern. Include OWASP Top 10 mapping: A01:2021-Broken Access Control (role-based checks), A02:2021-Cryptographic Failures (password hashing), A03:2021-Injection (parameterized queries), A07:2021-Identification and Authentication Failures (rate limiting). Reference GDPR/CCPA data-protection measures: consent tracking in user profile, data deletion procedures through soft delete with audit trail.",
                     "targeted_tags": [],
                     "components": [
-                        "./sources/frontend/src/app/register/page.tsx"
+                        "./sources/docs/security-considerations.md"
                     ]
                 },
                 {
                     "id": "D3_ST3",
-                    "agent": "coder",
-                    "desc": "coder Agent: Implement authentication context and token management. Store JWT tokens in secure HTTP-only cookies. Implement automatic token refresh before expiration.",
+                    "agent": "tester",
+                    "desc": "tester Agent: Test successful authentication with valid credentials { email: 'test@example.com', password: 'ValidPass123!' } returning HTTP 200 and JWT, invalid credentials { email: 'test@example.com', password: 'WrongPass' } returning HTTP 401, locked account scenario after 5 failed attempts returning HTTP 423 in LoginServiceTest.java. Verify JWT payload claims { exp: number, sub: string, roles: ['Student'], tenant_id: string } and expiry timestamp. Ensure password verification uses constant-time comparison with Arrays.equals() for hash matching. Validate error responses for malformed input { email: 'invalid', password: 'short' } returning HTTP 422 with error details.",
                     "targeted_tags": [],
                     "components": [
-                        "./sources/frontend/src/lib/auth.ts"
-                    ]
-                },
-                {
-                    "id": "D3_ST4",
-                    "agent": "reviewer",
-                    "desc": "reviewer Agent: Review authentication service for security vulnerabilities. Verify no hardcoded secrets or weak algorithm configurations. Ensure all database queries use parameterized statements.",
-                    "targeted_tags": [],
-                    "components": [
-                        "./sources/backend/src/main/java/org/nlh4j/saas/membershiphub/service/JwtTokenService.java"
-                    ]
-                },
-                {
-                    "id": "D3_ST5",
-                    "agent": "doc",
-                    "desc": "doc Agent: Create authentication architecture documentation. Document OAuth2 flow diagrams and JWT claim structure. Include setup instructions for each social provider.",
-                    "targeted_tags": [],
-                    "components": [
-                        "./sources/docs/authentication-architecture.md"
+                        "./sources/backend/src/main/java/org/nlh4j/saas/loginservice/LoginService.java;./sources/backend/src/test/java/org/nlh4j/saas/loginservice/LoginServiceTest.java"
                     ]
                 }
             ]

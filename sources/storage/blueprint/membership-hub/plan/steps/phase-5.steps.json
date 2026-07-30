@@ -13,28 +13,10 @@
                 {
                     "id": "D1_ST1",
                     "agent": "reviewer",
-                    "desc": "reviewer Agent: Execute static code analysis on Java services handling tenant_id scope enforcement. Validate all database queries include tenant_id filter in WHERE clauses. Ensure no raw SQL concatenation; use only parameterized queries.",
+                    "desc": "reviewer Agent: Conduct OWASP A02 PII encryption validation on the core encryption service. Implement AES-256 in GCM mode for all PII fields; store keys in a secret manager with rotation policy. Ensure all encryption/decryption calls are wrapped in try-catch blocks with logging per NFR-006. Apply multi-tenant tenant_id scoping to encryption keys to isolate data per center.",
                     "targeted_tags": [],
                     "components": [
-                        "./sources/backend/src/main/java/org/nlh4j/saas/membershiphub/service/AttendanceService.java"
-                    ]
-                },
-                {
-                    "id": "D1_ST2",
-                    "agent": "reviewer",
-                    "desc": "reviewer Agent: Audit frontend components for PII exposure in API calls. Confirm all PII (email, full_name) encrypted before transmission via HTTPS. Validate no sensitive data stored in browser local storage unencrypted.",
-                    "targeted_tags": [],
-                    "components": [
-                        "./sources/frontend/src/components/MemberCard.tsx"
-                    ]
-                },
-                {
-                    "id": "D1_ST3",
-                    "agent": "doc",
-                    "desc": "doc Agent: Generate multi-tenant audit report. Include findings from reviewer tasks with severity ratings. Document encryption methods used for PII fields.",
-                    "targeted_tags": [],
-                    "components": [
-                        "./sources/docs/security/multi-tenant-audit-report.md"
+                        "./sources/backend/src/main/java/org/nlh4j/saas/membershiphub/security/PiiEncryptionService.java"
                     ]
                 }
             ]
@@ -47,28 +29,19 @@
                 {
                     "id": "D2_ST1",
                     "agent": "docker",
-                    "desc": "docker Agent: Create optimized multi-stage Dockerfile for backend. Use JVM slim base image to keep size <200 MB. Include health checks and non-root user execution.",
+                    "desc": "docker Agent: Build and push multi-stage Docker image with security hardening. Use a minimal base image (e.g., eclipse-temurin:21-jdk-alpine) for the build stage; copy Maven/Gradle wrapper and source, run tests, package. In the runtime stage, copy only the packaged JAR/WAR and a non-root user; set USER=1001. Include a health-check endpoint (/actuator/health) and enforce readOnlyRootFilesystem:true. Generate a SBOM and scan for vulnerabilities; fail build on high-severity findings.",
                     "targeted_tags": [],
                     "components": [
-                        "./sources/infra/gke/backend/Dockerfile"
+                        "./sources/infra/docker/Dockerfile"
                     ]
                 },
                 {
                     "id": "D2_ST2",
                     "agent": "GKE",
-                    "desc": "GKE Agent: Deploy Kubernetes manifests with HPA configuration. Configure HPA to scale based on CPU >70% or latency >300 ms. Set resource limits and requests for all containers.",
+                    "desc": "GKE Agent: Deploy to GKE and configure Ingress routing with TLS. Apply manifests using kubectl apply -f ./sources/infra/gke/ targeting the production namespace. Configure Ingress (./sources/infra/gke/ingress.yaml) with tls block referencing managed certificates for *.membershiphub.com. Enable HPA based on CPU > 70 % and latency > 300 ms per NFR-004. Validate tenant isolation by checking that each ServiceAccount has rbac.authorization.k8s.io/role-ref to the appropriate Center-Admin role.",
                     "targeted_tags": [],
                     "components": [
-                        "./sources/infra/gke/production/deployment.yaml"
-                    ]
-                },
-                {
-                    "id": "D2_ST3",
-                    "agent": "GKE",
-                    "desc": "GKE Agent: Set up ingress routing with TLS termination. Configure TLS 1.3 with GCP-managed certificates. Route /api/* to backend services and /* to frontend.",
-                    "targeted_tags": [],
-                    "components": [
-                        "./sources/infra/gke/production/ingress.yaml"
+                        "./sources/infra/gke/deployment.yaml"
                     ]
                 }
             ]
