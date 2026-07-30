@@ -1,21 +1,46 @@
 # CONTEXT
-I have a raw, high-level product idea that needs to be engineered into a production-ready specification document. 
+I have a raw, high-level product idea that needs to be engineered into a rigorous, Enterprise-grade Software Requirements Specification (SRS) document.
 
 # INPUTS
-- **Project Codename (Optional)**: {{ project_name }}
-- **Raw Idea**: 
+- **Project Codename (Optional)**: {{ project_name }} (Note: This can be blank or omitted. If blank, apply the strict generation rule defined in the system prompt).
+- **Raw Idea & Requirements**: 
 ---------
 {{ raw_idea_content }}
 ---------
 - **Target Language**: {{ language }}
 
-# INSTRUCTIONS AND STRICT LIMITS
-1. Act as our Principal BA / Product Strategist. Review the raw idea provided above.
-2. **Project Naming**: Propose 3 tailored project names (Technical Codename, Descriptive Name, and Brand Name) and populate them into the "project_names" keys.
-- IF Project Codename is provided (not empty), you MUST use that exact string for the "technical_codename" value without any changes.
-- ELSE (if Project Codename is blank or omitted), you are free to creatively generate a unique technical codename based on the raw idea.
-3. Fill in all implicit technical gaps, infrastructure needs, and logical holes that were omitted in the raw text.
-4. Author a highly detailed, flawless Software Requirements Specification (SRS) based on the 5-section structure defined in your System Prompt.
-5. **CRITICAL FOR TRACEABILITY**: Ensure that EVERY SINGLE user story, acceptance criteria group, exception flow, architectural constraint, and non-functional metric inside "srs_content_markdown" is strictly assigned an incremental Tag ID ([REQ-XXX], [ARC-XXX], [EXC-XXX], [NFR-XXX]) as instructed. Double-check that no requirement is left unnumbered.
-6. **CRITICAL**: The text inside the "srs_content_markdown" key MUST be written entirely in {{ language }}.
-7. **STRICT ZERO-THINKING POLICY**: Do not include any explanation, introductory words, markdown backticks (```), or conversational filler. Output ONLY the raw JSON block.
+# ROLE AND OBJECTIVE
+Act as an Elite Principal Business Analyst and Enterprise Software Architect. Your sole mission is to decompose 100% of the raw text into an airtight, end-to-end spec document organized strictly by logical Functional Modules/Epics. You must map out all implicit technical gaps, business logic holes, infrastructure needs, and data structural linkages required to implement the features flawlessly.
+
+# BOUNDARIES & ANTI-LAZINESS DIRECTIVES (ZERO LOOPHOLES)
+1. **NO HALLUCINATION & ZERO WASTE**: Do NOT invent features, screens, or integrations outside the scope of the raw text. Do NOT include fluff, filler, or essays. Focus purely on technical and business specification details.
+2. **100% EXHAUSTIVE COVERAGE (NO SUMMARIZATION)**: You must process every single sentence, role, permission, screen, and technology framework provided in the input. You are STRICTLY FORBIDDEN from combining, compressing, or summarizing requirements. Every requested screen or feature must have its own dedicated subsection.
+3. **GRANULAR INLINE SPECIFICATION**: For EACH logical module/screen, you MUST inline its specific functional behaviors [REQ-XXX], its validation rules/exception flows [EXC-XXX], and its localized database schema [DAT-XXX].
+4. **COMPACT TECHNICAL TELEGRAPHY**: Use concise, high-density technical engineering language. Eliminate passive voice and decorative adjectives to maximize output capacity and prevent token truncation.
+
+# SYSTEMATIC TRACEABILITY MATRIX (TAG ID RULES)
+Every single line item, functional requirement, acceptance rule, exception handler, architectural trigger, and database column description MUST be strictly prefixed with a unique, incremental Tag ID. No token of information is allowed to exist without an identifier.
+
+You must use this exact taxonomy from top to bottom:
+- `[REQ-XXX]`: Functional Requirements, User Stories, Screen Interactions, and Feature Behaviors.
+- `[EXC-XXX]`: Business Rule Validations, Edge Cases, Error Codes, and Exception Flows.
+- `[DAT-XXX]`: Database Tables, Column Definitions, Keys (PK/FK), Constraints, and Data Mappings.
+- `[ARC-XXX]`: Architectural Constraints, Tech Stack Specs, Infrastructure, and Integration Triggers.
+- `[NFR-XXX]`: Non-Functional Metrics (Security, Scalability, Performance, Multi-tenancy Isolation, Localization).
+
+CRITICAL POLICY: A single requirement, rule, trigger, or data field without its tracking Tag ID is a fatal structural failure. Tag IDs must cover the entire document comprehensively.
+
+# ZERO-THINKING OUTPUT CONFIGURATION
+- Do NOT output any introductory text, concluding notes, explanations, or conversational filler.
+- Do NOT wrap the JSON block in markdown backticks (```).
+- Do NOT include <think> tags or intermediate reasoning tokens.
+- Output ONLY the raw, valid JSON object following this exact schema:
+
+{
+  "project_names": {
+    "technical_codename": "{{ project_name }}",
+    "descriptive_name": "string",
+    "brand_name": "string"
+  },
+  "srs_content_markdown": "Write the entire enterprise specification here in {{ language }}. Document every logical module from the raw input completely. Ensure every [REQ-XXX], [EXC-XXX], [DAT-XXX], [ARC-XXX], and [NFR-XXX] is structurally detailed and tagged for absolute traceability."
+}

@@ -66,7 +66,7 @@ class PrincipalBusinessAnalysisAgent(AbstractSubAgent):
         
         # no idea also no requirements
         if not file_content:
-            self.logger.critical(f"[ 💀 CRITICAL ] Not found IDEA / Requirements file to process")
+            self.logger.critical(f"💀 Not found IDEA / Requirements file to process")
             sys.exit(1)
         
         # return merged new values
@@ -126,7 +126,7 @@ class PrincipalBusinessAnalysisAgent(AbstractSubAgent):
     def process_communication(self, **kwargs):
         response_data = self.get_kwargs_by_key(key="clean_response", **kwargs)
         if not response_data:
-            raise RuntimeError("- Invalid AI raw response. Not a valid JSON format data.")
+            raise RuntimeError("💀 Invalid AI raw response. Not a valid JSON format data.")
         
         # export requirements
         requirements_file = response_data.get("requirements_file")
