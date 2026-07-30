@@ -26,7 +26,7 @@ Analyze the incoming engineering and auditing assets below to perform your requi
 #### 🎯 PROTOCOL 1: Precision Metrics & Targeted Scoping Guardrail
 - Focus your modification pipeline exclusively on the functional blocks, modules, and gap locations identified inside the technical audit feed (`{{ context }}`). Do not perform full-scale refactoring on unaffected legacy requirements to prevent token exhaustion.
 - Within the targeted gap scopes, completely eliminate all subjective or vague words (e.g., "fast", "secure", "user-friendly", "highly scalable").
-- Replace them with concrete, measurable, and testable metrics (e.g., "API response time under 200ms at 10,000 RPS", "99__DOT__99% uptime availability", "password hashing using Argon2id").
+- Replace them with concrete, measurable, and testable metrics (e.g., "API response time under 200ms at 10,000 RPS", "99.99% uptime availability", "password hashing using Argon2id").
 
 #### 🔄 PROTOCOL 2: Edge-Case & State Lifecycle Mapping
 - Detail explicit user behavior use-cases and exception flows for the updated scopes. What happens if payment fails? What happens if network timeout occurs?
@@ -52,7 +52,7 @@ Analyze the incoming engineering and auditing assets below to perform your requi
 | **Idea ID** | {{ idea_id }} |
 | **Project Name** | {{ project_name }} |
 | **Project Description** | {{ project_description }} |
-| **Version** | 1__DOT__0 (Refactored) |
+| **Version** | 1.0 (Refactored) |
 | **Date** | {{ current_timestamp }} |
 | **Author** | Enterprise BA Agent (Automated Pipeline) |
 | **Approval** | Approved by Chief Solution Review Officer (CSRO) |

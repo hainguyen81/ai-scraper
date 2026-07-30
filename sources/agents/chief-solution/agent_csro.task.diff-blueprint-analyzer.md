@@ -38,13 +38,13 @@ You MUST inject this structured metadata table at the very top of your output fi
 | **Target Blueprint ID** | ARCH-{{ current_timestamp_2 }} |
 | **Verification Method** | Independent Multi-Layer Triple-Check Pattern |
 | **Auditor Identity** | [Insert your exact assigned sub-agent persona token dynamically] |
-| **Audit Date__SLASH__Time** | {{ current_timestamp }} |
+| **Audit Date/Time** | {{ current_timestamp }} |
 | **Status** | Formatted & Executed |
 
 #### 📊 SECTION 1: ARCHITECTURAL COMPONENT MATRIX (OVERVIEW)
 # Construct a comprehensive Markdown matrix table explicitly detailing component changes and tag mapping integrity.
 
-| Architectural Component__SLASH__Section | Original Blueprint State | Modified Blueprint State | Quality Impact (Superior__SLASH__Inferior__SLASH__Preserved) | Engineering Justification & Tag Impact |
+| Architectural Component/Section | Original Blueprint State | Modified Blueprint State | Quality Impact (Superior/Inferior/Preserved) | Engineering Justification & Tag Impact |
 
 #### 🛠️ SECTION 2: GRANULAR CHANGE-LOG ANALYSIS
 For every section that was modified, added, or expanded by the System Architect, provide a deep technical breakdown explaining:
