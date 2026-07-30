@@ -10,6 +10,11 @@ on:
           (Storage: sources/storage/ideas)
         required: true
         type: string
+      verbose:
+        description: '🐞 Verbose'
+        required: false
+        default: false
+        type: boolean
     
   # allow other workflow call into (inputs same as workflow_dispatch but required)
   workflow_call:
@@ -20,6 +25,11 @@ on:
           (Storage: - sources/storage/ideas)
         required: true
         type: string
+      verbose:
+        description: '🐞 Verbose'
+        required: false
+        default: false
+        type: boolean
 
 # permissions for GitHub Actions READ/WRITE
 permissions:
@@ -73,10 +83,12 @@ jobs:
           
           # Project Information
           INPUTS_IDEA: ${{ inputs.idea }}
+          INPUTS_VERBOSE: ${{ inputs.verbose == 'true' && '--verbose' || '' }}
         run: |
           echo "⚡ Kicking off AI Enterprise Solution Review..."
           python sources/agents/chief-solution/agent_csro.py \
-              --idea "$INPUTS_IDEA"
+              --idea "$INPUTS_IDEA" \
+              $INPUTS_VERBOSE
 
       # Step 5: Automatically stage, commit, and push changes
       - name: 🚀 Commit and Push Changes

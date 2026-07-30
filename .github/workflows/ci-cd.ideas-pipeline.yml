@@ -23,6 +23,11 @@ on:
           - "🇺🇸 English"
           - "🇩🇪 Germany"
           - "🇯🇵 Japanese"
+      verbose:
+        description: '🐞 Verbose'
+        required: false
+        default: false
+        type: boolean
     
   # allow other workflow call into (inputs same as workflow_dispatch but required)
   workflow_call:
@@ -41,6 +46,11 @@ on:
         required: false
         default: '🇻🇳 Vietnamese'
         type: string
+      verbose:
+        description: '🐞 Verbose'
+        required: false
+        default: false
+        type: boolean
 
 # permissions for GitHub Actions READ/WRITE
 permissions:
@@ -96,12 +106,14 @@ jobs:
           INPUTS_DOMAIN: ${{ inputs.domain }}
           INPUTS_QUANTITY: ${{ inputs.quantity }}
           INPUTS_LANGUAGE: ${{ inputs.language }}
+          INPUTS_VERBOSE: ${{ inputs.verbose == 'true' && '--verbose' || '' }}
         run: |
           echo "⚡ Kicking off AI Expert Ideas Generation..."
           python sources/agents/ideas/agent_idea_generator.py \
               --domain "$INPUTS_DOMAIN" \
               --quantity $INPUTS_QUANTITY \
-              --language "$INPUTS_LANGUAGE"
+              --language "$INPUTS_LANGUAGE" \
+              $INPUTS_VERBOSE
 
       # Step 5: Automatically stage, commit, and push changes
       - name: 🚀 Commit and Push Changes
