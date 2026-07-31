@@ -1,195 +1,271 @@
 # PHASE 4 CONTEXT BLUEPRINT: membership-hub
 
+## 📊 Document Control
+
+| Item | Details |
+| :--- | :--- |
+| **Blueprint ID** | ARCH-20260731045806 |
+| **Project Name** | membership-hub |
+| **Version** | 1.0 (Baseline) |
+| **Date/Time** | 2026/07/31 04:58:06 |
+| **Author** | Enterprise System Architect (SA Agent) |
+| **Approval** | Pending Technical Governance Review |
+
 ## 1. Phase Operational Scope & Objectives
-Implement the frontend user experience for **course browsing, enrollment, and student card management** as defined by requirements [REQ‑010] through [REQ‑015] and role [ARC‑004] (Student). This includes building reusable UI components, integrating with the existing backend APIs for course listings, enrollment creation, and student‑card data retrieval/renewal, and ensuring OWASP‑aligned security controls (input validation, CSRF tokens, tenant isolation). Concurrently, generate comprehensive technical documentation and execute end‑to‑end integration tests to validate the full workflow and security posture.
+Phase 4 focuses on developing the web application frontend using React-based technology stack with Next.js framework. This phase implements role-specific responsive UI components, authentication integration with JWT token management, course browsing and enrollment functionality, attendance QR scanning interface, membership card display, and comprehensive navigation structure. All components must enforce OWASP security standards, implement proper input validation, and maintain strict RBAC enforcement through role-based access control.
 
-## 2. Allowed Technical Scope & Directory Boundaries
-- **Frontend source tree**
-  - `./sources/frontend/src/pages/course-browse.tsx`
-  - `./sources/frontend/src/pages/enrollment.tsx`
-  - `./sources/frontend/src/pages/student-card/renew.tsx`
-  - `./sources/frontend/src/components/CourseBrowse.tsx`
-  - `./sources/frontend/src/components/StudentCard.tsx`
-  - `./sources/frontend/src/components/EnrollmentForm.tsx`
-  - `./sources/frontend/src/components/CardRenewal.tsx`
-  - `./sources/frontend/docs/` (markdown specifications)
-  - `./sources/frontend/tests/` (integration test suites)
-- **Backend API contracts (read‑only scope for integration)**
-  - `./sources/backend/src/routes/course.ts`
-  - `./sources/backend/src/routes/enrollment.ts`
-  - `./sources/backend/src/routes/studentCard.ts`
-  - `./sources/backend/src/services/courseService.ts`
-  - `./sources/backend/src/services/enrollmentService.ts`
-  - `./sources/backend/src/services/studentCardService.ts`
-- **REST/GraphQL endpoints** (allowed for this phase)
-  - `GET /api/courses` – returns course list (REQ‑007, REQ‑010)
-  - `POST /api/enrollments` – creates enrollment (REQ‑011)
-  - `GET /api/student-cards/{studentId}` – retrieves card data (REQ‑014)
-  - `PUT /api/student-cards/{cardId}/renew` – extends validity (REQ‑015)
-
-All paths must reside under `./sources/` and adhere to the project’s Node.js/Next.js conventions.
+## 2. Allowed Technical Scope & Directory Boundaries (Files, paths, and endpoints)
+- **Frontend Web Directory:** `./sources/frontend/web/`
+- **API Endpoints:** 
+  - GET `/api/courses` for course browsing [REQ-007], [REQ-010]
+  - POST `/api/enrollments` for course registration [REQ-011]
+  - POST `/api/attendance/scan` for QR attendance capture [REQ-012]
+  - GET `/api/student/card` for membership card display [REQ-014]
+  - GET `/api/centers` for center list view [REQ-004]
 
 ## 3. Dedicated Sub-Agent Functional Directives
-- **Coder Agent**
-  - Develop all UI components listed above using Next.js/React, TypeScript, and Material‑UI (or equivalent).  
-  - Integrate components with the backend APIs, handling JWT authentication, tenant_id context, and CSRF protection.  
-  - Enforce OWASP mitigations: parameterized queries on backend (handled by services), client‑side input sanitization, XSS prevention via `dangerouslySetInnerHTML` guards, and CSRF tokens for state‑changing actions.  
-  - Implement multi‑language i18n for English, Vietnamese, and Spanish (REQ‑022, REQ‑023).  
-  - Ensure GDPR/CCPA compliance by not exposing PII beyond required fields and supporting data export (NFR‑008).
-
-- **Doc Agent**
-  - Produce markdown specifications for each UI component, detailing purpose, props, API contracts, data flow, security considerations, and references to requirement tags.  
-  - Store documentation under `./sources/frontend/docs/`.  
-  - Include OWASP compliance notes and tenant isolation guidance.
-
-- **Tester Agent**
-  - Write integration test suites that simulate a Student role, authenticate via JWT, and exercise the full end‑to‑end flows for course browsing, enrollment, card display, and renewal.  
-  - Validate API responses, UI rendering, tenant isolation, and security controls (input validation, CSRF).  
-  - Use `INTEGRATION_SCOPE` syntax for multi‑component verification and ensure test coverage aligns with the functional requirements.
+- **coder:** Develop React components with Next.js framework, implement responsive UI, integrate with backend APIs, ensure OWASP compliance
+- **tester:** Create and execute unit tests with minimum 85% code coverage for all frontend functionality
+- **reviewer:** Perform static code analysis and compiler validation for frontend components
+- **doc:** Generate technical documentation including component specifications and API integration guides
 
 ## 4. Phase Definition of Done (DoD)
-- **Functional Completion**
-  - All four UI components (CourseBrowse, StudentCard, EnrollmentForm, CardRenewal) are fully implemented, responsive, and i18n‑ready.  
-  - Each component integrates with its respective backend API, handling authentication, tenant context, and error states.  
-  - Documentation files exist for each component under `./sources/frontend/docs/`.  
-- **Security & Compliance**
-  - OWASP Top 10 mitigations are embedded: input validation, output encoding, CSRF tokens, and tenant isolation (`tenant_id`).  
-  - All user‑provided data is validated per requirement specifications (EXC‑004).  
-  - JWT tokens include 15‑minute expiry and refresh logic (ARC‑006).  
-- **Testing & Quality**
-  - End‑to‑end integration tests for each workflow pass (100 % pass rate).  
-  - Test suites cover the required tag IDs and verify security controls.  
-  - Code coverage for frontend components ≥ 80 % (as reported by test runner).  
-- **Delivery**
-  - All artifacts are committed to the repository under the `./sources/` boundary with correct file paths.  
-  - No duplicate or placeholder files remain; the workspace is clean and ready for Phase 5.
+- Complete web application with role-specific navigation and responsive UI
+- Full integration with backend APIs for all required functionality
+- 100% test coverage for all implemented requirements ([REQ-020])
+- OWASP security standards implemented for all input validation and XSS prevention
+- All Tag IDs ([REQ-020], [REQ-004], [REQ-007], [REQ-010], [REQ-011], [REQ-012], [REQ-014]) properly mapped and implemented
 
 ## 5. DAY-BY-DAY ARCHITECTURAL EXECUTION LOGS
 
-### DAY 1: IMPLEMENT COURSE BROWSING UI AND STUDENT CARD DISPLAY
+### DAY 8: WEB APPLICATION FOUNDATION AND AUTHENTICATION INTEGRATION
 
-#### SUB-TASK 1.1: Develop CourseBrowse component for student course listing
+#### SUB-TASK 8.1: Implement Next.js application foundation with authentication integration
 ##### Assigned Sub-Agent: coder
 ##### Targeted Components & Technical Requirements:
-* **Target Path:** ./sources/frontend/src/components/CourseBrowse.tsx
+* **Target Path:** `./sources/frontend/web/pages/_app.js [REQ-020], [ARC-006]`
 * **Architectural Requirements:**
-  * Render a responsive grid of courses fetched via `GET /api/courses`.  
-  * Include search/filter fields with client‑side validation (EXC‑004).  
-  * Integrate CSRF token for any future enrollment actions.  
-  * Apply OWASP XSS mitigation by sanitizing any user‑provided filter text.  
-  * Enforce tenant isolation by attaching the authenticated `tenant_id` to API requests.  
-* **DAILY LOGS TRACEABILITY RULES (ZERO TOLERANCE FOR BUNDLING):**
-  * **Targeted Tag IDs:** [REQ-010], [REQ-007], [ARC-004], [DAT-003], [EXC-004]
+  * Create Next.js application with React context for authentication state management
+  * Implement JWT token storage and refresh logic with 15-minute expiry [ARC-006]
+  * Set up role-based routing and navigation structure [REQ-020]
+  * Implement automatic token refresh mechanism before expiry
+* **DAILY LOGS TRACEABILITY RULES:**
+  * **Targeted Tag IDs:** [REQ-020], [ARC-006]
 
-#### SUB-TASK 1.2: Develop StudentCard component for validity display
+#### SUB-TASK 8.2: Create authentication service and API integration layer
 ##### Assigned Sub-Agent: coder
 ##### Targeted Components & Technical Requirements:
-* **Target Path:** ./sources/frontend/src/components/StudentCard.tsx
+* **Target Path:** `./sources/frontend/web/services/authService.js [REQ-020], [ARC-006]`
 * **Architectural Requirements:**
-  * Fetch student card data via `GET /api/student-cards/{studentId}`.  
-  * Compute and display remaining validity days using server‑provided `remaining_days`.  
-  * Implement client‑side validation for any future renewal input (EXC‑004).  
-  * Secure API calls with JWT and tenant context.  
-  * Ensure PII is not logged or exposed beyond required fields (NFR‑008).  
-* **DAILY LOGS TRACEABILITY RULES (ZERO TOLERANCE FOR BUNDLING):**
-  * **Targeted Tag IDs:** [REQ-014], [ARC-004], [DAT-006], [EXC-004]
+  * Implement login/logout functionality with email/password and social providers
+  * Handle OAuth2 callback processing for Firebase, Google, Facebook [ARC-006]
+  * Manage JWT tokens with secure storage (httpOnly cookies recommended)
+  * Implement role extraction from JWT payload for RBAC enforcement [REQ-020]
+* **DAILY LOGS TRACEABILITY RULES:**
+  * **Targeted Tag IDs:** [REQ-020], [ARC-006]
 
-#### SUB-TASK 1.3: Create technical documentation for CourseBrowse and StudentCard
+#### SUB-TASK 8.3: Execute unit tests for authentication components
+##### Assigned Sub-Agent: tester
+##### Targeted Components & Technical Requirements:
+* **Target Path:** `./sources/frontend/web/services/authService.js;./sources/frontend/web/services/__tests__/authService.test.js [REQ-020], [ARC-006]`
+* **Architectural Requirements:**
+  * Achieve minimum 85% code coverage for authentication service
+  * Test JWT token management and refresh logic
+  * Verify role-based access control enforcement
+  * Test OAuth2 integration scenarios
+* **DAILY LOGS TRACEABILITY RULES:**
+  * **Targeted Tag IDs:** [REQ-020], [ARC-006]
+
+### DAY 9: ROLE-SPECIFIC NAVIGATION AND DASHBOARD COMPONENTS
+
+#### SUB-TASK 9.1: Implement role-based navigation and dashboard structure
+##### Assigned Sub-Agent: coder
+##### Targeted Components & Technical Requirements:
+* **Target Path:** `./sources/frontend/web/components/Navigation.js [REQ-020], [ARC-001], [ARC-002], [ARC-003], [ARC-004], [ARC-005]`
+* **Architectural Requirements:**
+  * Create responsive navigation component with role-specific menu items
+  * Implement System Admin full permissions navigation [ARC-001]
+  * Implement Center Admin center-specific navigation [ARC-002]
+  * Implement Manager limited permissions navigation [ARC-003]
+  * Implement Teacher read-only navigation [ARC-004]
+  * Implement Student course browsing and card navigation [ARC-005]
+* **DAILY LOGS TRACEABILITY RULES:**
+  * **Targeted Tag IDs:** [REQ-020], [ARC-001], [ARC-002], [ARC-003], [ARC-004], [ARC-005]
+
+#### SUB-TASK 9.2: Create role-specific dashboard components
+##### Assigned Sub-Agent: coder
+##### Targeted Components & Technical Requirements:
+* **Target Path:** `./sources/frontend/web/pages/dashboard/index.js [REQ-020], [REQ-025]`
+* **Architectural Requirements:**
+  * Implement System Admin dashboard with global overview [ARC-001]
+  * Implement Center Admin dashboard with center-specific metrics [ARC-002], [REQ-025]
+  * Implement Manager dashboard with student management tools [ARC-003]
+  * Implement Teacher dashboard with course schedule [ARC-004]
+  * Implement Student dashboard with course enrollment and card status [ARC-005], [REQ-014]
+* **DAILY LOGS TRACEABILITY RULES:**
+  * **Targeted Tag IDs:** [REQ-020], [REQ-025], [ARC-001], [ARC-002], [ARC-003], [ARC-004], [ARC-005]
+
+#### SUB-TASK 9.3: Execute unit tests for navigation and dashboard components
+##### Assigned Sub-Agent: tester
+##### Targeted Components & Technical Requirements:
+* **Target Path:** `./sources/frontend/web/components/Navigation.js;./sources/frontend/web/components/__tests__/Navigation.test.js [REQ-020]`
+* **Architectural Requirements:**
+  * Achieve minimum 85% code coverage for navigation component
+  * Test role-based menu item rendering
+  * Verify navigation permissions for different user roles
+  * Test responsive behavior across device sizes
+* **DAILY LOGS TRACEABILITY RULES:**
+  * **Targeted Tag IDs:** [REQ-020]
+
+### DAY 10: COURSE MANAGEMENT AND ENROLLMENT INTERFACE
+
+#### SUB-TASK 10.1: Implement course browsing and list view interface
+##### Assigned Sub-Agent: coder
+##### Targeted Components & Technical Requirements:
+* **Target Path:** `./sources/frontend/web/pages/courses/index.js [REQ-007], [REQ-010]`
+* **Architectural Requirements:**
+  * Create course list view with CourseID, Title, StartDate, EndDate, TeacherName columns [REQ-007]
+  * Implement filtering and sorting capabilities for course browsing
+  * Exclude courses where student already has enrollment record [REQ-010]
+  * Add responsive design for mobile and desktop viewing
+* **DAILY LOGS TRACEABILITY RULES:**
+  * **Targeted Tag IDs:** [REQ-007], [REQ-010]
+
+#### SUB-TASK 10.2: Implement course registration and enrollment functionality
+##### Assigned Sub-Agent: coder
+##### Targeted Components & Technical Requirements:
+* **Target Path:** `./sources/frontend/web/components/CourseEnrollment.js [REQ-011]`
+* **Architectural Requirements:**
+  * Create enrollment form with course selection and confirmation
+  * Handle auto-creation of Student account if missing during registration [REQ-011]
+  * Implement success/error handling with user feedback
+  * Integrate with backend enrollment API endpoint
+* **DAILY LOGS TRACEABILITY RULES:**
+  * **Targeted Tag IDs:** [REQ-011]
+
+#### SUB-TASK 10.3: Execute unit tests for course management components
+##### Assigned Sub-Agent: tester
+##### Targeted Components & Technical Requirements:
+* **Target Path:** `./sources/frontend/web/pages/courses/index.js;./sources/frontend/web/pages/courses/__tests__/index.test.js [REQ-007], [REQ-010]`
+* **Architectural Requirements:**
+  * Achieve minimum 85% code coverage for course browsing functionality
+  * Test course filtering and exclusion logic for enrolled courses [REQ-010]
+  * Verify API integration and data display accuracy [REQ-007]
+  * Test enrollment form validation and submission
+* **DAILY LOGS TRACEABILITY RULES:**
+  * **Targeted Tag IDs:** [REQ-007], [REQ-010]
+
+### DAY 11: ATTENDANCE QR SCANNING AND MEMBERSHIP CARD INTERFACE
+
+#### SUB-TASK 11.1: Implement QR code scanning interface for attendance
+##### Assigned Sub-Agent: coder
+##### Targeted Components & Technical Requirements:
+* **Target Path:** `./sources/frontend/web/components/QRScanner.js [REQ-012]`
+* **Architectural Requirements:**
+  * Create QR scanner component using device camera access
+  * Implement base64 payload decoding for studentID and courseID [REQ-012]
+  * Handle scan confirmation and attendance submission
+  * Provide visual feedback for successful/duplicate scans [REQ-013]
+* **DAILY LOGS TRACEABILITY RULES:**
+  * **Targeted Tag IDs:** [REQ-012], [REQ-013]
+
+#### SUB-TASK 11.2: Implement membership card display interface
+##### Assigned Sub-Agent: coder
+##### Targeted Components & Technical Requirements:
+* **Target Path:** `./sources/frontend/web/pages/student/card.js [REQ-014]`
+* **Architectural Requirements:**
+  * Create digital membership card component with remaining validity days display [REQ-014]
+  * Show total validity days, days used, and days remaining calculation
+  * Implement responsive design for mobile viewing
+  * Add card renewal call-to-action interface [REQ-015]
+* **DAILY LOGS TRACEABILITY RULES:**
+  * **Targeted Tag IDs:** [REQ-014], [REQ-015]
+
+#### SUB-TASK 11.3: Execute unit tests for attendance and card components
+##### Assigned Sub-Agent: tester
+##### Targeted Components & Technical Requirements:
+* **Target Path:** `./sources/frontend/web/components/QRScanner.js;./sources/frontend/web/components/__tests__/QRScanner.test.js [REQ-012], [REQ-013]`
+* **Architectural Requirements:**
+  * Achieve minimum 85% code coverage for QR scanning functionality
+  * Test base64 payload decoding and validation [REQ-012]
+  * Verify duplicate scan handling and user feedback [REQ-013]
+  * Test membership card display and calculations [REQ-014]
+* **DAILY LOGS TRACEABILITY RULES:**
+  * **Targeted Tag IDs:** [REQ-012], [REQ-013], [REQ-014]
+
+### DAY 12: CENTER MANAGEMENT AND ADMINISTRATION INTERFACE
+
+#### SUB-TASK 12.1: Implement center list view interface
+##### Assigned Sub-Agent: coder
+##### Targeted Components & Technical Requirements:
+* **Target Path:** `./sources/frontend/web/pages/centers/index.js [REQ-004]`
+* **Architectural Requirements:**
+  * Create center list table with Name, Address, TaxID, AdminContact columns [REQ-004]
+  * Implement responsive table design for various screen sizes
+  * Add search and filtering capabilities for center browsing
+  * Restrict center management actions based on user role [ARC-001], [ARC-002]
+* **DAILY LOGS TRACEABILITY RULES:**
+  * **Targeted Tag IDs:** [REQ-004], [ARC-001], [ARC-002]
+
+#### SUB-TASK 12.2: Implement center create/update/delete interface for System Admin
+##### Assigned Sub-Agent: coder
+##### Targeted Components & Technical Requirements:
+* **Target Path:** `./sources/frontend/web/components/CenterForm.js [REQ-005]`
+* **Architectural Requirements:**
+  * Create center management form with name, address, tax ID, contact fields [REQ-005]
+  * Implement form validation for required fields and unique tax ID constraint
+  * Handle duplicate tax ID conflict errors with user feedback
+  * Restrict access to System Admin role only [ARC-001]
+* **DAILY LOGS TRACEABILITY RULES:**
+  * **Targeted Tag IDs:** [REQ-005], [ARC-001]
+
+#### SUB-TASK 12.3: Execute unit tests for center management components
+##### Assigned Sub-Agent: tester
+##### Targeted Components & Technical Requirements:
+* **Target Path:** `./sources/frontend/web/pages/centers/index.js;./sources/frontend/web/pages/centers/__tests__/index.test.js [REQ-004]`
+* **Architectural Requirements:**
+  * Achieve minimum 85% code coverage for center list functionality
+  * Test role-based access control for center management [ARC-001], [ARC-002]
+  * Verify form validation and duplicate tax ID handling [REQ-005]
+  * Test responsive table behavior across devices
+* **DAILY LOGS TRACEABILITY RULES:**
+  * **Targeted Tag IDs:** [REQ-004], [REQ-005], [ARC-001], [ARC-002]
+
+### DAY 13: COMPREHENSIVE TESTING AND SECURITY VALIDATION
+
+#### SUB-TASK 13.1: Execute end-to-end integration testing for web application
+##### Assigned Sub-Agent: tester
+##### Targeted Components & Technical Requirements:
+* **Target Path:** `INTEGRATION_SCOPE;./sources/frontend/web/__tests__/e2e/integration.test.js [REQ-020], [REQ-004], [REQ-007], [REQ-010], [REQ-011], [REQ-012], [REQ-014]`
+* **Architectural Requirements:**
+  * Achieve 100% test coverage for all implemented requirements
+  * Test complete user workflows across different roles
+  * Verify API integration and data consistency
+  * Test error handling and edge cases for all functionalities
+* **DAILY LOGS TRACEABILITY RULES:**
+  * **Targeted Tag IDs:** [REQ-020], [REQ-004], [REQ-007], [REQ-010], [REQ-011], [REQ-012], [REQ-014]
+
+#### SUB-TASK 13.2: Perform security audit and OWASP compliance validation
+##### Assigned Sub-Agent: reviewer
+##### Targeted Components & Technical Requirements:
+* **Target Path:** `./sources/frontend/web/ [NFR-003], [NFR-007]`
+* **Architectural Requirements:**
+  * Validate XSS prevention through automated context sanitization [NFR-003]
+  * Verify Content Security Policy implementation
+  * Check for proper input validation on all form submissions
+  * Validate JWT token security and storage practices [ARC-006]
+  * Verify multi-language support implementation [NFR-007]
+* **DAILY LOGS TRACEABILITY RULES:**
+  * **Targeted Tag IDs:** [NFR-003], [NFR-007], [ARC-006]
+
+#### SUB-TASK 13.3: Generate comprehensive technical documentation
 ##### Assigned Sub-Agent: doc
 ##### Targeted Components & Technical Requirements:
-* **Target Path:** ./sources/frontend/docs/course-browse.md
+* **Target Path:** `./sources/frontend/web/README.md [REQ-020]`
 * **Architectural Requirements:**
-  * Document component purpose, props, state management, and API contract.  
-  * Include security considerations: tenant isolation, CSRF usage, OWASP mitigations.  
-  * Reference requirement tags and data dictionary entries ([DAT-003], [DAT-006]).  
-* **DAILY LOGS TRACEABILITY RULES (ZERO TOLERANCE FOR BUNDLING):**
-  * **Targeted Tag IDs:** [REQ-010], [REQ-014], [ARC-004], [DAT-003], [DAT-006]
-
-### DAY 2: IMPLEMENT ENROLLMENT FLOW AND CARD RENEWAL
-
-#### SUB-TASK 2.1: Develop EnrollmentForm component for student course registration
-##### Assigned Sub-Agent: coder
-##### Targeted Components & Technical Requirements:
-* **Target Path:** ./sources/frontend/src/components/EnrollmentForm.tsx
-* **Architectural Requirements:**
-  * Provide a form for selecting a course and submitting enrollment via `POST /api/enrollments`.  
-  * Validate required fields and enforce business rule that a student cannot enroll in duplicate courses (EXC‑004).  
-  * Include CSRF token for submission.  
-  * Use JWT authentication and tenant context for the request.  
-  * Integrate with the CourseBrowse component for course selection.  
-* **DAILY LOGS TRACEABILITY RULES (ZERO TOLERANCE FOR BUNDLING):**
-  * **Targeted Tag IDs:** [REQ-011], [REQ-010], [ARC-004], [DAT-004], [EXC-004]
-
-#### SUB-TASK 2.2: Develop CardRenewal component for membership extension
-##### Assigned Sub-Agent: coder
-##### Targeted Components & Technical Requirements:
-* **Target Path:** ./sources/frontend/src/components/CardRenewal.tsx
-* **Architectural Requirements:**
-  * Offer a UI for selecting renewal days (1‑365) and initiating payment (stubbed).  
-  * Validate renewal days input per requirement (EXC‑004).  
-  * Call `PUT /api/student-cards/{cardId}/renew` with CSRF protection.  
-  * Update local card state and display confirmation notification.  
-  * Ensure tenant isolation and PII protection.  
-* **DAILY LOGS TRACEABILITY RULES (ZERO TOLERANCE FOR BUNDLING):**
-  * **Targeted Tag IDs:** [REQ-015], [ARC-004], [DAT-006], [EXC-004]
-
-#### SUB-TASK 2.3: Update technical documentation for enrollment and renewal
-##### Assigned Sub-Agent: doc
-##### Targeted Components & Technical Requirements:
-* **Target Path:** ./sources/frontend/docs/enrollment.md
-* **Architectural Requirements:**
-  * Document EnrollmentForm and CardRenewal component designs, API payloads, and error handling.  
-  * Include security notes: CSRF, input validation, tenant isolation.  
-  * Reference relevant data dictionaries ([DAT-004], [DAT-006]) and requirement tags.  
-* **DAILY LOGS TRACEABILITY RULES (ZERO TOLERANCE FOR BUNDLING):**
-  * **Targeted Tag IDs:** [REQ-011], [REQ-015], [ARC-004], [DAT-004], [DAT-006]
-
-### DAY 3: INTEGRATION TESTING OF FRONTEND‑BACKEND WORKFLOWS
-
-#### SUB-TASK 3.1: End‑to‑end integration test for course browsing
-##### Assigned Sub-Agent: tester
-##### Targeted Components & Technical Requirements:
-* **Target Path:** ./sources/frontend/src/components/CourseBrowse.tsx;./sources/frontend/tests/course-browse.spec.ts
-* **Architectural Requirements:**
-  * Authenticate as a Student ([ARC-004]), fetch courses via `GET /api/courses`, verify UI renders list.  
-  * Validate tenant isolation by checking that only courses for the authenticated tenant appear.  
-  * Assert OWASP XSS protections by ensuring filter input is properly escaped.  
-  * Confirm API response matches data dictionary ([DAT-003]) and requirement ([REQ-010], [REQ-007]).  
-* **DAILY LOGS TRACEABILITY RULES (ZERO TOLERANCE FOR BUNDLING):**
-  * **Targeted Tag IDs:** [REQ-010], [REQ-007], [ARC-004], [DAT-003], [EXC-004]
-
-#### SUB-TASK 3.2: End‑to‑end integration test for enrollment
-##### Assigned Sub-Agent: tester
-##### Targeted Components & Technical Requirements:
-* **Target Path:** ./sources/frontend/src/components/EnrollmentForm.tsx;./sources/frontend/tests/enrollment.spec.ts
-* **Architectural Requirements:**
-  * Simulate student login, select a course, submit enrollment via `POST /api/enrollments`.  
-  * Verify enrollment record creation in backend ([DAT-004]) and receipt of success notification.  
-  * Validate input sanitization and CSRF token handling.  
-  * Ensure duplicate enrollment is rejected per EXC‑004.  
-* **DAILY LOGS TRACEABILITY RULES (ZERO TOLERANCE FOR BUNDLING):**
-  * **Targeted Tag IDs:** [REQ-011], [REQ-010], [ARC-004], [DAT-004], [EXC-004]
-
-#### SUB-TASK 3.3: End‑to‑end integration test for student card display
-##### Assigned Sub-Agent: tester
-##### Targeted Components & Technical Requirements:
-* **Target Path:** ./sources/frontend/src/components/StudentCard.tsx;./sources/frontend/tests/student-card.spec.ts
-* **Architectural Requirements:**
-  * Authenticate Student, request card data via `GET /api/student-cards/{studentId}`.  
-  * Verify UI displays total validity, days used, and remaining days per [DAT-006].  
-  * Confirm PII is encrypted at rest (AES‑256) and only necessary fields are exposed (NFR‑003).  
-  * Validate tenant isolation and GDPR compliance (NFR‑008).  
-* **DAILY LOGS TRACEABILITY RULES (ZERO TOLERANCE FOR BUNDLING):**
-  * **Targeted Tag IDs:** [REQ-014], [ARC-004], [DAT-006], [EXC-004]
-
-#### SUB-TASK 3.4: End‑to‑end integration test for card renewal
-##### Assigned Sub-Agent: tester
-##### Targeted Components & Technical Requirements:
-* **Target Path:** ./sources/frontend/src/components/CardRenewal.tsx;./sources/frontend/tests/card-renewal.spec.ts
-* **Architectural Requirements:**
-  * Login as Student, initiate renewal with valid days, mock payment success.  
-  * Verify backend updates `StudentCards` end date and logs the action (NFR‑006).  
-  * Confirm notification is queued for the student (REQ‑016).  
-  * Validate CSRF token and input validation (EXC‑004).  
-* **DAILY LOGS TRACEABILITY RULES (ZERO TOLERANCE FOR BUNDLING):**
-  * **Targeted Tag IDs:** [REQ-015], [ARC-004], [DAT-006], [EXC-004]
+  * Document component architecture and API integration patterns
+  * Provide setup and deployment instructions
+  * Document role-based navigation structure and permissions
+  * Include security guidelines and OWASP compliance measures
+* **DAILY LOGS TRACEABILITY RULES:**
+  * **Targeted Tag IDs:** [REQ-020]

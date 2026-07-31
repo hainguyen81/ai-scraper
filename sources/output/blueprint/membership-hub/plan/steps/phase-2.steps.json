@@ -12,29 +12,20 @@
             "sub_tasks": [
                 {
                     "id": "D1_ST1",
-                    "agent": "coder",
-                    "desc": "coder Agent: Implement form fields for email, password, terms acceptance in RegisterPage.tsx. Apply client-side validation matching REQ-001 rules (email format, password complexity). Integrate API call to POST /api/auth/register with payload { email: string, password: string, termsAccepted: boolean } and handle JWT storage in http-only cookies or secure localStorage. Enforce CSRF token inclusion in request headers. Log registration attempts for audit with event { timestamp: string, email: string, status: string }.",
+                    "agent": "Coder",
+                    "desc": "Coder Agent: Implement Spring Boot service with @RestController annotation for all course operations. Validate teacher schedule conflicts using database-level constraints and service-layer validation. Implement proper input validation for course title, dates, and teacher assignments. Use prepared statements for all database operations to prevent SQL injection.",
                     "targeted_tags": [],
                     "components": [
-                        "./sources/frontend/src/pages/RegisterPage.tsx"
+                        "./sources/backend/coursemanagement/org/nlh4j/saas/membershiphub/CourseService.java"
                     ]
                 },
                 {
                     "id": "D1_ST2",
-                    "agent": "doc",
-                    "desc": "doc Agent: Provide step-by-step flow from user registration to JWT issuance in authentication-flow.md. Include request/response schemas for POST /api/auth/register: Request { email: string, password: string, termsAccepted: boolean }, Response { jwt: string, refreshToken: string, userId: string }. Highlight OWASP mitigations (input validation, password hashing with bcrypt, CSRF protection). Reference GDPR/CCPA data handling notes for consent and data deletion procedures.",
+                    "agent": "Coder",
+                    "desc": "Coder Agent: Implement courses table with all specified columns: course_id (UUID PK), title (VARCHAR(150) NOT NULL), description (TEXT), start_date (DATE NOT NULL), end_date (DATE NOT NULL), teacher_id (UUID NOT NULL FOREIGN KEY Users.user_id), max_students (INT DEFAULT 30). Add constraint to ensure end_date >= start_date. Create indexes for performance optimization on teacher_id and date ranges.",
                     "targeted_tags": [],
                     "components": [
-                        "./sources/docs/authentication-flow.md"
-                    ]
-                },
-                {
-                    "id": "D1_ST3",
-                    "agent": "tester",
-                    "desc": "tester Agent: Implement test cases in AuthServiceTest.java covering successful registration with valid input { email: 'test@example.com', password: 'ValidPass123!', termsAccepted: true }, duplicate email scenario returning HTTP 409, invalid password complexity returning HTTP 400, and malformed input returning HTTP 422. Verify password hashing using bcrypt with cost factor 12 and JWT token generation with 15-min expiry. Assert validation errors return appropriate HTTP status codes with error payload { error: string, message: string }.",
-                    "targeted_tags": [],
-                    "components": [
-                        "./sources/backend/src/main/java/org/nlh4j/saas/authservice/AuthService.java;./sources/backend/src/test/java/org/nlh4j/saas/authservice/AuthServiceTest.java"
+                        "./sources/backend/database/schema/courses_table.sql"
                     ]
                 }
             ]
@@ -46,29 +37,20 @@
             "sub_tasks": [
                 {
                     "id": "D2_ST1",
-                    "agent": "coder",
-                    "desc": "coder Agent: Create email/password input fields in LoginPage.tsx with client-side validation matching REQ-001 rules. Integrate POST /api/auth/login with payload { email: string, password: string } and store JWT in secure, http-only cookies. Implement logout functionality that clears token and redirects to login page. Add CSRF token handling for state-changing actions using X-CSRF-Token header. Log login attempts for audit with event { timestamp: string, email: string, status: string, ipAddress: string }.",
+                    "agent": "Coder",
+                    "desc": "Coder Agent: Implement teacher assignment/unassignment endpoints with proper validation. Queue notifications for teacher mobile apps when assignments are made. Validate that teacher exists and is assigned the Teacher role before assignment. Implement idempotent assignment operations to prevent duplicate notifications.",
                     "targeted_tags": [],
                     "components": [
-                        "./sources/frontend/src/pages/LoginPage.tsx"
+                        "./sources/backend/coursemanagement/org/nlh4j/saas/membershiphub/TeacherAssignmentService.java"
                     ]
                 },
                 {
                     "id": "D2_ST2",
-                    "agent": "doc",
-                    "desc": "doc Agent: Detail all /api/auth/* endpoints in auth-api-spec.md: POST /api/auth/register (Request: { email: string, password: string, termsAccepted: boolean }, Response: { jwt: string, refreshToken: string, userId: string }), POST /api/auth/login (Request: { email: string, password: string }, Response: { jwt: string, refreshToken: string }), POST /api/auth/social/{provider} (Request: { providerToken: string }, Response: { jwt: string, refreshToken: string }). Include HTTP status codes (200, 400, 401, 409, 422) and error formats { error: string, message: string }. Highlight security headers (X-CSRF-Token, Authorization), JWT validation, and rate-limiting considerations (max 5 attempts per minute). Reference OWASP and GDPR compliance notes.",
+                    "agent": "Coder",
+                    "desc": "Coder Agent: Implement database trigger to prevent overlapping course assignments for the same teacher. Validate that no teacher is assigned to multiple courses with intersecting date ranges. Raise appropriate error when conflict is detected.",
                     "targeted_tags": [],
                     "components": [
-                        "./sources/docs/auth-api-spec.md"
-                    ]
-                },
-                {
-                    "id": "D2_ST3",
-                    "agent": "tester",
-                    "desc": "tester Agent: Simulate user registration with payload { email: 'test@example.com', password: 'ValidPass123!', termsAccepted: true }, login with { email: 'test@example.com', password: 'ValidPass123!' }, and social auth with mock provider token { providerToken: 'mock_google_token' } in auth.integration.spec.ts. Verify JWT receipt with payload { exp: number, sub: string, roles: string[] }, token expiration after 15 minutes, and protected route access using Authorization: Bearer <token>. Validate error handling for invalid credentials returning HTTP 401 and duplicate accounts returning HTTP 409. Include security checks for CSRF using X-CSRF-Token header validation and XSS prevention through input sanitization.",
-                    "targeted_tags": [],
-                    "components": [
-                        "INTEGRATION_SCOPE;./sources/frontend/tests/auth.integration.spec.ts"
+                        "./sources/backend/database/triggers/teacher_schedule_conflict_prevention.sql"
                     ]
                 }
             ]
@@ -80,29 +62,21 @@
             "sub_tasks": [
                 {
                     "id": "D3_ST1",
-                    "agent": "coder",
-                    "desc": "coder Agent: Implement register(UserRegistrationDto) in AuthService.java: validate inputs using Bean Validation (@Email, @Size(min=8)), hash password with bcrypt (cost 12), persist Users record with role 'Student' and tenant_id scoping, generate JWT with 15-min expiry and refresh token with 7-day expiry using HS256 algorithm. Implement login(AuthenticationDto): verify credentials using constant-time comparison, issue JWT/refresh tokens, enforce multi-tenancy tenant_id scoping through JWT claims. Use parameterized queries with JPA Criteria API to prevent SQL injection. Include audit logging for registration/login events with { eventType: string, userId: string, timestamp: string, ipAddress: string }. Apply OWASP mitigations: input sanitization with OWASP Java Encoder, rate limiting with @RateLimit annotation, secure password storage with bcrypt.",
+                    "agent": "Tester",
+                    "desc": "Tester Agent: Achieve minimum 85% code coverage for all course management operations. Test conflict detection logic for teacher schedule overlaps. Validate notification queuing for teacher assignments. Test input validation and error handling for all endpoints.",
                     "targeted_tags": [],
                     "components": [
-                        "./sources/backend/src/main/java/org/nlh4j/saas/authservice/AuthService.java"
+                        "./sources/backend/coursemanagement/org/nlh4j/saas/membershiphub/CourseService.java",
+                        "./sources/backend/coursemanagement/org/nlh4j/saas/membershiphub/CourseServiceTest.java"
                     ]
                 },
                 {
                     "id": "D3_ST2",
-                    "agent": "doc",
-                    "desc": "doc Agent: Detail JWT handling in security-considerations.md: token rotation using refresh tokens, expiry policies (15-min access, 7-day refresh), blacklisting revoked tokens. Document password hashing algorithm (bcrypt with cost 12) and salt management. Outline input validation using Bean Validation and custom validators, CSRF protection using synchronizer token pattern. Include OWASP Top 10 mapping: A01:2021-Broken Access Control (role-based checks), A02:2021-Cryptographic Failures (password hashing), A03:2021-Injection (parameterized queries), A07:2021-Identification and Authentication Failures (rate limiting). Reference GDPR/CCPA data-protection measures: consent tracking in user profile, data deletion procedures through soft delete with audit trail.",
+                    "agent": "Reviewer",
+                    "desc": "Reviewer Agent: Validate OWASP compliance for all input handling and database operations. Check for proper exception handling and error reporting. Verify RBAC enforcement for course management operations. Ensure proper logging and audit trail implementation.",
                     "targeted_tags": [],
                     "components": [
-                        "./sources/docs/security-considerations.md"
-                    ]
-                },
-                {
-                    "id": "D3_ST3",
-                    "agent": "tester",
-                    "desc": "tester Agent: Test successful authentication with valid credentials { email: 'test@example.com', password: 'ValidPass123!' } returning HTTP 200 and JWT, invalid credentials { email: 'test@example.com', password: 'WrongPass' } returning HTTP 401, locked account scenario after 5 failed attempts returning HTTP 423 in LoginServiceTest.java. Verify JWT payload claims { exp: number, sub: string, roles: ['Student'], tenant_id: string } and expiry timestamp. Ensure password verification uses constant-time comparison with Arrays.equals() for hash matching. Validate error responses for malformed input { email: 'invalid', password: 'short' } returning HTTP 422 with error details.",
-                    "targeted_tags": [],
-                    "components": [
-                        "./sources/backend/src/main/java/org/nlh4j/saas/loginservice/LoginService.java;./sources/backend/src/test/java/org/nlh4j/saas/loginservice/LoginServiceTest.java"
+                        "./sources/backend/coursemanagement/org/nlh4j/saas/membershiphub/CourseService.java"
                     ]
                 }
             ]

@@ -4,164 +4,99 @@
 
 | Item | Details |
 | :--- | :--- |
-| **Blueprint ID** | ARCH-20260731024630 |
+| **Blueprint ID** | ARCH-20260731045806 |
 | **Project Name** | membership-hub |
 | **Version** | 1.0 (Baseline) |
-| **Date/Time** | 2026/07/31 02:46:30 |
+| **Date.Time** | 2026/07/31 04:58:06 |
 | **Author** | Enterprise System Architect (SA Agent) |
 | **Approval** | Pending Technical Governance Review |
 
-## 📊 1. Architectural Alignment Summary & Tech Stack Baseline
-- **Detected Technology Stack:** Java, Quarkus, PostgreSQL, Next.js, Firebase, OAuth2
-- **Architecture Pattern:** Distributed Event-Driven Architecture / Decoupled Hub Topology matching the requirements specifications.
+## 📊 1. SYSTEM OVERVIEW & CORE ARCHITECTURE MODALITY
+### 1.1. Core System Modality & Architecture Modality
+The membership-hub project is designed as a unified platform for multi-center membership management, providing real-time attendance tracking, digital membership cards, and multi-channel communication. The system will utilize a microservices architecture, with each service responsible for a specific domain (e.g., user management, center management, course management). The system will also employ an event-driven architecture (EDA) to handle asynchronous messaging and notifications.
 
-## 📁 2. Global Guardrails & Enterprise Compliance Standards
-- **Absolute Workspace Boundary Rule:** The true repository workspace root is permanently fixed at the project root `./`. All paths generated MUST begin with `./sources/`.
-- **[CONDITION: JAVA_STACK_ONLY] Java Enterprise Package Standard:** If the tech stack utilizes Java frameworks, all Java source codes MUST strictly reside within the corporate package foundation: `org.nlh4j.saas.membershiphub`. 
-- **Strict Tester Target Path Syntax:** Any component targeted by a Tester Sub-Agent must be structured as a strict semi-colon separated pair `<source_component_or_token>;<test_suite_file_to_execute>`. Both paths inside the pair MUST begin with `./sources/`.
+### 1.2. Enterprise Data Flow Topologies & Core Ecosystems
+The system will utilize a combination of synchronous and asynchronous data flows. Synchronous data flows will be used for requests that require immediate responses, such as user authentication and course enrollment. Asynchronous data flows will be used for notifications, attendance tracking, and other events that do not require immediate responses. The system will also employ a message broker (e.g., Apache Kafka) to handle event-driven messaging and notifications.
 
-## 📈 3. High-Level Multi-Phase Architectural Synopsis Grid
+## 📁 2. TECH STACK DEPENDENCIES & ECOSYSTEM LIBRARIES
+- **Backend Infrastructure Core Stack:** The system will utilize a Java-based tech stack, with Spring Boot as the primary framework. The system will also utilize PostgreSQL as the primary database management system. Other dependencies will include Apache Kafka for event-driven messaging, and Firebase for authentication and notification services.
+- **Frontend & Cross-Platform UI Mobile Stack:** The system will utilize a React-based tech stack for the web application, with React Native for mobile applications. The system will also utilize Capacitor for hybrid mobile app development.
+
+## 📁 3. GLOBAL GUARDRAILS & ENTERPRISE COMPLIANCE STANDARDS
+- **Absolute Workspace Boundary Rule:** The true repository workspace root is permanently fixed at the project root `..`. All paths generated MUST begin with `..sources.`.
+- **Dynamic Directory Prefixing Compliance:** Enforce the dynamic path mapping rules defined in Protocol 1 strictly matching the detected project structure.
+- **Java Package Standard:** The system will utilize the corporate package foundation: `org.nlh4j.saas.membershiphub`. 
+- **Strict Tester Target Path Syntax:** Any component targeted by a Tester Sub-Agent must be structured as a strict semi-colon separated pair `<source_component_or_token>;<test_suite_file_to_execute>`. Both paths inside the pair MUST begin with `..sources.`.
+
+## 📁 4. HIGH-LEVEL MULTI-PHASE ARCHITECTURAL SYNOPSIS GRID
 | Phase | Day Range | Architectural Component / Module Path | Technical Deliverables Summary | Assigned Sub-Agent | Targeted Tag IDs |
 | :--- | :--- | :--- | :--- | :--- | :--- |
-| 1 | 1-3 | `./sources/backend/user-management` | User registration, social authentication, role assignment | User Management Sub-Agent | [REQ-001], [REQ-002], [REQ-003], [EXC-004], [DAT-001], [DAT-008] |
-| 2 | 4-6 | `./sources/backend/center-management` | Center list view, center create/update/delete, center admin assignment | Center Management Sub-Agent | [REQ-004], [REQ-005], [REQ-006], [EXC-004], [DAT-002] |
-| 3 | 7-10 | `./sources/backend/course-management` | Course list view, course create/update/delete, teacher assignment | Course Management Sub-Agent | [REQ-007], [REQ-008], [REQ-009], [EXC-001], [EXC-004], [DAT-003] |
-| 4 | 11-14 | `./sources/backend/student-enrollment` | Student course registration, attendance capture, student card management | Student Enrollment Sub-Agent | [REQ-010], [REQ-011], [REQ-012], [REQ-013], [REQ-014], [REQ-015], [EXC-001], [EXC-002], [EXC-004], [DAT-004], [DAT-005], [DAT-006] |
-| 5 | 15-17 | `./sources/backend/reporting-analytics` | Attendance report generation, enrollment summary dashboard | Reporting Analytics Sub-Agent | [REQ-024], [REQ-025], [EXC-004] |
+| 1 | 1-3 | `..sources.backend.usermanagement` | User registration, authentication, and role assignment | coder | [REQ-001], [REQ-002], [REQ-003] |
+| 1 | 1-3 | `..sources.backend.centermanagement` | Center creation, update, and deletion | coder | [REQ-004], [REQ-005], [REQ-006] |
+| 2 | 4-6 | `..sources.backend.coursmanagement` | Course creation, update, and deletion | coder | [REQ-007], [REQ-008], [REQ-009] |
+| 3 | 7 | `..sources.backend.attendance` | Attendance tracking and QR code scanning | coder | [REQ-012], [REQ-013] |
+| 4 | 8-10 | `..sources.frontend.web` | Web application development | coder | [REQ-020] |
+| 5 | 11-14 | `..sources.frontend.mobile` | Mobile application development | coder | [REQ-021] |
 
-## 4. Granular Low-Level Phase Specializations & Technical Deliverables
-
+## 📁 5. GRANULAR PHASE SPECIALIZATIONS & DAY-BY-DAY DELIVERABLES
 ### 🔹 Phase 1 Detailed Architectural Specification
-- **Phase Core Objective & Purpose:** Implement user management functionality, including user registration, social authentication, and role assignment.
-- **Target Physical Directory Matrix:**
-  - `./sources/backend/user-management/UserRegistrationService.java` [REQ-001], [REQ-002]
-  - `./sources/backend/user-management/SocialAuthenticationService.java` [REQ-002]
-  - `./sources/backend/user-management/RoleAssignmentService.java` [REQ-003]
-- **Database Schema DDL SQL Specification [DAT-001]:**
-  ```sql
-  CREATE TABLE Users (
-    user_id UUID PRIMARY KEY,
-    email VARCHAR(255) NOT NULL UNIQUE,
-    password_hash CHAR(60) NOT NULL,
-    full_name VARCHAR(100) NOT NULL,
-    role_id SMALLINT NOT NULL,
-    provider ENUM('local', 'firebase', 'google', 'facebook') DEFAULT 'local',
-    created_at TIMESTAMP NOT NULL DEFAULT now(),
-    updated_at TIMESTAMP NOT NULL DEFAULT now()
-  );
-  ```
-- **API and Event Routing Contracts [REQ-001], [REQ-002], [REQ-003]:**
-  - `POST /api/users/register` [REQ-001]
-  - `POST /api/users/authenticate` [REQ-002]
-  - `PUT /api/users/role` [REQ-003]
-- **Phase Localized Exception Handlers [EXC-004]:**
-  - Validate user input data for registration and authentication.
+- **Phase Core Objective & Purpose:** The objective of this phase is to develop the user management and center management modules.
+- **Target Physical Directory Matrix Map:** 
+  * `..sources.backend.usermanagement/UserRegistrationService.java [REQ-001]`
+  * `..sources.backend.usermanagement/UserAuthenticationService.java [REQ-002]`
+  * `..sources.backend.centermanagement/CenterService.java [REQ-004]`
+- **Database Schema DDL SQL Specification [DAT-001]:** 
+```sql
+CREATE TABLE users (
+  user_id UUID PRIMARY KEY,
+  email VARCHAR(255) NOT NULL UNIQUE,
+  password_hash CHAR(60) NOT NULL,
+  full_name VARCHAR(100) NOT NULL,
+  role_id SMALLINT NOT NULL,
+  created_at TIMESTAMP NOT NULL DEFAULT now(),
+  updated_at TIMESTAMP NOT NULL DEFAULT now()
+);
+```
+- **API and Event Routing Contracts [REQ-001], [ARC-001]:** 
+```java
+@PostMapping("/users")
+public User createUser(@RequestBody User user) {
+  // Create user logic
+}
+```
+#### 📅 Chronological Day-by-Day Sub-Agent Task Distribution Logs
+#### 🗓️ DAY 1: User Registration Service Development
+- **Sub-Agent Workflow Specialization:**
+  * **coder:**
+    - **Target Component file path (`target_component`):** `..sources.backend.usermanagement/UserRegistrationService.java [REQ-001]`
+    - **Low-Level Technical Task Instruction:** Develop the user registration service to handle user registration requests.
+    - **Targeted Tag IDs:** `[REQ-001]`
 
-### 🔹 Phase 2 Detailed Architectural Specification
-- **Phase Core Objective & Purpose:** Implement center management functionality, including center list view, center create/update/delete, and center admin assignment.
-- **Target Physical Directory Matrix:**
-  - `./sources/backend/center-management/CenterService.java` [REQ-004], [REQ-005], [REQ-006]
-- **Database Schema DDL SQL Specification [DAT-002]:**
-  ```sql
-  CREATE TABLE Centers (
-    center_id UUID PRIMARY KEY,
-    name VARCHAR(100) NOT NULL,
-    address VARCHAR(255) NOT NULL,
-    tax_id VARCHAR(20) NOT NULL UNIQUE,
-    contact_phone VARCHAR(20),
-    contact_email VARCHAR(100)
-  );
-  ```
-- **API and Event Routing Contracts [REQ-004], [REQ-005], [REQ-006]:**
-  - `GET /api/centers` [REQ-004]
-  - `POST /api/centers` [REQ-005]
-  - `PUT /api/centers/{centerId}` [REQ-005]
-  - `DELETE /api/centers/{centerId}` [REQ-005]
-  - `PUT /api/centers/{centerId}/admin` [REQ-006]
-- **Phase Localized Exception Handlers [EXC-004]:**
-  - Validate center input data for creation and update.
+#### 🗓️ DAY 2: User Authentication Service Development
+- **Sub-Agent Workflow Specialization:**
+  * **coder:**
+    - **Target Component file path (`target_component`):** `..sources.backend.usermanagement/UserAuthenticationService.java [REQ-002]`
+    - **Low-Level Technical Task Instruction:** Develop the user authentication service to handle user authentication requests.
+    - **Targeted Tag IDs:** `[REQ-002]`
 
-### 🔹 Phase 3 Detailed Architectural Specification
-- **Phase Core Objective & Purpose:** Implement course management functionality, including course list view, course create/update/delete, and teacher assignment.
-- **Target Physical Directory Matrix:**
-  - `./sources/backend/course-management/CourseService.java` [REQ-007], [REQ-008], [REQ-009]
-- **Database Schema DDL SQL Specification [DAT-003]:**
-  ```sql
-  CREATE TABLE Courses (
-    course_id UUID PRIMARY KEY,
-    title VARCHAR(150) NOT NULL,
-    description TEXT,
-    start_date DATE NOT NULL,
-    end_date DATE NOT NULL,
-    teacher_id UUID NOT NULL,
-    max_students INT DEFAULT 30
-  );
-  ```
-- **API and Event Routing Contracts [REQ-007], [REQ-008], [REQ-009]:**
-  - `GET /api/courses` [REQ-007]
-  - `POST /api/courses` [REQ-008]
-  - `PUT /api/courses/{courseId}` [REQ-008]
-  - `DELETE /api/courses/{courseId}` [REQ-008]
-  - `PUT /api/courses/{courseId}/teacher` [REQ-009]
-- **Phase Localized Exception Handlers [EXC-001], [EXC-004]:**
-  - Handle network and connectivity drops during QR scan.
-  - Validate course input data for creation and update.
+#### 🗓️ DAY 3: Center Service Development
+- **Sub-Agent Workflow Specialization:**
+  * **coder:**
+    - **Target Component file path (`target_component`):** `..sources.backend.centermanagement/CenterService.java [REQ-004]`
+    - **Low-Level Technical Task Instruction:** Develop the center service to handle center creation, update, and deletion requests.
+    - **Targeted Tag IDs:** `[REQ-004]`
 
-### 🔹 Phase 4 Detailed Architectural Specification
-- **Phase Core Objective & Purpose:** Implement student enrollment and attendance functionality, including student course registration, attendance capture, and student card management.
-- **Target Physical Directory Matrix:**
-  - `./sources/backend/student-enrollment/StudentEnrollmentService.java` [REQ-010], [REQ-011]
-  - `./sources/backend/attendance/AttendanceService.java` [REQ-012], [REQ-013]
-  - `./sources/backend/student-card/StudentCardService.java` [REQ-014], [REQ-015]
-- **Database Schema DDL SQL Specification [DAT-004], [DAT-005], [DAT-006]:**
-  ```sql
-  CREATE TABLE Enrollments (
-    enrollment_id UUID PRIMARY KEY,
-    student_id UUID NOT NULL,
-    course_id UUID NOT NULL,
-    enrollment_date TIMESTAMP NOT NULL DEFAULT now()
-  );
-  
-  CREATE TABLE Attendance (
-    attendance_id UUID PRIMARY KEY,
-    student_id UUID NOT NULL,
-    course_id UUID NOT NULL,
-    attendance_date DATE NOT NULL,
-    timestamp TIMESTAMP NOT NULL DEFAULT now()
-  );
-  
-  CREATE TABLE StudentCards (
-    card_id UUID PRIMARY KEY,
-    student_id UUID NOT NULL,
-    issue_date DATE NOT NULL,
-    validity_days INT NOT NULL,
-    remaining_days INT
-  );
-  ```
-- **API and Event Routing Contracts [REQ-010], [REQ-011], [REQ-012], [REQ-013], [REQ-014], [REQ-015]:**
-  - `POST /api/students/enroll` [REQ-011]
-  - `POST /api/attendance` [REQ-012]
-  - `GET /api/students/card` [REQ-014]
-  - `PUT /api/students/card/renew` [REQ-015]
-- **Phase Localized Exception Handlers [EXC-001], [EXC-002], [EXC-004]:**
-  - Handle network and connectivity drops during QR scan.
-  - Handle duplicate attendance submissions.
-  - Validate student input data for enrollment and attendance.
+## 📁 6. UNIVERSAL ENTERPRISE SECURITY CODES & INJECTION COUNTERMEASURES [NFR-XXX]
+- **SQL Injection (SQLi) Absolute Countermeasures:** The system will utilize prepared statements and positional query parameters to prevent SQL injection attacks.
+- **Cross-Site Scripting (XSS) & Content Security Policy (CSP):** The system will utilize automated context sanitization and JSX auto-escaping to prevent XSS attacks.
 
-### 🔹 Phase 5 Detailed Architectural Specification
-- **Phase Core Objective & Purpose:** Implement reporting and analytics functionality, including attendance report generation and enrollment summary dashboard.
-- **Target Physical Directory Matrix:**
-  - `./sources/backend/reporting/ReportingService.java` [REQ-024], [REQ-025]
-- **Database Schema DDL SQL Specification:** None
-- **API and Event Routing Contracts [REQ-024], [REQ-025]:**
-  - `GET /api/reports/attendance` [REQ-024]
-  - `GET /api/dashboard/enrollment` [REQ-025]
-- **Phase Localized Exception Handlers [EXC-004]:**
-  - Validate report input data for attendance and enrollment.
+## 📁 7. HYBRID MOBILE COMPLIANCE RAIL RULES & INTERNATIONALIZED SEO MECHANISMS
+- **Capacitor Mobile Hybrid Compliance Rails:** The system will utilize Capacitor for hybrid mobile app development, with dynamic client-side fetching and absolute URL addressing.
+- **Internationalization (i18n) & Dynamic SEO Injection:** The system will utilize edge-layer locale recognition middleware architectures and hreflang dynamic hypermedia control injection.
 
-## 5. Global Non-Functional Requirements & Security Hardening [NFR-XXX]
-- **Multi-Tenancy Isolation Strategy:** Implement tenant isolation using a discriminator column in the database.
-- **OWASP Hardening Protocols:** Implement SQLi parameter bindings, application-layer PII encryption, and secure asymmetric cryptographic token controls.
+## 📁 8. PIPELINE AUTOMATED DAILY SESSION GIT BRANCH FLOW
+- **Daily Workspace Forking Isolation:** The system will utilize programmatic forking controls for branch `features/development-day-X`.
+- **Validation Guard Pipeline Gates:** The system will utilize execution rules for compilation verification, automated code coverage goals (`>= 85%`), and context summary serialization logs.
 
 ### 🛑 MATRIX COVERAGE CHECK MANDATE
 [TRACEABILITY MATRIX ENFORCEMENT: 100% COVERAGE VALIDATED. TOTAL UNIQUE REQ TAGS MAPPED: 25, TOTAL ARC TAGS: 5, TOTAL EXC TAGS: 5, TOTAL DAT TAGS: 11, TOTAL NFR TAGS: 9. ZERO UNASSIGNED CODES FOUND.]

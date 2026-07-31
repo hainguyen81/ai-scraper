@@ -12,88 +12,39 @@
             "sub_tasks": [
                 {
                     "id": "D1_ST1",
-                    "agent": "coder",
-                    "desc": "coder Agent: Implement AttendanceService with recordAttendance(studentId, courseId, timestamp) method using parameterized queries for SQL injection prevention. Apply tenant isolation via tenant_id from JWT context. Encrypt PII fields in logs using AES-256 per NFR-003. Log attendance events to audit log per NFR-006. Return duplicate flag if attendance exists for same student-course-date combination.",
+                    "agent": "Coder",
+                    "desc": "Coder Agent: Implement Spring Boot service with @RestController annotation for attendance operations. Validate QR payload containing studentID and courseID in base64 format. Implement idempotent attendance recording using composite key (StudentID, CourseID, Date). Validate student-course enrollment relationship before recording attendance. Use prepared statements for all database operations to prevent SQL injection.",
                     "targeted_tags": [],
                     "components": [
-                        "./sources/backend/src/services/AttendanceService.ts"
+                        "./sources/backend/attendance/org/nlh4j/saas/membershiphub/AttendanceService.java"
                     ]
                 },
                 {
                     "id": "D1_ST2",
-                    "agent": "coder",
-                    "desc": "coder Agent: Implement QRScannerService with base64 QR payload decoding into studentId and courseId. Validate input against UUID format and required fields with OWASP input validation to mitigate XSS and injection. Integrate with AttendanceService for attendance persistence. Implement exponential backoff retry logic for transient network failures per EXC-001. Log QR scan attempts per NFR-006.",
+                    "agent": "Coder",
+                    "desc": "Coder Agent: Implement attendance table with all specified columns: attendance_id (UUID PK), student_id (UUID NOT NULL FOREIGN KEY Users.user_id), course_id (UUID NOT NULL FOREIGN KEY Courses.course_id), attendance_date (DATE NOT NULL), timestamp (TIMESTAMP NOT NULL DEFAULT now()). Add composite unique constraint on (student_id, course_id, attendance_date) to enforce idempotency. Create foreign key constraints to users and courses tables.",
                     "targeted_tags": [],
                     "components": [
-                        "./sources/backend/src/services/QRScannerService.ts"
+                        "./sources/backend/database/schema/attendance_table.sql"
                     ]
                 },
                 {
                     "id": "D1_ST3",
-                    "agent": "doc",
-                    "desc": "doc Agent: Generate technical documentation covering API contracts, request/response schemas, error codes, security considerations, sequence diagrams for QR scan → validation → attendance recording flow, OWASP mitigations, tenant isolation controls, data model excerpts for DAT-005, and logging guidelines per NFR-006.",
+                    "agent": "Tester",
+                    "desc": "Tester Agent: Achieve minimum 85% code coverage for all attendance operations. Test idempotency logic for duplicate QR scans. Validate student-course enrollment validation. Test network connectivity drop scenarios with retry logic. Test input validation for malformed QR payloads.",
                     "targeted_tags": [],
                     "components": [
-                        "./sources/backend/docs/AttendanceAndQRArchitecture.md"
-                    ]
-                }
-            ]
-        },
-        {
-            "day": 2,
-            "context_file": ".ai/.plan/.context/phase-3.context.blueprint.md",
-            "context_section": "DAY 2",
-            "sub_tasks": [
-                {
-                    "id": "D2_ST1",
-                    "agent": "coder",
-                    "desc": "coder Agent: Implement NotificationService with notify(userId, groupZalo?, message, payload) method that queues notification records per DAT-007. Implement push notification dispatch via FCM/APNs and synchronous Zalo HTTP POST. Apply retry logic with up to 3 attempts for failed deliveries per EXC-003. Enforce rate limiting and tenant isolation. Log all notification attempts and failures per NFR-006.",
-                    "targeted_tags": [],
-                    "components": [
-                        "./sources/backend/src/services/NotificationService.ts"
+                        "./sources/backend/attendance/org/nlh4j/saas/membershiphub/AttendanceService.java",
+                        "./sources/backend/attendance/org/nlh4j/saas/membershiphub/AttendanceServiceTest.java"
                     ]
                 },
                 {
-                    "id": "D2_ST2",
-                    "agent": "doc",
-                    "desc": "doc Agent: Produce documentation detailing notification payload schema, delivery channels, error handling, security considerations for token management and message content sanitization, reference to DAT-007, retry policy per EXC-003, and deployment notes for FCM/APNs credentials and Zalo API integration.",
+                    "id": "D1_ST4",
+                    "agent": "Reviewer",
+                    "desc": "Reviewer Agent: Validate OWASP compliance for all input handling and database operations. Check for proper exception handling and error reporting. Verify RBAC enforcement for attendance operations. Ensure proper logging and audit trail implementation.",
                     "targeted_tags": [],
                     "components": [
-                        "./sources/backend/docs/NotificationServiceArchitecture.md"
-                    ]
-                }
-            ]
-        },
-        {
-            "day": 3,
-            "context_file": ".ai/.plan/.context/phase-3.context.blueprint.md",
-            "context_section": "DAY 3",
-            "sub_tasks": [
-                {
-                    "id": "D3_ST1",
-                    "agent": "tester",
-                    "desc": "tester Agent: Write unit tests for AttendanceService covering successful attendance creation, duplicate detection, idempotency, tenant isolation, input sanitization, network failure simulation, logging verification per NFR-006, and OWASP compliance checks for SQL injection prevention.",
-                    "targeted_tags": [],
-                    "components": [
-                        "./sources/backend/src/services/AttendanceService.ts;./sources/backend/tests/AttendanceService.test.ts"
-                    ]
-                },
-                {
-                    "id": "D3_ST2",
-                    "agent": "tester",
-                    "desc": "tester Agent: Write unit tests for QRScannerService covering QR payload decoding, UUID format validation, error handling for malformed input, retry behavior on transient failures per EXC-001, and integration with AttendanceService for duplicate scan handling.",
-                    "targeted_tags": [],
-                    "components": [
-                        "./sources/backend/src/services/QRScannerService.ts;./sources/backend/tests/QRScannerService.test.ts"
-                    ]
-                },
-                {
-                    "id": "D3_ST3",
-                    "agent": "tester",
-                    "desc": "tester Agent: Write unit tests for NotificationService covering push notification queuing, successful delivery, retry logic for failures per EXC-003, Zalo group message formatting, error handling, tenant isolation, and rate limiting enforcement.",
-                    "targeted_tags": [],
-                    "components": [
-                        "./sources/backend/src/services/NotificationService.ts;./sources/backend/tests/NotificationService.test.ts"
+                        "./sources/backend/attendance/org/nlh4j/saas/membershiphub/AttendanceService.java"
                     ]
                 }
             ]

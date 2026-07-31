@@ -12,29 +12,30 @@
             "sub_tasks": [
                 {
                     "id": "D1_ST1",
-                    "agent": "coder",
-                    "desc": "coder Agent: Develop CourseBrowse component: Render responsive grid of courses fetched via GET /api/courses with search/filter fields, client-side validation, CSRF token integration, OWASP XSS mitigation by sanitizing user-provided filter text, and tenant isolation by attaching authenticated tenant_id to API requests. API contract: GET /api/courses returns { courses: [{ id: string, title: string, description: string, tenant_id: string }] } with 200 status code or 401/403/500 errors.",
+                    "agent": "Coder",
+                    "desc": "Coder Agent: Create Next.js application with React context for authentication state management. Implement JWT token storage and refresh logic with 15-minute expiry. Set up role-based routing and navigation structure. Implement automatic token refresh mechanism before expiry.",
                     "targeted_tags": [],
                     "components": [
-                        "./sources/frontend/src/components/CourseBrowse.tsx"
+                        "./sources/frontend/web/pages/_app.js"
                     ]
                 },
                 {
                     "id": "D1_ST2",
-                    "agent": "coder",
-                    "desc": "coder Agent: Develop StudentCard component: Fetch student card data via GET /api/student-cards/{studentId}, compute and display remaining validity days using server-provided remaining_days, implement client-side validation for renewal input, secure API calls with JWT and tenant context, ensure PII protection. API contract: GET /api/student-cards/{studentId} returns { card_id: string, student_id: string, issue_date: string, expiry_date: string, remaining_days: number, tenant_id: string } with 200 status code or 401/403/404/500 errors.",
+                    "agent": "Coder",
+                    "desc": "Coder Agent: Implement login/logout functionality with email/password and social providers. Handle OAuth2 callback processing for Firebase, Google, Facebook. Manage JWT tokens with secure storage (httpOnly cookies recommended). Implement role extraction from JWT payload for RBAC enforcement.",
                     "targeted_tags": [],
                     "components": [
-                        "./sources/frontend/src/components/StudentCard.tsx"
+                        "./sources/frontend/web/services/authService.js"
                     ]
                 },
                 {
                     "id": "D1_ST3",
-                    "agent": "doc",
-                    "desc": "doc Agent: Create technical documentation for CourseBrowse and StudentCard: Document component purpose, props, state management, API contract, security considerations including tenant isolation, CSRF usage, OWASP mitigations, and reference requirement tags and data dictionary entries ([DAT-003], [DAT-006]).",
+                    "agent": "Tester",
+                    "desc": "Tester Agent: Achieve minimum 85% code coverage for authentication service. Test JWT token management and refresh logic. Verify role-based access control enforcement. Test OAuth2 integration scenarios.",
                     "targeted_tags": [],
                     "components": [
-                        "./sources/frontend/docs/course-browse.md"
+                        "./sources/frontend/web/services/authService.js",
+                        "./sources/frontend/web/services/__tests__/authService.test.js"
                     ]
                 }
             ]
@@ -46,29 +47,30 @@
             "sub_tasks": [
                 {
                     "id": "D2_ST1",
-                    "agent": "coder",
-                    "desc": "coder Agent: Develop EnrollmentForm component: Provide form for selecting course and submitting enrollment via POST /api/enrollments with required field validation, business rule enforcement against duplicate enrollments, CSRF token integration, JWT authentication, tenant context, and integration with CourseBrowse component. API contract: POST /api/enrollments payload { course_id: string, student_id: string } returns { enrollment_id: string, status: 'success'|'error', message?: string } with 201 status code or 400/401/403/409/500 errors.",
+                    "agent": "Coder",
+                    "desc": "Coder Agent: Create responsive navigation component with role-specific menu items. Implement System Admin full permissions navigation. Implement Center Admin center-specific navigation. Implement Manager limited permissions navigation. Implement Teacher read-only navigation. Implement Student course browsing and card navigation.",
                     "targeted_tags": [],
                     "components": [
-                        "./sources/frontend/src/components/EnrollmentForm.tsx"
+                        "./sources/frontend/web/components/Navigation.js"
                     ]
                 },
                 {
                     "id": "D2_ST2",
-                    "agent": "coder",
-                    "desc": "coder Agent: Develop CardRenewal component: Offer UI for selecting renewal days (1-365) with input validation, initiate stubbed payment, call PUT /api/student-cards/{cardId}/renew with CSRF protection, update local card state, display confirmation notification, ensure tenant isolation and PII protection. API contract: PUT /api/student-cards/{cardId}/renew payload { renewal_days: number } returns { card_id: string, new_expiry_date: string, status: 'success'|'error' } with 200 status code or 400/401/403/404/500 errors.",
+                    "agent": "Coder",
+                    "desc": "Coder Agent: Implement System Admin dashboard with global overview. Implement Center Admin dashboard with center-specific metrics. Implement Manager dashboard with student management tools. Implement Teacher dashboard with course schedule. Implement Student dashboard with course enrollment and card status.",
                     "targeted_tags": [],
                     "components": [
-                        "./sources/frontend/src/components/CardRenewal.tsx"
+                        "./sources/frontend/web/pages/dashboard/index.js"
                     ]
                 },
                 {
                     "id": "D2_ST3",
-                    "agent": "doc",
-                    "desc": "doc Agent: Update technical documentation for EnrollmentForm and CardRenewal: Document component designs, API payloads, error handling, security notes including CSRF, input validation, tenant isolation, and reference data dictionaries ([DAT-004], [DAT-006]) and requirement tags.",
+                    "agent": "Tester",
+                    "desc": "Tester Agent: Achieve minimum 85% code coverage for navigation component. Test role-based menu item rendering. Verify navigation permissions for different user roles. Test responsive behavior across device sizes.",
                     "targeted_tags": [],
                     "components": [
-                        "./sources/frontend/docs/enrollment.md"
+                        "./sources/frontend/web/components/Navigation.js",
+                        "./sources/frontend/web/components/__tests__/Navigation.test.js"
                     ]
                 }
             ]
@@ -80,38 +82,134 @@
             "sub_tasks": [
                 {
                     "id": "D3_ST1",
-                    "agent": "tester",
-                    "desc": "tester Agent: End-to-end integration test for course browsing: Authenticate as Student ([ARC-004]), fetch courses via GET /api/courses, verify UI renders list, validate tenant isolation by checking only courses for authenticated tenant appear, assert OWASP XSS protections by ensuring filter input is properly escaped, confirm API response matches data dictionary ([DAT-003]) and requirements ([REQ-010], [REQ-007]).",
+                    "agent": "Coder",
+                    "desc": "Coder Agent: Create course list view with CourseID, Title, StartDate, EndDate, TeacherName columns. Implement filtering and sorting capabilities for course browsing. Exclude courses where student already has enrollment record. Add responsive design for mobile and desktop viewing.",
                     "targeted_tags": [],
                     "components": [
-                        "./sources/frontend/src/components/CourseBrowse.tsx;./sources/frontend/tests/course-browse.spec.ts"
+                        "./sources/frontend/web/pages/courses/index.js"
                     ]
                 },
                 {
                     "id": "D3_ST2",
-                    "agent": "tester",
-                    "desc": "tester Agent: End-to-end integration test for enrollment: Simulate student login, select course, submit enrollment via POST /api/enrollments, verify enrollment record creation in backend ([DAT-004]) and success notification, validate input sanitization and CSRF token handling, ensure duplicate enrollment is rejected per EXC-004.",
+                    "agent": "Coder",
+                    "desc": "Coder Agent: Create enrollment form with course selection and confirmation. Handle auto-creation of Student account if missing during registration. Implement success/error handling with user feedback. Integrate with backend enrollment API endpoint.",
                     "targeted_tags": [],
                     "components": [
-                        "./sources/frontend/src/components/EnrollmentForm.tsx;./sources/frontend/tests/enrollment.spec.ts"
+                        "./sources/frontend/web/components/CourseEnrollment.js"
                     ]
                 },
                 {
                     "id": "D3_ST3",
-                    "agent": "tester",
-                    "desc": "tester Agent: End-to-end integration test for student card display: Authenticate Student, request card data via GET /api/student-cards/{studentId}, verify UI displays total validity, days used, and remaining days per [DAT-006], confirm PII is encrypted at rest (AES-256) and only necessary fields exposed (NFR-003), validate tenant isolation and GDPR compliance (NFR-008).",
+                    "agent": "Tester",
+                    "desc": "Tester Agent: Achieve minimum 85% code coverage for course browsing functionality. Test course filtering and exclusion logic for enrolled courses. Verify API integration and data display accuracy. Test enrollment form validation and submission.",
                     "targeted_tags": [],
                     "components": [
-                        "./sources/frontend/src/components/StudentCard.tsx;./sources/frontend/tests/student-card.spec.ts"
+                        "./sources/frontend/web/pages/courses/index.js",
+                        "./sources/frontend/web/pages/courses/__tests__/index.test.js"
+                    ]
+                }
+            ]
+        },
+        {
+            "day": 4,
+            "context_file": ".ai/.plan/.context/phase-4.context.blueprint.md",
+            "context_section": "DAY 4",
+            "sub_tasks": [
+                {
+                    "id": "D4_ST1",
+                    "agent": "Coder",
+                    "desc": "Coder Agent: Create QR scanner component using device camera access. Implement base64 payload decoding for studentID and courseID. Handle scan confirmation and attendance submission. Provide visual feedback for successful/duplicate scans.",
+                    "targeted_tags": [],
+                    "components": [
+                        ".极/sources/frontend/web/components/QRScanner.js"
                     ]
                 },
                 {
-                    "id": "D3_ST4",
-                    "agent": "tester",
-                    "desc": "tester Agent: End-to-end integration test for card renewal: Login as Student, initiate renewal with valid days, mock payment success, verify backend updates StudentCards end date and logs action (NFR-006), confirm notification is queued for student (REQ-016), validate CSRF token and input validation (EXC-004).",
+                    "id": "D4_ST2",
+                    "agent": "Coder",
+                    "desc": "Coder Agent: Create digital membership card component with remaining validity days display. Show total validity days, days used, and days remaining calculation. Implement responsive design for mobile viewing. Add card renewal call-to-action interface.",
                     "targeted_tags": [],
                     "components": [
-                        "./sources/frontend/src/components/CardRenewal.tsx;./sources/frontend/tests/card-renewal.spec.ts"
+                        "./sources/frontend/web/pages/student/card.js"
+                    ]
+                },
+                {
+                    "id": "D4_ST3",
+                    "agent": "Tester",
+                    "desc": "Tester Agent: Achieve minimum 85% code coverage for QR scanning functionality. Test base64 payload decoding and validation. Verify duplicate scan handling and user feedback. Test membership card display and calculations.",
+                    "targeted_tags": [],
+                    "components": [
+                        "./sources/frontend/web/components/QRScanner.js",
+                        "./sources/frontend/web/components/__tests__/QRScanner.test.js"
+                    ]
+                }
+            ]
+        },
+        {
+            "day": 5,
+            "context_file": ".ai/.plan/.context/phase-4.context.blueprint.md",
+            "context_section": "DAY 5",
+            "sub_tasks": [
+                {
+                    "id": "D5_ST1",
+                    "agent": "Coder",
+                    "desc": "Coder Agent: Create center list table with Name, Address, TaxID, AdminContact columns. Implement responsive table design for various screen sizes. Add search and filtering capabilities for center browsing. Restrict center management actions based on user role.",
+                    "targeted_tags": [],
+                    "components": [
+                        "./sources/frontend/web/pages/centers/index.js"
+                    ]
+                },
+                {
+                    "id": "D5_ST2",
+                    "agent": "Coder",
+                    "desc": "Coder Agent: Create center management form with name, address, tax ID, contact fields. Implement form validation for required fields and unique tax ID constraint. Handle duplicate tax ID conflict errors with user feedback. Restrict access to System Admin role only.",
+                    "targeted_tags": [],
+                    "components": [
+                        "./sources/frontend/web/components/CenterForm.js"
+                    ]
+                },
+                {
+                    "id": "D5_ST3",
+                    "agent": "Tester",
+                    "desc": "Tester Agent: Achieve minimum 85% code coverage for center list functionality. Test role-based access control for center management. Verify form validation and duplicate tax ID handling. Test responsive table behavior across devices.",
+                    "targeted_tags": [],
+                    "components": [
+                        "./sources/frontend/web/pages/centers/index.js",
+                        "./sources/frontend/web/pages/centers/__tests__/index.test.js"
+                    ]
+                }
+            ]
+        },
+        {
+            "day": 6,
+            "context_file": ".ai/.plan/.context/phase-4.context.blueprint.md",
+            "context_section": "DAY 6",
+            "sub_tasks": [
+                {
+                    "id": "D6_ST1",
+                    "agent": "Tester",
+                    "desc": "Tester Agent: Achieve 100% test coverage for all implemented requirements. Test complete user workflows across different roles. Verify API integration and data consistency. Test error handling and edge cases for all functionalities.",
+                    "targeted_tags": [],
+                    "components": [
+                        "INTEGRATION_SCOPE;./sources/frontend/web/__tests__/e2e/integration.test.js"
+                    ]
+                },
+                {
+                    "id": "D6_ST2",
+                    "agent": "Reviewer",
+                    "desc": "Reviewer Agent: Validate XSS prevention through automated context sanitization. Verify Content Security Policy implementation. Check for proper input validation on all form submissions. Validate JWT token security and storage practices. Verify multi-language support implementation.",
+                    "targeted_tags": [],
+                    "components": [
+                        "./sources/frontend/web/"
+                    ]
+                },
+                {
+                    "id": "D6_ST3",
+                    "agent": "Doc",
+                    "desc": "Doc Agent: Document component architecture and API integration patterns. Provide setup and deployment instructions. Document role-based navigation structure and permissions. Include security guidelines and OWASP compliance measures.",
+                    "targeted_tags": [],
+                    "components": [
+                        "./sources/frontend/web/README.md"
                     ]
                 }
             ]
