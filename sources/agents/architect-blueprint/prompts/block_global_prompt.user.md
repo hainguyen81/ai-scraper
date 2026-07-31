@@ -9,10 +9,10 @@ Analyze the attached project requirements. Build the GLOBAL PROJECT CONTEXT for 
 
 #### 🎯 PROTOCOL 1: Dynamic Topology Path Prefixing
 - You MUST dynamically match the physical directory file path masks to the active system topology extracted from the raw requirements. Do NOT emit relative paths that assume a sub-module directory is the root:
-  * *IF Backend logic/layer is active:* All backend code, services, database schemas, and database tests must reside strictly under: `..sources.backend.` (If Microservices topology is active, you MUST utilize the alphanumeric lowercase service name as the sub-folder path, e.g., `..sources.backend.<service-name>.`).
-  * *IF Frontend logic/layer is active:* All client interfaces, responsive views, mobile bundles, and web tests must reside strictly under: `..sources.frontend.` (or `..sources.frontend.<app-name>.` if multiple client applications exist. Skip entirely if project is Backend-only).
-  * *IF DevOps infrastructure logic is active:* All deployment manifests, Dockerfiles, GKE orchestrations, and cloud provisioning scripts must reside strictly under: `..sources.infra.`.
-  * For alternative topologies (AI/Data, IoT, Embedded): Paths must strictly map to logical root subdirectories matching the service domain layer under `..sources.`.
+  * *IF Backend logic/layer is active:* All backend code, services, database schemas, and database tests must reside strictly under: `./sources/backend.` (If Microservices topology is active, you MUST utilize the alphanumeric lowercase service name as the sub-folder path, e.g., `./sources/backend.<service-name>.`).
+  * *IF Frontend logic/layer is active:* All client interfaces, responsive views, mobile bundles, and web tests must reside strictly under: `./sources/frontend.` (or `./sources/frontend.<app-name>.` if multiple client applications exist. Skip entirely if project is Backend-only).
+  * *IF DevOps infrastructure logic is active:* All deployment manifests, Dockerfiles, GKE orchestrations, and cloud provisioning scripts must reside strictly under: `./sources/infra.`.
+  * For alternative topologies (AI/Data, IoT, Embedded): Paths must strictly map to logical root subdirectories matching the service domain layer under `./sources/`.
 
 #### 🗄️ PROTOCOL 2: Granular Ceilings-Compliant Task Logs
 - For each calculated phase necessary to cover the BA inputs (Up to the absolute maximum ceiling of {{ num_phases }} phases), supply a clean chronological daylog breakdown (Up to the absolute ceiling of {{ max_days_per_phase }} days per phase). Every single day generated MUST explicitly define the specific assigned sub-agent persona ('coder' | 'tester' | 'reviewer' | 'doc' | 'docker' | 'GCP' | 'GKE'), the low-level technical step target, the exact tracking Tag IDs, and the explicit physical relative file path (`target_component`).
@@ -48,10 +48,10 @@ Every header and table parameter below MUST be translated and naturally rendered
 - **Frontend & Cross-Platform UI Mobile Stack:** [Detail strict web frameworks, dynamic localized routing, responsive layouts, and native mobile runtime wrappers if present]
 
 ## 📁 3. GLOBAL GUARDRAILS & ENTERPRISE COMPLIANCE STANDARDS
-- **Absolute Workspace Boundary Rule:** The true repository workspace root is permanently fixed at the project root `..`. All paths generated MUST begin with `..sources.`.
+- **Absolute Workspace Boundary Rule:** The true repository workspace root is permanently fixed at the project root `..`. All paths generated MUST begin with `./sources/`.
 - **Dynamic Directory Prefixing Compliance:** Enforce the dynamic path mapping rules defined in Protocol 1 strictly matching the detected project structure.
 - **[CONDITION: JAVA_STACK_ONLY] Java Package Standard:** If the tech stack utilizes Java frameworks, all Java source codes MUST strictly reside within the corporate package foundation: `org.nlh4j.saas.<project_name_alphanumeric_lowercase>`. You MUST dynamically convert the string "{{ project_name }}" into a strict pure alphanumeric lowercase token by stripping out whitespaces, hyphens, and underscores. Non-Java projects are completely banned from applying this package segment.
-- **Strict Tester Target Path Syntax:** Any component targeted by a Tester Sub-Agent must be structured as a strict semi-colon separated pair `<source_component_or_token>;<test_suite_file_to_execute>`. Both paths inside the pair MUST begin with `..sources.`.
+- **Strict Tester Target Path Syntax:** Any component targeted by a Tester Sub-Agent must be structured as a strict semi-colon separated pair `<source_component_or_token>;<test_suite_file_to_execute>`. Both paths inside the pair MUST begin with `./sources/`.
 
 ## 📁 4. HIGH-LEVEL MULTI-PHASE ARCHITECTURAL SYNOPSIS GRID
 # Generate a clean, highly structured Markdown Table mapping the exact distribution of components and Tag IDs across the dynamically calculated phases. (Maximum allowed limit ceiling: {{ num_phases }} phases). Each row MUST specify a calendar duration strictly bounded between 1 to {{ max_days_per_phase }} days maximum. Do NOT generate empty rows or placeholder steps if the BA scope has been fully covered.
@@ -65,7 +65,7 @@ Every header and table parameter below MUST be translated and naturally rendered
 
 ### 🔹 Phase [X] Detailed Architectural Specification
 - **Phase Core Objective & Purpose:** [Detailed technical explanation of what this phase achieves and its functional goals]
-- **Target Physical Directory Matrix Map:** List all specific file paths underneath `..sources.` initialized or modified in this phase. Every single line path generated MUST be appended with its tracking Tag IDs inline.
+- **Target Physical Directory Matrix Map:** List all specific file paths underneath `./sources/` initialized or modified in this phase. Every single line path generated MUST be appended with its tracking Tag IDs inline.
 - **Database Schema DDL SQL Specification [DAT-XXX]:** Provide raw, complete, and valid DDL SQL migration statements containing explicit columns, data types, primary/foreign keys, matrix mappings, indexes, and nullability constraints applied under this phase scope. (Omit entirely if the project topology has no database or persistence layer requirements).
 - **API and Event Routing Contracts [REQ-XXX], [ARC-XXX]:** Document the complete technical contracts (precise endpoint paths, HTTP methods, request/response JSON payload schemas, or message broker topic configurations).
 - **Phase Localized Exception Handlers [EXC-XXX]:** Detail explicit business validation rules, error codes, and system fallback logic states handled under this phase.
@@ -77,7 +77,7 @@ Every header and table parameter below MUST be translated and naturally rendered
 #### 🗓️ DAY [Y]: [CAPITALIZED SHORT OBJECTIVE FOR THIS OPERATIONAL CALENDAR DAY]
 - **Sub-Agent Workflow Specialization:**
   * **[Assigned Sub-Agent literal token: coder | tester | reviewer | doc | docker | GCP | GKE]:**
-    - **Target Component file path (`target_component`):** [Insert explicit physical file path starting with `..sources.` or Tester pair syntax. Append its corresponding Tag IDs inline here, e.g., `..sources.backend.... [REQ-001], [DAT-002]`]
+    - **Target Component file path (`target_component`):** [Insert explicit physical file path starting with `./sources/` or Tester pair syntax. Append its corresponding Tag IDs inline here, e.g., `./sources/backend.... [REQ-001], [DAT-002]`]
     - **Low-Level Technical Task Instruction:** [Exhaustive, high-density engineering instruction, framework conventions, API contract layouts, data fields validation, or unit test case parameters mapping 1:1 to the requirements and attaching Tag IDs]
     - **Targeted Tag IDs:** [Write each tag out individually separated by commas, e.g., `[REQ-001], [DAT-002], [EXC-001]`.]
 

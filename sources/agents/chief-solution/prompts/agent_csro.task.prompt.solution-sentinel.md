@@ -16,19 +16,22 @@ Inside Section 1 of your report, you are STRICTLY BANNED from printing raw templ
 
 ### 📊 MINI-GRID REQUIREMENTS TRACEABILITY MATRIX RULE:
 To completely eliminate table format breaking and layout overflow issues caused by large lists of tags, you MUST render a compact, high-density 3-row Markdown Table inside Section 2 to summarize the quantitative metrics. The table MUST strictly follow this exact 3-column configuration:
-- Column 1: **Chỉ số kiểm toán (Metrics)** (Translated naturally into `{{ language }}`)
-- Column 2: **Số lượng thực tế (Counters)** (The dynamic calculated integer sums)
-- Column 3: **Trạng thái (Status)** (A clean literal state tag indicator formatted strictly in Technical English using **`PASSED`** or **`FAILED`**)
+- Column 1: **Audit Metric**
+- Column 2: **Quantitative Counter**
+- Column 3: **Status** (A clean literal state tag indicator formatted strictly in Technical English using **`PASSED`** or **`FAILED`**)
 
 ### 📌 FAILED BULLET REGISTRY & RISK ANALYSIS RAILS:
 Immediately underneath the Mini-Grid Table, you MUST provide a dedicated subsection containing a clean Markdown bulleted list (`*`) mapping out every single dynamic requirement or data Tag ID (`[REQ-XXX]`, `[DAT-XXX]`, `[EXC-XXX]`, etc.) that triggered a **`FAILED`** status (omitted, missing, or misaligned) during your trace check. If no tags failed, explicitly state that functional matrix coverage is 100% complete and pristine with a status of **`PASSED`**.
 
 If and only if any tag fails, you MUST dynamically inject a detailed evaluation block named `### ⚠️ 2__DOT__1__DOT__ Failure Root-Cause Matrix & Architecture Risk Assessment` containing the following parameters:
-- **Mã Tag ID bị bỏ sót:** [Explicitly list the failed BA Tag IDs]
-- **Phân tích nguyên nhân & Điểm mù chức năng:** [Provide an exhaustive technical breakdown explaining exactly why the baseline failed or which functional contract string from the BA specification was dropped by the SA agent]
-- **Đánh giá rủi ro hệ thống & Tác động cộng dồn:** [Deliver a sharp, high-density impact analysis under OWASP, security data isolation, and business revenue standards, explaining the system damage if left unpatched]
+- **Failed Tag Identifier:** [Explicitly list the failed BA Tag IDs]
+- **Root-Cause Analysis & Functional Blind Spot:** [Provide an exhaustive technical breakdown explaining exactly why the baseline failed or which functional contract string from the BA specification was dropped by the SA agent]
+- **Systemic Risk Assessment & Compounding Impact:** [Deliver a sharp, high-density impact analysis under OWASP, security data isolation, and business revenue standards, explaining the system damage if left unpatched]
 
-You MUST format your master response report strictly using the mandatory Markdown configuration layout below. Every header and explanatory sentence OUTSIDE of the raw Technical English tokens MUST be naturally translated and fully rendered into "{{ language }}":
+### 🌐 STRICT SEMANTIC INVARIANT SYNTAX PRESERVATION RAILS (MANDATORY LOCALIZATION):
+You MUST automatically translate and naturally render every single header title, section divider, markdown table structural text descriptor, and analytical phrase into the targeted execution language: "{{ language }}". However, you are STRICTLY BANNED from translating, changing, or breaking any core technical syntax layers, including markdown operators (`#`, `##`, `| :--- |`), literal Technical English status tokens (**`PASSED`**, **`FAILED`**), and requirement tag code string primitives (e.g. `[REQ-001]`).
+
+You MUST format your master response report strictly using the mandatory Markdown configuration layout below:
 
 # GOVERNANCE VERDICT REPORT: {{ project_name }}
 
@@ -46,13 +49,13 @@ You MUST format your master response report strictly using the mandatory Markdow
 | **Approval** | Certified by Enterprise Technical Governance Board |
 
 ## 1. Compliance Matrix Synthesis Analysis
-[Provide a high-density, rigorous technical analysis summarizing the logical convergence of the incoming BA SRS requirements and the SA Global Context logs, applying the Intelligent Document Referencing rules. Explicitly comment on the auto-detected phase counts and daily timeline density, confirming absolute zero garbage task expansion or placeholder padding]
+[Provide your high-density technical analysis here, completely translated into {{ language }} based on the referencing rules]
 
 ## 2. Requirements Traceability Visualization Matrix
-# Render the mandatory 3-row Mini-Grid Markdown table here. 
+# Render the mandatory 3-row Mini-Grid Markdown table here. Translate all structural descriptions and column headers 1 and 2 into {{ language }}.
 
-### 📌 Danh sách các hạng mục bị thất bại (FAILED Bullet Registry):
-# Output your clean bulleted failure registry list here, followed immediately by the dynamic 'Failure Root-Cause Matrix & Architecture Risk Assessment' block if failures exist.
+### 📌 Failed Bullet Registry
+# Output your clean bulleted failure registry list here, followed immediately by the dynamic 'Failure Root-Cause Matrix & Architecture Risk Assessment' block if failures exist. Fully translate all headers and analytical descriptions into {{ language }}.
 
 ## 3. Final Regulatory Gate Status
 - **Requirements Traceability Mappings:** [PASSED / FAILED]

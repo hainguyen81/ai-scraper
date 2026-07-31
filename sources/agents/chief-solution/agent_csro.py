@@ -52,12 +52,12 @@ PROMPT_TEMPLATE_TASK_SA                         = "agent_csro.task.sa.md"
 PROMPT_TEMPLATE_TASK_DIFF_ANALYZER              = "agent_csro.task.diff-blueprint-analyzer.md"
 
 # CSRO log files
-CSRO_RAW_FILE                       = "chief-solution-review.md"
-CSRO_LOG_FILE                       = "chief-solution-review_log.md"
-CSRO_DA_FILE                        = "chief-solution-diff-analysis.md"
-CSRO_LOG_DA_FILE                    = "chief-solution-diff-analysis_log.md"
+CSRO_RAW_FILE                                   = "chief-solution-review.md"
+CSRO_LOG_FILE                                   = "chief-solution-review_log.md"
+CSRO_DA_FILE                                    = "chief-solution-diff-analysis.md"
+CSRO_LOG_DA_FILE                                = "chief-solution-diff-analysis_log.md"
 
-DEFAULT_CSRO_LANGUAGE               = "English"
+DEFAULT_CSRO_LANGUAGE                           = "English"
 
 
 # support for executing workflow
@@ -588,7 +588,6 @@ class CrewEnterpriseSolutionWorkflowAgent(AbstractCrewEnterpriseWorkflowAgent):
         raw_blueprint_content = self.__read_blueprint__(ignore_not_found=False)
         
         # return merged new values
-        datetime_prompt, datetime_docid = datetime_for_agent()
         return {
             **kwargs,
             **self.__common_prompt_context__(),
@@ -753,7 +752,6 @@ class CrewEnterpriseBluePrintDiffAnalyzerAgent(AbstractCrewEnterpriseWorkflowAge
         raw_blueprint_content = self.__read_blueprint__()
         
         # return merged new values
-        datetime_prompt, datetime_docid = datetime_for_agent()
         return {
             **kwargs,
             **self.__common_prompt_context__(),
