@@ -107,7 +107,7 @@ class AbstractCrewEnterpriseSuperAgent(AbstractSubAgent):
         prefix = prefix if prefix else "_"
         return self.__storage_path__(
             storage_name="storage_csro",
-            file=f"{project_name}/{prefix}-csro.report-ba.md"
+            file=f"{project_name}/{prefix}-csro.ba-report.md"
         ) if project_name else None
     
     def file_csro_patched_ba(self, prefix):
@@ -115,7 +115,7 @@ class AbstractCrewEnterpriseSuperAgent(AbstractSubAgent):
         prefix = prefix if prefix else "_"
         return self.__storage_path__(
             storage_name="storage_csro",
-            file=f"{project_name}/{prefix}-csro.patched-ba.md"
+            file=f"{project_name}/{prefix}-csro.ba-patched.md"
         ) if project_name else None
     
     def file_csro_report_sa(self, prefix):
@@ -123,7 +123,7 @@ class AbstractCrewEnterpriseSuperAgent(AbstractSubAgent):
         prefix = prefix if prefix else "_"
         return self.__storage_path__(
             storage_name="storage_csro",
-            file=f"{project_name}/{prefix}-csro.report-sa.md"
+            file=f"{project_name}/{prefix}-csro.sa-report.md"
         ) if project_name else None
     
     def file_csro_patched_sa(self, prefix):
@@ -131,14 +131,23 @@ class AbstractCrewEnterpriseSuperAgent(AbstractSubAgent):
         prefix = prefix if prefix else "_"
         return self.__storage_path__(
             storage_name="storage_csro",
-            file=f"{project_name}/{prefix}-csro.patched-sa.md"
+            file=f"{project_name}/{prefix}-csro.sa-patched.md"
         ) if project_name else None
+    
     def file_csro_report_da(self, prefix):
         project_name = self.__current_project_name__()
         prefix = prefix if prefix else "_"
         return self.__storage_path__(
             storage_name="storage_csro",
-            file=f"{project_name}/{prefix}-csro.report-diff-analysis.md"
+            file=f"{project_name}/{prefix}-csro.diff-analysis-report.md"
+        ) if project_name else None
+    
+    def file_csro_patched_da(self, prefix):
+        project_name = self.__current_project_name__()
+        prefix = prefix if prefix else "_"
+        return self.__storage_path__(
+            storage_name="storage_csro",
+            file=f"{project_name}/{prefix}-csro.diff-analysis-patched-sa.md"
         ) if project_name else None
     
     def file_ba_report(self, prefix):
@@ -146,7 +155,7 @@ class AbstractCrewEnterpriseSuperAgent(AbstractSubAgent):
         prefix = prefix if prefix else "_"
         return self.__storage_path__(
             storage_name="storage_ba",
-            file=f"{project_name}/{prefix}-csro.report-ba.md"
+            file=f"{project_name}/{prefix}-csro.ba-report.md"
         ) if project_name else None
     
     def file_ba_patched(self, prefix):
@@ -154,7 +163,7 @@ class AbstractCrewEnterpriseSuperAgent(AbstractSubAgent):
         prefix = prefix if prefix else "_"
         return self.__storage_path__(
             storage_name="storage_ba",
-            file=f"{project_name}/{prefix}-csro.patched.requirements.md"
+            file=f"{project_name}/{prefix}-csro.ba-patched.requirements.md"
         ) if project_name else None
     
     def file_sa_report(self, prefix):
@@ -162,7 +171,7 @@ class AbstractCrewEnterpriseSuperAgent(AbstractSubAgent):
         prefix = prefix if prefix else "_"
         return self.__storage_path__(
             storage_name="storage_sa",
-            file=f"{project_name}/context/{prefix}-csro.report-sa.md"
+            file=f"{project_name}/context/{prefix}-csro.sa-report.md"
         ) if project_name else None
     
     def file_sa_patched(self, prefix):
@@ -170,15 +179,23 @@ class AbstractCrewEnterpriseSuperAgent(AbstractSubAgent):
         prefix = prefix if prefix else "_"
         return self.__storage_path__(
             storage_name="storage_sa",
-            file=f"{project_name}/context/{prefix}-csro.patched.{project_name}.global.blueprint.md"
+            file=f"{project_name}/context/{prefix}-csro.sa-patched.{project_name}.global.blueprint.md"
         ) if project_name else None
     
-    def file_sa_diff_analysis(self, prefix):
+    def file_sa_diff_analysis_report(self, prefix):
         project_name = self.__current_project_name__()
         prefix = prefix if prefix else "_"
         return self.__storage_path__(
             storage_name="storage_sa",
-            file=f"{project_name}/context/{prefix}-csro.diff-analysis.{project_name}.global.blueprint.md"
+            file=f"{project_name}/context/{prefix}-csro.diff-analysis-report.md"
+        ) if project_name else None
+    
+    def file_sa_diff_analysis_patched(self, prefix):
+        project_name = self.__current_project_name__()
+        prefix = prefix if prefix else "_"
+        return self.__storage_path__(
+            storage_name="storage_sa",
+            file=f"{project_name}/context/{prefix}-csro.diff-analysis-patched.{project_name}.global.blueprint.md"
         ) if project_name else None
     
     def template_prompt_backstory_sentinel(self):
@@ -782,9 +799,9 @@ class CrewEnterpriseSolutionWorkflowAgent(AbstractCrewEnterpriseWorkflowAgent):
             write_file(file=self.file_csro_report_sa(prefix=doc_id), data=report_sa)
             write_file(file=self.file_sa_report(prefix=doc_id), data=report_sa)
             if not is_passed_sa:
-                self.logger.warning("⚠️ Solution Architecture BluePrint Document is FAILED!")
                 write_file(file=self.file_csro_report_sa(prefix=doc_id), data=patched_sa)
-                write_file(file=self.file_sa_patched(prefix=doc_id), data=patched_sa)
+                fixed_version_path = write_file(file=self.file_sa_patched(prefix=doc_id), data=patched_sa)
+                self.logger.warning(f"⚠️ Solution Architecture BluePrint Document is FAILED! New fixed version at: {fixed_version_path}")
             
             else:
                 self.logger.info("✅ Solution Architecture BluePrint Document is PASSED!")
@@ -896,9 +913,37 @@ class CrewEnterpriseBluePrintDiffAnalyzerAgent(AbstractCrewEnterpriseWorkflowAge
         # project info
         doc_id = self.get_kwargs_by_key(key="doc_id", **kwargs)
         
-        # export task DA response
-        write_file(file=self.file_csro_report_da(prefix=doc_id), data=response_data)
-        write_file(file=self.file_sa_diff_analysis(prefix=doc_id), data=response_data)
+        # extract DA report and patched for the fixed version from CSRO SA
+        report_da = response_data
+        patched_da = None
+        
+        # check whether original SRS BA quality PASSED/FAILED
+        is_passed_da = CSRO_BA_SA_OUTPUT_DELIMITER not in report_da
+        if not is_passed_da:
+            # FAILED case: Split the raw string payload at the strict structural technical anchor
+            part_report_da, part_patched_da = report_da.split(CSRO_BA_SA_OUTPUT_DELIMITER, 1)
+            report_da = part_report_da.strip()
+            patched_da = part_patched_da.strip()
+            # Token optimization gate: If AI outputs PRISTINE, clone the original source text
+            is_passed_da = not patched_da or patched_da == CSRO_BA_SA_QUALITY_PASSED_OUTPUT
+        
+        # store report/patched BluePrint if necessary
+        write_file(file=self.file_csro_report_da(prefix=doc_id), data=report_da)
+        write_file(file=self.file_sa_diff_analysis_report(prefix=doc_id), data=report_da)
+        if not is_passed_da:
+            write_file(file=self.file_csro_patched_da(prefix=doc_id), data=patched_da)
+            fixed_version_path = write_file(file=self.file_sa_diff_analysis_patched(prefix=doc_id), data=patched_da)
+            self.logger.warning(f"⚠️ The fixed version of Solution Architecture BluePrint Document (CSRO) is FAILED! New re-fixed vresion at: {fixed_version_path}")
+        
+        else:
+            self.logger.info("✅ Business Analysis SRS Document is PASSED!")
+        
+        # re-update kwargs
+        kwargs = {
+            **kwargs,
+            "report_da": report_da,
+            "patched_da": patched_da
+        }
         
         # export raw response if necessary as log tracing
         raw_response = self.get_kwargs_by_key(key="raw_response", **kwargs)

@@ -20,7 +20,7 @@ To completely eliminate table format breaking and layout overflow issues caused 
 ### 📌 FAILED BULLET REGISTRY & RISK ANALYSIS RAILS:
 Immediately underneath the Mini-Grid Table, you MUST provide a dedicated subsection containing a clean Markdown bulleted list (`*`) mapping out every single dynamic requirement or data Tag ID (`[REQ-XXX]`, `[DAT-XXX]`, `[EXC-XXX]`, etc.) that triggered a **`FAILED`** status (omitted, missing, or misaligned) during your trace check. If no tags failed, explicitly state that functional matrix coverage is 100% complete and pristine with a status of **`PASSED`**.
 
-If and only if any tag fails, you MUST dynamically inject a detailed evaluation block named `### ⚠️ 2__DOT__1__DOT__ Failure Root-Cause Matrix & Architecture Risk Assessment` containing the following parameters:
+If and only if any tag fails, you MUST dynamically inject a detailed evaluation block named `### ⚠️ 2.1. Failure Root-Cause Matrix & Architecture Risk Assessment` containing the following parameters:
 - **Failed Tag Identifier:** [Explicitly list the failed BA Tag IDs]
 - **Root-Cause Analysis & Functional Blind Spot:** [Provide an exhaustive technical breakdown explaining exactly why the baseline failed or which functional contract string from the BA specification was dropped or added by the BA agent]
 - **Systemic Risk Assessment & Compounding Impact:** [Deliver a sharp, high-density impact analysis under OWASP, security data isolation, and business revenue standards, explaining the system damage if left unpatched]
@@ -53,7 +53,7 @@ You MUST format your total response report strictly using the mandatory Markdown
 | **Project Description** | {{ project_description }} |
 | **Verification Method** | Independent Requirements Matrix Coverage Check |
 | **Auditor Identity** | CSRO Business Analyst Auditor Sub-Agent |
-| **Audit Date__SLASH__Time** | {{ current_timestamp }} |
+| **Audit Date/Time** | {{ current_timestamp }} |
 | **Status** | Formatted & Executed |
 
 ## 1. Compliance Matrix Synthesis Analysis

@@ -5,7 +5,7 @@ You MUST thoroughly cross-examine the structural data metrics of these two asset
 - Inbound Generated Initial SA Blueprint Document: {{ raw_blueprint_content }}
 
 Your infrastructure governance loop MUST strictly enforce exactly four compliance gate rules:
-1. **Dynamic Topology Path Audit Gate:** Read the technology framework choices from the inputs. All file components must start strictly with `__DOT____SLASH__sources__SLASH__`. Verify that the directory path prefixing matches the active topology. Reject any relative file path masks or dummy paths.
+1. **Dynamic Topology Path Audit Gate:** Read the technology framework choices from the inputs. All file components must start strictly with `./sources/`. Verify that the directory path prefixing matches the active topology. Reject any relative file path masks or dummy paths.
 2. **Phase Ceiling Evaluation Gate:** Do NOT reject short, un-padded, high-density timelines that consume fewer phases than {{ num_phases }} or fewer days than {{ max_days_per_phase }}, provided they successfully map 100% of the BA requirement tags. You MUST instantly reject the blueprint if any phase or log exceeds {{ num_phases }} or {{ max_days_per_phase }}, or incorporates chronological day bundling ranges (e.g., "DAY 1 - DAY 3").
 3. **Anti-Padding & Task Rác Audit Gate:** Audit the daily logs for rác filler tasks. If you detect placeholder activities, artificial sync meetings, empty reviews, or documentation padding to expand the calendar, reject immediately.
 4. **Sub-Task Metadata Blueprint Audit Gate:** Verify that every daily log subsection contains an atomic sub-agent role token strictly capitalized ('Coder' | 'Tester' | 'Reviewer' | 'Doc' | 'Docker' | 'Gcp' | 'Gke'), and links each relative file path to a valid `D<day_num>_ST<task_index>` identifier node inline.
@@ -22,7 +22,7 @@ To completely eliminate table format breaking and layout overflow issues, you MU
 ### 📌 FAILED BULLET REGISTRY & RISK ANALYSIS RAILS:
 Immediately underneath the Mini-Grid Table, you MUST provide a dedicated subsection containing a clean Markdown bulleted list (`*`) mapping out every single infrastructure defect, day bundling anomaly, or metadata violation that triggered a **`FAILED`** status during your check. If no items failed, explicitly state that the architectural calendar boundary is 100% complete and pristine with a status of **`PASSED`**.
 
-If and only if any item fails, you MUST dynamically inject a detailed evaluation block named `### ⚠️ 2__DOT__1__DOT__ Failure Root-Cause Matrix & Architecture Risk Assessment` containing the following parameters:
+If and only if any item fails, you MUST dynamically inject a detailed evaluation block named `### ⚠️ 2.1. Failure Root-Cause Matrix & Architecture Risk Assessment` containing the following parameters:
 - **Failed Infrastructure Parameter:** [Explicitly list the failed components or log days]
 - **Phân tích nguyên nhân & Điểm mù chức năng:** [Provide an exhaustive technical breakdown explaining exactly why the baseline failed or which formatting rule was breached by the SA agent]
 - **Đánh giá rủi ro hệ thống & Tác động cộng dồn:** [Deliver a sharp, high-density impact analysis under pipeline parsers, automated branch deployment filters, and cloud infrastructure standards, explaining the system damage if left unpatched]
@@ -55,7 +55,7 @@ You MUST format your total response report strictly using the mandatory Markdown
 | **Project Description** | {{ project_description }} |
 | **Verification Method** | Independent Multi-Layer Triple-Check Pattern |
 | **Auditor Identity** | CSRO Systems Infrastructure Auditor Sub-Agent |
-| **Audit Date__SLASH__Time** | {{ current_timestamp }} |
+| **Audit Date/Time** | {{ current_timestamp }} |
 | **Status** | Formatted & Executed |
 
 ## 1. Compliance Matrix Synthesis Analysis
