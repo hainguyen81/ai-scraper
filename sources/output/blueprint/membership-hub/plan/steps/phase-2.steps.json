@@ -1,6 +1,6 @@
 {
     "phase_id": 2,
-    "phase_name": "Phase 2",
+    "phase_name": "membership-hub Phase 2",
     "project_name": "membership-hub",
     "global_context_file": ".ai/.context/membership-hub.global.blueprint.md",
     "source_target_dir": "sources/",
@@ -13,46 +13,19 @@
                 {
                     "id": "D1_ST1",
                     "agent": "Coder",
-                    "desc": "Coder Agent: Implement AIChatbotService as a Spring Boot @Service with dependency injection for an OpenAI client. Use a secure HTTP client with encrypted credentials defined in application.yml. Implement input validation: reject empty queries or queries longer than 1024 characters, and reject malformed JSON. Implement exception handling: map ExternalServiceException to HTTP 502 and InvalidInputException to HTTP 400. Implement SLF4J logging with MDC for request ID and create an audit log entry on each response.",
+                    "desc": "Coder Agent: Create courses table DDL",
                     "targeted_tags": [],
                     "components": [
-                        "./sources/backend/aichatbot/AIChatbotService.java"
+                        "./sources/backend/database/schema.sql"
                     ]
                 },
                 {
                     "id": "D1_ST2",
                     "agent": "Coder",
-                    "desc": "Coder Agent: Implement AIChatbotController with REST endpoint POST /api/chatbot/query consuming application/json. Secure with JWT authentication via @PreAuthorize; include optional role checks. Use a Request DTO validated with Hibernate Validator, returning errors as 400 Bad Request. Response DTO must include fields: answer, confidence, escalate flag. Publish the response to Kafka topic 'chatbot.responses' for downstream analytics.",
+                    "desc": "Coder Agent: Create notifications table DDL",
                     "targeted_tags": [],
                     "components": [
-                        "./sources/backend/aichatbot/AIChatbotController.java"
-                    ]
-                },
-                {
-                    "id": "D1_ST3",
-                    "agent": "Tester",
-                    "desc": "Tester Agent: Write unit tests in AIChatbotServiceTest.java. Mock the external AI client using Mockito. Test success scenarios, low-confidence responses, and exception flows. Verify input validation triggers InvalidInputException. Assert that audit log entries are created.",
-                    "targeted_tags": [],
-                    "components": [
-                        "./sources/backend/aichatbot/AIChatbotServiceTest.java"
-                    ]
-                },
-                {
-                    "id": "D1_ST4",
-                    "agent": "Reviewer",
-                    "desc": "Reviewer Agent: Perform static code analysis on AIChatbotService.java using SpotBugs and OWASP Dependency Check; ensure no high-severity findings. Verify exception handling aligns with the API contract (ExternalServiceException -> 502, InvalidInputException -> 400). Confirm use of prepared statements for any DB interactions (none in this service).",
-                    "targeted_tags": [],
-                    "components": [
-                        "./sources/backend/aichatbot/AIChatbotService.java"
-                    ]
-                },
-                {
-                    "id": "D1_ST5",
-                    "agent": "Doc",
-                    "desc": "Doc Agent: Create README.md for the AI Chatbot module. Include endpoint specification (POST /api/chatbot/query), request/response examples (JSON schemas), error codes (400, 502), and deployment notes. Reference GDPR data handling procedures for user queries.",
-                    "targeted_tags": [],
-                    "components": [
-                        "./sources/backend/aichatbot/README.md"
+                        "./sources/backend/database/schema.sql"
                     ]
                 }
             ]
@@ -65,46 +38,37 @@
                 {
                     "id": "D2_ST1",
                     "agent": "Coder",
-                    "desc": "Coder Agent: Implement MobileRoleSpecificUIService to return a JSON map of role -> list of available screens. Source data from the 'roles' table and 'role_screen_mapping' table (pre-populated). Cache results in Redis with a TTL of 5 minutes to meet latency SLA. Validate the role ID against the Roles table; throw InvalidRoleException if not found.",
+                    "desc": "Coder Agent: Implement POST /courses",
                     "targeted_tags": [],
                     "components": [
-                        "./sources/backend/mobileapp/MobileRoleSpecificUIService.java"
+                        "./sources/backend/course-management/src/main/java/org/nlh4j/sources/coursemanagement/CourseController.java"
                     ]
                 },
                 {
                     "id": "D2_ST2",
                     "agent": "Coder",
-                    "desc": "Coder Agent: Implement MobileRoleSpecificUIController with REST endpoint GET /api/mobile/ui/metadata requiring JWT authentication. Return HTTP 200 with a JSON payload; return HTTP 404 if the role is not found. Log the request and response with a correlation ID.",
+                    "desc": "Coder Agent: Implement GET /courses",
                     "targeted_tags": [],
                     "components": [
-                        "./sources/backend/mobileapp/MobileRoleSpecificUIController.java"
+                        "./sources/backend/course-management/src/main/java/org/nlh4j/sources/coursemanagement/CourseController.java"
                     ]
                 },
                 {
                     "id": "D2_ST3",
-                    "agent": "Tester",
-                    "desc": "Tester Agent: Write unit tests in MobileRoleSpecificUIServiceTest.java. Mock the repository to return sample role data. Test cache hit and cache miss scenarios. Verify that InvalidRoleException is thrown for an invalid role ID.",
+                    "agent": "Coder",
+                    "desc": "Coder Agent: Implement PUT /courses/{id}",
                     "targeted_tags": [],
                     "components": [
-                        "./sources/backend/mobileapp/MobileRoleSpecificUIServiceTest.java"
+                        "./sources/backend/course-management/src/main/java/org/nlh4j/sources/coursemanagement/CourseController.java"
                     ]
                 },
                 {
                     "id": "D2_ST4",
-                    "agent": "Reviewer",
-                    "desc": "Reviewer Agent: Review MobileRoleSpecificUIService.java. Ensure no hard-coded role names; use the enum UserRole. Verify thread-safety of the cache access mechanism.",
+                    "agent": "Coder",
+                    "desc": "Coder Agent: Implement DELETE /courses/{id}",
                     "targeted_tags": [],
                     "components": [
-                        "./sources/backend/mobileapp/MobileRoleSpecificUIService.java"
-                    ]
-                },
-                {
-                    "id": "D2_ST5",
-                    "agent": "Doc",
-                    "desc": "Doc Agent: Create README.md for the Mobile UI module. Detail the API contract (GET /api/mobile/ui/metadata), the role mapping schema, and the caching strategy (Redis, TTL 5 min).",
-                    "targeted_tags": [],
-                    "components": [
-                        "./sources/backend/mobileapp/README.md"
+                        "./sources/backend/course-management/src/main/java/org/nlh4j/sources/coursemanagement/CourseController.java"
                     ]
                 }
             ]
@@ -117,46 +81,19 @@
                 {
                     "id": "D3_ST1",
                     "agent": "Coder",
-                    "desc": "Coder Agent: Implement PushNotificationService using Firebase Admin SDK for FCM and the 'pushy' library for APNs. Persist a notification record in the 'notifications' table with status flags 'sent' and 'failed'. Implement retry logic with exponential back-off up to 3 attempts; log each attempt. Publish the notification event to Kafka topic 'notifications.push' for analytics.",
+                    "desc": "Coder Agent: Implement CourseRepository",
                     "targeted_tags": [],
                     "components": [
-                        "./sources/backend/notifications/PushNotificationService.java"
+                        "./sources/backend/course-management/src/main/java/org/nlh4j/sources/coursemanagement/repository/CourseRepository.java"
                     ]
                 },
                 {
                     "id": "D3_ST2",
                     "agent": "Coder",
-                    "desc": "Coder Agent: Implement PushNotificationController with REST endpoint POST /api/notifications/push consuming JSON payload with fields: userId, message, platform. Validate the 'platform' field against an enum; reject unsupported values. Return HTTP 202 Accepted; actual delivery must be handled asynchronously by the service.",
+                    "desc": "Coder Agent: Implement CourseService with conflict check",
                     "targeted_tags": [],
                     "components": [
-                        "./sources/backend/notifications/PushNotificationController.java"
-                    ]
-                },
-                {
-                    "id": "D3_ST3",
-                    "agent": "Tester",
-                    "desc": "Tester Agent: Write unit tests in PushNotificationServiceTest.java. Mock the FCM and APNs clients. Test success, failure, and retry path scenarios. Verify database record creation and status updates.",
-                    "targeted_tags": [],
-                    "components": [
-                        "./sources/backend/notifications/PushNotificationServiceTest.java"
-                    ]
-                },
-                {
-                    "id": "D3_ST4",
-                    "agent": "Reviewer",
-                    "desc": "Reviewer Agent: Perform static analysis on PushNotificationService.java for null-pointer safety. Verify OWASP CSRF is mitigated via @CrossOrigin restrictions. Confirm the retry schedule (exponential back-off, 3 attempts) complies with NFR-004 scaling requirements.",
-                    "targeted_tags": [],
-                    "components": [
-                        "./sources/backend/notifications/PushNotificationService.java"
-                    ]
-                },
-                {
-                    "id": "D3_ST5",
-                    "agent": "Doc",
-                    "desc": "Doc Agent: Create README.md for the Notifications module. Include the API specification (POST /api/notifications/push), retry policy (exponential back-off, 3 attempts), and failure handling guidelines.",
-                    "targeted_tags": [],
-                    "components": [
-                        "./sources/backend/notifications/README.md"
+                        "./sources/backend/course-management/src/main/java/org/nlh4j/sources/coursemanagement/service/CourseService.java"
                     ]
                 }
             ]
@@ -168,11 +105,21 @@
             "sub_tasks": [
                 {
                     "id": "D4_ST1",
-                    "agent": "Docker",
-                    "desc": "Docker Agent: Create a multi-stage Dockerfile at ./sources/backend/Dockerfile. Use base image 'openjdk:17-jdk-slim' for compilation with Maven. Copy the resulting JAR to '/app.jar' in the final image. Set ENTRYPOINT to ['java','-jar','/app.jar']. Expose port 8080. Implement a health-check endpoint at '/actuator/health'. Ensure the final image size is under 500 MB.",
+                    "agent": "Coder",
+                    "desc": "Coder Agent: Implement NotificationService",
                     "targeted_tags": [],
                     "components": [
-                        "./sources/backend/Dockerfile"
+                        "./sources/backend/notification-management/src/main/java/org/nlh4j/sources/notificationmanagement/NotificationService.java"
+                    ]
+                },
+                {
+                    "id": "D4_ST2",
+                    "agent": "Coder",
+                    "desc": "Coder Agent: Implement CourseCreatedEvent and listener",
+                    "targeted_tags": [],
+                    "components": [
+                        "./sources/backend/course-management/src/main/java/org/nlh4j/sources/coursemanagement/event/CourseCreatedEvent.java",
+                        "./sources/backend/notification-management/src/main/java/org/nlh4j/sources/notificationmanagement/listener/CourseCreatedListener.java"
                     ]
                 }
             ]
@@ -184,11 +131,62 @@
             "sub_tasks": [
                 {
                     "id": "D5_ST1",
-                    "agent": "Gcp",
-                    "desc": "Gcp Agent: Generate a GKE deployment manifest at ./sources/deployment/k8s/backend-deployment.yaml. Configure a Deployment with 3 replicas and Horizontal Pod Autoscaler (HPA) scaling on CPU > 70% or latency > 300 ms. Define a Service of type ClusterIP exposing port 8080. Create a ConfigMap for application.yml and a Secret for FCM credentials. Enable readinessProbe and livenessProbe with 30-second intervals.",
+                    "agent": "Tester",
+                    "desc": "Tester Agent: Test CourseController CRUD",
                     "targeted_tags": [],
                     "components": [
-                        "./sources/deployment/k8s/backend-deployment.yaml"
+                        "./sources/backend/course-management/src/test/java/org/nlh4j/sources/coursemanagement/CourseControllerTest.java"
+                    ]
+                },
+                {
+                    "id": "D5_ST2",
+                    "agent": "Tester",
+                    "desc": "Tester Agent: Test CourseService conflict logic",
+                    "targeted_tags": [],
+                    "components": [
+                        "./sources/backend/course-management/src/test/java/org/nlh4j/sources/coursemanagement/service/CourseServiceTest.java"
+                    ]
+                },
+                {
+                    "id": "D5_ST3",
+                    "agent": "Tester",
+                    "desc": "Tester Agent: Test NotificationService event handling",
+                    "targeted_tags": [],
+                    "components": [
+                        "./sources/backend/notification-management/src/test/java/org/nlh4j/sources/notificationmanagement/NotificationServiceTest.java"
+                    ]
+                }
+            ]
+        },
+        {
+            "day": 6,
+            "context_file": ".ai/.plan/.context/phase-2.context.blueprint.md",
+            "context_section": "DAY 6",
+            "sub_tasks": [
+                {
+                    "id": "D6_ST1",
+                    "agent": "Reviewer",
+                    "desc": "Reviewer Agent: Run reviewer on all Java files",
+                    "targeted_tags": [],
+                    "components": [
+                        "./sources/backend/course-management/src/main/java/...",
+                        "./sources/backend/notification-management/src/main/java/..."
+                    ]
+                }
+            ]
+        },
+        {
+            "day": 7,
+            "context_file": ".ai/.plan/.context/phase-2.context.blueprint.md",
+            "context_section": "DAY 7",
+            "sub_tasks": [
+                {
+                    "id": "D7_ST1",
+                    "agent": "Doc",
+                    "desc": "Doc Agent: Generate Phase 2 documentation",
+                    "targeted_tags": [],
+                    "components": [
+                        "./sources/backend/docs/phase2.md"
                     ]
                 }
             ]

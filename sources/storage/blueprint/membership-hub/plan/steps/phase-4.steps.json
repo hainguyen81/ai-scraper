@@ -1,6 +1,6 @@
 {
     "phase_id": 4,
-    "phase_name": "Phase 4",
+    "phase_name": "membership-hub",
     "project_name": "membership-hub",
     "global_context_file": ".ai/.context/membership-hub.global.blueprint.md",
     "source_target_dir": "sources/",
@@ -12,48 +12,38 @@
             "sub_tasks": [
                 {
                     "id": "D1_ST1",
-                    "agent": "Coder",
-                    "desc": "Coder Agent: Implement AIChatbotService as a Spring Boot @Service with dependency injection for an OpenAI client. Use a secure HTTP client with credentials stored encrypted in application.yml. Implement input validation: reject empty queries, queries longer than 1024 characters, and malformed JSON. Map ExternalServiceException to HTTP 502 and InvalidInputException to HTTP 400. Implement SLF4J logging with MDC for request ID and create an audit log entry on each response.",
-                    "targeted_tags": [],
+                    "agent": "docker",
+                    "desc": "docker Agent: No description provided",
+                    "targeted_tags": [
+                        "[NFR-001]",
+                        "[NFR-002]"
+                    ],
                     "components": [
-                        "./sources/backend/org/nlh4j/sources/aichatbot/AIChatbotService.java"
+                        "./sources/infra/deployment/Dockerfile.backend"
                     ]
                 },
                 {
                     "id": "D1_ST2",
-                    "agent": "Coder",
-                    "desc": "Coder Agent: Implement AIChatbotController with REST endpoint POST /api/chatbot/query consuming application/json. Secure with JWT authentication via @PreAuthorize. Validate request DTO using Hibernate Validator, returning 400 Bad Request for errors. Response DTO must include fields: answer, confidence, escalate flag. Publish the response to Kafka topic 'chatbot.responses' for analytics.",
-                    "targeted_tags": [],
+                    "agent": "docker",
+                    "desc": "docker Agent: No description provided",
+                    "targeted_tags": [
+                        "[NFR-001]",
+                        "[NFR-002]"
+                    ],
                     "components": [
-                        "./sources/backend/org/nlh4j/sources/aichatbot/AIChatbotController.java"
+                        "./sources/infra/deployment/Dockerfile.frontend"
                     ]
                 },
                 {
                     "id": "D1_ST3",
-                    "agent": "Tester",
-                    "desc": "Tester Agent: Write unit tests for AIChatbotService using Mockito to mock the external AI client. Test success scenarios, low confidence responses, and exception flows. Verify input validation triggers InvalidInputException. Assert that audit log entries are created for each response.",
-                    "targeted_tags": [],
+                    "agent": "reviewer",
+                    "desc": "reviewer Agent: No description provided",
+                    "targeted_tags": [
+                        "[NFR-001]",
+                        "[NFR-002]"
+                    ],
                     "components": [
-                        "INTEGRATION_SCOPE;./sources/backend/org/nlh4j/sources/aichatbot/AIChatbotService.java",
-                        "./sources/backend/org/nlh4j/sources/aichatbot/AIChatbotServiceTest.java"
-                    ]
-                },
-                {
-                    "id": "D1_ST4",
-                    "agent": "Reviewer",
-                    "desc": "Reviewer Agent: Perform static code analysis on AIChatbotService.java using SpotBugs and OWASP Dependency Check; ensure no high-severity findings. Verify exception handling aligns with the API contract (ExternalServiceException -> 502, InvalidInputException -> 400). Confirm the service uses prepared statements for any database interactions.",
-                    "targeted_tags": [],
-                    "components": [
-                        "./sources/backend/org/nlh4j/sources/aichatbot/AIChatbotService.java"
-                    ]
-                },
-                {
-                    "id": "D1_ST5",
-                    "agent": "Doc",
-                    "desc": "Doc Agent: Create README.md for the AI Chatbot module. Include endpoint specification (POST /api/chatbot/query), request/response payload examples, error codes (400, 502), and deployment notes. Reference GDPR data handling procedures for user queries.",
-                    "targeted_tags": [],
-                    "components": [
-                        "./sources/backend/org/nlh4j/sources/aichatbot/README.md"
+                        "./sources/infra/deployment/Dockerfile.backend;./sources/infra/deployment/Dockerfile.frontend"
                     ]
                 }
             ]
@@ -65,48 +55,38 @@
             "sub_tasks": [
                 {
                     "id": "D2_ST1",
-                    "agent": "Coder",
-                    "desc": "Coder Agent: Implement MobileRoleSpecificUIService to return a JSON map of role -> list of available screens. Source data from the 'roles' and 'role_screen_mapping' tables (pre-populated). Cache results in Redis with a TTL of 5 minutes to meet latency SLA. Validate the role ID against the Roles table; throw InvalidRoleException if not found.",
-                    "targeted_tags": [],
+                    "agent": "GKE",
+                    "desc": "GKE Agent: No description provided",
+                    "targeted_tags": [
+                        "[NFR-001]",
+                        "[NFR-002]"
+                    ],
                     "components": [
-                        "./sources/backend/org/nlh4j/sources/mobileapp/MobileRoleSpecificUIService.java"
+                        "./sources/infra/deployment/backend-deployment.yaml"
                     ]
                 },
                 {
                     "id": "D2_ST2",
-                    "agent": "Coder",
-                    "desc": "Coder Agent: Implement MobileRoleSpecificUIController with REST endpoint GET /api/mobile/ui/metadata requiring JWT authentication. Return HTTP 200 with the JSON payload; return HTTP 404 if the role is not found. Log the request and response with a correlation ID.",
-                    "targeted_tags": [],
+                    "agent": "GKE",
+                    "desc": "GKE Agent: No description provided",
+                    "targeted_tags": [
+                        "[NFR-001]",
+                        "[NFR-002]"
+                    ],
                     "components": [
-                        "./sources/backend/org/nlh4j/sources/mobileapp/MobileRoleSpecificUIController.java"
+                        "./sources/infra/deployment/frontend-deployment.yaml"
                     ]
                 },
                 {
                     "id": "D2_ST3",
-                    "agent": "Tester",
-                    "desc": "Tester Agent: Write unit tests for MobileRoleSpecificUIService. Mock the repository to return sample role data. Test cache hit and cache miss scenarios. Verify that InvalidRoleException is thrown for an invalid role ID.",
-                    "targeted_tags": [],
+                    "agent": "reviewer",
+                    "desc": "reviewer Agent: No description provided",
+                    "targeted_tags": [
+                        "[NFR-001]",
+                        "[NFR-002]"
+                    ],
                     "components": [
-                        "INTEGRATION_SCOPE;./sources/backend/org/nlh4j/sources/mobileapp/MobileRoleSpecificUIService.java",
-                        "./sources/backend/org/nlh4j/sources/mobileapp/MobileRoleSpecificUIServiceTest.java"
-                    ]
-                },
-                {
-                    "id": "D2_ST4",
-                    "agent": "Reviewer",
-                    "desc": "Reviewer Agent: Review MobileRoleSpecificUIService.java. Ensure no hard-coded role names are used; instead, use the UserRole enum. Verify thread-safety of the Redis cache access.",
-                    "targeted_tags": [],
-                    "components": [
-                        "./sources/backend/org/nlh4j/sources/mobileapp/MobileRoleSpecificUIService.java"
-                    ]
-                },
-                {
-                    "id": "D2_ST5",
-                    "agent": "Doc",
-                    "desc": "Doc Agent: Create README.md for the Mobile UI module. Detail the API contract (GET /api/mobile/ui/metadata), the role mapping schema, and the caching strategy using Redis with TTL.",
-                    "targeted_tags": [],
-                    "components": [
-                        "./sources/backend/org/nlh4j/sources/mobileapp/README.md"
+                        "./sources/infra/deployment/backend-deployment.yaml;./sources/infra/deployment/frontend-deployment.yaml"
                     ]
                 }
             ]
@@ -118,48 +98,38 @@
             "sub_tasks": [
                 {
                     "id": "D3_ST1",
-                    "agent": "Coder",
-                    "desc": "Coder Agent: Implement PushNotificationService using Firebase Admin SDK for FCM and the 'pushy' library for APNs. Persist notification records in the 'notifications' table with status flags 'sent' and 'failed'. Implement retry logic with exponential back-off up to 3 attempts, logging each attempt. Publish notification events to Kafka topic 'notifications.push' for analytics.",
-                    "targeted_tags": [],
+                    "agent": "GCP",
+                    "desc": "GCP Agent: No description provided",
+                    "targeted_tags": [
+                        "[NFR-001]",
+                        "[NFR-002]"
+                    ],
                     "components": [
-                        "./sources/backend/org/nlh4j/sources/notifications/PushNotificationService.java"
+                        "./sources/infra/deployment/helm/backend/Chart.yaml"
                     ]
                 },
                 {
                     "id": "D3_ST2",
-                    "agent": "Coder",
-                    "desc": "Coder Agent: Implement PushNotificationController with REST endpoint POST /api/notifications/push consuming JSON payload with fields: userId, message, platform. Validate the 'platform' field against an enum; reject unsupported values. Return HTTP 202 Accepted; actual delivery must be handled asynchronously by the service.",
-                    "targeted_tags": [],
+                    "agent": "GCP",
+                    "desc": "GCP Agent: No description provided",
+                    "targeted_tags": [
+                        "[NFR-001]",
+                        "[NFR-002]"
+                    ],
                     "components": [
-                        "./sources/backend/org/nlh4j/sources/notifications/PushNotificationController.java"
+                        "./sources/infra/deployment/helm/frontend/Chart.yaml"
                     ]
                 },
                 {
                     "id": "D3_ST3",
-                    "agent": "Tester",
-                    "desc": "Tester Agent: Write unit tests for PushNotificationService. Mock the FCM and APNs clients. Test success paths, failure paths, and the retry logic with exponential back-off. Verify database record creation and status updates (sent/failed).",
-                    "targeted_tags": [],
+                    "agent": "reviewer",
+                    "desc": "reviewer Agent: No description provided",
+                    "targeted_tags": [
+                        "[NFR-001]",
+                        "[NFR-002]"
+                    ],
                     "components": [
-                        "INTEGRATION_SCOPE;./sources/backend/org/nlh4j/sources/notifications/PushNotificationService.java",
-                        "./sources/backend/org/nlh4j/sources/notifications/PushNotificationServiceTest.java"
-                    ]
-                },
-                {
-                    "id": "D3_ST4",
-                    "agent": "Reviewer",
-                    "desc": "Reviewer Agent: Perform static code analysis on PushNotificationService.java for null-pointer safety. Verify OWASP CSRF is mitigated via @CrossOrigin restrictions. Confirm the retry schedule (exponential back-off, max 3 attempts) complies with NFR-004 scaling requirements.",
-                    "targeted_tags": [],
-                    "components": [
-                        "./sources/backend/org/nlh4j/sources/notifications/PushNotificationService.java"
-                    ]
-                },
-                {
-                    "id": "D3_ST5",
-                    "agent": "Doc",
-                    "desc": "Doc Agent: Create README.md for the Notifications module. Include the API specification (POST /api/notifications/push), the retry policy (exponential back-off, 3 attempts), and failure handling guidelines.",
-                    "targeted_tags": [],
-                    "components": [
-                        "./sources/backend/org/nlh4j/sources/notifications/README.md"
+                        "./sources/infra/deployment/helm/backend;./sources/infra/deployment/helm/frontend"
                     ]
                 }
             ]
@@ -171,20 +141,38 @@
             "sub_tasks": [
                 {
                     "id": "D4_ST1",
-                    "agent": "Docker",
-                    "desc": "Docker Agent: Create a multi-stage Dockerfile at ./sources/backend/Dockerfile. Use base image 'openjdk:17-jdk-slim' for compilation with Maven. Copy the resulting JAR to the final image as '/app.jar'. Set ENTRYPOINT to ['java','-jar','/app.jar']. Expose port 8080. Implement a health-check on endpoint '/actuator/health'. Ensure the final image size is under 500 MB.",
-                    "targeted_tags": [],
+                    "agent": "GKE",
+                    "desc": "GKE Agent: No description provided",
+                    "targeted_tags": [
+                        "[NFR-003]",
+                        "[NFR-004]"
+                    ],
                     "components": [
-                        "./sources/backend/Dockerfile"
+                        "./sources/infra/monitoring/prometheus.yml"
                     ]
                 },
                 {
                     "id": "D4_ST2",
-                    "agent": "Reviewer",
-                    "desc": "Reviewer Agent: Review the Dockerfile. Verify the base image size is under 200 MB and the final image size is under 500 MB. Confirm no hard-coded secrets are present; ensure secrets are passed via build args or Docker secrets.",
-                    "targeted_tags": [],
+                    "agent": "GKE",
+                    "desc": "GKE Agent: No description provided",
+                    "targeted_tags": [
+                        "[NFR-003]",
+                        "[NFR-004]"
+                    ],
                     "components": [
-                        "./sources/backend/Dockerfile"
+                        "./sources/infra/monitoring/grafana-dashboard.json"
+                    ]
+                },
+                {
+                    "id": "D4_ST3",
+                    "agent": "reviewer",
+                    "desc": "reviewer Agent: No description provided",
+                    "targeted_tags": [
+                        "[NFR-003]",
+                        "[NFR-004]"
+                    ],
+                    "components": [
+                        "./sources/infra/monitoring/prometheus.yml;./sources/infra/monitoring/grafana-dashboard.json"
                     ]
                 }
             ]
@@ -196,11 +184,54 @@
             "sub_tasks": [
                 {
                     "id": "D5_ST1",
-                    "agent": "Gcp",
-                    "desc": "Gcp Agent: Generate GKE deployment manifest at ./sources/deployment/k8s/backend-deployment.yaml. Configure a Deployment with 3 replicas and Horizontal Pod Autoscaler (HPA) scaling on CPU >70% or latency >300 ms. Create a ClusterIP Service exposing port 8080. Use a ConfigMap for application.yml and a Secret for FCM credentials. Configure readinessProbe and livenessProbe with 30-second intervals.",
-                    "targeted_tags": [],
+                    "agent": "GCP",
+                    "desc": "GCP Agent: No description provided",
+                    "targeted_tags": [
+                        "[NFR-003]",
+                        "[NFR-004]"
+                    ],
                     "components": [
-                        "./sources/deployment/k8s/backend-deployment.yaml"
+                        "./sources/infra/monitoring/alertmanager.yml"
+                    ]
+                },
+                {
+                    "id": "D5_ST2",
+                    "agent": "GCP",
+                    "desc": "GCP Agent: No description provided",
+                    "targeted_tags": [
+                        "[NFR-003]",
+                        "[NFR-004]"
+                    ],
+                    "components": [
+                        "./sources/infra/monitoring/healthcheck.sh"
+                    ]
+                },
+                {
+                    "id": "D5_ST3",
+                    "agent": "doc",
+                    "desc": "doc Agent: No description provided",
+                    "targeted_tags": [
+                        "[NFR-001]",
+                        "[NFR-002]",
+                        "[NFR-003]",
+                        "[NFR-004]"
+                    ],
+                    "components": [
+                        "./sources/infra/docs/infra-setup.md"
+                    ]
+                },
+                {
+                    "id": "D5_ST4",
+                    "agent": "reviewer",
+                    "desc": "reviewer Agent: No description provided",
+                    "targeted_tags": [
+                        "[NFR-001]",
+                        "[NFR-002]",
+                        "[NFR-003]",
+                        "[NFR-004]"
+                    ],
+                    "components": [
+                        "./sources/infra/deployment;./sources/infra/monitoring;./sources/infra/docs"
                     ]
                 }
             ]
