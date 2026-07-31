@@ -24,7 +24,7 @@ To completely eliminate table format breaking and layout overflow issues, you MU
 ### 📌 MODIFICATIONS BULLET REGISTRY & RISK IMPACT ANALYSIS RAILS:
 Immediately underneath the Mini-Grid Table, you MUST provide a dedicated subsection containing a clean Markdown bulleted list (`*`) explicitly detailing every single component change, chronological day adjustment, or metadata format update discovered. 
 
-If and only if your triple-check evaluation detects fatal integration bottlenecks, invalid service definitions, or broken architectural constraints that trigger a **`FAILED`** gate status, you MUST dynamically inject a detailed evaluation block named `### ⚠️ 2__DOT__1__DOT__ Failure Root-Cause Matrix & Architecture Risk Assessment` containing the following parameters:
+If and only if your triple-check evaluation detects fatal integration bottlenecks, invalid service definitions, or broken architectural constraints that trigger a **`FAILED`** gate status, you MUST dynamically inject a detailed evaluation block named `### ⚠️ 2.1. Failure Root-Cause Matrix & Architecture Risk Assessment` containing the following parameters:
 - **Failed Infrastructure Parameter:** [Explicitly list the failed components or log days]
 - **Phân tích nguyên nhân & Điểm mù chức năng:** [Provide an exhaustive technical breakdown explaining exactly why the baseline failed or which formatting/engineering rule was breached]
 - **Đánh giá rủi ro hệ thống & Tác động cộng dồn:** [Deliver a sharp, high-density impact analysis under pipeline parsers, automated branch deployment filters, and cloud infrastructure standards, explaining the system damage if left unpatched]
@@ -49,14 +49,14 @@ You MUST format your master response report strictly using the mandatory Markdow
 
 | Audit Parameter | Information Details |
 | :--- | :--- |
-| **Audit Report ID** | AUDIT-DIFF-{{ current_timestamp_2 }} |
+| **Audit Report ID** | AUDIT-DIFF-{{ doc_id }} |
 | **Idea ID** | {{ idea_id }} |
 | **Project Name** | {{ project_name }} |
 | **Project Description** | {{ project_description }} |
 | **Target Blueprint ID** | [Dynamically extract the exact ARCH-ID token string found inside raw_csro_blueprint_content] |
 | **Verification Method** | Independent Multi-Layer Triple-Check Pattern |
 | **Auditor Identity** | CSRO Blueprint Diff Analyzer Sub-Agent |
-| **Audit Date__SLASH__Time** | {{ current_timestamp }} |
+| **Audit Date/Time** | {{ current_timestamp }} |
 | **Status** | Formatted & Executed |
 
 ## 1. Compliance Matrix Synthesis Analysis
