@@ -11,7 +11,6 @@ from openai import OpenAI
 
 # Now Python can seamlessly see and import the centralized helper utility cleanly!
 from sources.agents.agent_helper import (
-    resolve_absolute_path,
     write_blueprint_log,
     write_file,
     render_prompt,
@@ -58,25 +57,20 @@ def generate_global_context(client: OpenAI, model_name: str, project_name: str, 
         datetime_prompt, datetime_docid = datetime_for_agent()
         
         # parse system prompt from template
-        system_prompt_context = {
+        prompt_context = {
             "project_name": project_name,
+            "project_requirements": requirements,
+            "doc_id": datetime_docid,
+            "current_timestamp": datetime_prompt,
+            "language": language or DEFAULT_BLUEPRINT_LANGUAGE,
             "num_phases": num_phases,
-            "max_days_per_phase": max_days_per_phase,
-            "language": language or DEFAULT_BLUEPRINT_LANGUAGE
+            "max_days_per_phase": max_days_per_phase
         }
-        system_prompt = render_prompt(GLOBAL_SYSTEM_PROMPT_TEMPLATE_PATH, system_prompt_context)
+        system_prompt = render_prompt(GLOBAL_SYSTEM_PROMPT_TEMPLATE_PATH, prompt_context)
         log_system_prompt = system_prompt
         
         # parse user prompt from template
-        user_prompt_context = {
-            "project_name": project_name,
-            "project_requirements": requirements,
-            "num_phases": num_phases,
-            "max_days_per_phase": max_days_per_phase,
-            "doc_id": datetime_docid,
-            "current_timestamp": datetime_prompt
-        }
-        user_prompt = render_prompt(GLOBAL_USER_PROMPT_TEMPLATE_PATH, user_prompt_context)
+        user_prompt = render_prompt(GLOBAL_USER_PROMPT_TEMPLATE_PATH, prompt_context)
         log_prompt = user_prompt
         
         # GEMINI

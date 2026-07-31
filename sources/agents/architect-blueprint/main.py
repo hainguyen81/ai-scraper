@@ -42,9 +42,8 @@ STORAGE_OUTPUT                  = storage_info.get("output") or {}
 REL_STORAGE_BLUEPRINT           = STORAGE.get("relative_blueprint") or {}
 STORAGE_BLUEPRINT               = resolve_absolute_path(REL_STORAGE_BLUEPRINT)
 
-REL_BA_STORAGE_PATH             = STORAGE.get("relative_ba") or {}
-REL_PROJECTS_SUMMARY_FILE       = os.path.join(REL_BA_STORAGE_PATH, "projects-summary.json")
-PROJECTS_SUMMARY_FILE           = resolve_absolute_path(REL_PROJECTS_SUMMARY_FILE)
+BA_STORAGE_PATH                 = STORAGE.get("storage_ba") or {}
+PROJECTS_SUMMARY_FILE           = os.path.join(BA_STORAGE_PATH, "projects-summary.json")
 
 REL_REQUIREMENTS_STORAGE_PATH   = STORAGE.get("relative_requirements") or {}
 REQUIREMENTS_FILE               = "requirements.md"
@@ -52,6 +51,8 @@ REQUIREMENTS_FILE               = "requirements.md"
 MODELS_POOL_PATH                = resolve_absolute_path("sources/agents/models/models.json")
 MODELS_SECRETS_ENV_KEY          = "AI_MODELS_KEYS_JSON"
 PLAN_SPEC_FILE                  = "plan.spec.json"
+
+DEFAULT_BLUEPRINT_LANGUAGE      = "English"
 
 logger = get_logger("🏗️ EnterpriseSystemArchitectureAgent")
 
@@ -123,7 +124,7 @@ def run_architect_agent(
     project_name: str, requirements_path: str,
     num_phases: int, max_days_per_phase: int, output_dir: str,
     api_key: str, api_endpoint: str, api_model_global: str, api_model_phase: str, api_model_steps: str, api_model_steps_mapping: str,
-    exec_mode: int, exec_delay: int, daysPerChunk: int,
+    exec_mode: int, exec_delay: int, daysPerChunk: int, language: str,
     rotate_model: bool
 ):
     # check arguments
@@ -258,6 +259,7 @@ def run_architect_agent(
                 requirements=project_requirements,
                 num_phases=num_phases,
                 max_days_per_phase=max_days_per_phase,
+                language=language,
                 out_dir=absolute_out_dir
             )
             
@@ -307,6 +309,7 @@ def run_architect_agent(
                 global_context=global_context_text,
                 num_phases=num_phases,
                 max_days_per_phase=max_days_per_phase,
+                language=language,
                 out_dir=absolute_out_dir,
                 delay=exec_delay
             )
@@ -341,6 +344,7 @@ def run_architect_agent(
                 project_name=project_name,
                 num_phases=num_phases,
                 max_days_per_phase=max_days_per_phase,
+                language=language,
                 json_mapping=absolute_api_model_steps_mapping,
                 out_dir=absolute_out_dir,
                 delay=exec_delay,
@@ -437,6 +441,7 @@ if __name__ == "__main__":
         parser.add_argument("--api-model-phase-steps-days-per-chunk", type=int, default=5, help="Execution Days per AI Request Chunk")
         parser.add_argument("--exec-mode", type=int, default=0, help="AI Execution Mode: Global / Phase Context / Steps. Acceptable values: 0, 1, 2, 3")
         parser.add_argument("--exec-delay", type=int, default=3, help="AI Execution Delay in seconds")
+        parser.add_argument("--language", type=str, default=DEFAULT_BLUEPRINT_LANGUAGE, help="Output blueprint under specific language")
         # use method `str2bool` to parse argument
         parser.add_argument("--exec-rotate-model", type=str2bool, default=False,  help="Specify whether should rotate models if exceeding rate limit")
     
@@ -457,7 +462,7 @@ if __name__ == "__main__":
         args.api_key, args.api_endpoint,
         args.api_model_global_context, args.api_model_phase_context, args.api_model_phase_steps_json,
         args.api_model_phase_steps_json_mapping, args.exec_mode, args.exec_delay,
-        args.api_model_phase_steps_days_per_chunk,
+        args.api_model_phase_steps_days_per_chunk, args.language,
         args.exec_rotate_model
     )
 

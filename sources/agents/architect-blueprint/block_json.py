@@ -38,13 +38,13 @@ STORAGE                             = storage_info.get("storage") or {}
 STORAGE_AGENTS                      = storage_info.get("agents") or {}
 STORAGE_OUTPUT                      = storage_info.get("output") or {}
 
-REL_STORAGE_BLUEPRINT               = STORAGE.get("relative_blueprint") or {}
-STORAGE_BLUEPRINT                   = resolve_absolute_path(REL_STORAGE_BLUEPRINT)
+STORAGE_BLUEPRINT                   = STORAGE.get("storage_blueprint") or {}
+STORAGE_AGENT_BLUEPRINT_PROMPTS     = STORAGE_AGENTS.get("storage_blueprint_prompts") or {}
 
-REL_STORAGE_AGENT_BLUEPRINT         = STORAGE_AGENTS.get("relative_blueprint") or {}
-REL_STEPS_USER_PROMPT_TEMPLATE_PATH = os.path.join(REL_STORAGE_AGENT_BLUEPRINT, "block_json_prompt.md")
-STEPS_SYSTEM_PROMPT                 = "You are a rigid technical translator. Map high-level Markdown workflows into precise, executable JSON schemas."
-STEPS_USER_PROMPT_TEMPLATE_PATH     = resolve_absolute_path(REL_STEPS_USER_PROMPT_TEMPLATE_PATH)
+STEPS_SYSTEM_PROMPT_TEMPLATE_PATH   = os.path.join(STORAGE_AGENT_BLUEPRINT_PROMPTS, "block_json_prompt.system.md")
+STEPS_USER_PROMPT_TEMPLATE_PATH     = os.path.join(STORAGE_AGENT_BLUEPRINT_PROMPTS, "block_json_prompt.user.md")
+
+DEFAULT_BLUEPRINT_LANGUAGE          = "English"
 
 logger = get_logger("🏗️ EnterpriseSystemArchitectureStepsAgent")
 
@@ -88,7 +88,7 @@ def project_context_file(project_name: str):
 def phase_context_file(phase_idx: int):
     return f".ai/.plan/.context/phase-{ phase_idx }.context.blueprint.md"
 
-def dynamic_transform(json_data, project_name: str, phase_idx: int, template_file_path: str, log_file_path: str):
+def dynamic_transform(json_data, project_name: str, phase_idx: int, template_file_path: str):
     # check json mapping whether existed
     if not template_file_path or not os.path.exists(template_file_path):
         logger.warning(f" │   └── ⚠️ The mapping JSON file not found: {template_file_path}. So using manual transform...")
@@ -189,7 +189,7 @@ def manual_transform(json_data, project_name: str, phase_idx: int):
 # def convert_phases_to_json(client: genai.Client, project_name: str, num_phases: int, out_dir: str):
 
 # OpenAI
-def convert_phases_to_json(client: OpenAI, model_name: str, project_name: str, num_phases: int, max_days_per_phase: int, json_mapping: str, out_dir: str, delay: int, daysPerChunk: int):
+def convert_phases_to_json(client: OpenAI, model_name: str, project_name: str, num_phases: int, max_days_per_phase: int, language: str, json_mapping: str, out_dir: str, delay: int, daysPerChunk: int):
     """
     BLOCK 3: Consumes the physical localized markdown outputs and structuralized them into strictly-typed JSON.
     Guarantees no invalid text pollution using Pydantic typing patterns.
@@ -203,7 +203,7 @@ def convert_phases_to_json(client: OpenAI, model_name: str, project_name: str, n
     max_days_per_phase = max_days_per_phase if max_days_per_phase > 0 else 7
     log_phase_idx = 0
     log_prompt = ""
-    system_prompt = STEPS_SYSTEM_PROMPT
+    log_system_prompt = ""
     
     # 🎯 CONFIG: Define safe day span bounds per API transaction window
     DAYS_PER_CHUNK = daysPerChunk if daysPerChunk and daysPerChunk > 0 else 0
@@ -256,21 +256,25 @@ def convert_phases_to_json(client: OpenAI, model_name: str, project_name: str, n
                 else:
                     logger.info(f" │       ├── 📦 Chunk {chunk_counter}: Extracting All Days...")
                 
-                # parse prompt from template
+                # parse system prompt from template
                 is_chunked_mode = True if DAYS_PER_CHUNK > 0 else False
-                user_prompt_context = {
-                    "is_chunked": is_chunked_mode,
-                    "project_name": project_name.strip(),
+                prompt_context = {
                     "phase_idx": phase_idx,
+                    "is_chunked": is_chunked_mode,
                     "current_start_day": current_start_day,
                     "current_end_day": current_end_day,
-                    "max_days_per_phase": max_days_per_phase,
+                    "project_phase_context_file": project_phase_context_file,
+                    "global_context_file": global_context_file,
                     "phase_steps_json_schema": json_schema_dump,
                     "phase_markdown_content": phase_markdown_content,
-                    "global_context_file": global_context_file,
-                    "project_phase_context_file": project_phase_context_file
+                    
+                    
                 }
-                user_prompt = render_prompt(STEPS_USER_PROMPT_TEMPLATE_PATH, user_prompt_context)
+                system_prompt = render_prompt(STEPS_SYSTEM_PROMPT_TEMPLATE_PATH, prompt_context)
+                log_system_prompt = system_prompt  # Stores the latest prompt state for error block fallback capture
+                
+                # parse user prompt from template
+                user_prompt = render_prompt(STEPS_USER_PROMPT_TEMPLATE_PATH, prompt_context)
                 log_prompt = user_prompt  # Stores the latest prompt state for error block fallback capture
                 
                 # GEMINI
@@ -374,10 +378,9 @@ def convert_phases_to_json(client: OpenAI, model_name: str, project_name: str, n
                 
             # write blueprint
             fallback_path = os.path.join(steps_context_dir, f"phase-{phase_idx}.steps.error.md")
-            transform_log_path = os.path.join(steps_context_dir, f"phase-{phase_idx}.steps.transformer.md")
             try:
                 # transform mapping
-                transform_json_data = dynamic_transform(master_phase_plan, project_name, phase_idx, json_mapping, transform_log_path)
+                transform_json_data = dynamic_transform(master_phase_plan, project_name, phase_idx, json_mapping)
                 # dump_json_data = json.dumps(transform_json_data, indent=4, ensure_ascii=False) if transform_json_data else "Invalid JSON Data"
                 # print(f" │   └── 🎉 Transform Phase {phase_idx} Standardized JSON:")
                 # print(f" │         { dump_json_data }")
@@ -437,5 +440,5 @@ def convert_phases_to_json(client: OpenAI, model_name: str, project_name: str, n
         return result # success or empty phases
     except Exception as e:
         logger.error(f"❌ Failed to initiate chat/generate Phase {log_phase_idx} Steps JSON: {exception_stacktrace(e)}")
-        write_blueprint_log(log_phase_idx, system_prompt, log_prompt.replace('#', '##'), exception_stacktrace(e), True, model_name_safe, out_dir)
+        write_blueprint_log(log_phase_idx, log_system_prompt, log_prompt.replace('#', '##'), exception_stacktrace(e), True, model_name_safe, out_dir)
         return False

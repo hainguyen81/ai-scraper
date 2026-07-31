@@ -19,7 +19,8 @@ from sources.agents.agent_helper import (
     render_prompt,
     parseAIResponseData,
     get_logger,
-    storage_info
+    storage_info,
+    datetime_for_agent
 )
 
 # ==============================================================================
@@ -29,13 +30,13 @@ STORAGE                             = storage_info.get("storage") or {}
 STORAGE_AGENTS                      = storage_info.get("agents") or {}
 STORAGE_OUTPUT                      = storage_info.get("output") or {}
 
-REL_STORAGE_BLUEPRINT               = STORAGE.get("relative_blueprint") or {}
-STORAGE_BLUEPRINT                   = resolve_absolute_path(REL_STORAGE_BLUEPRINT)
+STORAGE_BLUEPRINT                   = STORAGE.get("storage_blueprint") or {}
+STORAGE_AGENT_BLUEPRINT_PROMPTS     = STORAGE_AGENTS.get("storage_blueprint_prompts") or {}
 
-REL_STORAGE_AGENT_BLUEPRINT         = STORAGE_AGENTS.get("relative_blueprint") or {}
-REL_PHASE_USER_PROMPT_TEMPLATE_PATH = os.path.join(REL_STORAGE_AGENT_BLUEPRINT, "block_phase_prompt.md")
-PHASE_SYSTEM_PROMPT                 = "You are an Enterprise / Principal / Elite Solution Architect. Isolate development boundaries so sub-agents never overlap."
-PHASE_USER_PROMPT_TEMPLATE_PATH     = resolve_absolute_path(REL_PHASE_USER_PROMPT_TEMPLATE_PATH)
+PHASE_SYSTEM_PROMPT_TEMPLATE_PATH   = os.path.join(STORAGE_AGENT_BLUEPRINT_PROMPTS, "block_phase_prompt.system.md")
+PHASE_USER_PROMPT_TEMPLATE_PATH     = os.path.join(STORAGE_AGENT_BLUEPRINT_PROMPTS, "block_phase_prompt.user.md")
+
+DEFAULT_BLUEPRINT_LANGUAGE          = "English"
 
 logger = get_logger("🏗️ EnterpriseSystemArchitecturePhaseAgent")
 
@@ -43,7 +44,7 @@ logger = get_logger("🏗️ EnterpriseSystemArchitecturePhaseAgent")
 # def generate_phase_contexts(client: genai.Client, project_name: str, requirements: str, global_context: str, num_phases: int, out_dir: str):
 
 # OpenAI
-def generate_phase_contexts(client: OpenAI, model_name: str, project_name: str, requirements: str, global_context: str, num_phases: int, max_days_per_phase: int, out_dir: str, delay: int):
+def generate_phase_contexts(client: OpenAI, model_name: str, project_name: str, requirements: str, global_context: str, num_phases: int, max_days_per_phase: int, language: str, out_dir: str, delay: int):
     """
     BLOCK 2: Decomposes requirements into segmented, sandbox-ready development boundaries.
     Executes raw isolated stateless calls per loop item to bypass sequence length degradation.
@@ -54,23 +55,32 @@ def generate_phase_contexts(client: OpenAI, model_name: str, project_name: str, 
     max_days_per_phase = max_days_per_phase if max_days_per_phase > 0 else 7
     log_phase_idx = 0
     log_prompt = ""
-    system_prompt = PHASE_SYSTEM_PROMPT
+    log_system_prompt = ""
     model_name_safe = model_name if model_name else "gpt-4o"
     try:
+        datetime_prompt, datetime_docid = datetime_for_agent()
+        previous_phase_context = ""
         for phase_idx in range(1, num_phases + 1):
             log_phase_idx = phase_idx
             logger.info(f" │   ├── 📝 Compiling Context Markdown for Phase {phase_idx} of {num_phases}...")
             
-            # parse prompt from template
-            user_prompt_context = {
+            # parse system prompt from template
+            prompt_context = {
                 "project_name": project_name,
-                "phase_idx": phase_idx,
-                "num_phases": num_phases,
-                "global_markdown_context": global_context,
                 "project_requirements": requirements,
-                "max_days_per_phase": max_days_per_phase
+                "doc_id": datetime_docid,
+                "current_timestamp": datetime_prompt,
+                "language": language or DEFAULT_BLUEPRINT_LANGUAGE,
+                "num_phases": num_phases,
+                "max_days_per_phase": max_days_per_phase,
+                "global_markdown_context": global_context,
+                "previous_phase_context": previous_phase_context
             }
-            user_prompt = render_prompt(PHASE_USER_PROMPT_TEMPLATE_PATH, user_prompt_context)
+            system_prompt = render_prompt(PHASE_SYSTEM_PROMPT_TEMPLATE_PATH, prompt_context)
+            log_system_prompt = system_prompt
+            
+            # parse user prompt from template
+            user_prompt = render_prompt(PHASE_USER_PROMPT_TEMPLATE_PATH, prompt_context)
             log_prompt = user_prompt
             
             # GEMINI
@@ -91,6 +101,7 @@ def generate_phase_contexts(client: OpenAI, model_name: str, project_name: str, 
                 temperature=0.2
             )
             raw_data = parseAIResponseData(response)
+            previous_phase_context = raw_data
 
             # convert project name
             safe_name = project_name.replace(' ', '-').lower()
@@ -124,6 +135,6 @@ def generate_phase_contexts(client: OpenAI, model_name: str, project_name: str, 
         return result # success or empty phases
     except Exception as e:
         logger.error(f"❌ Failed to initiate chat/generate Phase {log_phase_idx} Blueprint: {exception_stacktrace(e)}")
-        write_blueprint_log(log_phase_idx, system_prompt, log_prompt.replace('#', '##'), exception_stacktrace(e), False, model_name_safe, out_dir)
+        write_blueprint_log(log_phase_idx, log_system_prompt, log_prompt.replace('#', '##'), exception_stacktrace(e), False, model_name_safe, out_dir)
         return False
 
