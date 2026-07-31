@@ -5,30 +5,42 @@ Extract and translate ALL daily steps, checklists, and agent tasks starting from
 Extract and translate ALL daily steps, checklists, and agent tasks from the entire document.
 {% endif %}
 
-# ⏳ CRITICAL CHUNK BOUNDARY ALIGNMENT RULE
-# This rule applies ONLY if the chunk configuration is active (is_chunked is TRUE).
-- **Boundary Execution Context:** When parsing tasks that span across boundary calendar days, you MUST exclusively extract and document the operational steps and sub-tasks that are actively executed within the requested window of Day {{ current_start_day }} to Day {{ current_end_day }}. Do not duplicate previous states or omit ongoing workflows.
-
-# 🔒 AGENT ATOMICITY & COMPONENT MANDATES (ABSOLUTE):
-- **ATOMIC AGENT ASSIGNMENT:** Every single object inside the 'sub_tasks' array MUST have exactly ONE sub-agent role (string) assigned to the 'agent' field: 'Coder' | 'Tester' | 'Reviewer' | 'Doc' | 'Docker' | 'GCP' | 'GKE'.
-- **NO ZERO-COMPONENT TASKS (ABSOLUTE HARD LIMIT):** You are STRICTLY BANNED from generating any sub-task object where the 'components' array is empty `[]`, null, or missing. If an Agent does not have any physical files or target paths to create, modify, test, or document on that specific day, you MUST NOT generate that sub-task object at all. No components means NO task. Every file path inside 'components' must be prefixed with `./sources/`.
-- **FALLBACK COMPONENT RULE:** If a day has technical descriptions but lacks physical file paths, assign the task to "doc" agent and populate 'components' with exactly: `["{{ project_phase_context_file }}"]`.
+# 🔒 AGENT ATOMICITY, TASK ID FORMAT & COMPONENT MANDATES (ABSOLUTE):
+- **STRICT TASK ID ALIGNMENT BLUEPRINT:** You MUST strictly generate the "id" field string for every single sub-task using the exact sequential formatting blueprint: `D<day_num>_ST<task_index>` (e.g., `D1_ST1`, `D1_ST2`, `D2_ST1`).
+- **STRICT AGENT ROLE LITERAL VALUES:** The "agent" field inside the JSON sub-task object MUST strictly enforce a capitalized first letter and lowercase subsequent letters pattern matching the exact tokens: 'Coder' | 'Tester' | 'Reviewer' | 'Doc' | 'Docker' | 'Gcp' | 'Gke'. Any other values or lowercase blocks (e.g., NO "coder") are strictly banned.
+- **NO ZERO-COMPONENT TASKS (ABSOLUTE HARD LIMIT):** You are STRICTLY BANNED from generating any sub-task object where the 'components' array is empty `[]`, null, or missing. If an Agent does not have any physical file paths to create, modify, or document, you MUST NOT generate that sub-task object node.
+- **FALLBACK COMPONENT RULE:** If a day has technical descriptions but lacks physical file paths, assign the task to "Doc" agent and populate 'components' with exactly the value of: "{{ project_phase_context_file }}".
 - **STRICT AGENT ROLE SEGREGATION (ANTI-AGGREGATION):** If a workflow file involves multiple actions by different personas on the same calendar day, you MUST split this workflow into completely separate, sequential task objects inside the 'sub_tasks' array.
 - **HIGH-DENSITY TECHNICAL SPECIFICATION:** The 'task' field MUST contain an exhaustive, granular engineering instruction. If the sub-task involves an API route, integration endpoint, database query, or message block, you MUST explicitly inline the complete technical contract (e.g., Request/Response Payload Schemas, Data Types, Error Status Codes, or Queue names) directly inside this string. Vague high-level bullet summaries are forbidden.
 - **WORKSPACE PREFIX RULE & MULTI-LANGUAGE TEST EXCEPTION:** Every path in 'components' array MUST strictly begin with `./sources/`. 
   * *CRITICAL EXCEPTION:* If the first parameter before the semi-colon character in a tester task is the literal string token `INTEGRATION_SCOPE`, you MUST leave that token completely unmodified. Do NOT append any path prefix to it (e.g., `"components": ["INTEGRATION_SCOPE;./sources/frontend/tests/auth.spec.ts"]`).
-- **STRICT LITERAL FIELD VALUES:** Populate exact string `{{ global_context_file }}` into 'global_context_file'. Populate exact empty string "" into 'source_target_dir' field.
 
-## 7. Context Fields: For each day object, set 'day' to its calculated integer value, set 'context_file' to '{{ project_phase_context_file }}', and set 'context_section' to 'DAY ' followed by the calculated day number.
+# 🛠️ MANDATORY TOP-LEVEL FIELD VALUES INJECTION (STRICT FIDELITY):
+You MUST dynamically populate the top-level keys of the JSON object using EXACT raw variable values without any folder modifications, structural padding, or text injections:
+- **`phase_id`**: {{ phase_idx }}
+- **`phase_name`**: [Extract the exact phase name string from the source Markdown context header text]
+- **`project_name`**: "{{ project_name }}"
+- **`global_context_file`**: "{{ global_context_file }}"
+- **`source_target_dir`**: "{{ source_target_dir }}"
+
+## 7. Context Fields Integration Mandate
+- For each day object inside the array, set 'day' to its calculated integer value, set 'context_file' to exact string "{{ project_phase_context_file }}", and **set 'context_section' to the exact raw string value of the entire primary Day Header extracted from the source Markdown context text** (e.g., `"context_section": "DAY 1: Multi-Tenant Inception Schema & Flyway Migration Setup"`).
 
 ## 8. CHRONOLOGICAL TIMELINE SEQUENCING MANDATE (ABSOLUTE):
-- **Case A: If is_chunked is FALSE:** Regardless of the actual day numbers documented in the source Markdown content, you MUST reset the timeline sequence internally so that the first operational day inside this Phase always starts from integer 1. Map the first targeted day to `"day": 1`, set 'context_file' to `"{{ project_phase_context_file }}"`, and strictly set 'context_section' to `"DAY 1"`.
-- **Case B: If is_chunked is TRUE:** You MUST PRESERVE the exact absolute chronological day index requested from the template parameters. The first parsed day object must match the integer value of {{ current_start_day }}, and progress incrementally up to {{ current_end_day }}. Map the absolute day index to the `"day"` field, set 'context_file' to `"{{ project_phase_context_file }}"`, and set 'context_section' to `"DAY "` followed exactly by that calculated absolute day number.
+{% if is_chunked %}
+# SYSTEM CRITICAL BOUNDARY: CHUNKED CONFIGURATION IS ACTIVE (is_chunked is TRUE)
+- You MUST PRESERVE the exact absolute chronological day index requested from the template parameters. 
+- The first parsed day object inside the 'days' array MUST match the exact integer value of {{ current_start_day }}, and progress incrementally up to {{ current_end_day }}. 
+- You are STRICTLY BANNED from resetting the day value to 1. Map the absolute day index directly to the "day" field, set 'context_file' to "{{ project_phase_context_file }}", and set 'context_section' to the exact raw primary day header line corresponding to that absolute day index from the source markdown.
+{% else %}
+# SYSTEM CRITICAL BOUNDARY: FLAT CONFIGURATION IS ACTIVE (is_chunked is FALSE)
+- Regardless of the actual day numbers documented in the source Markdown content (e.g., even if the text states "DAY 4", "DAY 5"), you MUST completely reset the timeline sequence internally so that the first operational day inside this Phase always starts from integer 1. Progression follows sequentially as 2, 3, 4, etc. 
+- Map the first targeted day to `"day": 1`, set 'context_file' to "{{ project_phase_context_file }}", and strictly set 'context_section' to the exact raw primary header line of the first day parsed from the text. Incremental days follow this relative baseline.
+{% endif %}
 
 # 🛑 MANDATORY STRUCTURE ENFORCEMENT FOR TRACEABILITY TAGS (CRITICAL):
-- When extracting sub-tasks, you MUST populate the exact inherited BA/SA Tag IDs (`[REQ-XXX]`, `[EXC-XXX]`, `[DAT-XXX]`, `[ARC-XXX]`, `[NFR-XXX]`) directly into the "targeted_tags" array field of EACH sub-task object node inside the JSON schema.
-- Scan the source Markdown text, extract all corresponding Tag IDs for that sub-task, and populate them as clean individual string elements inside the "targeted_tags" array (e.g., `"targeted_tags": ["[REQ-001]", "[DAT-005]", "[EXC-002]"]`).
-- You are STRICTLY BANNED from leaving the "targeted_tags" array empty `[]` or bundling tags into a single string (e.g., NO `["[REQ-001], [REQ-002]"]`). Every tag must be its own array element. If a task maps to a requirement, its tracking code array MUST be populated.
+- Scan the source Markdown text, extract all corresponding inline Tag IDs (`[REQ-XXX]`, `[EXC-XXX]`, `[DAT-XXX]`, etc.) for each sub-task, and populate them as clean individual string elements inside the "targeted_tags" array field (e.g., `"targeted_tags": ["[REQ-001]", "[DAT-005]"]`).
+- You are STRICTLY BANNED from leaving the "targeted_tags" array empty `[]` or bundling tags into a single string. Every tag must be its own array element.
 
 You must conform strictly to your required JSON Schema layout design structure:
 {{ phase_steps_json_schema }}

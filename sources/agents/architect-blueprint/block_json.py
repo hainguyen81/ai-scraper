@@ -264,11 +264,11 @@ def convert_phases_to_json(client: OpenAI, model_name: str, project_name: str, n
                     "current_start_day": current_start_day,
                     "current_end_day": current_end_day,
                     "project_phase_context_file": project_phase_context_file,
+                    "project_name": project_name,
                     "global_context_file": global_context_file,
+                    "source_target_dir": "sources/",
                     "phase_steps_json_schema": json_schema_dump,
                     "phase_markdown_content": phase_markdown_content,
-                    
-                    
                 }
                 system_prompt = render_prompt(STEPS_SYSTEM_PROMPT_TEMPLATE_PATH, prompt_context)
                 log_system_prompt = system_prompt  # Stores the latest prompt state for error block fallback capture
