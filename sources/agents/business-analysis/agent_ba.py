@@ -1,14 +1,13 @@
 import sys
 import hashlib
-import argparse
-from datetime import datetime
 
 # Now Python can seamlessly see and import the centralized helper utility cleanly!
 from sources.agents.agent_helper import (
     write_json_file,
     write_file,
     json_loads,
-    parse_args
+    parse_args,
+    datetime_for_docid
 )
 
 # super agent
@@ -83,7 +82,7 @@ class PrincipalBusinessAnalysisAgent(AbstractSubAgent):
     def clean_response(self, raw_response, **kwargs):
         srs_info = json_loads(raw_response.strip()) if raw_response else None
         if not srs_info:
-            raise RuntimeError("- Invalid AI raw response. Not a valid JSON format data.")
+            raise RuntimeError("💀 Invalid AI raw response. Not a valid JSON format data.")
         
         # check srss summary
         projects = []
@@ -95,7 +94,7 @@ class PrincipalBusinessAnalysisAgent(AbstractSubAgent):
         projects = [ i for i in projects if isinstance(i, dict) ]
         
         # parse technical project name as folder name
-        datetimeStr = datetime.now().strftime("%Y%m%d%H%M%S")
+        datetimeStr = datetime_for_docid()
         defaultPrjName = f"project-{datetimeStr}"
         project_info = srs_info.get("project_names") or {}
         project_name = project_info.get("technical_codename") or defaultPrjName
