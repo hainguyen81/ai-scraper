@@ -27,6 +27,7 @@ You MUST dynamically populate the top-level keys of the JSON object using EXACT 
 - For each day object inside the array, set 'day' to its calculated integer value, set 'context_file' to exact string "{{ project_phase_context_file }}", and **set 'context_section' to the exact raw string value of the entire primary Day Header extracted from the source Markdown context text** (e.g., `"context_section": "DAY 1: Multi-Tenant Inception Schema & Flyway Migration Setup"`).
 
 ## 8. CHRONOLOGICAL TIMELINE SEQUENCING MANDATE (ABSOLUTE):
+## 8. CHRONOLOGICAL TIMELINE SEQUENCING MANDATE (ABSOLUTE):
 {% if is_chunked %}
 # SYSTEM CRITICAL BOUNDARY: CHUNKED CONFIGURATION IS ACTIVE (is_chunked is TRUE)
 - You MUST PRESERVE the exact absolute chronological day index requested from the template parameters. 
@@ -39,8 +40,8 @@ You MUST dynamically populate the top-level keys of the JSON object using EXACT 
 {% endif %}
 
 # 🛑 MANDATORY STRUCTURE ENFORCEMENT FOR TRACEABILITY TAGS (CRITICAL):
-- Scan the source Markdown text, extract all corresponding inline Tag IDs (`[REQ-XXX]`, `[EXC-XXX]`, `[DAT-XXX]`, etc.) for each sub-task, and populate them as clean individual string elements inside the "targeted_tags" array field (e.g., `"targeted_tags": ["[REQ-001]", "[DAT-005]"]`).
-- You are STRICTLY BANNED from leaving the "targeted_tags" array empty `[]` or bundling tags into a single string. Every tag must be its own array element.
+- Locate the structural text string marker `* Traceability Tag Tokens: ` generated inside each sub-task segment of the source Markdown. Extract all inherited individual Tag IDs wrapped on that unique line string, and populate them as clean individual string elements inside the "targeted_tags" array field (e.g., `"targeted_tags": ["[REQ-001]", "[DAT-005]"]`).
+- You are STRICTLY BANNED from leaving the "targeted_tags" array empty `[]` or null. Every single tag token must be its own separated array element string.
 
 You must conform strictly to your required JSON Schema layout design structure:
 {{ phase_steps_json_schema }}

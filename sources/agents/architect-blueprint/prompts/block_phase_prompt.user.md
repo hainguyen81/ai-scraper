@@ -64,12 +64,11 @@ Your output MUST follow this exact Markdown layout structure:
 
 ### DAY [X]: [CAPITALIZED SHORT OBJECTIVE FOR THIS OPERATIONAL CALENDAR DAY]
 
-#### SUB-TASK [X.Y]: [Clear, low-level engineering description of the specific sub-task goal, explicitly embedding OWASP compliance rules and attaching Tag IDs inline]
+#### SUB-TASK [X.Y]: [Clear, low-level engineering description of the specific sub-task goal, explicitly embedding OWASP compliance rules]
 ##### Assigned Sub-Agent: [Insert exactly ONE unique literal Agent token: coder | tester | reviewer | doc | docker | GCP | GKE]
 ##### Targeted Components & Technical Requirements:
-* **Target Path:** [Insert explicit physical file path starting with `./sources/` or Tester pair syntax. Append its corresponding Tag IDs here inline, e.g., `./sources/backend/... [REQ-001], [DAT-002]`]
+* **Target Path:** [Insert explicit physical file path starting with `./sources/` or Tester pair syntax.]
+* **Traceability Tag Tokens:** [You MUST explicitly list the exact inherited BA Tag IDs that this specific sub-task implements or verifies. Write each tag out individually separated by commas, e.g., `[REQ-001], [DAT-002], [EXC-001]`]
 * **Architectural Requirements:**
   * [Explicit technical design rule, framework-specific convention, or implementation instruction]
   * [Explicit security enforcement parameter, e.g., OWASP implementation rule if handling data entry or state changes]
-* **DAILY LOGS TRACEABILITY RULES (ZERO TOLERANCE FOR BUNDLING):**
-  * **Targeted Tag IDs:** [You MUST explicitly list the exact inherited BA Tag IDs that this specific sub-task implements or verifies. Write each tag out individually separated by commas, e.g., `[REQ-001], [DAT-002], [EXC-001]`.]
