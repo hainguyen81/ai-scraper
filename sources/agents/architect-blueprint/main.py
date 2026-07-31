@@ -172,6 +172,9 @@ def run_architect_agent(
     absolute_out_dir = resolve_absolute_path(os.path.join(output_dir, safe_name))
     os.makedirs(absolute_out_dir, exist_ok=True)
     
+    # remove previous log if necessary
+    delete_log(absolute_out_dir)
+    
     # resolve JSON mapping configuration file path
     absolute_api_model_steps_mapping = None
     if api_model_steps_mapping and os.path.exists(resolve_absolute_path(api_model_steps_mapping)):
@@ -415,9 +418,6 @@ def run_architect_agent(
     # everything is ok
     else:
         logger.info("\n🎉 [ SUCCESS ] Modular Enterprise Architecture Pipeline Executed Perfectly!")
-        
-        # remove log if necessary
-        delete_log(absolute_out_dir)
     
     # result should be good for all
     return everything_ok

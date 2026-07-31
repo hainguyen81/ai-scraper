@@ -143,7 +143,7 @@ def dynamic_transform(json_data, project_name: str, phase_idx: int, template_fil
 def manual_transform(json_data, project_name: str, phase_idx: int):
     transform_json_data = {
         "phase_id": phase_idx,
-        "phase_name": json_data.get("phase", f"Phase {phase_idx}"),
+        "phase_name": json_data.get("phase_name", json_data.get("phase", f"Phase {phase_idx}")),
         "project_name": project_name.strip(),
         "global_context_file": project_context_file(project_name),
         "source_target_dir": "sources/",
