@@ -12,7 +12,6 @@ from openai import OpenAI
 
 # Now Python can seamlessly see and import the centralized helper utility cleanly!
 from sources.agents.agent_helper import (
-    resolve_absolute_path,
     exception_stacktrace,
     write_blueprint_log,
     write_file,
