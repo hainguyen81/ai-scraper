@@ -441,11 +441,13 @@ REL_OUTPUT_PATH                         = "sources/output"
 OUTPUT_PATH                             = resolve_absolute_path(REL_OUTPUT_PATH)
 
 REL_AGENT_IDEAS_PATH                    = os.path.join(REL_AGENTS_PATH, "ideas")
+REL_AGENT_IDEAS_PROMPTS_PATH            = os.path.join(REL_AGENT_IDEAS_PATH, "prompts")
 REL_AGENT_BLUEPRINT_PATH                = os.path.join(REL_AGENTS_PATH, "architect-blueprint")
 REL_AGENT_BLUEPRINT_PROMPTS_PATH        = os.path.join(REL_AGENT_BLUEPRINT_PATH, "prompts")
 REL_AGENT_BA_PATH                       = os.path.join(REL_AGENTS_PATH, "business-analysis")
 REL_AGENT_BA_PROMPTS_PATH               = os.path.join(REL_AGENT_BA_PATH, "prompts")
 REL_AGENT_EST_PATH                      = os.path.join(REL_AGENTS_PATH, "estimation")
+REL_AGENT_EST_PROMPTS_PATH              = os.path.join(REL_AGENT_EST_PATH, "prompts")
 REL_AGENT_CSRO_PATH                     = os.path.join(REL_AGENTS_PATH, "chief-solution")
 REL_AGENT_CSRO_PROMPTS_PATH             = os.path.join(REL_AGENT_CSRO_PATH, "prompts")
 
@@ -463,11 +465,13 @@ REL_OUTPUT_EST_PATH                     = os.path.join(REL_OUTPUT_PATH, "estimat
 REL_OUTPUT_CSRO_PATH                    = os.path.join(REL_OUTPUT_PATH, "chief-solution")
 
 AGENT_IDEAS_PATH                        = resolve_absolute_path(REL_AGENT_IDEAS_PATH)
+AGENT_IDEAS_PROMPTS_PATH                = resolve_absolute_path(REL_AGENT_IDEAS_PROMPTS_PATH)
 AGENT_BLUEPRINT_PATH                    = resolve_absolute_path(REL_AGENT_BLUEPRINT_PATH)
 AGENT_BLUEPRINT_PROMPTS_PATH            = resolve_absolute_path(REL_AGENT_BLUEPRINT_PROMPTS_PATH)
 AGENT_BA_PATH                           = resolve_absolute_path(REL_AGENT_BA_PATH)
 AGENT_BA_PROMPTS_PATH                   = resolve_absolute_path(REL_AGENT_BA_PROMPTS_PATH)
 AGENT_EST_PATH                          = resolve_absolute_path(REL_AGENT_EST_PATH)
+AGENT_EST_PROMPTS_PATH                  = resolve_absolute_path(REL_AGENT_EST_PROMPTS_PATH)
 AGENT_CSRO_PATH                         = resolve_absolute_path(REL_AGENT_CSRO_PATH)
 AGENT_CSRO_PROMPTS_PATH                 = resolve_absolute_path(REL_AGENT_CSRO_PROMPTS_PATH)
 
@@ -495,6 +499,8 @@ storage_info = {
         
         "relative_ideas": REL_AGENT_IDEAS_PATH,
         "storage_ideas": AGENT_IDEAS_PATH,
+        "relative_ideas_prompts": REL_AGENT_IDEAS_PROMPTS_PATH,
+        "storage_ideas_prompts": AGENT_IDEAS_PROMPTS_PATH,
         
         "relative_blueprint": REL_AGENT_BLUEPRINT_PATH,
         "storage_blueprint": AGENT_BLUEPRINT_PATH,
@@ -508,6 +514,8 @@ storage_info = {
         
         "relative_estimation": REL_AGENT_EST_PATH,
         "storage_estimation": AGENT_EST_PATH,
+        "relative_estimation_prompts": REL_AGENT_EST_PROMPTS_PATH,
+        "storage_estimation_prompts": AGENT_EST_PROMPTS_PATH,
         
         "relative_csro": REL_AGENT_CSRO_PATH,
         "storage_csro": AGENT_CSRO_PATH,

@@ -59,11 +59,11 @@ class EnterpriseAutonomousProjectEstimatorAgent(AbstractSubAgent):
     
     # @override
     def system_prompt_template(self) -> str:
-        return self.__agents_path__(storage_name="storage_estimation", file=SYSTEM_PROMPT_TEMPLATE)
+        return self.__agents_path__(storage_name="storage_estimation_prompts", file=SYSTEM_PROMPT_TEMPLATE)
     
     # @override
     def user_prompt_template(self) -> str:
-        return self.__agents_path__(storage_name="storage_estimation", file=USER_PROMPT_TEMPLATE)
+        return self.__agents_path__(storage_name="storage_estimation_prompts", file=USER_PROMPT_TEMPLATE)
     
     # @override
     def pre_execute(self, **kwargs):

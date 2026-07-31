@@ -75,7 +75,7 @@ class EnterpriseIdeaGeneratorAgent(AbstractSubAgent):
     
     # @override
     def user_prompt_template(self) -> str:
-        return self.__agents_path__(storage_name="storage_ideas", file=USER_PROMPT_TEMPLATE)
+        return self.__agents_path__(storage_name="storage_ideas_prompts", file=USER_PROMPT_TEMPLATE)
     
     # @override
     def agent_temperature(self):
