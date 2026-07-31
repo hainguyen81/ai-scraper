@@ -140,8 +140,7 @@ Use the official `xychart-beta` syntax. You MUST evaluate labor costs to find th
 xychart-beta
 title "Total Cost Comparison Bounds (in Thousands USD)"
 x-axis ["Min Cost", "Max Cost", "Safe Cost"]
-y-axis "USD (Thousands)"
-0 --> Insert_Calculated_Max_Integer_Value_Here
+y-axis "USD (Thousands)" 0 --> Insert_Calculated_Max_Integer_Value_Here
 bar [Insert_Min_Int, Insert_Max_Int, Insert_Safe_Int]
 bar [Insert_Min_Int, Insert_Max_Int, Insert_Safe_Int]
 bar [Insert_Min_Int, Insert_Max_Int, Insert_Safe_Int]
