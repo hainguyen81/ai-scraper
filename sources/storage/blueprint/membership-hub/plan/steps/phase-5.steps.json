@@ -1,0 +1,356 @@
+{
+    "phase_id": 5,
+    "phase_name": "Phase 5",
+    "project_name": "membership-hub",
+    "global_context_file": ".ai/.context/membership-hub.global.blueprint.md",
+    "source_target_dir": "sources/",
+    "days": [
+        {
+            "day": 1,
+            "context_file": ".ai/.plan/.context/phase-5.context.blueprint.md",
+            "context_section": "DAY 1",
+            "sub_tasks": [
+                {
+                    "id": "D1_ST1",
+                    "agent": "Coder",
+                    "desc": "Coder Agent: No description provided",
+                    "targeted_tags": [
+                        "[REQ-019]",
+                        "[DAT-011]",
+                        "[EXC-004]",
+                        "[ARC-009]",
+                        "[ARC-006]",
+                        "[NFR-001]",
+                        "[NFR-003]",
+                        "[NFR-004]",
+                        "[NFR-005]",
+                        "[NFR-008]",
+                        "[NFR-009]"
+                    ],
+                    "components": [
+                        "./sources/backend/org/nlh4j/sources/aichatbot/AIChatbotService.java"
+                    ]
+                },
+                {
+                    "id": "D1_ST2",
+                    "agent": "Coder",
+                    "desc": "Coder Agent: No description provided",
+                    "targeted_tags": [
+                        "[REQ-019]",
+                        "[DAT-011]",
+                        "[EXC-004]",
+                        "[ARC-009]",
+                        "[ARC-006]",
+                        "[NFR-001]",
+                        "[NFR-003]",
+                        "[NFR-004]",
+                        "[NFR-005]",
+                        "[NFR-008]",
+                        "[NFR-009]"
+                    ],
+                    "components": [
+                        "./sources/backend/org/nlh4j/sources/aichatbot/AIChatbotController.java"
+                    ]
+                },
+                {
+                    "id": "D1_ST3",
+                    "agent": "Tester",
+                    "desc": "Tester Agent: No description provided",
+                    "targeted_tags": [
+                        "[REQ-019]",
+                        "[EXC-004]",
+                        "[NFR-001]",
+                        "[NFR-003]",
+                        "[NFR-004]",
+                        "[NFR-005]",
+                        "[NFR-008]",
+                        "[NFR-009]"
+                    ],
+                    "components": [
+                        "INTEGRATION_SCOPE;./sources/backend/org/nlh4j/sources/aichatbot/AIChatbotService.java",
+                        "./sources/backend/org/nlh4j/sources/aichatbot/AIChatbotServiceTest.java"
+                    ]
+                },
+                {
+                    "id": "D1_ST4",
+                    "agent": "Reviewer",
+                    "desc": "Reviewer Agent: No description provided",
+                    "targeted_tags": [
+                        "[REQ-019]",
+                        "[EXC-004]",
+                        "[NFR-001]",
+                        "[NFR-003]",
+                        "[NFR-006]",
+                        "[ARC-009]",
+                        "[ARC-006]"
+                    ],
+                    "components": [
+                        "./sources/backend/org/nlh4j/sources/aichatbot/AIChatbotService.java"
+                    ]
+                },
+                {
+                    "id": "D1_ST5",
+                    "agent": "Doc",
+                    "desc": "Doc Agent: No description provided",
+                    "targeted_tags": [
+                        "[REQ-019]",
+                        "[DAT-011]"
+                    ],
+                    "components": [
+                        "./sources/backend/org/nlh4j/sources/aichatbot/README.md"
+                    ]
+                }
+            ]
+        },
+        {
+            "day": 2,
+            "context_file": ".ai/.plan/.context/phase-5.context.blueprint.md",
+            "context_section": "DAY 2",
+            "sub_tasks": [
+                {
+                    "id": "D2_ST1",
+                    "agent": "Coder",
+                    "desc": "Coder Agent: No description provided",
+                    "targeted_tags": [
+                        "[REQ-020]",
+                        "[ARC-009]",
+                        "[ARC-006]",
+                        "[NFR-001]",
+                        "[NFR-003]",
+                        "[NFR-004]",
+                        "[NFR-005]",
+                        "[NFR-008]",
+                        "[NFR-009]",
+                        "[EXC-004]"
+                    ],
+                    "components": [
+                        "./sources/backend/org/nlh4j/sources/mobileapp/MobileRoleSpecificUIService.java"
+                    ]
+                },
+                {
+                    "id": "D2_ST2",
+                    "agent": "Coder",
+                    "desc": "Coder Agent: No description provided",
+                    "targeted_tags": [
+                        "[REQ-020]",
+                        "[ARC-009]",
+                        "[ARC-006]",
+                        "[NFR-001]",
+                        "[NFR-003]",
+                        "[NFR-004]",
+                        "[NFR-005]",
+                        "[NFR-008]",
+                        "[NFR-009]",
+                        "[EXC-004]"
+                    ],
+                    "components": [
+                        "./sources/backend/org/nlh4j/sources/mobileapp/MobileRoleSpecificUIController.java"
+                    ]
+                },
+                {
+                    "id": "D2_ST3",
+                    "agent": "Tester",
+                    "desc": "Tester Agent: No description provided",
+                    "targeted_tags": [
+                        "[REQ-020]",
+                        "[NFR-001]",
+                        "[NFR-003]",
+                        "[NFR-006]",
+                        "[EXC-004]"
+                    ],
+                    "components": [
+                        "INTEGRATION_SCOPE;./sources/backend/org/nlh4j/sources/mobileapp/MobileRoleSpecificUIService.java",
+                        "./sources/backend/org/nlh4j/sources/mobileapp/MobileRoleSpecificUIServiceTest.java"
+                    ]
+                },
+                {
+                    "id": "D2_ST4",
+                    "agent": "Reviewer",
+                    "desc": "Reviewer Agent: No description provided",
+                    "targeted_tags": [
+                        "[REQ-020]",
+                        "[NFR-001]",
+                        "[NFR-003]",
+                        "[NFR-006]",
+                        "[ARC-009]",
+                        "[ARC-006]"
+                    ],
+                    "components": [
+                        "./sources/backend/org/nlh4j/sources/mobileapp/MobileRoleSpecificUIService.java"
+                    ]
+                },
+                {
+                    "id": "D2_ST5",
+                    "agent": "Doc",
+                    "desc": "Doc Agent: No description provided",
+                    "targeted_tags": [
+                        "[REQ-020]"
+                    ],
+                    "components": [
+                        "./sources/backend/org/nlh4j/sources/mobileapp/README.md"
+                    ]
+                }
+            ]
+        },
+        {
+            "day": 3,
+            "context_file": ".ai/.plan/.context/phase-5.context.blueprint.md",
+            "context_section": "DAY 3",
+            "sub_tasks": [
+                {
+                    "id": "D3_ST1",
+                    "agent": "Coder",
+                    "desc": "Coder Agent: No description provided",
+                    "targeted_tags": [
+                        "[REQ-021]",
+                        "[DAT-007]",
+                        "[ARC-008]",
+                        "[ARC-009]",
+                        "[ARC-006]",
+                        "[NFR-001]",
+                        "[NFR-003]",
+                        "[NFR-004]",
+                        "[NFR-005]",
+                        "[NFR-008]",
+                        "[NFR-009]",
+                        "[EXC-003]",
+                        "[EXC-004]"
+                    ],
+                    "components": [
+                        "./sources/backend/org/nlh4j/sources/notifications/PushNotificationService.java"
+                    ]
+                },
+                {
+                    "id": "D3_ST2",
+                    "agent": "Coder",
+                    "desc": "Coder Agent: No description provided",
+                    "targeted_tags": [
+                        "[REQ-021]",
+                        "[DAT-007]",
+                        "[ARC-008]",
+                        "[ARC-009]",
+                        "[ARC-006]",
+                        "[NFR-001]",
+                        "[NFR-003]",
+                        "[NFR-004]",
+                        "[NFR-005]",
+                        "[NFR-008]",
+                        "[NFR-009]",
+                        "[EXC-003]",
+                        "[EXC-004]"
+                    ],
+                    "components": [
+                        "./sources/backend/org/nlh4j/sources/notifications/PushNotificationController.java"
+                    ]
+                },
+                {
+                    "id": "D3_ST3",
+                    "agent": "Tester",
+                    "desc": "Tester Agent: No description provided",
+                    "targeted_tags": [
+                        "[REQ-021]",
+                        "[DAT-007]",
+                        "[ARC-008]",
+                        "[ARC-009]",
+                        "[ARC-006]",
+                        "[NFR-001]",
+                        "[NFR-003]",
+                        "[NFR-006]",
+                        "[EXC-003]",
+                        "[EXC-004]"
+                    ],
+                    "components": [
+                        "INTEGRATION_SCOPE;./sources/backend/org/nlh4j/sources/notifications/PushNotificationService.java",
+                        "./sources/backend/org/nlh4j/sources/notifications/PushNotificationServiceTest.java"
+                    ]
+                },
+                {
+                    "id": "D3_ST4",
+                    "agent": "Reviewer",
+                    "desc": "Reviewer Agent: No description provided",
+                    "targeted_tags": [
+                        "[REQ-021]",
+                        "[DAT-007]",
+                        "[ARC-008]",
+                        "[ARC-009]",
+                        "[ARC-006]",
+                        "[NFR-001]",
+                        "[NFR-003]",
+                        "[NFR-006]",
+                        "[ARC-009]",
+                        "[ARC-006]"
+                    ],
+                    "components": [
+                        "./sources/backend/org/nlh4j/sources/notifications/PushNotificationService.java"
+                    ]
+                },
+                {
+                    "id": "D3_ST5",
+                    "agent": "Doc",
+                    "desc": "Doc Agent: No description provided",
+                    "targeted_tags": [
+                        "[REQ-021]",
+                        "[DAT-007]"
+                    ],
+                    "components": [
+                        "./sources/backend/org/nlh4j/sources/notifications/README.md"
+                    ]
+                }
+            ]
+        },
+        {
+            "day": 4,
+            "context_file": ".ai/.plan/.context/phase-5.context.blueprint.md",
+            "context_section": "DAY 4",
+            "sub_tasks": [
+                {
+                    "id": "D4_ST1",
+                    "agent": "Docker",
+                    "desc": "Docker Agent: No description provided",
+                    "targeted_tags": [
+                        "[NFR-005]",
+                        "[ARC-009]",
+                        "[ARC-006]"
+                    ],
+                    "components": [
+                        "./sources/backend/Dockerfile"
+                    ]
+                },
+                {
+                    "id": "D4_ST2",
+                    "agent": "Reviewer",
+                    "desc": "Reviewer Agent: No description provided",
+                    "targeted_tags": [
+                        "[NFR-005]",
+                        "[ARC-009]",
+                        "[ARC-006]"
+                    ],
+                    "components": [
+                        "./sources/backend/Dockerfile"
+                    ]
+                }
+            ]
+        },
+        {
+            "day": 5,
+            "context_file": ".ai/.plan/.context/phase-5.context.blueprint.md",
+            "context_section": "DAY 5",
+            "sub_tasks": [
+                {
+                    "id": "D5_ST1",
+                    "agent": "Gcp",
+                    "desc": "Gcp Agent: No description provided",
+                    "targeted_tags": [
+                        "[ARC-009]",
+                        "[ARC-006]",
+                        "[NFR-004]",
+                        "[NFR-002]"
+                    ],
+                    "components": [
+                        "./sources/deployment/k8s/backend-deployment.yaml"
+                    ]
+                }
+            ]
+        }
+    ]
+}
