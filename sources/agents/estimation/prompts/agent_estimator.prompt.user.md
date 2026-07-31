@@ -44,7 +44,7 @@ Every header and table parameter below MUST be translated and naturally rendered
 
 | Parameter | Details |
 | :--- | :--- |
-| **Report ID** | AUDIT-{{ current_timestamp_2 }} |
+| **Report ID** | AUDIT-ESTIMATION-{{ doc_id }} |
 | **Idea ID** | {{ idea_id }} |
 | **Project Name** | {{ project_name }} |
 | **Project Description** | {{ project_description }} |
