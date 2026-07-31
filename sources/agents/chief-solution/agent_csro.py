@@ -322,7 +322,11 @@ class EnterpriseSolutionSentinelAgent(AbstractCrewEnterpriseSuperAgent):
     It scans Idea, SRS, and Blueprint files for gaps, loopholes, and enterprise compliance.
     """
     def __init__(self, **kwargs):
-        super().__init__(agent_id='🕵️‍♂️ EnterpriseSolutionSentinelAgent', **kwargs)
+        super().__init__(
+            agent_id='EnterpriseSolutionSentinelAgent',
+            agent_name='🕵️‍♂️ EnterpriseSolutionSentinelAgent',
+            **kwargs
+        )
     
     # @override
     def initialize(self):
@@ -368,7 +372,11 @@ class EnterpriseBusinessAnalystAgent(AbstractCrewEnterpriseSuperAgent):
     A Class-based Agent responsible for authoring and revising the SRS.
     """
     def __init__(self, **kwargs):
-        super().__init__(agent_id='📋 EnterpriseBusinessAnalystAgent', **kwargs)
+        super().__init__(
+            agent_id='EnterpriseBusinessAnalystAgent',
+            agent_name='📋 EnterpriseBusinessAnalystAgent',
+            **kwargs
+        )
     
     # @override
     def initialize(self):
@@ -413,7 +421,11 @@ class EnterpriseSystemArchitectAgent(AbstractCrewEnterpriseSuperAgent):
     A Class-based Agent responsible for structural and infrastructural Blueprints.
     """
     def __init__(self, **kwargs):
-        super().__init__(agent_id='📐 EnterpriseSystemArchitectAgent', **kwargs)
+        super().__init__(
+            agent_id='EnterpriseSystemArchitectAgent',
+            agent_name='📐 EnterpriseSystemArchitectAgent',
+            **kwargs
+        )
     
     # @override
     def initialize(self):
@@ -548,7 +560,11 @@ class CrewEnterpriseSolutionWorkflowAgent(AbstractCrewEnterpriseWorkflowAgent):
     It scans Idea, SRS, and Blueprint files for gaps, loopholes, and enterprise compliance.
     """
     def __init__(self, **kwargs):
-        super().__init__(agent_id='🤖🏛️ EnterpriseSolutionWorkflowReviewerAgent', **kwargs)
+        super().__init__(
+            agent_id='EnterpriseSolutionWorkflowReviewerAgent',
+            agent_name='🤖🏛️ EnterpriseSolutionWorkflowReviewerAgent',
+            **kwargs
+        )
     
     # @override
     def agent_log_file(self) -> str:
@@ -803,7 +819,11 @@ class CrewEnterpriseBluePrintDiffAnalyzerAgent(AbstractCrewEnterpriseWorkflowAge
     It scans Idea, SRS, and Blueprint files for gaps, loopholes, and enterprise compliance.
     """
     def __init__(self, **kwargs):
-        super().__init__(agent_id='🤖🔬 EnterpriseBluePrintDiffAnalyzerAgent', **kwargs)
+        super().__init__(
+            agent_id='EnterpriseBluePrintDiffAnalyzerAgent',
+            agent_name='🤖🔬 EnterpriseBluePrintDiffAnalyzerAgent',
+            **kwargs
+        )
     
     # @override
     def build_prompts(self, **kwargs):
@@ -905,7 +925,7 @@ class CrewEnterpriseGovernanceFlow(Flow):
         super().__init__()
         # Inject pre-initialized custom wrappers containing the actual CrewAI Agents
         self.kwargs = kwargs or {}
-        self.logger = get_logger("CrewEnterpriseGovernanceFlow")
+        self.logger = get_logger("👥🏢🏛️🔄 Enterprise Governance Process Flow")
         self.agent_solution_review = CrewEnterpriseSolutionWorkflowAgent(**self.kwargs)
         self.agent_diff_analyzer = CrewEnterpriseBluePrintDiffAnalyzerAgent(**self.kwargs)
 
@@ -938,7 +958,7 @@ if __name__ == "__main__":
         parser.add_argument("--language", type=str, help="Translate SRS to language. Ex: Vietnamese, English, etc.")
     
     args, unknown_args = parse_args(
-        description="🕵️‍♂️ CrewEnterpriseGovernanceFlow",
+        description="👥🏢🏛️🔄 Enterprise Governance Process Flow",
         parser_callback=add_known_arguments
     )
     

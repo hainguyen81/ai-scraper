@@ -40,7 +40,11 @@ MERMAID_URL                 = "https://mermaid.ink/svg/base64:"
 
 class EnterpriseAutonomousProjectEstimatorAgent(AbstractSubAgent):
     def __init__(self, **kwargs):
-        super().__init__(agent_id='👷 EnterpriseAutonomousProjectEstimatorAgent', **kwargs)
+        super().__init__(
+            agent_id='EnterpriseAutonomousProjectEstimatorAgent',
+            agent_name='👷 EnterpriseAutonomousProjectEstimatorAgent',
+            **kwargs
+        )
     
     # @override
     def initialize(self):

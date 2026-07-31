@@ -28,7 +28,11 @@ DEFAULT_IDEAS_LANGUAGE      = "English"
 
 class EnterpriseIdeaGeneratorAgent(AbstractSubAgent):
     def __init__(self, **kwargs):
-        super().__init__(agent_id='💡 EnterpriseIdeaGeneratorAgent', **kwargs)
+        super().__init__(
+            agent_id='EnterpriseIdeaGeneratorAgent',
+            agent_name='💡 EnterpriseIdeaGeneratorAgent',
+            **kwargs
+        )
     
     # @override
     def initialize(self):

@@ -30,7 +30,11 @@ DEFAULT_SRS_LANGUAGE        = "English"
 
 class PrincipalBusinessAnalysisAgent(AbstractSubAgent):
     def __init__(self, **kwargs):
-        super().__init__(agent_id='💡🎯 PrincipalBusinessAnalysisAgent', **kwargs)
+        super().__init__(
+            agent_id='PrincipalBusinessAnalysisAgent',
+            agent_name='💡🎯 PrincipalBusinessAnalysisAgent',
+            **kwargs
+        )
     
     # @override
     def initialize(self):
