@@ -65,6 +65,7 @@ def generate_phase_contexts(client: OpenAI, model_name: str, project_name: str, 
             
             # parse system prompt from template
             prompt_context = {
+                "phase_idx": phase_idx,
                 "project_name": project_name,
                 "project_requirements": requirements,
                 "doc_id": datetime_docid,

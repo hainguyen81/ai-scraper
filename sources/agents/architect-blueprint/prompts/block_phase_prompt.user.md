@@ -41,6 +41,7 @@ Your output MUST follow this exact Markdown layout structure:
 | :--- | :--- |
 | **Blueprint ID** | ARCH-{{ doc_id }} |
 | **Project Name** | {{ project_name }} |
+| **Phase** | {{ phase_idx }} |
 | **Version** | 1.0 (Baseline) |
 | **Date/Time** | {{ current_timestamp }} |
 | **Author** | Enterprise System Architect (SA Agent) |
