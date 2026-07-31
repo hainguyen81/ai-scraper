@@ -6,7 +6,14 @@ You are tasked to detail **PHASE {{ phase_idx }} OUT OF {{ num_phases }}**. You 
 {{ global_markdown_context }}
 
 --- PREVIOUS EXECUTION STATE REFERENCE (DIAGNOSTIC PATHS) ---
+{% if previous_phase_context and previous_phase_context|trim != "" %}
 {{ previous_phase_context }}
+{% else %}
+# PRISTINE INITIAL STATE MANDATE: 
+# This is PHASE 1 (The Absolute Baseline Generation Step). 
+# There are ZERO preceding code assets, directory structures, or legacy dependencies in the workspace.
+# You MUST initialize all module definitions, file paths, database schemas, and data boundaries from a pure zero-state architecture baseline. Do not assume or extrapolate any prior system deployment state.
+{% endif %}
 
 --- RAW REQUIREMENTS REFERENCE ---
 {{ project_requirements }}
