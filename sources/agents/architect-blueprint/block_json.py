@@ -332,6 +332,7 @@ def convert_phases_to_json(client: OpenAI, model_name: str, project_name: str, n
                     break
                 
                 # Extract target task collections using flexible property matching vectors
+                master_phase_plan["phase_name"] = json_data.get("phase_name", json_data.get("phase", f"Phase {phase_idx}"))
                 chunk_steps_array = json_data.get("days", json_data.get("steps", json_data.get("dailyTasks", json_data.get("dayByDayPlan", []))))
                 
                 # Termination trigger: If array is missing or empty, the entire markdown blueprint context has been fully scanned
