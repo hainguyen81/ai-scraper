@@ -1,67 +1,114 @@
-# PHASE 1 CONTEXT BLUEPRINT: membership-hub
+# PHASE  CONTEXT BLUEPRINT: membership-hub
+
+## 📊 Document Control
+
+| Item | Details |
+| :--- | :--- |
+| **Blueprint ID** | ARCH-20260731024630 |
+| **Project Name** | membership-hub |
+| **Version** | 1.0 (Baseline) |
+| **Date/Time** | 2026/07/31 02:46:30 |
+| **Author** | Enterprise System Architect (SA Agent) |
+| **Approval** | Pending Technical Governance Review |
 
 ## 1. Phase Operational Scope & Objectives
-Initialize the backend database context with a multi‑tenancy `tenant_id` schema that supports isolation across centers and enforces OWASP‑compliant data handling. Produce comprehensive technical documentation for the schema and implement unit tests that validate tenant‑isolation queries.
+This phase focuses on implementing reporting and analytics functionality for the membership-hub project. The primary objectives include generating attendance reports and creating an enrollment summary dashboard. These features are crucial for center administrators to track student attendance and course enrollment statistics.
 
-## 2. Allowed Technical Scope & Directory Boundaries
-- `./sources/backend/src/` – core Node.js service code, models, migrations, and tenancy configuration.  
-- `./sources/backend/src/models/` – Sequelize/TypeORM model definitions (must include `tenant_id` column).  
-- `./sources/backend/src/migrations/` – SQL or migration scripts that add `tenant_id` to all relevant tables.  
-- `./sources/backend/src/queries/` – repository functions that filter by `tenant_id`.  
-- `./sources/backend/tests/` – Jest/Mocha unit test suites.  
-- `./sources/backend/docs/` – markdown documentation for schema and tenancy rules.  
-- REST endpoints under `./sources/backend/src/routes/tenancy/*.js` (e.g., `GET /api/v1/tenants/:tenantId/users`).
+## 2. Allowed Technical Scope & Directory Boundaries (Files, paths, and endpoints)
+The technical scope for this phase includes the development of the reporting and analytics module. The directory matrices and REST endpoint routing patterns allowed for this phase are as follows:
+- `./sources/backend/reporting/ReportingService.java` [REQ-024], [REQ-025]
+- `GET /api/reports/attendance` [REQ-024]
+- `GET /api/dashboard/enrollment` [REQ-025]
 
 ## 3. Dedicated Sub-Agent Functional Directives
-- **coder**: Create the multi‑tenancy schema, add `tenant_id` columns to core tables, define foreign‑key constraints, and embed OWASP mitigations (parameterized queries, input validation). Also generate migration scripts.  
-- **doc**: Compile a complete data‑dictionary and architectural diagram documenting the tenancy model, column definitions, and security controls. Store under `./sources/backend/docs/tenant-schema.md`.  
-- **tester**: Write unit tests that verify tenant‑isolation queries return only records belonging to the authenticated tenant and that unauthorized access is blocked. Ensure test coverage aligns with `[NFR-002]` performance and reliability expectations.
+The assigned agents for this phase include:
+- **coder**: Responsible for implementing the reporting and analytics functionality, including the development of the `ReportingService.java` class and the creation of the attendance report and enrollment summary dashboard.
+- **tester**: Responsible for testing the reporting and analytics functionality, including the creation of test cases for the attendance report and enrollment summary dashboard.
+- **reviewer**: Responsible for reviewing the code and ensuring that it meets the project's coding standards and security requirements.
+- **doc**: Responsible for documenting the reporting and analytics functionality, including the creation of technical documentation and user manuals.
 
 ## 4. Phase Definition of Done (DoD)
-- All core tables (`users`, `centers`, `courses`, `enrollments`, `attendance`, `student_cards`, `notifications`, `promotions`, `announcements`) contain a `tenant_id` column of type `UUID` with appropriate NOT NULL constraints.  
-- Foreign‑key relationships reference `tenant_id` to enforce isolation.  
-- Migration scripts are version‑controlled and idempotent.  
-- OWASP Top 10 mitigations are applied (parameterized queries, input validation, output encoding).  
-- Unit tests achieve ≥ 90 % coverage for tenant‑validation queries and pass CI checks.  
-- Documentation files exist and describe the schema, tenancy rules, and security controls.  
-- All artifacts reside under `./sources/` respecting the Mandatory Path Subdirectory Rule.
+The definition of done for this phase includes:
+- 100% implementation of the reporting and analytics functionality, including the attendance report and enrollment summary dashboard.
+- 100% test coverage for the reporting and analytics functionality.
+- Compliance with OWASP enterprise standards for security.
+- Completion of technical documentation and user manuals.
 
-## 5. DAY‑BY‑DAY ARCHITECTURAL EXECUTION LOGS
+## 5. DAY-BY-DAY ARCHITECTURAL EXECUTION LOGS
 
-### DAY 1: Initialize Multi‑Tenancy Database Schema and Documentation
-#### SUB‑TASK 1.1: Design and Create Multi‑Tenancy Schema
+### DAY 1: Implement Reporting Service
+#### SUB-TASK 1.1: Develop Reporting Service Class
 ##### Assigned Sub-Agent: coder
 ##### Targeted Components & Technical Requirements:
-* **Target Path:** `./sources/backend/src/migrations/202511010001_add_tenant_id_to_users.js`
+* **Target Path:** `./sources/backend/reporting/ReportingService.java` [REQ-024], [REQ-025]
 * **Architectural Requirements:**
-  * Define a `tenant_id` column (UUID, NOT NULL) in the `users` table migration.  
-  * Add a composite index `(tenant_id, email)` for fast tenant‑specific lookups.  
-  * Use parameterized queries in migration to avoid SQL injection.  
-  * Enforce OWASP A03:2021 – SQL Injection by using prepared statements.  
+  * Implement the `ReportingService` class to generate attendance reports and enrollment summaries.
+  * Ensure compliance with OWASP security standards.
 * **DAILY LOGS TRACEABILITY RULES (ZERO TOLERANCE FOR BUNDLING):**
-  * **Targeted Tag IDs:** [REQ-001], [ARC-001], [DAT-001]
+  * **Targeted Tag IDs:** [REQ-024], [REQ-025]
 
-#### SUB‑TASK 1.2: Document the New Tenancy Schema
-##### Assigned Sub-Agent: doc
+### DAY 2: Implement Attendance Report
+#### SUB-TASK 2.1: Develop Attendance Report Functionality
+##### Assigned Sub-Agent: coder
 ##### Targeted Components & Technical Requirements:
-* **Target Path:** `./sources/backend/docs/tenant-schema.md`
+* **Target Path:** `./sources/backend/reporting/AttendanceReport.java` [REQ-024]
 * **Architectural Requirements:**
-  * Include a table listing each migrated entity, its columns, data types, and the new `tenant_id` field.  
-  * Add a section on tenancy isolation rules and OWASP compliance notes.  
-  * Ensure markdown follows project style guide and is placed under `./sources/`.  
+  * Implement the attendance report functionality to generate reports based on student attendance data.
+  * Ensure compliance with OWASP security standards.
 * **DAILY LOGS TRACEABILITY RULES (ZERO TOLERANCE FOR BUNDLING):**
-  * **Targeted Tag IDs:** [REQ-001], [ARC-001], [DAT-001]
+  * **Targeted Tag IDs:** [REQ-024]
 
-#### SUB‑TASK 1.3: Write Unit Tests for Tenant‑Isolation Validation Queries
+### DAY 3: Implement Enrollment Summary Dashboard
+#### SUB-TASK 3.1: Develop Enrollment Summary Dashboard Functionality
+##### Assigned Sub-Agent: coder
+##### Targeted Components & Technical Requirements:
+* **Target Path:** `./sources/backend/reporting/EnrollmentSummaryDashboard.java` [REQ-025]
+* **Architectural Requirements:**
+  * Implement the enrollment summary dashboard functionality to display course enrollment statistics.
+  * Ensure compliance with OWASP security standards.
+* **DAILY LOGS TRACEABILITY RULES (ZERO TOLERANCE FOR BUNDLING):**
+  * **Targeted Tag IDs:** [REQ-025]
+
+### DAY 4: Test Reporting Functionality
+#### SUB-TASK 4.1: Test Attendance Report Functionality
 ##### Assigned Sub-Agent: tester
 ##### Targeted Components & Technical Requirements:
-* **Target Path:** `./sources/backend/src/queries/tenantValidation.js;./sources/backend/tests/tenantValidation.test.js`
+* **Target Path:** `./sources/backend/reporting/AttendanceReportTest.java` [REQ-024]
 * **Architectural Requirements:**
-  * Implement a query function that selects records filtered by `tenant_id`.  
-  * Write Jest tests that assert correct record retrieval for the owning tenant and no records for a different tenant.  
-  * Validate that the query uses parameterized statements to prevent injection.  
-  * Ensure test suite runs within the 200 ms latency target (`[NFR-002]`).  
+  * Test the attendance report functionality to ensure it generates accurate reports.
+  * Ensure compliance with OWASP security standards.
 * **DAILY LOGS TRACEABILITY RULES (ZERO TOLERANCE FOR BUNDLING):**
-  * **Targeted Tag IDs:** [ARC-001], [NFR-002]
+  * **Targeted Tag IDs:** [REQ-024]
 
-All Phase 1 objectives are satisfied on Day 1; no further daily logs are required.
+### DAY 5: Test Enrollment Summary Dashboard Functionality
+#### SUB-TASK 5.1: Test Enrollment Summary Dashboard Functionality
+##### Assigned Sub-Agent: tester
+##### Targeted Components & Technical Requirements:
+* **Target Path:** `./sources/backend/reporting/EnrollmentSummaryDashboardTest.java` [REQ-025]
+* **Architectural Requirements:**
+  * Test the enrollment summary dashboard functionality to ensure it displays accurate course enrollment statistics.
+  * Ensure compliance with OWASP security standards.
+* **DAILY LOGS TRACEABILITY RULES (ZERO TOLERANCE FOR BUNDLING):**
+  * **Targeted Tag IDs:** [REQ-025]
+
+### DAY 6: Review and Document Reporting Functionality
+#### SUB-TASK 6.1: Review Reporting Functionality
+##### Assigned Sub-Agent: reviewer
+##### Targeted Components & Technical Requirements:
+* **Target Path:** `./sources/backend/reporting/ReportingService.java` [REQ-024], [REQ-025]
+* **Architectural Requirements:**
+  * Review the reporting functionality to ensure it meets the project's coding standards and security requirements.
+  * Ensure compliance with OWASP security standards.
+* **DAILY LOGS TRACEABILITY RULES (ZERO TOLERANCE FOR BUNDLING):**
+  * **Targeted Tag IDs:** [REQ-024], [REQ-025]
+
+### DAY 7: Finalize Reporting Functionality
+#### SUB-TASK 7.1: Finalize Reporting Functionality
+##### Assigned Sub-Agent: doc
+##### Targeted Components & Technical Requirements:
+* **Target Path:** `./docs/reporting-functionality.md` [REQ-024], [REQ-025]
+* **Architectural Requirements:**
+  * Document the reporting functionality, including the attendance report and enrollment summary dashboard.
+  * Ensure compliance with OWASP security standards.
+* **DAILY LOGS TRACEABILITY RULES (ZERO TOLERANCE FOR BUNDLING):**
+  * **Targeted Tag IDs:** [REQ-024], [REQ-025]

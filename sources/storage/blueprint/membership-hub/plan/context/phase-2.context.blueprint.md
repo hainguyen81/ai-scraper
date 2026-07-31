@@ -1,151 +1,114 @@
-# PHASE 2 CONTEXT BLUEPRINT: membership-hub
+# PHASE  CONTEXT BLUEPRINT: membership-hub
+
+## 📊 Document Control
+
+| Item | Details |
+| :--- | :--- |
+| **Blueprint ID** | ARCH-20260731024630 |
+| **Project Name** | membership-hub |
+| **Version** | 1.0 (Baseline) |
+| **Date/Time** | 2026/07/31 02:46:30 |
+| **Author** | Enterprise System Architect (SA Agent) |
+| **Approval** | Pending Technical Governance Review |
 
 ## 1. Phase Operational Scope & Objectives
-Implement the complete user authentication experience for the membership‑hub platform within the allocated Phase 2 window. This includes:
+This phase focuses on implementing reporting and analytics functionality for the membership-hub project. The primary objectives include generating attendance reports and creating an enrollment summary dashboard. These features are crucial for center administrators to track student attendance and course enrollment statistics.
 
-- **User Registration** – capture email/password (or social) with strict validation, hash passwords, issue a JWT (15‑min expiry) and create a local user record with the default “Student” role (REQ‑001).  
-- **Social Authentication** – integrate Firebase, Google, and Facebook OAuth2 flows, exchange provider tokens for user info, map or create local accounts, and return JWT tokens (REQ‑002).  
-- **User Role Assignment** – expose an admin‑driven endpoint to change a user’s role (System Admin, Center Admin, Manager, Teacher, Student) and enforce the new permissions immediately (REQ‑003).  
-- **Frontend‑Backend Integration** – connect the Next.js UI to the auth services, manage bearer‑token state, and provide seamless login/register UI with error handling.  
-- **OWASP & Non‑Functional Compliance** – apply input validation, parameterized queries, password hashing, JWT best‑practice, CSRF tokens, XSS prevention, and audit logging. Ensure GDPR/CCPA data‑handling rules (consent, deletion, export) are respected (NFR‑003, NFR‑008).  
-
-All artifacts must be confined to the `./sources/` workspace boundary and follow the mandatory path prefixes (`./sources/frontend/`, `./sources/backend/`, `./sources/docs/`).
-
-## 2. Allowed Technical Scope & Directory Boundaries
-- **Frontend** – `./sources/frontend/` (React/Next.js pages, components, services, tests).  
-- **Backend** – `./sources/backend/` (Java/Quarkus or Spring Boot services, following the `/org/nlh4j/saas/<lowercase‑token>/` package layout).  
-- **Documentation** – `./sources/docs/` (Markdown specifications, architecture diagrams, security notes).  
-- **Endpoints** – All auth APIs are REST under `/api/auth/*` (e.g., `POST /api/auth/register`, `POST /api/auth/login`, `POST /api/auth/social/{provider}`).  
-- **Testing** – Unit tests reside under `./sources/backend/src/test/...`; UI/integration tests under `./sources/frontend/tests/`.  
-
-No other directories or root‑level files are permitted.
+## 2. Allowed Technical Scope & Directory Boundaries (Files, paths, and endpoints)
+The technical scope for this phase includes the development of the reporting and analytics module. The directory matrices and REST endpoint routing patterns allowed for this phase are as follows:
+- `./sources/backend/reporting/ReportingService.java` [REQ-024], [REQ-025]
+- `GET /api/reports/attendance` [REQ-024]
+- `GET /api/dashboard/enrollment` [REQ-025]
 
 ## 3. Dedicated Sub-Agent Functional Directives
-- **Coder** – Build the registration/login UI components, backend auth services, and enforce OWASP mitigations (input validation, password hashing, JWT handling, tenant_id scoping, CSRF tokens). Ensure GDPR fields are handled per consent.  
-- **Doc** – Produce comprehensive documentation: authentication flow diagrams, API request/response schemas, security considerations, and OWASP compliance notes. Store all docs under `./sources/docs/`.  
-- **Tester** – Write unit tests for registration/login services and integration tests for end‑to‑end auth flows. Include security‑focused tests (SQL injection attempts, XSS payloads, CSRF bypass) and verify error handling per EXC‑004.  
-
-All sub‑tasks must reference the exact BA tag IDs from the raw requirements and stay within the `./sources/` boundary.
+The assigned agents for this phase include:
+- **coder**: Responsible for implementing the reporting and analytics functionality, including the development of the `ReportingService.java` class and the creation of the attendance report and enrollment summary dashboard.
+- **tester**: Responsible for testing the reporting and analytics functionality, including the creation of test cases for the attendance report and enrollment summary dashboard.
+- **reviewer**: Responsible for reviewing the code and ensuring that it meets the project's coding standards and security requirements.
+- **doc**: Responsible for documenting the reporting and analytics functionality, including the creation of technical documentation and user manuals.
 
 ## 4. Phase Definition of Done (DoD)
-- **Functional** – All registration, login, and social auth endpoints return valid JWTs, enforce role assignment, and respect multi‑tenancy (`tenant_id`).  
-- **Security** – OWASP Top 10 mitigations applied (parameterized queries, password hashing, JWT expiry, CSRF tokens, XSS prevention). GDPR/CCPA data‑handling controls implemented.  
-- **Testing** – Unit test coverage for auth modules ≥ 80 % (or defined metric), integration tests pass, security tests confirm no injection/CSRF vulnerabilities.  
-- **Documentation** – Authentication flow, API spec, and security‑consideration documents created and reviewed.  
-- **Compliance** – All referenced BA tags (`[REQ-001]`, `[REQ-002]`, `[REQ-003]`, `[EXC-004]`, `[DAT-001]`, `[DAT-008]`, `[NFR-003]`, etc.) are fully addressed.  
+The definition of done for this phase includes:
+- 100% implementation of the reporting and analytics functionality, including the attendance report and enrollment summary dashboard.
+- 100% test coverage for the reporting and analytics functionality.
+- Compliance with OWASP enterprise standards for security.
+- Completion of technical documentation and user manuals.
 
-## 5. DAY‑BY‑DAY ARCHITECTURAL EXECUTION LOGS
+## 5. DAY-BY-DAY ARCHITECTURAL EXECUTION LOGS
 
-### DAY 1: Implement registration UI and initial documentation
-#### SUB-TASK 1.1: Build frontend registration page with validation
+### DAY 1: Implement Reporting Service
+#### SUB-TASK 1.1: Develop Reporting Service Class
 ##### Assigned Sub-Agent: coder
 ##### Targeted Components & Technical Requirements:
-* **Target Path:** ./sources/frontend/src/pages/RegisterPage.tsx
+* **Target Path:** `./sources/backend/reporting/ReportingService.java` [REQ-024], [REQ-025]
 * **Architectural Requirements:**
-  * Implement form fields for email, password, terms acceptance.
-  * Apply client‑side validation matching REQ‑001 rules (email format, password complexity).
-  * Integrate API call to `POST /api/auth/register` and handle JWT storage (http‑only cookies or secure localStorage).
-  * Enforce CSRF token inclusion in request headers.
-  * Log registration attempts for audit (NFR‑006).
+  * Implement the `ReportingService` class to generate attendance reports and enrollment summaries.
+  * Ensure compliance with OWASP security standards.
 * **DAILY LOGS TRACEABILITY RULES (ZERO TOLERANCE FOR BUNDLING):**
-  * **Targeted Tag IDs:** [REQ-001], [EXC-004], [DAT-001], [NFR-003]
+  * **Targeted Tag IDs:** [REQ-024], [REQ-025]
 
-#### SUB-TASK 1.2: Document authentication flow overview
-##### Assigned Sub-Agent: doc
-##### Targeted Components & Technical Requirements:
-* **Target Path:** ./sources/docs/authentication-flow.md
-* **Architectural Requirements:**
-  * Provide step‑by‑step flow from user registration to JWT issuance.
-  * Include request/response schemas for `POST /api/auth/register`.
-  * Highlight OWASP mitigations (input validation, password hashing, CSRF).
-  * Reference GDPR/CCPA data handling notes.
-* **DAILY LOGS TRACEABILITY RULES (ZERO TOLERANCE FOR BUNDLING):**
-  * **Targeted Tag IDs:** [REQ-001], [REQ-002], [REQ-003], [EXC-004], [DAT-001], [DAT-008], [NFR-003]
-
-#### SUB-TASK 1.3: Write unit test for registration service
-##### Assigned Sub-Agent: tester
-##### Targeted Components & Technical Requirements:
-* **Target Path:** ./sources/backend/src/main/java/org/nlh4j/saas/authservice/AuthService.java;./sources/backend/src/test/java/org/nlh4j/saas/authservice/AuthServiceTest.java
-* **Architectural Requirements:**
-  * Implement test cases covering successful registration, duplicate email, invalid password, and malformed input.
-  * Verify password hashing (bcrypt) and JWT token generation with 15‑min expiry.
-  * Assert that validation errors return appropriate HTTP status codes.
-* **DAILY LOGS TRACEABILITY RULES (ZERO TOLERANCE FOR BUNDLING):**
-  * **Targeted Tag IDs:** [REQ-001], [EXC-004], [DAT-001], [NFR-003]
-
-### DAY 2: Implement login UI, API spec, and integration testing
-#### SUB-TASK 2.1: Build frontend login page with token management
+### DAY 2: Implement Attendance Report
+#### SUB-TASK 2.1: Develop Attendance Report Functionality
 ##### Assigned Sub-Agent: coder
 ##### Targeted Components & Technical Requirements:
-* **Target Path:** ./sources/frontend/src/pages/LoginPage.tsx
+* **Target Path:** `./sources/backend/reporting/AttendanceReport.java` [REQ-024]
 * **Architectural Requirements:**
-  * Create email/password input fields with client‑side validation.
-  * Integrate `POST /api/auth/login` and store JWT (secure, http‑only).
-  * Implement logout that clears token and redirects.
-  * Add CSRF token handling for state‑changing actions.
-  * Log login attempts for audit (NFR‑006).
+  * Implement the attendance report functionality to generate reports based on student attendance data.
+  * Ensure compliance with OWASP security standards.
 * **DAILY LOGS TRACEABILITY RULES (ZERO TOLERANCE FOR BUNDLING):**
-  * **Targeted Tag IDs:** [REQ-001], [REQ-002], [EXC-004], [DAT-001], [NFR-003]
+  * **Targeted Tag IDs:** [REQ-024]
 
-#### SUB-TASK 2.2: Document auth API specification
-##### Assigned Sub-Agent: doc
-##### Targeted Components & Technical Requirements:
-* **Target Path:** ./sources/docs/auth-api-spec.md
-* **Architectural Requirements:**
-  * Detail all `/api/auth/*` endpoints (register, login, social/{provider}).
-  * Include request/response payloads, HTTP status codes, and error formats.
-  * Highlight security headers, JWT validation, and rate‑limiting considerations.
-  * Reference OWASP and GDPR compliance notes.
-* **DAILY LOGS TRACEABILITY RULES (ZERO TOLERANCE FOR BUNDLING):**
-  * **Targeted Tag IDs:** [REQ-001], [REQ-002], [REQ-003], [EXC-004], [DAT-001], [DAT-008], [NFR-003]
-
-#### SUB-TASK 2.3: Perform end‑to‑end integration test for authentication flows
-##### Assigned Sub-Agent: tester
-##### Targeted Components & Technical Requirements:
-* **Target Path:** INTEGRATION_SCOPE;./sources/frontend/tests/auth.integration.spec.ts
-* **Architectural Requirements:**
-  * Simulate user registration, login, and social auth (mock provider).
-  * Verify JWT receipt, token expiration, and protected route access.
-  * Validate error handling for invalid credentials and duplicate accounts.
-  * Include security checks for CSRF and XSS in request/response.
-* **DAILY LOGS TRACEABILITY RULES (ZERO TOLERANCE FOR BUNDLING):**
-  * **Targeted Tag IDs:** [REQ-001], [REQ-002], [REQ-003], [EXC-004], [DAT-001], [DAT-008], [NFR-003]
-
-### DAY 3: Implement backend auth services and security documentation
-#### SUB-TASK 3.1: Develop backend registration & login service layer
+### DAY 3: Implement Enrollment Summary Dashboard
+#### SUB-TASK 3.1: Develop Enrollment Summary Dashboard Functionality
 ##### Assigned Sub-Agent: coder
 ##### Targeted Components & Technical Requirements:
-* **Target Path:** ./sources/backend/src/main/java/org/nlh4j/saas/authservice/AuthService.java
+* **Target Path:** `./sources/backend/reporting/EnrollmentSummaryDashboard.java` [REQ-025]
 * **Architectural Requirements:**
-  * Implement `register(UserRegistrationDto)` – validate inputs, hash password (bcrypt), persist `Users` record with role “Student”, generate JWT (15‑min) and refresh token (7‑day).
-  * Implement `login(AuthenticationDto)` – verify credentials, issue JWT/refresh, enforce multi‑tenancy `tenant_id` scoping.
-  * Use parameterized queries to prevent SQL injection.
-  * Include audit logging for registration/login events (NFR‑006).
-  * Apply OWASP mitigations: input sanitization, rate limiting, secure password storage.
+  * Implement the enrollment summary dashboard functionality to display course enrollment statistics.
+  * Ensure compliance with OWASP security standards.
 * **DAILY LOGS TRACEABILITY RULES (ZERO TOLERANCE FOR BUNDLING):**
-  * **Targeted Tag IDs:** [REQ-001], [REQ-002], [REQ-003], [EXC-004], [DAT-001], [DAT-008], [NFR-003]
+  * **Targeted Tag IDs:** [REQ-025]
 
-#### SUB-TASK 3.2: Update security considerations documentation
-##### Assigned Sub-Agent: doc
-##### Targeted Components & Technical Requirements:
-* **Target Path:** ./sources/docs/security-considerations.md
-* **Architectural Requirements:**
-  * Detail JWT handling, token rotation, and expiry policies.
-  * Document password hashing algorithm and salt management.
-  * Outline input validation and CSRF protection implementation.
-  * Include OWASP Top 10 mapping for auth module.
-  * Reference GDPR/CCPA data‑protection measures (consent, deletion).
-* **DAILY LOGS TRACEABILITY RULES (ZERO TOLERANCE FOR BUNDLING):**
-  * **Targeted Tag IDs:** [NFR-003], [EXC-004], [DAT-001], [DAT-008]
-
-#### SUB-TASK 3.3: Write unit test for login service
+### DAY 4: Test Reporting Functionality
+#### SUB-TASK 4.1: Test Attendance Report Functionality
 ##### Assigned Sub-Agent: tester
 ##### Targeted Components & Technical Requirements:
-* **Target Path:** ./sources/backend/src/main/java/org/nlh4j/saas/loginservice/LoginService.java;./sources/backend/src/test/java/org/nlh4j/saas/loginservice/LoginServiceTest.java
+* **Target Path:** `./sources/backend/reporting/AttendanceReportTest.java` [REQ-024]
 * **Architectural Requirements:**
-  * Test successful authentication, invalid credentials, locked account scenarios.
-  * Verify JWT payload claims and expiry.
-  * Ensure password verification uses constant‑time comparison.
-  * Validate error responses for malformed input.
+  * Test the attendance report functionality to ensure it generates accurate reports.
+  * Ensure compliance with OWASP security standards.
 * **DAILY LOGS TRACEABILITY RULES (ZERO TOLERANCE FOR BUNDLING):**
-  * **Targeted Tag IDs:** [REQ-001], [REQ-002], [EXC-004], [DAT-001], [NFR-003]
+  * **Targeted Tag IDs:** [REQ-024]
+
+### DAY 5: Test Enrollment Summary Dashboard Functionality
+#### SUB-TASK 5.1: Test Enrollment Summary Dashboard Functionality
+##### Assigned Sub-Agent: tester
+##### Targeted Components & Technical Requirements:
+* **Target Path:** `./sources/backend/reporting/EnrollmentSummaryDashboardTest.java` [REQ-025]
+* **Architectural Requirements:**
+  * Test the enrollment summary dashboard functionality to ensure it displays accurate course enrollment statistics.
+  * Ensure compliance with OWASP security standards.
+* **DAILY LOGS TRACEABILITY RULES (ZERO TOLERANCE FOR BUNDLING):**
+  * **Targeted Tag IDs:** [REQ-025]
+
+### DAY 6: Review and Document Reporting Functionality
+#### SUB-TASK 6.1: Review Reporting Functionality
+##### Assigned Sub-Agent: reviewer
+##### Targeted Components & Technical Requirements:
+* **Target Path:** `./sources/backend/reporting/ReportingService.java` [REQ-024], [REQ-025]
+* **Architectural Requirements:**
+  * Review the reporting functionality to ensure it meets the project's coding standards and security requirements.
+  * Ensure compliance with OWASP security standards.
+* **DAILY LOGS TRACEABILITY RULES (ZERO TOLERANCE FOR BUNDLING):**
+  * **Targeted Tag IDs:** [REQ-024], [REQ-025]
+
+### DAY 7: Finalize Reporting Functionality
+#### SUB-TASK 7.1: Finalize Reporting Functionality
+##### Assigned Sub-Agent: doc
+##### Targeted Components & Technical Requirements:
+* **Target Path:** `./docs/reporting-functionality.md` [REQ-024], [REQ-025]
+* **Architectural Requirements:**
+  * Document the reporting functionality, including the attendance report and enrollment summary dashboard.
+  * Ensure compliance with OWASP security standards.
+* **DAILY LOGS TRACEABILITY RULES (ZERO TOLERANCE FOR BUNDLING):**
+  * **Targeted Tag IDs:** [REQ-024], [REQ-025]
