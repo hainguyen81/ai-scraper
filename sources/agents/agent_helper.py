@@ -444,6 +444,7 @@ REL_AGENT_IDEAS_PATH                    = os.path.join(REL_AGENTS_PATH, "ideas")
 REL_AGENT_BLUEPRINT_PATH                = os.path.join(REL_AGENTS_PATH, "architect-blueprint")
 REL_AGENT_BLUEPRINT_PROMPTS_PATH        = os.path.join(REL_AGENT_BLUEPRINT_PATH, "prompts")
 REL_AGENT_BA_PATH                       = os.path.join(REL_AGENTS_PATH, "business-analysis")
+REL_AGENT_BA_PROMPTS_PATH               = os.path.join(REL_AGENT_BA_PATH, "prompts")
 REL_AGENT_EST_PATH                      = os.path.join(REL_AGENTS_PATH, "estimation")
 REL_AGENT_CSRO_PATH                     = os.path.join(REL_AGENTS_PATH, "chief-solution")
 REL_AGENT_CSRO_PROMPTS_PATH             = os.path.join(REL_AGENT_CSRO_PATH, "prompts")
@@ -465,6 +466,7 @@ AGENT_IDEAS_PATH                        = resolve_absolute_path(REL_AGENT_IDEAS_
 AGENT_BLUEPRINT_PATH                    = resolve_absolute_path(REL_AGENT_BLUEPRINT_PATH)
 AGENT_BLUEPRINT_PROMPTS_PATH            = resolve_absolute_path(REL_AGENT_BLUEPRINT_PROMPTS_PATH)
 AGENT_BA_PATH                           = resolve_absolute_path(REL_AGENT_BA_PATH)
+AGENT_BA_PROMPTS_PATH                   = resolve_absolute_path(REL_AGENT_BA_PROMPTS_PATH)
 AGENT_EST_PATH                          = resolve_absolute_path(REL_AGENT_EST_PATH)
 AGENT_CSRO_PATH                         = resolve_absolute_path(REL_AGENT_CSRO_PATH)
 AGENT_CSRO_PROMPTS_PATH                 = resolve_absolute_path(REL_AGENT_CSRO_PROMPTS_PATH)
@@ -501,6 +503,8 @@ storage_info = {
         
         "relative_ba": REL_AGENT_BA_PATH,
         "storage_ba": AGENT_BA_PATH,
+        "relative_ba_prompts": REL_AGENT_BA_PROMPTS_PATH,
+        "storage_ba_prompts": AGENT_BA_PROMPTS_PATH,
         
         "relative_estimation": REL_AGENT_EST_PATH,
         "storage_estimation": AGENT_EST_PATH,

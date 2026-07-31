@@ -51,11 +51,11 @@ class PrincipalBusinessAnalysisAgent(AbstractSubAgent):
     
     # @override
     def system_prompt_template(self) -> str:
-        return self.__agents_path__(storage_name="storage_ba", file=SYSTEM_PROMPT_TEMPLATE)
+        return self.__agents_path__(storage_name="storage_ba_prompts", file=SYSTEM_PROMPT_TEMPLATE)
     
     # @override
     def user_prompt_template(self) -> str:
-        return self.__agents_path__(storage_name="storage_ba", file=USER_PROMPT_TEMPLATE)
+        return self.__agents_path__(storage_name="storage_ba_prompts", file=USER_PROMPT_TEMPLATE)
     
     # @override
     def agent_temperature(self):
