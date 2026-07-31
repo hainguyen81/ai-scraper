@@ -446,6 +446,7 @@ REL_AGENT_BLUEPRINT_PROMPTS_PATH        = os.path.join(REL_AGENT_BLUEPRINT_PATH,
 REL_AGENT_BA_PATH                       = os.path.join(REL_AGENTS_PATH, "business-analysis")
 REL_AGENT_EST_PATH                      = os.path.join(REL_AGENTS_PATH, "estimation")
 REL_AGENT_CSRO_PATH                     = os.path.join(REL_AGENTS_PATH, "chief-solution")
+REL_AGENT_CSRO_PROMPTS_PATH             = os.path.join(REL_AGENT_CSRO_PATH, "prompts")
 
 REL_STORAGE_IDEAS_PATH                  = os.path.join(REL_STORAGE_PATH, "ideas")
 REL_STORAGE_BLUEPRINT_PATH              = os.path.join(REL_STORAGE_PATH, "blueprint")
@@ -466,6 +467,7 @@ AGENT_BLUEPRINT_PROMPTS_PATH            = resolve_absolute_path(REL_AGENT_BLUEPR
 AGENT_BA_PATH                           = resolve_absolute_path(REL_AGENT_BA_PATH)
 AGENT_EST_PATH                          = resolve_absolute_path(REL_AGENT_EST_PATH)
 AGENT_CSRO_PATH                         = resolve_absolute_path(REL_AGENT_CSRO_PATH)
+AGENT_CSRO_PROMPTS_PATH                 = resolve_absolute_path(REL_AGENT_CSRO_PROMPTS_PATH)
 
 STORAGE_IDEAS_PATH                      = resolve_absolute_path(REL_STORAGE_IDEAS_PATH)
 STORAGE_BLUEPRINT_PATH                  = resolve_absolute_path(REL_STORAGE_BLUEPRINT_PATH)
@@ -504,7 +506,9 @@ storage_info = {
         "storage_estimation": AGENT_EST_PATH,
         
         "relative_csro": REL_AGENT_CSRO_PATH,
-        "storage_csro": AGENT_CSRO_PATH
+        "storage_csro": AGENT_CSRO_PATH,
+        "relative_csro_prompts": REL_AGENT_CSRO_PROMPTS_PATH,
+        "storage_csro_prompts": AGENT_CSRO_PROMPTS_PATH,
     },
     
     "storage": {

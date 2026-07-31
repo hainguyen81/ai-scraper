@@ -1,6 +1,5 @@
 import os
 import sys
-import argparse
 import asyncio
 from datetime import datetime
 
@@ -24,7 +23,8 @@ from sources.agents.agent_helper import (
     delete_file,
     render_kwargs_prompt,
     get_logger,
-    parse_args
+    parse_args,
+    datetime_for_agent
 )
 
 # super agent
@@ -33,23 +33,31 @@ from sources.agents.subagent_super import AbstractSubAgent
 # ==============================================================================
 # GLOBAL CONFIGURATION PATHS - CONFIG HERE TO CUSTOMIZE DIRECTORY STRUCTURE
 # ==============================================================================
-PROMPT_TEMPLATE_SOLUTION_SENTINEL   = "agent_csro.prompt.solution-sentinel.md"
-PROMPT_TEMPLATE_BA                  = "agent_csro.prompt.ba.md"
-PROMPT_TEMPLATE_SA                  = "agent_csro.prompt.sa.md"
-PROMPT_TEMPLATE_SA_DIFF_ANALYZER    = "agent_csro.prompt.diff-blueprint-analyzer.md"
+# Crew Agent backstory prompts
+PROMPT_TEMPLATE_BACKSTORY_SOLUTION_SENTINEL     = "agent_csro.backstory.prompt.solution-sentinel.md"
+PROMPT_TEMPLATE_BACKSTORY_BA                    = "agent_csro.backstory.prompt.ba.md"
+PROMPT_TEMPLATE_BACKSTORY_SA                    = "agent_csro.backstory.prompt.sa.md"
+PROMPT_TEMPLATE_BACKSTORY_DIFF_ANALYZER         = "agent_csro.backstory.prompt.diff-blueprint-analyzer.md"
 
-# `MANDATORY OUTPUT FORMAT` is a section in PROMPT
-EXPECTED_TEMPLATE_SOLUTION_SENTINEL = "agent_csro.expected.solution-sentinel.md"
-EXPECTED_TEMPLATE_BA                = "agent_csro.expected.ba.md"
-EXPECTED_TEMPLATE_SA                = "agent_csro.expected.sa.md"
-EXPECTED_TEMPLATE_SA_DIFF_ANALYZER  = "agent_csro.expected.diff-blueprint-analyzer.md"
-TASK_TEMPLATE_SA_DIFF_ANALYZER      = "agent_csro.task.diff-blueprint-analyzer.md"
+# Crew Agent Task `expected_output` prompts
+PROMPT_TEMPLATE_EXPECTED_SOLUTION_SENTINEL      = "agent_csro.expected.solution-sentinel.md"
+PROMPT_TEMPLATE_EXPECTED_BA                     = "agent_csro.expected.ba.md"
+PROMPT_TEMPLATE_EXPECTED_SA                     = "agent_csro.expected.sa.md"
+PROMPT_TEMPLATE_EXPECTED_DIFF_ANALYZER          = "agent_csro.expected.diff-blueprint-analyzer.md"
+
+# Crew Agent Task `task_description` prompts
+PROMPT_TEMPLATE_TASK_SOLUTION_SENTINEL          = "agent_csro.task.solution-sentinel.md"
+PROMPT_TEMPLATE_TASK_BA                         = "agent_csro.task.ba.md"
+PROMPT_TEMPLATE_TASK_SA                         = "agent_csro.task.sa.md"
+PROMPT_TEMPLATE_TASK_DIFF_ANALYZER              = "agent_csro.task.diff-blueprint-analyzer.md"
 
 # CSRO log files
 CSRO_RAW_FILE                       = "chief-solution-review.md"
 CSRO_LOG_FILE                       = "chief-solution-review_log.md"
 CSRO_DA_FILE                        = "chief-solution-diff-analysis.md"
 CSRO_LOG_DA_FILE                    = "chief-solution-diff-analysis_log.md"
+
+DEFAULT_CSRO_LANGUAGE               = "English"
 
 
 # support for executing workflow
@@ -140,32 +148,52 @@ class AbstractCrewEnterpriseSuperAgent(AbstractSubAgent):
             file=f"{project_name}/{prefix}.chief-solution-kickoff.md"
         ) if project_name else None
     
-    def template_prompt_sentinel(self):
-        return self.__agents_path__(storage_name="storage_csro", file=PROMPT_TEMPLATE_SOLUTION_SENTINEL)
+    def template_prompt_backstory_sentinel(self):
+        return self.__agents_path__(storage_name="storage_csro_prompts", file=PROMPT_TEMPLATE_BACKSTORY_SOLUTION_SENTINEL)
     
-    def template_prompt_ba(self):
-        return self.__agents_path__(storage_name="storage_csro", file=PROMPT_TEMPLATE_BA)
+    def template_prompt_backstory_ba(self):
+        return self.__agents_path__(storage_name="storage_csro_prompts", file=PROMPT_TEMPLATE_BACKSTORY_BA)
     
-    def template_prompt_sa(self):
-        return self.__agents_path__(storage_name="storage_csro", file=PROMPT_TEMPLATE_SA)
+    def template_prompt_backstory_sa(self):
+        return self.__agents_path__(storage_name="storage_csro_prompts", file=PROMPT_TEMPLATE_BACKSTORY_SA)
     
-    def template_prompt_sa_diff_analysis(self):
-        return self.__agents_path__(storage_name="storage_csro", file=PROMPT_TEMPLATE_SA_DIFF_ANALYZER)
+    def template_prompt_backstory_diff_analysis(self):
+        return self.__agents_path__(storage_name="storage_csro_prompts", file=PROMPT_TEMPLATE_BACKSTORY_DIFF_ANALYZER)
     
-    def template_exptected_sentinel(self):
-        return self.__agents_path__(storage_name="storage_csro", file=EXPECTED_TEMPLATE_SOLUTION_SENTINEL)
+    def template_prompt_exptected_sentinel(self):
+        return self.__agents_path__(storage_name="storage_csro_prompts", file=PROMPT_TEMPLATE_EXPECTED_SOLUTION_SENTINEL)
     
-    def template_expected_ba(self):
-        return self.__agents_path__(storage_name="storage_csro", file=EXPECTED_TEMPLATE_BA)
+    def template_prompt_expected_ba(self):
+        return self.__agents_path__(storage_name="storage_csro_prompts", file=PROMPT_TEMPLATE_EXPECTED_BA)
     
-    def template_expected_sa(self):
-        return self.__agents_path__(storage_name="storage_csro", file=EXPECTED_TEMPLATE_SA)
+    def template_prompt_expected_sa(self):
+        return self.__agents_path__(storage_name="storage_csro_prompts", file=PROMPT_TEMPLATE_EXPECTED_SA)
     
-    def template_expected_sa_diff_analysis(self):
-        return self.__agents_path__(storage_name="storage_csro", file=EXPECTED_TEMPLATE_SA_DIFF_ANALYZER)
+    def template_prompt_expected_diff_analysis(self):
+        return self.__agents_path__(storage_name="storage_csro_prompts", file=PROMPT_TEMPLATE_EXPECTED_DIFF_ANALYZER)
     
-    def template_task_sa_diff_analysis(self):
-        return self.__agents_path__(storage_name="storage_csro", file=TASK_TEMPLATE_SA_DIFF_ANALYZER)
+    def template_prompt_task_sentinel(self):
+        return self.__agents_path__(storage_name="storage_csro_prompts", file=PROMPT_TEMPLATE_TASK_SOLUTION_SENTINEL)
+    
+    def template_prompt_task_ba(self):
+        return self.__agents_path__(storage_name="storage_csro_prompts", file=PROMPT_TEMPLATE_TASK_BA)
+    
+    def template_prompt_task_sa(self):
+        return self.__agents_path__(storage_name="storage_csro_prompts", file=PROMPT_TEMPLATE_TASK_SA)
+    
+    def template_prompt_task_diff_analysis(self):
+        return self.__agents_path__(storage_name="storage_csro_prompts", file=PROMPT_TEMPLATE_TASK_DIFF_ANALYZER)
+    
+    def __common_prompt_context__(self):
+        datetime_prompt, datetime_docid = datetime_for_agent()
+        return {
+            "idea_id": self.idea_id,
+            "language": self.language,
+            "project_name": self.__current_project_name__() or "-",
+            "project_description": self.__current_project_description__() or "-",
+            "current_timestamp": datetime_prompt,
+            "doc_id": datetime_docid
+        }
     
     def __pre_initialize__(self):
         # require idea identity to analyze
@@ -217,6 +245,7 @@ class AbstractCrewEnterpriseSuperAgent(AbstractSubAgent):
         
         # initialize super
         super().initialize()
+        self.language = self.get_kwargs("language") or DEFAULT_CSRO_LANGUAGE
     
     # @override
     def agent_log_file(self) -> str:
@@ -268,11 +297,10 @@ class EnterpriseSolutionSentinelAgent(AbstractCrewEnterpriseSuperAgent):
     
     # @override
     def __create_llm_agent__(self, **kwargs):
-        backstory = self.get_kwargs_by_key(key="prompt_solution_sentinel", **kwargs)
         self.agent = Agent(
             role="Enterprise Solution Sentinel & Principal / Senior Architecture Gatekeeper",
             goal="Audit system alignment across Idea, SRS, and Blueprint. Detect loopholes and enforce structural fixes.",
-            backstory=backstory,
+            backstory=self.get_kwargs_by_key(key="backstory_sentinel", **kwargs),
             llm=self.get_kwargs_by_key(key="llm", **kwargs),
             verbose=True,
             max_iter=1,                 # maximum 1 interation
@@ -285,14 +313,9 @@ class EnterpriseSolutionSentinelAgent(AbstractCrewEnterpriseSuperAgent):
         """
         Generates the core evaluation task with injectible document payloads.
         """
-        prompt = self.get_kwargs_by_key(key="prompt_solution_sentinel", **kwargs)
         return Task(
-            description=(
-                "You must audit the injected documents payload. "
-                "Execute the MANDATORY TRIPLE-CHECK AUDIT PROTOCOL strictly. "
-                f"Your internal thought and rules are defined here:\n{prompt}"
-            ),
-            expected_output=self.get_kwargs_by_key(key="expected_output_solution_sentinel", **kwargs),
+            description=self.get_kwargs_by_key(key="task_sentinel", **kwargs),
+            expected_output=self.get_kwargs_by_key(key="expected_sentinel", **kwargs),
             agent=self.agent
         )
     
@@ -320,11 +343,10 @@ class EnterpriseBusinessAnalystAgent(AbstractCrewEnterpriseSuperAgent):
     
     # @override
     def __create_llm_agent__(self, **kwargs):
-        backstory = self.get_kwargs_by_key(key="prompt_ba", **kwargs)
         self.agent = Agent(
             role="Enterprise Business Analyst",
             goal="Author and overhaul software requirements specifications ensuring absolute alignment with product ideas.",
-            backstory=backstory,
+            backstory=self.get_kwargs_by_key(key="backstory_ba", **kwargs),
             llm=self.get_kwargs_by_key(key="llm", **kwargs),
             verbose=True,
             max_iter=1,                 # maximum 1 interation
@@ -334,10 +356,9 @@ class EnterpriseBusinessAnalystAgent(AbstractCrewEnterpriseSuperAgent):
 
     # @override
     def __create_agent_task__(self, **kwargs) -> Task:
-        prompt = self.get_kwargs_by_key(key="prompt_ba", **kwargs)
         return Task(
-            description=f"Analyze the review signals and rewrite the SRS based on these instructions:\n{prompt}",
-            expected_output=self.get_kwargs_by_key(key="expected_output_ba", **kwargs),
+            description=self.get_kwargs_by_key(key="task_ba", **kwargs),
+            expected_output=self.get_kwargs_by_key(key="expected_ba", **kwargs),
             agent=self.agent,
             context=self.get_kwargs_by_key(key="context_tasks_ba", **kwargs)
         )
@@ -367,11 +388,10 @@ class EnterpriseSystemArchitectAgent(AbstractCrewEnterpriseSuperAgent):
     
     # @override
     def __create_llm_agent__(self, **kwargs):
-        backstory = self.get_kwargs_by_key(key="prompt_sa", **kwargs)
         self.agent = Agent(
             role="Enterprise System Architect",
             goal="Architect and refactor system blueprint infrastructures to match software specifications.",
-            backstory=backstory,
+            backstory=self.get_kwargs_by_key(key="backstory_sa", **kwargs),
             llm=self.get_kwargs_by_key(key="llm", **kwargs),
             verbose=False,
             max_iter=1,                 # maximum 1 interation
@@ -381,10 +401,9 @@ class EnterpriseSystemArchitectAgent(AbstractCrewEnterpriseSuperAgent):
 
     # @override
     def __create_agent_task__(self, **kwargs) -> Task:
-        prompt = self.get_kwargs_by_key(key="prompt_sa", **kwargs)
         return Task(
-            description=f"Overhaul the System Architecture Blueprint based on these instructions:\n{prompt}",
-            expected_output=self.get_kwargs_by_key(key="expected_output_sa", **kwargs),
+            description=self.get_kwargs_by_key(key="task_sa", **kwargs),
+            expected_output=self.get_kwargs_by_key(key="expected_sa", **kwargs),
             agent=self.agent,
             context=self.get_kwargs_by_key(key="context_tasks_sa", **kwargs)
         )
@@ -506,12 +525,17 @@ class CrewEnterpriseSolutionWorkflowAgent(AbstractCrewEnterpriseWorkflowAgent):
     def build_prompts(self, **kwargs):
         return {
             **kwargs,
-            "prompt_solution_sentinel": render_kwargs_prompt(self.template_prompt_sentinel(), **kwargs),
-            "prompt_ba": render_kwargs_prompt(self.template_prompt_ba(), **kwargs),
-            "prompt_sa": render_kwargs_prompt(self.template_prompt_sa(), **kwargs),
-            "expected_output_solution_sentinel": render_kwargs_prompt(self.template_exptected_sentinel(), **kwargs),
-            "expected_output_ba": render_kwargs_prompt(self.template_expected_ba(), **kwargs),
-            "expected_output_sa": render_kwargs_prompt(self.template_expected_sa(), **kwargs)
+            "backstory_sentinel": render_kwargs_prompt(self.template_prompt_backstory_sentinel(), **kwargs),
+            "backstory_ba": render_kwargs_prompt(self.template_prompt_backstory_ba(), **kwargs),
+            "backstory_sa": render_kwargs_prompt(self.template_prompt_backstory_sa(), **kwargs),
+            
+            "expected_sentinel": render_kwargs_prompt(self.template_prompt_exptected_sentinel(), **kwargs),
+            "expected_ba": render_kwargs_prompt(self.template_prompt_expected_ba(), **kwargs),
+            "expected_sa": render_kwargs_prompt(self.template_prompt_expected_sa(), **kwargs),
+            
+            "task_sentinel": render_kwargs_prompt(self.template_prompt_task_sentinel(), **kwargs),
+            "task_ba": render_kwargs_prompt(self.template_prompt_task_ba(), **kwargs),
+            "task_sa": render_kwargs_prompt(self.template_prompt_task_sa(), **kwargs),
         }
     
     # @override
@@ -564,14 +588,10 @@ class CrewEnterpriseSolutionWorkflowAgent(AbstractCrewEnterpriseWorkflowAgent):
         raw_blueprint_content = self.__read_blueprint__(ignore_not_found=False)
         
         # return merged new values
-        now = datetime.now()
+        datetime_prompt, datetime_docid = datetime_for_agent()
         return {
             **kwargs,
-            "idea_id": self.idea_id,
-            "project_name": self.__current_project_name__() or "-",
-            "project_description": self.__current_project_description__() or "-",
-            "current_timestamp": now.strftime("%Y/%m/%d %H:%M:%S"),
-            "current_timestamp_2": now.strftime("%Y%m%d%H%M%S"),
+            **self.__common_prompt_context__(),
             "raw_idea_content": raw_idea_content,
             "raw_srs_content": raw_ba_content,
             "raw_blueprint_content": raw_blueprint_content
@@ -697,9 +717,9 @@ class CrewEnterpriseBluePrintDiffAnalyzerAgent(AbstractCrewEnterpriseWorkflowAge
     def build_prompts(self, **kwargs):
         return {
             **kwargs,
-            "task_blueprint_da": render_kwargs_prompt(self.template_task_sa_diff_analysis(), **kwargs),
-            "prompt_blueprint_da": render_kwargs_prompt(self.template_prompt_sa_diff_analysis(), **kwargs),
-            "expected_output_da": render_kwargs_prompt(self.template_expected_sa_diff_analysis(), **kwargs)
+            "backstory_da": render_kwargs_prompt(self.template_prompt_backstory_diff_analysis(), **kwargs),
+            "task_da": render_kwargs_prompt(self.template_prompt_task_diff_analysis(), **kwargs),
+            "expected_da": render_kwargs_prompt(self.template_prompt_expected_diff_analysis(), **kwargs)
         }
     
     # @override
@@ -707,7 +727,7 @@ class CrewEnterpriseBluePrintDiffAnalyzerAgent(AbstractCrewEnterpriseWorkflowAge
         self.agent = Agent(
             role="Principal Enterprise Systems Auditor",
             goal="Execute independent triple-check architectural audits on system blueprints.",
-            backstory=self.get_kwargs_by_key(key="prompt_blueprint_da", **kwargs),
+            backstory=self.get_kwargs_by_key(key="backstory_da", **kwargs),
             llm=self.get_kwargs_by_key(key="llm", **kwargs),
             verbose=False,
             max_iter=1,                 # maximum 1 interation
@@ -718,8 +738,8 @@ class CrewEnterpriseBluePrintDiffAnalyzerAgent(AbstractCrewEnterpriseWorkflowAge
     # @override
     def __create_agent_task__(self, **kwargs) -> Task:
         return Task(
-            description=self.get_kwargs_by_key(key="task_blueprint_da", **kwargs),
-            expected_output=self.get_kwargs_by_key(key="expected_output_da", **kwargs),
+            description=self.get_kwargs_by_key(key="task_da", **kwargs),
+            expected_output=self.get_kwargs_by_key(key="expected_da", **kwargs),
             agent=self.agent
         )
     
@@ -733,14 +753,10 @@ class CrewEnterpriseBluePrintDiffAnalyzerAgent(AbstractCrewEnterpriseWorkflowAge
         raw_blueprint_content = self.__read_blueprint__()
         
         # return merged new values
-        now = datetime.now()
+        datetime_prompt, datetime_docid = datetime_for_agent()
         return {
             **kwargs,
-            "idea_id": self.idea_id,
-            "project_name": self.__current_project_name__() or "-",
-            "project_description": self.__current_project_description__() or "-",
-            "current_timestamp": now.strftime("%Y/%m/%d %H:%M:%S"),
-            "current_timestamp_2": now.strftime("%Y%m%d%H%M%S"),
+            **self.__common_prompt_context__(),
             "raw_blueprint_content": raw_blueprint_content
         }
     
@@ -828,6 +844,7 @@ class CrewEnterpriseGovernanceFlow(Flow):
 if __name__ == "__main__":
     def add_known_arguments(parser):
         parser.add_argument("--idea", type=str, help="Idea Identity for searching")
+        parser.add_argument("--language", type=str, help="Translate SRS to language. Ex: Vietnamese, English, etc.")
     
     args, unknown_args = parse_args(
         description="🕵️‍♂️ CrewEnterpriseGovernanceFlow",
@@ -839,7 +856,11 @@ if __name__ == "__main__":
     litellm.drop_params = True
     
     # initializ workflow agent
-    enterprise_workflow_agent = CrewEnterpriseGovernanceFlow(idea=args.idea, **unknown_args)
+    enterprise_workflow_agent = CrewEnterpriseGovernanceFlow(
+        idea=args.idea,
+        language=args.language,
+        **unknown_args
+    )
     
     # execute workflow
     __execute_function_until_complete__(enterprise_workflow_agent.kickoff)
