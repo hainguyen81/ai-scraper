@@ -44,7 +44,7 @@ CRITICAL FORMAT RULES:
 ---
 
 ## Current Request
-- **Domain:** {{ domain }}
+- **Domain:** {% if domain and domain|trim != "" %}{{ domain }}{% else %}Auto-Select (Dynamic Enterprise Run){% endif %}
 - **Quantity:** {{ quantity }}
 - **Ideas History (DO NOT DUPLICATE):**
 {% if ideas_history %}
