@@ -111,20 +111,36 @@ class PrincipalBusinessAnalysisAgent(AbstractSubAgent):
         defaultPrjName = f"project-{datetimeStr}"
         project_name = project_metadata.get("technical_codename") or defaultPrjName
         
+        # detect existing project info if any
+        project_info = next((pi for pi in projects if pi.get("technical_codename") == project_name or pi.get("idea") == self.idea_id), None)
+        
+        # remove all existing duplicate project names if found, to avoid duplicates in the summary
+        projects[:] = [ pi for pi in projects if pi.get("technical_codename") == project_name or pi.get("idea") == self.idea_id ]
+        
         # initial project info
         idea_id = self.idea_id
         if self.idea_is_project:
-            unique_id = hashlib.md5(idea_id.encode("utf-8")).hexdigest()[:12]
-            idea_id = f"idea_{unique_id}"
+            if "idea" in project_info:
+                idea_id = project_info.get("idea")
+            else:
+                unique_id = hashlib.md5(idea_id.encode("utf-8")).hexdigest()[:12]
+                idea_id = f"idea_{unique_id}"
+        
+        # update existing project info
         project_info = {
+            # old info
+            **project_info,
+            
+            # new info
             **project_metadata,
-            "descriptive_name": project_metadata.get("descriptive_name", "-"),
-            "brand_name": project_metadata.get("brand_name", project_name),
-            "requirement_tags": project_metadata.get("requirement_tags", []),
+            
+            # custom built info
             "idea": idea_id,
             "location": self.__storage_path__(storage_name="relative_ba", file=project_name),
             "requirements": self.__storage_path__(storage_name="relative_ba", file=f"{project_name}/{SRS_FILE}")
         }
+        
+        # append as new project info if not found in the summary
         projects.append(project_info)
         self.projects_summary = projects
         
