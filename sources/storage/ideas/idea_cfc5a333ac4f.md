@@ -1,4 +1,5 @@
-#### [IDEA_1] EcoMonitor - Nền tảng theo dõi và tối ưu hóa năng lượng cho doanh nghiệp nhỏ
+# EcoMonitor - Nền tảng theo dõi và tối ưu hóa năng lượng cho doanh nghiệp nhỏ
+
 - **Lĩnh vực:** Công nghệ năng lượng tái tạo
 - **Tình trạng:** Các doanh nghiệp nhỏ thiếu công cụ giám sát và phân tích tiêu thụ năng lượng một cách trực quan, dẫn đến lãng phí và chi phí cao.
 - **Giải pháp & Quy trình:** Nền tảng cung cấp bảng điều khiển trực quan tích hợp với cảm biến điện và API đo lường năng lượng, tự động thu thập, hiển thị dữ liệu theo thời gian thực, đưa ra đề xuất tiết kiệm và xuất báo cáo.
