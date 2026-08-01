@@ -324,13 +324,14 @@ class AbstractAgent(ABC):
             master_prompt = self.build_master_prompt(**kwargs)
             # build system prompt
             system_prompt = self.build_system_prompt(**kwargs)
-            system_prompt = f"{master_prompt}\n\n{system_prompt}" if master_prompt else system_prompt
+            system_prompt = f"{master_prompt}\n\n{system_prompt}" if master_prompt and system_prompt else system_prompt if not master_prompt else master_prompt
             # build user prompt
             user_prompt = self.build_user_prompt(**kwargs)
             
             # build new values kwargs
             kwargs = {
                 **kwargs,
+                "master_prompt": master_prompt,
                 "system_prompt": system_prompt,
                 "user_prompt": user_prompt
             }
