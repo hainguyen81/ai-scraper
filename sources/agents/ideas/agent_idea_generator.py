@@ -41,6 +41,7 @@ class EnterpriseIdeaGeneratorAgent(AbstractSubAgent):
         self.domain = self.get_kwargs("domain") or DEFAULT_IDEAS_DOMAIN
         self.quantity = self.get_kwargs("quantity") or DEFAULT_IDEAS_QUNATITY
         self.language = self.get_kwargs("language") or DEFAULT_IDEAS_LANGUAGE
+        self.initialize_ideas()
     
     def initialize_ideas(self):
         self.history_ideas = self.__read_ideas_history__(ignore_not_found=True) or []
