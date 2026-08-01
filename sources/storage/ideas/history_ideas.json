@@ -23,5 +23,12 @@
         "id": "idea_cfc5a333ac4f",
         "idea": "EcoMonitor - Nền tảng theo dõi và tối ưu hóa năng lượng cho doanh nghiệp nhỏ",
         "file": "sources/storage/ideas/idea_cfc5a333ac4f.md"
+    },
+    {
+        "id": "idea_d066d15f9b52",
+        "idea": "SocialScheduler",
+        "technical_codename": "SocialScheduler",
+        "brand_name": "SocialScheduler",
+        "file": "sources/storage/ideas/idea_d066d15f9b52.md"
     }
 ]
