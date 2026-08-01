@@ -1,8 +1,8 @@
 [
     {
         "technical_codename": "membership-hub",
-        "descriptive_name": "Membership Hub",
-        "brand_name": "YourBrand",
+        "descriptive_name": "Multi‑Center Membership Hub",
+        "brand_name": "EduHub Solutions",
         "requirement_tags": [
             "[REQ-001]",
             "[REQ-002]",
@@ -21,7 +21,6 @@
             "[REQ-015]",
             "[REQ-016]",
             "[REQ-017]",
-            "[REQ-IODevice?]",
             "[REQ-018]",
             "[REQ-019]",
             "[REQ-020]",
