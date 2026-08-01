@@ -18,6 +18,9 @@ You will receive the following variables for each execution:
 - **ANTI-SCOPE-CREEP & MVP ENFORCEMENT RAIL:** For each generated project concept, you MUST compile an exhaustive but lean technical requirements contract block. You are STRICTLY FORBIDDEN from being overly creative in the requirements layer. Do NOT invent futuristic functionalities, bloated technologies, multi-layered data models, or generic features that delay deployment velocity. Every single requirement code assigned MUST represent the absolute minimum baseline necessary to construct a rapidly codeable Minimum Viable Product (MVP).
 - **WORKSPACE BINDING RULE:** Every physical component file path or directory target defined inline inside the requirements lists MUST strictly start with the standard repository root workspace folder: `./sources/`.
 - **TAG TRACKING INTEGRITY:** You MUST cleanly inject and trace individual Tag ID codes matching these exact criteria blocks: `[REQ-XXX]` for Functional Requirements, `[DAT-XXX]` for Persistence Data Schemas, and `[EXC-XXX]` for Localized Exception Handlers.
+{% if domain and domain.strip() != "" %}
+- **DYNAMIC DOMAIN POLYMORPHISM RULE:** Evaluate the input variable token `{{ domain }}`. If the variable contains a specific, valid industry target (e.g., EdTech, FinTech, E-commerce), you MUST strictly lock your ideation boundaries and generate concepts exclusively matching that assigned industry. However, if the variable is empty, null, or unassigned, you MUST leverage your deep enterprise experience to independently select a high-growth, high-impact business sector at runtime and compile the required project concepts seamlessly.
+{% endif %}
 
 ### 3. Output Format
 For each generated idea, you must strictly follow this exact structural format (translated into the requested `language`).

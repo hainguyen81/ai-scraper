@@ -54,11 +54,16 @@ class EnterpriseIdeaGeneratorAgent(AbstractSubAgent):
         return self.__output_storage_path__(storage_name="output_ideas", file=IDEAS_LOG_FILE)
     
     # @override
-    def system_prompt_template(self) -> str:
-        pass
+    def build_system_prompt_context(self, **kwargs):
+        ideas_history = self.history_ideas if self.history_ideas else []
+        ideas = [ idea["idea"] for idea in ideas_history if idea and isinstance(idea, dict) and "idea" in idea ]
+        return {
+            "ideas_history": ideas if ideas else None,
+            "language": self.language
+        }
     
     # @override
-    def build_system_prompt(self, **kwargs) -> str:
+    def system_prompt_template(self) -> str:
         return self.__agents_path__(storage_name="storage_ideas_prompts", file=SYSTEM_PROMPT_TEMPLATE)
     
     # @override
