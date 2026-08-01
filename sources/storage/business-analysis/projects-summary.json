@@ -38,5 +38,13 @@
         "idea": "idea_8fd82fa6953b",
         "location": "sources/storage/business-analysis/membership-hub",
         "requirements": "sources/storage/business-analysis/membership-hub/requirements.md"
+    },
+    {
+        "technical_codename": "membership-hub",
+        "descriptive_name": "Membership Hub Platform",
+        "brand_name": "MemberHub",
+        "idea": "idea_8fd82fa6953b",
+        "location": "sources/storage/business-analysis/membership-hub",
+        "requirements": "sources/storage/business-analysis/membership-hub/requirements.md"
     }
 ]
