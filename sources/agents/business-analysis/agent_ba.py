@@ -117,7 +117,10 @@ class PrincipalBusinessAnalysisAgent(AbstractSubAgent):
         project_info = next((pi for pi in projects if pi.get("technical_codename") == project_name or pi.get("idea") == self.idea_id), project_metadata)
         
         # remove all existing duplicate project names if found, to avoid duplicates in the summary
-        projects[:] = [ pi for pi in projects if pi.get("technical_codename") == project_name or pi.get("idea") == self.idea_id ]
+        projects[:] = [
+            pi for pi in projects
+            if pi.get("technical_codename") != project_name and pi.get("idea") != self.idea_id
+        ]
         
         # initial project info
         idea_id = self.idea_id
