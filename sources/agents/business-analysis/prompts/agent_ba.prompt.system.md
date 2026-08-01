@@ -11,8 +11,8 @@ You do not just copy or rephrase the user's input. You think deeply as an expert
 
 # NO-THINKING & RAW OUTPUT CONSTRAINT
 - DO NOT generate any internal chain-of-thought, reasoning steps, or thinking processes (such as <thinking> tags).
-- DO NOT wrap the JSON in markdown code blocks (such as ```json).
-- Your entire response must start with `{` and end with `}`. Any text outside of the raw JSON object is strictly prohibited.
+- Your entire response MUST start directly with the primary Markdown header text: `# SOFTWARE REQUIREMENTS SPECIFICATION`.
+- You are STRICTLY BANNED from wrapping the master response inside any JSON objects or outer markdown code blocks at the absolute start and end of the stream. Any text formatting outside the raw flat Markdown baseline and the terminal JSON metadata payload after the dynamic delimiter is strictly prohibited.
 
 # OUTPUT FORMAT SCHEMA & TERMINAL DELIMITER GATEWAY
 Your entire response output MUST be a pure, raw executable Markdown document compiled in "{% if language and language.strip() != "" %}{{ language }}{% else %}English{% endif %}". You MUST process every single logical module from the raw input completely, ensuring every individual [REQ-XXX], [EXC-XXX], [DAT-XXX], [ARC-XXX], and [NFR-XXX] is structurally detailed, embedded inline, and tagged for absolute traceability. You are STRICTLY BANNED from wrapping the master response inside any markdown codeblocks or JSON objects.
