@@ -1,293 +1,328 @@
-## 1. PROJECT OVERVIEW & GLOBAL ARCHITECTURE
+## 1. TỔNG QUAN DỰ ÁN & KIẾN TRÚC TOÀN CẦU
+- Mục tiêu sản phẩm & giá trị cốt lõi:
+  - Cung cấp một nền tảng thống nhất để quản lý hội viên trên nhiều trung tâm.
+  - Cho phép theo dõi điểm danh thời gian thực thông qua quét mã QR.
+  - Cung cấp thẻ hội viên kỹ thuật số với tính năng đếm ngày hiệu lực.
+  - Hỗ trợ truyền thông đa kênh (web, di động, nhóm Zalo).
+  - Giá trị cốt lõi: độ tin cậy, khả năng mở rộng, bảo mật, tính thân thiện với người dùng, hỗ trợ đa ngôn ngữ.
+- Đối tượng người dùng:
+  - Quản trị viên hệ thống (super‑user toàn cầu)
+  - Quản trị viên trung tâm (quản lý cấp trung tâm)
+  - Quản lý (phó quản trị, quyền hạn giới hạn)
+  - Giáo viên (chỉ đọc lịch học)
+  - Học viên (duyệt khóa học, đăng ký, xem thẻ hội viên)
+  - Người dùng ứng dụng di động (cùng các vai trò, giao diện phản hồi)
+- Ma trận RBAC toàn cầu:
+  - [ARC-001] Quản trị viên hệ thống: toàn quyền trên tất cả các trung tâm.
+  - [ARC-002] Quản trị viên trung tâm: toàn quyền trong trung tâm của mình, không ảnh hưởng các trung tâm khác.
+  - [ARC-003] Quản lý: có thể tạo thông báo, quản lý học viên, chỉ định học viên hiện có vào khóa học, xem danh sách khóa học, không thể chỉnh sửa khóa học hoặc chỉ định giáo viên.
+  - [ARC-004] Giáo viên: xem khóa học của mình, danh sách học viên, lịch trình; chỉ đọc.
+  - [ARC-005] Học viên: duyệt khóa học, đăng ký khóa học mới, xem thẻ hội viên (ngày hiệu lực còn lại), gia hạn thẻ.
+- Kiến trúc công nghệ & ràng buộc hạ tầng:
+  - [ARC-006] Luồng xác thực: hỗ trợ email/mật khẩu, Firebase, Google, Facebook qua OAuth2; cấp JWT với hạn dùng 15 phút và refresh token.
+  - [ARC-007] Luồng xử lý QR điểm danh: ứng dụng di động quét QR, gửi studentID và timestamp đến backend; dịch vụ xác thực và ghi lại điểm danh một cách idempotent.
+  - [ARC-008] Luồng truyền thông thông báo: hệ thống kích hoạt push notification đến ứng dụng di động và đăng tải lên nhóm Zalo được chỉ định cho thông báo, chỉ định khóa học và cảnh báo điểm danh.
+  - [ARC-009] Tích hợp backend ứng dụng di động: Next.js frontend tiêu thụ REST APIs; xác thực qua bearer token; hỗ trợ lưu trữ ngoại tuyến cho trường hợp kết nối hạn chế.
 
-### Product Objectives & Core Values
-- Provide a unified platform for multi‑center membership management.
-- Enable real‑time attendance tracking via QR code scanning.
-- Offer digital membership cards with validity counting.
-- Facilitate multi‑channel communication (web, mobile, Zalo groups).
-- Core values: reliability, scalability, security, user‑friendliness, multilingual support.
+## 2. QUẢN LÝ NGƯỜI DÙNG
+### 2.1 Đăng ký người dùng
+- **[REQ-001]** Đăng ký người dùng: Là một người dùng tiềm năng, tôi muốn đăng ký bằng email và mật khẩu (hoặc nhà cung cấp xã hội) để có thể có một tài khoản trong hệ thống.
+  - **Tiêu chí chấp nhận**:
+    - Giả sử người dùng cung cấp một email duy nhất, một mật khẩu mạnh, và đồng ý với điều khoản, khi họ gửi biểu mẫu đăng ký, sau đó hệ thống xác thực đầu vào, tạo một bản ghi người dùng mới với vai trò ‘Học viên’ (hoặc ‘Giáo viên’ nếu được mời), và trả về phản hồi thành công với một JWT token. *[REQ-001]*
+  - **Dữ liệu đầu vào & xác thực trường**:
+    - Email: bắt buộc, tối đa 255 ký tự, phải chứa một ‘@’ và phần tên miền (ví dụ: user@example.com). Phải duy nhất.
+    - Mật khẩu: bắt buộc, tối thiểu 8 ký tự, ít nhất một chữ hoa, một chữ thường, một chữ số, một ký tự đặc biệt.
+    - Điều khoản: ô kiểm bắt buộc.
 
-### Target User Personas
-- System Admin (global super‑user)
-- Center Admin (center‑level manager)
-- Manager (sub‑admin, limited rights)
-- Teacher (read‑only course schedule)
-- Student (course browsing, enrollment, card view)
-- Mobile App User (same personas, responsive UI)
+### 2.2 Xác thực xã hội
+- **[REQ-002]** Xác thực xã hội: Là một người dùng, tôi muốn đăng nhập/đăng ký bằng Firebase, Google, hoặc Facebook OAuth để có thể tận dụng thông tin xác thực hiện có.
+  - **Tiêu chí chấp nhận**:
+    - Giả sử người dùng chọn một nhà cung cấp, khi họ xác thực qua cửa sổ popup của nhà cung cấp, sau đó hệ thống nhận một mã OAuth2, trao đổi mã để lấy thông tin người dùng, tạo hoặc cập nhật bản ghi người dùng cục bộ, và cấp một JWT token. *[REQ-002]*
+  - **Dữ liệu đầu vào & xác thực trường**: mã thông báo nhà cung cấp, hình ảnh hồ sơ tùy chọn.
 
-### Global Role‑Based Access Control (RBAC) Matrix
-- [ARC-001] System Admin: full permissions across all centers.
-- [ARC-002] Center Admin: full permissions within own center, cannot affect other centers.
-- [ARC-003] Manager: can create announcements, manage students, assign existing students to courses, view course list, cannot edit courses or assign teachers.
-- [ARC-004] Teacher: view own courses, student lists, schedule; read‑only.
-- [ARC-005] Student: browse courses, register for new courses, view own membership card (remaining days), renew card days.
+### 2.3 Phân quyền vai trò người dùng
+- **[REQ-003]** Phân quyền vai trò người dùng: Là một quản trị viên, tôi muốn chỉ định hoặc thay đổi vai trò của một người dùng (Quản trị viên hệ thống, Quản trị viên trung tâm, Quản lý, Giáo viên, Học viên) để các quyền hạn được thực thi chính xác.
+  - **Tiêu chí chấp nhận**:
+    - Giả sử một quản trị viên chọn một người dùng và một vai trò mới, khi việc chỉ định được xác nhận, sau đó vai trò của người dùng được cập nhật, và các quyền hạn tương ứng được áp dụng ngay lập tức. *[REQ-003]*
+  - **Dữ liệu đầu vào & xác thực trường**: ô chọn vai trò, bản ghi nhật ký bắt buộc.
 
-### Global Tech Stack Constraints & Infrastructure Blueprint
-- [ARC-006] Authentication Flow: supports email/password, Firebase, Google, Facebook via OAuth2; issues JWT tokens with 15‑minute expiry and refresh tokens.
-- [ARC-007] Attendance QR Processing Flow: mobile app scans QR, sends student ID and timestamp to backend; service validates and records attendance idempotently.
-- [ARC-008] Notification Delivery Flow: system triggers push notifications to mobile apps and posts to designated Zalo groups for announcements, course assignments, and attendance alerts.
-- [ARC-009] Mobile App Backend Integration Flow: Next.js frontend consumes REST APIs; authentication via bearer tokens; supports offline caching for limited connectivity.
+## 3. QUẢN LÝ TRUNG TÂM
+### 3.1 Xem danh sách trung tâm
+- **[REQ-004]** Xem danh sách trung tâm: Là bất kỳ người dùng đã xác thực, tôi muốn xem danh sách tất cả các trung tâm với địa chỉ, mã số thuế, và liên hệ quản trị viên để có thể xác định các trung tâm liên quan.
+  - **Tiêu chí chấp nhận**:
+    - Giả sử một người dùng điều hướng đến trang Trung tâm, khi yêu cầu hoàn tất, sau đó một bảng các trung tâm (Tên, Địa chỉ, Mã số thuế, Liên hệ quản trị viên) được hiển thị. *[REQ-004]*
+  - **Dữ liệu đầu vào & xác thực trường**: Không có (chỉ đọc).
 
-## 2. ENHANCED EPIC MODULES
+### 3.2 Tạo/Sửa/Xóa trung tâm
+- **[REQ-005]** Tạo/Sửa/Xóa trung tâm: Là một Quản trị viên hệ thống, tôi muốn thêm, chỉnh sửa, hoặc xóa một bản ghi trung tâm để thông tin trung tâm luôn được cập nhật.
+  - **Tiêu chí chấp nhận**:
+    - Giả sử một Quản trị viên hệ thống cung cấp tên trung tâm, địa chỉ, mã số thuế, điện thoại liên hệ và email, khi hành động lưu được thực thi, sau đó trung tâm được lưu trữ và xuất hiện trong danh sách; nếu mã số thuế trùng lặp, thao tác thất bại với lỗi xung đột. *[REQ-005]*
+  - **Dữ liệu đầu vào & xác thực trường**:
+    - Tên: bắt buộc, tối đa 100 ký tự.
+    - Địa chỉ: bắt buộc, tối đa 255 ký tự.
+    - Mã số thuế: bắt buộc, số, 10‑13 chữ số, duy nhất.
+    - Điện thoại liên hệ: tùy chọn, có thể bao gồm +, chữ số, khoảng trắng, dấu gạch ngang, ngoặc đơn.
+    - Email liên hệ: tùy chọn, phải là định dạng email hợp lệ.
 
-### 2.1 User Management
-#### Core Functional Requirements
-- [REQ-001] User Registration: As a prospective user, I want to register using email and password (or social providers) so that I can obtain an account in the system.
-  **Acceptance Criteria**:
-  - Given a user provides a unique email, a strong password, and agrees to terms, When they submit the registration form, Then the system validates the input, creates a new user record with role “Student” (or “Teacher” if invited), and returns a success response with a JWT token. *[REQ-001]*
-  **Data Inputs & Field Validations**:
-  - Email: required, max 255 chars, must contain a single “@” and a domain part (e.g., user@example.com). Must be unique.
-  - Password: required, min 8 chars, at least one uppercase, one lowercase, one digit, one special character.
-  - Terms: required checkbox.
-- [REQ-002] Social Authentication: As a user, I want to sign‑in/up using Firebase, Google, or Facebook OAuth so that I can leverage existing credentials.
-  **Acceptance Criteria**:
-  - Given a user selects a social provider, When they authenticate through the provider’s popup, Then the system receives an OAuth2 code, exchanges it for user info, creates or updates the local user record, and issues a JWT token. *[REQ-002]*
-  **Data Inputs & Field Validations**: provider token, optional profile picture.
-- [REQ-003] User Role Assignment: As an administrator, I want to assign or change a user’s role (System Admin, Center Admin, Manager, Teacher, Student) so that permissions are correctly enforced.
-  **Acceptance Criteria**:
-  - Given an admin selects a user and a new role, When the assignment is confirmed, Then the user’s role column is updated, and appropriate permissions are applied immediately. *[REQ-003]*
-  **Data Inputs & Field Validations**: Role dropdown, audit log entry required.
+### 3.3 Phân quyền quản trị viên trung tâm
+- **[REQ-006]** Phân quyền quản trị viên trung tâm: Là một Quản trị viên hệ thống, tôi muốn chỉ định hoặc hủy chỉ định một người dùng làm Quản trị viên trung tâm cho một trung tâm cụ thể để phân quyền quản trị.
+  - **Tiêu chí chấp nhận**:
+    - Giả sử một Quản trị viên hệ thống chọn một người dùng và một trung tâm, khi hành động chỉ định được xác nhận, sau đó vai trò của người dùng được thiết lập thành ‘Quản trị viên trung tâm’ và ID trung tâm được ghi lại; thao tác hủy chỉ định đảo ngược thao tác. *[REQ-006]*
+  - **Dữ liệu đầu vào & xác thực trường**: ID người dùng, ID trung tâm.
 
-#### Module Exception Flows
-- [EXC-004] Invalid Input Validation (e.g., malformed email, missing required fields): If validation fails on form submission, When the error is returned to the user, Then a clear message lists each invalid field and prompts correction.
+## 4. QUẢN LÝ KHÓA HỌC
+### 4.1 Xem danh sách khóa học
+- **[REQ-007]** Xem danh sách khóa học: Là bất kỳ người dùng đã xác thực, tôi muốn xem tất cả các khóa học với lịch học và giáo viên được chỉ định để có thể duyệt các khóa học được cung cấp.
+  - **Tiêu chí chấp nhận**:
+    - Giả sử một người dùng truy cập trang Khóa học, khi yêu cầu hoàn tất, sau đó một lưới hiển thị CourseID, Tiêu đề, Ngày bắt đầu, Ngày kết thúc, Tên giáo viên được hiển thị. *[REQ-007]*
+  - **Dữ liệu đầu vào & xác thực trường**: Không có.
 
-#### Module Localized Data Dictionary
-- [DAT-001] Users: user_id (UUID PK), email (VARCHAR(255) NOT NULL UNIQUE), password_hash (CHAR(60) NOT NULL), full_name (VARCHAR(100) NOT NULL), role_id (SMALLINT NOT NULL FOREIGN KEY Roles.role_id), provider (ENUM('local','firebase','google','facebook') DEFAULT 'local'), created_at (TIMESTAMP NOT NULL DEFAULT now()), updated_at (TIMESTAMP NOT NULL DEFAULT now()).
-- [DAT-008] Roles: role_id (SMALLINT PK), name (VARCHAR(30) UNIQUE NOT NULL), description (VARCHAR(200)).
+### 4.2 Tạo/Sửa/Xóa khóa học (Tránh xung đột)
+- **[REQ-008]** Tạo/Sửa/Xóa khóa học (Tránh xung đột): Là một Quản trị viên hệ thống hoặc Quản trị viên trung tâm, tôi muốn quản lý các khóa học (thêm, chỉnh sửa, xóa) trong khi đảm bảo không có lịch học trùng lặp cho cùng một giáo viên hoặc địa điểm.
+  - **Tiêu chí chấp nhận**:
+    - Giả sử một quản trị viên cung cấp CourseTitle, StartDate, EndDate, TeacherID, khi hành động lưu được kích hoạt, sau đó hệ thống xác thực rằng giáo viên không được lên lịch cho một khóa học khác chồng lấn các ngày này; nếu xung đột, một lỗi được trả về; nếu không, khóa học được lưu trữ. *[REQ-008]*
+  - **Dữ liệu đầu vào & xác thực trường**:
+    - Tiêu đề: bắt buộc, tối đa 150 ký tự.
+    - Ngày bắt đầu/Ngày kết thúc: bắt buộc, Ngày kết thúc >= Ngày bắt đầu.
+    - TeacherID: bắt buộc, khóa ngoại.
+    - Logic kiểm tra chồng lấn được thực thi ở cấp DB/trigger.
 
-### 2.2 Center Management
-#### Core Functional Requirements
-- [REQ-004] Center List View: As any authenticated user, I want to see a list of all centers with address, tax ID, and admin contact so that I can identify relevant centers.
-  **Acceptance Criteria**:
-  - Given a user navigates to the Centers page, When the request completes, Then a table of centers (Name, Address, TaxID, AdminContact) is displayed. *[REQ-004]*
-  **Data Inputs & Field Validations**: None (read‑only).
-- [REQ-005] Center Create/Update/Delete: As a System Admin, I want to add, edit, or remove a center record so that center information stays current.
-  **Acceptance Criteria**:
-  - Given a System Admin provides center name, address, tax ID, primary contact phone and email, When the save action is executed, Then the center is persisted and appears in the list; if duplicate tax ID exists, the operation fails with a conflict error. *[REQ-005]*
-  **Data Inputs & Field Validations**:
-  - Name: required, max 100 chars.
-  - Address: required, max 255 chars.
-  - TaxID: required, numeric, 10‑13 digits, unique.
-  - Contact Phone: optional, may include +, digits, spaces, hyphens, parentheses.
-  - Contact Email: optional, must be valid email format.
-- [REQ-006] Center Admin Assignment: As a System Admin, I want to assign or unassign a user as a Center Admin for a specific center so that administrative control is delegated.
-  **Acceptance Criteria**:
-  - Given a System Admin selects a user and a center, When the assign action is confirmed, Then the user’s role is set to “Center Admin” and the center ID is recorded; unassign reverses the operation. *[REQ-006]*
-  **Data Inputs & Field Validations**: User ID, Center ID.
+### 4.3 Chỉ định giáo viên cho khóa học
+- **[REQ-009]** Chỉ định giáo viên cho khóa học: Là một Quản trị viên hệ thống, tôi muốn chỉ định hoặc hủy chỉ định giáo viên cho khóa học để cập nhật trách nhiệm giảng dạy.
+  - **Tiêu chí chấp nhận**:
+    - Giả sử một quản trị viên chọn một khóa học và một giáo viên, khi hành động chỉ định được thực thi, sau đó ánh xạ giáo viên-khóa học được tạo và một thông báo được xếp hàng cho ứng dụng di động của giáo viên; thao tác hủy chỉ định xóa ánh xạ. *[REQ-009]*
+  - **Dữ liệu đầu vào & xác thực trường**: CourseID, TeacherID (phải tồn tại).
 
-#### Module Exception Flows
-- [EXC-004] Invalid Input Validation: If validation fails on form submission, When the error is returned to the user, Then a clear message lists each invalid field and prompts correction.
+## 5. ĐĂNG KÝ & GHI DÁNH HỌC VIÊN
+### 5.1 Duyệt khóa học
+- **[REQ-010]** Duyệt khóa học: Là một Học viên, tôi muốn duyệt các khóa học có sẵn (loại trừ các khóa học mà tôi đã đăng ký) để có thể chọn các khóa học để tham gia.
+  - **Tiêu chí chấp nhận**:
+    - Giả sử một Học viên đăng nhập và điều hướng đến trang Duyệt Khóa học, khi yêu cầu hoàn tất, sau đó một danh sách các khóa học với sức chứa và lịch học được hiển thị, loại trừ các khóa học mà học viên đã có bản ghi đăng ký. *[REQ-010]*
+  - **Dữ liệu đầu vào & xác thực trường**: Không có.
 
-#### Module Localized Data Dictionary
-- [DAT-002] Centers: center_id (UUID PK), name (VARCHAR(100) NOT NULL), address (VARCHAR(255) NOT NULL), tax_id (VARCHAR(20) NOT NULL UNIQUE), contact_phone (VARCHAR(20)), contact_email (VARCHAR(100)).
+### 5.2 Đăng ký khóa học
+- **[REQ-011]** Đăng ký khóa học: Là một Học viên, tôi muốn đăng ký cho một khóa học (hiện có hoặc mới), điều này tự động tạo một tài khoản Học viên nếu chưa có, và chỉ định học viên vào khóa học.
+  - **Tiêu chí chấp nhận**:
+    - Giả sử một Học viên chọn một khóa học và gửi đăng ký, khi backend xử lý yêu cầu, sau đó một bản ghi đăng ký mới được tạo; nếu học viên chưa có tài khoản cục bộ, một tài khoản được tạo với vai trò ‘Học viên’; một thông báo được xếp hàng cho ứng dụng di động của học viên và nhóm Zalo của trung tâm. *[REQ-011]*
+  - **Dữ liệu đầu vào & xác thực trường**:
+    - CourseID: bắt buộc, phải là khóa học đang hoạt động.
+    - StudentID: được suy ra từ token xác thực (hoặc tạo trên‑the‑fly).
 
-### 2.3 Course Management
-#### Core Functional Requirements
-- [REQ-007] Course List View: As any authenticated user, I want to see all courses with schedule and assigned teacher so that I can browse offerings.
-  **Acceptance Criteria**:
-  - Given a user visits the Courses page, When the request completes, Then a grid displays CourseID, Title, StartDate, EndDate, TeacherName. *[REQ-007]*
-  **Data Inputs & Field Validations**: None.
-- [REQ-008] Course Create/Update/Delete (Conflict Avoidance): As a System Admin or Center Admin, I want to manage courses (add, edit, remove) while ensuring no overlapping schedules for the same teacher or venue.
-  **Acceptance Criteria**:
-  - Given an admin provides CourseTitle, StartDate, EndDate, TeacherID, When the save action is triggered, Then the system validates that the teacher is not already scheduled for another course intersecting these dates; if conflict, an error is returned; otherwise the course is persisted. *[REQ-008]*
-  **Data Inputs & Field Validations**:
-  - Title: required, max 150 chars.
-  - StartDate/EndDate: required, EndDate >= StartDate.
-  - TeacherID: required, foreign key.
-  - Overlap check logic enforced at DB/trigger level.
-- [REQ-009] Teacher Assignment to Course: As a System Admin, I want to assign or unassign teachers to courses so that teaching responsibilities are updated.
-  **Acceptance Criteria**:
-  - Given an admin selects a course and a teacher, When the assign action is executed, Then the course‑teacher mapping is created and a notification is queued for the teacher’s mobile app; unassign removes the mapping. *[REQ-009]*
-  **Data Inputs & Field Validations**: CourseID, TeacherID (must exist).
+## 6. ĐIỂM DANH & QUÉT QR
+### 6.1 Ghi lại điểm danh bằng QR
+- **[REQ-012]** Ghi lại điểm danh bằng QR: Là một Học viên (qua ứng dụng di động), tôi muốn quét một mã QR tại điểm danh để điểm danh của tôi được ghi lại cho ngày hiện tại.
+  - **Tiêu chí chấp nhận**:
+    - Giả sử một Học viên mở máy quét, quét một mã QR hợp lệ của khóa học và xác nhận điểm danh, khi API nhận payload, sau đó hệ thống xác thực mối quan hệ học viên‑khóa học, tạo một bản ghi Điểm danh với timestamp, và trả về phản hồi thành công; các lần quét trùng lặp trong cùng một ngày bị bỏ qua. *[REQ-012]*
+  - **Dữ liệu đầu vào & xác thực trường**:
+    - Payload QR: chuỗi base64 chứa studentID và courseID.
+    - Xác thực: học viên phải được ghi danh vào khóa học cho ngày đó.
 
-#### Module Exception Flows
-- [EXC-004] Invalid Input Validation: If validation fails on form submission, When the error is returned to the user, Then a clear message lists each invalid field and prompts correction.
-- [EXC-001] Network & Connectivity Drops During QR Scan: If a student scans a QR but the network is unavailable, When the app retries the request after reconnection, Then the attendance is recorded once the service is reachable.
+### 6.2 Idempotency điểm danh
+- **[REQ-013]** Idempotency điểm danh: Dịch vụ điểm danh phải đảm bảo rằng nhiều lần quét từ cùng một học viên cho cùng một khóa học trong cùng một ngày tạo ra một bản ghi điểm danh duy nhất.
+  - **Tiêu chí chấp nhận**:
+    - Giả sử một học viên quét QR hai lần trong vòng một phút, khi dịch vụ xử lý cả hai yêu cầu, sau đó chỉ một hàng điểm danh được tạo; các yêu cầu tiếp theo trả về thành công với một cờ ‘đã ghi’.
+  - **Dữ liệu đầu vào & xác thực trường**: Khóa chính tổng hợp (StudentID, CourseID, Ngày).
 
-#### Module Localized Data Dictionary
-- [DAT-003] Courses: course_id (UUID PK), title (VARCHAR(150) NOT NULL), description (TEXT), start_date (DATE NOT NULL), end_date (DATE NOT NULL), teacher_id (UUID NOT NULL FOREIGN KEY Users.user_id), max_students (INT DEFAULT 30).
+## 7. QUẢN LÝ THẺ HỌVIÊN
+### 7.1 Hiển thị hiệu lực thẻ
+- **[REQ-014]** Hiển thị hiệu lực thẻ: Là một Học viên, tôi muốn xem thẻ hội viên của mình hiển thị ngày hiệu lực còn lại để biết khi nào cần gia hạn.
+  - **Tiêu chí chấp nhận**:
+    - Giả sử một Học viên mở trang Thẻ, khi yêu cầu tải, sau đó giao diện hiển thị tổng số ngày hiệu lực, ngày đã sử dụng, và ngày còn lại; dữ liệu được suy ra từ thực thể StudentCard.
+  - **Dữ liệu đầu vào & xác thực trường**: Không có (chỉ đọc).
 
-### 2.4 Student Enrollment & Registration
-#### Core Functional Requirements
-- [REQ-010] Course Browse: As a Student, I want to browse available courses (excluding those already enrolled) so that I can select courses to join.
-  **Acceptance Criteria**:
-  - Given a Student logs in and navigates to the Browse Courses page, When the request completes, Then a list of courses with capacity and schedule is shown, excluding courses where the student already has an enrollment record. *[REQ-010]*
-  **Data Inputs & Field Validations**: None.
-- [REQ-011] Student Course Registration: As a Student, I want to register for a course (existing or new), which auto‑creates a Student account if missing, and assigns the student to the course.
-  **Acceptance Criteria**:
-  - Given a Student selects a course and submits the registration, When the backend processes the request, Then a new enrollment record is created; if the student does not have a local account, one is created with role “Student”; a notification is queued to the student’s mobile app and the center’s Zalo group. *[REQ-011]*
-  **Data Inputs & Field Validations**:
-  - CourseID: required, must be active.
-  - StudentID: derived from authentication token (or created on‑the‑fly).
+### 7.2 Gia hạn thẻ
+- **[REQ-015]** Gia hạn thẻ: Là một Học viên, tôi muốn gia hạn thẻ hội viên của mình bằng cách thanh toán một khoản phí, điều này cập nhật ngày kết thúc.
+  - **Tiêu chí chấp nhận**:
+    - Giả sử một Học viên chọn một khoảng thời gian gia hạn (ví dụ: 30 ngày), xác nhận thanh toán, khi dịch vụ thanh toán xác nhận thành công, sau đó ngày kết thúc của StudentCard được mở rộng thêm số ngày đã chọn và một thông báo xác nhận được gửi.
+  - **Dữ liệu đầu vào & xác thực trường**:
+    - RenewalDays: số nguyên, 1‑365.
+    - Tích hợp cổng thanh toán yêu cầu (ngoài phạm vi).
 
-#### Module Exception Flows
-- [EXC-004] Invalid Input Validation: If validation fails on form submission, When the error is returned to the user, Then a clear message lists each invalid field and prompts correction.
-- [EXC-005] System Recovery After Outage: If the service becomes unavailable, When it restores, Then any pending attendance scans are processed in FIFO order, and users receive a notification of recovered events.
+## 8. THÔNG BÁO & TRUYỀN THÔNG
+### 8.1 Kích hoạt thông báo
+- **[REQ-016]** Kích hoạt thông báo: Khi một quản trị viên tạo một thông báo, chỉ định một giáo viên cho một khóa học, hoặc đăng ký một học viên, hệ thống phải tạo một thông báo cho ứng dụng di động của học viên và đăng tải lên nhóm Zalo được chỉ định cho thông báo, chỉ định khóa học và cảnh báo điểm danh.
+  - **Tiêu chí chấp nhận**:
+    - Giả sử một quản trị viên thực hiện một hành động yêu cầu thông báo, khi hành động được lưu, sau đó một bản ghi Thông báo được tạo, một payload thông báo push được xếp hàng cho ứng dụng di động, và một tin nhắn văn bản được gửi đến nhóm chat Zalo. *[REQ-016]*
+  - **Dữ liệu đầu vào & xác thực trường**: Đối tượng mục tiêu (học viên, giáo viên, nhóm), nội dung thông báo, phương tiện tùy chọn.
 
-#### Module Localized Data Dictionary
-- [DAT-004] Enrollments: enrollment_id (UUID PK), student_id (UUID NOT NULL FOREIGN KEY Users.user_id), course_id (UUID NOT NULL FOREIGN KEY Courses.course_id), enrollment_date (TIMESTAMP NOT NULL DEFAULT now()).
+## 9. QUẢN LÝ KHUYẾN MÃI & THÔNG BÁO
+### 9.1 Quản lý khuyến mãi
+- **[REQ-017]** Quản lý khuyến mãi: Là một Quản trị viên trung tâm hoặc Quản lý, tôi muốn tạo, chỉnh sửa, hoặc xóa các khuyến mãi (giảm giá, ưu đãi) với ngày bắt đầu/kết thúc để học viên có thể xem các ưu đãi áp dụng.
+  - **Tiêu chí chấp nhận**:
+    - Giả sử một quản trị viên cung cấp PromotionName, mô tả, điều kiện, startDate, endDate, khi lưu, sau đó khuyến mãi xuất hiện trong danh sách hiển thị cho học viên; nếu endDate bị bỏ qua, khuyến mãi được coi là vĩnh viễn. *[REQ-017]*
+  - **Dữ liệu đầu vào & xác thực trường**:
+    - Tên: bắt buộc, tối đa 100 ký tự.
+    - Ngày bắt đầu/Ngày kết thúc: tùy chọn, định dạng YYYY‑MM‑DD.
+    - Mô tả: tối đa 500 ký tự.
 
-### 2.5 Attendance & QR Scanning
-#### Core Functional Requirements
-- [REQ-012] QR Attendance Capture: As a Student (via mobile app), I want to scan a QR code at class start so that my attendance is recorded for the current day.
-  **Acceptance Criteria**:
-  - Given a Student opens the scanner, scans a valid course QR, and confirms attendance, When the API receives the payload, Then the system validates the student‑course relationship, creates an Attendance record with timestamp, and returns a success response; duplicate scans on the same day are ignored. *[REQ-012]*
-  **Data Inputs & Field Validations**:
-  - QR payload: base64 encoded string containing studentID and courseID.
-  - Validation: student must be enrolled in the course for the day.
-- [REQ-013] Attendance Idempotency: The attendance service must guarantee that multiple scans from the same student for the same course on the same day produce a single attendance record.
-  **Acceptance Criteria**:
-  - Given a student scans a QR twice within a minute, When the service processes both requests, Then only one attendance row is created; subsequent requests return a success with a “duplicate” flag. *[REQ-013]*
-  **Data Inputs & Field Validations**: Unique composite key (StudentID, CourseID, Date).
+### 9.2 Quản lý thông báo
+- **[REQ-018]** Quản lý thông báo: Là một Quản trị viên trung tâm hoặc Quản lý, tôi muốn tạo, chỉnh sửa, hoặc xóa các thông báo với ngày hết hạn tùy chọn để phát sóng cho tất cả người dùng.
+  - **Tiêu chí chấp nhận**:
+    - Giả sử một quản trị viên nhập AnnouncementTitle, nội dung, hết hạn tùy chọn, khi lưu, sau đó thông báo được hiển thị trên toàn trang web; nếu hết hạn được đặt, nó tự động biến mất sau ngày đó. *[REQ-018]*
+  - **Dữ liệu đầu vào & xác thực trường**:
+    - Tiêu đề: bắt buộc, tối đa 150 ký tự.
+    - Nội dung: bắt buộc, tối đa 2000 ký tự.
 
-#### Module Exception Flows
-- [EXC-001] Network & Connectivity Drops During QR Scan: If a student scans a QR but the network is unavailable, When the app retries the request after reconnection, Then the attendance is recorded once the service is reachable.
-- [EXC-002] Duplicate Attendance Submission: If the same student scans the same course QR multiple times within the same day, When the system detects a duplicate, Then it returns a success response indicating “already recorded” and does not create extra rows.
-- [EXC-004] Invalid Input Validation: If validation fails on form submission, When the error is returned to the user, Then a clear message lists each invalid field and prompts correction.
+## 10. CHATBOT DỊCH VỤ KHÁCH HÀNG AI
+### 10.1 Tích hợp chatbot AI
+- **[REQ-019]** Tích hợp chatbot AI: Là bất kỳ người dùng, tôi muốn tương tác với một chatbot AI có thể trả lời các câu hỏi phổ biến về khóa học, giáo viên, trung tâm, và trạng thái tài khoản.
+  - **Tiêu chí chấp nhận**:
+    - Giả sử một người dùng mở cửa sổ chat, khi họ đặt câu hỏi, sau đó AI trả về một câu trả lời phù hợp hoặc chuyển đến hỗ trợ con người nếu độ tin cậy thấp. *[REQ-019]*
+  - **Dữ liệu đầu vào & xác thực trường**: Văn bản đầu vào, thời gian chờ phiên.
 
-#### Module Localized Data Dictionary
-- [DAT-005] Attendance: attendance_id (UUID PK), student_id (UUID NOT NULL FOREIGN KEY Users.user_id), course_id (UUID NOT NULL FOREIGN KEY Courses.course_id), attendance_date (DATE NOT NULL), timestamp (TIMESTAMP NOT NULL DEFAULT now()).
+## 11. TÍNH NĂNG ỨNG DỤNG DI ĐỘNG
+### 11.1 Giao diện người dùng vai trò trên di động
+- **[REQ-020]** Giao diện người dùng vai trò trên di động: Là một người dùng di động, tôi muốn một giao diện phản hồi phản ánh chức năng web cho vai trò được chỉ định của tôi (Học viên, Giáo viên, Quản trị, v.v.).
+  - **Tiêu chí chấp nhận**:
+    - Giả sử một người dùng đăng nhập trên Android hoặc iOS, khi ứng dụng tải, sau đó menu điều hướng và các màn hình thích hợp được hiển thị dựa trên vai trò của người dùng. *[REQ-020]*
+  - **Dữ liệu đầu vào & xác thực trường**: Không có.
 
-### 2.6 Student Card Management
-#### Core Functional Requirements
-- [REQ-014] Card Validity Display: As a Student, I want to view my membership card showing remaining validity days so that I know when renewal is needed.
-  **Acceptance Criteria**:
-  - Given a Student opens the Card page, When the request loads, Then the UI shows total validity days, days used, and days remaining; data is derived from the StudentCard entity. *[REQ-014]*
-  **Data Inputs & Field Validations**: None (read‑only).
-- [REQ-015] Card Renewal: As a Student, I want to extend my membership card validity by paying a fee, which updates the end date.
-  **Acceptance Criteria**:
-  - Given a Student selects a renewal period (e.g., 30 days), confirms payment, When the payment service confirms success, Then the StudentCard’s EndDate is extended by the selected days and a confirmation notification is sent. *[REQ-015]*
-  **Data Inputs & Field Validations**:
-  - RenewalDays: integer, 1‑365.
-  - Payment gateway integration required (outside scope).
+### 11.2 Thông báo đẩy trên di động
+- **[REQ-021]** Thông báo đẩy trên di động: Là một người dùng đã đăng ký, tôi muốn nhận thông báo đẩy trên thiết bị di động của mình cho các xác nhận điểm danh, thông báo mới, và tin nhắn nhắc nhở.
+  - **Tiêu chí chấp nhận**:
+    - Giả sử một sự kiện backend kích hoạt một thông báo, khi token thiết bị được đăng ký, sau đó thông báo được phân phối qua Firebase Cloud Messaging (FCM) hoặc APNs. *[REQ-021]*
+  - **Dữ liệu đầu vào & xác thực trường**: DeviceToken, Platform (iOS/Android).
 
-#### Module Exception Flows
-- [EXC-004] Invalid Input Validation: If validation fails on form submission, When the error is returned to the user, Then a clear message lists each invalid field and prompts correction.
+## 12. BẢN ĐỊNH LOCALIZATION & SEO
+### 12.1 Phát hiện ngôn ngữ mặc định
+- **[REQ-022]** Phát hiện ngôn ngữ mặc định: Là một khách truy cập, tôi muốn hệ thống sử dụng ngôn ngữ ưu tiên đã lưu của tôi, rơi về cài đặt ngôn ngữ trình duyệt, để có một trải nghiệm cá nhân hóa.
+  - **Tiêu chí chấp nhận**:
+    - Giả sử một người dùng truy cập trang web, khi hệ thống đánh giá ngôn ngữ, sau đó nó chọn ngôn ngữ đã lưu nếu có; nếu không, sử dụng tiêu đề Accept‑Language; giao diện cập nhật tương ứng. *[REQ-022]*
+  - **Dữ liệu đầu vào & xác thực trường**: Không có.
 
-#### Module Localized Data Dictionary
-- [DAT-006] StudentCards: card_id (UUID PK), student_id (UUID NOT NULL FOREIGN KEY Users.user_id), issue_date (DATE NOT NULL), validity_days (INT NOT NULL), remaining_days (INT computed).
+### 12.2 SEO đa ngôn ngữ
+- **[REQ-023]** SEO đa ngôn ngữ: Nền tảng phải hỗ trợ SEO cho ít nhất tiếng Anh, tiếng Việt, và tiếng Tây Ban Nha; mỗi trang phải bao gồm các thẻ meta ngôn ngữ cụ thể và các liên kết hreflang.
+  - **Tiêu chí chấp nhận**:
+    - Giả sử một trang được yêu cầu với một ngôn ngữ cụ thể, khi trang được render, sau đó HTML bao gồm một thẻ <html lang='en'> và các liên kết hreflang trỏ đến các phiên bản ngôn ngữ thay thế. *[REQ-023]*
+  - **Dữ liệu đầu vào & xác thực trường**: Mã ngôn ngữ (en, vi, es).
 
-### 2.7 Notifications & Communications
-#### Core Functional Requirements
-- [REQ-016] Notification Trigger: When an admin creates an announcement, assigns a teacher to a course, or registers a student, the system must generate a notification to the student’s mobile app and post a message to the designated Zalo group.
-  **Acceptance Criteria**:
-  - Given an admin performs an action that requires notification, When the action is saved, Then a Notification record is created, a push notification payload is queued for the mobile app, and a text message is sent to the Zalo group chat. *[REQ-016]*
-  **Data Inputs & Field Validations**: Target audience (student, teacher, group), message content, optional media.
+## 13. BÁO CÁO & PHÂN TÍCH
+### 13.1 Tạo báo cáo điểm danh
+- **[REQ-024]** Tạo báo cáo điểm danh: Là một quản trị viên, tôi muốn tạo một báo cáo điểm danh hàng ngày cho một trung tâm (CSV) hiển thị tình trạng điểm danh của từng học viên.
+  - **Tiêu chí chấp nhận**:
+    - Giả sử một quản trị viên chọn một trung tâm và khoảng thời gian, khi báo cáo được yêu cầu, sau đó một tệp CSV được tạo với các cột: Tên học viên, Tên khóa học, Ngày điểm danh, Trạng thái. *[REQ-024]*
+  - **Dữ liệu đầu vào & xác thực trường**:
+    - Khoảng thời gian: bắt đầu ≤ kết thúc, tối đa 30 ngày.
 
-#### Module Exception Flows
-- [EXC-003] Failed Notification Delivery: When a push notification cannot be delivered (e.g., device token invalid), Then the system logs the failure and schedules a retry up to three times before marking as failed.
+### 13.2 Bảng điều khiển tóm tắt đăng ký
+- **[REQ-025]** Bảng điều khiển tóm tắt đăng ký: Là một Quản trị viên trung tâm, tôi muốn một bảng điều khiển thời gian thực tóm tắt tổng số học viên, khóa học đang hoạt động, và các phiên học sắp tới.
+  - **Tiêu chí chấp nhận**:
+    - Giả sử một quản trị viên mở bảng điều khiển, khi dữ liệu được làm mới, sau đó các thẻ hiển thị totalStudents, activeCourses, upcomingSessions (7 ngày tới). *[REQ-025]*
+  - **Dữ liệu đầu vào & xác thực trường**: Khoảng thời gian làm mới có thể cấu hình (mặc định 15 phút).
 
-#### Module Localized Data Dictionary
-- [DAT-007] Notifications: notification_id (UUID PK), user_id (UUID FOREIGN KEY Users.user_id), group_zalo (VARCHAR(50)), message (TEXT NOT NULL), sent_at (TIMESTAMP NOT NULL DEFAULT now()), delivered (BOOLEAN NOT NULL DEFAULT false).
+## 14. LUỒNG NGOẠI LE & TRƯỜNG HỢP ĐẶC BIỆT
+- **[EXC-001]** Mất mạng & ngắt kết nối trong khi quét QR:
+  - Nếu một học viên quét một QR nhưng mạng không khả dụng, khi ứng dụng thử lại yêu cầu sau khi kết nối lại, sau đó điểm danh được ghi lại khi dịch vụ có thể truy cập.
+- **[EXC-002]** Gửi điểm danh trùng lặp:
+  - Nếu cùng một học viên quét cùng một mã QR khóa học nhiều lần trong cùng một ngày, khi hệ thống phát hiện trùng lặp, sau đó nó trả về một phản hồi thành công chỉ ra ‘đã ghi’ và không tạo các hàng bổ sung.
+- **[EXC-003]** Gửi thông báo thất bại:
+  - Khi một thông báo đẩy không thể được gửi (ví dụ: token thiết bị không hợp lệ), sau đó hệ thống ghi lại lỗi và lên lịch một lần thử lại lên đến ba lần trước khi đánh dấu là thất bại.
+- **[EXC-004]** Xác thực đầu vào không hợp lệ (ví dụ: email sai định dạng, thiếu trường bắt buộc):
+  - Nếu xác thực thất bại trên gửi biểu mẫu, khi lỗi được trả về cho người dùng, sau đó một thông báo rõ ràng liệt kê từng trường không hợp lệ và yêu cầu chỉnh sửa.
+- **[EXC-005]** Khôi phục hệ thống sau sự cố:
+  - Nếu dịch vụ không khả dụng, khi nó khôi phục, sau đó bất kỳ quét QR điểm danh đang chờ xử lý được xử lý theo thứ tự FIFO, và người dùng nhận được một thông báo về các sự kiện đã khôi phục.
 
-### 2.8 Promotions & Announcements Management
-#### Core Functional Requirements
-- [REQ-017] Promotion Management: As a Center Admin or Manager, I want to create, edit, or delete promotions (discounts, offers) with start/end dates so that students can see applicable deals.
-  **Acceptance Criteria**:
-  - Given an admin provides PromotionName, description, conditions, startDate, endDate, When saved, Then the promotion appears in the student‑visible list; if endDate is omitted, the promotion is considered perpetual. *[REQ-017]*
-  **Data Inputs & Field Validations**:
-  - Name: required, max 100 chars.
-  - StartDate/EndDate: optional, date format YYYY‑MM‑DD.
-  - Description: max 500 chars.
-- [REQ-018] Announcement Management: As a Center Admin or Manager, I want to create, edit, or delete announcements with optional expiry dates for broadcast to all users.
-  **Acceptance Criteria**:
-  - Given an admin inputs AnnouncementTitle, content, optional expiry, When saved, Then the announcement is displayed site‑wide; if expiry is set, it auto‑disappears after the date. *[REQ-018]*
-  **Data Inputs & Field Validations**:
-  - Title: required, max 150 chars.
-  - Content: required, max 2000 chars.
+## 15. YÊU CẦU KHÔNG CHỨC NĂNG TOÀN CẦU
+- **[NFR-001]** Chỉ số hiệu năng:
+  - Các phản hồi API cốt lõi (xác thực, ghi điểm danh, danh sách khóa học) phải hoàn tất trong vòng 200 ms trung bình.
+  - Các truy vấn cơ sở dữ liệu phải được lập chỉ mục để hỗ trợ đọc trong vòng dưới một giây cho tối đa 10.000 người dùng đồng thời.
+- **[NFR-002]** Khả năng sẵn sàng:
+  - Mục tiêu 99,9% thời gian hoạt động hàng năm; SLA bao gồm khả năng chuyển đổi tự động qua các cluster GKE.
+- **[NFR-003]** Bảo mật:
+  - Tất cả dữ liệu trong quá trình truyền phải sử dụng TLS 1.3; mã hóa AES‑256 khi lưu trữ.
+  - JWT access token hết hạn sau 15 phút; refresh token có 7 ngày hiệu lực.
+  - Thực hiện các biện pháp bảo vệ OWASP Top 10 (SQL injection, XSS, CSRF).
+- **[NFR-004]** Khả năng mở rộng & tính sẵn sàng:
+  - Mở rộng theo chiều ngang các dịch vụ Quarkus qua Kubernetes HPA dựa trên CPU > 70% hoặc độ trễ yêu cầu > 300 ms.
+  - PostgreSQL read replicas cho khối lượng công việc báo cáo.
+- **[NFR-005]** Kích thước hình ảnh Docker:
+  - Hình ảnh cơ sở < 200 MB; hình ảnh cuối cùng < 500 MB.
+- **[NFR-006]** Ghi nhật ký & kiểm toán:
+  - Tất cả các hành động người dùng (thay đổi vai trò, bản ghi điểm danh, thông báo) phải được ghi nhật ký với dấu thời gian, ID người dùng, và chi tiết hành động; nhật ký được lưu trữ trong 1 năm.
+- **[NFR-007]** Hỗ trợ đa ngôn ngữ:
+  - Chuỗi UI phải được bên ngoài hóa; hỗ trợ tiếng Anh, tiếng Việt, tiếng Tây Ban Nha; chuyển đổi ngôn ngữ mà không cần tải lại trang web nếu có thể.
+- **[NFR-008]** Tuân thủ GDPR/CCPA:
+  - Xóa dữ liệu cá nhân theo yêu cầu của người dùng; xuất dữ liệu ở định dạng JSON; quản lý sự đồng ý cho truyền thông tiếp thị.
+- **[NFR-009]** Sao lưu & khôi phục sau thảm họa:
+  - Sao lưu PostgreSQL đầy đủ hàng ngày; khả năng phục hồi tại một thời điểm nhất định lên đến 24 giờ; sao lưu cluster GKE sang khu vực riêng biệt.
 
-#### Module Exception Flows
-- [EXC-004] Invalid Input Validation: If validation fails on form submission, When the error is returned to the user, Then a clear message lists each invalid field and prompts correction.
+## 16. BẢNG TRA CỨU DỮ LIỆU (DAT)
+**[DAT-001]** Bảng Users:
+- user_id: UUID, PK, không null, mô tả: Định danh duy nhất
+- email: VARCHAR(255), không null, duy nhất, mô tả: Địa chỉ email đăng nhập
+- password_hash: CHAR(60), không null, mô tả: Băm bcrypt
+- full_name: VARCHAR(100), không null, mô tả: Tên thật
+- role_id: SMALLINT, FK → Roles.role_id, mô tả: Vai trò được chỉ định
+- provider: ENUM('local','firebase','google','facebook'), mặc định 'local', mô tả: Nhà cung cấp xác thực
+- created_at: TIMESTAMP, không null, mặc định now(), mô tả: Thời điểm tạo tài khoản
+- updated_at: TIMESTAMP, không null, mặc định now(), mô tả: Thời điểm cập nhật cuối
 
-#### Module Localized Data Dictionary
-- [DAT-009] Promotions: promo_id (UUID PK), code (VARCHAR(30) UNIQUE), discount_percent (SMALLINT NOT NULL), start_date (DATE), end_date (DATE), description (TEXT).
-- [DAT-010] Announcements: announcement_id (UUID PK), title (VARCHAR(150) NOT NULL), content (TEXT NOT NULL), start_date (DATE), end_date (DATE).
+**[DAT-002]** Bảng Centers:
+- center_id: UUID, PK, không null, mô tả: Định danh duy nhất
+- name: VARCHAR(100), không null, mô tả: Tên trung tâm
+- address: VARCHAR(255), không null, mô tả: Địa chỉ vật lý
+- tax_id: VARCHAR(20), duy nhất, không null, mô tả: Số nhận dạng thuế
+- contact_phone: VARCHAR(20), tùy chọn, mô tả: Số điện thoại liên hệ
+- contact_email: VARCHAR(100), tùy chọn, mô tả: Email liên hệ
 
-### 2.9 AI Customer Service Chatbot
-#### Core Functional Requirements
-- [REQ-019] AI Chatbot Integration: As any user, I want to interact with an AI chatbot that can answer common queries about courses, teachers, centers, and account status.
-  **Acceptance Criteria**:
-  - Given a user opens the chat widget, When they ask a question, Then the AI returns a relevant answer or escalates to human support if confidence is low. *[REQ-019]*
-  **Data Inputs & Field Validations**: Input text, session timeout.
+**[DAT-003]** Bảng Courses:
+- course_id: UUID, PK, không null, mô tả: Định danh duy nhất
+- title: VARCHAR(150), không null, mô tả: Tên khóa học
+- description: TEXT, tùy chọn, mô tả: Mô tả chi tiết
+- start_date: DATE, không null, mô tả: Ngày bắt đầu khóa học
+- end_date: DATE, không null, mô tả: Ngày kết thúc khóa học
+- teacher_id: UUID, FK → Users.user_id, mô tả: Giáo viên được chỉ định
+- max_students: INT, mặc định 30, mô tả: Sức chứa
 
-#### Module Exception Flows
-- [EXC-004] Invalid Input Validation: If input is empty or malformed, When the request is processed, Then a validation error is returned.
+**[DAT-004]** Bảng Enrollments:
+- enrollment_id: UUID, PK, không null, mô tả: Định danh duy nhất
+- student_id: UUID, FK → Users.user_id, mô tả: Học viên ghi danh
+- course_id: UUID, FK → Courses.course_id, mô tả: Khóa học
+- enrollment_date: TIMESTAMP, mặc định now(), mô tả: Khi ghi danh
 
-#### Module Localized Data Dictionary
-- [DAT-011] SystemSettings: setting_key (VARCHAR(50) PK), setting_value (TEXT NOT NULL), description (VARCHAR(200)).
+**[DAT-005]** Bảng Attendance:
+- attendance_id: UUID, PK, không null, mô tả: Định danh duy nhất
+- student_id: UUID, FK → Users.user_id, mô tả: Học viên có mặt
+- course_id: UUID, FK → Courses.course_id, mô tả: Khóa học
+- attendance_date: DATE, không null, mô tả: Ngày điểm danh
+- timestamp: TIMESTAMP, mặc định now(), mô tả: Thời điểm chính xác ghi lại
 
-### 2.10 Mobile App Core Features
-#### Core Functional Requirements
-- [REQ-020] Mobile App Role‑Specific UI: As a mobile user, I want a responsive UI that mirrors web functionality for my assigned role (Student, Teacher, Admin, etc.).
-  **Acceptance Criteria**:
-  - Given a user logs in on Android or iOS, When the app loads, Then the appropriate navigation menu and screens are displayed based on the user’s role. *[REQ-020]*
-  **Data Inputs & Field Validations**: None.
-- [REQ-021] Mobile Push Notifications: As a registered user, I want to receive push notifications on my mobile device for attendance confirmations, new announcements, and reminder messages.
-  **Acceptance Criteria**:
-  - Given a backend event triggers a push, When the device token is registered, Then the notification is delivered via Firebase Cloud Messaging (FCM) or APNs. *[REQ-021]*
-  **Data Inputs & Field Validations**: DeviceToken, Platform (iOS/Android).
+**[DAT-006]** Bảng StudentCards:
+- card_id: UUID, PK, không null, mô tả: Định danh duy nhất
+- student_id: UUID, FK → Users.user_id, mô tả: Chủ sở hữu
+- issue_date: DATE, không null, mô tả: Ngày phát hành thẻ
+- validity_days: INT, không null, mô tả: Tổng số ngày hiệu lực
+- remaining_days: INT, tính toán, mô tả: Số ngày còn lại
 
-#### Module Exception Flows
-- [EXC-003] Failed Notification Delivery: When a push notification cannot be delivered (e.g., device token invalid), Then the system logs the failure and schedules a retry up to three times before marking as failed.
+**[DAT-007]** Bảng Notifications:
+- notification_id: UUID, PK, không null, mô tả: Định danh duy nhất
+- user_id: UUID, FK → Users.user_id, tùy chọn, mô tả: Người dùng mục tiêu
+- group_zalo: VARCHAR(50), tùy chọn, mô tả: Nhóm Zalo mục tiêu
+- message: TEXT, không null, mô tả: Nội dung thông báo
+- sent_at: TIMESTAMP, mặc định now(), mô tả: Khi gửi
+- delivered: BOOLEAN, mặc định false, mô tả: Trạng thái phân phối
 
-#### Module Localized Data Dictionary
-- (No new tables; reuse existing tables.)
+**[DAT-008]** Bảng Roles:
+- role_id: SMALLINT, PK, mô tả: Định danh vai trò
+- name: VARCHAR(30), duy nhất, không null, mô tả: Tên vai trò
+- description: VARCHAR(200), tùy chọn, mô tả: Mô tả vai trò
 
-### 2.11 Localization & SEO
-#### Core Functional Requirements
-- [REQ-022] Default Locale Detection: As a visitor, I want the system to use my previously selected language preference, falling back to browser settings, for a personalized experience.
-  **Acceptance Criteria**:
-  - Given a user accesses the site, When the system evaluates locale, Then it selects the stored language if present; otherwise it uses the Accept‑Language header; the UI updates accordingly. *[REQ-022]*
-  **Data Inputs & Field Validations**: None.
-- [REQ-023] Multi‑Language SEO: The platform must support SEO for at least English, Vietnamese, and Spanish; each page must include language‑specific meta tags and hreflang attributes.
-  **Acceptance Criteria**:
-  - Given a page is requested with a specific locale, When the page is rendered, Then the HTML includes a <html lang='en'> tag and hreflang links pointing to alternate language versions. *[REQ-023]*
-  **Data Inputs & Field Validations**: Language codes (en, vi, es).
+**[DAT-009]** Bảng Promotions:
+- promo_id: UUID, PK, không null, mô tả: Định danh duy nhất
+- code: VARCHAR(30), duy nhất, mô tả: Mã giảm giá
+- discount_percent: SMALLINT, không null, mô tả: Tỷ lệ phần trăm giảm giá
+- start_date: DATE, tùy chọn, mô tả: Ngày bắt đầu khuyến mãi
+- end_date: DATE, tùy chọn, mô tả: Ngày kết thúc khuyến mãi
+- description: TEXT, tùy chọn, mô tả: Chi tiết khuyến mãi
 
-#### Module Exception Flows
-- [EXC-004] Invalid Input Validation: If locale code is unsupported, When the request is processed, Then a fallback to default locale is performed.
+**[DAT-010]** Bảng Announcements:
+- announcement_id: UUID, PK, không null, mô tả: Định danh duy nhất
+- title: VARCHAR(150), không null, mô tả: Tiêu đề
+- content: TEXT, không null, mô tả: Nội dung
+- start_date: DATE, tùy chọn, mô tả: Ngày hiệu lực bắt đầu
+- end_date: DATE, tùy chọn, mô tả: Ngày hiệu lực kết thúc
 
-#### Module Localized Data Dictionary
-- (No new tables; use SystemSettings for locale preferences.)
-
-### 2.12 Reporting & Analytics
-#### Core Functional Requirements
-- [REQ-024] Attendance Report Generation: As an admin, I want to generate a daily attendance report for a center (CSV) showing each student’s presence status.
-  **Acceptance Criteria**:
-  - Given an admin selects a center and date range, When the report is requested, Then a CSV file is produced with columns: StudentName, CourseName, AttendanceDate, Status. *[REQ-024]*
-  **Data Inputs & Field Validations**:
-  - Date range: start <= end, max 30 days.
-- [REQ-025] Enrollment Summary Dashboard: As a Center Admin, I want a real‑time dashboard summarizing total students, active courses, and upcoming sessions.
-  **Acceptance Criteria**:
-  - Given an admin opens the dashboard, When the data refreshes, Then cards display totalStudents, activeCourses, upcomingSessions (next 7 days). *[REQ-025]*
-  **Data Inputs & Field Validations**: Refresh interval configurable (default 15 minutes).
-
-#### Module Exception Flows
-- [EXC-004] Invalid Input Validation: If date range exceeds limits, When the request is processed, Then an error is returned and the user is prompted to correct the range.
-
-#### Module Localized Data Dictionary
-- (Reports generated from existing tables.)
-
-## 3. GLOBAL NON-FUNCTIONAL REQUIREMENTS
-- [NFR-001] Performance Metrics:
-  - Core API responses (authentication, attendance capture, course list) must complete within 200 ms average latency.
-  - Database queries must be indexed to support sub‑second reads for up to 10 000 concurrent users.
-- [NFR-002] Availability:
-  - Target 99.9 % annual uptime; SLA includes automatic failover across GKE clusters.
-- [NFR-003] Security:
-  - All data in transit must use TLS 1.3; at rest encryption with AES‑256.
-  - JWT access tokens expire after 15 minutes; refresh tokens have 7‑day expiry.
-  - Implement OWASP Top 10 mitigations (SQL injection, XSS, CSRF).
-- [NFR-004] Scalability & Availability:
-  - Horizontal scaling of Quarkus services via Kubernetes HPA based on CPU > 70 % or request latency > 300 ms.
-  - PostgreSQL read replicas for reporting workloads.
-- [NFR-005] Docker Image Size:
-  - Base image size < 200 MB; final image < 500 MB.
-- [NFR-006] Logging & Audit:
-  - All user actions (role changes, attendance records, notifications) must be logged with timestamps, user ID, and action details; logs retained for 1 year.
-- [NFR-007] Multi‑Language Support:
-  - UI strings must be externalized; support English, Vietnamese, Spanish; locale switching without page reload where feasible.
-- [NFR-008] GDPR/CCPA Compliance:
-  - Personal data deletion on user request; data export in JSON format; consent management for marketing communications.
-- [NFR-009] Backup & Disaster Recovery:
-  - Daily PostgreSQL full backups; point‑in‑time recovery up to 24 hours; GKE cluster backup to separate region.
+**[DAT-011]** Bảng SystemSettings:
+- setting_key: VARCHAR(50), PK, mô tả: Khóa cấu hình
+- setting_value: TEXT, không null, mô tả: Giá trị cấu hình
+- description: VARCHAR(200), tùy chọn, mô tả: Ý nghĩa của cài đặt
