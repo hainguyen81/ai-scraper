@@ -83,19 +83,21 @@ class PrincipalBusinessAnalysisAgent(AbstractSubAgent):
     
     # @override
     def clean_response(self, raw_response, **kwargs):
+        if not raw_response:
+            raise RuntimeError("💀 Invalid AI raw response.")
+        
         # extract data
         raw_srs_content = None
         project_metadata = None
         DELIMITER = BA_OUTPUT_DELIMITER
-        if raw_response and DELIMITER in raw_response:
+        if DELIMITER in raw_response:
             srs_markdown_payload, metadata_json_payload = raw_response.split(DELIMITER, 1)
             # Clean and load the pure harvested metadata JSON object
             raw_srs_content = srs_markdown_payload.strip()
             project_metadata = json_loads(metadata_json_payload.strip())
-        
-        # validate data
-        if not project_metadata or not raw_srs_content:
-            raise RuntimeError("💀 Invalid AI raw response.")
+        else:
+            raw_srs_content = raw_response.strip()
+            project_metadata = {}
         
         # check srss summary
         projects = []
