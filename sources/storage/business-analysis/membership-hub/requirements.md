@@ -329,12 +329,12 @@ erDiagram
   - start_date: date
   - end_date: date
 
-``` 
+```mermaid
 erDiagram
     ANNOUNCEMENTS {
         uuid announcement_id PK
-        varchar title NOT_NULL
-        text content NOT_NULL
+        varchar title "NOT NULL"
+        text content "NOT NULL"
         date start_date
         date end_date
     }
