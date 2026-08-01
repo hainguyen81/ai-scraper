@@ -33,15 +33,7 @@ CRITICAL POLICY: A single requirement, rule, trigger, or data field without its 
 
 # ZERO-THINKING OUTPUT CONFIGURATION
 - Do NOT output any introductory text, concluding notes, explanations, or conversational filler.
-- Do NOT wrap the JSON block in markdown backticks (```).
 - Do NOT include <think> tags or intermediate reasoning tokens.
-- Output ONLY the raw, valid JSON object following this exact schema:
-
-{
-  "project_names": {
-    "technical_codename": "{{ project_name }}",
-    "descriptive_name": "string",
-    "brand_name": "string"
-  },
-  "srs_content_markdown": "Write the entire enterprise specification here in {% if language and language.strip() != "" %}{{ language }}{% else %}English{% endif %}. Document every logical module from the raw input completely. Ensure every [REQ-XXX], [EXC-XXX], [DAT-XXX], [ARC-XXX], and [NFR-XXX] is structurally detailed and tagged for absolute traceability."
-}
+- Start directly with the primary Markdown header text `# SOFTWARE REQUIREMENTS SPECIFICATION: {{ project_name }}`.
+- Exhaustively detail and tag every single logical component from top to bottom.
+- Conclude the entire stream response directly with the mandatory delimiter token `[EXECUTION_REMEDIATION_PAYLOAD_START]` followed immediately by the flat valid JSON metadata block containing the collected "requirement_tags" array without markdown backticks wrapping around the JSON payload.

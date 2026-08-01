@@ -25,6 +25,8 @@ PROJECT_INFO_FILE           = "project-info.json"
 BA_RAW_FILE                 = "ba.md"
 BA_LOG_FILE                 = "ba_log.md"
 
+BA_OUTPUT_DELIMITER         = "[EXECUTION_REMEDIATION_PAYLOAD_START]"
+
 
 class PrincipalBusinessAnalysisAgent(AbstractSubAgent):
     def __init__(self, **kwargs):
@@ -81,9 +83,19 @@ class PrincipalBusinessAnalysisAgent(AbstractSubAgent):
     
     # @override
     def clean_response(self, raw_response, **kwargs):
-        srs_info = json_loads(raw_response.strip()) if raw_response else None
-        if not srs_info:
-            raise RuntimeError("💀 Invalid AI raw response. Not a valid JSON format data.")
+        # extract data
+        raw_srs_content = None
+        project_metadata = None
+        DELIMITER = BA_OUTPUT_DELIMITER
+        if raw_response and DELIMITER in raw_response:
+            srs_markdown_payload, metadata_json_payload = raw_response.split(DELIMITER, 1)
+            # Clean and load the pure harvested metadata JSON object
+            raw_srs_content = srs_markdown_payload.strip()
+            project_metadata = json_loads(metadata_json_payload.strip())
+        
+        # validate data
+        if not project_metadata or not raw_srs_content:
+            raise RuntimeError("💀 Invalid AI raw response.")
         
         # check srss summary
         projects = []
@@ -97,8 +109,7 @@ class PrincipalBusinessAnalysisAgent(AbstractSubAgent):
         # parse technical project name as folder name
         datetimeStr = datetime_for_docid()
         defaultPrjName = f"project-{datetimeStr}"
-        project_info = srs_info.get("project_names") or {}
-        project_name = project_info.get("technical_codename") or defaultPrjName
+        project_name = project_metadata.get("technical_codename") or defaultPrjName
         
         # initial project info
         idea_id = self.idea_id
@@ -106,7 +117,10 @@ class PrincipalBusinessAnalysisAgent(AbstractSubAgent):
             unique_id = hashlib.md5(idea_id.encode("utf-8")).hexdigest()[:12]
             idea_id = f"idea_{unique_id}"
         project_info = {
-            **project_info,
+            **project_metadata,
+            "descriptive_name": project_metadata.get("descriptive_name", "-"),
+            "brand_name": project_metadata.get("brand_name", project_name),
+            "requirement_tags": project_metadata.get("requirement_tags", []),
             "idea": idea_id,
             "location": self.__storage_path__(storage_name="relative_ba", file=project_name),
             "requirements": self.__storage_path__(storage_name="relative_ba", file=f"{project_name}/{SRS_FILE}")
@@ -116,10 +130,10 @@ class PrincipalBusinessAnalysisAgent(AbstractSubAgent):
         
         # return cleaned/prepared data
         return {
-            **srs_info,
+            "raw_srs_content": raw_srs_content,
+            "project_info": { **project_info },
             "requirements_file": self.__storage_path__(storage_name="storage_ba", file=f"{project_name}/{SRS_FILE}"),
-            "project_info_file": self.__storage_path__(storage_name="storage_ba", file=f"{project_name}/{PROJECT_INFO_FILE}"),
-            "project_info": { **project_info }
+            "project_info_file": self.__storage_path__(storage_name="storage_ba", file=f"{project_name}/{PROJECT_INFO_FILE}")
         }
     
     # @override
@@ -130,7 +144,7 @@ class PrincipalBusinessAnalysisAgent(AbstractSubAgent):
         
         # export requirements
         requirements_file = response_data.get("requirements_file")
-        requirements_content = response_data.get("srs_content_markdown")
+        requirements_content = response_data.get("raw_srs_content")
         write_file(file=requirements_file, data=requirements_content)
         
         # export project info
