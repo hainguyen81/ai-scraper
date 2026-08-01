@@ -33,20 +33,20 @@ You are tasked to detail **PHASE {{ phase_idx }} OUT OF {{ num_phases }}**. You 
 
 Your output MUST follow this exact Markdown layout structure:
 
-# PHASE {{ phase_idx }} CONTEXT BLUEPRINT: {{ project_name }}
+# PHASE {{ phase_idx }}: [Dynamically analyze the allocated tasks and output a sharp, concise high-level summary phrase explaining exactly what this phase achieves, fully translated into {% if language and language.strip() != "" %}{{ language }}{% else %}English{% endif %}]
 
 ## 📊 Document Control
 
-| Item | Details |
+| [You MUST translate the literal token "Item" into {% if language and language.strip() != "" %}{{ language }}{% else %}English{% endif %}] | [You MUST translate the literal token "Details" into {% if language and language.strip() != "" %}{{ language }}{% else %}English{% endif %}] |
 | :--- | :--- |
-| **Blueprint ID** | ARCH-{{ doc_id }} |
-| **Project Name** | {{ project_name }} |
-| **Phase** | {{ phase_idx }} |
-| **Phase Description** | {{ phase_idx }} |
-| **Version** | 1.0 (Baseline) |
-| **Date/Time** | {{ current_timestamp }} |
-| **Author** | Enterprise System Architect (SA Agent) |
-| **Approval** | Pending Technical Governance Review |
+| **[You MUST translate the literal token "Blueprint ID" into {% if language and language.strip() != "" %}{{ language }}{% else %}English{% endif %}]** | ARCH-{{ doc_id }} |
+| **[You MUST translate the literal token "Project Name" into {% if language and language.strip() != "" %}{{ language }}{% else %}English{% endif %}]** | {{ project_name }} |
+| **[You MUST translate the literal token "Phase" into {% if language and language.strip() != "" %}{{ language }}{% else %}English{% endif %}]** | {{ phase_idx }} |
+| **[You MUST translate the literal token "Description" into {% if language and language.strip() != "" %}{{ language }}{% else %}English{% endif %}]** | [Provide a granular, professional engineering description summarizing the absolute operation scope of this specific phase, explicitly detailing what technical modules and infrastructure contracts are established, fully rendered in {% if language and language.strip() != "" %}{{ language }}{% else %}English{% endif %}] |
+| **[You MUST translate the literal token "Version" into {% if language and language.strip() != "" %}{{ language }}{% else %}English{% endif %}]** | 1.0 (Baseline) |
+| **[You MUST translate the literal token "Date/Time" into {% if language and language.strip() != "" %}{{ language }}{% else %}English{% endif %}]** | {{ current_timestamp }} |
+| **[You MUST translate the literal token "Author" into {% if language and language.strip() != "" %}{{ language }}{% else %}English{% endif %}]** | Enterprise System Architect (SA Agent) |
+| **[You MUST translate the literal token "Approval" into {% if language and language.strip() != "" %}{{ language }}{% else %}English{% endif %}]** | Pending Technical Governance Review |
 
 ## 1. Phase Operational Scope & Objectives
 [Provide a rigorous, detailed architectural summary of what this specific phase must implement based on the distributed requirements allocated for Phase {{ phase_idx }}]
