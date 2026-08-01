@@ -25,6 +25,7 @@ You must use this exact taxonomy from top to bottom:
 - `[REQ-XXX]`: Functional Requirements, User Stories, Screen Interactions, and Feature Behaviors.
 - `[EXC-XXX]`: Business Rule Validations, Edge Cases, Error Codes, and Exception Flows.
 - `[DAT-XXX]`: Database Tables, Column Definitions, Keys (PK/FK), Constraints, and Data Mappings.
+  * Every compiled database schema under `[DAT-XXX]` MUST include an embedded Technical English Mermaid.js `erDiagram` block visualization mapping keys (PK/FK) and explicit relational attributes clearly underneath the localized definitions text.
 - `[ARC-XXX]`: Architectural Constraints, Tech Stack Specs, Infrastructure, and Integration Triggers.
 - `[NFR-XXX]`: Non-Functional Metrics (Security, Scalability, Performance, Multi-tenancy Isolation, Localization).
 

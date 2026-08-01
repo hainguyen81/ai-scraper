@@ -32,6 +32,7 @@ Inside the "srs_content_markdown", every single individual requirement, rule, ar
 - Architecture, Infrastructure & Integration Triggers: Use **[ARC-XXX]** (e.g., Message Queue events, external API handshakes, deployment constraints).
 - Exception Flows / Validation Rules / Business Edge Cases: Use **[EXC-XXX]** (Dedicated error codes, validation failures, system fallback rules).
 - Database Tables, Column Definitions, Keys & Constraints: Use **[DAT-XXX]** (Precise types, nullability, PK/FK links).
+  * **MANDATORY DATABASE DIAGRAMMING INJECTION:** For every single localized data dictionary matrix defined inside the body (under `[DAT-XXX]`), you MUST proactively append an explicit, valid native `erDiagram` block code segment utilizing Mermaid.js syntax immediately beneath the textual columns list. You are STRICTLY BANNED from translating any entity name, field identifier, data type parameter, or relation connector (`||--o{`) inside the Mermaid codeblock into any language other than Technical English to prevent compiler crashes.
 - Global Non-Functional Requirements: Use **[NFR-XXX]** (Concrete operational metrics, security, scalability bounds).
 
 # MANDATORY SRS STRUCTURE (INLINE PACKAGING)
