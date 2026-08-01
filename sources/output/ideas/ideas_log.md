@@ -34,3 +34,39 @@ Error code: 404 - {'error': {'message': 'This model is unavailable for free. The
 
 ---
 
+# Exception:
+
+'EnterpriseIdeaGeneratorAgent' object has no attribute 'history_ideas': ['Traceback (most recent call last):
+', '  File "/home/runner/work/enterprise-it-ai/enterprise-it-ai/sources/agents/agent_super.py", line 305, in __execute__
+    system_prompt = self.build_system_prompt(**kwargs)
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+', '  File "/home/runner/work/enterprise-it-ai/enterprise-it-ai/sources/agents/agent_super.py", line 193, in build_system_prompt
+    system_prompt_context = self.build_system_prompt_context(**kwargs)
+                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+', '  File "/home/runner/work/enterprise-it-ai/enterprise-it-ai/sources/agents/ideas/agent_idea_generator.py", line 58, in build_system_prompt_context
+    ideas_history = self.history_ideas if self.history_ideas else []
+                                          ^^^^^^^^^^^^^^^^^^
+', "AttributeError: 'EnterpriseIdeaGeneratorAgent' object has no attribute 'history_ideas'
+"]: ['Traceback (most recent call last):
+', '  File "/home/runner/work/enterprise-it-ai/enterprise-it-ai/sources/agents/agent_super.py", line 360, in execute
+    return self.__do_execute__(**safe_kwargs) or {}
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+', '  File "/home/runner/work/enterprise-it-ai/enterprise-it-ai/sources/agents/agent_super.py", line 347, in __do_execute__
+    raise RuntimeError(exception) # response is exception stack-trace from `__execute__`
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+', 'RuntimeError: \'EnterpriseIdeaGeneratorAgent\' object has no attribute \'history_ideas\': [\'Traceback (most recent call last):\
+\', \'  File "/home/runner/work/enterprise-it-ai/enterprise-it-ai/sources/agents/agent_super.py", line 305, in __execute__\
+    system_prompt = self.build_system_prompt(**kwargs)\
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\
+\', \'  File "/home/runner/work/enterprise-it-ai/enterprise-it-ai/sources/agents/agent_super.py", line 193, in build_system_prompt\
+    system_prompt_context = self.build_system_prompt_context(**kwargs)\
+                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\
+\', \'  File "/home/runner/work/enterprise-it-ai/enterprise-it-ai/sources/agents/ideas/agent_idea_generator.py", line 58, in build_system_prompt_context\
+    ideas_history = self.history_ideas if self.history_ideas else []\
+                                          ^^^^^^^^^^^^^^^^^^\
+\', "AttributeError: \'EnterpriseIdeaGeneratorAgent\' object has no attribute \'history_ideas\'\
+"]
+']
+
+---
+
