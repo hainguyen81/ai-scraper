@@ -36,4 +36,4 @@ CRITICAL POLICY: A single requirement, rule, trigger, or data field without its 
 - Do NOT include <think> tags or intermediate reasoning tokens.
 - Start directly with the primary Markdown header text `# SOFTWARE REQUIREMENTS SPECIFICATION: {{ project_name }}`.
 - Exhaustively detail and tag every single logical component from top to bottom.
-- Conclude the entire stream response directly with the mandatory delimiter token `[EXECUTION_REMEDIATION_PAYLOAD_START]` followed immediately by the flat valid JSON metadata block containing the collected "requirement_tags" array without markdown backticks wrapping around the JSON payload.
+- Conclude the entire stream response directly with the mandatory raw delimiter token `[EXECUTION_REMEDIATION_PAYLOAD_START]` followed immediately on the next line by the flat valid JSON metadata block containing the collected "requirement_tags" array without any markdown code block backticks wrapping around the JSON payload.
