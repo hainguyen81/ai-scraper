@@ -31,15 +31,19 @@ CRITICAL FORMAT RULES:
 3. DO NOT wrap the idea name inside bold asterisks (e.g., do NOT write `#### [IDEA_1] **Title**`). Keep it plain text.
 
 #### [IDEA_X] <Insert the idea name here in the requested {{ language }}>
+- **<Translated "Domain">:** [Dynamically resolve and output the strict technical or business domain classification token of this idea, e.g., EdTech, FinTech, E-commerce, Logistics, CleanTech, fully translate into {{ language }}]
 - **<Translated "Problem Statement">:** What specific market pain point or user friction does this address?
 - **<Translated "Solution & Workflow">:** How does this idea work? (Explain the core mechanism in 2-3 sentences).
 - **<Translated "Target Audience">:** Who is the ideal initial user/customer?
 - **<Translated "Unique Selling Proposition (USP)">:** Why is this different or better than existing alternatives?
 
-##### **Lean & Rapid Execution Requirements Contracts:**
-* **[REQ-001]** [Insert exact low-level atomic functional contract or webhook controller task description, inline-embedded with an explicit path starting with `./sources/`. Fully translate description text into {{ language }}]
-* **[DAT-001]** [Insert exact low-level flat data model entity or data persistence table directive, inline-embedded with an explicit path starting with `./sources/`. Fully translate description text into {{ language }}]
-* **[EXC-001]** [Insert exact low-level exception gate fallback validation directive, inline-embedded with an explicit path starting with `./sources/`. Fully translate description text into {{ language }}]
+##### **<Translated "Lean & Rapid Execution Requirements Contracts">:**
+# MANDATORY DYNAMIC REQS DIVISION RULE: You MUST independently analyze the generated idea and explode it into multiple precise, low-level micro-deliverable bullets. Do NOT copy the template placeholders literally. You MUST output at least 2 to 4 unique [REQ-XXX] bullets, at least 1 to 2 [DAT-XXX] table lines, and at least 1 to 2 [EXC-XXX] exception gates depending on the engineering complexity.
+# STRIKE BOUNDARY: All Tag IDs MUST be placed exactly at the start of the bullet line wrapped natively in single brackets (e.g., `* **[REQ-001]** `). You are STRICTLY BANNED from dual-wrapping the brackets or appending additional markdown stars outside this boundary.
+* **[REQ-001]** [Insert low-level atomic functional contract or webhook controller task description, inline-embedded with an explicit path starting with `./sources/`. Fully translate description text into {{ language }}]
+* **[REQ-002]** [Insert the next sequential functional requirements contract with an explicit path starting with `./sources/`, fully translate into {{ language }}]
+* **[DAT-001]** [Insert low-level flat data model entity or data persistence table directive with an explicit path starting with `./sources/`, fully translate into {{ language }}]
+* **[EXC-001]** [Insert low-level exception gate fallback validation directive with an explicit path starting with `./sources/`, fully translate into {{ language }}]
 
 ---
 
