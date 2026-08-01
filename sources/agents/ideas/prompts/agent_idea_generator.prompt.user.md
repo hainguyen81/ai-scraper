@@ -23,23 +23,22 @@ You will receive the following variables for each execution:
 {% endif %}
 
 ### 3. Output Format
-For each generated idea, you must strictly follow this exact structural format (translated into the requested `language`).
+For each generated idea, you MUST strictly follow this exact structural format. Do NOT skip or omit any section.
 
-CRITICAL FORMAT RULES:
-1. Every idea MUST start with a Markdown H4 header (`####`) followed by a single space, then the sequential ID token wrapped in square brackets `[IDEA_X]` (where X is the sequential number starting from 1, e.g., `[IDEA_1]`, `[IDEA_2]`), followed by a single space, and then the actual name of the idea.
-2. DO NOT alter, translate, or modify the prefix prefix template `#### [IDEA_X] `. Replace X with the index number.
-3. DO NOT wrap the idea name inside bold asterisks (e.g., do NOT write `#### [IDEA_1] **Title**`). Keep it plain text.
+# 🌐 STRICT INVARIANT LABEL & CONTENT LOCALIZATION RAILS:
+# You MUST automatically translate 100% of the entire output content into the requested target language: "{{ language }}". This mandate strictly applies to all section headers, text explanations, bullet descriptions, and specifically the raw literal label tokens themselves ("Domain", "Problem Statement", "Solution & Workflow", "Target Audience", "Unique Selling Proposition (USP)", and "Lean & Rapid Execution Requirements Contracts"). 
+# ANTI-TECHNICAL DESTRUCTION LAW: You are STRICTLY BANNED from translating, altering, or modifying any markdown syntax operators (`#`, `##`, `-`, `*`), literal Technical English state tokens, the numeric index placeholders, requirement tag bracket tokens (e.g. `[IDEA_X]`, `[REQ-001]`, `[DAT-001]`, `[EXC-001]`), and the physical file path indicators starting with `./sources/`.
 
-#### [IDEA_X] <Insert the idea name here in the requested {{ language }}>
-- **<Translated "Domain">:** [Dynamically resolve and output the strict technical or business domain classification token of this idea, e.g., EdTech, FinTech, E-commerce, Logistics, CleanTech, fully translate into {{ language }}]
-- **<Translated "Problem Statement">:** What specific market pain point or user friction does this address?
-- **<Translated "Solution & Workflow">:** How does this idea work? (Explain the core mechanism in 2-3 sentences).
-- **<Translated "Target Audience">:** Who is the ideal initial user/customer?
-- **<Translated "Unique Selling Proposition (USP)">:** Why is this different or better than existing alternatives?
+#### [IDEA_X] [Insert clear, technical plain text name of the project concept here - Do NOT wrap in double asterisks]
+- **Domain:** [Output the strict translated equivalent word of the label "Domain" in {{ language }}, followed by the resolved business sector classification token of this idea fully rendered in {{ language }}]
+- **Problem Statement:** [Output the strict translated equivalent word of the label "Problem Statement" in {{ language }}, followed by a sharp 1-2 sentence breakdown of the targeted industry friction element fully rendered in {{ language }}]
+- **Solution & Workflow:** [Output the strict translated equivalent word of the label "Solution & Workflow" in {{ language }}, followed by the precise automated system operational flow and technology integration execution pattern fully rendered in {{ language }}]
+- **Target Audience:** [Output the strict translated equivalent word of the label "Target Audience" in {{ language }}, followed by the immediate commercial enterprise or consumer user groups fully rendered in {{ language }}]
+- **Unique Selling Proposition (USP):** [Output the strict translated equivalent word of the label "Unique Selling Proposition (USP)" in {{ language }}, followed by the hyper-focused rapid execution value metric that drives immediate adoption fully rendered in {{ language }}]
 
-##### **<Translated "Lean & Rapid Execution Requirements Contracts">:**
-# MANDATORY DYNAMIC REQS DIVISION RULE: You MUST independently analyze the generated idea and explode it into multiple precise, low-level micro-deliverable bullets. Do NOT copy the template placeholders literally. You MUST output at least 2 to 4 unique [REQ-XXX] bullets, at least 1 to 2 [DAT-XXX] table lines, and at least 1 to 2 [EXC-XXX] exception gates depending on the engineering complexity.
-# STRIKE BOUNDARY: All Tag IDs MUST be placed exactly at the start of the bullet line wrapped natively in single brackets (e.g., `* **[REQ-001]** `). You are STRICTLY BANNED from dual-wrapping the brackets or appending additional markdown stars outside this boundary.
+##### **Lean & Rapid Execution Requirements Contracts:**
+# CRITICAL COMPLIANCE: You are STRICTLY FORBIDDEN from omitting this section. You MUST translate this entire section header label text into the exact equivalent wording of the requested target language "{{ language }}". You MUST independently analyze the generated idea above and explode it into multiple precise, low-level technical requirement bullets. You MUST output at least 2 to 4 unique [REQ-XXX] lines, at least 1 to 2 [DAT-XXX] lines, and at least 1 to 2 [EXC-XXX] lines depending on the engineering complexity.
+# STRIKE BOUNDARY: All Tag IDs MUST be placed exactly at the start of the bullet line wrapped natively in single brackets and bold tags (e.g., `* **[REQ-001]** `). Every physical component file path defined inline inside the requirements lists MUST strictly start with the standard repository folder: `./sources/`.
 * **[REQ-001]** [Insert low-level atomic functional contract or webhook controller task description, inline-embedded with an explicit path starting with `./sources/`. Fully translate description text into {{ language }}]
 * **[REQ-002]** [Insert the next sequential functional requirements contract with an explicit path starting with `./sources/`, fully translate into {{ language }}]
 * **[DAT-001]** [Insert low-level flat data model entity or data persistence table directive with an explicit path starting with `./sources/`, fully translate into {{ language }}]
