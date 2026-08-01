@@ -126,6 +126,7 @@ class EnterpriseIdeaGeneratorAgent(AbstractSubAgent):
             # Clean dual asterisks from extracted values if any leak occurs
             technical_codename = technical_codename.replace("**", "").strip()
             brand_name = brand_name.replace("**", "").strip()
+            brand_name = " ".join(word.capitalize() for word in re.split(r"(?=[A-Z])", brand_name))
             
             # idea unique identity
             unique_id = hashlib.md5(clean_idea_name.encode("utf-8")).hexdigest()[:12]
