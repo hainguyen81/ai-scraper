@@ -1,4 +1,5 @@
-#### [IDEA_1] AI Design Assistant cho Marketing Không Chuyên
+# AI Design Assistant cho Marketing Không Chuyên
+
 - **Lĩnh vực:** AI Thiết Kế Hình Ảnh cho Marketing
 - **Problem Statement:** Nhiều chủ doanh nghiệp nhỏ và người sáng tạo nội dung không có kỹ năng thiết kế nhưng vẫn cần hình ảnh quảng cáo chuyên nghiệp, dẫn đến chi phí thuê designer cao và mất thời gian.
 - **Solution & Workflow:** Một ứng dụng web cung cấp giao diện kéo-thả đơn giản, cho phép người dùng nhập mô tả văn bản và công cụ AI sẽ tạo ra hình ảnh trong vài giây, hỗ trợ tải xuống, chỉnh sửa cơ bản và tích hợp thanh toán.
