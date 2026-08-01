@@ -1,631 +1,500 @@
 # SOFTWARE REQUIREMENTS SPECIFICATION: membership-hub
 
-## 1. PROJECT OVERVIEW & GLOBAL ARCHITECTURE
+## 1. Tổng quan dự án & Kiến trúc tổng thể
 
-- **Product Objectives & Core Values**  
-  - Cung cấp nền tảng thống nhất cho quản lý thành viên đa trung tâm.  
-  - Bảo đảm theo dõi điểm danh thời gian thực bằng mã QR.  
-  - Cung cấp thẻ thành viên kỹ thuật số có tính năng đếm ngày hợp lệ.  
-  - Hỗ trợ giao tiếp đa kênh (web, mobile, nhóm Zalo).  
-  - Giá trị cốt lõi: tin cậy, mở zajedno, an ninh, thân thiện, Thumb/ đa ngôn ngữ.
+**Mục tiêu sản phẩm**  
+- Cung cấp nền tảng quản lý thành viên đa trung tâm.  
+- Ghi nhận điểm danh thời gian thực qua quét mã QR.  
+- Cung cấp thẻ thành viên kỹ thuật số tính số ngày còn lại.  
+- Hỗ trợ giao tiếp đa kênh (web, mobile, Zalo).  
+- Đảm bảo độ tin cậy, khả năng mở rộng, bảo mật và trải nghiệm người dùng đa ngôn ngữ.
 
-- **Target User Personas**  
-  - System Admin (quản trị viên toàn cục)  
-  - Center Admin (quản lý trung tâm)  
-  - Manager (sub‑admin, quyền hạn hạn chế)  
-  - Teacher (chỉ đọc lịch học)  
-  - Student (khảo sát, đăng ký, xem thẻ)  
-  - Mobile App User (cùng các vai trò, giao diện đáp ứng)
+**Nhân khẩu học người dùng**  
+- Quản trị viên hệ thống (System Admin)  
+- Quản trị viên trung tâm (Center Admin)  
+- Trưởng phòng (Manager)  
+- Giáo viên (Teacher)  
+- Học sinh (Student)  
+- Người dùng mobile (tương tự các vai trò trên)
 
-- **Global Role-Based Access Control (RBAC) Matrix**  
-  - **[ARC-001]** System Admin: toàn quyền trên mọi trung tâm.  
-  - **[ARC-002]** Center Admin: toàn quyền trong trung tâm của họ, không ảnh hưởng tới trung tâm khác.  
-  - **[ARC-003]** Manager: tạo thông báo, quản lý sinh viên, gắn sinh viên vào khoá học, xem danh sách khoá học, không sửa khoá học hay gán giáo viên.  
-  - **[ARC-004]** Teacher: xem khoá học của mình, danh sách sinh viên, lịch trình; chỉ đọc.  
-  - **[ARC-005]** Student: duyệt khoá học, đăng ký khoá học mới, xem thẻ thành viên (ngày còn lại), gia hạn thẻ.
+**Quyền truy cập dựa trên vai trò (RBAC)**  
+| Vai trò | Quyền hạn chính |
+|---------|-----------------|
+| System Admin | Truy cập toàn hệ thống, tạo/đổi/ xóa trung tâm, gán vai trò |
+| Center Admin | Quản lý nội dung trên trung tâm, gán quản trị viên |
+| Manager | Tạo thông báo, quản lý học sinh, gán học sinh cho khoá học |
+| Teacher | Xem khoá học, danh sách học sinh, lịch học (đọc‑chỉ) |
+| Student | Duyệt khoá học, đăng ký khoá học phaham, xem thẻ thành viên |
+| Mobile App.Env | Hiển thị giao diện tương ứng với vai trò |
 
-- **Global Tech Stack Constraints & Infrastructure Blueprint**  
-  - **[ARC-006]** Authentication Flow: email/password, Firebase, Google, Facebook OAuth2; JWT 15‑phút, refresh token.  
-  - **[ARC-007]** Attendance QR Processing Flow: mobile scan → backend; idempotent attendance record.  
-  - **[ARC-008]** Notification Delivery Flow: push tới mobile, đăng bài vào nhóm Zalo; các thành viên nhận thông báo.  
-  - **[ARC-009]** Mobile App Backend Integration Flow: Next.js frontend, REST API, bearer token, offline caching.
+**Kiến trúc tổng thể**  
+- **Mikro dịch vụ Java Quarkus** triển khai trên **GKE** (Kubernetes).  
+- **API Gateway** (Kong) xử lý xác thực JWT, phân phối yêu cầu.  
+- **PostgreSQL 15** cho dữ liệu chính, **Redis** cho kho lưu tạm thời, **Elasticsearch** cho tìm kiếm.  
+- **Firebase Cloud Messaging (FCM)** cho push, **Zalo API** cho thông báo nhóm.  
+- **Next.js** (React) cho web, **React Native** cho mobile.  
+- **CI/CD Rudy**: GitHub Actions → Docker → GKE.
 
----
+**Các yếu tố kiến trúc (ARC tags)**  
+- [ARC-001] Thủ quyền toàn hệ thống.  
+- [ARC-002] Hạn chế quyền trung tâm.  
+- [ARC-003] Quyền của Manager.  
+- [ARC-004] Quyền đọc‑chỉ cho Teacher.  
+- [ARC-005] Quyền hạn dành cho Student.  
+- [ARC-006] Xác thực email/mật khẩu, Firebase, Google, Facebook → JWT 15 điểm, refresh 7 ngày.  
+- [ARC-007] Xử lý quét QR: nhận student_id + khóa học + dấu thời gian, kiểm tra và ghi nhận điểm danh (idempotent).  
+- [ARC-008] Gửi thông báo push và Zalo.  
+- [ARC-009] Tích hợp backend Next.js, caching offline.
 
-## 2. ENHANCED EPIC MODULES
+## 2. Mô-đun chức năng (Epic)
 
-### 2.1 User Management
+### 2.1 Quản lý người dùng
 
-#### [REQ-001] User Registration  
-Nhận email, mật khẩu và tùy chọn giao dịch tài khoản.
+#### [REQ-001] Đăng ký người dùng
+> Người dùng tiềm năng cần đăng ký bằng email & mật khẩu (hoặc social).  
+**Tiêu chí chấp nhận**  
+- **Given** người dùng nhập email duy nhất, mật khẩu ≥ 8 ký tự, kích hoạt checkbox điều khoản,  
+- **When** gửi biểu mẫu,  
+- **Then** hệ thống kiểm tra dữ liệu, tạo bản ghi `Users` với role `Student` (hoặc `Teacher` khi mời), trả về JWT và refresh token.  
 
-**Acceptance Criteria**
-```gherkin
-Given a prospective user submits email, password, terms
-When the registration form is posted
-Then the system validates input, creates a User record with role 'Student', returns success with JWT
-```
+#### [REQ-002] Xác thực xã hội
+> Đăng nhập/đăng ký bằng Firebase, Google, Facebook.  
+**Tiêu chí chấp nhận**  
+- **Given** người dùng chọn nhà cung cấp,  
+- **When** nhận mã OAuth2, trao đổi token, lấy thông tin người dùng,  
+- **Then** tạo hoặc cập nhật bản ghi `Users`, phát JWT.  
 
-#### [REQ-002] Social Authentication  
-Đăng nhập/đăng ký qua Firebase, Google, Facebook.
-
-**Acceptance Criteria**
-```gherkin
-Given a user selects a social provider
-When the provider returns an OAuth2 code
-Then the system exchanges code for profile, creates/updates User, issues JWT
-```
-
-#### [REQ-003] User Role Assignment  
-Thay đổi vai trò người dùng.
-
-**Acceptance Criteria**
-```gherkin
-Given an admin selects a user and a new role
-When the role is confirmed
-Then the User.role_id is updated, audit log recorded
-```
-
----
-
-### 2.2 Center Management
-
-#### [REQ-004] Center List View  
-Hiển thị danh sách trung tâm.
-
-**Acceptance Criteria**
-```gherkin
-Given an authenticated user requests Centers
-When the request completes
-Then a table of Name, Address, TaxID, AdminContact is returned
-```
-
-#### [REQ-005] Center Create/Update/Delete  
-Quản lý thông tin trung tâm.
-
-**Acceptance Criteria**
-```gherkin
-Given a System Admin provides center details
-When the save action is executed
-Then the center is persisted; duplicate TaxID returns conflict
-```
-
-#### [REQ-006] Center Admin Assignment  
-Gán/huỷ Center Admin.
-
-**Acceptance Criteria**
-```gherkin
-Given a System Admin selects a user and center
-When assign is confirmed
-Then the User.role_id becomes 'Center Admin', center_id recorded; unassign reverses
-```
+#### [REQ-003] Gán vai tròhost
+> Quản trị viên thay đổi vai trò người dùng.  
+**Tiêu chí chấp nhận**  
+- **Given** admin chọn người dùng & vai trò mới,  
+- **When** xác nhận,  
+- **Then** cập nhật cột `role_id`, ghi nhật ký audit.  
 
 ---
 
-### 2.3 Course Management
+### 2.2 Quản lý trung tâm
 
-#### [REQ-007] Course List View  
-Hiển thị danh sách khoá học.
+#### [REQ-004] Xem danh sách trung tâm
+> Người dùng xem danh sách `Centers` với địa chỉ, mã số thuế, liên hệ.  
 
-**Acceptance Criteria**
-```gherkin
-Given a user visits Courses page
-When the request completes
-Then a grid of CourseID, Title, StartDate, EndDate, TeacherName is displayed
-```
+#### [REQ-005] Tạo/Chỉnh sửa/Xóa trung tâm
+> Chỉ System Admin thao tác.  
+**Tiêu chí chấp nhận**  
+- **Given** center details (name, address, tax ID, contact),  
+- **When** lưu,  
+- **Then** lưu record, tránh tax ID trùng (hỗ trợ lỗi 409).  
 
-#### [REQ-008] Course Create/Update/Delete (Conflict Avoidance)  
-Thêm/ sửa/ xoá khoá học với kiểm tra lịch trùng.
-
-**Acceptance Criteria**
-```gherkin
-Given an admin provides CourseTitle, StartDate, EndDate, TeacherID
-When the save action triggers
-Then the system validates no teacher overlap; on conflict returns error; else persists
-```
-
-#### [REQ-009] Teacher Assignment to Course  
-Gán/huỷ giáo viên cho khoá học.
-
-**Acceptance Criteria**
-```gherkin
-Given an admin selects a course and teacher
-When assign is executed
-Then CourseTeacher mapping created, notification enqueued; unassign removes mapping
-```
+#### [REQ-006] Gán/Thu hồi quản trị trung tâm
+> System Admin gán/huỷ `Center Admin	gui.  
 
 ---
 
-### 2.4 Student Enrollment & Registration
+### 2.3 Quản lý khoá học
 
-#### [REQ-010] Course Browse  
-Duyệt khoá học còn trống.
+#### [REQ-007] Xem danh sách khoá học
+> Hiển thị ID, tiêu đề, ngày bắt đầu/ kết thúc, giáo viên.  
 
-**Acceptance Criteria**
-```gherkin
-Given a Student navigates Browse Courses
-When request completes
-Then list of courses with capacity and schedule excluding already enrolled shown
-```
+#### [REQ-008] Tạo/Chỉnh sửa/Xóa khoá học (tránh trùng lịch)
+> System Admin & Center Admin.  
+**Tiêu chí chấp lần**  
+- **Given** title, start/end, teacher,  
+- **When** lưu,  
+- **Then** kiểm tra trùng lịch giáo viên/địa điểm (đồng bộ DB trigger).  
 
-#### [REQ-011] Student Course Registration  
-Đăng ký khoá học, tạo tài khoản nếu chưa có.
-
-**Acceptance Criteria**
-```gherkin
-Given a Student selects a course
-When backend processes request
-Then Enrollment record created; if Student has no account, create with role 'Student'; notification queued
-```
+#### [REQ-009] Gán/Thu hồi giáo viên cho khoá học
+> System Admin.  
 
 ---
 
-### 2.5 Attendance & QR Scanning
+### 2.4 Đăng ký & tuyển sinh học sinh
 
-#### [REQ-012] QR Attendance Capture  
-Quét mã QR œuvres.
+#### [REQ-010] Xem khoá học chưa đăng ký
+> Trình bày danh sách có capacity, lịch, loại trừ khóa học đã đăng ký.  
 
-**Acceptance Criteria**
-```gherkin
-Given a Student scans QR, confirms attendance
-When API receives payload
-Then system validates enrollment, creates Attendance record, returns success; duplicate on same day ignored
-```
-
-#### [REQ-013] Attendance Idempotency  
-Kiểm tra trùng lặp.
-
-**Acceptance Criteria**
-```gherkin
-Given a student scans QR twice within a minute
-When both requests processed
-Then only one Attendance row; subsequent returns success with ‘duplicate’ flag
-```
+#### [REQ-011] Đăng ký khoá học (tự động tạo tài khoản)
+> Student chọn khóa, backend tạo `Enrollments`, tạo tài khoản nếuуруш.  
 
 ---
 
-### 2.6 Student Card Management
+### 2.5 Điểm danh & quét QR
 
-#### [REQ-014] Card Validity Display  
-Hiển thị thẻ thành viên.
+#### [REQ-012] Ghi nhận điểm danh bằng QR
+> Student quét QR, backend xác minh, tạo `Attendance`, duy trì idempotent.  
 
-**Acceptance Criteria**
-```gherkin
-Given a Student opens Card page
-When data loads
-Then UI shows total validity days, days used, days remaining derived from StudentCard
-```
-
-#### [REQ-015] Card Renewal  
-Gia hạn thẻ bằng phí.
-
-**Acceptance Criteria**
-```gherkin
-Given a Student selects renewal period
-When payment confirmed
-Then StudentCard.EndDate updated; confirmation notification sent
-```
+#### [REQ-013] Đảm bảo idempotent
+> Nhiều lần quét cùng ngày cho cùng khóa học → chỉ một bản ghi.  
 
 ---
 
-### 2.7 Notifications & Communications
+### 2.6 Quản lý thẻ thành viên
 
-#### [REQ-016] Notification Trigger  
-Tự động gửi thông báo khi hành động.
+#### [REQ-014] Hiển thị thẻ thành viên
+> Show total days, used days, remaining.signal.  
 
-**Acceptance Criteria**
-```gherkin
-Given an admin creates announcement, assigns teacher, or registers student
-When action saved
-Then Notification record created, push queued, Zalo message sent
-```
+#### [REQ-015] Gia hạn thẻ RESULT
+> Student chọn ngày gia hạn, thanh toán, backend cập nhật `end_date`, gửi thông báo.  
 
 ---
 
-### 2.8 Promotions & Announcements Management
+### 2.7 Thông báo & giao tiếp
 
-#### [REQ-017] Promotion Management  
-Tạo, sửa, xoá khuyến mãi.
-
-**Acceptance Criteria**
-```gherkin
-Given an admin provides PromotionName, description, conditions, start/end dates
-When saved
-Then promotion appears for students; omit endDate → perpetual
-```
-
-#### [REQ-018] Announcement Management  
-Tạo, sửa, xoá thông báo.
-
-**Acceptance Criteria**
-```gherkin
-Given an admin inputs AnnouncementTitle, content, optional expiry
-When saved
-Then announcement displayed site‑wide; auto‑disappear after expiry
-```
+#### [REQ-016] Trigger thông báo
+> Khi admin tạo announcement, gán teacher, đăng ký student → nội dung push & Zalo.  
 
 ---
 
-### 2.9 AI Customer Service Chatbot
+### 2.8 Khuyến mãi & thông báo
 
-#### [REQ-019] AI Chatbot Integration  
-Trả lời câu hỏi người dùng.
+#### [REQ-017] Quản lý khuyến mãi
+> Center Admin/Manager tạo, sửa, xoá khuyến mãi.  
 
-**Acceptance Criteria**
-```gherkin
-Given a user asks a question via chat widget
-When processed
-Then AI returns answer or escalates to human support if confidence low
-```
+#### [REQ-018] Quản lý thông báo
+> Center Admin/Manager tạo, sửa, xoá thông báo có thời hạn.  
 
 ---
 
-### 2.10 Mobile App Core Features
+### 2.9 Chatbot dịch vụ khách hàng AI
 
-#### [REQ-020] Mobile App Role‑Specific UI  
-Hiển thị giao diện phù hợp.
-
-**Acceptance Criteria**
-```gherkin
-Given a user logs in on Android/iOS
-When app loads
-Then navigation menu and screens displayed per role
-```
-
-#### [REQ-021] Mobile Push Notifications  
-Gửi tin nhắn tới thiết bị.
-
-**Acceptance Criteria**
-```gherkin
-Given a backend event triggers push
-When device token registered
-Then notification delivered via FCM/APNs
-```
+#### [REQ-019] Tích hợp chatbot
+> Đặt câu hỏi → trả lời AI, nếu độ tin cậy thấp → chuyển sang support.  
 
 ---
 
-### 2.11 Localization & SEO
+### 2.10 Tính năng mobile
 
-#### [REQ-022] Default Locale Detection  
-Chọn ngôn ngữ dựa vào lịch sử.
+#### [REQ-020] UI tùy vai trò
+> Mobile hiển thị menu theo role.  
 
-**Acceptance Criteria**
-```gherkin
-Given a user visits site
-When system evaluates locale
-Then selects stored language or Accept‑Language header; UI updated
-```
-
-#### [REQ-023] Multi‑Language SEO  
-Hỗ trợ SEO cho 3 ngôn ngữ.
-
-**Acceptance Criteria**
-```gherkin
-Given a page requested with locale
-When rendered
-Then.At `<html lang='en'>` and hreflang links present
-```
+#### [REQ-021] Push notifications
+> Nhận push cho attendance, announcement, remind.  
 
 ---
 
-### 2.12 Reporting & Analytics
+### 2.11 Đa ngôn ngữ & SEO
 
-#### [REQ-024] Attendance Report Generation  
-Xuất báo cáo CSV.
+#### [REQ-022] Phát hiện ngôn ngữ mặc định
+> Dựa vào lưu trữ, hoặc Accept-Language, cập nhật UI.  
 
-**Acceptance Criteria**
-```gherkin
-Given an admin selects center and date range
-When report requested
-Then CSV produced with StudentName, CourseName, AttendanceDate, Status
-```
-
-#### [REQ-025] Enrollment Summary Dashboard  
-Hiển thị tổng quan theo thời gian thực.
-
-**Acceptance Criteria**
-```gherkin
-Given an admin opens dashboard
-When data refreshes
-Then cards show totalStudents, activeCourses, upcomingSessions (next 7 days)
-```
+#### [REQ-023] SEO đa ngôn ngữ
+> Mỗi trang bao gồm `<html lang="vi">` và `hreflang`.  
 
 ---
 
-## 3. EXCEPTION FLOWS & EDGE CASES
+### 2.12 Báo cáo & Analytics
 
-- **[EXC-001]** Network & Connectivity Drops During QR Scan  
-  - Nếu student scan QR nhưng mạng offline, khi app retry khi reconnect, attendance được ghi sau khi service reachable.
+#### [REQ-024] Tạo báo cáo điểm danh
+> Admin chọn trung tâm & ngày, xuất CSV.  
 
-- **[EXC-002]** Duplicate Attendance Submission  
-  - Nếu cùng student scan QR nhiều lần cùng ngày, khi hệ thống phát hiện trùng, trả về success với ‘already recorded’, không tạo thêm hàng.
-
-- **[EXC-003]** Failed Notification Delivery  
-  - Nếu push không được deliver (token invalid), system logs, retry up to 3 lần, rồi đánh dấu fail.
-
-- **[EXC-004]** Invalid Input問題  
-  - Nếu validation fail form, khi trả về lỗi, thông báo rõ field invalid và yêu cầu chỉnh sửa.
-
-- **[EXC-005]** System Recovery After Outage  
-  - Nếu service offline, khi phục hồi, các attendance scan pending được xử lý FIFO, người dùng nhận thông báo recover.
+#### [REQ-025] Dashboard tuyển sinh
+> Hiển thị số học.Invalid students, courses, upcoming sessions.  
 
 ---
 
-## 4. GLOBAL NON-FUNCTIONAL REQUIREMENTS
+## 3. Mô tả dữ liệu
 
-- **[NFR-001]** Performance Metrics  
-  - API responses (auth, attendance, course list) ≤ 200 ms avg; DB reads sub‑second for 10 000 concurrent users.
-
-- **[NFR-002]** Availability  
-  - 99.9 % uptime; SLA: auto failover across GKE clusters.
-
-- **[NFR-003]** Security  
-  - TLS 1.3; AES‑256 at rest; JWT 15 min, refresh 7 day; OWASP Top 10 mitigations.
-
-- **[NFR-004]** Scalability & Availability  
-  - Quarkus services auto‑scale via Kubernetes HPA (CPU >70 % or latency >300 ms); PostgreSQL replicas for reporting.
-
-- **[NFR-005]** Docker Image Size  
-  - Base < 200 MB; final < 500 MB.
-
-- **[NFR-006]** Logging & Audit  
-  - All actions logged with timestamp, user ID, details; retention 1 year.
-
-- **[NFR-007]** Multi‑Language Support  
-  - UI strings externalized; support English, Vietnamese, Spanish; locale switching without reload.
-
-- **[NFR-008]** GDPR/CCPA Compliance  
-  - Xóa dữ liệu theo yêu cầu; xuất dữ liệu JSON; quản lý đồng ý marketing.
-
-- **[NFR-009]** Backup & Disaster Recovery  
-  - Daily PostgreSQLCAD; PITR 24 h; GKE cluster backup to another region.
-
----
-
-## 5. PRELIMINARY DATA DICTIONARY
-
-### [DAT-001] Users
-| Field | Type | Constraints |
-|-------|------|-------------|
-| user_id | uuid | PK |
-| email | varchar | "not null, unique" |
-| password_hash | char | "not null" |
-| full_name | varchar | "not null" |
-| role_id | smallint | FK |
-| provider | varchar | "default 'local'" |
-| created_at | timestamp | "not null, default now()" |
-| updated_at | timestamp | "not null, default now()" |
+### [DAT-001] USERS
+| Field | Data Type | Constraints | Mô tả |
+|-------|-----------|-------------|-------|
+| user_id | uuid | PK "PRIMARY KEY" | ID duy เดือน |
+| email | varchar | NOT NULL UNIQUE | Email đăng nhập |
+| password_hash | char | NOT NULL | Mã hash bcrypt |
+| full_name | varchar | NOT NULL | Họ tên |
+| role_id | smallint | NOT NULL FK "UNIQUE" | Mã vai trò |
+| provider | varchar | NOT NULL DEFAULT "local" | Phương thức đăng nhập |
+| created_at | timestamp | NOT NULL DEFAULT now() | Ngày tạo |
+| updated_at | timestamp | NOT NULL DEFAULT now() | Ngày cập nhật |
 
 ```mermaid
 erDiagram
     USERS {
-        uuid user_id PK
-        varchar email "NOT NULL, UNIQUE"
-        char password_hash "NOT NULL"
-        varchar full_name "NOT NULL"
-        smallint role_id FK
-        varchar provider "DEFAULT 'local'"
-        timestamp created_at "NOT NULL, DEFAULT now()"
-        timestamp updated_at "NOT NULL, DEFAULT now()"
+        uuid user_id "PRIMARY KEY"
+        varchar email Jordan
+        char password_hash
+        varchar full_name
+        smallint role_id "FK"
+        varchar provider
+        timestamp created_at
+        timestamp updated_at
     }
     ROLES {
-        smallint role_id PK
-        varchar name "NOT NULL, UNIQUE"
+        smallint role_id "PRIMARY KEY"
+        varchar name
         varchar description
     }
-    USERS ||--|| ROLES : role
+    USERS ||--|| ROLES : role_id
 ```
 
-### [DAT-002] Centers
-| Field | Type | Constraints |
-|-------|------|-------------|
-| center_id | uuid | PK |
-| name | varchar | "not null" |
-| address | varchar | "not null" |
-| tax_id | varchar | "unique, not null" |
-| contact_phone | varchar | "optional" |
-| contact_email | varchar | "optional" |
+### [DAT-002] CENTERS
+| Field | Data Type | Constraints | Mô tả |
+|-------|-----------|-------------|-------|
+| center_id | uuid | PK "PRIMARY KEY" | ID trungpad |
+| name | varchar | NOT NULL | Tên trung tâm |
+| address | varchar | NOT NULL | Địa chỉ |
+| tax_id | varchar | NOT NULL UNIQUE | Mã số thuế |
+| contact_phone | varchar | | Điện thoại liên hệ |
+| contact_email | varchar | | Email liên hệ |
 
 ```mermaid
 erDiagram
     CENTERS {
-        uuid center_id PK
-        varchar name "NOT NULL"
-        varchar address "NOT NULL"
-        varchar tax_id "UNIQUE, NOT NULL"
+        uuid center_id "PRIMARY KEY"
+        varchar name
+        varchar addressỗ
+        varchar tax_id "UNIQUE"
         varchar contact_phone
         varchar contact_email
     }
-    USERS {
-        uuid user_id PK
-        smallint role_id FK
- hars
-    }
 ```
 
-### [DAT-003] Courses
-| Field | Type | Constraints |
-|-------|------|-------------|
-| course_id | uuid | PK |
-| title | varchar | "not null" |
-| description | text | "optional" |
-| start_date | date | "not null" |
-| end_date | date | "not null" |
-| teacher_id | uuid | FK |
-| max_students | int | "default 30 Línea" |
+### [DAT-003] COURSES
+| Field | Data Type | Constraints | Mô tả |
+|-------|-----------|-------------|-------|
+| course_id | uuid | PK "PRIMARY KEY" | ID khoá học |
+| title | varchar | NOT NULL | Tiêu đề |
+| description | text | | Mô tả |
+| start_date | date | NOT NULL | Ngày bắt đầu |
+| end_date | date | NOT NULL | Ngày kết thúc |
+| teacher_id | uuid | NOT NULL FK "UNIQUE" | Giáo viên |
+| max_students | int | DEFAULT 30 | Giới hạn |
 
 ```mermaid
 erDiagram
     COURSES {
-        uuid course_id PK
-        varchar title "NOT NULL"
+        uuid course_id "PRIMARY KEY"
+        varchar title
         text description
-        date start_date "NOT NULL"
-        date end_date "NOT NULL"
-        uuid teacher_id FK
-        int max_students "DEFAULT 30"
+        date start_date
+        date end_date
+        uuid teacher_id "FK"
+        int max_students
     }
-    USERS ||--|| COURSES : teacher
+    USERS ||--o{ COURSES : teacher_id
 ```
 
-### [DAT-004] Enrollments
-| Field | Type | Constraints |
-|-------|------|-------------|
-| enrollment_id | uuid | PK |
-| student_id | uuid | FK |
-| course_id | uuid | FK |
-| enrollment_date | timestamp | "default now()" |
+### [DAT-004] ENROLLMENTS
+| Field | Data Type | Constraints | Mô tả |
+|-------|-----------|-------------|-------|
+| enrollment_id | uuid | PK "PRIMARY KEY" | ID đăng ký |
+| student_id | uuid | NOT NULL FK "UNIQUE" | Học sinh |
+| course_id | uuid | NOT NULL FK "UNIQUE" | Khoá học |
+| enrollment_date | timestamp | DEFAULT now() | Ngày ghi danh |
 
 ```mermaid
 erDiagram
     ENROLLMENTS {
-        uuid enrollment_id PK
-        uuid student_id FK
-        uuid course_id FK
-        timestamp enrollment_date "DEFAULT now()"
+        uuid enrollment_id "PRIMARY KEY"
+        uuid student_id "FK"
+        uuid course_id "FK"
+        timestamp enrollment_date Built-in
     }
-    USERS ||--|| ENROLLMENTS : student
-    COURSES ||--|| ENROLLMENTS : course
+    USERS ||--o{ ENROLLMENTS : student_id
+    COURSES ||--o{ ENROLLMENTS : course_id
 ```
 
-### [DAT-005] Attendance
-| Field | Type | Constraints |
-|-------|------|-------------|
-| attendance_id | uuid | PK |
-| student_id | uuid | FK |
-| course_id | uuid | FK |
-| attendance_date | date | "not null" |
-| timestamp | timestamp | "default now()" |
+### [DAT-005] ATTENDANCE
+| Field | debido | Constraints | Mô tả |
+|-------|--------|-------------|-------|
+| attendance_id | uuid | PK "PRIMARY KEY" | ID điểm danh |
+| student_id | uuid | NOT NULL FK "UNIQUE" | Học sinh |
+| course_id | uuid | NOT NULL FK "UNIQUE" | Khoá học |
+| attendance_date | date | NOT NULL | Ngày điểm danh |
+| timestamp | timestamp | DEFAULT now() | Thời gian ghi nhận |
 
 ```mermaid
 erDiagram
     ATTENDANCE {
-        uuid attendance_id PK
-        uuid student_id FK
-        uuid course_id FK
-        date attendance_date "NOT NULL"
-        timestamp timestamp "DEFAULT now()"
+        uuid attendance_id "PRIMARY KEY"
+        uuid student_id "FK"
+        uuid course_id "FK"
+        date attendance_date
+        timestamp timestamp
     }
-    USERS ||ORM--|| ATTENDANCE : student
-    COURSES ||ORM--|| ATTENDANCE : course
+    USERS ||--o{ ATTENDANCE : student_id
+    COURSES ||--o{ ATTENDANCE : course_id
 ```
 
-### [DAT-006] StudentCards
-| Field | Type | Constraints |
-|-------|------|-------------|
-| card_id | uuid | PK |
-| student_id | uuid | FK |
-| issue_date | date | "not null" |
-| validity_days | int | "not null" |
-| remaining_days | int | "computed" |
+### [DAT-006] STUDENTCARDS
+| Field | Data Type | Constraints | Mô tả |
+|-------|-----------|-------------|ీవ|
+| card_id | uuid | PK "PRIMARY KEY" | ID thẻ |
+| student_id | uuid | NOT NULL FK "UNIQUE" | Học sinh |
+| issue_date | date | NOT NULL | Ngày phát hành |
+| validity_days | int | NOT NULL | Tổng ngày hợp lệ |
+| remaining_days | int | | Ngày còn lại (tính) |
 
 ```mermaid
 erDiagram
     STUDENTCARDS {
-        uuid card_id PK
-        uuid student_id FK
-        date issue_date "NOT NULL"
-        int validity_days "NOT NULL"
-        int remaining_days "COMPUTED"
+        uuid card_id "PRIMARY KEY"
+        uuid student_id "FK_locked"
+        date issue_date
+        int validity_days
+        int remaining_days
     }
-    USERS ||--|| STUDENTCARDS : student
+    USERS ||--o{ STUDENTCARDS : student_id
 ```
 
-### [DAT-007] Notifications
-| Field | Type | Constraints |
-|-------|------|-------------|
-| notification_id | uuid | PK |
-| user_id | uuid | FK, optional |
-| വകുപ്പ്_zalo | varchar | "optional" |
-| message | text | "not null" |
-| sent_at | timestamp | "default now()" |
-| delivered | boolean | "default false" |
+### [DAT-007] NOTIFICATIONS
+| Field | Data Type | Constraints | Mô tả |
+|-------|-----------|-------------|-------|
+| notification_id | uuid | PK "PRIMARY KEY" | ID thông báo |
+| user_id | uuid | FK | Người dùng (tùy chọn) |
+| group_zalo | varchar | | Nhóm Zalo |
+| message | text | NOT NULL | Nội dung |
+| sent_at | timestamp | DEFAULT now() | Thời gian gửi |
+| delivered | boolean | DEFAULT false | Trạng thái |
 
 ```mermaid
 erDiagram
     NOTIFICATIONS {
-        uuid notification_id PK
-        uuid user_id FK
+        uuid notification_id "PRIMARY KEY"
+        uuid user_id "FK"
         varchar group_zalo
-        text message "NOT NULL"
-        timestamp sent_at "DEFAULT now()"
-        boolean delivered "DEFAULT false"
+        text message
+        timestamp sent_at
+        boolean delivered
     }
-    USERS ||--|| NOTIFICATIONS : user
+    USERS ||--o{ NOTIFICATIONS : user_id
 ```
 
-### [DAT-008] Roles
-| Field | Type | Constraints |
-|-------|------|-------------|
-| role_id | smallint | PK |
-| name | varchar | "unique, not null" |
-| description | varchar | "optional" |
+### [DAT-008] ROLES
+| Field | Data Type | Constraints | Mô tả |
+|-------|-----------|-------------|-------|
+| role_id | smallint | PK "PRIMARY KEY" | Mã vai trò |
+| name | varchar | UNIQUE | Tên vai trò |
+| description | varchar | | Mô tả |
 
 ```mermaid
 erDiagram
     ROLES {
-        smallint role_id PK
-        varchar name "UNIQUE, NOT NULL"
+        smallint role_id "PRIMARY KEY"
+        varchar name
         varchar description
     }
 ```
 
-### [DAT-009] Promotions
-| Field | Type | Constraints |
-|-------|------|-------------|
-| promo_id | uuid | PK |
-| code | varchar | "unique" |
-| discount_percent | smallint | "not null" |
-| start_date | date | "optional" |
-| end_date | date | "optional" |
-| description | text | "optional" |
+### [DAT-009] PROMOTIONS
+| Field | Data Type | Constraints | Mô tả |
+|-------|-----------|-------------|-------|
+| promo_id | uuid | PK "PRIMARY KEY" | ID khuyến mãi |
+| code | varchar | UNIQUE | Mã giảm giá |
+| discount_percent | smallint | NOT NULL | % giảm |
+| start_date | date | | Ngày bắt đầu |
+| end_date | date | | Ngày kết thúc |
+| description | text | | Chi tiết |
 
 ```mermaid
 erDiagram
     PROMOTIONS {
- 액원 promo_id PK
+        uuid promo_id "PRIMARY KEY"
         varchar code "UNIQUE"
-        smallint discount_percent "NOT NULL"
+        smallint discount_percent
         date start_date
         date end_date
         text description
     }
 ```
 
-### [DAT-010] Announcements
-| Field | Type | Constraints |
-|-------|------|-------------|
-| announcement_id | uuid | PK |
-| title | varchar | "not null" |
-| content | text | "not null" |
-| start_date | date | "optional" |
-| end_date | date | "optional" |
+### [DAT-010] ANNOUNCEMENTS
+| Field | Data Type | Constraints | Mô tả |
+|-------|-----------|-------------|-------|
+| announcement_id | uuid | PK "PRIMARY KEY" | ID thông báo |
+| title | varchar | NOT NULL | Tiêu đề |
+| content | text | NOT NULL | Nội dung |
+| start_date | date | | Hiệu lực bắt đầu |
+| end_date | date | | Hiệu lực kết thúc |
 
 ```mermaid
 erDiagram
     ANNOUNCEMENTS {
-        uuid announcement_id PK
-        varchar title "NOT NULL"
-        text content "NOT NULL"
+        uuid announcement_id "PRIMARY KEY"
+        varchar title
+        text content
         date start_date
         date end_date
     }
 ```
 
-### [DAT-011] SystemSettings
-| Field | Type | Constraints |
-|-------|------|-------------|
-| setting_key | varchar | PK |
-| setting_value | text | "not null" |
-| description | varchar | "optional" |
+### [DAT-011] SYSTEMSETTINGS
+| Field | Data Type | Constraints | Mô tả |
+|-------|-----------|-------------|-------|
+| setting_key | varchar | PK "PRIMARY KEY" | Khóa |
+| setting_value | text | NOT NULL | Giá trị |
+| description | varchar | | Mô tả |
 
 ```mermaid
 erDiagram
     SYSTEMSETTINGS {
-        varchar setting_key PK
-        text setting_value "NOT NULL"
+        varchar setting_key "PRIMARY KEY"
+        text setting_value
         varchar description
     }
 ```
+
+---
+
+## 4. Phân khối ngoại lệ (Exception flows)
+
+### [EXC-001] Kết nối mạng mất trong quét QR  
+- **Given** student quét QR nhưng mạng offline,  
+- **When** mạng được khôi phục,  
+- **Then** điểm danh được ghi nhận.  
+
+### [EXC-002] Đăng ký điểm danh trùng lặp  
+- **Given** student quét nhiều lần cùng ngày,  
+- **When** hệ thống nhận,  
+- **Then** trả về thành công với cờ `duplicate`.  
+
+### [EXC-003] Thông báo không thể chuyển tiếp  
+- **Given** push thất bại (token sai),  
+- **When** thử lại 3 lần,  
+- **Then** ghi log & đánh dấu `failed`.  
+
+### [EXC-004] Xác thực đầu vào sai  
+- **Given** email/đầy đủ không đúng,  
+- **When** gửi,  
+- **Then** thông báo lỗi chi tiết.  
+
+### [EXC-005] Phục hồi sau gián đoạn hệ thống  
+- **Given** dịch vụ ngừng,  
+- **When** khởi động lại,  
+- **Then** xử lý điểm danh cũ theo FIFO & thông báo.
+
+---
+
+## 5. Yêu cầu phi chức năng (NFR)
+
+### [NFR-001] Hiệu năng  
+- Phản hồi API trung bình ≤ 200 ms.  
+- Chỉ mục cho queries, hỗ trợ 10,000 user đồng thời.  
+
+### [NFR-002] Tính sẵn sàng  
+- 99.9 % uptime, failover tự động GKE.  
+
+### [NFR-003] Bảo mật  
+- TLS 1.3, AES‑256 on‑disk.  
+- JWT 15 điểm, refresh 7 ngày.  
+- OWASP Top 10: SQLi, XSS, CSRF.  
+
+### [NFR-004] Mở rộng & HA  
+- HPA Kubernetes: CPU > 70 % hoặc latency > 300 ms.  
+- Replicas PostgreSQL cho báo cáo.  
+
+### [NFR-005] Kích thước Docker  
+- Base < 200 MB, final < 500 MB.  
+
+### [NFR-006] Ghi log & audit  
+- Lưu hành động 1 năm, thời gian, user, haem.  
+
+### [NFR-007] Đa ngôn ngữ  
+- Từ khoá externalized, switching without reload.  
+
+### [NFR-008] GDPR/CCPA  
+- Xóa dữ liệu khi yêu cầu, export JSON, quản lý đồng ý.  
+
+### [NFR-009] Backup & DR  
+- Backup PostgreSQL hàng ngày, PITR 24 h.  
+- Backup cluster GKE region phân tách.
 
 ---
