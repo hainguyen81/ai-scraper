@@ -22,7 +22,7 @@ Analyze the attached project requirements. Build the GLOBAL PROJECT CONTEXT for 
 - You are STRICTLY BANNED from bundling tags together (e.g., NO `[REQ-001-005]`). Every single tag must be written out individually and separated by commas. Leaving any task or field without its trace tracking identifier inline is a critical framework violation.
 
 ### 📋 MANDATORY OUTPUT STRUCTURE (MARKDOWN REPORT LAYOUT):
-Every header and table parameter below MUST be translated and naturally rendered into "{{ language }}", except for the explicit Technical English core tokens protected by system mandates. You MUST include every single section below without exception to satisfy enterprise compliance requirements:
+Every header and table parameter below MUST be translated and naturally rendered into "{% if language and language.strip() != "" %}{{ language }}{% else %}English{% endif %}", except for the explicit Technical English core tokens protected by system mandates. You MUST include every single section below without exception to satisfy enterprise compliance requirements:
 
 # GLOBAL PROJECT CONTEXT: {{ project_name }}
 

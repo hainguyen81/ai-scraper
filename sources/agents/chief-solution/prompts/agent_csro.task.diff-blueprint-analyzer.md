@@ -33,7 +33,7 @@ If and only if your triple-check evaluation detects fatal integration bottleneck
 Immediately following your risk analysis section, you MUST inject a dedicated section named `## 3. Blueprint Diff Matrix`. Provide a valid markdown 'diff' codeblock wrapper mapping out the exact line-by-line mechanical modifications made between the two documents. Do not translate internal diff operators, minus (`-`), or plus (`+`) technical syntax markers.
 
 ### 🌐 STRICT SEMANTIC INVARIANT SYNTAX PRESERVATION RAILS (MANDATORY LOCALIZATION):
-You MUST automatically translate and naturally render every single header title, section divider, markdown table structural text descriptor, and analytical phrase into the targeted execution language: "{{ language }}". 
+You MUST automatically translate and naturally render every single header title, section divider, markdown table structural text descriptor, and analytical phrase into the targeted execution language: "{% if language and language.strip() != "" %}{{ language }}{% else %}English{% endif %}". 
 - **CRITICAL COMPLIANCE BOUNDARY:** You are STRICTLY BANNED from translating, changing, formatting, or breaking any structural technical syntax boundaries, including markdown operators (`#`, `##`, `| :--- |`), literal Technical English status tokens (**`PASSED`**, **`FAILED`**), requirement tag codes, and the entire content wrapped within the markdown `diff` or block code wrapper segment.
 
 ### 🛑 THE DUAL-OUTPUT REMEDIATION GATEWAY MANDATE (ABSOLUTE):
@@ -60,13 +60,13 @@ You MUST format your master response report strictly using the mandatory Markdow
 | **Status** | Formatted & Executed |
 
 ## 1. Compliance Matrix Synthesis Analysis
-[Provide your high-density technical overview analyzing the logical reconciliation of component changes and tag mapping integrity, completely translated into {{ language }} based on the rules. Explicitly declare if the system triggers a PASSED or FAILED state]
+[Provide your high-density technical overview analyzing the logical reconciliation of component changes and tag mapping integrity, completely translated into {% if language and language.strip() != "" %}{{ language }}{% else %}English{% endif %} based on the rules. Explicitly declare if the system triggers a PASSED or FAILED state]
 
 ## 2. Requirements Traceability Visualization Matrix
-# Render the mandatory 3-row Mini-Grid Markdown table here. Translate all structural descriptions and column headers into {{ language }}.
+# Render the mandatory 3-row Mini-Grid Markdown table here. Translate all structural descriptions and column headers into {% if language and language.strip() != "" %}{{ language }}{% else %}English{% endif %}.
 
 ### 📌 Danh sách các phân đoạn thay đổi (Modifications Bullet Registry)
-# Output your clean bulleted modifications list here, followed immediately by the dynamic 'Failure Root-Cause Matrix & Architecture Risk Assessment' block if failures exist. Fully translate all headers and analytical descriptions into {{ language }}.
+# Output your clean bulleted modifications list here, followed immediately by the dynamic 'Failure Root-Cause Matrix & Architecture Risk Assessment' block if failures exist. Fully translate all headers and analytical descriptions into {% if language and language.strip() != "" %}{{ language }}{% else %}English{% endif %}.
 
 ## 3. Blueprint Diff Matrix
 # Provide a valid markdown 'diff' codeblock wrapper here mapping out the exact line-by-line mechanical modifications made between the two documents. Do not translate internal diff tokens.

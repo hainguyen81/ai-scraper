@@ -40,7 +40,6 @@ class EnterpriseIdeaGeneratorAgent(AbstractSubAgent):
         # load generated ideas to avoid conflicts
         self.domain = self.get_kwargs("domain") or DEFAULT_IDEAS_DOMAIN
         self.quantity = self.get_kwargs("quantity") or DEFAULT_IDEAS_QUNATITY
-        self.language = self.get_kwargs("language") or DEFAULT_IDEAS_LANGUAGE
         self.initialize_ideas()
     
     def initialize_ideas(self):
@@ -169,7 +168,6 @@ if __name__ == "__main__":
     def add_known_arguments(parser):
         parser.add_argument("--domain", type=str, help="Domain to find ideas")
         parser.add_argument("--quantity", type=int, help="The number of ideas")
-        parser.add_argument("--language", type=str, help="Translate found ideas to language. Ex: Vietnamese, English, etc.")
     
     args, unknown_args = parse_args(
         description="💡 EnterpriseIdeaGeneratorAgent",
@@ -178,6 +176,5 @@ if __name__ == "__main__":
     EnterpriseIdeaGeneratorAgent(
         domain=args.domain,
         quantity=args.quantity,
-        language=args.language,
         **unknown_args
     ).execute()

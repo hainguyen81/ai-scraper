@@ -23,20 +23,26 @@ from sources.agents.agent_helper import (
     get_logger,
     json_tostring,
     json_loads,
-    enabledLogDebug
+    enabledLogDebug,
+    AGENT_MODELS_PATH,
+    AGENT_MASTER_PROMPTS_PATH
 )
 
 # ==============================================================================
 # GLOBAL CONFIGURATION PATHS - CONFIG HERE TO CUSTOMIZE DIRECTORY STRUCTURE
 # ==============================================================================
 VERBOSE_MODELS              = False
-MODELS_POOL_PATH            = resolve_absolute_path("sources/agents/models/models.json")
+MODELS_POOL_PATH            = os.path.join(AGENT_MODELS_PATH, "models.json")
+
+MASTER_RULE_PROMPT_TEMPLATE = "prompt.rule.enterprise.governance.guardrails.md"
+DEFAULT_OUTPUT_LANGUAGE     = "English"
 
 class AbstractAgent(ABC):
     def __init__(self, agent_id, **kwargs):
         self.agent_id = agent_id if agent_id else "Super"
         self.kwargs = kwargs or {}
         self.agent_name = self.get_kwargs(key="agent_name") or self.agent_id
+        self.language = self.get_kwargs(key="language") or DEFAULT_OUTPUT_LANGUAGE
         self.logger = get_logger(self.agent_name or self.agent_id)
         self.debug = self.get_kwargs(key="verbose")
         if self.debug:
@@ -182,6 +188,19 @@ class AbstractAgent(ABC):
             append=append
         )
     
+    def master_prompt_template(self) -> str:
+        return os.path.join(AGENT_MASTER_PROMPTS_PATH, MASTER_RULE_PROMPT_TEMPLATE)
+    
+    def build_master_prompt_context(self, **kwargs):
+        return {
+            **kwargs,
+            "language": self.language
+        }
+    
+    def build_master_prompt(self, **kwargs) -> str:
+        master_prompt_context = self.build_master_prompt_context(**kwargs) or {}
+        return render_prompt(self.master_prompt_template(), master_prompt_context)
+
     @abstractmethod
     def system_prompt_template(self) -> str:
         pass
@@ -190,7 +209,7 @@ class AbstractAgent(ABC):
         return { **kwargs }
     
     def build_system_prompt(self, **kwargs) -> str:
-        system_prompt_context = self.build_system_prompt_context(**kwargs)
+        system_prompt_context = self.build_system_prompt_context(**kwargs) or {}
         return render_prompt(self.system_prompt_template(), system_prompt_context)
     
     @abstractmethod
@@ -201,7 +220,7 @@ class AbstractAgent(ABC):
         return { **kwargs }
     
     def build_user_prompt(self, **kwargs) -> str:
-        user_prompt_context = self.build_user_prompt_context(**kwargs)
+        user_prompt_context = self.build_user_prompt_context(**kwargs) or {}
         return render_prompt(self.user_prompt_template(), user_prompt_context)
     
     def agent_temperature(self):
@@ -301,8 +320,11 @@ class AbstractAgent(ABC):
         user_prompt = None
         success = False
         try:
+            # build master prompt
+            master_prompt = self.build_master_prompt(**kwargs)
             # build system prompt
             system_prompt = self.build_system_prompt(**kwargs)
+            system_prompt = f"{master_prompt}\n\n{system_prompt}" if master_prompt else system_prompt
             # build user prompt
             user_prompt = self.build_user_prompt(**kwargs)
             

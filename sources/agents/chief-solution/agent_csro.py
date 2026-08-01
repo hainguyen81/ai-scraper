@@ -295,7 +295,6 @@ class AbstractCrewEnterpriseSuperAgent(AbstractSubAgent):
         
         # initialize super
         super().initialize()
-        self.language = self.get_kwargs("language") or DEFAULT_CSRO_LANGUAGE
     
     # @override
     def agent_log_file(self) -> str:
@@ -1000,7 +999,6 @@ class CrewEnterpriseGovernanceFlow(Flow):
 if __name__ == "__main__":
     def add_known_arguments(parser):
         parser.add_argument("--idea", type=str, help="Idea Identity for searching")
-        parser.add_argument("--language", type=str, help="Translate SRS to language. Ex: Vietnamese, English, etc.")
     
     args, unknown_args = parse_args(
         description="👥🏢🏛️🔄 Enterprise Governance Process Flow",
@@ -1014,7 +1012,6 @@ if __name__ == "__main__":
     # initializ workflow agent
     enterprise_workflow_agent = CrewEnterpriseGovernanceFlow(
         idea=args.idea,
-        language=args.language,
         **unknown_args
     )
     

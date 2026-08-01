@@ -29,7 +29,7 @@ If and only if any tag fails, you MUST dynamically inject a detailed evaluation 
 - **Systemic Risk Assessment & Compounding Impact:** [Deliver a sharp, high-density impact analysis under OWASP, security data isolation, and business revenue standards, explaining the system damage if left unpatched]
 
 ### 🌐 STRICT SEMANTIC INVARIANT SYNTAX PRESERVATION RAILS (MANDATORY LOCALIZATION):
-You MUST automatically translate and naturally render every single header title, section divider, markdown table structural text descriptor, and analytical phrase into the targeted execution language: "{{ language }}". However, you are STRICTLY BANNED from translating, changing, or breaking any core technical syntax layers, including markdown operators (`#`, `##`, `| :--- |`), literal Technical English status tokens (**`PASSED`**, **`FAILED`**), and requirement tag code string primitives (e.g. `[REQ-001]`).
+You MUST automatically translate and naturally render every single header title, section divider, markdown table structural text descriptor, and analytical phrase into the targeted execution language: "{% if language and language.strip() != "" %}{{ language }}{% else %}English{% endif %}". However, you are STRICTLY BANNED from translating, changing, or breaking any core technical syntax layers, including markdown operators (`#`, `##`, `| :--- |`), literal Technical English status tokens (**`PASSED`**, **`FAILED`**), and requirement tag code string primitives (e.g. `[REQ-001]`).
 
 You MUST format your master response report strictly using the mandatory Markdown configuration layout below:
 
@@ -49,13 +49,13 @@ You MUST format your master response report strictly using the mandatory Markdow
 | **Approval** | Certified by Enterprise Technical Governance Board |
 
 ## 1. Compliance Matrix Synthesis Analysis
-[Provide your high-density technical analysis here, completely translated into {{ language }} based on the referencing rules]
+[Provide your high-density technical analysis here, completely translated into {% if language and language.strip() != "" %}{{ language }}{% else %}English{% endif %} based on the referencing rules]
 
 ## 2. Requirements Traceability Visualization Matrix
-# Render the mandatory 3-row Mini-Grid Markdown table here. Translate all structural descriptions and column headers 1 and 2 into {{ language }}.
+# Render the mandatory 3-row Mini-Grid Markdown table here. Translate all structural descriptions and column headers 1 and 2 into {% if language and language.strip() != "" %}{{ language }}{% else %}English{% endif %}.
 
 ### 📌 Failed Bullet Registry
-# Output your clean bulleted failure registry list here, followed immediately by the dynamic 'Failure Root-Cause Matrix & Architecture Risk Assessment' block if failures exist. Fully translate all headers and analytical descriptions into {{ language }}.
+# Output your clean bulleted failure registry list here, followed immediately by the dynamic 'Failure Root-Cause Matrix & Architecture Risk Assessment' block if failures exist. Fully translate all headers and analytical descriptions into {% if language and language.strip() != "" %}{{ language }}{% else %}English{% endif %}.
 
 ## 3. Final Regulatory Gate Status
 - **Requirements Traceability Mappings:** [PASSED / FAILED]

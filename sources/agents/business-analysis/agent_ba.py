@@ -25,8 +25,6 @@ PROJECT_INFO_FILE           = "project-info.json"
 BA_RAW_FILE                 = "ba.md"
 BA_LOG_FILE                 = "ba_log.md"
 
-DEFAULT_SRS_LANGUAGE        = "English"
-
 
 class PrincipalBusinessAnalysisAgent(AbstractSubAgent):
     def __init__(self, **kwargs):
@@ -40,7 +38,6 @@ class PrincipalBusinessAnalysisAgent(AbstractSubAgent):
     def initialize(self):
         # start initialization
         super().initialize()
-        self.language = self.get_kwargs("language") or DEFAULT_SRS_LANGUAGE
     
     def ba_output_raw_file(self):
         return self.__output_storage_path__(storage_name="output_ba", file=BA_RAW_FILE)
@@ -154,7 +151,6 @@ class PrincipalBusinessAnalysisAgent(AbstractSubAgent):
 if __name__ == "__main__":
     def add_known_arguments(parser):
         parser.add_argument("--idea", type=str, help="Idea Identity / Project Name for searching")
-        parser.add_argument("--language", type=str, help="Translate SRS to language. Ex: Vietnamese, English, etc.")
     
     args, unknown_args = parse_args(
         description="💡🎯 PrincipalBusinessAnalysisAgent",
@@ -163,6 +159,5 @@ if __name__ == "__main__":
     PrincipalBusinessAnalysisAgent(
         idea=args.idea,
         project=args.idea,
-        language=args.language,
         **unknown_args
     ).execute()

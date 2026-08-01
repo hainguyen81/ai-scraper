@@ -29,11 +29,11 @@ If and only if any item fails, you MUST dynamically inject a detailed evaluation
 
 ### 🛠️ SELF-HEALING BLUEPRINT PATCH MATRIX DIFF RULE:
 Immediately following your risk analysis section, you MUST inject a dedicated section named `## 3. Self-Healing Blueprint Patch Matrix`. 
-- If the status is **`PASSED`**, simply output a clean system confirmation sentence translated naturally into `{{ language }}` stating that the document requires zero remediation.
+- If the status is **`PASSED`**, simply output a clean system confirmation sentence translated naturally into `{% if language and language.strip() != "" %}{{ language }}{% else %}English{% endif %}` stating that the document requires zero remediation.
 - If the status is **`FAILED`**, you MUST leverage your engineering expertise to automatically re-write and fix the broken daily logs inside the resource text matching the exact context of `{{ raw_blueprint_content }}`. You MUST wrap this entire structural patch inside a standard markdown `diff` codeblock wrapper (triple backticks followed by `diff`). Delineate lines to be deleted with a leading minus sign (`-`), and lines to be healed with a leading plus sign (`+`).
 
 ### 🌐 STRICT SEMANTIC INVARIANT SYNTAX PRESERVATION RAILS (MANDATORY LOCALIZATION):
-You MUST automatically translate and naturally render every single header title, section divider, markdown table structural text descriptor, and analytical phrase into the targeted execution language: "{{ language }}". 
+You MUST automatically translate and naturally render every single header title, section divider, markdown table structural text descriptor, and analytical phrase into the targeted execution language: "{% if language and language.strip() != "" %}{{ language }}{% else %}English{% endif %}". 
 - **CRITICAL COMPLIANCE:** You are STRICTLY BANNED from translating, changing, or breaking any structural technical syntax boundaries, including markdown operators (`#`, `##`, `| :--- |`), literal Technical English status tokens (**`PASSED`**, **`FAILED`**), requirement tag codes, and the entire content wrapped within the `diff` codeblock.
 
 ### 🛑 THE DUAL-OUTPUT REMEDIATION GATEWAY MANDATE (ABSOLUTE):
@@ -59,13 +59,13 @@ You MUST format your total response report strictly using the mandatory Markdown
 | **Status** | Formatted & Executed |
 
 ## 1. Compliance Matrix Synthesis Analysis
-[Provide your high-density technical analysis here, completely translated into {{ language }} based on the rules. Explicitly comment on the auto-detected phase counts and daily timeline density, confirming absolute zero garbage task expansion or placeholder padding]
+[Provide your high-density technical analysis here, completely translated into {% if language and language.strip() != "" %}{{ language }}{% else %}English{% endif %} based on the rules. Explicitly comment on the auto-detected phase counts and daily timeline density, confirming absolute zero garbage task expansion or placeholder padding]
 
 ## 2. Timeline Calendar Boundary & Sub-Task Metadata Integrity Audit
-# Render the mandatory 3-row Mini-Grid Markdown table here. Translate all structural descriptions and column headers into {{ language }}.
+# Render the mandatory 3-row Mini-Grid Markdown table here. Translate all structural descriptions and column headers into {% if language and language.strip() != "" %}{{ language }}{% else %}English{% endif %}.
 
 ### 📌 Failed Bullet Registry
-# Output your clean bulleted failure registry list here, followed immediately by the dynamic 'Failure Root-Cause Matrix & Architecture Risk Assessment' block if failures exist. Fully translate all headers and analytical descriptions into {{ language }}.
+# Output your clean bulleted failure registry list here, followed immediately by the dynamic 'Failure Root-Cause Matrix & Architecture Risk Assessment' block if failures exist. Fully translate all headers and analytical descriptions into {% if language and language.strip() != "" %}{{ language }}{% else %}English{% endif %}.
 
 ## 3. Self-Healing Blueprint Patch Matrix (Bản vá lỗi Kiến trúc hệ thống)
 # Render your clean conditional markdown system confirmation statement or the executable diff codeblock wrapper here. Do not translate the internal syntax markers of the diff wrapper block.

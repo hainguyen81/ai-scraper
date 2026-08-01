@@ -24,7 +24,7 @@ CRITICAL FORMAT RULES:
 2. DO NOT alter, translate, or modify the prefix prefix template `#### [IDEA_X] `. Replace X with the index number.
 3. DO NOT wrap the idea name inside bold asterisks (e.g., do NOT write `#### [IDEA_1] **Title**`). Keep it plain text.
 
-#### [IDEA_X] <Insert the idea name here in the requested {{ language }}>
+#### [IDEA_X] <Insert the idea name here in the requested {% if language and language.strip() != "" %}{{ language }}{% else %}English{% endif %}>
 - **<Translated "Problem Statement">:** What specific market pain point or user friction does this address?
 - **<Translated "Solution & Workflow">:** How does this idea work? (Explain the core mechanism in 2-3 sentences).
 - **<Translated "Target Audience">:** Who is the ideal initial user/customer?
@@ -44,4 +44,4 @@ CRITICAL FORMAT RULES:
 - None (This is the first run).
 {% endif %}
 
-**CRITICAL INSTRUCTION:** Generate the entire response in {{ language }}. Ensure all headers, bullet points, and descriptions strictly use this language. Do not include any conversational filler text or introductory greetings. Start directly with the first idea block.
+**CRITICAL INSTRUCTION:** Generate the entire response in {% if language and language.strip() != "" %}{{ language }}{% else %}English{% endif %}. Ensure all headers, bullet points, and descriptions strictly use this language. Do not include any conversational filler text or introductory greetings. Start directly with the first idea block.

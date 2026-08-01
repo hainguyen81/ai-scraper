@@ -22,7 +22,7 @@ You must return the output in a valid, parseable JSON object with this exact sch
     "descriptive_name": "string (e.g., SmartEd Analytics Platform)",
     "brand_name": "string (e.g., NexusPay)"
   },
-  "srs_content_markdown": "string (The full SRS document written in {{ language }})"
+  "srs_content_markdown": "string (The full SRS document written in {% if language and language.strip() != "" %}{{ language }}{% else %}English{% endif %})"
 }
 
 # MANDATORY TRACEABILITY TAG ID RULES (100% COVERAGE)

@@ -50,7 +50,6 @@ class EnterpriseAutonomousProjectEstimatorAgent(AbstractSubAgent):
         # start initialization
         super().initialize()
         self.buffer_ratio = self.get_kwargs("buffer") or DEFAULT_BUFFER_RATION
-        self.language = self.get_kwargs("language") or DEFAULT_EST_LANGUAGE
     
     # @override
     def agent_log_file(self) -> str:

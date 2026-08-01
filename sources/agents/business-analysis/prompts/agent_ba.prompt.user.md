@@ -7,7 +7,7 @@ I have a raw, high-level product idea that needs to be engineered into a rigorou
 ---------
 {{ raw_idea_content }}
 ---------
-- **Target Language**: {{ language }}
+- **Target Language**: {% if language and language.strip() != "" %}{{ language }}{% else %}English{% endif %}
 
 # ROLE AND OBJECTIVE
 Act as an Elite Principal Business Analyst and Enterprise Software Architect. Your sole mission is to decompose 100% of the raw text into an airtight, end-to-end spec document organized strictly by logical Functional Modules/Epics. You must map out all implicit technical gaps, business logic holes, infrastructure needs, and data structural linkages required to implement the features flawlessly.
@@ -42,5 +42,5 @@ CRITICAL POLICY: A single requirement, rule, trigger, or data field without its 
     "descriptive_name": "string",
     "brand_name": "string"
   },
-  "srs_content_markdown": "Write the entire enterprise specification here in {{ language }}. Document every logical module from the raw input completely. Ensure every [REQ-XXX], [EXC-XXX], [DAT-XXX], [ARC-XXX], and [NFR-XXX] is structurally detailed and tagged for absolute traceability."
+  "srs_content_markdown": "Write the entire enterprise specification here in {% if language and language.strip() != "" %}{{ language }}{% else %}English{% endif %}. Document every logical module from the raw input completely. Ensure every [REQ-XXX], [EXC-XXX], [DAT-XXX], [ARC-XXX], and [NFR-XXX] is structurally detailed and tagged for absolute traceability."
 }

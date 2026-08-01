@@ -440,6 +440,8 @@ STORAGE_PATH                            = resolve_absolute_path(REL_STORAGE_PATH
 REL_OUTPUT_PATH                         = "sources/output"
 OUTPUT_PATH                             = resolve_absolute_path(REL_OUTPUT_PATH)
 
+REL_AGENT_MASTER_PROMPTS_PATH           = os.path.join(REL_AGENTS_PATH, "prompts")
+REL_AGENT_MODELS_PATH                   = os.path.join(REL_AGENTS_PATH, "models")
 REL_AGENT_IDEAS_PATH                    = os.path.join(REL_AGENTS_PATH, "ideas")
 REL_AGENT_IDEAS_PROMPTS_PATH            = os.path.join(REL_AGENT_IDEAS_PATH, "prompts")
 REL_AGENT_BLUEPRINT_PATH                = os.path.join(REL_AGENTS_PATH, "architect-blueprint")
@@ -464,6 +466,8 @@ REL_OUTPUT_BA_PATH                      = os.path.join(REL_OUTPUT_PATH, "busines
 REL_OUTPUT_EST_PATH                     = os.path.join(REL_OUTPUT_PATH, "estimation")
 REL_OUTPUT_CSRO_PATH                    = os.path.join(REL_OUTPUT_PATH, "chief-solution")
 
+AGENT_MODELS_PATH                       = resolve_absolute_path(REL_AGENT_MODELS_PATH)
+AGENT_MASTER_PROMPTS_PATH               = resolve_absolute_path(REL_AGENT_MASTER_PROMPTS_PATH)
 AGENT_IDEAS_PATH                        = resolve_absolute_path(REL_AGENT_IDEAS_PATH)
 AGENT_IDEAS_PROMPTS_PATH                = resolve_absolute_path(REL_AGENT_IDEAS_PROMPTS_PATH)
 AGENT_BLUEPRINT_PATH                    = resolve_absolute_path(REL_AGENT_BLUEPRINT_PATH)
@@ -496,6 +500,10 @@ storage_info = {
     "agents": {
         "relative_agents": REL_AGENTS_PATH,
         "agents": AGENTS_PATH,
+        "relative_master_prompts": REL_AGENT_MASTER_PROMPTS_PATH,
+        "storage_master_prompts": AGENT_MASTER_PROMPTS_PATH,
+        "relative_models": REL_AGENT_MODELS_PATH,
+        "storage_models": AGENT_MODELS_PATH,
         
         "relative_ideas": REL_AGENT_IDEAS_PATH,
         "storage_ideas": AGENT_IDEAS_PATH,
