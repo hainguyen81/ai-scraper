@@ -114,6 +114,19 @@ class EnterpriseIdeaGeneratorAgent(AbstractSubAgent):
             if not clean_idea_name:
                 continue
             
+            # Regex lines to dynamically capture technical_codename and brand_name values
+            # Scans for the pattern line ending with the plain value payload
+            codename_match = re.search(r"-\s*\*\*.*?\*\*:\s*(.*)", clean_idea_desc)
+            brand_match = re.search(r"(?:.*\n){1}-\s*\*\*.*?\*\*:\s*(.*)", clean_idea_desc)
+            
+            # Extract and fallback to clean_idea_name if AI omits the string token
+            technical_codename = codename_match.group(1).strip() if codename_match else clean_idea_name
+            brand_name = brand_match.group(1).strip() if brand_match else clean_idea_name
+            
+            # Clean dual asterisks from extracted values if any leak occurs
+            technical_codename = technical_codename.replace("**", "").strip()
+            brand_name = brand_name.replace("**", "").strip()
+            
             # idea unique identity
             unique_id = hashlib.md5(clean_idea_name.encode("utf-8")).hexdigest()[:12]
             idea_id = f"idea_{unique_id}"
@@ -124,6 +137,8 @@ class EnterpriseIdeaGeneratorAgent(AbstractSubAgent):
             idea_item = {
                 "id": idea_id,
                 "idea": clean_idea_name,
+                "technical_codename": technical_codename,
+                "brand_name": brand_name,
                 "file": abs_idea_file
             }
             ideas.append({
