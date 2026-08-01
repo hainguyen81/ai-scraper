@@ -14,8 +14,8 @@ from sources.agents.subagent_super import AbstractSubAgent
 # ==============================================================================
 # GLOBAL CONFIGURATION PATHS - CONFIG HERE TO CUSTOMIZE DIRECTORY STRUCTURE
 # ==============================================================================
-SYSTEM_PROMPT               = "You are a creative and strict Enterprise Idea Generation Agent. Never replicate past ideas."
-USER_PROMPT_TEMPLATE        = "agent_idea_generator.prompt.md"
+SYSTEM_PROMPT_TEMPLATE      = "agent_idea_generator.prompt.system.md"
+USER_PROMPT_TEMPLATE        = "agent_idea_generator.prompt.user.md"
 
 IDEAS_OUTPUT_FILE           = "ideas.md"
 IDEAS_LOG_FILE              = "ideas_log.md"
@@ -59,7 +59,7 @@ class EnterpriseIdeaGeneratorAgent(AbstractSubAgent):
     
     # @override
     def build_system_prompt(self, **kwargs) -> str:
-        return SYSTEM_PROMPT
+        return self.__agents_path__(storage_name="storage_ideas_prompts", file=SYSTEM_PROMPT_TEMPLATE)
     
     # @override
     def build_user_prompt_context(self, **kwargs):
