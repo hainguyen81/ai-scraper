@@ -1,4 +1,5 @@
-#### [IDEA_1] EcoGrid - Nền tảng quản lý vi lưới năng lượng tái tạo cho tòa nhà thương mại nhỏ
+# EcoGrid - Nền tảng quản lý vi lưới năng lượng tái tạo cho tòa nhà thương mại nhỏ
+
 - **Vấn đề:** Các tòa nhà thương mại nhỏ gặp khó khăn trong việc giám sát và tối ưu hóa sản lượng năng lượng tái tạo từ các hệ thống pin mặt trời hoặc gió vì thiếu một giải pháp đơn giản, giá thành thấp. Việc theo dõi thủ công gây lãng phí và khó đảm bảo hiệu suất.
 - **Giải pháp & Quy trình:** EcoGrid cung cấp một ứng dụng SaaS cho phép chủ sở hữu nhập dữ liệu cảm biến, xem biểu đồ thời gian thực, nhận cảnh báo khi hiệu suất giảm, và thực hiện điều chỉnh tự động thông qua các thiết bị được kết nối. Quy trình: cảm biến → API → lưu trữ dữ liệu → giao diện người dùng.
 - **Đối tượng mục tiêu:** Chủ sở hữu tòa nhà thương mại nhỏ (ví dụ: trung tâm thương mại, văn phòng, khách sạn) có lắp đặt hệ thống năng lượng tái tạo, không có chuyên môn về năng lượng.
