@@ -94,7 +94,7 @@ class PrincipalBusinessAnalysisAgent(AbstractSubAgent):
             srs_markdown_payload, metadata_json_payload = raw_response.split(DELIMITER, 1)
             # Clean and load the pure harvested metadata JSON object
             raw_srs_content = srs_markdown_payload.strip()
-            project_metadata = json_loads(metadata_json_payload.strip())
+            project_metadata = json_loads(metadata_json_payload.strip(), silent=True)
         else:
             raw_srs_content = raw_response.strip()
             project_metadata = {}

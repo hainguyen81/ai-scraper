@@ -154,15 +154,16 @@ def __load_jsons__(data, silent=True):
             raise e
         else:
             print(f"Exception while loading JSON: {str(e)}")
+            return {}
 
-def json_loads(data):
+def json_loads(data, silent=False):
     # try to parse json
     if not data:
         return None
     
     json_data = __load_jsons__(data=data, silent=True)
     if not json_data:
-        json_data = __load_jsons__(data=__fix_json__(data), silent=False)
+        json_data = __load_jsons__(data=__fix_json__(data), silent=silent)
     return json_data
 
 def json_raw_content(raw_content):
