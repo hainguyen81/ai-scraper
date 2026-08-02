@@ -61,9 +61,14 @@ Generate a clean, highly structured Markdown Table mapping the exact distributio
 
 ## 5. GRANULAR PHASE SPECIALIZATIONS & DAY-BY-DAY DELIVERABLES
 
-# MULTI-PHASE MATRIX REFLECTION MANDATE:
-- You MUST exhaustively clone and render the exact sequential structure below for EVERY active phase calculated and listed in the Section 4 Synopsis Table (from Phase 1 up to Phase N).
-- Replacing "[X]" with the active sequential phase number is mandatory. You are strictly forbidden from omitting or stopping before Phase N is fully engineered.
+# STRICT 1:1 SYNOPSIS MIRROR MANDATE:
+- Section 5 MUST act as a strict structural mirror of the dynamic phases calculated in Section 4. You MUST generate an independent, complete detailed block below for EVERY phase sequence from Phase 1 up to Phase N (where N <= {{ num_phases }}).
+- Truncating, omitting, or combining phases is an absolute pipeline violation. You are strictly commanded to detail every phase that appeared in your Section 4 table.
+
+# DYNAMIC CEILING BOUNDARY ENFORCEMENT:
+- For each active Phase [X], the day-by-day logs MUST strictly map to the exact day range defined for that phase in Section 4. 
+- The total days within any single phase MUST NOT exceed the absolute upperbound of {{ max_days_per_phase }} days.
+- You MUST execute a hard log freeze and terminate the active day loop immediately on the exact day when 100% of the baseline BA tracking codes for Phase [X] are covered. Fabricating dummy tasks or synthetic requirements to pad out the timeline up to {{ max_days_per_phase }} is completely banned.
 
 <!--START_DELIMITTER-->
 ### Phase [X] Detailed Architectural Specification
@@ -75,11 +80,8 @@ Generate a clean, highly structured Markdown Table mapping the exact distributio
 <!--END_DELIMITTER-->
 
 #### 📅 Chronological Day-by-Day Sub-Agent Task Distribution Logs (Phase [X])
-# LONGITUDINAL DAY PARTITIONING & FREEZE MANDATE:
-- Within the active Phase [X], break down tasks into sequential day logs (e.g., DAY 1, DAY 2) starting from the phase's initial calendar day up to its final computed day.
-- You MUST freeze the log and immediately terminate the active phase block on the exact day when 100% of the baseline BA tracking codes mapped to Phase [X] are completely covered.
-- Generating duplicate tasks, generic placeholders, or hollow testing logs to artificially stretch the timeline is strictly prohibited.
-- Ensure that only ONE single Sub-Agent with Capitalized first-letter formatting is assigned per active task line (e.g., DAY [Y]: [Coder] ...).
+# SINGLE AGENT & FORMAT ISOLATION:
+- Output each active calendar day inside Phase [X] as an isolated standalone single integer subsection header. Ensure that exactly ONE single Sub-Agent with Capitalized first-letter formatting is assigned per active task line.
 
 #### 🗓️ DAY [Y]: [CAPITALIZED SHORT OBJECTIVE FOR THIS OPERATIONAL CALENDAR DAY]
 - **Sub-Agent Workflow Specialization:**
