@@ -9,6 +9,16 @@ on:
         required: false
         default: false
         type: boolean
+      language:
+        description: '🗣️ SRS Language'
+        required: false
+        default: '🇻🇳 Vietnamese'
+        type: choice
+        options:
+          - "🇻🇳 Vietnamese"
+          - "🇺🇸 English"
+          - "🇩🇪 Germany"
+          - "🇯🇵 Japanese"
       project_name:
         description: "📁 Project Name / 💡 Idea"
         required: true
@@ -115,6 +125,11 @@ on:
         required: false
         default: false
         type: boolean
+      language:
+        description: '🗣️ SRS Language'
+        required: false
+        default: '🇻🇳 Vietnamese'
+        type: string
       project_name:
         description: "📁 Project Name / 💡 Idea"
         required: true
@@ -305,6 +320,7 @@ jobs:
           INPUTS_MODEL_STEPS_MAPPING: ${{ inputs.model_steps_mapping_config }}
           INPUTS_MODEL_STEPS_DAYS_PER_CHUNK: ${{ inputs.model_steps_days_per_chunk }}
           INPUTS_ROTATE_MODELS: ${{ inputs.rotate_models }}
+          INPUTS_LANGUAGE: ${{ inputs.language }}
           INPUTS_VERBOSE: ${{ inputs.verbose == true && '--verbose' || '' }}
           
           # Python environment
@@ -426,6 +442,7 @@ jobs:
               --api-model-phase-steps-days-per-chunk "$MODEL_STEPS_DAYS_PER_CHUNK" \
               --exec-mode $EXE_MODE --exec-delay $EXE_DELAY \
               --exec-rotate-model "$INPUTS_ROTATE_MODELS" \
+              --language "$INPUTS_LANGUAGE" \
               $INPUTS_VERBOSE
 
       # Step 5: Automatically stage, commit, and push the generated architecture files
