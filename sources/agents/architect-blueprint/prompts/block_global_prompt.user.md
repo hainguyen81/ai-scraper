@@ -80,15 +80,16 @@ Generate a clean, highly structured Markdown Table mapping the exact distributio
 <!--END_DELIMITTER-->
 
 #### 📅 Chronological Day-by-Day Sub-Agent Task Distribution Logs (Phase [X])
-# SINGLE AGENT & FORMAT ISOLATION:
-- Output each active calendar day inside Phase [X] as an isolated standalone single integer subsection header. Ensure that exactly ONE single Sub-Agent with Capitalized first-letter formatting is assigned per active task line.
+# BANNED RAW HEADERS & STYLISTIC INDENTATION ENFORCEMENT:
+- You are ABSOLUTELY BANNED from using markdown header symbols (`#`, `##`, `###`, `####`) before the word DAY. Every day log MUST be rendered strictly as a nested bullet point starting with `- **DAY [Y]: ...**`.
+- Ensure all inner properties (Sub-Agent, Target Component, Task Instruction) are properly indented with spaces to maintain a beautiful nested list hierarchy. Ensure exactly ONE single Sub-Agent with Capitalized first-letter formatting is assigned per active task line.
 
-#### 🗓️ DAY [Y]: [CAPITALIZED SHORT OBJECTIVE FOR THIS OPERATIONAL CALENDAR DAY]
-- **Sub-Agent Workflow Specialization:**
-  * **[Assigned Sub-Agent literal token: Coder | Tester | Reviewer | Doc | Docker | GCP | GKE]:**
-    - **Target Component file path (`target_component`):** [Insert explicit physical file path starting with `./sources/` or Tester pair syntax. Append its corresponding Tag IDs inline here, e.g., `./sources/backend.... [REQ-001], [DAT-002]`]
-    - **Low-Level Technical Task Instruction:** [Exhaustive, high-density engineering instruction, framework conventions, API contract layouts, data fields validation, or unit test case parameters mapping 1:1 to the requirements and attaching Tag IDs]
-    - **Targeted Tag IDs:** [Write each tag out individually separated by commas, e.g., `[REQ-001], [DAT-002], [EXC-001]`.]
+- **DAY [Y]: [CAPITALIZED SHORT OBJECTIVE FOR THIS OPERATIONAL CALENDAR DAY]**
+  - **Sub-Agent Workflow Specialization:**
+    * **[Assigned Sub-Agent literal token: Coder | Tester | Reviewer | Doc | Docker | GCP | GKE]:**
+      - **Target Component file path (`target_component`):** [Insert explicit physical file path starting with `./sources/` or Tester pair syntax. Append its corresponding Tag IDs inline here, e.g., `./sources/backend.... [REQ-001], [DAT-002]`]
+      - **Low-Level Technical Task Instruction:** [Exhaustive, high-density engineering instruction, framework conventions, API contract layouts, data fields validation, or unit test case parameters mapping 1:1 to the requirements and attaching Tag IDs]
+      - **Targeted Tag IDs:** [Write each tag out individually separated by commas, e.g., `[REQ-001], [DAT-002], [EXC-001]`.]
 
 ## 📁 6. UNIVERSAL ENTERPRISE SECURITY CODES & INJECTION COUNTERMEASURES [NFR-XXX]
 - **SQL Injection (SQLi) Absolute Countermeasures:** Rule parameters for prepared statements, positional query parameters, and dynamic sorting input Whitelists.
