@@ -40,6 +40,7 @@ Every header and table parameter below MUST be translated and naturally rendered
 ## 📊 1. SYSTEM OVERVIEW & CORE ARCHITECTURE MODALITY
 ### 1.1. Core System Modality & Architecture Modality
 [Provide a comprehensive technical overview mapping out the core detected architecture topology, EDA paradigms, CQRS boundaries, and Reactive Core patterns based strictly on requirements]
+
 ### 1.2. Enterprise Data Flow Topologies & Core Ecosystems
 [Detail the asynchronous messaging channels, ingestion gateway parameters, topic topologies, and cross-channel external fan-out architectures]
 
@@ -60,7 +61,6 @@ Generate a clean, highly structured Markdown Table mapping the exact distributio
 | :--- | :--- | :--- | :--- | :--- | :--- |
 
 ## 5. GRANULAR PHASE SPECIALIZATIONS & DAY-BY-DAY DELIVERABLES
-
 # STRICT 1:1 SYNOPSIS MIRROR MANDATE:
 - Section 5 MUST act as a strict structural mirror of the dynamic phases calculated in Section 4. You MUST generate an independent, complete detailed block below for EVERY phase sequence from Phase 1 up to Phase N (where N <= {{ num_phases }}).
 - Truncating, omitting, or combining phases is an absolute pipeline violation. You are strictly commanded to detail every phase that appeared in your Section 4 table.
