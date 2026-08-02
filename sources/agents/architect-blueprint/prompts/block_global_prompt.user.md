@@ -4,7 +4,7 @@
 - Do NOT leave any layout headers, item keys, or bullet descriptions in English if a different language is specified.
 - The ONLY elements permanently protected from translation are the technical syntax tokens specified in System Mandate 6 (e.g., pure code blocks, JSON/YAML, exact relative paths starting with `./sources/`, and Tag IDs).
 
-# GLOBAL PROJECT CONTEXT: {{ project_name }}
+# [Translate "GLOBAL PROJECT CONTEXT"]: {{ project_name }}
 
 ## 📊 Document Control
 
