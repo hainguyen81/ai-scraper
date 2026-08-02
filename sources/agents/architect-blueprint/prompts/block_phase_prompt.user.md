@@ -22,7 +22,7 @@ You are tasked to detail **PHASE {{ phase_idx }} OUT OF {{ num_phases }}**. You 
 # EXTRACTION RULES FOR DAY-BY-DAY EXECUTION LOGS:
 1. You MUST break down the operational scope of PHASE {{ phase_idx }} into sequential daily logs, starting from **DAY 1** up to a maximum of **DAY {{ max_days_per_phase }}**.
 2. **Strict Grouping Hierarchy:** Day Level ──► Agent Sub-task Level ──► Target Component Level.
-3. **Strict Sub-Agent Persona Allocation:** Each Sub-Task belongs to exactly ONE unique Assigned Sub-Agent literal token: 'coder' | 'tester' | 'reviewer' | 'doc' | 'docker' | 'GCP' | 'GKE'.
+3. **Strict Sub-Agent Persona Allocation:** Each Sub-Task belongs to exactly ONE unique Assigned Sub-Agent literal token: 'Coder' | 'Tester' | 'Reviewer' | 'Doc' | 'Docker' | 'GCP' | 'GKE'.
 4. **WORKSPACE PATH BOUNDARY & DYNAMIC TOPOLOGY CONSTRAINTS:**
    - **Absolute Workspace Boundary Rule:** The true repository workspace root is permanently fixed at the project root `./`. All file paths generated MUST strictly begin with `./sources/`.
    - **Dynamic Directory Prefixing Compliance:** You MUST strictly match the file path prefixes to the active system topology mapped in the Global Context. Do NOT generate backend folders for frontend-only projects, and do NOT generate frontend folders for backend-only systems.
@@ -31,18 +31,17 @@ You are tasked to detail **PHASE {{ phase_idx }} OUT OF {{ num_phases }}**. You 
 
 ---
 
-Your output MUST follow this exact Markdown layout structure:
-
-# PHASE {{ phase_idx }}: [Dynamically analyze the allocated tasks and output a sharp, concise high-level summary phrase explaining exactly what this phase achieves, fully translated into {% if language and language.strip() != "" %}{{ language }}{% else %}English{% endif %}]
-
+Your output MUST follow this exact Markdown layout structure (translate all label tokens but preserve the hidden HTML anchor formatting exactly):
+# [Translate "Phase"] {{ phase_idx }}: <!--PHASE_NAME_START-->[technical_short_name]<!--PHASE_NAME_END--> | [Translate "Description"]: [Granular professional engineering summary phrase of the operational scope, fully rendered in {% if language and language.strip() != "" %}{{ language }}{% else %}English{% endif %}]
 ## 📊 Document Control
 
-| [You MUST translate the literal token "Item" into {% if language and language.strip() != "" %}{{ language }}{% else %}English{% endif %}] | [You MUST translate the literal token "Details" into {% if language and language.strip() != "" %}{{ language }}{% else %}English{% endif %}] |
+| [Translate "Item"] | [Translate "Details"] |
 | :--- | :--- |
-| **[You MUST translate the literal token "Blueprint ID" into {% if language and language.strip() != "" %}{{ language }}{% else %}English{% endif %}]** | ARCH-{{ doc_id }} |
-| **[You MUST translate the literal token "Project Name" into {% if language and language.strip() != "" %}{{ language }}{% else %}English{% endif %}]** | {{ project_name }} |
-| **[You MUST translate the literal token "Phase" into {% if language and language.strip() != "" %}{{ language }}{% else %}English{% endif %}]** | {{ phase_idx }} |
-| **[You MUST translate the literal token "Description" into {% if language and language.strip() != "" %}{{ language }}{% else %}English{% endif %}]** | [Provide a granular, professional engineering description summarizing the absolute operation scope of this specific phase, explicitly detailing what technical modules and infrastructure contracts are established, fully rendered in {% if language and language.strip() != "" %}{{ language }}{% else %}English{% endif %}] |
+| **[Translate "Blueprint ID"]** | ARCH-{{ doc_id }} |
+| **[Translate "Project Name"]** | {{ project_name }} |
+| **[Translate "Phase"]** | {{ phase_idx }} |
+| **[Translate "Technical Phase Name"]** | <!--PHASE_NAME_START-->[technical_short_name]<!--PHASE_NAME_END--> |
+| **[Translate "Description"]** | [Granular professional engineering summary description of the absolute operational scope of this specific phase, fully rendered in {% if language and language.strip() != "" %}{{ language }}{% else %}English{% endif %}] |
 | **[You MUST translate the literal token "Version" into {% if language and language.strip() != "" %}{{ language }}{% else %}English{% endif %}]** | 1.0 (Baseline) |
 | **[You MUST translate the literal token "Date/Time" into {% if language and language.strip() != "" %}{{ language }}{% else %}English{% endif %}]** | {{ current_timestamp }} |
 | **[You MUST translate the literal token "Author" into {% if language and language.strip() != "" %}{{ language }}{% else %}English{% endif %}]** | Enterprise System Architect (SA Agent) |
@@ -67,10 +66,7 @@ Your output MUST follow this exact Markdown layout structure:
 ### DAY [X]: [CAPITALIZED SHORT OBJECTIVE FOR THIS OPERATIONAL CALENDAR DAY]
 
 #### SUB-TASK [X.Y]: [Clear, low-level engineering description of the specific sub-task goal, explicitly embedding OWASP compliance rules]
-##### Assigned Sub-Agent: [Insert exactly ONE unique literal Agent token: coder | tester | reviewer | doc | docker | GCP | GKE]
-##### Targeted Components & Technical Requirements:
-* **Target Path:** [Insert explicit physical file path starting with `./sources/` or Tester pair syntax.]
-* **Traceability Tag Tokens:** [You MUST explicitly list the exact inherited BA Tag IDs that this specific sub-task implements or verifies. Write each tag out individually separated by commas, e.g., `[REQ-001], [DAT-002], [EXC-001]`]
-* **Architectural Requirements:**
-  * [Explicit technical design rule, framework-specific convention, or implementation instruction]
-  * [Explicit security enforcement parameter, e.g., OWASP implementation rule if handling data entry or state changes]
+##### [Translate "Assigned Sub-Agent"]: [Insert exactly ONE unique literal Agent token: Coder | Tester | Reviewer | Doc | Docker | GCP | GKE]
+##### [Translate "Targeted Components & Technical Requirements"]:
+* **[Translate "Target Path"]:** [Insert explicit physical file path starting with `./sources/` or Tester pair syntax.]
+* **[Translate "Traceability Tag Tokens"]:** <!--START_TAGS-->`[REQ-XXX], [DAT-XXX], [EXC-XXX]`<!--END_TAGS-->

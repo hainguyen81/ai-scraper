@@ -15,10 +15,11 @@ Extract and translate ALL daily steps, checklists, and agent tasks from the enti
 - **WORKSPACE PREFIX RULE & MULTI-LANGUAGE TEST EXCEPTION:** Every path in 'components' array MUST strictly begin with `./sources/`. 
   * *CRITICAL EXCEPTION:* If the first parameter before the semi-colon character in a tester task is the literal string token `INTEGRATION_SCOPE`, you MUST leave that token completely unmodified. Do NOT append any path prefix to it (e.g., `"components": ["INTEGRATION_SCOPE;./sources/frontend/tests/auth.spec.ts"]`).
 
-# 🛠️ MANDATORY TOP-LEVEL FIELD VALUES INJECTION (STRICT FIDELITY):
-You MUST dynamically populate the top-level keys of the JSON object using EXACT raw variable values without any folder modifications, structural padding, or text injections:
+# 🛠️ MANDATORY TOP-LEVEL FIELD VALUES INJECTION & ANCHOR PARSING (STRICT FIDELITY):
+You MUST dynamically populate the top-level keys of the JSON object using EXACT raw variable values without any modifications, or parse them directly from the primary Markdown header HTML comments:
 - **`phase_id`**: {{ phase_idx }}
-- **`phase_name`**: [Extract the exact phase name string from the source Markdown context header text]
+- **`phase_name`**: [Locate the primary Markdown title header line, extract the clean technical string text located exactly between the hidden HTML delimiters `<!--PHASE_NAME_START-->` and `<!--PHASE_NAME_END-->` without any alterations or translations]
+- **`phase_description`**: [Locate the primary Markdown title header line, extract the exact translated phase description text that follows after the literal marker `| Description:` or its translated equivalent]
 - **`project_name`**: "{{ project_name }}"
 - **`global_context_file`**: "{{ global_context_file }}"
 - **`source_target_dir`**: "{{ source_target_dir }}"
@@ -39,8 +40,8 @@ You MUST dynamically populate the top-level keys of the JSON object using EXACT 
 - Map the first targeted day to `"day": 1`, set 'context_file' to "{{ project_phase_context_file }}", and strictly set 'context_section' to the exact raw primary header line of the first day parsed from the text. Incremental days follow this relative baseline.
 {% endif %}
 
-# 🛑 MANDATORY STRUCTURE ENFORCEMENT FOR TRACEABILITY TAGS (CRITICAL):
-- Locate the structural text string marker `* Traceability Tag Tokens: ` generated inside each sub-task segment of the source Markdown. Extract all inherited individual Tag IDs wrapped on that unique line string, and populate them as clean individual string elements inside the "targeted_tags" array field (e.g., `"targeted_tags": ["[REQ-001]", "[DAT-005]"]`).
+# 🛑 MANDATORY STRUCTURE ENFORCEMENT FOR TRACEABILITY TAGS VIA HTML ANCHORS (CRITICAL):
+- For each sub-task block, locate the hidden technical container bounds delimited strictly between `<!--START_TAGS-->` and `<!--END_TAGS-->`. Extract all individual inherited Tag IDs from inside that container, completely purge all markdown backticks (`` ` ``) and padding spaces, and populate them as clean individual string elements inside the "targeted_tags" array field (e.g., `"targeted_tags": ["[REQ-001]", "[DAT-005]"]`).
 - You are STRICTLY BANNED from leaving the "targeted_tags" array empty `[]` or null. Every single tag token must be its own separated array element string.
 
 You must conform strictly to your required JSON Schema layout design structure:
