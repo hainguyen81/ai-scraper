@@ -1,6 +1,6 @@
 {
     "phase_id": 2,
-    "phase_name": "membership-hub Phase 2",
+    "phase_name": "Implement Responsive Mobile Application for User Interface",
     "project_name": "membership-hub",
     "global_context_file": ".ai/.context/membership-hub.global.blueprint.md",
     "source_target_dir": "sources/",
@@ -13,19 +13,13 @@
                 {
                     "id": "D1_ST1",
                     "agent": "Coder",
-                    "desc": "Coder Agent: Create courses table DDL",
-                    "targeted_tags": [],
+                    "desc": "Coder Agent: No description provided",
+                    "targeted_tags": [
+                        "[REQ-020]",
+                        "[REQ-021]"
+                    ],
                     "components": [
-                        "./sources/backend/database/schema.sql"
-                    ]
-                },
-                {
-                    "id": "D1_ST2",
-                    "agent": "Coder",
-                    "desc": "Coder Agent: Create notifications table DDL",
-                    "targeted_tags": [],
-                    "components": [
-                        "./sources/backend/database/schema.sql"
+                        "./sources/frontend/mobile-app"
                     ]
                 }
             ]
@@ -38,37 +32,13 @@
                 {
                     "id": "D2_ST1",
                     "agent": "Coder",
-                    "desc": "Coder Agent: Implement POST /courses",
-                    "targeted_tags": [],
+                    "desc": "Coder Agent: No description provided",
+                    "targeted_tags": [
+                        "[REQ-020]",
+                        "[REQ-021]"
+                    ],
                     "components": [
-                        "./sources/backend/course-management/src/main/java/org/nlh4j/sources/coursemanagement/CourseController.java"
-                    ]
-                },
-                {
-                    "id": "D2_ST2",
-                    "agent": "Coder",
-                    "desc": "Coder Agent: Implement GET /courses",
-                    "targeted_tags": [],
-                    "components": [
-                        "./sources/backend/course-management/src/main/java/org/nlh4j/sources/coursemanagement/CourseController.java"
-                    ]
-                },
-                {
-                    "id": "D2_ST3",
-                    "agent": "Coder",
-                    "desc": "Coder Agent: Implement PUT /courses/{id}",
-                    "targeted_tags": [],
-                    "components": [
-                        "./sources/backend/course-management/src/main/java/org/nlh4j/sources/coursemanagement/CourseController.java"
-                    ]
-                },
-                {
-                    "id": "D2_ST4",
-                    "agent": "Coder",
-                    "desc": "Coder Agent: Implement DELETE /courses/{id}",
-                    "targeted_tags": [],
-                    "components": [
-                        "./sources/backend/course-management/src/main/java/org/nlh4j/sources/coursemanagement/CourseController.java"
+                        "./sources/frontend/mobile-app"
                     ]
                 }
             ]
@@ -81,19 +51,13 @@
                 {
                     "id": "D3_ST1",
                     "agent": "Coder",
-                    "desc": "Coder Agent: Implement CourseRepository",
-                    "targeted_tags": [],
+                    "desc": "Coder Agent: No description provided",
+                    "targeted_tags": [
+                        "[REQ-020]",
+                        "[REQ-021]"
+                    ],
                     "components": [
-                        "./sources/backend/course-management/src/main/java/org/nlh4j/sources/coursemanagement/repository/CourseRepository.java"
-                    ]
-                },
-                {
-                    "id": "D3_ST2",
-                    "agent": "Coder",
-                    "desc": "Coder Agent: Implement CourseService with conflict check",
-                    "targeted_tags": [],
-                    "components": [
-                        "./sources/backend/course-management/src/main/java/org/nlh4j/sources/coursemanagement/service/CourseService.java"
+                        "./sources/frontend/mobile-app"
                     ]
                 }
             ]
@@ -106,20 +70,13 @@
                 {
                     "id": "D4_ST1",
                     "agent": "Coder",
-                    "desc": "Coder Agent: Implement NotificationService",
-                    "targeted_tags": [],
+                    "desc": "Coder Agent: No description provided",
+                    "targeted_tags": [
+                        "[REQ-020]",
+                        "[REQ-021]"
+                    ],
                     "components": [
-                        "./sources/backend/notification-management/src/main/java/org/nlh4j/sources/notificationmanagement/NotificationService.java"
-                    ]
-                },
-                {
-                    "id": "D4_ST2",
-                    "agent": "Coder",
-                    "desc": "Coder Agent: Implement CourseCreatedEvent and listener",
-                    "targeted_tags": [],
-                    "components": [
-                        "./sources/backend/course-management/src/main/java/org/nlh4j/sources/coursemanagement/event/CourseCreatedEvent.java",
-                        "./sources/backend/notification-management/src/main/java/org/nlh4j/sources/notificationmanagement/listener/CourseCreatedListener.java"
+                        "./sources/frontend/mobile-app"
                     ]
                 }
             ]
@@ -132,28 +89,13 @@
                 {
                     "id": "D5_ST1",
                     "agent": "Tester",
-                    "desc": "Tester Agent: Test CourseController CRUD",
-                    "targeted_tags": [],
+                    "desc": "Tester Agent: No description provided",
+                    "targeted_tags": [
+                        "[REQ-020]",
+                        "[REQ-021]"
+                    ],
                     "components": [
-                        "./sources/backend/course-management/src/test/java/org/nlh4j/sources/coursemanagement/CourseControllerTest.java"
-                    ]
-                },
-                {
-                    "id": "D5_ST2",
-                    "agent": "Tester",
-                    "desc": "Tester Agent: Test CourseService conflict logic",
-                    "targeted_tags": [],
-                    "components": [
-                        "./sources/backend/course-management/src/test/java/org/nlh4j/sources/coursemanagement/service/CourseServiceTest.java"
-                    ]
-                },
-                {
-                    "id": "D5_ST3",
-                    "agent": "Tester",
-                    "desc": "Tester Agent: Test NotificationService event handling",
-                    "targeted_tags": [],
-                    "components": [
-                        "./sources/backend/notification-management/src/test/java/org/nlh4j/sources/notificationmanagement/NotificationServiceTest.java"
+                        "./sources/frontend/mobile-app"
                     ]
                 }
             ]
@@ -165,12 +107,14 @@
             "sub_tasks": [
                 {
                     "id": "D6_ST1",
-                    "agent": "Reviewer",
-                    "desc": "Reviewer Agent: Run reviewer on all Java files",
-                    "targeted_tags": [],
+                    "agent": "Doc",
+                    "desc": "Doc Agent: No description provided",
+                    "targeted_tags": [
+                        "[REQ-020]",
+                        "[REQ-021]"
+                    ],
                     "components": [
-                        "./sources/backend/course-management/src/main/java/...",
-                        "./sources/backend/notification-management/src/main/java/..."
+                        "./sources/frontend/mobile-app"
                     ]
                 }
             ]
@@ -182,11 +126,14 @@
             "sub_tasks": [
                 {
                     "id": "D7_ST1",
-                    "agent": "Doc",
-                    "desc": "Doc Agent: Generate Phase 2 documentation",
-                    "targeted_tags": [],
+                    "agent": "Reviewer",
+                    "desc": "Reviewer Agent: No description provided",
+                    "targeted_tags": [
+                        "[REQ-020]",
+                        "[REQ-021]"
+                    ],
                     "components": [
-                        "./sources/backend/docs/phase2.md"
+                        "./sources/frontend/mobile-app"
                     ]
                 }
             ]

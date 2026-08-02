@@ -1,6 +1,6 @@
 {
     "phase_id": 3,
-    "phase_name": "Web and Mobile Front-end Development",
+    "phase_name": "Deploy Backend and Frontend Infrastructure for Membership-Hub Project",
     "project_name": "membership-hub",
     "global_context_file": ".ai/.context/membership-hub.global.blueprint.md",
     "source_target_dir": "sources/",
@@ -12,38 +12,14 @@
             "sub_tasks": [
                 {
                     "id": "D1_ST1",
-                    "agent": "Coder",
-                    "desc": "Coder Agent: Initialize React 18 project and routing",
-                    "targeted_tags": [],
+                    "agent": "Docker",
+                    "desc": "Docker Agent: No description provided",
+                    "targeted_tags": [
+                        "[NFR-002]",
+                        "[NFR-004]"
+                    ],
                     "components": [
-                        "./sources/frontend/web-app/package.json"
-                    ]
-                },
-                {
-                    "id": "D1_ST2",
-                    "agent": "Coder",
-                    "desc": "Coder Agent: Implement login page with form validation",
-                    "targeted_tags": [],
-                    "components": [
-                        "./sources/frontend/web-app/src/components/Auth/LoginForm.tsx"
-                    ]
-                },
-                {
-                    "id": "D1_ST3",
-                    "agent": "Coder",
-                    "desc": "Coder Agent: Create global auth context and role guard",
-                    "targeted_tags": [],
-                    "components": [
-                        "./sources/frontend/web-app/src/context/AuthContext.tsx"
-                    ]
-                },
-                {
-                    "id": "D1_ST4",
-                    "agent": "Tester",
-                    "desc": "Tester Agent: Unit test auth context",
-                    "targeted_tags": [],
-                    "components": [
-                        "./sources/frontend/web-app/src/context/AuthContext.test.tsx"
+                        "./sources/infra/deployment"
                     ]
                 }
             ]
@@ -55,38 +31,14 @@
             "sub_tasks": [
                 {
                     "id": "D2_ST1",
-                    "agent": "Coder",
-                    "desc": "Coder Agent: Build User List component with pagination",
-                    "targeted_tags": [],
+                    "agent": "Docker",
+                    "desc": "Docker Agent: No description provided",
+                    "targeted_tags": [
+                        "[NFR-002]",
+                        "[NFR-004]"
+                    ],
                     "components": [
-                        "./sources/frontend/web-app/src/components/UserManagement/UserList.tsx"
-                    ]
-                },
-                {
-                    "id": "D2_ST2",
-                    "agent": "Coder",
-                    "desc": "Coder Agent: Implement Create/Edit User modal with role assignment",
-                    "targeted_tags": [],
-                    "components": [
-                        "./sources/frontend/web-app/src/components/UserManagement/UserForm.tsx"
-                    ]
-                },
-                {
-                    "id": "D2_ST3",
-                    "agent": "Coder",
-                    "desc": "Coder Agent: Delete user with confirmation dialog",
-                    "targeted_tags": [],
-                    "components": [
-                        "./sources/frontend/web-app/src/components/UserManagement/DeleteUserDialog.tsx"
-                    ]
-                },
-                {
-                    "id": "D2_ST4",
-                    "agent": "Tester",
-                    "desc": "Tester Agent: Unit tests for User Management components",
-                    "targeted_tags": [],
-                    "components": [
-                        "./sources/frontend/web-app/src/components/UserManagement/UserList.test.tsx;./sources/frontend/web-app/src/components/UserManagement/UserForm.test.tsx"
+                        "./sources/infra/deployment"
                     ]
                 }
             ]
@@ -99,37 +51,13 @@
                 {
                     "id": "D3_ST1",
                     "agent": "Coder",
-                    "desc": "Coder Agent: Build Center List component with CRUD",
-                    "targeted_tags": [],
+                    "desc": "Coder Agent: No description provided",
+                    "targeted_tags": [
+                        "[NFR-002]",
+                        "[NFR-004]"
+                    ],
                     "components": [
-                        "./sources/frontend/web-app/src/components/CenterManagement/CenterList.tsx"
-                    ]
-                },
-                {
-                    "id": "D3_ST2",
-                    "agent": "Coder",
-                    "desc": "Coder Agent: Create/Edit Center modal with validation",
-                    "targeted_tags": [],
-                    "components": [
-                        "./sources/frontend/web-app/src/components/CenterManagement/CenterForm.tsx"
-                    ]
-                },
-                {
-                    "id": "D3_ST3",
-                    "agent": "Coder",
-                    "desc": "Coder Agent: Delete center with confirmation",
-                    "targeted_tags": [],
-                    "components": [
-                        "./sources/frontend/web-app/src/components/CenterManagement/DeleteCenterDialog.tsx"
-                    ]
-                },
-                {
-                    "id": "D3_ST4",
-                    "agent": "Tester",
-                    "desc": "Tester Agent: Integration tests for Center Management",
-                    "targeted_tags": [],
-                    "components": [
-                        "./sources/frontend/web-app/src/components/CenterManagement/CenterList.test.tsx;./sources/frontend/web-app/src/components/CenterManagement/CenterForm.test.tsx"
+                        "./sources/infra/deployment"
                     ]
                 }
             ]
@@ -142,37 +70,13 @@
                 {
                     "id": "D4_ST1",
                     "agent": "Coder",
-                    "desc": "Coder Agent: Initialize React Native project and navigation",
-                    "targeted_tags": [],
+                    "desc": "Coder Agent: No description provided",
+                    "targeted_tags": [
+                        "[NFR-002]",
+                        "[NFR-004]"
+                    ],
                     "components": [
-                        "./sources/frontend/mobile-app/package.json"
-                    ]
-                },
-                {
-                    "id": "D4_ST2",
-                    "agent": "Coder",
-                    "desc": "Coder Agent: Implement login screen with form validation",
-                    "targeted_tags": [],
-                    "components": [
-                        "./sources/frontend/mobile-app/src/screens/Auth/LoginScreen.tsx"
-                    ]
-                },
-                {
-                    "id": "D4_ST3",
-                    "agent": "Coder",
-                    "desc": "Coder Agent: Setup push notification listener (FCM/APNs)",
-                    "targeted_tags": [],
-                    "components": [
-                        "./sources/frontend/mobile-app/src/services/PushNotificationService.ts"
-                    ]
-                },
-                {
-                    "id": "D4_ST4",
-                    "agent": "Tester",
-                    "desc": "Tester Agent: Unit tests for authentication flow",
-                    "targeted_tags": [],
-                    "components": [
-                        "./sources/frontend/mobile-app/src/screens/Auth/LoginScreen.test.tsx"
+                        "./sources/infra/deployment"
                     ]
                 }
             ]
@@ -184,29 +88,52 @@
             "sub_tasks": [
                 {
                     "id": "D5_ST1",
-                    "agent": "Coder",
-                    "desc": "Coder Agent: Build User and Center screens for mobile",
-                    "targeted_tags": [],
-                    "components": [
-                        "./sources/frontend/mobile-app/src/screens/UserManagement/UserListScreen.tsx;./sources/frontend/mobile-app/src/screens/CenterManagement/CenterListScreen.tsx"
-                    ]
-                },
-                {
-                    "id": "D5_ST2",
                     "agent": "Tester",
-                    "desc": "Tester Agent: Integration tests for mobile CRUD flows",
-                    "targeted_tags": [],
+                    "desc": "Tester Agent: No description provided",
+                    "targeted_tags": [
+                        "[NFR-002]",
+                        "[NFR-004]"
+                    ],
                     "components": [
-                        "INTEGRATION_SCOPE;./sources/frontend/mobile-app/src/__tests__/UserCenterIntegration.test.tsx"
+                        "./sources/infra/deployment"
                     ]
-                },
+                }
+            ]
+        },
+        {
+            "day": 6,
+            "context_file": ".ai/.plan/.context/phase-3.context.blueprint.md",
+            "context_section": "DAY 6",
+            "sub_tasks": [
                 {
-                    "id": "D5_ST3",
-                    "agent": "Doc",
-                    "desc": "Doc Agent: Compile Phase 3 documentation",
-                    "targeted_tags": [],
+                    "id": "D6_ST1",
+                    "agent": "Reviewer",
+                    "desc": "Reviewer Agent: No description provided",
+                    "targeted_tags": [
+                        "[NFR-002]",
+                        "[NFR-004]"
+                    ],
                     "components": [
-                        "./sources/frontend/docs/phase3.md"
+                        "./sources/infra/deployment"
+                    ]
+                }
+            ]
+        },
+        {
+            "day": 7,
+            "context_file": ".ai/.plan/.context/phase-3.context.blueprint.md",
+            "context_section": "DAY 7",
+            "sub_tasks": [
+                {
+                    "id": "D7_ST1",
+                    "agent": "Docker",
+                    "desc": "Docker Agent: No description provided",
+                    "targeted_tags": [
+                        "[NFR-002]",
+                        "[NFR-004]"
+                    ],
+                    "components": [
+                        "./sources/infra/deployment"
                     ]
                 }
             ]

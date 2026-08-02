@@ -1,6 +1,6 @@
 {
     "phase_id": 1,
-    "phase_name": "Phase 1 Context Blueprint: membership-hub",
+    "phase_name": "Implement User Registration, Authentication, and Profile Management",
     "project_name": "membership-hub",
     "global_context_file": ".ai/.context/membership-hub.global.blueprint.md",
     "source_target_dir": "sources/",
@@ -13,10 +13,14 @@
                 {
                     "id": "D1_ST1",
                     "agent": "Coder",
-                    "desc": "Coder Agent: Define core database tables (users, roles, centers) with constraints, indexes, and audit columns. Ensure idempotence and OWASP SQLi countermeasures.",
-                    "targeted_tags": [],
+                    "desc": "Coder Agent: No description provided",
+                    "targeted_tags": [
+                        "[REQ-001]",
+                        "[REQ-002]",
+                        "[DAT-001]"
+                    ],
                     "components": [
-                        "./sources/backend/database/schema.sql"
+                        "./sources/backend/user-service"
                     ]
                 }
             ]
@@ -29,19 +33,14 @@
                 {
                     "id": "D2_ST1",
                     "agent": "Coder",
-                    "desc": "Coder Agent: Implement user registration endpoint with validation, password hashing, and JWT issuance. Enforce CSRF and XSS protections.",
-                    "targeted_tags": [],
+                    "desc": "Coder Agent: No description provided",
+                    "targeted_tags": [
+                        "[REQ-001]",
+                        "[REQ-002]",
+                        "[DAT-001]"
+                    ],
                     "components": [
-                        "./sources/backend/user-management/src/main/java/org/nlh4j/sources/usermanagement/UserController.java"
-                    ]
-                },
-                {
-                    "id": "D2_ST2",
-                    "agent": "Coder",
-                    "desc": "Coder Agent: Implement social authentication endpoint with OAuth2 flow handling and secure token storage.",
-                    "targeted_tags": [],
-                    "components": [
-                        "./sources/backend/user-management/src/main/java/org/nlh4j/sources/usermanagement/SocialAuthController.java"
+                        "./sources/backend/user-service"
                     ]
                 }
             ]
@@ -54,83 +53,16 @@
                 {
                     "id": "D3_ST1",
                     "agent": "Coder",
-                    "desc": "Coder Agent: Implement login endpoint with Spring Security and rate-limiting to mitigate brute-force attacks.",
-                    "targeted_tags": [],
+                    "desc": "Coder Agent: No description provided",
+                    "targeted_tags": [
+                        "[REQ-001]",
+                        "[REQ-002]",
+                        "[DAT-001]",
+                        "[ARC-001]",
+                        "[EXC-001]"
+                    ],
                     "components": [
-                        "./sources/backend/user-management/src/main/java/org/nlh4j/sources/usermanagement/LoginController.java"
-                    ]
-                }
-            ]
-        },
-        {
-            "day": 4,
-            "context_file": ".ai/.plan/.context/phase-1.context.blueprint.md",
-            "context_section": "DAY 4",
-            "sub_tasks": [
-                {
-                    "id": "D4_ST1",
-                    "agent": "Coder",
-                    "desc": "Coder Agent: Implement role assignment endpoint with role validation and audit logging.",
-                    "targeted_tags": [],
-                    "components": [
-                        "./sources/backend/user-management/src/main/java/org/nlh4j/sources/usermanagement/RoleAssignmentController.java"
-                    ]
-                }
-            ]
-        },
-        {
-            "day": 5,
-            "context_file": ".ai/.plan/.context/phase-1.context.blueprint.md",
-            "context_section": "DAY 5",
-            "sub_tasks": [
-                {
-                    "id": "D5_ST1",
-                    "agent": "Coder",
-                    "desc": "Coder Agent: Implement center list endpoint with pagination, sorting, and CSRF protection.",
-                    "targeted_tags": [],
-                    "components": [
-                        "./sources/backend/center-management/src/main/java/org/nlh4j/sources/centermanagement/CenterController.java"
-                    ]
-                }
-            ]
-        },
-        {
-            "day": 6,
-            "context_file": ".ai/.plan/.context/phase-1.context.blueprint.md",
-            "context_section": "DAY 6",
-            "sub_tasks": [
-                {
-                    "id": "D6_ST1",
-                    "agent": "Coder",
-                    "desc": "Coder Agent: Implement center CRUD endpoints with validation, audit logging, and CSRF protection.",
-                    "targeted_tags": [],
-                    "components": [
-                        "./sources/backend/center-management/src/main/java/org/nlh4j/sources/centermanagement/CenterController.java"
-                    ]
-                }
-            ]
-        },
-        {
-            "day": 7,
-            "context_file": ".ai/.plan/.context/phase-1.context.blueprint.md",
-            "context_section": "DAY 7",
-            "sub_tasks": [
-                {
-                    "id": "D7_ST1",
-                    "agent": "Coder",
-                    "desc": "Coder Agent: Implement center admin assignment endpoint with validation and audit logging.",
-                    "targeted_tags": [],
-                    "components": [
-                        "./sources/backend/center-management/src/main/java/org/nlh4j/sources/centermanagement/CenterAdminController.java"
-                    ]
-                },
-                {
-                    "id": "D7_ST2",
-                    "agent": "Doc",
-                    "desc": "Doc Agent: Generate Phase 1 documentation with API contracts, data dictionary, and traceability matrix.",
-                    "targeted_tags": [],
-                    "components": [
-                        "./sources/backend/docs/phase1.md"
+                        "./sources/backend/user-service"
                     ]
                 }
             ]

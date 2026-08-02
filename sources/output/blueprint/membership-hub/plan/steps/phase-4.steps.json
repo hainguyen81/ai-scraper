@@ -1,6 +1,6 @@
 {
     "phase_id": 4,
-    "phase_name": "membership-hub",
+    "phase_name": "Implement Membership Management, Course Enrollment, and Attendance Tracking Features",
     "project_name": "membership-hub",
     "global_context_file": ".ai/.context/membership-hub.global.blueprint.md",
     "source_target_dir": "sources/",
@@ -12,38 +12,11 @@
             "sub_tasks": [
                 {
                     "id": "D1_ST1",
-                    "agent": "docker",
-                    "desc": "docker Agent: No description provided",
-                    "targeted_tags": [
-                        "[NFR-001]",
-                        "[NFR-002]"
-                    ],
+                    "agent": "Coder",
+                    "desc": "Coder Agent: Develop the User Registration API endpoint in ./sources/backend/user-service. Create an Express router handling POST /users. Validate the request body using Joi with fields: email (string, email format, required), password (string, min 8 chars, required), name (string, required). On success, insert the user into the database and return HTTP 201 with JSON payload { id: <uuid>, email, name }. On validation failure, return HTTP 400 with error details. Apply OWASP security measures: input sanitization, helmet middleware, rate limiting, and ensure passwords are hashed with bcrypt before storage.",
+                    "targeted_tags": [],
                     "components": [
-                        "./sources/infra/deployment/Dockerfile.backend"
-                    ]
-                },
-                {
-                    "id": "D1_ST2",
-                    "agent": "docker",
-                    "desc": "docker Agent: No description provided",
-                    "targeted_tags": [
-                        "[NFR-001]",
-                        "[NFR-002]"
-                    ],
-                    "components": [
-                        "./sources/infra/deployment/Dockerfile.frontend"
-                    ]
-                },
-                {
-                    "id": "D1_ST3",
-                    "agent": "reviewer",
-                    "desc": "reviewer Agent: No description provided",
-                    "targeted_tags": [
-                        "[NFR-001]",
-                        "[NFR-002]"
-                    ],
-                    "components": [
-                        "./sources/infra/deployment/Dockerfile.backend;./sources/infra/deployment/Dockerfile.frontend"
+                        "./sources/backend/user-service"
                     ]
                 }
             ]
@@ -55,38 +28,11 @@
             "sub_tasks": [
                 {
                     "id": "D2_ST1",
-                    "agent": "GKE",
-                    "desc": "GKE Agent: No description provided",
-                    "targeted_tags": [
-                        "[NFR-001]",
-                        "[NFR-002]"
-                    ],
+                    "agent": "Coder",
+                    "desc": "Coder Agent: Implement the Course Creation API endpoint in ./sources/backend/course-service. Add an Express route for POST /courses. Validate request body with Joi: title (string, required), description (string, optional), startDate (ISO date, required), endDate (ISO date, required, must be after startDate). Persist the course to the database and respond with HTTP 201 and JSON { id: <uuid>, title, description, startDate, endDate }. Return HTTP 400 with validation errors. Enforce OWASP guidelines: sanitize inputs, use helmet, and restrict payload size.",
+                    "targeted_tags": [],
                     "components": [
-                        "./sources/infra/deployment/backend-deployment.yaml"
-                    ]
-                },
-                {
-                    "id": "D2_ST2",
-                    "agent": "GKE",
-                    "desc": "GKE Agent: No description provided",
-                    "targeted_tags": [
-                        "[NFR-001]",
-                        "[NFR-002]"
-                    ],
-                    "components": [
-                        "./sources/infra/deployment/frontend-deployment.yaml"
-                    ]
-                },
-                {
-                    "id": "D2_ST3",
-                    "agent": "reviewer",
-                    "desc": "reviewer Agent: No description provided",
-                    "targeted_tags": [
-                        "[NFR-001]",
-                        "[NFR-002]"
-                    ],
-                    "components": [
-                        "./sources/infra/deployment/backend-deployment.yaml;./sources/infra/deployment/frontend-deployment.yaml"
+                        "./sources/backend/course-service"
                     ]
                 }
             ]
@@ -98,38 +44,11 @@
             "sub_tasks": [
                 {
                     "id": "D3_ST1",
-                    "agent": "GCP",
-                    "desc": "GCP Agent: No description provided",
-                    "targeted_tags": [
-                        "[NFR-001]",
-                        "[NFR-002]"
-                    ],
+                    "agent": "Coder",
+                    "desc": "Coder Agent: Create Enrollment and Attendance Tracking API endpoints in ./sources/backend/attendance-service. Add POST /enrollments route that validates enrollment payload (userId: UUID, courseId: UUID) using Joi, stores the enrollment, and returns HTTP 201 with enrollment data. Add GET /enrollments route to retrieve all enrollments, supporting optional query parameters userId and courseId for filtering, returning HTTP 200 with an array of enrollment objects. Implement POST /attendance route (if needed) to record attendance with fields (enrollmentId, date, status). Apply OWASP security: input validation, helmet, CSRF protection, and ensure proper error handling with HTTP 400/500 codes.",
+                    "targeted_tags": [],
                     "components": [
-                        "./sources/infra/deployment/helm/backend/Chart.yaml"
-                    ]
-                },
-                {
-                    "id": "D3_ST2",
-                    "agent": "GCP",
-                    "desc": "GCP Agent: No description provided",
-                    "targeted_tags": [
-                        "[NFR-001]",
-                        "[NFR-002]"
-                    ],
-                    "components": [
-                        "./sources/infra/deployment/helm/frontend/Chart.yaml"
-                    ]
-                },
-                {
-                    "id": "D3_ST3",
-                    "agent": "reviewer",
-                    "desc": "reviewer Agent: No description provided",
-                    "targeted_tags": [
-                        "[NFR-001]",
-                        "[NFR-002]"
-                    ],
-                    "components": [
-                        "./sources/infra/deployment/helm/backend;./sources/infra/deployment/helm/frontend"
+                        "./sources/backend/attendance-service"
                     ]
                 }
             ]
@@ -141,38 +60,12 @@
             "sub_tasks": [
                 {
                     "id": "D4_ST1",
-                    "agent": "GKE",
-                    "desc": "GKE Agent: No description provided",
-                    "targeted_tags": [
-                        "[NFR-003]",
-                        "[NFR-004]"
-                    ],
+                    "agent": "Tester",
+                    "desc": "Tester Agent: Write comprehensive Jest and Supertest suites for the User Registration, Course Creation, Enrollment, and Attendance endpoints. For each endpoint, create tests covering: successful request returning correct status and payload, validation failure returning 400 with error details, and security edge cases (e.g., injection attempts). Ensure mocks for database interactions and achieve 100% statement/branch coverage across ./sources/backend/**/*.js. Store tests in ./sources/tests/user-service.test.js and run with npm test.",
+                    "targeted_tags": [],
                     "components": [
-                        "./sources/infra/monitoring/prometheus.yml"
-                    ]
-                },
-                {
-                    "id": "D4_ST2",
-                    "agent": "GKE",
-                    "desc": "GKE Agent: No description provided",
-                    "targeted_tags": [
-                        "[NFR-003]",
-                        "[NFR-004]"
-                    ],
-                    "components": [
-                        "./sources/infra/monitoring/grafana-dashboard.json"
-                    ]
-                },
-                {
-                    "id": "D4_ST3",
-                    "agent": "reviewer",
-                    "desc": "reviewer Agent: No description provided",
-                    "targeted_tags": [
-                        "[NFR-003]",
-                        "[NFR-004]"
-                    ],
-                    "components": [
-                        "./sources/infra/monitoring/prometheus.yml;./sources/infra/monitoring/grafana-dashboard.json"
+                        "./sources/backend/user-service",
+                        "./sources/tests/user-service.test.js"
                     ]
                 }
             ]
@@ -184,54 +77,43 @@
             "sub_tasks": [
                 {
                     "id": "D5_ST1",
-                    "agent": "GCP",
-                    "desc": "GCP Agent: No description provided",
-                    "targeted_tags": [
-                        "[NFR-003]",
-                        "[NFR-004]"
-                    ],
+                    "agent": "Reviewer",
+                    "desc": "Reviewer Agent: Perform a thorough code review of ./sources/backend/user-service focusing on OWASP compliance, proper error handling, input sanitization, and secure password storage. Use static analysis tools (e.g., ESLint, npm audit) and manual inspection to verify adherence to security best practices, coding standards, and readability. Document findings and request remediation where needed.",
+                    "targeted_tags": [],
                     "components": [
-                        "./sources/infra/monitoring/alertmanager.yml"
+                        "./sources/backend/user-service"
                     ]
-                },
+                }
+            ]
+        },
+        {
+            "day": 6,
+            "context_file": ".ai/.plan/.context/phase-4.context.blueprint.md",
+            "context_section": "DAY 6",
+            "sub_tasks": [
                 {
-                    "id": "D5_ST2",
-                    "agent": "GCP",
-                    "desc": "GCP Agent: No description provided",
-                    "targeted_tags": [
-                        "[NFR-003]",
-                        "[NFR-004]"
-                    ],
+                    "id": "D6_ST1",
+                    "agent": "Docker",
+                    "desc": "Docker Agent: Create Dockerfiles for each microservice (user-service, course-service, attendance-service) in ./sources/infra/deployment, specifying Node.js base image, copying source code, installing dependencies, and exposing appropriate ports. Write Kubernetes Deployment and Service manifests for each service, configuring readiness/liveness probes, resource limits, and environment variables. Use Helm chart to package deployments, push Docker images to registry, and apply manifests to the production cluster ensuring high availability and scalability.",
+                    "targeted_tags": [],
                     "components": [
-                        "./sources/infra/monitoring/healthcheck.sh"
+                        "./sources/infra/deployment"
                     ]
-                },
+                }
+            ]
+        },
+        {
+            "day": 7,
+            "context_file": ".ai/.plan/.context/phase-4.context.blueprint.md",
+            "context_section": "DAY 7",
+            "sub_tasks": [
                 {
-                    "id": "D5_ST3",
-                    "agent": "doc",
-                    "desc": "doc Agent: No description provided",
-                    "targeted_tags": [
-                        "[NFR-001]",
-                        "[NFR-002]",
-                        "[NFR-003]",
-                        "[NFR-004]"
-                    ],
+                    "id": "D7_ST1",
+                    "agent": "Coder",
+                    "desc": "Coder Agent: Integrate Prometheus metrics and health check endpoints into ./sources/backend/user-service. Expose /metrics for request latency, error rates, and active sessions. Add /healthz returning 200 when all dependencies are reachable. Configure logging with Winston to include request IDs and timestamps. Set up alerting rules in Prometheus for error rate > 5% and service downtime > 1 minute.",
+                    "targeted_tags": [],
                     "components": [
-                        "./sources/infra/docs/infra-setup.md"
-                    ]
-                },
-                {
-                    "id": "D5_ST4",
-                    "agent": "reviewer",
-                    "desc": "reviewer Agent: No description provided",
-                    "targeted_tags": [
-                        "[NFR-001]",
-                        "[NFR-002]",
-                        "[NFR-003]",
-                        "[NFR-004]"
-                    ],
-                    "components": [
-                        "./sources/infra/deployment;./sources/infra/monitoring;./sources/infra/docs"
+                        "./sources/backend/user-service"
                     ]
                 }
             ]
