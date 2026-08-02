@@ -3,251 +3,250 @@
 ## 1. PROJECT OVERVIEW & GLOBAL ARCHITECTURE
 
 ### Product Objectives & Core Values
-- [ARC-021] **Global Tech Stack Constraints & Infrastructure Blueprint**: Lightweight monolithic architecture, Spring Boot 3.x, Java 17/21 LTS, PostgreSQL/MySQL, HTML5/Thymeleaf/Tailwind CSS, Alibaba EasyExcel with SAX-based streaming, Spring Batch & `@Async` for background processing, drag-and-drop file ingestion.
+- Automated financial reconciliation to eliminate revenue leakage.
+- Real‑time visibility into capital allocation (leaked, escrow, safe).
+- Scalable micro‑SaaS delivering high‑throughput processing on cost‑effective infrastructure.
 
 ### Target User Personas
-- C‑level executives ( initiators, dashboard consumers )
-- Operations managers ( session oversight, report generation )
-- Data analysts ( variance review, export for audit )
-- System auditors ( compliance, log review )
+- C‑level Executives (CEO, CFO) – high‑level dashboard views.
+- Finance Managers – ledger uploads, session management, report exports.
+- Operations Managers – session status monitoring, discrepancy audit.
+- System Administrators – user/role management, system configuration.
 
 ### Global Role‑Based Access Control (RBAC) Matrix
-- [ARC-001] SuperAdmin → FileUpload
-- [ARC-002] SuperAdmin → ViewSessionList
-- [ARC-003] SuperAdmin → RunReconciliation
-- [ARC-004] SuperAdmin → ViewDashboard
-- [ARC-005] SuperAdmin → ExportReport
-- [ARC-006] SuperAdmin → ManageUsers
-- [ARC-007] SuperAdmin → ConfigureSettings
-- [ARC-008] SuperAdmin → ViewAuditLogs
-- [ARC-009] OperationsManager → FileUpload
-- [ARC-010] OperationsManager → ViewSessionList
-- [ARC-011] OperationsManager → RunReconciliation
-- [ARC-012] OperationsManager → ViewDashboard
-- [ARC-013] OperationsManager → ExportReport
-- [ARC-014] Analyst → ViewSessionList
-- [ARC-015] Analyst → ViewDashboard
-- [ARC-016] Analyst → ExportReport
-- [ARC-017] Auditor → ViewSessionList
-- [ARC-018] Auditor → ViewDashboard
-- [ARC-019] Auditor → ExportReport
-- [ARC-020] Auditor → ViewAuditLogs
+- [ARC-001] SuperAdmin: full CRUD on all modules, user management, role assignments, system configuration.
+- [ARC-002] FinanceAnalyst: upload ledger files, create/reconcile sessions, view dashboard metrics, export reports.
+- [ARC-003] OperationsManager: monitor session status, trigger reconciliation, audit logs, generate compliance reports.
+- [ARC-004] Auditor: read‑only access to all reports, session history, and exported data for audit purposes.
 
-### Enterprise Architectural Compliance
-- [ARC-022] Zero Application‑Level Loops: All bulk analytical work is delegated to native SQL set operations; Java threads never iterate over enterprise data sets.
-- [ARC-023] Non‑Blocking Non‑Leaking Thread Models: File upload handlers release worker threads within < 200 ms; heavy ingestion runs in isolated background processes.
-- [ARC-024] Guaranteed Low Memory Footprint: SAX‑based EasyExcel prevents `OutOfMemoryError`; legacy Apache POI usage is prohibited.
+### Global Tech Stack Constraints & Infrastructure Blueprint [ARC-005]
+- Monolithic architecture using Spring Boot 3.x.
+- Java 17 / 21 LTS runtime.
+- EasyExcel (SAX) for line‑by‑line Excel parsing; Spring Batch & `@Async` for background processing.
+- PostgreSQL or MySQL with native SQL computations; session‑based table partitioning.
+- HTML5, Thymeleaf, Tailwind CSS for responsive admin UI.
+- JWT‑based authentication, role‑based authorization, audit logging, TLS 1.3 encryption.
 
 ## 2. ENHANCED EPIC MODULES
 
-### 2.1 Data Ingestion Module
+### 2.1 Asynchronous File Ingestion Module
 
-#### Core Functional Requirements
-- [REQ-001] As a C‑level executive, I want to upload marketplace and logistics ledger files to initiate a reconciliation session, so that automated variance analysis can commence.
+**Core Functional Requirements**
+- [REQ-001] As a FinanceAnalyst, I want to upload both Marketplace Ledger (Excel) and Logistics Ledger (Excel) via drag‑and‑drop, so that a new ReconciliationSession is created and processing can begin.
 
-#### Acceptance Criteria & Interactions
-- Given the user is authenticated and holds the **FileUpload** permission, when the user selects and drops Excel/CSV files for both ledgers, then a new **ReconciliationSession** is created with status **PROCESSING** and a **SessionId** is returned.
-- Given a session exists with status **PROCESSING**, when the background worker completes file parsing via EasyExcel, then the session status updates to **COMPLETED** and aggregated metrics are stored.
+**Acceptance Criteria & Interactions**
+- Given I am logged in as a FinanceAnalyst,
+- When I drag‑and‑drop the Marketplace Ledger Excel file,
+- Then the system accepts the file, normalizes data types, and stores rows into `temp_shopee_orders` staging table with a new `sessionId`.
+- Given I have uploaded both ledger files,
+- When I click “Start Reconciliation”,
+- Then a `ReconciliationSession` record is inserted with status `PENDING` and a unique `sessionId` is returned to the UI.
+- Given the upload API receives a file with unsupported format,
+- When the request is processed,
+- Then the system returns HTTP 400 with error code `ERR_ING_001` and a message “Invalid file format; only .xlsx/.xls allowed”.
+- Given the upload API receives an empty file,
+- When the request is processed,
+- Then the system returns HTTP 400 with error code `ERR_ING_002` and a message “File is empty; at least one data row required”.
 
-#### Module Exception Flows
-- [EXC-001] Uploaded file format invalid or corrupted → session status **FAILED** with detailed error payload.
-- [EXC-004] File size exceeds allowed limit (e.g., > 500 MB) → reject with **PAYLOAD_TOO_LARGE** error.
+**Module Exception Flows**
+- [EXC-001] Invalid file format (non‑Excel) – reject with ERR_ING_001.
+- [EXC-002] Empty file – reject with ERR_ING_002.
+- [EXC-003] Duplicate `orderId` within the same session – log warning and skip duplicate rows.
+- [EXC-004] Database constraint violation during session insertion – abort transaction and rollback.
 
-#### Module Localized Data Dictionary
-- [DAT-001] **TempShopeeOrder**
+**Module Localized Data Dictionary**
+- [DAT-001] Table: `reconciliation_sessions`
+  - `bigint id PK "Primary key identifier for the session"`
+  - `varchar userId "User identifier of the session owner"`
+  - `timestamp createdAt "Timestamp when the session was created"`
+  - `enum status "Current processing status (PENDING, PROCESSING, COMPLETED, FAILED)"`
+  - `decimal totalDiscrepancyAmount "Total financial leakage amount"`
+  - `decimal totalHoldingAmount "Total escrow/holding amount"`
+  - `decimal totalSafeAmount "Total safe realized income"`
+
 ```mermaid
 erDiagram
-    ReconciliationSession {
+    RECONCILIATION_SESSIONS {
         bigint id PK "Primary key identifier for the session"
-        varchar userId "" "User identifier who initiated the session"
-        timestamp createdAt "" "Timestamp when the session was created"
-        varchar status "" "Current status of the session (PENDING, PROCESSING, COMPLETED, FAILED)"
-        decimal totalDiscrepancyAmount "" "Total discrepancy amount (Financial Leakage Metric X)"
-        decimal totalHoldingAmount "" "Total holding amount (Escrow Tracking Metric Y)"
-        decimal totalSafeAmount "" "Total safe amount (Safe Realized Income Metric Z)"
+        varchar userId "User identifier of the session owner"
+        timestamp createdAt "Timestamp when the session was created"
+        enum status "Current processing status (PENDING, PROCESSING, COMPLETED, FAILED)"
+        decimal totalDiscrepancyAmount "Total financial leakage amount"
+        decimal totalHoldingAmount "Total escrow/holding amount"
+        decimal totalSafeAmount "Total safe realized income"
     }
-    TempShopeeOrder {
-        bigint id PK "Primary key identifier for the Shopee order record"
-        bigint sessionId FK "" "Foreign key referencing ReconciliationSession.id"
-        varchar orderId "" "Unique order identifier from marketplace"
-        decimal shopFee "" "Platform‑calculated shipping fee"
-        varchar orderStatus "" "Order status from marketplace"
-        decimal payoutAmount "" "Payout amount associated with the order"
+```
+
+### 2.2 Core Reconciliation Logic Engine Module
+
+**Core Functional Requirements**
+- [REQ-002] As a FinanceAnalyst, I want the system to automatically compute variances between platform‑calculated shipping fees and actual carrier charges, flag discrepancies, and update session totals, so that I can review leakage.
+
+**Acceptance Criteria & Interactions**
+- Given a session with uploaded ledgers,
+- When the reconciliation engine runs the native SQL query,
+- Then the system returns rows with `orderId`, `platformCalculatedFee`, `carrierActualFee`, `varianceAmount` where variance != 0,
+- And updates `reconciliation_sessions` totals (`totalDiscrepancyAmount`, `totalHoldingAmount`, `totalSafeAmount`) accordingly.
+- Given the variance calculation query encounters a missing matching `orderId`,
+- When the process executes,
+- Then the system logs a warning `EXC_005` and treats the missing pair as a discrepancy.
+- Given the session status is not `PROCESSING`,
+- When the engine attempts to compute,
+- Then the system aborts, sets session status to `FAILED`, and returns error `ERR_REC_001`.
+
+**Module Exception Flows**
+- [EXC-005] Missing matching `orderId` between marketplace and logistics tables – log warning and treat as discrepancy.
+- [EXC-006] Negative variance due to data corruption – clamp to zero and raise alert.
+- [EXC-007] Session not in `PROCESSING` status – abort reconciliation and set status to `FAILED`.
+
+**Module Localized Data Dictionary**
+- [DAT-002] Tables: `temp_shopee_orders` and `temp_logistics_orders`
+  - `temp_shopee_orders`:
+    - `bigint id PK "Primary key identifier for the marketplace order record"`
+    - `bigint sessionId FK "Foreign key referencing RECONCILIATION_SESSIONS"`
+    - `varchar orderId "Unique order identifier from marketplace"`
+    - `decimal shopFee "Platform-calculated shipping fee"`
+    - `varchar orderStatus "Order status from marketplace"`
+    - `decimal payoutAmount "Payout amount associated with the order"`
+  - `temp_logistics_orders`:
+    - `bigint id PK "Primary key identifier for the logistics order record"`
+    - `bigint sessionId FK "Foreign key referencing RECONCILIATION_SESSIONS"`
+    - `varchar orderId FK "Foreign key referencing TEMP_SHOPPE_ORDERS"`
+    - `decimal shippingFee "Actual carrier charged shipping fee"`
+    - `varchar deliveryStatus "Delivery status from carrier"`
+
+```mermaid
+erDiagram
+    TEMP_SHOPPE_ORDERS {
+        bigint id PK "Primary key identifier for the marketplace order record"
+        bigint sessionId FK "Foreign key referencing RECONCILIATION_SESSIONS"
+        varchar orderId "Unique order identifier from marketplace"
+        decimal shopFee "Platform-calculated shipping fee"
+        varchar orderStatus "Order status from marketplace"
+        decimal payoutAmount "Payout amount associated with the order"
     }
-    TempLogisticsOrder {
+    TEMP_LOGISTICS_ORDERS {
         bigint id PK "Primary key identifier for the logistics order record"
-        bigint sessionId FK "" "Foreign key referencing ReconciliationSession.id"
-        varchar orderId "" "Unique order identifier from carrier"
-        decimal shippingFee "" "Actual carrier‑charged shipping fee"
-        varchar deliveryStatus "" "Delivery status from logistics provider"
+        bigint sessionId FK "Foreign key referencing RECONCILIATION_SESSIONS"
+        varchar orderId FK "Foreign key referencing TEMP_SHOPPE_ORDERS"
+        decimal shippingFee "Actual carrier charged shipping fee"
+        varchar deliveryStatus "Delivery status from carrier"
     }
-    ReconciliationSession ||--o{ TempShopeeOrder : "sessionId"
-    ReconciliationSession ||--o{ TempLogisticsOrder : "sessionId"
+
+    RECONCILIATION_SESSIONS ||--o{ TEMP_SHOPPE_ORDERS : "sessionId"
+    TEMP_SHOPPE_ORDERS ||--o{ TEMP_LOGISTICS_ORDERS : "orderId"
 ```
-- [DAT-002] **TempLogisticsOrder**
+
+### 2.3 Executive Financial Dashboard Module
+
+**Core Functional Requirements**
+- [REQ-003] As a C‑level executive, I want a real‑time dashboard that aggregates session metrics (leaked capital, escrow capital, safe capital) and presents them in a summarized view, so that I can monitor financial health.
+
+**Acceptance Criteria & Interactions**
+- Given a completed session,
+- When the dashboard loads,
+- Then it displays three metric cards: `totalDiscrepancyAmount` (Leaked Capital), `totalHoldingAmount` (Escrow Capital), `totalSafeAmount` (Safe Capital).
+- Given the user selects a session and clicks “Export to CSV”,
+- When the export process runs,
+- Then the system generates a CSV containing `orderId` and `discrepancyMargin` for all leaked capital entries and prompts download.
+
+**Module Exception Flows**
+- [EXC-008] Session not completed – dashboard shows placeholder “No data available”.
+- [EXC-009] CSV generation failure – returns HTTP 500 with error code `ERR_DASH_001`.
+
+**Module Localized Data Dictionary**
+- [DAT-003] [NOT APPLICABLE] – No dedicated database tables required for the dashboard module; all metrics are derived from existing `reconciliation_sessions` and staging tables.
+
+### 2.4 Core Database Schema Module
+
+**Core Functional Requirements**
+- [REQ-004] As a system architect, I want the entity definitions (`ReconciliationSession`, `TempShopeeOrder`, `TempLogisticsOrder`) to be persisted with proper constraints, indexes, and relationships, so that the application can enforce data integrity and support high‑performance joins.
+
+**Acceptance Criteria & Interactions**
+- Given the schema design,
+- When the tables are created,
+- Then each entity contains the columns defined in the data dictionary, primary keys enforce uniqueness, foreign keys maintain referential integrity, and indexes exist on `session_id` and `order_id` for fast lookups.
+- Given a new session is created,
+- When the ingestion module inserts a record,
+- Then the `reconciliation_sessions` entry is referenced by foreign keys in staging tables.
+
+**Module Exception Flows**
+- [EXC-010] Schema migration conflict – abort deployment and raise `ERR_SCH_001`.
+- [EXC-011] Missing nullable constraint on required column – validation fails and rolls back transaction.
+
+**Module Localized Data Dictionary**
+- [DAT-004] Table: `reconciliation_sessions`
+  - `bigint id PK "Primary key identifier for the session"`
+  - `varchar userId "User identifier of the session owner"`
+  - `timestamp createdAt "Timestamp when the session was created"`
+  - `enum status "Current processing status (PENDING, PROCESSING, COMPLETED, FAILED)"`
+  - `decimal totalDiscrepancyAmount "Total financial leakage amount"`
+  - `decimal totalHoldingAmount "Total escrow/holding amount"`
+  - `decimal totalSafeAmount "Total safe realized income"`
+
 ```mermaid
 erDiagram
-    ReconciliationSession {
+    RECONCILIATION_SESSIONS {
         bigint id PK "Primary key identifier for the session"
-        varchar userId "" "User identifier who initiated the session"
-        timestamp createdAt "" "Timestamp when the session was created"
-        varchar status "" "Current status of the session (PENDING, PROCESSING, COMPLETED, FAILED)"
-        decimal totalDiscrepancyAmount "" "Total discrepancy amount (Financial Leakage Metric X)"
-        decimal totalHoldingAmount "" "Total holding amount (Escrow Tracking Metric Y)"
-        decimal totalSafeAmount "" "Total safe amount (Safe Realized Income Metric Z)"
+        varchar userId "User identifier of the session owner"
+        timestamp createdAt "Timestamp when the session was created"
+        enum status "Current processing status (PENDING, PROCESSING, COMPLETED, FAILED)"
+        decimal totalDiscrepancyAmount "Total financial leakage amount"
+        decimal totalHoldingAmount "Total escrow/holding amount"
+        decimal totalSafeAmount "Total safe realized income"
     }
-    TempShopeeOrder {
-        bigint id PK "Primary key identifier for the Shopee order record"
-        bigint sessionId FK "" "Foreign key referencing ReconciliationSession.id"
-        varchar orderId "" "Unique order identifier from marketplace"
-        decimal shopFee "" "Platform‑calculated shipping fee"
-        varchar orderStatus "" "Order status from marketplace"
-        decimal payoutAmount "" "Payout amount associated with the order"
+```
+
+- [DAT-005] Table: `temp_shopee_orders`
+  - `bigint id PK "Primary key identifier for the marketplace order record"`
+  - `bigint sessionId FK "Foreign key referencing RECONCILIATION_SESSIONS"`
+  - `varchar orderId "Unique order identifier from marketplace"`
+  - `decimal shopFee "Platform-calculated shipping fee"`
+  - `varchar orderStatus "Order status from marketplace"`
+  - `decimal payoutAmount "Payout amount associated with the order"`
+
+```mermaid
+erDiagram
+    TEMP_SHOPPE_ORDERS {
+        bigint id PK "Primary key identifier for the marketplace order record"
+        bigint sessionId FK "Foreign key referencing RECONCILIATION_SESSIONS"
+        varchar orderId "Unique order identifier from marketplace"
+        decimal shopFee "Platform-calculated shipping fee"
+        varchar orderStatus "Order status from marketplace"
+        decimal payoutAmount "Payout amount associated with the order"
     }
-    TempLogisticsOrder {
+```
+
+- [DAT-006] Table: `temp_logistics_orders`
+  - `bigint id PK "Primary key identifier for the logistics order record"`
+  - `bigint sessionId FK "Foreign key referencing RECONCILIATION_SESSIONS"`
+  - `varchar orderId FK "Foreign key referencing TEMP_SHOPPE_ORDERS"`
+  - `decimal shippingFee "Actual carrier charged shipping fee"`
+  - `varchar deliveryStatus "Delivery status from carrier"`
+
+```mermaid
+erDiagram
+    TEMP_LOGISTICS_ORDERS {
         bigint id PK "Primary key identifier for the logistics order record"
-        bigint sessionId FK "" "Foreign key referencing ReconciliationSession.id"
-        varchar orderId "" "Unique order identifier from carrier"
-        decimal shippingFee "" "Actual carrier‑charged shipping fee"
-        varchar deliveryStatus "" "Delivery status from logistics provider"
-    }
-    ReconciliationSession ||--o{ TempShopeeOrder : "sessionId"
-    ReconciliationSession ||--o{ TempLogisticsOrder : "sessionId"
-```
-- [DAT-003] **ReconciliationSession**
-```mermaid
-erDiagram
-    ReconciliationSession {
-        bigint id PK "Primary key identifier for the session"
-        varchar userId "" "User identifier who initiated the session"
-        timestamp createdAt "" "Timestamp when the session was created"
-        varchar status "" "Current status of the session (PENDING, PROCESSING, COMPLETED, FAILED)"
-        decimal totalDiscrepancyAmount "" "Total discrepancy amount (Financial Leakage Metric X)"
-        decimal totalHoldingAmount "" "Total holding amount (Escrow Tracking Metric Y)"
-        decimal totalSafeAmount "" "Total safe amount (Safe Realized Income Metric Z)"
+        bigint sessionId FK "Foreign key referencing RECONCILIATION_SESSIONS"
+        varchar orderId FK "Foreign key referencing TEMP_SHOPPE_ORDERS"
+        decimal shippingFee "Actual carrier charged shipping fee"
+        varchar deliveryStatus "Delivery status from carrier"
     }
 ```
 
-### 2.2 Reconciliation Engine Module
+## 3. GLOBAL NON-FUNCTIONAL REQUIREMENTS
 
-#### Core Functional Requirements
-- [REQ-002] As a system user, I want the platform to automatically process uploaded files and generate variance calculations, so that discrepancies are identified without manual intervention.
-
-#### Acceptance Criteria & Interactions
-- Given a session exists with status **PROCESSING**, when the native SQL variance query executes, then the system updates **ReconciliationSession** totals based on computed variances.
-- Given variance calculation completes, when the session status updates, then the session is marked **COMPLETED**.
-
-#### Module Exception Flows
-- [EXC-002] Duplicate order IDs across streams within same session → conflict flagged, session status **PARTIAL**.
-- [EXC-005] Database constraint violation during variance insertion → session status **FAILED** with detailed error log.
-
-#### Module Localized Data Dictionary
-- [DAT-004] **TempShopeeOrder**
-```mermaid
-erDiagram
-    ReconciliationSession {
-        bigint id PK "Primary key identifier for the session"
-        varchar userId "" "User identifier who initiated the session"
-        timestamp createdAt "" "Timestamp when the session was created"
-        varchar status "" "Current status of the session (PENDING, PROCESSING, COMPLETED, FAILED)"
-        decimal totalDiscrepancyAmount "" "Total discrepancy amount (Financial Leakage Metric X)"
-        decimal totalHoldingAmount "" "Total holding amount (Escrow Tracking Metric Y)"
-        decimal totalSafeAmount "" "Total safe amount (Safe Realized Income Metric Z)"
-    }
-    TempShopeeOrder {
-        bigint id PK "Primary key identifier for the Shopee order record"
-        bigint sessionId FK "" "Foreign key referencing ReconciliationSession.id"
-        varchar orderId "" "Unique order identifier from marketplace"
-        decimal shopFee "" "Platform‑calculated shipping fee"
-        varchar orderStatus "" "Order status from marketplace"
-        decimal payoutAmount "" "Payout amount associated with the order"
-    }
-    TempLogisticsOrder {
-        bigint id PK "Primary key identifier for the logistics order record"
-        bigint sessionId FK "" "Foreign key referencing ReconciliationSession.id"
-        varchar orderId "" "Unique order identifier from carrier"
-        decimal shippingFee "" "Actual carrier‑charged shipping fee"
-        varchar deliveryStatus "" "Delivery status from logistics provider"
-    }
-    ReconciliationSession ||--o{ TempShopeeOrder : "sessionId"
-    ReconciliationSession ||--o{ TempLogisticsOrder : "sessionId"
-```
-- [DAT-005] **TempLogisticsOrder**
-```mermaid
-erDiagram
-    ReconciliationSession {
-        bigint id PK "Primary key identifier for the session"
-        varchar userId "" "User identifier who initiated the session"
-        timestamp createdAt "" "Timestamp when the session was created"
-        varchar status "" "Current status of the session (PENDING, PROCESSING, COMPLETED, FAILED)"
-        decimal totalDiscrepancyAmount "" "Total discrepancy amount (Financial Leakage Metric X)"
-        decimal totalHoldingAmount "" "Total holding amount (Escrow Tracking Metric Y)"
-        decimal totalSafeAmount "" "Total safe amount (Safe Realized Income Metric Z)"
-    }
-    TempShopeeOrder {
-        bigint id PK "Primary key identifier for the Shopee order record"
-        bigint sessionId FK "" "Foreign key referencing ReconciliationSession.id"
-        varchar orderId "" "Unique order identifier from marketplace"
-        decimal shopFee "" "Platform‑calculated shipping fee"
-        varchar orderStatus "" "Order status from marketplace"
-        decimal payoutAmount "" "Payout amount associated with the order"
-    }
-    TempLogisticsOrder {
-        bigint id PK "Primary key identifier for the logistics order record"
-        bigint sessionId FK "" "Foreign key referencing ReconciliationSession.id"
-        varchar orderId "" "Unique order identifier from carrier"
-        decimal shippingFee "" "Actual carrier‑charged shipping fee"
-        varchar deliveryStatus "" "Delivery status from logistics provider"
-    }
-    ReconciliationSession ||--o{ TempShopeeOrder : "sessionId"
-    ReconciliationSession ||--o{ TempLogisticsOrder : "sessionId"
-```
-- [DAT-006] **ReconciliationSession**
-```mermaid
-erDiagram
-    ReconciliationSession {
-        bigint id PK "Primary key identifier for the session"
-        varchar userId "" "User identifier who initiated the session"
-        timestamp createdAt "" "Timestamp when the session was created"
-        varchar status "" "Current status of the session (PENDING, PROCESSING, COMPLETED, FAILED)"
-        decimal totalDiscrepancyAmount "" "Total discrepancy amount (Financial Leakage Metric X)"
-        decimal totalHoldingAmount "" "Total holding amount (Escrow Tracking Metric Y)"
-        decimal totalSafeAmount "" "Total safe amount (Safe Realized Income Metric Z)"
-    }
-```
-
-### 2.3 Executive Dashboard Module
-
-#### Core Functional Requirements
-- [REQ-003] As a C‑level executive, I want to view the executive financial dashboard summarizing leaked, escrow, and safe capital, so that I can monitor financial health.
-
-#### Acceptance Criteria & Interactions
-- Given a valid **sessionId**, when the executive accesses the dashboard, then the UI renders three metric cards: **Leaked Capital (X)**, **Escrow Capital (Y)**, **Safe Income (Z)** fetched from **ReconciliationSession**.
-- Given the export action is triggered, when the user selects CSV/Excel format, then the system generates a downloadable report with detailed discrepancy records.
-
-#### Module Exception Flows
-- [EXC-003] Session not found or unauthorized access → HTTP **404** / **403** with error payload.
-- [EXC-001] Invalid export format requested → reject with **BAD_REQUEST**.
-
-#### Module Localized Data Dictionary
-- [DAT-007] **ReconciliationSession**
-```mermaid
-erDiagram
-    ReconciliationSession {
-        bigint id PK "Primary key identifier for the session"
-        varchar userId "" "User identifier who initiated the session"
-        timestamp createdAt "" "Timestamp when the session was created"
-        varchar status "" "Current status of the session (PENDING, PROCESSING, COMPLETED, FAILED)"
-        decimal totalDiscrepancyAmount "" "Total discrepancy amount (Financial Leakage Metric X)"
-        decimal totalHoldingAmount "" "Total holding amount (Escrow Tracking Metric Y)"
-        decimal totalSafeAmount "" "Total safe amount (Safe Realized Income Metric Z)"
-    }
-```
-
-## 3. GLOBAL NON‑FUNCTIONAL REQUIREMENTS
-
-- [NFR-001] **Performance Metrics**: End‑to‑end processing latency < 5 seconds for files up to 500 MB; throughput > 10 000 rows/second; real‑time session status updates via WebSocket.
-- [NFR-002] **Security**: AES‑256 encryption at rest; TLS 1.3 for all in‑transit traffic; JWT‑based authentication with OAuth2 resource servers; role‑based access control enforced at API gateway; comprehensive audit logging; OWASP Top 10 mitigation (SQL injection, XSS, insecure deserialization).
-- [NFR-003] **Scalability & Multi‑Tenant Isolation**: Stateless services horizontally scalable; database schemas partitioned by tenant ID; shared infrastructure with isolated schemas; auto‑scaling based on CPU/memory metrics.
-- [NFR-004] **Availability & Reliability**: 99.9 % SLA; active‑passive failover across regions; health‑check endpoints; automatic retry for transient failures; circuit‑breaker patterns for downstream APIs.
-- [NFR-005] **Compliance & Data Governance**: GDPR‑aligned data handling; configurable data residency; immutable audit trails retained ≥ 7 years; export capabilities for regulatory requests; data masking for PII in reports.
+- [NFR-001] Performance Metrics
+  - File upload acknowledgment latency < 200 ms.
+  - Background batch processing completion per session < 5 seconds.
+  - Dashboard refresh and metric rendering < 10 seconds.
+- [NFR-002] Security
+  - JWT‑based authentication with role‑based access control; token expiration ≤ 30 minutes.
+  - Enforce OWASP Top 10 mitigations: prepared statements, input validation, output encoding.
+  - TLS 1.3 for all inbound/outbound communications; encryption at rest (AES‑256).
+  - Comprehensive audit logging for all session and data modifications.
+- [NFR-003] Scalability, High Availability & Multi‑tenant Isolation
+  - Stateless services enable horizontal scaling; load balancer distributes requests.
+  - Database sharding per tenant using `sessionId` partitioning; no cross‑tenant data leakage.
+  - Target 99.9 % uptime; automated failover and health‑check endpoints.
