@@ -36,7 +36,7 @@
 
 ## 📁 4. HIGH-LEVEL MULTI-PHASE ARCHITECTURAL SYNOPSIS GRID
 - Generate a clean, highly structured Markdown Table mapping the exact distribution of components and Tag IDs across the dynamically calculated phases. You MUST compute the most optimal number of phases (denoted as N, where N <= {{ num_phases }}) that naturally and completely covers 100% of the BA requirements and Tag IDs. Each row MUST specify a real-world engineering duration bounded between 1 to a strict upper ceiling of {{ max_days_per_phase }} days maximum per phase. Do NOT generate empty rows, placeholder phases, or artificial workloads. If the requirements are fully satisfied within fewer than {{ num_phases }} phases, terminate the matrix setup immediately at phase N.
-- Translate this section header and table column headers into {% if language and language.strip() != "" %}{{ language }}{% else %}English{% endif %}. Content inside columns MUST be fully translated, except these columns `Architectural Component / Module Path`, `Assigned Sub-Agent` and `Targeted Tag IDs`.
+- After that translating this section header and table column headers into {% if language and language.strip() != "" %}{{ language }}{% else %}English{% endif %}. Content inside columns MUST be fully translated, except these columns `Architectural Component / Module Path`, `Assigned Sub-Agent` and `Targeted Tag IDs`.
 
 | Phase | Day Range | Architectural Component / Module Path | Technical Deliverables Summary | Assigned Sub-Agent | Targeted Tag IDs |
 | :--- | :--- | :--- | :--- | :--- | :--- |
