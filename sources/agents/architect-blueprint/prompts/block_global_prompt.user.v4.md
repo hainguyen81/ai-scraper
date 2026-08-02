@@ -60,13 +60,13 @@ Generate a clean, highly structured Markdown Table mapping the exact distributio
 | :--- | :--- | :--- | :--- | :--- | :--- |
 
 ## 5. GRANULAR PHASE SPECIALIZATIONS & DAY-BY-DAY DELIVERABLES
-
-# MULTI-PHASE MATRIX REFLECTION MANDATE:
-- You MUST exhaustively clone and render the exact sequential structure below for EVERY active phase calculated and listed in the Section 4 Synopsis Table (from Phase 1 up to Phase N).
-- Replacing "[X]" with the active sequential phase number is mandatory. You are strictly forbidden from omitting or stopping before Phase N is fully engineered.
+# EQUAL MAPPING MANDATE: You MUST exhaustively repeat and render the structured block below for every single active phase that you have explicitly calculated and listed in the Section 4 Synopsis Table (from Phase 1 up to the exact final Phase N). Truncating, omitting, or stopping early before detailing all N calculated phases is a critical compliance violation.
+# STRICT ANTI-PADDING DAY LOGIC: Within each phase block, you MUST break down the tasks into standalone single integer day logs (e.g., DAY 1, DAY 2), running from DAY 1 up to the precise day required to complete that phase's workload (Strict Upper Limit: {{ max_days_per_phase }} days per phase). You MUST immediately trigger a Day-Log Freeze and exit the current phase loop on the exact day when all tasks allocated to this specific phase are fully satisfied. Generating fake features, duplicate testing logs, or hollow administrative tasks just to stretch the schedule up to {{ max_days_per_phase }} days is strictly banned.
+# SINGLE AGENT & FORMAT ENFORCEMENT: For each day, ensure that only ONE Sub-Agent is assigned per task line. The Sub-Agent name MUST strictly use capitalized first-letter formatting (e.g., DAY 1: [Coder] ...). All target paths and Tag IDs must strictly mirror the original BA baseline configuration without additions.
 
 <!--START_DELIMITTER-->
 ### Phase [X] Detailed Architectural Specification
+*(Note: Replace [X] with the active sequential phase number from 1 to N)*
 - **Phase Core Objective & Purpose:** [Detailed technical explanation of what this phase achieves and its functional goals]
 - **Target Physical Directory Matrix Map:** List all specific file paths underneath `./sources/` initialized or modified in this phase. Every single line path generated MUST be appended with its tracking Tag IDs inline.
 - **Database Schema DDL SQL Specification [DAT-XXX]:** Provide raw, complete, and valid DDL SQL migration statements containing explicit columns, data types, primary/foreign keys, matrix mappings, indexes, and nullability constraints applied under this phase scope. (Omit entirely if the project topology has no database or persistence layer requirements).
@@ -74,16 +74,12 @@ Generate a clean, highly structured Markdown Table mapping the exact distributio
 - **Phase Localized Exception Handlers [EXC-XXX]:** Detail explicit business validation rules, error codes, and system exception handling pathways mapping strictly to the current phase scope.
 <!--END_DELIMITTER-->
 
-#### 📅 Chronological Day-by-Day Sub-Agent Task Distribution Logs (Phase [X])
-# LONGITUDINAL DAY PARTITIONING & FREEZE MANDATE:
-- Within the active Phase [X], break down tasks into sequential day logs (e.g., DAY 1, DAY 2) starting from the phase's initial calendar day up to its final computed day.
-- You MUST freeze the log and immediately terminate the active phase block on the exact day when 100% of the baseline BA tracking codes mapped to Phase [X] are completely covered.
-- Generating duplicate tasks, generic placeholders, or hollow testing logs to artificially stretch the timeline is strictly prohibited.
-- Ensure that only ONE single Sub-Agent with Capitalized first-letter formatting is assigned per active task line (e.g., DAY [Y]: [Coder] ...).
+#### 📅 Chronological Day-by-Day Sub-Agent Task Distribution Logs (Maximum ceiling limit: {{ max_days_per_phase }} Days per phase)
+# Enforce the 'Longitructural Day Partitioning' and 'Anti-Padding Mandate' rules. Output each active day as an isolated standalone single integer subsection header. Freeze and terminate immediately once all BA tracking codes mapped to this phase are fully covered.
 
 #### 🗓️ DAY [Y]: [CAPITALIZED SHORT OBJECTIVE FOR THIS OPERATIONAL CALENDAR DAY]
 - **Sub-Agent Workflow Specialization:**
-  * **[Assigned Sub-Agent literal token: Coder | Tester | Reviewer | Doc | Docker | GCP | GKE]:**
+  * **[Assigned Sub-Agent literal token: coder | tester | reviewer | doc | docker | GCP | GKE]:**
     - **Target Component file path (`target_component`):** [Insert explicit physical file path starting with `./sources/` or Tester pair syntax. Append its corresponding Tag IDs inline here, e.g., `./sources/backend.... [REQ-001], [DAT-002]`]
     - **Low-Level Technical Task Instruction:** [Exhaustive, high-density engineering instruction, framework conventions, API contract layouts, data fields validation, or unit test case parameters mapping 1:1 to the requirements and attaching Tag IDs]
     - **Targeted Tag IDs:** [Write each tag out individually separated by commas, e.g., `[REQ-001], [DAT-002], [EXC-001]`.]
