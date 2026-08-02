@@ -76,6 +76,7 @@ class DailyStep(BaseModel):
 class PhaseStepsPlan(BaseModel):
     phase_id: int = Field(description="Target phase tracker index.")
     phase_name: str = Field(description="Target phase tracker name.")
+    phase_description: str = Field(description="Target phase description.")
     project_name: str = Field(description="Target project tracker name.")
     global_context_file: str = Field(description="Project global context Markdown file for closure.")
     source_target_dir: str = Field(description="Project sources folder path for closure.")
@@ -144,6 +145,7 @@ def manual_transform(json_data, project_name: str, phase_idx: int):
     transform_json_data = {
         "phase_id": phase_idx,
         "phase_name": json_data.get("phase_name", json_data.get("phase", f"Phase {phase_idx}")),
+        "phase_description": json_data.get("phase_description", json_data.get("description", f"No description provided for Phase {phase_idx}.")),
         "project_name": project_name.strip(),
         "global_context_file": project_context_file(project_name),
         "source_target_dir": "sources/",
@@ -233,6 +235,7 @@ def convert_phases_to_json(client: OpenAI, model_name: str, project_name: str, n
             master_phase_plan = {
                 "phase_id": phase_idx,
                 "phase_name": f"Phase {phase_idx}",
+                "phase_description": f"No description provided for Phase {phase_idx}.",
                 "project_name": project_name.strip(),
                 "global_context_file": global_context_file,
                 "source_target_dir": "sources/",
@@ -333,6 +336,7 @@ def convert_phases_to_json(client: OpenAI, model_name: str, project_name: str, n
                 
                 # Extract target task collections using flexible property matching vectors
                 master_phase_plan["phase_name"] = json_data.get("phase_name", json_data.get("phase", f"Phase {phase_idx}"))
+                master_phase_plan["phase_description"] = json_data.get("phase_description", json_data.get("description", f"No description provided for Phase {phase_idx}."))
                 chunk_steps_array = json_data.get("days", json_data.get("steps", json_data.get("dailyTasks", json_data.get("dayByDayPlan", []))))
                 
                 # Termination trigger: If array is missing or empty, the entire markdown blueprint context has been fully scanned
