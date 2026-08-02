@@ -15,7 +15,7 @@ Analyze the attached project requirements. Build the GLOBAL PROJECT CONTEXT for 
   * For alternative topologies (AI/Data, IoT, Embedded): Paths must strictly map to logical root subdirectories matching the service domain layer under `./sources/`.
 
 #### 🗄️ PROTOCOL 2: Granular Ceilings-Compliant Task Logs
-- For each calculated phase necessary to cover the BA inputs (Up to the absolute maximum ceiling of {{ num_phases }} phases), supply a clean chronological daylog breakdown (Up to the absolute ceiling of {{ max_days_per_phase }} days per phase). Every single day generated MUST explicitly define the specific assigned sub-agent persona ('coder' | 'tester' | 'reviewer' | 'doc' | 'docker' | 'GCP' | 'GKE'), the low-level technical step target, the exact tracking Tag IDs, and the explicit physical relative file path (`target_component`).
+- For each calculated phase necessary to cover the BA inputs (Up to the absolute maximum ceiling of {{ num_phases }} phases), supply a clean chronological daylog breakdown (Up to the absolute ceiling of {{ max_days_per_phase }} days per phase). Every single day generated MUST explicitly define the specific assigned sub-agent persona ('Coder' | 'Tester' | 'Reviewer' | 'Doc' | 'Docker' | 'GCP' | 'GKE'), the low-level technical step target, the exact tracking Tag IDs, and the explicit physical relative file path (`target_component`).
 
 #### 🧮 PROTOCOL 3: 100% Vertical Tag Traceability Coverage (ZERO BUNDLING POLICY)
 - Every single feature, entity, database table column, validation, exception, or infrastructure component outlined across your report MUST be strictly prefixed or appended with the exact corresponding Tag IDs (`[REQ-XXX]`, `[EXC-XXX]`, `[DAT-XXX]`, `[NFR-XXX]`) inherited from the requirements. 
@@ -79,7 +79,7 @@ Generate a clean, highly structured Markdown Table mapping the exact distributio
 
 #### 🗓️ DAY [Y]: [CAPITALIZED SHORT OBJECTIVE FOR THIS OPERATIONAL CALENDAR DAY]
 - **Sub-Agent Workflow Specialization:**
-  * **[Assigned Sub-Agent literal token: coder | tester | reviewer | doc | docker | GCP | GKE]:**
+  * **[Assigned Sub-Agent literal token: Coder | Tester | Reviewer | Doc | Docker | GCP | GKE]:**
     - **Target Component file path (`target_component`):** [Insert explicit physical file path starting with `./sources/` or Tester pair syntax. Append its corresponding Tag IDs inline here, e.g., `./sources/backend.... [REQ-001], [DAT-002]`]
     - **Low-Level Technical Task Instruction:** [Exhaustive, high-density engineering instruction, framework conventions, API contract layouts, data fields validation, or unit test case parameters mapping 1:1 to the requirements and attaching Tag IDs]
     - **Targeted Tag IDs:** [Write each tag out individually separated by commas, e.g., `[REQ-001], [DAT-002], [EXC-001]`.]
