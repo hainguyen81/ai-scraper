@@ -51,20 +51,17 @@ Inside the "srs_content_markdown", every single individual requirement, rule, ar
 - Architecture, Infrastructure & Integration Triggers: Use **[ARC-XXX]** (e.g., Message Queue events, external API handshakes, deployment constraints).
 - Exception Flows / Validation Rules / Business Edge Cases: Use **[EXC-XXX]** (Dedicated error codes, validation failures, system fallback rules).
 - Database Tables, Column Definitions, Keys & Constraints: Use **[DAT-XXX]** (Precise types, nullability, PK/FK links).
-- **MANDATORY DATABASE DIAGRAMMING INJECTION:** Immediately beneath every localized data dictionary matrix (`[DAT-XXX]`), you MUST output a valid native `erDiagram` codeblock.
-- **STRICT MERMAID GRAMMAR ENFORCEMENT:** You MUST copy this exact structural layout template character-for-character. You are STRICTLY BANNED from adding, omitting, or modifying its core structural syntax:
-  ```mermaid
-  erDiagram
-      TABLE_NAME {
-          type fieldName PK "Description note if any"
-          type secondField optional "Another descriptive note"
-      }
-  ```
-- **CRITICAL COMPLIANCE BOUNDARY:** 
-  1. The opening syntax MUST be exactly ````mermaid` on its own line, followed strictly by `erDiagram` on the next line. No shortcuts allowed.
-  2. Inside the entity brackets, field names MUST strictly utilize plain alphanumeric **CamelCase** only. You are COLDLY BANNED from including any underscores `_` inside the field variable names (e.g., transform `announcement_id` to `announcementId`, `start_date` to `startDate` immediately).
-  3. Every standalone attribute, constraint description, or length notation (such as `NOT NULL`, `optional`, `VARCHAR(255)`) MUST be completely encapsulated inside trailing double quotes `""`. Writing loose words like `NOT_NULL` or `optional` without double quotes is a fatal compiler violation.
-  4. The internal code layout MUST remain purely in Technical English ASCII characters to prevent parsing compilation crashes.
+- **MANDATORY DATABASE DIAGRAMMING INJECTION:** Immediately beneath every localized data dictionary matrix (`[DAT-XXX]`), you MUST proactively append an explicit, valid native `erDiagram` block code segment wrapped exactly inside standard markdown code fences (starting with ````mermaid` and ending with ````).
+- **THE FIXED SYNTAX DICTATORSHIP RAILS (IMMUTABLE MERMAID GRAMMAR):** You MUST rigorously lock the generated Mermaid code block into this exact syntax structure and dictionary convention. You are COLDLY BANNED from alternating patterns, introducing experimental formatting, or wrapping global curly braces `{}` around the collective group of entities.
+  1. **STRICT STRUCTURAL FIELD LINE PATTERN:** Every individual attribute row inside the entity brackets MUST follow this exact character-for-character token pattern structure:
+     `field_type field_name NULL_OR_SYSTEM_CONSTRAINT "field_description_or_type_details"`
+  2. **THE IMMUTABLE TOKENS DICTATORSHIP:** 
+     * **field_type**: MUST be a pure, plain alphabetical database type token (such as `varchar`, `char`, `smallint`, `uuid`, `text`, `timestamp`). You are STRICKLY BANNED from attaching explicit length indicators or parentheses arrays directly inside this first column (do NOT write `VARCHAR(255)` or `CHAR(60)` as the base type).
+     * **field_name**: MUST strictly utilize plain alphanumeric **CamelCase** only. You are COLDLY BANNED from including any underscores `_` inside the field variable names (e.g., transform `announcement_id` to `announcementId`, `start_date` to `startDate` immediately).
+     * **NULL_OR_SYSTEM_CONSTRAINT**: This column column can ONLY contain the literal bare uppercase word **`PK`**, **`FK`**, or **`PK, FK`** if both apply, or be left completely blank/empty if no primary/foreign key is defined. Writing loose technical words like `NOT_NULL`, `NOTNULL`, or `optional` as bare unquoted tokens in this column is a fatal compiler violation.
+     * **"field_description_or_type_details"**: MUST be a human-readable string completely encapsulated within trailing double quotes `""`. Any explicit type length parameters, nullability flags, default metrics, or dynamic lists (e.g., `VARCHAR(255)`, `NOT NULL`, `UNIQUE`, `ENUM('local','firebase')`) MUST be pushed entirely inside this trailing double-quoted string container to serve as a descriptive note.
+  3. **ABSOLUTE RELATIONSHIP DIRECTION LAW:** For the structural cardinality links at the absolute end of the erDiagram block, you MUST position the parent lookup table containing the Primary Key on the left side, and the target child table containing the Foreign Key on the right side. You MUST enforce the exact character-for-character relation mapping path rule: `ROLES ||--o{ USERS : "roleId"` (or `Roles ||--o{ Users : "roleId"` matching the exact casing of your generated entity header tokens). Inverting this structure or writing `USERS }o--|| ROLES` is permanently banned.
+  4. **TECHNICAL CODE ISOLATION & OPENING BOUNDARY:** The opening syntax MUST be exactly ````mermaid` on its own line, followed strictly by `erDiagram` on the next line. No shortcuts allowed. All entity schemas, table boundaries, token constraints, and connecting vectors inside the Mermaid block code MUST utilize clean Technical English ASCII characters only. Localized text translation is strictly forbidden inside the active structural columns or relational strings to prevent parsing compiler crashes.
 - Global Non-Functional Requirements: Use **[NFR-XXX]** (Concrete operational metrics, security, scalability bounds).
 
 # MANDATORY SRS STRUCTURE (INLINE PACKAGING)
