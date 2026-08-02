@@ -111,7 +111,8 @@ class PrincipalBusinessAnalysisAgent(AbstractSubAgent):
         # parse technical project name as folder name
         datetimeStr = datetime_for_docid()
         defaultPrjName = f"project-{datetimeStr}"
-        project_name = project_metadata.get("technical_codename") or defaultPrjName
+        project_name = self.project_name if self.idea_is_project and self.project_name else None
+        project_name = project_name or project_metadata.get("technical_codename") or defaultPrjName
         
         # detect existing project info if any
         project_info = next((pi for pi in projects if pi.get("technical_codename") == project_name or pi.get("idea") == self.idea_id), project_metadata)
