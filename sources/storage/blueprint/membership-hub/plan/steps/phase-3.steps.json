@@ -1,6 +1,6 @@
 {
     "phase_id": 3,
-    "phase_name": "Deploy Backend and Frontend Infrastructure for Membership-Hub Project",
+    "phase_name": "qrAttendanceMobileAiCompliance",
     "project_name": "membership-hub",
     "global_context_file": ".ai/.context/membership-hub.global.blueprint.md",
     "source_target_dir": "sources/",
@@ -12,14 +12,22 @@
             "sub_tasks": [
                 {
                     "id": "D1_ST1",
-                    "agent": "Docker",
-                    "desc": "Docker Agent: No description provided",
-                    "targeted_tags": [
-                        "[NFR-002]",
-                        "[NFR-004]"
-                    ],
+                    "agent": "Coder",
+                    "desc": "Coder Agent: Implement DDL SQL Schemas (DAT-005, DAT-007, DAT-011) defining tables: attendance, notifications, systemsettings with constraints, indexes, and foreign keys.",
+                    "targeted_tags": [],
                     "components": [
-                        "./sources/infra/deployment"
+                        "./sources/backend/src/models/attendance.model.ts",
+                        "./sources/backend/src/models/notifications.model.ts",
+                        "./sources/backend/src/models/systemsettings.model.ts"
+                    ]
+                },
+                {
+                    "id": "D1_ST2",
+                    "agent": "Doc",
+                    "desc": "Doc Agent: Generate comprehensive API documentation (OpenAPI/Swagger) and technical design docs for attendance, mobile, chatbot, GDPR, and backup modules.",
+                    "targeted_tags": [],
+                    "components": [
+                        "./sources/backend/src/docs/api-docs.md"
                     ]
                 }
             ]
@@ -31,14 +39,22 @@
             "sub_tasks": [
                 {
                     "id": "D2_ST1",
-                    "agent": "Docker",
-                    "desc": "Docker Agent: No description provided",
-                    "targeted_tags": [
-                        "[NFR-002]",
-                        "[NFR-004]"
-                    ],
+                    "agent": "Coder",
+                    "desc": "Coder Agent: Implement API Contracts (REQ-012, REQ-013, REQ-019, REQ-020, REQ-021, ARC-007, ARC-009, NFR-007, NFR-008, NFR-009) specifying HTTP methods, request/response payloads, validation rules, and error handling.",
+                    "targeted_tags": [],
                     "components": [
-                        "./sources/infra/deployment"
+                        "./sources/backend/src/controllers/attendance.controller.ts",
+                        "./sources/backend/src/controllers/notifications.controller.ts"
+                    ]
+                },
+                {
+                    "id": "D2_ST2",
+                    "agent": "Tester",
+                    "desc": "Tester Agent: Write unit and integration tests for new models/controllers, ensuring coverage ≥85% and mock external dependencies.",
+                    "targeted_tags": [],
+                    "components": [
+                        "./sources/backend/tests/attendance.test.ts",
+                        "./sources/backend/tests/notifications.test.ts"
                     ]
                 }
             ]
@@ -51,13 +67,20 @@
                 {
                     "id": "D3_ST1",
                     "agent": "Coder",
-                    "desc": "Coder Agent: No description provided",
-                    "targeted_tags": [
-                        "[NFR-002]",
-                        "[NFR-004]"
-                    ],
+                    "desc": "Coder Agent: Implement Exception Flows (EXC-001, EXC-002, EXC-003) covering network loss QR, duplicate scan, notification delivery failure.",
+                    "targeted_tags": [],
                     "components": [
-                        "./sources/infra/deployment"
+                        "./sources/backend/src/middleware/security.middleware.ts"
+                    ]
+                },
+                {
+                    "id": "D3_ST2",
+                    "agent": "Reviewer",
+                    "desc": "Reviewer Agent: Perform static code analysis, security review, and OWASP compliance checks on all new backend files.",
+                    "targeted_tags": [],
+                    "components": [
+                        "./sources/backend/src/models/attendance.model.ts",
+                        "./sources/backend/src/controllers/attendance.controller.ts"
                     ]
                 }
             ]
@@ -69,72 +92,19 @@
             "sub_tasks": [
                 {
                     "id": "D4_ST1",
-                    "agent": "Coder",
-                    "desc": "Coder Agent: No description provided",
-                    "targeted_tags": [
-                        "[NFR-002]",
-                        "[NFR-004]"
-                    ],
-                    "components": [
-                        "./sources/infra/deployment"
-                    ]
-                }
-            ]
-        },
-        {
-            "day": 5,
-            "context_file": ".ai/.plan/.context/phase-3.context.blueprint.md",
-            "context_section": "DAY 5",
-            "sub_tasks": [
-                {
-                    "id": "D5_ST1",
-                    "agent": "Tester",
-                    "desc": "Tester Agent: No description provided",
-                    "targeted_tags": [
-                        "[NFR-002]",
-                        "[NFR-004]"
-                    ],
-                    "components": [
-                        "./sources/infra/deployment"
-                    ]
-                }
-            ]
-        },
-        {
-            "day": 6,
-            "context_file": ".ai/.plan/.context/phase-3.context.blueprint.md",
-            "context_section": "DAY 6",
-            "sub_tasks": [
-                {
-                    "id": "D6_ST1",
-                    "agent": "Reviewer",
-                    "desc": "Reviewer Agent: No description provided",
-                    "targeted_tags": [
-                        "[NFR-002]",
-                        "[NFR-004]"
-                    ],
-                    "components": [
-                        "./sources/infra/deployment"
-                    ]
-                }
-            ]
-        },
-        {
-            "day": 7,
-            "context_file": ".ai/.plan/.context/phase-3.context.blueprint.md",
-            "context_section": "DAY 7",
-            "sub_tasks": [
-                {
-                    "id": "D7_ST1",
                     "agent": "Docker",
-                    "desc": "Docker Agent: No description provided",
-                    "targeted_tags": [
-                        "[NFR-002]",
-                        "[NFR-004]"
-                    ],
+                    "desc": "Docker Agent: Create multi-stage Dockerfile for backend, optimize image size (<500 MB), and define health checks.",
+                    "targeted_tags": [],
                     "components": [
-                        "./sources/infra/deployment"
+                        "./Dockerfile"
                     ]
+                },
+                {
+                    "id": "D4_ST2",
+                    "agent": "GCP",
+                    "desc": "GCP Agent: Configure Cloud Scheduler jobs for automated backups, Cloud Pub/Sub topics for real-time notifications, and IAM roles for service accounts.",
+                    "targeted_tags": [],
+                    "components": []
                 }
             ]
         }

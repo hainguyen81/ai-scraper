@@ -1,6 +1,6 @@
 {
     "phase_id": 2,
-    "phase_name": "Implement Responsive Mobile Application for User Interface",
+    "phase_name": "centerCourseMgmt",
     "project_name": "membership-hub",
     "global_context_file": ".ai/.context/membership-hub.global.blueprint.md",
     "source_target_dir": "sources/",
@@ -13,13 +13,31 @@
                 {
                     "id": "D1_ST1",
                     "agent": "Coder",
-                    "desc": "Coder Agent: No description provided",
-                    "targeted_tags": [
-                        "[REQ-020]",
-                        "[REQ-021]"
-                    ],
+                    "desc": "Coder Agent: Create DDL SQL Schemas (DAT-002 to DAT-010) defining tables: centers, courses, enrollments, studentcards, notifications, promotions, announcements with constraints, indexes, and foreign keys.",
+                    "targeted_tags": [],
                     "components": [
-                        "./sources/frontend/mobile-app"
+                        "./sources/backend/src/models/centers.model.ts",
+                        "./sources/backend/src/models/courses.model.ts",
+                        "./sources/backend/src/models/enrollments.model.ts",
+                        "./sources/backend/src/models/studentcards.model.ts",
+                        "./sources/backend/src/models/notifications.model.ts",
+                        "./sources/backend/src/models/promotions.model.ts",
+                        "./sources/backend/src/models/announcements.model.ts"
+                    ]
+                },
+                {
+                    "id": "D1_ST2",
+                    "agent": "Coder",
+                    "desc": "Coder Agent: Implement Sequelize ORM models for Centers, Courses, Enrollments, StudentCards, Notifications, Promotions, and Announcements.",
+                    "targeted_tags": [],
+                    "components": [
+                        "./sources/backend/src/models/centers.model.ts",
+                        "./sources/backend/src/models/courses.model.ts",
+                        "./sources/backend/src/models/enrollments.model.ts",
+                        "./sources/backend/src/models/studentcards.model.ts",
+                        "./sources/backend/src/models/notifications.model.ts",
+                        "./sources/backend/src/models/promotions.model.ts",
+                        "./sources/backend/src/models/announcements.model.ts"
                     ]
                 }
             ]
@@ -32,108 +50,19 @@
                 {
                     "id": "D2_ST1",
                     "agent": "Coder",
-                    "desc": "Coder Agent: No description provided",
-                    "targeted_tags": [
-                        "[REQ-020]",
-                        "[REQ-021]"
-                    ],
+                    "desc": "Coder Agent: Develop REST API endpoints for Centers (GET /api/v1/centers, POST /api/v1/centers, PUT /api/v1/centers/{centerId}, DELETE /api/v1/centers/{centerId}).",
+                    "targeted_tags": [],
                     "components": [
-                        "./sources/frontend/mobile-app"
+                        "./sources/backend/src/controllers/centers.controller.ts"
                     ]
-                }
-            ]
-        },
-        {
-            "day": 3,
-            "context_file": ".ai/.plan/.context/phase-2.context.blueprint.md",
-            "context_section": "DAY 3",
-            "sub_tasks": [
+                },
                 {
-                    "id": "D3_ST1",
+                    "id": "D2_ST2",
                     "agent": "Coder",
-                    "desc": "Coder Agent: No description provided",
-                    "targeted_tags": [
-                        "[REQ-020]",
-                        "[REQ-021]"
-                    ],
+                    "desc": "Coder Agent: Develop REST API endpoints for Courses (GET /api/v1/courses, POST /api/v1/courses, PUT /api/v1/courses/{courseId}, DELETE /api/v1/courses/{courseId}).",
+                    "targeted_tags": [],
                     "components": [
-                        "./sources/frontend/mobile-app"
-                    ]
-                }
-            ]
-        },
-        {
-            "day": 4,
-            "context_file": ".ai/.plan/.context/phase-2.context.blueprint.md",
-            "context_section": "DAY 4",
-            "sub_tasks": [
-                {
-                    "id": "D4_ST1",
-                    "agent": "Coder",
-                    "desc": "Coder Agent: No description provided",
-                    "targeted_tags": [
-                        "[REQ-020]",
-                        "[REQ-021]"
-                    ],
-                    "components": [
-                        "./sources/frontend/mobile-app"
-                    ]
-                }
-            ]
-        },
-        {
-            "day": 5,
-            "context_file": ".ai/.plan/.context/phase-2.context.blueprint.md",
-            "context_section": "DAY 5",
-            "sub_tasks": [
-                {
-                    "id": "D5_ST1",
-                    "agent": "Tester",
-                    "desc": "Tester Agent: No description provided",
-                    "targeted_tags": [
-                        "[REQ-020]",
-                        "[REQ-021]"
-                    ],
-                    "components": [
-                        "./sources/frontend/mobile-app"
-                    ]
-                }
-            ]
-        },
-        {
-            "day": 6,
-            "context_file": ".ai/.plan/.context/phase-2.context.blueprint.md",
-            "context_section": "DAY 6",
-            "sub_tasks": [
-                {
-                    "id": "D6_ST1",
-                    "agent": "Doc",
-                    "desc": "Doc Agent: No description provided",
-                    "targeted_tags": [
-                        "[REQ-020]",
-                        "[REQ-021]"
-                    ],
-                    "components": [
-                        "./sources/frontend/mobile-app"
-                    ]
-                }
-            ]
-        },
-        {
-            "day": 7,
-            "context_file": ".ai/.plan/.context/phase-2.context.blueprint.md",
-            "context_section": "DAY 7",
-            "sub_tasks": [
-                {
-                    "id": "D7_ST1",
-                    "agent": "Reviewer",
-                    "desc": "Reviewer Agent: No description provided",
-                    "targeted_tags": [
-                        "[REQ-020]",
-                        "[REQ-021]"
-                    ],
-                    "components": [
-                        "./sources/frontend/mobile-app"
+                        "./sources/backend/src/controllers/courses.controller.ts"
                     ]
                 }
             ]
