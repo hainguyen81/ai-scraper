@@ -44,6 +44,7 @@ class AbstractAgent(ABC):
         self.agent_name = self.get_kwargs(key="agent_name") or self.agent_id
         self.language = self.get_kwargs(key="language") or DEFAULT_OUTPUT_LANGUAGE
         self.logger = get_logger(self.agent_name or self.agent_id)
+        self.logger.info(f"🚀 Kick-off Agent: {self.agent_name} | ID: {self.agent_id} | Language: {self.language}")
         self.debug = self.get_kwargs(key="verbose")
         if self.debug:
             self.enabled_log_debug()

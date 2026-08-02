@@ -54,22 +54,25 @@ Every header and table parameter below MUST be translated and naturally rendered
 - **Strict Tester Target Path Syntax:** Any component targeted by a Tester Sub-Agent must be structured as a strict semi-colon separated pair `<source_component_or_token>;<test_suite_file_to_execute>`. Both paths inside the pair MUST begin with `./sources/`.
 
 ## 📁 4. HIGH-LEVEL MULTI-PHASE ARCHITECTURAL SYNOPSIS GRID
-# Generate a clean, highly structured Markdown Table mapping the exact distribution of components and Tag IDs across the dynamically calculated phases. (Maximum allowed limit ceiling: {{ num_phases }} phases). Each row MUST specify a calendar duration strictly bounded between 1 to {{ max_days_per_phase }} days maximum. Do NOT generate empty rows or placeholder steps if the BA scope has been fully covered.
+Generate a clean, highly structured Markdown Table mapping the exact distribution of components and Tag IDs across the dynamically calculated phases. You MUST compute the most optimal number of phases (denoted as N, where N <= {{ num_phases }}) that naturally and completely covers 100% of the BA requirements and Tag IDs. Each row MUST specify a real-world engineering duration bounded between 1 to a strict upper ceiling of {{ max_days_per_phase }} days maximum per phase. Do NOT generate empty rows, placeholder phases, or artificial workloads. If the requirements are fully satisfied within fewer than {{ num_phases }} phases, terminate the matrix setup immediately at phase N.
 
 | Phase | Day Range | Architectural Component / Module Path | Technical Deliverables Summary | Assigned Sub-Agent | Targeted Tag IDs |
 | :--- | :--- | :--- | :--- | :--- | :--- |
 
-## 📁 5. GRANULAR PHASE SPECIALIZATIONS & DAY-BY-DAY DELIVERABLES
-# You MUST exhaustively detail EVERY single active phase generated in Section 4. 
-# For EACH active phase, you MUST provide deep, production-ready implementation specifications matching the full granularity of the raw requirements, broken down into single isolated days from DAY 1 up to the dynamic freeze day (Maximum ceiling limit: {{ max_days_per_phase }} days per phase). No day ranges or empty padding allowed.
+## 5. GRANULAR PHASE SPECIALIZATIONS & DAY-BY-DAY DELIVERABLES
+# EQUAL MAPPING MANDATE: You MUST exhaustively repeat and render the structured block below for every single active phase that you have explicitly calculated and listed in the Section 4 Synopsis Table (from Phase 1 up to the exact final Phase N). Truncating, omitting, or stopping early before detailing all N calculated phases is a critical compliance violation.
+# STRICT ANTI-PADDING DAY LOGIC: Within each phase block, you MUST break down the tasks into standalone single integer day logs (e.g., DAY 1, DAY 2), running from DAY 1 up to the precise day required to complete that phase's workload (Strict Upper Limit: {{ max_days_per_phase }} days per phase). You MUST immediately trigger a Day-Log Freeze and exit the current phase loop on the exact day when all tasks allocated to this specific phase are fully satisfied. Generating fake features, duplicate testing logs, or hollow administrative tasks just to stretch the schedule up to {{ max_days_per_phase }} days is strictly banned.
+# SINGLE AGENT & FORMAT ENFORCEMENT: For each day, ensure that only ONE Sub-Agent is assigned per task line. The Sub-Agent name MUST strictly use capitalized first-letter formatting (e.g., DAY 1: [Coder] ...). All target paths and Tag IDs must strictly mirror the original BA baseline configuration without additions.
 
-### 🔹 Phase [X] Detailed Architectural Specification
+<!--START_DELIMITTER-->
+### Phase [X] Detailed Architectural Specification
+*(Note: Replace [X] with the active sequential phase number from 1 to N)*
 - **Phase Core Objective & Purpose:** [Detailed technical explanation of what this phase achieves and its functional goals]
 - **Target Physical Directory Matrix Map:** List all specific file paths underneath `./sources/` initialized or modified in this phase. Every single line path generated MUST be appended with its tracking Tag IDs inline.
 - **Database Schema DDL SQL Specification [DAT-XXX]:** Provide raw, complete, and valid DDL SQL migration statements containing explicit columns, data types, primary/foreign keys, matrix mappings, indexes, and nullability constraints applied under this phase scope. (Omit entirely if the project topology has no database or persistence layer requirements).
 - **API and Event Routing Contracts [REQ-XXX], [ARC-XXX]:** Document the complete technical contracts (precise endpoint paths, HTTP methods, request/response JSON payload schemas, or message broker topic configurations).
-- **Phase Localized Exception Handlers [EXC-XXX]:** Detail explicit business validation rules, error codes, and system fallback logic states handled under this phase.
-- **Enterprise Business Core Code Sample:** Provide high-fidelity, non-blocking asynchronous domain source code snippets using standard enterprise idioms matching the detected stack framework to guide the implementation layer.
+- **Phase Localized Exception Handlers [EXC-XXX]:** Detail explicit business validation rules, error codes, and system exception handling pathways mapping strictly to the current phase scope.
+<!--END_DELIMITTER-->
 
 #### 📅 Chronological Day-by-Day Sub-Agent Task Distribution Logs (Maximum ceiling limit: {{ max_days_per_phase }} Days per phase)
 # Enforce the 'Longitructural Day Partitioning' and 'Anti-Padding Mandate' rules. Output each active day as an isolated standalone single integer subsection header. Freeze and terminate immediately once all BA tracking codes mapped to this phase are fully covered.
