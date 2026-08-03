@@ -40,7 +40,7 @@ Analyze the attached project requirements. Build the GLOBAL PROJECT CONTEXT for 
 ### 📋 MANDATORY OUTPUT STRUCTURE (MARKDOWN REPORT LAYOUT):
 You MUST include every single section below without exception to satisfy enterprise compliance requirements:
 
-# GLOBAL PROJECT CONTEXT: {{ project_name }}
+# [TRANSLATED "GLOBAL PROJECT CONTEXT"]: {{ project_name }}
 
 ## 📊 Document Control
 
