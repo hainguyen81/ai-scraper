@@ -20,7 +20,13 @@ SYSTEM_PROMPT_TEMPLATE      = "prompt.system.planner.md"
 USER_PROMPT_TEMPLATE        = "prompt.user.planner.md"
 
 PLANNER_RAW_FILE            = "marketing-planner.md"
+RESPONDER_REF_RAW_FILE      = "marketing-planner-for-responder.md"
 PLANNER_LOG_FILE            = "marketing-planner_log.md"
+
+DELIMITER_PLANNER_START     = "<!--START_GOVERNANCE_REPORT-->"
+DELIMITER_PLANNER_END       = "<!--END_GOVERNANCE_REPORT-->"
+DELIMITER_RESPONDER_START   = "<!--START_RESPONDER_PAYLOAD-->"
+DELIMITER_RESPONDER_END     = "<!--END_RESPONDER_PAYLOAD-->"
 
 class EnterpriseMarketingPlannerAgent(AbstractMarketingAgent):
     def __init__(self, **kwargs):
@@ -48,11 +54,43 @@ class EnterpriseMarketingPlannerAgent(AbstractMarketingAgent):
         if not response_data:
             raise RuntimeError("❌ Invalid AI raw response: No data to process")
         
-        # write storage planner
+        # -------------------------------------------------------------
+        # ZONE 1 EXTRACTION FLOW: The C-Suite Governance Report
+        # -------------------------------------------------------------
+        planner_start_idx = str(response_data).find(DELIMITER_PLANNER_START)
+        planner_end_idx = str(response_data).find(DELIMITER_PLANNER_END)
+        raw_planner_report = None
+
+        if planner_start_idx != -1 and planner_end_idx != -1 and planner_start_idx < planner_end_idx:
+            # Shift index forward to exclude the raw opening comment token itself
+            actual_start = planner_start_idx + len(DELIMITER_PLANNER_START)
+            raw_planner_report = response_data[actual_start:planner_end_idx].strip()
+        else:
+            raw_planner_report = response_data  # Fallback to the entire response if delimiters are not found
+        
+        # write storage planner report
         write_file(
             file=self.__storage_path__(storage_name="storage_marketing", file=f"{self.project_name}/{PLANNER_RAW_FILE}"),
-            data=response_data
+            data=raw_planner_report
         )
+        
+        # -------------------------------------------------------------
+        # ZONE 2 EXTRACTION FLOW: The Downstream Bot Knowledge Base
+        # -------------------------------------------------------------
+        responder_start_idx = str(response_data).find(DELIMITER_RESPONDER_START)
+        responder_end_idx = str(response_data).find(DELIMITER_RESPONDER_END)
+        raw_responder_payload = None
+
+        if responder_start_idx != -1 and responder_end_idx != -1 and responder_start_idx < responder_end_idx:
+            # Shift index forward to exclude the raw opening comment token itself
+            actual_start = responder_start_idx + len(DELIMITER_RESPONDER_START)
+            raw_responder_payload = response_data[actual_start:responder_end_idx].strip()
+
+            # write storage responder payload for downstream bot knowledge base
+            write_file(
+                file=self.__storage_path__(storage_name="storage_marketing", file=f"{self.project_name}/{RESPONDER_REF_RAW_FILE}"),
+                data=raw_responder_payload
+            )
         
         # export raw response if necessary as log tracing
         raw_response = self.get_kwargs_by_key(key="raw_response", **kwargs)
