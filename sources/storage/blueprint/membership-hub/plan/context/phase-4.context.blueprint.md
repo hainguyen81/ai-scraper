@@ -1,137 +1,95 @@
-# Giai đoạn 4: <!--PHASE_NAME_START-->studentCardsService<!--PHASE_NAME_END--> | Mô tả: Thiết kế, triển khai và kiểm thử dịch vụ thẻ hội viên, bao gồm định nghĩa bảng dữ liệu, DTO, API REST, logic xử lý, kiểm thử, tài liệu, và tuân thủ OWASP.
+# Giai đoạn 4: <!--PHASE_NAME_START-->attendance_enrollment_module<!--PHASE_NAME_END--> | Mô tả: Triển khai module ghi danh học viên, điểm danh QR, và quản lý thẻ hội viên với service điểm danh QR idempotent, xử lý ngoại lệ network và duplicate scans, và tích hợp với hệ thống thông báo
 
-## 📊 Document Control
+## 📊 Kiểm soát tài liệu
 
 | Mục | Chi tiết |
 | :--- | :--- |
-| **ID Kiến trúc** | ARCH-20260802135007 |
-| **Tên Dự án** | membership-hub |
+| **ID Blueprint** | ARCH-20260803053505 |
+| **Tên dự án** | membership-hub |
 | **Giai đoạn** | 4 |
-| **Tên Giai đoạn Kỹ thuật** | <!--PHASE_NAME_START-->studentCardsService<!--PHASE_NAME_END--> |
-| **Mô tả** | Thiết kế, triển khai và kiểm thử dịch vụ thẻ hội viên, bao gồm định nghĩa bảng dữ liệu, DTO, API REST, logic xử lý, kiểm thử, tài liệu, và tuân thủ OWASP. |
+| **Tên kỹ thuật giai đoạn** | <!--PHASE_NAME_START-->attendance_enrollment_module<!--PHASE_NAME_END--> |
+| **Mô tả** | Triển khai module ghi danh học viên, điểm danh QR, và quản lý thẻ hội viên với service điểm danh QR idempotent, xử lý ngoại lệ network và duplicate scans, và tích hợp với hệ thống thông báo |
 | **Phiên bản** | 1.0 (Baseline) |
-| **Ngày/Thời gian** | 2026/08/02 13:50:07 |
+| **Ngày/Giờ** | 2026/08/03 05:35:05 |
 | **Tác giả** | Enterprise System Architect (SA Agent) |
 | **Phê duyệt** | Pending Technical Governance Review |
 
-## 1. Phạm vi và Mục tiêu Giai đoạn
-Giai đoạn 4 tập trung vào việc xây dựng dịch vụ thẻ hội viên (`StudentCards`) cho membership‑hub. Công việc bao gồm:
-- Định nghĩa bảng dữ liệu `StudentCards` (DAT-007) với các ràng buộc, chỉ mục và tính toán ngày còn lại.
-- Thiết kế DTO và API REST `/studentcards` (REQ-014) đáp ứng yêu cầu hiển thị và gia hạn thẻ.
-- Xây dựng lớp `StudentCardService` và `StudentCardController` với logic xử lý, tính ngày còn lại, và cập nhật thời hạn thẻ.
-- Kiểm thử đơn vị và tích hợp, đảm bảo độ phủ ≥ 85 % và tuân thủ OWASP (SQLi, XSS, CSRF, CSP).
-- Tài liệu API (OpenAPI/Swagger) và hướng dẫn sử dụng, lưu trữ trong `./sources/backend/studentcards/docs`.
-- Đánh giá static code, bảo mật, và kiểm tra tuân thủ NFR.
+## 1. Phạm vi hoạt động và mục tiêu giai đoạn
 
-## 2. Phạm vi Kỹ thuật & Giới hạn Thư mục
-| Đường dẫn tuyệt đối | Mô tả |
-| :--- | :--- |
-| `./sources/backend/studentcards` | Dịch vụ thẻ hội viên (Java/Quarkus) |
-| `./sources/backend/studentcards/src/main/java/org/nlh4j/sources/studentcards` | Package Java chính |
-| `./sources/backend/studentcards/src/main/resources/db/migration` | DDL SQL migration |
-| `./sources/backend/studentcards/src/main/java/org/nlh4j/sources/studentcards/dto` | DTOs |
-| `./sources/backend/studentcards/src/main/java/org/nlh4j/sources/studentcards/service` | Service layer |
-| `./sources/backend/studentcards/src/main/java/org/nlh4j/sources/studentcards/controller` | REST controller |
-| `./sources/backend/studentcards/src/test/java/org/nlh4j/sources/studentcards` | Unit & integration tests |
-| `./sources/backend/studentcards/docs` | Tài liệu API & hướng dẫn |
+Giai đoạn này tập trung vào việc xây dựng module quản lý ghi danh, điểm danh và thẻ hội viên với các chức năng chính:
 
-Endpoint chính:
-- `GET /studentcards/{studentId}` – lấy thông tin thẻ, ngày còn lại.
-- `POST /studentcards/{studentId}/extend` – gia hạn thẻ, cập nhật `issueDate` và `validityDays`.
+- Triển khai schema cơ sở dữ liệu cho bảng Enrollments, Attendance và StudentCards với các ràng buộc toàn vẹn dữ liệu
+- Xây dựng dịch vụ ghi danh học viên vào khóa học với validation nghiêm ngặt
+- Triển khai API điểm danh QR idempotent đảm bảo không có bản ghi trùng lặp
+- Thiết lập cơ chế xử lý ngoại lệ network và duplicate scans
+- Triển khai chức năng quản lý thẻ hội viên với tính năng gia hạn
+- Tích hợp với hệ thống thông báo tự động cho các sự kiện ghi danh và điểm danh
+- Triển khai hệ thống logging kiểm toán đáp ứng các tiêu chuẩn bảo mật doanh nghiệp
 
-## 3. Hướng dẫn Đặc thù cho Mỗi Agent
-- **Coder**: Viết mã nguồn Java, DDL, DTO, service, controller, và test. Tuân thủ quy tắc OWASP, sử dụng prepared statements, và kiểm tra bảo mật.
-- **Tester**: Viết unit tests (JUnit 5) và integration tests (REST Assured). Đảm bảo coverage ≥ 85 % và kiểm tra các trường hợp ngoại lệ.
-- **Reviewer**: Thực hiện static code analysis (SonarQube), kiểm tra tuân thủ OWASP, và rà soát cú pháp Java.
-- **Doc**: Tạo tài liệu API (OpenAPI/Swagger) và hướng dẫn sử dụng, lưu trữ trong `docs`.
-- **Docker / GCP / GKE**: Không áp dụng trong giai đoạn này.
+## 2. Phạm vi kỹ thuật và ranh giới thư mục được phép
 
-## 4. Định nghĩa Hoàn thành (DoD)
-- Bảng `StudentCards` được tạo thành công trong PostgreSQL (DAT-007).
-- API `/studentcards` đáp ứng yêu cầu [REQ-014] với mã trạng thái HTTP phù hợp.
-- Service và controller tuân thủ OWASP (SQLi, XSS, CSRF, CSP) và được kiểm tra static code.
-- Unit test coverage ≥ 85 % cho `StudentCardService`; integration test coverage ≥ 80 % cho `StudentCardController`.
-- Tài liệu API và hướng dẫn sử dụng hoàn chỉnh, lưu trữ trong `docs`.
-- 100 % tag ID được map trong logs.
+**Thư mục và tệp được phép:**
+- `./sources/backend.membershiphub.attendance/enrollments.sql` - DDL schema cho bảng Enrollments
+- `./sources/backend.membershiphub.attendance/attendances.sql` - DDL schema cho bảng Attendance
+- `./sources/backend.membershiphub.attendance/studentcards.sql` - DDL schema cho bảng StudentCards
+- `./sources/backend.membershiphub.attendance/enrollment-service.java` - Dịch vụ chính quản lý ghi danh và điểm danh
+- `./sources/backend.membershiphub.attendance/studentcard-service.java` - Dịch vụ quản lý thẻ hội viên
 
-## 5. DAY-BY-DAY ARCHITECTURAL EXECUTION LOGS
+**Endpoint API:**
+- `GET /api/v1/courses/browse` - Lấy danh sách khóa học có sẵn cho học viên
+- `POST /api/v1/enrollments` - Ghi danh học viên vào khóa học
+- `POST /api/v1/attendance/scan` - Quét mã QR điểm danh
+- `GET /api/v1/studentcards/{studentId}` - Lấy thông tin thẻ hội viên
+- `POST /api/v1/studentcards/{studentId}/renew` - Gia hạn thẻ hội viên
 
-### DAY 1: TẠO BẢNG VÀ ĐỊNH NGHĨA DDL
+## 3. Chỉ đạo chức năng cho Sub-Agent chuyên dụng
 
-#### SUB-TASK 1.1: Xây dựng file DDL cho bảng StudentCards
-##### Được giao Agent: Coder
-##### Thành phần & Yêu cầu kỹ thuật:
-* **Đường dẫn**: `./sources/backend/studentcards/src/main/resources/db/migration/V001__create_studentcards_table.sql`
-* **Thẻ Định danh**: <!--START_TAGS-->[DAT-007]<!--END_TAGS-->
-* **Traceability Tag Tokens:** <!--START_TAGS-->[DAT-007]<!--END_TAGS-->
+**Coder:** Triển khai mã nguồn Java/Quarkus với tuân thủ SOLID, sử dụng JPA/Hibernate cho persistence, áp dụng @Valid cho validation, @Transactional cho các thao tác ghi. Đảm bảo logic điểm danh QR idempotent hoạt động chính xác và xử lý ngoại lệ network đúng cách.
 
-#### SUB-TASK 1.2: Định nghĩa constraints và index
-##### Được giao Agent: Coder
-##### Thành phần & Yêu cầu kỹ thuật:
-* **Đường dẫn**: `./sources/backend/studentcards/src/main/resources/db/migration/V001__create_studentcards_table.sql`
-* **Thẻ Định danh**: <!--START_TAGS-->[DAT-007]<!--END_TAGS-->
-* **Traceability Tag Tokens:** <!--START_TAGS-->[DAT-007]<!--END_TAGS-->
+**Tester:** Xây dựng bộ kiểm thử JUnit 5 và Testcontainers với độ phủ mã ≥85%, kiểm thử happy path và các scenario lỗi network, duplicate scans, và validation.
 
-### DAY 2: XÂY ĐỀ CẤP DTO & API CONTRACT
+**Reviewer:** Thực hiện phân tích tĩnh mã nguồn, kiểm tra tuân thủ OWASP Top 10, đảm bảo không có lỗ hổng SQL injection hoặc XSS trong các API điểm danh và ghi danh.
 
-#### SUB-TASK 2.1: Tạo DTO StudentCardResponse
-##### Được giao Agent: Coder
-##### Thành phần & Yêu cầu kỹ thuật:
-* **Đường dẫn**: `./sources/backend/studentcards/src/main/java/org/nlh4j/sources/studentcards/dto/StudentCardResponse.java`
-* **Thẻ Định danh**: <!--START_TAGS-->[REQ-014]<!--END_TAGS-->
-* **Traceability Tag Tokens:** <!--START_TAGS-->[REQ-014]<!--END_TAGS-->
+**Doc:** Biên soạn tài liệu kỹ thuật đầy đủ bao gồm API documentation với OpenAPI, schema documentation và hướng dẫn triển khai cho module ghi danh và điểm danh.
 
-#### SUB-TASK 2.2: Xây dựng API contract JSON cho GET và POST
-##### Được giao Agent: Coder
-##### Thành phần & Yêu cầu kỹ thuật:
-* **Đường dẫn**: `./sources/backend/studentcards/src/main/java/org/nlh4j/sources/studentcards/controller/StudentCardController.java`
-* **Thẻ Định danh**: <!--START_TAGS-->[REQ-014]<!--END_TAGS-->
-* **Traceability Tag Tokens:** <!--START_TAGS-->[REQ-014]<!--END_TAGS-->
+## 4. Định nghĩa hoàn thành (DoD) cho giai đoạn
 
-### DAY 3: XÂY ĐỀ CẤP SERVICE & CONTROLLER
+- ✅ 100% các requirement [REQ-010], [REQ-011], [REQ-012], [REQ-013], [REQ-014], [REQ-015] được triển khai đầy đủ
+- ✅ Schema database [DAT-005], [DAT-006], [DAT-007] được tạo thành công với tất cả ràng buộc
+- ✅ Logic điểm danh QR idempotent hoạt động chính xác
+- ✅ Xử lý ngoại lệ network và duplicate scans [EXC-001], [EXC-002]
+- ✅ Tuân thủ các tiêu chuẩn bảo mật [NFR-001], [NFR-003]
+- ✅ Độ phủ kiểm thử ≥85% cho tất cả các dịch vụ
+- ✅ 100% các Tag ID được ánh xạ và kiểm tra
 
-#### SUB-TASK 3.1: Triển khai StudentCardService với logic tính ngày còn lại
-##### Được giao Agent: Coder
-##### Thành phần & Yêu cầu kỹ thuật:
-* **Đường dẫn**: `./sources/backend/studentcards/src/main/java/org/nlh4j/sources/studentcards/service/StudentCardService.java`
-* **Thẻ Định danh**: <!--START_TAGS-->[REQ-014], [DAT-007]<!--END_TAGS-->
-* **Traceability Tag Tokens:** <!--START_TAGS-->[REQ-014], [DAT-007]<!--END_TAGS-->
+## 5. NHẬT KÝ THỰC THI KIẾN TRÚC THEO NGÀY
 
-#### SUB-TASK 3.2: Xây dựng StudentCardController với endpoint GET/POST
-##### Được giao Agent: Coder
-##### Thành phần & Yêu cầu kỹ thuật:
-* **Đường dẫn**: `./sources/backend/studentcards/src/main/java/org/nlh4j/sources/studentcards/controller/StudentCardController.java`
-* **Thẻ Định danh**: <!--START_TAGS-->[REQ-014], [DAT-007]<!--END_TAGS-->
-* **Traceability Tag Tokens:** <!--START_TAGS-->[REQ-014], [DAT-007]<!--END_TAGS-->
+### NGÀY 7: TRIỂN KHAI SERVICE GHI DANH HỌC VIÊN VÀ ĐIỂM DANH QR
 
-### DAY 4: KIỂM THỬ ĐƠN VỊ
+#### SUB-TASK 7.1: Triển khai schema cơ sở dữ liệu Enrollments, Attendance và StudentCards
+##### Sub-Agent được chỉ định: Coder
+##### Các thành phần mục tiêu và yêu cầu kỹ thuật:
+* **Đường dẫn mục tiêu:** `./sources/backend.membershiphub.attendance/enrollments.sql`
+* **Các thẻ truy xuất nguồn gốc:** <!--START_TAGS-->[DAT-005]<!--END_TAGS-->
 
-#### SUB-TASK 4.1: Viết unit test cho StudentCardService
-##### Được giao Agent: Tester
-##### Thành phần & Yêu cầu kỹ thuật:
-* **Đường dẫn**: `./sources/backend/studentcards/src/test/java/org/nlh4j/sources/studentcards/service/StudentCardServiceTest.java`
-* **Thẻ Định danh**: <!--START_TAGS-->[REQ-014]<!--END_TAGS-->
-* **Traceability Tag Tokens:** <!--START_TAGS-->[REQ-014]<!--END_TAGS-->
+#### SUB-TASK 7.2: Triển khai EnrollmentService với các phương thức ghi danh và điểm danh QR idempotent
+##### Sub-Agent được chỉ định: Coder
+##### Các thành phần mục tiêu và yêu cầu kỹ thuật:
+* **Đường dẫn mục tiêu:** `./sources/backend.membershiphub.attendance/enrollment-service.java`
+* **Các thẻ truy xuất nguồn gốc:** <!--START_TAGS-->[REQ-010], [REQ-011], [REQ-012], [REQ-013], [DAT-005], [DAT-006], [DAT-007], [ARC-007], [EXC-001], [EXC-002], [NFR-001], [NFR-003]<!--END_TAGS-->
 
-### DAY 5: KIỂM THỬ TÍNH TỔNG, RÀU SOÁT, VÀ TÀI LIỆU
+### NGÀY 8: TRIỂN KHAI SERVICE QUẢN LÝ THẺ HỘI VIÊN VÀ GIA HẠN
 
-#### SUB-TASK 5.1: Viết integration test cho StudentCardController
-##### Được giao Agent: Tester
-##### Thành phần & Yêu cầu kỹ thuật:
-* **Đường dẫn**: `./sources/backend/studentcards/src/test/java/org/nlh4j/sources/studentcards/controller/StudentCardControllerIT.java`
-* **Thẻ Định danh**: <!--START_TAGS-->[REQ-014]<!--END_TAGS-->
-* **Traceability Tag Tokens:** <!--START_TAGS-->[REQ-014]<!--END_TAGS-->
+#### SUB-TASK 8.1: Triển khai StudentCardService với các phương thức quản lý thẻ và gia hạn
+##### Sub-Agent được chỉ định: Coder
+##### Các thành phần mục tiêu và yêu cầu kỹ thuật:
+* **Đường dẫn mục tiêu:** `./sources/backend.membershiphub.attendance/studentcard-service.java`
+* **Các thẻ truy xuất nguồn gốc:** <!--START_TAGS-->[REQ-014], [REQ-015], [DAT-007], [NFR-003]<!--END_TAGS-->
 
-#### SUB-TASK 5.2: Thực hiện static code review và OWASP kiểm tra
-##### Được giao Agent: Reviewer
-##### Thành phần & Yêu cầu kỹ thuật:
-* **Đường dẫn**: `./sources/backend/studentcards/src/main/java/org/nlh4j/sources/studentcards`
-* **Thẻ Định danh**: <!--START_TAGS-->[REQ-014]<!--END_TAGS-->
-* **Traceability Tag Tokens:** <!--START_TAGS-->[REQ-014]<!--END_TAGS-->
+### NGÀY 9: VIẾT BỘ KIỂM TRA TÍCH HỢP CHO GHI DANH, ĐIỂM DANH, VÀ THẺ
 
-#### SUB-TASK 5.3: Tạo tài liệu API và hướng dẫn sử dụng
-##### Được giao Agent: Doc
-##### Thành phần & Yêu cầu kỹ thuật:
-* **Đường dẫn**: `./sources/backend/studentcards/docs/studentcards_api.md`
-* **Thẻ Định danh**: <!--START_TAGS-->[REQ-014]<!--END_TAGS-->
-* **Traceability Tag Tokens:** <!--START_TAGS-->[REQ-014]<!--END_TAGS-->
+#### SUB-TASK 9.1: Kiểm thử tích hợp cho các API ghi danh, điểm danh và quản lý thẻ
+##### Sub-Agent được chỉ định: Tester
+##### Các thành phần mục tiêu và yêu cầu kỹ thuật:
+* **Đường dẫn mục tiêu:** `./sources/backend.membershiphub.attendance/enrollment-service.java;./sources/backend.membershiphub.attendance/enrollmentservice-integration-test.java`
+* **Các thẻ truy xuất nguồn gốc:** <!--START_TAGS-->[REQ-010], [REQ-011], [REQ-012], [REQ-013], [DAT-005], [DAT-006], [DAT-007], [ARC-007], [EXC-001], [EXC-002]<!--END_TAGS-->

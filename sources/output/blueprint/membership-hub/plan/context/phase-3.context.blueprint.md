@@ -1,112 +1,86 @@
-# Giai đoạn 3: <!--PHASE_NAME_START-->attendanceService<!--PHASE_NAME_END--> | Mô tả: Thiết kế, triển khai và kiểm thử dịch vụ điểm danh QR cho membership-hub, bao gồm định nghĩa bảng dữ liệu, API REST, xử lý ngoại lệ, và tích hợp bảo mật OWASP.
+# Giai đoạn 3: <!--PHASE_NAME_START-->course_management_module<!--PHASE_NAME_END--> | Mô tả: Triển khai module quản lý khóa học bao gồm danh sách khóa học công khai, CRUD khóa học với kiểm tra xung đột lịch giảng, gán giáo viên, và tích hợp với RBAC cho Manager và System/Center Admin
 
-## 📊 Document Control
+## 📊 Kiểm soát tài liệu
 
 | Mục | Chi tiết |
 | :--- | :--- |
-| **ID Kiến trúc** | ARCH-20260802135007 |
-| **Tên Dự án** | membership-hub |
+| **ID Blueprint** | ARCH-20260803053505 |
+| **Tên dự án** | membership-hub |
 | **Giai đoạn** | 3 |
-| **Tên Giai đoạn Kỹ thuật** | <!--PHASE_NAME_START-->attendanceService<!--PHASE_NAME_END--> |
-| **Mô tả** | Thiết kế, triển khai và kiểm thử dịch vụ điểm danh QR cho membership-hub, bao gồm định nghĩa bảng dữ liệu, API REST, xử lý ngoại lệ, và tích hợp bảo mật OWASP. |
+| **Tên kỹ thuật giai đoạn** | <!--PHASE_NAME_START-->course_management_module<!--PHASE_NAME_END--> |
+| **Mô tả** | Triển khai module quản lý khóa học bao gồm danh sách khóa học công khai, CRUD khóa học với kiểm tra xung đột lịch giảng, gán giáo viên, và tích hợp với RBAC cho Manager và System/Center Admin |
 | **Phiên bản** | 1.0 (Baseline) |
-| **Ngày/Thời gian** | 2026/08/02 13:50:07 |
+| **Ngày/Giờ** | 2026/08/03 05:35:05 |
 | **Tác giả** | Enterprise System Architect (SA Agent) |
 | **Phê duyệt** | Pending Technical Governance Review |
 
-## 1. Phạm vi và Mục tiêu Giai đoạn
-Giai đoạn 3 tập trung vào việc xây dựng dịch vụ điểm danh (attendance) cho membership-hub. Công việc bao gồm:
-- Định nghĩa bảng dữ liệu `Attendance` (DAT-006) với các ràng buộc và chỉ mục phù hợp.
-- Thiết kế API REST `/attendance` (REQ-012) để ghi nhận điểm danh qua QR, đồng thời hỗ trợ phản hồi trạng thái “đã ghi nhận” (REQ-013).
-- Xây dựng logic xử lý ngoại lệ: mạng không ổn định (EXC-001) và điểm danh trùng lặp (EXC-002).
-- Tích hợp bảo mật OWASP (XSS, CSRF, CSP) trong toàn bộ lớp service và controller.
-- Kiểm thử đơn vị và tích hợp, đảm bảo độ phủ ≥ 85 % và đáp ứng các tiêu chí NFR.
+## 1. Phạm vi hoạt động và mục tiêu giai đoạn
 
-## 2. Phạm vi Kỹ thuật & Giới hạn Thư mục
-| Đường dẫn tuyệt đối | Mô tả |
-| :--- | :--- |
-| `./sources/backend/attendance` | Dịch vụ điểm danh (Java/Quarkus) |
-| `./sources/backend/attendance/src/main/java/org/nlh4j/sources/attendance` | Package Java chính |
-| `./sources/backend/attendance/src/main/resources/db/migration` | DDL SQL migration |
-| `./sources/backend/attendance/src/test/java/org/nlh4j/sources/attendance` | Unit & integration tests |
-| `./sources/backend/attendance/src/main/resources/static` | Tài nguyên tĩnh (nếu cần) |
-| `./sources/backend/attendance/src/main/resources/logging` | Cấu hình logging |
+Giai đoạn này tập trung vào việc xây dựng module quản lý khóa học với các chức năng chính:
 
-Endpoint routing:
-- `POST /attendance` – ghi nhận điểm danh.
-- `GET /attendance/{studentId}/{courseId}` – kiểm tra trạng thái điểm danh (tùy chọn).
+- Triển khai schema cơ sở dữ liệu cho bảng Courses với các ràng buộc toàn vẹn dữ liệu
+- Xây dựng dịch vụ CRUD đầy đủ cho quản lý khóa học với validation nghiêm ngặt
+- Triển khai API danh sách khóa học công khai cho tất cả người dùng đã xác thực
+- Thiết lập cơ chế kiểm tra xung đột lịch giảng để đảm bảo giáo viên không bị trùng lịch
+- Triển khai chức năng gán giáo viên vào khóa học với thông báo tự động
+- Tích hợp với RBAC cho Manager và System/Center Admin với phân quyền chi tiết
+- Triển khai hệ thống logging kiểm toán đáp ứng các tiêu chuẩn bảo mật doanh nghiệp
 
-## 3. Hướng dẫn Hoạt động Đặc thù cho từng Agent
-- **Coder**: Viết mã nguồn Java, DDL, DTO, exception, unit tests, integration tests, và tài liệu API.
-- **Tester**: Viết và thực thi unit tests (JUnit 5) và integration tests (REST Assured), đảm bảo coverage ≥ 85 %.
-- **Reviewer**: Thực hiện static code analysis (SonarQube), kiểm tra tuân thủ OWASP, và rà soát cú pháp Java.
-- **Doc**: Tạo tài liệu API (OpenAPI/Swagger) và hướng dẫn sử dụng, lưu trữ trong `./sources/backend/attendance/docs`.
-- **Docker / GCP / GKE**: Không áp dụng trong giai đoạn này.
+## 2. Phạm vi kỹ thuật và ranh giới thư mục được phép
 
-## 4. Định nghĩa Hoàn thành Giai đoạn (DoD)
-- Bảng `Attendance` được tạo thành công trong PostgreSQL (DAT-006).
-- API `/attendance` đáp ứng các yêu cầu [REQ-012] và [REQ-013] với mã trạng thái HTTP phù hợp.
-- Các exception [EXC-001] và [EXC-002] được xử lý đúng cách và trả về thông báo rõ ràng.
-- Unit test coverage ≥ 85 % cho `AttendanceService` và `AttendanceController`.
-- Integration test coverage ≥ 80 % cho toàn bộ luồng điểm danh.
-- Static code analysis không phát hiện lỗi nghiêm trọng, tuân thủ OWASP.
-- Tài liệu API và hướng dẫn sử dụng hoàn chỉnh, lưu trữ trong `docs`.
-- 100 % tag ID được map trong logs.
+**Thư mục và tệp được phép:**
+- `./sources/backend.membershiphub.course/courses.sql` - DDL schema cho bảng Courses
+- `./sources/backend.membershiphub.course/course-service.java` - Dịch vụ chính quản lý khóa học
+- `./sources/backend.membershiphub.course/course-repository.java` - Repository JPA cho Courses
+- `./sources/backend.membershiphub.course/course-controller.java` - REST Controller cho API khóa học
 
-## 5. LỊCH THỰC HIỆN HÌNH THÁNH ĐỊA NGÀY
+**Endpoint API:**
+- `GET /api/v1/courses` - Lấy danh sách tất cả khóa học (công khai)
+- `POST /api/v1/courses` - Tạo khóa học mới (chỉ System Admin và Center Admin)
+- `PUT /api/v1/courses/{courseId}` - Cập nhật thông tin khóa học (chỉ System Admin và Center Admin)
+- `DELETE /api/v1/courses/{courseId}` - Xóa mềm khóa học (chỉ System Admin và Center Admin)
+- `POST /api/v1/courses/{courseId}/teachers/{teacherId}` - Gán giáo viên vào khóa học (chỉ System Admin)
 
-### DAY 1: THÊM ĐỊNH NGHĨA BẢNG VÀ API CƠ BẢN
+## 3. Chỉ đạo chức năng cho Sub-Agent chuyên dụng
 
-#### SUB-TASK 1.1: Tạo file DDL cho bảng Attendance
-##### Coder
-##### Thông tin Thành phần và Yêu cầu Kỹ thuật:
-* **Đường dẫn**: `./sources/backend/attendance/src/main/resources/db/migration/V001__create_attendance_table.sql`
-* **Thẻ Định danh**: <!--START_TAGS-->[DAT-006]<!--END_TAGS-->
+**Coder:** Triển khai mã nguồn Java/Quarkus với tuân thủ SOLID, sử dụng JPA/Hibernate cho persistence, áp dụng @Valid cho validation, @PreAuthorize cho phân quyền, và @Transactional cho các thao tác ghi. Đảm bảo logic kiểm tra xung đột lịch giảng hoạt động chính xác.
 
-#### SUB-TASK 1.2: Định nghĩa DTO và API contract cho điểm danh
-##### Coder
-##### Thông tin Thành phần và Yêu cầu Kỹ thuật:
-* **Đường dẫn**: `./sources/backend/attendance/src/main/java/org/nlh4j/sources/attendance/dto/AttendanceRequest.java`
-* **Thẻ Định danh**: <!--START_TAGS-->[REQ-012], [REQ-013]<!--END_TAGS-->
+**Tester:** Xây dựng bộ kiểm thử JUnit 5 và Testcontainers với độ phủ mã ≥85%, kiểm thử happy path và các scenario lỗi validation, xung đột lịch giảng, và phân quyền.
 
-#### SUB-TASK 1.3: Xây dựng skeleton AttendanceService và AttendanceController
-##### Coder
-##### Thông tin Thành phần và Yêu cầu Kỹ thuật:
-* **Đường dẫn**: `./sources/backend/attendance/src/main/java/org/nlh4j/sources/attendance/service/AttendanceService.java`
-* **Đường dẫn**: `./sources/backend/attendance/src/main/java/org/nlh4j/sources/attendance/controller/AttendanceController.java`
-* **Thẻ Định danh**: <!--START_TAGS-->[REQ-012], [REQ-013], [DAT-006]<!--END_TAGS-->
+**Reviewer:** Thực hiện phân tích tĩnh mã nguồn, kiểm tra tuân thủ OWASP Top 10, đảm bảo không có lỗ hổng SQL injection hoặc XSS trong các API khóa học.
 
-### DAY 2: XỬ LÝ EXCEPTION VÀ KIỂM THỬ ĐƠN VỊ
+**Doc:** Biên soạn tài liệu kỹ thuật đầy đủ bao gồm API documentation với OpenAPI, schema documentation và hướng dẫn triển khai cho module khóa học.
 
-#### SUB-TASK 2.1: Tạo exception classes cho mạng và trùng lặp
-##### Coder
-##### Thông tin Thành phần và Yêu cầu Kỹ thuật:
-* **Đường dẫn**: `./sources/backend/attendance/src/main/java/org/nlh4j/sources/attendance/exception/NetworkException.java`
-* **Đường dẫn**: `./sources/backend/attendance/src/main/java/org/nlh4j/sources/attendance/exception/DuplicateAttendanceException.java`
-* **Thẻ Định danh**: <!--START_TAGS-->[EXC-001], [EXC-002]<!--END_TAGS-->
+## 4. Định nghĩa hoàn thành (DoD) cho giai đoạn
 
-#### SUB-TASK 2.2: Viết unit tests cho AttendanceService
-##### Tester
-##### Thông tin Thành phần và Yêu cầu Kỹ thuật:
-* **Đường dẫn**: `./sources/backend/attendance/src/test/java/org/nlh4j/sources/attendance/service/AttendanceServiceTest.java`
-* **Thẻ Định danh**: <!--START_TAGS-->[REQ-012], [REQ-013], [EXC-001], [EXC-002]<!--END_TAGS-->
+- ✅ 100% các requirement [REQ-007], [REQ-008], [REQ-009] được triển khai đầy đủ
+- ✅ Schema database [DAT-004] được tạo thành công với tất cả ràng buộc
+- ✅ Logic kiểm tra xung đột lịch giảng hoạt động chính xác
+- ✅ Xử lý validation đầu vào và xung đột lịch giáo viên
+- ✅ Tuân thủ các tiêu chuẩn bảo mật [NFR-001], [NFR-002]
+- ✅ Độ phủ kiểm thử ≥85% cho tất cả các dịch vụ
+- ✅ 100% các Tag ID được ánh xạ và kiểm tra
 
-### DAY 3: KIỂM THỬ TÍNH TỔNG, RÀU SOÁT VÀ TÀI LIỆU
+## 5. NHẬT KÝ THỰC THI KIẾN TRÚC THEO NGÀY
 
-#### SUB-TASK 3.1: Viết integration test cho AttendanceController
-##### Tester
-##### Thông tin Thành phần và Yêu cầu Kỹ thuật:
-* **Đường dẫn**: `./sources/backend/attendance/src/test/java/org/nlh4j/sources/attendance/controller/AttendanceControllerIT.java`
-* **Thẻ Định danh**: <!--START_TAGS-->[REQ-012], [REQ-013], [EXC-001], [EXC-002], [DAT-006]<!--END_TAGS-->
+### NGÀY 5: TRIỂN KHAI SERVICE QUẢN LÝ KHÓA HỌC VÀ LOGIC TRÁNH XUNG ĐỘT
 
-#### SUB-TASK 3.2: Thực hiện static code analysis và OWASP review
-##### Reviewer
-##### Thông tin Thành phần và Yêu cầu Kỹ thuật:
-* **Đường dẫn**: `./sources/backend/attendance/src/main/java/org/nlh4j/sources/attendance`
-* **Thẻ Định danh**: <!--START_TAGS-->[REQ-012], [REQ-013], [EXC-001], [EXC-002], [DAT-006]<!--END_TAGS-->
+#### SUB-TASK 5.1: Triển khai schema cơ sở dữ liệu Courses
+##### Sub-Agent được chỉ định: Coder
+##### Các thành phần mục tiêu và yêu cầu kỹ thuật:
+* **Đường dẫn mục tiêu:** `./sources/backend.membershiphub.course/courses.sql`
+* **Các thẻ truy xuất nguồn gốc:** <!--START_TAGS-->[DAT-004]<!--END_TAGS-->
 
-#### SUB-TASK 3.3: Tạo tài liệu API và hướng dẫn sử dụng
-##### Doc
-##### Thông tin Thành phần và Yêu cầu Kỹ thuật:
-* **Đường dẫn**: `./sources/backend/attendance/docs/attendance_api.md`
-* **Thẻ Định danh**: <!--START_TAGS-->[REQ-012], [REQ-013], [EXC-001], [EXC-002], [DAT-006]<!--END_TAGS-->
+#### SUB-TASK 5.2: Triển khai CourseService với các phương thức CRUD và kiểm tra xung đột lịch
+##### Sub-Agent được chỉ định: Coder
+##### Các thành phần mục tiêu và yêu cầu kỹ thuật:
+* **Đường dẫn mục tiêu:** `./sources/backend.membershiphub.course/course-service.java`
+* **Các thẻ truy xuất nguồn gốc:** <!--START_TAGS-->[REQ-007], [REQ-008], [REQ-009], [DAT-004], [ARC-003], [NFR-001], [NFR-002]<!--END_TAGS-->
+
+### NGÀY 6: VIẾT BỘ KIỂM TRA CHO CÁC CHỨC NĂNG QUẢN LÝ KHÓA HỌC
+
+#### SUB-TASK 6.1: Kiểm thử tích hợp cho các API CRUD khóa học và logic xung đột
+##### Sub-Agent được chỉ định: Tester
+##### Các thành phần mục tiêu và yêu cầu kỹ thuật:
+* **Đường dẫn mục tiêu:** `./sources/backend.membershiphub.course/course-service.java;./sources/backend.membershiphub.course/courseservice-integration-test.java`
+* **Các thẻ truy xuất nguồn gốc:** <!--START_TAGS-->[REQ-007], [REQ-008], [REQ-009], [DAT-004], [ARC-003]<!--END_TAGS-->
