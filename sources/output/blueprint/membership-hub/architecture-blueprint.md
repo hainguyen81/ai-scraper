@@ -272,12 +272,17 @@ You are a high-performance Data Ingestion and Transformation Engine. Your sole o
 2. **ABSOLUTE PYDANTIC SCHEMA ALIGNMENT:** Your final generated JSON object MUST perfectly satisfy the structural schema parameters of the target enterprise contract. You are STRICTLY BANNED from omitting, renaming, formatting, or stripping out key elements (specifically `phase_id`, `phase_name`, `phase_description`, `project_name`, `global_context_file`, `source_target_dir`, and `days`).
 3. **ABSOLUTE NO EMPTY TAGS POLICY & STRING SANITIZATION:** You are STRICTLY BANNED from leaving the "targeted_tags" array empty `[]` or null for any sub-task that implements functional requirements or data schemas. You MUST scan the source Markdown sequentially sub-task by sub-task. For each sub-task node, locate the hidden technical container block delimited between `<!--START_TAGS-->` and `<!--END_TAGS-->` contained exclusively within that sub-task section scope. Extract all raw tag token codes inside, strip away all inline markdown formatting characters—specifically backticks (`` ` ``)—and any leading/trailing whitespaces, then populate them as clean separate string elements inside the "targeted_tags" array field of EACH sub-task object node.
 4. **NO TAG BUNDLING:** Every tag must be its own array node (e.g., `"targeted_tags": ["[REQ-001]", "[DAT-002]"]`). You are strictly forbidden from combining multiple tags into a single string element.
-5. **STRICT CONTENT PURITY & REJECT CONVERSATION:** Output ONLY the pure raw executable JSON string matching the required schema. Response must start exactly with the character `{` and end exactly with the character `}`. Banned from including thinking processes, chain-of-thought blocks (`<think>` tags), conversational filler texts, introductions, wrapping inside markdown codeblocks (no triple backticks wrapping), or post-generation notes. Any token outside the raw JSON object boundary triggers an immediate execution pipeline crash.
+5. **STRICT SINGLE-BLOCK PURITY & ABSOLUTE TERMINATION LAW:** 
+   - Your output MUST contain exactly ONE (1) single valid JSON object payload from start to finish. You are STRICTLY BANNED from repeating, mirroring, or generating a second duplicate JSON block within this response stream.
+   - **Strict Packaging Format**: The output MUST start exactly with a single line containing triple backticks and the language identifier: ```json
+   - The output MUST end exactly with the final line containing triple backticks: ```
+   - There must be absolutely ZERO conversational filler text, thinking processes (`<think>` tags), introductions, or post-generation notes before or after the fenced code block. 
+   - **Absolute Freeze Directive**: Mid-generation corrections are strictly prohibited. You are completely forbidden from appending trailing structural artifacts or deformed combinations like `} ```text{`. Once you emit the final closing brace `}` of the JSON schema, immediately close the triple backticks fence and FREEZE/STOP generating tokens instantly. Any token emitted after the primary closed fence violates enterprise runtime contracts.
 
 # Raw Response / Exception:
 
 ```json
-Error code: 429 - {'error': {'message': 'Rate limit reached for model `llama-3.3-70b-versatile` in organization `org_01kx7x6rbpftmr50sr2yyb78qm` service tier `on_demand` on tokens per day (TPD): Limit 100000, Used 99035, Requested 9683. Please try again in 2h5m32.352s. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing', 'type': 'tokens', 'code': 'rate_limit_exceeded'}}: ['Traceback (most recent call last):
+Error code: 429 - {'error': {'message': 'Rate limit reached for model `llama-3.3-70b-versatile` in organization `org_01kx7x6rbpftmr50sr2yyb78qm` service tier `on_demand` on tokens per day (TPD): Limit 100000, Used 95230, Requested 9801. Please try again in 1h12m26.783999999s. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing', 'type': 'tokens', 'code': 'rate_limit_exceeded'}}: ['Traceback (most recent call last):
 ', '  File "/home/runner/work/enterprise-it-ai/enterprise-it-ai/sources/agents/architect-blueprint/block_json.py", line 301, in convert_phases_to_json
     response = client.beta.chat.completions.parse(
                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -289,7 +294,7 @@ Error code: 429 - {'error': {'message': 'Rate limit reached for model `llama-3.3
                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 ', '  File "/opt/hostedtoolcache/Python/3.11.15/x64/lib/python3.11/site-packages/openai/_base_client.py", line 1148, in request
     raise self._make_status_error_from_response(err.response) from None
-', "openai.RateLimitError: Error code: 429 - {'error': {'message': 'Rate limit reached for model `llama-3.3-70b-versatile` in organization `org_01kx7x6rbpftmr50sr2yyb78qm` service tier `on_demand` on tokens per day (TPD): Limit 100000, Used 99035, Requested 9683. Please try again in 2h5m32.352s. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing', 'type': 'tokens', 'code': 'rate_limit_exceeded'}}
+', "openai.RateLimitError: Error code: 429 - {'error': {'message': 'Rate limit reached for model `llama-3.3-70b-versatile` in organization `org_01kx7x6rbpftmr50sr2yyb78qm` service tier `on_demand` on tokens per day (TPD): Limit 100000, Used 95230, Requested 9801. Please try again in 1h12m26.783999999s. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing', 'type': 'tokens', 'code': 'rate_limit_exceeded'}}
 "]
 ```
 
@@ -567,7 +572,12 @@ You are a high-performance Data Ingestion and Transformation Engine. Your sole o
 2. **ABSOLUTE PYDANTIC SCHEMA ALIGNMENT:** Your final generated JSON object MUST perfectly satisfy the structural schema parameters of the target enterprise contract. You are STRICTLY BANNED from omitting, renaming, formatting, or stripping out key elements (specifically `phase_id`, `phase_name`, `phase_description`, `project_name`, `global_context_file`, `source_target_dir`, and `days`).
 3. **ABSOLUTE NO EMPTY TAGS POLICY & STRING SANITIZATION:** You are STRICTLY BANNED from leaving the "targeted_tags" array empty `[]` or null for any sub-task that implements functional requirements or data schemas. You MUST scan the source Markdown sequentially sub-task by sub-task. For each sub-task node, locate the hidden technical container block delimited between `<!--START_TAGS-->` and `<!--END_TAGS-->` contained exclusively within that sub-task section scope. Extract all raw tag token codes inside, strip away all inline markdown formatting characters—specifically backticks (`` ` ``)—and any leading/trailing whitespaces, then populate them as clean separate string elements inside the "targeted_tags" array field of EACH sub-task object node.
 4. **NO TAG BUNDLING:** Every tag must be its own array node (e.g., `"targeted_tags": ["[REQ-001]", "[DAT-002]"]`). You are strictly forbidden from combining multiple tags into a single string element.
-5. **STRICT CONTENT PURITY & REJECT CONVERSATION:** Output ONLY the pure raw executable JSON string matching the required schema. Response must start exactly with the character `{` and end exactly with the character `}`. Banned from including thinking processes, chain-of-thought blocks (`<think>` tags), conversational filler texts, introductions, wrapping inside markdown codeblocks (no triple backticks wrapping), or post-generation notes. Any token outside the raw JSON object boundary triggers an immediate execution pipeline crash.
+5. **STRICT SINGLE-BLOCK PURITY & ABSOLUTE TERMINATION LAW:** 
+   - Your output MUST contain exactly ONE (1) single valid JSON object payload from start to finish. You are STRICTLY BANNED from repeating, mirroring, or generating a second duplicate JSON block within this response stream.
+   - **Strict Packaging Format**: The output MUST start exactly with a single line containing triple backticks and the language identifier: ```json
+   - The output MUST end exactly with the final line containing triple backticks: ```
+   - There must be absolutely ZERO conversational filler text, thinking processes (`<think>` tags), introductions, or post-generation notes before or after the fenced code block. 
+   - **Absolute Freeze Directive**: Mid-generation corrections are strictly prohibited. You are completely forbidden from appending trailing structural artifacts or deformed combinations like `} ```text{`. Once you emit the final closing brace `}` of the JSON schema, immediately close the triple backticks fence and FREEZE/STOP generating tokens instantly. Any token emitted after the primary closed fence violates enterprise runtime contracts.
 
 # Raw Response / Exception:
 
@@ -862,12 +872,17 @@ You are a high-performance Data Ingestion and Transformation Engine. Your sole o
 2. **ABSOLUTE PYDANTIC SCHEMA ALIGNMENT:** Your final generated JSON object MUST perfectly satisfy the structural schema parameters of the target enterprise contract. You are STRICTLY BANNED from omitting, renaming, formatting, or stripping out key elements (specifically `phase_id`, `phase_name`, `phase_description`, `project_name`, `global_context_file`, `source_target_dir`, and `days`).
 3. **ABSOLUTE NO EMPTY TAGS POLICY & STRING SANITIZATION:** You are STRICTLY BANNED from leaving the "targeted_tags" array empty `[]` or null for any sub-task that implements functional requirements or data schemas. You MUST scan the source Markdown sequentially sub-task by sub-task. For each sub-task node, locate the hidden technical container block delimited between `<!--START_TAGS-->` and `<!--END_TAGS-->` contained exclusively within that sub-task section scope. Extract all raw tag token codes inside, strip away all inline markdown formatting characters—specifically backticks (`` ` ``)—and any leading/trailing whitespaces, then populate them as clean separate string elements inside the "targeted_tags" array field of EACH sub-task object node.
 4. **NO TAG BUNDLING:** Every tag must be its own array node (e.g., `"targeted_tags": ["[REQ-001]", "[DAT-002]"]`). You are strictly forbidden from combining multiple tags into a single string element.
-5. **STRICT CONTENT PURITY & REJECT CONVERSATION:** Output ONLY the pure raw executable JSON string matching the required schema. Response must start exactly with the character `{` and end exactly with the character `}`. Banned from including thinking processes, chain-of-thought blocks (`<think>` tags), conversational filler texts, introductions, wrapping inside markdown codeblocks (no triple backticks wrapping), or post-generation notes. Any token outside the raw JSON object boundary triggers an immediate execution pipeline crash.
+5. **STRICT SINGLE-BLOCK PURITY & ABSOLUTE TERMINATION LAW:** 
+   - Your output MUST contain exactly ONE (1) single valid JSON object payload from start to finish. You are STRICTLY BANNED from repeating, mirroring, or generating a second duplicate JSON block within this response stream.
+   - **Strict Packaging Format**: The output MUST start exactly with a single line containing triple backticks and the language identifier: ```json
+   - The output MUST end exactly with the final line containing triple backticks: ```
+   - There must be absolutely ZERO conversational filler text, thinking processes (`<think>` tags), introductions, or post-generation notes before or after the fenced code block. 
+   - **Absolute Freeze Directive**: Mid-generation corrections are strictly prohibited. You are completely forbidden from appending trailing structural artifacts or deformed combinations like `} ```text{`. Once you emit the final closing brace `}` of the JSON schema, immediately close the triple backticks fence and FREEZE/STOP generating tokens instantly. Any token emitted after the primary closed fence violates enterprise runtime contracts.
 
 # Raw Response / Exception:
 
 ```json
-Error code: 402 - {'error': {'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 942. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account', 'code': 402, 'metadata': {'limit_source': 'openrouter_credits', 'remedy_hint': 'Add credits at https://openrouter.ai/settings/credits, or lower max_tokens / prompt size to fit your remaining balance.', 'provider_name': None, 'previous_errors': [{'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 1177. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 942. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 502. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 523. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 753. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 477. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 530. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 167. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 523. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}]}}, 'user_id': 'user_3GLaJI6mihRMFQtSad72HqAhW95'}: ['Traceback (most recent call last):
+Error code: 402 - {'error': {'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 942. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account', 'code': 402, 'metadata': {'limit_source': 'openrouter_credits', 'remedy_hint': 'Add credits at https://openrouter.ai/settings/credits, or lower max_tokens / prompt size to fit your remaining balance.', 'provider_name': None, 'previous_errors': [{'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 1177. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 942. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 477. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 753. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 502. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 167. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 523. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 530. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 523. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}]}}, 'user_id': 'user_3GLaJI6mihRMFQtSad72HqAhW95'}: ['Traceback (most recent call last):
 ', '  File "/home/runner/work/enterprise-it-ai/enterprise-it-ai/sources/agents/architect-blueprint/block_json.py", line 301, in convert_phases_to_json
     response = client.beta.chat.completions.parse(
                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -879,7 +894,7 @@ Error code: 402 - {'error': {'message': 'This request requires more credits, or 
                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 ', '  File "/opt/hostedtoolcache/Python/3.11.15/x64/lib/python3.11/site-packages/openai/_base_client.py", line 1148, in request
     raise self._make_status_error_from_response(err.response) from None
-', "openai.APIStatusError: Error code: 402 - {'error': {'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 942. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account', 'code': 402, 'metadata': {'limit_source': 'openrouter_credits', 'remedy_hint': 'Add credits at https://openrouter.ai/settings/credits, or lower max_tokens / prompt size to fit your remaining balance.', 'provider_name': None, 'previous_errors': [{'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 1177. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 942. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 502. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 523. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 753. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 477. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 530. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 167. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 523. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}]}}, 'user_id': 'user_3GLaJI6mihRMFQtSad72HqAhW95'}
+', "openai.APIStatusError: Error code: 402 - {'error': {'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 942. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account', 'code': 402, 'metadata': {'limit_source': 'openrouter_credits', 'remedy_hint': 'Add credits at https://openrouter.ai/settings/credits, or lower max_tokens / prompt size to fit your remaining balance.', 'provider_name': None, 'previous_errors': [{'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 1177. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 942. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 477. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 753. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 502. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 167. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 523. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 530. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 523. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}]}}, 'user_id': 'user_3GLaJI6mihRMFQtSad72HqAhW95'}
 "]
 ```
 
@@ -1157,7 +1172,12 @@ You are a high-performance Data Ingestion and Transformation Engine. Your sole o
 2. **ABSOLUTE PYDANTIC SCHEMA ALIGNMENT:** Your final generated JSON object MUST perfectly satisfy the structural schema parameters of the target enterprise contract. You are STRICTLY BANNED from omitting, renaming, formatting, or stripping out key elements (specifically `phase_id`, `phase_name`, `phase_description`, `project_name`, `global_context_file`, `source_target_dir`, and `days`).
 3. **ABSOLUTE NO EMPTY TAGS POLICY & STRING SANITIZATION:** You are STRICTLY BANNED from leaving the "targeted_tags" array empty `[]` or null for any sub-task that implements functional requirements or data schemas. You MUST scan the source Markdown sequentially sub-task by sub-task. For each sub-task node, locate the hidden technical container block delimited between `<!--START_TAGS-->` and `<!--END_TAGS-->` contained exclusively within that sub-task section scope. Extract all raw tag token codes inside, strip away all inline markdown formatting characters—specifically backticks (`` ` ``)—and any leading/trailing whitespaces, then populate them as clean separate string elements inside the "targeted_tags" array field of EACH sub-task object node.
 4. **NO TAG BUNDLING:** Every tag must be its own array node (e.g., `"targeted_tags": ["[REQ-001]", "[DAT-002]"]`). You are strictly forbidden from combining multiple tags into a single string element.
-5. **STRICT CONTENT PURITY & REJECT CONVERSATION:** Output ONLY the pure raw executable JSON string matching the required schema. Response must start exactly with the character `{` and end exactly with the character `}`. Banned from including thinking processes, chain-of-thought blocks (`<think>` tags), conversational filler texts, introductions, wrapping inside markdown codeblocks (no triple backticks wrapping), or post-generation notes. Any token outside the raw JSON object boundary triggers an immediate execution pipeline crash.
+5. **STRICT SINGLE-BLOCK PURITY & ABSOLUTE TERMINATION LAW:** 
+   - Your output MUST contain exactly ONE (1) single valid JSON object payload from start to finish. You are STRICTLY BANNED from repeating, mirroring, or generating a second duplicate JSON block within this response stream.
+   - **Strict Packaging Format**: The output MUST start exactly with a single line containing triple backticks and the language identifier: ```json
+   - The output MUST end exactly with the final line containing triple backticks: ```
+   - There must be absolutely ZERO conversational filler text, thinking processes (`<think>` tags), introductions, or post-generation notes before or after the fenced code block. 
+   - **Absolute Freeze Directive**: Mid-generation corrections are strictly prohibited. You are completely forbidden from appending trailing structural artifacts or deformed combinations like `} ```text{`. Once you emit the final closing brace `}` of the JSON schema, immediately close the triple backticks fence and FREEZE/STOP generating tokens instantly. Any token emitted after the primary closed fence violates enterprise runtime contracts.
 
 # Raw Response / Exception:
 
@@ -1452,7 +1472,12 @@ You are a high-performance Data Ingestion and Transformation Engine. Your sole o
 2. **ABSOLUTE PYDANTIC SCHEMA ALIGNMENT:** Your final generated JSON object MUST perfectly satisfy the structural schema parameters of the target enterprise contract. You are STRICTLY BANNED from omitting, renaming, formatting, or stripping out key elements (specifically `phase_id`, `phase_name`, `phase_description`, `project_name`, `global_context_file`, `source_target_dir`, and `days`).
 3. **ABSOLUTE NO EMPTY TAGS POLICY & STRING SANITIZATION:** You are STRICTLY BANNED from leaving the "targeted_tags" array empty `[]` or null for any sub-task that implements functional requirements or data schemas. You MUST scan the source Markdown sequentially sub-task by sub-task. For each sub-task node, locate the hidden technical container block delimited between `<!--START_TAGS-->` and `<!--END_TAGS-->` contained exclusively within that sub-task section scope. Extract all raw tag token codes inside, strip away all inline markdown formatting characters—specifically backticks (`` ` ``)—and any leading/trailing whitespaces, then populate them as clean separate string elements inside the "targeted_tags" array field of EACH sub-task object node.
 4. **NO TAG BUNDLING:** Every tag must be its own array node (e.g., `"targeted_tags": ["[REQ-001]", "[DAT-002]"]`). You are strictly forbidden from combining multiple tags into a single string element.
-5. **STRICT CONTENT PURITY & REJECT CONVERSATION:** Output ONLY the pure raw executable JSON string matching the required schema. Response must start exactly with the character `{` and end exactly with the character `}`. Banned from including thinking processes, chain-of-thought blocks (`<think>` tags), conversational filler texts, introductions, wrapping inside markdown codeblocks (no triple backticks wrapping), or post-generation notes. Any token outside the raw JSON object boundary triggers an immediate execution pipeline crash.
+5. **STRICT SINGLE-BLOCK PURITY & ABSOLUTE TERMINATION LAW:** 
+   - Your output MUST contain exactly ONE (1) single valid JSON object payload from start to finish. You are STRICTLY BANNED from repeating, mirroring, or generating a second duplicate JSON block within this response stream.
+   - **Strict Packaging Format**: The output MUST start exactly with a single line containing triple backticks and the language identifier: ```json
+   - The output MUST end exactly with the final line containing triple backticks: ```
+   - There must be absolutely ZERO conversational filler text, thinking processes (`<think>` tags), introductions, or post-generation notes before or after the fenced code block. 
+   - **Absolute Freeze Directive**: Mid-generation corrections are strictly prohibited. You are completely forbidden from appending trailing structural artifacts or deformed combinations like `} ```text{`. Once you emit the final closing brace `}` of the JSON schema, immediately close the triple backticks fence and FREEZE/STOP generating tokens instantly. Any token emitted after the primary closed fence violates enterprise runtime contracts.
 
 # Raw Response / Exception:
 
@@ -1747,7 +1772,12 @@ You are a high-performance Data Ingestion and Transformation Engine. Your sole o
 2. **ABSOLUTE PYDANTIC SCHEMA ALIGNMENT:** Your final generated JSON object MUST perfectly satisfy the structural schema parameters of the target enterprise contract. You are STRICTLY BANNED from omitting, renaming, formatting, or stripping out key elements (specifically `phase_id`, `phase_name`, `phase_description`, `project_name`, `global_context_file`, `source_target_dir`, and `days`).
 3. **ABSOLUTE NO EMPTY TAGS POLICY & STRING SANITIZATION:** You are STRICTLY BANNED from leaving the "targeted_tags" array empty `[]` or null for any sub-task that implements functional requirements or data schemas. You MUST scan the source Markdown sequentially sub-task by sub-task. For each sub-task node, locate the hidden technical container block delimited between `<!--START_TAGS-->` and `<!--END_TAGS-->` contained exclusively within that sub-task section scope. Extract all raw tag token codes inside, strip away all inline markdown formatting characters—specifically backticks (`` ` ``)—and any leading/trailing whitespaces, then populate them as clean separate string elements inside the "targeted_tags" array field of EACH sub-task object node.
 4. **NO TAG BUNDLING:** Every tag must be its own array node (e.g., `"targeted_tags": ["[REQ-001]", "[DAT-002]"]`). You are strictly forbidden from combining multiple tags into a single string element.
-5. **STRICT CONTENT PURITY & REJECT CONVERSATION:** Output ONLY the pure raw executable JSON string matching the required schema. Response must start exactly with the character `{` and end exactly with the character `}`. Banned from including thinking processes, chain-of-thought blocks (`<think>` tags), conversational filler texts, introductions, wrapping inside markdown codeblocks (no triple backticks wrapping), or post-generation notes. Any token outside the raw JSON object boundary triggers an immediate execution pipeline crash.
+5. **STRICT SINGLE-BLOCK PURITY & ABSOLUTE TERMINATION LAW:** 
+   - Your output MUST contain exactly ONE (1) single valid JSON object payload from start to finish. You are STRICTLY BANNED from repeating, mirroring, or generating a second duplicate JSON block within this response stream.
+   - **Strict Packaging Format**: The output MUST start exactly with a single line containing triple backticks and the language identifier: ```json
+   - The output MUST end exactly with the final line containing triple backticks: ```
+   - There must be absolutely ZERO conversational filler text, thinking processes (`<think>` tags), introductions, or post-generation notes before or after the fenced code block. 
+   - **Absolute Freeze Directive**: Mid-generation corrections are strictly prohibited. You are completely forbidden from appending trailing structural artifacts or deformed combinations like `} ```text{`. Once you emit the final closing brace `}` of the JSON schema, immediately close the triple backticks fence and FREEZE/STOP generating tokens instantly. Any token emitted after the primary closed fence violates enterprise runtime contracts.
 
 # Raw Response / Exception:
 
@@ -2042,12 +2072,17 @@ You are a high-performance Data Ingestion and Transformation Engine. Your sole o
 2. **ABSOLUTE PYDANTIC SCHEMA ALIGNMENT:** Your final generated JSON object MUST perfectly satisfy the structural schema parameters of the target enterprise contract. You are STRICTLY BANNED from omitting, renaming, formatting, or stripping out key elements (specifically `phase_id`, `phase_name`, `phase_description`, `project_name`, `global_context_file`, `source_target_dir`, and `days`).
 3. **ABSOLUTE NO EMPTY TAGS POLICY & STRING SANITIZATION:** You are STRICTLY BANNED from leaving the "targeted_tags" array empty `[]` or null for any sub-task that implements functional requirements or data schemas. You MUST scan the source Markdown sequentially sub-task by sub-task. For each sub-task node, locate the hidden technical container block delimited between `<!--START_TAGS-->` and `<!--END_TAGS-->` contained exclusively within that sub-task section scope. Extract all raw tag token codes inside, strip away all inline markdown formatting characters—specifically backticks (`` ` ``)—and any leading/trailing whitespaces, then populate them as clean separate string elements inside the "targeted_tags" array field of EACH sub-task object node.
 4. **NO TAG BUNDLING:** Every tag must be its own array node (e.g., `"targeted_tags": ["[REQ-001]", "[DAT-002]"]`). You are strictly forbidden from combining multiple tags into a single string element.
-5. **STRICT CONTENT PURITY & REJECT CONVERSATION:** Output ONLY the pure raw executable JSON string matching the required schema. Response must start exactly with the character `{` and end exactly with the character `}`. Banned from including thinking processes, chain-of-thought blocks (`<think>` tags), conversational filler texts, introductions, wrapping inside markdown codeblocks (no triple backticks wrapping), or post-generation notes. Any token outside the raw JSON object boundary triggers an immediate execution pipeline crash.
+5. **STRICT SINGLE-BLOCK PURITY & ABSOLUTE TERMINATION LAW:** 
+   - Your output MUST contain exactly ONE (1) single valid JSON object payload from start to finish. You are STRICTLY BANNED from repeating, mirroring, or generating a second duplicate JSON block within this response stream.
+   - **Strict Packaging Format**: The output MUST start exactly with a single line containing triple backticks and the language identifier: ```json
+   - The output MUST end exactly with the final line containing triple backticks: ```
+   - There must be absolutely ZERO conversational filler text, thinking processes (`<think>` tags), introductions, or post-generation notes before or after the fenced code block. 
+   - **Absolute Freeze Directive**: Mid-generation corrections are strictly prohibited. You are completely forbidden from appending trailing structural artifacts or deformed combinations like `} ```text{`. Once you emit the final closing brace `}` of the JSON schema, immediately close the triple backticks fence and FREEZE/STOP generating tokens instantly. Any token emitted after the primary closed fence violates enterprise runtime contracts.
 
 # Raw Response / Exception:
 
 ```json
-Error code: 402 - {'error': {'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 314. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account', 'code': 402, 'metadata': {'limit_source': 'openrouter_credits', 'remedy_hint': 'Add credits at https://openrouter.ai/settings/credits, or lower max_tokens / prompt size to fit your remaining balance.', 'provider_name': None, 'previous_errors': [{'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 314. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 392. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 314. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 314. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 314. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 314. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 314. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 314. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}]}}, 'user_id': 'user_3GLaJI6mihRMFQtSad72HqAhW95'}: ['Traceback (most recent call last):
+Error code: 402 - {'error': {'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 314. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account', 'code': 402, 'metadata': {'limit_source': 'openrouter_credits', 'remedy_hint': 'Add credits at https://openrouter.ai/settings/credits, or lower max_tokens / prompt size to fit your remaining balance.', 'provider_name': None, 'previous_errors': [{'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 314. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 314. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 314. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 314. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 392. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 314. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 314. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 314. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}]}}, 'user_id': 'user_3GLaJI6mihRMFQtSad72HqAhW95'}: ['Traceback (most recent call last):
 ', '  File "/home/runner/work/enterprise-it-ai/enterprise-it-ai/sources/agents/architect-blueprint/block_json.py", line 301, in convert_phases_to_json
     response = client.beta.chat.completions.parse(
                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -2059,7 +2094,7 @@ Error code: 402 - {'error': {'message': 'This request requires more credits, or 
                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 ', '  File "/opt/hostedtoolcache/Python/3.11.15/x64/lib/python3.11/site-packages/openai/_base_client.py", line 1148, in request
     raise self._make_status_error_from_response(err.response) from None
-', "openai.APIStatusError: Error code: 402 - {'error': {'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 314. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account', 'code': 402, 'metadata': {'limit_source': 'openrouter_credits', 'remedy_hint': 'Add credits at https://openrouter.ai/settings/credits, or lower max_tokens / prompt size to fit your remaining balance.', 'provider_name': None, 'previous_errors': [{'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 314. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 392. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 314. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 314. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 314. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 314. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 314. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 314. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}]}}, 'user_id': 'user_3GLaJI6mihRMFQtSad72HqAhW95'}
+', "openai.APIStatusError: Error code: 402 - {'error': {'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 314. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account', 'code': 402, 'metadata': {'limit_source': 'openrouter_credits', 'remedy_hint': 'Add credits at https://openrouter.ai/settings/credits, or lower max_tokens / prompt size to fit your remaining balance.', 'provider_name': None, 'previous_errors': [{'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 314. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 314. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 314. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 314. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 392. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 314. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 314. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 314. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}]}}, 'user_id': 'user_3GLaJI6mihRMFQtSad72HqAhW95'}
 "]
 ```
 
@@ -2337,7 +2372,12 @@ You are a high-performance Data Ingestion and Transformation Engine. Your sole o
 2. **ABSOLUTE PYDANTIC SCHEMA ALIGNMENT:** Your final generated JSON object MUST perfectly satisfy the structural schema parameters of the target enterprise contract. You are STRICTLY BANNED from omitting, renaming, formatting, or stripping out key elements (specifically `phase_id`, `phase_name`, `phase_description`, `project_name`, `global_context_file`, `source_target_dir`, and `days`).
 3. **ABSOLUTE NO EMPTY TAGS POLICY & STRING SANITIZATION:** You are STRICTLY BANNED from leaving the "targeted_tags" array empty `[]` or null for any sub-task that implements functional requirements or data schemas. You MUST scan the source Markdown sequentially sub-task by sub-task. For each sub-task node, locate the hidden technical container block delimited between `<!--START_TAGS-->` and `<!--END_TAGS-->` contained exclusively within that sub-task section scope. Extract all raw tag token codes inside, strip away all inline markdown formatting characters—specifically backticks (`` ` ``)—and any leading/trailing whitespaces, then populate them as clean separate string elements inside the "targeted_tags" array field of EACH sub-task object node.
 4. **NO TAG BUNDLING:** Every tag must be its own array node (e.g., `"targeted_tags": ["[REQ-001]", "[DAT-002]"]`). You are strictly forbidden from combining multiple tags into a single string element.
-5. **STRICT CONTENT PURITY & REJECT CONVERSATION:** Output ONLY the pure raw executable JSON string matching the required schema. Response must start exactly with the character `{` and end exactly with the character `}`. Banned from including thinking processes, chain-of-thought blocks (`<think>` tags), conversational filler texts, introductions, wrapping inside markdown codeblocks (no triple backticks wrapping), or post-generation notes. Any token outside the raw JSON object boundary triggers an immediate execution pipeline crash.
+5. **STRICT SINGLE-BLOCK PURITY & ABSOLUTE TERMINATION LAW:** 
+   - Your output MUST contain exactly ONE (1) single valid JSON object payload from start to finish. You are STRICTLY BANNED from repeating, mirroring, or generating a second duplicate JSON block within this response stream.
+   - **Strict Packaging Format**: The output MUST start exactly with a single line containing triple backticks and the language identifier: ```json
+   - The output MUST end exactly with the final line containing triple backticks: ```
+   - There must be absolutely ZERO conversational filler text, thinking processes (`<think>` tags), introductions, or post-generation notes before or after the fenced code block. 
+   - **Absolute Freeze Directive**: Mid-generation corrections are strictly prohibited. You are completely forbidden from appending trailing structural artifacts or deformed combinations like `} ```text{`. Once you emit the final closing brace `}` of the JSON schema, immediately close the triple backticks fence and FREEZE/STOP generating tokens instantly. Any token emitted after the primary closed fence violates enterprise runtime contracts.
 
 # Raw Response / Exception:
 
@@ -2632,12 +2672,17 @@ You are a high-performance Data Ingestion and Transformation Engine. Your sole o
 2. **ABSOLUTE PYDANTIC SCHEMA ALIGNMENT:** Your final generated JSON object MUST perfectly satisfy the structural schema parameters of the target enterprise contract. You are STRICTLY BANNED from omitting, renaming, formatting, or stripping out key elements (specifically `phase_id`, `phase_name`, `phase_description`, `project_name`, `global_context_file`, `source_target_dir`, and `days`).
 3. **ABSOLUTE NO EMPTY TAGS POLICY & STRING SANITIZATION:** You are STRICTLY BANNED from leaving the "targeted_tags" array empty `[]` or null for any sub-task that implements functional requirements or data schemas. You MUST scan the source Markdown sequentially sub-task by sub-task. For each sub-task node, locate the hidden technical container block delimited between `<!--START_TAGS-->` and `<!--END_TAGS-->` contained exclusively within that sub-task section scope. Extract all raw tag token codes inside, strip away all inline markdown formatting characters—specifically backticks (`` ` ``)—and any leading/trailing whitespaces, then populate them as clean separate string elements inside the "targeted_tags" array field of EACH sub-task object node.
 4. **NO TAG BUNDLING:** Every tag must be its own array node (e.g., `"targeted_tags": ["[REQ-001]", "[DAT-002]"]`). You are strictly forbidden from combining multiple tags into a single string element.
-5. **STRICT CONTENT PURITY & REJECT CONVERSATION:** Output ONLY the pure raw executable JSON string matching the required schema. Response must start exactly with the character `{` and end exactly with the character `}`. Banned from including thinking processes, chain-of-thought blocks (`<think>` tags), conversational filler texts, introductions, wrapping inside markdown codeblocks (no triple backticks wrapping), or post-generation notes. Any token outside the raw JSON object boundary triggers an immediate execution pipeline crash.
+5. **STRICT SINGLE-BLOCK PURITY & ABSOLUTE TERMINATION LAW:** 
+   - Your output MUST contain exactly ONE (1) single valid JSON object payload from start to finish. You are STRICTLY BANNED from repeating, mirroring, or generating a second duplicate JSON block within this response stream.
+   - **Strict Packaging Format**: The output MUST start exactly with a single line containing triple backticks and the language identifier: ```json
+   - The output MUST end exactly with the final line containing triple backticks: ```
+   - There must be absolutely ZERO conversational filler text, thinking processes (`<think>` tags), introductions, or post-generation notes before or after the fenced code block. 
+   - **Absolute Freeze Directive**: Mid-generation corrections are strictly prohibited. You are completely forbidden from appending trailing structural artifacts or deformed combinations like `} ```text{`. Once you emit the final closing brace `}` of the JSON schema, immediately close the triple backticks fence and FREEZE/STOP generating tokens instantly. Any token emitted after the primary closed fence violates enterprise runtime contracts.
 
 # Raw Response / Exception:
 
 ```json
-Could not parse response content as the length limit was reached - CompletionUsage(completion_tokens=4096, prompt_tokens=5360, total_tokens=9456, completion_tokens_details=CompletionTokensDetails(accepted_prediction_tokens=None, audio_tokens=0, reasoning_tokens=4507, rejected_prediction_tokens=None, image_tokens=0), prompt_tokens_details=PromptTokensDetails(audio_tokens=0, cache_write_tokens=0, cached_tokens=0, video_tokens=0), cost=0, is_byok=False, cost_details={'upstream_inference_cost': 0, 'upstream_inference_prompt_cost': 0, 'upstream_inference_completions_cost': 0}): ['Traceback (most recent call last):
+Could not parse response content as the length limit was reached - CompletionUsage(completion_tokens=4096, prompt_tokens=5478, total_tokens=9574, completion_tokens_details=CompletionTokensDetails(accepted_prediction_tokens=None, audio_tokens=0, reasoning_tokens=4659, rejected_prediction_tokens=None, image_tokens=0), prompt_tokens_details=PromptTokensDetails(audio_tokens=0, cache_write_tokens=0, cached_tokens=0, video_tokens=0), cost=0, is_byok=False, cost_details={'upstream_inference_cost': 0, 'upstream_inference_prompt_cost': 0, 'upstream_inference_completions_cost': 0}): ['Traceback (most recent call last):
 ', '  File "/home/runner/work/enterprise-it-ai/enterprise-it-ai/sources/agents/architect-blueprint/block_json.py", line 301, in convert_phases_to_json
     response = client.beta.chat.completions.parse(
                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -2661,7 +2706,7 @@ Could not parse response content as the length limit was reached - CompletionUsa
            ^^^^^^^^^^^^^^^^^^^^^^^
 ', '  File "/opt/hostedtoolcache/Python/3.11.15/x64/lib/python3.11/site-packages/openai/lib/_parsing/_completions.py", line 100, in parse_chat_completion
     raise LengthFinishReasonError(completion=chat_completion)
-', "openai.LengthFinishReasonError: Could not parse response content as the length limit was reached - CompletionUsage(completion_tokens=4096, prompt_tokens=5360, total_tokens=9456, completion_tokens_details=CompletionTokensDetails(accepted_prediction_tokens=None, audio_tokens=0, reasoning_tokens=4507, rejected_prediction_tokens=None, image_tokens=0), prompt_tokens_details=PromptTokensDetails(audio_tokens=0, cache_write_tokens=0, cached_tokens=0, video_tokens=0), cost=0, is_byok=False, cost_details={'upstream_inference_cost': 0, 'upstream_inference_prompt_cost': 0, 'upstream_inference_completions_cost': 0})
+', "openai.LengthFinishReasonError: Could not parse response content as the length limit was reached - CompletionUsage(completion_tokens=4096, prompt_tokens=5478, total_tokens=9574, completion_tokens_details=CompletionTokensDetails(accepted_prediction_tokens=None, audio_tokens=0, reasoning_tokens=4659, rejected_prediction_tokens=None, image_tokens=0), prompt_tokens_details=PromptTokensDetails(audio_tokens=0, cache_write_tokens=0, cached_tokens=0, video_tokens=0), cost=0, is_byok=False, cost_details={'upstream_inference_cost': 0, 'upstream_inference_prompt_cost': 0, 'upstream_inference_completions_cost': 0})
 "]
 ```
 
@@ -2939,12 +2984,17 @@ You are a high-performance Data Ingestion and Transformation Engine. Your sole o
 2. **ABSOLUTE PYDANTIC SCHEMA ALIGNMENT:** Your final generated JSON object MUST perfectly satisfy the structural schema parameters of the target enterprise contract. You are STRICTLY BANNED from omitting, renaming, formatting, or stripping out key elements (specifically `phase_id`, `phase_name`, `phase_description`, `project_name`, `global_context_file`, `source_target_dir`, and `days`).
 3. **ABSOLUTE NO EMPTY TAGS POLICY & STRING SANITIZATION:** You are STRICTLY BANNED from leaving the "targeted_tags" array empty `[]` or null for any sub-task that implements functional requirements or data schemas. You MUST scan the source Markdown sequentially sub-task by sub-task. For each sub-task node, locate the hidden technical container block delimited between `<!--START_TAGS-->` and `<!--END_TAGS-->` contained exclusively within that sub-task section scope. Extract all raw tag token codes inside, strip away all inline markdown formatting characters—specifically backticks (`` ` ``)—and any leading/trailing whitespaces, then populate them as clean separate string elements inside the "targeted_tags" array field of EACH sub-task object node.
 4. **NO TAG BUNDLING:** Every tag must be its own array node (e.g., `"targeted_tags": ["[REQ-001]", "[DAT-002]"]`). You are strictly forbidden from combining multiple tags into a single string element.
-5. **STRICT CONTENT PURITY & REJECT CONVERSATION:** Output ONLY the pure raw executable JSON string matching the required schema. Response must start exactly with the character `{` and end exactly with the character `}`. Banned from including thinking processes, chain-of-thought blocks (`<think>` tags), conversational filler texts, introductions, wrapping inside markdown codeblocks (no triple backticks wrapping), or post-generation notes. Any token outside the raw JSON object boundary triggers an immediate execution pipeline crash.
+5. **STRICT SINGLE-BLOCK PURITY & ABSOLUTE TERMINATION LAW:** 
+   - Your output MUST contain exactly ONE (1) single valid JSON object payload from start to finish. You are STRICTLY BANNED from repeating, mirroring, or generating a second duplicate JSON block within this response stream.
+   - **Strict Packaging Format**: The output MUST start exactly with a single line containing triple backticks and the language identifier: ```json
+   - The output MUST end exactly with the final line containing triple backticks: ```
+   - There must be absolutely ZERO conversational filler text, thinking processes (`<think>` tags), introductions, or post-generation notes before or after the fenced code block. 
+   - **Absolute Freeze Directive**: Mid-generation corrections are strictly prohibited. You are completely forbidden from appending trailing structural artifacts or deformed combinations like `} ```text{`. Once you emit the final closing brace `}` of the JSON schema, immediately close the triple backticks fence and FREEZE/STOP generating tokens instantly. Any token emitted after the primary closed fence violates enterprise runtime contracts.
 
 # Raw Response / Exception:
 
 ```json
-Error code: 402 - {'error': {'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 251. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account', 'code': 402, 'metadata': {'limit_source': 'openrouter_credits', 'remedy_hint': 'Add credits at https://openrouter.ai/settings/credits, or lower max_tokens / prompt size to fit your remaining balance.', 'provider_name': None, 'previous_errors': [{'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 471. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 471. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 251. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 418. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}]}}, 'user_id': 'user_3GLaJI6mihRMFQtSad72HqAhW95'}: ['Traceback (most recent call last):
+Error code: 402 - {'error': {'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 251. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account', 'code': 402, 'metadata': {'limit_source': 'openrouter_credits', 'remedy_hint': 'Add credits at https://openrouter.ai/settings/credits, or lower max_tokens / prompt size to fit your remaining balance.', 'provider_name': None, 'previous_errors': [{'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 251. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 471. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 418. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 471. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}]}}, 'user_id': 'user_3GLaJI6mihRMFQtSad72HqAhW95'}: ['Traceback (most recent call last):
 ', '  File "/home/runner/work/enterprise-it-ai/enterprise-it-ai/sources/agents/architect-blueprint/block_json.py", line 301, in convert_phases_to_json
     response = client.beta.chat.completions.parse(
                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -2956,7 +3006,7 @@ Error code: 402 - {'error': {'message': 'This request requires more credits, or 
                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 ', '  File "/opt/hostedtoolcache/Python/3.11.15/x64/lib/python3.11/site-packages/openai/_base_client.py", line 1148, in request
     raise self._make_status_error_from_response(err.response) from None
-', "openai.APIStatusError: Error code: 402 - {'error': {'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 251. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account', 'code': 402, 'metadata': {'limit_source': 'openrouter_credits', 'remedy_hint': 'Add credits at https://openrouter.ai/settings/credits, or lower max_tokens / prompt size to fit your remaining balance.', 'provider_name': None, 'previous_errors': [{'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 471. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 471. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 251. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 418. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}]}}, 'user_id': 'user_3GLaJI6mihRMFQtSad72HqAhW95'}
+', "openai.APIStatusError: Error code: 402 - {'error': {'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 251. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account', 'code': 402, 'metadata': {'limit_source': 'openrouter_credits', 'remedy_hint': 'Add credits at https://openrouter.ai/settings/credits, or lower max_tokens / prompt size to fit your remaining balance.', 'provider_name': None, 'previous_errors': [{'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 251. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 471. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 418. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 471. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}]}}, 'user_id': 'user_3GLaJI6mihRMFQtSad72HqAhW95'}
 "]
 ```
 
@@ -3234,12 +3284,17 @@ You are a high-performance Data Ingestion and Transformation Engine. Your sole o
 2. **ABSOLUTE PYDANTIC SCHEMA ALIGNMENT:** Your final generated JSON object MUST perfectly satisfy the structural schema parameters of the target enterprise contract. You are STRICTLY BANNED from omitting, renaming, formatting, or stripping out key elements (specifically `phase_id`, `phase_name`, `phase_description`, `project_name`, `global_context_file`, `source_target_dir`, and `days`).
 3. **ABSOLUTE NO EMPTY TAGS POLICY & STRING SANITIZATION:** You are STRICTLY BANNED from leaving the "targeted_tags" array empty `[]` or null for any sub-task that implements functional requirements or data schemas. You MUST scan the source Markdown sequentially sub-task by sub-task. For each sub-task node, locate the hidden technical container block delimited between `<!--START_TAGS-->` and `<!--END_TAGS-->` contained exclusively within that sub-task section scope. Extract all raw tag token codes inside, strip away all inline markdown formatting characters—specifically backticks (`` ` ``)—and any leading/trailing whitespaces, then populate them as clean separate string elements inside the "targeted_tags" array field of EACH sub-task object node.
 4. **NO TAG BUNDLING:** Every tag must be its own array node (e.g., `"targeted_tags": ["[REQ-001]", "[DAT-002]"]`). You are strictly forbidden from combining multiple tags into a single string element.
-5. **STRICT CONTENT PURITY & REJECT CONVERSATION:** Output ONLY the pure raw executable JSON string matching the required schema. Response must start exactly with the character `{` and end exactly with the character `}`. Banned from including thinking processes, chain-of-thought blocks (`<think>` tags), conversational filler texts, introductions, wrapping inside markdown codeblocks (no triple backticks wrapping), or post-generation notes. Any token outside the raw JSON object boundary triggers an immediate execution pipeline crash.
+5. **STRICT SINGLE-BLOCK PURITY & ABSOLUTE TERMINATION LAW:** 
+   - Your output MUST contain exactly ONE (1) single valid JSON object payload from start to finish. You are STRICTLY BANNED from repeating, mirroring, or generating a second duplicate JSON block within this response stream.
+   - **Strict Packaging Format**: The output MUST start exactly with a single line containing triple backticks and the language identifier: ```json
+   - The output MUST end exactly with the final line containing triple backticks: ```
+   - There must be absolutely ZERO conversational filler text, thinking processes (`<think>` tags), introductions, or post-generation notes before or after the fenced code block. 
+   - **Absolute Freeze Directive**: Mid-generation corrections are strictly prohibited. You are completely forbidden from appending trailing structural artifacts or deformed combinations like `} ```text{`. Once you emit the final closing brace `}` of the JSON schema, immediately close the triple backticks fence and FREEZE/STOP generating tokens instantly. Any token emitted after the primary closed fence violates enterprise runtime contracts.
 
 # Raw Response / Exception:
 
 ```json
-Error code: 402 - {'error': {'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 251. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account', 'code': 402, 'metadata': {'limit_source': 'openrouter_credits', 'remedy_hint': 'Add credits at https://openrouter.ai/settings/credits, or lower max_tokens / prompt size to fit your remaining balance.', 'provider_name': None, 'previous_errors': [{'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 243. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 376. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 209. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 77. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 251. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}]}}, 'user_id': 'user_3GLaJI6mihRMFQtSad72HqAhW95'}: ['Traceback (most recent call last):
+Error code: 402 - {'error': {'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 77. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account', 'code': 402, 'metadata': {'limit_source': 'openrouter_credits', 'remedy_hint': 'Add credits at https://openrouter.ai/settings/credits, or lower max_tokens / prompt size to fit your remaining balance.', 'provider_name': None, 'previous_errors': [{'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 251. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 376. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 209. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 243. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 251. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}]}}, 'user_id': 'user_3GLaJI6mihRMFQtSad72HqAhW95'}: ['Traceback (most recent call last):
 ', '  File "/home/runner/work/enterprise-it-ai/enterprise-it-ai/sources/agents/architect-blueprint/block_json.py", line 301, in convert_phases_to_json
     response = client.beta.chat.completions.parse(
                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -3251,7 +3306,7 @@ Error code: 402 - {'error': {'message': 'This request requires more credits, or 
                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 ', '  File "/opt/hostedtoolcache/Python/3.11.15/x64/lib/python3.11/site-packages/openai/_base_client.py", line 1148, in request
     raise self._make_status_error_from_response(err.response) from None
-', "openai.APIStatusError: Error code: 402 - {'error': {'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 251. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account', 'code': 402, 'metadata': {'limit_source': 'openrouter_credits', 'remedy_hint': 'Add credits at https://openrouter.ai/settings/credits, or lower max_tokens / prompt size to fit your remaining balance.', 'provider_name': None, 'previous_errors': [{'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 243. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 376. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 209. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 77. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 251. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}]}}, 'user_id': 'user_3GLaJI6mihRMFQtSad72HqAhW95'}
+', "openai.APIStatusError: Error code: 402 - {'error': {'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 77. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account', 'code': 402, 'metadata': {'limit_source': 'openrouter_credits', 'remedy_hint': 'Add credits at https://openrouter.ai/settings/credits, or lower max_tokens / prompt size to fit your remaining balance.', 'provider_name': None, 'previous_errors': [{'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 251. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 376. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 209. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 243. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 251. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}]}}, 'user_id': 'user_3GLaJI6mihRMFQtSad72HqAhW95'}
 "]
 ```
 
@@ -3529,12 +3584,17 @@ You are a high-performance Data Ingestion and Transformation Engine. Your sole o
 2. **ABSOLUTE PYDANTIC SCHEMA ALIGNMENT:** Your final generated JSON object MUST perfectly satisfy the structural schema parameters of the target enterprise contract. You are STRICTLY BANNED from omitting, renaming, formatting, or stripping out key elements (specifically `phase_id`, `phase_name`, `phase_description`, `project_name`, `global_context_file`, `source_target_dir`, and `days`).
 3. **ABSOLUTE NO EMPTY TAGS POLICY & STRING SANITIZATION:** You are STRICTLY BANNED from leaving the "targeted_tags" array empty `[]` or null for any sub-task that implements functional requirements or data schemas. You MUST scan the source Markdown sequentially sub-task by sub-task. For each sub-task node, locate the hidden technical container block delimited between `<!--START_TAGS-->` and `<!--END_TAGS-->` contained exclusively within that sub-task section scope. Extract all raw tag token codes inside, strip away all inline markdown formatting characters—specifically backticks (`` ` ``)—and any leading/trailing whitespaces, then populate them as clean separate string elements inside the "targeted_tags" array field of EACH sub-task object node.
 4. **NO TAG BUNDLING:** Every tag must be its own array node (e.g., `"targeted_tags": ["[REQ-001]", "[DAT-002]"]`). You are strictly forbidden from combining multiple tags into a single string element.
-5. **STRICT CONTENT PURITY & REJECT CONVERSATION:** Output ONLY the pure raw executable JSON string matching the required schema. Response must start exactly with the character `{` and end exactly with the character `}`. Banned from including thinking processes, chain-of-thought blocks (`<think>` tags), conversational filler texts, introductions, wrapping inside markdown codeblocks (no triple backticks wrapping), or post-generation notes. Any token outside the raw JSON object boundary triggers an immediate execution pipeline crash.
+5. **STRICT SINGLE-BLOCK PURITY & ABSOLUTE TERMINATION LAW:** 
+   - Your output MUST contain exactly ONE (1) single valid JSON object payload from start to finish. You are STRICTLY BANNED from repeating, mirroring, or generating a second duplicate JSON block within this response stream.
+   - **Strict Packaging Format**: The output MUST start exactly with a single line containing triple backticks and the language identifier: ```json
+   - The output MUST end exactly with the final line containing triple backticks: ```
+   - There must be absolutely ZERO conversational filler text, thinking processes (`<think>` tags), introductions, or post-generation notes before or after the fenced code block. 
+   - **Absolute Freeze Directive**: Mid-generation corrections are strictly prohibited. You are completely forbidden from appending trailing structural artifacts or deformed combinations like `} ```text{`. Once you emit the final closing brace `}` of the JSON schema, immediately close the triple backticks fence and FREEZE/STOP generating tokens instantly. Any token emitted after the primary closed fence violates enterprise runtime contracts.
 
 # Raw Response / Exception:
 
 ```json
-Error code: 402 - {'error': {'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 221. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account', 'code': 402, 'metadata': {'limit_source': 'openrouter_credits', 'remedy_hint': 'Add credits at https://openrouter.ai/settings/credits, or lower max_tokens / prompt size to fit your remaining balance.', 'provider_name': None, 'previous_errors': [{'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 1395. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 1345. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 257. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}]}}, 'user_id': 'user_3GLaJI6mihRMFQtSad72HqAhW95'}: ['Traceback (most recent call last):
+Error code: 402 - {'error': {'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 221. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account', 'code': 402, 'metadata': {'limit_source': 'openrouter_credits', 'remedy_hint': 'Add credits at https://openrouter.ai/settings/credits, or lower max_tokens / prompt size to fit your remaining balance.', 'provider_name': None, 'previous_errors': [{'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 1345. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 1395. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 257. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}]}}, 'user_id': 'user_3GLaJI6mihRMFQtSad72HqAhW95'}: ['Traceback (most recent call last):
 ', '  File "/home/runner/work/enterprise-it-ai/enterprise-it-ai/sources/agents/architect-blueprint/block_json.py", line 301, in convert_phases_to_json
     response = client.beta.chat.completions.parse(
                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -3546,7 +3606,7 @@ Error code: 402 - {'error': {'message': 'This request requires more credits, or 
                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 ', '  File "/opt/hostedtoolcache/Python/3.11.15/x64/lib/python3.11/site-packages/openai/_base_client.py", line 1148, in request
     raise self._make_status_error_from_response(err.response) from None
-', "openai.APIStatusError: Error code: 402 - {'error': {'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 221. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account', 'code': 402, 'metadata': {'limit_source': 'openrouter_credits', 'remedy_hint': 'Add credits at https://openrouter.ai/settings/credits, or lower max_tokens / prompt size to fit your remaining balance.', 'provider_name': None, 'previous_errors': [{'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 1395. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 1345. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 257. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}]}}, 'user_id': 'user_3GLaJI6mihRMFQtSad72HqAhW95'}
+', "openai.APIStatusError: Error code: 402 - {'error': {'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 221. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account', 'code': 402, 'metadata': {'limit_source': 'openrouter_credits', 'remedy_hint': 'Add credits at https://openrouter.ai/settings/credits, or lower max_tokens / prompt size to fit your remaining balance.', 'provider_name': None, 'previous_errors': [{'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 1345. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 1395. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 257. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}]}}, 'user_id': 'user_3GLaJI6mihRMFQtSad72HqAhW95'}
 "]
 ```
 
@@ -3824,7 +3884,12 @@ You are a high-performance Data Ingestion and Transformation Engine. Your sole o
 2. **ABSOLUTE PYDANTIC SCHEMA ALIGNMENT:** Your final generated JSON object MUST perfectly satisfy the structural schema parameters of the target enterprise contract. You are STRICTLY BANNED from omitting, renaming, formatting, or stripping out key elements (specifically `phase_id`, `phase_name`, `phase_description`, `project_name`, `global_context_file`, `source_target_dir`, and `days`).
 3. **ABSOLUTE NO EMPTY TAGS POLICY & STRING SANITIZATION:** You are STRICTLY BANNED from leaving the "targeted_tags" array empty `[]` or null for any sub-task that implements functional requirements or data schemas. You MUST scan the source Markdown sequentially sub-task by sub-task. For each sub-task node, locate the hidden technical container block delimited between `<!--START_TAGS-->` and `<!--END_TAGS-->` contained exclusively within that sub-task section scope. Extract all raw tag token codes inside, strip away all inline markdown formatting characters—specifically backticks (`` ` ``)—and any leading/trailing whitespaces, then populate them as clean separate string elements inside the "targeted_tags" array field of EACH sub-task object node.
 4. **NO TAG BUNDLING:** Every tag must be its own array node (e.g., `"targeted_tags": ["[REQ-001]", "[DAT-002]"]`). You are strictly forbidden from combining multiple tags into a single string element.
-5. **STRICT CONTENT PURITY & REJECT CONVERSATION:** Output ONLY the pure raw executable JSON string matching the required schema. Response must start exactly with the character `{` and end exactly with the character `}`. Banned from including thinking processes, chain-of-thought blocks (`<think>` tags), conversational filler texts, introductions, wrapping inside markdown codeblocks (no triple backticks wrapping), or post-generation notes. Any token outside the raw JSON object boundary triggers an immediate execution pipeline crash.
+5. **STRICT SINGLE-BLOCK PURITY & ABSOLUTE TERMINATION LAW:** 
+   - Your output MUST contain exactly ONE (1) single valid JSON object payload from start to finish. You are STRICTLY BANNED from repeating, mirroring, or generating a second duplicate JSON block within this response stream.
+   - **Strict Packaging Format**: The output MUST start exactly with a single line containing triple backticks and the language identifier: ```json
+   - The output MUST end exactly with the final line containing triple backticks: ```
+   - There must be absolutely ZERO conversational filler text, thinking processes (`<think>` tags), introductions, or post-generation notes before or after the fenced code block. 
+   - **Absolute Freeze Directive**: Mid-generation corrections are strictly prohibited. You are completely forbidden from appending trailing structural artifacts or deformed combinations like `} ```text{`. Once you emit the final closing brace `}` of the JSON schema, immediately close the triple backticks fence and FREEZE/STOP generating tokens instantly. Any token emitted after the primary closed fence violates enterprise runtime contracts.
 
 # Raw Response / Exception:
 
@@ -4119,7 +4184,12 @@ You are a high-performance Data Ingestion and Transformation Engine. Your sole o
 2. **ABSOLUTE PYDANTIC SCHEMA ALIGNMENT:** Your final generated JSON object MUST perfectly satisfy the structural schema parameters of the target enterprise contract. You are STRICTLY BANNED from omitting, renaming, formatting, or stripping out key elements (specifically `phase_id`, `phase_name`, `phase_description`, `project_name`, `global_context_file`, `source_target_dir`, and `days`).
 3. **ABSOLUTE NO EMPTY TAGS POLICY & STRING SANITIZATION:** You are STRICTLY BANNED from leaving the "targeted_tags" array empty `[]` or null for any sub-task that implements functional requirements or data schemas. You MUST scan the source Markdown sequentially sub-task by sub-task. For each sub-task node, locate the hidden technical container block delimited between `<!--START_TAGS-->` and `<!--END_TAGS-->` contained exclusively within that sub-task section scope. Extract all raw tag token codes inside, strip away all inline markdown formatting characters—specifically backticks (`` ` ``)—and any leading/trailing whitespaces, then populate them as clean separate string elements inside the "targeted_tags" array field of EACH sub-task object node.
 4. **NO TAG BUNDLING:** Every tag must be its own array node (e.g., `"targeted_tags": ["[REQ-001]", "[DAT-002]"]`). You are strictly forbidden from combining multiple tags into a single string element.
-5. **STRICT CONTENT PURITY & REJECT CONVERSATION:** Output ONLY the pure raw executable JSON string matching the required schema. Response must start exactly with the character `{` and end exactly with the character `}`. Banned from including thinking processes, chain-of-thought blocks (`<think>` tags), conversational filler texts, introductions, wrapping inside markdown codeblocks (no triple backticks wrapping), or post-generation notes. Any token outside the raw JSON object boundary triggers an immediate execution pipeline crash.
+5. **STRICT SINGLE-BLOCK PURITY & ABSOLUTE TERMINATION LAW:** 
+   - Your output MUST contain exactly ONE (1) single valid JSON object payload from start to finish. You are STRICTLY BANNED from repeating, mirroring, or generating a second duplicate JSON block within this response stream.
+   - **Strict Packaging Format**: The output MUST start exactly with a single line containing triple backticks and the language identifier: ```json
+   - The output MUST end exactly with the final line containing triple backticks: ```
+   - There must be absolutely ZERO conversational filler text, thinking processes (`<think>` tags), introductions, or post-generation notes before or after the fenced code block. 
+   - **Absolute Freeze Directive**: Mid-generation corrections are strictly prohibited. You are completely forbidden from appending trailing structural artifacts or deformed combinations like `} ```text{`. Once you emit the final closing brace `}` of the JSON schema, immediately close the triple backticks fence and FREEZE/STOP generating tokens instantly. Any token emitted after the primary closed fence violates enterprise runtime contracts.
 
 # Raw Response / Exception:
 
@@ -4414,7 +4484,12 @@ You are a high-performance Data Ingestion and Transformation Engine. Your sole o
 2. **ABSOLUTE PYDANTIC SCHEMA ALIGNMENT:** Your final generated JSON object MUST perfectly satisfy the structural schema parameters of the target enterprise contract. You are STRICTLY BANNED from omitting, renaming, formatting, or stripping out key elements (specifically `phase_id`, `phase_name`, `phase_description`, `project_name`, `global_context_file`, `source_target_dir`, and `days`).
 3. **ABSOLUTE NO EMPTY TAGS POLICY & STRING SANITIZATION:** You are STRICTLY BANNED from leaving the "targeted_tags" array empty `[]` or null for any sub-task that implements functional requirements or data schemas. You MUST scan the source Markdown sequentially sub-task by sub-task. For each sub-task node, locate the hidden technical container block delimited between `<!--START_TAGS-->` and `<!--END_TAGS-->` contained exclusively within that sub-task section scope. Extract all raw tag token codes inside, strip away all inline markdown formatting characters—specifically backticks (`` ` ``)—and any leading/trailing whitespaces, then populate them as clean separate string elements inside the "targeted_tags" array field of EACH sub-task object node.
 4. **NO TAG BUNDLING:** Every tag must be its own array node (e.g., `"targeted_tags": ["[REQ-001]", "[DAT-002]"]`). You are strictly forbidden from combining multiple tags into a single string element.
-5. **STRICT CONTENT PURITY & REJECT CONVERSATION:** Output ONLY the pure raw executable JSON string matching the required schema. Response must start exactly with the character `{` and end exactly with the character `}`. Banned from including thinking processes, chain-of-thought blocks (`<think>` tags), conversational filler texts, introductions, wrapping inside markdown codeblocks (no triple backticks wrapping), or post-generation notes. Any token outside the raw JSON object boundary triggers an immediate execution pipeline crash.
+5. **STRICT SINGLE-BLOCK PURITY & ABSOLUTE TERMINATION LAW:** 
+   - Your output MUST contain exactly ONE (1) single valid JSON object payload from start to finish. You are STRICTLY BANNED from repeating, mirroring, or generating a second duplicate JSON block within this response stream.
+   - **Strict Packaging Format**: The output MUST start exactly with a single line containing triple backticks and the language identifier: ```json
+   - The output MUST end exactly with the final line containing triple backticks: ```
+   - There must be absolutely ZERO conversational filler text, thinking processes (`<think>` tags), introductions, or post-generation notes before or after the fenced code block. 
+   - **Absolute Freeze Directive**: Mid-generation corrections are strictly prohibited. You are completely forbidden from appending trailing structural artifacts or deformed combinations like `} ```text{`. Once you emit the final closing brace `}` of the JSON schema, immediately close the triple backticks fence and FREEZE/STOP generating tokens instantly. Any token emitted after the primary closed fence violates enterprise runtime contracts.
 
 # Raw Response / Exception:
 
@@ -4709,7 +4784,12 @@ You are a high-performance Data Ingestion and Transformation Engine. Your sole o
 2. **ABSOLUTE PYDANTIC SCHEMA ALIGNMENT:** Your final generated JSON object MUST perfectly satisfy the structural schema parameters of the target enterprise contract. You are STRICTLY BANNED from omitting, renaming, formatting, or stripping out key elements (specifically `phase_id`, `phase_name`, `phase_description`, `project_name`, `global_context_file`, `source_target_dir`, and `days`).
 3. **ABSOLUTE NO EMPTY TAGS POLICY & STRING SANITIZATION:** You are STRICTLY BANNED from leaving the "targeted_tags" array empty `[]` or null for any sub-task that implements functional requirements or data schemas. You MUST scan the source Markdown sequentially sub-task by sub-task. For each sub-task node, locate the hidden technical container block delimited between `<!--START_TAGS-->` and `<!--END_TAGS-->` contained exclusively within that sub-task section scope. Extract all raw tag token codes inside, strip away all inline markdown formatting characters—specifically backticks (`` ` ``)—and any leading/trailing whitespaces, then populate them as clean separate string elements inside the "targeted_tags" array field of EACH sub-task object node.
 4. **NO TAG BUNDLING:** Every tag must be its own array node (e.g., `"targeted_tags": ["[REQ-001]", "[DAT-002]"]`). You are strictly forbidden from combining multiple tags into a single string element.
-5. **STRICT CONTENT PURITY & REJECT CONVERSATION:** Output ONLY the pure raw executable JSON string matching the required schema. Response must start exactly with the character `{` and end exactly with the character `}`. Banned from including thinking processes, chain-of-thought blocks (`<think>` tags), conversational filler texts, introductions, wrapping inside markdown codeblocks (no triple backticks wrapping), or post-generation notes. Any token outside the raw JSON object boundary triggers an immediate execution pipeline crash.
+5. **STRICT SINGLE-BLOCK PURITY & ABSOLUTE TERMINATION LAW:** 
+   - Your output MUST contain exactly ONE (1) single valid JSON object payload from start to finish. You are STRICTLY BANNED from repeating, mirroring, or generating a second duplicate JSON block within this response stream.
+   - **Strict Packaging Format**: The output MUST start exactly with a single line containing triple backticks and the language identifier: ```json
+   - The output MUST end exactly with the final line containing triple backticks: ```
+   - There must be absolutely ZERO conversational filler text, thinking processes (`<think>` tags), introductions, or post-generation notes before or after the fenced code block. 
+   - **Absolute Freeze Directive**: Mid-generation corrections are strictly prohibited. You are completely forbidden from appending trailing structural artifacts or deformed combinations like `} ```text{`. Once you emit the final closing brace `}` of the JSON schema, immediately close the triple backticks fence and FREEZE/STOP generating tokens instantly. Any token emitted after the primary closed fence violates enterprise runtime contracts.
 
 # Raw Response / Exception:
 
@@ -5004,7 +5084,12 @@ You are a high-performance Data Ingestion and Transformation Engine. Your sole o
 2. **ABSOLUTE PYDANTIC SCHEMA ALIGNMENT:** Your final generated JSON object MUST perfectly satisfy the structural schema parameters of the target enterprise contract. You are STRICTLY BANNED from omitting, renaming, formatting, or stripping out key elements (specifically `phase_id`, `phase_name`, `phase_description`, `project_name`, `global_context_file`, `source_target_dir`, and `days`).
 3. **ABSOLUTE NO EMPTY TAGS POLICY & STRING SANITIZATION:** You are STRICTLY BANNED from leaving the "targeted_tags" array empty `[]` or null for any sub-task that implements functional requirements or data schemas. You MUST scan the source Markdown sequentially sub-task by sub-task. For each sub-task node, locate the hidden technical container block delimited between `<!--START_TAGS-->` and `<!--END_TAGS-->` contained exclusively within that sub-task section scope. Extract all raw tag token codes inside, strip away all inline markdown formatting characters—specifically backticks (`` ` ``)—and any leading/trailing whitespaces, then populate them as clean separate string elements inside the "targeted_tags" array field of EACH sub-task object node.
 4. **NO TAG BUNDLING:** Every tag must be its own array node (e.g., `"targeted_tags": ["[REQ-001]", "[DAT-002]"]`). You are strictly forbidden from combining multiple tags into a single string element.
-5. **STRICT CONTENT PURITY & REJECT CONVERSATION:** Output ONLY the pure raw executable JSON string matching the required schema. Response must start exactly with the character `{` and end exactly with the character `}`. Banned from including thinking processes, chain-of-thought blocks (`<think>` tags), conversational filler texts, introductions, wrapping inside markdown codeblocks (no triple backticks wrapping), or post-generation notes. Any token outside the raw JSON object boundary triggers an immediate execution pipeline crash.
+5. **STRICT SINGLE-BLOCK PURITY & ABSOLUTE TERMINATION LAW:** 
+   - Your output MUST contain exactly ONE (1) single valid JSON object payload from start to finish. You are STRICTLY BANNED from repeating, mirroring, or generating a second duplicate JSON block within this response stream.
+   - **Strict Packaging Format**: The output MUST start exactly with a single line containing triple backticks and the language identifier: ```json
+   - The output MUST end exactly with the final line containing triple backticks: ```
+   - There must be absolutely ZERO conversational filler text, thinking processes (`<think>` tags), introductions, or post-generation notes before or after the fenced code block. 
+   - **Absolute Freeze Directive**: Mid-generation corrections are strictly prohibited. You are completely forbidden from appending trailing structural artifacts or deformed combinations like `} ```text{`. Once you emit the final closing brace `}` of the JSON schema, immediately close the triple backticks fence and FREEZE/STOP generating tokens instantly. Any token emitted after the primary closed fence violates enterprise runtime contracts.
 
 # Raw Response / Exception:
 
@@ -5299,7 +5384,12 @@ You are a high-performance Data Ingestion and Transformation Engine. Your sole o
 2. **ABSOLUTE PYDANTIC SCHEMA ALIGNMENT:** Your final generated JSON object MUST perfectly satisfy the structural schema parameters of the target enterprise contract. You are STRICTLY BANNED from omitting, renaming, formatting, or stripping out key elements (specifically `phase_id`, `phase_name`, `phase_description`, `project_name`, `global_context_file`, `source_target_dir`, and `days`).
 3. **ABSOLUTE NO EMPTY TAGS POLICY & STRING SANITIZATION:** You are STRICTLY BANNED from leaving the "targeted_tags" array empty `[]` or null for any sub-task that implements functional requirements or data schemas. You MUST scan the source Markdown sequentially sub-task by sub-task. For each sub-task node, locate the hidden technical container block delimited between `<!--START_TAGS-->` and `<!--END_TAGS-->` contained exclusively within that sub-task section scope. Extract all raw tag token codes inside, strip away all inline markdown formatting characters—specifically backticks (`` ` ``)—and any leading/trailing whitespaces, then populate them as clean separate string elements inside the "targeted_tags" array field of EACH sub-task object node.
 4. **NO TAG BUNDLING:** Every tag must be its own array node (e.g., `"targeted_tags": ["[REQ-001]", "[DAT-002]"]`). You are strictly forbidden from combining multiple tags into a single string element.
-5. **STRICT CONTENT PURITY & REJECT CONVERSATION:** Output ONLY the pure raw executable JSON string matching the required schema. Response must start exactly with the character `{` and end exactly with the character `}`. Banned from including thinking processes, chain-of-thought blocks (`<think>` tags), conversational filler texts, introductions, wrapping inside markdown codeblocks (no triple backticks wrapping), or post-generation notes. Any token outside the raw JSON object boundary triggers an immediate execution pipeline crash.
+5. **STRICT SINGLE-BLOCK PURITY & ABSOLUTE TERMINATION LAW:** 
+   - Your output MUST contain exactly ONE (1) single valid JSON object payload from start to finish. You are STRICTLY BANNED from repeating, mirroring, or generating a second duplicate JSON block within this response stream.
+   - **Strict Packaging Format**: The output MUST start exactly with a single line containing triple backticks and the language identifier: ```json
+   - The output MUST end exactly with the final line containing triple backticks: ```
+   - There must be absolutely ZERO conversational filler text, thinking processes (`<think>` tags), introductions, or post-generation notes before or after the fenced code block. 
+   - **Absolute Freeze Directive**: Mid-generation corrections are strictly prohibited. You are completely forbidden from appending trailing structural artifacts or deformed combinations like `} ```text{`. Once you emit the final closing brace `}` of the JSON schema, immediately close the triple backticks fence and FREEZE/STOP generating tokens instantly. Any token emitted after the primary closed fence violates enterprise runtime contracts.
 
 # Raw Response / Exception:
 
@@ -5594,7 +5684,12 @@ You are a high-performance Data Ingestion and Transformation Engine. Your sole o
 2. **ABSOLUTE PYDANTIC SCHEMA ALIGNMENT:** Your final generated JSON object MUST perfectly satisfy the structural schema parameters of the target enterprise contract. You are STRICTLY BANNED from omitting, renaming, formatting, or stripping out key elements (specifically `phase_id`, `phase_name`, `phase_description`, `project_name`, `global_context_file`, `source_target_dir`, and `days`).
 3. **ABSOLUTE NO EMPTY TAGS POLICY & STRING SANITIZATION:** You are STRICTLY BANNED from leaving the "targeted_tags" array empty `[]` or null for any sub-task that implements functional requirements or data schemas. You MUST scan the source Markdown sequentially sub-task by sub-task. For each sub-task node, locate the hidden technical container block delimited between `<!--START_TAGS-->` and `<!--END_TAGS-->` contained exclusively within that sub-task section scope. Extract all raw tag token codes inside, strip away all inline markdown formatting characters—specifically backticks (`` ` ``)—and any leading/trailing whitespaces, then populate them as clean separate string elements inside the "targeted_tags" array field of EACH sub-task object node.
 4. **NO TAG BUNDLING:** Every tag must be its own array node (e.g., `"targeted_tags": ["[REQ-001]", "[DAT-002]"]`). You are strictly forbidden from combining multiple tags into a single string element.
-5. **STRICT CONTENT PURITY & REJECT CONVERSATION:** Output ONLY the pure raw executable JSON string matching the required schema. Response must start exactly with the character `{` and end exactly with the character `}`. Banned from including thinking processes, chain-of-thought blocks (`<think>` tags), conversational filler texts, introductions, wrapping inside markdown codeblocks (no triple backticks wrapping), or post-generation notes. Any token outside the raw JSON object boundary triggers an immediate execution pipeline crash.
+5. **STRICT SINGLE-BLOCK PURITY & ABSOLUTE TERMINATION LAW:** 
+   - Your output MUST contain exactly ONE (1) single valid JSON object payload from start to finish. You are STRICTLY BANNED from repeating, mirroring, or generating a second duplicate JSON block within this response stream.
+   - **Strict Packaging Format**: The output MUST start exactly with a single line containing triple backticks and the language identifier: ```json
+   - The output MUST end exactly with the final line containing triple backticks: ```
+   - There must be absolutely ZERO conversational filler text, thinking processes (`<think>` tags), introductions, or post-generation notes before or after the fenced code block. 
+   - **Absolute Freeze Directive**: Mid-generation corrections are strictly prohibited. You are completely forbidden from appending trailing structural artifacts or deformed combinations like `} ```text{`. Once you emit the final closing brace `}` of the JSON schema, immediately close the triple backticks fence and FREEZE/STOP generating tokens instantly. Any token emitted after the primary closed fence violates enterprise runtime contracts.
 
 # Raw Response / Exception:
 
@@ -5889,7 +5984,12 @@ You are a high-performance Data Ingestion and Transformation Engine. Your sole o
 2. **ABSOLUTE PYDANTIC SCHEMA ALIGNMENT:** Your final generated JSON object MUST perfectly satisfy the structural schema parameters of the target enterprise contract. You are STRICTLY BANNED from omitting, renaming, formatting, or stripping out key elements (specifically `phase_id`, `phase_name`, `phase_description`, `project_name`, `global_context_file`, `source_target_dir`, and `days`).
 3. **ABSOLUTE NO EMPTY TAGS POLICY & STRING SANITIZATION:** You are STRICTLY BANNED from leaving the "targeted_tags" array empty `[]` or null for any sub-task that implements functional requirements or data schemas. You MUST scan the source Markdown sequentially sub-task by sub-task. For each sub-task node, locate the hidden technical container block delimited between `<!--START_TAGS-->` and `<!--END_TAGS-->` contained exclusively within that sub-task section scope. Extract all raw tag token codes inside, strip away all inline markdown formatting characters—specifically backticks (`` ` ``)—and any leading/trailing whitespaces, then populate them as clean separate string elements inside the "targeted_tags" array field of EACH sub-task object node.
 4. **NO TAG BUNDLING:** Every tag must be its own array node (e.g., `"targeted_tags": ["[REQ-001]", "[DAT-002]"]`). You are strictly forbidden from combining multiple tags into a single string element.
-5. **STRICT CONTENT PURITY & REJECT CONVERSATION:** Output ONLY the pure raw executable JSON string matching the required schema. Response must start exactly with the character `{` and end exactly with the character `}`. Banned from including thinking processes, chain-of-thought blocks (`<think>` tags), conversational filler texts, introductions, wrapping inside markdown codeblocks (no triple backticks wrapping), or post-generation notes. Any token outside the raw JSON object boundary triggers an immediate execution pipeline crash.
+5. **STRICT SINGLE-BLOCK PURITY & ABSOLUTE TERMINATION LAW:** 
+   - Your output MUST contain exactly ONE (1) single valid JSON object payload from start to finish. You are STRICTLY BANNED from repeating, mirroring, or generating a second duplicate JSON block within this response stream.
+   - **Strict Packaging Format**: The output MUST start exactly with a single line containing triple backticks and the language identifier: ```json
+   - The output MUST end exactly with the final line containing triple backticks: ```
+   - There must be absolutely ZERO conversational filler text, thinking processes (`<think>` tags), introductions, or post-generation notes before or after the fenced code block. 
+   - **Absolute Freeze Directive**: Mid-generation corrections are strictly prohibited. You are completely forbidden from appending trailing structural artifacts or deformed combinations like `} ```text{`. Once you emit the final closing brace `}` of the JSON schema, immediately close the triple backticks fence and FREEZE/STOP generating tokens instantly. Any token emitted after the primary closed fence violates enterprise runtime contracts.
 
 # Raw Response / Exception:
 
@@ -6184,7 +6284,12 @@ You are a high-performance Data Ingestion and Transformation Engine. Your sole o
 2. **ABSOLUTE PYDANTIC SCHEMA ALIGNMENT:** Your final generated JSON object MUST perfectly satisfy the structural schema parameters of the target enterprise contract. You are STRICTLY BANNED from omitting, renaming, formatting, or stripping out key elements (specifically `phase_id`, `phase_name`, `phase_description`, `project_name`, `global_context_file`, `source_target_dir`, and `days`).
 3. **ABSOLUTE NO EMPTY TAGS POLICY & STRING SANITIZATION:** You are STRICTLY BANNED from leaving the "targeted_tags" array empty `[]` or null for any sub-task that implements functional requirements or data schemas. You MUST scan the source Markdown sequentially sub-task by sub-task. For each sub-task node, locate the hidden technical container block delimited between `<!--START_TAGS-->` and `<!--END_TAGS-->` contained exclusively within that sub-task section scope. Extract all raw tag token codes inside, strip away all inline markdown formatting characters—specifically backticks (`` ` ``)—and any leading/trailing whitespaces, then populate them as clean separate string elements inside the "targeted_tags" array field of EACH sub-task object node.
 4. **NO TAG BUNDLING:** Every tag must be its own array node (e.g., `"targeted_tags": ["[REQ-001]", "[DAT-002]"]`). You are strictly forbidden from combining multiple tags into a single string element.
-5. **STRICT CONTENT PURITY & REJECT CONVERSATION:** Output ONLY the pure raw executable JSON string matching the required schema. Response must start exactly with the character `{` and end exactly with the character `}`. Banned from including thinking processes, chain-of-thought blocks (`<think>` tags), conversational filler texts, introductions, wrapping inside markdown codeblocks (no triple backticks wrapping), or post-generation notes. Any token outside the raw JSON object boundary triggers an immediate execution pipeline crash.
+5. **STRICT SINGLE-BLOCK PURITY & ABSOLUTE TERMINATION LAW:** 
+   - Your output MUST contain exactly ONE (1) single valid JSON object payload from start to finish. You are STRICTLY BANNED from repeating, mirroring, or generating a second duplicate JSON block within this response stream.
+   - **Strict Packaging Format**: The output MUST start exactly with a single line containing triple backticks and the language identifier: ```json
+   - The output MUST end exactly with the final line containing triple backticks: ```
+   - There must be absolutely ZERO conversational filler text, thinking processes (`<think>` tags), introductions, or post-generation notes before or after the fenced code block. 
+   - **Absolute Freeze Directive**: Mid-generation corrections are strictly prohibited. You are completely forbidden from appending trailing structural artifacts or deformed combinations like `} ```text{`. Once you emit the final closing brace `}` of the JSON schema, immediately close the triple backticks fence and FREEZE/STOP generating tokens instantly. Any token emitted after the primary closed fence violates enterprise runtime contracts.
 
 # Raw Response / Exception:
 
@@ -6479,12 +6584,17 @@ You are a high-performance Data Ingestion and Transformation Engine. Your sole o
 2. **ABSOLUTE PYDANTIC SCHEMA ALIGNMENT:** Your final generated JSON object MUST perfectly satisfy the structural schema parameters of the target enterprise contract. You are STRICTLY BANNED from omitting, renaming, formatting, or stripping out key elements (specifically `phase_id`, `phase_name`, `phase_description`, `project_name`, `global_context_file`, `source_target_dir`, and `days`).
 3. **ABSOLUTE NO EMPTY TAGS POLICY & STRING SANITIZATION:** You are STRICTLY BANNED from leaving the "targeted_tags" array empty `[]` or null for any sub-task that implements functional requirements or data schemas. You MUST scan the source Markdown sequentially sub-task by sub-task. For each sub-task node, locate the hidden technical container block delimited between `<!--START_TAGS-->` and `<!--END_TAGS-->` contained exclusively within that sub-task section scope. Extract all raw tag token codes inside, strip away all inline markdown formatting characters—specifically backticks (`` ` ``)—and any leading/trailing whitespaces, then populate them as clean separate string elements inside the "targeted_tags" array field of EACH sub-task object node.
 4. **NO TAG BUNDLING:** Every tag must be its own array node (e.g., `"targeted_tags": ["[REQ-001]", "[DAT-002]"]`). You are strictly forbidden from combining multiple tags into a single string element.
-5. **STRICT CONTENT PURITY & REJECT CONVERSATION:** Output ONLY the pure raw executable JSON string matching the required schema. Response must start exactly with the character `{` and end exactly with the character `}`. Banned from including thinking processes, chain-of-thought blocks (`<think>` tags), conversational filler texts, introductions, wrapping inside markdown codeblocks (no triple backticks wrapping), or post-generation notes. Any token outside the raw JSON object boundary triggers an immediate execution pipeline crash.
+5. **STRICT SINGLE-BLOCK PURITY & ABSOLUTE TERMINATION LAW:** 
+   - Your output MUST contain exactly ONE (1) single valid JSON object payload from start to finish. You are STRICTLY BANNED from repeating, mirroring, or generating a second duplicate JSON block within this response stream.
+   - **Strict Packaging Format**: The output MUST start exactly with a single line containing triple backticks and the language identifier: ```json
+   - The output MUST end exactly with the final line containing triple backticks: ```
+   - There must be absolutely ZERO conversational filler text, thinking processes (`<think>` tags), introductions, or post-generation notes before or after the fenced code block. 
+   - **Absolute Freeze Directive**: Mid-generation corrections are strictly prohibited. You are completely forbidden from appending trailing structural artifacts or deformed combinations like `} ```text{`. Once you emit the final closing brace `}` of the JSON schema, immediately close the triple backticks fence and FREEZE/STOP generating tokens instantly. Any token emitted after the primary closed fence violates enterprise runtime contracts.
 
 # Raw Response / Exception:
 
 ```json
-Error code: 402 - {'error': {'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 16. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account', 'code': 402, 'metadata': {'limit_source': 'openrouter_credits', 'remedy_hint': 'Add credits at https://openrouter.ai/settings/credits, or lower max_tokens / prompt size to fit your remaining balance.', 'provider_name': None, 'previous_errors': [{'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 12. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 12. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 62. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 25. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 25. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 25. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 26. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 16. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 25. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 25. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 25. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 25. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 25. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 16. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}]}}, 'user_id': 'user_3GLaJI6mihRMFQtSad72HqAhW95'}: ['Traceback (most recent call last):
+Error code: 402 - {'error': {'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 16. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account', 'code': 402, 'metadata': {'limit_source': 'openrouter_credits', 'remedy_hint': 'Add credits at https://openrouter.ai/settings/credits, or lower max_tokens / prompt size to fit your remaining balance.', 'provider_name': None, 'previous_errors': [{'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 12. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 12. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 62. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 25. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 25. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 25. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 25. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 16. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 25. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 25. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 25. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 25. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 16. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 26. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}]}}, 'user_id': 'user_3GLaJI6mihRMFQtSad72HqAhW95'}: ['Traceback (most recent call last):
 ', '  File "/home/runner/work/enterprise-it-ai/enterprise-it-ai/sources/agents/architect-blueprint/block_json.py", line 301, in convert_phases_to_json
     response = client.beta.chat.completions.parse(
                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -6496,7 +6606,7 @@ Error code: 402 - {'error': {'message': 'This request requires more credits, or 
                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 ', '  File "/opt/hostedtoolcache/Python/3.11.15/x64/lib/python3.11/site-packages/openai/_base_client.py", line 1148, in request
     raise self._make_status_error_from_response(err.response) from None
-', "openai.APIStatusError: Error code: 402 - {'error': {'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 16. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account', 'code': 402, 'metadata': {'limit_source': 'openrouter_credits', 'remedy_hint': 'Add credits at https://openrouter.ai/settings/credits, or lower max_tokens / prompt size to fit your remaining balance.', 'provider_name': None, 'previous_errors': [{'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 12. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 12. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 62. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 25. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 25. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 25. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 26. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 16. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 25. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 25. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 25. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 25. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 25. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 16. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}]}}, 'user_id': 'user_3GLaJI6mihRMFQtSad72HqAhW95'}
+', "openai.APIStatusError: Error code: 402 - {'error': {'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 16. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account', 'code': 402, 'metadata': {'limit_source': 'openrouter_credits', 'remedy_hint': 'Add credits at https://openrouter.ai/settings/credits, or lower max_tokens / prompt size to fit your remaining balance.', 'provider_name': None, 'previous_errors': [{'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 12. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 12. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 62. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 25. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 25. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 25. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 25. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 16. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 25. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 25. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 25. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 25. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 16. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 26. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}]}}, 'user_id': 'user_3GLaJI6mihRMFQtSad72HqAhW95'}
 "]
 ```
 
@@ -6817,95 +6927,102 @@ You are a high-performance Data Ingestion and Transformation Engine. Your sole o
 2. **ABSOLUTE PYDANTIC SCHEMA ALIGNMENT:** Your final generated JSON object MUST perfectly satisfy the structural schema parameters of the target enterprise contract. You are STRICTLY BANNED from omitting, renaming, formatting, or stripping out key elements (specifically `phase_id`, `phase_name`, `phase_description`, `project_name`, `global_context_file`, `source_target_dir`, and `days`).
 3. **ABSOLUTE NO EMPTY TAGS POLICY & STRING SANITIZATION:** You are STRICTLY BANNED from leaving the "targeted_tags" array empty `[]` or null for any sub-task that implements functional requirements or data schemas. You MUST scan the source Markdown sequentially sub-task by sub-task. For each sub-task node, locate the hidden technical container block delimited between `<!--START_TAGS-->` and `<!--END_TAGS-->` contained exclusively within that sub-task section scope. Extract all raw tag token codes inside, strip away all inline markdown formatting characters—specifically backticks (`` ` ``)—and any leading/trailing whitespaces, then populate them as clean separate string elements inside the "targeted_tags" array field of EACH sub-task object node.
 4. **NO TAG BUNDLING:** Every tag must be its own array node (e.g., `"targeted_tags": ["[REQ-001]", "[DAT-002]"]`). You are strictly forbidden from combining multiple tags into a single string element.
-5. **STRICT CONTENT PURITY & REJECT CONVERSATION:** Output ONLY the pure raw executable JSON string matching the required schema. Response must start exactly with the character `{` and end exactly with the character `}`. Banned from including thinking processes, chain-of-thought blocks (`<think>` tags), conversational filler texts, introductions, wrapping inside markdown codeblocks (no triple backticks wrapping), or post-generation notes. Any token outside the raw JSON object boundary triggers an immediate execution pipeline crash.
+5. **STRICT SINGLE-BLOCK PURITY & ABSOLUTE TERMINATION LAW:** 
+   - Your output MUST contain exactly ONE (1) single valid JSON object payload from start to finish. You are STRICTLY BANNED from repeating, mirroring, or generating a second duplicate JSON block within this response stream.
+   - **Strict Packaging Format**: The output MUST start exactly with a single line containing triple backticks and the language identifier: ```json
+   - The output MUST end exactly with the final line containing triple backticks: ```
+   - There must be absolutely ZERO conversational filler text, thinking processes (`<think>` tags), introductions, or post-generation notes before or after the fenced code block. 
+   - **Absolute Freeze Directive**: Mid-generation corrections are strictly prohibited. You are completely forbidden from appending trailing structural artifacts or deformed combinations like `} ```text{`. Once you emit the final closing brace `}` of the JSON schema, immediately close the triple backticks fence and FREEZE/STOP generating tokens instantly. Any token emitted after the primary closed fence violates enterprise runtime contracts.
 </ACTIVE_TASK_SYSTEM_INSTRUCTION>
 
 # Raw Response / Exception:
 
 ```json
+```json
 {
-    "phase_id": 1,
-    "phase_name": "user_core_services",
-    "phase_description": "Triển khai các dịch vụ cốt lõi quản lý người dùng bao gồm đăng ký, xác thực xã hội, gán vai trò, schema cơ sở dữ liệu và logging kiểm toán bảo mật",
-    "project_name": "membership-hub",
-    "global_context_file": ".ai/.context/membership-hub.global.blueprint.md",
-    "source_target_dir": "sources/",
-    "days": [
+  "phase_id": 1,
+  "phase_name": "user_core_services",
+  "phase_description": "Triển khai các dịch vụ cốt lõi quản lý người dùng bao gồm đăng ký, xác thực xã hội, gán vai trò, schema cơ sở dữ liệu và logging kiểm toán bảo mật",
+  "project_name": "membership-hub",
+  "global_context_file": ".ai/.context/membership-hub.global.blueprint.md",
+  "source_target_dir": "sources/",
+  "days": [
+    {
+      "day": 1,
+      "context_file": ".ai/.plan/.context/phase-1.context.blueprint.md",
+      "context_section": "### NGÀY 1: TRIỂN KHAI DỊCH VỤ ĐĂNG KÝ NGƯỜI DÙNG VÀ API XÁC THỰC XÃ HỘI",
+      "sub_tasks": [
         {
-            "day": 1,
-            "context_file": ".ai/.plan/.context/phase-1.context.blueprint.md",
-            "context_section": "### NGÀY 1: TRIỂN KHAI DỊCH VỤ ĐĂNG KÝ NGƯỜI DÙNG VÀ API XÁC THỰC XÃ HỘI",
-            "sub_tasks": [
-                {
-                    "id": "D1_ST1",
-                    "agent": "Coder",
-                    "desc": "Triển khai schema cơ sở dữ liệu Users và Roles",
-                    "targeted_tags": [
-                        "[DAT-001]"
-                    ],
-                    "components": [
-                        "./sources/backend.membershiphub.user/users.sql",
-                        "./sources/backend.membershiphub.user/roles.sql"
-                    ]
-                },
-                {
-                    "id": "D1_ST2",
-                    "agent": "Coder",
-                    "desc": "Triển khai UserService với phương thức register và socialAuthenticate",
-                    "targeted_tags": [
-                        "[REQ-001]",
-                        "[REQ-002]",
-                        "[ARC-006]",
-                        "[EXC-004]",
-                        "[NFR-001]",
-                        "[NFR-003]",
-                        "[NFR-006]"
-                    ],
-                    "components": [
-                        "./sources/backend.membershiphub.user/user-service.java"
-                    ]
-                }
-            ]
+          "id": "D1_ST1",
+          "agent": "Coder",
+          "desc": "Triển khai schema cơ sở dữ liệu Users và Roles: Tạo bảng Users với cột id (UUID PK), email (UNIQUE, NOT NULL), password_hash (VARCHAR), role_id (UUID FK), created_at, updated_at. Tạo bảng Roles với cột id (UUID PK), name (ENUM('ADMIN','USER','MODERATOR'), UNIQUE, NOT NULL), description. Đặt ràng buộc FK role_id -> Roles.id, kiểm tra toàn vẹn dữ liệu. Sử dụng Flyway migration script, đặt tên file migration_001_create_user_and_role_tables.sql. Đảm bảo các constraint và index được tạo đúng.",
+          "targeted_tags": [
+            "[DAT-001]"
+          ],
+          "components": [
+            "./sources/backend.membershiphub.user/users.sql",
+            "./sources/backend.membershiphub.user/roles.sql"
+          ]
         },
         {
-            "day": 2,
-            "context_file": ".ai/.plan/.context/phase-1.context.blueprint.md",
-            "context_section": "### NGÀY 2: VIẾT BỘ KIỂM TRA ĐƠN VỊ VÀ TÍCH HỢP CHO CÁC CHỨC NĂNG NGƯỜI DÙNG",
-            "sub_tasks": [
-                {
-                    "id": "D2_ST1",
-                    "agent": "Tester",
-                    "desc": "Kiểm thử đơn vị cho các phương thức register và socialAuthenticate",
-                    "targeted_tags": [
-                        "[REQ-001]",
-                        "[REQ-002]",
-                        "[DAT-001]",
-                        "[EXC-004]"
-                    ],
-                    "components": [
-                        "./sources/backend.membershiphub.user/user-service.java",
-                        "./sources/backend.membershiphub.user/userservice-test.java"
-                    ]
-                },
-                {
-                    "id": "D2_ST2",
-                    "agent": "Tester",
-                    "desc": "Kiểm thử tích hợp cho API endpoints",
-                    "targeted_tags": [
-                        "[REQ-001]",
-                        "[REQ-002]",
-                        "[ARC-006]",
-                        "[EXC-004]"
-                    ],
-                    "components": [
-                        "./sources/backend.membershiphub.user/user-service.java",
-                        "./sources/backend.membershiphub.user/user-controller-test.java"
-                    ]
-                }
-            ]
+          "id": "D1_ST2",
+          "agent": "Coder",
+          "desc": "Triển khai UserService với phương thức register và socialAuthenticate: Viết lớp UserService trong Java Quarkus, sử dụng BCryptPasswordEncoder để mã hóa mật khẩu, tạo JWT access token 15 phút và refresh token 7 ngày. Phương thức register nhận DTO RegisterRequest, kiểm tra email duy nhất, lưu User vào DB, gán role mặc định 'USER'. Phương thức socialAuthenticate nhận provider và token, xác thực với Firebase/Google/Facebook, lấy thông tin email, tạo hoặc cập nhật User, trả về JWT. Sử dụng @Valid cho validation, @Transactional cho ghi, @Transactional(readOnly=true) cho read. Thêm exception handling cho ValidationException, ConflictException. Đảm bảo tuân thủ OWASP Top 10, tránh SQL injection, XSS.",
+          "targeted_tags": [
+            "[REQ-001]",
+            "[REQ-002]",
+            "[ARC-006]",
+            "[EXC-004]",
+            "[NFR-001]",
+            "[NFR-003]",
+            "[NFR-006]"
+          ],
+          "components": [
+            "./sources/backend.membershiphub.user/user-service.java"
+          ]
         }
-    ]
+      ]
+    },
+    {
+      "day": 2,
+      "context_file": ".ai/.plan/.context/phase-1.context.blueprint.md",
+      "context_section": "### NGÀY 2: VIẾT BỘ KIỂM TRA ĐƠN VỊ VÀ TÍCH HỢP CHO CÁC CHỨC NĂNG NGƯỜI DÙNG",
+      "sub_tasks": [
+        {
+          "id": "D2_ST1",
+          "agent": "Tester",
+          "desc": "Kiểm thử đơn vị cho các phương thức register và socialAuthenticate: Tạo lớp UserServiceTest, sử dụng JUnit 5, Mockito để mock UserRepository, BCryptPasswordEncoder, JWTProvider. Viết test happy path cho register: kiểm tra tạo User, mã hóa password, trả về token. Viết test exception khi email đã tồn tại. Viết test socialAuthenticate: mock provider response, kiểm tra tạo/ cập nhật User, trả token. Đảm bảo coverage ≥85%, sử dụng @ExtendWith(MockitoExtension.class).",
+          "targeted_tags": [
+            "[REQ-001]",
+            "[REQ-002]",
+            "[DAT-001]",
+            "[EXC-004]"
+          ],
+          "components": [
+            "./sources/backend.membershiphub.user/user-service.java",
+            "./sources/backend.membershiphub.user/userservice-test.java"
+          ]
+        },
+        {
+          "id": "D2_ST2",
+          "agent": "Tester",
+          "desc": "Kiểm thử tích hợp cho API endpoints: Tạo lớp UserControllerIT, sử dụng QuarkusTest, RestAssured để gửi POST /api/v1/auth/register, POST /api/v1/auth/social, PUT /api/v1/users/{userId}/role. Kiểm tra status 200, body chứa token, kiểm tra lỗi validation, kiểm tra role update. Sử dụng @TestSecurity để mock admin role. Đảm bảo coverage ≥85%.",
+          "targeted_tags": [
+            "[REQ-001]",
+            "[REQ-002]",
+            "[ARC-006]",
+            "[EXC-004]"
+          ],
+          "components": [
+            "./sources/backend.membershiphub.user/user-service.java",
+            "./sources/backend.membershiphub.user/user-controller-test.java"
+          ]
+        }
+      ]
+    }
+  ]
 }
+```
 ```
 
 # AI Model: openai/gpt-oss-20b - Phase 1 STEPS - Prompt:
@@ -7182,12 +7299,17 @@ You are a high-performance Data Ingestion and Transformation Engine. Your sole o
 2. **ABSOLUTE PYDANTIC SCHEMA ALIGNMENT:** Your final generated JSON object MUST perfectly satisfy the structural schema parameters of the target enterprise contract. You are STRICTLY BANNED from omitting, renaming, formatting, or stripping out key elements (specifically `phase_id`, `phase_name`, `phase_description`, `project_name`, `global_context_file`, `source_target_dir`, and `days`).
 3. **ABSOLUTE NO EMPTY TAGS POLICY & STRING SANITIZATION:** You are STRICTLY BANNED from leaving the "targeted_tags" array empty `[]` or null for any sub-task that implements functional requirements or data schemas. You MUST scan the source Markdown sequentially sub-task by sub-task. For each sub-task node, locate the hidden technical container block delimited between `<!--START_TAGS-->` and `<!--END_TAGS-->` contained exclusively within that sub-task section scope. Extract all raw tag token codes inside, strip away all inline markdown formatting characters—specifically backticks (`` ` ``)—and any leading/trailing whitespaces, then populate them as clean separate string elements inside the "targeted_tags" array field of EACH sub-task object node.
 4. **NO TAG BUNDLING:** Every tag must be its own array node (e.g., `"targeted_tags": ["[REQ-001]", "[DAT-002]"]`). You are strictly forbidden from combining multiple tags into a single string element.
-5. **STRICT CONTENT PURITY & REJECT CONVERSATION:** Output ONLY the pure raw executable JSON string matching the required schema. Response must start exactly with the character `{` and end exactly with the character `}`. Banned from including thinking processes, chain-of-thought blocks (`<think>` tags), conversational filler texts, introductions, wrapping inside markdown codeblocks (no triple backticks wrapping), or post-generation notes. Any token outside the raw JSON object boundary triggers an immediate execution pipeline crash.
+5. **STRICT SINGLE-BLOCK PURITY & ABSOLUTE TERMINATION LAW:** 
+   - Your output MUST contain exactly ONE (1) single valid JSON object payload from start to finish. You are STRICTLY BANNED from repeating, mirroring, or generating a second duplicate JSON block within this response stream.
+   - **Strict Packaging Format**: The output MUST start exactly with a single line containing triple backticks and the language identifier: ```json
+   - The output MUST end exactly with the final line containing triple backticks: ```
+   - There must be absolutely ZERO conversational filler text, thinking processes (`<think>` tags), introductions, or post-generation notes before or after the fenced code block. 
+   - **Absolute Freeze Directive**: Mid-generation corrections are strictly prohibited. You are completely forbidden from appending trailing structural artifacts or deformed combinations like `} ```text{`. Once you emit the final closing brace `}` of the JSON schema, immediately close the triple backticks fence and FREEZE/STOP generating tokens instantly. Any token emitted after the primary closed fence violates enterprise runtime contracts.
 
 # Raw Response / Exception:
 
 ```json
-Error code: 402 - {'error': {'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 1256. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account', 'code': 402, 'metadata': {'limit_source': 'openrouter_credits', 'remedy_hint': 'Add credits at https://openrouter.ai/settings/credits, or lower max_tokens / prompt size to fit your remaining balance.', 'provider_name': None, 'previous_errors': [{'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 1884. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 2691. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 2898. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 2512. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 1256. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 2512. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 2512. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 2093. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 2512. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 1507. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}]}}, 'user_id': 'user_3GLaJI6mihRMFQtSad72HqAhW95'}: ['Traceback (most recent call last):
+Error code: 402 - {'error': {'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 1256. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account', 'code': 402, 'metadata': {'limit_source': 'openrouter_credits', 'remedy_hint': 'Add credits at https://openrouter.ai/settings/credits, or lower max_tokens / prompt size to fit your remaining balance.', 'provider_name': None, 'previous_errors': [{'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 2512. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 2093. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 2898. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 2691. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 1256. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 1884. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 2512. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 2512. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 1507. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 2512. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}]}}, 'user_id': 'user_3GLaJI6mihRMFQtSad72HqAhW95'}: ['Traceback (most recent call last):
 ', '  File "/home/runner/work/enterprise-it-ai/enterprise-it-ai/sources/agents/architect-blueprint/block_json.py", line 301, in convert_phases_to_json
     response = client.beta.chat.completions.parse(
                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -7199,7 +7321,7 @@ Error code: 402 - {'error': {'message': 'This request requires more credits, or 
                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 ', '  File "/opt/hostedtoolcache/Python/3.11.15/x64/lib/python3.11/site-packages/openai/_base_client.py", line 1148, in request
     raise self._make_status_error_from_response(err.response) from None
-', "openai.APIStatusError: Error code: 402 - {'error': {'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 1256. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account', 'code': 402, 'metadata': {'limit_source': 'openrouter_credits', 'remedy_hint': 'Add credits at https://openrouter.ai/settings/credits, or lower max_tokens / prompt size to fit your remaining balance.', 'provider_name': None, 'previous_errors': [{'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 1884. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 2691. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 2898. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 2512. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 1256. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 2512. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 2512. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 2093. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 2512. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 1507. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}]}}, 'user_id': 'user_3GLaJI6mihRMFQtSad72HqAhW95'}
+', "openai.APIStatusError: Error code: 402 - {'error': {'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 1256. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account', 'code': 402, 'metadata': {'limit_source': 'openrouter_credits', 'remedy_hint': 'Add credits at https://openrouter.ai/settings/credits, or lower max_tokens / prompt size to fit your remaining balance.', 'provider_name': None, 'previous_errors': [{'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 2512. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 2093. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 2898. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 2691. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 1256. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 1884. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 2512. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 2512. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 1507. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 2512. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}]}}, 'user_id': 'user_3GLaJI6mihRMFQtSad72HqAhW95'}
 "]
 ```
 
@@ -7477,12 +7599,17 @@ You are a high-performance Data Ingestion and Transformation Engine. Your sole o
 2. **ABSOLUTE PYDANTIC SCHEMA ALIGNMENT:** Your final generated JSON object MUST perfectly satisfy the structural schema parameters of the target enterprise contract. You are STRICTLY BANNED from omitting, renaming, formatting, or stripping out key elements (specifically `phase_id`, `phase_name`, `phase_description`, `project_name`, `global_context_file`, `source_target_dir`, and `days`).
 3. **ABSOLUTE NO EMPTY TAGS POLICY & STRING SANITIZATION:** You are STRICTLY BANNED from leaving the "targeted_tags" array empty `[]` or null for any sub-task that implements functional requirements or data schemas. You MUST scan the source Markdown sequentially sub-task by sub-task. For each sub-task node, locate the hidden technical container block delimited between `<!--START_TAGS-->` and `<!--END_TAGS-->` contained exclusively within that sub-task section scope. Extract all raw tag token codes inside, strip away all inline markdown formatting characters—specifically backticks (`` ` ``)—and any leading/trailing whitespaces, then populate them as clean separate string elements inside the "targeted_tags" array field of EACH sub-task object node.
 4. **NO TAG BUNDLING:** Every tag must be its own array node (e.g., `"targeted_tags": ["[REQ-001]", "[DAT-002]"]`). You are strictly forbidden from combining multiple tags into a single string element.
-5. **STRICT CONTENT PURITY & REJECT CONVERSATION:** Output ONLY the pure raw executable JSON string matching the required schema. Response must start exactly with the character `{` and end exactly with the character `}`. Banned from including thinking processes, chain-of-thought blocks (`<think>` tags), conversational filler texts, introductions, wrapping inside markdown codeblocks (no triple backticks wrapping), or post-generation notes. Any token outside the raw JSON object boundary triggers an immediate execution pipeline crash.
+5. **STRICT SINGLE-BLOCK PURITY & ABSOLUTE TERMINATION LAW:** 
+   - Your output MUST contain exactly ONE (1) single valid JSON object payload from start to finish. You are STRICTLY BANNED from repeating, mirroring, or generating a second duplicate JSON block within this response stream.
+   - **Strict Packaging Format**: The output MUST start exactly with a single line containing triple backticks and the language identifier: ```json
+   - The output MUST end exactly with the final line containing triple backticks: ```
+   - There must be absolutely ZERO conversational filler text, thinking processes (`<think>` tags), introductions, or post-generation notes before or after the fenced code block. 
+   - **Absolute Freeze Directive**: Mid-generation corrections are strictly prohibited. You are completely forbidden from appending trailing structural artifacts or deformed combinations like `} ```text{`. Once you emit the final closing brace `}` of the JSON schema, immediately close the triple backticks fence and FREEZE/STOP generating tokens instantly. Any token emitted after the primary closed fence violates enterprise runtime contracts.
 
 # Raw Response / Exception:
 
 ```json
-Error code: 402 - {'error': {'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 502. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account', 'code': 402, 'metadata': {'limit_source': 'openrouter_credits', 'remedy_hint': 'Add credits at https://openrouter.ai/settings/credits, or lower max_tokens / prompt size to fit your remaining balance.', 'provider_name': None, 'previous_errors': [{'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 2216. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 2216. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 837. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 1507. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 628. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 396. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 502. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 628. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 753. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 628. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 753. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 628. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 769. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 1046. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 628. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 502. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 628. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}]}}, 'user_id': 'user_3GLaJI6mihRMFQtSad72HqAhW95'}: ['Traceback (most recent call last):
+Error code: 402 - {'error': {'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 753. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account', 'code': 402, 'metadata': {'limit_source': 'openrouter_credits', 'remedy_hint': 'Add credits at https://openrouter.ai/settings/credits, or lower max_tokens / prompt size to fit your remaining balance.', 'provider_name': None, 'previous_errors': [{'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 2216. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 628. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 628. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 1046. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 628. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 2216. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 769. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 1507. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 502. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 753. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 502. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 396. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 628. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 628. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 502. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 628. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 837. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}]}}, 'user_id': 'user_3GLaJI6mihRMFQtSad72HqAhW95'}: ['Traceback (most recent call last):
 ', '  File "/home/runner/work/enterprise-it-ai/enterprise-it-ai/sources/agents/architect-blueprint/block_json.py", line 301, in convert_phases_to_json
     response = client.beta.chat.completions.parse(
                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -7494,7 +7621,7 @@ Error code: 402 - {'error': {'message': 'This request requires more credits, or 
                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 ', '  File "/opt/hostedtoolcache/Python/3.11.15/x64/lib/python3.11/site-packages/openai/_base_client.py", line 1148, in request
     raise self._make_status_error_from_response(err.response) from None
-', "openai.APIStatusError: Error code: 402 - {'error': {'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 502. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account', 'code': 402, 'metadata': {'limit_source': 'openrouter_credits', 'remedy_hint': 'Add credits at https://openrouter.ai/settings/credits, or lower max_tokens / prompt size to fit your remaining balance.', 'provider_name': None, 'previous_errors': [{'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 2216. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 2216. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 837. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 1507. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 628. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 396. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 502. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 628. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 753. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 628. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 753. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 628. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 769. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 1046. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 628. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 502. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 628. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}]}}, 'user_id': 'user_3GLaJI6mihRMFQtSad72HqAhW95'}
+', "openai.APIStatusError: Error code: 402 - {'error': {'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 753. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account', 'code': 402, 'metadata': {'limit_source': 'openrouter_credits', 'remedy_hint': 'Add credits at https://openrouter.ai/settings/credits, or lower max_tokens / prompt size to fit your remaining balance.', 'provider_name': None, 'previous_errors': [{'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 2216. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 628. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 628. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 1046. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 628. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 2216. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 769. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 1507. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 502. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 753. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 502. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 396. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 628. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 628. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 502. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 628. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 837. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}]}}, 'user_id': 'user_3GLaJI6mihRMFQtSad72HqAhW95'}
 "]
 ```
 
@@ -7772,7 +7899,12 @@ You are a high-performance Data Ingestion and Transformation Engine. Your sole o
 2. **ABSOLUTE PYDANTIC SCHEMA ALIGNMENT:** Your final generated JSON object MUST perfectly satisfy the structural schema parameters of the target enterprise contract. You are STRICTLY BANNED from omitting, renaming, formatting, or stripping out key elements (specifically `phase_id`, `phase_name`, `phase_description`, `project_name`, `global_context_file`, `source_target_dir`, and `days`).
 3. **ABSOLUTE NO EMPTY TAGS POLICY & STRING SANITIZATION:** You are STRICTLY BANNED from leaving the "targeted_tags" array empty `[]` or null for any sub-task that implements functional requirements or data schemas. You MUST scan the source Markdown sequentially sub-task by sub-task. For each sub-task node, locate the hidden technical container block delimited between `<!--START_TAGS-->` and `<!--END_TAGS-->` contained exclusively within that sub-task section scope. Extract all raw tag token codes inside, strip away all inline markdown formatting characters—specifically backticks (`` ` ``)—and any leading/trailing whitespaces, then populate them as clean separate string elements inside the "targeted_tags" array field of EACH sub-task object node.
 4. **NO TAG BUNDLING:** Every tag must be its own array node (e.g., `"targeted_tags": ["[REQ-001]", "[DAT-002]"]`). You are strictly forbidden from combining multiple tags into a single string element.
-5. **STRICT CONTENT PURITY & REJECT CONVERSATION:** Output ONLY the pure raw executable JSON string matching the required schema. Response must start exactly with the character `{` and end exactly with the character `}`. Banned from including thinking processes, chain-of-thought blocks (`<think>` tags), conversational filler texts, introductions, wrapping inside markdown codeblocks (no triple backticks wrapping), or post-generation notes. Any token outside the raw JSON object boundary triggers an immediate execution pipeline crash.
+5. **STRICT SINGLE-BLOCK PURITY & ABSOLUTE TERMINATION LAW:** 
+   - Your output MUST contain exactly ONE (1) single valid JSON object payload from start to finish. You are STRICTLY BANNED from repeating, mirroring, or generating a second duplicate JSON block within this response stream.
+   - **Strict Packaging Format**: The output MUST start exactly with a single line containing triple backticks and the language identifier: ```json
+   - The output MUST end exactly with the final line containing triple backticks: ```
+   - There must be absolutely ZERO conversational filler text, thinking processes (`<think>` tags), introductions, or post-generation notes before or after the fenced code block. 
+   - **Absolute Freeze Directive**: Mid-generation corrections are strictly prohibited. You are completely forbidden from appending trailing structural artifacts or deformed combinations like `} ```text{`. Once you emit the final closing brace `}` of the JSON schema, immediately close the triple backticks fence and FREEZE/STOP generating tokens instantly. Any token emitted after the primary closed fence violates enterprise runtime contracts.
 
 # Raw Response / Exception:
 
@@ -8067,7 +8199,12 @@ You are a high-performance Data Ingestion and Transformation Engine. Your sole o
 2. **ABSOLUTE PYDANTIC SCHEMA ALIGNMENT:** Your final generated JSON object MUST perfectly satisfy the structural schema parameters of the target enterprise contract. You are STRICTLY BANNED from omitting, renaming, formatting, or stripping out key elements (specifically `phase_id`, `phase_name`, `phase_description`, `project_name`, `global_context_file`, `source_target_dir`, and `days`).
 3. **ABSOLUTE NO EMPTY TAGS POLICY & STRING SANITIZATION:** You are STRICTLY BANNED from leaving the "targeted_tags" array empty `[]` or null for any sub-task that implements functional requirements or data schemas. You MUST scan the source Markdown sequentially sub-task by sub-task. For each sub-task node, locate the hidden technical container block delimited between `<!--START_TAGS-->` and `<!--END_TAGS-->` contained exclusively within that sub-task section scope. Extract all raw tag token codes inside, strip away all inline markdown formatting characters—specifically backticks (`` ` ``)—and any leading/trailing whitespaces, then populate them as clean separate string elements inside the "targeted_tags" array field of EACH sub-task object node.
 4. **NO TAG BUNDLING:** Every tag must be its own array node (e.g., `"targeted_tags": ["[REQ-001]", "[DAT-002]"]`). You are strictly forbidden from combining multiple tags into a single string element.
-5. **STRICT CONTENT PURITY & REJECT CONVERSATION:** Output ONLY the pure raw executable JSON string matching the required schema. Response must start exactly with the character `{` and end exactly with the character `}`. Banned from including thinking processes, chain-of-thought blocks (`<think>` tags), conversational filler texts, introductions, wrapping inside markdown codeblocks (no triple backticks wrapping), or post-generation notes. Any token outside the raw JSON object boundary triggers an immediate execution pipeline crash.
+5. **STRICT SINGLE-BLOCK PURITY & ABSOLUTE TERMINATION LAW:** 
+   - Your output MUST contain exactly ONE (1) single valid JSON object payload from start to finish. You are STRICTLY BANNED from repeating, mirroring, or generating a second duplicate JSON block within this response stream.
+   - **Strict Packaging Format**: The output MUST start exactly with a single line containing triple backticks and the language identifier: ```json
+   - The output MUST end exactly with the final line containing triple backticks: ```
+   - There must be absolutely ZERO conversational filler text, thinking processes (`<think>` tags), introductions, or post-generation notes before or after the fenced code block. 
+   - **Absolute Freeze Directive**: Mid-generation corrections are strictly prohibited. You are completely forbidden from appending trailing structural artifacts or deformed combinations like `} ```text{`. Once you emit the final closing brace `}` of the JSON schema, immediately close the triple backticks fence and FREEZE/STOP generating tokens instantly. Any token emitted after the primary closed fence violates enterprise runtime contracts.
 
 # Raw Response / Exception:
 
@@ -8362,7 +8499,12 @@ You are a high-performance Data Ingestion and Transformation Engine. Your sole o
 2. **ABSOLUTE PYDANTIC SCHEMA ALIGNMENT:** Your final generated JSON object MUST perfectly satisfy the structural schema parameters of the target enterprise contract. You are STRICTLY BANNED from omitting, renaming, formatting, or stripping out key elements (specifically `phase_id`, `phase_name`, `phase_description`, `project_name`, `global_context_file`, `source_target_dir`, and `days`).
 3. **ABSOLUTE NO EMPTY TAGS POLICY & STRING SANITIZATION:** You are STRICTLY BANNED from leaving the "targeted_tags" array empty `[]` or null for any sub-task that implements functional requirements or data schemas. You MUST scan the source Markdown sequentially sub-task by sub-task. For each sub-task node, locate the hidden technical container block delimited between `<!--START_TAGS-->` and `<!--END_TAGS-->` contained exclusively within that sub-task section scope. Extract all raw tag token codes inside, strip away all inline markdown formatting characters—specifically backticks (`` ` ``)—and any leading/trailing whitespaces, then populate them as clean separate string elements inside the "targeted_tags" array field of EACH sub-task object node.
 4. **NO TAG BUNDLING:** Every tag must be its own array node (e.g., `"targeted_tags": ["[REQ-001]", "[DAT-002]"]`). You are strictly forbidden from combining multiple tags into a single string element.
-5. **STRICT CONTENT PURITY & REJECT CONVERSATION:** Output ONLY the pure raw executable JSON string matching the required schema. Response must start exactly with the character `{` and end exactly with the character `}`. Banned from including thinking processes, chain-of-thought blocks (`<think>` tags), conversational filler texts, introductions, wrapping inside markdown codeblocks (no triple backticks wrapping), or post-generation notes. Any token outside the raw JSON object boundary triggers an immediate execution pipeline crash.
+5. **STRICT SINGLE-BLOCK PURITY & ABSOLUTE TERMINATION LAW:** 
+   - Your output MUST contain exactly ONE (1) single valid JSON object payload from start to finish. You are STRICTLY BANNED from repeating, mirroring, or generating a second duplicate JSON block within this response stream.
+   - **Strict Packaging Format**: The output MUST start exactly with a single line containing triple backticks and the language identifier: ```json
+   - The output MUST end exactly with the final line containing triple backticks: ```
+   - There must be absolutely ZERO conversational filler text, thinking processes (`<think>` tags), introductions, or post-generation notes before or after the fenced code block. 
+   - **Absolute Freeze Directive**: Mid-generation corrections are strictly prohibited. You are completely forbidden from appending trailing structural artifacts or deformed combinations like `} ```text{`. Once you emit the final closing brace `}` of the JSON schema, immediately close the triple backticks fence and FREEZE/STOP generating tokens instantly. Any token emitted after the primary closed fence violates enterprise runtime contracts.
 
 # Raw Response / Exception:
 
@@ -8657,7 +8799,12 @@ You are a high-performance Data Ingestion and Transformation Engine. Your sole o
 2. **ABSOLUTE PYDANTIC SCHEMA ALIGNMENT:** Your final generated JSON object MUST perfectly satisfy the structural schema parameters of the target enterprise contract. You are STRICTLY BANNED from omitting, renaming, formatting, or stripping out key elements (specifically `phase_id`, `phase_name`, `phase_description`, `project_name`, `global_context_file`, `source_target_dir`, and `days`).
 3. **ABSOLUTE NO EMPTY TAGS POLICY & STRING SANITIZATION:** You are STRICTLY BANNED from leaving the "targeted_tags" array empty `[]` or null for any sub-task that implements functional requirements or data schemas. You MUST scan the source Markdown sequentially sub-task by sub-task. For each sub-task node, locate the hidden technical container block delimited between `<!--START_TAGS-->` and `<!--END_TAGS-->` contained exclusively within that sub-task section scope. Extract all raw tag token codes inside, strip away all inline markdown formatting characters—specifically backticks (`` ` ``)—and any leading/trailing whitespaces, then populate them as clean separate string elements inside the "targeted_tags" array field of EACH sub-task object node.
 4. **NO TAG BUNDLING:** Every tag must be its own array node (e.g., `"targeted_tags": ["[REQ-001]", "[DAT-002]"]`). You are strictly forbidden from combining multiple tags into a single string element.
-5. **STRICT CONTENT PURITY & REJECT CONVERSATION:** Output ONLY the pure raw executable JSON string matching the required schema. Response must start exactly with the character `{` and end exactly with the character `}`. Banned from including thinking processes, chain-of-thought blocks (`<think>` tags), conversational filler texts, introductions, wrapping inside markdown codeblocks (no triple backticks wrapping), or post-generation notes. Any token outside the raw JSON object boundary triggers an immediate execution pipeline crash.
+5. **STRICT SINGLE-BLOCK PURITY & ABSOLUTE TERMINATION LAW:** 
+   - Your output MUST contain exactly ONE (1) single valid JSON object payload from start to finish. You are STRICTLY BANNED from repeating, mirroring, or generating a second duplicate JSON block within this response stream.
+   - **Strict Packaging Format**: The output MUST start exactly with a single line containing triple backticks and the language identifier: ```json
+   - The output MUST end exactly with the final line containing triple backticks: ```
+   - There must be absolutely ZERO conversational filler text, thinking processes (`<think>` tags), introductions, or post-generation notes before or after the fenced code block. 
+   - **Absolute Freeze Directive**: Mid-generation corrections are strictly prohibited. You are completely forbidden from appending trailing structural artifacts or deformed combinations like `} ```text{`. Once you emit the final closing brace `}` of the JSON schema, immediately close the triple backticks fence and FREEZE/STOP generating tokens instantly. Any token emitted after the primary closed fence violates enterprise runtime contracts.
 
 # Raw Response / Exception:
 
@@ -8952,7 +9099,12 @@ You are a high-performance Data Ingestion and Transformation Engine. Your sole o
 2. **ABSOLUTE PYDANTIC SCHEMA ALIGNMENT:** Your final generated JSON object MUST perfectly satisfy the structural schema parameters of the target enterprise contract. You are STRICTLY BANNED from omitting, renaming, formatting, or stripping out key elements (specifically `phase_id`, `phase_name`, `phase_description`, `project_name`, `global_context_file`, `source_target_dir`, and `days`).
 3. **ABSOLUTE NO EMPTY TAGS POLICY & STRING SANITIZATION:** You are STRICTLY BANNED from leaving the "targeted_tags" array empty `[]` or null for any sub-task that implements functional requirements or data schemas. You MUST scan the source Markdown sequentially sub-task by sub-task. For each sub-task node, locate the hidden technical container block delimited between `<!--START_TAGS-->` and `<!--END_TAGS-->` contained exclusively within that sub-task section scope. Extract all raw tag token codes inside, strip away all inline markdown formatting characters—specifically backticks (`` ` ``)—and any leading/trailing whitespaces, then populate them as clean separate string elements inside the "targeted_tags" array field of EACH sub-task object node.
 4. **NO TAG BUNDLING:** Every tag must be its own array node (e.g., `"targeted_tags": ["[REQ-001]", "[DAT-002]"]`). You are strictly forbidden from combining multiple tags into a single string element.
-5. **STRICT CONTENT PURITY & REJECT CONVERSATION:** Output ONLY the pure raw executable JSON string matching the required schema. Response must start exactly with the character `{` and end exactly with the character `}`. Banned from including thinking processes, chain-of-thought blocks (`<think>` tags), conversational filler texts, introductions, wrapping inside markdown codeblocks (no triple backticks wrapping), or post-generation notes. Any token outside the raw JSON object boundary triggers an immediate execution pipeline crash.
+5. **STRICT SINGLE-BLOCK PURITY & ABSOLUTE TERMINATION LAW:** 
+   - Your output MUST contain exactly ONE (1) single valid JSON object payload from start to finish. You are STRICTLY BANNED from repeating, mirroring, or generating a second duplicate JSON block within this response stream.
+   - **Strict Packaging Format**: The output MUST start exactly with a single line containing triple backticks and the language identifier: ```json
+   - The output MUST end exactly with the final line containing triple backticks: ```
+   - There must be absolutely ZERO conversational filler text, thinking processes (`<think>` tags), introductions, or post-generation notes before or after the fenced code block. 
+   - **Absolute Freeze Directive**: Mid-generation corrections are strictly prohibited. You are completely forbidden from appending trailing structural artifacts or deformed combinations like `} ```text{`. Once you emit the final closing brace `}` of the JSON schema, immediately close the triple backticks fence and FREEZE/STOP generating tokens instantly. Any token emitted after the primary closed fence violates enterprise runtime contracts.
 
 # Raw Response / Exception:
 
@@ -9247,7 +9399,12 @@ You are a high-performance Data Ingestion and Transformation Engine. Your sole o
 2. **ABSOLUTE PYDANTIC SCHEMA ALIGNMENT:** Your final generated JSON object MUST perfectly satisfy the structural schema parameters of the target enterprise contract. You are STRICTLY BANNED from omitting, renaming, formatting, or stripping out key elements (specifically `phase_id`, `phase_name`, `phase_description`, `project_name`, `global_context_file`, `source_target_dir`, and `days`).
 3. **ABSOLUTE NO EMPTY TAGS POLICY & STRING SANITIZATION:** You are STRICTLY BANNED from leaving the "targeted_tags" array empty `[]` or null for any sub-task that implements functional requirements or data schemas. You MUST scan the source Markdown sequentially sub-task by sub-task. For each sub-task node, locate the hidden technical container block delimited between `<!--START_TAGS-->` and `<!--END_TAGS-->` contained exclusively within that sub-task section scope. Extract all raw tag token codes inside, strip away all inline markdown formatting characters—specifically backticks (`` ` ``)—and any leading/trailing whitespaces, then populate them as clean separate string elements inside the "targeted_tags" array field of EACH sub-task object node.
 4. **NO TAG BUNDLING:** Every tag must be its own array node (e.g., `"targeted_tags": ["[REQ-001]", "[DAT-002]"]`). You are strictly forbidden from combining multiple tags into a single string element.
-5. **STRICT CONTENT PURITY & REJECT CONVERSATION:** Output ONLY the pure raw executable JSON string matching the required schema. Response must start exactly with the character `{` and end exactly with the character `}`. Banned from including thinking processes, chain-of-thought blocks (`<think>` tags), conversational filler texts, introductions, wrapping inside markdown codeblocks (no triple backticks wrapping), or post-generation notes. Any token outside the raw JSON object boundary triggers an immediate execution pipeline crash.
+5. **STRICT SINGLE-BLOCK PURITY & ABSOLUTE TERMINATION LAW:** 
+   - Your output MUST contain exactly ONE (1) single valid JSON object payload from start to finish. You are STRICTLY BANNED from repeating, mirroring, or generating a second duplicate JSON block within this response stream.
+   - **Strict Packaging Format**: The output MUST start exactly with a single line containing triple backticks and the language identifier: ```json
+   - The output MUST end exactly with the final line containing triple backticks: ```
+   - There must be absolutely ZERO conversational filler text, thinking processes (`<think>` tags), introductions, or post-generation notes before or after the fenced code block. 
+   - **Absolute Freeze Directive**: Mid-generation corrections are strictly prohibited. You are completely forbidden from appending trailing structural artifacts or deformed combinations like `} ```text{`. Once you emit the final closing brace `}` of the JSON schema, immediately close the triple backticks fence and FREEZE/STOP generating tokens instantly. Any token emitted after the primary closed fence violates enterprise runtime contracts.
 
 # Raw Response / Exception:
 
@@ -9542,7 +9699,12 @@ You are a high-performance Data Ingestion and Transformation Engine. Your sole o
 2. **ABSOLUTE PYDANTIC SCHEMA ALIGNMENT:** Your final generated JSON object MUST perfectly satisfy the structural schema parameters of the target enterprise contract. You are STRICTLY BANNED from omitting, renaming, formatting, or stripping out key elements (specifically `phase_id`, `phase_name`, `phase_description`, `project_name`, `global_context_file`, `source_target_dir`, and `days`).
 3. **ABSOLUTE NO EMPTY TAGS POLICY & STRING SANITIZATION:** You are STRICTLY BANNED from leaving the "targeted_tags" array empty `[]` or null for any sub-task that implements functional requirements or data schemas. You MUST scan the source Markdown sequentially sub-task by sub-task. For each sub-task node, locate the hidden technical container block delimited between `<!--START_TAGS-->` and `<!--END_TAGS-->` contained exclusively within that sub-task section scope. Extract all raw tag token codes inside, strip away all inline markdown formatting characters—specifically backticks (`` ` ``)—and any leading/trailing whitespaces, then populate them as clean separate string elements inside the "targeted_tags" array field of EACH sub-task object node.
 4. **NO TAG BUNDLING:** Every tag must be its own array node (e.g., `"targeted_tags": ["[REQ-001]", "[DAT-002]"]`). You are strictly forbidden from combining multiple tags into a single string element.
-5. **STRICT CONTENT PURITY & REJECT CONVERSATION:** Output ONLY the pure raw executable JSON string matching the required schema. Response must start exactly with the character `{` and end exactly with the character `}`. Banned from including thinking processes, chain-of-thought blocks (`<think>` tags), conversational filler texts, introductions, wrapping inside markdown codeblocks (no triple backticks wrapping), or post-generation notes. Any token outside the raw JSON object boundary triggers an immediate execution pipeline crash.
+5. **STRICT SINGLE-BLOCK PURITY & ABSOLUTE TERMINATION LAW:** 
+   - Your output MUST contain exactly ONE (1) single valid JSON object payload from start to finish. You are STRICTLY BANNED from repeating, mirroring, or generating a second duplicate JSON block within this response stream.
+   - **Strict Packaging Format**: The output MUST start exactly with a single line containing triple backticks and the language identifier: ```json
+   - The output MUST end exactly with the final line containing triple backticks: ```
+   - There must be absolutely ZERO conversational filler text, thinking processes (`<think>` tags), introductions, or post-generation notes before or after the fenced code block. 
+   - **Absolute Freeze Directive**: Mid-generation corrections are strictly prohibited. You are completely forbidden from appending trailing structural artifacts or deformed combinations like `} ```text{`. Once you emit the final closing brace `}` of the JSON schema, immediately close the triple backticks fence and FREEZE/STOP generating tokens instantly. Any token emitted after the primary closed fence violates enterprise runtime contracts.
 
 # Raw Response / Exception:
 
@@ -9837,7 +9999,12 @@ You are a high-performance Data Ingestion and Transformation Engine. Your sole o
 2. **ABSOLUTE PYDANTIC SCHEMA ALIGNMENT:** Your final generated JSON object MUST perfectly satisfy the structural schema parameters of the target enterprise contract. You are STRICTLY BANNED from omitting, renaming, formatting, or stripping out key elements (specifically `phase_id`, `phase_name`, `phase_description`, `project_name`, `global_context_file`, `source_target_dir`, and `days`).
 3. **ABSOLUTE NO EMPTY TAGS POLICY & STRING SANITIZATION:** You are STRICTLY BANNED from leaving the "targeted_tags" array empty `[]` or null for any sub-task that implements functional requirements or data schemas. You MUST scan the source Markdown sequentially sub-task by sub-task. For each sub-task node, locate the hidden technical container block delimited between `<!--START_TAGS-->` and `<!--END_TAGS-->` contained exclusively within that sub-task section scope. Extract all raw tag token codes inside, strip away all inline markdown formatting characters—specifically backticks (`` ` ``)—and any leading/trailing whitespaces, then populate them as clean separate string elements inside the "targeted_tags" array field of EACH sub-task object node.
 4. **NO TAG BUNDLING:** Every tag must be its own array node (e.g., `"targeted_tags": ["[REQ-001]", "[DAT-002]"]`). You are strictly forbidden from combining multiple tags into a single string element.
-5. **STRICT CONTENT PURITY & REJECT CONVERSATION:** Output ONLY the pure raw executable JSON string matching the required schema. Response must start exactly with the character `{` and end exactly with the character `}`. Banned from including thinking processes, chain-of-thought blocks (`<think>` tags), conversational filler texts, introductions, wrapping inside markdown codeblocks (no triple backticks wrapping), or post-generation notes. Any token outside the raw JSON object boundary triggers an immediate execution pipeline crash.
+5. **STRICT SINGLE-BLOCK PURITY & ABSOLUTE TERMINATION LAW:** 
+   - Your output MUST contain exactly ONE (1) single valid JSON object payload from start to finish. You are STRICTLY BANNED from repeating, mirroring, or generating a second duplicate JSON block within this response stream.
+   - **Strict Packaging Format**: The output MUST start exactly with a single line containing triple backticks and the language identifier: ```json
+   - The output MUST end exactly with the final line containing triple backticks: ```
+   - There must be absolutely ZERO conversational filler text, thinking processes (`<think>` tags), introductions, or post-generation notes before or after the fenced code block. 
+   - **Absolute Freeze Directive**: Mid-generation corrections are strictly prohibited. You are completely forbidden from appending trailing structural artifacts or deformed combinations like `} ```text{`. Once you emit the final closing brace `}` of the JSON schema, immediately close the triple backticks fence and FREEZE/STOP generating tokens instantly. Any token emitted after the primary closed fence violates enterprise runtime contracts.
 
 # Raw Response / Exception:
 
@@ -10132,7 +10299,12 @@ You are a high-performance Data Ingestion and Transformation Engine. Your sole o
 2. **ABSOLUTE PYDANTIC SCHEMA ALIGNMENT:** Your final generated JSON object MUST perfectly satisfy the structural schema parameters of the target enterprise contract. You are STRICTLY BANNED from omitting, renaming, formatting, or stripping out key elements (specifically `phase_id`, `phase_name`, `phase_description`, `project_name`, `global_context_file`, `source_target_dir`, and `days`).
 3. **ABSOLUTE NO EMPTY TAGS POLICY & STRING SANITIZATION:** You are STRICTLY BANNED from leaving the "targeted_tags" array empty `[]` or null for any sub-task that implements functional requirements or data schemas. You MUST scan the source Markdown sequentially sub-task by sub-task. For each sub-task node, locate the hidden technical container block delimited between `<!--START_TAGS-->` and `<!--END_TAGS-->` contained exclusively within that sub-task section scope. Extract all raw tag token codes inside, strip away all inline markdown formatting characters—specifically backticks (`` ` ``)—and any leading/trailing whitespaces, then populate them as clean separate string elements inside the "targeted_tags" array field of EACH sub-task object node.
 4. **NO TAG BUNDLING:** Every tag must be its own array node (e.g., `"targeted_tags": ["[REQ-001]", "[DAT-002]"]`). You are strictly forbidden from combining multiple tags into a single string element.
-5. **STRICT CONTENT PURITY & REJECT CONVERSATION:** Output ONLY the pure raw executable JSON string matching the required schema. Response must start exactly with the character `{` and end exactly with the character `}`. Banned from including thinking processes, chain-of-thought blocks (`<think>` tags), conversational filler texts, introductions, wrapping inside markdown codeblocks (no triple backticks wrapping), or post-generation notes. Any token outside the raw JSON object boundary triggers an immediate execution pipeline crash.
+5. **STRICT SINGLE-BLOCK PURITY & ABSOLUTE TERMINATION LAW:** 
+   - Your output MUST contain exactly ONE (1) single valid JSON object payload from start to finish. You are STRICTLY BANNED from repeating, mirroring, or generating a second duplicate JSON block within this response stream.
+   - **Strict Packaging Format**: The output MUST start exactly with a single line containing triple backticks and the language identifier: ```json
+   - The output MUST end exactly with the final line containing triple backticks: ```
+   - There must be absolutely ZERO conversational filler text, thinking processes (`<think>` tags), introductions, or post-generation notes before or after the fenced code block. 
+   - **Absolute Freeze Directive**: Mid-generation corrections are strictly prohibited. You are completely forbidden from appending trailing structural artifacts or deformed combinations like `} ```text{`. Once you emit the final closing brace `}` of the JSON schema, immediately close the triple backticks fence and FREEZE/STOP generating tokens instantly. Any token emitted after the primary closed fence violates enterprise runtime contracts.
 
 # Raw Response / Exception:
 
@@ -10427,7 +10599,12 @@ You are a high-performance Data Ingestion and Transformation Engine. Your sole o
 2. **ABSOLUTE PYDANTIC SCHEMA ALIGNMENT:** Your final generated JSON object MUST perfectly satisfy the structural schema parameters of the target enterprise contract. You are STRICTLY BANNED from omitting, renaming, formatting, or stripping out key elements (specifically `phase_id`, `phase_name`, `phase_description`, `project_name`, `global_context_file`, `source_target_dir`, and `days`).
 3. **ABSOLUTE NO EMPTY TAGS POLICY & STRING SANITIZATION:** You are STRICTLY BANNED from leaving the "targeted_tags" array empty `[]` or null for any sub-task that implements functional requirements or data schemas. You MUST scan the source Markdown sequentially sub-task by sub-task. For each sub-task node, locate the hidden technical container block delimited between `<!--START_TAGS-->` and `<!--END_TAGS-->` contained exclusively within that sub-task section scope. Extract all raw tag token codes inside, strip away all inline markdown formatting characters—specifically backticks (`` ` ``)—and any leading/trailing whitespaces, then populate them as clean separate string elements inside the "targeted_tags" array field of EACH sub-task object node.
 4. **NO TAG BUNDLING:** Every tag must be its own array node (e.g., `"targeted_tags": ["[REQ-001]", "[DAT-002]"]`). You are strictly forbidden from combining multiple tags into a single string element.
-5. **STRICT CONTENT PURITY & REJECT CONVERSATION:** Output ONLY the pure raw executable JSON string matching the required schema. Response must start exactly with the character `{` and end exactly with the character `}`. Banned from including thinking processes, chain-of-thought blocks (`<think>` tags), conversational filler texts, introductions, wrapping inside markdown codeblocks (no triple backticks wrapping), or post-generation notes. Any token outside the raw JSON object boundary triggers an immediate execution pipeline crash.
+5. **STRICT SINGLE-BLOCK PURITY & ABSOLUTE TERMINATION LAW:** 
+   - Your output MUST contain exactly ONE (1) single valid JSON object payload from start to finish. You are STRICTLY BANNED from repeating, mirroring, or generating a second duplicate JSON block within this response stream.
+   - **Strict Packaging Format**: The output MUST start exactly with a single line containing triple backticks and the language identifier: ```json
+   - The output MUST end exactly with the final line containing triple backticks: ```
+   - There must be absolutely ZERO conversational filler text, thinking processes (`<think>` tags), introductions, or post-generation notes before or after the fenced code block. 
+   - **Absolute Freeze Directive**: Mid-generation corrections are strictly prohibited. You are completely forbidden from appending trailing structural artifacts or deformed combinations like `} ```text{`. Once you emit the final closing brace `}` of the JSON schema, immediately close the triple backticks fence and FREEZE/STOP generating tokens instantly. Any token emitted after the primary closed fence violates enterprise runtime contracts.
 
 # Raw Response / Exception:
 
@@ -10722,7 +10899,12 @@ You are a high-performance Data Ingestion and Transformation Engine. Your sole o
 2. **ABSOLUTE PYDANTIC SCHEMA ALIGNMENT:** Your final generated JSON object MUST perfectly satisfy the structural schema parameters of the target enterprise contract. You are STRICTLY BANNED from omitting, renaming, formatting, or stripping out key elements (specifically `phase_id`, `phase_name`, `phase_description`, `project_name`, `global_context_file`, `source_target_dir`, and `days`).
 3. **ABSOLUTE NO EMPTY TAGS POLICY & STRING SANITIZATION:** You are STRICTLY BANNED from leaving the "targeted_tags" array empty `[]` or null for any sub-task that implements functional requirements or data schemas. You MUST scan the source Markdown sequentially sub-task by sub-task. For each sub-task node, locate the hidden technical container block delimited between `<!--START_TAGS-->` and `<!--END_TAGS-->` contained exclusively within that sub-task section scope. Extract all raw tag token codes inside, strip away all inline markdown formatting characters—specifically backticks (`` ` ``)—and any leading/trailing whitespaces, then populate them as clean separate string elements inside the "targeted_tags" array field of EACH sub-task object node.
 4. **NO TAG BUNDLING:** Every tag must be its own array node (e.g., `"targeted_tags": ["[REQ-001]", "[DAT-002]"]`). You are strictly forbidden from combining multiple tags into a single string element.
-5. **STRICT CONTENT PURITY & REJECT CONVERSATION:** Output ONLY the pure raw executable JSON string matching the required schema. Response must start exactly with the character `{` and end exactly with the character `}`. Banned from including thinking processes, chain-of-thought blocks (`<think>` tags), conversational filler texts, introductions, wrapping inside markdown codeblocks (no triple backticks wrapping), or post-generation notes. Any token outside the raw JSON object boundary triggers an immediate execution pipeline crash.
+5. **STRICT SINGLE-BLOCK PURITY & ABSOLUTE TERMINATION LAW:** 
+   - Your output MUST contain exactly ONE (1) single valid JSON object payload from start to finish. You are STRICTLY BANNED from repeating, mirroring, or generating a second duplicate JSON block within this response stream.
+   - **Strict Packaging Format**: The output MUST start exactly with a single line containing triple backticks and the language identifier: ```json
+   - The output MUST end exactly with the final line containing triple backticks: ```
+   - There must be absolutely ZERO conversational filler text, thinking processes (`<think>` tags), introductions, or post-generation notes before or after the fenced code block. 
+   - **Absolute Freeze Directive**: Mid-generation corrections are strictly prohibited. You are completely forbidden from appending trailing structural artifacts or deformed combinations like `} ```text{`. Once you emit the final closing brace `}` of the JSON schema, immediately close the triple backticks fence and FREEZE/STOP generating tokens instantly. Any token emitted after the primary closed fence violates enterprise runtime contracts.
 
 # Raw Response / Exception:
 
@@ -11017,7 +11199,12 @@ You are a high-performance Data Ingestion and Transformation Engine. Your sole o
 2. **ABSOLUTE PYDANTIC SCHEMA ALIGNMENT:** Your final generated JSON object MUST perfectly satisfy the structural schema parameters of the target enterprise contract. You are STRICTLY BANNED from omitting, renaming, formatting, or stripping out key elements (specifically `phase_id`, `phase_name`, `phase_description`, `project_name`, `global_context_file`, `source_target_dir`, and `days`).
 3. **ABSOLUTE NO EMPTY TAGS POLICY & STRING SANITIZATION:** You are STRICTLY BANNED from leaving the "targeted_tags" array empty `[]` or null for any sub-task that implements functional requirements or data schemas. You MUST scan the source Markdown sequentially sub-task by sub-task. For each sub-task node, locate the hidden technical container block delimited between `<!--START_TAGS-->` and `<!--END_TAGS-->` contained exclusively within that sub-task section scope. Extract all raw tag token codes inside, strip away all inline markdown formatting characters—specifically backticks (`` ` ``)—and any leading/trailing whitespaces, then populate them as clean separate string elements inside the "targeted_tags" array field of EACH sub-task object node.
 4. **NO TAG BUNDLING:** Every tag must be its own array node (e.g., `"targeted_tags": ["[REQ-001]", "[DAT-002]"]`). You are strictly forbidden from combining multiple tags into a single string element.
-5. **STRICT CONTENT PURITY & REJECT CONVERSATION:** Output ONLY the pure raw executable JSON string matching the required schema. Response must start exactly with the character `{` and end exactly with the character `}`. Banned from including thinking processes, chain-of-thought blocks (`<think>` tags), conversational filler texts, introductions, wrapping inside markdown codeblocks (no triple backticks wrapping), or post-generation notes. Any token outside the raw JSON object boundary triggers an immediate execution pipeline crash.
+5. **STRICT SINGLE-BLOCK PURITY & ABSOLUTE TERMINATION LAW:** 
+   - Your output MUST contain exactly ONE (1) single valid JSON object payload from start to finish. You are STRICTLY BANNED from repeating, mirroring, or generating a second duplicate JSON block within this response stream.
+   - **Strict Packaging Format**: The output MUST start exactly with a single line containing triple backticks and the language identifier: ```json
+   - The output MUST end exactly with the final line containing triple backticks: ```
+   - There must be absolutely ZERO conversational filler text, thinking processes (`<think>` tags), introductions, or post-generation notes before or after the fenced code block. 
+   - **Absolute Freeze Directive**: Mid-generation corrections are strictly prohibited. You are completely forbidden from appending trailing structural artifacts or deformed combinations like `} ```text{`. Once you emit the final closing brace `}` of the JSON schema, immediately close the triple backticks fence and FREEZE/STOP generating tokens instantly. Any token emitted after the primary closed fence violates enterprise runtime contracts.
 
 # Raw Response / Exception:
 
@@ -11312,7 +11499,12 @@ You are a high-performance Data Ingestion and Transformation Engine. Your sole o
 2. **ABSOLUTE PYDANTIC SCHEMA ALIGNMENT:** Your final generated JSON object MUST perfectly satisfy the structural schema parameters of the target enterprise contract. You are STRICTLY BANNED from omitting, renaming, formatting, or stripping out key elements (specifically `phase_id`, `phase_name`, `phase_description`, `project_name`, `global_context_file`, `source_target_dir`, and `days`).
 3. **ABSOLUTE NO EMPTY TAGS POLICY & STRING SANITIZATION:** You are STRICTLY BANNED from leaving the "targeted_tags" array empty `[]` or null for any sub-task that implements functional requirements or data schemas. You MUST scan the source Markdown sequentially sub-task by sub-task. For each sub-task node, locate the hidden technical container block delimited between `<!--START_TAGS-->` and `<!--END_TAGS-->` contained exclusively within that sub-task section scope. Extract all raw tag token codes inside, strip away all inline markdown formatting characters—specifically backticks (`` ` ``)—and any leading/trailing whitespaces, then populate them as clean separate string elements inside the "targeted_tags" array field of EACH sub-task object node.
 4. **NO TAG BUNDLING:** Every tag must be its own array node (e.g., `"targeted_tags": ["[REQ-001]", "[DAT-002]"]`). You are strictly forbidden from combining multiple tags into a single string element.
-5. **STRICT CONTENT PURITY & REJECT CONVERSATION:** Output ONLY the pure raw executable JSON string matching the required schema. Response must start exactly with the character `{` and end exactly with the character `}`. Banned from including thinking processes, chain-of-thought blocks (`<think>` tags), conversational filler texts, introductions, wrapping inside markdown codeblocks (no triple backticks wrapping), or post-generation notes. Any token outside the raw JSON object boundary triggers an immediate execution pipeline crash.
+5. **STRICT SINGLE-BLOCK PURITY & ABSOLUTE TERMINATION LAW:** 
+   - Your output MUST contain exactly ONE (1) single valid JSON object payload from start to finish. You are STRICTLY BANNED from repeating, mirroring, or generating a second duplicate JSON block within this response stream.
+   - **Strict Packaging Format**: The output MUST start exactly with a single line containing triple backticks and the language identifier: ```json
+   - The output MUST end exactly with the final line containing triple backticks: ```
+   - There must be absolutely ZERO conversational filler text, thinking processes (`<think>` tags), introductions, or post-generation notes before or after the fenced code block. 
+   - **Absolute Freeze Directive**: Mid-generation corrections are strictly prohibited. You are completely forbidden from appending trailing structural artifacts or deformed combinations like `} ```text{`. Once you emit the final closing brace `}` of the JSON schema, immediately close the triple backticks fence and FREEZE/STOP generating tokens instantly. Any token emitted after the primary closed fence violates enterprise runtime contracts.
 
 # Raw Response / Exception:
 
@@ -11607,7 +11799,12 @@ You are a high-performance Data Ingestion and Transformation Engine. Your sole o
 2. **ABSOLUTE PYDANTIC SCHEMA ALIGNMENT:** Your final generated JSON object MUST perfectly satisfy the structural schema parameters of the target enterprise contract. You are STRICTLY BANNED from omitting, renaming, formatting, or stripping out key elements (specifically `phase_id`, `phase_name`, `phase_description`, `project_name`, `global_context_file`, `source_target_dir`, and `days`).
 3. **ABSOLUTE NO EMPTY TAGS POLICY & STRING SANITIZATION:** You are STRICTLY BANNED from leaving the "targeted_tags" array empty `[]` or null for any sub-task that implements functional requirements or data schemas. You MUST scan the source Markdown sequentially sub-task by sub-task. For each sub-task node, locate the hidden technical container block delimited between `<!--START_TAGS-->` and `<!--END_TAGS-->` contained exclusively within that sub-task section scope. Extract all raw tag token codes inside, strip away all inline markdown formatting characters—specifically backticks (`` ` ``)—and any leading/trailing whitespaces, then populate them as clean separate string elements inside the "targeted_tags" array field of EACH sub-task object node.
 4. **NO TAG BUNDLING:** Every tag must be its own array node (e.g., `"targeted_tags": ["[REQ-001]", "[DAT-002]"]`). You are strictly forbidden from combining multiple tags into a single string element.
-5. **STRICT CONTENT PURITY & REJECT CONVERSATION:** Output ONLY the pure raw executable JSON string matching the required schema. Response must start exactly with the character `{` and end exactly with the character `}`. Banned from including thinking processes, chain-of-thought blocks (`<think>` tags), conversational filler texts, introductions, wrapping inside markdown codeblocks (no triple backticks wrapping), or post-generation notes. Any token outside the raw JSON object boundary triggers an immediate execution pipeline crash.
+5. **STRICT SINGLE-BLOCK PURITY & ABSOLUTE TERMINATION LAW:** 
+   - Your output MUST contain exactly ONE (1) single valid JSON object payload from start to finish. You are STRICTLY BANNED from repeating, mirroring, or generating a second duplicate JSON block within this response stream.
+   - **Strict Packaging Format**: The output MUST start exactly with a single line containing triple backticks and the language identifier: ```json
+   - The output MUST end exactly with the final line containing triple backticks: ```
+   - There must be absolutely ZERO conversational filler text, thinking processes (`<think>` tags), introductions, or post-generation notes before or after the fenced code block. 
+   - **Absolute Freeze Directive**: Mid-generation corrections are strictly prohibited. You are completely forbidden from appending trailing structural artifacts or deformed combinations like `} ```text{`. Once you emit the final closing brace `}` of the JSON schema, immediately close the triple backticks fence and FREEZE/STOP generating tokens instantly. Any token emitted after the primary closed fence violates enterprise runtime contracts.
 
 # Raw Response / Exception:
 
@@ -11902,7 +12099,12 @@ You are a high-performance Data Ingestion and Transformation Engine. Your sole o
 2. **ABSOLUTE PYDANTIC SCHEMA ALIGNMENT:** Your final generated JSON object MUST perfectly satisfy the structural schema parameters of the target enterprise contract. You are STRICTLY BANNED from omitting, renaming, formatting, or stripping out key elements (specifically `phase_id`, `phase_name`, `phase_description`, `project_name`, `global_context_file`, `source_target_dir`, and `days`).
 3. **ABSOLUTE NO EMPTY TAGS POLICY & STRING SANITIZATION:** You are STRICTLY BANNED from leaving the "targeted_tags" array empty `[]` or null for any sub-task that implements functional requirements or data schemas. You MUST scan the source Markdown sequentially sub-task by sub-task. For each sub-task node, locate the hidden technical container block delimited between `<!--START_TAGS-->` and `<!--END_TAGS-->` contained exclusively within that sub-task section scope. Extract all raw tag token codes inside, strip away all inline markdown formatting characters—specifically backticks (`` ` ``)—and any leading/trailing whitespaces, then populate them as clean separate string elements inside the "targeted_tags" array field of EACH sub-task object node.
 4. **NO TAG BUNDLING:** Every tag must be its own array node (e.g., `"targeted_tags": ["[REQ-001]", "[DAT-002]"]`). You are strictly forbidden from combining multiple tags into a single string element.
-5. **STRICT CONTENT PURITY & REJECT CONVERSATION:** Output ONLY the pure raw executable JSON string matching the required schema. Response must start exactly with the character `{` and end exactly with the character `}`. Banned from including thinking processes, chain-of-thought blocks (`<think>` tags), conversational filler texts, introductions, wrapping inside markdown codeblocks (no triple backticks wrapping), or post-generation notes. Any token outside the raw JSON object boundary triggers an immediate execution pipeline crash.
+5. **STRICT SINGLE-BLOCK PURITY & ABSOLUTE TERMINATION LAW:** 
+   - Your output MUST contain exactly ONE (1) single valid JSON object payload from start to finish. You are STRICTLY BANNED from repeating, mirroring, or generating a second duplicate JSON block within this response stream.
+   - **Strict Packaging Format**: The output MUST start exactly with a single line containing triple backticks and the language identifier: ```json
+   - The output MUST end exactly with the final line containing triple backticks: ```
+   - There must be absolutely ZERO conversational filler text, thinking processes (`<think>` tags), introductions, or post-generation notes before or after the fenced code block. 
+   - **Absolute Freeze Directive**: Mid-generation corrections are strictly prohibited. You are completely forbidden from appending trailing structural artifacts or deformed combinations like `} ```text{`. Once you emit the final closing brace `}` of the JSON schema, immediately close the triple backticks fence and FREEZE/STOP generating tokens instantly. Any token emitted after the primary closed fence violates enterprise runtime contracts.
 
 # Raw Response / Exception:
 
@@ -12197,7 +12399,12 @@ You are a high-performance Data Ingestion and Transformation Engine. Your sole o
 2. **ABSOLUTE PYDANTIC SCHEMA ALIGNMENT:** Your final generated JSON object MUST perfectly satisfy the structural schema parameters of the target enterprise contract. You are STRICTLY BANNED from omitting, renaming, formatting, or stripping out key elements (specifically `phase_id`, `phase_name`, `phase_description`, `project_name`, `global_context_file`, `source_target_dir`, and `days`).
 3. **ABSOLUTE NO EMPTY TAGS POLICY & STRING SANITIZATION:** You are STRICTLY BANNED from leaving the "targeted_tags" array empty `[]` or null for any sub-task that implements functional requirements or data schemas. You MUST scan the source Markdown sequentially sub-task by sub-task. For each sub-task node, locate the hidden technical container block delimited between `<!--START_TAGS-->` and `<!--END_TAGS-->` contained exclusively within that sub-task section scope. Extract all raw tag token codes inside, strip away all inline markdown formatting characters—specifically backticks (`` ` ``)—and any leading/trailing whitespaces, then populate them as clean separate string elements inside the "targeted_tags" array field of EACH sub-task object node.
 4. **NO TAG BUNDLING:** Every tag must be its own array node (e.g., `"targeted_tags": ["[REQ-001]", "[DAT-002]"]`). You are strictly forbidden from combining multiple tags into a single string element.
-5. **STRICT CONTENT PURITY & REJECT CONVERSATION:** Output ONLY the pure raw executable JSON string matching the required schema. Response must start exactly with the character `{` and end exactly with the character `}`. Banned from including thinking processes, chain-of-thought blocks (`<think>` tags), conversational filler texts, introductions, wrapping inside markdown codeblocks (no triple backticks wrapping), or post-generation notes. Any token outside the raw JSON object boundary triggers an immediate execution pipeline crash.
+5. **STRICT SINGLE-BLOCK PURITY & ABSOLUTE TERMINATION LAW:** 
+   - Your output MUST contain exactly ONE (1) single valid JSON object payload from start to finish. You are STRICTLY BANNED from repeating, mirroring, or generating a second duplicate JSON block within this response stream.
+   - **Strict Packaging Format**: The output MUST start exactly with a single line containing triple backticks and the language identifier: ```json
+   - The output MUST end exactly with the final line containing triple backticks: ```
+   - There must be absolutely ZERO conversational filler text, thinking processes (`<think>` tags), introductions, or post-generation notes before or after the fenced code block. 
+   - **Absolute Freeze Directive**: Mid-generation corrections are strictly prohibited. You are completely forbidden from appending trailing structural artifacts or deformed combinations like `} ```text{`. Once you emit the final closing brace `}` of the JSON schema, immediately close the triple backticks fence and FREEZE/STOP generating tokens instantly. Any token emitted after the primary closed fence violates enterprise runtime contracts.
 
 # Raw Response / Exception:
 
@@ -12492,7 +12699,12 @@ You are a high-performance Data Ingestion and Transformation Engine. Your sole o
 2. **ABSOLUTE PYDANTIC SCHEMA ALIGNMENT:** Your final generated JSON object MUST perfectly satisfy the structural schema parameters of the target enterprise contract. You are STRICTLY BANNED from omitting, renaming, formatting, or stripping out key elements (specifically `phase_id`, `phase_name`, `phase_description`, `project_name`, `global_context_file`, `source_target_dir`, and `days`).
 3. **ABSOLUTE NO EMPTY TAGS POLICY & STRING SANITIZATION:** You are STRICTLY BANNED from leaving the "targeted_tags" array empty `[]` or null for any sub-task that implements functional requirements or data schemas. You MUST scan the source Markdown sequentially sub-task by sub-task. For each sub-task node, locate the hidden technical container block delimited between `<!--START_TAGS-->` and `<!--END_TAGS-->` contained exclusively within that sub-task section scope. Extract all raw tag token codes inside, strip away all inline markdown formatting characters—specifically backticks (`` ` ``)—and any leading/trailing whitespaces, then populate them as clean separate string elements inside the "targeted_tags" array field of EACH sub-task object node.
 4. **NO TAG BUNDLING:** Every tag must be its own array node (e.g., `"targeted_tags": ["[REQ-001]", "[DAT-002]"]`). You are strictly forbidden from combining multiple tags into a single string element.
-5. **STRICT CONTENT PURITY & REJECT CONVERSATION:** Output ONLY the pure raw executable JSON string matching the required schema. Response must start exactly with the character `{` and end exactly with the character `}`. Banned from including thinking processes, chain-of-thought blocks (`<think>` tags), conversational filler texts, introductions, wrapping inside markdown codeblocks (no triple backticks wrapping), or post-generation notes. Any token outside the raw JSON object boundary triggers an immediate execution pipeline crash.
+5. **STRICT SINGLE-BLOCK PURITY & ABSOLUTE TERMINATION LAW:** 
+   - Your output MUST contain exactly ONE (1) single valid JSON object payload from start to finish. You are STRICTLY BANNED from repeating, mirroring, or generating a second duplicate JSON block within this response stream.
+   - **Strict Packaging Format**: The output MUST start exactly with a single line containing triple backticks and the language identifier: ```json
+   - The output MUST end exactly with the final line containing triple backticks: ```
+   - There must be absolutely ZERO conversational filler text, thinking processes (`<think>` tags), introductions, or post-generation notes before or after the fenced code block. 
+   - **Absolute Freeze Directive**: Mid-generation corrections are strictly prohibited. You are completely forbidden from appending trailing structural artifacts or deformed combinations like `} ```text{`. Once you emit the final closing brace `}` of the JSON schema, immediately close the triple backticks fence and FREEZE/STOP generating tokens instantly. Any token emitted after the primary closed fence violates enterprise runtime contracts.
 
 # Raw Response / Exception:
 
@@ -12787,7 +12999,12 @@ You are a high-performance Data Ingestion and Transformation Engine. Your sole o
 2. **ABSOLUTE PYDANTIC SCHEMA ALIGNMENT:** Your final generated JSON object MUST perfectly satisfy the structural schema parameters of the target enterprise contract. You are STRICTLY BANNED from omitting, renaming, formatting, or stripping out key elements (specifically `phase_id`, `phase_name`, `phase_description`, `project_name`, `global_context_file`, `source_target_dir`, and `days`).
 3. **ABSOLUTE NO EMPTY TAGS POLICY & STRING SANITIZATION:** You are STRICTLY BANNED from leaving the "targeted_tags" array empty `[]` or null for any sub-task that implements functional requirements or data schemas. You MUST scan the source Markdown sequentially sub-task by sub-task. For each sub-task node, locate the hidden technical container block delimited between `<!--START_TAGS-->` and `<!--END_TAGS-->` contained exclusively within that sub-task section scope. Extract all raw tag token codes inside, strip away all inline markdown formatting characters—specifically backticks (`` ` ``)—and any leading/trailing whitespaces, then populate them as clean separate string elements inside the "targeted_tags" array field of EACH sub-task object node.
 4. **NO TAG BUNDLING:** Every tag must be its own array node (e.g., `"targeted_tags": ["[REQ-001]", "[DAT-002]"]`). You are strictly forbidden from combining multiple tags into a single string element.
-5. **STRICT CONTENT PURITY & REJECT CONVERSATION:** Output ONLY the pure raw executable JSON string matching the required schema. Response must start exactly with the character `{` and end exactly with the character `}`. Banned from including thinking processes, chain-of-thought blocks (`<think>` tags), conversational filler texts, introductions, wrapping inside markdown codeblocks (no triple backticks wrapping), or post-generation notes. Any token outside the raw JSON object boundary triggers an immediate execution pipeline crash.
+5. **STRICT SINGLE-BLOCK PURITY & ABSOLUTE TERMINATION LAW:** 
+   - Your output MUST contain exactly ONE (1) single valid JSON object payload from start to finish. You are STRICTLY BANNED from repeating, mirroring, or generating a second duplicate JSON block within this response stream.
+   - **Strict Packaging Format**: The output MUST start exactly with a single line containing triple backticks and the language identifier: ```json
+   - The output MUST end exactly with the final line containing triple backticks: ```
+   - There must be absolutely ZERO conversational filler text, thinking processes (`<think>` tags), introductions, or post-generation notes before or after the fenced code block. 
+   - **Absolute Freeze Directive**: Mid-generation corrections are strictly prohibited. You are completely forbidden from appending trailing structural artifacts or deformed combinations like `} ```text{`. Once you emit the final closing brace `}` of the JSON schema, immediately close the triple backticks fence and FREEZE/STOP generating tokens instantly. Any token emitted after the primary closed fence violates enterprise runtime contracts.
 
 # Raw Response / Exception:
 
@@ -13082,7 +13299,12 @@ You are a high-performance Data Ingestion and Transformation Engine. Your sole o
 2. **ABSOLUTE PYDANTIC SCHEMA ALIGNMENT:** Your final generated JSON object MUST perfectly satisfy the structural schema parameters of the target enterprise contract. You are STRICTLY BANNED from omitting, renaming, formatting, or stripping out key elements (specifically `phase_id`, `phase_name`, `phase_description`, `project_name`, `global_context_file`, `source_target_dir`, and `days`).
 3. **ABSOLUTE NO EMPTY TAGS POLICY & STRING SANITIZATION:** You are STRICTLY BANNED from leaving the "targeted_tags" array empty `[]` or null for any sub-task that implements functional requirements or data schemas. You MUST scan the source Markdown sequentially sub-task by sub-task. For each sub-task node, locate the hidden technical container block delimited between `<!--START_TAGS-->` and `<!--END_TAGS-->` contained exclusively within that sub-task section scope. Extract all raw tag token codes inside, strip away all inline markdown formatting characters—specifically backticks (`` ` ``)—and any leading/trailing whitespaces, then populate them as clean separate string elements inside the "targeted_tags" array field of EACH sub-task object node.
 4. **NO TAG BUNDLING:** Every tag must be its own array node (e.g., `"targeted_tags": ["[REQ-001]", "[DAT-002]"]`). You are strictly forbidden from combining multiple tags into a single string element.
-5. **STRICT CONTENT PURITY & REJECT CONVERSATION:** Output ONLY the pure raw executable JSON string matching the required schema. Response must start exactly with the character `{` and end exactly with the character `}`. Banned from including thinking processes, chain-of-thought blocks (`<think>` tags), conversational filler texts, introductions, wrapping inside markdown codeblocks (no triple backticks wrapping), or post-generation notes. Any token outside the raw JSON object boundary triggers an immediate execution pipeline crash.
+5. **STRICT SINGLE-BLOCK PURITY & ABSOLUTE TERMINATION LAW:** 
+   - Your output MUST contain exactly ONE (1) single valid JSON object payload from start to finish. You are STRICTLY BANNED from repeating, mirroring, or generating a second duplicate JSON block within this response stream.
+   - **Strict Packaging Format**: The output MUST start exactly with a single line containing triple backticks and the language identifier: ```json
+   - The output MUST end exactly with the final line containing triple backticks: ```
+   - There must be absolutely ZERO conversational filler text, thinking processes (`<think>` tags), introductions, or post-generation notes before or after the fenced code block. 
+   - **Absolute Freeze Directive**: Mid-generation corrections are strictly prohibited. You are completely forbidden from appending trailing structural artifacts or deformed combinations like `} ```text{`. Once you emit the final closing brace `}` of the JSON schema, immediately close the triple backticks fence and FREEZE/STOP generating tokens instantly. Any token emitted after the primary closed fence violates enterprise runtime contracts.
 
 # Raw Response / Exception:
 
@@ -13377,7 +13599,12 @@ You are a high-performance Data Ingestion and Transformation Engine. Your sole o
 2. **ABSOLUTE PYDANTIC SCHEMA ALIGNMENT:** Your final generated JSON object MUST perfectly satisfy the structural schema parameters of the target enterprise contract. You are STRICTLY BANNED from omitting, renaming, formatting, or stripping out key elements (specifically `phase_id`, `phase_name`, `phase_description`, `project_name`, `global_context_file`, `source_target_dir`, and `days`).
 3. **ABSOLUTE NO EMPTY TAGS POLICY & STRING SANITIZATION:** You are STRICTLY BANNED from leaving the "targeted_tags" array empty `[]` or null for any sub-task that implements functional requirements or data schemas. You MUST scan the source Markdown sequentially sub-task by sub-task. For each sub-task node, locate the hidden technical container block delimited between `<!--START_TAGS-->` and `<!--END_TAGS-->` contained exclusively within that sub-task section scope. Extract all raw tag token codes inside, strip away all inline markdown formatting characters—specifically backticks (`` ` ``)—and any leading/trailing whitespaces, then populate them as clean separate string elements inside the "targeted_tags" array field of EACH sub-task object node.
 4. **NO TAG BUNDLING:** Every tag must be its own array node (e.g., `"targeted_tags": ["[REQ-001]", "[DAT-002]"]`). You are strictly forbidden from combining multiple tags into a single string element.
-5. **STRICT CONTENT PURITY & REJECT CONVERSATION:** Output ONLY the pure raw executable JSON string matching the required schema. Response must start exactly with the character `{` and end exactly with the character `}`. Banned from including thinking processes, chain-of-thought blocks (`<think>` tags), conversational filler texts, introductions, wrapping inside markdown codeblocks (no triple backticks wrapping), or post-generation notes. Any token outside the raw JSON object boundary triggers an immediate execution pipeline crash.
+5. **STRICT SINGLE-BLOCK PURITY & ABSOLUTE TERMINATION LAW:** 
+   - Your output MUST contain exactly ONE (1) single valid JSON object payload from start to finish. You are STRICTLY BANNED from repeating, mirroring, or generating a second duplicate JSON block within this response stream.
+   - **Strict Packaging Format**: The output MUST start exactly with a single line containing triple backticks and the language identifier: ```json
+   - The output MUST end exactly with the final line containing triple backticks: ```
+   - There must be absolutely ZERO conversational filler text, thinking processes (`<think>` tags), introductions, or post-generation notes before or after the fenced code block. 
+   - **Absolute Freeze Directive**: Mid-generation corrections are strictly prohibited. You are completely forbidden from appending trailing structural artifacts or deformed combinations like `} ```text{`. Once you emit the final closing brace `}` of the JSON schema, immediately close the triple backticks fence and FREEZE/STOP generating tokens instantly. Any token emitted after the primary closed fence violates enterprise runtime contracts.
 
 # Raw Response / Exception:
 
@@ -13672,7 +13899,12 @@ You are a high-performance Data Ingestion and Transformation Engine. Your sole o
 2. **ABSOLUTE PYDANTIC SCHEMA ALIGNMENT:** Your final generated JSON object MUST perfectly satisfy the structural schema parameters of the target enterprise contract. You are STRICTLY BANNED from omitting, renaming, formatting, or stripping out key elements (specifically `phase_id`, `phase_name`, `phase_description`, `project_name`, `global_context_file`, `source_target_dir`, and `days`).
 3. **ABSOLUTE NO EMPTY TAGS POLICY & STRING SANITIZATION:** You are STRICTLY BANNED from leaving the "targeted_tags" array empty `[]` or null for any sub-task that implements functional requirements or data schemas. You MUST scan the source Markdown sequentially sub-task by sub-task. For each sub-task node, locate the hidden technical container block delimited between `<!--START_TAGS-->` and `<!--END_TAGS-->` contained exclusively within that sub-task section scope. Extract all raw tag token codes inside, strip away all inline markdown formatting characters—specifically backticks (`` ` ``)—and any leading/trailing whitespaces, then populate them as clean separate string elements inside the "targeted_tags" array field of EACH sub-task object node.
 4. **NO TAG BUNDLING:** Every tag must be its own array node (e.g., `"targeted_tags": ["[REQ-001]", "[DAT-002]"]`). You are strictly forbidden from combining multiple tags into a single string element.
-5. **STRICT CONTENT PURITY & REJECT CONVERSATION:** Output ONLY the pure raw executable JSON string matching the required schema. Response must start exactly with the character `{` and end exactly with the character `}`. Banned from including thinking processes, chain-of-thought blocks (`<think>` tags), conversational filler texts, introductions, wrapping inside markdown codeblocks (no triple backticks wrapping), or post-generation notes. Any token outside the raw JSON object boundary triggers an immediate execution pipeline crash.
+5. **STRICT SINGLE-BLOCK PURITY & ABSOLUTE TERMINATION LAW:** 
+   - Your output MUST contain exactly ONE (1) single valid JSON object payload from start to finish. You are STRICTLY BANNED from repeating, mirroring, or generating a second duplicate JSON block within this response stream.
+   - **Strict Packaging Format**: The output MUST start exactly with a single line containing triple backticks and the language identifier: ```json
+   - The output MUST end exactly with the final line containing triple backticks: ```
+   - There must be absolutely ZERO conversational filler text, thinking processes (`<think>` tags), introductions, or post-generation notes before or after the fenced code block. 
+   - **Absolute Freeze Directive**: Mid-generation corrections are strictly prohibited. You are completely forbidden from appending trailing structural artifacts or deformed combinations like `} ```text{`. Once you emit the final closing brace `}` of the JSON schema, immediately close the triple backticks fence and FREEZE/STOP generating tokens instantly. Any token emitted after the primary closed fence violates enterprise runtime contracts.
 
 # Raw Response / Exception:
 
@@ -13967,7 +14199,12 @@ You are a high-performance Data Ingestion and Transformation Engine. Your sole o
 2. **ABSOLUTE PYDANTIC SCHEMA ALIGNMENT:** Your final generated JSON object MUST perfectly satisfy the structural schema parameters of the target enterprise contract. You are STRICTLY BANNED from omitting, renaming, formatting, or stripping out key elements (specifically `phase_id`, `phase_name`, `phase_description`, `project_name`, `global_context_file`, `source_target_dir`, and `days`).
 3. **ABSOLUTE NO EMPTY TAGS POLICY & STRING SANITIZATION:** You are STRICTLY BANNED from leaving the "targeted_tags" array empty `[]` or null for any sub-task that implements functional requirements or data schemas. You MUST scan the source Markdown sequentially sub-task by sub-task. For each sub-task node, locate the hidden technical container block delimited between `<!--START_TAGS-->` and `<!--END_TAGS-->` contained exclusively within that sub-task section scope. Extract all raw tag token codes inside, strip away all inline markdown formatting characters—specifically backticks (`` ` ``)—and any leading/trailing whitespaces, then populate them as clean separate string elements inside the "targeted_tags" array field of EACH sub-task object node.
 4. **NO TAG BUNDLING:** Every tag must be its own array node (e.g., `"targeted_tags": ["[REQ-001]", "[DAT-002]"]`). You are strictly forbidden from combining multiple tags into a single string element.
-5. **STRICT CONTENT PURITY & REJECT CONVERSATION:** Output ONLY the pure raw executable JSON string matching the required schema. Response must start exactly with the character `{` and end exactly with the character `}`. Banned from including thinking processes, chain-of-thought blocks (`<think>` tags), conversational filler texts, introductions, wrapping inside markdown codeblocks (no triple backticks wrapping), or post-generation notes. Any token outside the raw JSON object boundary triggers an immediate execution pipeline crash.
+5. **STRICT SINGLE-BLOCK PURITY & ABSOLUTE TERMINATION LAW:** 
+   - Your output MUST contain exactly ONE (1) single valid JSON object payload from start to finish. You are STRICTLY BANNED from repeating, mirroring, or generating a second duplicate JSON block within this response stream.
+   - **Strict Packaging Format**: The output MUST start exactly with a single line containing triple backticks and the language identifier: ```json
+   - The output MUST end exactly with the final line containing triple backticks: ```
+   - There must be absolutely ZERO conversational filler text, thinking processes (`<think>` tags), introductions, or post-generation notes before or after the fenced code block. 
+   - **Absolute Freeze Directive**: Mid-generation corrections are strictly prohibited. You are completely forbidden from appending trailing structural artifacts or deformed combinations like `} ```text{`. Once you emit the final closing brace `}` of the JSON schema, immediately close the triple backticks fence and FREEZE/STOP generating tokens instantly. Any token emitted after the primary closed fence violates enterprise runtime contracts.
 
 # Raw Response / Exception:
 
@@ -14262,7 +14499,12 @@ You are a high-performance Data Ingestion and Transformation Engine. Your sole o
 2. **ABSOLUTE PYDANTIC SCHEMA ALIGNMENT:** Your final generated JSON object MUST perfectly satisfy the structural schema parameters of the target enterprise contract. You are STRICTLY BANNED from omitting, renaming, formatting, or stripping out key elements (specifically `phase_id`, `phase_name`, `phase_description`, `project_name`, `global_context_file`, `source_target_dir`, and `days`).
 3. **ABSOLUTE NO EMPTY TAGS POLICY & STRING SANITIZATION:** You are STRICTLY BANNED from leaving the "targeted_tags" array empty `[]` or null for any sub-task that implements functional requirements or data schemas. You MUST scan the source Markdown sequentially sub-task by sub-task. For each sub-task node, locate the hidden technical container block delimited between `<!--START_TAGS-->` and `<!--END_TAGS-->` contained exclusively within that sub-task section scope. Extract all raw tag token codes inside, strip away all inline markdown formatting characters—specifically backticks (`` ` ``)—and any leading/trailing whitespaces, then populate them as clean separate string elements inside the "targeted_tags" array field of EACH sub-task object node.
 4. **NO TAG BUNDLING:** Every tag must be its own array node (e.g., `"targeted_tags": ["[REQ-001]", "[DAT-002]"]`). You are strictly forbidden from combining multiple tags into a single string element.
-5. **STRICT CONTENT PURITY & REJECT CONVERSATION:** Output ONLY the pure raw executable JSON string matching the required schema. Response must start exactly with the character `{` and end exactly with the character `}`. Banned from including thinking processes, chain-of-thought blocks (`<think>` tags), conversational filler texts, introductions, wrapping inside markdown codeblocks (no triple backticks wrapping), or post-generation notes. Any token outside the raw JSON object boundary triggers an immediate execution pipeline crash.
+5. **STRICT SINGLE-BLOCK PURITY & ABSOLUTE TERMINATION LAW:** 
+   - Your output MUST contain exactly ONE (1) single valid JSON object payload from start to finish. You are STRICTLY BANNED from repeating, mirroring, or generating a second duplicate JSON block within this response stream.
+   - **Strict Packaging Format**: The output MUST start exactly with a single line containing triple backticks and the language identifier: ```json
+   - The output MUST end exactly with the final line containing triple backticks: ```
+   - There must be absolutely ZERO conversational filler text, thinking processes (`<think>` tags), introductions, or post-generation notes before or after the fenced code block. 
+   - **Absolute Freeze Directive**: Mid-generation corrections are strictly prohibited. You are completely forbidden from appending trailing structural artifacts or deformed combinations like `} ```text{`. Once you emit the final closing brace `}` of the JSON schema, immediately close the triple backticks fence and FREEZE/STOP generating tokens instantly. Any token emitted after the primary closed fence violates enterprise runtime contracts.
 
 # Raw Response / Exception:
 
@@ -14557,7 +14799,12 @@ You are a high-performance Data Ingestion and Transformation Engine. Your sole o
 2. **ABSOLUTE PYDANTIC SCHEMA ALIGNMENT:** Your final generated JSON object MUST perfectly satisfy the structural schema parameters of the target enterprise contract. You are STRICTLY BANNED from omitting, renaming, formatting, or stripping out key elements (specifically `phase_id`, `phase_name`, `phase_description`, `project_name`, `global_context_file`, `source_target_dir`, and `days`).
 3. **ABSOLUTE NO EMPTY TAGS POLICY & STRING SANITIZATION:** You are STRICTLY BANNED from leaving the "targeted_tags" array empty `[]` or null for any sub-task that implements functional requirements or data schemas. You MUST scan the source Markdown sequentially sub-task by sub-task. For each sub-task node, locate the hidden technical container block delimited between `<!--START_TAGS-->` and `<!--END_TAGS-->` contained exclusively within that sub-task section scope. Extract all raw tag token codes inside, strip away all inline markdown formatting characters—specifically backticks (`` ` ``)—and any leading/trailing whitespaces, then populate them as clean separate string elements inside the "targeted_tags" array field of EACH sub-task object node.
 4. **NO TAG BUNDLING:** Every tag must be its own array node (e.g., `"targeted_tags": ["[REQ-001]", "[DAT-002]"]`). You are strictly forbidden from combining multiple tags into a single string element.
-5. **STRICT CONTENT PURITY & REJECT CONVERSATION:** Output ONLY the pure raw executable JSON string matching the required schema. Response must start exactly with the character `{` and end exactly with the character `}`. Banned from including thinking processes, chain-of-thought blocks (`<think>` tags), conversational filler texts, introductions, wrapping inside markdown codeblocks (no triple backticks wrapping), or post-generation notes. Any token outside the raw JSON object boundary triggers an immediate execution pipeline crash.
+5. **STRICT SINGLE-BLOCK PURITY & ABSOLUTE TERMINATION LAW:** 
+   - Your output MUST contain exactly ONE (1) single valid JSON object payload from start to finish. You are STRICTLY BANNED from repeating, mirroring, or generating a second duplicate JSON block within this response stream.
+   - **Strict Packaging Format**: The output MUST start exactly with a single line containing triple backticks and the language identifier: ```json
+   - The output MUST end exactly with the final line containing triple backticks: ```
+   - There must be absolutely ZERO conversational filler text, thinking processes (`<think>` tags), introductions, or post-generation notes before or after the fenced code block. 
+   - **Absolute Freeze Directive**: Mid-generation corrections are strictly prohibited. You are completely forbidden from appending trailing structural artifacts or deformed combinations like `} ```text{`. Once you emit the final closing brace `}` of the JSON schema, immediately close the triple backticks fence and FREEZE/STOP generating tokens instantly. Any token emitted after the primary closed fence violates enterprise runtime contracts.
 
 # Raw Response / Exception:
 
@@ -14852,7 +15099,12 @@ You are a high-performance Data Ingestion and Transformation Engine. Your sole o
 2. **ABSOLUTE PYDANTIC SCHEMA ALIGNMENT:** Your final generated JSON object MUST perfectly satisfy the structural schema parameters of the target enterprise contract. You are STRICTLY BANNED from omitting, renaming, formatting, or stripping out key elements (specifically `phase_id`, `phase_name`, `phase_description`, `project_name`, `global_context_file`, `source_target_dir`, and `days`).
 3. **ABSOLUTE NO EMPTY TAGS POLICY & STRING SANITIZATION:** You are STRICTLY BANNED from leaving the "targeted_tags" array empty `[]` or null for any sub-task that implements functional requirements or data schemas. You MUST scan the source Markdown sequentially sub-task by sub-task. For each sub-task node, locate the hidden technical container block delimited between `<!--START_TAGS-->` and `<!--END_TAGS-->` contained exclusively within that sub-task section scope. Extract all raw tag token codes inside, strip away all inline markdown formatting characters—specifically backticks (`` ` ``)—and any leading/trailing whitespaces, then populate them as clean separate string elements inside the "targeted_tags" array field of EACH sub-task object node.
 4. **NO TAG BUNDLING:** Every tag must be its own array node (e.g., `"targeted_tags": ["[REQ-001]", "[DAT-002]"]`). You are strictly forbidden from combining multiple tags into a single string element.
-5. **STRICT CONTENT PURITY & REJECT CONVERSATION:** Output ONLY the pure raw executable JSON string matching the required schema. Response must start exactly with the character `{` and end exactly with the character `}`. Banned from including thinking processes, chain-of-thought blocks (`<think>` tags), conversational filler texts, introductions, wrapping inside markdown codeblocks (no triple backticks wrapping), or post-generation notes. Any token outside the raw JSON object boundary triggers an immediate execution pipeline crash.
+5. **STRICT SINGLE-BLOCK PURITY & ABSOLUTE TERMINATION LAW:** 
+   - Your output MUST contain exactly ONE (1) single valid JSON object payload from start to finish. You are STRICTLY BANNED from repeating, mirroring, or generating a second duplicate JSON block within this response stream.
+   - **Strict Packaging Format**: The output MUST start exactly with a single line containing triple backticks and the language identifier: ```json
+   - The output MUST end exactly with the final line containing triple backticks: ```
+   - There must be absolutely ZERO conversational filler text, thinking processes (`<think>` tags), introductions, or post-generation notes before or after the fenced code block. 
+   - **Absolute Freeze Directive**: Mid-generation corrections are strictly prohibited. You are completely forbidden from appending trailing structural artifacts or deformed combinations like `} ```text{`. Once you emit the final closing brace `}` of the JSON schema, immediately close the triple backticks fence and FREEZE/STOP generating tokens instantly. Any token emitted after the primary closed fence violates enterprise runtime contracts.
 
 # Raw Response / Exception:
 
@@ -15147,7 +15399,12 @@ You are a high-performance Data Ingestion and Transformation Engine. Your sole o
 2. **ABSOLUTE PYDANTIC SCHEMA ALIGNMENT:** Your final generated JSON object MUST perfectly satisfy the structural schema parameters of the target enterprise contract. You are STRICTLY BANNED from omitting, renaming, formatting, or stripping out key elements (specifically `phase_id`, `phase_name`, `phase_description`, `project_name`, `global_context_file`, `source_target_dir`, and `days`).
 3. **ABSOLUTE NO EMPTY TAGS POLICY & STRING SANITIZATION:** You are STRICTLY BANNED from leaving the "targeted_tags" array empty `[]` or null for any sub-task that implements functional requirements or data schemas. You MUST scan the source Markdown sequentially sub-task by sub-task. For each sub-task node, locate the hidden technical container block delimited between `<!--START_TAGS-->` and `<!--END_TAGS-->` contained exclusively within that sub-task section scope. Extract all raw tag token codes inside, strip away all inline markdown formatting characters—specifically backticks (`` ` ``)—and any leading/trailing whitespaces, then populate them as clean separate string elements inside the "targeted_tags" array field of EACH sub-task object node.
 4. **NO TAG BUNDLING:** Every tag must be its own array node (e.g., `"targeted_tags": ["[REQ-001]", "[DAT-002]"]`). You are strictly forbidden from combining multiple tags into a single string element.
-5. **STRICT CONTENT PURITY & REJECT CONVERSATION:** Output ONLY the pure raw executable JSON string matching the required schema. Response must start exactly with the character `{` and end exactly with the character `}`. Banned from including thinking processes, chain-of-thought blocks (`<think>` tags), conversational filler texts, introductions, wrapping inside markdown codeblocks (no triple backticks wrapping), or post-generation notes. Any token outside the raw JSON object boundary triggers an immediate execution pipeline crash.
+5. **STRICT SINGLE-BLOCK PURITY & ABSOLUTE TERMINATION LAW:** 
+   - Your output MUST contain exactly ONE (1) single valid JSON object payload from start to finish. You are STRICTLY BANNED from repeating, mirroring, or generating a second duplicate JSON block within this response stream.
+   - **Strict Packaging Format**: The output MUST start exactly with a single line containing triple backticks and the language identifier: ```json
+   - The output MUST end exactly with the final line containing triple backticks: ```
+   - There must be absolutely ZERO conversational filler text, thinking processes (`<think>` tags), introductions, or post-generation notes before or after the fenced code block. 
+   - **Absolute Freeze Directive**: Mid-generation corrections are strictly prohibited. You are completely forbidden from appending trailing structural artifacts or deformed combinations like `} ```text{`. Once you emit the final closing brace `}` of the JSON schema, immediately close the triple backticks fence and FREEZE/STOP generating tokens instantly. Any token emitted after the primary closed fence violates enterprise runtime contracts.
 
 # Raw Response / Exception:
 
@@ -15442,12 +15699,17 @@ You are a high-performance Data Ingestion and Transformation Engine. Your sole o
 2. **ABSOLUTE PYDANTIC SCHEMA ALIGNMENT:** Your final generated JSON object MUST perfectly satisfy the structural schema parameters of the target enterprise contract. You are STRICTLY BANNED from omitting, renaming, formatting, or stripping out key elements (specifically `phase_id`, `phase_name`, `phase_description`, `project_name`, `global_context_file`, `source_target_dir`, and `days`).
 3. **ABSOLUTE NO EMPTY TAGS POLICY & STRING SANITIZATION:** You are STRICTLY BANNED from leaving the "targeted_tags" array empty `[]` or null for any sub-task that implements functional requirements or data schemas. You MUST scan the source Markdown sequentially sub-task by sub-task. For each sub-task node, locate the hidden technical container block delimited between `<!--START_TAGS-->` and `<!--END_TAGS-->` contained exclusively within that sub-task section scope. Extract all raw tag token codes inside, strip away all inline markdown formatting characters—specifically backticks (`` ` ``)—and any leading/trailing whitespaces, then populate them as clean separate string elements inside the "targeted_tags" array field of EACH sub-task object node.
 4. **NO TAG BUNDLING:** Every tag must be its own array node (e.g., `"targeted_tags": ["[REQ-001]", "[DAT-002]"]`). You are strictly forbidden from combining multiple tags into a single string element.
-5. **STRICT CONTENT PURITY & REJECT CONVERSATION:** Output ONLY the pure raw executable JSON string matching the required schema. Response must start exactly with the character `{` and end exactly with the character `}`. Banned from including thinking processes, chain-of-thought blocks (`<think>` tags), conversational filler texts, introductions, wrapping inside markdown codeblocks (no triple backticks wrapping), or post-generation notes. Any token outside the raw JSON object boundary triggers an immediate execution pipeline crash.
+5. **STRICT SINGLE-BLOCK PURITY & ABSOLUTE TERMINATION LAW:** 
+   - Your output MUST contain exactly ONE (1) single valid JSON object payload from start to finish. You are STRICTLY BANNED from repeating, mirroring, or generating a second duplicate JSON block within this response stream.
+   - **Strict Packaging Format**: The output MUST start exactly with a single line containing triple backticks and the language identifier: ```json
+   - The output MUST end exactly with the final line containing triple backticks: ```
+   - There must be absolutely ZERO conversational filler text, thinking processes (`<think>` tags), introductions, or post-generation notes before or after the fenced code block. 
+   - **Absolute Freeze Directive**: Mid-generation corrections are strictly prohibited. You are completely forbidden from appending trailing structural artifacts or deformed combinations like `} ```text{`. Once you emit the final closing brace `}` of the JSON schema, immediately close the triple backticks fence and FREEZE/STOP generating tokens instantly. Any token emitted after the primary closed fence violates enterprise runtime contracts.
 
 # Raw Response / Exception:
 
 ```json
-Error code: 429 - {'error': {'message': 'Rate limit reached for model `llama-3.3-70b-versatile` in organization `org_01kx7x6rbpftmr50sr2yyb78qm` service tier `on_demand` on tokens per day (TPD): Limit 100000, Used 98757, Requested 9683. Please try again in 2h1m32.16s. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing', 'type': 'tokens', 'code': 'rate_limit_exceeded'}}: ['Traceback (most recent call last):
+Error code: 429 - {'error': {'message': 'Rate limit reached for model `llama-3.3-70b-versatile` in organization `org_01kx7x6rbpftmr50sr2yyb78qm` service tier `on_demand` on tokens per day (TPD): Limit 100000, Used 94993, Requested 9801. Please try again in 1h9m2.016s. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing', 'type': 'tokens', 'code': 'rate_limit_exceeded'}}: ['Traceback (most recent call last):
 ', '  File "/home/runner/work/enterprise-it-ai/enterprise-it-ai/sources/agents/architect-blueprint/block_json.py", line 301, in convert_phases_to_json
     response = client.beta.chat.completions.parse(
                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -15459,7 +15721,7 @@ Error code: 429 - {'error': {'message': 'Rate limit reached for model `llama-3.3
                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 ', '  File "/opt/hostedtoolcache/Python/3.11.15/x64/lib/python3.11/site-packages/openai/_base_client.py", line 1148, in request
     raise self._make_status_error_from_response(err.response) from None
-', "openai.RateLimitError: Error code: 429 - {'error': {'message': 'Rate limit reached for model `llama-3.3-70b-versatile` in organization `org_01kx7x6rbpftmr50sr2yyb78qm` service tier `on_demand` on tokens per day (TPD): Limit 100000, Used 98757, Requested 9683. Please try again in 2h1m32.16s. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing', 'type': 'tokens', 'code': 'rate_limit_exceeded'}}
+', "openai.RateLimitError: Error code: 429 - {'error': {'message': 'Rate limit reached for model `llama-3.3-70b-versatile` in organization `org_01kx7x6rbpftmr50sr2yyb78qm` service tier `on_demand` on tokens per day (TPD): Limit 100000, Used 94993, Requested 9801. Please try again in 1h9m2.016s. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing', 'type': 'tokens', 'code': 'rate_limit_exceeded'}}
 "]
 ```
 
@@ -15737,7 +15999,12 @@ You are a high-performance Data Ingestion and Transformation Engine. Your sole o
 2. **ABSOLUTE PYDANTIC SCHEMA ALIGNMENT:** Your final generated JSON object MUST perfectly satisfy the structural schema parameters of the target enterprise contract. You are STRICTLY BANNED from omitting, renaming, formatting, or stripping out key elements (specifically `phase_id`, `phase_name`, `phase_description`, `project_name`, `global_context_file`, `source_target_dir`, and `days`).
 3. **ABSOLUTE NO EMPTY TAGS POLICY & STRING SANITIZATION:** You are STRICTLY BANNED from leaving the "targeted_tags" array empty `[]` or null for any sub-task that implements functional requirements or data schemas. You MUST scan the source Markdown sequentially sub-task by sub-task. For each sub-task node, locate the hidden technical container block delimited between `<!--START_TAGS-->` and `<!--END_TAGS-->` contained exclusively within that sub-task section scope. Extract all raw tag token codes inside, strip away all inline markdown formatting characters—specifically backticks (`` ` ``)—and any leading/trailing whitespaces, then populate them as clean separate string elements inside the "targeted_tags" array field of EACH sub-task object node.
 4. **NO TAG BUNDLING:** Every tag must be its own array node (e.g., `"targeted_tags": ["[REQ-001]", "[DAT-002]"]`). You are strictly forbidden from combining multiple tags into a single string element.
-5. **STRICT CONTENT PURITY & REJECT CONVERSATION:** Output ONLY the pure raw executable JSON string matching the required schema. Response must start exactly with the character `{` and end exactly with the character `}`. Banned from including thinking processes, chain-of-thought blocks (`<think>` tags), conversational filler texts, introductions, wrapping inside markdown codeblocks (no triple backticks wrapping), or post-generation notes. Any token outside the raw JSON object boundary triggers an immediate execution pipeline crash.
+5. **STRICT SINGLE-BLOCK PURITY & ABSOLUTE TERMINATION LAW:** 
+   - Your output MUST contain exactly ONE (1) single valid JSON object payload from start to finish. You are STRICTLY BANNED from repeating, mirroring, or generating a second duplicate JSON block within this response stream.
+   - **Strict Packaging Format**: The output MUST start exactly with a single line containing triple backticks and the language identifier: ```json
+   - The output MUST end exactly with the final line containing triple backticks: ```
+   - There must be absolutely ZERO conversational filler text, thinking processes (`<think>` tags), introductions, or post-generation notes before or after the fenced code block. 
+   - **Absolute Freeze Directive**: Mid-generation corrections are strictly prohibited. You are completely forbidden from appending trailing structural artifacts or deformed combinations like `} ```text{`. Once you emit the final closing brace `}` of the JSON schema, immediately close the triple backticks fence and FREEZE/STOP generating tokens instantly. Any token emitted after the primary closed fence violates enterprise runtime contracts.
 
 # Raw Response / Exception:
 
@@ -16032,12 +16299,17 @@ You are a high-performance Data Ingestion and Transformation Engine. Your sole o
 2. **ABSOLUTE PYDANTIC SCHEMA ALIGNMENT:** Your final generated JSON object MUST perfectly satisfy the structural schema parameters of the target enterprise contract. You are STRICTLY BANNED from omitting, renaming, formatting, or stripping out key elements (specifically `phase_id`, `phase_name`, `phase_description`, `project_name`, `global_context_file`, `source_target_dir`, and `days`).
 3. **ABSOLUTE NO EMPTY TAGS POLICY & STRING SANITIZATION:** You are STRICTLY BANNED from leaving the "targeted_tags" array empty `[]` or null for any sub-task that implements functional requirements or data schemas. You MUST scan the source Markdown sequentially sub-task by sub-task. For each sub-task node, locate the hidden technical container block delimited between `<!--START_TAGS-->` and `<!--END_TAGS-->` contained exclusively within that sub-task section scope. Extract all raw tag token codes inside, strip away all inline markdown formatting characters—specifically backticks (`` ` ``)—and any leading/trailing whitespaces, then populate them as clean separate string elements inside the "targeted_tags" array field of EACH sub-task object node.
 4. **NO TAG BUNDLING:** Every tag must be its own array node (e.g., `"targeted_tags": ["[REQ-001]", "[DAT-002]"]`). You are strictly forbidden from combining multiple tags into a single string element.
-5. **STRICT CONTENT PURITY & REJECT CONVERSATION:** Output ONLY the pure raw executable JSON string matching the required schema. Response must start exactly with the character `{` and end exactly with the character `}`. Banned from including thinking processes, chain-of-thought blocks (`<think>` tags), conversational filler texts, introductions, wrapping inside markdown codeblocks (no triple backticks wrapping), or post-generation notes. Any token outside the raw JSON object boundary triggers an immediate execution pipeline crash.
+5. **STRICT SINGLE-BLOCK PURITY & ABSOLUTE TERMINATION LAW:** 
+   - Your output MUST contain exactly ONE (1) single valid JSON object payload from start to finish. You are STRICTLY BANNED from repeating, mirroring, or generating a second duplicate JSON block within this response stream.
+   - **Strict Packaging Format**: The output MUST start exactly with a single line containing triple backticks and the language identifier: ```json
+   - The output MUST end exactly with the final line containing triple backticks: ```
+   - There must be absolutely ZERO conversational filler text, thinking processes (`<think>` tags), introductions, or post-generation notes before or after the fenced code block. 
+   - **Absolute Freeze Directive**: Mid-generation corrections are strictly prohibited. You are completely forbidden from appending trailing structural artifacts or deformed combinations like `} ```text{`. Once you emit the final closing brace `}` of the JSON schema, immediately close the triple backticks fence and FREEZE/STOP generating tokens instantly. Any token emitted after the primary closed fence violates enterprise runtime contracts.
 
 # Raw Response / Exception:
 
 ```json
-Error code: 429 - {'error': {'message': 'Rate limit reached for model `llama-3.3-70b-versatile` in organization `org_01kx7x6rbpftmr50sr2yyb78qm` service tier `on_demand` on tokens per day (TPD): Limit 100000, Used 98748, Requested 8840. Please try again in 1h49m16.032s. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing', 'type': 'compound', 'code': 'rate_limit_exceeded'}}: ['Traceback (most recent call last):
+Error code: 429 - {'error': {'message': 'Rate limit reached for model `llama-3.3-70b-versatile` in organization `org_01kx7x6rbpftmr50sr2yyb78qm` service tier `on_demand` on tokens per day (TPD): Limit 100000, Used 94985, Requested 8958. Please try again in 56m46.752s. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing', 'type': 'compound', 'code': 'rate_limit_exceeded'}}: ['Traceback (most recent call last):
 ', '  File "/home/runner/work/enterprise-it-ai/enterprise-it-ai/sources/agents/architect-blueprint/block_json.py", line 301, in convert_phases_to_json
     response = client.beta.chat.completions.parse(
                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -16049,7 +16321,7 @@ Error code: 429 - {'error': {'message': 'Rate limit reached for model `llama-3.3
                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 ', '  File "/opt/hostedtoolcache/Python/3.11.15/x64/lib/python3.11/site-packages/openai/_base_client.py", line 1148, in request
     raise self._make_status_error_from_response(err.response) from None
-', "openai.RateLimitError: Error code: 429 - {'error': {'message': 'Rate limit reached for model `llama-3.3-70b-versatile` in organization `org_01kx7x6rbpftmr50sr2yyb78qm` service tier `on_demand` on tokens per day (TPD): Limit 100000, Used 98748, Requested 8840. Please try again in 1h49m16.032s. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing', 'type': 'compound', 'code': 'rate_limit_exceeded'}}
+', "openai.RateLimitError: Error code: 429 - {'error': {'message': 'Rate limit reached for model `llama-3.3-70b-versatile` in organization `org_01kx7x6rbpftmr50sr2yyb78qm` service tier `on_demand` on tokens per day (TPD): Limit 100000, Used 94985, Requested 8958. Please try again in 56m46.752s. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing', 'type': 'compound', 'code': 'rate_limit_exceeded'}}
 "]
 ```
 
@@ -16327,12 +16599,17 @@ You are a high-performance Data Ingestion and Transformation Engine. Your sole o
 2. **ABSOLUTE PYDANTIC SCHEMA ALIGNMENT:** Your final generated JSON object MUST perfectly satisfy the structural schema parameters of the target enterprise contract. You are STRICTLY BANNED from omitting, renaming, formatting, or stripping out key elements (specifically `phase_id`, `phase_name`, `phase_description`, `project_name`, `global_context_file`, `source_target_dir`, and `days`).
 3. **ABSOLUTE NO EMPTY TAGS POLICY & STRING SANITIZATION:** You are STRICTLY BANNED from leaving the "targeted_tags" array empty `[]` or null for any sub-task that implements functional requirements or data schemas. You MUST scan the source Markdown sequentially sub-task by sub-task. For each sub-task node, locate the hidden technical container block delimited between `<!--START_TAGS-->` and `<!--END_TAGS-->` contained exclusively within that sub-task section scope. Extract all raw tag token codes inside, strip away all inline markdown formatting characters—specifically backticks (`` ` ``)—and any leading/trailing whitespaces, then populate them as clean separate string elements inside the "targeted_tags" array field of EACH sub-task object node.
 4. **NO TAG BUNDLING:** Every tag must be its own array node (e.g., `"targeted_tags": ["[REQ-001]", "[DAT-002]"]`). You are strictly forbidden from combining multiple tags into a single string element.
-5. **STRICT CONTENT PURITY & REJECT CONVERSATION:** Output ONLY the pure raw executable JSON string matching the required schema. Response must start exactly with the character `{` and end exactly with the character `}`. Banned from including thinking processes, chain-of-thought blocks (`<think>` tags), conversational filler texts, introductions, wrapping inside markdown codeblocks (no triple backticks wrapping), or post-generation notes. Any token outside the raw JSON object boundary triggers an immediate execution pipeline crash.
+5. **STRICT SINGLE-BLOCK PURITY & ABSOLUTE TERMINATION LAW:** 
+   - Your output MUST contain exactly ONE (1) single valid JSON object payload from start to finish. You are STRICTLY BANNED from repeating, mirroring, or generating a second duplicate JSON block within this response stream.
+   - **Strict Packaging Format**: The output MUST start exactly with a single line containing triple backticks and the language identifier: ```json
+   - The output MUST end exactly with the final line containing triple backticks: ```
+   - There must be absolutely ZERO conversational filler text, thinking processes (`<think>` tags), introductions, or post-generation notes before or after the fenced code block. 
+   - **Absolute Freeze Directive**: Mid-generation corrections are strictly prohibited. You are completely forbidden from appending trailing structural artifacts or deformed combinations like `} ```text{`. Once you emit the final closing brace `}` of the JSON schema, immediately close the triple backticks fence and FREEZE/STOP generating tokens instantly. Any token emitted after the primary closed fence violates enterprise runtime contracts.
 
 # Raw Response / Exception:
 
 ```json
-Error code: 413 - {'error': {'message': 'Request too large for model `llama-3.1-8b-instant` in organization `org_01kx7x6rbpftmr50sr2yyb78qm` service tier `on_demand` on tokens per minute (TPM): Limit 6000, Requested 9683, please reduce your message size and try again. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing', 'type': 'tokens', 'code': 'rate_limit_exceeded'}}: ['Traceback (most recent call last):
+Error code: 413 - {'error': {'message': 'Request too large for model `llama-3.1-8b-instant` in organization `org_01kx7x6rbpftmr50sr2yyb78qm` service tier `on_demand` on tokens per minute (TPM): Limit 6000, Requested 9801, please reduce your message size and try again. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing', 'type': 'tokens', 'code': 'rate_limit_exceeded'}}: ['Traceback (most recent call last):
 ', '  File "/home/runner/work/enterprise-it-ai/enterprise-it-ai/sources/agents/architect-blueprint/block_json.py", line 301, in convert_phases_to_json
     response = client.beta.chat.completions.parse(
                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -16344,7 +16621,7 @@ Error code: 413 - {'error': {'message': 'Request too large for model `llama-3.1-
                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 ', '  File "/opt/hostedtoolcache/Python/3.11.15/x64/lib/python3.11/site-packages/openai/_base_client.py", line 1148, in request
     raise self._make_status_error_from_response(err.response) from None
-', "openai.APIStatusError: Error code: 413 - {'error': {'message': 'Request too large for model `llama-3.1-8b-instant` in organization `org_01kx7x6rbpftmr50sr2yyb78qm` service tier `on_demand` on tokens per minute (TPM): Limit 6000, Requested 9683, please reduce your message size and try again. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing', 'type': 'tokens', 'code': 'rate_limit_exceeded'}}
+', "openai.APIStatusError: Error code: 413 - {'error': {'message': 'Request too large for model `llama-3.1-8b-instant` in organization `org_01kx7x6rbpftmr50sr2yyb78qm` service tier `on_demand` on tokens per minute (TPM): Limit 6000, Requested 9801, please reduce your message size and try again. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing', 'type': 'tokens', 'code': 'rate_limit_exceeded'}}
 "]
 ```
 
@@ -16622,12 +16899,17 @@ You are a high-performance Data Ingestion and Transformation Engine. Your sole o
 2. **ABSOLUTE PYDANTIC SCHEMA ALIGNMENT:** Your final generated JSON object MUST perfectly satisfy the structural schema parameters of the target enterprise contract. You are STRICTLY BANNED from omitting, renaming, formatting, or stripping out key elements (specifically `phase_id`, `phase_name`, `phase_description`, `project_name`, `global_context_file`, `source_target_dir`, and `days`).
 3. **ABSOLUTE NO EMPTY TAGS POLICY & STRING SANITIZATION:** You are STRICTLY BANNED from leaving the "targeted_tags" array empty `[]` or null for any sub-task that implements functional requirements or data schemas. You MUST scan the source Markdown sequentially sub-task by sub-task. For each sub-task node, locate the hidden technical container block delimited between `<!--START_TAGS-->` and `<!--END_TAGS-->` contained exclusively within that sub-task section scope. Extract all raw tag token codes inside, strip away all inline markdown formatting characters—specifically backticks (`` ` ``)—and any leading/trailing whitespaces, then populate them as clean separate string elements inside the "targeted_tags" array field of EACH sub-task object node.
 4. **NO TAG BUNDLING:** Every tag must be its own array node (e.g., `"targeted_tags": ["[REQ-001]", "[DAT-002]"]`). You are strictly forbidden from combining multiple tags into a single string element.
-5. **STRICT CONTENT PURITY & REJECT CONVERSATION:** Output ONLY the pure raw executable JSON string matching the required schema. Response must start exactly with the character `{` and end exactly with the character `}`. Banned from including thinking processes, chain-of-thought blocks (`<think>` tags), conversational filler texts, introductions, wrapping inside markdown codeblocks (no triple backticks wrapping), or post-generation notes. Any token outside the raw JSON object boundary triggers an immediate execution pipeline crash.
+5. **STRICT SINGLE-BLOCK PURITY & ABSOLUTE TERMINATION LAW:** 
+   - Your output MUST contain exactly ONE (1) single valid JSON object payload from start to finish. You are STRICTLY BANNED from repeating, mirroring, or generating a second duplicate JSON block within this response stream.
+   - **Strict Packaging Format**: The output MUST start exactly with a single line containing triple backticks and the language identifier: ```json
+   - The output MUST end exactly with the final line containing triple backticks: ```
+   - There must be absolutely ZERO conversational filler text, thinking processes (`<think>` tags), introductions, or post-generation notes before or after the fenced code block. 
+   - **Absolute Freeze Directive**: Mid-generation corrections are strictly prohibited. You are completely forbidden from appending trailing structural artifacts or deformed combinations like `} ```text{`. Once you emit the final closing brace `}` of the JSON schema, immediately close the triple backticks fence and FREEZE/STOP generating tokens instantly. Any token emitted after the primary closed fence violates enterprise runtime contracts.
 
 # Raw Response / Exception:
 
 ```json
-Error code: 413 - {'error': {'message': 'Request too large for model `openai/gpt-oss-120b` in organization `org_01kx7x6rbpftmr50sr2yyb78qm` service tier `on_demand` on tokens per minute (TPM): Limit 8000, Requested 9748, please reduce your message size and try again. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing', 'type': 'tokens', 'code': 'rate_limit_exceeded'}}: ['Traceback (most recent call last):
+Error code: 413 - {'error': {'message': 'Request too large for model `openai/gpt-oss-120b` in organization `org_01kx7x6rbpftmr50sr2yyb78qm` service tier `on_demand` on tokens per minute (TPM): Limit 8000, Requested 9870, please reduce your message size and try again. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing', 'type': 'tokens', 'code': 'rate_limit_exceeded'}}: ['Traceback (most recent call last):
 ', '  File "/home/runner/work/enterprise-it-ai/enterprise-it-ai/sources/agents/architect-blueprint/block_json.py", line 301, in convert_phases_to_json
     response = client.beta.chat.completions.parse(
                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -16639,7 +16921,7 @@ Error code: 413 - {'error': {'message': 'Request too large for model `openai/gpt
                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 ', '  File "/opt/hostedtoolcache/Python/3.11.15/x64/lib/python3.11/site-packages/openai/_base_client.py", line 1148, in request
     raise self._make_status_error_from_response(err.response) from None
-', "openai.APIStatusError: Error code: 413 - {'error': {'message': 'Request too large for model `openai/gpt-oss-120b` in organization `org_01kx7x6rbpftmr50sr2yyb78qm` service tier `on_demand` on tokens per minute (TPM): Limit 8000, Requested 9748, please reduce your message size and try again. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing', 'type': 'tokens', 'code': 'rate_limit_exceeded'}}
+', "openai.APIStatusError: Error code: 413 - {'error': {'message': 'Request too large for model `openai/gpt-oss-120b` in organization `org_01kx7x6rbpftmr50sr2yyb78qm` service tier `on_demand` on tokens per minute (TPM): Limit 8000, Requested 9870, please reduce your message size and try again. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing', 'type': 'tokens', 'code': 'rate_limit_exceeded'}}
 "]
 ```
 
@@ -16917,12 +17199,17 @@ You are a high-performance Data Ingestion and Transformation Engine. Your sole o
 2. **ABSOLUTE PYDANTIC SCHEMA ALIGNMENT:** Your final generated JSON object MUST perfectly satisfy the structural schema parameters of the target enterprise contract. You are STRICTLY BANNED from omitting, renaming, formatting, or stripping out key elements (specifically `phase_id`, `phase_name`, `phase_description`, `project_name`, `global_context_file`, `source_target_dir`, and `days`).
 3. **ABSOLUTE NO EMPTY TAGS POLICY & STRING SANITIZATION:** You are STRICTLY BANNED from leaving the "targeted_tags" array empty `[]` or null for any sub-task that implements functional requirements or data schemas. You MUST scan the source Markdown sequentially sub-task by sub-task. For each sub-task node, locate the hidden technical container block delimited between `<!--START_TAGS-->` and `<!--END_TAGS-->` contained exclusively within that sub-task section scope. Extract all raw tag token codes inside, strip away all inline markdown formatting characters—specifically backticks (`` ` ``)—and any leading/trailing whitespaces, then populate them as clean separate string elements inside the "targeted_tags" array field of EACH sub-task object node.
 4. **NO TAG BUNDLING:** Every tag must be its own array node (e.g., `"targeted_tags": ["[REQ-001]", "[DAT-002]"]`). You are strictly forbidden from combining multiple tags into a single string element.
-5. **STRICT CONTENT PURITY & REJECT CONVERSATION:** Output ONLY the pure raw executable JSON string matching the required schema. Response must start exactly with the character `{` and end exactly with the character `}`. Banned from including thinking processes, chain-of-thought blocks (`<think>` tags), conversational filler texts, introductions, wrapping inside markdown codeblocks (no triple backticks wrapping), or post-generation notes. Any token outside the raw JSON object boundary triggers an immediate execution pipeline crash.
+5. **STRICT SINGLE-BLOCK PURITY & ABSOLUTE TERMINATION LAW:** 
+   - Your output MUST contain exactly ONE (1) single valid JSON object payload from start to finish. You are STRICTLY BANNED from repeating, mirroring, or generating a second duplicate JSON block within this response stream.
+   - **Strict Packaging Format**: The output MUST start exactly with a single line containing triple backticks and the language identifier: ```json
+   - The output MUST end exactly with the final line containing triple backticks: ```
+   - There must be absolutely ZERO conversational filler text, thinking processes (`<think>` tags), introductions, or post-generation notes before or after the fenced code block. 
+   - **Absolute Freeze Directive**: Mid-generation corrections are strictly prohibited. You are completely forbidden from appending trailing structural artifacts or deformed combinations like `} ```text{`. Once you emit the final closing brace `}` of the JSON schema, immediately close the triple backticks fence and FREEZE/STOP generating tokens instantly. Any token emitted after the primary closed fence violates enterprise runtime contracts.
 
 # Raw Response / Exception:
 
 ```json
-Error code: 413 - {'error': {'message': 'Request too large for model `openai/gpt-oss-20b` in organization `org_01kx7x6rbpftmr50sr2yyb78qm` service tier `on_demand` on tokens per minute (TPM): Limit 8000, Requested 9748, please reduce your message size and try again. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing', 'type': 'tokens', 'code': 'rate_limit_exceeded'}}: ['Traceback (most recent call last):
+Error code: 413 - {'error': {'message': 'Request too large for model `openai/gpt-oss-20b` in organization `org_01kx7x6rbpftmr50sr2yyb78qm` service tier `on_demand` on tokens per minute (TPM): Limit 8000, Requested 9870, please reduce your message size and try again. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing', 'type': 'tokens', 'code': 'rate_limit_exceeded'}}: ['Traceback (most recent call last):
 ', '  File "/home/runner/work/enterprise-it-ai/enterprise-it-ai/sources/agents/architect-blueprint/block_json.py", line 301, in convert_phases_to_json
     response = client.beta.chat.completions.parse(
                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -16934,7 +17221,7 @@ Error code: 413 - {'error': {'message': 'Request too large for model `openai/gpt
                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 ', '  File "/opt/hostedtoolcache/Python/3.11.15/x64/lib/python3.11/site-packages/openai/_base_client.py", line 1148, in request
     raise self._make_status_error_from_response(err.response) from None
-', "openai.APIStatusError: Error code: 413 - {'error': {'message': 'Request too large for model `openai/gpt-oss-20b` in organization `org_01kx7x6rbpftmr50sr2yyb78qm` service tier `on_demand` on tokens per minute (TPM): Limit 8000, Requested 9748, please reduce your message size and try again. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing', 'type': 'tokens', 'code': 'rate_limit_exceeded'}}
+', "openai.APIStatusError: Error code: 413 - {'error': {'message': 'Request too large for model `openai/gpt-oss-20b` in organization `org_01kx7x6rbpftmr50sr2yyb78qm` service tier `on_demand` on tokens per minute (TPM): Limit 8000, Requested 9870, please reduce your message size and try again. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing', 'type': 'tokens', 'code': 'rate_limit_exceeded'}}
 "]
 ```
 
@@ -17212,12 +17499,17 @@ You are a high-performance Data Ingestion and Transformation Engine. Your sole o
 2. **ABSOLUTE PYDANTIC SCHEMA ALIGNMENT:** Your final generated JSON object MUST perfectly satisfy the structural schema parameters of the target enterprise contract. You are STRICTLY BANNED from omitting, renaming, formatting, or stripping out key elements (specifically `phase_id`, `phase_name`, `phase_description`, `project_name`, `global_context_file`, `source_target_dir`, and `days`).
 3. **ABSOLUTE NO EMPTY TAGS POLICY & STRING SANITIZATION:** You are STRICTLY BANNED from leaving the "targeted_tags" array empty `[]` or null for any sub-task that implements functional requirements or data schemas. You MUST scan the source Markdown sequentially sub-task by sub-task. For each sub-task node, locate the hidden technical container block delimited between `<!--START_TAGS-->` and `<!--END_TAGS-->` contained exclusively within that sub-task section scope. Extract all raw tag token codes inside, strip away all inline markdown formatting characters—specifically backticks (`` ` ``)—and any leading/trailing whitespaces, then populate them as clean separate string elements inside the "targeted_tags" array field of EACH sub-task object node.
 4. **NO TAG BUNDLING:** Every tag must be its own array node (e.g., `"targeted_tags": ["[REQ-001]", "[DAT-002]"]`). You are strictly forbidden from combining multiple tags into a single string element.
-5. **STRICT CONTENT PURITY & REJECT CONVERSATION:** Output ONLY the pure raw executable JSON string matching the required schema. Response must start exactly with the character `{` and end exactly with the character `}`. Banned from including thinking processes, chain-of-thought blocks (`<think>` tags), conversational filler texts, introductions, wrapping inside markdown codeblocks (no triple backticks wrapping), or post-generation notes. Any token outside the raw JSON object boundary triggers an immediate execution pipeline crash.
+5. **STRICT SINGLE-BLOCK PURITY & ABSOLUTE TERMINATION LAW:** 
+   - Your output MUST contain exactly ONE (1) single valid JSON object payload from start to finish. You are STRICTLY BANNED from repeating, mirroring, or generating a second duplicate JSON block within this response stream.
+   - **Strict Packaging Format**: The output MUST start exactly with a single line containing triple backticks and the language identifier: ```json
+   - The output MUST end exactly with the final line containing triple backticks: ```
+   - There must be absolutely ZERO conversational filler text, thinking processes (`<think>` tags), introductions, or post-generation notes before or after the fenced code block. 
+   - **Absolute Freeze Directive**: Mid-generation corrections are strictly prohibited. You are completely forbidden from appending trailing structural artifacts or deformed combinations like `} ```text{`. Once you emit the final closing brace `}` of the JSON schema, immediately close the triple backticks fence and FREEZE/STOP generating tokens instantly. Any token emitted after the primary closed fence violates enterprise runtime contracts.
 
 # Raw Response / Exception:
 
 ```json
-Error code: 413 - {'error': {'message': 'Request too large for model `openai/gpt-oss-safeguard-20b` in organization `org_01kx7x6rbpftmr50sr2yyb78qm` service tier `on_demand` on tokens per minute (TPM): Limit 8000, Requested 9748, please reduce your message size and try again. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing', 'type': 'tokens', 'code': 'rate_limit_exceeded'}}: ['Traceback (most recent call last):
+Error code: 413 - {'error': {'message': 'Request too large for model `openai/gpt-oss-safeguard-20b` in organization `org_01kx7x6rbpftmr50sr2yyb78qm` service tier `on_demand` on tokens per minute (TPM): Limit 8000, Requested 9870, please reduce your message size and try again. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing', 'type': 'tokens', 'code': 'rate_limit_exceeded'}}: ['Traceback (most recent call last):
 ', '  File "/home/runner/work/enterprise-it-ai/enterprise-it-ai/sources/agents/architect-blueprint/block_json.py", line 301, in convert_phases_to_json
     response = client.beta.chat.completions.parse(
                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -17229,7 +17521,7 @@ Error code: 413 - {'error': {'message': 'Request too large for model `openai/gpt
                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 ', '  File "/opt/hostedtoolcache/Python/3.11.15/x64/lib/python3.11/site-packages/openai/_base_client.py", line 1148, in request
     raise self._make_status_error_from_response(err.response) from None
-', "openai.APIStatusError: Error code: 413 - {'error': {'message': 'Request too large for model `openai/gpt-oss-safeguard-20b` in organization `org_01kx7x6rbpftmr50sr2yyb78qm` service tier `on_demand` on tokens per minute (TPM): Limit 8000, Requested 9748, please reduce your message size and try again. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing', 'type': 'tokens', 'code': 'rate_limit_exceeded'}}
+', "openai.APIStatusError: Error code: 413 - {'error': {'message': 'Request too large for model `openai/gpt-oss-safeguard-20b` in organization `org_01kx7x6rbpftmr50sr2yyb78qm` service tier `on_demand` on tokens per minute (TPM): Limit 8000, Requested 9870, please reduce your message size and try again. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing', 'type': 'tokens', 'code': 'rate_limit_exceeded'}}
 "]
 ```
 
@@ -17507,12 +17799,17 @@ You are a high-performance Data Ingestion and Transformation Engine. Your sole o
 2. **ABSOLUTE PYDANTIC SCHEMA ALIGNMENT:** Your final generated JSON object MUST perfectly satisfy the structural schema parameters of the target enterprise contract. You are STRICTLY BANNED from omitting, renaming, formatting, or stripping out key elements (specifically `phase_id`, `phase_name`, `phase_description`, `project_name`, `global_context_file`, `source_target_dir`, and `days`).
 3. **ABSOLUTE NO EMPTY TAGS POLICY & STRING SANITIZATION:** You are STRICTLY BANNED from leaving the "targeted_tags" array empty `[]` or null for any sub-task that implements functional requirements or data schemas. You MUST scan the source Markdown sequentially sub-task by sub-task. For each sub-task node, locate the hidden technical container block delimited between `<!--START_TAGS-->` and `<!--END_TAGS-->` contained exclusively within that sub-task section scope. Extract all raw tag token codes inside, strip away all inline markdown formatting characters—specifically backticks (`` ` ``)—and any leading/trailing whitespaces, then populate them as clean separate string elements inside the "targeted_tags" array field of EACH sub-task object node.
 4. **NO TAG BUNDLING:** Every tag must be its own array node (e.g., `"targeted_tags": ["[REQ-001]", "[DAT-002]"]`). You are strictly forbidden from combining multiple tags into a single string element.
-5. **STRICT CONTENT PURITY & REJECT CONVERSATION:** Output ONLY the pure raw executable JSON string matching the required schema. Response must start exactly with the character `{` and end exactly with the character `}`. Banned from including thinking processes, chain-of-thought blocks (`<think>` tags), conversational filler texts, introductions, wrapping inside markdown codeblocks (no triple backticks wrapping), or post-generation notes. Any token outside the raw JSON object boundary triggers an immediate execution pipeline crash.
+5. **STRICT SINGLE-BLOCK PURITY & ABSOLUTE TERMINATION LAW:** 
+   - Your output MUST contain exactly ONE (1) single valid JSON object payload from start to finish. You are STRICTLY BANNED from repeating, mirroring, or generating a second duplicate JSON block within this response stream.
+   - **Strict Packaging Format**: The output MUST start exactly with a single line containing triple backticks and the language identifier: ```json
+   - The output MUST end exactly with the final line containing triple backticks: ```
+   - There must be absolutely ZERO conversational filler text, thinking processes (`<think>` tags), introductions, or post-generation notes before or after the fenced code block. 
+   - **Absolute Freeze Directive**: Mid-generation corrections are strictly prohibited. You are completely forbidden from appending trailing structural artifacts or deformed combinations like `} ```text{`. Once you emit the final closing brace `}` of the JSON schema, immediately close the triple backticks fence and FREEZE/STOP generating tokens instantly. Any token emitted after the primary closed fence violates enterprise runtime contracts.
 
 # Raw Response / Exception:
 
 ```json
-Error code: 413 - {'error': {'message': 'Request too large for model `qwen/qwen3.6-27b` in organization `org_01kx7x6rbpftmr50sr2yyb78qm` service tier `on_demand` on tokens per minute (TPM): Limit 8000, Requested 9875, please reduce your message size and try again. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing', 'type': 'tokens', 'code': 'rate_limit_exceeded'}}: ['Traceback (most recent call last):
+Error code: 413 - {'error': {'message': 'Request too large for model `qwen/qwen3.6-27b` in organization `org_01kx7x6rbpftmr50sr2yyb78qm` service tier `on_demand` on tokens per minute (TPM): Limit 8000, Requested 9995, please reduce your message size and try again. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing', 'type': 'tokens', 'code': 'rate_limit_exceeded'}}: ['Traceback (most recent call last):
 ', '  File "/home/runner/work/enterprise-it-ai/enterprise-it-ai/sources/agents/architect-blueprint/block_json.py", line 301, in convert_phases_to_json
     response = client.beta.chat.completions.parse(
                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -17524,7 +17821,7 @@ Error code: 413 - {'error': {'message': 'Request too large for model `qwen/qwen3
                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 ', '  File "/opt/hostedtoolcache/Python/3.11.15/x64/lib/python3.11/site-packages/openai/_base_client.py", line 1148, in request
     raise self._make_status_error_from_response(err.response) from None
-', "openai.APIStatusError: Error code: 413 - {'error': {'message': 'Request too large for model `qwen/qwen3.6-27b` in organization `org_01kx7x6rbpftmr50sr2yyb78qm` service tier `on_demand` on tokens per minute (TPM): Limit 8000, Requested 9875, please reduce your message size and try again. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing', 'type': 'tokens', 'code': 'rate_limit_exceeded'}}
+', "openai.APIStatusError: Error code: 413 - {'error': {'message': 'Request too large for model `qwen/qwen3.6-27b` in organization `org_01kx7x6rbpftmr50sr2yyb78qm` service tier `on_demand` on tokens per minute (TPM): Limit 8000, Requested 9995, please reduce your message size and try again. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing', 'type': 'tokens', 'code': 'rate_limit_exceeded'}}
 "]
 ```
 
@@ -17802,7 +18099,12 @@ You are a high-performance Data Ingestion and Transformation Engine. Your sole o
 2. **ABSOLUTE PYDANTIC SCHEMA ALIGNMENT:** Your final generated JSON object MUST perfectly satisfy the structural schema parameters of the target enterprise contract. You are STRICTLY BANNED from omitting, renaming, formatting, or stripping out key elements (specifically `phase_id`, `phase_name`, `phase_description`, `project_name`, `global_context_file`, `source_target_dir`, and `days`).
 3. **ABSOLUTE NO EMPTY TAGS POLICY & STRING SANITIZATION:** You are STRICTLY BANNED from leaving the "targeted_tags" array empty `[]` or null for any sub-task that implements functional requirements or data schemas. You MUST scan the source Markdown sequentially sub-task by sub-task. For each sub-task node, locate the hidden technical container block delimited between `<!--START_TAGS-->` and `<!--END_TAGS-->` contained exclusively within that sub-task section scope. Extract all raw tag token codes inside, strip away all inline markdown formatting characters—specifically backticks (`` ` ``)—and any leading/trailing whitespaces, then populate them as clean separate string elements inside the "targeted_tags" array field of EACH sub-task object node.
 4. **NO TAG BUNDLING:** Every tag must be its own array node (e.g., `"targeted_tags": ["[REQ-001]", "[DAT-002]"]`). You are strictly forbidden from combining multiple tags into a single string element.
-5. **STRICT CONTENT PURITY & REJECT CONVERSATION:** Output ONLY the pure raw executable JSON string matching the required schema. Response must start exactly with the character `{` and end exactly with the character `}`. Banned from including thinking processes, chain-of-thought blocks (`<think>` tags), conversational filler texts, introductions, wrapping inside markdown codeblocks (no triple backticks wrapping), or post-generation notes. Any token outside the raw JSON object boundary triggers an immediate execution pipeline crash.
+5. **STRICT SINGLE-BLOCK PURITY & ABSOLUTE TERMINATION LAW:** 
+   - Your output MUST contain exactly ONE (1) single valid JSON object payload from start to finish. You are STRICTLY BANNED from repeating, mirroring, or generating a second duplicate JSON block within this response stream.
+   - **Strict Packaging Format**: The output MUST start exactly with a single line containing triple backticks and the language identifier: ```json
+   - The output MUST end exactly with the final line containing triple backticks: ```
+   - There must be absolutely ZERO conversational filler text, thinking processes (`<think>` tags), introductions, or post-generation notes before or after the fenced code block. 
+   - **Absolute Freeze Directive**: Mid-generation corrections are strictly prohibited. You are completely forbidden from appending trailing structural artifacts or deformed combinations like `} ```text{`. Once you emit the final closing brace `}` of the JSON schema, immediately close the triple backticks fence and FREEZE/STOP generating tokens instantly. Any token emitted after the primary closed fence violates enterprise runtime contracts.
 
 # Raw Response / Exception:
 
@@ -18097,7 +18399,12 @@ You are a high-performance Data Ingestion and Transformation Engine. Your sole o
 2. **ABSOLUTE PYDANTIC SCHEMA ALIGNMENT:** Your final generated JSON object MUST perfectly satisfy the structural schema parameters of the target enterprise contract. You are STRICTLY BANNED from omitting, renaming, formatting, or stripping out key elements (specifically `phase_id`, `phase_name`, `phase_description`, `project_name`, `global_context_file`, `source_target_dir`, and `days`).
 3. **ABSOLUTE NO EMPTY TAGS POLICY & STRING SANITIZATION:** You are STRICTLY BANNED from leaving the "targeted_tags" array empty `[]` or null for any sub-task that implements functional requirements or data schemas. You MUST scan the source Markdown sequentially sub-task by sub-task. For each sub-task node, locate the hidden technical container block delimited between `<!--START_TAGS-->` and `<!--END_TAGS-->` contained exclusively within that sub-task section scope. Extract all raw tag token codes inside, strip away all inline markdown formatting characters—specifically backticks (`` ` ``)—and any leading/trailing whitespaces, then populate them as clean separate string elements inside the "targeted_tags" array field of EACH sub-task object node.
 4. **NO TAG BUNDLING:** Every tag must be its own array node (e.g., `"targeted_tags": ["[REQ-001]", "[DAT-002]"]`). You are strictly forbidden from combining multiple tags into a single string element.
-5. **STRICT CONTENT PURITY & REJECT CONVERSATION:** Output ONLY the pure raw executable JSON string matching the required schema. Response must start exactly with the character `{` and end exactly with the character `}`. Banned from including thinking processes, chain-of-thought blocks (`<think>` tags), conversational filler texts, introductions, wrapping inside markdown codeblocks (no triple backticks wrapping), or post-generation notes. Any token outside the raw JSON object boundary triggers an immediate execution pipeline crash.
+5. **STRICT SINGLE-BLOCK PURITY & ABSOLUTE TERMINATION LAW:** 
+   - Your output MUST contain exactly ONE (1) single valid JSON object payload from start to finish. You are STRICTLY BANNED from repeating, mirroring, or generating a second duplicate JSON block within this response stream.
+   - **Strict Packaging Format**: The output MUST start exactly with a single line containing triple backticks and the language identifier: ```json
+   - The output MUST end exactly with the final line containing triple backticks: ```
+   - There must be absolutely ZERO conversational filler text, thinking processes (`<think>` tags), introductions, or post-generation notes before or after the fenced code block. 
+   - **Absolute Freeze Directive**: Mid-generation corrections are strictly prohibited. You are completely forbidden from appending trailing structural artifacts or deformed combinations like `} ```text{`. Once you emit the final closing brace `}` of the JSON schema, immediately close the triple backticks fence and FREEZE/STOP generating tokens instantly. Any token emitted after the primary closed fence violates enterprise runtime contracts.
 
 # Raw Response / Exception:
 
@@ -18392,7 +18699,12 @@ You are a high-performance Data Ingestion and Transformation Engine. Your sole o
 2. **ABSOLUTE PYDANTIC SCHEMA ALIGNMENT:** Your final generated JSON object MUST perfectly satisfy the structural schema parameters of the target enterprise contract. You are STRICTLY BANNED from omitting, renaming, formatting, or stripping out key elements (specifically `phase_id`, `phase_name`, `phase_description`, `project_name`, `global_context_file`, `source_target_dir`, and `days`).
 3. **ABSOLUTE NO EMPTY TAGS POLICY & STRING SANITIZATION:** You are STRICTLY BANNED from leaving the "targeted_tags" array empty `[]` or null for any sub-task that implements functional requirements or data schemas. You MUST scan the source Markdown sequentially sub-task by sub-task. For each sub-task node, locate the hidden technical container block delimited between `<!--START_TAGS-->` and `<!--END_TAGS-->` contained exclusively within that sub-task section scope. Extract all raw tag token codes inside, strip away all inline markdown formatting characters—specifically backticks (`` ` ``)—and any leading/trailing whitespaces, then populate them as clean separate string elements inside the "targeted_tags" array field of EACH sub-task object node.
 4. **NO TAG BUNDLING:** Every tag must be its own array node (e.g., `"targeted_tags": ["[REQ-001]", "[DAT-002]"]`). You are strictly forbidden from combining multiple tags into a single string element.
-5. **STRICT CONTENT PURITY & REJECT CONVERSATION:** Output ONLY the pure raw executable JSON string matching the required schema. Response must start exactly with the character `{` and end exactly with the character `}`. Banned from including thinking processes, chain-of-thought blocks (`<think>` tags), conversational filler texts, introductions, wrapping inside markdown codeblocks (no triple backticks wrapping), or post-generation notes. Any token outside the raw JSON object boundary triggers an immediate execution pipeline crash.
+5. **STRICT SINGLE-BLOCK PURITY & ABSOLUTE TERMINATION LAW:** 
+   - Your output MUST contain exactly ONE (1) single valid JSON object payload from start to finish. You are STRICTLY BANNED from repeating, mirroring, or generating a second duplicate JSON block within this response stream.
+   - **Strict Packaging Format**: The output MUST start exactly with a single line containing triple backticks and the language identifier: ```json
+   - The output MUST end exactly with the final line containing triple backticks: ```
+   - There must be absolutely ZERO conversational filler text, thinking processes (`<think>` tags), introductions, or post-generation notes before or after the fenced code block. 
+   - **Absolute Freeze Directive**: Mid-generation corrections are strictly prohibited. You are completely forbidden from appending trailing structural artifacts or deformed combinations like `} ```text{`. Once you emit the final closing brace `}` of the JSON schema, immediately close the triple backticks fence and FREEZE/STOP generating tokens instantly. Any token emitted after the primary closed fence violates enterprise runtime contracts.
 
 # Raw Response / Exception:
 
@@ -18687,7 +18999,12 @@ You are a high-performance Data Ingestion and Transformation Engine. Your sole o
 2. **ABSOLUTE PYDANTIC SCHEMA ALIGNMENT:** Your final generated JSON object MUST perfectly satisfy the structural schema parameters of the target enterprise contract. You are STRICTLY BANNED from omitting, renaming, formatting, or stripping out key elements (specifically `phase_id`, `phase_name`, `phase_description`, `project_name`, `global_context_file`, `source_target_dir`, and `days`).
 3. **ABSOLUTE NO EMPTY TAGS POLICY & STRING SANITIZATION:** You are STRICTLY BANNED from leaving the "targeted_tags" array empty `[]` or null for any sub-task that implements functional requirements or data schemas. You MUST scan the source Markdown sequentially sub-task by sub-task. For each sub-task node, locate the hidden technical container block delimited between `<!--START_TAGS-->` and `<!--END_TAGS-->` contained exclusively within that sub-task section scope. Extract all raw tag token codes inside, strip away all inline markdown formatting characters—specifically backticks (`` ` ``)—and any leading/trailing whitespaces, then populate them as clean separate string elements inside the "targeted_tags" array field of EACH sub-task object node.
 4. **NO TAG BUNDLING:** Every tag must be its own array node (e.g., `"targeted_tags": ["[REQ-001]", "[DAT-002]"]`). You are strictly forbidden from combining multiple tags into a single string element.
-5. **STRICT CONTENT PURITY & REJECT CONVERSATION:** Output ONLY the pure raw executable JSON string matching the required schema. Response must start exactly with the character `{` and end exactly with the character `}`. Banned from including thinking processes, chain-of-thought blocks (`<think>` tags), conversational filler texts, introductions, wrapping inside markdown codeblocks (no triple backticks wrapping), or post-generation notes. Any token outside the raw JSON object boundary triggers an immediate execution pipeline crash.
+5. **STRICT SINGLE-BLOCK PURITY & ABSOLUTE TERMINATION LAW:** 
+   - Your output MUST contain exactly ONE (1) single valid JSON object payload from start to finish. You are STRICTLY BANNED from repeating, mirroring, or generating a second duplicate JSON block within this response stream.
+   - **Strict Packaging Format**: The output MUST start exactly with a single line containing triple backticks and the language identifier: ```json
+   - The output MUST end exactly with the final line containing triple backticks: ```
+   - There must be absolutely ZERO conversational filler text, thinking processes (`<think>` tags), introductions, or post-generation notes before or after the fenced code block. 
+   - **Absolute Freeze Directive**: Mid-generation corrections are strictly prohibited. You are completely forbidden from appending trailing structural artifacts or deformed combinations like `} ```text{`. Once you emit the final closing brace `}` of the JSON schema, immediately close the triple backticks fence and FREEZE/STOP generating tokens instantly. Any token emitted after the primary closed fence violates enterprise runtime contracts.
 
 # Raw Response / Exception:
 
@@ -18982,7 +19299,12 @@ You are a high-performance Data Ingestion and Transformation Engine. Your sole o
 2. **ABSOLUTE PYDANTIC SCHEMA ALIGNMENT:** Your final generated JSON object MUST perfectly satisfy the structural schema parameters of the target enterprise contract. You are STRICTLY BANNED from omitting, renaming, formatting, or stripping out key elements (specifically `phase_id`, `phase_name`, `phase_description`, `project_name`, `global_context_file`, `source_target_dir`, and `days`).
 3. **ABSOLUTE NO EMPTY TAGS POLICY & STRING SANITIZATION:** You are STRICTLY BANNED from leaving the "targeted_tags" array empty `[]` or null for any sub-task that implements functional requirements or data schemas. You MUST scan the source Markdown sequentially sub-task by sub-task. For each sub-task node, locate the hidden technical container block delimited between `<!--START_TAGS-->` and `<!--END_TAGS-->` contained exclusively within that sub-task section scope. Extract all raw tag token codes inside, strip away all inline markdown formatting characters—specifically backticks (`` ` ``)—and any leading/trailing whitespaces, then populate them as clean separate string elements inside the "targeted_tags" array field of EACH sub-task object node.
 4. **NO TAG BUNDLING:** Every tag must be its own array node (e.g., `"targeted_tags": ["[REQ-001]", "[DAT-002]"]`). You are strictly forbidden from combining multiple tags into a single string element.
-5. **STRICT CONTENT PURITY & REJECT CONVERSATION:** Output ONLY the pure raw executable JSON string matching the required schema. Response must start exactly with the character `{` and end exactly with the character `}`. Banned from including thinking processes, chain-of-thought blocks (`<think>` tags), conversational filler texts, introductions, wrapping inside markdown codeblocks (no triple backticks wrapping), or post-generation notes. Any token outside the raw JSON object boundary triggers an immediate execution pipeline crash.
+5. **STRICT SINGLE-BLOCK PURITY & ABSOLUTE TERMINATION LAW:** 
+   - Your output MUST contain exactly ONE (1) single valid JSON object payload from start to finish. You are STRICTLY BANNED from repeating, mirroring, or generating a second duplicate JSON block within this response stream.
+   - **Strict Packaging Format**: The output MUST start exactly with a single line containing triple backticks and the language identifier: ```json
+   - The output MUST end exactly with the final line containing triple backticks: ```
+   - There must be absolutely ZERO conversational filler text, thinking processes (`<think>` tags), introductions, or post-generation notes before or after the fenced code block. 
+   - **Absolute Freeze Directive**: Mid-generation corrections are strictly prohibited. You are completely forbidden from appending trailing structural artifacts or deformed combinations like `} ```text{`. Once you emit the final closing brace `}` of the JSON schema, immediately close the triple backticks fence and FREEZE/STOP generating tokens instantly. Any token emitted after the primary closed fence violates enterprise runtime contracts.
 
 # Raw Response / Exception:
 
@@ -19277,7 +19599,12 @@ You are a high-performance Data Ingestion and Transformation Engine. Your sole o
 2. **ABSOLUTE PYDANTIC SCHEMA ALIGNMENT:** Your final generated JSON object MUST perfectly satisfy the structural schema parameters of the target enterprise contract. You are STRICTLY BANNED from omitting, renaming, formatting, or stripping out key elements (specifically `phase_id`, `phase_name`, `phase_description`, `project_name`, `global_context_file`, `source_target_dir`, and `days`).
 3. **ABSOLUTE NO EMPTY TAGS POLICY & STRING SANITIZATION:** You are STRICTLY BANNED from leaving the "targeted_tags" array empty `[]` or null for any sub-task that implements functional requirements or data schemas. You MUST scan the source Markdown sequentially sub-task by sub-task. For each sub-task node, locate the hidden technical container block delimited between `<!--START_TAGS-->` and `<!--END_TAGS-->` contained exclusively within that sub-task section scope. Extract all raw tag token codes inside, strip away all inline markdown formatting characters—specifically backticks (`` ` ``)—and any leading/trailing whitespaces, then populate them as clean separate string elements inside the "targeted_tags" array field of EACH sub-task object node.
 4. **NO TAG BUNDLING:** Every tag must be its own array node (e.g., `"targeted_tags": ["[REQ-001]", "[DAT-002]"]`). You are strictly forbidden from combining multiple tags into a single string element.
-5. **STRICT CONTENT PURITY & REJECT CONVERSATION:** Output ONLY the pure raw executable JSON string matching the required schema. Response must start exactly with the character `{` and end exactly with the character `}`. Banned from including thinking processes, chain-of-thought blocks (`<think>` tags), conversational filler texts, introductions, wrapping inside markdown codeblocks (no triple backticks wrapping), or post-generation notes. Any token outside the raw JSON object boundary triggers an immediate execution pipeline crash.
+5. **STRICT SINGLE-BLOCK PURITY & ABSOLUTE TERMINATION LAW:** 
+   - Your output MUST contain exactly ONE (1) single valid JSON object payload from start to finish. You are STRICTLY BANNED from repeating, mirroring, or generating a second duplicate JSON block within this response stream.
+   - **Strict Packaging Format**: The output MUST start exactly with a single line containing triple backticks and the language identifier: ```json
+   - The output MUST end exactly with the final line containing triple backticks: ```
+   - There must be absolutely ZERO conversational filler text, thinking processes (`<think>` tags), introductions, or post-generation notes before or after the fenced code block. 
+   - **Absolute Freeze Directive**: Mid-generation corrections are strictly prohibited. You are completely forbidden from appending trailing structural artifacts or deformed combinations like `} ```text{`. Once you emit the final closing brace `}` of the JSON schema, immediately close the triple backticks fence and FREEZE/STOP generating tokens instantly. Any token emitted after the primary closed fence violates enterprise runtime contracts.
 
 # Raw Response / Exception:
 
@@ -19572,7 +19899,12 @@ You are a high-performance Data Ingestion and Transformation Engine. Your sole o
 2. **ABSOLUTE PYDANTIC SCHEMA ALIGNMENT:** Your final generated JSON object MUST perfectly satisfy the structural schema parameters of the target enterprise contract. You are STRICTLY BANNED from omitting, renaming, formatting, or stripping out key elements (specifically `phase_id`, `phase_name`, `phase_description`, `project_name`, `global_context_file`, `source_target_dir`, and `days`).
 3. **ABSOLUTE NO EMPTY TAGS POLICY & STRING SANITIZATION:** You are STRICTLY BANNED from leaving the "targeted_tags" array empty `[]` or null for any sub-task that implements functional requirements or data schemas. You MUST scan the source Markdown sequentially sub-task by sub-task. For each sub-task node, locate the hidden technical container block delimited between `<!--START_TAGS-->` and `<!--END_TAGS-->` contained exclusively within that sub-task section scope. Extract all raw tag token codes inside, strip away all inline markdown formatting characters—specifically backticks (`` ` ``)—and any leading/trailing whitespaces, then populate them as clean separate string elements inside the "targeted_tags" array field of EACH sub-task object node.
 4. **NO TAG BUNDLING:** Every tag must be its own array node (e.g., `"targeted_tags": ["[REQ-001]", "[DAT-002]"]`). You are strictly forbidden from combining multiple tags into a single string element.
-5. **STRICT CONTENT PURITY & REJECT CONVERSATION:** Output ONLY the pure raw executable JSON string matching the required schema. Response must start exactly with the character `{` and end exactly with the character `}`. Banned from including thinking processes, chain-of-thought blocks (`<think>` tags), conversational filler texts, introductions, wrapping inside markdown codeblocks (no triple backticks wrapping), or post-generation notes. Any token outside the raw JSON object boundary triggers an immediate execution pipeline crash.
+5. **STRICT SINGLE-BLOCK PURITY & ABSOLUTE TERMINATION LAW:** 
+   - Your output MUST contain exactly ONE (1) single valid JSON object payload from start to finish. You are STRICTLY BANNED from repeating, mirroring, or generating a second duplicate JSON block within this response stream.
+   - **Strict Packaging Format**: The output MUST start exactly with a single line containing triple backticks and the language identifier: ```json
+   - The output MUST end exactly with the final line containing triple backticks: ```
+   - There must be absolutely ZERO conversational filler text, thinking processes (`<think>` tags), introductions, or post-generation notes before or after the fenced code block. 
+   - **Absolute Freeze Directive**: Mid-generation corrections are strictly prohibited. You are completely forbidden from appending trailing structural artifacts or deformed combinations like `} ```text{`. Once you emit the final closing brace `}` of the JSON schema, immediately close the triple backticks fence and FREEZE/STOP generating tokens instantly. Any token emitted after the primary closed fence violates enterprise runtime contracts.
 
 # Raw Response / Exception:
 
@@ -19867,7 +20199,12 @@ You are a high-performance Data Ingestion and Transformation Engine. Your sole o
 2. **ABSOLUTE PYDANTIC SCHEMA ALIGNMENT:** Your final generated JSON object MUST perfectly satisfy the structural schema parameters of the target enterprise contract. You are STRICTLY BANNED from omitting, renaming, formatting, or stripping out key elements (specifically `phase_id`, `phase_name`, `phase_description`, `project_name`, `global_context_file`, `source_target_dir`, and `days`).
 3. **ABSOLUTE NO EMPTY TAGS POLICY & STRING SANITIZATION:** You are STRICTLY BANNED from leaving the "targeted_tags" array empty `[]` or null for any sub-task that implements functional requirements or data schemas. You MUST scan the source Markdown sequentially sub-task by sub-task. For each sub-task node, locate the hidden technical container block delimited between `<!--START_TAGS-->` and `<!--END_TAGS-->` contained exclusively within that sub-task section scope. Extract all raw tag token codes inside, strip away all inline markdown formatting characters—specifically backticks (`` ` ``)—and any leading/trailing whitespaces, then populate them as clean separate string elements inside the "targeted_tags" array field of EACH sub-task object node.
 4. **NO TAG BUNDLING:** Every tag must be its own array node (e.g., `"targeted_tags": ["[REQ-001]", "[DAT-002]"]`). You are strictly forbidden from combining multiple tags into a single string element.
-5. **STRICT CONTENT PURITY & REJECT CONVERSATION:** Output ONLY the pure raw executable JSON string matching the required schema. Response must start exactly with the character `{` and end exactly with the character `}`. Banned from including thinking processes, chain-of-thought blocks (`<think>` tags), conversational filler texts, introductions, wrapping inside markdown codeblocks (no triple backticks wrapping), or post-generation notes. Any token outside the raw JSON object boundary triggers an immediate execution pipeline crash.
+5. **STRICT SINGLE-BLOCK PURITY & ABSOLUTE TERMINATION LAW:** 
+   - Your output MUST contain exactly ONE (1) single valid JSON object payload from start to finish. You are STRICTLY BANNED from repeating, mirroring, or generating a second duplicate JSON block within this response stream.
+   - **Strict Packaging Format**: The output MUST start exactly with a single line containing triple backticks and the language identifier: ```json
+   - The output MUST end exactly with the final line containing triple backticks: ```
+   - There must be absolutely ZERO conversational filler text, thinking processes (`<think>` tags), introductions, or post-generation notes before or after the fenced code block. 
+   - **Absolute Freeze Directive**: Mid-generation corrections are strictly prohibited. You are completely forbidden from appending trailing structural artifacts or deformed combinations like `} ```text{`. Once you emit the final closing brace `}` of the JSON schema, immediately close the triple backticks fence and FREEZE/STOP generating tokens instantly. Any token emitted after the primary closed fence violates enterprise runtime contracts.
 
 # Raw Response / Exception:
 
@@ -20162,7 +20499,12 @@ You are a high-performance Data Ingestion and Transformation Engine. Your sole o
 2. **ABSOLUTE PYDANTIC SCHEMA ALIGNMENT:** Your final generated JSON object MUST perfectly satisfy the structural schema parameters of the target enterprise contract. You are STRICTLY BANNED from omitting, renaming, formatting, or stripping out key elements (specifically `phase_id`, `phase_name`, `phase_description`, `project_name`, `global_context_file`, `source_target_dir`, and `days`).
 3. **ABSOLUTE NO EMPTY TAGS POLICY & STRING SANITIZATION:** You are STRICTLY BANNED from leaving the "targeted_tags" array empty `[]` or null for any sub-task that implements functional requirements or data schemas. You MUST scan the source Markdown sequentially sub-task by sub-task. For each sub-task node, locate the hidden technical container block delimited between `<!--START_TAGS-->` and `<!--END_TAGS-->` contained exclusively within that sub-task section scope. Extract all raw tag token codes inside, strip away all inline markdown formatting characters—specifically backticks (`` ` ``)—and any leading/trailing whitespaces, then populate them as clean separate string elements inside the "targeted_tags" array field of EACH sub-task object node.
 4. **NO TAG BUNDLING:** Every tag must be its own array node (e.g., `"targeted_tags": ["[REQ-001]", "[DAT-002]"]`). You are strictly forbidden from combining multiple tags into a single string element.
-5. **STRICT CONTENT PURITY & REJECT CONVERSATION:** Output ONLY the pure raw executable JSON string matching the required schema. Response must start exactly with the character `{` and end exactly with the character `}`. Banned from including thinking processes, chain-of-thought blocks (`<think>` tags), conversational filler texts, introductions, wrapping inside markdown codeblocks (no triple backticks wrapping), or post-generation notes. Any token outside the raw JSON object boundary triggers an immediate execution pipeline crash.
+5. **STRICT SINGLE-BLOCK PURITY & ABSOLUTE TERMINATION LAW:** 
+   - Your output MUST contain exactly ONE (1) single valid JSON object payload from start to finish. You are STRICTLY BANNED from repeating, mirroring, or generating a second duplicate JSON block within this response stream.
+   - **Strict Packaging Format**: The output MUST start exactly with a single line containing triple backticks and the language identifier: ```json
+   - The output MUST end exactly with the final line containing triple backticks: ```
+   - There must be absolutely ZERO conversational filler text, thinking processes (`<think>` tags), introductions, or post-generation notes before or after the fenced code block. 
+   - **Absolute Freeze Directive**: Mid-generation corrections are strictly prohibited. You are completely forbidden from appending trailing structural artifacts or deformed combinations like `} ```text{`. Once you emit the final closing brace `}` of the JSON schema, immediately close the triple backticks fence and FREEZE/STOP generating tokens instantly. Any token emitted after the primary closed fence violates enterprise runtime contracts.
 
 # Raw Response / Exception:
 
@@ -20457,17 +20799,22 @@ You are a high-performance Data Ingestion and Transformation Engine. Your sole o
 2. **ABSOLUTE PYDANTIC SCHEMA ALIGNMENT:** Your final generated JSON object MUST perfectly satisfy the structural schema parameters of the target enterprise contract. You are STRICTLY BANNED from omitting, renaming, formatting, or stripping out key elements (specifically `phase_id`, `phase_name`, `phase_description`, `project_name`, `global_context_file`, `source_target_dir`, and `days`).
 3. **ABSOLUTE NO EMPTY TAGS POLICY & STRING SANITIZATION:** You are STRICTLY BANNED from leaving the "targeted_tags" array empty `[]` or null for any sub-task that implements functional requirements or data schemas. You MUST scan the source Markdown sequentially sub-task by sub-task. For each sub-task node, locate the hidden technical container block delimited between `<!--START_TAGS-->` and `<!--END_TAGS-->` contained exclusively within that sub-task section scope. Extract all raw tag token codes inside, strip away all inline markdown formatting characters—specifically backticks (`` ` ``)—and any leading/trailing whitespaces, then populate them as clean separate string elements inside the "targeted_tags" array field of EACH sub-task object node.
 4. **NO TAG BUNDLING:** Every tag must be its own array node (e.g., `"targeted_tags": ["[REQ-001]", "[DAT-002]"]`). You are strictly forbidden from combining multiple tags into a single string element.
-5. **STRICT CONTENT PURITY & REJECT CONVERSATION:** Output ONLY the pure raw executable JSON string matching the required schema. Response must start exactly with the character `{` and end exactly with the character `}`. Banned from including thinking processes, chain-of-thought blocks (`<think>` tags), conversational filler texts, introductions, wrapping inside markdown codeblocks (no triple backticks wrapping), or post-generation notes. Any token outside the raw JSON object boundary triggers an immediate execution pipeline crash.
+5. **STRICT SINGLE-BLOCK PURITY & ABSOLUTE TERMINATION LAW:** 
+   - Your output MUST contain exactly ONE (1) single valid JSON object payload from start to finish. You are STRICTLY BANNED from repeating, mirroring, or generating a second duplicate JSON block within this response stream.
+   - **Strict Packaging Format**: The output MUST start exactly with a single line containing triple backticks and the language identifier: ```json
+   - The output MUST end exactly with the final line containing triple backticks: ```
+   - There must be absolutely ZERO conversational filler text, thinking processes (`<think>` tags), introductions, or post-generation notes before or after the fenced code block. 
+   - **Absolute Freeze Directive**: Mid-generation corrections are strictly prohibited. You are completely forbidden from appending trailing structural artifacts or deformed combinations like `} ```text{`. Once you emit the final closing brace `}` of the JSON schema, immediately close the triple backticks fence and FREEZE/STOP generating tokens instantly. Any token emitted after the primary closed fence violates enterprise runtime contracts.
 
 # Raw Response / Exception:
 
 ```json
 Error code: 429 - [{'error': {'code': 429, 'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. 
+* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_input_token_count, limit: 0, model: gemini-2.5-pro
 * Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 0, model: gemini-2.5-pro
 * Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 0, model: gemini-2.5-pro
 * Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_input_token_count, limit: 0, model: gemini-2.5-pro
-* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_input_token_count, limit: 0, model: gemini-2.5-pro
-Please retry in 33.861084198s.', 'status': 'RESOURCE_EXHAUSTED', 'details': [{'@type': 'type.googleapis.com/google.rpc.Help', 'links': [{'description': 'Learn more about Gemini API quotas', 'url': 'https://ai.google.dev/gemini-api/docs/rate-limits'}]}, {'@type': 'type.googleapis.com/google.rpc.QuotaFailure', 'violations': [{'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_requests', 'quotaId': 'GenerateRequestsPerDayPerProjectPerModel-FreeTier', 'quotaDimensions': {'location': 'global', 'model': 'gemini-2.5-pro'}}, {'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_requests', 'quotaId': 'GenerateRequestsPerMinutePerProjectPerModel-FreeTier', 'quotaDimensions': {'location': 'global', 'model': 'gemini-2.5-pro'}}, {'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_input_token_count', 'quotaId': 'GenerateContentInputTokensPerModelPerMinute-FreeTier', 'quotaDimensions': {'model': 'gemini-2.5-pro', 'location': 'global'}}, {'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_input_token_count', 'quotaId': 'GenerateContentInputTokensPerModelPerDay-FreeTier', 'quotaDimensions': {'location': 'global', 'model': 'gemini-2.5-pro'}}]}, {'@type': 'type.googleapis.com/google.rpc.RetryInfo', 'retryDelay': '33s'}]}}]: ['Traceback (most recent call last):
+Please retry in 22.653903326s.', 'status': 'RESOURCE_EXHAUSTED', 'details': [{'@type': 'type.googleapis.com/google.rpc.Help', 'links': [{'description': 'Learn more about Gemini API quotas', 'url': 'https://ai.google.dev/gemini-api/docs/rate-limits'}]}, {'@type': 'type.googleapis.com/google.rpc.QuotaFailure', 'violations': [{'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_input_token_count', 'quotaId': 'GenerateContentInputTokensPerModelPerMinute-FreeTier', 'quotaDimensions': {'model': 'gemini-2.5-pro', 'location': 'global'}}, {'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_requests', 'quotaId': 'GenerateRequestsPerMinutePerProjectPerModel-FreeTier', 'quotaDimensions': {'model': 'gemini-2.5-pro', 'location': 'global'}}, {'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_requests', 'quotaId': 'GenerateRequestsPerDayPerProjectPerModel-FreeTier', 'quotaDimensions': {'location': 'global', 'model': 'gemini-2.5-pro'}}, {'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_input_token_count', 'quotaId': 'GenerateContentInputTokensPerModelPerDay-FreeTier', 'quotaDimensions': {'location': 'global', 'model': 'gemini-2.5-pro'}}]}, {'@type': 'type.googleapis.com/google.rpc.RetryInfo', 'retryDelay': '22s'}]}}]: ['Traceback (most recent call last):
 ', '  File "/home/runner/work/enterprise-it-ai/enterprise-it-ai/sources/agents/architect-blueprint/block_json.py", line 301, in convert_phases_to_json
     response = client.beta.chat.completions.parse(
                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -20480,11 +20827,11 @@ Please retry in 33.861084198s.', 'status': 'RESOURCE_EXHAUSTED', 'details': [{'@
 ', '  File "/opt/hostedtoolcache/Python/3.11.15/x64/lib/python3.11/site-packages/openai/_base_client.py", line 1148, in request
     raise self._make_status_error_from_response(err.response) from None
 ', "openai.RateLimitError: Error code: 429 - [{'error': {'code': 429, 'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \
+* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_input_token_count, limit: 0, model: gemini-2.5-pro\
 * Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 0, model: gemini-2.5-pro\
 * Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 0, model: gemini-2.5-pro\
 * Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_input_token_count, limit: 0, model: gemini-2.5-pro\
-* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_input_token_count, limit: 0, model: gemini-2.5-pro\
-Please retry in 33.861084198s.', 'status': 'RESOURCE_EXHAUSTED', 'details': [{'@type': 'type.googleapis.com/google.rpc.Help', 'links': [{'description': 'Learn more about Gemini API quotas', 'url': 'https://ai.google.dev/gemini-api/docs/rate-limits'}]}, {'@type': 'type.googleapis.com/google.rpc.QuotaFailure', 'violations': [{'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_requests', 'quotaId': 'GenerateRequestsPerDayPerProjectPerModel-FreeTier', 'quotaDimensions': {'location': 'global', 'model': 'gemini-2.5-pro'}}, {'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_requests', 'quotaId': 'GenerateRequestsPerMinutePerProjectPerModel-FreeTier', 'quotaDimensions': {'location': 'global', 'model': 'gemini-2.5-pro'}}, {'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_input_token_count', 'quotaId': 'GenerateContentInputTokensPerModelPerMinute-FreeTier', 'quotaDimensions': {'model': 'gemini-2.5-pro', 'location': 'global'}}, {'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_input_token_count', 'quotaId': 'GenerateContentInputTokensPerModelPerDay-FreeTier', 'quotaDimensions': {'location': 'global', 'model': 'gemini-2.5-pro'}}]}, {'@type': 'type.googleapis.com/google.rpc.RetryInfo', 'retryDelay': '33s'}]}}]
+Please retry in 22.653903326s.', 'status': 'RESOURCE_EXHAUSTED', 'details': [{'@type': 'type.googleapis.com/google.rpc.Help', 'links': [{'description': 'Learn more about Gemini API quotas', 'url': 'https://ai.google.dev/gemini-api/docs/rate-limits'}]}, {'@type': 'type.googleapis.com/google.rpc.QuotaFailure', 'violations': [{'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_input_token_count', 'quotaId': 'GenerateContentInputTokensPerModelPerMinute-FreeTier', 'quotaDimensions': {'model': 'gemini-2.5-pro', 'location': 'global'}}, {'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_requests', 'quotaId': 'GenerateRequestsPerMinutePerProjectPerModel-FreeTier', 'quotaDimensions': {'model': 'gemini-2.5-pro', 'location': 'global'}}, {'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_requests', 'quotaId': 'GenerateRequestsPerDayPerProjectPerModel-FreeTier', 'quotaDimensions': {'location': 'global', 'model': 'gemini-2.5-pro'}}, {'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_input_token_count', 'quotaId': 'GenerateContentInputTokensPerModelPerDay-FreeTier', 'quotaDimensions': {'location': 'global', 'model': 'gemini-2.5-pro'}}]}, {'@type': 'type.googleapis.com/google.rpc.RetryInfo', 'retryDelay': '22s'}]}}]
 "]
 ```
 
@@ -20762,16 +21109,21 @@ You are a high-performance Data Ingestion and Transformation Engine. Your sole o
 2. **ABSOLUTE PYDANTIC SCHEMA ALIGNMENT:** Your final generated JSON object MUST perfectly satisfy the structural schema parameters of the target enterprise contract. You are STRICTLY BANNED from omitting, renaming, formatting, or stripping out key elements (specifically `phase_id`, `phase_name`, `phase_description`, `project_name`, `global_context_file`, `source_target_dir`, and `days`).
 3. **ABSOLUTE NO EMPTY TAGS POLICY & STRING SANITIZATION:** You are STRICTLY BANNED from leaving the "targeted_tags" array empty `[]` or null for any sub-task that implements functional requirements or data schemas. You MUST scan the source Markdown sequentially sub-task by sub-task. For each sub-task node, locate the hidden technical container block delimited between `<!--START_TAGS-->` and `<!--END_TAGS-->` contained exclusively within that sub-task section scope. Extract all raw tag token codes inside, strip away all inline markdown formatting characters—specifically backticks (`` ` ``)—and any leading/trailing whitespaces, then populate them as clean separate string elements inside the "targeted_tags" array field of EACH sub-task object node.
 4. **NO TAG BUNDLING:** Every tag must be its own array node (e.g., `"targeted_tags": ["[REQ-001]", "[DAT-002]"]`). You are strictly forbidden from combining multiple tags into a single string element.
-5. **STRICT CONTENT PURITY & REJECT CONVERSATION:** Output ONLY the pure raw executable JSON string matching the required schema. Response must start exactly with the character `{` and end exactly with the character `}`. Banned from including thinking processes, chain-of-thought blocks (`<think>` tags), conversational filler texts, introductions, wrapping inside markdown codeblocks (no triple backticks wrapping), or post-generation notes. Any token outside the raw JSON object boundary triggers an immediate execution pipeline crash.
+5. **STRICT SINGLE-BLOCK PURITY & ABSOLUTE TERMINATION LAW:** 
+   - Your output MUST contain exactly ONE (1) single valid JSON object payload from start to finish. You are STRICTLY BANNED from repeating, mirroring, or generating a second duplicate JSON block within this response stream.
+   - **Strict Packaging Format**: The output MUST start exactly with a single line containing triple backticks and the language identifier: ```json
+   - The output MUST end exactly with the final line containing triple backticks: ```
+   - There must be absolutely ZERO conversational filler text, thinking processes (`<think>` tags), introductions, or post-generation notes before or after the fenced code block. 
+   - **Absolute Freeze Directive**: Mid-generation corrections are strictly prohibited. You are completely forbidden from appending trailing structural artifacts or deformed combinations like `} ```text{`. Once you emit the final closing brace `}` of the JSON schema, immediately close the triple backticks fence and FREEZE/STOP generating tokens instantly. Any token emitted after the primary closed fence violates enterprise runtime contracts.
 
 # Raw Response / Exception:
 
 ```json
 Error code: 429 - [{'error': {'code': 429, 'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. 
+* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 0, model: gemini-2.0-flash
+* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 0, model: gemini-2.0-flash
 * Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_input_token_count, limit: 0, model: gemini-2.0-flash
-* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 0, model: gemini-2.0-flash
-* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 0, model: gemini-2.0-flash
-Please retry in 30.371537709s.', 'status': 'RESOURCE_EXHAUSTED', 'details': [{'@type': 'type.googleapis.com/google.rpc.Help', 'links': [{'description': 'Learn more about Gemini API quotas', 'url': 'https://ai.google.dev/gemini-api/docs/rate-limits'}]}, {'@type': 'type.googleapis.com/google.rpc.QuotaFailure', 'violations': [{'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_input_token_count', 'quotaId': 'GenerateContentInputTokensPerModelPerMinute-FreeTier', 'quotaDimensions': {'model': 'gemini-2.0-flash', 'location': 'global'}}, {'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_requests', 'quotaId': 'GenerateRequestsPerMinutePerProjectPerModel-FreeTier', 'quotaDimensions': {'location': 'global', 'model': 'gemini-2.0-flash'}}, {'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_requests', 'quotaId': 'GenerateRequestsPerDayPerProjectPerModel-FreeTier', 'quotaDimensions': {'location': 'global', 'model': 'gemini-2.0-flash'}}]}, {'@type': 'type.googleapis.com/google.rpc.RetryInfo', 'retryDelay': '30s'}]}}]: ['Traceback (most recent call last):
+Please retry in 19.129170582s.', 'status': 'RESOURCE_EXHAUSTED', 'details': [{'@type': 'type.googleapis.com/google.rpc.Help', 'links': [{'description': 'Learn more about Gemini API quotas', 'url': 'https://ai.google.dev/gemini-api/docs/rate-limits'}]}, {'@type': 'type.googleapis.com/google.rpc.QuotaFailure', 'violations': [{'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_requests', 'quotaId': 'GenerateRequestsPerDayPerProjectPerModel-FreeTier', 'quotaDimensions': {'model': 'gemini-2.0-flash', 'location': 'global'}}, {'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_requests', 'quotaId': 'GenerateRequestsPerMinutePerProjectPerModel-FreeTier', 'quotaDimensions': {'location': 'global', 'model': 'gemini-2.0-flash'}}, {'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_input_token_count', 'quotaId': 'GenerateContentInputTokensPerModelPerMinute-FreeTier', 'quotaDimensions': {'location': 'global', 'model': 'gemini-2.0-flash'}}]}, {'@type': 'type.googleapis.com/google.rpc.RetryInfo', 'retryDelay': '19s'}]}}]: ['Traceback (most recent call last):
 ', '  File "/home/runner/work/enterprise-it-ai/enterprise-it-ai/sources/agents/architect-blueprint/block_json.py", line 301, in convert_phases_to_json
     response = client.beta.chat.completions.parse(
                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -20784,10 +21136,10 @@ Please retry in 30.371537709s.', 'status': 'RESOURCE_EXHAUSTED', 'details': [{'@
 ', '  File "/opt/hostedtoolcache/Python/3.11.15/x64/lib/python3.11/site-packages/openai/_base_client.py", line 1148, in request
     raise self._make_status_error_from_response(err.response) from None
 ', "openai.RateLimitError: Error code: 429 - [{'error': {'code': 429, 'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \
+* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 0, model: gemini-2.0-flash\
+* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 0, model: gemini-2.0-flash\
 * Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_input_token_count, limit: 0, model: gemini-2.0-flash\
-* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 0, model: gemini-2.0-flash\
-* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 0, model: gemini-2.0-flash\
-Please retry in 30.371537709s.', 'status': 'RESOURCE_EXHAUSTED', 'details': [{'@type': 'type.googleapis.com/google.rpc.Help', 'links': [{'description': 'Learn more about Gemini API quotas', 'url': 'https://ai.google.dev/gemini-api/docs/rate-limits'}]}, {'@type': 'type.googleapis.com/google.rpc.QuotaFailure', 'violations': [{'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_input_token_count', 'quotaId': 'GenerateContentInputTokensPerModelPerMinute-FreeTier', 'quotaDimensions': {'model': 'gemini-2.0-flash', 'location': 'global'}}, {'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_requests', 'quotaId': 'GenerateRequestsPerMinutePerProjectPerModel-FreeTier', 'quotaDimensions': {'location': 'global', 'model': 'gemini-2.0-flash'}}, {'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_requests', 'quotaId': 'GenerateRequestsPerDayPerProjectPerModel-FreeTier', 'quotaDimensions': {'location': 'global', 'model': 'gemini-2.0-flash'}}]}, {'@type': 'type.googleapis.com/google.rpc.RetryInfo', 'retryDelay': '30s'}]}}]
+Please retry in 19.129170582s.', 'status': 'RESOURCE_EXHAUSTED', 'details': [{'@type': 'type.googleapis.com/google.rpc.Help', 'links': [{'description': 'Learn more about Gemini API quotas', 'url': 'https://ai.google.dev/gemini-api/docs/rate-limits'}]}, {'@type': 'type.googleapis.com/google.rpc.QuotaFailure', 'violations': [{'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_requests', 'quotaId': 'GenerateRequestsPerDayPerProjectPerModel-FreeTier', 'quotaDimensions': {'model': 'gemini-2.0-flash', 'location': 'global'}}, {'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_requests', 'quotaId': 'GenerateRequestsPerMinutePerProjectPerModel-FreeTier', 'quotaDimensions': {'location': 'global', 'model': 'gemini-2.0-flash'}}, {'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_input_token_count', 'quotaId': 'GenerateContentInputTokensPerModelPerMinute-FreeTier', 'quotaDimensions': {'location': 'global', 'model': 'gemini-2.0-flash'}}]}, {'@type': 'type.googleapis.com/google.rpc.RetryInfo', 'retryDelay': '19s'}]}}]
 "]
 ```
 
@@ -21065,7 +21417,12 @@ You are a high-performance Data Ingestion and Transformation Engine. Your sole o
 2. **ABSOLUTE PYDANTIC SCHEMA ALIGNMENT:** Your final generated JSON object MUST perfectly satisfy the structural schema parameters of the target enterprise contract. You are STRICTLY BANNED from omitting, renaming, formatting, or stripping out key elements (specifically `phase_id`, `phase_name`, `phase_description`, `project_name`, `global_context_file`, `source_target_dir`, and `days`).
 3. **ABSOLUTE NO EMPTY TAGS POLICY & STRING SANITIZATION:** You are STRICTLY BANNED from leaving the "targeted_tags" array empty `[]` or null for any sub-task that implements functional requirements or data schemas. You MUST scan the source Markdown sequentially sub-task by sub-task. For each sub-task node, locate the hidden technical container block delimited between `<!--START_TAGS-->` and `<!--END_TAGS-->` contained exclusively within that sub-task section scope. Extract all raw tag token codes inside, strip away all inline markdown formatting characters—specifically backticks (`` ` ``)—and any leading/trailing whitespaces, then populate them as clean separate string elements inside the "targeted_tags" array field of EACH sub-task object node.
 4. **NO TAG BUNDLING:** Every tag must be its own array node (e.g., `"targeted_tags": ["[REQ-001]", "[DAT-002]"]`). You are strictly forbidden from combining multiple tags into a single string element.
-5. **STRICT CONTENT PURITY & REJECT CONVERSATION:** Output ONLY the pure raw executable JSON string matching the required schema. Response must start exactly with the character `{` and end exactly with the character `}`. Banned from including thinking processes, chain-of-thought blocks (`<think>` tags), conversational filler texts, introductions, wrapping inside markdown codeblocks (no triple backticks wrapping), or post-generation notes. Any token outside the raw JSON object boundary triggers an immediate execution pipeline crash.
+5. **STRICT SINGLE-BLOCK PURITY & ABSOLUTE TERMINATION LAW:** 
+   - Your output MUST contain exactly ONE (1) single valid JSON object payload from start to finish. You are STRICTLY BANNED from repeating, mirroring, or generating a second duplicate JSON block within this response stream.
+   - **Strict Packaging Format**: The output MUST start exactly with a single line containing triple backticks and the language identifier: ```json
+   - The output MUST end exactly with the final line containing triple backticks: ```
+   - There must be absolutely ZERO conversational filler text, thinking processes (`<think>` tags), introductions, or post-generation notes before or after the fenced code block. 
+   - **Absolute Freeze Directive**: Mid-generation corrections are strictly prohibited. You are completely forbidden from appending trailing structural artifacts or deformed combinations like `} ```text{`. Once you emit the final closing brace `}` of the JSON schema, immediately close the triple backticks fence and FREEZE/STOP generating tokens instantly. Any token emitted after the primary closed fence violates enterprise runtime contracts.
 
 # Raw Response / Exception:
 
@@ -21074,7 +21431,7 @@ Error code: 429 - [{'error': {'code': 429, 'message': 'You exceeded your current
 * Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 0, model: gemini-2.0-flash
 * Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 0, model: gemini-2.0-flash
 * Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_input_token_count, limit: 0, model: gemini-2.0-flash
-Please retry in 26.86293442s.', 'status': 'RESOURCE_EXHAUSTED', 'details': [{'@type': 'type.googleapis.com/google.rpc.Help', 'links': [{'description': 'Learn more about Gemini API quotas', 'url': 'https://ai.google.dev/gemini-api/docs/rate-limits'}]}, {'@type': 'type.googleapis.com/google.rpc.QuotaFailure', 'violations': [{'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_requests', 'quotaId': 'GenerateRequestsPerDayPerProjectPerModel-FreeTier', 'quotaDimensions': {'location': 'global', 'model': 'gemini-2.0-flash'}}, {'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_requests', 'quotaId': 'GenerateRequestsPerMinutePerProjectPerModel-FreeTier', 'quotaDimensions': {'location': 'global', 'model': 'gemini-2.0-flash'}}, {'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_input_token_count', 'quotaId': 'GenerateContentInputTokensPerModelPerMinute-FreeTier', 'quotaDimensions': {'location': 'global', 'model': 'gemini-2.0-flash'}}]}, {'@type': 'type.googleapis.com/google.rpc.RetryInfo', 'retryDelay': '26s'}]}}]: ['Traceback (most recent call last):
+Please retry in 15.359572101s.', 'status': 'RESOURCE_EXHAUSTED', 'details': [{'@type': 'type.googleapis.com/google.rpc.Help', 'links': [{'description': 'Learn more about Gemini API quotas', 'url': 'https://ai.google.dev/gemini-api/docs/rate-limits'}]}, {'@type': 'type.googleapis.com/google.rpc.QuotaFailure', 'violations': [{'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_requests', 'quotaId': 'GenerateRequestsPerDayPerProjectPerModel-FreeTier', 'quotaDimensions': {'location': 'global', 'model': 'gemini-2.0-flash'}}, {'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_requests', 'quotaId': 'GenerateRequestsPerMinutePerProjectPerModel-FreeTier', 'quotaDimensions': {'location': 'global', 'model': 'gemini-2.0-flash'}}, {'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_input_token_count', 'quotaId': 'GenerateContentInputTokensPerModelPerMinute-FreeTier', 'quotaDimensions': {'location': 'global', 'model': 'gemini-2.0-flash'}}]}, {'@type': 'type.googleapis.com/google.rpc.RetryInfo', 'retryDelay': '15s'}]}}]: ['Traceback (most recent call last):
 ', '  File "/home/runner/work/enterprise-it-ai/enterprise-it-ai/sources/agents/architect-blueprint/block_json.py", line 301, in convert_phases_to_json
     response = client.beta.chat.completions.parse(
                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -21090,7 +21447,7 @@ Please retry in 26.86293442s.', 'status': 'RESOURCE_EXHAUSTED', 'details': [{'@t
 * Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 0, model: gemini-2.0-flash\
 * Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 0, model: gemini-2.0-flash\
 * Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_input_token_count, limit: 0, model: gemini-2.0-flash\
-Please retry in 26.86293442s.', 'status': 'RESOURCE_EXHAUSTED', 'details': [{'@type': 'type.googleapis.com/google.rpc.Help', 'links': [{'description': 'Learn more about Gemini API quotas', 'url': 'https://ai.google.dev/gemini-api/docs/rate-limits'}]}, {'@type': 'type.googleapis.com/google.rpc.QuotaFailure', 'violations': [{'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_requests', 'quotaId': 'GenerateRequestsPerDayPerProjectPerModel-FreeTier', 'quotaDimensions': {'location': 'global', 'model': 'gemini-2.0-flash'}}, {'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_requests', 'quotaId': 'GenerateRequestsPerMinutePerProjectPerModel-FreeTier', 'quotaDimensions': {'location': 'global', 'model': 'gemini-2.0-flash'}}, {'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_input_token_count', 'quotaId': 'GenerateContentInputTokensPerModelPerMinute-FreeTier', 'quotaDimensions': {'location': 'global', 'model': 'gemini-2.0-flash'}}]}, {'@type': 'type.googleapis.com/google.rpc.RetryInfo', 'retryDelay': '26s'}]}}]
+Please retry in 15.359572101s.', 'status': 'RESOURCE_EXHAUSTED', 'details': [{'@type': 'type.googleapis.com/google.rpc.Help', 'links': [{'description': 'Learn more about Gemini API quotas', 'url': 'https://ai.google.dev/gemini-api/docs/rate-limits'}]}, {'@type': 'type.googleapis.com/google.rpc.QuotaFailure', 'violations': [{'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_requests', 'quotaId': 'GenerateRequestsPerDayPerProjectPerModel-FreeTier', 'quotaDimensions': {'location': 'global', 'model': 'gemini-2.0-flash'}}, {'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_requests', 'quotaId': 'GenerateRequestsPerMinutePerProjectPerModel-FreeTier', 'quotaDimensions': {'location': 'global', 'model': 'gemini-2.0-flash'}}, {'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_input_token_count', 'quotaId': 'GenerateContentInputTokensPerModelPerMinute-FreeTier', 'quotaDimensions': {'location': 'global', 'model': 'gemini-2.0-flash'}}]}, {'@type': 'type.googleapis.com/google.rpc.RetryInfo', 'retryDelay': '15s'}]}}]
 "]
 ```
 
@@ -21368,7 +21725,12 @@ You are a high-performance Data Ingestion and Transformation Engine. Your sole o
 2. **ABSOLUTE PYDANTIC SCHEMA ALIGNMENT:** Your final generated JSON object MUST perfectly satisfy the structural schema parameters of the target enterprise contract. You are STRICTLY BANNED from omitting, renaming, formatting, or stripping out key elements (specifically `phase_id`, `phase_name`, `phase_description`, `project_name`, `global_context_file`, `source_target_dir`, and `days`).
 3. **ABSOLUTE NO EMPTY TAGS POLICY & STRING SANITIZATION:** You are STRICTLY BANNED from leaving the "targeted_tags" array empty `[]` or null for any sub-task that implements functional requirements or data schemas. You MUST scan the source Markdown sequentially sub-task by sub-task. For each sub-task node, locate the hidden technical container block delimited between `<!--START_TAGS-->` and `<!--END_TAGS-->` contained exclusively within that sub-task section scope. Extract all raw tag token codes inside, strip away all inline markdown formatting characters—specifically backticks (`` ` ``)—and any leading/trailing whitespaces, then populate them as clean separate string elements inside the "targeted_tags" array field of EACH sub-task object node.
 4. **NO TAG BUNDLING:** Every tag must be its own array node (e.g., `"targeted_tags": ["[REQ-001]", "[DAT-002]"]`). You are strictly forbidden from combining multiple tags into a single string element.
-5. **STRICT CONTENT PURITY & REJECT CONVERSATION:** Output ONLY the pure raw executable JSON string matching the required schema. Response must start exactly with the character `{` and end exactly with the character `}`. Banned from including thinking processes, chain-of-thought blocks (`<think>` tags), conversational filler texts, introductions, wrapping inside markdown codeblocks (no triple backticks wrapping), or post-generation notes. Any token outside the raw JSON object boundary triggers an immediate execution pipeline crash.
+5. **STRICT SINGLE-BLOCK PURITY & ABSOLUTE TERMINATION LAW:** 
+   - Your output MUST contain exactly ONE (1) single valid JSON object payload from start to finish. You are STRICTLY BANNED from repeating, mirroring, or generating a second duplicate JSON block within this response stream.
+   - **Strict Packaging Format**: The output MUST start exactly with a single line containing triple backticks and the language identifier: ```json
+   - The output MUST end exactly with the final line containing triple backticks: ```
+   - There must be absolutely ZERO conversational filler text, thinking processes (`<think>` tags), introductions, or post-generation notes before or after the fenced code block. 
+   - **Absolute Freeze Directive**: Mid-generation corrections are strictly prohibited. You are completely forbidden from appending trailing structural artifacts or deformed combinations like `} ```text{`. Once you emit the final closing brace `}` of the JSON schema, immediately close the triple backticks fence and FREEZE/STOP generating tokens instantly. Any token emitted after the primary closed fence violates enterprise runtime contracts.
 
 # Raw Response / Exception:
 
@@ -21377,7 +21739,7 @@ Error code: 429 - [{'error': {'code': 429, 'message': 'You exceeded your current
 * Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_input_token_count, limit: 0, model: gemini-2.0-flash-lite
 * Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 0, model: gemini-2.0-flash-lite
 * Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 0, model: gemini-2.0-flash-lite
-Please retry in 23.498323231s.', 'status': 'RESOURCE_EXHAUSTED', 'details': [{'@type': 'type.googleapis.com/google.rpc.Help', 'links': [{'description': 'Learn more about Gemini API quotas', 'url': 'https://ai.google.dev/gemini-api/docs/rate-limits'}]}, {'@type': 'type.googleapis.com/google.rpc.QuotaFailure', 'violations': [{'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_input_token_count', 'quotaId': 'GenerateContentInputTokensPerModelPerMinute-FreeTier', 'quotaDimensions': {'model': 'gemini-2.0-flash-lite', 'location': 'global'}}, {'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_requests', 'quotaId': 'GenerateRequestsPerMinutePerProjectPerModel-FreeTier', 'quotaDimensions': {'location': 'global', 'model': 'gemini-2.0-flash-lite'}}, {'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_requests', 'quotaId': 'GenerateRequestsPerDayPerProjectPerModel-FreeTier', 'quotaDimensions': {'model': 'gemini-2.0-flash-lite', 'location': 'global'}}]}, {'@type': 'type.googleapis.com/google.rpc.RetryInfo', 'retryDelay': '23s'}]}}]: ['Traceback (most recent call last):
+Please retry in 11.885533949s.', 'status': 'RESOURCE_EXHAUSTED', 'details': [{'@type': 'type.googleapis.com/google.rpc.Help', 'links': [{'description': 'Learn more about Gemini API quotas', 'url': 'https://ai.google.dev/gemini-api/docs/rate-limits'}]}, {'@type': 'type.googleapis.com/google.rpc.QuotaFailure', 'violations': [{'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_input_token_count', 'quotaId': 'GenerateContentInputTokensPerModelPerMinute-FreeTier', 'quotaDimensions': {'location': 'global', 'model': 'gemini-2.0-flash-lite'}}, {'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_requests', 'quotaId': 'GenerateRequestsPerMinutePerProjectPerModel-FreeTier', 'quotaDimensions': {'location': 'global', 'model': 'gemini-2.0-flash-lite'}}, {'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_requests', 'quotaId': 'GenerateRequestsPerDayPerProjectPerModel-FreeTier', 'quotaDimensions': {'model': 'gemini-2.0-flash-lite', 'location': 'global'}}]}, {'@type': 'type.googleapis.com/google.rpc.RetryInfo', 'retryDelay': '11s'}]}}]: ['Traceback (most recent call last):
 ', '  File "/home/runner/work/enterprise-it-ai/enterprise-it-ai/sources/agents/architect-blueprint/block_json.py", line 301, in convert_phases_to_json
     response = client.beta.chat.completions.parse(
                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -21393,7 +21755,7 @@ Please retry in 23.498323231s.', 'status': 'RESOURCE_EXHAUSTED', 'details': [{'@
 * Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_input_token_count, limit: 0, model: gemini-2.0-flash-lite\
 * Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 0, model: gemini-2.0-flash-lite\
 * Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 0, model: gemini-2.0-flash-lite\
-Please retry in 23.498323231s.', 'status': 'RESOURCE_EXHAUSTED', 'details': [{'@type': 'type.googleapis.com/google.rpc.Help', 'links': [{'description': 'Learn more about Gemini API quotas', 'url': 'https://ai.google.dev/gemini-api/docs/rate-limits'}]}, {'@type': 'type.googleapis.com/google.rpc.QuotaFailure', 'violations': [{'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_input_token_count', 'quotaId': 'GenerateContentInputTokensPerModelPerMinute-FreeTier', 'quotaDimensions': {'model': 'gemini-2.0-flash-lite', 'location': 'global'}}, {'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_requests', 'quotaId': 'GenerateRequestsPerMinutePerProjectPerModel-FreeTier', 'quotaDimensions': {'location': 'global', 'model': 'gemini-2.0-flash-lite'}}, {'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_requests', 'quotaId': 'GenerateRequestsPerDayPerProjectPerModel-FreeTier', 'quotaDimensions': {'model': 'gemini-2.0-flash-lite', 'location': 'global'}}]}, {'@type': 'type.googleapis.com/google.rpc.RetryInfo', 'retryDelay': '23s'}]}}]
+Please retry in 11.885533949s.', 'status': 'RESOURCE_EXHAUSTED', 'details': [{'@type': 'type.googleapis.com/google.rpc.Help', 'links': [{'description': 'Learn more about Gemini API quotas', 'url': 'https://ai.google.dev/gemini-api/docs/rate-limits'}]}, {'@type': 'type.googleapis.com/google.rpc.QuotaFailure', 'violations': [{'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_input_token_count', 'quotaId': 'GenerateContentInputTokensPerModelPerMinute-FreeTier', 'quotaDimensions': {'location': 'global', 'model': 'gemini-2.0-flash-lite'}}, {'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_requests', 'quotaId': 'GenerateRequestsPerMinutePerProjectPerModel-FreeTier', 'quotaDimensions': {'location': 'global', 'model': 'gemini-2.0-flash-lite'}}, {'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_requests', 'quotaId': 'GenerateRequestsPerDayPerProjectPerModel-FreeTier', 'quotaDimensions': {'model': 'gemini-2.0-flash-lite', 'location': 'global'}}]}, {'@type': 'type.googleapis.com/google.rpc.RetryInfo', 'retryDelay': '11s'}]}}]
 "]
 ```
 
@@ -21671,7 +22033,12 @@ You are a high-performance Data Ingestion and Transformation Engine. Your sole o
 2. **ABSOLUTE PYDANTIC SCHEMA ALIGNMENT:** Your final generated JSON object MUST perfectly satisfy the structural schema parameters of the target enterprise contract. You are STRICTLY BANNED from omitting, renaming, formatting, or stripping out key elements (specifically `phase_id`, `phase_name`, `phase_description`, `project_name`, `global_context_file`, `source_target_dir`, and `days`).
 3. **ABSOLUTE NO EMPTY TAGS POLICY & STRING SANITIZATION:** You are STRICTLY BANNED from leaving the "targeted_tags" array empty `[]` or null for any sub-task that implements functional requirements or data schemas. You MUST scan the source Markdown sequentially sub-task by sub-task. For each sub-task node, locate the hidden technical container block delimited between `<!--START_TAGS-->` and `<!--END_TAGS-->` contained exclusively within that sub-task section scope. Extract all raw tag token codes inside, strip away all inline markdown formatting characters—specifically backticks (`` ` ``)—and any leading/trailing whitespaces, then populate them as clean separate string elements inside the "targeted_tags" array field of EACH sub-task object node.
 4. **NO TAG BUNDLING:** Every tag must be its own array node (e.g., `"targeted_tags": ["[REQ-001]", "[DAT-002]"]`). You are strictly forbidden from combining multiple tags into a single string element.
-5. **STRICT CONTENT PURITY & REJECT CONVERSATION:** Output ONLY the pure raw executable JSON string matching the required schema. Response must start exactly with the character `{` and end exactly with the character `}`. Banned from including thinking processes, chain-of-thought blocks (`<think>` tags), conversational filler texts, introductions, wrapping inside markdown codeblocks (no triple backticks wrapping), or post-generation notes. Any token outside the raw JSON object boundary triggers an immediate execution pipeline crash.
+5. **STRICT SINGLE-BLOCK PURITY & ABSOLUTE TERMINATION LAW:** 
+   - Your output MUST contain exactly ONE (1) single valid JSON object payload from start to finish. You are STRICTLY BANNED from repeating, mirroring, or generating a second duplicate JSON block within this response stream.
+   - **Strict Packaging Format**: The output MUST start exactly with a single line containing triple backticks and the language identifier: ```json
+   - The output MUST end exactly with the final line containing triple backticks: ```
+   - There must be absolutely ZERO conversational filler text, thinking processes (`<think>` tags), introductions, or post-generation notes before or after the fenced code block. 
+   - **Absolute Freeze Directive**: Mid-generation corrections are strictly prohibited. You are completely forbidden from appending trailing structural artifacts or deformed combinations like `} ```text{`. Once you emit the final closing brace `}` of the JSON schema, immediately close the triple backticks fence and FREEZE/STOP generating tokens instantly. Any token emitted after the primary closed fence violates enterprise runtime contracts.
 
 # Raw Response / Exception:
 
@@ -21680,7 +22047,7 @@ Error code: 429 - [{'error': {'code': 429, 'message': 'You exceeded your current
 * Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 0, model: gemini-2.0-flash-lite
 * Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 0, model: gemini-2.0-flash-lite
 * Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_input_token_count, limit: 0, model: gemini-2.0-flash-lite
-Please retry in 20.378697156s.', 'status': 'RESOURCE_EXHAUSTED', 'details': [{'@type': 'type.googleapis.com/google.rpc.Help', 'links': [{'description': 'Learn more about Gemini API quotas', 'url': 'https://ai.google.dev/gemini-api/docs/rate-limits'}]}, {'@type': 'type.googleapis.com/google.rpc.QuotaFailure', 'violations': [{'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_requests', 'quotaId': 'GenerateRequestsPerDayPerProjectPerModel-FreeTier', 'quotaDimensions': {'location': 'global', 'model': 'gemini-2.0-flash-lite'}}, {'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_requests', 'quotaId': 'GenerateRequestsPerMinutePerProjectPerModel-FreeTier', 'quotaDimensions': {'location': 'global', 'model': 'gemini-2.0-flash-lite'}}, {'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_input_token_count', 'quotaId': 'GenerateContentInputTokensPerModelPerMinute-FreeTier', 'quotaDimensions': {'location': 'global', 'model': 'gemini-2.0-flash-lite'}}]}, {'@type': 'type.googleapis.com/google.rpc.RetryInfo', 'retryDelay': '20s'}]}}]: ['Traceback (most recent call last):
+Please retry in 8.446011505s.', 'status': 'RESOURCE_EXHAUSTED', 'details': [{'@type': 'type.googleapis.com/google.rpc.Help', 'links': [{'description': 'Learn more about Gemini API quotas', 'url': 'https://ai.google.dev/gemini-api/docs/rate-limits'}]}, {'@type': 'type.googleapis.com/google.rpc.QuotaFailure', 'violations': [{'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_requests', 'quotaId': 'GenerateRequestsPerDayPerProjectPerModel-FreeTier', 'quotaDimensions': {'model': 'gemini-2.0-flash-lite', 'location': 'global'}}, {'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_requests', 'quotaId': 'GenerateRequestsPerMinutePerProjectPerModel-FreeTier', 'quotaDimensions': {'location': 'global', 'model': 'gemini-2.0-flash-lite'}}, {'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_input_token_count', 'quotaId': 'GenerateContentInputTokensPerModelPerMinute-FreeTier', 'quotaDimensions': {'location': 'global', 'model': 'gemini-2.0-flash-lite'}}]}, {'@type': 'type.googleapis.com/google.rpc.RetryInfo', 'retryDelay': '8s'}]}}]: ['Traceback (most recent call last):
 ', '  File "/home/runner/work/enterprise-it-ai/enterprise-it-ai/sources/agents/architect-blueprint/block_json.py", line 301, in convert_phases_to_json
     response = client.beta.chat.completions.parse(
                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -21696,7 +22063,7 @@ Please retry in 20.378697156s.', 'status': 'RESOURCE_EXHAUSTED', 'details': [{'@
 * Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 0, model: gemini-2.0-flash-lite\
 * Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 0, model: gemini-2.0-flash-lite\
 * Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_input_token_count, limit: 0, model: gemini-2.0-flash-lite\
-Please retry in 20.378697156s.', 'status': 'RESOURCE_EXHAUSTED', 'details': [{'@type': 'type.googleapis.com/google.rpc.Help', 'links': [{'description': 'Learn more about Gemini API quotas', 'url': 'https://ai.google.dev/gemini-api/docs/rate-limits'}]}, {'@type': 'type.googleapis.com/google.rpc.QuotaFailure', 'violations': [{'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_requests', 'quotaId': 'GenerateRequestsPerDayPerProjectPerModel-FreeTier', 'quotaDimensions': {'location': 'global', 'model': 'gemini-2.0-flash-lite'}}, {'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_requests', 'quotaId': 'GenerateRequestsPerMinutePerProjectPerModel-FreeTier', 'quotaDimensions': {'location': 'global', 'model': 'gemini-2.0-flash-lite'}}, {'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_input_token_count', 'quotaId': 'GenerateContentInputTokensPerModelPerMinute-FreeTier', 'quotaDimensions': {'location': 'global', 'model': 'gemini-2.0-flash-lite'}}]}, {'@type': 'type.googleapis.com/google.rpc.RetryInfo', 'retryDelay': '20s'}]}}]
+Please retry in 8.446011505s.', 'status': 'RESOURCE_EXHAUSTED', 'details': [{'@type': 'type.googleapis.com/google.rpc.Help', 'links': [{'description': 'Learn more about Gemini API quotas', 'url': 'https://ai.google.dev/gemini-api/docs/rate-limits'}]}, {'@type': 'type.googleapis.com/google.rpc.QuotaFailure', 'violations': [{'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_requests', 'quotaId': 'GenerateRequestsPerDayPerProjectPerModel-FreeTier', 'quotaDimensions': {'model': 'gemini-2.0-flash-lite', 'location': 'global'}}, {'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_requests', 'quotaId': 'GenerateRequestsPerMinutePerProjectPerModel-FreeTier', 'quotaDimensions': {'location': 'global', 'model': 'gemini-2.0-flash-lite'}}, {'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_input_token_count', 'quotaId': 'GenerateContentInputTokensPerModelPerMinute-FreeTier', 'quotaDimensions': {'location': 'global', 'model': 'gemini-2.0-flash-lite'}}]}, {'@type': 'type.googleapis.com/google.rpc.RetryInfo', 'retryDelay': '8s'}]}}]
 "]
 ```
 
@@ -21974,14 +22341,19 @@ You are a high-performance Data Ingestion and Transformation Engine. Your sole o
 2. **ABSOLUTE PYDANTIC SCHEMA ALIGNMENT:** Your final generated JSON object MUST perfectly satisfy the structural schema parameters of the target enterprise contract. You are STRICTLY BANNED from omitting, renaming, formatting, or stripping out key elements (specifically `phase_id`, `phase_name`, `phase_description`, `project_name`, `global_context_file`, `source_target_dir`, and `days`).
 3. **ABSOLUTE NO EMPTY TAGS POLICY & STRING SANITIZATION:** You are STRICTLY BANNED from leaving the "targeted_tags" array empty `[]` or null for any sub-task that implements functional requirements or data schemas. You MUST scan the source Markdown sequentially sub-task by sub-task. For each sub-task node, locate the hidden technical container block delimited between `<!--START_TAGS-->` and `<!--END_TAGS-->` contained exclusively within that sub-task section scope. Extract all raw tag token codes inside, strip away all inline markdown formatting characters—specifically backticks (`` ` ``)—and any leading/trailing whitespaces, then populate them as clean separate string elements inside the "targeted_tags" array field of EACH sub-task object node.
 4. **NO TAG BUNDLING:** Every tag must be its own array node (e.g., `"targeted_tags": ["[REQ-001]", "[DAT-002]"]`). You are strictly forbidden from combining multiple tags into a single string element.
-5. **STRICT CONTENT PURITY & REJECT CONVERSATION:** Output ONLY the pure raw executable JSON string matching the required schema. Response must start exactly with the character `{` and end exactly with the character `}`. Banned from including thinking processes, chain-of-thought blocks (`<think>` tags), conversational filler texts, introductions, wrapping inside markdown codeblocks (no triple backticks wrapping), or post-generation notes. Any token outside the raw JSON object boundary triggers an immediate execution pipeline crash.
+5. **STRICT SINGLE-BLOCK PURITY & ABSOLUTE TERMINATION LAW:** 
+   - Your output MUST contain exactly ONE (1) single valid JSON object payload from start to finish. You are STRICTLY BANNED from repeating, mirroring, or generating a second duplicate JSON block within this response stream.
+   - **Strict Packaging Format**: The output MUST start exactly with a single line containing triple backticks and the language identifier: ```json
+   - The output MUST end exactly with the final line containing triple backticks: ```
+   - There must be absolutely ZERO conversational filler text, thinking processes (`<think>` tags), introductions, or post-generation notes before or after the fenced code block. 
+   - **Absolute Freeze Directive**: Mid-generation corrections are strictly prohibited. You are completely forbidden from appending trailing structural artifacts or deformed combinations like `} ```text{`. Once you emit the final closing brace `}` of the JSON schema, immediately close the triple backticks fence and FREEZE/STOP generating tokens instantly. Any token emitted after the primary closed fence violates enterprise runtime contracts.
 
 # Raw Response / Exception:
 
 ```json
 Error code: 429 - [{'error': {'code': 429, 'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. 
 * Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_input_token_count, limit: 16000, model: gemma-4-26b
-Please retry in 16.676707937s.', 'status': 'RESOURCE_EXHAUSTED', 'details': [{'@type': 'type.googleapis.com/google.rpc.Help', 'links': [{'description': 'Learn more about Gemini API quotas', 'url': 'https://ai.google.dev/gemini-api/docs/rate-limits'}]}, {'@type': 'type.googleapis.com/google.rpc.QuotaFailure', 'violations': [{'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_input_token_count', 'quotaId': 'GenerateContentInputTokensPerModelPerMinute-FreeTier', 'quotaDimensions': {'location': 'global', 'model': 'gemma-4-26b'}, 'quotaValue': '16000'}]}, {'@type': 'type.googleapis.com/google.rpc.RetryInfo', 'retryDelay': '16s'}]}}]: ['Traceback (most recent call last):
+Please retry in 4.961212391s.', 'status': 'RESOURCE_EXHAUSTED', 'details': [{'@type': 'type.googleapis.com/google.rpc.Help', 'links': [{'description': 'Learn more about Gemini API quotas', 'url': 'https://ai.google.dev/gemini-api/docs/rate-limits'}]}, {'@type': 'type.googleapis.com/google.rpc.QuotaFailure', 'violations': [{'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_input_token_count', 'quotaId': 'GenerateContentInputTokensPerModelPerMinute-FreeTier', 'quotaDimensions': {'location': 'global', 'model': 'gemma-4-26b'}, 'quotaValue': '16000'}]}, {'@type': 'type.googleapis.com/google.rpc.RetryInfo', 'retryDelay': '4s'}]}}]: ['Traceback (most recent call last):
 ', '  File "/home/runner/work/enterprise-it-ai/enterprise-it-ai/sources/agents/architect-blueprint/block_json.py", line 301, in convert_phases_to_json
     response = client.beta.chat.completions.parse(
                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -21995,7 +22367,7 @@ Please retry in 16.676707937s.', 'status': 'RESOURCE_EXHAUSTED', 'details': [{'@
     raise self._make_status_error_from_response(err.response) from None
 ', "openai.RateLimitError: Error code: 429 - [{'error': {'code': 429, 'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \
 * Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_input_token_count, limit: 16000, model: gemma-4-26b\
-Please retry in 16.676707937s.', 'status': 'RESOURCE_EXHAUSTED', 'details': [{'@type': 'type.googleapis.com/google.rpc.Help', 'links': [{'description': 'Learn more about Gemini API quotas', 'url': 'https://ai.google.dev/gemini-api/docs/rate-limits'}]}, {'@type': 'type.googleapis.com/google.rpc.QuotaFailure', 'violations': [{'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_input_token_count', 'quotaId': 'GenerateContentInputTokensPerModelPerMinute-FreeTier', 'quotaDimensions': {'location': 'global', 'model': 'gemma-4-26b'}, 'quotaValue': '16000'}]}, {'@type': 'type.googleapis.com/google.rpc.RetryInfo', 'retryDelay': '16s'}]}}]
+Please retry in 4.961212391s.', 'status': 'RESOURCE_EXHAUSTED', 'details': [{'@type': 'type.googleapis.com/google.rpc.Help', 'links': [{'description': 'Learn more about Gemini API quotas', 'url': 'https://ai.google.dev/gemini-api/docs/rate-limits'}]}, {'@type': 'type.googleapis.com/google.rpc.QuotaFailure', 'violations': [{'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_input_token_count', 'quotaId': 'GenerateContentInputTokensPerModelPerMinute-FreeTier', 'quotaDimensions': {'location': 'global', 'model': 'gemma-4-26b'}, 'quotaValue': '16000'}]}, {'@type': 'type.googleapis.com/google.rpc.RetryInfo', 'retryDelay': '4s'}]}}]
 "]
 ```
 
@@ -22273,14 +22645,19 @@ You are a high-performance Data Ingestion and Transformation Engine. Your sole o
 2. **ABSOLUTE PYDANTIC SCHEMA ALIGNMENT:** Your final generated JSON object MUST perfectly satisfy the structural schema parameters of the target enterprise contract. You are STRICTLY BANNED from omitting, renaming, formatting, or stripping out key elements (specifically `phase_id`, `phase_name`, `phase_description`, `project_name`, `global_context_file`, `source_target_dir`, and `days`).
 3. **ABSOLUTE NO EMPTY TAGS POLICY & STRING SANITIZATION:** You are STRICTLY BANNED from leaving the "targeted_tags" array empty `[]` or null for any sub-task that implements functional requirements or data schemas. You MUST scan the source Markdown sequentially sub-task by sub-task. For each sub-task node, locate the hidden technical container block delimited between `<!--START_TAGS-->` and `<!--END_TAGS-->` contained exclusively within that sub-task section scope. Extract all raw tag token codes inside, strip away all inline markdown formatting characters—specifically backticks (`` ` ``)—and any leading/trailing whitespaces, then populate them as clean separate string elements inside the "targeted_tags" array field of EACH sub-task object node.
 4. **NO TAG BUNDLING:** Every tag must be its own array node (e.g., `"targeted_tags": ["[REQ-001]", "[DAT-002]"]`). You are strictly forbidden from combining multiple tags into a single string element.
-5. **STRICT CONTENT PURITY & REJECT CONVERSATION:** Output ONLY the pure raw executable JSON string matching the required schema. Response must start exactly with the character `{` and end exactly with the character `}`. Banned from including thinking processes, chain-of-thought blocks (`<think>` tags), conversational filler texts, introductions, wrapping inside markdown codeblocks (no triple backticks wrapping), or post-generation notes. Any token outside the raw JSON object boundary triggers an immediate execution pipeline crash.
+5. **STRICT SINGLE-BLOCK PURITY & ABSOLUTE TERMINATION LAW:** 
+   - Your output MUST contain exactly ONE (1) single valid JSON object payload from start to finish. You are STRICTLY BANNED from repeating, mirroring, or generating a second duplicate JSON block within this response stream.
+   - **Strict Packaging Format**: The output MUST start exactly with a single line containing triple backticks and the language identifier: ```json
+   - The output MUST end exactly with the final line containing triple backticks: ```
+   - There must be absolutely ZERO conversational filler text, thinking processes (`<think>` tags), introductions, or post-generation notes before or after the fenced code block. 
+   - **Absolute Freeze Directive**: Mid-generation corrections are strictly prohibited. You are completely forbidden from appending trailing structural artifacts or deformed combinations like `} ```text{`. Once you emit the final closing brace `}` of the JSON schema, immediately close the triple backticks fence and FREEZE/STOP generating tokens instantly. Any token emitted after the primary closed fence violates enterprise runtime contracts.
 
 # Raw Response / Exception:
 
 ```json
 Error code: 429 - [{'error': {'code': 429, 'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. 
 * Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_input_token_count, limit: 16000, model: gemma-4-31b
-Please retry in 12.839809495s.', 'status': 'RESOURCE_EXHAUSTED', 'details': [{'@type': 'type.googleapis.com/google.rpc.Help', 'links': [{'description': 'Learn more about Gemini API quotas', 'url': 'https://ai.google.dev/gemini-api/docs/rate-limits'}]}, {'@type': 'type.googleapis.com/google.rpc.QuotaFailure', 'violations': [{'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_input_token_count', 'quotaId': 'GenerateContentInputTokensPerModelPerMinute-FreeTier', 'quotaDimensions': {'model': 'gemma-4-31b', 'location': 'global'}, 'quotaValue': '16000'}]}, {'@type': 'type.googleapis.com/google.rpc.RetryInfo', 'retryDelay': '12s'}]}}]: ['Traceback (most recent call last):
+Please retry in 1.246982682s.', 'status': 'RESOURCE_EXHAUSTED', 'details': [{'@type': 'type.googleapis.com/google.rpc.Help', 'links': [{'description': 'Learn more about Gemini API quotas', 'url': 'https://ai.google.dev/gemini-api/docs/rate-limits'}]}, {'@type': 'type.googleapis.com/google.rpc.QuotaFailure', 'violations': [{'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_input_token_count', 'quotaId': 'GenerateContentInputTokensPerModelPerMinute-FreeTier', 'quotaDimensions': {'location': 'global', 'model': 'gemma-4-31b'}, 'quotaValue': '16000'}]}, {'@type': 'type.googleapis.com/google.rpc.RetryInfo', 'retryDelay': '1s'}]}}]: ['Traceback (most recent call last):
 ', '  File "/home/runner/work/enterprise-it-ai/enterprise-it-ai/sources/agents/architect-blueprint/block_json.py", line 301, in convert_phases_to_json
     response = client.beta.chat.completions.parse(
                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -22294,7 +22671,7 @@ Please retry in 12.839809495s.', 'status': 'RESOURCE_EXHAUSTED', 'details': [{'@
     raise self._make_status_error_from_response(err.response) from None
 ', "openai.RateLimitError: Error code: 429 - [{'error': {'code': 429, 'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \
 * Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_input_token_count, limit: 16000, model: gemma-4-31b\
-Please retry in 12.839809495s.', 'status': 'RESOURCE_EXHAUSTED', 'details': [{'@type': 'type.googleapis.com/google.rpc.Help', 'links': [{'description': 'Learn more about Gemini API quotas', 'url': 'https://ai.google.dev/gemini-api/docs/rate-limits'}]}, {'@type': 'type.googleapis.com/google.rpc.QuotaFailure', 'violations': [{'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_input_token_count', 'quotaId': 'GenerateContentInputTokensPerModelPerMinute-FreeTier', 'quotaDimensions': {'model': 'gemma-4-31b', 'location': 'global'}, 'quotaValue': '16000'}]}, {'@type': 'type.googleapis.com/google.rpc.RetryInfo', 'retryDelay': '12s'}]}}]
+Please retry in 1.246982682s.', 'status': 'RESOURCE_EXHAUSTED', 'details': [{'@type': 'type.googleapis.com/google.rpc.Help', 'links': [{'description': 'Learn more about Gemini API quotas', 'url': 'https://ai.google.dev/gemini-api/docs/rate-limits'}]}, {'@type': 'type.googleapis.com/google.rpc.QuotaFailure', 'violations': [{'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_input_token_count', 'quotaId': 'GenerateContentInputTokensPerModelPerMinute-FreeTier', 'quotaDimensions': {'location': 'global', 'model': 'gemma-4-31b'}, 'quotaValue': '16000'}]}, {'@type': 'type.googleapis.com/google.rpc.RetryInfo', 'retryDelay': '1s'}]}}]
 "]
 ```
 
@@ -22572,7 +22949,12 @@ You are a high-performance Data Ingestion and Transformation Engine. Your sole o
 2. **ABSOLUTE PYDANTIC SCHEMA ALIGNMENT:** Your final generated JSON object MUST perfectly satisfy the structural schema parameters of the target enterprise contract. You are STRICTLY BANNED from omitting, renaming, formatting, or stripping out key elements (specifically `phase_id`, `phase_name`, `phase_description`, `project_name`, `global_context_file`, `source_target_dir`, and `days`).
 3. **ABSOLUTE NO EMPTY TAGS POLICY & STRING SANITIZATION:** You are STRICTLY BANNED from leaving the "targeted_tags" array empty `[]` or null for any sub-task that implements functional requirements or data schemas. You MUST scan the source Markdown sequentially sub-task by sub-task. For each sub-task node, locate the hidden technical container block delimited between `<!--START_TAGS-->` and `<!--END_TAGS-->` contained exclusively within that sub-task section scope. Extract all raw tag token codes inside, strip away all inline markdown formatting characters—specifically backticks (`` ` ``)—and any leading/trailing whitespaces, then populate them as clean separate string elements inside the "targeted_tags" array field of EACH sub-task object node.
 4. **NO TAG BUNDLING:** Every tag must be its own array node (e.g., `"targeted_tags": ["[REQ-001]", "[DAT-002]"]`). You are strictly forbidden from combining multiple tags into a single string element.
-5. **STRICT CONTENT PURITY & REJECT CONVERSATION:** Output ONLY the pure raw executable JSON string matching the required schema. Response must start exactly with the character `{` and end exactly with the character `}`. Banned from including thinking processes, chain-of-thought blocks (`<think>` tags), conversational filler texts, introductions, wrapping inside markdown codeblocks (no triple backticks wrapping), or post-generation notes. Any token outside the raw JSON object boundary triggers an immediate execution pipeline crash.
+5. **STRICT SINGLE-BLOCK PURITY & ABSOLUTE TERMINATION LAW:** 
+   - Your output MUST contain exactly ONE (1) single valid JSON object payload from start to finish. You are STRICTLY BANNED from repeating, mirroring, or generating a second duplicate JSON block within this response stream.
+   - **Strict Packaging Format**: The output MUST start exactly with a single line containing triple backticks and the language identifier: ```json
+   - The output MUST end exactly with the final line containing triple backticks: ```
+   - There must be absolutely ZERO conversational filler text, thinking processes (`<think>` tags), introductions, or post-generation notes before or after the fenced code block. 
+   - **Absolute Freeze Directive**: Mid-generation corrections are strictly prohibited. You are completely forbidden from appending trailing structural artifacts or deformed combinations like `} ```text{`. Once you emit the final closing brace `}` of the JSON schema, immediately close the triple backticks fence and FREEZE/STOP generating tokens instantly. Any token emitted after the primary closed fence violates enterprise runtime contracts.
 
 # Raw Response / Exception:
 
@@ -22867,7 +23249,12 @@ You are a high-performance Data Ingestion and Transformation Engine. Your sole o
 2. **ABSOLUTE PYDANTIC SCHEMA ALIGNMENT:** Your final generated JSON object MUST perfectly satisfy the structural schema parameters of the target enterprise contract. You are STRICTLY BANNED from omitting, renaming, formatting, or stripping out key elements (specifically `phase_id`, `phase_name`, `phase_description`, `project_name`, `global_context_file`, `source_target_dir`, and `days`).
 3. **ABSOLUTE NO EMPTY TAGS POLICY & STRING SANITIZATION:** You are STRICTLY BANNED from leaving the "targeted_tags" array empty `[]` or null for any sub-task that implements functional requirements or data schemas. You MUST scan the source Markdown sequentially sub-task by sub-task. For each sub-task node, locate the hidden technical container block delimited between `<!--START_TAGS-->` and `<!--END_TAGS-->` contained exclusively within that sub-task section scope. Extract all raw tag token codes inside, strip away all inline markdown formatting characters—specifically backticks (`` ` ``)—and any leading/trailing whitespaces, then populate them as clean separate string elements inside the "targeted_tags" array field of EACH sub-task object node.
 4. **NO TAG BUNDLING:** Every tag must be its own array node (e.g., `"targeted_tags": ["[REQ-001]", "[DAT-002]"]`). You are strictly forbidden from combining multiple tags into a single string element.
-5. **STRICT CONTENT PURITY & REJECT CONVERSATION:** Output ONLY the pure raw executable JSON string matching the required schema. Response must start exactly with the character `{` and end exactly with the character `}`. Banned from including thinking processes, chain-of-thought blocks (`<think>` tags), conversational filler texts, introductions, wrapping inside markdown codeblocks (no triple backticks wrapping), or post-generation notes. Any token outside the raw JSON object boundary triggers an immediate execution pipeline crash.
+5. **STRICT SINGLE-BLOCK PURITY & ABSOLUTE TERMINATION LAW:** 
+   - Your output MUST contain exactly ONE (1) single valid JSON object payload from start to finish. You are STRICTLY BANNED from repeating, mirroring, or generating a second duplicate JSON block within this response stream.
+   - **Strict Packaging Format**: The output MUST start exactly with a single line containing triple backticks and the language identifier: ```json
+   - The output MUST end exactly with the final line containing triple backticks: ```
+   - There must be absolutely ZERO conversational filler text, thinking processes (`<think>` tags), introductions, or post-generation notes before or after the fenced code block. 
+   - **Absolute Freeze Directive**: Mid-generation corrections are strictly prohibited. You are completely forbidden from appending trailing structural artifacts or deformed combinations like `} ```text{`. Once you emit the final closing brace `}` of the JSON schema, immediately close the triple backticks fence and FREEZE/STOP generating tokens instantly. Any token emitted after the primary closed fence violates enterprise runtime contracts.
 
 # Raw Response / Exception:
 
@@ -23162,7 +23549,12 @@ You are a high-performance Data Ingestion and Transformation Engine. Your sole o
 2. **ABSOLUTE PYDANTIC SCHEMA ALIGNMENT:** Your final generated JSON object MUST perfectly satisfy the structural schema parameters of the target enterprise contract. You are STRICTLY BANNED from omitting, renaming, formatting, or stripping out key elements (specifically `phase_id`, `phase_name`, `phase_description`, `project_name`, `global_context_file`, `source_target_dir`, and `days`).
 3. **ABSOLUTE NO EMPTY TAGS POLICY & STRING SANITIZATION:** You are STRICTLY BANNED from leaving the "targeted_tags" array empty `[]` or null for any sub-task that implements functional requirements or data schemas. You MUST scan the source Markdown sequentially sub-task by sub-task. For each sub-task node, locate the hidden technical container block delimited between `<!--START_TAGS-->` and `<!--END_TAGS-->` contained exclusively within that sub-task section scope. Extract all raw tag token codes inside, strip away all inline markdown formatting characters—specifically backticks (`` ` ``)—and any leading/trailing whitespaces, then populate them as clean separate string elements inside the "targeted_tags" array field of EACH sub-task object node.
 4. **NO TAG BUNDLING:** Every tag must be its own array node (e.g., `"targeted_tags": ["[REQ-001]", "[DAT-002]"]`). You are strictly forbidden from combining multiple tags into a single string element.
-5. **STRICT CONTENT PURITY & REJECT CONVERSATION:** Output ONLY the pure raw executable JSON string matching the required schema. Response must start exactly with the character `{` and end exactly with the character `}`. Banned from including thinking processes, chain-of-thought blocks (`<think>` tags), conversational filler texts, introductions, wrapping inside markdown codeblocks (no triple backticks wrapping), or post-generation notes. Any token outside the raw JSON object boundary triggers an immediate execution pipeline crash.
+5. **STRICT SINGLE-BLOCK PURITY & ABSOLUTE TERMINATION LAW:** 
+   - Your output MUST contain exactly ONE (1) single valid JSON object payload from start to finish. You are STRICTLY BANNED from repeating, mirroring, or generating a second duplicate JSON block within this response stream.
+   - **Strict Packaging Format**: The output MUST start exactly with a single line containing triple backticks and the language identifier: ```json
+   - The output MUST end exactly with the final line containing triple backticks: ```
+   - There must be absolutely ZERO conversational filler text, thinking processes (`<think>` tags), introductions, or post-generation notes before or after the fenced code block. 
+   - **Absolute Freeze Directive**: Mid-generation corrections are strictly prohibited. You are completely forbidden from appending trailing structural artifacts or deformed combinations like `} ```text{`. Once you emit the final closing brace `}` of the JSON schema, immediately close the triple backticks fence and FREEZE/STOP generating tokens instantly. Any token emitted after the primary closed fence violates enterprise runtime contracts.
 
 # Raw Response / Exception:
 
@@ -23172,7 +23564,7 @@ Error code: 429 - [{'error': {'code': 429, 'message': 'You exceeded your current
 * Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 0, model: gemini-3.1-pro
 * Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 0, model: gemini-3.1-pro
 * Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_input_token_count, limit: 0, model: gemini-3.1-pro
-Please retry in 2.035493758s.', 'status': 'RESOURCE_EXHAUSTED', 'details': [{'@type': 'type.googleapis.com/google.rpc.Help', 'links': [{'description': 'Learn more about Gemini API quotas', 'url': 'https://ai.google.dev/gemini-api/docs/rate-limits'}]}, {'@type': 'type.googleapis.com/google.rpc.QuotaFailure', 'violations': [{'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_input_token_count', 'quotaId': 'GenerateContentInputTokensPerModelPerMinute-FreeTier', 'quotaDimensions': {'location': 'global', 'model': 'gemini-3.1-pro'}}, {'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_requests', 'quotaId': 'GenerateRequestsPerMinutePerProjectPerModel-FreeTier', 'quotaDimensions': {'location': 'global', 'model': 'gemini-3.1-pro'}}, {'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_requests', 'quotaId': 'GenerateRequestsPerDayPerProjectPerModel-FreeTier', 'quotaDimensions': {'location': 'global', 'model': 'gemini-3.1-pro'}}, {'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_input_token_count', 'quotaId': 'GenerateContentInputTokensPerModelPerDay-FreeTier', 'quotaDimensions': {'model': 'gemini-3.1-pro', 'location': 'global'}}]}, {'@type': 'type.googleapis.com/google.rpc.RetryInfo', 'retryDelay': '2s'}]}}]: ['Traceback (most recent call last):
+Please retry in 50.896523148s.', 'status': 'RESOURCE_EXHAUSTED', 'details': [{'@type': 'type.googleapis.com/google.rpc.Help', 'links': [{'description': 'Learn more about Gemini API quotas', 'url': 'https://ai.google.dev/gemini-api/docs/rate-limits'}]}, {'@type': 'type.googleapis.com/google.rpc.QuotaFailure', 'violations': [{'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_input_token_count', 'quotaId': 'GenerateContentInputTokensPerModelPerDay-FreeTier', 'quotaDimensions': {'model': 'gemini-3.1-pro', 'location': 'global'}}, {'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_requests', 'quotaId': 'GenerateRequestsPerDayPerProjectPerModel-FreeTier', 'quotaDimensions': {'location': 'global', 'model': 'gemini-3.1-pro'}}, {'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_requests', 'quotaId': 'GenerateRequestsPerMinutePerProjectPerModel-FreeTier', 'quotaDimensions': {'location': 'global', 'model': 'gemini-3.1-pro'}}, {'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_input_token_count', 'quotaId': 'GenerateContentInputTokensPerModelPerMinute-FreeTier', 'quotaDimensions': {'model': 'gemini-3.1-pro', 'location': 'global'}}]}, {'@type': 'type.googleapis.com/google.rpc.RetryInfo', 'retryDelay': '50s'}]}}]: ['Traceback (most recent call last):
 ', '  File "/home/runner/work/enterprise-it-ai/enterprise-it-ai/sources/agents/architect-blueprint/block_json.py", line 301, in convert_phases_to_json
     response = client.beta.chat.completions.parse(
                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -23189,7 +23581,7 @@ Please retry in 2.035493758s.', 'status': 'RESOURCE_EXHAUSTED', 'details': [{'@t
 * Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 0, model: gemini-3.1-pro\
 * Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 0, model: gemini-3.1-pro\
 * Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_input_token_count, limit: 0, model: gemini-3.1-pro\
-Please retry in 2.035493758s.', 'status': 'RESOURCE_EXHAUSTED', 'details': [{'@type': 'type.googleapis.com/google.rpc.Help', 'links': [{'description': 'Learn more about Gemini API quotas', 'url': 'https://ai.google.dev/gemini-api/docs/rate-limits'}]}, {'@type': 'type.googleapis.com/google.rpc.QuotaFailure', 'violations': [{'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_input_token_count', 'quotaId': 'GenerateContentInputTokensPerModelPerMinute-FreeTier', 'quotaDimensions': {'location': 'global', 'model': 'gemini-3.1-pro'}}, {'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_requests', 'quotaId': 'GenerateRequestsPerMinutePerProjectPerModel-FreeTier', 'quotaDimensions': {'location': 'global', 'model': 'gemini-3.1-pro'}}, {'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_requests', 'quotaId': 'GenerateRequestsPerDayPerProjectPerModel-FreeTier', 'quotaDimensions': {'location': 'global', 'model': 'gemini-3.1-pro'}}, {'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_input_token_count', 'quotaId': 'GenerateContentInputTokensPerModelPerDay-FreeTier', 'quotaDimensions': {'model': 'gemini-3.1-pro', 'location': 'global'}}]}, {'@type': 'type.googleapis.com/google.rpc.RetryInfo', 'retryDelay': '2s'}]}}]
+Please retry in 50.896523148s.', 'status': 'RESOURCE_EXHAUSTED', 'details': [{'@type': 'type.googleapis.com/google.rpc.Help', 'links': [{'description': 'Learn more about Gemini API quotas', 'url': 'https://ai.google.dev/gemini-api/docs/rate-limits'}]}, {'@type': 'type.googleapis.com/google.rpc.QuotaFailure', 'violations': [{'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_input_token_count', 'quotaId': 'GenerateContentInputTokensPerModelPerDay-FreeTier', 'quotaDimensions': {'model': 'gemini-3.1-pro', 'location': 'global'}}, {'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_requests', 'quotaId': 'GenerateRequestsPerDayPerProjectPerModel-FreeTier', 'quotaDimensions': {'location': 'global', 'model': 'gemini-3.1-pro'}}, {'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_requests', 'quotaId': 'GenerateRequestsPerMinutePerProjectPerModel-FreeTier', 'quotaDimensions': {'location': 'global', 'model': 'gemini-3.1-pro'}}, {'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_input_token_count', 'quotaId': 'GenerateContentInputTokensPerModelPerMinute-FreeTier', 'quotaDimensions': {'model': 'gemini-3.1-pro', 'location': 'global'}}]}, {'@type': 'type.googleapis.com/google.rpc.RetryInfo', 'retryDelay': '50s'}]}}]
 "]
 ```
 
@@ -23467,7 +23859,12 @@ You are a high-performance Data Ingestion and Transformation Engine. Your sole o
 2. **ABSOLUTE PYDANTIC SCHEMA ALIGNMENT:** Your final generated JSON object MUST perfectly satisfy the structural schema parameters of the target enterprise contract. You are STRICTLY BANNED from omitting, renaming, formatting, or stripping out key elements (specifically `phase_id`, `phase_name`, `phase_description`, `project_name`, `global_context_file`, `source_target_dir`, and `days`).
 3. **ABSOLUTE NO EMPTY TAGS POLICY & STRING SANITIZATION:** You are STRICTLY BANNED from leaving the "targeted_tags" array empty `[]` or null for any sub-task that implements functional requirements or data schemas. You MUST scan the source Markdown sequentially sub-task by sub-task. For each sub-task node, locate the hidden technical container block delimited between `<!--START_TAGS-->` and `<!--END_TAGS-->` contained exclusively within that sub-task section scope. Extract all raw tag token codes inside, strip away all inline markdown formatting characters—specifically backticks (`` ` ``)—and any leading/trailing whitespaces, then populate them as clean separate string elements inside the "targeted_tags" array field of EACH sub-task object node.
 4. **NO TAG BUNDLING:** Every tag must be its own array node (e.g., `"targeted_tags": ["[REQ-001]", "[DAT-002]"]`). You are strictly forbidden from combining multiple tags into a single string element.
-5. **STRICT CONTENT PURITY & REJECT CONVERSATION:** Output ONLY the pure raw executable JSON string matching the required schema. Response must start exactly with the character `{` and end exactly with the character `}`. Banned from including thinking processes, chain-of-thought blocks (`<think>` tags), conversational filler texts, introductions, wrapping inside markdown codeblocks (no triple backticks wrapping), or post-generation notes. Any token outside the raw JSON object boundary triggers an immediate execution pipeline crash.
+5. **STRICT SINGLE-BLOCK PURITY & ABSOLUTE TERMINATION LAW:** 
+   - Your output MUST contain exactly ONE (1) single valid JSON object payload from start to finish. You are STRICTLY BANNED from repeating, mirroring, or generating a second duplicate JSON block within this response stream.
+   - **Strict Packaging Format**: The output MUST start exactly with a single line containing triple backticks and the language identifier: ```json
+   - The output MUST end exactly with the final line containing triple backticks: ```
+   - There must be absolutely ZERO conversational filler text, thinking processes (`<think>` tags), introductions, or post-generation notes before or after the fenced code block. 
+   - **Absolute Freeze Directive**: Mid-generation corrections are strictly prohibited. You are completely forbidden from appending trailing structural artifacts or deformed combinations like `} ```text{`. Once you emit the final closing brace `}` of the JSON schema, immediately close the triple backticks fence and FREEZE/STOP generating tokens instantly. Any token emitted after the primary closed fence violates enterprise runtime contracts.
 
 # Raw Response / Exception:
 
@@ -23762,7 +24159,12 @@ You are a high-performance Data Ingestion and Transformation Engine. Your sole o
 2. **ABSOLUTE PYDANTIC SCHEMA ALIGNMENT:** Your final generated JSON object MUST perfectly satisfy the structural schema parameters of the target enterprise contract. You are STRICTLY BANNED from omitting, renaming, formatting, or stripping out key elements (specifically `phase_id`, `phase_name`, `phase_description`, `project_name`, `global_context_file`, `source_target_dir`, and `days`).
 3. **ABSOLUTE NO EMPTY TAGS POLICY & STRING SANITIZATION:** You are STRICTLY BANNED from leaving the "targeted_tags" array empty `[]` or null for any sub-task that implements functional requirements or data schemas. You MUST scan the source Markdown sequentially sub-task by sub-task. For each sub-task node, locate the hidden technical container block delimited between `<!--START_TAGS-->` and `<!--END_TAGS-->` contained exclusively within that sub-task section scope. Extract all raw tag token codes inside, strip away all inline markdown formatting characters—specifically backticks (`` ` ``)—and any leading/trailing whitespaces, then populate them as clean separate string elements inside the "targeted_tags" array field of EACH sub-task object node.
 4. **NO TAG BUNDLING:** Every tag must be its own array node (e.g., `"targeted_tags": ["[REQ-001]", "[DAT-002]"]`). You are strictly forbidden from combining multiple tags into a single string element.
-5. **STRICT CONTENT PURITY & REJECT CONVERSATION:** Output ONLY the pure raw executable JSON string matching the required schema. Response must start exactly with the character `{` and end exactly with the character `}`. Banned from including thinking processes, chain-of-thought blocks (`<think>` tags), conversational filler texts, introductions, wrapping inside markdown codeblocks (no triple backticks wrapping), or post-generation notes. Any token outside the raw JSON object boundary triggers an immediate execution pipeline crash.
+5. **STRICT SINGLE-BLOCK PURITY & ABSOLUTE TERMINATION LAW:** 
+   - Your output MUST contain exactly ONE (1) single valid JSON object payload from start to finish. You are STRICTLY BANNED from repeating, mirroring, or generating a second duplicate JSON block within this response stream.
+   - **Strict Packaging Format**: The output MUST start exactly with a single line containing triple backticks and the language identifier: ```json
+   - The output MUST end exactly with the final line containing triple backticks: ```
+   - There must be absolutely ZERO conversational filler text, thinking processes (`<think>` tags), introductions, or post-generation notes before or after the fenced code block. 
+   - **Absolute Freeze Directive**: Mid-generation corrections are strictly prohibited. You are completely forbidden from appending trailing structural artifacts or deformed combinations like `} ```text{`. Once you emit the final closing brace `}` of the JSON schema, immediately close the triple backticks fence and FREEZE/STOP generating tokens instantly. Any token emitted after the primary closed fence violates enterprise runtime contracts.
 
 # Raw Response / Exception:
 
@@ -24057,7 +24459,12 @@ You are a high-performance Data Ingestion and Transformation Engine. Your sole o
 2. **ABSOLUTE PYDANTIC SCHEMA ALIGNMENT:** Your final generated JSON object MUST perfectly satisfy the structural schema parameters of the target enterprise contract. You are STRICTLY BANNED from omitting, renaming, formatting, or stripping out key elements (specifically `phase_id`, `phase_name`, `phase_description`, `project_name`, `global_context_file`, `source_target_dir`, and `days`).
 3. **ABSOLUTE NO EMPTY TAGS POLICY & STRING SANITIZATION:** You are STRICTLY BANNED from leaving the "targeted_tags" array empty `[]` or null for any sub-task that implements functional requirements or data schemas. You MUST scan the source Markdown sequentially sub-task by sub-task. For each sub-task node, locate the hidden technical container block delimited between `<!--START_TAGS-->` and `<!--END_TAGS-->` contained exclusively within that sub-task section scope. Extract all raw tag token codes inside, strip away all inline markdown formatting characters—specifically backticks (`` ` ``)—and any leading/trailing whitespaces, then populate them as clean separate string elements inside the "targeted_tags" array field of EACH sub-task object node.
 4. **NO TAG BUNDLING:** Every tag must be its own array node (e.g., `"targeted_tags": ["[REQ-001]", "[DAT-002]"]`). You are strictly forbidden from combining multiple tags into a single string element.
-5. **STRICT CONTENT PURITY & REJECT CONVERSATION:** Output ONLY the pure raw executable JSON string matching the required schema. Response must start exactly with the character `{` and end exactly with the character `}`. Banned from including thinking processes, chain-of-thought blocks (`<think>` tags), conversational filler texts, introductions, wrapping inside markdown codeblocks (no triple backticks wrapping), or post-generation notes. Any token outside the raw JSON object boundary triggers an immediate execution pipeline crash.
+5. **STRICT SINGLE-BLOCK PURITY & ABSOLUTE TERMINATION LAW:** 
+   - Your output MUST contain exactly ONE (1) single valid JSON object payload from start to finish. You are STRICTLY BANNED from repeating, mirroring, or generating a second duplicate JSON block within this response stream.
+   - **Strict Packaging Format**: The output MUST start exactly with a single line containing triple backticks and the language identifier: ```json
+   - The output MUST end exactly with the final line containing triple backticks: ```
+   - There must be absolutely ZERO conversational filler text, thinking processes (`<think>` tags), introductions, or post-generation notes before or after the fenced code block. 
+   - **Absolute Freeze Directive**: Mid-generation corrections are strictly prohibited. You are completely forbidden from appending trailing structural artifacts or deformed combinations like `} ```text{`. Once you emit the final closing brace `}` of the JSON schema, immediately close the triple backticks fence and FREEZE/STOP generating tokens instantly. Any token emitted after the primary closed fence violates enterprise runtime contracts.
 
 # Raw Response / Exception:
 
@@ -24352,7 +24759,12 @@ You are a high-performance Data Ingestion and Transformation Engine. Your sole o
 2. **ABSOLUTE PYDANTIC SCHEMA ALIGNMENT:** Your final generated JSON object MUST perfectly satisfy the structural schema parameters of the target enterprise contract. You are STRICTLY BANNED from omitting, renaming, formatting, or stripping out key elements (specifically `phase_id`, `phase_name`, `phase_description`, `project_name`, `global_context_file`, `source_target_dir`, and `days`).
 3. **ABSOLUTE NO EMPTY TAGS POLICY & STRING SANITIZATION:** You are STRICTLY BANNED from leaving the "targeted_tags" array empty `[]` or null for any sub-task that implements functional requirements or data schemas. You MUST scan the source Markdown sequentially sub-task by sub-task. For each sub-task node, locate the hidden technical container block delimited between `<!--START_TAGS-->` and `<!--END_TAGS-->` contained exclusively within that sub-task section scope. Extract all raw tag token codes inside, strip away all inline markdown formatting characters—specifically backticks (`` ` ``)—and any leading/trailing whitespaces, then populate them as clean separate string elements inside the "targeted_tags" array field of EACH sub-task object node.
 4. **NO TAG BUNDLING:** Every tag must be its own array node (e.g., `"targeted_tags": ["[REQ-001]", "[DAT-002]"]`). You are strictly forbidden from combining multiple tags into a single string element.
-5. **STRICT CONTENT PURITY & REJECT CONVERSATION:** Output ONLY the pure raw executable JSON string matching the required schema. Response must start exactly with the character `{` and end exactly with the character `}`. Banned from including thinking processes, chain-of-thought blocks (`<think>` tags), conversational filler texts, introductions, wrapping inside markdown codeblocks (no triple backticks wrapping), or post-generation notes. Any token outside the raw JSON object boundary triggers an immediate execution pipeline crash.
+5. **STRICT SINGLE-BLOCK PURITY & ABSOLUTE TERMINATION LAW:** 
+   - Your output MUST contain exactly ONE (1) single valid JSON object payload from start to finish. You are STRICTLY BANNED from repeating, mirroring, or generating a second duplicate JSON block within this response stream.
+   - **Strict Packaging Format**: The output MUST start exactly with a single line containing triple backticks and the language identifier: ```json
+   - The output MUST end exactly with the final line containing triple backticks: ```
+   - There must be absolutely ZERO conversational filler text, thinking processes (`<think>` tags), introductions, or post-generation notes before or after the fenced code block. 
+   - **Absolute Freeze Directive**: Mid-generation corrections are strictly prohibited. You are completely forbidden from appending trailing structural artifacts or deformed combinations like `} ```text{`. Once you emit the final closing brace `}` of the JSON schema, immediately close the triple backticks fence and FREEZE/STOP generating tokens instantly. Any token emitted after the primary closed fence violates enterprise runtime contracts.
 
 # Raw Response / Exception:
 
@@ -24647,12 +25059,17 @@ You are a high-performance Data Ingestion and Transformation Engine. Your sole o
 2. **ABSOLUTE PYDANTIC SCHEMA ALIGNMENT:** Your final generated JSON object MUST perfectly satisfy the structural schema parameters of the target enterprise contract. You are STRICTLY BANNED from omitting, renaming, formatting, or stripping out key elements (specifically `phase_id`, `phase_name`, `phase_description`, `project_name`, `global_context_file`, `source_target_dir`, and `days`).
 3. **ABSOLUTE NO EMPTY TAGS POLICY & STRING SANITIZATION:** You are STRICTLY BANNED from leaving the "targeted_tags" array empty `[]` or null for any sub-task that implements functional requirements or data schemas. You MUST scan the source Markdown sequentially sub-task by sub-task. For each sub-task node, locate the hidden technical container block delimited between `<!--START_TAGS-->` and `<!--END_TAGS-->` contained exclusively within that sub-task section scope. Extract all raw tag token codes inside, strip away all inline markdown formatting characters—specifically backticks (`` ` ``)—and any leading/trailing whitespaces, then populate them as clean separate string elements inside the "targeted_tags" array field of EACH sub-task object node.
 4. **NO TAG BUNDLING:** Every tag must be its own array node (e.g., `"targeted_tags": ["[REQ-001]", "[DAT-002]"]`). You are strictly forbidden from combining multiple tags into a single string element.
-5. **STRICT CONTENT PURITY & REJECT CONVERSATION:** Output ONLY the pure raw executable JSON string matching the required schema. Response must start exactly with the character `{` and end exactly with the character `}`. Banned from including thinking processes, chain-of-thought blocks (`<think>` tags), conversational filler texts, introductions, wrapping inside markdown codeblocks (no triple backticks wrapping), or post-generation notes. Any token outside the raw JSON object boundary triggers an immediate execution pipeline crash.
+5. **STRICT SINGLE-BLOCK PURITY & ABSOLUTE TERMINATION LAW:** 
+   - Your output MUST contain exactly ONE (1) single valid JSON object payload from start to finish. You are STRICTLY BANNED from repeating, mirroring, or generating a second duplicate JSON block within this response stream.
+   - **Strict Packaging Format**: The output MUST start exactly with a single line containing triple backticks and the language identifier: ```json
+   - The output MUST end exactly with the final line containing triple backticks: ```
+   - There must be absolutely ZERO conversational filler text, thinking processes (`<think>` tags), introductions, or post-generation notes before or after the fenced code block. 
+   - **Absolute Freeze Directive**: Mid-generation corrections are strictly prohibited. You are completely forbidden from appending trailing structural artifacts or deformed combinations like `} ```text{`. Once you emit the final closing brace `}` of the JSON schema, immediately close the triple backticks fence and FREEZE/STOP generating tokens instantly. Any token emitted after the primary closed fence violates enterprise runtime contracts.
 
 # Raw Response / Exception:
 
 ```json
-Error code: 404 - {'error': {'message': 'Model not found, inaccessible, and/or not deployed', 'param': 'model', 'code': 'NOT_FOUND', 'type': 'error'}, 'request_id': 'chatcmpl-8f0b9f0a711c45698bdf730bdd91f427'}: ['Traceback (most recent call last):
+Error code: 404 - {'error': {'message': 'Model not found, inaccessible, and/or not deployed', 'param': 'model', 'code': 'NOT_FOUND', 'type': 'error'}, 'request_id': 'chatcmpl-d6cf775791f54e9c9274b3bac72414bf'}: ['Traceback (most recent call last):
 ', '  File "/home/runner/work/enterprise-it-ai/enterprise-it-ai/sources/agents/architect-blueprint/block_json.py", line 301, in convert_phases_to_json
     response = client.beta.chat.completions.parse(
                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -24664,7 +25081,7 @@ Error code: 404 - {'error': {'message': 'Model not found, inaccessible, and/or n
                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 ', '  File "/opt/hostedtoolcache/Python/3.11.15/x64/lib/python3.11/site-packages/openai/_base_client.py", line 1148, in request
     raise self._make_status_error_from_response(err.response) from None
-', "openai.NotFoundError: Error code: 404 - {'error': {'message': 'Model not found, inaccessible, and/or not deployed', 'param': 'model', 'code': 'NOT_FOUND', 'type': 'error'}, 'request_id': 'chatcmpl-8f0b9f0a711c45698bdf730bdd91f427'}
+', "openai.NotFoundError: Error code: 404 - {'error': {'message': 'Model not found, inaccessible, and/or not deployed', 'param': 'model', 'code': 'NOT_FOUND', 'type': 'error'}, 'request_id': 'chatcmpl-d6cf775791f54e9c9274b3bac72414bf'}
 "]
 ```
 
@@ -24942,12 +25359,17 @@ You are a high-performance Data Ingestion and Transformation Engine. Your sole o
 2. **ABSOLUTE PYDANTIC SCHEMA ALIGNMENT:** Your final generated JSON object MUST perfectly satisfy the structural schema parameters of the target enterprise contract. You are STRICTLY BANNED from omitting, renaming, formatting, or stripping out key elements (specifically `phase_id`, `phase_name`, `phase_description`, `project_name`, `global_context_file`, `source_target_dir`, and `days`).
 3. **ABSOLUTE NO EMPTY TAGS POLICY & STRING SANITIZATION:** You are STRICTLY BANNED from leaving the "targeted_tags" array empty `[]` or null for any sub-task that implements functional requirements or data schemas. You MUST scan the source Markdown sequentially sub-task by sub-task. For each sub-task node, locate the hidden technical container block delimited between `<!--START_TAGS-->` and `<!--END_TAGS-->` contained exclusively within that sub-task section scope. Extract all raw tag token codes inside, strip away all inline markdown formatting characters—specifically backticks (`` ` ``)—and any leading/trailing whitespaces, then populate them as clean separate string elements inside the "targeted_tags" array field of EACH sub-task object node.
 4. **NO TAG BUNDLING:** Every tag must be its own array node (e.g., `"targeted_tags": ["[REQ-001]", "[DAT-002]"]`). You are strictly forbidden from combining multiple tags into a single string element.
-5. **STRICT CONTENT PURITY & REJECT CONVERSATION:** Output ONLY the pure raw executable JSON string matching the required schema. Response must start exactly with the character `{` and end exactly with the character `}`. Banned from including thinking processes, chain-of-thought blocks (`<think>` tags), conversational filler texts, introductions, wrapping inside markdown codeblocks (no triple backticks wrapping), or post-generation notes. Any token outside the raw JSON object boundary triggers an immediate execution pipeline crash.
+5. **STRICT SINGLE-BLOCK PURITY & ABSOLUTE TERMINATION LAW:** 
+   - Your output MUST contain exactly ONE (1) single valid JSON object payload from start to finish. You are STRICTLY BANNED from repeating, mirroring, or generating a second duplicate JSON block within this response stream.
+   - **Strict Packaging Format**: The output MUST start exactly with a single line containing triple backticks and the language identifier: ```json
+   - The output MUST end exactly with the final line containing triple backticks: ```
+   - There must be absolutely ZERO conversational filler text, thinking processes (`<think>` tags), introductions, or post-generation notes before or after the fenced code block. 
+   - **Absolute Freeze Directive**: Mid-generation corrections are strictly prohibited. You are completely forbidden from appending trailing structural artifacts or deformed combinations like `} ```text{`. Once you emit the final closing brace `}` of the JSON schema, immediately close the triple backticks fence and FREEZE/STOP generating tokens instantly. Any token emitted after the primary closed fence violates enterprise runtime contracts.
 
 # Raw Response / Exception:
 
 ```json
-Error code: 404 - {'error': {'message': 'Model not found, inaccessible, and/or not deployed', 'param': 'model', 'code': 'NOT_FOUND', 'type': 'error'}, 'request_id': 'chatcmpl-a18bdc495c28441690da49f5c2cd9103'}: ['Traceback (most recent call last):
+Error code: 404 - {'error': {'message': 'Model not found, inaccessible, and/or not deployed', 'param': 'model', 'code': 'NOT_FOUND', 'type': 'error'}, 'request_id': 'chatcmpl-6a3e55b018244c3dba38a05b5f8d3ac0'}: ['Traceback (most recent call last):
 ', '  File "/home/runner/work/enterprise-it-ai/enterprise-it-ai/sources/agents/architect-blueprint/block_json.py", line 301, in convert_phases_to_json
     response = client.beta.chat.completions.parse(
                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -24959,7 +25381,7 @@ Error code: 404 - {'error': {'message': 'Model not found, inaccessible, and/or n
                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 ', '  File "/opt/hostedtoolcache/Python/3.11.15/x64/lib/python3.11/site-packages/openai/_base_client.py", line 1148, in request
     raise self._make_status_error_from_response(err.response) from None
-', "openai.NotFoundError: Error code: 404 - {'error': {'message': 'Model not found, inaccessible, and/or not deployed', 'param': 'model', 'code': 'NOT_FOUND', 'type': 'error'}, 'request_id': 'chatcmpl-a18bdc495c28441690da49f5c2cd9103'}
+', "openai.NotFoundError: Error code: 404 - {'error': {'message': 'Model not found, inaccessible, and/or not deployed', 'param': 'model', 'code': 'NOT_FOUND', 'type': 'error'}, 'request_id': 'chatcmpl-6a3e55b018244c3dba38a05b5f8d3ac0'}
 "]
 ```
 
@@ -25280,7 +25702,12 @@ You are a high-performance Data Ingestion and Transformation Engine. Your sole o
 2. **ABSOLUTE PYDANTIC SCHEMA ALIGNMENT:** Your final generated JSON object MUST perfectly satisfy the structural schema parameters of the target enterprise contract. You are STRICTLY BANNED from omitting, renaming, formatting, or stripping out key elements (specifically `phase_id`, `phase_name`, `phase_description`, `project_name`, `global_context_file`, `source_target_dir`, and `days`).
 3. **ABSOLUTE NO EMPTY TAGS POLICY & STRING SANITIZATION:** You are STRICTLY BANNED from leaving the "targeted_tags" array empty `[]` or null for any sub-task that implements functional requirements or data schemas. You MUST scan the source Markdown sequentially sub-task by sub-task. For each sub-task node, locate the hidden technical container block delimited between `<!--START_TAGS-->` and `<!--END_TAGS-->` contained exclusively within that sub-task section scope. Extract all raw tag token codes inside, strip away all inline markdown formatting characters—specifically backticks (`` ` ``)—and any leading/trailing whitespaces, then populate them as clean separate string elements inside the "targeted_tags" array field of EACH sub-task object node.
 4. **NO TAG BUNDLING:** Every tag must be its own array node (e.g., `"targeted_tags": ["[REQ-001]", "[DAT-002]"]`). You are strictly forbidden from combining multiple tags into a single string element.
-5. **STRICT CONTENT PURITY & REJECT CONVERSATION:** Output ONLY the pure raw executable JSON string matching the required schema. Response must start exactly with the character `{` and end exactly with the character `}`. Banned from including thinking processes, chain-of-thought blocks (`<think>` tags), conversational filler texts, introductions, wrapping inside markdown codeblocks (no triple backticks wrapping), or post-generation notes. Any token outside the raw JSON object boundary triggers an immediate execution pipeline crash.
+5. **STRICT SINGLE-BLOCK PURITY & ABSOLUTE TERMINATION LAW:** 
+   - Your output MUST contain exactly ONE (1) single valid JSON object payload from start to finish. You are STRICTLY BANNED from repeating, mirroring, or generating a second duplicate JSON block within this response stream.
+   - **Strict Packaging Format**: The output MUST start exactly with a single line containing triple backticks and the language identifier: ```json
+   - The output MUST end exactly with the final line containing triple backticks: ```
+   - There must be absolutely ZERO conversational filler text, thinking processes (`<think>` tags), introductions, or post-generation notes before or after the fenced code block. 
+   - **Absolute Freeze Directive**: Mid-generation corrections are strictly prohibited. You are completely forbidden from appending trailing structural artifacts or deformed combinations like `} ```text{`. Once you emit the final closing brace `}` of the JSON schema, immediately close the triple backticks fence and FREEZE/STOP generating tokens instantly. Any token emitted after the primary closed fence violates enterprise runtime contracts.
 </ACTIVE_TASK_SYSTEM_INSTRUCTION>
 
 # Raw Response / Exception:
@@ -25305,10 +25732,7 @@ You are a high-performance Data Ingestion and Transformation Engine. Your sole o
           "agent": "Coder",
           "desc": "Triển khai schema cơ sở dữ liệu Users và Roles",
           "targeted_tags": ["[DAT-001]"],
-          "components": [
-            "./sources/backend.membershiphub.user/users.sql",
-            "./sources/backend.membershiphub.user/roles.sql"
-          ]
+          "components": ["./sources/backend.membershiphub.user/users.sql", "./sources/backend.membershiphub.user/roles.sql"]
         },
         {
           "id": "D1_ST2",
@@ -25329,20 +25753,14 @@ You are a high-performance Data Ingestion and Transformation Engine. Your sole o
           "agent": "Tester",
           "desc": "Kiểm thử đơn vị cho các phương thức register và socialAuthenticate",
           "targeted_tags": ["[REQ-001]", "[REQ-002]", "[DAT-001]", "[EXC-004]"],
-          "components": [
-            "./sources/backend.membershiphub.user/user-service.java",
-            "./sources/backend.membershiphub.user/userservice-test.java"
-          ]
+          "components": ["./sources/backend.membershiphub.user/user-service.java;./sources/backend.membershiphub.user/userservice-test.java"]
         },
         {
           "id": "D2_ST2",
           "agent": "Tester",
           "desc": "Kiểm thử tích hợp cho API endpoints",
           "targeted_tags": ["[REQ-001]", "[REQ-002]", "[ARC-006]", "[EXC-004]"],
-          "components": [
-            "./sources/backend.membershiphub.user/user-service.java",
-            "./sources/backend.membershiphub.user/user-controller-test.java"
-          ]
+          "components": ["./sources/backend.membershiphub.user/user-service.java;./sources/backend.membershiphub.user/user-controller-test.java"]
         }
       ]
     }
@@ -25668,7 +26086,12 @@ You are a high-performance Data Ingestion and Transformation Engine. Your sole o
 2. **ABSOLUTE PYDANTIC SCHEMA ALIGNMENT:** Your final generated JSON object MUST perfectly satisfy the structural schema parameters of the target enterprise contract. You are STRICTLY BANNED from omitting, renaming, formatting, or stripping out key elements (specifically `phase_id`, `phase_name`, `phase_description`, `project_name`, `global_context_file`, `source_target_dir`, and `days`).
 3. **ABSOLUTE NO EMPTY TAGS POLICY & STRING SANITIZATION:** You are STRICTLY BANNED from leaving the "targeted_tags" array empty `[]` or null for any sub-task that implements functional requirements or data schemas. You MUST scan the source Markdown sequentially sub-task by sub-task. For each sub-task node, locate the hidden technical container block delimited between `<!--START_TAGS-->` and `<!--END_TAGS-->` contained exclusively within that sub-task section scope. Extract all raw tag token codes inside, strip away all inline markdown formatting characters—specifically backticks (`` ` ``)—and any leading/trailing whitespaces, then populate them as clean separate string elements inside the "targeted_tags" array field of EACH sub-task object node.
 4. **NO TAG BUNDLING:** Every tag must be its own array node (e.g., `"targeted_tags": ["[REQ-001]", "[DAT-002]"]`). You are strictly forbidden from combining multiple tags into a single string element.
-5. **STRICT CONTENT PURITY & REJECT CONVERSATION:** Output ONLY the pure raw executable JSON string matching the required schema. Response must start exactly with the character `{` and end exactly with the character `}`. Banned from including thinking processes, chain-of-thought blocks (`<think>` tags), conversational filler texts, introductions, wrapping inside markdown codeblocks (no triple backticks wrapping), or post-generation notes. Any token outside the raw JSON object boundary triggers an immediate execution pipeline crash.
+5. **STRICT SINGLE-BLOCK PURITY & ABSOLUTE TERMINATION LAW:** 
+   - Your output MUST contain exactly ONE (1) single valid JSON object payload from start to finish. You are STRICTLY BANNED from repeating, mirroring, or generating a second duplicate JSON block within this response stream.
+   - **Strict Packaging Format**: The output MUST start exactly with a single line containing triple backticks and the language identifier: ```json
+   - The output MUST end exactly with the final line containing triple backticks: ```
+   - There must be absolutely ZERO conversational filler text, thinking processes (`<think>` tags), introductions, or post-generation notes before or after the fenced code block. 
+   - **Absolute Freeze Directive**: Mid-generation corrections are strictly prohibited. You are completely forbidden from appending trailing structural artifacts or deformed combinations like `} ```text{`. Once you emit the final closing brace `}` of the JSON schema, immediately close the triple backticks fence and FREEZE/STOP generating tokens instantly. Any token emitted after the primary closed fence violates enterprise runtime contracts.
 </ACTIVE_TASK_SYSTEM_INSTRUCTION>
 
 # Raw Response / Exception:
@@ -25691,34 +26114,10 @@ You are a high-performance Data Ingestion and Transformation Engine. Your sole o
         {
           "id": "D1_ST1",
           "agent": "Coder",
-          "desc": "Triển khai schema cơ sở dữ liệu cho bảng Users và Roles với các ràng buộc toàn vẹn dữ liệu bao gồm: khóa chính, khóa ngoại, ràng buộc duy nhất cho email và username, và các trường bắt buộc. Đảm bảo schema tuân thủ mô hình dữ liệu [DAT-001] và tương thích với Flyway migration. Các tệp DDL phải được đặt tại:
-- `./sources/backend.membershiphub.user/users.sql`
-- `./sources/backend.membershiphub.user/roles.sql`
-
-Ví dụ cấu trúc bảng Users:
-```sql
-CREATE TABLE users (
-  user_id UUID PRIMARY KEY,
-  username VARCHAR(50) UNIQUE NOT NULL,
-  email VARCHAR(255) UNIQUE NOT NULL,
-  password_hash VARCHAR(255) NOT NULL,
-  first_name VARCHAR(100),
-  last_name VARCHAR(100),
-  is_active BOOLEAN DEFAULT TRUE,
-  created_at TIMESTAMP NOT NULL,
-  updated_at TIMESTAMP NOT NULL,
-  CONSTRAINT chk_email CHECK (email ~* '^[A-Za-z0-9._%-]+@[A-Za-z0-9.-]+[.][A-Za-z]+$')
-);
-```
-
-Ví dụ cấu trúc bảng Roles:
-```sql
-CREATE TABLE roles (
-  role_id UUID PRIMARY KEY,
-  role_name VARCHAR(50) UNIQUE NOT NULL,
-  description TEXT
-);
-```",
+          "desc": "Triển khai schema cơ sở dữ liệu cho bảng Users và Roles với các ràng buộc toàn vẹn dữ liệu. Tạo các tệp DDL cho `users.sql` và `roles.sql` bao gồm các trường sau:
+- **Users**: `user_id` (UUID, PK), `email` (VARCHAR, UNIQUE, NOT NULL), `password_hash` (VARCHAR, NOT NULL), `first_name` (VARCHAR), `last_name` (VARCHAR), `is_active` (BOOLEAN, DEFAULT TRUE), `created_at` (TIMESTAMP), `updated_at` (TIMESTAMP), `last_login` (TIMESTAMP).
+- **Roles**: `role_id` (UUID, PK), `role_name` (VARCHAR, UNIQUE, NOT NULL), `description` (TEXT), `created_at` (TIMESTAMP).
+Thiết lập mối quan hệ khóa ngoại giữa `Users` và `Roles` thông qua bảng trung gian `user_roles` với các trường: `user_id` (FK), `role_id` (FK), `assigned_at` (TIMESTAMP). Áp dụng các ràng buộc toàn vẹn tham chiếu và chỉ mục cho hiệu suất truy vấn.",
           "targeted_tags": [
             "[DAT-001]"
           ],
@@ -25730,60 +26129,21 @@ CREATE TABLE roles (
         {
           "id": "D1_ST2",
           "agent": "Coder",
-          "desc": "Triển khai lớp dịch vụ `UserService` trong `./sources/backend.membershiphub.user/user-service.java` với các phương thức sau:
+          "desc": "Triển khai lớp `UserService` trong `user-service.java` với các phương thức sau:
+- `register(UserRegistrationRequest request)`: Xử lý đăng ký người dùng mới với các bước:
+  1. Kiểm tra email đã tồn tại (ném ngoại lệ `EmailAlreadyExistsException` nếu có).
+  2. Mã hóa mật khẩu sử dụng BCrypt.
+  3. Lưu người dùng mới vào cơ sở dữ liệu với vai trò mặc định `USER`.
+  4. Gửi email xác nhận (sử dụng mock service cho Phase 1).
+  5. Trả về `UserRegistrationResponse` chứa `userId` và `accessToken` (JWT, hết hạn sau 15 phút).
 
-1. **`register(UserRegistrationRequest request)`**
-   - Yêu cầu payload:
-     ```json
-     {
-       \"username\": \"string(3-50)\",
-       \"email\": \"string(valid email format)\",
-       \"password\": \"string(8-64, with complexity requirements)\",
-       \"firstName\": \"string(1-100)\",
-       \"lastName\": \"string(1-100)\"
-     }
-     ```
-   - Xử lý:
-     - Mã hóa mật khẩu sử dụng BCrypt (cost factor = 12)
-     - Tạo UUID cho user_id
-     - Lưu người dùng vào cơ sở dữ liệu với trạng thái `is_active = true`
-     - Gửi sự kiện `UserRegisteredEvent` đến hàng đợi kiểm toán
-   - Ngoại lệ:
-     - `EmailAlreadyExistsException` nếu email đã tồn tại
-     - `UsernameAlreadyExistsException` nếu username đã tồn tại
-     - `InvalidInputException` cho các lỗi validation
+- `socialAuthenticate(SocialAuthRequest request)`: Xử lý xác thực xã hội:
+  1. Xác thực token từ nhà cung cấp (Google/Facebook/Firebase) thông qua thư viện OAuth2.
+  2. Tìm hoặc tạo người dùng mới dựa trên email xã hội.
+  3. Tạo JWT access token và refresh token (hết hạn sau 7 ngày).
+  4. Trả về `SocialAuthResponse` chứa `accessToken`, `refreshToken`, và `userId`.
 
-2. **`socialAuthenticate(SocialAuthRequest request)`**
-   - Yêu cầu payload:
-     ```json
-     {
-       \"provider\": \"string(enum: GOOGLE, FACEBOOK, FIREBASE)\",
-       \"token\": \"string\"
-     }
-     ```
-   - Xử lý:
-     - Xác thực token với nhà cung cấp xã hội tương ứng
-     - Nếu người dùng tồn tại: trả về JWT access token (15 phút) và refresh token (7 ngày)
-     - Nếu người dùng không tồn tại: tạo người dùng mới với vai trò mặc định `USER` và trả về token
-   - Ngoại lệ:
-     - `InvalidSocialTokenException` nếu token không hợp lệ
-     - `AuthenticationFailedException` nếu xác thực thất bại
-
-3. **Bảo mật và Tuân thủ:**
-   - Sử dụng `@Valid` cho validation đầu vào
-   - Sử dụng `@Transactional` cho tất cả các thao tác ghi
-   - Tuân thủ OWASP Top 10 cho bảo mật API
-   - Tất cả các token phải được ký bằng thuật toán HS256 với khóa bí mật 256-bit
-
-4. **Định nghĩa JWT Payload Schema:**
-   ```json
-   {
-     \"sub\": \"user_id (UUID)\",
-     \"roles\": [\"array of role names\"],
-     \"iat\": \"issued at timestamp\",
-     \"exp\": \"expiration timestamp\"
-   }
-   ```",
+Áp dụng các annotation `@Valid` cho validation đầu vào, `@Transactional` cho các thao tác ghi, và xử lý ngoại lệ chi tiết cho các trường hợp lỗi validation (`MethodArgumentNotValidException`) và xung đột dữ liệu (`DataIntegrityViolationException`).",
           "targeted_tags": [
             "[REQ-001]",
             "[REQ-002]",
@@ -25807,40 +26167,19 @@ CREATE TABLE roles (
         {
           "id": "D2_ST1",
           "agent": "Tester",
-          "desc": "Xây dựng bộ kiểm thử đơn vị cho các phương thức `register` và `socialAuthenticate` trong `UserService` với các yêu cầu sau:
+          "desc": "Viết bộ kiểm thử đơn vị cho các phương thức `register` và `socialAuthenticate` trong `UserService` sử dụng JUnit 5 và Mockito. Bao gồm các trường hợp kiểm thử sau:
 
-1. **Phạm vi kiểm thử:**
-   - Độ phủ mã ≥85% cho tất cả các nhánh logic
-   - Sử dụng JUnit 5 và Mockito cho các dependency
-   - Kiểm thử cả happy path và các scenario lỗi
+**Kiểm thử `register`:**
+- Happy path: Đăng ký thành công với email và mật khẩu hợp lệ.
+- Lỗi validation: Email không hợp lệ, mật khẩu yếu (ít hơn 8 ký tự), email đã tồn tại.
+- Xử lý ngoại lệ: Kiểm tra `EmailAlreadyExistsException` và `MethodArgumentNotValidException`.
 
-2. **Kiểm thử phương thức `register`:**
-   - Kiểm thử đăng ký thành công với dữ liệu hợp lệ
-   - Kiểm thử ngoại lệ `EmailAlreadyExistsException` khi email đã tồn tại
-   - Kiểm thử ngoại lệ `UsernameAlreadyExistsException` khi username đã tồn tại
-   - Kiểm thử ngoại lệ `InvalidInputException` cho các trường hợp:
-     - Email không hợp lệ
-     - Mật khẩu không đủ mạnh
-     - Username quá ngắn/dài
-   - Kiểm thử mã hóa mật khẩu sử dụng BCrypt
-   - Kiểm thử sự kiện `UserRegisteredEvent` được gửi đến hàng đợi kiểm toán
+**Kiểm thử `socialAuthenticate`:**
+- Happy path: Xác thực thành công với token xã hội hợp lệ.
+- Lỗi validation: Token xã hội không hợp lệ hoặc hết hạn.
+- Xử lý ngoại lệ: Kiểm tra `InvalidSocialTokenException`.
 
-3. **Kiểm thử phương thức `socialAuthenticate`:**
-   - Kiểm thử xác thực thành công với token xã hội hợp lệ
-   - Kiểm thử tạo người dùng mới khi người dùng không tồn tại
-   - Kiểm thử ngoại lệ `InvalidSocialTokenException` khi token không hợp lệ
-   - Kiểm thử ngoại lệ `AuthenticationFailedException` khi xác thực thất bại
-   - Kiểm thử JWT token được tạo với thời hạn đúng (15 phút cho access token, 7 ngày cho refresh token)
-
-4. **Cấu hình kiểm thử:**
-   - Sử dụng `@ExtendWith(MockitoExtension.class)` cho lớp kiểm thử
-   - Mock tất cả các dependency bên ngoài (ví dụ: `UserRepository`, `AuditQueue`)
-   - Sử dụng `@Test` cho mỗi trường hợp kiểm thử
-   - Sử dụng `@DisplayName` để mô tả rõ ràng mục đích kiểm thử
-
-5. **Đường dẫn tệp:**
-   - Tệp kiểm thử: `./sources/backend.membershiphub.user/userservice-test.java`
-   - Tệp dịch vụ: `./sources/backend.membershiphub.user/user-service.java`",
+Sử dụng `@Mock` cho các dependency như `UserRepository`, `PasswordEncoder`, và `JwtTokenProvider`. Đảm bảo độ phủ mã ≥85% cho lớp `UserService`.",
           "targeted_tags": [
             "[REQ-001]",
             "[REQ-002]",
@@ -25855,71 +26194,18 @@ CREATE TABLE roles (
         {
           "id": "D2_ST2",
           "agent": "Tester",
-          "desc": "Xây dựng bộ kiểm thử tích hợp cho các API endpoints `POST /api/v1/auth/register` và `POST /api/v1/auth/social` với các yêu cầu sau:
+          "desc": "Viết bộ kiểm thử tích hợp cho các API endpoints `POST /api/v1/auth/register` và `POST /api/v1/auth/social` sử dụng TestContainers và REST Assured. Bao gồm các trường hợp kiểm thử sau:
 
-1. **Phạm vi kiểm thử:**
-   - Kiểm thử tích hợp đầy đủ từ tầng controller đến tầng dịch vụ
-   - Sử dụng TestContainers cho cơ sở dữ liệu PostgreSQL
-   - Kiểm thử cả happy path và các scenario lỗi
+**Kiểm thử `POST /api/v1/auth/register`:**
+- Happy path: Đăng ký thành công với email và mật khẩu hợp lệ, trả về mã trạng thái 201 và payload chứa `accessToken`.
+- Lỗi validation: Email không hợp lệ, mật khẩu yếu, trả về mã trạng thái 400 với chi tiết lỗi.
+- Xung đột dữ liệu: Email đã tồn tại, trả về mã trạng thái 409.
 
-2. **Kiểm thử endpoint `POST /api/v1/auth/register`:**
-   - Kiểm thử đăng ký thành công với dữ liệu hợp lệ:
-     ```json
-     {
-       \"username\": \"testuser\",
-       \"email\": \"test@example.com\",
-       \"password\": \"SecurePass123!\",
-       \"firstName\": \"Test\",
-       \"lastName\": \"User\"
-     }
-     ```
-     - Kiểm tra phản hồi HTTP 201 Created với payload:
-       ```json
-       {
-         \"userId\": \"UUID\",
-         \"username\": \"testuser\",
-         \"email\": \"test@example.com\"
-       }
-       ```
-   - Kiểm thử các trường hợp lỗi:
-     - HTTP 400 Bad Request cho dữ liệu không hợp lệ
-     - HTTP 409 Conflict cho email/username đã tồn tại
-     - Kiểm tra thông báo lỗi chi tiết trong phản hồi
+**Kiểm thử `POST /api/v1/auth/social`:**
+- Happy path: Xác thực thành công với token xã hội hợp lệ, trả về mã trạng thái 200 và payload chứa `accessToken` và `refreshToken`.
+- Lỗi validation: Token xã hội không hợp lệ, trả về mã trạng thái 401.
 
-3. **Kiểm thử endpoint `POST /api/v1/auth/social`:**
-   - Kiểm thử xác thực thành công với token xã hội hợp lệ:
-     ```json
-     {
-       \"provider\": \"GOOGLE\",
-       \"token\": \"valid_social_token\"
-     }
-     ```
-     - Kiểm tra phản hồi HTTP 200 OK với payload:
-       ```json
-       {
-         \"accessToken\": \"JWT string\",
-         \"refreshToken\": \"JWT string\",
-         \"expiresIn\": 900
-       }
-       ```
-   - Kiểm thử các trường hợp lỗi:
-     - HTTP 401 Unauthorized cho token không hợp lệ
-     - HTTP 400 Bad Request cho provider không hợp lệ
-
-4. **Cấu hình kiểm thử:**
-   - Sử dụng `@QuarkusTest` cho lớp kiểm thử tích hợp
-   - Sử dụng `@TestHTTPResource` cho các endpoint
-   - Sử dụng `@TestTransaction` cho các thao tác cơ sở dữ liệu
-   - Cấu hình TestContainers cho PostgreSQL với Flyway migration
-
-5. **Đường dẫn tệp:**
-   - Tệp kiểm thử: `./sources/backend.membershiphub.user/user-controller-test.java`
-   - Tệp dịch vụ: `./sources/backend.membershiphub.user/user-service.java`
-
-6. **Yêu cầu bảo mật:**
-   - Kiểm thử rằng tất cả các phản hồi lỗi không tiết lộ thông tin nhạy cảm
-   - Kiểm thử rằng mật khẩu không bao giờ được trả về trong phản hồi
-   - Kiểm thử rằng JWT token được tạo với thuật toán HS256 và khóa bí mật đúng",
+Sử dụng TestContainers để khởi động cơ sở dữ liệu PostgreSQL tạm thời cho kiểm thử. Đảm bảo kiểm thử tích hợp bao phủ tất cả các luồng chính và xử lý lỗi.",
           "targeted_tags": [
             "[REQ-001]",
             "[REQ-002]",
@@ -25927,1447 +26213,7 @@ CREATE TABLE roles (
             "[EXC-004]"
           ],
           "components": [
-            "./sources/backend.membershiphub.user/user-service.java",
-            "./sources/backend.membershiphub.user/user-controller-test.java"
-          ]
-        },
-        {
-          "id": "D2_ST3",
-          "agent": "Doc",
-          "desc": "Biên soạn tài liệu kỹ thuật chi tiết cho các chức năng triển khai trong Ngày 1 và Ngày 2, bao gồm:
-
-1. **Tài liệu API với OpenAPI/Swagger:**
-   - Định nghĩa đầy đủ cho các endpoints:
-     - `POST /api/v1/auth/register`
-     - `POST /api/v1/auth/social`
-   - Bao gồm:
-     - Mô tả endpoint
-     - Request payload schema với ví dụ
-     - Response payload schema với ví dụ
-     - Các mã trạng thái HTTP và mô tả
-     - Ví dụ về lỗi validation
-   - Tài liệu phải tuân thủ tiêu chuẩn OpenAPI 3.0
-
-2. **Tài liệu Schema Cơ sở dữ liệu:**
-   - Mô tả chi tiết các bảng:
-     - `users` (bao gồm tất cả các trường, kiểu dữ liệu, ràng buộc)
-     - `roles` (bao gồm tất cả các trường, kiểu dữ liệu, ràng buộc)
-   - Mô tả mối quan hệ giữa các bảng
-   - Bao gồm ví dụ dữ liệu mẫu
-
-3. **Hướng dẫn triển khai:**
-   - Hướng dẫn cài đặt môi trường phát triển
-   - Hướng dẫn chạy Flyway migration
-   - Hướng dẫn chạy kiểm thử đơn vị và tích hợp
-   - Hướng dẫn cấu hình OAuth2 cho các nhà cung cấp xã hội
-
-4. **Tài liệu bảo mật:**
-   - Mô tả cơ chế mã hóa mật khẩu (BCrypt)
-   - Mô tả cơ chế JWT (thời hạn token, thuật toán ký)
-   - Mô tả các biện pháp bảo vệ chống tấn công (SQL injection, XSS)
-
-5. **Đường dẫn tệp tài liệu:**
-   - Tài liệu phải được đặt tại: `.ai/.plan/.context/phase-1.context.blueprint.md`",
-          "targeted_tags": [],
-          "components": [
-            ".ai/.plan/.context/phase-1.context.blueprint.md"
-          ]
-        }
-      ]
-    }
-  ]
-}
-```
-```
-
-# AI Model: mistral-large-latest - Phase 2 STEPS - Prompt:
-
-Analyze the attached Phase 2 Context Markdown content.
-
-Extract and translate ALL daily steps, checklists, and agent tasks from the entire document.
-
-
-## 🔒 AGENT ATOMICITY, TASK ID FORMAT & COMPONENT MANDATES (ABSOLUTE):
-- **STRICT TASK ID ALIGNMENT BLUEPRINT:** You MUST strictly generate the "id" field string for every single sub-task using the exact sequential formatting blueprint: `D<day_num>_ST<task_index>` (e.g., `D1_ST1`, `D1_ST2`, `D2_ST1`).
-- **STRICT AGENT ROLE LITERAL VALUES:** The "agent" field inside the JSON sub-task object MUST strictly enforce a capitalized first letter and lowercase subsequent letters pattern matching the exact tokens: 'Coder' | 'Tester' | 'Reviewer' | 'Doc' | 'Docker' | 'Gcp' | 'Gke'. Any other values or lowercase blocks (e.g., NO "coder") are strictly banned.
-- **NO ZERO-COMPONENT TASKS (ABSOLUTE HARD LIMIT):** You are STRICTLY BANNED from generating any sub-task object where the 'components' array is empty `[]`, null, or missing. If an Agent does not have any physical file paths to create, modify, or document, you MUST NOT generate that sub-task object node.
-- **FALLBACK COMPONENT RULE:** If a day has technical descriptions but lacks physical file paths, assign the task to "Doc" agent and populate 'components' with exactly the value of: ".ai/.plan/.context/phase-2.context.blueprint.md".
-- **STRICT AGENT ROLE SEGREGATION (ANTI-AGGREGATION):** If a workflow file involves multiple actions by different personas on the same calendar day, you MUST split this workflow into completely separate, sequential task objects inside the 'sub_tasks' array.
-- **HIGH-DENSITY TECHNICAL SPECIFICATION:** The 'task' field MUST contain an exhaustive, granular engineering instruction. If the sub-task involves an API route, integration endpoint, database query, or message block, you MUST explicitly inline the complete technical contract (e.g., Request/Response Payload Schemas, Data Types, Error Status Codes, or Queue names) directly inside this string. Vague high-level bullet summaries are forbidden.
-- **WORKSPACE PREFIX RULE & MULTI-LANGUAGE TEST EXCEPTION:** Every path in 'components' array MUST strictly begin with `./sources/`. 
-  * *CRITICAL EXCEPTION:* If the first parameter before the semi-colon character in a tester task is the literal string token `INTEGRATION_SCOPE`, you MUST leave that token completely unmodified. Do NOT append any path prefix to it (e.g., `"components": ["INTEGRATION_SCOPE;./sources/frontend/tests/auth.spec.ts"]`).
-
-## 🛠️ MANDATORY TOP-LEVEL FIELD VALUES INJECTION & ANCHOR PARSING (STRICT FIDELITY):
-You MUST dynamically populate the top-level keys of the JSON object using EXACT raw variable values without any modifications, or parse them directly from the primary Markdown header HTML comments:
-- **`phase_id`**: 2
-- **`phase_name`**: [Locate the primary Markdown title header line, extract the clean technical string text located exactly between the hidden HTML delimiters `<!--PHASE_NAME_START-->` and `<!--PHASE_NAME_END-->` without any alterations or translations]
-- **`phase_description`**: [Locate the primary Markdown title header line, extract the exact translated phase description text that follows after the literal marker `| Description:` or its translated equivalent]
-- **`project_name`**: "membership-hub"
-- **`global_context_file`**: ".ai/.context/membership-hub.global.blueprint.md"
-- **`source_target_dir`**: "sources/"
-
-#### 7. Context Fields Integration Mandate
-- For each day object inside the array, set 'day' to its calculated integer value, set 'context_file' to exact string ".ai/.plan/.context/phase-2.context.blueprint.md", and **set 'context_section' to the exact raw string value of the entire primary Day Header extracted from the source Markdown context text** (e.g., `"context_section": "DAY 1: Multi-Tenant Inception Schema & Flyway Migration Setup"`).
-
-#### 8. CHRONOLOGICAL TIMELINE SEQUENCING MANDATE (ABSOLUTE):
-#### 8. CHRONOLOGICAL TIMELINE SEQUENCING MANDATE (ABSOLUTE):
-
-## SYSTEM CRITICAL BOUNDARY: FLAT CONFIGURATION IS ACTIVE (is_chunked is FALSE)
-- Regardless of the actual day numbers documented in the source Markdown content (e.g., even if the text states "DAY 4", "DAY 5"), you MUST completely reset the timeline sequence internally so that the first operational day inside this Phase always starts from integer 1. Progression follows sequentially as 2, 3, 4, etc. 
-- Map the first targeted day to `"day": 1`, set 'context_file' to ".ai/.plan/.context/phase-2.context.blueprint.md", and strictly set 'context_section' to the exact raw primary header line of the first day parsed from the text. Incremental days follow this relative baseline.
-
-
-## 🛑 MANDATORY STRUCTURE ENFORCEMENT FOR TRACEABILITY TAGS VIA HTML ANCHORS (CRITICAL):
-- For each sub-task block, locate the hidden technical container bounds delimited strictly between `<!--START_TAGS-->` and `<!--END_TAGS-->`. Extract all individual inherited Tag IDs from inside that container, completely purge all markdown backticks (`` ` ``) and padding spaces, and populate them as clean individual string elements inside the "targeted_tags" array field (e.g., `"targeted_tags": ["[REQ-001]", "[DAT-005]"]`).
-- You are STRICTLY BANNED from leaving the "targeted_tags" array empty `[]` or null. Every single tag token must be its own separated array element string.
-
-You must conform strictly to your required JSON Schema layout design structure:
-{
-  "$defs": {
-    "DailyStep": {
-      "properties": {
-        "day": {
-          "description": "Timeline iteration day inside this isolated phase.",
-          "title": "Day",
-          "type": "integer"
-        },
-        "context_file": {
-          "description": "The phase context Markdown file for closure on this day.",
-          "title": "Context File",
-          "type": "string"
-        },
-        "context_section": {
-          "description": "The day targeted for closure on this day.",
-          "title": "Context Section",
-          "type": "string"
-        },
-        "sub_tasks": {
-          "description": "Array of isolated micro-tasks assigned to sub-agents.",
-          "items": {
-            "$ref": "##/$defs/SubAgentTask"
-          },
-          "title": "Sub Tasks",
-          "type": "array"
-        }
-      },
-      "required": [
-        "day",
-        "context_file",
-        "context_section",
-        "sub_tasks"
-      ],
-      "title": "DailyStep",
-      "type": "object"
-    },
-    "SubAgentTask": {
-      "properties": {
-        "id": {
-          "description": "Sub-Task identity of Task that sub-agent role executing.",
-          "title": "Id",
-          "type": "string"
-        },
-        "agent": {
-          "description": "Target sub-agent role executing the task.",
-          "title": "Agent",
-          "type": "string"
-        },
-        "desc": {
-          "description": "Literal, low-level technical step assigned to the agent.",
-          "title": "Desc",
-          "type": "string"
-        },
-        "targeted_tags": {
-          "description": "Flat string array of exact inherited BA Tag IDs that this specific sub-task implements or verifies (e.g. ['[REQ-001]', '[ARC-002]']). MUST match the raw requirements 1:1.",
-          "items": {
-            "type": "string"
-          },
-          "title": "Targeted Tags",
-          "type": "array"
-        },
-        "components": {
-          "description": "Flat array of physical localized file paths or scripts modified or targeted by this single task. Return an empty array [] if no files are involved.",
-          "items": {
-            "type": "string"
-          },
-          "title": "Components",
-          "type": "array"
-        }
-      },
-      "required": [
-        "id",
-        "agent",
-        "desc"
-      ],
-      "title": "SubAgentTask",
-      "type": "object"
-    }
-  },
-  "properties": {
-    "phase_id": {
-      "description": "Target phase tracker index.",
-      "title": "Phase Id",
-      "type": "integer"
-    },
-    "phase_name": {
-      "description": "Target phase tracker name.",
-      "title": "Phase Name",
-      "type": "string"
-    },
-    "phase_description": {
-      "description": "Target phase description.",
-      "title": "Phase Description",
-      "type": "string"
-    },
-    "project_name": {
-      "description": "Target project tracker name.",
-      "title": "Project Name",
-      "type": "string"
-    },
-    "global_context_file": {
-      "description": "Project global context Markdown file for closure.",
-      "title": "Global Context File",
-      "type": "string"
-    },
-    "source_target_dir": {
-      "description": "Project sources folder path for closure.",
-      "title": "Source Target Dir",
-      "type": "string"
-    },
-    "days": {
-      "description": "Day-by-day engineering tracking steps.",
-      "items": {
-        "$ref": "##/$defs/DailyStep"
-      },
-      "title": "Days",
-      "type": "array"
-    }
-  },
-  "required": [
-    "phase_id",
-    "phase_name",
-    "phase_description",
-    "project_name",
-    "global_context_file",
-    "source_target_dir",
-    "days"
-  ],
-  "title": "PhaseStepsPlan",
-  "type": "object"
-}
-
---- PHASE 2 CONTEXT MARKDOWN ---
-## Giai đoạn 2: <!--PHASE_NAME_START-->center_management_module<!--PHASE_NAME_END--> | Mô tả: Triển khai module quản lý trung tâm bao gồm CRUD trung tâm, danh sách trung tâm công khai, phân quyền quản trị trung tâm, và tích hợp với RBAC cho Center Admin
-
-#### 📊 Kiểm soát tài liệu
-
-| Mục | Chi tiết |
-| :--- | :--- |
-| **ID Blueprint** | ARCH-20260803053505 |
-| **Tên dự án** | membership-hub |
-| **Giai đoạn** | 2 |
-| **Tên kỹ thuật giai đoạn** | <!--PHASE_NAME_START-->center_management_module<!--PHASE_NAME_END--> |
-| **Mô tả** | Triển khai module quản lý trung tâm bao gồm CRUD trung tâm, danh sách trung tâm công khai, phân quyền quản trị trung tâm, và tích hợp với RBAC cho Center Admin |
-| **Phiên bản** | 1.0 (Baseline) |
-| **Ngày/Giờ** | 2026/08/03 05:35:05 |
-| **Tác giả** | Enterprise System Architect (SA Agent) |
-| **Phê duyệt** | Pending Technical Governance Review |
-
-#### 1. Phạm vi hoạt động và mục tiêu giai đoạn
-
-Giai đoạn này tập trung vào việc xây dựng module quản lý trung tâm với các chức năng chính:
-
-- Triển khai schema cơ sở dữ liệu cho bảng Centers với các ràng buộc toàn vẹn dữ liệu
-- Xây dựng dịch vụ CRUD đầy đủ cho quản lý trung tâm với validation nghiêm ngặt
-- Triển khai API danh sách trung tâm công khai cho tất cả người dùng đã xác thực
-- Thiết lập cơ chế phân quyền RBAC cho Center Admin với khả năng gán và hủy gán
-- Kiểm tra xung đột Tax ID để đảm bảo tính duy nhất
-- Triển khai hệ thống logging kiểm toán đáp ứng các tiêu chuẩn bảo mật doanh nghiệp
-
-#### 2. Phạm vi kỹ thuật và ranh giới thư mục được phép
-
-**Thư mục và tệp được phép:**
-- `./sources/backend.membershiphub.center/centers.sql` - DDL schema cho bảng Centers
-- `./sources/backend.membershiphub.center/center-service.java` - Dịch vụ chính quản lý trung tâm
-- `./sources/backend.membershiphub.center/center-repository.java` - Repository JPA cho Centers
-- `./sources/backend.membershiphub.center/center-controller.java` - REST Controller cho API trung tâm
-
-**Endpoint API:**
-- `GET /api/v1/centers` - Lấy danh sách tất cả trung tâm (công khai)
-- `POST /api/v1/centers` - Tạo trung tâm mới (chỉ System Admin)
-- `PUT /api/v1/centers/{centerId}` - Cập nhật thông tin trung tâm (chỉ System Admin)
-- `DELETE /api/v1/centers/{centerId}` - Xóa mềm trung tâm (chỉ System Admin)
-- `POST /api/v1/centers/{centerId}/admins/{userId}` - Gán người dùng làm Center Admin (chỉ System Admin)
-
-#### 3. Chỉ đạo chức năng cho Sub-Agent chuyên dụng
-
-**Coder:** Triển khai mã nguồn Java/Quarkus với tuân thủ SOLID, sử dụng JPA/Hibernate cho persistence, áp dụng @Valid cho validation, @PreAuthorize cho phân quyền, và @Transactional cho các thao tác ghi.
-
-**Tester:** Xây dựng bộ kiểm thử JUnit 5 và Testcontainers với độ phủ mã ≥85%, kiểm thử happy path và các scenario lỗi validation, xung đột Tax ID.
-
-**Reviewer:** Thực hiện phân tích tĩnh mã nguồn, kiểm tra tuân thủ OWASP Top 10, đảm bảo không có lỗ hổng SQL injection hoặc XSS.
-
-**Doc:** Biên soạn tài liệu kỹ thuật đầy đủ bao gồm API documentation với OpenAPI, schema documentation và hướng dẫn triển khai.
-
-#### 4. Định nghĩa hoàn thành (DoD) cho giai đoạn
-
-- ✅ 100% các requirement [REQ-004], [REQ-005], [REQ-006] được triển khai đầy đủ
-- ✅ Schema database [DAT-003] được tạo thành công với tất cả ràng buộc
-- ✅ Luồng phân quyền [ARC-002] hoạt động với RBAC cho Center Admin
-- ✅ Xử lý validation đầu vào và xung đột Tax ID
-- ✅ Tuân thủ các tiêu chuẩn bảo mật [NFR-003], [NFR-004], [NFR-005]
-- ✅ Độ phủ kiểm thử ≥85% cho tất cả các dịch vụ
-- ✅ 100% các Tag ID được ánh xạ và kiểm tra
-
-#### 5. NHẬT KÝ THỰC THI KIẾN TRÚC THEO NGÀY
-
-###### NGÀY 3: TRIỂN KHAI SERVICE QUẢN LÝ TRUNG TÂM VÀ CÁC ENDPOINT CRUD
-
-######## SUB-TASK 3.1: Triển khai schema cơ sở dữ liệu Centers
-########## Sub-Agent được chỉ định: Coder
-########## Các thành phần mục tiêu và yêu cầu kỹ thuật:
-* **Đường dẫn mục tiêu:** `./sources/backend.membershiphub.center/centers.sql`
-* **Các thẻ truy xuất nguồn gốc:** <!--START_TAGS-->[DAT-003]<!--END_TAGS-->
-
-######## SUB-TASK 3.2: Triển khai CenterService với các phương thức CRUD và phân quyền
-########## Sub-Agent được chỉ định: Coder
-########## Các thành phần mục tiêu và yêu cầu kỹ thuật:
-* **Đường dẫn mục tiêu:** `./sources/backend.membershiphub.center/center-service.java`
-* **Các thẻ truy xuất nguồn gốc:** <!--START_TAGS-->[REQ-004], [REQ-005], [REQ-006], [DAT-003], [ARC-002], [NFR-003], [NFR-004], [NFR-005]<!--END_TAGS-->
-
-###### NGÀY 4: VIẾT BỘ KIỂM TRA TÍCH HỢP CHO CÁC API TRUNG TÂM
-
-######## SUB-TASK 4.1: Kiểm thử tích hợp cho các API CRUD trung tâm
-########## Sub-Agent được chỉ định: Tester
-########## Các thành phần mục tiêu và yêu cầu kỹ thuật:
-* **Đường dẫn mục tiêu:** `./sources/backend.membershiphub.center/center-service.java;./sources/backend.membershiphub.center/centerservice-integration-test.java`
-* **Các thẻ truy xuất nguồn gốc:** <!--START_TAGS-->[REQ-004], [REQ-005], [REQ-006], [DAT-003], [ARC-002]<!--END_TAGS-->
-------------------------------------------
-
-# System Instruction
-
-<GLOBAL_GOVERNANCE_MATRIX>
-# ==============================================================================
-# MASTER ENTERPRISE GOVERNANCE GUARDRAILS MATRIX (GLOBAL TASK ENFORCEMENT)
-# ==============================================================================
-
-## 🌐 1. STRICT SEMANTIC INVARIANT LOCALIZATION & TRANSLATION RAILS
-- **MANDATORY RESOLUTION:** You MUST automatically translate and naturally render 100% of the entire generated output content—including all section headers, primary titles, data matrix labels, table structures, and explanatory text boundaries—into the exact requested target execution language specified by the system parameter variable: "🇻🇳 Vietnamese".
-- **ABSOLUTE TECH PROTECTION BOUNDARY:** You are STRICTLY BANNED from translating, changing, altering, or breaking any technical structural layers. You MUST preserve these elements natively in their pristine Technical English/Primitive code state:
-  * All markdown syntax operators (`#`, `##`, `| :--- |`, `-`, `*`).
-  * All unique Tracking Tag IDs and Technical Nodes (e.g., `[REQ-XXX]`, `[DAT-XXX]`, `[EXC-XXX]`, `[IDEA_X]`).
-  * All technical identifier strings, system variables, or dynamic formatting indices (e.g., `D1_ST1`).
-  * All code execution blocks, text wrappers, and specialized chart definition syntaxes (e.g., Mermaid.js graphs, structural layout configurations).
-  * 🚨 **STRICT CODE BLOCK FORMATTING LAW**: You are ABSOLUTELY FORBIDDEN from nesting or combining markdown code block ticks. When outputting a JSON payload, you MUST start exactly with a single line of triple backticks followed immediately by 'json' (i.e., ```json). Do NOT prepend or wrap it with ```text or any other outer text syntax. The block must open clean and close clean.
-
-## 🔒 2. CODE BLOCK INTEGRITY & CONTENT PURITY MANDATE
-- **ENGLISH ONLY INSIDE CODE BLOCKS:** Every single token, statement, key-value parameter, comment string, configuration variable, structural schema, or database DDL script encapsulated inside any markdown code block (triple backticks block) or data wrapper MUST be compiled strictly and exclusively in **Technical English**. 
-- **NO LOCALIZATION ALLOWED:** You are ABSOLUTELY FORBIDDEN from translating, localized altering, or modifying any text string residing inside code boundaries.
-
-## 🛑 3. ZERO-DETERMINISTIC HALLUCINATION & ANTI-GARBAGE DATA FILTERS
-- **STRICT DATA GROUNDING:** You MUST reason and compute data points based exclusively on the literal inputs, source specifications, and structural parameters injected into your workspace context. 
-- **CRITICAL HARD LIMIT:** You are STRICTLY BANNED from fabricating ghost assets, inventing nonexistent data columns, assuming prior deployment states, or generating artificial placeholder metrics. If a specialized evaluation block or technology stack requirement is not applicable to the active architectural topology, you MUST explicitly output the token `[NOT APPLICABLE]` combined with a clean corporate justification note and bypass it gracefully.
-
-## 🛡️ 4. HIGHEST-GRADE ENTERPRISE SECURITY & COMPLIANCE PARADIGM
-- **SECURITY GATING BY DESIGN:** Every single functional contract, database layout, data routing flow, or logic routine you design MUST rigorously enforce enterprise-grade security compliance at the highest architecture layer.
-- **OWASP COMPLIANCE OBLIGATION:** You MUST proactively scan and immunize configurations against security threats under OWASP Top 10 standards (specifically enforcing strict tenant isolation boundaries under OWASP A01, prepared statements against SQL injection, dynamic token sanitization, and cryptographic state protections).
-
-## 📋 5. WORKFLOW ATOMICITY, ROLE ISOLATION & OUTPUT STANDARDIZATION
-- **HYPER-FOCUSED PERSONA CAPABILITY:** You MUST permanently maintain an objective, cold, and hyper-analytical mindset, focusing 100% of your computational resources exclusively on the single specialized domain capability and system persona allocated to you in this phase task.
-- **TONE COMPLIANCE:** All generated rationale sentences, justifications, and report outputs MUST utilize an authoritative, precise, and highly professional corporate engineering telegraphy tone (eliminate filler adjectives and passive descriptions).
-- **ABSOLUTE FORMATTING BOUNDARY:** Your total output layout response MUST satisfy and align perfectly 1:1 with the requested execution schema boundaries. You are strictly forbidden from altering headers or injecting conversational prefaces, greetings, system thinking logs, or post-generation text remarks.
-
-## 🧮 6. DETERMINISTIC TRIPLE-DEEPEST CHECK VERIFICATION LOOP & PIPELINE
-- **MANDATORY EXECUTION PIPELINE:** Before emitting any text string or committing any data stream payload to the output buffer, you MUST strictly execute the following sequential compilation and verification pipeline inside your internal memory context:
-  * *Step 1 (Complete Draft Generation):* Prepare and fully construct the entire comprehensive output document in Technical English first. Ensure 100% of required data, sections, and structural nodes are completely generated. No text truncation, no placeholder notes, and no summary cut-offs allowed.
-  * *Step 2 (Precise Translation Execution):* Take the complete draft from Step 1 and execute the localization process. Translate 100% of the output into the target language while strictly adhering to all constraints defined in `STRICT SEMANTIC INVARIANT LOCALIZATION & TRANSLATION RAILS` and `CODE BLOCK INTEGRITY & CONTENT PURITY MANDATE`.
-  * *Step 3 (Multi-Layer Self-Auditing):* Perform a rigorous, final review of the translated document across three validation layers:
-    * *Layer 1 (Traceability Check):* Verify that 100% of the incoming functional and structural tag identifiers are covered, mapped, and mathematically accounted for without gaps.
-    * *Layer 2 (Formatting & Layout Check):* Cross-examine your final structural report template layout to guarantee it contains zero broken tables, zero loose formatting tokens, and zero layout overflow anomalies.
-    * *Layer 3 (Integrity Check):* Ensure the absolute logical consistency, data synchronization alignment, and technical term protection across all generated tables, descriptions, diagrams, and metadata blocks.
-- Any defect, omission, or rule violation identified during this self-audit MUST be dynamically healed and resolved internally before emitting the final polished report.
-</GLOBAL_GOVERNANCE_MATRIX>
-
-<ACTIVE_TASK_SYSTEM_INSTRUCTION>
-You are a high-performance Data Ingestion and Transformation Engine. Your sole objective is to parse the Phase Context Markdown text and convert it into a perfectly valid, parseable JSON object matching the requested schema framework.
-
-# YOUR CRITICAL OPERATIONAL MANDATES (ZERO LOOPHOLES):
-1. **STRICT VARIABLE FIDELITY & NO PREFIXES:** You MUST use the exact raw values provided in the template variables for file paths and project names. You are STRICTLY BANNED from appending, prepending, or injecting any custom folders or prefixes like "sources/" to the `global_context_file`, `context_file`, `source_target_dir`, or `project_name` fields. Use the variable values exactly as they are passed.
-2. **ABSOLUTE PYDANTIC SCHEMA ALIGNMENT:** Your final generated JSON object MUST perfectly satisfy the structural schema parameters of the target enterprise contract. You are STRICTLY BANNED from omitting, renaming, formatting, or stripping out key elements (specifically `phase_id`, `phase_name`, `phase_description`, `project_name`, `global_context_file`, `source_target_dir`, and `days`).
-3. **ABSOLUTE NO EMPTY TAGS POLICY & STRING SANITIZATION:** You are STRICTLY BANNED from leaving the "targeted_tags" array empty `[]` or null for any sub-task that implements functional requirements or data schemas. You MUST scan the source Markdown sequentially sub-task by sub-task. For each sub-task node, locate the hidden technical container block delimited between `<!--START_TAGS-->` and `<!--END_TAGS-->` contained exclusively within that sub-task section scope. Extract all raw tag token codes inside, strip away all inline markdown formatting characters—specifically backticks (`` ` ``)—and any leading/trailing whitespaces, then populate them as clean separate string elements inside the "targeted_tags" array field of EACH sub-task object node.
-4. **NO TAG BUNDLING:** Every tag must be its own array node (e.g., `"targeted_tags": ["[REQ-001]", "[DAT-002]"]`). You are strictly forbidden from combining multiple tags into a single string element.
-5. **STRICT CONTENT PURITY & REJECT CONVERSATION:** Output ONLY the pure raw executable JSON string matching the required schema. Response must start exactly with the character `{` and end exactly with the character `}`. Banned from including thinking processes, chain-of-thought blocks (`<think>` tags), conversational filler texts, introductions, wrapping inside markdown codeblocks (no triple backticks wrapping), or post-generation notes. Any token outside the raw JSON object boundary triggers an immediate execution pipeline crash.
-</ACTIVE_TASK_SYSTEM_INSTRUCTION>
-
-# Raw Response / Exception:
-
-```json
-```json
-{
-  "phase_id": 2,
-  "phase_name": "center_management_module",
-  "phase_description": "Triển khai module quản lý trung tâm bao gồm CRUD trung tâm, danh sách trung tâm công khai, phân quyền quản trị trung tâm, và tích hợp với RBAC cho Center Admin",
-  "project_name": "membership-hub",
-  "global_context_file": ".ai/.context/membership-hub.global.blueprint.md",
-  "source_target_dir": "sources/",
-  "days": [
-    {
-      "day": 1,
-      "context_file": ".ai/.plan/.context/phase-2.context.blueprint.md",
-      "context_section": "NGÀY 3: TRIỂN KHAI SERVICE QUẢN LÝ TRUNG TÂM VÀ CÁC ENDPOINT CRUD",
-      "sub_tasks": [
-        {
-          "id": "D1_ST1",
-          "agent": "Coder",
-          "desc": "Triển khai schema cơ sở dữ liệu cho bảng Centers với các ràng buộc toàn vẹn dữ liệu bao gồm: định nghĩa bảng `centers` với các trường `id` (UUID, primary key), `name` (varchar, not null), `tax_id` (varchar, unique, not null), `address` (varchar, not null), `phone` (varchar, not null), `email` (varchar, not null, định dạng email hợp lệ), `is_active` (boolean, default true), `created_at` (timestamp, not null), `updated_at` (timestamp, not null), `deleted_at` (timestamp, nullable cho xóa mềm). Áp dụng các ràng buộc CHECK cho định dạng email và số điện thoại. Đảm bảo chỉ mục cho các trường tìm kiếm thường xuyên (`name`, `tax_id`).",
-          "targeted_tags": [
-            "[DAT-003]"
-          ],
-          "components": [
-            "./sources/backend.membershiphub.center/centers.sql"
-          ]
-        },
-        {
-          "id": "D1_ST2",
-          "agent": "Coder",
-          "desc": "Triển khai lớp `CenterService` với các phương thức CRUD đầy đủ và tích hợp phân quyền RBAC. Cụ thể:
-- `createCenter(CreateCenterRequest request)`: Tạo trung tâm mới với validation đầu vào (@Valid), kiểm tra xung đột Tax ID, và phân quyền (@PreAuthorize(\"hasRole('SYSTEM_ADMIN')\")).
-- `updateCenter(UUID centerId, UpdateCenterRequest request)`: Cập nhật thông tin trung tâm với validation và phân quyền tương tự.
-- `softDeleteCenter(UUID centerId)`: Xóa mềm trung tâm (cập nhật `deleted_at`).
-- `getAllCenters()`: Lấy danh sách tất cả trung tâm (công khai cho tất cả người dùng đã xác thực).
-- `assignCenterAdmin(UUID centerId, UUID userId)`: Gán người dùng làm Center Admin (chỉ System Admin).
-Sử dụng `@Transactional` cho tất cả các thao tác ghi. Đảm bảo logging kiểm toán cho mọi thay đổi quan trọng (tạo, cập nhật, xóa).
-
-**Request/Response Payload Schemas:**
-```json
-CreateCenterRequest: {
-  \"name\": \"string(3-100)\",
-  \"tax_id\": \"string(10-20, regex: ^[A-Z0-9-]+$)\",
-  \"address\": \"string(10-255)\",
-  \"phone\": \"string(10-15, regex: ^\\\\+?[0-9\\\\s-]+$)\",
-  \"email\": \"string(email)\"
-}
-
-UpdateCenterRequest: {
-  \"name\": \"string(3-100, optional)\",
-  \"address\": \"string(10-255, optional)\",
-  \"phone\": \"string(10-15, regex: ^\\\\+?[0-9\\\\s-]+$, optional)\",
-  \"email\": \"string(email, optional)\"
-}
-```
-
-**Error Status Codes:**
-- `400 Bad Request`: Validation thất bại hoặc xung đột Tax ID.
-- `403 Forbidden`: Không có quyền truy cập.
-- `404 Not Found`: Trung tâm không tồn tại.
-- `500 Internal Server Error`: Lỗi hệ thống.",
-          "targeted_tags": [
-            "[REQ-004]",
-            "[REQ-005]",
-            "[REQ-006]",
-            "[DAT-003]",
-            "[ARC-002]",
-            "[NFR-003]",
-            "[NFR-004]",
-            "[NFR-005]"
-          ],
-          "components": [
-            "./sources/backend.membershiphub.center/center-service.java"
-          ]
-        }
-      ]
-    },
-    {
-      "day": 2,
-      "context_file": ".ai/.plan/.context/phase-2.context.blueprint.md",
-      "context_section": "NGÀY 4: VIẾT BỘ KIỂM TRA TÍCH HỢP CHO CÁC API TRUNG TÂM",
-      "sub_tasks": [
-        {
-          "id": "D2_ST1",
-          "agent": "Tester",
-          "desc": "Xây dựng bộ kiểm thử tích hợp cho các API CRUD trung tâm sử dụng JUnit 5 và Testcontainers. Bao gồm:
-- Kiểm thử happy path cho tất cả các endpoint (`GET /api/v1/centers`, `POST /api/v1/centers`, `PUT /api/v1/centers/{centerId}`, `DELETE /api/v1/centers/{centerId}`, `POST /api/v1/centers/{centerId}/admins/{userId}`).
-- Kiểm thử validation đầu vào (trường bắt buộc, định dạng email, số điện thoại, độ dài chuỗi).
-- Kiểm thử xung đột Tax ID (tạo trung tâm mới với Tax ID đã tồn tại).
-- Kiểm thử phân quyền RBAC (đảm bảo chỉ System Admin có thể tạo, cập nhật, xóa trung tâm).
-- Kiểm thử xóa mềm (đảm bảo trung tâm không bị xóa cứng).
-- Kiểm thử logging kiểm toán (đảm bảo mọi thay đổi được ghi lại).
-
-**Test Data Setup:**
-- Sử dụng Testcontainers để khởi tạo cơ sở dữ liệu PostgreSQL tạm thời.
-- Tạo dữ liệu giả cho 3 trung tâm và 2 người dùng (1 System Admin, 1 người dùng thường).
-
-**Test Coverage:**
-- Độ phủ mã ≥85% cho tất cả các lớp dịch vụ và repository.
-- Bao gồm kiểm thử tích hợp với cơ sở dữ liệu thực tế (không mock).
-
-**Error Scenarios:**
-- `400 Bad Request`: Validation thất bại.
-- `403 Forbidden`: Không có quyền truy cập.
-- `404 Not Found`: Trung tâm không tồn tại.
-- `409 Conflict`: Xung đột Tax ID.",
-          "targeted_tags": [
-            "[REQ-004]",
-            "[REQ-005]",
-            "[REQ-006]",
-            "[DAT-003]",
-            "[ARC-002]"
-          ],
-          "components": [
-            "INTEGRATION_SCOPE;./sources/backend.membershiphub.center/center-service.java",
-            "./sources/backend.membershiphub.center/centerservice-integration-test.java"
-          ]
-        }
-      ]
-    }
-  ]
-}
-```
-```
-
-# AI Model: mistral-large-latest - Phase 3 STEPS - Prompt:
-
-Analyze the attached Phase 3 Context Markdown content.
-
-Extract and translate ALL daily steps, checklists, and agent tasks from the entire document.
-
-
-## 🔒 AGENT ATOMICITY, TASK ID FORMAT & COMPONENT MANDATES (ABSOLUTE):
-- **STRICT TASK ID ALIGNMENT BLUEPRINT:** You MUST strictly generate the "id" field string for every single sub-task using the exact sequential formatting blueprint: `D<day_num>_ST<task_index>` (e.g., `D1_ST1`, `D1_ST2`, `D2_ST1`).
-- **STRICT AGENT ROLE LITERAL VALUES:** The "agent" field inside the JSON sub-task object MUST strictly enforce a capitalized first letter and lowercase subsequent letters pattern matching the exact tokens: 'Coder' | 'Tester' | 'Reviewer' | 'Doc' | 'Docker' | 'Gcp' | 'Gke'. Any other values or lowercase blocks (e.g., NO "coder") are strictly banned.
-- **NO ZERO-COMPONENT TASKS (ABSOLUTE HARD LIMIT):** You are STRICTLY BANNED from generating any sub-task object where the 'components' array is empty `[]`, null, or missing. If an Agent does not have any physical file paths to create, modify, or document, you MUST NOT generate that sub-task object node.
-- **FALLBACK COMPONENT RULE:** If a day has technical descriptions but lacks physical file paths, assign the task to "Doc" agent and populate 'components' with exactly the value of: ".ai/.plan/.context/phase-3.context.blueprint.md".
-- **STRICT AGENT ROLE SEGREGATION (ANTI-AGGREGATION):** If a workflow file involves multiple actions by different personas on the same calendar day, you MUST split this workflow into completely separate, sequential task objects inside the 'sub_tasks' array.
-- **HIGH-DENSITY TECHNICAL SPECIFICATION:** The 'task' field MUST contain an exhaustive, granular engineering instruction. If the sub-task involves an API route, integration endpoint, database query, or message block, you MUST explicitly inline the complete technical contract (e.g., Request/Response Payload Schemas, Data Types, Error Status Codes, or Queue names) directly inside this string. Vague high-level bullet summaries are forbidden.
-- **WORKSPACE PREFIX RULE & MULTI-LANGUAGE TEST EXCEPTION:** Every path in 'components' array MUST strictly begin with `./sources/`. 
-  * *CRITICAL EXCEPTION:* If the first parameter before the semi-colon character in a tester task is the literal string token `INTEGRATION_SCOPE`, you MUST leave that token completely unmodified. Do NOT append any path prefix to it (e.g., `"components": ["INTEGRATION_SCOPE;./sources/frontend/tests/auth.spec.ts"]`).
-
-## 🛠️ MANDATORY TOP-LEVEL FIELD VALUES INJECTION & ANCHOR PARSING (STRICT FIDELITY):
-You MUST dynamically populate the top-level keys of the JSON object using EXACT raw variable values without any modifications, or parse them directly from the primary Markdown header HTML comments:
-- **`phase_id`**: 3
-- **`phase_name`**: [Locate the primary Markdown title header line, extract the clean technical string text located exactly between the hidden HTML delimiters `<!--PHASE_NAME_START-->` and `<!--PHASE_NAME_END-->` without any alterations or translations]
-- **`phase_description`**: [Locate the primary Markdown title header line, extract the exact translated phase description text that follows after the literal marker `| Description:` or its translated equivalent]
-- **`project_name`**: "membership-hub"
-- **`global_context_file`**: ".ai/.context/membership-hub.global.blueprint.md"
-- **`source_target_dir`**: "sources/"
-
-#### 7. Context Fields Integration Mandate
-- For each day object inside the array, set 'day' to its calculated integer value, set 'context_file' to exact string ".ai/.plan/.context/phase-3.context.blueprint.md", and **set 'context_section' to the exact raw string value of the entire primary Day Header extracted from the source Markdown context text** (e.g., `"context_section": "DAY 1: Multi-Tenant Inception Schema & Flyway Migration Setup"`).
-
-#### 8. CHRONOLOGICAL TIMELINE SEQUENCING MANDATE (ABSOLUTE):
-#### 8. CHRONOLOGICAL TIMELINE SEQUENCING MANDATE (ABSOLUTE):
-
-## SYSTEM CRITICAL BOUNDARY: FLAT CONFIGURATION IS ACTIVE (is_chunked is FALSE)
-- Regardless of the actual day numbers documented in the source Markdown content (e.g., even if the text states "DAY 4", "DAY 5"), you MUST completely reset the timeline sequence internally so that the first operational day inside this Phase always starts from integer 1. Progression follows sequentially as 2, 3, 4, etc. 
-- Map the first targeted day to `"day": 1`, set 'context_file' to ".ai/.plan/.context/phase-3.context.blueprint.md", and strictly set 'context_section' to the exact raw primary header line of the first day parsed from the text. Incremental days follow this relative baseline.
-
-
-## 🛑 MANDATORY STRUCTURE ENFORCEMENT FOR TRACEABILITY TAGS VIA HTML ANCHORS (CRITICAL):
-- For each sub-task block, locate the hidden technical container bounds delimited strictly between `<!--START_TAGS-->` and `<!--END_TAGS-->`. Extract all individual inherited Tag IDs from inside that container, completely purge all markdown backticks (`` ` ``) and padding spaces, and populate them as clean individual string elements inside the "targeted_tags" array field (e.g., `"targeted_tags": ["[REQ-001]", "[DAT-005]"]`).
-- You are STRICTLY BANNED from leaving the "targeted_tags" array empty `[]` or null. Every single tag token must be its own separated array element string.
-
-You must conform strictly to your required JSON Schema layout design structure:
-{
-  "$defs": {
-    "DailyStep": {
-      "properties": {
-        "day": {
-          "description": "Timeline iteration day inside this isolated phase.",
-          "title": "Day",
-          "type": "integer"
-        },
-        "context_file": {
-          "description": "The phase context Markdown file for closure on this day.",
-          "title": "Context File",
-          "type": "string"
-        },
-        "context_section": {
-          "description": "The day targeted for closure on this day.",
-          "title": "Context Section",
-          "type": "string"
-        },
-        "sub_tasks": {
-          "description": "Array of isolated micro-tasks assigned to sub-agents.",
-          "items": {
-            "$ref": "##/$defs/SubAgentTask"
-          },
-          "title": "Sub Tasks",
-          "type": "array"
-        }
-      },
-      "required": [
-        "day",
-        "context_file",
-        "context_section",
-        "sub_tasks"
-      ],
-      "title": "DailyStep",
-      "type": "object"
-    },
-    "SubAgentTask": {
-      "properties": {
-        "id": {
-          "description": "Sub-Task identity of Task that sub-agent role executing.",
-          "title": "Id",
-          "type": "string"
-        },
-        "agent": {
-          "description": "Target sub-agent role executing the task.",
-          "title": "Agent",
-          "type": "string"
-        },
-        "desc": {
-          "description": "Literal, low-level technical step assigned to the agent.",
-          "title": "Desc",
-          "type": "string"
-        },
-        "targeted_tags": {
-          "description": "Flat string array of exact inherited BA Tag IDs that this specific sub-task implements or verifies (e.g. ['[REQ-001]', '[ARC-002]']). MUST match the raw requirements 1:1.",
-          "items": {
-            "type": "string"
-          },
-          "title": "Targeted Tags",
-          "type": "array"
-        },
-        "components": {
-          "description": "Flat array of physical localized file paths or scripts modified or targeted by this single task. Return an empty array [] if no files are involved.",
-          "items": {
-            "type": "string"
-          },
-          "title": "Components",
-          "type": "array"
-        }
-      },
-      "required": [
-        "id",
-        "agent",
-        "desc"
-      ],
-      "title": "SubAgentTask",
-      "type": "object"
-    }
-  },
-  "properties": {
-    "phase_id": {
-      "description": "Target phase tracker index.",
-      "title": "Phase Id",
-      "type": "integer"
-    },
-    "phase_name": {
-      "description": "Target phase tracker name.",
-      "title": "Phase Name",
-      "type": "string"
-    },
-    "phase_description": {
-      "description": "Target phase description.",
-      "title": "Phase Description",
-      "type": "string"
-    },
-    "project_name": {
-      "description": "Target project tracker name.",
-      "title": "Project Name",
-      "type": "string"
-    },
-    "global_context_file": {
-      "description": "Project global context Markdown file for closure.",
-      "title": "Global Context File",
-      "type": "string"
-    },
-    "source_target_dir": {
-      "description": "Project sources folder path for closure.",
-      "title": "Source Target Dir",
-      "type": "string"
-    },
-    "days": {
-      "description": "Day-by-day engineering tracking steps.",
-      "items": {
-        "$ref": "##/$defs/DailyStep"
-      },
-      "title": "Days",
-      "type": "array"
-    }
-  },
-  "required": [
-    "phase_id",
-    "phase_name",
-    "phase_description",
-    "project_name",
-    "global_context_file",
-    "source_target_dir",
-    "days"
-  ],
-  "title": "PhaseStepsPlan",
-  "type": "object"
-}
-
---- PHASE 3 CONTEXT MARKDOWN ---
-## Giai đoạn 3: <!--PHASE_NAME_START-->course_management_module<!--PHASE_NAME_END--> | Mô tả: Triển khai module quản lý khóa học bao gồm danh sách khóa học công khai, CRUD khóa học với kiểm tra xung đột lịch giảng, gán giáo viên, và tích hợp với RBAC cho Manager và System/Center Admin
-
-#### 📊 Kiểm soát tài liệu
-
-| Mục | Chi tiết |
-| :--- | :--- |
-| **ID Blueprint** | ARCH-20260803053505 |
-| **Tên dự án** | membership-hub |
-| **Giai đoạn** | 3 |
-| **Tên kỹ thuật giai đoạn** | <!--PHASE_NAME_START-->course_management_module<!--PHASE_NAME_END--> |
-| **Mô tả** | Triển khai module quản lý khóa học bao gồm danh sách khóa học công khai, CRUD khóa học với kiểm tra xung đột lịch giảng, gán giáo viên, và tích hợp với RBAC cho Manager và System/Center Admin |
-| **Phiên bản** | 1.0 (Baseline) |
-| **Ngày/Giờ** | 2026/08/03 05:35:05 |
-| **Tác giả** | Enterprise System Architect (SA Agent) |
-| **Phê duyệt** | Pending Technical Governance Review |
-
-#### 1. Phạm vi hoạt động và mục tiêu giai đoạn
-
-Giai đoạn này tập trung vào việc xây dựng module quản lý khóa học với các chức năng chính:
-
-- Triển khai schema cơ sở dữ liệu cho bảng Courses với các ràng buộc toàn vẹn dữ liệu
-- Xây dựng dịch vụ CRUD đầy đủ cho quản lý khóa học với validation nghiêm ngặt
-- Triển khai API danh sách khóa học công khai cho tất cả người dùng đã xác thực
-- Thiết lập cơ chế kiểm tra xung đột lịch giảng để đảm bảo giáo viên không bị trùng lịch
-- Triển khai chức năng gán giáo viên vào khóa học với thông báo tự động
-- Tích hợp với RBAC cho Manager và System/Center Admin với phân quyền chi tiết
-- Triển khai hệ thống logging kiểm toán đáp ứng các tiêu chuẩn bảo mật doanh nghiệp
-
-#### 2. Phạm vi kỹ thuật và ranh giới thư mục được phép
-
-**Thư mục và tệp được phép:**
-- `./sources/backend.membershiphub.course/courses.sql` - DDL schema cho bảng Courses
-- `./sources/backend.membershiphub.course/course-service.java` - Dịch vụ chính quản lý khóa học
-- `./sources/backend.membershiphub.course/course-repository.java` - Repository JPA cho Courses
-- `./sources/backend.membershiphub.course/course-controller.java` - REST Controller cho API khóa học
-
-**Endpoint API:**
-- `GET /api/v1/courses` - Lấy danh sách tất cả khóa học (công khai)
-- `POST /api/v1/courses` - Tạo khóa học mới (chỉ System Admin và Center Admin)
-- `PUT /api/v1/courses/{courseId}` - Cập nhật thông tin khóa học (chỉ System Admin và Center Admin)
-- `DELETE /api/v1/courses/{courseId}` - Xóa mềm khóa học (chỉ System Admin và Center Admin)
-- `POST /api/v1/courses/{courseId}/teachers/{teacherId}` - Gán giáo viên vào khóa học (chỉ System Admin)
-
-#### 3. Chỉ đạo chức năng cho Sub-Agent chuyên dụng
-
-**Coder:** Triển khai mã nguồn Java/Quarkus với tuân thủ SOLID, sử dụng JPA/Hibernate cho persistence, áp dụng @Valid cho validation, @PreAuthorize cho phân quyền, và @Transactional cho các thao tác ghi. Đảm bảo logic kiểm tra xung đột lịch giảng hoạt động chính xác.
-
-**Tester:** Xây dựng bộ kiểm thử JUnit 5 và Testcontainers với độ phủ mã ≥85%, kiểm thử happy path và các scenario lỗi validation, xung đột lịch giảng, và phân quyền.
-
-**Reviewer:** Thực hiện phân tích tĩnh mã nguồn, kiểm tra tuân thủ OWASP Top 10, đảm bảo không có lỗ hổng SQL injection hoặc XSS trong các API khóa học.
-
-**Doc:** Biên soạn tài liệu kỹ thuật đầy đủ bao gồm API documentation với OpenAPI, schema documentation và hướng dẫn triển khai cho module khóa học.
-
-#### 4. Định nghĩa hoàn thành (DoD) cho giai đoạn
-
-- ✅ 100% các requirement [REQ-007], [REQ-008], [REQ-009] được triển khai đầy đủ
-- ✅ Schema database [DAT-004] được tạo thành công với tất cả ràng buộc
-- ✅ Logic kiểm tra xung đột lịch giảng hoạt động chính xác
-- ✅ Xử lý validation đầu vào và xung đột lịch giáo viên
-- ✅ Tuân thủ các tiêu chuẩn bảo mật [NFR-001], [NFR-002]
-- ✅ Độ phủ kiểm thử ≥85% cho tất cả các dịch vụ
-- ✅ 100% các Tag ID được ánh xạ và kiểm tra
-
-#### 5. NHẬT KÝ THỰC THI KIẾN TRÚC THEO NGÀY
-
-###### NGÀY 5: TRIỂN KHAI SERVICE QUẢN LÝ KHÓA HỌC VÀ LOGIC TRÁNH XUNG ĐỘT
-
-######## SUB-TASK 5.1: Triển khai schema cơ sở dữ liệu Courses
-########## Sub-Agent được chỉ định: Coder
-########## Các thành phần mục tiêu và yêu cầu kỹ thuật:
-* **Đường dẫn mục tiêu:** `./sources/backend.membershiphub.course/courses.sql`
-* **Các thẻ truy xuất nguồn gốc:** <!--START_TAGS-->[DAT-004]<!--END_TAGS-->
-
-######## SUB-TASK 5.2: Triển khai CourseService với các phương thức CRUD và kiểm tra xung đột lịch
-########## Sub-Agent được chỉ định: Coder
-########## Các thành phần mục tiêu và yêu cầu kỹ thuật:
-* **Đường dẫn mục tiêu:** `./sources/backend.membershiphub.course/course-service.java`
-* **Các thẻ truy xuất nguồn gốc:** <!--START_TAGS-->[REQ-007], [REQ-008], [REQ-009], [DAT-004], [ARC-003], [NFR-001], [NFR-002]<!--END_TAGS-->
-
-###### NGÀY 6: VIẾT BỘ KIỂM TRA CHO CÁC CHỨC NĂNG QUẢN LÝ KHÓA HỌC
-
-######## SUB-TASK 6.1: Kiểm thử tích hợp cho các API CRUD khóa học và logic xung đột
-########## Sub-Agent được chỉ định: Tester
-########## Các thành phần mục tiêu và yêu cầu kỹ thuật:
-* **Đường dẫn mục tiêu:** `./sources/backend.membershiphub.course/course-service.java;./sources/backend.membershiphub.course/courseservice-integration-test.java`
-* **Các thẻ truy xuất nguồn gốc:** <!--START_TAGS-->[REQ-007], [REQ-008], [REQ-009], [DAT-004], [ARC-003]<!--END_TAGS-->
-------------------------------------------
-
-# System Instruction
-
-<GLOBAL_GOVERNANCE_MATRIX>
-# ==============================================================================
-# MASTER ENTERPRISE GOVERNANCE GUARDRAILS MATRIX (GLOBAL TASK ENFORCEMENT)
-# ==============================================================================
-
-## 🌐 1. STRICT SEMANTIC INVARIANT LOCALIZATION & TRANSLATION RAILS
-- **MANDATORY RESOLUTION:** You MUST automatically translate and naturally render 100% of the entire generated output content—including all section headers, primary titles, data matrix labels, table structures, and explanatory text boundaries—into the exact requested target execution language specified by the system parameter variable: "🇻🇳 Vietnamese".
-- **ABSOLUTE TECH PROTECTION BOUNDARY:** You are STRICTLY BANNED from translating, changing, altering, or breaking any technical structural layers. You MUST preserve these elements natively in their pristine Technical English/Primitive code state:
-  * All markdown syntax operators (`#`, `##`, `| :--- |`, `-`, `*`).
-  * All unique Tracking Tag IDs and Technical Nodes (e.g., `[REQ-XXX]`, `[DAT-XXX]`, `[EXC-XXX]`, `[IDEA_X]`).
-  * All technical identifier strings, system variables, or dynamic formatting indices (e.g., `D1_ST1`).
-  * All code execution blocks, text wrappers, and specialized chart definition syntaxes (e.g., Mermaid.js graphs, structural layout configurations).
-  * 🚨 **STRICT CODE BLOCK FORMATTING LAW**: You are ABSOLUTELY FORBIDDEN from nesting or combining markdown code block ticks. When outputting a JSON payload, you MUST start exactly with a single line of triple backticks followed immediately by 'json' (i.e., ```json). Do NOT prepend or wrap it with ```text or any other outer text syntax. The block must open clean and close clean.
-
-## 🔒 2. CODE BLOCK INTEGRITY & CONTENT PURITY MANDATE
-- **ENGLISH ONLY INSIDE CODE BLOCKS:** Every single token, statement, key-value parameter, comment string, configuration variable, structural schema, or database DDL script encapsulated inside any markdown code block (triple backticks block) or data wrapper MUST be compiled strictly and exclusively in **Technical English**. 
-- **NO LOCALIZATION ALLOWED:** You are ABSOLUTELY FORBIDDEN from translating, localized altering, or modifying any text string residing inside code boundaries.
-
-## 🛑 3. ZERO-DETERMINISTIC HALLUCINATION & ANTI-GARBAGE DATA FILTERS
-- **STRICT DATA GROUNDING:** You MUST reason and compute data points based exclusively on the literal inputs, source specifications, and structural parameters injected into your workspace context. 
-- **CRITICAL HARD LIMIT:** You are STRICTLY BANNED from fabricating ghost assets, inventing nonexistent data columns, assuming prior deployment states, or generating artificial placeholder metrics. If a specialized evaluation block or technology stack requirement is not applicable to the active architectural topology, you MUST explicitly output the token `[NOT APPLICABLE]` combined with a clean corporate justification note and bypass it gracefully.
-
-## 🛡️ 4. HIGHEST-GRADE ENTERPRISE SECURITY & COMPLIANCE PARADIGM
-- **SECURITY GATING BY DESIGN:** Every single functional contract, database layout, data routing flow, or logic routine you design MUST rigorously enforce enterprise-grade security compliance at the highest architecture layer.
-- **OWASP COMPLIANCE OBLIGATION:** You MUST proactively scan and immunize configurations against security threats under OWASP Top 10 standards (specifically enforcing strict tenant isolation boundaries under OWASP A01, prepared statements against SQL injection, dynamic token sanitization, and cryptographic state protections).
-
-## 📋 5. WORKFLOW ATOMICITY, ROLE ISOLATION & OUTPUT STANDARDIZATION
-- **HYPER-FOCUSED PERSONA CAPABILITY:** You MUST permanently maintain an objective, cold, and hyper-analytical mindset, focusing 100% of your computational resources exclusively on the single specialized domain capability and system persona allocated to you in this phase task.
-- **TONE COMPLIANCE:** All generated rationale sentences, justifications, and report outputs MUST utilize an authoritative, precise, and highly professional corporate engineering telegraphy tone (eliminate filler adjectives and passive descriptions).
-- **ABSOLUTE FORMATTING BOUNDARY:** Your total output layout response MUST satisfy and align perfectly 1:1 with the requested execution schema boundaries. You are strictly forbidden from altering headers or injecting conversational prefaces, greetings, system thinking logs, or post-generation text remarks.
-
-## 🧮 6. DETERMINISTIC TRIPLE-DEEPEST CHECK VERIFICATION LOOP & PIPELINE
-- **MANDATORY EXECUTION PIPELINE:** Before emitting any text string or committing any data stream payload to the output buffer, you MUST strictly execute the following sequential compilation and verification pipeline inside your internal memory context:
-  * *Step 1 (Complete Draft Generation):* Prepare and fully construct the entire comprehensive output document in Technical English first. Ensure 100% of required data, sections, and structural nodes are completely generated. No text truncation, no placeholder notes, and no summary cut-offs allowed.
-  * *Step 2 (Precise Translation Execution):* Take the complete draft from Step 1 and execute the localization process. Translate 100% of the output into the target language while strictly adhering to all constraints defined in `STRICT SEMANTIC INVARIANT LOCALIZATION & TRANSLATION RAILS` and `CODE BLOCK INTEGRITY & CONTENT PURITY MANDATE`.
-  * *Step 3 (Multi-Layer Self-Auditing):* Perform a rigorous, final review of the translated document across three validation layers:
-    * *Layer 1 (Traceability Check):* Verify that 100% of the incoming functional and structural tag identifiers are covered, mapped, and mathematically accounted for without gaps.
-    * *Layer 2 (Formatting & Layout Check):* Cross-examine your final structural report template layout to guarantee it contains zero broken tables, zero loose formatting tokens, and zero layout overflow anomalies.
-    * *Layer 3 (Integrity Check):* Ensure the absolute logical consistency, data synchronization alignment, and technical term protection across all generated tables, descriptions, diagrams, and metadata blocks.
-- Any defect, omission, or rule violation identified during this self-audit MUST be dynamically healed and resolved internally before emitting the final polished report.
-</GLOBAL_GOVERNANCE_MATRIX>
-
-<ACTIVE_TASK_SYSTEM_INSTRUCTION>
-You are a high-performance Data Ingestion and Transformation Engine. Your sole objective is to parse the Phase Context Markdown text and convert it into a perfectly valid, parseable JSON object matching the requested schema framework.
-
-# YOUR CRITICAL OPERATIONAL MANDATES (ZERO LOOPHOLES):
-1. **STRICT VARIABLE FIDELITY & NO PREFIXES:** You MUST use the exact raw values provided in the template variables for file paths and project names. You are STRICTLY BANNED from appending, prepending, or injecting any custom folders or prefixes like "sources/" to the `global_context_file`, `context_file`, `source_target_dir`, or `project_name` fields. Use the variable values exactly as they are passed.
-2. **ABSOLUTE PYDANTIC SCHEMA ALIGNMENT:** Your final generated JSON object MUST perfectly satisfy the structural schema parameters of the target enterprise contract. You are STRICTLY BANNED from omitting, renaming, formatting, or stripping out key elements (specifically `phase_id`, `phase_name`, `phase_description`, `project_name`, `global_context_file`, `source_target_dir`, and `days`).
-3. **ABSOLUTE NO EMPTY TAGS POLICY & STRING SANITIZATION:** You are STRICTLY BANNED from leaving the "targeted_tags" array empty `[]` or null for any sub-task that implements functional requirements or data schemas. You MUST scan the source Markdown sequentially sub-task by sub-task. For each sub-task node, locate the hidden technical container block delimited between `<!--START_TAGS-->` and `<!--END_TAGS-->` contained exclusively within that sub-task section scope. Extract all raw tag token codes inside, strip away all inline markdown formatting characters—specifically backticks (`` ` ``)—and any leading/trailing whitespaces, then populate them as clean separate string elements inside the "targeted_tags" array field of EACH sub-task object node.
-4. **NO TAG BUNDLING:** Every tag must be its own array node (e.g., `"targeted_tags": ["[REQ-001]", "[DAT-002]"]`). You are strictly forbidden from combining multiple tags into a single string element.
-5. **STRICT CONTENT PURITY & REJECT CONVERSATION:** Output ONLY the pure raw executable JSON string matching the required schema. Response must start exactly with the character `{` and end exactly with the character `}`. Banned from including thinking processes, chain-of-thought blocks (`<think>` tags), conversational filler texts, introductions, wrapping inside markdown codeblocks (no triple backticks wrapping), or post-generation notes. Any token outside the raw JSON object boundary triggers an immediate execution pipeline crash.
-</ACTIVE_TASK_SYSTEM_INSTRUCTION>
-
-# Raw Response / Exception:
-
-```json
-```json
-{
-  "phase_id": 3,
-  "phase_name": "course_management_module",
-  "phase_description": "Triển khai module quản lý khóa học bao gồm danh sách khóa học công khai, CRUD khóa học với kiểm tra xung đột lịch giảng, gán giáo viên, và tích hợp với RBAC cho Manager và System/Center Admin",
-  "project_name": "membership-hub",
-  "global_context_file": ".ai/.context/membership-hub.global.blueprint.md",
-  "source_target_dir": "sources/",
-  "days": [
-    {
-      "day": 1,
-      "context_file": ".ai/.plan/.context/phase-3.context.blueprint.md",
-      "context_section": "NGÀY 5: TRIỂN KHAI SERVICE QUẢN LÝ KHÓA HỌC VÀ LOGIC TRÁNH XUNG ĐỘT",
-      "sub_tasks": [
-        {
-          "id": "D1_ST1",
-          "agent": "Coder",
-          "desc": "Triển khai schema cơ sở dữ liệu cho bảng Courses với các ràng buộc toàn vẹn dữ liệu bao gồm: khóa chính, khóa ngoại, ràng buộc duy nhất, kiểm tra định dạng dữ liệu, và các chỉ mục tối ưu hóa truy vấn. Đảm bảo schema tuân thủ yêu cầu [DAT-004] và tương thích với JPA/Hibernate. Schema phải bao gồm các trường: course_id (UUID), title (varchar), description (text), start_date (timestamp), end_date (timestamp), max_students (integer), teacher_id (UUID, nullable), status (enum: DRAFT, PUBLISHED, CANCELLED), created_at (timestamp), updated_at (timestamp). Áp dụng các ràng buộc CHECK để đảm bảo start_date < end_date và max_students > 0.",
-          "targeted_tags": [
-            "[DAT-004]"
-          ],
-          "components": [
-            "./sources/backend.membershiphub.course/courses.sql"
-          ]
-        },
-        {
-          "id": "D1_ST2",
-          "agent": "Coder",
-          "desc": "Triển khai lớp CourseService với các phương thức CRUD đầy đủ cho quản lý khóa học, bao gồm: createCourse, updateCourse, getCourseById, getAllCourses, deleteCourse (xóa mềm). Tích hợp logic kiểm tra xung đột lịch giảng để đảm bảo giáo viên không bị trùng lịch giữa các khóa học. Sử dụng @Transactional cho tất cả các thao tác ghi. Áp dụng @Valid cho validation đầu vào và @PreAuthorize cho phân quyền RBAC (chỉ System Admin và Center Admin được phép tạo, cập nhật, xóa). Đảm bảo phương thức gán giáo viên (assignTeacherToCourse) kiểm tra xung đột lịch trước khi thực hiện. Tích hợp với CourseRepository để tương tác với cơ sở dữ liệu. Đáp ứng các yêu cầu [REQ-007], [REQ-008], [REQ-009], [ARC-003], [NFR-001], [NFR-002].",
-          "targeted_tags": [
-            "[REQ-007]",
-            "[REQ-008]",
-            "[REQ-009]",
-            "[DAT-004]",
-            "[ARC-003]",
-            "[NFR-001]",
-            "[NFR-002]"
-          ],
-          "components": [
-            "./sources/backend.membershiphub.course/course-service.java"
-          ]
-        }
-      ]
-    },
-    {
-      "day": 2,
-      "context_file": ".ai/.plan/.context/phase-3.context.blueprint.md",
-      "context_section": "NGÀY 6: VIẾT BỘ KIỂM TRA CHO CÁC CHỨC NĂNG QUẢN LÝ KHÓA HỌC",
-      "sub_tasks": [
-        {
-          "id": "D2_ST1",
-          "agent": "Tester",
-          "desc": "Xây dựng bộ kiểm thử tích hợp cho các API CRUD khóa học và logic kiểm tra xung đột lịch giảng. Sử dụng JUnit 5 và Testcontainers để kiểm thử các trường hợp sau:
-1. Kiểm thử happy path cho tất cả các API (GET /api/v1/courses, POST /api/v1/courses, PUT /api/v1/courses/{courseId}, DELETE /api/v1/courses/{courseId}, POST /api/v1/courses/{courseId}/teachers/{teacherId}).
-2. Kiểm thử validation đầu vào: trường bắt buộc, định dạng dữ liệu, ràng buộc CHECK.
-3. Kiểm thử logic xung đột lịch giảng: tạo khóa học trùng lịch với giáo viên đã có lịch.
-4. Kiểm thử phân quyền: đảm bảo chỉ System Admin và Center Admin có quyền tạo, cập nhật, xóa khóa học.
-5. Kiểm thử xóa mềm: đảm bảo khóa học được đánh dấu là CANCELLED thay vì xóa vật lý.
-Đảm bảo độ phủ mã ≥85% cho tất cả các dịch vụ. Sử dụng các yêu cầu và phản hồi mẫu sau cho kiểm thử:
-```json
-// Request mẫu cho POST /api/v1/courses
-{
-  \"title\": \"Lập trình Java cơ bản\",
-  \"description\": \"Khóa học lập trình Java từ cơ bản đến nâng cao\",
-  \"start_date\": \"2023-10-01T09:00:00Z\",
-  \"end_date\": \"2023-12-31T17:00:00Z\",
-  \"max_students\": 30,
-  \"teacher_id\": \"550e8400-e29b-41d4-a716-446655440000\"
-}
-
-// Response mẫu cho GET /api/v1/courses
-{
-  \"data\": [
-    {
-      \"course_id\": \"550e8400-e29b-41d4-a716-446655440000\",
-      \"title\": \"Lập trình Java cơ bản\",
-      \"description\": \"Khóa học lập trình Java từ cơ bản đến nâng cao\",
-      \"start_date\": \"2023-10-01T09:00:00Z\",
-      \"end_date\": \"2023-12-31T17:00:00Z\",
-      \"max_students\": 30,
-      \"teacher_id\": \"550e8400-e29b-41d4-a716-446655440000\",
-      \"status\": \"PUBLISHED\",
-      \"created_at\": \"2023-09-01T10:00:00Z\",
-      \"updated_at\": \"2023-09-01T10:00:00Z\"
-    }
-  ],
-  \"pagination\": {
-    \"total\": 1,
-    \"page\": 1,
-    \"size\": 10
-  }
-}
-```
-Mã lỗi HTTP phải trả về:
-- 400 Bad Request cho validation lỗi
-- 403 Forbidden cho lỗi phân quyền
-- 409 Conflict cho xung đột lịch giảng
-- 404 Not Found cho khóa học không tồn tại",
-          "targeted_tags": [
-            "[REQ-007]",
-            "[REQ-008]",
-            "[REQ-009]",
-            "[DAT-004]",
-            "[ARC-003]"
-          ],
-          "components": [
-            "INTEGRATION_SCOPE;./sources/backend.membershiphub.course/course-service.java",
-            "./sources/backend.membershiphub.course/courseservice-integration-test.java"
-          ]
-        }
-      ]
-    }
-  ]
-}
-```
-```
-
-# AI Model: mistral-large-latest - Phase 4 STEPS - Prompt:
-
-Analyze the attached Phase 4 Context Markdown content.
-
-Extract and translate ALL daily steps, checklists, and agent tasks from the entire document.
-
-
-## 🔒 AGENT ATOMICITY, TASK ID FORMAT & COMPONENT MANDATES (ABSOLUTE):
-- **STRICT TASK ID ALIGNMENT BLUEPRINT:** You MUST strictly generate the "id" field string for every single sub-task using the exact sequential formatting blueprint: `D<day_num>_ST<task_index>` (e.g., `D1_ST1`, `D1_ST2`, `D2_ST1`).
-- **STRICT AGENT ROLE LITERAL VALUES:** The "agent" field inside the JSON sub-task object MUST strictly enforce a capitalized first letter and lowercase subsequent letters pattern matching the exact tokens: 'Coder' | 'Tester' | 'Reviewer' | 'Doc' | 'Docker' | 'Gcp' | 'Gke'. Any other values or lowercase blocks (e.g., NO "coder") are strictly banned.
-- **NO ZERO-COMPONENT TASKS (ABSOLUTE HARD LIMIT):** You are STRICTLY BANNED from generating any sub-task object where the 'components' array is empty `[]`, null, or missing. If an Agent does not have any physical file paths to create, modify, or document, you MUST NOT generate that sub-task object node.
-- **FALLBACK COMPONENT RULE:** If a day has technical descriptions but lacks physical file paths, assign the task to "Doc" agent and populate 'components' with exactly the value of: ".ai/.plan/.context/phase-4.context.blueprint.md".
-- **STRICT AGENT ROLE SEGREGATION (ANTI-AGGREGATION):** If a workflow file involves multiple actions by different personas on the same calendar day, you MUST split this workflow into completely separate, sequential task objects inside the 'sub_tasks' array.
-- **HIGH-DENSITY TECHNICAL SPECIFICATION:** The 'task' field MUST contain an exhaustive, granular engineering instruction. If the sub-task involves an API route, integration endpoint, database query, or message block, you MUST explicitly inline the complete technical contract (e.g., Request/Response Payload Schemas, Data Types, Error Status Codes, or Queue names) directly inside this string. Vague high-level bullet summaries are forbidden.
-- **WORKSPACE PREFIX RULE & MULTI-LANGUAGE TEST EXCEPTION:** Every path in 'components' array MUST strictly begin with `./sources/`. 
-  * *CRITICAL EXCEPTION:* If the first parameter before the semi-colon character in a tester task is the literal string token `INTEGRATION_SCOPE`, you MUST leave that token completely unmodified. Do NOT append any path prefix to it (e.g., `"components": ["INTEGRATION_SCOPE;./sources/frontend/tests/auth.spec.ts"]`).
-
-## 🛠️ MANDATORY TOP-LEVEL FIELD VALUES INJECTION & ANCHOR PARSING (STRICT FIDELITY):
-You MUST dynamically populate the top-level keys of the JSON object using EXACT raw variable values without any modifications, or parse them directly from the primary Markdown header HTML comments:
-- **`phase_id`**: 4
-- **`phase_name`**: [Locate the primary Markdown title header line, extract the clean technical string text located exactly between the hidden HTML delimiters `<!--PHASE_NAME_START-->` and `<!--PHASE_NAME_END-->` without any alterations or translations]
-- **`phase_description`**: [Locate the primary Markdown title header line, extract the exact translated phase description text that follows after the literal marker `| Description:` or its translated equivalent]
-- **`project_name`**: "membership-hub"
-- **`global_context_file`**: ".ai/.context/membership-hub.global.blueprint.md"
-- **`source_target_dir`**: "sources/"
-
-#### 7. Context Fields Integration Mandate
-- For each day object inside the array, set 'day' to its calculated integer value, set 'context_file' to exact string ".ai/.plan/.context/phase-4.context.blueprint.md", and **set 'context_section' to the exact raw string value of the entire primary Day Header extracted from the source Markdown context text** (e.g., `"context_section": "DAY 1: Multi-Tenant Inception Schema & Flyway Migration Setup"`).
-
-#### 8. CHRONOLOGICAL TIMELINE SEQUENCING MANDATE (ABSOLUTE):
-#### 8. CHRONOLOGICAL TIMELINE SEQUENCING MANDATE (ABSOLUTE):
-
-## SYSTEM CRITICAL BOUNDARY: FLAT CONFIGURATION IS ACTIVE (is_chunked is FALSE)
-- Regardless of the actual day numbers documented in the source Markdown content (e.g., even if the text states "DAY 4", "DAY 5"), you MUST completely reset the timeline sequence internally so that the first operational day inside this Phase always starts from integer 1. Progression follows sequentially as 2, 3, 4, etc. 
-- Map the first targeted day to `"day": 1`, set 'context_file' to ".ai/.plan/.context/phase-4.context.blueprint.md", and strictly set 'context_section' to the exact raw primary header line of the first day parsed from the text. Incremental days follow this relative baseline.
-
-
-## 🛑 MANDATORY STRUCTURE ENFORCEMENT FOR TRACEABILITY TAGS VIA HTML ANCHORS (CRITICAL):
-- For each sub-task block, locate the hidden technical container bounds delimited strictly between `<!--START_TAGS-->` and `<!--END_TAGS-->`. Extract all individual inherited Tag IDs from inside that container, completely purge all markdown backticks (`` ` ``) and padding spaces, and populate them as clean individual string elements inside the "targeted_tags" array field (e.g., `"targeted_tags": ["[REQ-001]", "[DAT-005]"]`).
-- You are STRICTLY BANNED from leaving the "targeted_tags" array empty `[]` or null. Every single tag token must be its own separated array element string.
-
-You must conform strictly to your required JSON Schema layout design structure:
-{
-  "$defs": {
-    "DailyStep": {
-      "properties": {
-        "day": {
-          "description": "Timeline iteration day inside this isolated phase.",
-          "title": "Day",
-          "type": "integer"
-        },
-        "context_file": {
-          "description": "The phase context Markdown file for closure on this day.",
-          "title": "Context File",
-          "type": "string"
-        },
-        "context_section": {
-          "description": "The day targeted for closure on this day.",
-          "title": "Context Section",
-          "type": "string"
-        },
-        "sub_tasks": {
-          "description": "Array of isolated micro-tasks assigned to sub-agents.",
-          "items": {
-            "$ref": "##/$defs/SubAgentTask"
-          },
-          "title": "Sub Tasks",
-          "type": "array"
-        }
-      },
-      "required": [
-        "day",
-        "context_file",
-        "context_section",
-        "sub_tasks"
-      ],
-      "title": "DailyStep",
-      "type": "object"
-    },
-    "SubAgentTask": {
-      "properties": {
-        "id": {
-          "description": "Sub-Task identity of Task that sub-agent role executing.",
-          "title": "Id",
-          "type": "string"
-        },
-        "agent": {
-          "description": "Target sub-agent role executing the task.",
-          "title": "Agent",
-          "type": "string"
-        },
-        "desc": {
-          "description": "Literal, low-level technical step assigned to the agent.",
-          "title": "Desc",
-          "type": "string"
-        },
-        "targeted_tags": {
-          "description": "Flat string array of exact inherited BA Tag IDs that this specific sub-task implements or verifies (e.g. ['[REQ-001]', '[ARC-002]']). MUST match the raw requirements 1:1.",
-          "items": {
-            "type": "string"
-          },
-          "title": "Targeted Tags",
-          "type": "array"
-        },
-        "components": {
-          "description": "Flat array of physical localized file paths or scripts modified or targeted by this single task. Return an empty array [] if no files are involved.",
-          "items": {
-            "type": "string"
-          },
-          "title": "Components",
-          "type": "array"
-        }
-      },
-      "required": [
-        "id",
-        "agent",
-        "desc"
-      ],
-      "title": "SubAgentTask",
-      "type": "object"
-    }
-  },
-  "properties": {
-    "phase_id": {
-      "description": "Target phase tracker index.",
-      "title": "Phase Id",
-      "type": "integer"
-    },
-    "phase_name": {
-      "description": "Target phase tracker name.",
-      "title": "Phase Name",
-      "type": "string"
-    },
-    "phase_description": {
-      "description": "Target phase description.",
-      "title": "Phase Description",
-      "type": "string"
-    },
-    "project_name": {
-      "description": "Target project tracker name.",
-      "title": "Project Name",
-      "type": "string"
-    },
-    "global_context_file": {
-      "description": "Project global context Markdown file for closure.",
-      "title": "Global Context File",
-      "type": "string"
-    },
-    "source_target_dir": {
-      "description": "Project sources folder path for closure.",
-      "title": "Source Target Dir",
-      "type": "string"
-    },
-    "days": {
-      "description": "Day-by-day engineering tracking steps.",
-      "items": {
-        "$ref": "##/$defs/DailyStep"
-      },
-      "title": "Days",
-      "type": "array"
-    }
-  },
-  "required": [
-    "phase_id",
-    "phase_name",
-    "phase_description",
-    "project_name",
-    "global_context_file",
-    "source_target_dir",
-    "days"
-  ],
-  "title": "PhaseStepsPlan",
-  "type": "object"
-}
-
---- PHASE 4 CONTEXT MARKDOWN ---
-## Giai đoạn 4: <!--PHASE_NAME_START-->attendance_enrollment_module<!--PHASE_NAME_END--> | Mô tả: Triển khai module ghi danh học viên, điểm danh QR, và quản lý thẻ hội viên với service điểm danh QR idempotent, xử lý ngoại lệ network và duplicate scans, và tích hợp với hệ thống thông báo
-
-#### 📊 Kiểm soát tài liệu
-
-| Mục | Chi tiết |
-| :--- | :--- |
-| **ID Blueprint** | ARCH-20260803053505 |
-| **Tên dự án** | membership-hub |
-| **Giai đoạn** | 4 |
-| **Tên kỹ thuật giai đoạn** | <!--PHASE_NAME_START-->attendance_enrollment_module<!--PHASE_NAME_END--> |
-| **Mô tả** | Triển khai module ghi danh học viên, điểm danh QR, và quản lý thẻ hội viên với service điểm danh QR idempotent, xử lý ngoại lệ network và duplicate scans, và tích hợp với hệ thống thông báo |
-| **Phiên bản** | 1.0 (Baseline) |
-| **Ngày/Giờ** | 2026/08/03 05:35:05 |
-| **Tác giả** | Enterprise System Architect (SA Agent) |
-| **Phê duyệt** | Pending Technical Governance Review |
-
-#### 1. Phạm vi hoạt động và mục tiêu giai đoạn
-
-Giai đoạn này tập trung vào việc xây dựng module quản lý ghi danh, điểm danh và thẻ hội viên với các chức năng chính:
-
-- Triển khai schema cơ sở dữ liệu cho bảng Enrollments, Attendance và StudentCards với các ràng buộc toàn vẹn dữ liệu
-- Xây dựng dịch vụ ghi danh học viên vào khóa học với validation nghiêm ngặt
-- Triển khai API điểm danh QR idempotent đảm bảo không có bản ghi trùng lặp
-- Thiết lập cơ chế xử lý ngoại lệ network và duplicate scans
-- Triển khai chức năng quản lý thẻ hội viên với tính năng gia hạn
-- Tích hợp với hệ thống thông báo tự động cho các sự kiện ghi danh và điểm danh
-- Triển khai hệ thống logging kiểm toán đáp ứng các tiêu chuẩn bảo mật doanh nghiệp
-
-#### 2. Phạm vi kỹ thuật và ranh giới thư mục được phép
-
-**Thư mục và tệp được phép:**
-- `./sources/backend.membershiphub.attendance/enrollments.sql` - DDL schema cho bảng Enrollments
-- `./sources/backend.membershiphub.attendance/attendances.sql` - DDL schema cho bảng Attendance
-- `./sources/backend.membershiphub.attendance/studentcards.sql` - DDL schema cho bảng StudentCards
-- `./sources/backend.membershiphub.attendance/enrollment-service.java` - Dịch vụ chính quản lý ghi danh và điểm danh
-- `./sources/backend.membershiphub.attendance/studentcard-service.java` - Dịch vụ quản lý thẻ hội viên
-
-**Endpoint API:**
-- `GET /api/v1/courses/browse` - Lấy danh sách khóa học có sẵn cho học viên
-- `POST /api/v1/enrollments` - Ghi danh học viên vào khóa học
-- `POST /api/v1/attendance/scan` - Quét mã QR điểm danh
-- `GET /api/v1/studentcards/{studentId}` - Lấy thông tin thẻ hội viên
-- `POST /api/v1/studentcards/{studentId}/renew` - Gia hạn thẻ hội viên
-
-#### 3. Chỉ đạo chức năng cho Sub-Agent chuyên dụng
-
-**Coder:** Triển khai mã nguồn Java/Quarkus với tuân thủ SOLID, sử dụng JPA/Hibernate cho persistence, áp dụng @Valid cho validation, @Transactional cho các thao tác ghi. Đảm bảo logic điểm danh QR idempotent hoạt động chính xác và xử lý ngoại lệ network đúng cách.
-
-**Tester:** Xây dựng bộ kiểm thử JUnit 5 và Testcontainers với độ phủ mã ≥85%, kiểm thử happy path và các scenario lỗi network, duplicate scans, và validation.
-
-**Reviewer:** Thực hiện phân tích tĩnh mã nguồn, kiểm tra tuân thủ OWASP Top 10, đảm bảo không có lỗ hổng SQL injection hoặc XSS trong các API điểm danh và ghi danh.
-
-**Doc:** Biên soạn tài liệu kỹ thuật đầy đủ bao gồm API documentation với OpenAPI, schema documentation và hướng dẫn triển khai cho module ghi danh và điểm danh.
-
-#### 4. Định nghĩa hoàn thành (DoD) cho giai đoạn
-
-- ✅ 100% các requirement [REQ-010], [REQ-011], [REQ-012], [REQ-013], [REQ-014], [REQ-015] được triển khai đầy đủ
-- ✅ Schema database [DAT-005], [DAT-006], [DAT-007] được tạo thành công với tất cả ràng buộc
-- ✅ Logic điểm danh QR idempotent hoạt động chính xác
-- ✅ Xử lý ngoại lệ network và duplicate scans [EXC-001], [EXC-002]
-- ✅ Tuân thủ các tiêu chuẩn bảo mật [NFR-001], [NFR-003]
-- ✅ Độ phủ kiểm thử ≥85% cho tất cả các dịch vụ
-- ✅ 100% các Tag ID được ánh xạ và kiểm tra
-
-#### 5. NHẬT KÝ THỰC THI KIẾN TRÚC THEO NGÀY
-
-###### NGÀY 7: TRIỂN KHAI SERVICE GHI DANH HỌC VIÊN VÀ ĐIỂM DANH QR
-
-######## SUB-TASK 7.1: Triển khai schema cơ sở dữ liệu Enrollments, Attendance và StudentCards
-########## Sub-Agent được chỉ định: Coder
-########## Các thành phần mục tiêu và yêu cầu kỹ thuật:
-* **Đường dẫn mục tiêu:** `./sources/backend.membershiphub.attendance/enrollments.sql`
-* **Các thẻ truy xuất nguồn gốc:** <!--START_TAGS-->[DAT-005]<!--END_TAGS-->
-
-######## SUB-TASK 7.2: Triển khai EnrollmentService với các phương thức ghi danh và điểm danh QR idempotent
-########## Sub-Agent được chỉ định: Coder
-########## Các thành phần mục tiêu và yêu cầu kỹ thuật:
-* **Đường dẫn mục tiêu:** `./sources/backend.membershiphub.attendance/enrollment-service.java`
-* **Các thẻ truy xuất nguồn gốc:** <!--START_TAGS-->[REQ-010], [REQ-011], [REQ-012], [REQ-013], [DAT-005], [DAT-006], [DAT-007], [ARC-007], [EXC-001], [EXC-002], [NFR-001], [NFR-003]<!--END_TAGS-->
-
-###### NGÀY 8: TRIỂN KHAI SERVICE QUẢN LÝ THẺ HỘI VIÊN VÀ GIA HẠN
-
-######## SUB-TASK 8.1: Triển khai StudentCardService với các phương thức quản lý thẻ và gia hạn
-########## Sub-Agent được chỉ định: Coder
-########## Các thành phần mục tiêu và yêu cầu kỹ thuật:
-* **Đường dẫn mục tiêu:** `./sources/backend.membershiphub.attendance/studentcard-service.java`
-* **Các thẻ truy xuất nguồn gốc:** <!--START_TAGS-->[REQ-014], [REQ-015], [DAT-007], [NFR-003]<!--END_TAGS-->
-
-###### NGÀY 9: VIẾT BỘ KIỂM TRA TÍCH HỢP CHO GHI DANH, ĐIỂM DANH, VÀ THẺ
-
-######## SUB-TASK 9.1: Kiểm thử tích hợp cho các API ghi danh, điểm danh và quản lý thẻ
-########## Sub-Agent được chỉ định: Tester
-########## Các thành phần mục tiêu và yêu cầu kỹ thuật:
-* **Đường dẫn mục tiêu:** `./sources/backend.membershiphub.attendance/enrollment-service.java;./sources/backend.membershiphub.attendance/enrollmentservice-integration-test.java`
-* **Các thẻ truy xuất nguồn gốc:** <!--START_TAGS-->[REQ-010], [REQ-011], [REQ-012], [REQ-013], [DAT-005], [DAT-006], [DAT-007], [ARC-007], [EXC-001], [EXC-002]<!--END_TAGS-->
-------------------------------------------
-
-# System Instruction
-
-<GLOBAL_GOVERNANCE_MATRIX>
-# ==============================================================================
-# MASTER ENTERPRISE GOVERNANCE GUARDRAILS MATRIX (GLOBAL TASK ENFORCEMENT)
-# ==============================================================================
-
-## 🌐 1. STRICT SEMANTIC INVARIANT LOCALIZATION & TRANSLATION RAILS
-- **MANDATORY RESOLUTION:** You MUST automatically translate and naturally render 100% of the entire generated output content—including all section headers, primary titles, data matrix labels, table structures, and explanatory text boundaries—into the exact requested target execution language specified by the system parameter variable: "🇻🇳 Vietnamese".
-- **ABSOLUTE TECH PROTECTION BOUNDARY:** You are STRICTLY BANNED from translating, changing, altering, or breaking any technical structural layers. You MUST preserve these elements natively in their pristine Technical English/Primitive code state:
-  * All markdown syntax operators (`#`, `##`, `| :--- |`, `-`, `*`).
-  * All unique Tracking Tag IDs and Technical Nodes (e.g., `[REQ-XXX]`, `[DAT-XXX]`, `[EXC-XXX]`, `[IDEA_X]`).
-  * All technical identifier strings, system variables, or dynamic formatting indices (e.g., `D1_ST1`).
-  * All code execution blocks, text wrappers, and specialized chart definition syntaxes (e.g., Mermaid.js graphs, structural layout configurations).
-  * 🚨 **STRICT CODE BLOCK FORMATTING LAW**: You are ABSOLUTELY FORBIDDEN from nesting or combining markdown code block ticks. When outputting a JSON payload, you MUST start exactly with a single line of triple backticks followed immediately by 'json' (i.e., ```json). Do NOT prepend or wrap it with ```text or any other outer text syntax. The block must open clean and close clean.
-
-## 🔒 2. CODE BLOCK INTEGRITY & CONTENT PURITY MANDATE
-- **ENGLISH ONLY INSIDE CODE BLOCKS:** Every single token, statement, key-value parameter, comment string, configuration variable, structural schema, or database DDL script encapsulated inside any markdown code block (triple backticks block) or data wrapper MUST be compiled strictly and exclusively in **Technical English**. 
-- **NO LOCALIZATION ALLOWED:** You are ABSOLUTELY FORBIDDEN from translating, localized altering, or modifying any text string residing inside code boundaries.
-
-## 🛑 3. ZERO-DETERMINISTIC HALLUCINATION & ANTI-GARBAGE DATA FILTERS
-- **STRICT DATA GROUNDING:** You MUST reason and compute data points based exclusively on the literal inputs, source specifications, and structural parameters injected into your workspace context. 
-- **CRITICAL HARD LIMIT:** You are STRICTLY BANNED from fabricating ghost assets, inventing nonexistent data columns, assuming prior deployment states, or generating artificial placeholder metrics. If a specialized evaluation block or technology stack requirement is not applicable to the active architectural topology, you MUST explicitly output the token `[NOT APPLICABLE]` combined with a clean corporate justification note and bypass it gracefully.
-
-## 🛡️ 4. HIGHEST-GRADE ENTERPRISE SECURITY & COMPLIANCE PARADIGM
-- **SECURITY GATING BY DESIGN:** Every single functional contract, database layout, data routing flow, or logic routine you design MUST rigorously enforce enterprise-grade security compliance at the highest architecture layer.
-- **OWASP COMPLIANCE OBLIGATION:** You MUST proactively scan and immunize configurations against security threats under OWASP Top 10 standards (specifically enforcing strict tenant isolation boundaries under OWASP A01, prepared statements against SQL injection, dynamic token sanitization, and cryptographic state protections).
-
-## 📋 5. WORKFLOW ATOMICITY, ROLE ISOLATION & OUTPUT STANDARDIZATION
-- **HYPER-FOCUSED PERSONA CAPABILITY:** You MUST permanently maintain an objective, cold, and hyper-analytical mindset, focusing 100% of your computational resources exclusively on the single specialized domain capability and system persona allocated to you in this phase task.
-- **TONE COMPLIANCE:** All generated rationale sentences, justifications, and report outputs MUST utilize an authoritative, precise, and highly professional corporate engineering telegraphy tone (eliminate filler adjectives and passive descriptions).
-- **ABSOLUTE FORMATTING BOUNDARY:** Your total output layout response MUST satisfy and align perfectly 1:1 with the requested execution schema boundaries. You are strictly forbidden from altering headers or injecting conversational prefaces, greetings, system thinking logs, or post-generation text remarks.
-
-## 🧮 6. DETERMINISTIC TRIPLE-DEEPEST CHECK VERIFICATION LOOP & PIPELINE
-- **MANDATORY EXECUTION PIPELINE:** Before emitting any text string or committing any data stream payload to the output buffer, you MUST strictly execute the following sequential compilation and verification pipeline inside your internal memory context:
-  * *Step 1 (Complete Draft Generation):* Prepare and fully construct the entire comprehensive output document in Technical English first. Ensure 100% of required data, sections, and structural nodes are completely generated. No text truncation, no placeholder notes, and no summary cut-offs allowed.
-  * *Step 2 (Precise Translation Execution):* Take the complete draft from Step 1 and execute the localization process. Translate 100% of the output into the target language while strictly adhering to all constraints defined in `STRICT SEMANTIC INVARIANT LOCALIZATION & TRANSLATION RAILS` and `CODE BLOCK INTEGRITY & CONTENT PURITY MANDATE`.
-  * *Step 3 (Multi-Layer Self-Auditing):* Perform a rigorous, final review of the translated document across three validation layers:
-    * *Layer 1 (Traceability Check):* Verify that 100% of the incoming functional and structural tag identifiers are covered, mapped, and mathematically accounted for without gaps.
-    * *Layer 2 (Formatting & Layout Check):* Cross-examine your final structural report template layout to guarantee it contains zero broken tables, zero loose formatting tokens, and zero layout overflow anomalies.
-    * *Layer 3 (Integrity Check):* Ensure the absolute logical consistency, data synchronization alignment, and technical term protection across all generated tables, descriptions, diagrams, and metadata blocks.
-- Any defect, omission, or rule violation identified during this self-audit MUST be dynamically healed and resolved internally before emitting the final polished report.
-</GLOBAL_GOVERNANCE_MATRIX>
-
-<ACTIVE_TASK_SYSTEM_INSTRUCTION>
-You are a high-performance Data Ingestion and Transformation Engine. Your sole objective is to parse the Phase Context Markdown text and convert it into a perfectly valid, parseable JSON object matching the requested schema framework.
-
-# YOUR CRITICAL OPERATIONAL MANDATES (ZERO LOOPHOLES):
-1. **STRICT VARIABLE FIDELITY & NO PREFIXES:** You MUST use the exact raw values provided in the template variables for file paths and project names. You are STRICTLY BANNED from appending, prepending, or injecting any custom folders or prefixes like "sources/" to the `global_context_file`, `context_file`, `source_target_dir`, or `project_name` fields. Use the variable values exactly as they are passed.
-2. **ABSOLUTE PYDANTIC SCHEMA ALIGNMENT:** Your final generated JSON object MUST perfectly satisfy the structural schema parameters of the target enterprise contract. You are STRICTLY BANNED from omitting, renaming, formatting, or stripping out key elements (specifically `phase_id`, `phase_name`, `phase_description`, `project_name`, `global_context_file`, `source_target_dir`, and `days`).
-3. **ABSOLUTE NO EMPTY TAGS POLICY & STRING SANITIZATION:** You are STRICTLY BANNED from leaving the "targeted_tags" array empty `[]` or null for any sub-task that implements functional requirements or data schemas. You MUST scan the source Markdown sequentially sub-task by sub-task. For each sub-task node, locate the hidden technical container block delimited between `<!--START_TAGS-->` and `<!--END_TAGS-->` contained exclusively within that sub-task section scope. Extract all raw tag token codes inside, strip away all inline markdown formatting characters—specifically backticks (`` ` ``)—and any leading/trailing whitespaces, then populate them as clean separate string elements inside the "targeted_tags" array field of EACH sub-task object node.
-4. **NO TAG BUNDLING:** Every tag must be its own array node (e.g., `"targeted_tags": ["[REQ-001]", "[DAT-002]"]`). You are strictly forbidden from combining multiple tags into a single string element.
-5. **STRICT CONTENT PURITY & REJECT CONVERSATION:** Output ONLY the pure raw executable JSON string matching the required schema. Response must start exactly with the character `{` and end exactly with the character `}`. Banned from including thinking processes, chain-of-thought blocks (`<think>` tags), conversational filler texts, introductions, wrapping inside markdown codeblocks (no triple backticks wrapping), or post-generation notes. Any token outside the raw JSON object boundary triggers an immediate execution pipeline crash.
-</ACTIVE_TASK_SYSTEM_INSTRUCTION>
-
-# Raw Response / Exception:
-
-```json
-```json
-{
-  "phase_id": 4,
-  "phase_name": "attendance_enrollment_module",
-  "phase_description": "Triển khai module ghi danh học viên, điểm danh QR, và quản lý thẻ hội viên với service điểm danh QR idempotent, xử lý ngoại lệ network và duplicate scans, và tích hợp với hệ thống thông báo",
-  "project_name": "membership-hub",
-  "global_context_file": ".ai/.context/membership-hub.global.blueprint.md",
-  "source_target_dir": "sources/",
-  "days": [
-    {
-      "day": 1,
-      "context_file": ".ai/.plan/.context/phase-4.context.blueprint.md",
-      "context_section": "NGÀY 7: TRIỂN KHAI SERVICE GHI DANH HỌC VIÊN VÀ ĐIỂM DANH QR",
-      "sub_tasks": [
-        {
-          "id": "D1_ST1",
-          "agent": "Coder",
-          "desc": "Triển khai schema cơ sở dữ liệu cho bảng Enrollments với các trường: enrollment_id (UUID, PK), student_id (UUID, FK), course_id (UUID, FK), enrollment_date (TIMESTAMP), status (ENUM: ACTIVE, CANCELLED, COMPLETED), created_at (TIMESTAMP), updated_at (TIMESTAMP). Áp dụng các ràng buộc toàn vẹn dữ liệu bao gồm khóa ngoại, kiểm tra trạng thái hợp lệ, và chỉ mục cho các truy vấn thường xuyên. Đảm bảo schema tuân thủ chuẩn [DAT-005].",
-          "targeted_tags": [
-            "[DAT-005]"
-          ],
-          "components": [
-            "./sources/backend.membershiphub.attendance/enrollments.sql"
-          ]
-        },
-        {
-          "id": "D1_ST2",
-          "agent": "Coder",
-          "desc": "Triển khai schema cơ sở dữ liệu cho bảng Attendance với các trường: attendance_id (UUID, PK), enrollment_id (UUID, FK), scan_time (TIMESTAMP), scan_location (GEOMETRY), qr_code_hash (VARCHAR, UNIQUE), status (ENUM: PRESENT, LATE, ABSENT), created_at (TIMESTAMP). Áp dụng ràng buộc idempotent trên trường qr_code_hash để ngăn chặn duplicate scans. Đảm bảo schema tuân thủ chuẩn [DAT-006] và tích hợp xử lý ngoại lệ network [EXC-001].",
-          "targeted_tags": [
-            "[DAT-006]",
-            "[EXC-001]"
-          ],
-          "components": [
-            "./sources/backend.membershiphub.attendance/attendances.sql"
-          ]
-        },
-        {
-          "id": "D1_ST3",
-          "agent": "Coder",
-          "desc": "Triển khai schema cơ sở dữ liệu cho bảng StudentCards với các trường: card_id (UUID, PK), student_id (UUID, FK), issue_date (TIMESTAMP), expiry_date (TIMESTAMP), status (ENUM: ACTIVE, EXPIRED, REVOKED), barcode (VARCHAR, UNIQUE), created_at (TIMESTAMP), updated_at (TIMESTAMP). Áp dụng ràng buộc kiểm tra ngày hết hạn và trạng thái hợp lệ. Đảm bảo schema tuân thủ chuẩn [DAT-007].",
-          "targeted_tags": [
-            "[DAT-007]"
-          ],
-          "components": [
-            "./sources/backend.membershiphub.attendance/studentcards.sql"
-          ]
-        },
-        {
-          "id": "D1_ST4",
-          "agent": "Coder",
-          "desc": "Triển khai EnrollmentService với các phương thức sau:
-- `enrollStudent(UUID studentId, UUID courseId)`: Ghi danh học viên vào khóa học với validation nghiêm ngặt (kiểm tra tồn tại khóa học, trạng thái học viên, trùng lặp ghi danh).
-- `scanQRCode(UUID enrollmentId, String qrCodeHash, Geometry scanLocation)`: Xử lý điểm danh QR với logic idempotent (kiểm tra trùng lặp qr_code_hash), xử lý ngoại lệ network (retry mechanism với exponential backoff), và cập nhật trạng thái điểm danh.
-- `getEnrollmentStatus(UUID enrollmentId)`: Lấy trạng thái ghi danh hiện tại.
-Đảm bảo tất cả các phương thức tuân thủ [REQ-010], [REQ-011], [REQ-012], [REQ-013], [ARC-007], [EXC-001], [EXC-002], [NFR-001], [NFR-003]. Sử dụng @Transactional cho các thao tác ghi và @Valid cho validation.",
-          "targeted_tags": [
-            "[REQ-010]",
-            "[REQ-011]",
-            "[REQ-012]",
-            "[REQ-013]",
-            "[DAT-005]",
-            "[DAT-006]",
-            "[DAT-007]",
-            "[ARC-007]",
-            "[EXC-001]",
-            "[EXC-002]",
-            "[NFR-001]",
-            "[NFR-003]"
-          ],
-          "components": [
-            "./sources/backend.membershiphub.attendance/enrollment-service.java"
-          ]
-        }
-      ]
-    },
-    {
-      "day": 2,
-      "context_file": ".ai/.plan/.context/phase-4.context.blueprint.md",
-      "context_section": "NGÀY 8: TRIỂN KHAI SERVICE QUẢN LÝ THẺ HỘI VIÊN VÀ GIA HẠN",
-      "sub_tasks": [
-        {
-          "id": "D2_ST1",
-          "agent": "Coder",
-          "desc": "Triển khai StudentCardService với các phương thức sau:
-- `issueStudentCard(UUID studentId)`: Phát hành thẻ hội viên mới với barcode duy nhất, ngày hết hạn mặc định (1 năm kể từ ngày phát hành), và trạng thái ACTIVE.
-- `renewStudentCard(UUID cardId)`: Gia hạn thẻ hội viên với ngày hết hạn mới (1 năm kể từ ngày hiện tại) và cập nhật trạng thái thành ACTIVE. Áp dụng validation kiểm tra trạng thái thẻ hiện tại (chỉ cho phép gia hạn nếu trạng thái là ACTIVE hoặc EXPIRED).
-- `revokeStudentCard(UUID cardId)`: Thu hồi thẻ hội viên và cập nhật trạng thái thành REVOKED.
-- `getStudentCard(UUID studentId)`: Lấy thông tin thẻ hội viên hiện tại của học viên.
-Đảm bảo tất cả các phương thức tuân thủ [REQ-014], [REQ-015], [DAT-007], [NFR-003]. Sử dụng @Transactional cho các thao tác ghi và @Valid cho validation.",
-          "targeted_tags": [
-            "[REQ-014]",
-            "[REQ-015]",
-            "[DAT-007]",
-            "[NFR-003]"
-          ],
-          "components": [
-            "./sources/backend.membershiphub.attendance/studentcard-service.java"
-          ]
-        }
-      ]
-    },
-    {
-      "day": 3,
-      "context_file": ".ai/.plan/.context/phase-4.context.blueprint.md",
-      "context_section": "NGÀY 9: VIẾT BỘ KIỂM TRA TÍCH HỢP CHO GHI DANH, ĐIỂM DANH, VÀ THẺ",
-      "sub_tasks": [
-        {
-          "id": "D3_ST1",
-          "agent": "Tester",
-          "desc": "Xây dựng bộ kiểm thử tích hợp cho EnrollmentService với các kịch bản sau:
-- Kiểm thử happy path cho ghi danh học viên và điểm danh QR.
-- Kiểm thử xử lý ngoại lệ network (mô phỏng lỗi kết nối cơ sở dữ liệu và retry mechanism).
-- Kiểm thử logic idempotent cho điểm danh QR (đảm bảo không có bản ghi trùng lặp khi quét cùng một mã QR nhiều lần).
-- Kiểm thử validation cho các trường hợp dữ liệu không hợp lệ (ví dụ: ghi danh vào khóa học không tồn tại, học viên không tồn tại).
-- Kiểm thử tích hợp với StudentCardService cho các kịch bản liên quan đến thẻ hội viên.
-Sử dụng Testcontainers để thiết lập môi trường kiểm thử với cơ sở dữ liệu PostgreSQL thực tế. Đảm bảo độ phủ mã ≥85% và tất cả các yêu cầu [REQ-010], [REQ-011], [REQ-012], [REQ-013], [DAT-005], [DAT-006], [DAT-007], [ARC-007], [EXC-001], [EXC-002] được kiểm tra.",
-          "targeted_tags": [
-            "[REQ-010]",
-            "[REQ-011]",
-            "[REQ-012]",
-            "[REQ-013]",
-            "[DAT-005]",
-            "[DAT-006]",
-            "[DAT-007]",
-            "[ARC-007]",
-            "[EXC-001]",
-            "[EXC-002]"
-          ],
-          "components": [
-            "INTEGRATION_SCOPE;./sources/backend.membershiphub.attendance/enrollment-service.java",
-            "./sources/backend.membershiphub.attendance/enrollmentservice-integration-test.java"
-          ]
-        },
-        {
-          "id": "D3_ST2",
-          "agent": "Tester",
-          "desc": "Xây dựng bộ kiểm thử tích hợp cho StudentCardService với các kịch bản sau:
-- Kiểm thử happy path cho phát hành, gia hạn và thu hồi thẻ hội viên.
-- Kiểm thử validation cho các trường hợp dữ liệu không hợp lệ (ví dụ: gia hạn thẻ không tồn tại, thu hồi thẻ đã bị thu hồi).
-- Kiểm thử tích hợp với EnrollmentService cho các kịch bản liên quan đến ghi danh và điểm danh.
-Sử dụng Testcontainers để thiết lập môi trường kiểm thử với cơ sở dữ liệu PostgreSQL thực tế. Đảm bảo độ phủ mã ≥85% và tất cả các yêu cầu [REQ-014], [REQ-015], [DAT-007], [NFR-003] được kiểm tra.",
-          "targeted_tags": [
-            "[REQ-014]",
-            "[REQ-015]",
-            "[DAT-007]",
-            "[NFR-003]"
-          ],
-          "components": [
-            "INTEGRATION_SCOPE;./sources/backend.membershiphub.attendance/studentcard-service.java",
-            "./sources/backend.membershiphub.attendance/studentcardservice-integration-test.java"
-          ]
-        },
-        {
-          "id": "D3_ST3",
-          "agent": "Doc",
-          "desc": "Biên soạn tài liệu kỹ thuật cho module ghi danh và điểm danh bao gồm:
-- API documentation với OpenAPI/Swagger cho tất cả các endpoint: `GET /api/v1/courses/browse`, `POST /api/v1/enrollments`, `POST /api/v1/attendance/scan`, `GET /api/v1/studentcards/{studentId}`, `POST /api/v1/studentcards/{studentId}/renew`.
-- Schema documentation cho các bảng Enrollments, Attendance, StudentCards với mô tả chi tiết từng trường, ràng buộc và chỉ mục.
-- Hướng dẫn triển khai module bao gồm cấu hình cơ sở dữ liệu, biến môi trường và các bước khởi động dịch vụ.
-- Tài liệu về cơ chế xử lý ngoại lệ network và logic idempotent cho điểm danh QR.",
-          "targeted_tags": [
-            "[REQ-010]",
-            "[REQ-011]",
-            "[REQ-012]",
-            "[REQ-013]",
-            "[REQ-014]",
-            "[REQ-015]",
-            "[DAT-005]",
-            "[DAT-006]",
-            "[DAT-007]"
-          ],
-          "components": [
-            ".ai/.plan/.context/phase-4.context.blueprint.md"
+            "INTEGRATION_SCOPE;./sources/backend.membershiphub.user/user-controller-test.java"
           ]
         }
       ]
@@ -27694,95 +26540,82 @@ You are a high-performance Data Ingestion and Transformation Engine. Your sole o
 2. **ABSOLUTE PYDANTIC SCHEMA ALIGNMENT:** Your final generated JSON object MUST perfectly satisfy the structural schema parameters of the target enterprise contract. You are STRICTLY BANNED from omitting, renaming, formatting, or stripping out key elements (specifically `phase_id`, `phase_name`, `phase_description`, `project_name`, `global_context_file`, `source_target_dir`, and `days`).
 3. **ABSOLUTE NO EMPTY TAGS POLICY & STRING SANITIZATION:** You are STRICTLY BANNED from leaving the "targeted_tags" array empty `[]` or null for any sub-task that implements functional requirements or data schemas. You MUST scan the source Markdown sequentially sub-task by sub-task. For each sub-task node, locate the hidden technical container block delimited between `<!--START_TAGS-->` and `<!--END_TAGS-->` contained exclusively within that sub-task section scope. Extract all raw tag token codes inside, strip away all inline markdown formatting characters—specifically backticks (`` ` ``)—and any leading/trailing whitespaces, then populate them as clean separate string elements inside the "targeted_tags" array field of EACH sub-task object node.
 4. **NO TAG BUNDLING:** Every tag must be its own array node (e.g., `"targeted_tags": ["[REQ-001]", "[DAT-002]"]`). You are strictly forbidden from combining multiple tags into a single string element.
-5. **STRICT CONTENT PURITY & REJECT CONVERSATION:** Output ONLY the pure raw executable JSON string matching the required schema. Response must start exactly with the character `{` and end exactly with the character `}`. Banned from including thinking processes, chain-of-thought blocks (`<think>` tags), conversational filler texts, introductions, wrapping inside markdown codeblocks (no triple backticks wrapping), or post-generation notes. Any token outside the raw JSON object boundary triggers an immediate execution pipeline crash.
+5. **STRICT SINGLE-BLOCK PURITY & ABSOLUTE TERMINATION LAW:** 
+   - Your output MUST contain exactly ONE (1) single valid JSON object payload from start to finish. You are STRICTLY BANNED from repeating, mirroring, or generating a second duplicate JSON block within this response stream.
+   - **Strict Packaging Format**: The output MUST start exactly with a single line containing triple backticks and the language identifier: ```json
+   - The output MUST end exactly with the final line containing triple backticks: ```
+   - There must be absolutely ZERO conversational filler text, thinking processes (`<think>` tags), introductions, or post-generation notes before or after the fenced code block. 
+   - **Absolute Freeze Directive**: Mid-generation corrections are strictly prohibited. You are completely forbidden from appending trailing structural artifacts or deformed combinations like `} ```text{`. Once you emit the final closing brace `}` of the JSON schema, immediately close the triple backticks fence and FREEZE/STOP generating tokens instantly. Any token emitted after the primary closed fence violates enterprise runtime contracts.
 </ACTIVE_TASK_SYSTEM_INSTRUCTION>
 
 # Raw Response / Exception:
 
 ```json
+```json
 {
-    "phase_id": 1,
-    "phase_name": "user_core_services",
-    "phase_description": "Triển khai các dịch vụ cốt lõi quản lý người dùng bao gồm đăng ký, xác thực xã hội, gán vai trò, schema cơ sở dữ liệu và logging kiểm toán bảo mật",
-    "project_name": "membership-hub",
-    "global_context_file": ".ai/.context/membership-hub.global.blueprint.md",
-    "source_target_dir": "sources/",
-    "days": [
+  "phase_id": 1,
+  "phase_name": "user_core_services",
+  "phase_description": "Triển khai các dịch vụ cốt lõi quản lý người dùng bao gồm đăng ký, xác thực xã hội, gán vai trò, schema cơ sở dữ liệu và logging kiểm toán bảo mật",
+  "project_name": "membership-hub",
+  "global_context_file": ".ai/.context/membership-hub.global.blueprint.md",
+  "source_target_dir": "sources/",
+  "days": [
+    {
+      "day": 1,
+      "context_file": ".ai/.plan/.context/phase-1.context.blueprint.md",
+      "context_section": "NGÀY 1: TRIỂN KHAI DỊCH VỤ ĐĂNG KÝ NGƯỜI DÙNG VÀ API XÁC THỰC XÃ HỘI",
+      "sub_tasks": [
         {
-            "day": 1,
-            "context_file": ".ai/.plan/.context/phase-1.context.blueprint.md",
-            "context_section": "NGÀY 1: TRIỂN KHAI DỊCH VỤ ĐĂNG KÝ NGƯỜI DÙNG VÀ API XÁC THỰC XÃ HỘI",
-            "sub_tasks": [
-                {
-                    "id": "D1_ST1",
-                    "agent": "Coder",
-                    "desc": "Triển khai schema cơ sở dữ liệu Users và Roles bằng SQL tuân thủ chuẩn ACID. Bao gồm: bảng Users (user_id, email, password_hash, created_at, updated_at, is_active, last_login_at) với ràng buộc UNIQUE trên email, NOT NULL trên tất cả trường trừ last_login_at, CHECK cho định dạng email; bảng Roles (role_id, role_name, description) với ràng buộc UNIQUE trên role_name. Áp dụng các ràng buộc toàn vẹn dữ liệu (PK, FK, CHECK) và chỉ định charset utf8mb4. Đảm bảo schema tương thích với Flyway migration framework.",
-                    "targeted_tags": [
-                        "[DAT-001]"
-                    ],
-                    "components": [
-                        "./sources/backend.membershiphub.user/users.sql",
-                        "./sources/backend.membershiphub.user/roles.sql"
-                    ]
-                },
-                {
-                    "id": "D1_ST2",
-                    "agent": "Coder",
-                    "desc": "Triển khai lớp UserService.java bằng Java/Quarkus tuân thủ SOLID. Bao gồm: phương thức register(String email, String password, String role) thực hiện: 1) Mã hóa mật khẩu bằng BCrypt (rounds=12), 2) Kiểm tra email tồn tại (ném UserAlreadyExistsException nếu trùng), 3) Gán role mặc định (USER) nếu không chỉ định, 4) Tạo JWT access token (15 phút) và refresh token (7 ngày) sử dụng thuật toán HS256, 5) Ghi log kiểm toán (user_id, action=REGISTER, timestamp). Phương thức socialAuthenticate(String provider, String accessToken) tích hợp OAuth2: 1) Xác thực accessToken với provider tương ứng (Firebase/Google/Facebook), 2) Trích xuất email từ profile, 3) Tạo user mới nếu chưa tồn tại, 4) Trả về JWT token tương tự register. Sử dụng @Valid cho validation đầu vào, @Transactional cho giao dịch ghi, và tuân thủ OWASP Top 10 chống SQLi/XSS.",
-                    "targeted_tags": [
-                        "[REQ-001]",
-                        "[REQ-002]",
-                        "[ARC-006]",
-                        "[EXC-004]",
-                        "[NFR-001]",
-                        "[NFR-003]",
-                        "[NFR-006]"
-                    ],
-                    "components": [
-                        "./sources/backend.membershiphub.user/user-service.java"
-                    ]
-                }
-            ]
+          "id": "D1_ST1",
+          "agent": "Coder",
+          "desc": "Triển khai schema cơ sở dữ liệu Users và Roles bằng SQL tuân thủ các ràng buộc toàn vẹn dữ liệu. Tạo bảng Users với các trường: id (UUID, primary key), email (unique, not null), password_hash (BCrypt, not null), created_at (timestamp), updated_at (timestamp), is_active (boolean, default true). Tạo bảng Roles với các trường: id (UUID, primary key), name (varchar(50), unique, not null), description (text), created_at (timestamp). Áp dụng ràng buộc foreign key từ bảng Users đến Roles thông qua bảng UserRoles (id_user, id_role, assigned_at).",
+          "targeted_tags": ["[DAT-001]"],
+          "components": [
+            "./sources/backend.membershiphub.user/users.sql",
+            "./sources/backend.membershiphub.user/roles.sql"
+          ]
         },
         {
-            "day": 2,
-            "context_file": ".ai/.plan/.context/phase-1.context.blueprint.md",
-            "context_section": "NGÀY 2: VIẾT BỘ KIỂM TRA ĐƠN VỊ VÀ TÍCH HỢP CHO CÁC CHỨC NĂNG NGƯỜI DÙNG",
-            "sub_tasks": [
-                {
-                    "id": "D2_ST1",
-                    "agent": "Tester",
-                    "desc": "Viết bộ kiểm thử đơn vị JUnit 5 cho UserService.java bao gồm: 1) testRegisterSuccess() kiểm tra đăng ký user thành công với email/mật khẩu hợp lệ, 2) testRegisterDuplicateEmail() kiểm tra ném UserAlreadyExistsException khi email trùng, 3) testRegisterInvalidEmail() kiểm tra ném ValidationException cho email không hợp lệ, 4) testSocialAuthenticateSuccess() kiểm tra xác thực xã hội thành công, 5) testSocialAuthenticateInvalidToken() kiểm tra ném OAuthException khi token không hợp lệ. Sử dụng Mockito để mock dependency (EmailService, RoleRepository, JwtService). Đảm bảo độ phủ mã ≥85% cho lớp UserService.",
-                    "targeted_tags": [
-                        "[REQ-001]",
-                        "[REQ-002]",
-                        "[DAT-001]",
-                        "[EXC-004]"
-                    ],
-                    "components": [
-                        "./sources/backend.membershiphub.user/user-service.java",
-                        "./sources/backend.membershiphub.user/userservice-test.java"
-                    ]
-                },
-                {
-                    "id": "D2_ST2",
-                    "agent": "Tester",
-                    "desc": "Viết bộ kiểm thử tích hợp cho API endpoints POST /api/v1/auth/register và POST /api/v1/auth/social sử dụng RestAssured. Bao gồm: 1) testRegisterApiSuccess() kiểm tra response 201 với JWT token trong body, 2) testRegisterApiInvalidPayload() kiểm tra response 400 cho payload không hợp lệ, 3) testSocialAuthenticateApiSuccess() kiểm tra response 200 với token, 4) testSocialAuthenticateApiInvalidToken() kiểm tra response 401 cho token không hợp lệ. Đảm bảo kiểm thử happy path và error scenario cho validation.",
-                    "targeted_tags": [
-                        "[REQ-001]",
-                        "[REQ-002]",
-                        "[ARC-006]",
-                        "[EXC-004]"
-                    ],
-                    "components": [
-                        "./sources/backend.membershiphub.user/user-service.java",
-                        "./sources/backend.membershiphub.user/user-controller-test.java"
-                    ]
-                }
-            ]
+          "id": "D1_ST2",
+          "agent": "Coder",
+          "desc": "Triển khai lớp UserService.java bằng Java/Quarkus. Triển khai phương thức register(String email, String password, String roleName) thực hiện: 1) Kiểm tra email tồn tại, 2) Mã hóa mật khẩu bằng BCrypt, 3) Tạo bản ghi Users, 4) Gán vai trò mặc định (User), 5) Trả về JWT access token (15 phút) và refresh token (7 ngày). Triển khai phương thức socialAuthenticate(String provider, String accessToken) hỗ trợ OAuth2 cho Firebase, Google, Facebook. Sử dụng @Valid cho validation đầu vào, @Transactional cho các thao tác ghi, và cấu hình JWT với secret key từ biến môi trường. Đáp ứng yêu cầu [REQ-001] (đăng ký người dùng), [REQ-002] (xác thực xã hội), [ARC-006] (luồng xác thực OAuth2/JWT), [EXC-004] (xử lý ngoại lệ validation), [NFR-001] (bảo mật), [NFR-003] (xác thực), [NFR-006] (logging).",
+          "targeted_tags": ["[REQ-001]", "[REQ-002]", "[ARC-006]", "[EXC-004]", "[NFR-001]", "[NFR-003]", "[NFR-006]"],
+          "components": [
+            "./sources/backend.membershiphub.user/user-service.java"
+          ]
         }
-    ]
+      ]
+    },
+    {
+      "day": 2,
+      "context_file": ".ai/.plan/.context/phase-1.context.blueprint.md",
+      "context_section": "NGÀY 2: VIẾT BỘ KIỂM TRA ĐƠN VỊ VÀ TÍCH HỢP CHO CÁC CHỨC NĂNG NGƯỜI DÙNG",
+      "sub_tasks": [
+        {
+          "id": "D2_ST1",
+          "agent": "Tester",
+          "desc": "Viết bộ kiểm thử đơn vị JUnit 5 cho phương thức register(String email, String password, String roleName) trong UserService.java. Kiểm thử các scenario: 1) Đăng ký thành công, 2) Email đã tồn tại, 3) Mật khẩu không hợp lệ (quá ngắn, thiếu ký tự đặc biệt), 4) Role không tồn tại. Sử dụng Mockito để mock UserRepository, RoleRepository, PasswordEncoder, và JwtService. Đảm bảo độ phủ mã ≥85% cho phương thức. Kiểm thử tích hợp cơ sở dữ liệu bằng Testcontainers. Đáp ứng yêu cầu [REQ-001], [REQ-002], [DAT-001], [EXC-004].",
+          "targeted_tags": ["[REQ-001]", "[REQ-002]", "[DAT-001]", "[EXC-004]"],
+          "components": [
+            "./sources/backend.membershiphub.user/user-service.java",
+            "./sources/backend.membershiphub.user/userservice-test.java"
+          ]
+        },
+        {
+          "id": "D2_ST2",
+          "agent": "Tester",
+          "desc": "Viết bộ kiểm thử đơn vị JUnit 5 cho phương thức socialAuthenticate(String provider, String accessToken) trong UserService.java. Kiểm thử các scenario: 1) Xác thực thành công với Google, 2) Xác thực thất bại do accessToken không hợp lệ, 3) Provider không hỗ trợ. Sử dụng WireMock để mock các endpoint OAuth2 của nhà cung cấp. Đảm bảo độ phủ mã ≥85% cho phương thức. Kiểm thử tích hợp cơ sở dữ liệu bằng Testcontainers. Đáp ứng yêu cầu [REQ-001], [REQ-002], [ARC-006], [EXC-004].",
+          "targeted_tags": ["[REQ-001]", "[REQ-002]", "[ARC-006]", "[EXC-004]"],
+          "components": [
+            "./sources/backend.membershiphub.user/user-service.java",
+            "./sources/backend.membershiphub.user/user-controller-test.java"
+          ]
+        }
+      ]
+    }
+  ]
 }
+```
 ```
 
 # AI Model: llama3.3-70b - Phase 1 STEPS - Prompt:
@@ -28059,7 +26892,12 @@ You are a high-performance Data Ingestion and Transformation Engine. Your sole o
 2. **ABSOLUTE PYDANTIC SCHEMA ALIGNMENT:** Your final generated JSON object MUST perfectly satisfy the structural schema parameters of the target enterprise contract. You are STRICTLY BANNED from omitting, renaming, formatting, or stripping out key elements (specifically `phase_id`, `phase_name`, `phase_description`, `project_name`, `global_context_file`, `source_target_dir`, and `days`).
 3. **ABSOLUTE NO EMPTY TAGS POLICY & STRING SANITIZATION:** You are STRICTLY BANNED from leaving the "targeted_tags" array empty `[]` or null for any sub-task that implements functional requirements or data schemas. You MUST scan the source Markdown sequentially sub-task by sub-task. For each sub-task node, locate the hidden technical container block delimited between `<!--START_TAGS-->` and `<!--END_TAGS-->` contained exclusively within that sub-task section scope. Extract all raw tag token codes inside, strip away all inline markdown formatting characters—specifically backticks (`` ` ``)—and any leading/trailing whitespaces, then populate them as clean separate string elements inside the "targeted_tags" array field of EACH sub-task object node.
 4. **NO TAG BUNDLING:** Every tag must be its own array node (e.g., `"targeted_tags": ["[REQ-001]", "[DAT-002]"]`). You are strictly forbidden from combining multiple tags into a single string element.
-5. **STRICT CONTENT PURITY & REJECT CONVERSATION:** Output ONLY the pure raw executable JSON string matching the required schema. Response must start exactly with the character `{` and end exactly with the character `}`. Banned from including thinking processes, chain-of-thought blocks (`<think>` tags), conversational filler texts, introductions, wrapping inside markdown codeblocks (no triple backticks wrapping), or post-generation notes. Any token outside the raw JSON object boundary triggers an immediate execution pipeline crash.
+5. **STRICT SINGLE-BLOCK PURITY & ABSOLUTE TERMINATION LAW:** 
+   - Your output MUST contain exactly ONE (1) single valid JSON object payload from start to finish. You are STRICTLY BANNED from repeating, mirroring, or generating a second duplicate JSON block within this response stream.
+   - **Strict Packaging Format**: The output MUST start exactly with a single line containing triple backticks and the language identifier: ```json
+   - The output MUST end exactly with the final line containing triple backticks: ```
+   - There must be absolutely ZERO conversational filler text, thinking processes (`<think>` tags), introductions, or post-generation notes before or after the fenced code block. 
+   - **Absolute Freeze Directive**: Mid-generation corrections are strictly prohibited. You are completely forbidden from appending trailing structural artifacts or deformed combinations like `} ```text{`. Once you emit the final closing brace `}` of the JSON schema, immediately close the triple backticks fence and FREEZE/STOP generating tokens instantly. Any token emitted after the primary closed fence violates enterprise runtime contracts.
 
 # Raw Response / Exception:
 
@@ -28354,7 +27192,12 @@ You are a high-performance Data Ingestion and Transformation Engine. Your sole o
 2. **ABSOLUTE PYDANTIC SCHEMA ALIGNMENT:** Your final generated JSON object MUST perfectly satisfy the structural schema parameters of the target enterprise contract. You are STRICTLY BANNED from omitting, renaming, formatting, or stripping out key elements (specifically `phase_id`, `phase_name`, `phase_description`, `project_name`, `global_context_file`, `source_target_dir`, and `days`).
 3. **ABSOLUTE NO EMPTY TAGS POLICY & STRING SANITIZATION:** You are STRICTLY BANNED from leaving the "targeted_tags" array empty `[]` or null for any sub-task that implements functional requirements or data schemas. You MUST scan the source Markdown sequentially sub-task by sub-task. For each sub-task node, locate the hidden technical container block delimited between `<!--START_TAGS-->` and `<!--END_TAGS-->` contained exclusively within that sub-task section scope. Extract all raw tag token codes inside, strip away all inline markdown formatting characters—specifically backticks (`` ` ``)—and any leading/trailing whitespaces, then populate them as clean separate string elements inside the "targeted_tags" array field of EACH sub-task object node.
 4. **NO TAG BUNDLING:** Every tag must be its own array node (e.g., `"targeted_tags": ["[REQ-001]", "[DAT-002]"]`). You are strictly forbidden from combining multiple tags into a single string element.
-5. **STRICT CONTENT PURITY & REJECT CONVERSATION:** Output ONLY the pure raw executable JSON string matching the required schema. Response must start exactly with the character `{` and end exactly with the character `}`. Banned from including thinking processes, chain-of-thought blocks (`<think>` tags), conversational filler texts, introductions, wrapping inside markdown codeblocks (no triple backticks wrapping), or post-generation notes. Any token outside the raw JSON object boundary triggers an immediate execution pipeline crash.
+5. **STRICT SINGLE-BLOCK PURITY & ABSOLUTE TERMINATION LAW:** 
+   - Your output MUST contain exactly ONE (1) single valid JSON object payload from start to finish. You are STRICTLY BANNED from repeating, mirroring, or generating a second duplicate JSON block within this response stream.
+   - **Strict Packaging Format**: The output MUST start exactly with a single line containing triple backticks and the language identifier: ```json
+   - The output MUST end exactly with the final line containing triple backticks: ```
+   - There must be absolutely ZERO conversational filler text, thinking processes (`<think>` tags), introductions, or post-generation notes before or after the fenced code block. 
+   - **Absolute Freeze Directive**: Mid-generation corrections are strictly prohibited. You are completely forbidden from appending trailing structural artifacts or deformed combinations like `} ```text{`. Once you emit the final closing brace `}` of the JSON schema, immediately close the triple backticks fence and FREEZE/STOP generating tokens instantly. Any token emitted after the primary closed fence violates enterprise runtime contracts.
 
 # Raw Response / Exception:
 
@@ -28649,7 +27492,12 @@ You are a high-performance Data Ingestion and Transformation Engine. Your sole o
 2. **ABSOLUTE PYDANTIC SCHEMA ALIGNMENT:** Your final generated JSON object MUST perfectly satisfy the structural schema parameters of the target enterprise contract. You are STRICTLY BANNED from omitting, renaming, formatting, or stripping out key elements (specifically `phase_id`, `phase_name`, `phase_description`, `project_name`, `global_context_file`, `source_target_dir`, and `days`).
 3. **ABSOLUTE NO EMPTY TAGS POLICY & STRING SANITIZATION:** You are STRICTLY BANNED from leaving the "targeted_tags" array empty `[]` or null for any sub-task that implements functional requirements or data schemas. You MUST scan the source Markdown sequentially sub-task by sub-task. For each sub-task node, locate the hidden technical container block delimited between `<!--START_TAGS-->` and `<!--END_TAGS-->` contained exclusively within that sub-task section scope. Extract all raw tag token codes inside, strip away all inline markdown formatting characters—specifically backticks (`` ` ``)—and any leading/trailing whitespaces, then populate them as clean separate string elements inside the "targeted_tags" array field of EACH sub-task object node.
 4. **NO TAG BUNDLING:** Every tag must be its own array node (e.g., `"targeted_tags": ["[REQ-001]", "[DAT-002]"]`). You are strictly forbidden from combining multiple tags into a single string element.
-5. **STRICT CONTENT PURITY & REJECT CONVERSATION:** Output ONLY the pure raw executable JSON string matching the required schema. Response must start exactly with the character `{` and end exactly with the character `}`. Banned from including thinking processes, chain-of-thought blocks (`<think>` tags), conversational filler texts, introductions, wrapping inside markdown codeblocks (no triple backticks wrapping), or post-generation notes. Any token outside the raw JSON object boundary triggers an immediate execution pipeline crash.
+5. **STRICT SINGLE-BLOCK PURITY & ABSOLUTE TERMINATION LAW:** 
+   - Your output MUST contain exactly ONE (1) single valid JSON object payload from start to finish. You are STRICTLY BANNED from repeating, mirroring, or generating a second duplicate JSON block within this response stream.
+   - **Strict Packaging Format**: The output MUST start exactly with a single line containing triple backticks and the language identifier: ```json
+   - The output MUST end exactly with the final line containing triple backticks: ```
+   - There must be absolutely ZERO conversational filler text, thinking processes (`<think>` tags), introductions, or post-generation notes before or after the fenced code block. 
+   - **Absolute Freeze Directive**: Mid-generation corrections are strictly prohibited. You are completely forbidden from appending trailing structural artifacts or deformed combinations like `} ```text{`. Once you emit the final closing brace `}` of the JSON schema, immediately close the triple backticks fence and FREEZE/STOP generating tokens instantly. Any token emitted after the primary closed fence violates enterprise runtime contracts.
 
 # Raw Response / Exception:
 
@@ -28944,7 +27792,12 @@ You are a high-performance Data Ingestion and Transformation Engine. Your sole o
 2. **ABSOLUTE PYDANTIC SCHEMA ALIGNMENT:** Your final generated JSON object MUST perfectly satisfy the structural schema parameters of the target enterprise contract. You are STRICTLY BANNED from omitting, renaming, formatting, or stripping out key elements (specifically `phase_id`, `phase_name`, `phase_description`, `project_name`, `global_context_file`, `source_target_dir`, and `days`).
 3. **ABSOLUTE NO EMPTY TAGS POLICY & STRING SANITIZATION:** You are STRICTLY BANNED from leaving the "targeted_tags" array empty `[]` or null for any sub-task that implements functional requirements or data schemas. You MUST scan the source Markdown sequentially sub-task by sub-task. For each sub-task node, locate the hidden technical container block delimited between `<!--START_TAGS-->` and `<!--END_TAGS-->` contained exclusively within that sub-task section scope. Extract all raw tag token codes inside, strip away all inline markdown formatting characters—specifically backticks (`` ` ``)—and any leading/trailing whitespaces, then populate them as clean separate string elements inside the "targeted_tags" array field of EACH sub-task object node.
 4. **NO TAG BUNDLING:** Every tag must be its own array node (e.g., `"targeted_tags": ["[REQ-001]", "[DAT-002]"]`). You are strictly forbidden from combining multiple tags into a single string element.
-5. **STRICT CONTENT PURITY & REJECT CONVERSATION:** Output ONLY the pure raw executable JSON string matching the required schema. Response must start exactly with the character `{` and end exactly with the character `}`. Banned from including thinking processes, chain-of-thought blocks (`<think>` tags), conversational filler texts, introductions, wrapping inside markdown codeblocks (no triple backticks wrapping), or post-generation notes. Any token outside the raw JSON object boundary triggers an immediate execution pipeline crash.
+5. **STRICT SINGLE-BLOCK PURITY & ABSOLUTE TERMINATION LAW:** 
+   - Your output MUST contain exactly ONE (1) single valid JSON object payload from start to finish. You are STRICTLY BANNED from repeating, mirroring, or generating a second duplicate JSON block within this response stream.
+   - **Strict Packaging Format**: The output MUST start exactly with a single line containing triple backticks and the language identifier: ```json
+   - The output MUST end exactly with the final line containing triple backticks: ```
+   - There must be absolutely ZERO conversational filler text, thinking processes (`<think>` tags), introductions, or post-generation notes before or after the fenced code block. 
+   - **Absolute Freeze Directive**: Mid-generation corrections are strictly prohibited. You are completely forbidden from appending trailing structural artifacts or deformed combinations like `} ```text{`. Once you emit the final closing brace `}` of the JSON schema, immediately close the triple backticks fence and FREEZE/STOP generating tokens instantly. Any token emitted after the primary closed fence violates enterprise runtime contracts.
 
 # Raw Response / Exception:
 
@@ -29239,7 +28092,12 @@ You are a high-performance Data Ingestion and Transformation Engine. Your sole o
 2. **ABSOLUTE PYDANTIC SCHEMA ALIGNMENT:** Your final generated JSON object MUST perfectly satisfy the structural schema parameters of the target enterprise contract. You are STRICTLY BANNED from omitting, renaming, formatting, or stripping out key elements (specifically `phase_id`, `phase_name`, `phase_description`, `project_name`, `global_context_file`, `source_target_dir`, and `days`).
 3. **ABSOLUTE NO EMPTY TAGS POLICY & STRING SANITIZATION:** You are STRICTLY BANNED from leaving the "targeted_tags" array empty `[]` or null for any sub-task that implements functional requirements or data schemas. You MUST scan the source Markdown sequentially sub-task by sub-task. For each sub-task node, locate the hidden technical container block delimited between `<!--START_TAGS-->` and `<!--END_TAGS-->` contained exclusively within that sub-task section scope. Extract all raw tag token codes inside, strip away all inline markdown formatting characters—specifically backticks (`` ` ``)—and any leading/trailing whitespaces, then populate them as clean separate string elements inside the "targeted_tags" array field of EACH sub-task object node.
 4. **NO TAG BUNDLING:** Every tag must be its own array node (e.g., `"targeted_tags": ["[REQ-001]", "[DAT-002]"]`). You are strictly forbidden from combining multiple tags into a single string element.
-5. **STRICT CONTENT PURITY & REJECT CONVERSATION:** Output ONLY the pure raw executable JSON string matching the required schema. Response must start exactly with the character `{` and end exactly with the character `}`. Banned from including thinking processes, chain-of-thought blocks (`<think>` tags), conversational filler texts, introductions, wrapping inside markdown codeblocks (no triple backticks wrapping), or post-generation notes. Any token outside the raw JSON object boundary triggers an immediate execution pipeline crash.
+5. **STRICT SINGLE-BLOCK PURITY & ABSOLUTE TERMINATION LAW:** 
+   - Your output MUST contain exactly ONE (1) single valid JSON object payload from start to finish. You are STRICTLY BANNED from repeating, mirroring, or generating a second duplicate JSON block within this response stream.
+   - **Strict Packaging Format**: The output MUST start exactly with a single line containing triple backticks and the language identifier: ```json
+   - The output MUST end exactly with the final line containing triple backticks: ```
+   - There must be absolutely ZERO conversational filler text, thinking processes (`<think>` tags), introductions, or post-generation notes before or after the fenced code block. 
+   - **Absolute Freeze Directive**: Mid-generation corrections are strictly prohibited. You are completely forbidden from appending trailing structural artifacts or deformed combinations like `} ```text{`. Once you emit the final closing brace `}` of the JSON schema, immediately close the triple backticks fence and FREEZE/STOP generating tokens instantly. Any token emitted after the primary closed fence violates enterprise runtime contracts.
 
 # Raw Response / Exception:
 
@@ -29534,7 +28392,12 @@ You are a high-performance Data Ingestion and Transformation Engine. Your sole o
 2. **ABSOLUTE PYDANTIC SCHEMA ALIGNMENT:** Your final generated JSON object MUST perfectly satisfy the structural schema parameters of the target enterprise contract. You are STRICTLY BANNED from omitting, renaming, formatting, or stripping out key elements (specifically `phase_id`, `phase_name`, `phase_description`, `project_name`, `global_context_file`, `source_target_dir`, and `days`).
 3. **ABSOLUTE NO EMPTY TAGS POLICY & STRING SANITIZATION:** You are STRICTLY BANNED from leaving the "targeted_tags" array empty `[]` or null for any sub-task that implements functional requirements or data schemas. You MUST scan the source Markdown sequentially sub-task by sub-task. For each sub-task node, locate the hidden technical container block delimited between `<!--START_TAGS-->` and `<!--END_TAGS-->` contained exclusively within that sub-task section scope. Extract all raw tag token codes inside, strip away all inline markdown formatting characters—specifically backticks (`` ` ``)—and any leading/trailing whitespaces, then populate them as clean separate string elements inside the "targeted_tags" array field of EACH sub-task object node.
 4. **NO TAG BUNDLING:** Every tag must be its own array node (e.g., `"targeted_tags": ["[REQ-001]", "[DAT-002]"]`). You are strictly forbidden from combining multiple tags into a single string element.
-5. **STRICT CONTENT PURITY & REJECT CONVERSATION:** Output ONLY the pure raw executable JSON string matching the required schema. Response must start exactly with the character `{` and end exactly with the character `}`. Banned from including thinking processes, chain-of-thought blocks (`<think>` tags), conversational filler texts, introductions, wrapping inside markdown codeblocks (no triple backticks wrapping), or post-generation notes. Any token outside the raw JSON object boundary triggers an immediate execution pipeline crash.
+5. **STRICT SINGLE-BLOCK PURITY & ABSOLUTE TERMINATION LAW:** 
+   - Your output MUST contain exactly ONE (1) single valid JSON object payload from start to finish. You are STRICTLY BANNED from repeating, mirroring, or generating a second duplicate JSON block within this response stream.
+   - **Strict Packaging Format**: The output MUST start exactly with a single line containing triple backticks and the language identifier: ```json
+   - The output MUST end exactly with the final line containing triple backticks: ```
+   - There must be absolutely ZERO conversational filler text, thinking processes (`<think>` tags), introductions, or post-generation notes before or after the fenced code block. 
+   - **Absolute Freeze Directive**: Mid-generation corrections are strictly prohibited. You are completely forbidden from appending trailing structural artifacts or deformed combinations like `} ```text{`. Once you emit the final closing brace `}` of the JSON schema, immediately close the triple backticks fence and FREEZE/STOP generating tokens instantly. Any token emitted after the primary closed fence violates enterprise runtime contracts.
 
 # Raw Response / Exception:
 
@@ -29829,7 +28692,12 @@ You are a high-performance Data Ingestion and Transformation Engine. Your sole o
 2. **ABSOLUTE PYDANTIC SCHEMA ALIGNMENT:** Your final generated JSON object MUST perfectly satisfy the structural schema parameters of the target enterprise contract. You are STRICTLY BANNED from omitting, renaming, formatting, or stripping out key elements (specifically `phase_id`, `phase_name`, `phase_description`, `project_name`, `global_context_file`, `source_target_dir`, and `days`).
 3. **ABSOLUTE NO EMPTY TAGS POLICY & STRING SANITIZATION:** You are STRICTLY BANNED from leaving the "targeted_tags" array empty `[]` or null for any sub-task that implements functional requirements or data schemas. You MUST scan the source Markdown sequentially sub-task by sub-task. For each sub-task node, locate the hidden technical container block delimited between `<!--START_TAGS-->` and `<!--END_TAGS-->` contained exclusively within that sub-task section scope. Extract all raw tag token codes inside, strip away all inline markdown formatting characters—specifically backticks (`` ` ``)—and any leading/trailing whitespaces, then populate them as clean separate string elements inside the "targeted_tags" array field of EACH sub-task object node.
 4. **NO TAG BUNDLING:** Every tag must be its own array node (e.g., `"targeted_tags": ["[REQ-001]", "[DAT-002]"]`). You are strictly forbidden from combining multiple tags into a single string element.
-5. **STRICT CONTENT PURITY & REJECT CONVERSATION:** Output ONLY the pure raw executable JSON string matching the required schema. Response must start exactly with the character `{` and end exactly with the character `}`. Banned from including thinking processes, chain-of-thought blocks (`<think>` tags), conversational filler texts, introductions, wrapping inside markdown codeblocks (no triple backticks wrapping), or post-generation notes. Any token outside the raw JSON object boundary triggers an immediate execution pipeline crash.
+5. **STRICT SINGLE-BLOCK PURITY & ABSOLUTE TERMINATION LAW:** 
+   - Your output MUST contain exactly ONE (1) single valid JSON object payload from start to finish. You are STRICTLY BANNED from repeating, mirroring, or generating a second duplicate JSON block within this response stream.
+   - **Strict Packaging Format**: The output MUST start exactly with a single line containing triple backticks and the language identifier: ```json
+   - The output MUST end exactly with the final line containing triple backticks: ```
+   - There must be absolutely ZERO conversational filler text, thinking processes (`<think>` tags), introductions, or post-generation notes before or after the fenced code block. 
+   - **Absolute Freeze Directive**: Mid-generation corrections are strictly prohibited. You are completely forbidden from appending trailing structural artifacts or deformed combinations like `} ```text{`. Once you emit the final closing brace `}` of the JSON schema, immediately close the triple backticks fence and FREEZE/STOP generating tokens instantly. Any token emitted after the primary closed fence violates enterprise runtime contracts.
 
 # Raw Response / Exception:
 
@@ -30124,12 +28992,17 @@ You are a high-performance Data Ingestion and Transformation Engine. Your sole o
 2. **ABSOLUTE PYDANTIC SCHEMA ALIGNMENT:** Your final generated JSON object MUST perfectly satisfy the structural schema parameters of the target enterprise contract. You are STRICTLY BANNED from omitting, renaming, formatting, or stripping out key elements (specifically `phase_id`, `phase_name`, `phase_description`, `project_name`, `global_context_file`, `source_target_dir`, and `days`).
 3. **ABSOLUTE NO EMPTY TAGS POLICY & STRING SANITIZATION:** You are STRICTLY BANNED from leaving the "targeted_tags" array empty `[]` or null for any sub-task that implements functional requirements or data schemas. You MUST scan the source Markdown sequentially sub-task by sub-task. For each sub-task node, locate the hidden technical container block delimited between `<!--START_TAGS-->` and `<!--END_TAGS-->` contained exclusively within that sub-task section scope. Extract all raw tag token codes inside, strip away all inline markdown formatting characters—specifically backticks (`` ` ``)—and any leading/trailing whitespaces, then populate them as clean separate string elements inside the "targeted_tags" array field of EACH sub-task object node.
 4. **NO TAG BUNDLING:** Every tag must be its own array node (e.g., `"targeted_tags": ["[REQ-001]", "[DAT-002]"]`). You are strictly forbidden from combining multiple tags into a single string element.
-5. **STRICT CONTENT PURITY & REJECT CONVERSATION:** Output ONLY the pure raw executable JSON string matching the required schema. Response must start exactly with the character `{` and end exactly with the character `}`. Banned from including thinking processes, chain-of-thought blocks (`<think>` tags), conversational filler texts, introductions, wrapping inside markdown codeblocks (no triple backticks wrapping), or post-generation notes. Any token outside the raw JSON object boundary triggers an immediate execution pipeline crash.
+5. **STRICT SINGLE-BLOCK PURITY & ABSOLUTE TERMINATION LAW:** 
+   - Your output MUST contain exactly ONE (1) single valid JSON object payload from start to finish. You are STRICTLY BANNED from repeating, mirroring, or generating a second duplicate JSON block within this response stream.
+   - **Strict Packaging Format**: The output MUST start exactly with a single line containing triple backticks and the language identifier: ```json
+   - The output MUST end exactly with the final line containing triple backticks: ```
+   - There must be absolutely ZERO conversational filler text, thinking processes (`<think>` tags), introductions, or post-generation notes before or after the fenced code block. 
+   - **Absolute Freeze Directive**: Mid-generation corrections are strictly prohibited. You are completely forbidden from appending trailing structural artifacts or deformed combinations like `} ```text{`. Once you emit the final closing brace `}` of the JSON schema, immediately close the triple backticks fence and FREEZE/STOP generating tokens instantly. Any token emitted after the primary closed fence violates enterprise runtime contracts.
 
 # Raw Response / Exception:
 
 ```json
-Could not parse response content as the length limit was reached - CompletionUsage(completion_tokens=4096, prompt_tokens=6276, total_tokens=10372, completion_tokens_details=CompletionTokensDetails(accepted_prediction_tokens=None, audio_tokens=0, reasoning_tokens=0, rejected_prediction_tokens=None, image_tokens=0), prompt_tokens_details=PromptTokensDetails(audio_tokens=0, cache_write_tokens=0, cached_tokens=0, video_tokens=0)): ['Traceback (most recent call last):
+Could not parse response content as the length limit was reached - CompletionUsage(completion_tokens=4096, prompt_tokens=6402, total_tokens=10498, completion_tokens_details=CompletionTokensDetails(accepted_prediction_tokens=None, audio_tokens=0, reasoning_tokens=0, rejected_prediction_tokens=None, image_tokens=0), prompt_tokens_details=PromptTokensDetails(audio_tokens=0, cache_write_tokens=0, cached_tokens=0, video_tokens=0)): ['Traceback (most recent call last):
 ', '  File "/home/runner/work/enterprise-it-ai/enterprise-it-ai/sources/agents/architect-blueprint/block_json.py", line 301, in convert_phases_to_json
     response = client.beta.chat.completions.parse(
                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -30153,7 +29026,7 @@ Could not parse response content as the length limit was reached - CompletionUsa
            ^^^^^^^^^^^^^^^^^^^^^^^
 ', '  File "/opt/hostedtoolcache/Python/3.11.15/x64/lib/python3.11/site-packages/openai/lib/_parsing/_completions.py", line 100, in parse_chat_completion
     raise LengthFinishReasonError(completion=chat_completion)
-', 'openai.LengthFinishReasonError: Could not parse response content as the length limit was reached - CompletionUsage(completion_tokens=4096, prompt_tokens=6276, total_tokens=10372, completion_tokens_details=CompletionTokensDetails(accepted_prediction_tokens=None, audio_tokens=0, reasoning_tokens=0, rejected_prediction_tokens=None, image_tokens=0), prompt_tokens_details=PromptTokensDetails(audio_tokens=0, cache_write_tokens=0, cached_tokens=0, video_tokens=0))
+', 'openai.LengthFinishReasonError: Could not parse response content as the length limit was reached - CompletionUsage(completion_tokens=4096, prompt_tokens=6402, total_tokens=10498, completion_tokens_details=CompletionTokensDetails(accepted_prediction_tokens=None, audio_tokens=0, reasoning_tokens=0, rejected_prediction_tokens=None, image_tokens=0), prompt_tokens_details=PromptTokensDetails(audio_tokens=0, cache_write_tokens=0, cached_tokens=0, video_tokens=0))
 ']
 ```
 
@@ -30431,7 +29304,12 @@ You are a high-performance Data Ingestion and Transformation Engine. Your sole o
 2. **ABSOLUTE PYDANTIC SCHEMA ALIGNMENT:** Your final generated JSON object MUST perfectly satisfy the structural schema parameters of the target enterprise contract. You are STRICTLY BANNED from omitting, renaming, formatting, or stripping out key elements (specifically `phase_id`, `phase_name`, `phase_description`, `project_name`, `global_context_file`, `source_target_dir`, and `days`).
 3. **ABSOLUTE NO EMPTY TAGS POLICY & STRING SANITIZATION:** You are STRICTLY BANNED from leaving the "targeted_tags" array empty `[]` or null for any sub-task that implements functional requirements or data schemas. You MUST scan the source Markdown sequentially sub-task by sub-task. For each sub-task node, locate the hidden technical container block delimited between `<!--START_TAGS-->` and `<!--END_TAGS-->` contained exclusively within that sub-task section scope. Extract all raw tag token codes inside, strip away all inline markdown formatting characters—specifically backticks (`` ` ``)—and any leading/trailing whitespaces, then populate them as clean separate string elements inside the "targeted_tags" array field of EACH sub-task object node.
 4. **NO TAG BUNDLING:** Every tag must be its own array node (e.g., `"targeted_tags": ["[REQ-001]", "[DAT-002]"]`). You are strictly forbidden from combining multiple tags into a single string element.
-5. **STRICT CONTENT PURITY & REJECT CONVERSATION:** Output ONLY the pure raw executable JSON string matching the required schema. Response must start exactly with the character `{` and end exactly with the character `}`. Banned from including thinking processes, chain-of-thought blocks (`<think>` tags), conversational filler texts, introductions, wrapping inside markdown codeblocks (no triple backticks wrapping), or post-generation notes. Any token outside the raw JSON object boundary triggers an immediate execution pipeline crash.
+5. **STRICT SINGLE-BLOCK PURITY & ABSOLUTE TERMINATION LAW:** 
+   - Your output MUST contain exactly ONE (1) single valid JSON object payload from start to finish. You are STRICTLY BANNED from repeating, mirroring, or generating a second duplicate JSON block within this response stream.
+   - **Strict Packaging Format**: The output MUST start exactly with a single line containing triple backticks and the language identifier: ```json
+   - The output MUST end exactly with the final line containing triple backticks: ```
+   - There must be absolutely ZERO conversational filler text, thinking processes (`<think>` tags), introductions, or post-generation notes before or after the fenced code block. 
+   - **Absolute Freeze Directive**: Mid-generation corrections are strictly prohibited. You are completely forbidden from appending trailing structural artifacts or deformed combinations like `} ```text{`. Once you emit the final closing brace `}` of the JSON schema, immediately close the triple backticks fence and FREEZE/STOP generating tokens instantly. Any token emitted after the primary closed fence violates enterprise runtime contracts.
 
 # Raw Response / Exception:
 
@@ -30726,7 +29604,12 @@ You are a high-performance Data Ingestion and Transformation Engine. Your sole o
 2. **ABSOLUTE PYDANTIC SCHEMA ALIGNMENT:** Your final generated JSON object MUST perfectly satisfy the structural schema parameters of the target enterprise contract. You are STRICTLY BANNED from omitting, renaming, formatting, or stripping out key elements (specifically `phase_id`, `phase_name`, `phase_description`, `project_name`, `global_context_file`, `source_target_dir`, and `days`).
 3. **ABSOLUTE NO EMPTY TAGS POLICY & STRING SANITIZATION:** You are STRICTLY BANNED from leaving the "targeted_tags" array empty `[]` or null for any sub-task that implements functional requirements or data schemas. You MUST scan the source Markdown sequentially sub-task by sub-task. For each sub-task node, locate the hidden technical container block delimited between `<!--START_TAGS-->` and `<!--END_TAGS-->` contained exclusively within that sub-task section scope. Extract all raw tag token codes inside, strip away all inline markdown formatting characters—specifically backticks (`` ` ``)—and any leading/trailing whitespaces, then populate them as clean separate string elements inside the "targeted_tags" array field of EACH sub-task object node.
 4. **NO TAG BUNDLING:** Every tag must be its own array node (e.g., `"targeted_tags": ["[REQ-001]", "[DAT-002]"]`). You are strictly forbidden from combining multiple tags into a single string element.
-5. **STRICT CONTENT PURITY & REJECT CONVERSATION:** Output ONLY the pure raw executable JSON string matching the required schema. Response must start exactly with the character `{` and end exactly with the character `}`. Banned from including thinking processes, chain-of-thought blocks (`<think>` tags), conversational filler texts, introductions, wrapping inside markdown codeblocks (no triple backticks wrapping), or post-generation notes. Any token outside the raw JSON object boundary triggers an immediate execution pipeline crash.
+5. **STRICT SINGLE-BLOCK PURITY & ABSOLUTE TERMINATION LAW:** 
+   - Your output MUST contain exactly ONE (1) single valid JSON object payload from start to finish. You are STRICTLY BANNED from repeating, mirroring, or generating a second duplicate JSON block within this response stream.
+   - **Strict Packaging Format**: The output MUST start exactly with a single line containing triple backticks and the language identifier: ```json
+   - The output MUST end exactly with the final line containing triple backticks: ```
+   - There must be absolutely ZERO conversational filler text, thinking processes (`<think>` tags), introductions, or post-generation notes before or after the fenced code block. 
+   - **Absolute Freeze Directive**: Mid-generation corrections are strictly prohibited. You are completely forbidden from appending trailing structural artifacts or deformed combinations like `} ```text{`. Once you emit the final closing brace `}` of the JSON schema, immediately close the triple backticks fence and FREEZE/STOP generating tokens instantly. Any token emitted after the primary closed fence violates enterprise runtime contracts.
 
 # Raw Response / Exception:
 
@@ -31021,12 +29904,17 @@ You are a high-performance Data Ingestion and Transformation Engine. Your sole o
 2. **ABSOLUTE PYDANTIC SCHEMA ALIGNMENT:** Your final generated JSON object MUST perfectly satisfy the structural schema parameters of the target enterprise contract. You are STRICTLY BANNED from omitting, renaming, formatting, or stripping out key elements (specifically `phase_id`, `phase_name`, `phase_description`, `project_name`, `global_context_file`, `source_target_dir`, and `days`).
 3. **ABSOLUTE NO EMPTY TAGS POLICY & STRING SANITIZATION:** You are STRICTLY BANNED from leaving the "targeted_tags" array empty `[]` or null for any sub-task that implements functional requirements or data schemas. You MUST scan the source Markdown sequentially sub-task by sub-task. For each sub-task node, locate the hidden technical container block delimited between `<!--START_TAGS-->` and `<!--END_TAGS-->` contained exclusively within that sub-task section scope. Extract all raw tag token codes inside, strip away all inline markdown formatting characters—specifically backticks (`` ` ``)—and any leading/trailing whitespaces, then populate them as clean separate string elements inside the "targeted_tags" array field of EACH sub-task object node.
 4. **NO TAG BUNDLING:** Every tag must be its own array node (e.g., `"targeted_tags": ["[REQ-001]", "[DAT-002]"]`). You are strictly forbidden from combining multiple tags into a single string element.
-5. **STRICT CONTENT PURITY & REJECT CONVERSATION:** Output ONLY the pure raw executable JSON string matching the required schema. Response must start exactly with the character `{` and end exactly with the character `}`. Banned from including thinking processes, chain-of-thought blocks (`<think>` tags), conversational filler texts, introductions, wrapping inside markdown codeblocks (no triple backticks wrapping), or post-generation notes. Any token outside the raw JSON object boundary triggers an immediate execution pipeline crash.
+5. **STRICT SINGLE-BLOCK PURITY & ABSOLUTE TERMINATION LAW:** 
+   - Your output MUST contain exactly ONE (1) single valid JSON object payload from start to finish. You are STRICTLY BANNED from repeating, mirroring, or generating a second duplicate JSON block within this response stream.
+   - **Strict Packaging Format**: The output MUST start exactly with a single line containing triple backticks and the language identifier: ```json
+   - The output MUST end exactly with the final line containing triple backticks: ```
+   - There must be absolutely ZERO conversational filler text, thinking processes (`<think>` tags), introductions, or post-generation notes before or after the fenced code block. 
+   - **Absolute Freeze Directive**: Mid-generation corrections are strictly prohibited. You are completely forbidden from appending trailing structural artifacts or deformed combinations like `} ```text{`. Once you emit the final closing brace `}` of the JSON schema, immediately close the triple backticks fence and FREEZE/STOP generating tokens instantly. Any token emitted after the primary closed fence violates enterprise runtime contracts.
 
 # Raw Response / Exception:
 
 ```json
-Error code: 404 - {'id': '68228bbe-c27e-4364-849d-0bbf2b6488fe', 'message': "model 'command-r-plus' was removed on September 15, 2025. See https://docs.cohere.com/docs/models#command for a list of models you can use instead."}: ['Traceback (most recent call last):
+Error code: 404 - {'id': 'd8297087-655e-4ebb-a0c8-30aa2044f04d', 'message': "model 'command-r-plus' was removed on September 15, 2025. See https://docs.cohere.com/docs/models#command for a list of models you can use instead."}: ['Traceback (most recent call last):
 ', '  File "/home/runner/work/enterprise-it-ai/enterprise-it-ai/sources/agents/architect-blueprint/block_json.py", line 301, in convert_phases_to_json
     response = client.beta.chat.completions.parse(
                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -31038,7 +29926,7 @@ Error code: 404 - {'id': '68228bbe-c27e-4364-849d-0bbf2b6488fe', 'message': "mod
                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 ', '  File "/opt/hostedtoolcache/Python/3.11.15/x64/lib/python3.11/site-packages/openai/_base_client.py", line 1148, in request
     raise self._make_status_error_from_response(err.response) from None
-', 'openai.NotFoundError: Error code: 404 - {\'id\': \'68228bbe-c27e-4364-849d-0bbf2b6488fe\', \'message\': "model \'command-r-plus\' was removed on September 15, 2025. See https://docs.cohere.com/docs/models#command for a list of models you can use instead."}
+', 'openai.NotFoundError: Error code: 404 - {\'id\': \'d8297087-655e-4ebb-a0c8-30aa2044f04d\', \'message\': "model \'command-r-plus\' was removed on September 15, 2025. See https://docs.cohere.com/docs/models#command for a list of models you can use instead."}
 ']
 ```
 
@@ -31316,12 +30204,17 @@ You are a high-performance Data Ingestion and Transformation Engine. Your sole o
 2. **ABSOLUTE PYDANTIC SCHEMA ALIGNMENT:** Your final generated JSON object MUST perfectly satisfy the structural schema parameters of the target enterprise contract. You are STRICTLY BANNED from omitting, renaming, formatting, or stripping out key elements (specifically `phase_id`, `phase_name`, `phase_description`, `project_name`, `global_context_file`, `source_target_dir`, and `days`).
 3. **ABSOLUTE NO EMPTY TAGS POLICY & STRING SANITIZATION:** You are STRICTLY BANNED from leaving the "targeted_tags" array empty `[]` or null for any sub-task that implements functional requirements or data schemas. You MUST scan the source Markdown sequentially sub-task by sub-task. For each sub-task node, locate the hidden technical container block delimited between `<!--START_TAGS-->` and `<!--END_TAGS-->` contained exclusively within that sub-task section scope. Extract all raw tag token codes inside, strip away all inline markdown formatting characters—specifically backticks (`` ` ``)—and any leading/trailing whitespaces, then populate them as clean separate string elements inside the "targeted_tags" array field of EACH sub-task object node.
 4. **NO TAG BUNDLING:** Every tag must be its own array node (e.g., `"targeted_tags": ["[REQ-001]", "[DAT-002]"]`). You are strictly forbidden from combining multiple tags into a single string element.
-5. **STRICT CONTENT PURITY & REJECT CONVERSATION:** Output ONLY the pure raw executable JSON string matching the required schema. Response must start exactly with the character `{` and end exactly with the character `}`. Banned from including thinking processes, chain-of-thought blocks (`<think>` tags), conversational filler texts, introductions, wrapping inside markdown codeblocks (no triple backticks wrapping), or post-generation notes. Any token outside the raw JSON object boundary triggers an immediate execution pipeline crash.
+5. **STRICT SINGLE-BLOCK PURITY & ABSOLUTE TERMINATION LAW:** 
+   - Your output MUST contain exactly ONE (1) single valid JSON object payload from start to finish. You are STRICTLY BANNED from repeating, mirroring, or generating a second duplicate JSON block within this response stream.
+   - **Strict Packaging Format**: The output MUST start exactly with a single line containing triple backticks and the language identifier: ```json
+   - The output MUST end exactly with the final line containing triple backticks: ```
+   - There must be absolutely ZERO conversational filler text, thinking processes (`<think>` tags), introductions, or post-generation notes before or after the fenced code block. 
+   - **Absolute Freeze Directive**: Mid-generation corrections are strictly prohibited. You are completely forbidden from appending trailing structural artifacts or deformed combinations like `} ```text{`. Once you emit the final closing brace `}` of the JSON schema, immediately close the triple backticks fence and FREEZE/STOP generating tokens instantly. Any token emitted after the primary closed fence violates enterprise runtime contracts.
 
 # Raw Response / Exception:
 
 ```json
-Error code: 404 - {'id': '31ac74c0-729d-41e3-a8f1-c2380899f335', 'message': "model 'command-r7b' not found, make sure the correct model ID was used and that you have access to the model."}: ['Traceback (most recent call last):
+Error code: 404 - {'id': 'df84b505-ba94-4627-971d-2e4a5a6fd298', 'message': "model 'command-r7b' not found, make sure the correct model ID was used and that you have access to the model."}: ['Traceback (most recent call last):
 ', '  File "/home/runner/work/enterprise-it-ai/enterprise-it-ai/sources/agents/architect-blueprint/block_json.py", line 301, in convert_phases_to_json
     response = client.beta.chat.completions.parse(
                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -31333,7 +30226,7 @@ Error code: 404 - {'id': '31ac74c0-729d-41e3-a8f1-c2380899f335', 'message': "mod
                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 ', '  File "/opt/hostedtoolcache/Python/3.11.15/x64/lib/python3.11/site-packages/openai/_base_client.py", line 1148, in request
     raise self._make_status_error_from_response(err.response) from None
-', 'openai.NotFoundError: Error code: 404 - {\'id\': \'31ac74c0-729d-41e3-a8f1-c2380899f335\', \'message\': "model \'command-r7b\' not found, make sure the correct model ID was used and that you have access to the model."}
+', 'openai.NotFoundError: Error code: 404 - {\'id\': \'df84b505-ba94-4627-971d-2e4a5a6fd298\', \'message\': "model \'command-r7b\' not found, make sure the correct model ID was used and that you have access to the model."}
 ']
 ```
 
@@ -31654,15 +30547,17 @@ You are a high-performance Data Ingestion and Transformation Engine. Your sole o
 2. **ABSOLUTE PYDANTIC SCHEMA ALIGNMENT:** Your final generated JSON object MUST perfectly satisfy the structural schema parameters of the target enterprise contract. You are STRICTLY BANNED from omitting, renaming, formatting, or stripping out key elements (specifically `phase_id`, `phase_name`, `phase_description`, `project_name`, `global_context_file`, `source_target_dir`, and `days`).
 3. **ABSOLUTE NO EMPTY TAGS POLICY & STRING SANITIZATION:** You are STRICTLY BANNED from leaving the "targeted_tags" array empty `[]` or null for any sub-task that implements functional requirements or data schemas. You MUST scan the source Markdown sequentially sub-task by sub-task. For each sub-task node, locate the hidden technical container block delimited between `<!--START_TAGS-->` and `<!--END_TAGS-->` contained exclusively within that sub-task section scope. Extract all raw tag token codes inside, strip away all inline markdown formatting characters—specifically backticks (`` ` ``)—and any leading/trailing whitespaces, then populate them as clean separate string elements inside the "targeted_tags" array field of EACH sub-task object node.
 4. **NO TAG BUNDLING:** Every tag must be its own array node (e.g., `"targeted_tags": ["[REQ-001]", "[DAT-002]"]`). You are strictly forbidden from combining multiple tags into a single string element.
-5. **STRICT CONTENT PURITY & REJECT CONVERSATION:** Output ONLY the pure raw executable JSON string matching the required schema. Response must start exactly with the character `{` and end exactly with the character `}`. Banned from including thinking processes, chain-of-thought blocks (`<think>` tags), conversational filler texts, introductions, wrapping inside markdown codeblocks (no triple backticks wrapping), or post-generation notes. Any token outside the raw JSON object boundary triggers an immediate execution pipeline crash.
+5. **STRICT SINGLE-BLOCK PURITY & ABSOLUTE TERMINATION LAW:** 
+   - Your output MUST contain exactly ONE (1) single valid JSON object payload from start to finish. You are STRICTLY BANNED from repeating, mirroring, or generating a second duplicate JSON block within this response stream.
+   - **Strict Packaging Format**: The output MUST start exactly with a single line containing triple backticks and the language identifier: ```json
+   - The output MUST end exactly with the final line containing triple backticks: ```
+   - There must be absolutely ZERO conversational filler text, thinking processes (`<think>` tags), introductions, or post-generation notes before or after the fenced code block. 
+   - **Absolute Freeze Directive**: Mid-generation corrections are strictly prohibited. You are completely forbidden from appending trailing structural artifacts or deformed combinations like `} ```text{`. Once you emit the final closing brace `}` of the JSON schema, immediately close the triple backticks fence and FREEZE/STOP generating tokens instantly. Any token emitted after the primary closed fence violates enterprise runtime contracts.
 </ACTIVE_TASK_SYSTEM_INSTRUCTION>
 
 # Raw Response / Exception:
 
 ```json
-Dưới đây là kết quả phân tích và chuyển đổi nội dung từ Markdown sang JSON theo yêu cầu:
-
-
 ```json
 {
   "phase_id": 1,
@@ -31681,15 +30576,30 @@ Dưới đây là kết quả phân tích và chuyển đổi nội dung từ Ma
           "id": "D1_ST1",
           "agent": "Coder",
           "desc": "Triển khai schema cơ sở dữ liệu Users và Roles",
-          "targeted_tags": ["[DAT-001]"],
-          "components": ["./sources/backend.membershiphub.user/users.sql", "./sources/backend.membershiphub.user/roles.sql"]
+          "targeted_tags": [
+            "[DAT-001]"
+          ],
+          "components": [
+            "./sources/backend.membershiphub.user/users.sql",
+            "./sources/backend.membershiphub.user/roles.sql"
+          ]
         },
         {
           "id": "D1_ST2",
           "agent": "Coder",
           "desc": "Triển khai UserService với phương thức register và socialAuthenticate",
-          "targeted_tags": ["[REQ-001]", "[REQ-002]", "[ARC-006]", "[EXC-004]", "[NFR-001]", "[NFR-003]", "[NFR-006]"],
-          "components": ["./sources/backend.membershiphub.user/user-service.java"]
+          "targeted_tags": [
+            "[REQ-001]",
+            "[REQ-002]",
+            "[ARC-006]",
+            "[EXC-004]",
+            "[NFR-001]",
+            "[NFR-003]",
+            "[NFR-006]"
+          ],
+          "components": [
+            "./sources/backend.membershiphub.user/user-service.java"
+          ]
         }
       ]
     },
@@ -31702,15 +30612,31 @@ Dưới đây là kết quả phân tích và chuyển đổi nội dung từ Ma
           "id": "D2_ST1",
           "agent": "Tester",
           "desc": "Kiểm thử đơn vị cho các phương thức register và socialAuthenticate",
-          "targeted_tags": ["[REQ-001]", "[REQ-002]", "[DAT-001]", "[EXC-004]"],
-          "components": ["./sources/backend.membershiphub.user/user-service.java;./sources/backend.membershiphub.user/userservice-test.java"]
+          "targeted_tags": [
+            "[REQ-001]",
+            "[REQ-002]",
+            "[DAT-001]",
+            "[EXC-004]"
+          ],
+          "components": [
+            "./sources/backend.membershiphub.user/user-service.java",
+            "./sources/backend.membershiphub.user/userservice-test.java"
+          ]
         },
         {
           "id": "D2_ST2",
           "agent": "Tester",
           "desc": "Kiểm thử tích hợp cho API endpoints",
-          "targeted_tags": ["[REQ-001]", "[REQ-002]", "[ARC-006]", "[EXC-004]"],
-          "components": ["./sources/backend.membershiphub.user/user-service.java;./sources/backend.membershiphub.user/user-controller-test.java"]
+          "targeted_tags": [
+            "[REQ-001]",
+            "[REQ-002]",
+            "[ARC-006]",
+            "[EXC-004]"
+          ],
+          "components": [
+            "./sources/backend.membershiphub.user/user-service.java",
+            "./sources/backend.membershiphub.user/user-controller-test.java"
+          ]
         }
       ]
     }
@@ -32036,7 +30962,12 @@ You are a high-performance Data Ingestion and Transformation Engine. Your sole o
 2. **ABSOLUTE PYDANTIC SCHEMA ALIGNMENT:** Your final generated JSON object MUST perfectly satisfy the structural schema parameters of the target enterprise contract. You are STRICTLY BANNED from omitting, renaming, formatting, or stripping out key elements (specifically `phase_id`, `phase_name`, `phase_description`, `project_name`, `global_context_file`, `source_target_dir`, and `days`).
 3. **ABSOLUTE NO EMPTY TAGS POLICY & STRING SANITIZATION:** You are STRICTLY BANNED from leaving the "targeted_tags" array empty `[]` or null for any sub-task that implements functional requirements or data schemas. You MUST scan the source Markdown sequentially sub-task by sub-task. For each sub-task node, locate the hidden technical container block delimited between `<!--START_TAGS-->` and `<!--END_TAGS-->` contained exclusively within that sub-task section scope. Extract all raw tag token codes inside, strip away all inline markdown formatting characters—specifically backticks (`` ` ``)—and any leading/trailing whitespaces, then populate them as clean separate string elements inside the "targeted_tags" array field of EACH sub-task object node.
 4. **NO TAG BUNDLING:** Every tag must be its own array node (e.g., `"targeted_tags": ["[REQ-001]", "[DAT-002]"]`). You are strictly forbidden from combining multiple tags into a single string element.
-5. **STRICT CONTENT PURITY & REJECT CONVERSATION:** Output ONLY the pure raw executable JSON string matching the required schema. Response must start exactly with the character `{` and end exactly with the character `}`. Banned from including thinking processes, chain-of-thought blocks (`<think>` tags), conversational filler texts, introductions, wrapping inside markdown codeblocks (no triple backticks wrapping), or post-generation notes. Any token outside the raw JSON object boundary triggers an immediate execution pipeline crash.
+5. **STRICT SINGLE-BLOCK PURITY & ABSOLUTE TERMINATION LAW:** 
+   - Your output MUST contain exactly ONE (1) single valid JSON object payload from start to finish. You are STRICTLY BANNED from repeating, mirroring, or generating a second duplicate JSON block within this response stream.
+   - **Strict Packaging Format**: The output MUST start exactly with a single line containing triple backticks and the language identifier: ```json
+   - The output MUST end exactly with the final line containing triple backticks: ```
+   - There must be absolutely ZERO conversational filler text, thinking processes (`<think>` tags), introductions, or post-generation notes before or after the fenced code block. 
+   - **Absolute Freeze Directive**: Mid-generation corrections are strictly prohibited. You are completely forbidden from appending trailing structural artifacts or deformed combinations like `} ```text{`. Once you emit the final closing brace `}` of the JSON schema, immediately close the triple backticks fence and FREEZE/STOP generating tokens instantly. Any token emitted after the primary closed fence violates enterprise runtime contracts.
 </ACTIVE_TASK_SYSTEM_INSTRUCTION>
 
 # Raw Response / Exception:
@@ -32060,15 +30991,30 @@ You are a high-performance Data Ingestion and Transformation Engine. Your sole o
           "id": "D1_ST1",
           "agent": "Coder",
           "desc": "Triển khai schema cơ sở dữ liệu Users và Roles",
-          "targeted_tags": ["[DAT-001]"],
-          "components": ["./sources/backend.membershiphub.user/users.sql", "./sources/backend.membershiphub.user/roles.sql"]
+          "targeted_tags": [
+            "[DAT-001]"
+          ],
+          "components": [
+            "./sources/backend.membershiphub.user/users.sql",
+            "./sources/backend.membershiphub.user/roles.sql"
+          ]
         },
         {
           "id": "D1_ST2",
           "agent": "Coder",
-          "desc": "Triển khai UserService với phương thức register và socialAuthenticate",
-          "targeted_tags": ["[REQ-001]", "[REQ-002]", "[ARC-006]", "[EXC-004]", "[NFR-001]", "[NFR-003]", "[NFR-006]"],
-          "components": ["./sources/backend.membershiphub.user/user-service.java"]
+          "desc": "Triển khai UserService với phương thức register và socialAuthenticate, áp dụng SOLID, BCrypt, JWT, @Valid, @Transactional",
+          "targeted_tags": [
+            "[REQ-001]",
+            "[REQ-002]",
+            "[ARC-006]",
+            "[EXC-004]",
+            "[NFR-001]",
+            "[NFR-003]",
+            "[NFR-006]"
+          ],
+          "components": [
+            "./sources/backend.membershiphub.user/user-service.java"
+          ]
         }
       ]
     },
@@ -32080,16 +31026,32 @@ You are a high-performance Data Ingestion and Transformation Engine. Your sole o
         {
           "id": "D2_ST1",
           "agent": "Tester",
-          "desc": "Kiểm thử đơn vị cho các phương thức register và socialAuthenticate",
-          "targeted_tags": ["[REQ-001]", "[REQ-002]", "[DAT-001]", "[EXC-004]"],
-          "components": ["./sources/backend.membershiphub.user/user-service.java;./sources/backend.membershiphub.user/userservice-test.java"]
+          "desc": "Kiểm thử đơn vị cho các phương thức register và socialAuthenticate với Mock, độ phủ mã ≥85%",
+          "targeted_tags": [
+            "[REQ-001]",
+            "[REQ-002]",
+            "[DAT-001]",
+            "[EXC-004]"
+          ],
+          "components": [
+            "./sources/backend.membershiphub.user/user-service.java",
+            "./sources/backend.membershiphub.user/userservice-test.java"
+          ]
         },
         {
           "id": "D2_ST2",
           "agent": "Tester",
-          "desc": "Kiểm thử tích hợp cho API endpoints",
-          "targeted_tags": ["[REQ-001]", "[REQ-002]", "[ARC-006]", "[EXC-004]"],
-          "components": ["./sources/backend.membershiphub.user/user-service.java;./sources/backend.membershiphub.user/user-controller-test.java"]
+          "desc": "Kiểm thử tích hợp cho API endpoints với Mock, độ phủ mã ≥85%",
+          "targeted_tags": [
+            "[REQ-001]",
+            "[REQ-002]",
+            "[ARC-006]",
+            "[EXC-004]"
+          ],
+          "components": [
+            "./sources/backend.membershiphub.user/user-service.java",
+            "./sources/backend.membershiphub.user/user-controller-test.java"
+          ]
         }
       ]
     }
@@ -32372,7 +31334,12 @@ You are a high-performance Data Ingestion and Transformation Engine. Your sole o
 2. **ABSOLUTE PYDANTIC SCHEMA ALIGNMENT:** Your final generated JSON object MUST perfectly satisfy the structural schema parameters of the target enterprise contract. You are STRICTLY BANNED from omitting, renaming, formatting, or stripping out key elements (specifically `phase_id`, `phase_name`, `phase_description`, `project_name`, `global_context_file`, `source_target_dir`, and `days`).
 3. **ABSOLUTE NO EMPTY TAGS POLICY & STRING SANITIZATION:** You are STRICTLY BANNED from leaving the "targeted_tags" array empty `[]` or null for any sub-task that implements functional requirements or data schemas. You MUST scan the source Markdown sequentially sub-task by sub-task. For each sub-task node, locate the hidden technical container block delimited between `<!--START_TAGS-->` and `<!--END_TAGS-->` contained exclusively within that sub-task section scope. Extract all raw tag token codes inside, strip away all inline markdown formatting characters—specifically backticks (`` ` ``)—and any leading/trailing whitespaces, then populate them as clean separate string elements inside the "targeted_tags" array field of EACH sub-task object node.
 4. **NO TAG BUNDLING:** Every tag must be its own array node (e.g., `"targeted_tags": ["[REQ-001]", "[DAT-002]"]`). You are strictly forbidden from combining multiple tags into a single string element.
-5. **STRICT CONTENT PURITY & REJECT CONVERSATION:** Output ONLY the pure raw executable JSON string matching the required schema. Response must start exactly with the character `{` and end exactly with the character `}`. Banned from including thinking processes, chain-of-thought blocks (`<think>` tags), conversational filler texts, introductions, wrapping inside markdown codeblocks (no triple backticks wrapping), or post-generation notes. Any token outside the raw JSON object boundary triggers an immediate execution pipeline crash.
+5. **STRICT SINGLE-BLOCK PURITY & ABSOLUTE TERMINATION LAW:** 
+   - Your output MUST contain exactly ONE (1) single valid JSON object payload from start to finish. You are STRICTLY BANNED from repeating, mirroring, or generating a second duplicate JSON block within this response stream.
+   - **Strict Packaging Format**: The output MUST start exactly with a single line containing triple backticks and the language identifier: ```json
+   - The output MUST end exactly with the final line containing triple backticks: ```
+   - There must be absolutely ZERO conversational filler text, thinking processes (`<think>` tags), introductions, or post-generation notes before or after the fenced code block. 
+   - **Absolute Freeze Directive**: Mid-generation corrections are strictly prohibited. You are completely forbidden from appending trailing structural artifacts or deformed combinations like `} ```text{`. Once you emit the final closing brace `}` of the JSON schema, immediately close the triple backticks fence and FREEZE/STOP generating tokens instantly. Any token emitted after the primary closed fence violates enterprise runtime contracts.
 
 # Raw Response / Exception:
 
@@ -32667,7 +31634,12 @@ You are a high-performance Data Ingestion and Transformation Engine. Your sole o
 2. **ABSOLUTE PYDANTIC SCHEMA ALIGNMENT:** Your final generated JSON object MUST perfectly satisfy the structural schema parameters of the target enterprise contract. You are STRICTLY BANNED from omitting, renaming, formatting, or stripping out key elements (specifically `phase_id`, `phase_name`, `phase_description`, `project_name`, `global_context_file`, `source_target_dir`, and `days`).
 3. **ABSOLUTE NO EMPTY TAGS POLICY & STRING SANITIZATION:** You are STRICTLY BANNED from leaving the "targeted_tags" array empty `[]` or null for any sub-task that implements functional requirements or data schemas. You MUST scan the source Markdown sequentially sub-task by sub-task. For each sub-task node, locate the hidden technical container block delimited between `<!--START_TAGS-->` and `<!--END_TAGS-->` contained exclusively within that sub-task section scope. Extract all raw tag token codes inside, strip away all inline markdown formatting characters—specifically backticks (`` ` ``)—and any leading/trailing whitespaces, then populate them as clean separate string elements inside the "targeted_tags" array field of EACH sub-task object node.
 4. **NO TAG BUNDLING:** Every tag must be its own array node (e.g., `"targeted_tags": ["[REQ-001]", "[DAT-002]"]`). You are strictly forbidden from combining multiple tags into a single string element.
-5. **STRICT CONTENT PURITY & REJECT CONVERSATION:** Output ONLY the pure raw executable JSON string matching the required schema. Response must start exactly with the character `{` and end exactly with the character `}`. Banned from including thinking processes, chain-of-thought blocks (`<think>` tags), conversational filler texts, introductions, wrapping inside markdown codeblocks (no triple backticks wrapping), or post-generation notes. Any token outside the raw JSON object boundary triggers an immediate execution pipeline crash.
+5. **STRICT SINGLE-BLOCK PURITY & ABSOLUTE TERMINATION LAW:** 
+   - Your output MUST contain exactly ONE (1) single valid JSON object payload from start to finish. You are STRICTLY BANNED from repeating, mirroring, or generating a second duplicate JSON block within this response stream.
+   - **Strict Packaging Format**: The output MUST start exactly with a single line containing triple backticks and the language identifier: ```json
+   - The output MUST end exactly with the final line containing triple backticks: ```
+   - There must be absolutely ZERO conversational filler text, thinking processes (`<think>` tags), introductions, or post-generation notes before or after the fenced code block. 
+   - **Absolute Freeze Directive**: Mid-generation corrections are strictly prohibited. You are completely forbidden from appending trailing structural artifacts or deformed combinations like `} ```text{`. Once you emit the final closing brace `}` of the JSON schema, immediately close the triple backticks fence and FREEZE/STOP generating tokens instantly. Any token emitted after the primary closed fence violates enterprise runtime contracts.
 
 # Raw Response / Exception:
 
@@ -32962,7 +31934,12 @@ You are a high-performance Data Ingestion and Transformation Engine. Your sole o
 2. **ABSOLUTE PYDANTIC SCHEMA ALIGNMENT:** Your final generated JSON object MUST perfectly satisfy the structural schema parameters of the target enterprise contract. You are STRICTLY BANNED from omitting, renaming, formatting, or stripping out key elements (specifically `phase_id`, `phase_name`, `phase_description`, `project_name`, `global_context_file`, `source_target_dir`, and `days`).
 3. **ABSOLUTE NO EMPTY TAGS POLICY & STRING SANITIZATION:** You are STRICTLY BANNED from leaving the "targeted_tags" array empty `[]` or null for any sub-task that implements functional requirements or data schemas. You MUST scan the source Markdown sequentially sub-task by sub-task. For each sub-task node, locate the hidden technical container block delimited between `<!--START_TAGS-->` and `<!--END_TAGS-->` contained exclusively within that sub-task section scope. Extract all raw tag token codes inside, strip away all inline markdown formatting characters—specifically backticks (`` ` ``)—and any leading/trailing whitespaces, then populate them as clean separate string elements inside the "targeted_tags" array field of EACH sub-task object node.
 4. **NO TAG BUNDLING:** Every tag must be its own array node (e.g., `"targeted_tags": ["[REQ-001]", "[DAT-002]"]`). You are strictly forbidden from combining multiple tags into a single string element.
-5. **STRICT CONTENT PURITY & REJECT CONVERSATION:** Output ONLY the pure raw executable JSON string matching the required schema. Response must start exactly with the character `{` and end exactly with the character `}`. Banned from including thinking processes, chain-of-thought blocks (`<think>` tags), conversational filler texts, introductions, wrapping inside markdown codeblocks (no triple backticks wrapping), or post-generation notes. Any token outside the raw JSON object boundary triggers an immediate execution pipeline crash.
+5. **STRICT SINGLE-BLOCK PURITY & ABSOLUTE TERMINATION LAW:** 
+   - Your output MUST contain exactly ONE (1) single valid JSON object payload from start to finish. You are STRICTLY BANNED from repeating, mirroring, or generating a second duplicate JSON block within this response stream.
+   - **Strict Packaging Format**: The output MUST start exactly with a single line containing triple backticks and the language identifier: ```json
+   - The output MUST end exactly with the final line containing triple backticks: ```
+   - There must be absolutely ZERO conversational filler text, thinking processes (`<think>` tags), introductions, or post-generation notes before or after the fenced code block. 
+   - **Absolute Freeze Directive**: Mid-generation corrections are strictly prohibited. You are completely forbidden from appending trailing structural artifacts or deformed combinations like `} ```text{`. Once you emit the final closing brace `}` of the JSON schema, immediately close the triple backticks fence and FREEZE/STOP generating tokens instantly. Any token emitted after the primary closed fence violates enterprise runtime contracts.
 
 # Raw Response / Exception:
 
@@ -33257,7 +32234,12 @@ You are a high-performance Data Ingestion and Transformation Engine. Your sole o
 2. **ABSOLUTE PYDANTIC SCHEMA ALIGNMENT:** Your final generated JSON object MUST perfectly satisfy the structural schema parameters of the target enterprise contract. You are STRICTLY BANNED from omitting, renaming, formatting, or stripping out key elements (specifically `phase_id`, `phase_name`, `phase_description`, `project_name`, `global_context_file`, `source_target_dir`, and `days`).
 3. **ABSOLUTE NO EMPTY TAGS POLICY & STRING SANITIZATION:** You are STRICTLY BANNED from leaving the "targeted_tags" array empty `[]` or null for any sub-task that implements functional requirements or data schemas. You MUST scan the source Markdown sequentially sub-task by sub-task. For each sub-task node, locate the hidden technical container block delimited between `<!--START_TAGS-->` and `<!--END_TAGS-->` contained exclusively within that sub-task section scope. Extract all raw tag token codes inside, strip away all inline markdown formatting characters—specifically backticks (`` ` ``)—and any leading/trailing whitespaces, then populate them as clean separate string elements inside the "targeted_tags" array field of EACH sub-task object node.
 4. **NO TAG BUNDLING:** Every tag must be its own array node (e.g., `"targeted_tags": ["[REQ-001]", "[DAT-002]"]`). You are strictly forbidden from combining multiple tags into a single string element.
-5. **STRICT CONTENT PURITY & REJECT CONVERSATION:** Output ONLY the pure raw executable JSON string matching the required schema. Response must start exactly with the character `{` and end exactly with the character `}`. Banned from including thinking processes, chain-of-thought blocks (`<think>` tags), conversational filler texts, introductions, wrapping inside markdown codeblocks (no triple backticks wrapping), or post-generation notes. Any token outside the raw JSON object boundary triggers an immediate execution pipeline crash.
+5. **STRICT SINGLE-BLOCK PURITY & ABSOLUTE TERMINATION LAW:** 
+   - Your output MUST contain exactly ONE (1) single valid JSON object payload from start to finish. You are STRICTLY BANNED from repeating, mirroring, or generating a second duplicate JSON block within this response stream.
+   - **Strict Packaging Format**: The output MUST start exactly with a single line containing triple backticks and the language identifier: ```json
+   - The output MUST end exactly with the final line containing triple backticks: ```
+   - There must be absolutely ZERO conversational filler text, thinking processes (`<think>` tags), introductions, or post-generation notes before or after the fenced code block. 
+   - **Absolute Freeze Directive**: Mid-generation corrections are strictly prohibited. You are completely forbidden from appending trailing structural artifacts or deformed combinations like `} ```text{`. Once you emit the final closing brace `}` of the JSON schema, immediately close the triple backticks fence and FREEZE/STOP generating tokens instantly. Any token emitted after the primary closed fence violates enterprise runtime contracts.
 
 # Raw Response / Exception:
 
@@ -33552,7 +32534,12 @@ You are a high-performance Data Ingestion and Transformation Engine. Your sole o
 2. **ABSOLUTE PYDANTIC SCHEMA ALIGNMENT:** Your final generated JSON object MUST perfectly satisfy the structural schema parameters of the target enterprise contract. You are STRICTLY BANNED from omitting, renaming, formatting, or stripping out key elements (specifically `phase_id`, `phase_name`, `phase_description`, `project_name`, `global_context_file`, `source_target_dir`, and `days`).
 3. **ABSOLUTE NO EMPTY TAGS POLICY & STRING SANITIZATION:** You are STRICTLY BANNED from leaving the "targeted_tags" array empty `[]` or null for any sub-task that implements functional requirements or data schemas. You MUST scan the source Markdown sequentially sub-task by sub-task. For each sub-task node, locate the hidden technical container block delimited between `<!--START_TAGS-->` and `<!--END_TAGS-->` contained exclusively within that sub-task section scope. Extract all raw tag token codes inside, strip away all inline markdown formatting characters—specifically backticks (`` ` ``)—and any leading/trailing whitespaces, then populate them as clean separate string elements inside the "targeted_tags" array field of EACH sub-task object node.
 4. **NO TAG BUNDLING:** Every tag must be its own array node (e.g., `"targeted_tags": ["[REQ-001]", "[DAT-002]"]`). You are strictly forbidden from combining multiple tags into a single string element.
-5. **STRICT CONTENT PURITY & REJECT CONVERSATION:** Output ONLY the pure raw executable JSON string matching the required schema. Response must start exactly with the character `{` and end exactly with the character `}`. Banned from including thinking processes, chain-of-thought blocks (`<think>` tags), conversational filler texts, introductions, wrapping inside markdown codeblocks (no triple backticks wrapping), or post-generation notes. Any token outside the raw JSON object boundary triggers an immediate execution pipeline crash.
+5. **STRICT SINGLE-BLOCK PURITY & ABSOLUTE TERMINATION LAW:** 
+   - Your output MUST contain exactly ONE (1) single valid JSON object payload from start to finish. You are STRICTLY BANNED from repeating, mirroring, or generating a second duplicate JSON block within this response stream.
+   - **Strict Packaging Format**: The output MUST start exactly with a single line containing triple backticks and the language identifier: ```json
+   - The output MUST end exactly with the final line containing triple backticks: ```
+   - There must be absolutely ZERO conversational filler text, thinking processes (`<think>` tags), introductions, or post-generation notes before or after the fenced code block. 
+   - **Absolute Freeze Directive**: Mid-generation corrections are strictly prohibited. You are completely forbidden from appending trailing structural artifacts or deformed combinations like `} ```text{`. Once you emit the final closing brace `}` of the JSON schema, immediately close the triple backticks fence and FREEZE/STOP generating tokens instantly. Any token emitted after the primary closed fence violates enterprise runtime contracts.
 
 # Raw Response / Exception:
 
@@ -33847,7 +32834,12 @@ You are a high-performance Data Ingestion and Transformation Engine. Your sole o
 2. **ABSOLUTE PYDANTIC SCHEMA ALIGNMENT:** Your final generated JSON object MUST perfectly satisfy the structural schema parameters of the target enterprise contract. You are STRICTLY BANNED from omitting, renaming, formatting, or stripping out key elements (specifically `phase_id`, `phase_name`, `phase_description`, `project_name`, `global_context_file`, `source_target_dir`, and `days`).
 3. **ABSOLUTE NO EMPTY TAGS POLICY & STRING SANITIZATION:** You are STRICTLY BANNED from leaving the "targeted_tags" array empty `[]` or null for any sub-task that implements functional requirements or data schemas. You MUST scan the source Markdown sequentially sub-task by sub-task. For each sub-task node, locate the hidden technical container block delimited between `<!--START_TAGS-->` and `<!--END_TAGS-->` contained exclusively within that sub-task section scope. Extract all raw tag token codes inside, strip away all inline markdown formatting characters—specifically backticks (`` ` ``)—and any leading/trailing whitespaces, then populate them as clean separate string elements inside the "targeted_tags" array field of EACH sub-task object node.
 4. **NO TAG BUNDLING:** Every tag must be its own array node (e.g., `"targeted_tags": ["[REQ-001]", "[DAT-002]"]`). You are strictly forbidden from combining multiple tags into a single string element.
-5. **STRICT CONTENT PURITY & REJECT CONVERSATION:** Output ONLY the pure raw executable JSON string matching the required schema. Response must start exactly with the character `{` and end exactly with the character `}`. Banned from including thinking processes, chain-of-thought blocks (`<think>` tags), conversational filler texts, introductions, wrapping inside markdown codeblocks (no triple backticks wrapping), or post-generation notes. Any token outside the raw JSON object boundary triggers an immediate execution pipeline crash.
+5. **STRICT SINGLE-BLOCK PURITY & ABSOLUTE TERMINATION LAW:** 
+   - Your output MUST contain exactly ONE (1) single valid JSON object payload from start to finish. You are STRICTLY BANNED from repeating, mirroring, or generating a second duplicate JSON block within this response stream.
+   - **Strict Packaging Format**: The output MUST start exactly with a single line containing triple backticks and the language identifier: ```json
+   - The output MUST end exactly with the final line containing triple backticks: ```
+   - There must be absolutely ZERO conversational filler text, thinking processes (`<think>` tags), introductions, or post-generation notes before or after the fenced code block. 
+   - **Absolute Freeze Directive**: Mid-generation corrections are strictly prohibited. You are completely forbidden from appending trailing structural artifacts or deformed combinations like `} ```text{`. Once you emit the final closing brace `}` of the JSON schema, immediately close the triple backticks fence and FREEZE/STOP generating tokens instantly. Any token emitted after the primary closed fence violates enterprise runtime contracts.
 
 # Raw Response / Exception:
 
@@ -34142,7 +33134,12 @@ You are a high-performance Data Ingestion and Transformation Engine. Your sole o
 2. **ABSOLUTE PYDANTIC SCHEMA ALIGNMENT:** Your final generated JSON object MUST perfectly satisfy the structural schema parameters of the target enterprise contract. You are STRICTLY BANNED from omitting, renaming, formatting, or stripping out key elements (specifically `phase_id`, `phase_name`, `phase_description`, `project_name`, `global_context_file`, `source_target_dir`, and `days`).
 3. **ABSOLUTE NO EMPTY TAGS POLICY & STRING SANITIZATION:** You are STRICTLY BANNED from leaving the "targeted_tags" array empty `[]` or null for any sub-task that implements functional requirements or data schemas. You MUST scan the source Markdown sequentially sub-task by sub-task. For each sub-task node, locate the hidden technical container block delimited between `<!--START_TAGS-->` and `<!--END_TAGS-->` contained exclusively within that sub-task section scope. Extract all raw tag token codes inside, strip away all inline markdown formatting characters—specifically backticks (`` ` ``)—and any leading/trailing whitespaces, then populate them as clean separate string elements inside the "targeted_tags" array field of EACH sub-task object node.
 4. **NO TAG BUNDLING:** Every tag must be its own array node (e.g., `"targeted_tags": ["[REQ-001]", "[DAT-002]"]`). You are strictly forbidden from combining multiple tags into a single string element.
-5. **STRICT CONTENT PURITY & REJECT CONVERSATION:** Output ONLY the pure raw executable JSON string matching the required schema. Response must start exactly with the character `{` and end exactly with the character `}`. Banned from including thinking processes, chain-of-thought blocks (`<think>` tags), conversational filler texts, introductions, wrapping inside markdown codeblocks (no triple backticks wrapping), or post-generation notes. Any token outside the raw JSON object boundary triggers an immediate execution pipeline crash.
+5. **STRICT SINGLE-BLOCK PURITY & ABSOLUTE TERMINATION LAW:** 
+   - Your output MUST contain exactly ONE (1) single valid JSON object payload from start to finish. You are STRICTLY BANNED from repeating, mirroring, or generating a second duplicate JSON block within this response stream.
+   - **Strict Packaging Format**: The output MUST start exactly with a single line containing triple backticks and the language identifier: ```json
+   - The output MUST end exactly with the final line containing triple backticks: ```
+   - There must be absolutely ZERO conversational filler text, thinking processes (`<think>` tags), introductions, or post-generation notes before or after the fenced code block. 
+   - **Absolute Freeze Directive**: Mid-generation corrections are strictly prohibited. You are completely forbidden from appending trailing structural artifacts or deformed combinations like `} ```text{`. Once you emit the final closing brace `}` of the JSON schema, immediately close the triple backticks fence and FREEZE/STOP generating tokens instantly. Any token emitted after the primary closed fence violates enterprise runtime contracts.
 
 # Raw Response / Exception:
 
@@ -34437,7 +33434,12 @@ You are a high-performance Data Ingestion and Transformation Engine. Your sole o
 2. **ABSOLUTE PYDANTIC SCHEMA ALIGNMENT:** Your final generated JSON object MUST perfectly satisfy the structural schema parameters of the target enterprise contract. You are STRICTLY BANNED from omitting, renaming, formatting, or stripping out key elements (specifically `phase_id`, `phase_name`, `phase_description`, `project_name`, `global_context_file`, `source_target_dir`, and `days`).
 3. **ABSOLUTE NO EMPTY TAGS POLICY & STRING SANITIZATION:** You are STRICTLY BANNED from leaving the "targeted_tags" array empty `[]` or null for any sub-task that implements functional requirements or data schemas. You MUST scan the source Markdown sequentially sub-task by sub-task. For each sub-task node, locate the hidden technical container block delimited between `<!--START_TAGS-->` and `<!--END_TAGS-->` contained exclusively within that sub-task section scope. Extract all raw tag token codes inside, strip away all inline markdown formatting characters—specifically backticks (`` ` ``)—and any leading/trailing whitespaces, then populate them as clean separate string elements inside the "targeted_tags" array field of EACH sub-task object node.
 4. **NO TAG BUNDLING:** Every tag must be its own array node (e.g., `"targeted_tags": ["[REQ-001]", "[DAT-002]"]`). You are strictly forbidden from combining multiple tags into a single string element.
-5. **STRICT CONTENT PURITY & REJECT CONVERSATION:** Output ONLY the pure raw executable JSON string matching the required schema. Response must start exactly with the character `{` and end exactly with the character `}`. Banned from including thinking processes, chain-of-thought blocks (`<think>` tags), conversational filler texts, introductions, wrapping inside markdown codeblocks (no triple backticks wrapping), or post-generation notes. Any token outside the raw JSON object boundary triggers an immediate execution pipeline crash.
+5. **STRICT SINGLE-BLOCK PURITY & ABSOLUTE TERMINATION LAW:** 
+   - Your output MUST contain exactly ONE (1) single valid JSON object payload from start to finish. You are STRICTLY BANNED from repeating, mirroring, or generating a second duplicate JSON block within this response stream.
+   - **Strict Packaging Format**: The output MUST start exactly with a single line containing triple backticks and the language identifier: ```json
+   - The output MUST end exactly with the final line containing triple backticks: ```
+   - There must be absolutely ZERO conversational filler text, thinking processes (`<think>` tags), introductions, or post-generation notes before or after the fenced code block. 
+   - **Absolute Freeze Directive**: Mid-generation corrections are strictly prohibited. You are completely forbidden from appending trailing structural artifacts or deformed combinations like `} ```text{`. Once you emit the final closing brace `}` of the JSON schema, immediately close the triple backticks fence and FREEZE/STOP generating tokens instantly. Any token emitted after the primary closed fence violates enterprise runtime contracts.
 
 # Raw Response / Exception:
 
@@ -34732,7 +33734,12 @@ You are a high-performance Data Ingestion and Transformation Engine. Your sole o
 2. **ABSOLUTE PYDANTIC SCHEMA ALIGNMENT:** Your final generated JSON object MUST perfectly satisfy the structural schema parameters of the target enterprise contract. You are STRICTLY BANNED from omitting, renaming, formatting, or stripping out key elements (specifically `phase_id`, `phase_name`, `phase_description`, `project_name`, `global_context_file`, `source_target_dir`, and `days`).
 3. **ABSOLUTE NO EMPTY TAGS POLICY & STRING SANITIZATION:** You are STRICTLY BANNED from leaving the "targeted_tags" array empty `[]` or null for any sub-task that implements functional requirements or data schemas. You MUST scan the source Markdown sequentially sub-task by sub-task. For each sub-task node, locate the hidden technical container block delimited between `<!--START_TAGS-->` and `<!--END_TAGS-->` contained exclusively within that sub-task section scope. Extract all raw tag token codes inside, strip away all inline markdown formatting characters—specifically backticks (`` ` ``)—and any leading/trailing whitespaces, then populate them as clean separate string elements inside the "targeted_tags" array field of EACH sub-task object node.
 4. **NO TAG BUNDLING:** Every tag must be its own array node (e.g., `"targeted_tags": ["[REQ-001]", "[DAT-002]"]`). You are strictly forbidden from combining multiple tags into a single string element.
-5. **STRICT CONTENT PURITY & REJECT CONVERSATION:** Output ONLY the pure raw executable JSON string matching the required schema. Response must start exactly with the character `{` and end exactly with the character `}`. Banned from including thinking processes, chain-of-thought blocks (`<think>` tags), conversational filler texts, introductions, wrapping inside markdown codeblocks (no triple backticks wrapping), or post-generation notes. Any token outside the raw JSON object boundary triggers an immediate execution pipeline crash.
+5. **STRICT SINGLE-BLOCK PURITY & ABSOLUTE TERMINATION LAW:** 
+   - Your output MUST contain exactly ONE (1) single valid JSON object payload from start to finish. You are STRICTLY BANNED from repeating, mirroring, or generating a second duplicate JSON block within this response stream.
+   - **Strict Packaging Format**: The output MUST start exactly with a single line containing triple backticks and the language identifier: ```json
+   - The output MUST end exactly with the final line containing triple backticks: ```
+   - There must be absolutely ZERO conversational filler text, thinking processes (`<think>` tags), introductions, or post-generation notes before or after the fenced code block. 
+   - **Absolute Freeze Directive**: Mid-generation corrections are strictly prohibited. You are completely forbidden from appending trailing structural artifacts or deformed combinations like `} ```text{`. Once you emit the final closing brace `}` of the JSON schema, immediately close the triple backticks fence and FREEZE/STOP generating tokens instantly. Any token emitted after the primary closed fence violates enterprise runtime contracts.
 
 # Raw Response / Exception:
 
@@ -35027,7 +34034,12 @@ You are a high-performance Data Ingestion and Transformation Engine. Your sole o
 2. **ABSOLUTE PYDANTIC SCHEMA ALIGNMENT:** Your final generated JSON object MUST perfectly satisfy the structural schema parameters of the target enterprise contract. You are STRICTLY BANNED from omitting, renaming, formatting, or stripping out key elements (specifically `phase_id`, `phase_name`, `phase_description`, `project_name`, `global_context_file`, `source_target_dir`, and `days`).
 3. **ABSOLUTE NO EMPTY TAGS POLICY & STRING SANITIZATION:** You are STRICTLY BANNED from leaving the "targeted_tags" array empty `[]` or null for any sub-task that implements functional requirements or data schemas. You MUST scan the source Markdown sequentially sub-task by sub-task. For each sub-task node, locate the hidden technical container block delimited between `<!--START_TAGS-->` and `<!--END_TAGS-->` contained exclusively within that sub-task section scope. Extract all raw tag token codes inside, strip away all inline markdown formatting characters—specifically backticks (`` ` ``)—and any leading/trailing whitespaces, then populate them as clean separate string elements inside the "targeted_tags" array field of EACH sub-task object node.
 4. **NO TAG BUNDLING:** Every tag must be its own array node (e.g., `"targeted_tags": ["[REQ-001]", "[DAT-002]"]`). You are strictly forbidden from combining multiple tags into a single string element.
-5. **STRICT CONTENT PURITY & REJECT CONVERSATION:** Output ONLY the pure raw executable JSON string matching the required schema. Response must start exactly with the character `{` and end exactly with the character `}`. Banned from including thinking processes, chain-of-thought blocks (`<think>` tags), conversational filler texts, introductions, wrapping inside markdown codeblocks (no triple backticks wrapping), or post-generation notes. Any token outside the raw JSON object boundary triggers an immediate execution pipeline crash.
+5. **STRICT SINGLE-BLOCK PURITY & ABSOLUTE TERMINATION LAW:** 
+   - Your output MUST contain exactly ONE (1) single valid JSON object payload from start to finish. You are STRICTLY BANNED from repeating, mirroring, or generating a second duplicate JSON block within this response stream.
+   - **Strict Packaging Format**: The output MUST start exactly with a single line containing triple backticks and the language identifier: ```json
+   - The output MUST end exactly with the final line containing triple backticks: ```
+   - There must be absolutely ZERO conversational filler text, thinking processes (`<think>` tags), introductions, or post-generation notes before or after the fenced code block. 
+   - **Absolute Freeze Directive**: Mid-generation corrections are strictly prohibited. You are completely forbidden from appending trailing structural artifacts or deformed combinations like `} ```text{`. Once you emit the final closing brace `}` of the JSON schema, immediately close the triple backticks fence and FREEZE/STOP generating tokens instantly. Any token emitted after the primary closed fence violates enterprise runtime contracts.
 
 # Raw Response / Exception:
 
@@ -35322,7 +34334,12 @@ You are a high-performance Data Ingestion and Transformation Engine. Your sole o
 2. **ABSOLUTE PYDANTIC SCHEMA ALIGNMENT:** Your final generated JSON object MUST perfectly satisfy the structural schema parameters of the target enterprise contract. You are STRICTLY BANNED from omitting, renaming, formatting, or stripping out key elements (specifically `phase_id`, `phase_name`, `phase_description`, `project_name`, `global_context_file`, `source_target_dir`, and `days`).
 3. **ABSOLUTE NO EMPTY TAGS POLICY & STRING SANITIZATION:** You are STRICTLY BANNED from leaving the "targeted_tags" array empty `[]` or null for any sub-task that implements functional requirements or data schemas. You MUST scan the source Markdown sequentially sub-task by sub-task. For each sub-task node, locate the hidden technical container block delimited between `<!--START_TAGS-->` and `<!--END_TAGS-->` contained exclusively within that sub-task section scope. Extract all raw tag token codes inside, strip away all inline markdown formatting characters—specifically backticks (`` ` ``)—and any leading/trailing whitespaces, then populate them as clean separate string elements inside the "targeted_tags" array field of EACH sub-task object node.
 4. **NO TAG BUNDLING:** Every tag must be its own array node (e.g., `"targeted_tags": ["[REQ-001]", "[DAT-002]"]`). You are strictly forbidden from combining multiple tags into a single string element.
-5. **STRICT CONTENT PURITY & REJECT CONVERSATION:** Output ONLY the pure raw executable JSON string matching the required schema. Response must start exactly with the character `{` and end exactly with the character `}`. Banned from including thinking processes, chain-of-thought blocks (`<think>` tags), conversational filler texts, introductions, wrapping inside markdown codeblocks (no triple backticks wrapping), or post-generation notes. Any token outside the raw JSON object boundary triggers an immediate execution pipeline crash.
+5. **STRICT SINGLE-BLOCK PURITY & ABSOLUTE TERMINATION LAW:** 
+   - Your output MUST contain exactly ONE (1) single valid JSON object payload from start to finish. You are STRICTLY BANNED from repeating, mirroring, or generating a second duplicate JSON block within this response stream.
+   - **Strict Packaging Format**: The output MUST start exactly with a single line containing triple backticks and the language identifier: ```json
+   - The output MUST end exactly with the final line containing triple backticks: ```
+   - There must be absolutely ZERO conversational filler text, thinking processes (`<think>` tags), introductions, or post-generation notes before or after the fenced code block. 
+   - **Absolute Freeze Directive**: Mid-generation corrections are strictly prohibited. You are completely forbidden from appending trailing structural artifacts or deformed combinations like `} ```text{`. Once you emit the final closing brace `}` of the JSON schema, immediately close the triple backticks fence and FREEZE/STOP generating tokens instantly. Any token emitted after the primary closed fence violates enterprise runtime contracts.
 
 # Raw Response / Exception:
 
@@ -35617,7 +34634,12 @@ You are a high-performance Data Ingestion and Transformation Engine. Your sole o
 2. **ABSOLUTE PYDANTIC SCHEMA ALIGNMENT:** Your final generated JSON object MUST perfectly satisfy the structural schema parameters of the target enterprise contract. You are STRICTLY BANNED from omitting, renaming, formatting, or stripping out key elements (specifically `phase_id`, `phase_name`, `phase_description`, `project_name`, `global_context_file`, `source_target_dir`, and `days`).
 3. **ABSOLUTE NO EMPTY TAGS POLICY & STRING SANITIZATION:** You are STRICTLY BANNED from leaving the "targeted_tags" array empty `[]` or null for any sub-task that implements functional requirements or data schemas. You MUST scan the source Markdown sequentially sub-task by sub-task. For each sub-task node, locate the hidden technical container block delimited between `<!--START_TAGS-->` and `<!--END_TAGS-->` contained exclusively within that sub-task section scope. Extract all raw tag token codes inside, strip away all inline markdown formatting characters—specifically backticks (`` ` ``)—and any leading/trailing whitespaces, then populate them as clean separate string elements inside the "targeted_tags" array field of EACH sub-task object node.
 4. **NO TAG BUNDLING:** Every tag must be its own array node (e.g., `"targeted_tags": ["[REQ-001]", "[DAT-002]"]`). You are strictly forbidden from combining multiple tags into a single string element.
-5. **STRICT CONTENT PURITY & REJECT CONVERSATION:** Output ONLY the pure raw executable JSON string matching the required schema. Response must start exactly with the character `{` and end exactly with the character `}`. Banned from including thinking processes, chain-of-thought blocks (`<think>` tags), conversational filler texts, introductions, wrapping inside markdown codeblocks (no triple backticks wrapping), or post-generation notes. Any token outside the raw JSON object boundary triggers an immediate execution pipeline crash.
+5. **STRICT SINGLE-BLOCK PURITY & ABSOLUTE TERMINATION LAW:** 
+   - Your output MUST contain exactly ONE (1) single valid JSON object payload from start to finish. You are STRICTLY BANNED from repeating, mirroring, or generating a second duplicate JSON block within this response stream.
+   - **Strict Packaging Format**: The output MUST start exactly with a single line containing triple backticks and the language identifier: ```json
+   - The output MUST end exactly with the final line containing triple backticks: ```
+   - There must be absolutely ZERO conversational filler text, thinking processes (`<think>` tags), introductions, or post-generation notes before or after the fenced code block. 
+   - **Absolute Freeze Directive**: Mid-generation corrections are strictly prohibited. You are completely forbidden from appending trailing structural artifacts or deformed combinations like `} ```text{`. Once you emit the final closing brace `}` of the JSON schema, immediately close the triple backticks fence and FREEZE/STOP generating tokens instantly. Any token emitted after the primary closed fence violates enterprise runtime contracts.
 
 # Raw Response / Exception:
 
@@ -35912,7 +34934,12 @@ You are a high-performance Data Ingestion and Transformation Engine. Your sole o
 2. **ABSOLUTE PYDANTIC SCHEMA ALIGNMENT:** Your final generated JSON object MUST perfectly satisfy the structural schema parameters of the target enterprise contract. You are STRICTLY BANNED from omitting, renaming, formatting, or stripping out key elements (specifically `phase_id`, `phase_name`, `phase_description`, `project_name`, `global_context_file`, `source_target_dir`, and `days`).
 3. **ABSOLUTE NO EMPTY TAGS POLICY & STRING SANITIZATION:** You are STRICTLY BANNED from leaving the "targeted_tags" array empty `[]` or null for any sub-task that implements functional requirements or data schemas. You MUST scan the source Markdown sequentially sub-task by sub-task. For each sub-task node, locate the hidden technical container block delimited between `<!--START_TAGS-->` and `<!--END_TAGS-->` contained exclusively within that sub-task section scope. Extract all raw tag token codes inside, strip away all inline markdown formatting characters—specifically backticks (`` ` ``)—and any leading/trailing whitespaces, then populate them as clean separate string elements inside the "targeted_tags" array field of EACH sub-task object node.
 4. **NO TAG BUNDLING:** Every tag must be its own array node (e.g., `"targeted_tags": ["[REQ-001]", "[DAT-002]"]`). You are strictly forbidden from combining multiple tags into a single string element.
-5. **STRICT CONTENT PURITY & REJECT CONVERSATION:** Output ONLY the pure raw executable JSON string matching the required schema. Response must start exactly with the character `{` and end exactly with the character `}`. Banned from including thinking processes, chain-of-thought blocks (`<think>` tags), conversational filler texts, introductions, wrapping inside markdown codeblocks (no triple backticks wrapping), or post-generation notes. Any token outside the raw JSON object boundary triggers an immediate execution pipeline crash.
+5. **STRICT SINGLE-BLOCK PURITY & ABSOLUTE TERMINATION LAW:** 
+   - Your output MUST contain exactly ONE (1) single valid JSON object payload from start to finish. You are STRICTLY BANNED from repeating, mirroring, or generating a second duplicate JSON block within this response stream.
+   - **Strict Packaging Format**: The output MUST start exactly with a single line containing triple backticks and the language identifier: ```json
+   - The output MUST end exactly with the final line containing triple backticks: ```
+   - There must be absolutely ZERO conversational filler text, thinking processes (`<think>` tags), introductions, or post-generation notes before or after the fenced code block. 
+   - **Absolute Freeze Directive**: Mid-generation corrections are strictly prohibited. You are completely forbidden from appending trailing structural artifacts or deformed combinations like `} ```text{`. Once you emit the final closing brace `}` of the JSON schema, immediately close the triple backticks fence and FREEZE/STOP generating tokens instantly. Any token emitted after the primary closed fence violates enterprise runtime contracts.
 
 # Raw Response / Exception:
 
@@ -36207,7 +35234,12 @@ You are a high-performance Data Ingestion and Transformation Engine. Your sole o
 2. **ABSOLUTE PYDANTIC SCHEMA ALIGNMENT:** Your final generated JSON object MUST perfectly satisfy the structural schema parameters of the target enterprise contract. You are STRICTLY BANNED from omitting, renaming, formatting, or stripping out key elements (specifically `phase_id`, `phase_name`, `phase_description`, `project_name`, `global_context_file`, `source_target_dir`, and `days`).
 3. **ABSOLUTE NO EMPTY TAGS POLICY & STRING SANITIZATION:** You are STRICTLY BANNED from leaving the "targeted_tags" array empty `[]` or null for any sub-task that implements functional requirements or data schemas. You MUST scan the source Markdown sequentially sub-task by sub-task. For each sub-task node, locate the hidden technical container block delimited between `<!--START_TAGS-->` and `<!--END_TAGS-->` contained exclusively within that sub-task section scope. Extract all raw tag token codes inside, strip away all inline markdown formatting characters—specifically backticks (`` ` ``)—and any leading/trailing whitespaces, then populate them as clean separate string elements inside the "targeted_tags" array field of EACH sub-task object node.
 4. **NO TAG BUNDLING:** Every tag must be its own array node (e.g., `"targeted_tags": ["[REQ-001]", "[DAT-002]"]`). You are strictly forbidden from combining multiple tags into a single string element.
-5. **STRICT CONTENT PURITY & REJECT CONVERSATION:** Output ONLY the pure raw executable JSON string matching the required schema. Response must start exactly with the character `{` and end exactly with the character `}`. Banned from including thinking processes, chain-of-thought blocks (`<think>` tags), conversational filler texts, introductions, wrapping inside markdown codeblocks (no triple backticks wrapping), or post-generation notes. Any token outside the raw JSON object boundary triggers an immediate execution pipeline crash.
+5. **STRICT SINGLE-BLOCK PURITY & ABSOLUTE TERMINATION LAW:** 
+   - Your output MUST contain exactly ONE (1) single valid JSON object payload from start to finish. You are STRICTLY BANNED from repeating, mirroring, or generating a second duplicate JSON block within this response stream.
+   - **Strict Packaging Format**: The output MUST start exactly with a single line containing triple backticks and the language identifier: ```json
+   - The output MUST end exactly with the final line containing triple backticks: ```
+   - There must be absolutely ZERO conversational filler text, thinking processes (`<think>` tags), introductions, or post-generation notes before or after the fenced code block. 
+   - **Absolute Freeze Directive**: Mid-generation corrections are strictly prohibited. You are completely forbidden from appending trailing structural artifacts or deformed combinations like `} ```text{`. Once you emit the final closing brace `}` of the JSON schema, immediately close the triple backticks fence and FREEZE/STOP generating tokens instantly. Any token emitted after the primary closed fence violates enterprise runtime contracts.
 
 # Raw Response / Exception:
 
@@ -36502,7 +35534,12 @@ You are a high-performance Data Ingestion and Transformation Engine. Your sole o
 2. **ABSOLUTE PYDANTIC SCHEMA ALIGNMENT:** Your final generated JSON object MUST perfectly satisfy the structural schema parameters of the target enterprise contract. You are STRICTLY BANNED from omitting, renaming, formatting, or stripping out key elements (specifically `phase_id`, `phase_name`, `phase_description`, `project_name`, `global_context_file`, `source_target_dir`, and `days`).
 3. **ABSOLUTE NO EMPTY TAGS POLICY & STRING SANITIZATION:** You are STRICTLY BANNED from leaving the "targeted_tags" array empty `[]` or null for any sub-task that implements functional requirements or data schemas. You MUST scan the source Markdown sequentially sub-task by sub-task. For each sub-task node, locate the hidden technical container block delimited between `<!--START_TAGS-->` and `<!--END_TAGS-->` contained exclusively within that sub-task section scope. Extract all raw tag token codes inside, strip away all inline markdown formatting characters—specifically backticks (`` ` ``)—and any leading/trailing whitespaces, then populate them as clean separate string elements inside the "targeted_tags" array field of EACH sub-task object node.
 4. **NO TAG BUNDLING:** Every tag must be its own array node (e.g., `"targeted_tags": ["[REQ-001]", "[DAT-002]"]`). You are strictly forbidden from combining multiple tags into a single string element.
-5. **STRICT CONTENT PURITY & REJECT CONVERSATION:** Output ONLY the pure raw executable JSON string matching the required schema. Response must start exactly with the character `{` and end exactly with the character `}`. Banned from including thinking processes, chain-of-thought blocks (`<think>` tags), conversational filler texts, introductions, wrapping inside markdown codeblocks (no triple backticks wrapping), or post-generation notes. Any token outside the raw JSON object boundary triggers an immediate execution pipeline crash.
+5. **STRICT SINGLE-BLOCK PURITY & ABSOLUTE TERMINATION LAW:** 
+   - Your output MUST contain exactly ONE (1) single valid JSON object payload from start to finish. You are STRICTLY BANNED from repeating, mirroring, or generating a second duplicate JSON block within this response stream.
+   - **Strict Packaging Format**: The output MUST start exactly with a single line containing triple backticks and the language identifier: ```json
+   - The output MUST end exactly with the final line containing triple backticks: ```
+   - There must be absolutely ZERO conversational filler text, thinking processes (`<think>` tags), introductions, or post-generation notes before or after the fenced code block. 
+   - **Absolute Freeze Directive**: Mid-generation corrections are strictly prohibited. You are completely forbidden from appending trailing structural artifacts or deformed combinations like `} ```text{`. Once you emit the final closing brace `}` of the JSON schema, immediately close the triple backticks fence and FREEZE/STOP generating tokens instantly. Any token emitted after the primary closed fence violates enterprise runtime contracts.
 
 # Raw Response / Exception:
 
@@ -36797,7 +35834,12 @@ You are a high-performance Data Ingestion and Transformation Engine. Your sole o
 2. **ABSOLUTE PYDANTIC SCHEMA ALIGNMENT:** Your final generated JSON object MUST perfectly satisfy the structural schema parameters of the target enterprise contract. You are STRICTLY BANNED from omitting, renaming, formatting, or stripping out key elements (specifically `phase_id`, `phase_name`, `phase_description`, `project_name`, `global_context_file`, `source_target_dir`, and `days`).
 3. **ABSOLUTE NO EMPTY TAGS POLICY & STRING SANITIZATION:** You are STRICTLY BANNED from leaving the "targeted_tags" array empty `[]` or null for any sub-task that implements functional requirements or data schemas. You MUST scan the source Markdown sequentially sub-task by sub-task. For each sub-task node, locate the hidden technical container block delimited between `<!--START_TAGS-->` and `<!--END_TAGS-->` contained exclusively within that sub-task section scope. Extract all raw tag token codes inside, strip away all inline markdown formatting characters—specifically backticks (`` ` ``)—and any leading/trailing whitespaces, then populate them as clean separate string elements inside the "targeted_tags" array field of EACH sub-task object node.
 4. **NO TAG BUNDLING:** Every tag must be its own array node (e.g., `"targeted_tags": ["[REQ-001]", "[DAT-002]"]`). You are strictly forbidden from combining multiple tags into a single string element.
-5. **STRICT CONTENT PURITY & REJECT CONVERSATION:** Output ONLY the pure raw executable JSON string matching the required schema. Response must start exactly with the character `{` and end exactly with the character `}`. Banned from including thinking processes, chain-of-thought blocks (`<think>` tags), conversational filler texts, introductions, wrapping inside markdown codeblocks (no triple backticks wrapping), or post-generation notes. Any token outside the raw JSON object boundary triggers an immediate execution pipeline crash.
+5. **STRICT SINGLE-BLOCK PURITY & ABSOLUTE TERMINATION LAW:** 
+   - Your output MUST contain exactly ONE (1) single valid JSON object payload from start to finish. You are STRICTLY BANNED from repeating, mirroring, or generating a second duplicate JSON block within this response stream.
+   - **Strict Packaging Format**: The output MUST start exactly with a single line containing triple backticks and the language identifier: ```json
+   - The output MUST end exactly with the final line containing triple backticks: ```
+   - There must be absolutely ZERO conversational filler text, thinking processes (`<think>` tags), introductions, or post-generation notes before or after the fenced code block. 
+   - **Absolute Freeze Directive**: Mid-generation corrections are strictly prohibited. You are completely forbidden from appending trailing structural artifacts or deformed combinations like `} ```text{`. Once you emit the final closing brace `}` of the JSON schema, immediately close the triple backticks fence and FREEZE/STOP generating tokens instantly. Any token emitted after the primary closed fence violates enterprise runtime contracts.
 
 # Raw Response / Exception:
 
@@ -37092,7 +36134,12 @@ You are a high-performance Data Ingestion and Transformation Engine. Your sole o
 2. **ABSOLUTE PYDANTIC SCHEMA ALIGNMENT:** Your final generated JSON object MUST perfectly satisfy the structural schema parameters of the target enterprise contract. You are STRICTLY BANNED from omitting, renaming, formatting, or stripping out key elements (specifically `phase_id`, `phase_name`, `phase_description`, `project_name`, `global_context_file`, `source_target_dir`, and `days`).
 3. **ABSOLUTE NO EMPTY TAGS POLICY & STRING SANITIZATION:** You are STRICTLY BANNED from leaving the "targeted_tags" array empty `[]` or null for any sub-task that implements functional requirements or data schemas. You MUST scan the source Markdown sequentially sub-task by sub-task. For each sub-task node, locate the hidden technical container block delimited between `<!--START_TAGS-->` and `<!--END_TAGS-->` contained exclusively within that sub-task section scope. Extract all raw tag token codes inside, strip away all inline markdown formatting characters—specifically backticks (`` ` ``)—and any leading/trailing whitespaces, then populate them as clean separate string elements inside the "targeted_tags" array field of EACH sub-task object node.
 4. **NO TAG BUNDLING:** Every tag must be its own array node (e.g., `"targeted_tags": ["[REQ-001]", "[DAT-002]"]`). You are strictly forbidden from combining multiple tags into a single string element.
-5. **STRICT CONTENT PURITY & REJECT CONVERSATION:** Output ONLY the pure raw executable JSON string matching the required schema. Response must start exactly with the character `{` and end exactly with the character `}`. Banned from including thinking processes, chain-of-thought blocks (`<think>` tags), conversational filler texts, introductions, wrapping inside markdown codeblocks (no triple backticks wrapping), or post-generation notes. Any token outside the raw JSON object boundary triggers an immediate execution pipeline crash.
+5. **STRICT SINGLE-BLOCK PURITY & ABSOLUTE TERMINATION LAW:** 
+   - Your output MUST contain exactly ONE (1) single valid JSON object payload from start to finish. You are STRICTLY BANNED from repeating, mirroring, or generating a second duplicate JSON block within this response stream.
+   - **Strict Packaging Format**: The output MUST start exactly with a single line containing triple backticks and the language identifier: ```json
+   - The output MUST end exactly with the final line containing triple backticks: ```
+   - There must be absolutely ZERO conversational filler text, thinking processes (`<think>` tags), introductions, or post-generation notes before or after the fenced code block. 
+   - **Absolute Freeze Directive**: Mid-generation corrections are strictly prohibited. You are completely forbidden from appending trailing structural artifacts or deformed combinations like `} ```text{`. Once you emit the final closing brace `}` of the JSON schema, immediately close the triple backticks fence and FREEZE/STOP generating tokens instantly. Any token emitted after the primary closed fence violates enterprise runtime contracts.
 
 # Raw Response / Exception:
 
@@ -37387,7 +36434,12 @@ You are a high-performance Data Ingestion and Transformation Engine. Your sole o
 2. **ABSOLUTE PYDANTIC SCHEMA ALIGNMENT:** Your final generated JSON object MUST perfectly satisfy the structural schema parameters of the target enterprise contract. You are STRICTLY BANNED from omitting, renaming, formatting, or stripping out key elements (specifically `phase_id`, `phase_name`, `phase_description`, `project_name`, `global_context_file`, `source_target_dir`, and `days`).
 3. **ABSOLUTE NO EMPTY TAGS POLICY & STRING SANITIZATION:** You are STRICTLY BANNED from leaving the "targeted_tags" array empty `[]` or null for any sub-task that implements functional requirements or data schemas. You MUST scan the source Markdown sequentially sub-task by sub-task. For each sub-task node, locate the hidden technical container block delimited between `<!--START_TAGS-->` and `<!--END_TAGS-->` contained exclusively within that sub-task section scope. Extract all raw tag token codes inside, strip away all inline markdown formatting characters—specifically backticks (`` ` ``)—and any leading/trailing whitespaces, then populate them as clean separate string elements inside the "targeted_tags" array field of EACH sub-task object node.
 4. **NO TAG BUNDLING:** Every tag must be its own array node (e.g., `"targeted_tags": ["[REQ-001]", "[DAT-002]"]`). You are strictly forbidden from combining multiple tags into a single string element.
-5. **STRICT CONTENT PURITY & REJECT CONVERSATION:** Output ONLY the pure raw executable JSON string matching the required schema. Response must start exactly with the character `{` and end exactly with the character `}`. Banned from including thinking processes, chain-of-thought blocks (`<think>` tags), conversational filler texts, introductions, wrapping inside markdown codeblocks (no triple backticks wrapping), or post-generation notes. Any token outside the raw JSON object boundary triggers an immediate execution pipeline crash.
+5. **STRICT SINGLE-BLOCK PURITY & ABSOLUTE TERMINATION LAW:** 
+   - Your output MUST contain exactly ONE (1) single valid JSON object payload from start to finish. You are STRICTLY BANNED from repeating, mirroring, or generating a second duplicate JSON block within this response stream.
+   - **Strict Packaging Format**: The output MUST start exactly with a single line containing triple backticks and the language identifier: ```json
+   - The output MUST end exactly with the final line containing triple backticks: ```
+   - There must be absolutely ZERO conversational filler text, thinking processes (`<think>` tags), introductions, or post-generation notes before or after the fenced code block. 
+   - **Absolute Freeze Directive**: Mid-generation corrections are strictly prohibited. You are completely forbidden from appending trailing structural artifacts or deformed combinations like `} ```text{`. Once you emit the final closing brace `}` of the JSON schema, immediately close the triple backticks fence and FREEZE/STOP generating tokens instantly. Any token emitted after the primary closed fence violates enterprise runtime contracts.
 
 # Raw Response / Exception:
 
@@ -37682,7 +36734,12 @@ You are a high-performance Data Ingestion and Transformation Engine. Your sole o
 2. **ABSOLUTE PYDANTIC SCHEMA ALIGNMENT:** Your final generated JSON object MUST perfectly satisfy the structural schema parameters of the target enterprise contract. You are STRICTLY BANNED from omitting, renaming, formatting, or stripping out key elements (specifically `phase_id`, `phase_name`, `phase_description`, `project_name`, `global_context_file`, `source_target_dir`, and `days`).
 3. **ABSOLUTE NO EMPTY TAGS POLICY & STRING SANITIZATION:** You are STRICTLY BANNED from leaving the "targeted_tags" array empty `[]` or null for any sub-task that implements functional requirements or data schemas. You MUST scan the source Markdown sequentially sub-task by sub-task. For each sub-task node, locate the hidden technical container block delimited between `<!--START_TAGS-->` and `<!--END_TAGS-->` contained exclusively within that sub-task section scope. Extract all raw tag token codes inside, strip away all inline markdown formatting characters—specifically backticks (`` ` ``)—and any leading/trailing whitespaces, then populate them as clean separate string elements inside the "targeted_tags" array field of EACH sub-task object node.
 4. **NO TAG BUNDLING:** Every tag must be its own array node (e.g., `"targeted_tags": ["[REQ-001]", "[DAT-002]"]`). You are strictly forbidden from combining multiple tags into a single string element.
-5. **STRICT CONTENT PURITY & REJECT CONVERSATION:** Output ONLY the pure raw executable JSON string matching the required schema. Response must start exactly with the character `{` and end exactly with the character `}`. Banned from including thinking processes, chain-of-thought blocks (`<think>` tags), conversational filler texts, introductions, wrapping inside markdown codeblocks (no triple backticks wrapping), or post-generation notes. Any token outside the raw JSON object boundary triggers an immediate execution pipeline crash.
+5. **STRICT SINGLE-BLOCK PURITY & ABSOLUTE TERMINATION LAW:** 
+   - Your output MUST contain exactly ONE (1) single valid JSON object payload from start to finish. You are STRICTLY BANNED from repeating, mirroring, or generating a second duplicate JSON block within this response stream.
+   - **Strict Packaging Format**: The output MUST start exactly with a single line containing triple backticks and the language identifier: ```json
+   - The output MUST end exactly with the final line containing triple backticks: ```
+   - There must be absolutely ZERO conversational filler text, thinking processes (`<think>` tags), introductions, or post-generation notes before or after the fenced code block. 
+   - **Absolute Freeze Directive**: Mid-generation corrections are strictly prohibited. You are completely forbidden from appending trailing structural artifacts or deformed combinations like `} ```text{`. Once you emit the final closing brace `}` of the JSON schema, immediately close the triple backticks fence and FREEZE/STOP generating tokens instantly. Any token emitted after the primary closed fence violates enterprise runtime contracts.
 
 # Raw Response / Exception:
 
@@ -37977,7 +37034,12 @@ You are a high-performance Data Ingestion and Transformation Engine. Your sole o
 2. **ABSOLUTE PYDANTIC SCHEMA ALIGNMENT:** Your final generated JSON object MUST perfectly satisfy the structural schema parameters of the target enterprise contract. You are STRICTLY BANNED from omitting, renaming, formatting, or stripping out key elements (specifically `phase_id`, `phase_name`, `phase_description`, `project_name`, `global_context_file`, `source_target_dir`, and `days`).
 3. **ABSOLUTE NO EMPTY TAGS POLICY & STRING SANITIZATION:** You are STRICTLY BANNED from leaving the "targeted_tags" array empty `[]` or null for any sub-task that implements functional requirements or data schemas. You MUST scan the source Markdown sequentially sub-task by sub-task. For each sub-task node, locate the hidden technical container block delimited between `<!--START_TAGS-->` and `<!--END_TAGS-->` contained exclusively within that sub-task section scope. Extract all raw tag token codes inside, strip away all inline markdown formatting characters—specifically backticks (`` ` ``)—and any leading/trailing whitespaces, then populate them as clean separate string elements inside the "targeted_tags" array field of EACH sub-task object node.
 4. **NO TAG BUNDLING:** Every tag must be its own array node (e.g., `"targeted_tags": ["[REQ-001]", "[DAT-002]"]`). You are strictly forbidden from combining multiple tags into a single string element.
-5. **STRICT CONTENT PURITY & REJECT CONVERSATION:** Output ONLY the pure raw executable JSON string matching the required schema. Response must start exactly with the character `{` and end exactly with the character `}`. Banned from including thinking processes, chain-of-thought blocks (`<think>` tags), conversational filler texts, introductions, wrapping inside markdown codeblocks (no triple backticks wrapping), or post-generation notes. Any token outside the raw JSON object boundary triggers an immediate execution pipeline crash.
+5. **STRICT SINGLE-BLOCK PURITY & ABSOLUTE TERMINATION LAW:** 
+   - Your output MUST contain exactly ONE (1) single valid JSON object payload from start to finish. You are STRICTLY BANNED from repeating, mirroring, or generating a second duplicate JSON block within this response stream.
+   - **Strict Packaging Format**: The output MUST start exactly with a single line containing triple backticks and the language identifier: ```json
+   - The output MUST end exactly with the final line containing triple backticks: ```
+   - There must be absolutely ZERO conversational filler text, thinking processes (`<think>` tags), introductions, or post-generation notes before or after the fenced code block. 
+   - **Absolute Freeze Directive**: Mid-generation corrections are strictly prohibited. You are completely forbidden from appending trailing structural artifacts or deformed combinations like `} ```text{`. Once you emit the final closing brace `}` of the JSON schema, immediately close the triple backticks fence and FREEZE/STOP generating tokens instantly. Any token emitted after the primary closed fence violates enterprise runtime contracts.
 
 # Raw Response / Exception:
 
@@ -38272,7 +37334,12 @@ You are a high-performance Data Ingestion and Transformation Engine. Your sole o
 2. **ABSOLUTE PYDANTIC SCHEMA ALIGNMENT:** Your final generated JSON object MUST perfectly satisfy the structural schema parameters of the target enterprise contract. You are STRICTLY BANNED from omitting, renaming, formatting, or stripping out key elements (specifically `phase_id`, `phase_name`, `phase_description`, `project_name`, `global_context_file`, `source_target_dir`, and `days`).
 3. **ABSOLUTE NO EMPTY TAGS POLICY & STRING SANITIZATION:** You are STRICTLY BANNED from leaving the "targeted_tags" array empty `[]` or null for any sub-task that implements functional requirements or data schemas. You MUST scan the source Markdown sequentially sub-task by sub-task. For each sub-task node, locate the hidden technical container block delimited between `<!--START_TAGS-->` and `<!--END_TAGS-->` contained exclusively within that sub-task section scope. Extract all raw tag token codes inside, strip away all inline markdown formatting characters—specifically backticks (`` ` ``)—and any leading/trailing whitespaces, then populate them as clean separate string elements inside the "targeted_tags" array field of EACH sub-task object node.
 4. **NO TAG BUNDLING:** Every tag must be its own array node (e.g., `"targeted_tags": ["[REQ-001]", "[DAT-002]"]`). You are strictly forbidden from combining multiple tags into a single string element.
-5. **STRICT CONTENT PURITY & REJECT CONVERSATION:** Output ONLY the pure raw executable JSON string matching the required schema. Response must start exactly with the character `{` and end exactly with the character `}`. Banned from including thinking processes, chain-of-thought blocks (`<think>` tags), conversational filler texts, introductions, wrapping inside markdown codeblocks (no triple backticks wrapping), or post-generation notes. Any token outside the raw JSON object boundary triggers an immediate execution pipeline crash.
+5. **STRICT SINGLE-BLOCK PURITY & ABSOLUTE TERMINATION LAW:** 
+   - Your output MUST contain exactly ONE (1) single valid JSON object payload from start to finish. You are STRICTLY BANNED from repeating, mirroring, or generating a second duplicate JSON block within this response stream.
+   - **Strict Packaging Format**: The output MUST start exactly with a single line containing triple backticks and the language identifier: ```json
+   - The output MUST end exactly with the final line containing triple backticks: ```
+   - There must be absolutely ZERO conversational filler text, thinking processes (`<think>` tags), introductions, or post-generation notes before or after the fenced code block. 
+   - **Absolute Freeze Directive**: Mid-generation corrections are strictly prohibited. You are completely forbidden from appending trailing structural artifacts or deformed combinations like `} ```text{`. Once you emit the final closing brace `}` of the JSON schema, immediately close the triple backticks fence and FREEZE/STOP generating tokens instantly. Any token emitted after the primary closed fence violates enterprise runtime contracts.
 
 # Raw Response / Exception:
 
@@ -38567,7 +37634,12 @@ You are a high-performance Data Ingestion and Transformation Engine. Your sole o
 2. **ABSOLUTE PYDANTIC SCHEMA ALIGNMENT:** Your final generated JSON object MUST perfectly satisfy the structural schema parameters of the target enterprise contract. You are STRICTLY BANNED from omitting, renaming, formatting, or stripping out key elements (specifically `phase_id`, `phase_name`, `phase_description`, `project_name`, `global_context_file`, `source_target_dir`, and `days`).
 3. **ABSOLUTE NO EMPTY TAGS POLICY & STRING SANITIZATION:** You are STRICTLY BANNED from leaving the "targeted_tags" array empty `[]` or null for any sub-task that implements functional requirements or data schemas. You MUST scan the source Markdown sequentially sub-task by sub-task. For each sub-task node, locate the hidden technical container block delimited between `<!--START_TAGS-->` and `<!--END_TAGS-->` contained exclusively within that sub-task section scope. Extract all raw tag token codes inside, strip away all inline markdown formatting characters—specifically backticks (`` ` ``)—and any leading/trailing whitespaces, then populate them as clean separate string elements inside the "targeted_tags" array field of EACH sub-task object node.
 4. **NO TAG BUNDLING:** Every tag must be its own array node (e.g., `"targeted_tags": ["[REQ-001]", "[DAT-002]"]`). You are strictly forbidden from combining multiple tags into a single string element.
-5. **STRICT CONTENT PURITY & REJECT CONVERSATION:** Output ONLY the pure raw executable JSON string matching the required schema. Response must start exactly with the character `{` and end exactly with the character `}`. Banned from including thinking processes, chain-of-thought blocks (`<think>` tags), conversational filler texts, introductions, wrapping inside markdown codeblocks (no triple backticks wrapping), or post-generation notes. Any token outside the raw JSON object boundary triggers an immediate execution pipeline crash.
+5. **STRICT SINGLE-BLOCK PURITY & ABSOLUTE TERMINATION LAW:** 
+   - Your output MUST contain exactly ONE (1) single valid JSON object payload from start to finish. You are STRICTLY BANNED from repeating, mirroring, or generating a second duplicate JSON block within this response stream.
+   - **Strict Packaging Format**: The output MUST start exactly with a single line containing triple backticks and the language identifier: ```json
+   - The output MUST end exactly with the final line containing triple backticks: ```
+   - There must be absolutely ZERO conversational filler text, thinking processes (`<think>` tags), introductions, or post-generation notes before or after the fenced code block. 
+   - **Absolute Freeze Directive**: Mid-generation corrections are strictly prohibited. You are completely forbidden from appending trailing structural artifacts or deformed combinations like `} ```text{`. Once you emit the final closing brace `}` of the JSON schema, immediately close the triple backticks fence and FREEZE/STOP generating tokens instantly. Any token emitted after the primary closed fence violates enterprise runtime contracts.
 
 # Raw Response / Exception:
 
@@ -38862,7 +37934,12 @@ You are a high-performance Data Ingestion and Transformation Engine. Your sole o
 2. **ABSOLUTE PYDANTIC SCHEMA ALIGNMENT:** Your final generated JSON object MUST perfectly satisfy the structural schema parameters of the target enterprise contract. You are STRICTLY BANNED from omitting, renaming, formatting, or stripping out key elements (specifically `phase_id`, `phase_name`, `phase_description`, `project_name`, `global_context_file`, `source_target_dir`, and `days`).
 3. **ABSOLUTE NO EMPTY TAGS POLICY & STRING SANITIZATION:** You are STRICTLY BANNED from leaving the "targeted_tags" array empty `[]` or null for any sub-task that implements functional requirements or data schemas. You MUST scan the source Markdown sequentially sub-task by sub-task. For each sub-task node, locate the hidden technical container block delimited between `<!--START_TAGS-->` and `<!--END_TAGS-->` contained exclusively within that sub-task section scope. Extract all raw tag token codes inside, strip away all inline markdown formatting characters—specifically backticks (`` ` ``)—and any leading/trailing whitespaces, then populate them as clean separate string elements inside the "targeted_tags" array field of EACH sub-task object node.
 4. **NO TAG BUNDLING:** Every tag must be its own array node (e.g., `"targeted_tags": ["[REQ-001]", "[DAT-002]"]`). You are strictly forbidden from combining multiple tags into a single string element.
-5. **STRICT CONTENT PURITY & REJECT CONVERSATION:** Output ONLY the pure raw executable JSON string matching the required schema. Response must start exactly with the character `{` and end exactly with the character `}`. Banned from including thinking processes, chain-of-thought blocks (`<think>` tags), conversational filler texts, introductions, wrapping inside markdown codeblocks (no triple backticks wrapping), or post-generation notes. Any token outside the raw JSON object boundary triggers an immediate execution pipeline crash.
+5. **STRICT SINGLE-BLOCK PURITY & ABSOLUTE TERMINATION LAW:** 
+   - Your output MUST contain exactly ONE (1) single valid JSON object payload from start to finish. You are STRICTLY BANNED from repeating, mirroring, or generating a second duplicate JSON block within this response stream.
+   - **Strict Packaging Format**: The output MUST start exactly with a single line containing triple backticks and the language identifier: ```json
+   - The output MUST end exactly with the final line containing triple backticks: ```
+   - There must be absolutely ZERO conversational filler text, thinking processes (`<think>` tags), introductions, or post-generation notes before or after the fenced code block. 
+   - **Absolute Freeze Directive**: Mid-generation corrections are strictly prohibited. You are completely forbidden from appending trailing structural artifacts or deformed combinations like `} ```text{`. Once you emit the final closing brace `}` of the JSON schema, immediately close the triple backticks fence and FREEZE/STOP generating tokens instantly. Any token emitted after the primary closed fence violates enterprise runtime contracts.
 
 # Raw Response / Exception:
 
