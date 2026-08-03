@@ -36,11 +36,6 @@ class PrincipalBusinessAnalysisAgent(AbstractSubAgent):
             **kwargs
         )
     
-    # @override
-    def initialize(self):
-        # start initialization
-        super().initialize()
-    
     def ba_output_raw_file(self):
         return self.__output_storage_path__(storage_name="output_ba", file=BA_RAW_FILE)
     

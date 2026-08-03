@@ -463,6 +463,8 @@ REL_AGENT_EST_PATH                      = os.path.join(REL_AGENTS_PATH, "estimat
 REL_AGENT_EST_PROMPTS_PATH              = os.path.join(REL_AGENT_EST_PATH, "prompts")
 REL_AGENT_CSRO_PATH                     = os.path.join(REL_AGENTS_PATH, "chief-solution")
 REL_AGENT_CSRO_PROMPTS_PATH             = os.path.join(REL_AGENT_CSRO_PATH, "prompts")
+REL_AGENT_MARKETING_PATH                = os.path.join(REL_AGENTS_PATH, "marketing")
+REL_AGENT_MARKETING_PROMPTS_PATH        = os.path.join(REL_AGENT_MARKETING_PATH, "prompts")
 
 REL_STORAGE_IDEAS_PATH                  = os.path.join(REL_STORAGE_PATH, "ideas")
 REL_STORAGE_BLUEPRINT_PATH              = os.path.join(REL_STORAGE_PATH, "blueprint")
@@ -489,6 +491,8 @@ AGENT_EST_PATH                          = resolve_absolute_path(REL_AGENT_EST_PA
 AGENT_EST_PROMPTS_PATH                  = resolve_absolute_path(REL_AGENT_EST_PROMPTS_PATH)
 AGENT_CSRO_PATH                         = resolve_absolute_path(REL_AGENT_CSRO_PATH)
 AGENT_CSRO_PROMPTS_PATH                 = resolve_absolute_path(REL_AGENT_CSRO_PROMPTS_PATH)
+AGENT_MARKETING_PATH                    = resolve_absolute_path(REL_AGENT_MARKETING_PATH)
+AGENT_MARKETING_PROMPTS_PATH            = resolve_absolute_path(REL_AGENT_MARKETING_PROMPTS_PATH)
 
 STORAGE_IDEAS_PATH                      = resolve_absolute_path(REL_STORAGE_IDEAS_PATH)
 STORAGE_BLUEPRINT_PATH                  = resolve_absolute_path(REL_STORAGE_BLUEPRINT_PATH)
@@ -540,6 +544,11 @@ storage_info = {
         "storage_csro": AGENT_CSRO_PATH,
         "relative_csro_prompts": REL_AGENT_CSRO_PROMPTS_PATH,
         "storage_csro_prompts": AGENT_CSRO_PROMPTS_PATH,
+        
+        "relative_marketing": REL_AGENT_MARKETING_PATH,
+        "storage_marketing": AGENT_MARKETING_PATH,
+        "relative_marketing_prompts": REL_AGENT_MARKETING_PROMPTS_PATH,
+        "storage_marketing_prompts": AGENT_MARKETING_PROMPTS_PATH,
     },
     
     "storage": {
