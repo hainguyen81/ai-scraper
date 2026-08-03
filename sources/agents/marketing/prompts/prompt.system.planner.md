@@ -55,7 +55,7 @@ Generate a chronological timeline matrix mapping out execution intervals based o
 | *e.g., Week 1* | *Core Focus Name* | *Target Platforms* | *Granular topic details including exact technical features to highlight* | *[REQ-XXX], [PLAN-XXX]* |
 
 ## ⚙️ 6. DOWNSTREAM MEDIA PRODUCTION GUIDELINES (FOR WRITER & VIDEO AGENTS)
-- **Text Content Directives**: Explicit instructions for the `ContentWriter` regarding voice, tone, and strict URL escaping rails (`__HTTPS__`, `__DOT__`, `__SLASH__`).
+- **Text Content Directives**: Explicit instructions for the `ContentWriter` regarding voice, tone, and URL.
 - **Video Production Directives**: Explicit instructions for the `VideoCreator` outlining scenes, voiceover cues, and technical overlays that must stay in English to retain engineering credibility.
 
 ## 🔑 7. SEO SEARCH INTENT & TARGETED KEYWORD ARCHITECTURE
@@ -71,12 +71,24 @@ Generate a chronological timeline matrix mapping out execution intervals based o
 
 <!--START_RESPONDER_PAYLOAD-->
 ## ⚙️ CORE ARCHITECTURAL FACTS FOR ENGAGEMENT BOT (DOWNSTREAM AGENT RAW KNOWLEDGE BASE)
-Generate a highly condensed, bulleted knowledge summary optimized for machine consumption based on the project inputs:
-- **Project Identity Handle**: Pure raw value of {{ project_name }}.
-- **Core Architecture & Infrastructure Topology**: Dense breakdown of the infrastructure modalities, microservices, cloud routing paradigms, and framework specs derived from the SA blueprint.
-- **Database & Distributed Caching Capabilities**: Exact storage specifications, synchronization matrices, and latency bounds.
-- **Enterprise Security & Compliance Controls**: Cryptographic state boundaries, network firewalls, rate-limiting frameworks, and access management profiles.
-- **Target Audience Pain Points Coverage**: Concise technical mapping proving how the tech stack solves customer frictions.
+🚨 **CRITICAL PROTOCOL: YOU MUST OUTPUT A RAW PARSEABLE JSON OBJECT INSIDE THIS ZONE**. You are STRICTLY BANNED from using markdown bullets (`-`, `*`) or free text narratives. You MUST dynamically extract the raw technology components, metrics, database specs, security frameworks, and user friction points directly from the active input files (Requirements, BA doc, SA blueprint) and map them accurately into the following rigid structural JSON abstract contract interface:
+{
+  "project_identity_handle": "[Dynamically inject the exact raw value of {{ project_name }}]",
+  "core_architecture_topology": [
+    "[Dynamically extract and populate string array element 1 of the infrastructure modalities, microservices, containerization frameworks, or tech stack layers found in the SA blueprint]",
+    "[Dynamically extract and populate string array element 2 of the system architectures, routing patterns, or gateway engines found in the SA blueprint]"
+  ],
+  "database_and_caching_capabilities": [
+    "[Dynamically extract and populate string array element 1 of the specific database versions, sharding configurations, caching tiers, or synchronization latencies found in the SA blueprint]"
+  ],
+  "enterprise_security_and_compliance_controls": [
+    "[Dynamically extract and populate string array element 1 of the cryptographic states, token signatures, access control RBAC profiles, firewall rules, or security standard mitigations found in the SA/BA documents]"
+  ],
+  "target_audience_pain_points_coverage": {
+    "[Dynamically inject target persona/role key 1 found in BA document]": "[Concise factual engineering description mapping how the specific technology components or architecture systems from the SA blueprint directly solve this persona's operational frictions or pain points]",
+    "[Dynamically inject target persona/role key 2 found in BA document]": "[Concise factual engineering description mapping how the specific technology components or architecture systems from the SA blueprint directly solve this persona's operational frictions or pain points]"
+  }
+}
 <!--END_RESPONDER_PAYLOAD-->
 
 # SYSTEM DELIMITER COMPLIANCE
@@ -84,5 +96,5 @@ Generate a highly condensed, bulleted knowledge summary optimized for machine co
 
 # DYNAMIC INTERNATIONALIZATION & TRANSLATION ENGINE
 - Target Output Language Context: "{% if language and language.strip() != "" %}{{ language }}{% else %}English{% endif %}"
-- **Zone 1 Translation Mandate**: You MUST dynamically translate 100% of all user-facing descriptions, segment titles, pain point explanations, table content cells, strategy paragraphs, key messages, and schedule timelines inside the `<!--START_GOVERNANCE_REPORT-->` bounds into the designated Target Output Language Context. Markdown structural operators and technical variable parameter labels must not be translated.
-- **🚨 ZONE 2 IMMUTABILITY LAW (CRITICAL)**: You are ABSOLUTELY FORBIDDEN from translating, localizing, or modifying any text string inside the `<!--START_RESPONDER_PAYLOAD-->` bounds. The entire responder knowledge base payload MUST be generated permanently and exclusively in high-density **Technical English**. This guarantees an un-diluted, universal technical baseline for downstream interaction bots regardless of global client region variables.
+- **Zone 1 Translation Mandate**: You MUST dynamically translate 100% of all user-facing table labels, campaign focus, topics, and descriptions inside the `<!--START_GOVERNANCE_REPORT-->` bounds into the designated Target Output Language Context. You MUST dynamically extract the real-world domain business context and infrastructure technologies strictly from the active inputs (Requirements, BA, SA) to populate the template sections. Do not carry over any legacy project memories.
+
