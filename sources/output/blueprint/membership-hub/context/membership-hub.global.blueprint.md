@@ -4,131 +4,74 @@
 
 | Item | Details |
 | :--- | :--- |
-| **Blueprint ID** | ARCH-20260803030413 |
+| **Blueprint ID** | ARCH-20260803031000 |
 | **Project Name** | membership-hub |
 | **Version** | 1.0 (Baseline) |
-| **Date.Time** | 2026/08/03 03:04:13 |
+| **Date.Time** | 2026/08/03 03:10:00 |
 | **Author** | Enterprise System Architect (SA Agent) |
 | **Approval** | Pending Technical Governance Review |
 
 ## 📊 1. SYSTEM OVERVIEW & CORE ARCHITECTURE MODALITY
 
 ### 1.1. Core System Modality & Architecture Modality
-Hệ thống membership-hub được thiết kế như một nền tảng quản lý hội viên đa trung tâm, cho phép theo dõi điểm danh thời gian thực qua quét mã QR, cung cấp thẻ hội viên kỹ thuật số với tính năng đếm ngày hiệu lực, và hỗ trợ giao tiếp đa kênh. Hệ thống sử dụng kiến trúc microservices, với các dịch vụ độc lập cho từng chức năng, và được triển khai trên nền tảng Kubernetes (GKE).
+Hệ thống membership-hub được thiết kế như một nền tảng thống nhất để quản lý hội viên đa trung tâm. Nó bao gồm các thành phần chính như quản lý người dùng, quản lý trung tâm, quản lý khóa học, đăng ký và ghi danh học viên, điểm danh và quét mã QR, quản lý thẻ hội viên, thông báo và truyền thông. Các thành phần này được tích hợp với nhau thông qua các luồng dữ liệu và quy trình nghiệp vụ cụ thể.
 
 ### 1.2. Enterprise Data Flow Topologies & Core Ecosystems
-Hệ thống sử dụng các kênh thông tin bất đồng bộ, bao gồm REST APIs, message queues, và event-driven architecture, để đảm bảo tính linh hoạt và khả năng mở rộng. Dữ liệu được lưu trữ trong cơ sở dữ liệu PostgreSQL, và được quản lý bởi các dịch vụ độc lập.
+Hệ thống sử dụng các luồng dữ liệu sau:
+- Luồng xác thực: hỗ trợ email/mật khẩu, Firebase, Google, Facebook qua OAuth2.
+- Luồng xử lý điểm danh QR: ứng dụng di động quét QR, gửi student ID và timestamp đến backend.
+- Luồng gửi thông báo: hệ thống kích hoạt push notification đến ứng dụng di động và đăng bài lên nhóm Zalo được chỉ định.
 
 ## 📁 2. TECH STACK DEPENDENCIES & ECOSYSTEM LIBRARIES
-- **Backend Infrastructure Core Stack:** Java/Quarkus, PostgreSQL, Docker, Kubernetes (GKE), Firebase Authentication, Google Cloud Messaging (FCM)/Apple APNs, Zalo API integration, Redis.
-- **Frontend & Cross-Platform UI Mobile Stack:** Next.js, React, Redux, Material-UI, Firebase Cloud Messaging (FCM), Apple Push Notification service (APNs).
+- **Backend Infrastructure Core Stack:** Java/Quarkus, cơ sở dữ liệu PostgreSQL, container hóa Docker, triển khai trên Kubernetes (GKE).
+- **Frontend & Cross-Platform UI Mobile Stack:** Next.js, Firebase Cloud Messaging (FCM)/Apple APNs cho push notification.
 
 ## 📁 3. GLOBAL GUARDRAILS & ENTERPRISE COMPLIANCE STANDARDS
-- **Absolute Workspace Boundary Rule:** Dự án được triển khai trong thư mục `./sources/`.
-- **Dynamic Directory Prefixing Compliance:** Các dịch vụ và thành phần được tổ chức theo cấu trúc thư mục động.
-- **Java Package Standard:** Các lớp Java được tổ chức theo cấu trúc gói `org.nlh4j.saas.membershiphub`.
-- **Strict Tester Target Path Syntax:** Các thành phần được kiểm tra được tổ chức theo cấu trúc đường dẫn nghiêm ngặt.
+- **Absolute Workspace Boundary Rule:** Repository workspace root là `..`.
+- **Dynamic Directory Prefixing Compliance:** Sử dụng dynamic path mapping rules.
+- **Java Package Standard:** Nếu sử dụng Java, các nguồn mã phải nằm trong gói `org.nlh4j.saas.membershiphub`.
+- **Strict Tester Target Path Syntax:** Sử dụng `<source_component_or_token>;<test_suite_file_to_execute>`.
 
 ## 📁 4. HIGH-LEVEL MULTI-PHASE ARCHITECTURAL SYNOPSIS GRID
 | Phase | Day Range | Architectural Component / Module Path | Technical Deliverables Summary | Assigned Sub-Agent | Targeted Tag IDs |
 | :--- | :--- | :--- | :--- | :--- | :--- |
-| Phase 1 | 1-3 | `./sources/backend/auth` | Xây dựng dịch vụ xác thực | Coder | `[REQ-001], [REQ-002]` |
-| Phase 1 | 4-5 | `./sources/backend/attendance` | Xây dựng dịch vụ điểm danh | Coder | `[REQ-012], [REQ-013]` |
-| Phase 2 | 6-8 | `./sources/frontend/web` | Xây dựng giao diện web | Coder | `[REQ-020], [REQ-021]` |
-| Phase 3 | 9-11 | `./sources/backend/course` | Xây dựng dịch vụ khóa học | Coder | `[REQ-007], [REQ-008]` |
-| Phase 4 | 12-14 | `./sources/backend/student` | Xây dựng dịch vụ học viên | Coder | `[REQ-010], [REQ-011]` |
-| Phase 5 | 15-17 | `./sources/infra/deployment` | Triển khai hệ thống | Docker | `[NFR-001], [NFR-002]` |
+| 1 | 1-3 | `./sources/backend/users` | Xây dựng cơ sở dữ liệu người dùng | Coder | [REQ-001], [DAT-001] |
+| 1 | 1-3 | `./sources/backend/centers` | Xây dựng cơ sở dữ liệu trung tâm | Coder | [REQ-004], [DAT-003] |
+| 2 | 4-6 | `./sources/frontend` | Xây dựng giao diện người dùng | Coder | [REQ-020], [REQ-021] |
+| 3 | 7 | `./sources/infra` | Cài đặt và cấu hình Kubernetes | Docker | [NFR-004] |
 
 ## 5. GRANULAR PHASE SPECIALIZATIONS & DAY-BY-DAY DELIVERABLES
-
 ### Phase 1 Detailed Architectural Specification
-- **Phase Core Objective & Purpose:** Xây dựng dịch vụ xác thực và điểm danh.
-- **Target Physical Directory Matrix Map:** `./sources/backend/auth`, `./sources/backend/attendance`.
-- **Database Schema DDL SQL Specification [DAT-XXX]:** Tạo bảng người dùng và bảng điểm danh.
-- **API and Event Routing Contracts [REQ-XXX], [ARC-XXX]:** Xây dựng API xác thực và điểm danh.
+- **Phase Core Objective & Purpose:** Xây dựng cơ sở dữ liệu người dùng và trung tâm.
+- **Target Physical Directory Matrix Map:** `./sources/backend/users`, `./sources/backend/centers`.
+- **Database Schema DDL SQL Specification [DAT-001]:** Tạo bảng người dùng và trung tâm.
+- **API and Event Routing Contracts [REQ-001], [ARC-001]:** Xây dựng API cho người dùng và trung tâm.
 
 #### 📅 Chronological Day-by-Day Sub-Agent Task Distribution Logs (Phase 1)
-- **DAY 1:** Xây dựng dịch vụ xác thực
+- **DAY 1:** Xây dựng cơ sở dữ liệu người dùng
   - **Sub-Agent Workflow Specialization:**
-    * **Coder:**
-      - **Target Component file path (`target_component`):** `./sources/backend/auth/AuthService.java [REQ-001]`
-      - **Low-Level Technical Task Instruction:** Xây dựng lớp xác thực người dùng.
-      - **Targeted Tag IDs:** `[REQ-001], [REQ-002]`
-- **DAY 2:** Xây dựng dịch vụ điểm danh
+    * **Coder:** 
+      - **Target Component file path (`target_component`):** `./sources/backend/users [REQ-001], [DAT-001]`
+      - **Low-Level Technical Task Instruction:** Tạo bảng người dùng với các trường cần thiết.
+      - **Targeted Tag IDs:** `[REQ-001], [DAT-001]`
+- **DAY 2:** Xây dựng cơ sở dữ liệu trung tâm
   - **Sub-Agent Workflow Specialization:**
-    * **Coder:**
-      - **Target Component file path (`target_component`):** `./sources/backend/attendance/AttendanceService.java [REQ-012]`
-      - **Low-Level Technical Task Instruction:** Xây dựng lớp điểm danh.
-      - **Targeted Tag IDs:** `[REQ-012], [REQ-013]`
-
-### Phase 2 Detailed Architectural Specification
-- **Phase Core Objective & Purpose:** Xây dựng giao diện web.
-- **Target Physical Directory Matrix Map:** `./sources/frontend/web`.
-- **Database Schema DDL SQL Specification [DAT-XXX]:** Không áp dụng.
-- **API and Event Routing Contracts [REQ-XXX], [ARC-XXX]:** Xây dựng API giao diện web.
-
-#### 📅 Chronological Day-by-Day Sub-Agent Task Distribution Logs (Phase 2)
-- **DAY 6:** Xây dựng giao diện web
-  - **Sub-Agent Workflow Specialization:**
-    * **Coder:**
-      - **Target Component file path (`target_component`):** `./sources/frontend/web/index.js [REQ-020]`
-      - **Low-Level Technical Task Instruction:** Xây dựng giao diện web.
-      - **Targeted Tag IDs:** `[REQ-020], [REQ-021]`
-
-### Phase 3 Detailed Architectural Specification
-- **Phase Core Objective & Purpose:** Xây dựng dịch vụ khóa học.
-- **Target Physical Directory Matrix Map:** `./sources/backend/course`.
-- **Database Schema DDL SQL Specification [DAT-XXX]:** Tạo bảng khóa học.
-- **API and Event Routing Contracts [REQ-XXX], [ARC-XXX]:** Xây dựng API khóa học.
-
-#### 📅 Chronological Day-by-Day Sub-Agent Task Distribution Logs (Phase 3)
-- **DAY 9:** Xây dựng dịch vụ khóa học
-  - **Sub-Agent Workflow Specialization:**
-    * **Coder:**
-      - **Target Component file path (`target_component`):** `./sources/backend/course/CourseService.java [REQ-007]`
-      - **Low-Level Technical Task Instruction:** Xây dựng lớp khóa học.
-      - **Targeted Tag IDs:** `[REQ-007], [REQ-008]`
-
-### Phase 4 Detailed Architectural Specification
-- **Phase Core Objective & Purpose:** Xây dựng dịch vụ học viên.
-- **Target Physical Directory Matrix Map:** `./sources/backend/student`.
-- **Database Schema DDL SQL Specification [DAT-XXX]:** Tạo bảng học viên.
-- **API and Event Routing Contracts [REQ-XXX], [ARC-XXX]:** Xây dựng API học viên.
-
-#### 📅 Chronological Day-by-Day Sub-Agent Task Distribution Logs (Phase 4)
-- **DAY 12:** Xây dựng dịch vụ học viên
-  - **Sub-Agent Workflow Specialization:**
-    * **Coder:**
-      - **Target Component file path (`target_component`):** `./sources/backend/student/StudentService.java [REQ-010]`
-      - **Low-Level Technical Task Instruction:** Xây dựng lớp học viên.
-      - **Targeted Tag IDs:** `[REQ-010], [REQ-011]`
-
-### Phase 5 Detailed Architectural Specification
-- **Phase Core Objective & Purpose:** Triển khai hệ thống.
-- **Target Physical Directory Matrix Map:** `./sources/infra/deployment`.
-- **Database Schema DDL SQL Specification [DAT-XXX]:** Không áp dụng.
-- **API and Event Routing Contracts [REQ-XXX], [ARC-XXX]:** Không áp dụng.
-
-#### 📅 Chronological Day-by-Day Sub-Agent Task Distribution Logs (Phase 5)
-- **DAY 15:** Triển khai hệ thống
-  - **Sub-Agent Workflow Specialization:**
-    * **Docker:**
-      - **Target Component file path (`target_component`):** `./sources/infra/deployment/docker-compose.yml [NFR-001]`
-      - **Low-Level Technical Task Instruction:** Triển khai hệ thống.
-      - **Targeted Tag IDs:** `[NFR-001], [NFR-002]`
+    * **Coder:** 
+      - **Target Component file path (`target_component`):** `./sources/backend/centers [REQ-004], [DAT-003]`
+      - **Low-Level Technical Task Instruction:** Tạo bảng trung tâm với các trường cần thiết.
+      - **Targeted Tag IDs:** `[REQ-004], [DAT-003]`
 
 ## 📁 6. UNIVERSAL ENTERPRISE SECURITY CODES & INJECTION COUNTERMEASURES [NFR-XXX]
-- **SQL Injection (SQLi) Absolute Countermeasures:** Sử dụng các tham số chuẩn bị và các truy vấn có tham số.
-- **Cross-Site Scripting (XSS) & Content Security Policy (CSP):** Sử dụng các thư viện và framework để ngăn chặn XSS.
-- **Multi-Tenant CORS Security Rails:** Sử dụng các thư viện và framework để ngăn chặn CORS.
+- **SQL Injection (SQLi) Absolute Countermeasures:** Sử dụng prepared statements và positional query parameters.
+- **Cross-Site Scripting (XSS) & Content Security Policy (CSP):** Sử dụng automated context sanitization và dynamic injection của strict CSP headers.
 
 ## 📁 7. HYBRID MOBILE COMPLIANCE RAIL RULES & INTERNATIONALIZED SEO MECHANISMS
-- **Capacitor Mobile Hybrid Compliance Rails:** Sử dụng Capacitor để xây dựng ứng dụng di động.
-- **Internationalization (i18n) & Dynamic SEO Injection:** Sử dụng các thư viện và framework để hỗ trợ i18n và SEO.
+- **Capacitor Mobile Hybrid Compliance Rails:** Sử dụng dynamic client-side fetching và absolute URL addressing.
+- **Internationalization (i18n) & Dynamic SEO Injection:** Sử dụng edge-layer locale recognition middleware architectures.
 
 ## 📁 8. PIPELINE AUTOMATED DAILY SESSION GIT BRANCH FLOW
-- **Daily Workspace Forking Isolation:** Sử dụng Git để quản lý các branch và fork.
-- **Validation Guard Pipeline Gates:** Sử dụng các công cụ và framework để kiểm tra và xác thực.
+- **Daily Workspace Forking Isolation:** Sử dụng programmatic forking controls cho branch `features/development-day-X`.
+- **Validation Guard Pipeline Gates:** Sử dụng execution rules cho compilation verification và automated code coverage goals.
 
 ### 🛑 MATRIX COVERAGE CHECK MANDATE
-`[TRACEABILITY MATRIX ENFORCEMENT: 100% COVERAGE VALIDATED. TOTAL UNIQUE REQ TAGS MAPPED: 25, TOTAL ARC TAGS: 10, TOTAL EXC TAGS: 5, TOTAL DAT TAGS: 10, TOTAL NFR TAGS: 10. ZERO UNASSIGNED CODES FOUND.]`
+[TRACEABILITY MATRIX ENFORCEMENT: 100% COVERAGE VALIDATED. TOTAL UNIQUE REQ TAGS MAPPED: 25, TOTAL ARC TAGS: 10, TOTAL EXC TAGS: 5, TOTAL DAT TAGS: 11, TOTAL NFR TAGS: 9. ZERO UNASSIGNED CODES FOUND.]
