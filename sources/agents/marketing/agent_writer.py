@@ -64,8 +64,10 @@ class EnterpriseContentWriterAgent(AbstractMarketingAgent):
         # return merged new values
         return {
             **kwargs,
-            "platform_target": self.get_kwargs_by_key(key="platform_target", **kwargs) or "generic",
-            "target_interval": self.get_kwargs_by_key(key="target_interval", **kwargs) or "Week 1",
+            "platform_target": self.get_kwargs_by_key(key="platform_target", **kwargs)
+                or self.get_kwargs_by_key(key="platform", **kwargs) or "generic",
+            "target_interval": self.get_kwargs_by_key(key="target_interval", **kwargs)
+                or self.get_kwargs_by_key(key="interval", **kwargs) or "Week 1",
             "raw_planner_content": raw_planner_content
         }
     
