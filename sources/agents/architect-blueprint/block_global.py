@@ -29,8 +29,10 @@ STORAGE_AGENTS                          = storage_info.get("agents") or {}
 STORAGE_OUTPUT                          = storage_info.get("output") or {}
 
 STORAGE_BLUEPRINT                       = STORAGE.get("storage_blueprint") or {}
+STORAGE_MASTER_PROMPTS                  = STORAGE_AGENTS.get("storage_master_prompts") or {}
 STORAGE_AGENT_BLUEPRINT_PROMPTS         = STORAGE_AGENTS.get("storage_blueprint_prompts") or {}
 
+MASTER_PROMPT_TEMPLATE_PATH             = os.path.join(STORAGE_MASTER_PROMPTS, "prompt.rule.enterprise.governance.guardrails.md")
 GLOBAL_SYSTEM_PROMPT_TEMPLATE_PATH      = os.path.join(STORAGE_AGENT_BLUEPRINT_PROMPTS, "block_global_prompt.system.md")
 GLOBAL_USER_PROMPT_TEMPLATE_PATH        = os.path.join(STORAGE_AGENT_BLUEPRINT_PROMPTS, "block_global_prompt.user.md")
 
@@ -66,8 +68,13 @@ def generate_global_context(client: OpenAI, model_name: str, project_name: str, 
             "num_phases": num_phases,
             "max_days_per_phase": max_days_per_phase
         }
+        # parse master prompt from template
+        master_prompt = render_prompt(MASTER_PROMPT_TEMPLATE_PATH, prompt_context)
+        
+        # parse system prompt from template
         system_prompt = render_prompt(GLOBAL_SYSTEM_PROMPT_TEMPLATE_PATH, prompt_context)
         log_system_prompt = system_prompt
+        system_prompt = f"{master_prompt}\n\n{system_prompt}" if master_prompt and system_prompt else system_prompt if not master_prompt else master_prompt
         
         # parse user prompt from template
         user_prompt = render_prompt(GLOBAL_USER_PROMPT_TEMPLATE_PATH, prompt_context)
