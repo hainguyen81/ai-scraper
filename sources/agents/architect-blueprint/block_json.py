@@ -4,9 +4,9 @@ import os
 import json
 import time
 import re
+from typing import List
 
 from pydantic import BaseModel, Field
-from typing import List
 
 # GEMINI
 #from google import genai
@@ -20,7 +20,6 @@ from jinja2 import Template
 
 # Now Python can seamlessly see and import the centralized helper utility cleanly!
 from sources.agents.agent_helper import (
-    resolve_absolute_path,
     exception_stacktrace,
     write_blueprint_log,
     write_json_file,
@@ -40,10 +39,8 @@ STORAGE_AGENTS                      = storage_info.get("agents") or {}
 STORAGE_OUTPUT                      = storage_info.get("output") or {}
 
 STORAGE_BLUEPRINT                   = STORAGE.get("storage_blueprint") or {}
-STORAGE_MASTER_PROMPTS              = STORAGE_AGENTS.get("storage_master_prompts") or {}
 STORAGE_AGENT_BLUEPRINT_PROMPTS     = STORAGE_AGENTS.get("storage_blueprint_prompts") or {}
 
-MASTER_PROMPT_TEMPLATE_PATH         = os.path.join(STORAGE_MASTER_PROMPTS, "prompt.rule.enterprise.governance.guardrails.md")
 STEPS_SYSTEM_PROMPT_TEMPLATE_PATH   = os.path.join(STORAGE_AGENT_BLUEPRINT_PROMPTS, "block_json_prompt.system.md")
 STEPS_USER_PROMPT_TEMPLATE_PATH     = os.path.join(STORAGE_AGENT_BLUEPRINT_PROMPTS, "block_json_prompt.user.md")
 
@@ -194,7 +191,7 @@ def manual_transform(json_data, project_name: str, phase_idx: int):
 # def convert_phases_to_json(client: genai.Client, project_name: str, num_phases: int, out_dir: str):
 
 # OpenAI
-def convert_phases_to_json(client: OpenAI, model_name: str, project_name: str, num_phases: int, max_days_per_phase: int, language: str, json_mapping: str, out_dir: str, delay: int, daysPerChunk: int):
+def convert_phases_to_json(client: OpenAI, model_name: str, master_rules: str, project_name: str, num_phases: int, max_days_per_phase: int, language: str, json_mapping: str, out_dir: str, delay: int, daysPerChunk: int):
     """
     BLOCK 3: Consumes the physical localized markdown outputs and structuralized them into strictly-typed JSON.
     Guarantees no invalid text pollution using Pydantic typing patterns.
@@ -276,13 +273,11 @@ def convert_phases_to_json(client: OpenAI, model_name: str, project_name: str, n
                     "phase_steps_json_schema": json_schema_dump,
                     "phase_markdown_content": phase_markdown_content,
                 }
-                # parse master prompt from template
-                master_prompt = render_prompt(MASTER_PROMPT_TEMPLATE_PATH, prompt_context)
                 
                 # parse system prompt from template
                 system_prompt = render_prompt(STEPS_SYSTEM_PROMPT_TEMPLATE_PATH, prompt_context)
                 log_system_prompt = system_prompt  # Stores the latest prompt state for error block fallback capture
-                system_prompt = merge_master_prompt(master_prompt, system_prompt)
+                system_prompt = merge_master_prompt(master_rules, system_prompt)
                 
                 # parse user prompt from template
                 user_prompt = render_prompt(STEPS_USER_PROMPT_TEMPLATE_PATH, prompt_context)

@@ -31,10 +31,8 @@ STORAGE_AGENTS                      = storage_info.get("agents") or {}
 STORAGE_OUTPUT                      = storage_info.get("output") or {}
 
 STORAGE_BLUEPRINT                   = STORAGE.get("storage_blueprint") or {}
-STORAGE_MASTER_PROMPTS              = STORAGE_AGENTS.get("storage_master_prompts") or {}
 STORAGE_AGENT_BLUEPRINT_PROMPTS     = STORAGE_AGENTS.get("storage_blueprint_prompts") or {}
 
-MASTER_PROMPT_TEMPLATE_PATH         = os.path.join(STORAGE_MASTER_PROMPTS, "prompt.rule.enterprise.governance.guardrails.md")
 PHASE_SYSTEM_PROMPT_TEMPLATE_PATH   = os.path.join(STORAGE_AGENT_BLUEPRINT_PROMPTS, "block_phase_prompt.system.md")
 PHASE_USER_PROMPT_TEMPLATE_PATH     = os.path.join(STORAGE_AGENT_BLUEPRINT_PROMPTS, "block_phase_prompt.user.md")
 
@@ -46,7 +44,7 @@ logger = get_logger("🏗️ EnterpriseSystemArchitecturePhaseAgent")
 # def generate_phase_contexts(client: genai.Client, project_name: str, requirements: str, global_context: str, num_phases: int, out_dir: str):
 
 # OpenAI
-def generate_phase_contexts(client: OpenAI, model_name: str, project_name: str, requirements: str, global_context: str, num_phases: int, max_days_per_phase: int, language: str, out_dir: str, delay: int):
+def generate_phase_contexts(client: OpenAI, model_name: str, master_rules: str, project_name: str, requirements: str, global_context: str, num_phases: int, max_days_per_phase: int, language: str, out_dir: str, delay: int):
     """
     BLOCK 2: Decomposes requirements into segmented, sandbox-ready development boundaries.
     Executes raw isolated stateless calls per loop item to bypass sequence length degradation.
@@ -79,13 +77,11 @@ def generate_phase_contexts(client: OpenAI, model_name: str, project_name: str, 
                 "global_markdown_context": global_context,
                 "previous_phase_context": previous_phase_context
             }
-            # parse master prompt from template
-            master_prompt = render_prompt(MASTER_PROMPT_TEMPLATE_PATH, prompt_context)
             
             # parse system prompt from template
             system_prompt = render_prompt(PHASE_SYSTEM_PROMPT_TEMPLATE_PATH, prompt_context)
             log_system_prompt = system_prompt
-            system_prompt = merge_master_prompt(master_prompt, system_prompt)
+            system_prompt = merge_master_prompt(master_rules, system_prompt)
             
             # parse user prompt from template
             user_prompt = render_prompt(PHASE_USER_PROMPT_TEMPLATE_PATH, prompt_context)

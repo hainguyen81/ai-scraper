@@ -24,7 +24,8 @@ from sources.agents.agent_helper import (
     json_loads,
     parse_args,
     storage_info,
-    enabledLogDebug
+    enabledLogDebug,
+    render_prompt
 )
 
 # Import decoupled functional components cleanly
@@ -40,7 +41,10 @@ STORAGE_AGENTS                  = storage_info.get("agents") or {}
 STORAGE_OUTPUT                  = storage_info.get("output") or {}
 
 REL_STORAGE_BLUEPRINT           = STORAGE.get("relative_blueprint") or {}
+STORAGE_MASTER_PROMPTS          = STORAGE_AGENTS.get("storage_master_prompts") or {}
 STORAGE_BLUEPRINT               = resolve_absolute_path(REL_STORAGE_BLUEPRINT)
+
+MASTER_PROMPT_TEMPLATE_PATH     = os.path.join(STORAGE_MASTER_PROMPTS, "prompt.rule.enterprise.governance.guardrails.md")
 
 BA_STORAGE_PATH                 = STORAGE.get("storage_ba") or {}
 PROJECTS_SUMMARY_FILE           = os.path.join(BA_STORAGE_PATH, "projects-summary.json")
@@ -180,6 +184,11 @@ def run_architect_agent(
     if api_model_steps_mapping and os.path.exists(resolve_absolute_path(api_model_steps_mapping)):
         absolute_api_model_steps_mapping = resolve_absolute_path(api_model_steps_mapping)
     
+    # parse master prompt rules from template
+    master_rules = render_prompt(MASTER_PROMPT_TEMPLATE_PATH, {
+        "language": language or DEFAULT_BLUEPRINT_LANGUAGE,
+    })
+    
     # Master pipeline orchestrator that runs individual functional blocks in sequence.
     # Provides pristine separation of concerns and protects engine runtime stability.
     
@@ -262,6 +271,7 @@ def run_architect_agent(
             result_global = generate_global_context(
                 client=client,
                 model_name=api_model_global,
+                master_rules=master_rules,
                 project_name=project_name,
                 requirements=project_requirements,
                 num_phases=num_phases,
@@ -311,6 +321,7 @@ def run_architect_agent(
             result_phase = generate_phase_contexts(
                 client=client,
                 model_name=api_model_phase,
+                master_rules=master_rules,
                 project_name=project_name,
                 requirements=project_requirements,
                 global_context=global_context_text,
@@ -348,6 +359,7 @@ def run_architect_agent(
             result_steps = convert_phases_to_json(
                 client=client,
                 model_name=api_model_steps,
+                master_rules=master_rules,
                 project_name=project_name,
                 num_phases=num_phases,
                 max_days_per_phase=max_days_per_phase,
