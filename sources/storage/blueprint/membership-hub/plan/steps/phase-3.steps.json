@@ -1,6 +1,7 @@
 {
     "phase_id": 3,
-    "phase_name": "attendanceService",
+    "phase_name": "course_management_module",
+    "phase_description": "Triển khai module quản lý khóa học bao gồm danh sách khóa học công khai, CRUD khóa học với kiểm tra xung đột lịch giảng, gán giáo viên, và tích hợp với RBAC cho Manager và System/Center Admin",
     "project_name": "membership-hub",
     "global_context_file": ".ai/.context/membership-hub.global.blueprint.md",
     "source_target_dir": "sources/",
@@ -15,10 +16,10 @@
                     "agent": "Coder",
                     "desc": "Coder Agent: No description provided",
                     "targeted_tags": [
-                        "[DAT-006]"
+                        "[DAT-004]"
                     ],
                     "components": [
-                        "./sources/backend/attendance/src/main/resources/db/migration/V001__create_attendance_table.sql"
+                        "./sources/backend.membershiphub.course/courses.sql"
                     ]
                 },
                 {
@@ -26,25 +27,16 @@
                     "agent": "Coder",
                     "desc": "Coder Agent: No description provided",
                     "targeted_tags": [
-                        "[REQ-012]",
-                        "[REQ-013]"
+                        "[REQ-007]",
+                        "[REQ-008]",
+                        "[REQ-009]",
+                        "[DAT-004]",
+                        "[ARC-003]",
+                        "[NFR-001]",
+                        "[NFR-002]"
                     ],
                     "components": [
-                        "./sources/backend/attendance/src/main/java/org/nlh4j/sources/attendance/dto/AttendanceRequest.java"
-                    ]
-                },
-                {
-                    "id": "D1_ST3",
-                    "agent": "Coder",
-                    "desc": "Coder Agent: No description provided",
-                    "targeted_tags": [
-                        "[REQ-012]",
-                        "[REQ-013]",
-                        "[DAT-006]"
-                    ],
-                    "components": [
-                        "./sources/backend/attendance/src/main/java/org/nlh4j/sources/attendance/service/AttendanceService.java",
-                        "./sources/backend/attendance/src/main/java/org/nlh4j/sources/attendance/controller/AttendanceController.java"
+                        "./sources/backend.membershiphub.course/course-service.java"
                     ]
                 }
             ]
@@ -56,81 +48,18 @@
             "sub_tasks": [
                 {
                     "id": "D2_ST1",
-                    "agent": "Coder",
-                    "desc": "Coder Agent: No description provided",
-                    "targeted_tags": [
-                        "[EXC-001]",
-                        "[EXC-002]"
-                    ],
-                    "components": [
-                        "./sources/backend/attendance/src/main/java/org/nlh4j/sources/attendance/exception/NetworkException.java",
-                        "./sources/backend/attendance/src/main/java/org/nlh4j/sources/attendance/exception/DuplicateAttendanceException.java"
-                    ]
-                },
-                {
-                    "id": "D2_ST2",
                     "agent": "Tester",
                     "desc": "Tester Agent: No description provided",
                     "targeted_tags": [
-                        "[REQ-012]",
-                        "[REQ-013]",
-                        "[EXC-001]",
-                        "[EXC-002]"
+                        "[REQ-007]",
+                        "[REQ-008]",
+                        "[REQ-009]",
+                        "[DAT-004]",
+                        "[ARC-003]"
                     ],
                     "components": [
-                        "./sources/backend/attendance/src/test/java/org/nlh4j/sources/attendance/service/AttendanceServiceTest.java"
-                    ]
-                }
-            ]
-        },
-        {
-            "day": 3,
-            "context_file": ".ai/.plan/.context/phase-3.context.blueprint.md",
-            "context_section": "DAY 3",
-            "sub_tasks": [
-                {
-                    "id": "D3_ST1",
-                    "agent": "Tester",
-                    "desc": "Tester Agent: No description provided",
-                    "targeted_tags": [
-                        "[REQ-012]",
-                        "[REQ-013]",
-                        "[EXC-001]",
-                        "[EXC-002]",
-                        "[DAT-006]"
-                    ],
-                    "components": [
-                        "INTEGRATION_SCOPE;./sources/backend/attendance/src/test/java/org/nlh4j/sources/attendance/controller/AttendanceControllerIT.java"
-                    ]
-                },
-                {
-                    "id": "D3_ST2",
-                    "agent": "Reviewer",
-                    "desc": "Reviewer Agent: No description provided",
-                    "targeted_tags": [
-                        "[REQ-012]",
-                        "[REQ-013]",
-                        "[EXC-001]",
-                        "[EXC-002]",
-                        "[DAT-006]"
-                    ],
-                    "components": [
-                        "./sources/backend/attendance/src/main/java/org/nlh4j/sources/attendance"
-                    ]
-                },
-                {
-                    "id": "D3_ST3",
-                    "agent": "Doc",
-                    "desc": "Doc Agent: No description provided",
-                    "targeted_tags": [
-                        "[REQ-012]",
-                        "[REQ-013]",
-                        "[EXC-001]",
-                        "[EXC-002]",
-                        "[DAT-006]"
-                    ],
-                    "components": [
-                        "./sources/backend/attendance/docs/attendance_api.md"
+                        "INTEGRATION_SCOPE;./sources/backend.membershiphub.course/course-service.java",
+                        "./sources/backend.membershiphub.course/courseservice-integration-test.java"
                     ]
                 }
             ]

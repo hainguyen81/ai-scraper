@@ -1,6 +1,7 @@
 {
     "phase_id": 2,
-    "phase_name": "phase2WebInterface",
+    "phase_name": "center_management_module",
+    "phase_description": "Triển khai module quản lý trung tâm bao gồm CRUD trung tâm, danh sách trung tâm công khai, phân quyền quản trị trung tâm, và tích hợp với RBAC cho Center Admin",
     "project_name": "membership-hub",
     "global_context_file": ".ai/.context/membership-hub.global.blueprint.md",
     "source_target_dir": "sources/",
@@ -13,92 +14,53 @@
                 {
                     "id": "D1_ST1",
                     "agent": "Coder",
-                    "desc": "Coder Agent: Create DDL file for courses table with schema: CREATE TABLE courses (id UUID PRIMARY KEY, title VARCHAR(255) NOT NULL, description TEXT, instructor_id UUID NOT NULL, created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP, updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP); Include indexes on instructor_id and created_at.",
-                    "targeted_tags": [],
+                    "desc": "Coder Agent: No description provided",
+                    "targeted_tags": [
+                        "[DAT-003]"
+                    ],
                     "components": [
-                        "./sources/frontend/web/migrations/courses.sql"
+                        "./sources/backend.membershiphub.center/centers.sql"
                     ]
                 },
                 {
                     "id": "D1_ST2",
                     "agent": "Coder",
-                    "desc": "Coder Agent: Create CourseList.js component that fetches data from GET /courses API endpoint (expects response: { courses: [{ id: string, title: string, description: string, instructor_id: string, created_at: string, updated_at: string }] }) and renders a list with course title, description, and instructor details. Implement error handling for failed requests.",
-                    "targeted_tags": [],
+                    "desc": "Coder Agent: No description provided",
+                    "targeted_tags": [
+                        "[REQ-004]",
+                        "[REQ-005]",
+                        "[REQ-006]",
+                        "[DAT-003]",
+                        "[ARC-002]",
+                        "[NFR-003]",
+                        "[NFR-004]",
+                        "[NFR-005]"
+                    ],
                     "components": [
-                        "./sources/frontend/web/components/CourseList.js"
+                        "./sources/backend.membershiphub.center/center-service.java"
                     ]
-                },
+                }
+            ]
+        },
+        {
+            "day": 2,
+            "context_file": ".ai/.plan/.context/phase-2.context.blueprint.md",
+            "context_section": "DAY 2",
+            "sub_tasks": [
                 {
-                    "id": "D1_ST3",
-                    "agent": "Coder",
-                    "desc": "Coder Agent: Create NotificationHandler.js component that listens for push notifications (FCM/APNs) and displays toast notifications. Handle payload structure: { title: string, body: string, type: string }. Implement event listeners for message events and error handling.",
-                    "targeted_tags": [],
-                    "components": [
-                        "./sources/frontend/web/components/NotificationHandler.js"
-                    ]
-                },
-                {
-                    "id": "D1_ST4",
-                    "agent": "Coder",
-                    "desc": "Coder Agent: Integrate CourseList component into CoursesPage.js, fetch courses data from GET /courses API on component mount, handle loading and error states, and render the course list. Ensure proper state management and useEffect cleanup.",
-                    "targeted_tags": [],
-                    "components": [
-                        "./sources/frontend/web/pages/CoursesPage.js"
-                    ]
-                },
-                {
-                    "id": "D1_ST5",
-                    "agent": "Coder",
-                    "desc": "Coder Agent: Integrate NotificationHandler component into NotificationPage.js, set up push notification listener, and display toast notifications for incoming messages. Handle notification click events and navigation.",
-                    "targeted_tags": [],
-                    "components": [
-                        "./sources/frontend/web/pages/NotificationPage.js"
-                    ]
-                },
-                {
-                    "id": "D1_ST6",
-                    "agent": "Reviewer",
-                    "desc": "Reviewer Agent: Perform OWASP security review for XSS (sanitize user inputs, use React dangerouslySetInnerHTML cautiously), CSRF (implement CSRF tokens for state-changing requests), CSP (define Content-Security-Policy headers), and token management (secure storage and transmission of auth tokens).",
-                    "targeted_tags": [],
-                    "components": [
-                        "./sources/frontend/web/security/OWASPCompliance.js"
-                    ]
-                },
-                {
-                    "id": "D1_ST7",
+                    "id": "D2_ST1",
                     "agent": "Tester",
-                    "desc": "Tester Agent: Write unit tests for CourseList.js: mock API call, test rendering of course list, error handling. For NotificationHandler.js: mock push notification events, test toast display. Use Jest and React Testing Library.",
-                    "targeted_tags": [],
+                    "desc": "Tester Agent: No description provided",
+                    "targeted_tags": [
+                        "[REQ-004]",
+                        "[REQ-005]",
+                        "[REQ-006]",
+                        "[DAT-003]",
+                        "[ARC-002]"
+                    ],
                     "components": [
-                        "./sources/frontend/web/components/__tests__/CourseList.test.js",
-                        "./sources/frontend/web/components/__tests__/NotificationHandler.test.js"
-                    ]
-                },
-                {
-                    "id": "D1_ST8",
-                    "agent": "Tester",
-                    "desc": "Tester Agent: Write integration test for CoursesPage.js: simulate user navigation, API data fetching, and course list rendering. Test interaction with CourseList component and error scenarios.",
-                    "targeted_tags": [],
-                    "components": [
-                        "INTEGRATION_SCOPE;./sources/frontend/web/pages/CoursesPage.test.js"
-                    ]
-                },
-                {
-                    "id": "D1_ST9",
-                    "agent": "Reviewer",
-                    "desc": "Reviewer Agent: Perform static code analysis on entire frontend/web directory using ESLint and custom rules for security, syntax, and code style compliance. Check for common vulnerabilities and code smells.",
-                    "targeted_tags": [],
-                    "components": [
-                        "./sources/frontend/web"
-                    ]
-                },
-                {
-                    "id": "D1_ST10",
-                    "agent": "Doc",
-                    "desc": "Doc Agent: Compile technical documentation including setup instructions, component APIs, security guidelines, and testing procedures for the frontend web module.",
-                    "targeted_tags": [],
-                    "components": [
-                        "./sources/frontend/web/docs/README.md"
+                        "INTEGRATION_SCOPE;./sources/backend.membershiphub.center/center-service.java",
+                        "./sources/backend.membershiphub.center/centerservice-integration-test.java"
                     ]
                 }
             ]

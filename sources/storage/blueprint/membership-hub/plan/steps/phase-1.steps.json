@@ -1,6 +1,7 @@
 {
     "phase_id": 1,
-    "phase_name": "phase1UserCenterService",
+    "phase_name": "user_core_services",
+    "phase_description": "Triển khai các dịch vụ cốt lõi quản lý người dùng bao gồm đăng ký, xác thực xã hội, gán vai trò, schema cơ sở dữ liệu và logging kiểm toán bảo mật",
     "project_name": "membership-hub",
     "global_context_file": ".ai/.context/membership-hub.global.blueprint.md",
     "source_target_dir": "sources/",
@@ -13,10 +14,30 @@
                 {
                     "id": "D1_ST1",
                     "agent": "Coder",
-                    "desc": "Coder Agent: Thiết kế và triển khai lớp UserService để xử lý đăng ký và quản lý người dùng, bao gồm xác thực, hashing mật khẩu, và lưu trữ dữ liệu vào bảng users.",
-                    "targeted_tags": [],
+                    "desc": "Coder Agent: No description provided",
+                    "targeted_tags": [
+                        "[DAT-001]"
+                    ],
                     "components": [
-                        "./sources/backend/users/UserService.java"
+                        "./sources/backend.membershiphub.user/users.sql",
+                        "./sources/backend.membershiphub.user/roles.sql"
+                    ]
+                },
+                {
+                    "id": "D1_ST2",
+                    "agent": "Coder",
+                    "desc": "Coder Agent: No description provided",
+                    "targeted_tags": [
+                        "[REQ-001]",
+                        "[REQ-002]",
+                        "[ARC-006]",
+                        "[EXC-004]",
+                        "[NFR-001]",
+                        "[NFR-003]",
+                        "[NFR-006]"
+                    ],
+                    "components": [
+                        "./sources/backend.membershiphub.user/user-service.java"
                     ]
                 }
             ]
@@ -28,11 +49,31 @@
             "sub_tasks": [
                 {
                     "id": "D2_ST1",
-                    "agent": "Coder",
-                    "desc": "Coder Agent: Thiết kế và triển khai lớp CenterService để xử lý tạo, cập nhật, và xóa trung tâm, bao gồm kiểm tra tính duy nhất của mã số thuế và lưu trữ dữ liệu vào bảng centers.",
-                    "targeted_tags": [],
+                    "agent": "Tester",
+                    "desc": "Tester Agent: No description provided",
+                    "targeted_tags": [
+                        "[REQ-001]",
+                        "[REQ-002]",
+                        "[DAT-001]",
+                        "[EXC-004]"
+                    ],
                     "components": [
-                        "./sources/backend/centers/CenterService.java"
+                        "./sources/backend.membershiphub.user/user-service.java",
+                        "./sources/backend.membershiphub.user/userservice-test.java"
+                    ]
+                },
+                {
+                    "id": "D2_ST2",
+                    "agent": "Tester",
+                    "desc": "Tester Agent: No description provided",
+                    "targeted_tags": [
+                        "[REQ-001]",
+                        "[REQ-002]",
+                        "[ARC-006]",
+                        "[EXC-004]"
+                    ],
+                    "components": [
+                        "INTEGRATION_SCOPE;./sources/backend.membershiphub.user/user-controller-test.java"
                     ]
                 }
             ]

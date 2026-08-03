@@ -1,6 +1,7 @@
 {
     "phase_id": 5,
-    "phase_name": "deploymentOnGKE",
+    "phase_name": "notification_frontend_integration_and_devops_deployment",
+    "phase_description": "Triển khai toàn diện module thông báo, khuyến mãi, thông báo, chatbot AI, UI di động responsive, đa ngôn ngữ, SEO, và thiết lập hạ tầng DevOps hoàn chỉnh với Docker, GCP và GKE",
     "project_name": "membership-hub",
     "global_context_file": ".ai/.context/membership-hub.global.blueprint.md",
     "source_target_dir": "sources/",
@@ -12,83 +13,34 @@
             "sub_tasks": [
                 {
                     "id": "D1_ST1",
-                    "agent": "Docker",
-                    "desc": "Docker Agent: Xây dựng Docker images cho toàn bộ micro‑service: Viết và chạy script build.sh để tạo Docker images cho tất cả micro-services (users, centers, attendance, studentcards, ...) với kích thước tối đa 500 MB, đảm bảo tuân thủ các layer caching và best practices.",
-                    "targeted_tags": [],
+                    "agent": "Coder",
+                    "desc": "Coder Agent: No description provided",
+                    "targeted_tags": [
+                        "[DAT-008]"
+                    ],
                     "components": [
-                        "./sources/infra/deployment/scripts/build.sh"
+                        "./sources/backend.membershiphub.notification/notifications.sql",
+                        "./sources/backend.membershiphub.notification/promotions.sql",
+                        "./sources/backend.membershiphub.notification/announcements.sql",
+                        "./sources/backend.membershiphub.notification/systemsettings.sql"
                     ]
                 },
                 {
                     "id": "D1_ST2",
-                    "agent": "Docker",
-                    "desc": "Docker Agent: Tag và đẩy images lên GCR: Thực thi script push.sh để tag các Docker images với versioning phù hợp và đẩy chúng lên Google Container Registry (GCR), xác thực thành công upload và kích thước image dưới 500 MB.",
-                    "targeted_tags": [],
+                    "agent": "Coder",
+                    "desc": "Coder Agent: No description provided",
+                    "targeted_tags": [
+                        "[REQ-016]",
+                        "[REQ-017]",
+                        "[REQ-018]",
+                        "[REQ-019]",
+                        "[DAT-008]",
+                        "[DAT-009]",
+                        "[NFR-003]",
+                        "[NFR-006]"
+                    ],
                     "components": [
-                        "./sources/infra/deployment/scripts/push.sh"
-                    ]
-                },
-                {
-                    "id": "D1_ST3",
-                    "agent": "Gcp",
-                    "desc": "Gcp Agent: Tạo repository GCR và cấu hình IAM: Chạy script setup.sh để tạo các repository trong GCR, cấu hình IAM roles và permissions cho service accounts để cho phép push/pull images, đảm bảo bảo mật theo nguyên tắc least privilege.",
-                    "targeted_tags": [],
-                    "components": [
-                        "./sources/infra/deployment/gcr/setup.sh"
-                    ]
-                },
-                {
-                    "id": "D1_ST4",
-                    "agent": "Gcp",
-                    "desc": "Gcp Agent: Tạo cluster GKE và node pool: Thực thi script create_cluster.sh để tạo GKE cluster với ít nhất 3 node pools, bật autoscaling, cấu hình machine types, network settings, và IAM roles cho cluster.",
-                    "targeted_tags": [],
-                    "components": [
-                        "./sources/infra/deployment/gke/create_cluster.sh"
-                    ]
-                },
-                {
-                    "id": "D1_ST5",
-                    "agent": "Gke",
-                    "desc": "Gke Agent: Cấu hình NetworkPolicy cho cluster: Áp dụng file network-policy.yaml để thiết lập các network policies nhằm cách ly traffic giữa các micro-services, chỉ cho phép communication cần thiết theo mô hình zero-trust.",
-                    "targeted_tags": [],
-                    "components": [
-                        "./sources/infra/deployment/k8s/network-policy.yaml"
-                    ]
-                },
-                {
-                    "id": "D1_ST6",
-                    "agent": "Gke",
-                    "desc": "Gke Agent: Triển khai Deployment và Service cho từng micro‑service: Áp dụng file deployment.yaml để tạo Kubernetes Deployments và Services cho mỗi micro-service (users, centers, attendance, studentcards, ...), cấu hình resource requests/limits, environment variables, và service discovery.",
-                    "targeted_tags": [],
-                    "components": [
-                        "./sources/infra/deployment/k8s/deployment.yaml"
-                    ]
-                },
-                {
-                    "id": "D1_ST7",
-                    "agent": "Gke",
-                    "desc": "Gke Agent: Thiết lập HPA cho các Deployment: Áp dụng file hpa.yaml để cấu hình Horizontal Pod Autoscaler cho mỗi Deployment, thiết lập metrics (CPU/memory) và thresholds để tự động scale số pods dựa trên tải, đáp ứng yêu cầu NFR-004.",
-                    "targeted_tags": [],
-                    "components": [
-                        "./sources/infra/deployment/k8s/hpa.yaml"
-                    ]
-                },
-                {
-                    "id": "D1_ST8",
-                    "agent": "Gke",
-                    "desc": "Gke Agent: Cấu hình liveness/readiness probes và health‑check: Áp dụng file health-check.yaml để thiết lập liveness và readiness probes cho mỗi container, định nghĩa HTTP endpoints (e.g., /health) và thresholds để đảm bảo tính sẵn sàng và tự động recovery.",
-                    "targeted_tags": [],
-                    "components": [
-                        "./sources/infra/deployment/k8s/health-check.yaml"
-                    ]
-                },
-                {
-                    "id": "D1_ST9",
-                    "agent": "Gke",
-                    "desc": "Gke Agent: Thiết lập monitoring và alerting: Áp dụng file monitoring.yaml để triển khai Prometheus, Grafana, và cấu hình Stackdriver integration, thiết lập alert rules cho metrics (CPU, memory, latency) và notification channels để giám sát hệ thống.",
-                    "targeted_tags": [],
-                    "components": [
-                        "./sources/infra/deployment/k8s/monitoring.yaml"
+                        "./sources/backend.membershiphub.notification/notification-service.java"
                     ]
                 }
             ]
@@ -100,47 +52,91 @@
             "sub_tasks": [
                 {
                     "id": "D2_ST1",
-                    "agent": "Tester",
-                    "desc": "Tester Agent: Kiểm tra tính sẵn sàng và scaling của các service: Chạy script health_check_test.sh để kiểm tra 100% endpoint trả về HTTP 200 OK, verify liveness/readiness probes, và xác nhận các service đáp ứng độ sẵn sàng 99.9% (NFR-002).",
-                    "targeted_tags": [],
+                    "agent": "Coder",
+                    "desc": "Coder Agent: No description provided",
+                    "targeted_tags": [
+                        "[REQ-019]",
+                        "[REQ-020]",
+                        "[REQ-021]",
+                        "[REQ-022]",
+                        "[REQ-023]",
+                        "[DAT-011]",
+                        "[NFR-007]"
+                    ],
                     "components": [
-                        "INTEGRATION_SCOPE;./sources/infra/deployment/tests/health_check_test.sh"
+                        "./sources/backend.membershiphub.notification/chatbot-service.java"
                     ]
                 },
                 {
                     "id": "D2_ST2",
-                    "agent": "Tester",
-                    "desc": "Tester Agent: Kiểm tra tự động scaling theo HPA: Thực thi script hpa_scaling_test.sh để simulate tải cao và xác nhận HPA tự động scale số pods dựa trên CPU/memory metrics, verify scaling thresholds và thời gian response (NFR-004).",
-                    "targeted_tags": [],
+                    "agent": "Coder",
+                    "desc": "Coder Agent: No description provided",
+                    "targeted_tags": [
+                        "[REQ-020]",
+                        "[REQ-021]",
+                        "[REQ-022]",
+                        "[REQ-023]"
+                    ],
                     "components": [
-                        "INTEGRATION_SCOPE;./sources/infra/deployment/tests/hpa_scaling_test.sh"
+                        "./sources/frontend.nextjs/package.json"
                     ]
-                },
+                }
+            ]
+        },
+        {
+            "day": 3,
+            "context_file": ".ai/.plan/.context/phase-5.context.blueprint.md",
+            "context_section": "DAY 3",
+            "sub_tasks": [
                 {
-                    "id": "D2_ST3",
-                    "agent": "Tester",
-                    "desc": "Tester Agent: Kiểm tra monitoring và alerting: Chạy script monitoring_test.sh để verify rằng Prometheus/Grafana thu thập metrics chính xác, alert rules kích hoạt đúng conditions, và notifications được gửi đến các channels đã cấu hình.",
-                    "targeted_tags": [],
+                    "id": "D3_ST1",
+                    "agent": "Gcp",
+                    "desc": "Gcp Agent: No description provided",
+                    "targeted_tags": [
+                        "[NFR-004]",
+                        "[NFR-008]"
+                    ],
                     "components": [
-                        "INTEGRATION_SCOPE;./sources/infra/deployment/tests/monitoring_test.sh"
+                        "./sources/infra/gcp/infrastructure.tf"
                     ]
-                },
+                }
+            ]
+        },
+        {
+            "day": 4,
+            "context_file": ".ai/.plan/.context/phase-5.context.blueprint.md",
+            "context_section": "DAY 4",
+            "sub_tasks": [
                 {
-                    "id": "D2_ST4",
-                    "agent": "Reviewer",
-                    "desc": "Reviewer Agent: Kiểm tra bảo mật mạng và IAM: Thực thi script security_review.sh để audit network policies, IAM roles, và service accounts, đảm bảo tuân thủ OWASP và nguyên tắc least privilege, không có lỗ hổng bảo mật.",
-                    "targeted_tags": [],
+                    "id": "D4_ST1",
+                    "agent": "Docker",
+                    "desc": "Docker Agent: No description provided",
+                    "targeted_tags": [
+                        "[NFR-005]",
+                        "[NFR-009]"
+                    ],
                     "components": [
-                        "./sources/infra/deployment/gke/security_review.sh"
+                        "./sources/infra/docker/backend/Dockerfile"
                     ]
-                },
+                }
+            ]
+        },
+        {
+            "day": 5,
+            "context_file": ".ai/.plan/.context/phase-5.context.blueprint.md",
+            "context_section": "DAY 5",
+            "sub_tasks": [
                 {
-                    "id": "D2_ST5",
-                    "agent": "Doc",
-                    "desc": "Doc Agent: Tạo tài liệu triển khai và vận hành: Viết tài liệu DeploymentGuide.md hướng dẫn chi tiết quy trình build, deploy, scaling, monitoring, và troubleshooting cho hệ thống trên GKE, bao gồm các best practices và checklists.",
-                    "targeted_tags": [],
+                    "id": "D5_ST1",
+                    "agent": "Gke",
+                    "desc": "Gke Agent: No description provided",
+                    "targeted_tags": [
+                        "[NFR-002]",
+                        "[NFR-004]",
+                        "[NFR-009]"
+                    ],
                     "components": [
-                        "./sources/infra/deployment/docs/DeploymentGuide.md"
+                        "./sources/infra/gke/deployments.yaml"
                     ]
                 }
             ]
