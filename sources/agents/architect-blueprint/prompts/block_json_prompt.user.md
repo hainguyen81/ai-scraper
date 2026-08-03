@@ -28,7 +28,6 @@ You MUST dynamically populate the top-level keys of the JSON object using EXACT 
 - For each day object inside the array, set 'day' to its calculated integer value, set 'context_file' to exact string "{{ project_phase_context_file }}", and **set 'context_section' to the exact raw string value of the entire primary Day Header extracted from the source Markdown context text** (e.g., `"context_section": "DAY 1: Multi-Tenant Inception Schema & Flyway Migration Setup"`).
 
 ## 8. CHRONOLOGICAL TIMELINE SEQUENCING MANDATE (ABSOLUTE):
-## 8. CHRONOLOGICAL TIMELINE SEQUENCING MANDATE (ABSOLUTE):
 {% if is_chunked %}
 # SYSTEM CRITICAL BOUNDARY: CHUNKED CONFIGURATION IS ACTIVE (is_chunked is TRUE)
 - You MUST PRESERVE the exact absolute chronological day index requested from the template parameters. 
