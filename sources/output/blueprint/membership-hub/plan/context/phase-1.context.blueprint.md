@@ -1,77 +1,104 @@
-# Giai đoạn 1: <!--PHASE_NAME_START-->phase1UserCenterService<!--PHASE_NAME_END--> | Mô tả: Thiết kế và triển khai dịch vụ người dùng và trung tâm, bao gồm định nghĩa schema, API, và logic xử lý, đáp ứng các yêu cầu đăng ký, quản lý người dùng, và quản lý trung tâm.
-
+# Giai đoạn 1: <!--PHASE_NAME_START-->coreServicesImplementation<!--PHASE_NAME_END--> | Mô tả: Triển khai các dịch vụ cốt lõi bao gồm xác thực người dùng, quản lý vai trò, quản lý trung tâm, khóa học, ghi danh, điểm danh, thẻ hội viên, validation đầu vào và xử lý ngoại lệ theo tiêu chuẩn OWASP.
 ## 📊 Document Control
 
 | Mục | Chi tiết |
 | :--- | :--- |
-| **ID Kiến trúc** | ARCH-20260802135007 |
+| **Mã Blueprint** | ARCH-20260803050419 |
 | **Tên Dự án** | membership-hub |
 | **Giai đoạn** | 1 |
-| **Tên Giai đoạn Kỹ thuật** | <!--PHASE_NAME_START-->phase1UserCenterService<!--PHASE_NAME_END--> |
-| **Mô tả** | Thiết kế và triển khai dịch vụ người dùng và trung tâm, bao gồm định nghĩa schema, API, và logic xử lý, đáp ứng các yêu cầu đăng ký, quản lý người dùng, và quản lý trung tâm. |
+| **Tên Kỹ Thuật Giai Đoạn** | <!--PHASE_NAME_START-->coreServicesImplementation<!--PHASE_NAME_END--> |
+| **Mô tả** | Triển khai các dịch vụ cốt lõi bao gồm xác thực người dùng, quản lý vai trò, quản lý trung tâm, khóa học, ghi danh, điểm danh, thẻ hội viên, validation đầu vào và xử lý ngoại lệ theo tiêu chuẩn OWASP. |
 | **Phiên bản** | 1.0 (Baseline) |
-| **Ngày/Thời gian** | 2026/08/02 13:50:07 |
+| **Ngày.Giờ** | 2026/08/03 05:04:19 |
 | **Tác giả** | Enterprise System Architect (SA Agent) |
-| **Phê duyệt** | Pending Technical Governance Review |
+| **Phê duyệt** | Đang chờ Đánh giá Quản trị Kỹ thuật |
 
-## 1. Phase Operational Scope & Objectives
-Giai đoạn 1 tập trung vào việc xây dựng hai dịch vụ cốt lõi của hệ thống membership-hub: **User Service** và **Center Service**. Các dịch vụ này chịu trách nhiệm:
-- Định nghĩa và triển khai schema PostgreSQL cho bảng `users` và `centers`.
-- Cung cấp REST API `/users` và `/centers` với các phương thức POST/GET/PUT/DELETE phù hợp.
-- Xử lý đăng ký, xác thực, và quản lý vai trò người dùng (System Admin, Center Admin, Manager, Teacher, Student).
-- Quản lý thông tin trung tâm, bao gồm tên, địa chỉ, mã số thuế, và liên hệ quản trị.
-- Đảm bảo tuân thủ các tiêu chuẩn bảo mật OWASP, bảo vệ chống SQL Injection, XSS, CSRF, và bảo mật JWT.
-- Đảm bảo tính nhất quán dữ liệu, tính toàn vẹn tham chiếu, và khả năng mở rộng theo kiến trúc microservices.
+## 1. Phạm vi Hoạt động & Mục tiêu Giai đoạn
+Giai đoạn này tập trung vào việc xây dựng các dịch vụ backend cốt lõi cho hệ thống membership‑hub. Các thành phần chính bao gồm:
 
-## 2. Allowed Technical Scope & Directory Boundaries (Files, paths, and endpoints)
-- **Backend Directory Matrix**  
-  - `./sources/backend/users` – chứa mã nguồn Java Quarkus cho User Service.  
-  - `./sources/backend/centers` – chứa mã nguồn Java Quarkus cho Center Service.
-- **Database Schema**  
-  - `users` table (DAT-001) – định nghĩa trong DDL SQL.  
-  - `centers` table (DAT-003) – định nghĩa trong DDL SQL.
-- **REST Endpoints**  
-  - `/users` – POST (đăng ký), GET (liệt kê), PUT (cập nhật), DELETE (xóa).  
-  - `/centers` – POST (tạo), GET (liệt kê), PUT (cập nhật), DELETE (xóa).
-- **Event Routing** – các sự kiện đăng ký và cập nhật sẽ được phát ra qua Kafka (ARC-001, ARC-004) để đồng bộ dữ liệu giữa các microservice.
+* **Xác thực & Quản lý Người dùng** – đăng ký người dùng qua email/mật khẩu và OAuth2 (Firebase, Google, Facebook), cấp JWT/refresh token, thực thi RBAC, và ghi log các thay đổi vai trò.
+* **Quản lý Trung tâm** – CRUD các trung tâm, ánh xạ người dùng vào vai trò Center Admin, và đảm bảo tính duy nhất của tax_id.
+* **Quản lý Khóa học** – định nghĩa khóa học, phân công giáo viên, kiểm tra xung đột lịch dạy, và áp dụng các ràng buộc về sức chứa.
+* **Ghi danh Học viên** – cho phép học viên duyệt và đăng ký khóa học, tự động tạo tài khoản học viên nếu cần, và kích hoạt thông báo.
+* **Điểm danh & Quét QR** – ghi nhận điểm danh bất biến qua QR, đảm bảo idempotent, và xử lý các trường hợp ngoại lệ về mạng/lỗi trùng lặp.
+* **Thẻ Hội viên** – quản lý thẻ hội viên kỹ thuật số với logic ngày hiệu lực, hỗ trợ gia hạn, và hiển thị trạng thái còn lại.
+* **Validation & Xử lý Ngoại lệ** – validation đầu vào nghiêm ngặt (email, mật khẩu, định dạng số), exception handlers chuẩn hóa (ví dụ: VALIDATION_FAILED), và tuân thủ OWASP Top 10 (SQLi, XSS, CSRF, injection).
 
-## 3. Dedicated Sub-Agent Functional Directives
-| Agent | Trách nhiệm chính |
-| :--- | :--- |
-| **Coder** | Viết mã nguồn Java, triển khai DDL, viết unit test, và chuẩn bị tài liệu API. |
-| **Tester** | Viết và chạy integration tests, kiểm tra tính toàn vẹn dữ liệu và bảo mật. |
-| **Reviewer** | Phân tích tĩnh, kiểm tra cú pháp, và đảm bảo tuân thủ quy chuẩn mã nguồn. |
-| **Doc** | Tạo tài liệu kỹ thuật, mô tả API, và hướng dẫn triển khai. |
-| **Docker** | Xây dựng Docker image cho các service. |
-| **GCP** | Cấu hình tài nguyên GCP (Cloud SQL, Cloud Pub/Sub). |
-| **GKE** | Triển khai và quản lý cluster Kubernetes. |
+Tất cả các dịch vụ được container hóa, triển khai trên Kubernetes, và tích hợp với các thành phần hạ tầng (Firebase Auth, Redis, Cloud Logging) theo thiết kế microservices.
 
-## 4. Phase Definition of Done (DoD)
-- Tất cả các yêu cầu [REQ-001], [REQ-004] được triển khai hoàn chỉnh.  
-- Schema PostgreSQL cho `users` và `centers` được tạo và migration thành công.  
-- API `/users` và `/centers` đáp ứng đúng contract JSON và bảo mật JWT.  
-- Unit test coverage ≥ 85 % cho cả hai dịch vụ.  
-- Integration test coverage ≥ 80 % và không có lỗi bảo mật OWASP.  
-- Tất cả tag ID được map 100 % trong logs.  
-- Code được review và static analysis không phát hiện lỗi nghiêm trọng.  
-- Tài liệu API và hướng dẫn triển khai được hoàn thiện.  
-- Docker image được build và push tới registry.  
-- Đã triển khai thử nghiệm trên GKE (đối với giai đoạn này, deployment có thể được mock).  
+## 2. Phạm vi Kỹ thuật & Ranh giới Thư mục
+* `./sources/backend.auth` – dịch vụ xác thực (đăng ký, OAuth2, vai trò).
+* `./sources/backend.user` – quản lý người dùng chung (profile, trạng thái).
+* `./sources/backend.center` – quản lý trung tâm (tạo, cập nhật, ánh xạ admin).
+* `./sources/backend.course` – quản lý khóa học (tạo, phân công giáo viên, kiểm tra xung đột).
+* `./sources/backend.enrollment` – ghi danh học viên (duyệt, đăng ký, thông báo).
+* `./sources/backend.attendance` – ghi nhận điểm danh (QR, bất biến, retry).
+* `./sources/backend.membership` – thẻ hội viên (hiển thị, gia hạn, logic ngày hiệu lực).
+* `./sources/infra` – tài nguyên hạ tầng (Docker, CI/CD, GCP, GKE).
 
-## 5. DAY-BY-DAY ARCHITECTURAL EXECUTION LOGS
+Tất cả các đường dẫn đều tuân thủ quy tắc bắt đầu bằng `./sources/`. Các file Java phải nằm trong gói `org.nlh4j.saas.membershiphub`.
 
-### DAY 1: XÂY ĐOÁN DỊCH VỤ NGƯỜI DÙNG
+## 3. Chỉ thị Chức năng dành cho Đại diện Sub‑Agent
+* **Coder** – triển khai logic nghiệp vụ, validation, bảo mật, và logging theo Clean Code và SOLID.
+* **Tester** – viết unit/integration tests (JUnit5, Mockito) bao phủ các trường hợp thành công/lỗi, đảm bảo tuân thủ NFR và OWASP.
+* **Reviewer** – đánh giá chất lượng code, kiểm tra các vấn đề về race condition, xung đột khóa duy nhất, và các lỗ hổng bảo mật tiềm ẩn.
+* **Doc** – soạn thảo OpenAPI spec cho từng endpoint, bao gồm request/response schemas, error responses, và tham chiếu tag IDs.
+* **Docker** – tạo multi‑stage Dockerfile, healthcheck, ký image, và push lên registry với các tag `latest` và `v1.0`.
+* **GCP** – provision project, bật Firebase Auth, IAM roles, Secret Manager, Cloud Logging, và Pub/Sub cho thông báo.
+* **GKE** – triển khai Helm charts, cấu hình HPA, NetworkPolicy, readiness/liveness probes, và tích hợp CI/CD.
 
-#### SUB-TASK 1.1: Thiết kế và triển khai lớp UserService để xử lý đăng ký và quản lý người dùng, bao gồm xác thực, hashing mật khẩu, và lưu trữ dữ liệu vào bảng users.  
-##### Người phụ trách: Coder  
-##### Các thành phần & Yêu cầu kỹ thuật:  
-* **Đường dẫn mục tiêu**: ./sources/backend/users/UserService.java  
-* **Thẻ Trac theo dõi**: <!--START_TAGS-->[REQ-001], [DAT-001]<!--END_TAGS-->
+## 4. Định nghĩa Mục tiêu Hoàn thành Giai đoạn (DoD)
+* Tất cả các service cốt lõi được triển khai với các endpoint REST đầy đủ chức năng.
+* 100 % test coverage cho các component backend.auth (unit + integration).
+* Đánh giá code hoàn chỉnh: không có lỗi bảo mật nghiêm trọng, tuân thủ OWASP, và các đề xuất cải tiến được ghi lại.
+* Tài liệu OpenAPI hoàn chỉnh cho các endpoint auth, bao gồm tag IDs.
+* Docker image được build, scan, push, và có thể triển khai trên GKE.
+* Tài nguyên GCP được cấu hình (Firebase Auth, IAM, Secret Manager, Logging) và có thể kiểm tra.
+* Kubernetes Deployment sẵn sàng với HPA, NetworkPolicy, và tích hợp CI/CD.
+* Tất cả các tag IDs mục tiêu (`[REQ-001]`‑`[REQ-003]`, `[ARC-006]`, `[DAT-001]`, `[EXC-004]`, `[NFR-001]`, `[NFR-003]`, `[NFR-006]`, `[NFR-002]`, `[NFR-004]`) được mapping chính xác.
 
-### DAY 2: XÂY ĐOÁN DỊCH VỤ TRUNG TÂM
+## 5. Nhật ký Thực hiện theo Ngày
 
-#### SUB-TASK 2.1: Thiết kế và triển khai lớp CenterService để xử lý tạo, cập nhật, và xóa trung tâm, bao gồm kiểm tra tính duy nhất của mã số thuế và lưu trữ dữ liệu vào bảng centers.  
-##### Người phụ trách: Coder  
-##### Các thành phần & Yêu cầu kỹ thuật:  
-* **Đường dẫn mục tiêu**: ./sources/backend/centers/CenterService.java  
-* **Thẻ Trac theo dõi**: <!--START_TAGS-->[REQ-004], [DAT-003]<!--END_TAGS-->
+### DAY 1: Triển khai xác thực người dùng và quản lý vai trò cốt lõi
+
+#### SUB-TASK 1.1: Triển khai các endpoint xác thực (register, social OAuth2, role update) với bảo mật nghiêm ngặt theo OWASP
+##### Đại diện được chỉ định: Coder
+##### Các thành phần mục tiêu & Yêu cầu kỹ thuật:
+* **Đường dẫn mục tiêu:** ./sources/backend.auth
+* **Traceability Tag Tokens:** <!--START_TAGS-->[REQ-001], [REQ-002], [REQ-003], [ARC-006], [DAT-001], [EXC-004], [NFR-001], [NFR-003], [NFR-006]<!--END_TAGS-->
+
+#### SUB-TASK 1.2: Tạo bộ kiểm tra tích hợp cho các endpoint xác thực, bao gồm các trường hợp thành công/lỗi và retry
+##### Đại diện được chỉ định: Tester
+##### Các thành phần mục tiêu & Yêu cầu kỹ thuật:
+* **Đường dẫn mục tiêu:** ./sources/backend.auth;./sources/backend.auth[TestAuthSuite]
+* **Traceability Tag Tokens:** <!--START_TAGS-->[REQ-001], [REQ-002], [REQ-003], [ARC-006], [DAT-001], [EXC-004], [NFR-001], [NFR-003], [NFR-006]<!--END_TAGS-->
+
+#### SUB-TASK 1.3: Đánh giá chất lượng code cho service auth, tập trung vào thiết kế SOLID, xử lý ngoại lệ, và bảo mật (OWASP)
+##### Đại diện được chỉ định: Reviewer
+##### Các thành phần mục tiêu & Yêu cầu kỹ thuật:
+* **Đường dẫn mục tiêu:** ./sources/backend.auth
+* **Traceability Tag Tokens:** <!--START_TAGS-->[REQ-001], [REQ-002], [REQ-003], [ARC-006], [DAT-001], [EXC-004], [NFR-001], [NFR-003], [NFR-006]<!--END_TAGS-->
+
+#### SUB-TASK 1.4: Soạn thảo OpenAPI spec cho các endpoint auth, bao gồm request/response schemas, error responses, và tag IDs
+##### Đại diện được chỉ định: Doc
+##### Các thành phần mục tiêu & Yêu cầu kỹ thuật:
+* **Đường dẫn mục tiêu:** ./sources/backend.auth
+* **Traceability Tag Tokens:** <!--START_TAGS-->[REQ-001], [REQ-002], [REQ-003], [ARC-006], [DAT-001], [EXC-004], [NFR-001], [NFR-003], [NFR-006]<!--END_TAGS-->
+
+#### SUB-TASK 1.5: Tạo multi‑stage Dockerfile cho Auth service, thiết lập healthcheck, và push image lên registry
+##### Đại diện được chỉ định: Docker
+##### Các thành phần mục tiêu & Yêu cầu kỹ thuật:
+* **Đường dẫn mục tiêu:** ./sources/backend.auth
+* **Traceability Tag Tokens:** <!--START_TAGS-->[REQ-001], [REQ-002], [REQ-003], [ARC-006], [DAT-001], [EXC-004], [NFR-001], [NFR-003], [NFR-006]<!--END_TAGS-->
+
+#### SUB-TASK 1.6: Provision tài nguyên GCP (Firebase Auth, IAM, Secret Manager, Cloud Logging) cho Phase 1
+##### Đại diện được chỉ định: GCP
+##### Các thành phần mục tiêu & Yêu cầu kỹ thuật:
+* **Đường dẫn mục tiêu:** ./sources/infra
+* **Traceability Tag Tokens:** <!--START_TAGS-->[ARC-006], [NFR-003], [NFR-006]<!--END_TAGS-->
+
+#### SUB-TASK 1.7: Triển khai Auth service lên GKE với HPA, Ingress TLS, và tích hợp CI/CD
+##### Đại diện được chỉ định: GKE
+##### Các thành phần mục tiêu & Yêu cầu kỹ thuật:
+* **Đường dẫn mục tiêu:** ./sources/backend.auth
+* **Traceability Tag Tokens:** <!--START_TAGS-->[ARC-006], [NFR-002], [NFR-004]<!--END_TAGS-->
