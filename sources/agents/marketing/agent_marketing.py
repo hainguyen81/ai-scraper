@@ -16,17 +16,6 @@ class AbstractMarketingAgent(AbstractSubAgent):
     def __init__(self, agent_id, **kwargs):
         super().__init__(agent_id=agent_id, **kwargs)
     
-    def __common_prompt_context__(self):
-        datetime_prompt, datetime_docid = datetime_for_agent()
-        return {
-            "idea_id": self.idea_id,
-            "language": self.language,
-            "project_name": self.__current_project_name__() or "-",
-            "project_description": self.__current_project_description__() or "-",
-            "current_timestamp": datetime_prompt,
-            "doc_id": datetime_docid
-        }
-    
     def __pre_initialize__(self):
         # require idea identity to analyze
         if not self.project_info:
@@ -66,25 +55,32 @@ class AbstractMarketingAgent(AbstractSubAgent):
     
     # @override
     def pre_execute(self, **kwargs):
-        # read idea file
-        _, raw_idea_content = self.__read_idea_or_requirements__(ignore_not_found=True)
+        # read idea
+        idea_same_project, raw_idea_content = self.__read_idea_or_requirements__(ignore_not_found=True)
+        self.idea_is_project = idea_same_project
         
         # no idea also no requirements
         if not raw_idea_content:
             self.logger.critical(f"💀 Not found IDEA / Requirements file to process")
             sys.exit(1)
         
-        # read BA file
-        raw_ba_content = self.__read_srs__(ignore_not_found=False)
+        # read ba/SRS
+        raw_srs_content = self.__read_srs__(ignore_not_found=False)
         
-        # read BluePrint file
+        # read sa/blueprint
         raw_blueprint_content = self.__read_blueprint__(ignore_not_found=False)
         
         # return merged new values
+        datetime_prompt, datetime_docid = datetime_for_agent()
         return {
             **kwargs,
-            **self.__common_prompt_context__(),
+            "doc_id": datetime_docid,
+            "language": self.language,
+            "idea_id": self.idea_id,
+            "project_name": self.__current_project_name__() or "-",
+            "project_description": self.__current_project_description__() or "-",
+            "current_timestamp": datetime_prompt,
             "raw_idea_content": raw_idea_content,
-            "raw_srs_content": raw_ba_content,
+            "raw_srs_content": raw_srs_content,
             "raw_blueprint_content": raw_blueprint_content
         }
