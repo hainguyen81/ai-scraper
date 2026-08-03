@@ -38,7 +38,13 @@ Analyze the attached project requirements. Build the GLOBAL PROJECT CONTEXT for 
   * All hidden HTML comment tags, system data splitters, and data extraction anchors (e.g., `<!--START_DELIMITTER-->`, `<!--END_DELIMITTER-->`, `[PAYLOAD_DELIMITER]`). These must remain in their original raw character format to prevent backend processing errors.
 
 ### 📋 MANDATORY OUTPUT STRUCTURE (MARKDOWN REPORT LAYOUT):
-Every header and table parameter below MUST be translated and naturally rendered into "{% if language and language.strip() != "" %}{{ language }}{% else %}English{% endif %}", except for the explicit Technical English core tokens protected by system mandates. You MUST include every single section below without exception to satisfy enterprise compliance requirements:
+- Current Target Language Variable: "{% if language and language.strip() != "" %}{{ language }}{% else %}English{% endif %}"
+- You MUST execute a full contextual translation for the entire MARKDOWN REPORT LAYOUT structure below into the Current Target Language Variable ({% if language and language.strip() != "" %}{{ language }}{% else %}English{% endif %}).
+- This translation directive strictly applies to:
+  1. All main headers, section titles, sub-headers, labels, descriptions, details.
+  2. All internal descriptive text, details, list items, tables, explanations, and bullet points within those sections.
+- 🚨 CRITICAL PARSING EXCLUSION GUARD: You are strictly forbidden from altering or translating technical tokens, variables, markdown operators, code snippets, Tag IDs, mermaid syntax, or hidden HTML comments. Output them exactly as written in technical English syntax.
+- You MUST include every single section below without exception to satisfy enterprise compliance requirements:
 
 # GLOBAL PROJECT CONTEXT: {{ project_name }}
 
@@ -53,30 +59,31 @@ Every header and table parameter below MUST be translated and naturally rendered
 | **Author** | Enterprise System Architect (SA Agent) |
 | **Approval** | Pending Technical Governance Review |
 
-## 📊 1. SYSTEM OVERVIEW & CORE ARCHITECTURE MODALITY (Translate this header into "{% if language and language.strip() != "" %}{{ language }}{% else %}English{% endif %}")
+## 📊 1. SYSTEM OVERVIEW & CORE ARCHITECTURE MODALITY
+
 ### 1.1. Core System Modality & Architecture Modality
 [Provide a comprehensive technical overview mapping out the core detected architecture topology, EDA paradigms, CQRS boundaries, and Reactive Core patterns based strictly on requirements]
 
 ### 1.2. Enterprise Data Flow Topologies & Core Ecosystems
 [Detail the asynchronous messaging channels, ingestion gateway parameters, topic topologies, and cross-channel external fan-out architectures]
 
-## 📁 2. TECH STACK DEPENDENCIES & ECOSYSTEM LIBRARIES (Translate this header into "{% if language and language.strip() != "" %}{{ language }}{% else %}English{% endif %}")
+## 📁 2. TECH STACK DEPENDENCIES & ECOSYSTEM LIBRARIES
 - **Backend Infrastructure Core Stack:** [Detail precise versions, runtime engines, dependency injection abstractions, ORMs, and messaging frameworks extracted from requirements]
 - **Frontend & Cross-Platform UI Mobile Stack:** [Detail strict web frameworks, dynamic localized routing, responsive layouts, and native mobile runtime wrappers if present]
 
-## 📁 3. GLOBAL GUARDRAILS & ENTERPRISE COMPLIANCE STANDARDS (Translate this header into "{% if language and language.strip() != "" %}{{ language }}{% else %}English{% endif %}")
+## 📁 3. GLOBAL GUARDRAILS & ENTERPRISE COMPLIANCE STANDARDS
 - **Absolute Workspace Boundary Rule:** The true repository workspace root is permanently fixed at the project root `..`. All paths generated MUST begin with `./sources/`.
 - **Dynamic Directory Prefixing Compliance:** Enforce the dynamic path mapping rules defined in Protocol 1 strictly matching the detected project structure.
 - **[CONDITION: JAVA_STACK_ONLY] Java Package Standard:** If the tech stack utilizes Java frameworks, all Java source codes MUST strictly reside within the corporate package foundation: `org.nlh4j.saas.<project_name_alphanumeric_lowercase>`. You MUST dynamically convert the string "{{ project_name }}" into a strict pure alphanumeric lowercase token by stripping out whitespaces, hyphens, and underscores. Non-Java projects are completely banned from applying this package segment.
 - **Strict Tester Target Path Syntax:** Any component targeted by a Tester Sub-Agent must be structured as a strict semi-colon separated pair `<source_component_or_token>;<test_suite_file_to_execute>`. Both paths inside the pair MUST begin with `./sources/`.
 
-## 📁 4. HIGH-LEVEL MULTI-PHASE ARCHITECTURAL SYNOPSIS GRID (Translate this header into "{% if language and language.strip() != "" %}{{ language }}{% else %}English{% endif %}")
+## 📁 4. HIGH-LEVEL MULTI-PHASE ARCHITECTURAL SYNOPSIS GRID
 Generate a clean, highly structured Markdown Table mapping the exact distribution of components and Tag IDs across the dynamically calculated phases. You MUST compute the most optimal number of phases (denoted as N, where N <= {{ num_phases }}) that naturally and completely covers 100% of the BA requirements and Tag IDs. Each row MUST specify a real-world engineering duration bounded between 1 to a strict upper ceiling of {{ max_days_per_phase }} days maximum per phase. Do NOT generate empty rows, placeholder phases, or artificial workloads. If the requirements are fully satisfied within fewer than {{ num_phases }} phases, terminate the matrix setup immediately at phase N.
 
 | Phase | Day Range | Architectural Component / Module Path | Technical Deliverables Summary | Assigned Sub-Agent | Targeted Tag IDs |
 | :--- | :--- | :--- | :--- | :--- | :--- |
 
-## 5. GRANULAR PHASE SPECIALIZATIONS & DAY-BY-DAY DELIVERABLES (Translate this header into "{% if language and language.strip() != "" %}{{ language }}{% else %}English{% endif %}")
+## 5. GRANULAR PHASE SPECIALIZATIONS & DAY-BY-DAY DELIVERABLES
 # STRICT 1:1 SYNOPSIS MIRROR MANDATE:
 - Section 5 MUST act as a strict structural mirror of the dynamic phases calculated in Section 4. You MUST generate an independent, complete detailed block below for EVERY phase sequence from Phase 1 up to Phase N (where N <= {{ num_phases }}).
 - Truncating, omitting, or combining phases is an absolute pipeline violation. You are strictly commanded to detail every phase that appeared in your Section 4 table.
@@ -108,17 +115,17 @@ Generate a clean, highly structured Markdown Table mapping the exact distributio
       - **Low-Level Technical Task Instruction:** [Exhaustive, high-density engineering instruction, framework conventions, API contract layouts, data fields validation, or unit test case parameters translated completely into {% if language and language.strip() != "" %}{{ language }}{% else %}English{% endif %}, attaching Tag IDs]
       - **Targeted Tag IDs:** [Write each tag out individually separated by commas, e.g., `[REQ-001], [DAT-002], [EXC-001]`.]
 
-## 📁 6. UNIVERSAL ENTERPRISE SECURITY CODES & INJECTION COUNTERMEASURES [NFR-XXX] (Translate this header into "{% if language and language.strip() != "" %}{{ language }}{% else %}English{% endif %}")
+## 📁 6. UNIVERSAL ENTERPRISE SECURITY CODES & INJECTION COUNTERMEASURES [NFR-XXX]
 - **SQL Injection (SQLi) Absolute Countermeasures:** Rule parameters for prepared statements, positional query parameters, and dynamic sorting input Whitelists.
 - **Cross-Site Scripting (XSS) & Content Security Policy (CSP):** Layout standards for automated context sanitization, JSX auto-escaping, and dynamic injection of strict CSP headers (`unsafe-inline` restriction).
 - **Multi-Tenant CORS Security Rails:** Configurations for origin wildcard prohibitions and dynamic tenant origin database metrics validation.
 - **Zero-Leak Log Scrubbing & PII Data Masking Engines:** Rules for automated masking interceptors (`@JsonSerialize`) and log scrubbing thresholds.
 
-## 📁 7. HYBRID MOBILE COMPLIANCE RAIL RULES & INTERNATIONALIZED SEO MECHANISMS (Translate this header into "{% if language and language.strip() != "" %}{{ language }}{% else %}English{% endif %}")
+## 📁 7. HYBRID MOBILE COMPLIANCE RAIL RULES & INTERNATIONALIZED SEO MECHANISMS
 - **Capacitor Mobile Hybrid Compliance Rails:** [IF Mobile active] Rules for dynamic client-side fetching, absolute URL addressing, hydration safeguards, native storage abstractions (`@capacitor/preferences`), and hardware back-button interception.
 - **Internationalization (i18n) & Dynamic SEO Injection:** Edge-layer locale recognition middleware architectures, hreflang dynamic hypermedia control injection, and search crawler robots indexing limits.
 
-## 📁 8. PIPELINE AUTOMATED DAILY SESSION GIT BRANCH FLOW (Translate this header into "{% if language and language.strip() != "" %}{{ language }}{% else %}English{% endif %}")
+## 📁 8. PIPELINE AUTOMATED DAILY SESSION GIT BRANCH FLOW
 - **Daily Workspace Forking Isolation:** Programmatic forking controls for branch `features/development-day-X`.
 - **Validation Guard Pipeline Gates:** Execution rules for compilation verification, automated code coverage goals (`>= 85%`), and context summary serialization logs.
 
