@@ -16,30 +16,15 @@
           "id": "D1_ST1",
           "agent": "Coder",
           "desc": "Triển khai schema cơ sở dữ liệu Users và Roles",
-          "targeted_tags": [
-            "[DAT-001]"
-          ],
-          "components": [
-            "./sources/backend.membershiphub.user/users.sql",
-            "./sources/backend.membershiphub.user/roles.sql"
-          ]
+          "targeted_tags": ["[DAT-001]"],
+          "components": ["./sources/backend.membershiphub.user/users.sql", "./sources/backend.membershiphub.user/roles.sql"]
         },
         {
           "id": "D1_ST2",
           "agent": "Coder",
-          "desc": "Triển khai UserService với phương thức register và socialAuthenticate, áp dụng SOLID, sử dụng BCrypt cho mã hóa mật khẩu, JWT với access token 15 phút và refresh token 7 ngày, áp dụng @Valid cho validation và @Transactional cho các thao tác ghi",
-          "targeted_tags": [
-            "[REQ-001]",
-            "[REQ-002]",
-            "[ARC-006]",
-            "[EXC-004]",
-            "[NFR-001]",
-            "[NFR-003]",
-            "[NFR-006]"
-          ],
-          "components": [
-            "./sources/backend.membershiphub.user/user-service.java"
-          ]
+          "desc": "Triển khai UserService với phương thức register và socialAuthenticate",
+          "targeted_tags": ["[REQ-001]", "[REQ-002]", "[ARC-006]", "[EXC-004]", "[NFR-001]", "[NFR-003]", "[NFR-006]"],
+          "components": ["./sources/backend.membershiphub.user/user-service.java"]
         }
       ]
     },
@@ -51,32 +36,16 @@
         {
           "id": "D2_ST1",
           "agent": "Tester",
-          "desc": "Kiểm thử đơn vị cho các phương thức register và socialAuthenticate với độ phủ mã ≥85%, sử dụng Mock cho các dependency, kiểm thử happy path và các scenario lỗi validation",
-          "targeted_tags": [
-            "[REQ-001]",
-            "[REQ-002]",
-            "[DAT-001]",
-            "[EXC-004]"
-          ],
-          "components": [
-            "./sources/backend.membershiphub.user/user-service.java",
-            "./sources/backend.membershiphub.user/userservice-test.java"
-          ]
+          "desc": "Kiểm thử đơn vị cho các phương thức register và socialAuthenticate",
+          "targeted_tags": ["[REQ-001]", "[REQ-002]", "[DAT-001]", "[EXC-004]"],
+          "components": ["./sources/backend.membershiphub.user/user-service.java;./sources/backend.membershiphub.user/user-service-test.java"]
         },
         {
           "id": "D2_ST2",
           "agent": "Tester",
-          "desc": "Kiểm thử tích hợp cho API endpoints với độ phủ mã ≥85%, sử dụng Mock cho các dependency, kiểm thử happy path và các scenario lỗi validation",
-          "targeted_tags": [
-            "[REQ-001]",
-            "[REQ-002]",
-            "[ARC-006]",
-            "[EXC-004]"
-          ],
-          "components": [
-            "./sources/backend.membershiphub.user/user-service.java",
-            "./sources/backend.membershiphub.user/user-controller-test.java"
-          ]
+          "desc": "Kiểm thử tích hợp cho API endpoints",
+          "targeted_tags": ["[REQ-001]", "[REQ-002]", "[ARC-006]", "[EXC-004]"],
+          "components": ["./sources/backend.membershiphub.user/user-service.java;./sources/backend.membershiphub.user/user-controller-test.java"]
         }
       ]
     }
@@ -113,7 +82,7 @@
                 {
                     "id": "D1_ST2",
                     "agent": "Coder",
-                    "desc": "Triển khai UserService với phương thức register và socialAuthenticate, áp dụng SOLID, sử dụng BCrypt cho mã hóa mật khẩu, JWT với access token 15 phút và refresh token 7 ngày, áp dụng @Valid cho validation và @Transactional cho các thao tác ghi",
+                    "desc": "Triển khai UserService với phương thức register và socialAuthenticate",
                     "targeted_tags": [
                         "[REQ-001]",
                         "[REQ-002]",
@@ -137,7 +106,7 @@
                 {
                     "id": "D2_ST1",
                     "agent": "Tester",
-                    "desc": "Kiểm thử đơn vị cho các phương thức register và socialAuthenticate với độ phủ mã ≥85%, sử dụng Mock cho các dependency, kiểm thử happy path và các scenario lỗi validation",
+                    "desc": "Kiểm thử đơn vị cho các phương thức register và socialAuthenticate",
                     "targeted_tags": [
                         "[REQ-001]",
                         "[REQ-002]",
@@ -145,14 +114,13 @@
                         "[EXC-004]"
                     ],
                     "components": [
-                        "./sources/backend.membershiphub.user/user-service.java",
-                        "./sources/backend.membershiphub.user/userservice-test.java"
+                        "./sources/backend.membershiphub.user/user-service.java;./sources/backend.membershiphub.user/user-service-test.java"
                     ]
                 },
                 {
                     "id": "D2_ST2",
                     "agent": "Tester",
-                    "desc": "Kiểm thử tích hợp cho API endpoints với độ phủ mã ≥85%, sử dụng Mock cho các dependency, kiểm thử happy path và các scenario lỗi validation",
+                    "desc": "Kiểm thử tích hợp cho API endpoints",
                     "targeted_tags": [
                         "[REQ-001]",
                         "[REQ-002]",
@@ -160,8 +128,7 @@
                         "[EXC-004]"
                     ],
                     "components": [
-                        "./sources/backend.membershiphub.user/user-service.java",
-                        "./sources/backend.membershiphub.user/user-controller-test.java"
+                        "./sources/backend.membershiphub.user/user-service.java;./sources/backend.membershiphub.user/user-controller-test.java"
                     ]
                 }
             ]
