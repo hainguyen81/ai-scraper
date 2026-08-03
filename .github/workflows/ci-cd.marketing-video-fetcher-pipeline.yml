@@ -1,4 +1,4 @@
-name: ✍️ Agent - Execute Marketing AI Content Writer
+name: 🎞️ Agent - Execute Marketing AI Video Fetcher
 
 # Trigger the workflow when requirements change or via manual trigger
 on:
@@ -10,29 +10,6 @@ on:
           (Storage: sources/storage/ideas or sources/requirements)
         required: true
         type: string
-      platform:
-        description: |
-          👥 Social Platform
-        required: false
-        default: '💬 General'
-        type: choice
-        options:
-          - "👍 Facebook"
-          - "🐦 Twitter"
-          - "💼 Linked-in"
-          - "🌀 Threads"
-          - "📸 Instagram"
-          - "💬 General"
-      language:
-        description: '🗣️ Estimation Language'
-        required: false
-        default: '🇻🇳 Vietnamese'
-        type: choice
-        options:
-          - "🇻🇳 Vietnamese"
-          - "🇺🇸 English"
-          - "🇩🇪 Germany"
-          - "🇯🇵 Japanese"
       verbose:
         description: '🐞 Verbose'
         required: false
@@ -47,17 +24,6 @@ on:
           📁 Project Name / 💡 Idea
           (Storage: sources/storage/ideas or sources/requirements)
         required: true
-        type: string
-      platform:
-        description: |
-          👥 Social Platform
-        required: false
-        default: '💬 General'
-        type: string
-      language:
-        description: '🗣️ Estimation Language'
-        required: false
-        default: '🇻🇳 Vietnamese'
         type: string
       verbose:
         description: '🐞 Verbose'
@@ -79,7 +45,7 @@ env:
 jobs:
   # 🏗️ System Architecture & Phase Planner
   generate-blueprint:
-    name: ✍️ Expert Principal Marketing Content Writer
+    name: 🎞️ Expert Principal Marketing Video Fetcher
     runs-on: ubuntu-latest
     
     steps:
@@ -106,26 +72,22 @@ jobs:
           pip install -r requirements.txt --upgrade
 
       # Step 4: Execute agent
-      - name: ✍️ Execute Expert Principal Marketing Content Writer
+      - name: 🎞️ Execute Expert Principal Marketing Video Fetcher
         if: success()                             # if previous step is successful
         env:
           # Secrets contains the AI endpoint and AI API key JSON
-          AI_MODELS_KEYS_JSON: ${{ secrets.AI_MODELS_KEYS_JSON }}
+          VIDEO_FETCHER_API_SECRETS_KEY: ${{ secrets.VIDEO_FETCHER_API_SECRETS_JSON }}
           
           # Python environment
           PYTHONPATH: ${{ github.workspace }} # force Python load folder structure, including 'sources'
           
           # Project Information
           INPUTS_IDEA: ${{ inputs.idea }}
-          INPUTS_PLATFORM: ${{ inputs.platform }}
-          INPUTS_LANGUAGE: ${{ inputs.language }}
           INPUTS_VERBOSE: ${{ inputs.verbose == true && '--verbose' || '' }}
         run: |
-          echo "⚡ Kicking off Expert Principal Marketing AI Content Writer..."
-          python sources/agents/marketing/agent_writer.py \
+          echo "⚡ Kicking off Expert Principal Marketing AI Video Fetcher..."
+          python sources/agents/multimedia/agent_video_fetcher.py \
               --idea "$INPUTS_IDEA" \
-              --language "$INPUTS_LANGUAGE" \
-              --platform "$INPUTS_PLATFORM" \
               $INPUTS_VERBOSE
 
       # Step 5: Automatically stage, commit, and push changes
@@ -133,8 +95,6 @@ jobs:
         if: always()
         env:
           INPUTS_IDEA: ${{ inputs.idea }}
-          INPUTS_PLATFORM: ${{ inputs.platform }}
-          INPUTS_LANGUAGE: ${{ inputs.language }}
         run: |
           # 1. Bot user GitHub
           git config --global user.name "github-actions[bot]"
@@ -146,7 +106,7 @@ jobs:
           # 3. Use status to check file changes
           if [ -n "$(git status --porcelain)" ]; then
             echo "📝 Committing system state changes..."
-            git commit -m "chore(ai): auto-generate some expert SRS for [ $INPUTS_IDEA ] under [ $INPUTS_LANGUAGE ] for [ $INPUTS_PLATFORM ] [skip ci]"
+            git commit -m "chore(ai): auto-fetch some marketing videos for [ $INPUTS_IDEA ] [skip ci]"
             
             # ✅ ENTERPRISE HOTFIX: Pull new changes and rebase to avoid conflicts fast-forward
             echo "🔄 Pulling latest upstream tree and executing explicit contextual rebase..."

@@ -492,6 +492,7 @@ REL_AGENT_CSRO_PATH                     = os.path.join(REL_AGENTS_PATH, "chief-s
 REL_AGENT_CSRO_PROMPTS_PATH             = os.path.join(REL_AGENT_CSRO_PATH, "prompts")
 REL_AGENT_MARKETING_PATH                = os.path.join(REL_AGENTS_PATH, "marketing")
 REL_AGENT_MARKETING_PROMPTS_PATH        = os.path.join(REL_AGENT_MARKETING_PATH, "prompts")
+REL_AGENT_MULTIMEDIA_PATH               = os.path.join(REL_AGENTS_PATH, "multimedia")
 
 REL_STORAGE_IDEAS_PATH                  = os.path.join(REL_STORAGE_PATH, "ideas")
 REL_STORAGE_BLUEPRINT_PATH              = os.path.join(REL_STORAGE_PATH, "blueprint")
@@ -499,6 +500,7 @@ REL_STORAGE_BA_PATH                     = os.path.join(REL_STORAGE_PATH, "busine
 REL_STORAGE_EST_PATH                    = os.path.join(REL_STORAGE_PATH, "estimation")
 REL_STORAGE_CSRO_PATH                   = os.path.join(REL_STORAGE_PATH, "chief-solution")
 REL_STORAGE_MARKETING_PATH              = os.path.join(REL_STORAGE_PATH, "marketing")
+REL_STORAGE_MULTIMEDIA_PATH             = os.path.join(REL_STORAGE_PATH, "marketing")
 
 REL_OUTPUT_SCRAPER_PATH                 = os.path.join(REL_OUTPUT_PATH, "scrapers")
 REL_OUTPUT_IDEAS_PATH                   = os.path.join(REL_OUTPUT_PATH, "ideas")
@@ -507,6 +509,7 @@ REL_OUTPUT_BA_PATH                      = os.path.join(REL_OUTPUT_PATH, "busines
 REL_OUTPUT_EST_PATH                     = os.path.join(REL_OUTPUT_PATH, "estimation")
 REL_OUTPUT_CSRO_PATH                    = os.path.join(REL_OUTPUT_PATH, "chief-solution")
 REL_OUTPUT_MARKETING_PATH               = os.path.join(REL_OUTPUT_PATH, "marketing")
+REL_OUTPUT_MULTIMEDIA_PATH              = os.path.join(REL_OUTPUT_PATH, "multimedia")
 
 AGENT_MODELS_PATH                       = resolve_absolute_path(REL_AGENT_MODELS_PATH)
 AGENT_CONFIG_PATH                       = resolve_absolute_path(REL_AGENT_CONFIG_PATH)
@@ -523,6 +526,7 @@ AGENT_CSRO_PATH                         = resolve_absolute_path(REL_AGENT_CSRO_P
 AGENT_CSRO_PROMPTS_PATH                 = resolve_absolute_path(REL_AGENT_CSRO_PROMPTS_PATH)
 AGENT_MARKETING_PATH                    = resolve_absolute_path(REL_AGENT_MARKETING_PATH)
 AGENT_MARKETING_PROMPTS_PATH            = resolve_absolute_path(REL_AGENT_MARKETING_PROMPTS_PATH)
+AGENT_MULTIMEDIA_PATH                   = resolve_absolute_path(REL_AGENT_MULTIMEDIA_PATH)
 
 STORAGE_IDEAS_PATH                      = resolve_absolute_path(REL_STORAGE_IDEAS_PATH)
 STORAGE_BLUEPRINT_PATH                  = resolve_absolute_path(REL_STORAGE_BLUEPRINT_PATH)
@@ -530,6 +534,7 @@ STORAGE_BA_PATH                         = resolve_absolute_path(REL_STORAGE_BA_P
 STORAGE_EST_PATH                        = resolve_absolute_path(REL_STORAGE_EST_PATH)
 STORAGE_CSRO_PATH                       = resolve_absolute_path(REL_STORAGE_CSRO_PATH)
 STORAGE_MARKETING_PATH                  = resolve_absolute_path(REL_STORAGE_MARKETING_PATH)
+STORAGE_MULTIMEDIA_PATH                 = resolve_absolute_path(REL_STORAGE_MULTIMEDIA_PATH)
 
 OUTPUT_SCRAPER_PATH                     = resolve_absolute_path(REL_OUTPUT_SCRAPER_PATH)
 OUTPUT_IDEAS_PATH                       = resolve_absolute_path(REL_OUTPUT_IDEAS_PATH)
@@ -538,6 +543,7 @@ OUTPUT_BA_PATH                          = resolve_absolute_path(REL_OUTPUT_BA_PA
 OUTPUT_EST_PATH                         = resolve_absolute_path(REL_OUTPUT_EST_PATH)
 OUTPUT_CSRO_PATH                        = resolve_absolute_path(REL_OUTPUT_CSRO_PATH)
 OUTPUT_MARKETING_PATH                   = resolve_absolute_path(REL_OUTPUT_MARKETING_PATH)
+OUTPUT_MULTIMEDIA_PATH                  = resolve_absolute_path(REL_OUTPUT_MULTIMEDIA_PATH)
 
 REL_BLUEPRINT_WORKING_HISTORY_FILE      = os.path.join(REL_OUTPUT_BLUEPRINT_PATH, "architecture-blueprint.md")
 BLUEPRINT_WORKING_HISTORY_FILE          = resolve_absolute_path(REL_BLUEPRINT_WORKING_HISTORY_FILE)
@@ -583,6 +589,9 @@ storage_info = {
         "storage_marketing": AGENT_MARKETING_PATH,
         "relative_marketing_prompts": REL_AGENT_MARKETING_PROMPTS_PATH,
         "storage_marketing_prompts": AGENT_MARKETING_PROMPTS_PATH,
+        
+        "relative_multimedia": REL_AGENT_MULTIMEDIA_PATH,
+        "storage_multimedia": AGENT_MULTIMEDIA_PATH,
     },
     
     "storage": {
@@ -609,6 +618,9 @@ storage_info = {
         
         "relative_marketing": REL_STORAGE_MARKETING_PATH,
         "storage_marketing": STORAGE_MARKETING_PATH,
+        
+        "relative_multimedia": REL_STORAGE_MULTIMEDIA_PATH,
+        "storage_multimedia": STORAGE_MULTIMEDIA_PATH,
     },
     
     "output": {
@@ -635,6 +647,9 @@ storage_info = {
         
         "relative_marketing": REL_OUTPUT_MARKETING_PATH,
         "output_marketing": OUTPUT_MARKETING_PATH,
+        
+        "relative_multimedia": REL_OUTPUT_MULTIMEDIA_PATH,
+        "output_multimedia": OUTPUT_MULTIMEDIA_PATH,
     }
 }
 

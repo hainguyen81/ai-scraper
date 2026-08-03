@@ -1,4 +1,4 @@
-name: 🎯 Agent - Execute Marketing AI Plan Reviewer
+name: 🛡️ Agent - Execute Marketing AI Plan Reviewer
 
 # Trigger the workflow when requirements change or via manual trigger
 on:
@@ -60,7 +60,7 @@ env:
 jobs:
   # 🏗️ System Architecture & Phase Planner
   generate-blueprint:
-    name: 🎯 Expert Principal Marketing Plan Reviewer
+    name: 🛡️ Expert Principal Marketing Plan Reviewer
     runs-on: ubuntu-latest
     
     steps:
@@ -87,7 +87,7 @@ jobs:
           pip install -r requirements.txt --upgrade
 
       # Step 4: Execute agent
-      - name: 🎯 Execute Expert Principal Marketing Plan Reviewer
+      - name: 🛡️ Execute Expert Principal Marketing Plan Reviewer
         if: success()                             # if previous step is successful
         env:
           # Secrets contains the AI endpoint and AI API key JSON

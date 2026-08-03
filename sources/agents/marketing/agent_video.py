@@ -19,29 +19,28 @@ from sources.agents.marketing.agent_marketing import AbstractMarketingAgent
 # GLOBAL CONFIGURATION PATHS - CONFIG HERE TO CUSTOMIZE DIRECTORY STRUCTURE
 # ==============================================================================
 # models list
-SYSTEM_PROMPT_TEMPLATE          = "prompt.system.reviewer.md"
-USER_PROMPT_TEMPLATE            = "prompt.user.reviewer.md"
+SYSTEM_PROMPT_TEMPLATE          = "prompt.system.video.md"
+USER_PROMPT_TEMPLATE            = "prompt.user.video.md"
 
-CONTENT_WRITER_JSON_FILE        = "marketing-content-writer.json"
-CONTENT_WRITER_RAW_FILE         = "marketing-content-writer.md"
-CONTENT_WRITER_LOG_FILE         = "marketing-content-writer_log.md"
+VIDEO_CREATOR_JSON_FILE         = "marketing-video-creator.json"
+VIDEO_CREATOR_RAW_FILE          = "marketing-video-creator.md"
+VIDEO_CREATOR_LOG_FILE          = "marketing-video-creator_log.md"
 
-DELIMITER_CONTENT_WRITER_START  = "<!--START_GOVERNANCE_REPORT-->"
-DELIMITER_CONTENT_WRITER_END    = "<!--END_GOVERNANCE_REPORT-->"
+DELIMITER_VIDEO_CREATOR_START   = "<!--START_GOVERNANCE_REPORT-->"
+DELIMITER_VIDEO_CREATOR_END     = "<!--END_GOVERNANCE_REPORT-->"
 DELIMITER_RESPONDER_START       = "<!--START_RESPONDER_PAYLOAD-->"
 DELIMITER_RESPONDER_END         = "<!--END_RESPONDER_PAYLOAD-->"
 
-class EnterpriseContentWriterAgent(AbstractMarketingAgent):
+class EnterpriseVideoCreatorAgent(AbstractMarketingAgent):
     def __init__(self, **kwargs):
         super().__init__(
-            agent_id='EnterpriseContentWriterAgent',
-            agent_name='💡✍️ EnterpriseContentWriterAgent',
+            agent_id='EnterpriseVideoCreatorAgent',
+            agent_name='💡🎬 EnterpriseVideoCreatorAgent',
             **kwargs
         )
-    
     # @override
     def agent_log_file(self) -> str:
-        return self.__output_storage_path__(storage_name="output_marketing", file=CONTENT_WRITER_LOG_FILE)
+        return self.__output_storage_path__(storage_name="output_marketing", file=VIDEO_CREATOR_LOG_FILE)
     
     # @override
     def system_prompt_template(self) -> str:
@@ -81,14 +80,14 @@ class EnterpriseContentWriterAgent(AbstractMarketingAgent):
         # -------------------------------------------------------------
         # ZONE 1 EXTRACTION FLOW: The C-Suite Governance Report
         # -------------------------------------------------------------
-        raw_content_writer_report = self.__extract_response_part__(
-            response_data, DELIMITER_CONTENT_WRITER_START, DELIMITER_CONTENT_WRITER_END
+        raw_video_creator_report = self.__extract_response_part__(
+            response_data, DELIMITER_VIDEO_CREATOR_START, DELIMITER_VIDEO_CREATOR_END
         ) or response_data
         
-        # write storage content writer report
+        # write storage video creator report
         write_file(
-            file=self.__storage_path__(storage_name="storage_marketing", file=f"{self.project_name}/{CONTENT_WRITER_RAW_FILE}"),
-            data=raw_content_writer_report
+            file=self.__storage_path__(storage_name="storage_marketing", file=f"{self.project_name}/{VIDEO_CREATOR_RAW_FILE}"),
+            data=raw_video_creator_report
         )
         
         # -------------------------------------------------------------
@@ -103,7 +102,7 @@ class EnterpriseContentWriterAgent(AbstractMarketingAgent):
             self.logger.warning("⚠️ No valid responder payload found in the AI response")
         else:
             write_file(
-                file=self.__storage_path__(storage_name="storage_marketing", file=f"{self.project_name}/{CONTENT_WRITER_JSON_FILE}"),
+                file=self.__storage_path__(storage_name="storage_marketing", file=f"{self.project_name}/{VIDEO_CREATOR_JSON_FILE}"),
                 data=raw_responder_payload
             )
         
@@ -111,7 +110,7 @@ class EnterpriseContentWriterAgent(AbstractMarketingAgent):
         raw_response = self.get_kwargs_by_key(key="raw_response", **kwargs)
         if raw_response:
             write_file(
-                file=self.__output_storage_path__(storage_name="output_marketing", file=CONTENT_WRITER_RAW_FILE),
+                file=self.__output_storage_path__(storage_name="output_marketing", file=VIDEO_CREATOR_RAW_FILE),
                 data=raw_response
             )
 
@@ -121,10 +120,10 @@ if __name__ == "__main__":
         parser.add_argument("--idea", type=str, help="Idea Identity / Project Name for searching")
     
     args, unknown_args = parse_args(
-        description="✍️ EnterpriseContentWriterAgent",
+        description="🎬 EnterpriseVideoCreatorAgent",
         parser_callback=add_known_arguments
     )
-    EnterpriseContentWriterAgent(
+    EnterpriseVideoCreatorAgent(
         idea=args.idea,
         project=args.idea,
         **unknown_args

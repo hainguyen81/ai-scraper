@@ -19,7 +19,6 @@ from sources.agents.subagent_super import AbstractSubAgent
 # ==============================================================================
 # GLOBAL CONFIGURATION PATHS - CONFIG HERE TO CUSTOMIZE DIRECTORY STRUCTURE
 # ==============================================================================
-# models list
 SYSTEM_PROMPT_TEMPLATE      = "agent_estimator.prompt.system.md"
 USER_PROMPT_TEMPLATE        = "agent_estimator.prompt.user.md"
 
