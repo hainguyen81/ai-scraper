@@ -352,22 +352,25 @@ def parseAIResponseData(response):
 def splitOpenAIResponseJsonData(raw_data):
     clean_json_str = raw_data.strip()
     
-    # 💡 Use find() to split json block
-    lower_raw = clean_json_str.lower()
-    start_tag = "```json"
-    end_tag = "```"
+    # Step 1: Strip out potential markdown code block artifacts using aggressive regex filtering
+    # Removes sequences like ```text``` json, ```json, ```text, or generic ```
+    clean_json_str = re.sub(r'```(?:text|json|xml|mermaid|sql|python|code)?[\s\S]*?```', lambda m: m.group(0), clean_json_str)
     
-    if start_tag in lower_raw:
-        start_idx = lower_raw.find(start_tag) + len(start_tag)
-        end_idx = lower_raw.find(end_tag, start_idx)
-        if end_idx != -1:
-            clean_json_str = clean_json_str[start_idx:end_idx].strip()
+    # Alternative approach: Find the strict boundary of the first '{' and the last '}'
+    start_index = clean_json_str.find('{')
+    end_index = clean_json_str.rfind('}')
     
-    elif "```" in lower_raw:
-        start_idx = lower_raw.find("```") + 3
-        end_idx = lower_raw.find("```", start_idx)
-        if end_idx != -1:
-            clean_json_str = clean_json_str[start_idx:end_idx].strip()
+    # Gating check: If no brackets are found, the output is completely invalid text
+    if start_index >=0 and end_index >= 0 and start_index <= end_index:
+        return clean_json_str[start_index:end_index + 1]
+    
+    # Alternative approach: Find the strict boundary of the first '[' and the last ']'
+    start_index = clean_json_str.find('[')
+    end_index = clean_json_str.rfind(']')
+    
+    # Gating check: If no brackets are found, the output is completely invalid text
+    if start_index >=0 and end_index >= 0 and start_index <= end_index:
+        return clean_json_str[start_index:end_index + 1]
     
     return clean_json_str
 
