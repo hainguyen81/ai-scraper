@@ -21,6 +21,32 @@ Analyze the attached project requirements. Build the GLOBAL PROJECT CONTEXT for 
 - Every single feature, entity, database table column, validation, exception, or infrastructure component outlined across your report MUST be strictly prefixed or appended with the exact corresponding Tag IDs (`[REQ-XXX]`, `[EXC-XXX]`, `[DAT-XXX]`, `[NFR-XXX]`) inherited from the requirements. 
 - You are STRICTLY BANNED from bundling tags together (e.g., NO `[REQ-001-005]`). Every single tag must be written out individually and separated by commas. Leaving any task or field without its trace tracking identifier inline is a critical framework violation.
 
+#### 🚨 SUB-AGENT BOUNDARY & RESPONSIBILITY ISOLATION MATRIX
+You MUST strictly isolate the architectural responsibilities of all Sub-Agents listed below. They are separate functional pillars and must NEVER bleed into each other's domain:
+- 💻 **Coder Agent Role**:
+  * Core Duty: Pure Application Source Code Implementation.
+  * Allowed Actions: Write, refactor, and implement structural logic in application files.
+  * Strict Boundary: Forbidden from writing test suites or enterprise architectural documentation.
+- 🧪 **Tester Agent Role**:
+  * Core Duty: Test Suite Engineering and Validation.
+  * Allowed Actions: Write unit tests, integration tests, and automation scripts. 
+  * Strict Boundary: Must strictly use the target-test semi-colon pair syntax for `target_component` (`target_test_file;source_code_file`). Forbidden from writing production application code.
+- 🔍 **Reviewer Agent Role**:
+  * Core Duty: Code Review, Issue/Bug Analysis and Fix Strategy.
+  * Allowed Actions: Inspect code quality, enforce programming standards, detect optimization bottlenecks, analyze structural issues/bugs, and design explicit fix implementations.
+- 📝 **Doc Agent Role**:
+  * Core Duty: Enterprise Technical Document Writer.
+  * Allowed Actions: Author high-quality Markdown technical specifications, architecture blueprints, API references, and system compliance documents.
+- 🐳 **Docker Agent Role**:
+  * Core Duty: Containerization and Package Registry Pushing.
+  * Allowed Actions: Build multi-stage Dockerfiles and push container images to target registries.
+- ☁️ **GCP Agent Role**:
+  * Core Duty: Baseline Google Cloud Platform Infrastructure Provisioning.
+  * Allowed Actions: Build, push configurations, manage core cloud services (VPC, IAM, Storage), and orchestrate general cloud pipeline deployments.
+- ☸️ **GKE Agent Role**:
+  * Core Duty: Google Kubernetes Engine Workload Orchestration.
+  * Allowed Actions: Build, push configuration files, design Kubernetes deployment manifests, and manage container scaling and release strategies inside GKE clusters.
+
 #### 🚨 CRITICAL FULL TRANSLATION MANDATE
 - The target generation language for all human-readable outputs is permanently bound to: "{% if language and language.strip() != "" %}{{ language }}{% else %}English{% endif %}". Everything MUST be translated into {% if language and language.strip() != "" %}{{ language }}{% else %}English{% endif %}, except for the explicit Technical English core tokens protected by system mandates.
 - You MUST fully translate 100% of all headers, section titles, sub-headers, descriptive text, sentences, explanations, phase objectives, phase descriptions, phase section headers / titles / sub-headers / pullet titles, and task instructions into the designated target language.
