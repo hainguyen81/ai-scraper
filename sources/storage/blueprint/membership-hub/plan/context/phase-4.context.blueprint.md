@@ -1,96 +1,80 @@
-# Giai đoạn 4: <!--PHASE_NAME_START-->phase4_notification_and_security<!--PHASE_NAME_END--> | Mô tả: Triển khai hạ tầng Docker đa giai đoạn, cấu hình tài nguyên GCP (VPC, IAM, Cloud Storage), triển khai dịch vụ thông báo push, và ghi chép quy tắc bảo mật, đồng thời thực hiện kiểm tra OWASP và NFR.
+# Giai đoạn 4: <!--PHASE_NAME_START-->mobileUiSettings<!--PHASE_NAME_END--> | Mô tả: Triển khai giao diện di động đa nền tảng, tích hợp tính năng push, đa ngôn ngữ, SEO, và API cài đặt hệ thống, đồng thời bảo đảm tuân thủ OWASP, bảo mật JWT, và ghi nhận cấu hình trong bảng SYSTEMSETTINGS.  
 
-## 📊 Document Control
+## 📊 Document Control  
 
 | Mục | Chi tiết |
 | :--- | :--- |
-| **Mã Blueprint** | ARCH-20260803132420 |
-| **Tên Dự án** | membership-hub |
+| **ID Kiến trúc** | ARCH-20260803170121 |
+| **Tên dự án** | membership-hub |
 | **Giai đoạn** | 4 |
-| **Tên Giai đoạn Kỹ thuật** | <!--PHASE_NAME_START-->phase4_notification_and_security<!--PHASE_NAME_END--> |
-| **Mô tả** | Triển khai hạ tầng Docker đa giai đoạn, cấu hình tài nguyên GCP (VPC, IAM, Cloud Storage), triển khai dịch vụ thông báo push, và ghi chép quy tắc bảo mật, đồng thời thực hiện kiểm tra OWASP và NFR. |
+| **Tên giai đoạn kỹ thuật** | <!--PHASE_NAME_START-->mobileUiSettings<!--PHASE_NAME_END--> |
+| **Mô tả** | Triển khai giao diện di động đa nền tảng, tích hợp tính năng push, đa ngôn ngữ, SEO, và API cài đặt hệ thống, đồng thời bảo đảm tuân thủ OWASP, bảo mật JWT, và ghi nhận cấu hình trong bảng SYSTEMSETTINGS. |
 | **Phiên bản** | 1.0 (Baseline) |
-| **Ngày/Giờ** | 2026/08/03 13:24:20 |
+| **Ngày/Thời gian** | 2026/08/03 17:01:21 |
 | **Tác giả** | Enterprise System Architect (SA Agent) |
 | **Phê duyệt** | Pending Technical Governance Review |
 
-## 1. Phase Operational Scope & Objectives
-Giai đoạn 4 tập trung vào việc hoàn thiện hạ tầng triển khai và bảo mật cho hệ thống membership‑hub. Các mục tiêu chính bao gồm:
-- Cập nhật Dockerfile đa giai đoạn để giảm kích thước ảnh, tối ưu thời gian build và tuân thủ NFR‑005 (độ lớn ảnh < 500 MB).
-- Cấu hình tài nguyên GCP (VPC, IAM, Cloud Storage, Secret Manager, Cloud SQL, Redis) theo mô hình IaC, đáp ứng NFR‑009 (đảm bảo sao lưu và khôi phục).
-- Triển khai dịch vụ thông báo push (NotificationService) với logic retry, ghi nhận trạng thái delivered, và xử lý ngoại lệ EXC‑003.
-- Soạn tài liệu bảo mật (docs.security) ghi nhận các quy tắc RBAC, OWASP Top 10, và các biện pháp bảo vệ dữ liệu.
-- Đảm bảo toàn bộ các yêu cầu NFR, REQ, DAT, EXC được kiểm tra, ghi nhận và liên kết đầy đủ.
+## 1. Phạm vi và mục tiêu của giai đoạn  
+Giai đoạn 4 tập trung vào việc triển khai giao diện di động đa nền tảng (React/Next.js + Capacitor) với khả năng đăng ký push, đa ngôn ngữ, và tối ưu SEO, đồng thời xây dựng mô-đun backend `SystemSettings` cung cấp API CRUD và lưu trữ cấu hình trong bảng `SYSTEMSETTINGS`. Tất cả các thành phần phải tuân thủ OWASP Top 10, sử dụng JWT 15 phút, và ghi nhận audit cho mọi thay đổi cấu hình.
 
-## 2. Allowed Technical Scope & Directory Boundaries (Files, paths, and endpoints)
-| Đường dẫn | Mô tả |
-| :--- | :--- |
-| `./sources/infra.dockerfile` | Dockerfile đa giai đoạn cho toàn bộ backend |
-| `./sources/infra.gcp` | Terraform/IaC scripts tạo VPC, IAM, Cloud Storage, Secret Manager, Cloud SQL, Redis |
-| `./sources/backend.notifications` | Dịch vụ NotificationResource (REST API) |
-| `./sources/docs.security` | Tài liệu bảo mật, quy tắc OWASP, RBAC, audit log |
+## 2. Phạm vi kỹ thuật và ranh giới thư mục cho phép  
+- **Thư mục frontend**: `./sources/frontend.mobile/` – chứa mã nguồn Next.js/React, TypeScript, Capacitor, i18n, SEO meta tags.  
+- **Thư mục backend**: `./sources/backend.settings/` – Quarkus Java service, Hibernate ORM, Flyway migration, REST endpoints.  
+- **Endpoints**:  
+  - `GET /api/settings` – Lấy toàn bộ cài đặt hệ thống.  
+  - `POST /api/settings` – Tạo hoặc cập nhật cài đặt.  
+  - `GET /api/settings/:key` – Lấy cài đặt theo key.  
+  - `DELETE /api/settings/:key` – Xóa cài đặt.  
+- **Tích hợp push**: Firebase Admin SDK (FCM/APNs) và Zalo API cho thông báo.  
+- **Bảo mật**: JWT 15 phút, refresh 7 ngày, bảo vệ OWASP, mã hóa AES‑256, TLS 1.3.
 
-REST endpoint cho NotificationService:
-```
-POST /api/v1/notifications
-```
-- Body: `{ "userId": "<UUID>", "groupZalo": "<string>", "message": "<string>" }`
-- Response: `{ "notificationId": "<UUID>", "sentAt": "<timestamp>", "delivered": false }`
+## 3. Hướng dẫn chức năng dành cho các đại lý phụ trách  
+- **Coder**: Xây dựng UI, navigation, push registration, i18n, SEO meta tags, SystemSettings service, repository, entity, Flyway migration, API endpoints, JWT validation, OWASP mitigations.  
+- **Tester**: Viết unit tests cho UI (React Testing Library), integration tests cho API (RestAssured), mock external services (FCM, Zalo), kiểm tra tiêu đề bảo mật, kiểm tra JWT hết hạn, kiểm tra CRUD, kiểm tra i18n fallback.  
+- **Doc**: Tạo tài liệu kỹ thuật cho mobile UI (định nghĩa component, navigation, i18n, SEO), tài liệu API SystemSettings (định nghĩa endpoint, schema, ví dụ), hướng dẫn triển khai, checklist OWASP, lưu trữ trong `./sources/frontend.mobile/docs/` và `./sources/backend.settings/docs/`.
 
-## 3. Dedicated Sub-Agent Functional Directives
-| Agent | Trách nhiệm |
-| :--- | :--- |
-| **Docker** | Cập nhật Dockerfile, kiểm tra kích thước ảnh, thực thi build, push lên registry. |
-| **GCP** | Triển khai IaC, cấu hình IAM, VPC, Cloud Storage, Secret Manager, Cloud SQL, Redis. |
-| **Coder** | Phát triển NotificationResource, triển khai logic retry, ghi nhận trạng thái delivered, xử lý EXC‑003. |
-| **Doc** | Soạn tài liệu bảo mật, ghi nhận quy tắc OWASP, RBAC, audit log, liên kết tag. |
-| **Tester** | Kiểm tra unit, integration, và end‑to‑end cho NotificationService, Docker build, IaC deployment. |
-| **Reviewer** | Phân tích tĩnh mã, kiểm tra OWASP, bảo mật, và tuân thủ NFR. |
+## 4. Định nghĩa Hoàn thành giai đoạn (DoD)  
+- Tất cả OWASP Top 10 mitigations được triển khai và xác nhận qua static analysis (SonarQube) và dynamic tests.  
+- Coverage unit test ≥ 100 % cho `frontend.mobile` và `backend.settings`.  
+- Integration tests bao quát toàn bộ CRUD và luồng push notification.  
+- Thời gian phản hồi API ≤ 200 ms dưới tải giả lập 10 000 người dùng đồng thời.  
+- Tất cả tag yêu cầu ([REQ-020]–[REQ-023], [DAT-011]) được ánh xạ và tham chiếu trong mã và tài liệu.  
+- CRUD SystemSettings lưu trữ chính xác và ghi audit logs.  
+- Mobile UI vượt kiểm tra truy cập (WCAG 2.1 AA) và audit SEO (Google Lighthouse).  
+- Tài liệu hoàn chỉnh và lưu trữ trong thư mục docs tương ứng.
 
-## 4. Phase Definition of Done (DoD)
-- **Tất cả REQ, DAT, EXC, NFR** trong Phase 4 được triển khai, kiểm tra và ghi nhận đầy đủ.
-- **Docker image** < 500 MB, build thành công, push lên registry.
-- **IaC deployment** thành công, tài nguyên GCP khởi tạo đúng cấu hình, backup được cấu hình.
-- **NotificationService** trả về `delivered=true` sau retry tối đa 3 lần, ghi nhận log chi tiết.
-- **Tài liệu bảo mật** hoàn chỉnh, liên kết tất cả tag, kiểm tra OWASP Top 10, audit log tuân thủ NFR‑006.
-- **Coverage**: Unit test ≥ 85 %, integration test ≥ 80 %, end‑to‑end ≥ 70 %.
-- **CI/CD**: GitHub Actions chạy thành công, build, test, push, deploy.
-- **Tag mapping**: Mỗi tag trong Phase 4 xuất hiện ít nhất một lần trong logs.
+## 5. LỊCH THỰC HIỆN KIẾT THUẬT NGÀY ĐẾN NGÀY  
 
-## 5. DAY‑BY‑DAY ARCHITECTURAL EXECUTION LOGS
+### DAY 1: XÂY DỰNG GIAO DIỆN DI ĐỘNG VÀ API CÀI ĐẶT HỆ THỐNG  
 
-### DAY 1: CẬP NHẬT DOCKERFILE ĐA GIAI ĐỘNG
+#### SUB-TASK 1.1: Xây dựng giao diện di động, đăng ký push, đa ngôn ngữ, SEO  
+##### ĐẠI LÝ PHỤ TRÁCH: Coder  
+##### Thành phần mục tiêu & Yêu cầu kỹ thuật:  
+* **Đường dẫn mục tiêu**: `./sources/frontend.mobile/src/main/js/App.js`  
+* **Thẻ theo dõi**: <!--START_TAGS-->[REQ-020], [REQ-021], [REQ-022], [REQ-023], [DAT-011]<!--END_TAGS-->  
 
-#### SUB-TASK 1.1: Cập nhật Dockerfile đa giai đoạn
-##### Assigned Sub-Agent: Docker
-##### Targeted Components & Technical Requirements:
-* **Target Path**: `./sources/infra.dockerfile`
-* **Traceability Tag Tokens**: <!--START_TAGS-->[REQ-016], [NFR-006]<!--END_TAGS-->
-* **OWASP Compliance**: Sử dụng multi‑stage build, loại bỏ layer không cần thiết, chỉ giữ runtime dependencies, bảo vệ image khỏi injection.
+#### SUB-TASK 1.2: Triển khai API và schema SystemSettings  
+##### ĐẠI LÝ PHỤ TRÁCH: Coder  
+##### Thành phần mục tiêu & Yêu cầu kỹ thuật:  
+* **Đường dẫn mục tiêu**: `./sources/backend.settings/src/main/java/com/membershiphub/settings/SystemSettingsService.java`  
+* **Thẻ theo dõi**: <!--START_TAGS-->[DAT-011]<!--END_TAGS-->  
 
-### DAY 2: CẤU HÌNH TÀI NGUYÊN GCP
+### DAY 2: KIỂM THỬ VÀ TÀI LIỆU  
 
-#### SUB-TASK 2.1: Cấu hình VPC, IAM, Cloud Storage
-##### Assigned Sub-Agent: GCP
-##### Targeted Components & Technical Requirements:
-* **Target Path**: `./sources/infra.gcp`
-* **Traceability Tag Tokens**: <!--START_TAGS-->[REQ-017], [REQ-018], [NFR-009]<!--END_TAGS-->
-* **OWASP Compliance**: IAM roles được phân quyền tối thiểu, VPC firewall rules, encryption at rest, secret management.
+#### SUB-TASK 2.1: Kiểm thử đơn vị cho giao diện di động  
+##### ĐẠI LÝ PHỤ TRÁCH: Tester  
+##### Thành phần mục tiêu & Yêu cầu kỹ thuật:  
+* **Đường dẫn mục tiêu**: `./sources/frontend.mobile/src/test/js/App.test.js`  
+* **Thẻ theo dõi**: <!--START_TAGS-->[REQ-020], [REQ-021], [REQ-022], [REQ-023], [DAT-011]<!--END_TAGS-->  
 
-### DAY 3: TRIỂN KHAI DỊCH VỤ THÔNG BÁO PUSH
+#### SUB-TASK 2.2: Kiểm thử đơn vị cho API SystemSettings  
+##### ĐẠI LÝ PHỤ TRÁCH: Tester  
+##### Thành phần mục tiêu & Yêu cầu kỹ thuật:  
+* **Đường dẫn mục tiêu**: `./sources/backend.settings/src/test/java/com/membershiphub/settings/SystemSettingsServiceTest.java`  
+* **Thẻ theo dõi**: <!--START_TAGS-->[DAT-011]<!--END_TAGS-->  
 
-#### SUB-TASK 3.1: Triển khai NotificationResource
-##### Assigned Sub-Agent: Coder
-##### Targeted Components & Technical Requirements:
-* **Target Path**: `./sources/backend.notifications`
-* **Traceability Tag Tokens**: <!--START_TAGS-->[REQ-016], [DAT-008], [EXC-003]<!--END_TAGS-->
-* **OWASP Compliance**: Prepared statements, input validation, retry logic, audit logging, token sanitization.
-
-### DAY 4: GHI CHÉP QUY TẮC BẢO MẬT VÀ KIỂM TRA OWASP
-
-#### SUB-TASK 4.1: Soạn tài liệu bảo mật
-##### Assigned Sub-Agent: Doc
-##### Targeted Components & Technical Requirements:
-* **Target Path**: `./sources/docs.security`
-* **Traceability Tag Tokens**: <!--START_TAGS-->[REQ-017], [REQ-018], [DAT-008], [EXC-003], [NFR-006], [NFR-009]<!--END_TAGS-->
-* **OWASP Compliance**: Ghi nhận các biện pháp bảo vệ, audit log, RBAC, encryption, backup, disaster recovery.
+#### SUB-TASK 2.3: Tài liệu kỹ thuật cho mobile UI và SystemSettings  
+##### ĐẠI LÝ PHỤ TRÁCH: Doc  
+##### Thành phần mục tiêu & Yêu cầu kỹ thuật:  
+* **Đường dẫn mục tiêu**: `./sources/frontend.mobile/docs/README.md` và `./sources/backend.settings/docs/README.md`  
+* **Thẻ theo dõi**: <!--START_TAGS-->[REQ-020], [DAT-011]<!--END_TAGS-->

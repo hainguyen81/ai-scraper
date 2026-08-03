@@ -1,155 +1,107 @@
-# Giai đoạn 2: <!--PHASE_NAME_START-->phase2_centers_courses_enrollments<!--PHASE_NAME_END--> | Mô tả: Triển khai các dịch vụ quản lý trung tâm, khóa học, ghi danh, khuyến mãi và thông báo, bao gồm thiết kế schema, API, và tuân thủ OWASP, NFR, và mapping tag đầy đủ.
+# Giai đoạn 2: <!--PHASE_NAME_START-->courseEnrollmentAttendanceCard<!--PHASE_NAME_END--> | Mô tả: Giai đoạn 2 tập trung vào xây dựng và triển khai các mô-đun khóa học, ghi danh, điểm danh và thẻ hội viên, bao gồm thiết kế schema, API, logic nghiệp vụ, kiểm thử, và tuân thủ các tiêu chuẩn bảo mật OWASP.
 
 ## 📊 Document Control
 
 | Mục | Chi tiết |
 | :--- | :--- |
-| **Mã Blueprint** | ARCH-20260803132420 |
-| **Tên Dự án** | membership-hub |
+| **ID Kiến trúc** | ARCH-20260803170121 |
+| **Tên dự án** | membership-hub |
 | **Giai đoạn** | 2 |
-| **Tên Giai đoạn Kỹ thuật** | <!--PHASE_NAME_START-->phase2_centers_courses_enrollments<!--PHASE_NAME_END--> |
-| **Mô tả** | Triển khai các dịch vụ quản lý trung tâm, khóa học, ghi danh, khuyến mãi và thông báo, bao gồm thiết kế schema, API, và tuân thủ OWASP, NFR, và mapping tag đầy đủ. |
+| **Tên giai đoạn kỹ thuật** | <!--PHASE_NAME_START-->courseEnrollmentAttendanceCard<!--PHASE_NAME_END--> |
+| **Mô tả** | Giai đoạn 2 tập trung vào xây dựng và triển khai các mô-đun khóa học, ghi danh, điểm danh và thẻ hội viên, bao gồm thiết kế schema, API, logic nghiệp vụ, kiểm thử, và tuân thủ các tiêu chuẩn bảo mật OWASP. |
 | **Phiên bản** | 1.0 (Baseline) |
-| **Ngày/Giờ** | 2026/08/03 13:24:20 |
+| **Ngày/Thời gian** | 2026/08/03 17:01:21 |
 | **Tác giả** | Enterprise System Architect (SA Agent) |
 | **Phê duyệt** | Pending Technical Governance Review |
 
-## 1. Phạm vi và Mục tiêu Giai đoạn
-Giai đoạn 2 tập trung vào triển khai các dịch vụ backend cho quản lý trung tâm, khóa học, ghi danh, khuyến mãi và thông báo. Các thành phần chính bao gồm:
-- **Dịch vụ Trung tâm** (`./sources/backend.centers`) – CRUD, kiểm tra duy nhất cho `taxId`, áp dụng OWASP A01-A10, bảo vệ dữ liệu nhạy cảm, sử dụng prepared statements, kiểm tra đầu vào, logging audit.
-- **Dịch vụ Khóa học** (`./sources/backend.courses`) – CRUD, kiểm tra xung đột lịch dạy, áp dụng OWASP A01-A10, bảo vệ dữ liệu nhạy cảm, logging audit.
-- **Dịch vụ Ghi danh** (`./sources/backend.enrollments`) – CRUD, kiểm tra khả năng, áp dụng OWASP A01-A10, bảo vệ dữ liệu nhạy cảm, logging audit.
-- **Dịch vụ Khuyến mãi & Thông báo** (`./sources/backend.promotions`) – CRUD cho bảng `PROMOTIONS` và `ANNOUNCEMENTS`, áp dụng OWASP A01-A10, bảo vệ dữ liệu nhạy cảm, logging audit.
+## 1. Phạm vi và mục tiêu giai đoạn
+Giai đoạn 2 thực hiện toàn bộ chức năng liên quan đến quản lý khóa học, ghi danh học viên, điểm danh qua QR và quản lý thẻ hội viên. Các nhiệm vụ chính bao gồm:
+- Thiết kế và triển khai schema PostgreSQL cho bảng `COURSES`, `ENROLLMENTS`, `ATTENDANCE`, `STUDENTCARDS`.
+- Xây dựng dịch vụ REST (`CourseService`, `EnrollmentService`, `AttendanceService`, `CardService`) với logic nghiệp vụ, kiểm tra xung đột lịch, tính tính chất bất biến điểm danh và tính hợp lệ thẻ.
+- Tích hợp bảo mật OWASP (prepared statements, input validation, CSRF tokens, rate limiting) và tuân thủ NFR về hiệu năng, bảo mật, và bảo mật dữ liệu.
+- Viết unit test đầy đủ cho từng dịch vụ, đạt 100% coverage, và thực hiện review mã nguồn để đảm bảo tuân thủ OWASP Top 10.
+- Đảm bảo tất cả các Tag ID được ánh xạ đầy đủ và ghi nhận trong nhật ký thực thi.
 
-## 2. Phạm vi Kỹ thuật & Ranh giới Thư mục
-| Đường dẫn | Mô tả |
+## 2. Phạm vi kỹ thuật và ranh giới thư mục
+| Đường dẫn thư mục | Mô tả |
 | :--- | :--- |
-| `./sources/backend.centers` | Dịch vụ quản lý trung tâm, bao gồm `CenterResource`, `CenterService`, `CenterRepository`. |
-| `./sources/backend.courses` | Dịch vụ quản lý khóa học, bao gồm `CourseResource`, `CourseService`, `CourseRepository`. |
-| `./sources/backend.enrollments` | Dịch vụ quản lý ghi danh, bao gồm `EnrollmentResource`, `EnrollmentService`, `EnrollmentRepository`. |
-| `./sources/backend.promotions` | Dịch vụ quản lý khuyến mãi và thông báo, bao gồm `PromotionResource`, `AnnouncementResource`, `PromotionService`, `AnnouncementService`. |
-| **REST Endpoints** | `GET /api/v1/centers`, `POST /api/v1/centers`, `PUT /api/v1/centers/{id}`, `DELETE /api/v1/centers/{id}`; `GET /api/v1/courses`, `POST /api/v1/courses`, `PUT /api/v1/courses/{id}`, `DELETE /api/v1/courses/{id}`; `GET /api/v1/enrollments`, `POST /api/v1/enrollments`; `POST /api/v1/promotions`, `PUT /api/v1/promotions/{id}`, `POST /api/v1/announcements`, `PUT /api/v1/announcements/{id}`. |
+| `./sources/backend.course/` | Dịch vụ, controller, repository, DTO cho khóa học. |
+| `./sources/backend.enrollment/` | Dịch vụ, controller, repository, DTO cho ghi danh. |
+| `./sources/backend.attendance/` | Dịch vụ, controller, repository, DTO cho điểm danh. |
+| `./sources/backend.card/` | Dịch vụ, controller, repository, DTO cho thẻ hội viên. |
+| Endpoints | `/api/courses`, `/api/enrollments`, `/api/attendance`, `/api/cards` |
 
-## 3. Hướng dẫn chức năng dành cho Sub-Agent
-| Sub-Agent | Trách nhiệm |
-| :--- | :--- |
-| **Coder** | Triển khai mã nguồn Java/Kotlin, cấu hình Quarkus, bảo mật JWT, mã hóa BCrypt, tạo Dockerfile, triển khai API, bảo vệ dữ liệu, logging audit. |
-| **Tester** | Viết và thực thi các test tích hợp, unit, và end‑to‑end cho từng dịch vụ, sử dụng pair syntax `<source file>;<test file>`. |
-| **Reviewer** | Thực hiện static code analysis (SonarQube), kiểm tra OWASP, chạy unit test, đảm bảo coverage ≥ 85 %. |
-| **Doc** | Biên soạn tài liệu API (OpenAPI), ghi chú trong `./sources/docs.api`, cập nhật DDL, mô tả chi tiết. |
+## 3. Hướng dẫn chức năng đại lý phụ
+- **Coder**: Xây dựng lớp dịch vụ, controller, repository, DTO, và logic nghiệp vụ; triển khai bảo mật OWASP; tạo DDL SQL; viết mã theo chuẩn Quarkus và Hibernate.  
+- **Tester**: Viết unit test cho từng dịch vụ, kiểm tra tính đúng đắn, độ an toàn, và độ tin cậy; đạt 100% coverage; sử dụng Testcontainers cho PostgreSQL.  
+- **Reviewer**: Kiểm tra mã nguồn, thực hiện static analysis, xác nhận tuân thủ OWASP Top 10, tối ưu hiệu năng, và ghi nhận audit logs.  
+- **Doc**: Tạo tài liệu API, mô hình dữ liệu, hướng dẫn triển khai; cập nhật README và tài liệu bảo mật.  
 
-## 4. Định nghĩa Hoàn thành Giai đoạn (DoD)
-- Tất cả các endpoint CRUD đã triển khai và đáp ứng yêu cầu chức năng.
-- DDL cho các bảng `CENTERS`, `COURSES`, `ENROLLMENTS`, `PROMOTIONS`, `ANNOUNCEMENTS` đã được tạo và kiểm tra.
-- Tất cả các endpoint đã được kiểm tra unit, integration, và end‑to‑end với coverage ≥ 85 %.
-- Đảm bảo tuân thủ OWASP Top 10 (A01-A10) cho toàn bộ dịch vụ.
-- Tất cả tag ID trong Phase 2 đã được ánh xạ chính xác (≥ 100 %).
-- Đã thực hiện audit log cho mọi thao tác thay đổi dữ liệu.
-- Đã triển khai Docker image cho từng dịch vụ, kích thước < 500 MB.
+## 4. Định nghĩa Hoàn thành (DoD)
+- 100% test coverage cho tất cả các dịch vụ thuộc Phase 2.  
+- Mọi API đáp ứng tiêu chuẩn OWASP (prepared statements, input validation, CSRF, rate limiting).  
+- Tất cả các Tag ID (REQ‑007…REQ‑015, ARC‑007…ARC‑009, DAT‑004…DAT‑007, EXC‑001, EXC‑002, NFR‑001, NFR‑003, NFR‑005, NFR‑006, NFR‑007, NFR‑008) được ghi nhận trong nhật ký thực thi.  
+- Schema PostgreSQL được triển khai thành công, các constraint và index phù hợp.  
+- Đánh giá bảo mật đạt mức 0 điểm rủi ro OWASP Top 10.  
 
-## 5. Nhật ký Thực thi Kiến trúc theo Ngày
+## 5. DAY-BY-DAY ARCHITECTURAL EXECUTION LOGS
 
-### DAY 1: TRIỂN KHAI DỊCH VỤ TRUNG TÂM
+### DAY 1: XÂY DỰNG MÔ-ĐUN KHÓA HỌC
 
-#### Sub-Task 1.1: Triển khai endpoint CRUD cho trung tâm, kiểm tra duy nhất cho taxId, áp dụng OWASP A01-A10, bảo vệ dữ liệu nhạy cảm, sử dụng prepared statements, kiểm tra đầu vào, logging audit.
-##### Nhân viên phụ trách: Coder
-##### Yêu cầu thành phần & kỹ thuật:
-* **Đường dẫn mục tiêu**: `./sources/backend.centers/org/nlh4j/sources/centers/CenterResource.java`
-* **Thẻ theo dõi**: <!--START_TAGS-->[REQ-004], [DAT-003], [NFR-002], [NFR-004]<!--END_TAGS-->
+#### SUB-TASK 1.1: Xây dựng CourseService, CRUD khóa học và kiểm tra xung đột lịch
+##### Đại lý phụ được giao: Coder
+##### Thành phần và yêu cầu kỹ thuật được nhắm tới:
+* **Đường dẫn mục tiêu**: `./sources/backend.course/src/main/java/com/membershiphub/course/CourseService.java`
+* **Thẻ theo dõi**: <!--START_TAGS-->[REQ-007], [REQ-008], [REQ-009], [ARC-007], [ARC-008], [ARC-009], [DAT-004], [EXC-001], [EXC-002], [NFR-001], [NFR-003], [NFR-005], [NFR-006], [NFR-007], [NFR-008]<!--END_TAGS-->
 
-### DAY 2: TRIỂN KHAI DỊCH VỤ KHÓA HỌC VÀ GHI DANH
+#### SUB-TASK 1.2: Viết unit test cho CourseService
+##### Đại lý phụ được giao: Tester
+##### Thành phần và yêu cầu kỹ thuật được nhắm tới:
+* **Đường dẫn mục tiêu**: `./sources/backend.course/src/test/java/com/membershiphub/course/CourseServiceTest.java`
+* **Thẻ theo dõi**: <!--START_TAGS-->[REQ-007], [REQ-008], [REQ-009], [ARC-007], [ARC-008], [ARC-009], [DAT-004], [EXC-001], [EXC-002], [NFR-001], [NFR-003], [NFR-005], [NFR-006], [NFR-007], [NFR-008]<!--END_TAGS-->
 
-#### Sub-Task 2.1: Triển khai endpoint CRUD cho khóa học, kiểm tra xung đột lịch dạy, áp dụng OWASP A01-A10, bảo vệ dữ liệu nhạy cảm, logging audit.
-##### Nhân viên phụ trách: Coder
-##### Yêu cầu thành phần & kỹ thuật:
-* **Đường dẫn mục tiêu**: `./sources/backend.courses/org/nlh4j/sources/courses/CourseResource.java`
-* **Thẻ theo dõi**: <!--START_TAGS-->[REQ-007], [DAT-004], [NFR-002], [NFR-004]<!--END_TAGS-->
+#### SUB-TASK 1.3: Review CourseService cho tuân thủ OWASP và hiệu năng
+##### Đại lý phụ được giao: Reviewer
+##### Thành phần và yêu cầu kỹ thuật được nhắm tới:
+* **Đường dẫn mục tiêu**: `./sources/backend.course/src/main/java/com/membershiphub/course/CourseService.java`
+* **Thẻ theo dõi**: <!--START_TAGS-->[REQ-007], [REQ-008], [REQ-009], [ARC-007], [ARC-008], [ARC-009], [DAT-004], [EXC-001], [EXC-002], [NFR-001], [NFR-003], [NFR-005], [NFR-006], [NFR-007], [NFR-008]<!--END_TAGS-->
 
-#### Sub-Task 2.2: Triển khai endpoint CRUD cho ghi danh, kiểm tra khả năng, áp dụng OWASP A01-A10, bảo vệ dữ liệu nhạy cảm, logging audit.
-##### Nhân viên phụ trách: Coder
-##### Yêu cầu thành phần & kỹ thuật:
-* **Đường dẫn mục tiêu**: `./sources/backend.enrollments/org/nlh4j/sources/enrollments/EnrollmentResource.java`
-* **Thẻ theo dõi**: <!--START_TAGS-->[REQ-010], [DAT-005], [NFR-002], [NFR-004]<!--END_TAGS-->
+### DAY 2: XÂY DỰNG MÔ-ĐUN GHI DANH
 
-### DAY 3: TRIỂN KHAI DỊCH VỤ KHƯƠNG MÃ & THÔNG BÁO
+#### SUB-TASK 2.1: Xây dựng EnrollmentService, logic ghi danh và kiểm tra quyền
+##### Đại lý phụ được giao: Coder
+##### Thành phần và yêu cầu kỹ thuật được nhắm tới:
+* **Đường dẫn mục tiêu**: `./sources/backend.enrollment/src/main/java/com/membershiphub/enrollment/EnrollmentService.java`
+* **Thẻ theo dõi**: <!--START_TAGS-->[REQ-010], [REQ-011], [ARC-007], [ARC-008], [ARC-009], [DAT-005], [EXC-001], [EXC-002], [NFR-001], [NFR-003], [NFR-005], [NFR-006], [NFR-007], [NFR-008]<!--END_TAGS-->
 
-#### Sub-Task 3.1: Triển khai endpoint CRUD cho khuyến mãi và thông báo, áp dụng OWASP A01-A10, bảo vệ dữ liệu nhạy cảm, logging audit.
-##### Nhân viên phụ trách: Coder
-##### Yêu cầu thành phần & kỹ thuật:
-* **Đường dẫn mục tiêu**: `./sources/backend.promotions/org/nlh4j/sources/promotions/PromotionResource.java`
-* **Thẻ theo dõi**: <!--START_TAGS-->[REQ-017], [REQ-018], [DAT-009], [NFR-002], [NFR-004]<!--END_TAGS-->
+#### SUB-TASK 2.2: Viết unit test cho EnrollmentService
+##### Đại lý phụ được giao: Tester
+##### Thành phần và yêu cầu kỹ thuật được nhắm tới:
+* **Đường dẫn mục tiêu**: `./sources/backend.enrollment/src/test/java/com/membershiphub/enrollment/EnrollmentServiceTest.java`
+* **Thẻ theo dõi**: <!--START_TAGS-->[REQ-010], [REQ-011], [ARC-007], [ARC-008], [ARC-009], [DAT-005], [EXC-001], [EXC-002], [NFR-001], [NFR-003], [NFR-005], [NFR-006], [NFR-007], [NFR-008]<!--END_TAGS-->
 
-## Database Schema DDL SQL Specification
+#### SUB-TASK 2.3: Review EnrollmentService cho bảo mật và hiệu năng
+##### Đại lý phụ được giao: Reviewer
+##### Thành phần và yêu cầu kỹ thuật được nhắm tới:
+* **Đường dẫn mục tiêu**: `./sources/backend.enrollment/src/main/java/com/membershiphub/enrollment/EnrollmentService.java`
+* **Thẻ theo dõi**: <!--START_TAGS-->[REQ-010], [REQ-011], [ARC-007], [ARC-008], [ARC-009], [DAT-005], [EXC-001], [EXC-002], [NFR-001], [NFR-003], [NFR-005], [NFR-006], [NFR-007], [NFR-008]<!--END_TAGS-->
 
-```sql
--- [DAT-003] Centers
-CREATE TABLE CENTERS (
-    centerId UUID PRIMARY KEY,
-    name VARCHAR(100) NOT NULL,
-    address VARCHAR(255) NOT NULL,
-    taxId VARCHAR(20) NOT NULL UNIQUE,
-    contactPhone VARCHAR(30),
-    contactEmail VARCHAR(255)
-);
-```
+### DAY 3: XÂY DỰNG MÔ-ĐUN ĐIỂM DANH VÀ THẺ
 
-```sql
--- [DAT-004] Courses
-CREATE TABLE COURSES (
-    courseId UUID PRIMARY KEY,
-    title VARCHAR(150) NOT NULL,
-    description TEXT,
-    startDate DATE NOT NULL,
-    endDate DATE NOT NULL,
-    teacherId UUID NOT NULL REFERENCES USERS(userId),
-    maxStudents INT NOT NULL DEFAULT 30
-);
-```
+#### SUB-TASK 3.1: Xây dựng AttendanceService và CardService, logic điểm danh bất biến và tính hợp lệ thẻ
+##### Đại lý phụ được giao: Coder
+##### Thành phần và yêu cầu kỹ thuật được nhắm tới:
+* **Đường dẫn mục tiêu**: `./sources/backend.attendance/src/main/java/com/membershiphub/attendance/AttendanceService.java`, `./sources/backend.card/src/main/java/com/membershiphub/card/CardService.java`
+* **Thẻ theo dõi**: <!--START_TAGS-->[REQ-012], [REQ-013], [REQ-014], [REQ-015], [ARC-007], [ARC-008], [ARC-009], [DAT-006], [DAT-007], [EXC-001], [EXC-002], [NFR-001], [NFR-003], [NFR-005], [NFR-006], [NFR-007], [NFR-008]<!--END_TAGS-->
 
-```sql
--- [DAT-005] Enrollments
-CREATE TABLE ENROLLMENTS (
-    enrollmentId UUID PRIMARY KEY,
-    studentId UUID NOT NULL REFERENCES USERS(userId),
-    courseId UUID NOT NULL REFERENCES COURSES(courseId),
-    enrollmentDate TIMESTAMP NOT NULL DEFAULT NOW(),
-    UNIQUE(studentId, courseId)
-);
-```
+#### SUB-TASK 3.2: Viết unit test cho AttendanceService và CardService
+##### Đại lý phụ được giao: Tester
+##### Thành phần và yêu cầu kỹ thuật được nhắm tới:
+* **Đường dẫn mục tiêu**: `./sources/backend.attendance/src/test/java/com/membershiphub/attendance/AttendanceServiceTest.java`, `./sources/backend.card/src/test/java/com/membershiphub/card/CardServiceTest.java`
+* **Thẻ theo dõi**: <!--START_TAGS-->[REQ-012], [REQ-013], [REQ-014], [REQ-015], [ARC-007], [ARC-008], [ARC-009], [DAT-006], [DAT-007], [EXC-001], [EXC-002], [NFR-001], [NFR-003], [NFR-005], [NFR-006], [NFR-007], [NFR-008]<!--END_TAGS-->
 
-```sql
--- [DAT-009] Promotions & Announcements
-CREATE TABLE PROMOTIONS (
-    promoId UUID PRIMARY KEY,
-    code VARCHAR(30) NOT NULL UNIQUE,
-    discountPercent SMALLINT NOT NULL,
-    startDate DATE,
-    endDate DATE,
-    description TEXT
-);
-
-CREATE TABLE ANNOUNCEMENTS (
-    announcementId UUID PRIMARY KEY,
-    title VARCHAR(150) NOT NULL,
-    content TEXT NOT NULL,
-    startDate DATE,
-    endDate DATE
-);
-```
-
-## API and Event Routing Contracts
-
-- `GET /api/v1/centers` – trả về danh sách trung tâm.
-- `POST /api/v1/centers` – tạo trung tâm mới, kiểm tra trùng `taxId`.
-- `PUT /api/v1/centers/{id}` – cập nhật trung tâm.
-- `DELETE /api/v1/centers/{id}` – xóa trung tâm.
-- `GET /api/v1/courses` – trả về danh sách khóa học.
-- `POST /api/v1/courses` – tạo khóa học, kiểm tra xung đột lịch dạy.
-- `PUT /api/v1/courses/{id}` – cập nhật khóa học.
-- `DELETE /api/v1/courses/{id}` – xóa khóa học.
-- `GET /api/v1/enrollments` – trả về danh sách ghi danh.
-- `POST /api/v1/enrollments` – ghi danh vào khóa học, tự động tạo tài khoản học viên nếu chưa tồn tại.
-- `POST /api/v1/promotions` – tạo khuyến mãi mới.
-- `PUT /api/v1/promotions/{id}` – cập nhật khuyến mãi.
-- `POST /api/v1/announcements` – tạo thông báo mới.
-- `PUT /api/v1/announcements/{id}` – cập nhật thông báo.
+#### SUB-TASK 3.3: Review AttendanceService và CardService cho bảo mật và hiệu năng
+##### Đại lý phụ được giao: Reviewer
+##### Thành phần và yêu cầu kỹ thuật được nhắm tới:
+* **Đường dẫn mục tiêu**: `./sources/backend.attendance/src/main/java/com/membershiphub/attendance/AttendanceService.java`, `./sources/backend.card/src/main/java/com/membershiphub/card/CardService.java`
+* **Thẻ theo dõi**: <!--START_TAGS-->[REQ-012], [REQ-013], [REQ-014], [REQ-015], [ARC-007], [ARC-008], [ARC-009], [DAT-006], [DAT-007], [EXC-001], [EXC-002], [NFR-001], [NFR-003], [NFR-005], [NFR-006], [NFR-007], [NFR-008]<!--END_TAGS-->

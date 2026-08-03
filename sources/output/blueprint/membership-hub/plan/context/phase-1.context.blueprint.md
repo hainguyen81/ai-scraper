@@ -1,69 +1,111 @@
-# Giai đoạn 1: <!--PHASE_NAME_START-->phase1_userAuthDocker<!--PHASE_NAME_END--> | Mô tả: Xây dựng nền tảng người dùng, xác thực OAuth2, và cấu hình Docker/GCP ban đầu cho hệ thống membership-hub.  
-## 📊 Document Control  
+# Giai đoạn 1: <!--PHASE_NAME_START-->authUserCenterSetup<!--PHASE_NAME_END--> | Mô tả: Thiết lập xác thực, quản lý người dùng và trung tâm, bao gồm đăng ký, đăng nhập, phân quyền, CRUD trung tâm, và cấu hình JWT, OAuth2, cùng các biện pháp bảo mật OWASP.
 
-| Mục | Chi tiết |  
-| :--- | :--- |  
-| **Mã Blueprint** | ARCH-20260803132420 |  
-| **Tên Dự án** | membership-hub |  
-| **Giai đoạn** | 1 |  
-| **Tên Giai đoạn Kỹ thuật** | <!--PHASE_NAME_START-->phase1_userAuthDocker<!--PHASE_NAME_END--> |  
-| **Mô tả** | Xây dựng nền tảng người dùng, xác thực OAuth2, và cấu hình Docker/GCP ban đầu cho hệ thống membership-hub. |  
-| **Phiên bản** | 1.0 (Baseline) |  
-| **Ngày/Giờ** | 2026/08/03 13:24:20 |  
-| **Tác giả** | Enterprise System Architect (SA Agent) |  
-| **Phê duyệt** | Pending Technical Governance Review |  
+## 📊 Document Control
 
-## 1. Phạm vi và Mục tiêu Giai đoạn  
-Giai đoạn 1 tập trung vào việc triển khai hai dịch vụ cốt lõi: **User Service** và **Auth Service**. Các dịch vụ này cung cấp API đăng ký, đăng nhập, và lấy thông tin người dùng, đồng thời tích hợp OAuth2 với Firebase, Google, và Facebook. Ngoài ra, giai đoạn còn xây dựng Dockerfile đa giai đoạn và cấu hình tài nguyên GCP ban đầu (VPC, Cloud SQL, Redis, Secret Manager). Mọi thành phần phải tuân thủ nguyên tắc OWASP Top 10, bảo mật JWT, và bảo vệ dữ liệu nhạy cảm.  
+| Mục | Chi tiết |
+| :--- | :--- |
+| **ID Kiến trúc** | ARCH-20260803170121 |
+| **Tên dự án** | membership-hub |
+| **Giai đoạn** | 1 |
+| **Tên giai đoạn kỹ thuật** | <!--PHASE_NAME_START-->authUserCenterSetup<!--PHASE_NAME_END--> |
+| **Mô tả** | Thiết lập xác thực, quản lý người dùng và trung tâm, bao gồm đăng ký, đăng nhập, phân quyền, CRUD trung tâm, và cấu hình JWT, OAuth2, cùng các biện pháp bảo mật OWASP. |
+| **Phiên bản** | 1.0 (Baseline) |
+| **Ngày/Thời gian** | 2026/08/03 17:01:21 |
+| **Tác giả** | Enterprise System Architect (SA Agent) |
+| **Phê duyệt** | Pending Technical Governance Review |
 
-## 2. Phạm vi Kỹ thuật & Ranh giới Thư mục  
-- **Backend**  
-  - `./sources/backend.users` – Resource `UserResource`, entity `User`, repository `UserRepository`.  
-  - `./sources/backend.auth` – Resource `AuthResource`, service `AuthService`, event `UserAuthenticatedEvent`.  
-- **Infrastructure**  
-  - `./sources/infra.dockerfile` – Dockerfile đa giai đoạn cho cả `users` và `auth`.  
-  - `./sources/infra.gcp` – Terraform/IaC cho VPC, Cloud SQL, Redis, Secret Manager.  
-- **REST Endpoints**  
-  - `POST /api/v1/auth/register` – đăng ký người dùng.  
-  - `POST /api/v1/auth/social` – đăng nhập bằng OAuth2.  
-  - `GET /api/v1/auth/me` – lấy thông tin người dùng hiện tại.  
-  - `POST /api/v1/users` – endpoint đăng ký (được dùng trong test).  
+## 1. Phạm vi và mục tiêu của giai đoạn
+Giai đoạn 1 triển khai toàn bộ chức năng xác thực, quản lý người dùng và quản lý trung tâm. Các thành phần chính bao gồm:
+- **Auth**: đăng ký, đăng nhập, OAuth2 (Firebase, Google, Facebook), phát JWT, refresh token, exception handling, bảo mật OWASP.
+- **User**: CRUD người dùng, phân quyền (System Admin, Center Admin, Manager, Teacher, Student), lưu trữ bảng USERS & ROLES.
+- **Center**: CRUD trung tâm, gán/huỷ Center Admin, lưu trữ bảng CENTERS.
+- **Database**: DDL cho USERS, ROLES, CENTERS, các ràng buộc khóa ngoại.
+- **Testing**: Unit test cho AuthService, UserService, CenterService.
+- **Review**: Kiểm tra tuân thủ OWASP, static analysis, audit logging.
+- **Documentation**: API spec, data model, deployment guide.
 
-## 3. Chỉ đạo Chức năng Đặc thù Agent  
-- **Coder**: triển khai mã nguồn Java/Kotlin, cấu hình Quarkus, bảo mật JWT, mã hóa BCrypt, tạo Dockerfile.  
-- **Reviewer**: thực hiện static code analysis (SonarQube), kiểm tra OWASP, chạy unit test, kiểm tra coverage ≥ 85 %.  
-- **Doc**: biên soạn tài liệu API (OpenAPI), ghi chú trong `./sources/docs.api`.  
+## 2. Phạm vi kỹ thuật và ranh giới thư mục
+| Đường dẫn thư mục | Mô tả |
+| :--- | :--- |
+| `./sources/backend.auth/` | Các lớp dịch vụ, controller, repository, cấu hình JWT, OAuth2. |
+| `./sources/backend.user/` | UserService, RoleService, UserRepository, DTOs. |
+| `./sources/backend.center/` | CenterService, CenterRepository, DTOs. |
+| `./sources/backend.auth/src/main/java/...` | Đường dẫn Java package `org.nlh4j.saas.membershiphub.auth`. |
+| `./sources/backend.user/src/main/java/...` | Đường dẫn Java package `org.nlh4j.saas.membershiphub.user`. |
+| `./sources/backend.center/src/main/java/...` | Đường dẫn Java package `org.nlh4j.saas.membershiphub.center`. |
+| Endpoints | `/api/auth/register`, `/api/auth/login`, `/api/users`, `/api/centers`. |
 
-## 4. Định nghĩa Hoàn thành Giai đoạn  
-- Tất cả yêu cầu [REQ-001], [REQ-002], [REQ-003] được triển khai và kiểm thử thành công.  
-- Mọi tag trong Phase 1 được ánh xạ chính xác (25 tag).  
-- Đạt OWASP compliance: SQLi, XSS, CSRF, JWT, TLS 1.3.  
-- Coverage unit test ≥ 85 % cho `users` và `auth`.  
-- Docker image size < 500 MB.  
-- GCP IaC triển khai thành công, các tài nguyên được ghi nhận trong `./sources/infra.gcp`.  
+## 3. Hướng dẫn chức năng của các đại lý phụ
+- **Coder**: Xây dựng các lớp dịch vụ, controller, repository, cấu hình bảo mật, DDL, exception handlers.
+- **Tester**: Viết unit test cho các dịch vụ, kiểm tra tính đúng đắn, độ an toàn, và độ tin cậy.
+- **Reviewer**: Kiểm tra tuân thủ OWASP, static analysis, audit logging, bảo mật dữ liệu.
+- **Doc**: Tạo tài liệu API, mô hình dữ liệu, hướng dẫn triển khai, ghi chú bảo mật.
 
-## 5. Nhật ký Thực thi Kiến trúc Theo Ngày  
+## 4. Định nghĩa Hoàn thành (DoD)
+- 100% coverage test cho AuthService, UserService, CenterService.
+- Tất cả các yêu cầu [REQ-001]–[REQ-006], [ARC-001]–[ARC-006], [DAT-001], [DAT-003], [EXC-004] được triển khai và kiểm tra.
+- Đảm bảo tuân thủ OWASP Top 10, bảo mật JWT, refresh token, logging audit.
+- DDL được áp dụng thành công trên PostgreSQL, các ràng buộc khóa ngoại hoạt động.
+- Tất cả tag ID được ánh xạ đầy đủ, không còn tag chưa được triển khai.
 
-### DAY 1: XÂY DỰNG DỊCH VỤ NGƯỜI DÙNG  
+## 5. Nhật ký thực thi kiến trúc theo ngày
 
-#### SUB-TASK 1.1: Triển khai UserResource và User entity  
-##### Assigned Sub-Agent: Coder  
-##### Targeted Components & Technical Requirements:  
-* **Đường dẫn**: `./sources/backend.users`  
-* **Thẻ Định danh**: <!--START_TAGS-->[REQ-001], [DAT-001], [EXC-004]<!--END_TAGS-->  
+### DAY 1: XUẤT HIỆN HỆ THỐNG XÁC THỰC
 
-### DAY 2: XÂY DỰNG DỊCH VỤ XÁC THỰC OAuth2  
+#### SUB-TASK 1.1: Xây dựng AuthService, JWTProvider, OAuth2Config
+##### Đối tượng phụ được giao: Coder
+##### Thành phần và yêu cầu kỹ thuật:
+* **Đường dẫn mục tiêu**: `./sources/backend.auth/src/main/java/org/nlh4j/saas/membershiphub/auth/AuthService.java`
+* **Thẻ theo dõi**: <!--START_TAGS-->[REQ-001], [REQ-002], [REQ-003], [ARC-001], [ARC-006], [DAT-001], [EXC-004], [NFR-001], [NFR-003], [NFR-005], [NFR-006], [NFR-007], [NFR-008]<!--END_TAGS-->
 
-#### SUB-TASK 2.1: Triển khai AuthResource và AuthService  
-##### Assigned Sub-Agent: Coder  
-##### Targeted Components & Technical Requirements:  
-* **Đường dẫn**: `./sources/backend.auth`  
-* **Thẻ Định danh**: <!--START_TAGS-->[REQ-002], [ARC-006], [EXC-004]<!--END_TAGS-->  
+#### SUB-TASK 1.2: Xây dựng AuthController, exception handler
+##### Đối tượng phụ được giao: Coder
+##### Thành phần và yêu cầu kỹ thuật:
+* **Đường dẫn mục tiêu**: `./sources/backend.auth/src/main/java/org/nlh4j/saas/membershiphub/auth/AuthController.java`
+* **Thẻ theo dõi**: <!--START_TAGS-->[REQ-001], [REQ-002], [REQ-003], [ARC-001], [ARC-006], [DAT-001], [EXC-004], [NFR-001], [NFR-003], [NFR-005], [NFR-006], [NFR-007], [NFR-008]<!--END_TAGS-->
 
-### DAY 3: ĐÁNH GIÁ CHẤT LƯỢNG MÃ VÀ KIỂM TRA BẢO MẬT  
+#### SUB-TASK 1.3: Tài liệu API Auth
+##### Đối tượng phụ được giao: Doc
+##### Thành phần và yêu cầu kỹ thuật:
+* **Đường dẫn mục tiêu**: `./sources/backend.auth/docs/AuthAPI.md`
+* **Thẻ theo dõi**: <!--START_TAGS-->[REQ-001], [REQ-002], [REQ-003], [ARC-001], [ARC-006], [DAT-001], [EXC-004], [NFR-001], [NFR-003], [NFR-005], [NFR-006], [NFR-007], [NFR-008]<!--END_TAGS-->
 
-#### SUB-TASK 3.1: Kiểm tra static code, unit test, coverage, và Docker build  
-##### Assigned Sub-Agent: Reviewer  
-##### Targeted Components & Technical Requirements:  
-* **Đường dẫn**: `./sources/backend.users`  
-* **Thẻ Định danh**: <!--START_TAGS-->[REQ-001], [REQ-002], [DAT-001], [NFR-001], [NFR-006], [EXC-004]<!--END_TAGS-->
+### DAY 2: XUẤT HIỆN QUẢN LÝ NGƯỜI DÙNG VÀ TRUNG TÂM
+
+#### SUB-TASK 2.1: Xây dựng UserService, RoleService, UserRepository
+##### Đối tượng phụ được giao: Coder
+##### Thành phần và yêu cầu kỹ thuật:
+* **Đường dẫn mục tiêu**: `./sources/backend.user/src/main/java/org/nlh4j/saas/membershiphub/user/UserService.java`
+* **Thẻ theo dõi**: <!--START_TAGS-->[REQ-004], [REQ-005], [REQ-006], [ARC-002], [ARC-003], [ARC-004], [ARC-005], [DAT-001], [EXC-004], [NFR-001], [NFR-003], [NFR-005], [NFR-006], [NFR-007], [NFR-008]<!--END_TAGS-->
+
+#### SUB-TASK 2.2: Xây dựng CenterService, CenterRepository
+##### Đối tượng phụ được giao: Coder
+##### Thành phần và yêu cầu kỹ thuật:
+* **Đường dẫn mục tiêu**: `./sources/backend.center/src/main/java/org/nlh4j/saas/membershiphub/center/CenterService.java`
+* **Thẻ theo dõi**: <!--START_TAGS-->[REQ-004], [REQ-005], [REQ-006], [ARC-002], [ARC-003], [ARC-004], [ARC-005], [DAT-003], [EXC-004], [NFR-001], [NFR-003], [NFR-005], [NFR-006], [NFR-007], [NFR-008]<!--END_TAGS-->
+
+#### SUB-TASK 2.3: Tài liệu mô hình dữ liệu Users, Roles, Centers
+##### Đối tượng phụ được giao: Doc
+##### Thành phần và yêu cầu kỹ thuật:
+* **Đường dẫn mục tiêu**: `./sources/backend.user/docs/DataModel.md`
+* **Thẻ theo dõi**: <!--START_TAGS-->[DAT-001], [DAT-003]<!--END_TAGS-->
+
+### DAY 3: THỰC HIỆN KIỂM THỬ VÀ ĐÁNH GIÁ BẢO MẬT
+
+#### SUB-TASK 3.1: Viết unit test cho AuthService, UserService, CenterService
+##### Đối tượng phụ được giao: Tester
+##### Thành phần và yêu cầu kỹ thuật:
+* **Đường dẫn mục tiêu**: `./sources/backend.auth/src/test/java/org/nlh4j/saas/membershiphub/auth/AuthServiceTest.java;./sources/backend.user/src/test/java/org/nlh4j/saas/membershiphub/user/UserServiceTest.java;./sources/backend.center/src/test/java/org/nlh4j/saas/membershiphub/center/CenterServiceTest.java`
+* **Thẻ theo dõi**: <!--START_TAGS-->[REQ-001], [REQ-002], [REQ-003], [REQ-004], [REQ-005], [REQ-006], [ARC-001], [ARC-002], [ARC-003], [ARC-004], [ARC-005], [ARC-006], [DAT-001], [DAT-003], [EXC-004], [NFR-001], [NFR-003], [NFR-005], [NFR-006], [NFR-007], [NFR-008]<!--END_TAGS-->
+
+#### SUB-TASK 3.2: Kiểm tra tuân thủ OWASP, static analysis
+##### Đối tượng phụ được giao: Reviewer
+##### Thành phần và yêu cầu kỹ thuật:
+* **Đường dẫn mục tiêu**: `./sources/backend.auth/src/main/java/org/nlh4j/saas/membershiphub/auth/AuthService.java;./sources/backend.user/src/main/java/org/nlh4j/saas/membershiphub/user/UserService.java;./sources/backend.center/src/main/java/org/nlh4j/saas/membershiphub/center/CenterService.java`
+* **Thẻ theo dõi**: <!--START_TAGS-->[NFR-001], [NFR-003], [NFR-005], [NFR-006], [NFR-007], [NFR-008]<!--END_TAGS-->
+
+#### SUB-TASK 3.3: Hoàn thiện tài liệu triển khai và bảo mật
+##### Đối tượng phụ được giao: Doc
+##### Thành phần và yêu cầu kỹ thuật:
+* **Đường dẫn mục tiêu**: `./docs/DeploymentGuide.md`
+* **Thẻ theo dõi**: <!--START_TAGS-->[ARC-001], [ARC-002], [ARC-003], [ARC-004], [ARC-005], [ARC-006], [NFR-001], [NFR-003], [NFR-005], [NFR-006], [NFR-007], [NFR-008]<!--END_TAGS-->

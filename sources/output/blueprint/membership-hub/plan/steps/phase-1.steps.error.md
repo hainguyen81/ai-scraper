@@ -1,8 +1,8 @@
 ```text```json
 {
   "phase_id": 1,
-  "phase_name": "phase1_userAuthDocker",
-  "phase_description": "Xây dựng nền tảng người dùng, xác thực OAuth2, và cấu hình Docker/GCP ban đầu cho hệ thống membership-hub.",
+  "phase_name": "authUserCenterSetup",
+  "phase_description": "Thiết lập xác thực, quản lý người dùng và trung tâm, bao gồm đăng ký, đăng nhập, phân quyền, CRUD trung tâm, và cấu hình JWT, OAuth2, cùng các biện pháp bảo mật OWASP.",
   "project_name": "membership-hub",
   "global_context_file": ".ai/.context/membership-hub.global.blueprint.md",
   "source_target_dir": "sources/",
@@ -10,42 +10,221 @@
     {
       "day": 1,
       "context_file": ".ai/.plan/.context/phase-1.context.blueprint.md",
-      "context_section": "DAY 1: XÂY DỰNG DỊCH VỤ NGƯỜI DÙNG",
+      "context_section": "DAY 1: XUẤT HIỆN HỆ THỐNG XÁC THỰC",
       "sub_tasks": [
         {
           "id": "D1_ST1",
           "agent": "Coder",
-          "desc": "Triển khai UserResource và User entity",
-          "targeted_tags": ["[REQ-001]", "[DAT-001]", "[EXC-004]"],
-          "components": ["./sources/backend.users"]
+          "desc": "Xây dựng AuthService, JWTProvider, OAuth2Config",
+          "targeted_tags": [
+            "[REQ-001]",
+            "[REQ-002]",
+            "[REQ-003]",
+            "[ARC-001]",
+            "[ARC-006]",
+            "[DAT-001]",
+            "[EXC-004]",
+            "[NFR-001]",
+            "[NFR-003]",
+            "[NFR-005]",
+            "[NFR-006]",
+            "[NFR-007]",
+            "[NFR-008]"
+          ],
+          "components": [
+            "./sources/backend.auth/src/main/java/org/nlh4j/saas/membershiphub/auth/AuthService.java"
+          ]
+        },
+        {
+          "id": "D1_ST2",
+          "agent": "Coder",
+          "desc": "Xây dựng AuthController, exception handler",
+          "targeted_tags": [
+            "[REQ-001]",
+            "[REQ-002]",
+            "[REQ-003]",
+            "[ARC-001]",
+            "[ARC-006]",
+            "[DAT-001]",
+            "[EXC-004]",
+            "[NFR-001]",
+            "[NFR-003]",
+            "[NFR-005]",
+            "[NFR-006]",
+            "[NFR-007]",
+            "[NFR-008]"
+          ],
+          "components": [
+            "./sources/backend.auth/src/main/java/org/nlh4j/saas/membershiphub/auth/AuthController.java"
+          ]
+        },
+        {
+          "id": "D1_ST3",
+          "agent": "Doc",
+          "desc": "Tài liệu API Auth",
+          "targeted_tags": [
+            "[REQ-001]",
+            "[REQ-002]",
+            "[REQ-003]",
+            "[ARC-001]",
+            "[ARC-006]",
+            "[DAT-001]",
+            "[EXC-004]",
+            "[NFR-001]",
+            "[NFR-003]",
+            "[NFR-005]",
+            "[NFR-006]",
+            "[NFR-007]",
+            "[NFR-008]"
+          ],
+          "components": [
+            "./sources/backend.auth/docs/AuthAPI.md"
+          ]
         }
       ]
     },
     {
       "day": 2,
       "context_file": ".ai/.plan/.context/phase-1.context.blueprint.md",
-      "context_section": "DAY 2: XÂY DỰNG DỊCH VỤ XÁC THỰC OAuth2",
+      "context_section": "DAY 2: XUẤT HIỆN QUẢN LÝ NGƯỜI DÙNG VÀ TRUNG TÂM",
       "sub_tasks": [
         {
           "id": "D2_ST1",
           "agent": "Coder",
-          "desc": "Triển khai AuthResource và AuthService",
-          "targeted_tags": ["[REQ-002]", "[ARC-006]", "[EXC-004]"],
-          "components": ["./sources/backend.auth"]
+          "desc": "Xây dựng UserService, RoleService, UserRepository",
+          "targeted_tags": [
+            "[REQ-004]",
+            "[REQ-005]",
+            "[REQ-006]",
+            "[ARC-002]",
+            "[ARC-003]",
+            "[ARC-004]",
+            "[ARC-005]",
+            "[DAT-001]",
+            "[EXC-004]",
+            "[NFR-001]",
+            "[NFR-003]",
+            "[NFR-005]",
+            "[NFR-006]",
+            "[NFR-007]",
+            "[NFR-008]"
+          ],
+          "components": [
+            "./sources/backend.user/src/main/java/org/nlh4j/saas/membershiphub/user/UserService.java"
+          ]
+        },
+        {
+          "id": "D2_ST2",
+          "agent": "Coder",
+          "desc": "Xây dựng CenterService, CenterRepository",
+          "targeted_tags": [
+            "[REQ-004]",
+            "[REQ-005]",
+            "[REQ-006]",
+            "[ARC-002]",
+            "[ARC-003]",
+            "[ARC-004]",
+            "[ARC-005]",
+            "[DAT-003]",
+            "[EXC-004]",
+            "[NFR-001]",
+            "[NFR-003]",
+            "[NFR-005]",
+            "[NFR-006]",
+            "[NFR-007]",
+            "[NFR-008]"
+          ],
+          "components": [
+            "./sources/backend.center/src/main/java/org/nlh4j/saas/membershiphub/center/CenterService.java"
+          ]
+        },
+        {
+          "id": "D2_ST3",
+          "agent": "Doc",
+          "desc": "Tài liệu mô hình dữ liệu Users, Roles, Centers",
+          "targeted_tags": [
+            "[DAT-001]",
+            "[DAT-003]"
+          ],
+          "components": [
+            "./sources/backend.user/docs/DataModel.md"
+          ]
         }
       ]
     },
     {
       "day": 3,
       "context_file": ".ai/.plan/.context/phase-1.context.blueprint.md",
-      "context_section": "DAY 3: ĐÁNH GIÁ CHẤT LƯỢNG MÃ VÀ KIỂM TRA BẢO MẬT",
+      "context_section": "DAY 3: THỰC HIỆN KIỂM THỬ VÀ ĐÁNH GIÁ BẢO MẬT",
       "sub_tasks": [
         {
           "id": "D3_ST1",
+          "agent": "Tester",
+          "desc": "Viết unit test cho AuthService, UserService, CenterService",
+          "targeted_tags": [
+            "[REQ-001]",
+            "[REQ-002]",
+            "[REQ-003]",
+            "[REQ-004]",
+            "[REQ-005]",
+            "[REQ-006]",
+            "[ARC-001]",
+            "[ARC-002]",
+            "[ARC-003]",
+            "[ARC-004]",
+            "[ARC-005]",
+            "[ARC-006]",
+            "[DAT-001]",
+            "[DAT-003]",
+            "[EXC-004]",
+            "[NFR-001]",
+            "[NFR-003]",
+            "[NFR-005]",
+            "[NFR-006]",
+            "[NFR-007]",
+            "[NFR-008]"
+          ],
+          "components": [
+            "./sources/backend.auth/src/test/java/org/nlh4j/saas/membershiphub/auth/AuthServiceTest.java;./sources/backend.user/src/test/java/org/nlh4j/saas/membershiphub/user/UserServiceTest.java;./sources/backend.center/src/test/java/org/nlh4j/saas/membershiphub/center/CenterServiceTest.java"
+          ]
+        },
+        {
+          "id": "D3_ST2",
           "agent": "Reviewer",
-          "desc": "Kiểm tra static code, unit test, coverage, và Docker build",
-          "targeted_tags": ["[REQ-001]", "[REQ-002]", "[DAT-001]", "[NFR-001]", "[NFR-006]", "[EXC-004]"],
-          "components": ["./sources/backend.users"]
+          "desc": "Kiểm tra tuân thủ OWASP, static analysis",
+          "targeted_tags": [
+            "[NFR-001]",
+            "[NFR-003]",
+            "[NFR-005]",
+            "[NFR-006]",
+            "[NFR-007]",
+            "[NFR-008]"
+          ],
+          "components": [
+            "./sources/backend.auth/src/main/java/org/nlh4j/saas/membershiphub/auth/AuthService.java;./sources/backend.user/src/main/java/org/nlh4j/saas/membershiphub/user/UserService.java;./sources/backend.center/src/main/java/org/nlh4j/saas/membershiphub/center/CenterService.java"
+          ]
+        },
+        {
+          "id": "D3_ST3",
+          "agent": "Doc",
+          "desc": "Hoàn thiện tài liệu triển khai và bảo mật",
+          "targeted_tags": [
+            "[ARC-001]",
+            "[ARC-002]",
+            "[ARC-003]",
+            "[ARC-004]",
+            "[ARC-005]",
+            "[ARC-006]",
+            "[NFR-001]",
+            "[NFR-003]",
+            "[NFR-005]",
+            "[NFR-006]",
+            "[NFR-007]",
+            "[NFR-008]"
+          ],
+          "components": [
+            "./docs/DeploymentGuide.md"
+          ]
         }
       ]
     }
@@ -55,8 +234,8 @@
 -------------------------------------------------
 ```text{
     "phase_id": 1,
-    "phase_name": "phase1_userAuthDocker",
-    "phase_description": "Xây dựng nền tảng người dùng, xác thực OAuth2, và cấu hình Docker/GCP ban đầu cho hệ thống membership-hub.",
+    "phase_name": "authUserCenterSetup",
+    "phase_description": "Thiết lập xác thực, quản lý người dùng và trung tâm, bao gồm đăng ký, đăng nhập, phân quyền, CRUD trung tâm, và cấu hình JWT, OAuth2, cùng các biện pháp bảo mật OWASP.",
     "project_name": "membership-hub",
     "global_context_file": ".ai/.context/membership-hub.global.blueprint.md",
     "source_target_dir": "sources/",
@@ -65,19 +244,75 @@
         {
             "day": 1,
             "context_file": ".ai/.plan/.context/phase-1.context.blueprint.md",
-            "context_section": "DAY 1: XÂY DỰNG DỊCH VỤ NGƯỜI DÙNG",
+            "context_section": "DAY 1: XUẤT HIỆN HỆ THỐNG XÁC THỰC",
             "sub_tasks": [
                 {
                     "id": "D1_ST1",
                     "agent": "Coder",
-                    "desc": "Triển khai UserResource và User entity",
+                    "desc": "Xây dựng AuthService, JWTProvider, OAuth2Config",
                     "targeted_tags": [
                         "[REQ-001]",
+                        "[REQ-002]",
+                        "[REQ-003]",
+                        "[ARC-001]",
+                        "[ARC-006]",
                         "[DAT-001]",
-                        "[EXC-004]"
+                        "[EXC-004]",
+                        "[NFR-001]",
+                        "[NFR-003]",
+                        "[NFR-005]",
+                        "[NFR-006]",
+                        "[NFR-007]",
+                        "[NFR-008]"
                     ],
                     "components": [
-                        "./sources/backend.users"
+                        "./sources/backend.auth/src/main/java/org/nlh4j/saas/membershiphub/auth/AuthService.java"
+                    ]
+                },
+                {
+                    "id": "D1_ST2",
+                    "agent": "Coder",
+                    "desc": "Xây dựng AuthController, exception handler",
+                    "targeted_tags": [
+                        "[REQ-001]",
+                        "[REQ-002]",
+                        "[REQ-003]",
+                        "[ARC-001]",
+                        "[ARC-006]",
+                        "[DAT-001]",
+                        "[EXC-004]",
+                        "[NFR-001]",
+                        "[NFR-003]",
+                        "[NFR-005]",
+                        "[NFR-006]",
+                        "[NFR-007]",
+                        "[NFR-008]"
+                    ],
+                    "components": [
+                        "./sources/backend.auth/src/main/java/org/nlh4j/saas/membershiphub/auth/AuthController.java"
+                    ]
+                },
+                {
+                    "id": "D1_ST3",
+                    "agent": "Doc",
+                    "desc": "Tài liệu API Auth",
+                    "targeted_tags": [
+                        "[REQ-001]",
+                        "[REQ-002]",
+                        "[REQ-003]",
+                        "[ARC-001]",
+                        "[ARC-006]",
+                        "[DAT-001]",
+                        "[EXC-004]",
+                        "[NFR-001]",
+                        "[NFR-003]",
+                        "[NFR-005]",
+                        "[NFR-006]",
+                        "[NFR-007]",
+                        "[NFR-008]"
+                    ],
+                    "components": [
+                        "./sources/backend.auth/docs/AuthAPI.md"
                     ]
                 }
             ]
@@ -85,19 +320,68 @@
         {
             "day": 2,
             "context_file": ".ai/.plan/.context/phase-1.context.blueprint.md",
-            "context_section": "DAY 2: XÂY DỰNG DỊCH VỤ XÁC THỰC OAuth2",
+            "context_section": "DAY 2: XUẤT HIỆN QUẢN LÝ NGƯỜI DÙNG VÀ TRUNG TÂM",
             "sub_tasks": [
                 {
                     "id": "D2_ST1",
                     "agent": "Coder",
-                    "desc": "Triển khai AuthResource và AuthService",
+                    "desc": "Xây dựng UserService, RoleService, UserRepository",
                     "targeted_tags": [
-                        "[REQ-002]",
-                        "[ARC-006]",
-                        "[EXC-004]"
+                        "[REQ-004]",
+                        "[REQ-005]",
+                        "[REQ-006]",
+                        "[ARC-002]",
+                        "[ARC-003]",
+                        "[ARC-004]",
+                        "[ARC-005]",
+                        "[DAT-001]",
+                        "[EXC-004]",
+                        "[NFR-001]",
+                        "[NFR-003]",
+                        "[NFR-005]",
+                        "[NFR-006]",
+                        "[NFR-007]",
+                        "[NFR-008]"
                     ],
                     "components": [
-                        "./sources/backend.auth"
+                        "./sources/backend.user/src/main/java/org/nlh4j/saas/membershiphub/user/UserService.java"
+                    ]
+                },
+                {
+                    "id": "D2_ST2",
+                    "agent": "Coder",
+                    "desc": "Xây dựng CenterService, CenterRepository",
+                    "targeted_tags": [
+                        "[REQ-004]",
+                        "[REQ-005]",
+                        "[REQ-006]",
+                        "[ARC-002]",
+                        "[ARC-003]",
+                        "[ARC-004]",
+                        "[ARC-005]",
+                        "[DAT-003]",
+                        "[EXC-004]",
+                        "[NFR-001]",
+                        "[NFR-003]",
+                        "[NFR-005]",
+                        "[NFR-006]",
+                        "[NFR-007]",
+                        "[NFR-008]"
+                    ],
+                    "components": [
+                        "./sources/backend.center/src/main/java/org/nlh4j/saas/membershiphub/center/CenterService.java"
+                    ]
+                },
+                {
+                    "id": "D2_ST3",
+                    "agent": "Doc",
+                    "desc": "Tài liệu mô hình dữ liệu Users, Roles, Centers",
+                    "targeted_tags": [
+                        "[DAT-001]",
+                        "[DAT-003]"
+                    ],
+                    "components": [
+                        "./sources/backend.user/docs/DataModel.md"
                     ]
                 }
             ]
@@ -105,22 +389,75 @@
         {
             "day": 3,
             "context_file": ".ai/.plan/.context/phase-1.context.blueprint.md",
-            "context_section": "DAY 3: ĐÁNH GIÁ CHẤT LƯỢNG MÃ VÀ KIỂM TRA BẢO MẬT",
+            "context_section": "DAY 3: THỰC HIỆN KIỂM THỬ VÀ ĐÁNH GIÁ BẢO MẬT",
             "sub_tasks": [
                 {
                     "id": "D3_ST1",
-                    "agent": "Reviewer",
-                    "desc": "Kiểm tra static code, unit test, coverage, và Docker build",
+                    "agent": "Tester",
+                    "desc": "Viết unit test cho AuthService, UserService, CenterService",
                     "targeted_tags": [
                         "[REQ-001]",
                         "[REQ-002]",
+                        "[REQ-003]",
+                        "[REQ-004]",
+                        "[REQ-005]",
+                        "[REQ-006]",
+                        "[ARC-001]",
+                        "[ARC-002]",
+                        "[ARC-003]",
+                        "[ARC-004]",
+                        "[ARC-005]",
+                        "[ARC-006]",
                         "[DAT-001]",
+                        "[DAT-003]",
+                        "[EXC-004]",
                         "[NFR-001]",
+                        "[NFR-003]",
+                        "[NFR-005]",
                         "[NFR-006]",
-                        "[EXC-004]"
+                        "[NFR-007]",
+                        "[NFR-008]"
                     ],
                     "components": [
-                        "./sources/backend.users"
+                        "./sources/backend.auth/src/test/java/org/nlh4j/saas/membershiphub/auth/AuthServiceTest.java;./sources/backend.user/src/test/java/org/nlh4j/saas/membershiphub/user/UserServiceTest.java;./sources/backend.center/src/test/java/org/nlh4j/saas/membershiphub/center/CenterServiceTest.java"
+                    ]
+                },
+                {
+                    "id": "D3_ST2",
+                    "agent": "Reviewer",
+                    "desc": "Kiểm tra tuân thủ OWASP, static analysis",
+                    "targeted_tags": [
+                        "[NFR-001]",
+                        "[NFR-003]",
+                        "[NFR-005]",
+                        "[NFR-006]",
+                        "[NFR-007]",
+                        "[NFR-008]"
+                    ],
+                    "components": [
+                        "./sources/backend.auth/src/main/java/org/nlh4j/saas/membershiphub/auth/AuthService.java;./sources/backend.user/src/main/java/org/nlh4j/saas/membershiphub/user/UserService.java;./sources/backend.center/src/main/java/org/nlh4j/saas/membershiphub/center/CenterService.java"
+                    ]
+                },
+                {
+                    "id": "D3_ST3",
+                    "agent": "Doc",
+                    "desc": "Hoàn thiện tài liệu triển khai và bảo mật",
+                    "targeted_tags": [
+                        "[ARC-001]",
+                        "[ARC-002]",
+                        "[ARC-003]",
+                        "[ARC-004]",
+                        "[ARC-005]",
+                        "[ARC-006]",
+                        "[NFR-001]",
+                        "[NFR-003]",
+                        "[NFR-005]",
+                        "[NFR-006]",
+                        "[NFR-007]",
+                        "[NFR-008]"
+                    ],
+                    "components": [
+                        "./docs/DeploymentGuide.md"
                     ]
                 }
             ]
