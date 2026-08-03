@@ -185,9 +185,11 @@ def run_architect_agent(
         absolute_api_model_steps_mapping = resolve_absolute_path(api_model_steps_mapping)
     
     # parse master prompt rules from template
-    master_rules = render_prompt(MASTER_PROMPT_TEMPLATE_PATH, {
-        "language": language or DEFAULT_BLUEPRINT_LANGUAGE,
-    })
+    master_rules = None
+    if not is_build_plan_spec:
+        master_rules = render_prompt(MASTER_PROMPT_TEMPLATE_PATH, {
+            "language": language or DEFAULT_BLUEPRINT_LANGUAGE,
+        })
     
     # Master pipeline orchestrator that runs individual functional blocks in sequence.
     # Provides pristine separation of concerns and protects engine runtime stability.
