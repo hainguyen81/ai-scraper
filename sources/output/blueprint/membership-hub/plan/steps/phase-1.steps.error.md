@@ -17,7 +17,10 @@
           "agent": "Coder",
           "desc": "Triển khai schema cơ sở dữ liệu Users và Roles",
           "targeted_tags": ["[DAT-001]"],
-          "components": ["./sources/backend.membershiphub.user/users.sql", "./sources/backend.membershiphub.user/roles.sql"]
+          "components": [
+            "./sources/backend.membershiphub.user/users.sql",
+            "./sources/backend.membershiphub.user/roles.sql"
+          ]
         },
         {
           "id": "D1_ST2",
@@ -38,14 +41,18 @@
           "agent": "Tester",
           "desc": "Kiểm thử đơn vị cho các phương thức register và socialAuthenticate",
           "targeted_tags": ["[REQ-001]", "[REQ-002]", "[DAT-001]", "[EXC-004]"],
-          "components": ["./sources/backend.membershiphub.user/user-service.java;./sources/backend.membershiphub.user/userservice-test.java"]
+          "components": [
+            "./sources/backend.membershiphub.user/user-service.java;./sources/backend.membershiphub.user/userservice-test.java"
+          ]
         },
         {
           "id": "D2_ST2",
           "agent": "Tester",
           "desc": "Kiểm thử tích hợp cho API endpoints",
           "targeted_tags": ["[REQ-001]", "[REQ-002]", "[ARC-006]", "[EXC-004]"],
-          "components": ["./sources/backend.membershiphub.user/user-service.java;./sources/backend.membershiphub.user/user-controller-test.java"]
+          "components": [
+            "./sources/backend.membershiphub.user/user-service.java;./sources/backend.membershiphub.user/user-controller-test.java"
+          ]
         }
       ]
     }
