@@ -265,49 +265,6 @@ Giai đoạn này tập trung vào việc xây dựng nền tảng cốt lõi ch
 
 # System Instruction
 
-<GLOBAL_GOVERNANCE_MATRIX>
-# ==============================================================================
-# MASTER ENTERPRISE GOVERNANCE GUARDRAILS MATRIX (GLOBAL TASK ENFORCEMENT)
-# ==============================================================================
-
-## 🌐 1. STRICT SEMANTIC INVARIANT LOCALIZATION & TRANSLATION RAILS
-- **MANDATORY RESOLUTION:** You MUST automatically translate and naturally render 100% of the entire generated output content—including all section headers, primary titles, data matrix labels, table structures, and explanatory text boundaries—into the exact requested target execution language specified by the system parameter variable: "🇻🇳 Vietnamese".
-- **ABSOLUTE TECH PROTECTION BOUNDARY:** You are STRICTLY BANNED from translating, changing, altering, or breaking any technical structural layers. You MUST preserve these elements natively in their pristine Technical English/Primitive code state:
-  * All markdown syntax operators (`#`, `##`, `| :--- |`, `-`, `*`).
-  * All unique Tracking Tag IDs and Technical Nodes (e.g., `[REQ-XXX]`, `[DAT-XXX]`, `[EXC-XXX]`, `[IDEA_X]`).
-  * All technical identifier strings, system variables, or dynamic formatting indices (e.g., `D1_ST1`).
-  * All code execution blocks, text wrappers, and specialized chart definition syntaxes (e.g., Mermaid.js graphs, structural layout configurations).
-  * 🚨 **STRICT CODE BLOCK FORMATTING LAW**: You are ABSOLUTELY FORBIDDEN from nesting or combining markdown code block ticks. When outputting a JSON payload, you MUST start exactly with a single line of triple backticks followed immediately by 'json' (i.e., ```json). Do NOT prepend or wrap it with ```text or any other outer text syntax. The block must open clean and close clean.
-
-## 🔒 2. CODE BLOCK INTEGRITY & CONTENT PURITY MANDATE
-- **ENGLISH ONLY INSIDE CODE BLOCKS:** Every single token, statement, key-value parameter, comment string, configuration variable, structural schema, or database DDL script encapsulated inside any markdown code block (triple backticks block) or data wrapper MUST be compiled strictly and exclusively in **Technical English**. 
-- **NO LOCALIZATION ALLOWED:** You are ABSOLUTELY FORBIDDEN from translating, localized altering, or modifying any text string residing inside code boundaries.
-
-## 🛑 3. ZERO-DETERMINISTIC HALLUCINATION & ANTI-GARBAGE DATA FILTERS
-- **STRICT DATA GROUNDING:** You MUST reason and compute data points based exclusively on the literal inputs, source specifications, and structural parameters injected into your workspace context. 
-- **CRITICAL HARD LIMIT:** You are STRICTLY BANNED from fabricating ghost assets, inventing nonexistent data columns, assuming prior deployment states, or generating artificial placeholder metrics. If a specialized evaluation block or technology stack requirement is not applicable to the active architectural topology, you MUST explicitly output the token `[NOT APPLICABLE]` combined with a clean corporate justification note and bypass it gracefully.
-
-## 🛡️ 4. HIGHEST-GRADE ENTERPRISE SECURITY & COMPLIANCE PARADIGM
-- **SECURITY GATING BY DESIGN:** Every single functional contract, database layout, data routing flow, or logic routine you design MUST rigorously enforce enterprise-grade security compliance at the highest architecture layer.
-- **OWASP COMPLIANCE OBLIGATION:** You MUST proactively scan and immunize configurations against security threats under OWASP Top 10 standards (specifically enforcing strict tenant isolation boundaries under OWASP A01, prepared statements against SQL injection, dynamic token sanitization, and cryptographic state protections).
-
-## 📋 5. WORKFLOW ATOMICITY, ROLE ISOLATION & OUTPUT STANDARDIZATION
-- **HYPER-FOCUSED PERSONA CAPABILITY:** You MUST permanently maintain an objective, cold, and hyper-analytical mindset, focusing 100% of your computational resources exclusively on the single specialized domain capability and system persona allocated to you in this phase task.
-- **TONE COMPLIANCE:** All generated rationale sentences, justifications, and report outputs MUST utilize an authoritative, precise, and highly professional corporate engineering telegraphy tone (eliminate filler adjectives and passive descriptions).
-- **ABSOLUTE FORMATTING BOUNDARY:** Your total output layout response MUST satisfy and align perfectly 1:1 with the requested execution schema boundaries. You are strictly forbidden from altering headers or injecting conversational prefaces, greetings, system thinking logs, or post-generation text remarks.
-
-## 🧮 6. DETERMINISTIC TRIPLE-DEEPEST CHECK VERIFICATION LOOP & PIPELINE
-- **MANDATORY EXECUTION PIPELINE:** Before emitting any text string or committing any data stream payload to the output buffer, you MUST strictly execute the following sequential compilation and verification pipeline inside your internal memory context:
-  * *Step 1 (Complete Draft Generation):* Prepare and fully construct the entire comprehensive output document in Technical English first. Ensure 100% of required data, sections, and structural nodes are completely generated. No text truncation, no placeholder notes, and no summary cut-offs allowed.
-  * *Step 2 (Precise Translation Execution):* Take the complete draft from Step 1 and execute the localization process. Translate 100% of the output into the target language while strictly adhering to all constraints defined in `STRICT SEMANTIC INVARIANT LOCALIZATION & TRANSLATION RAILS` and `CODE BLOCK INTEGRITY & CONTENT PURITY MANDATE`.
-  * *Step 3 (Multi-Layer Self-Auditing):* Perform a rigorous, final review of the translated document across three validation layers:
-    * *Layer 1 (Traceability Check):* Verify that 100% of the incoming functional and structural tag identifiers are covered, mapped, and mathematically accounted for without gaps.
-    * *Layer 2 (Formatting & Layout Check):* Cross-examine your final structural report template layout to guarantee it contains zero broken tables, zero loose formatting tokens, and zero layout overflow anomalies.
-    * *Layer 3 (Integrity Check):* Ensure the absolute logical consistency, data synchronization alignment, and technical term protection across all generated tables, descriptions, diagrams, and metadata blocks.
-- Any defect, omission, or rule violation identified during this self-audit MUST be dynamically healed and resolved internally before emitting the final polished report.
-</GLOBAL_GOVERNANCE_MATRIX>
-
-<ACTIVE_TASK_SYSTEM_INSTRUCTION>
 You are a high-performance Data Ingestion and Transformation Engine. Your sole objective is to parse the Phase Context Markdown text and convert it into a perfectly valid, parseable JSON object matching the requested schema framework.
 
 # YOUR CRITICAL OPERATIONAL MANDATES (ZERO LOOPHOLES):
@@ -316,94 +273,24 @@ You are a high-performance Data Ingestion and Transformation Engine. Your sole o
 3. **ABSOLUTE NO EMPTY TAGS POLICY & STRING SANITIZATION:** You are STRICTLY BANNED from leaving the "targeted_tags" array empty `[]` or null for any sub-task that implements functional requirements or data schemas. You MUST scan the source Markdown sequentially sub-task by sub-task. For each sub-task node, locate the hidden technical container block delimited between `<!--START_TAGS-->` and `<!--END_TAGS-->` contained exclusively within that sub-task section scope. Extract all raw tag token codes inside, strip away all inline markdown formatting characters—specifically backticks (`` ` ``)—and any leading/trailing whitespaces, then populate them as clean separate string elements inside the "targeted_tags" array field of EACH sub-task object node.
 4. **NO TAG BUNDLING:** Every tag must be its own array node (e.g., `"targeted_tags": ["[REQ-001]", "[DAT-002]"]`). You are strictly forbidden from combining multiple tags into a single string element.
 5. **STRICT CONTENT PURITY & REJECT CONVERSATION:** Output ONLY the pure raw executable JSON string matching the required schema. Response must start exactly with the character `{` and end exactly with the character `}`. Banned from including thinking processes, chain-of-thought blocks (`<think>` tags), conversational filler texts, introductions, wrapping inside markdown codeblocks (no triple backticks wrapping), or post-generation notes. Any token outside the raw JSON object boundary triggers an immediate execution pipeline crash.
-</ACTIVE_TASK_SYSTEM_INSTRUCTION>
 
 # Raw Response / Exception:
 
 ```json
-```json
-{
-  "phase_id": 1,
-  "phase_name": "user_core_services",
-  "phase_description": "Triển khai các dịch vụ cốt lõi quản lý người dùng bao gồm đăng ký, xác thực xã hội, gán vai trò, schema cơ sở dữ liệu và logging kiểm toán bảo mật",
-  "project_name": "membership-hub",
-  "global_context_file": ".ai/.context/membership-hub.global.blueprint.md",
-  "source_target_dir": "sources/",
-  "days": [
-    {
-      "day": 1,
-      "context_file": ".ai/.plan/.context/phase-1.context.blueprint.md",
-      "context_section": "NGÀY 1: TRIỂN KHAI DỊCH VỤ ĐĂNG KÝ NGƯỜI DÙNG VÀ API XÁC THỰC XÃ HỘI",
-      "sub_tasks": [
-        {
-          "id": "D1_ST1",
-          "agent": "Coder",
-          "desc": "Triển khai schema cơ sở dữ liệu Users và Roles",
-          "targeted_tags": [
-            "[DAT-001]"
-          ],
-          "components": [
-            "./sources/backend.membershiphub.user/users.sql",
-            "./sources/backend.membershiphub.user/roles.sql"
-          ]
-        },
-        {
-          "id": "D1_ST2",
-          "agent": "Coder",
-          "desc": "Triển khai UserService với phương thức register và socialAuthenticate",
-          "targeted_tags": [
-            "[REQ-001]",
-            "[REQ-002]",
-            "[ARC-006]",
-            "[EXC-004]",
-            "[NFR-001]",
-            "[NFR-003]",
-            "[NFR-006]"
-          ],
-          "components": [
-            "./sources/backend.membershiphub.user/user-service.java"
-          ]
-        }
-      ]
-    },
-    {
-      "day": 2,
-      "context_file": ".ai/.plan/.context/phase-1.context.blueprint.md",
-      "context_section": "NGÀY 2: VIẾT BỘ KIỂM TRA ĐƠN VỊ VÀ TÍCH HỢP CHO CÁC CHỨC NĂNG NGƯỜI DÙNG",
-      "sub_tasks": [
-        {
-          "id": "D2_ST1",
-          "agent": "Tester",
-          "desc": "Kiểm thử đơn vị cho các phương thức register và socialAuthenticate",
-          "targeted_tags": [
-            "[REQ-001]",
-            "[REQ-002]",
-            "[DAT-001]",
-            "[EXC-004]"
-          ],
-          "components": [
-            "./sources/backend.membershiphub.user/user-service.java;./sources/backend.membershiphub.user/userservice-test.java"
-          ]
-        },
-        {
-          "id": "D2_ST2",
-          "agent": "Tester",
-          "desc": "Kiểm thử tích hợp cho API endpoints",
-          "targeted_tags": [
-            "[REQ-001]",
-            "[REQ-002]",
-            "[ARC-006]",
-            "[EXC-004]"
-          ],
-          "components": [
-            "./sources/backend.membershiphub.user/user-service.java;./sources/backend.membershiphub.user/user-controller-test.java"
-          ]
-        }
-      ]
-    }
-  ]
-}
-```
+Error code: 429 - {'error': {'message': 'Rate limit reached for model `llama-3.3-70b-versatile` in organization `org_01kx7x6rbpftmr50sr2yyb78qm` service tier `on_demand` on tokens per day (TPD): Limit 100000, Used 99035, Requested 9683. Please try again in 2h5m32.352s. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing', 'type': 'tokens', 'code': 'rate_limit_exceeded'}}: ['Traceback (most recent call last):
+', '  File "/home/runner/work/enterprise-it-ai/enterprise-it-ai/sources/agents/architect-blueprint/block_json.py", line 301, in convert_phases_to_json
+    response = client.beta.chat.completions.parse(
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+', '  File "/opt/hostedtoolcache/Python/3.11.15/x64/lib/python3.11/site-packages/openai/resources/chat/completions/completions.py", line 193, in parse
+    return self._post(
+           ^^^^^^^^^^^
+', '  File "/opt/hostedtoolcache/Python/3.11.15/x64/lib/python3.11/site-packages/openai/_base_client.py", line 1375, in post
+    return cast(ResponseT, self.request(cast_to, opts, stream=stream, stream_cls=stream_cls))
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+', '  File "/opt/hostedtoolcache/Python/3.11.15/x64/lib/python3.11/site-packages/openai/_base_client.py", line 1148, in request
+    raise self._make_status_error_from_response(err.response) from None
+', "openai.RateLimitError: Error code: 429 - {'error': {'message': 'Rate limit reached for model `llama-3.3-70b-versatile` in organization `org_01kx7x6rbpftmr50sr2yyb78qm` service tier `on_demand` on tokens per day (TPD): Limit 100000, Used 99035, Requested 9683. Please try again in 2h5m32.352s. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing', 'type': 'tokens', 'code': 'rate_limit_exceeded'}}
+"]
 ```
 
 # AI Model: meta-llama/llama-3.3-70b-instruct:free - Phase 1 STEPS - Prompt:
@@ -980,7 +867,7 @@ You are a high-performance Data Ingestion and Transformation Engine. Your sole o
 # Raw Response / Exception:
 
 ```json
-Error code: 402 - {'error': {'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 942. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account', 'code': 402, 'metadata': {'limit_source': 'openrouter_credits', 'remedy_hint': 'Add credits at https://openrouter.ai/settings/credits, or lower max_tokens / prompt size to fit your remaining balance.', 'provider_name': None, 'previous_errors': [{'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 1177. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 942. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 502. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 753. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 523. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 530. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 477. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 167. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 523. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}]}}, 'user_id': 'user_3GLaJI6mihRMFQtSad72HqAhW95'}: ['Traceback (most recent call last):
+Error code: 402 - {'error': {'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 942. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account', 'code': 402, 'metadata': {'limit_source': 'openrouter_credits', 'remedy_hint': 'Add credits at https://openrouter.ai/settings/credits, or lower max_tokens / prompt size to fit your remaining balance.', 'provider_name': None, 'previous_errors': [{'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 1177. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 942. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 502. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 523. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 753. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 477. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 530. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 167. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 523. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}]}}, 'user_id': 'user_3GLaJI6mihRMFQtSad72HqAhW95'}: ['Traceback (most recent call last):
 ', '  File "/home/runner/work/enterprise-it-ai/enterprise-it-ai/sources/agents/architect-blueprint/block_json.py", line 301, in convert_phases_to_json
     response = client.beta.chat.completions.parse(
                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -992,7 +879,7 @@ Error code: 402 - {'error': {'message': 'This request requires more credits, or 
                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 ', '  File "/opt/hostedtoolcache/Python/3.11.15/x64/lib/python3.11/site-packages/openai/_base_client.py", line 1148, in request
     raise self._make_status_error_from_response(err.response) from None
-', "openai.APIStatusError: Error code: 402 - {'error': {'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 942. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account', 'code': 402, 'metadata': {'limit_source': 'openrouter_credits', 'remedy_hint': 'Add credits at https://openrouter.ai/settings/credits, or lower max_tokens / prompt size to fit your remaining balance.', 'provider_name': None, 'previous_errors': [{'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 1177. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 942. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 502. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 753. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 523. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 530. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 477. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 167. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 523. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}]}}, 'user_id': 'user_3GLaJI6mihRMFQtSad72HqAhW95'}
+', "openai.APIStatusError: Error code: 402 - {'error': {'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 942. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account', 'code': 402, 'metadata': {'limit_source': 'openrouter_credits', 'remedy_hint': 'Add credits at https://openrouter.ai/settings/credits, or lower max_tokens / prompt size to fit your remaining balance.', 'provider_name': None, 'previous_errors': [{'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 1177. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 942. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 502. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 523. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 753. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 477. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 530. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 167. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 523. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}]}}, 'user_id': 'user_3GLaJI6mihRMFQtSad72HqAhW95'}
 "]
 ```
 
@@ -2160,7 +2047,7 @@ You are a high-performance Data Ingestion and Transformation Engine. Your sole o
 # Raw Response / Exception:
 
 ```json
-Error code: 402 - {'error': {'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 314. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account', 'code': 402, 'metadata': {'limit_source': 'openrouter_credits', 'remedy_hint': 'Add credits at https://openrouter.ai/settings/credits, or lower max_tokens / prompt size to fit your remaining balance.', 'provider_name': None, 'previous_errors': [{'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 314. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 314. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 314. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 314. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 392. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 314. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 314. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 314. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}]}}, 'user_id': 'user_3GLaJI6mihRMFQtSad72HqAhW95'}: ['Traceback (most recent call last):
+Error code: 402 - {'error': {'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 314. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account', 'code': 402, 'metadata': {'limit_source': 'openrouter_credits', 'remedy_hint': 'Add credits at https://openrouter.ai/settings/credits, or lower max_tokens / prompt size to fit your remaining balance.', 'provider_name': None, 'previous_errors': [{'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 314. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 392. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 314. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 314. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 314. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 314. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 314. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 314. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}]}}, 'user_id': 'user_3GLaJI6mihRMFQtSad72HqAhW95'}: ['Traceback (most recent call last):
 ', '  File "/home/runner/work/enterprise-it-ai/enterprise-it-ai/sources/agents/architect-blueprint/block_json.py", line 301, in convert_phases_to_json
     response = client.beta.chat.completions.parse(
                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -2172,7 +2059,7 @@ Error code: 402 - {'error': {'message': 'This request requires more credits, or 
                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 ', '  File "/opt/hostedtoolcache/Python/3.11.15/x64/lib/python3.11/site-packages/openai/_base_client.py", line 1148, in request
     raise self._make_status_error_from_response(err.response) from None
-', "openai.APIStatusError: Error code: 402 - {'error': {'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 314. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account', 'code': 402, 'metadata': {'limit_source': 'openrouter_credits', 'remedy_hint': 'Add credits at https://openrouter.ai/settings/credits, or lower max_tokens / prompt size to fit your remaining balance.', 'provider_name': None, 'previous_errors': [{'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 314. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 314. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 314. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 314. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 392. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 314. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 314. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 314. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}]}}, 'user_id': 'user_3GLaJI6mihRMFQtSad72HqAhW95'}
+', "openai.APIStatusError: Error code: 402 - {'error': {'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 314. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account', 'code': 402, 'metadata': {'limit_source': 'openrouter_credits', 'remedy_hint': 'Add credits at https://openrouter.ai/settings/credits, or lower max_tokens / prompt size to fit your remaining balance.', 'provider_name': None, 'previous_errors': [{'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 314. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 392. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 314. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 314. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 314. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 314. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 314. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 314. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}]}}, 'user_id': 'user_3GLaJI6mihRMFQtSad72HqAhW95'}
 "]
 ```
 
@@ -2750,7 +2637,7 @@ You are a high-performance Data Ingestion and Transformation Engine. Your sole o
 # Raw Response / Exception:
 
 ```json
-Could not parse response content as the length limit was reached - CompletionUsage(completion_tokens=4096, prompt_tokens=5360, total_tokens=9456, completion_tokens_details=CompletionTokensDetails(accepted_prediction_tokens=None, audio_tokens=0, reasoning_tokens=4721, rejected_prediction_tokens=None, image_tokens=0), prompt_tokens_details=PromptTokensDetails(audio_tokens=0, cache_write_tokens=0, cached_tokens=0, video_tokens=0), cost=0, is_byok=False, cost_details={'upstream_inference_cost': 0, 'upstream_inference_prompt_cost': 0, 'upstream_inference_completions_cost': 0}): ['Traceback (most recent call last):
+Could not parse response content as the length limit was reached - CompletionUsage(completion_tokens=4096, prompt_tokens=5360, total_tokens=9456, completion_tokens_details=CompletionTokensDetails(accepted_prediction_tokens=None, audio_tokens=0, reasoning_tokens=4507, rejected_prediction_tokens=None, image_tokens=0), prompt_tokens_details=PromptTokensDetails(audio_tokens=0, cache_write_tokens=0, cached_tokens=0, video_tokens=0), cost=0, is_byok=False, cost_details={'upstream_inference_cost': 0, 'upstream_inference_prompt_cost': 0, 'upstream_inference_completions_cost': 0}): ['Traceback (most recent call last):
 ', '  File "/home/runner/work/enterprise-it-ai/enterprise-it-ai/sources/agents/architect-blueprint/block_json.py", line 301, in convert_phases_to_json
     response = client.beta.chat.completions.parse(
                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -2774,7 +2661,7 @@ Could not parse response content as the length limit was reached - CompletionUsa
            ^^^^^^^^^^^^^^^^^^^^^^^
 ', '  File "/opt/hostedtoolcache/Python/3.11.15/x64/lib/python3.11/site-packages/openai/lib/_parsing/_completions.py", line 100, in parse_chat_completion
     raise LengthFinishReasonError(completion=chat_completion)
-', "openai.LengthFinishReasonError: Could not parse response content as the length limit was reached - CompletionUsage(completion_tokens=4096, prompt_tokens=5360, total_tokens=9456, completion_tokens_details=CompletionTokensDetails(accepted_prediction_tokens=None, audio_tokens=0, reasoning_tokens=4721, rejected_prediction_tokens=None, image_tokens=0), prompt_tokens_details=PromptTokensDetails(audio_tokens=0, cache_write_tokens=0, cached_tokens=0, video_tokens=0), cost=0, is_byok=False, cost_details={'upstream_inference_cost': 0, 'upstream_inference_prompt_cost': 0, 'upstream_inference_completions_cost': 0})
+', "openai.LengthFinishReasonError: Could not parse response content as the length limit was reached - CompletionUsage(completion_tokens=4096, prompt_tokens=5360, total_tokens=9456, completion_tokens_details=CompletionTokensDetails(accepted_prediction_tokens=None, audio_tokens=0, reasoning_tokens=4507, rejected_prediction_tokens=None, image_tokens=0), prompt_tokens_details=PromptTokensDetails(audio_tokens=0, cache_write_tokens=0, cached_tokens=0, video_tokens=0), cost=0, is_byok=False, cost_details={'upstream_inference_cost': 0, 'upstream_inference_prompt_cost': 0, 'upstream_inference_completions_cost': 0})
 "]
 ```
 
@@ -3352,7 +3239,7 @@ You are a high-performance Data Ingestion and Transformation Engine. Your sole o
 # Raw Response / Exception:
 
 ```json
-Error code: 402 - {'error': {'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 243. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account', 'code': 402, 'metadata': {'limit_source': 'openrouter_credits', 'remedy_hint': 'Add credits at https://openrouter.ai/settings/credits, or lower max_tokens / prompt size to fit your remaining balance.', 'provider_name': None, 'previous_errors': [{'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 209. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 77. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 251. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 376. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 251. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}]}}, 'user_id': 'user_3GLaJI6mihRMFQtSad72HqAhW95'}: ['Traceback (most recent call last):
+Error code: 402 - {'error': {'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 251. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account', 'code': 402, 'metadata': {'limit_source': 'openrouter_credits', 'remedy_hint': 'Add credits at https://openrouter.ai/settings/credits, or lower max_tokens / prompt size to fit your remaining balance.', 'provider_name': None, 'previous_errors': [{'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 243. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 376. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 209. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 77. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 251. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}]}}, 'user_id': 'user_3GLaJI6mihRMFQtSad72HqAhW95'}: ['Traceback (most recent call last):
 ', '  File "/home/runner/work/enterprise-it-ai/enterprise-it-ai/sources/agents/architect-blueprint/block_json.py", line 301, in convert_phases_to_json
     response = client.beta.chat.completions.parse(
                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -3364,7 +3251,7 @@ Error code: 402 - {'error': {'message': 'This request requires more credits, or 
                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 ', '  File "/opt/hostedtoolcache/Python/3.11.15/x64/lib/python3.11/site-packages/openai/_base_client.py", line 1148, in request
     raise self._make_status_error_from_response(err.response) from None
-', "openai.APIStatusError: Error code: 402 - {'error': {'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 243. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account', 'code': 402, 'metadata': {'limit_source': 'openrouter_credits', 'remedy_hint': 'Add credits at https://openrouter.ai/settings/credits, or lower max_tokens / prompt size to fit your remaining balance.', 'provider_name': None, 'previous_errors': [{'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 209. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 77. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 251. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 376. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 251. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}]}}, 'user_id': 'user_3GLaJI6mihRMFQtSad72HqAhW95'}
+', "openai.APIStatusError: Error code: 402 - {'error': {'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 251. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account', 'code': 402, 'metadata': {'limit_source': 'openrouter_credits', 'remedy_hint': 'Add credits at https://openrouter.ai/settings/credits, or lower max_tokens / prompt size to fit your remaining balance.', 'provider_name': None, 'previous_errors': [{'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 243. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 376. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 209. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 77. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 251. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}]}}, 'user_id': 'user_3GLaJI6mihRMFQtSad72HqAhW95'}
 "]
 ```
 
@@ -3647,7 +3534,7 @@ You are a high-performance Data Ingestion and Transformation Engine. Your sole o
 # Raw Response / Exception:
 
 ```json
-Error code: 402 - {'error': {'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 221. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account', 'code': 402, 'metadata': {'limit_source': 'openrouter_credits', 'remedy_hint': 'Add credits at https://openrouter.ai/settings/credits, or lower max_tokens / prompt size to fit your remaining balance.', 'provider_name': None, 'previous_errors': [{'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 1345. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 1395. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 257. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}]}}, 'user_id': 'user_3GLaJI6mihRMFQtSad72HqAhW95'}: ['Traceback (most recent call last):
+Error code: 402 - {'error': {'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 221. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account', 'code': 402, 'metadata': {'limit_source': 'openrouter_credits', 'remedy_hint': 'Add credits at https://openrouter.ai/settings/credits, or lower max_tokens / prompt size to fit your remaining balance.', 'provider_name': None, 'previous_errors': [{'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 1395. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 1345. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 257. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}]}}, 'user_id': 'user_3GLaJI6mihRMFQtSad72HqAhW95'}: ['Traceback (most recent call last):
 ', '  File "/home/runner/work/enterprise-it-ai/enterprise-it-ai/sources/agents/architect-blueprint/block_json.py", line 301, in convert_phases_to_json
     response = client.beta.chat.completions.parse(
                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -3659,7 +3546,7 @@ Error code: 402 - {'error': {'message': 'This request requires more credits, or 
                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 ', '  File "/opt/hostedtoolcache/Python/3.11.15/x64/lib/python3.11/site-packages/openai/_base_client.py", line 1148, in request
     raise self._make_status_error_from_response(err.response) from None
-', "openai.APIStatusError: Error code: 402 - {'error': {'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 221. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account', 'code': 402, 'metadata': {'limit_source': 'openrouter_credits', 'remedy_hint': 'Add credits at https://openrouter.ai/settings/credits, or lower max_tokens / prompt size to fit your remaining balance.', 'provider_name': None, 'previous_errors': [{'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 1345. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 1395. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 257. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}]}}, 'user_id': 'user_3GLaJI6mihRMFQtSad72HqAhW95'}
+', "openai.APIStatusError: Error code: 402 - {'error': {'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 221. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account', 'code': 402, 'metadata': {'limit_source': 'openrouter_credits', 'remedy_hint': 'Add credits at https://openrouter.ai/settings/credits, or lower max_tokens / prompt size to fit your remaining balance.', 'provider_name': None, 'previous_errors': [{'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 1395. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 1345. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 257. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}]}}, 'user_id': 'user_3GLaJI6mihRMFQtSad72HqAhW95'}
 "]
 ```
 
@@ -6597,7 +6484,7 @@ You are a high-performance Data Ingestion and Transformation Engine. Your sole o
 # Raw Response / Exception:
 
 ```json
-Error code: 402 - {'error': {'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 16. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account', 'code': 402, 'metadata': {'limit_source': 'openrouter_credits', 'remedy_hint': 'Add credits at https://openrouter.ai/settings/credits, or lower max_tokens / prompt size to fit your remaining balance.', 'provider_name': None, 'previous_errors': [{'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 12. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 12. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 62. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 25. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 25. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 25. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 25. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 25. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 25. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 25. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 25. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 16. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 26. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 16. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}]}}, 'user_id': 'user_3GLaJI6mihRMFQtSad72HqAhW95'}: ['Traceback (most recent call last):
+Error code: 402 - {'error': {'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 16. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account', 'code': 402, 'metadata': {'limit_source': 'openrouter_credits', 'remedy_hint': 'Add credits at https://openrouter.ai/settings/credits, or lower max_tokens / prompt size to fit your remaining balance.', 'provider_name': None, 'previous_errors': [{'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 12. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 12. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 62. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 25. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 25. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 25. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 26. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 16. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 25. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 25. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 25. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 25. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 25. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 16. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}]}}, 'user_id': 'user_3GLaJI6mihRMFQtSad72HqAhW95'}: ['Traceback (most recent call last):
 ', '  File "/home/runner/work/enterprise-it-ai/enterprise-it-ai/sources/agents/architect-blueprint/block_json.py", line 301, in convert_phases_to_json
     response = client.beta.chat.completions.parse(
                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -6609,7 +6496,7 @@ Error code: 402 - {'error': {'message': 'This request requires more credits, or 
                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 ', '  File "/opt/hostedtoolcache/Python/3.11.15/x64/lib/python3.11/site-packages/openai/_base_client.py", line 1148, in request
     raise self._make_status_error_from_response(err.response) from None
-', "openai.APIStatusError: Error code: 402 - {'error': {'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 16. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account', 'code': 402, 'metadata': {'limit_source': 'openrouter_credits', 'remedy_hint': 'Add credits at https://openrouter.ai/settings/credits, or lower max_tokens / prompt size to fit your remaining balance.', 'provider_name': None, 'previous_errors': [{'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 12. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 12. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 62. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 25. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 25. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 25. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 25. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 25. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 25. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 25. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 25. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 16. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 26. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 16. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}]}}, 'user_id': 'user_3GLaJI6mihRMFQtSad72HqAhW95'}
+', "openai.APIStatusError: Error code: 402 - {'error': {'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 16. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account', 'code': 402, 'metadata': {'limit_source': 'openrouter_credits', 'remedy_hint': 'Add credits at https://openrouter.ai/settings/credits, or lower max_tokens / prompt size to fit your remaining balance.', 'provider_name': None, 'previous_errors': [{'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 12. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 12. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 62. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 25. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 25. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 25. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 26. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 16. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 25. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 25. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 25. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 25. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 25. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 16. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}]}}, 'user_id': 'user_3GLaJI6mihRMFQtSad72HqAhW95'}
 "]
 ```
 
@@ -6952,7 +6839,7 @@ You are a high-performance Data Ingestion and Transformation Engine. Your sole o
                 {
                     "id": "D1_ST1",
                     "agent": "Coder",
-                    "desc": "Create and execute DDL scripts at ./sources/backend.membershiphub.user/users.sql and ./sources/backend.membershiphub.user/roles.sql to define Users and Roles tables with constraints, ensuring referential integrity and unique indexes.",
+                    "desc": "Triển khai schema cơ sở dữ liệu Users và Roles",
                     "targeted_tags": [
                         "[DAT-001]"
                     ],
@@ -6964,7 +6851,7 @@ You are a high-performance Data Ingestion and Transformation Engine. Your sole o
                 {
                     "id": "D1_ST2",
                     "agent": "Coder",
-                    "desc": "Implement UserService Java class with register and socialAuthenticate methods, using BCrypt for password hashing, JWT with 15-minute access token and 7-day refresh token, @Valid for input validation, @Transactional for persistence, and proper exception handling for validation and data conflicts.",
+                    "desc": "Triển khai UserService với phương thức register và socialAuthenticate",
                     "targeted_tags": [
                         "[REQ-001]",
                         "[REQ-002]",
@@ -6988,7 +6875,7 @@ You are a high-performance Data Ingestion and Transformation Engine. Your sole o
                 {
                     "id": "D2_ST1",
                     "agent": "Tester",
-                    "desc": "Write JUnit 5 unit tests for UserService.register and UserService.socialAuthenticate methods, covering happy path scenarios, validation failures, and exception handling, using mocks for dependencies.",
+                    "desc": "Kiểm thử đơn vị cho các phương thức register và socialAuthenticate",
                     "targeted_tags": [
                         "[REQ-001]",
                         "[REQ-002]",
@@ -7003,7 +6890,7 @@ You are a high-performance Data Ingestion and Transformation Engine. Your sole o
                 {
                     "id": "D2_ST2",
                     "agent": "Tester",
-                    "desc": "Write integration tests for API endpoints /api/v1/auth/register and /api/v1/auth/social, verifying correct HTTP status codes, response payloads, authentication flow, and error handling, using test framework and mock server.",
+                    "desc": "Kiểm thử tích hợp cho API endpoints",
                     "targeted_tags": [
                         "[REQ-001]",
                         "[REQ-002]",
@@ -7300,7 +7187,7 @@ You are a high-performance Data Ingestion and Transformation Engine. Your sole o
 # Raw Response / Exception:
 
 ```json
-Error code: 402 - {'error': {'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 2512. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account', 'code': 402, 'metadata': {'limit_source': 'openrouter_credits', 'remedy_hint': 'Add credits at https://openrouter.ai/settings/credits, or lower max_tokens / prompt size to fit your remaining balance.', 'provider_name': None, 'previous_errors': [{'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 1256. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 2691. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 1884. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 2512. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 2512. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 2093. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 2898. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 2512. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 1256. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 1507. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}]}}, 'user_id': 'user_3GLaJI6mihRMFQtSad72HqAhW95'}: ['Traceback (most recent call last):
+Error code: 402 - {'error': {'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 1256. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account', 'code': 402, 'metadata': {'limit_source': 'openrouter_credits', 'remedy_hint': 'Add credits at https://openrouter.ai/settings/credits, or lower max_tokens / prompt size to fit your remaining balance.', 'provider_name': None, 'previous_errors': [{'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 1884. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 2691. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 2898. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 2512. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 1256. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 2512. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 2512. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 2093. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 2512. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 1507. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}]}}, 'user_id': 'user_3GLaJI6mihRMFQtSad72HqAhW95'}: ['Traceback (most recent call last):
 ', '  File "/home/runner/work/enterprise-it-ai/enterprise-it-ai/sources/agents/architect-blueprint/block_json.py", line 301, in convert_phases_to_json
     response = client.beta.chat.completions.parse(
                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -7312,7 +7199,7 @@ Error code: 402 - {'error': {'message': 'This request requires more credits, or 
                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 ', '  File "/opt/hostedtoolcache/Python/3.11.15/x64/lib/python3.11/site-packages/openai/_base_client.py", line 1148, in request
     raise self._make_status_error_from_response(err.response) from None
-', "openai.APIStatusError: Error code: 402 - {'error': {'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 2512. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account', 'code': 402, 'metadata': {'limit_source': 'openrouter_credits', 'remedy_hint': 'Add credits at https://openrouter.ai/settings/credits, or lower max_tokens / prompt size to fit your remaining balance.', 'provider_name': None, 'previous_errors': [{'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 1256. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 2691. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 1884. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 2512. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 2512. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 2093. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 2898. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 2512. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 1256. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 1507. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}]}}, 'user_id': 'user_3GLaJI6mihRMFQtSad72HqAhW95'}
+', "openai.APIStatusError: Error code: 402 - {'error': {'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 1256. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account', 'code': 402, 'metadata': {'limit_source': 'openrouter_credits', 'remedy_hint': 'Add credits at https://openrouter.ai/settings/credits, or lower max_tokens / prompt size to fit your remaining balance.', 'provider_name': None, 'previous_errors': [{'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 1884. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 2691. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 2898. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 2512. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 1256. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 2512. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 2512. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 2093. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 2512. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 1507. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}]}}, 'user_id': 'user_3GLaJI6mihRMFQtSad72HqAhW95'}
 "]
 ```
 
@@ -7595,7 +7482,7 @@ You are a high-performance Data Ingestion and Transformation Engine. Your sole o
 # Raw Response / Exception:
 
 ```json
-Error code: 402 - {'error': {'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 753. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account', 'code': 402, 'metadata': {'limit_source': 'openrouter_credits', 'remedy_hint': 'Add credits at https://openrouter.ai/settings/credits, or lower max_tokens / prompt size to fit your remaining balance.', 'provider_name': None, 'previous_errors': [{'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 628. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 2216. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 1046. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 2216. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 628. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 769. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 628. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 628. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 1507. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 396. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 628. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 502. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 753. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 502. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 502. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 628. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 837. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}]}}, 'user_id': 'user_3GLaJI6mihRMFQtSad72HqAhW95'}: ['Traceback (most recent call last):
+Error code: 402 - {'error': {'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 502. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account', 'code': 402, 'metadata': {'limit_source': 'openrouter_credits', 'remedy_hint': 'Add credits at https://openrouter.ai/settings/credits, or lower max_tokens / prompt size to fit your remaining balance.', 'provider_name': None, 'previous_errors': [{'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 2216. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 2216. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 837. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 1507. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 628. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 396. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 502. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 628. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 753. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 628. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 753. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 628. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 769. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 1046. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 628. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 502. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 628. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}]}}, 'user_id': 'user_3GLaJI6mihRMFQtSad72HqAhW95'}: ['Traceback (most recent call last):
 ', '  File "/home/runner/work/enterprise-it-ai/enterprise-it-ai/sources/agents/architect-blueprint/block_json.py", line 301, in convert_phases_to_json
     response = client.beta.chat.completions.parse(
                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -7607,7 +7494,7 @@ Error code: 402 - {'error': {'message': 'This request requires more credits, or 
                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 ', '  File "/opt/hostedtoolcache/Python/3.11.15/x64/lib/python3.11/site-packages/openai/_base_client.py", line 1148, in request
     raise self._make_status_error_from_response(err.response) from None
-', "openai.APIStatusError: Error code: 402 - {'error': {'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 753. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account', 'code': 402, 'metadata': {'limit_source': 'openrouter_credits', 'remedy_hint': 'Add credits at https://openrouter.ai/settings/credits, or lower max_tokens / prompt size to fit your remaining balance.', 'provider_name': None, 'previous_errors': [{'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 628. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 2216. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 1046. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 2216. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 628. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 769. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 628. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 628. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 1507. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 396. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 628. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 502. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 753. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 502. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 502. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 628. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 837. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}]}}, 'user_id': 'user_3GLaJI6mihRMFQtSad72HqAhW95'}
+', "openai.APIStatusError: Error code: 402 - {'error': {'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 502. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account', 'code': 402, 'metadata': {'limit_source': 'openrouter_credits', 'remedy_hint': 'Add credits at https://openrouter.ai/settings/credits, or lower max_tokens / prompt size to fit your remaining balance.', 'provider_name': None, 'previous_errors': [{'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 2216. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 2216. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 837. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 1507. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 628. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 396. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 502. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 628. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 753. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 628. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 753. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 628. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 769. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 1046. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 628. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 502. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 628. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}]}}, 'user_id': 'user_3GLaJI6mihRMFQtSad72HqAhW95'}
 "]
 ```
 
@@ -15560,7 +15447,7 @@ You are a high-performance Data Ingestion and Transformation Engine. Your sole o
 # Raw Response / Exception:
 
 ```json
-Error code: 429 - {'error': {'message': 'Rate limit reached for model `llama-3.3-70b-versatile` in organization `org_01kx7x6rbpftmr50sr2yyb78qm` service tier `on_demand` on tokens per day (TPD): Limit 100000, Used 99766, Requested 9683. Please try again in 2h16m3.936s. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing', 'type': 'tokens', 'code': 'rate_limit_exceeded'}}: ['Traceback (most recent call last):
+Error code: 429 - {'error': {'message': 'Rate limit reached for model `llama-3.3-70b-versatile` in organization `org_01kx7x6rbpftmr50sr2yyb78qm` service tier `on_demand` on tokens per day (TPD): Limit 100000, Used 98757, Requested 9683. Please try again in 2h1m32.16s. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing', 'type': 'tokens', 'code': 'rate_limit_exceeded'}}: ['Traceback (most recent call last):
 ', '  File "/home/runner/work/enterprise-it-ai/enterprise-it-ai/sources/agents/architect-blueprint/block_json.py", line 301, in convert_phases_to_json
     response = client.beta.chat.completions.parse(
                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -15572,7 +15459,7 @@ Error code: 429 - {'error': {'message': 'Rate limit reached for model `llama-3.3
                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 ', '  File "/opt/hostedtoolcache/Python/3.11.15/x64/lib/python3.11/site-packages/openai/_base_client.py", line 1148, in request
     raise self._make_status_error_from_response(err.response) from None
-', "openai.RateLimitError: Error code: 429 - {'error': {'message': 'Rate limit reached for model `llama-3.3-70b-versatile` in organization `org_01kx7x6rbpftmr50sr2yyb78qm` service tier `on_demand` on tokens per day (TPD): Limit 100000, Used 99766, Requested 9683. Please try again in 2h16m3.936s. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing', 'type': 'tokens', 'code': 'rate_limit_exceeded'}}
+', "openai.RateLimitError: Error code: 429 - {'error': {'message': 'Rate limit reached for model `llama-3.3-70b-versatile` in organization `org_01kx7x6rbpftmr50sr2yyb78qm` service tier `on_demand` on tokens per day (TPD): Limit 100000, Used 98757, Requested 9683. Please try again in 2h1m32.16s. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing', 'type': 'tokens', 'code': 'rate_limit_exceeded'}}
 "]
 ```
 
@@ -16150,7 +16037,7 @@ You are a high-performance Data Ingestion and Transformation Engine. Your sole o
 # Raw Response / Exception:
 
 ```json
-Error code: 429 - {'error': {'message': 'Rate limit reached for model `llama-3.3-70b-versatile` in organization `org_01kx7x6rbpftmr50sr2yyb78qm` service tier `on_demand` on tokens per day (TPD): Limit 100000, Used 99758, Requested 8840. Please try again in 2h3m48.672s. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing', 'type': 'compound', 'code': 'rate_limit_exceeded'}}: ['Traceback (most recent call last):
+Error code: 429 - {'error': {'message': 'Rate limit reached for model `llama-3.3-70b-versatile` in organization `org_01kx7x6rbpftmr50sr2yyb78qm` service tier `on_demand` on tokens per day (TPD): Limit 100000, Used 98748, Requested 8840. Please try again in 1h49m16.032s. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing', 'type': 'compound', 'code': 'rate_limit_exceeded'}}: ['Traceback (most recent call last):
 ', '  File "/home/runner/work/enterprise-it-ai/enterprise-it-ai/sources/agents/architect-blueprint/block_json.py", line 301, in convert_phases_to_json
     response = client.beta.chat.completions.parse(
                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -16162,7 +16049,7 @@ Error code: 429 - {'error': {'message': 'Rate limit reached for model `llama-3.3
                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 ', '  File "/opt/hostedtoolcache/Python/3.11.15/x64/lib/python3.11/site-packages/openai/_base_client.py", line 1148, in request
     raise self._make_status_error_from_response(err.response) from None
-', "openai.RateLimitError: Error code: 429 - {'error': {'message': 'Rate limit reached for model `llama-3.3-70b-versatile` in organization `org_01kx7x6rbpftmr50sr2yyb78qm` service tier `on_demand` on tokens per day (TPD): Limit 100000, Used 99758, Requested 8840. Please try again in 2h3m48.672s. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing', 'type': 'compound', 'code': 'rate_limit_exceeded'}}
+', "openai.RateLimitError: Error code: 429 - {'error': {'message': 'Rate limit reached for model `llama-3.3-70b-versatile` in organization `org_01kx7x6rbpftmr50sr2yyb78qm` service tier `on_demand` on tokens per day (TPD): Limit 100000, Used 98748, Requested 8840. Please try again in 1h49m16.032s. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing', 'type': 'compound', 'code': 'rate_limit_exceeded'}}
 "]
 ```
 
@@ -18498,49 +18385,6 @@ Giai đoạn này tập trung vào việc xây dựng nền tảng cốt lõi ch
 
 # System Instruction
 
-<GLOBAL_GOVERNANCE_MATRIX>
-# ==============================================================================
-# MASTER ENTERPRISE GOVERNANCE GUARDRAILS MATRIX (GLOBAL TASK ENFORCEMENT)
-# ==============================================================================
-
-## 🌐 1. STRICT SEMANTIC INVARIANT LOCALIZATION & TRANSLATION RAILS
-- **MANDATORY RESOLUTION:** You MUST automatically translate and naturally render 100% of the entire generated output content—including all section headers, primary titles, data matrix labels, table structures, and explanatory text boundaries—into the exact requested target execution language specified by the system parameter variable: "🇻🇳 Vietnamese".
-- **ABSOLUTE TECH PROTECTION BOUNDARY:** You are STRICTLY BANNED from translating, changing, altering, or breaking any technical structural layers. You MUST preserve these elements natively in their pristine Technical English/Primitive code state:
-  * All markdown syntax operators (`#`, `##`, `| :--- |`, `-`, `*`).
-  * All unique Tracking Tag IDs and Technical Nodes (e.g., `[REQ-XXX]`, `[DAT-XXX]`, `[EXC-XXX]`, `[IDEA_X]`).
-  * All technical identifier strings, system variables, or dynamic formatting indices (e.g., `D1_ST1`).
-  * All code execution blocks, text wrappers, and specialized chart definition syntaxes (e.g., Mermaid.js graphs, structural layout configurations).
-  * 🚨 **STRICT CODE BLOCK FORMATTING LAW**: You are ABSOLUTELY FORBIDDEN from nesting or combining markdown code block ticks. When outputting a JSON payload, you MUST start exactly with a single line of triple backticks followed immediately by 'json' (i.e., ```json). Do NOT prepend or wrap it with ```text or any other outer text syntax. The block must open clean and close clean.
-
-## 🔒 2. CODE BLOCK INTEGRITY & CONTENT PURITY MANDATE
-- **ENGLISH ONLY INSIDE CODE BLOCKS:** Every single token, statement, key-value parameter, comment string, configuration variable, structural schema, or database DDL script encapsulated inside any markdown code block (triple backticks block) or data wrapper MUST be compiled strictly and exclusively in **Technical English**. 
-- **NO LOCALIZATION ALLOWED:** You are ABSOLUTELY FORBIDDEN from translating, localized altering, or modifying any text string residing inside code boundaries.
-
-## 🛑 3. ZERO-DETERMINISTIC HALLUCINATION & ANTI-GARBAGE DATA FILTERS
-- **STRICT DATA GROUNDING:** You MUST reason and compute data points based exclusively on the literal inputs, source specifications, and structural parameters injected into your workspace context. 
-- **CRITICAL HARD LIMIT:** You are STRICTLY BANNED from fabricating ghost assets, inventing nonexistent data columns, assuming prior deployment states, or generating artificial placeholder metrics. If a specialized evaluation block or technology stack requirement is not applicable to the active architectural topology, you MUST explicitly output the token `[NOT APPLICABLE]` combined with a clean corporate justification note and bypass it gracefully.
-
-## 🛡️ 4. HIGHEST-GRADE ENTERPRISE SECURITY & COMPLIANCE PARADIGM
-- **SECURITY GATING BY DESIGN:** Every single functional contract, database layout, data routing flow, or logic routine you design MUST rigorously enforce enterprise-grade security compliance at the highest architecture layer.
-- **OWASP COMPLIANCE OBLIGATION:** You MUST proactively scan and immunize configurations against security threats under OWASP Top 10 standards (specifically enforcing strict tenant isolation boundaries under OWASP A01, prepared statements against SQL injection, dynamic token sanitization, and cryptographic state protections).
-
-## 📋 5. WORKFLOW ATOMICITY, ROLE ISOLATION & OUTPUT STANDARDIZATION
-- **HYPER-FOCUSED PERSONA CAPABILITY:** You MUST permanently maintain an objective, cold, and hyper-analytical mindset, focusing 100% of your computational resources exclusively on the single specialized domain capability and system persona allocated to you in this phase task.
-- **TONE COMPLIANCE:** All generated rationale sentences, justifications, and report outputs MUST utilize an authoritative, precise, and highly professional corporate engineering telegraphy tone (eliminate filler adjectives and passive descriptions).
-- **ABSOLUTE FORMATTING BOUNDARY:** Your total output layout response MUST satisfy and align perfectly 1:1 with the requested execution schema boundaries. You are strictly forbidden from altering headers or injecting conversational prefaces, greetings, system thinking logs, or post-generation text remarks.
-
-## 🧮 6. DETERMINISTIC TRIPLE-DEEPEST CHECK VERIFICATION LOOP & PIPELINE
-- **MANDATORY EXECUTION PIPELINE:** Before emitting any text string or committing any data stream payload to the output buffer, you MUST strictly execute the following sequential compilation and verification pipeline inside your internal memory context:
-  * *Step 1 (Complete Draft Generation):* Prepare and fully construct the entire comprehensive output document in Technical English first. Ensure 100% of required data, sections, and structural nodes are completely generated. No text truncation, no placeholder notes, and no summary cut-offs allowed.
-  * *Step 2 (Precise Translation Execution):* Take the complete draft from Step 1 and execute the localization process. Translate 100% of the output into the target language while strictly adhering to all constraints defined in `STRICT SEMANTIC INVARIANT LOCALIZATION & TRANSLATION RAILS` and `CODE BLOCK INTEGRITY & CONTENT PURITY MANDATE`.
-  * *Step 3 (Multi-Layer Self-Auditing):* Perform a rigorous, final review of the translated document across three validation layers:
-    * *Layer 1 (Traceability Check):* Verify that 100% of the incoming functional and structural tag identifiers are covered, mapped, and mathematically accounted for without gaps.
-    * *Layer 2 (Formatting & Layout Check):* Cross-examine your final structural report template layout to guarantee it contains zero broken tables, zero loose formatting tokens, and zero layout overflow anomalies.
-    * *Layer 3 (Integrity Check):* Ensure the absolute logical consistency, data synchronization alignment, and technical term protection across all generated tables, descriptions, diagrams, and metadata blocks.
-- Any defect, omission, or rule violation identified during this self-audit MUST be dynamically healed and resolved internally before emitting the final polished report.
-</GLOBAL_GOVERNANCE_MATRIX>
-
-<ACTIVE_TASK_SYSTEM_INSTRUCTION>
 You are a high-performance Data Ingestion and Transformation Engine. Your sole objective is to parse the Phase Context Markdown text and convert it into a perfectly valid, parseable JSON object matching the requested schema framework.
 
 # YOUR CRITICAL OPERATIONAL MANDATES (ZERO LOOPHOLES):
@@ -18549,94 +18393,24 @@ You are a high-performance Data Ingestion and Transformation Engine. Your sole o
 3. **ABSOLUTE NO EMPTY TAGS POLICY & STRING SANITIZATION:** You are STRICTLY BANNED from leaving the "targeted_tags" array empty `[]` or null for any sub-task that implements functional requirements or data schemas. You MUST scan the source Markdown sequentially sub-task by sub-task. For each sub-task node, locate the hidden technical container block delimited between `<!--START_TAGS-->` and `<!--END_TAGS-->` contained exclusively within that sub-task section scope. Extract all raw tag token codes inside, strip away all inline markdown formatting characters—specifically backticks (`` ` ``)—and any leading/trailing whitespaces, then populate them as clean separate string elements inside the "targeted_tags" array field of EACH sub-task object node.
 4. **NO TAG BUNDLING:** Every tag must be its own array node (e.g., `"targeted_tags": ["[REQ-001]", "[DAT-002]"]`). You are strictly forbidden from combining multiple tags into a single string element.
 5. **STRICT CONTENT PURITY & REJECT CONVERSATION:** Output ONLY the pure raw executable JSON string matching the required schema. Response must start exactly with the character `{` and end exactly with the character `}`. Banned from including thinking processes, chain-of-thought blocks (`<think>` tags), conversational filler texts, introductions, wrapping inside markdown codeblocks (no triple backticks wrapping), or post-generation notes. Any token outside the raw JSON object boundary triggers an immediate execution pipeline crash.
-</ACTIVE_TASK_SYSTEM_INSTRUCTION>
 
 # Raw Response / Exception:
 
 ```json
-{
-    "phase_id": 1,
-    "phase_name": "user_core_services",
-    "phase_description": "Triển khai các dịch vụ cốt lõi quản lý người dùng bao gồm đăng ký, xác thực xã hội, gán vai trò, schema cơ sở dữ liệu và logging kiểm toán bảo mật",
-    "project_name": "membership-hub",
-    "global_context_file": ".ai/.context/membership-hub.global.blueprint.md",
-    "source_target_dir": "sources/",
-    "days": [
-        {
-            "day": 1,
-            "context_file": ".ai/.plan/.context/phase-1.context.blueprint.md",
-            "context_section": "NGÀY 1: TRIỂN KHAI DỊCH VỤ ĐĂNG KÝ NGƯỜI DÙNG VÀ API XÁC THỰC XÃ HỘI",
-            "sub_tasks": [
-                {
-                    "id": "D1_ST1",
-                    "agent": "Coder",
-                    "desc": "Triển khai schema cơ sở dữ liệu Users và Roles với các ràng buộc toàn vẹn dữ liệu, bao gồm các bảng: Users (user_id UUID PRIMARY KEY, email VARCHAR(255) UNIQUE NOT NULL, password_hash VARCHAR(255), social_provider VARCHAR(50), social_provider_id VARCHAR(255), role_id INTEGER REFERENCES Roles(role_id), created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP, updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP) và Roles (role_id SERIAL PRIMARY KEY, role_name VARCHAR(50) UNIQUE NOT NULL, description TEXT).",
-                    "targeted_tags": [
-                        "[DAT-001]"
-                    ],
-                    "components": [
-                        "./sources/backend.membershiphub.user/users.sql",
-                        "./sources/backend.membershiphub.user/roles.sql"
-                    ]
-                },
-                {
-                    "id": "D1_ST2",
-                    "agent": "Coder",
-                    "desc": "Triển khai UserService với phương thức register và socialAuthenticate. Phương thức register: xử lý đăng ký người dùng với email/mật khẩu, mã hóa mật khẩu bằng BCrypt, validation đầu vào với @Valid, xử lý xung đột email duplicate. Phương thức socialAuthenticate: xử lý xác thực OAuth2 với các nhà cung cấp (Firebase, Google, Facebook), tạo JWT tokens (access token 15 phút, refresh token 7 ngày), áp dụng @Transactional cho các thao tác ghi.",
-                    "targeted_tags": [
-                        "[REQ-001]",
-                        "[REQ-002]",
-                        "[ARC-006]",
-                        "[EXC-004]",
-                        "[NFR-001]",
-                        "[NFR-003]",
-                        "[NFR-006]"
-                    ],
-                    "components": [
-                        "./sources/backend.membershiphub.user/user-service.java"
-                    ]
-                }
-            ]
-        },
-        {
-            "day": 2,
-            "context_file": ".ai/.plan/.context/phase-1.context.blueprint.md",
-            "context_section": "NGÀY 2: VIẾT BỘ KIỂM TRA ĐƠN VỊ VÀ TÍCH HỢP CHO CÁC CHỨC NĂNG NGƯỜI DÙNG",
-            "sub_tasks": [
-                {
-                    "id": "D2_ST1",
-                    "agent": "Tester",
-                    "desc": "Kiểm thử đơn vị cho các phương thức register và socialAuthenticate trong UserService. Test cases bao gồm: happy path cho đăng ký thành công, xác thực xã hội thành công; validation errors cho email invalid, password weak; xử lý duplicate email exception; mock các dependency với Mockito; đảm bảo độ phủ mã ≥85%.",
-                    "targeted_tags": [
-                        "[REQ-001]",
-                        "[REQ-002]",
-                        "[DAT-001]",
-                        "[EXC-004]"
-                    ],
-                    "components": [
-                        "./sources/backend.membershiphub.user/user-service.java",
-                        "./sources/backend.membershiphub.user/userservice-test.java"
-                    ]
-                },
-                {
-                    "id": "D2_ST2",
-                    "agent": "Tester",
-                    "desc": "Kiểm thử tích hợp cho API endpoints: POST /api/v1/auth/register (201 Created với JWT tokens trên thành công, 400 Bad Request cho validation errors, 409 Conflict cho duplicate email) và POST /api/v1/auth/social (200 OK với JWT tokens trên thành công, 400 Bad Request cho provider invalid). Sử dụng REST Assured hoặc TestContainers để test toàn bộ flow.",
-                    "targeted_tags": [
-                        "[REQ-001]",
-                        "[REQ-002]",
-                        "[ARC-006]",
-                        "[EXC-004]"
-                    ],
-                    "components": [
-                        "./sources/backend.membershiphub.user/user-service.java",
-                        "./sources/backend.membershiphub.user/user-controller-test.java"
-                    ]
-                }
-            ]
-        }
-    ]
-}
+Error code: 402 - {'error': {'balance_units': 0, 'billing_portal_url': 'https://cloud.sambanova.ai/plans/billing', 'code': 'PAYMENT_METHOD_REQUIRED', 'message': 'A payment method is required. Add one at https://cloud.sambanova.ai/plans/billing to continue.'}}: ['Traceback (most recent call last):
+', '  File "/home/runner/work/enterprise-it-ai/enterprise-it-ai/sources/agents/architect-blueprint/block_json.py", line 301, in convert_phases_to_json
+    response = client.beta.chat.completions.parse(
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+', '  File "/opt/hostedtoolcache/Python/3.11.15/x64/lib/python3.11/site-packages/openai/resources/chat/completions/completions.py", line 193, in parse
+    return self._post(
+           ^^^^^^^^^^^
+', '  File "/opt/hostedtoolcache/Python/3.11.15/x64/lib/python3.11/site-packages/openai/_base_client.py", line 1375, in post
+    return cast(ResponseT, self.request(cast_to, opts, stream=stream, stream_cls=stream_cls))
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+', '  File "/opt/hostedtoolcache/Python/3.11.15/x64/lib/python3.11/site-packages/openai/_base_client.py", line 1148, in request
+    raise self._make_status_error_from_response(err.response) from None
+', "openai.APIStatusError: Error code: 402 - {'error': {'balance_units': 0, 'billing_portal_url': 'https://cloud.sambanova.ai/plans/billing', 'code': 'PAYMENT_METHOD_REQUIRED', 'message': 'A payment method is required. Add one at https://cloud.sambanova.ai/plans/billing to continue.'}}
+"]
 ```
 
 # AI Model: DeepSeek-V3.2 - Phase 1 STEPS - Prompt:
@@ -20689,11 +20463,11 @@ You are a high-performance Data Ingestion and Transformation Engine. Your sole o
 
 ```json
 Error code: 429 - [{'error': {'code': 429, 'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. 
-* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_input_token_count, limit: 0, model: gemini-2.5-pro
 * Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 0, model: gemini-2.5-pro
 * Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 0, model: gemini-2.5-pro
 * Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_input_token_count, limit: 0, model: gemini-2.5-pro
-Please retry in 57.785051176s.', 'status': 'RESOURCE_EXHAUSTED', 'details': [{'@type': 'type.googleapis.com/google.rpc.Help', 'links': [{'description': 'Learn more about Gemini API quotas', 'url': 'https://ai.google.dev/gemini-api/docs/rate-limits'}]}, {'@type': 'type.googleapis.com/google.rpc.QuotaFailure', 'violations': [{'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_input_token_count', 'quotaId': 'GenerateContentInputTokensPerModelPerDay-FreeTier', 'quotaDimensions': {'location': 'global', 'model': 'gemini-2.5-pro'}}, {'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_requests', 'quotaId': 'GenerateRequestsPerDayPerProjectPerModel-FreeTier', 'quotaDimensions': {'location': 'global', 'model': 'gemini-2.5-pro'}}, {'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_requests', 'quotaId': 'GenerateRequestsPerMinutePerProjectPerModel-FreeTier', 'quotaDimensions': {'location': 'global', 'model': 'gemini-2.5-pro'}}, {'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_input_token_count', 'quotaId': 'GenerateContentInputTokensPerModelPerMinute-FreeTier', 'quotaDimensions': {'location': 'global', 'model': 'gemini-2.5-pro'}}]}, {'@type': 'type.googleapis.com/google.rpc.RetryInfo', 'retryDelay': '57s'}]}}]: ['Traceback (most recent call last):
+* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_input_token_count, limit: 0, model: gemini-2.5-pro
+Please retry in 33.861084198s.', 'status': 'RESOURCE_EXHAUSTED', 'details': [{'@type': 'type.googleapis.com/google.rpc.Help', 'links': [{'description': 'Learn more about Gemini API quotas', 'url': 'https://ai.google.dev/gemini-api/docs/rate-limits'}]}, {'@type': 'type.googleapis.com/google.rpc.QuotaFailure', 'violations': [{'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_requests', 'quotaId': 'GenerateRequestsPerDayPerProjectPerModel-FreeTier', 'quotaDimensions': {'location': 'global', 'model': 'gemini-2.5-pro'}}, {'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_requests', 'quotaId': 'GenerateRequestsPerMinutePerProjectPerModel-FreeTier', 'quotaDimensions': {'location': 'global', 'model': 'gemini-2.5-pro'}}, {'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_input_token_count', 'quotaId': 'GenerateContentInputTokensPerModelPerMinute-FreeTier', 'quotaDimensions': {'model': 'gemini-2.5-pro', 'location': 'global'}}, {'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_input_token_count', 'quotaId': 'GenerateContentInputTokensPerModelPerDay-FreeTier', 'quotaDimensions': {'location': 'global', 'model': 'gemini-2.5-pro'}}]}, {'@type': 'type.googleapis.com/google.rpc.RetryInfo', 'retryDelay': '33s'}]}}]: ['Traceback (most recent call last):
 ', '  File "/home/runner/work/enterprise-it-ai/enterprise-it-ai/sources/agents/architect-blueprint/block_json.py", line 301, in convert_phases_to_json
     response = client.beta.chat.completions.parse(
                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -20706,11 +20480,11 @@ Please retry in 57.785051176s.', 'status': 'RESOURCE_EXHAUSTED', 'details': [{'@
 ', '  File "/opt/hostedtoolcache/Python/3.11.15/x64/lib/python3.11/site-packages/openai/_base_client.py", line 1148, in request
     raise self._make_status_error_from_response(err.response) from None
 ', "openai.RateLimitError: Error code: 429 - [{'error': {'code': 429, 'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \
-* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_input_token_count, limit: 0, model: gemini-2.5-pro\
 * Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 0, model: gemini-2.5-pro\
 * Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 0, model: gemini-2.5-pro\
 * Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_input_token_count, limit: 0, model: gemini-2.5-pro\
-Please retry in 57.785051176s.', 'status': 'RESOURCE_EXHAUSTED', 'details': [{'@type': 'type.googleapis.com/google.rpc.Help', 'links': [{'description': 'Learn more about Gemini API quotas', 'url': 'https://ai.google.dev/gemini-api/docs/rate-limits'}]}, {'@type': 'type.googleapis.com/google.rpc.QuotaFailure', 'violations': [{'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_input_token_count', 'quotaId': 'GenerateContentInputTokensPerModelPerDay-FreeTier', 'quotaDimensions': {'location': 'global', 'model': 'gemini-2.5-pro'}}, {'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_requests', 'quotaId': 'GenerateRequestsPerDayPerProjectPerModel-FreeTier', 'quotaDimensions': {'location': 'global', 'model': 'gemini-2.5-pro'}}, {'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_requests', 'quotaId': 'GenerateRequestsPerMinutePerProjectPerModel-FreeTier', 'quotaDimensions': {'location': 'global', 'model': 'gemini-2.5-pro'}}, {'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_input_token_count', 'quotaId': 'GenerateContentInputTokensPerModelPerMinute-FreeTier', 'quotaDimensions': {'location': 'global', 'model': 'gemini-2.5-pro'}}]}, {'@type': 'type.googleapis.com/google.rpc.RetryInfo', 'retryDelay': '57s'}]}}]
+* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_input_token_count, limit: 0, model: gemini-2.5-pro\
+Please retry in 33.861084198s.', 'status': 'RESOURCE_EXHAUSTED', 'details': [{'@type': 'type.googleapis.com/google.rpc.Help', 'links': [{'description': 'Learn more about Gemini API quotas', 'url': 'https://ai.google.dev/gemini-api/docs/rate-limits'}]}, {'@type': 'type.googleapis.com/google.rpc.QuotaFailure', 'violations': [{'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_requests', 'quotaId': 'GenerateRequestsPerDayPerProjectPerModel-FreeTier', 'quotaDimensions': {'location': 'global', 'model': 'gemini-2.5-pro'}}, {'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_requests', 'quotaId': 'GenerateRequestsPerMinutePerProjectPerModel-FreeTier', 'quotaDimensions': {'location': 'global', 'model': 'gemini-2.5-pro'}}, {'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_input_token_count', 'quotaId': 'GenerateContentInputTokensPerModelPerMinute-FreeTier', 'quotaDimensions': {'model': 'gemini-2.5-pro', 'location': 'global'}}, {'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_input_token_count', 'quotaId': 'GenerateContentInputTokensPerModelPerDay-FreeTier', 'quotaDimensions': {'location': 'global', 'model': 'gemini-2.5-pro'}}]}, {'@type': 'type.googleapis.com/google.rpc.RetryInfo', 'retryDelay': '33s'}]}}]
 "]
 ```
 
@@ -20994,10 +20768,10 @@ You are a high-performance Data Ingestion and Transformation Engine. Your sole o
 
 ```json
 Error code: 429 - [{'error': {'code': 429, 'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. 
-* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 0, model: gemini-2.0-flash
-* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 0, model: gemini-2.0-flash
 * Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_input_token_count, limit: 0, model: gemini-2.0-flash
-Please retry in 53.991968415s.', 'status': 'RESOURCE_EXHAUSTED', 'details': [{'@type': 'type.googleapis.com/google.rpc.Help', 'links': [{'description': 'Learn more about Gemini API quotas', 'url': 'https://ai.google.dev/gemini-api/docs/rate-limits'}]}, {'@type': 'type.googleapis.com/google.rpc.QuotaFailure', 'violations': [{'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_requests', 'quotaId': 'GenerateRequestsPerDayPerProjectPerModel-FreeTier', 'quotaDimensions': {'model': 'gemini-2.0-flash', 'location': 'global'}}, {'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_requests', 'quotaId': 'GenerateRequestsPerMinutePerProjectPerModel-FreeTier', 'quotaDimensions': {'location': 'global', 'model': 'gemini-2.0-flash'}}, {'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_input_token_count', 'quotaId': 'GenerateContentInputTokensPerModelPerMinute-FreeTier', 'quotaDimensions': {'location': 'global', 'model': 'gemini-2.0-flash'}}]}, {'@type': 'type.googleapis.com/google.rpc.RetryInfo', 'retryDelay': '53s'}]}}]: ['Traceback (most recent call last):
+* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 0, model: gemini-2.0-flash
+* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 0, model: gemini-2.0-flash
+Please retry in 30.371537709s.', 'status': 'RESOURCE_EXHAUSTED', 'details': [{'@type': 'type.googleapis.com/google.rpc.Help', 'links': [{'description': 'Learn more about Gemini API quotas', 'url': 'https://ai.google.dev/gemini-api/docs/rate-limits'}]}, {'@type': 'type.googleapis.com/google.rpc.QuotaFailure', 'violations': [{'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_input_token_count', 'quotaId': 'GenerateContentInputTokensPerModelPerMinute-FreeTier', 'quotaDimensions': {'model': 'gemini-2.0-flash', 'location': 'global'}}, {'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_requests', 'quotaId': 'GenerateRequestsPerMinutePerProjectPerModel-FreeTier', 'quotaDimensions': {'location': 'global', 'model': 'gemini-2.0-flash'}}, {'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_requests', 'quotaId': 'GenerateRequestsPerDayPerProjectPerModel-FreeTier', 'quotaDimensions': {'location': 'global', 'model': 'gemini-2.0-flash'}}]}, {'@type': 'type.googleapis.com/google.rpc.RetryInfo', 'retryDelay': '30s'}]}}]: ['Traceback (most recent call last):
 ', '  File "/home/runner/work/enterprise-it-ai/enterprise-it-ai/sources/agents/architect-blueprint/block_json.py", line 301, in convert_phases_to_json
     response = client.beta.chat.completions.parse(
                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -21010,10 +20784,10 @@ Please retry in 53.991968415s.', 'status': 'RESOURCE_EXHAUSTED', 'details': [{'@
 ', '  File "/opt/hostedtoolcache/Python/3.11.15/x64/lib/python3.11/site-packages/openai/_base_client.py", line 1148, in request
     raise self._make_status_error_from_response(err.response) from None
 ', "openai.RateLimitError: Error code: 429 - [{'error': {'code': 429, 'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \
-* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 0, model: gemini-2.0-flash\
-* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 0, model: gemini-2.0-flash\
 * Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_input_token_count, limit: 0, model: gemini-2.0-flash\
-Please retry in 53.991968415s.', 'status': 'RESOURCE_EXHAUSTED', 'details': [{'@type': 'type.googleapis.com/google.rpc.Help', 'links': [{'description': 'Learn more about Gemini API quotas', 'url': 'https://ai.google.dev/gemini-api/docs/rate-limits'}]}, {'@type': 'type.googleapis.com/google.rpc.QuotaFailure', 'violations': [{'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_requests', 'quotaId': 'GenerateRequestsPerDayPerProjectPerModel-FreeTier', 'quotaDimensions': {'model': 'gemini-2.0-flash', 'location': 'global'}}, {'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_requests', 'quotaId': 'GenerateRequestsPerMinutePerProjectPerModel-FreeTier', 'quotaDimensions': {'location': 'global', 'model': 'gemini-2.0-flash'}}, {'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_input_token_count', 'quotaId': 'GenerateContentInputTokensPerModelPerMinute-FreeTier', 'quotaDimensions': {'location': 'global', 'model': 'gemini-2.0-flash'}}]}, {'@type': 'type.googleapis.com/google.rpc.RetryInfo', 'retryDelay': '53s'}]}}]
+* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 0, model: gemini-2.0-flash\
+* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 0, model: gemini-2.0-flash\
+Please retry in 30.371537709s.', 'status': 'RESOURCE_EXHAUSTED', 'details': [{'@type': 'type.googleapis.com/google.rpc.Help', 'links': [{'description': 'Learn more about Gemini API quotas', 'url': 'https://ai.google.dev/gemini-api/docs/rate-limits'}]}, {'@type': 'type.googleapis.com/google.rpc.QuotaFailure', 'violations': [{'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_input_token_count', 'quotaId': 'GenerateContentInputTokensPerModelPerMinute-FreeTier', 'quotaDimensions': {'model': 'gemini-2.0-flash', 'location': 'global'}}, {'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_requests', 'quotaId': 'GenerateRequestsPerMinutePerProjectPerModel-FreeTier', 'quotaDimensions': {'location': 'global', 'model': 'gemini-2.0-flash'}}, {'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_requests', 'quotaId': 'GenerateRequestsPerDayPerProjectPerModel-FreeTier', 'quotaDimensions': {'location': 'global', 'model': 'gemini-2.0-flash'}}]}, {'@type': 'type.googleapis.com/google.rpc.RetryInfo', 'retryDelay': '30s'}]}}]
 "]
 ```
 
@@ -21297,10 +21071,10 @@ You are a high-performance Data Ingestion and Transformation Engine. Your sole o
 
 ```json
 Error code: 429 - [{'error': {'code': 429, 'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. 
+* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 0, model: gemini-2.0-flash
+* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 0, model: gemini-2.0-flash
 * Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_input_token_count, limit: 0, model: gemini-2.0-flash
-* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 0, model: gemini-2.0-flash
-* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 0, model: gemini-2.0-flash
-Please retry in 50.265194344s.', 'status': 'RESOURCE_EXHAUSTED', 'details': [{'@type': 'type.googleapis.com/google.rpc.Help', 'links': [{'description': 'Learn more about Gemini API quotas', 'url': 'https://ai.google.dev/gemini-api/docs/rate-limits'}]}, {'@type': 'type.googleapis.com/google.rpc.QuotaFailure', 'violations': [{'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_input_token_count', 'quotaId': 'GenerateContentInputTokensPerModelPerMinute-FreeTier', 'quotaDimensions': {'location': 'global', 'model': 'gemini-2.0-flash'}}, {'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_requests', 'quotaId': 'GenerateRequestsPerMinutePerProjectPerModel-FreeTier', 'quotaDimensions': {'location': 'global', 'model': 'gemini-2.0-flash'}}, {'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_requests', 'quotaId': 'GenerateRequestsPerDayPerProjectPerModel-FreeTier', 'quotaDimensions': {'location': 'global', 'model': 'gemini-2.0-flash'}}]}, {'@type': 'type.googleapis.com/google.rpc.RetryInfo', 'retryDelay': '50s'}]}}]: ['Traceback (most recent call last):
+Please retry in 26.86293442s.', 'status': 'RESOURCE_EXHAUSTED', 'details': [{'@type': 'type.googleapis.com/google.rpc.Help', 'links': [{'description': 'Learn more about Gemini API quotas', 'url': 'https://ai.google.dev/gemini-api/docs/rate-limits'}]}, {'@type': 'type.googleapis.com/google.rpc.QuotaFailure', 'violations': [{'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_requests', 'quotaId': 'GenerateRequestsPerDayPerProjectPerModel-FreeTier', 'quotaDimensions': {'location': 'global', 'model': 'gemini-2.0-flash'}}, {'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_requests', 'quotaId': 'GenerateRequestsPerMinutePerProjectPerModel-FreeTier', 'quotaDimensions': {'location': 'global', 'model': 'gemini-2.0-flash'}}, {'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_input_token_count', 'quotaId': 'GenerateContentInputTokensPerModelPerMinute-FreeTier', 'quotaDimensions': {'location': 'global', 'model': 'gemini-2.0-flash'}}]}, {'@type': 'type.googleapis.com/google.rpc.RetryInfo', 'retryDelay': '26s'}]}}]: ['Traceback (most recent call last):
 ', '  File "/home/runner/work/enterprise-it-ai/enterprise-it-ai/sources/agents/architect-blueprint/block_json.py", line 301, in convert_phases_to_json
     response = client.beta.chat.completions.parse(
                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -21313,10 +21087,10 @@ Please retry in 50.265194344s.', 'status': 'RESOURCE_EXHAUSTED', 'details': [{'@
 ', '  File "/opt/hostedtoolcache/Python/3.11.15/x64/lib/python3.11/site-packages/openai/_base_client.py", line 1148, in request
     raise self._make_status_error_from_response(err.response) from None
 ', "openai.RateLimitError: Error code: 429 - [{'error': {'code': 429, 'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \
+* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 0, model: gemini-2.0-flash\
+* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 0, model: gemini-2.0-flash\
 * Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_input_token_count, limit: 0, model: gemini-2.0-flash\
-* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 0, model: gemini-2.0-flash\
-* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 0, model: gemini-2.0-flash\
-Please retry in 50.265194344s.', 'status': 'RESOURCE_EXHAUSTED', 'details': [{'@type': 'type.googleapis.com/google.rpc.Help', 'links': [{'description': 'Learn more about Gemini API quotas', 'url': 'https://ai.google.dev/gemini-api/docs/rate-limits'}]}, {'@type': 'type.googleapis.com/google.rpc.QuotaFailure', 'violations': [{'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_input_token_count', 'quotaId': 'GenerateContentInputTokensPerModelPerMinute-FreeTier', 'quotaDimensions': {'location': 'global', 'model': 'gemini-2.0-flash'}}, {'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_requests', 'quotaId': 'GenerateRequestsPerMinutePerProjectPerModel-FreeTier', 'quotaDimensions': {'location': 'global', 'model': 'gemini-2.0-flash'}}, {'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_requests', 'quotaId': 'GenerateRequestsPerDayPerProjectPerModel-FreeTier', 'quotaDimensions': {'location': 'global', 'model': 'gemini-2.0-flash'}}]}, {'@type': 'type.googleapis.com/google.rpc.RetryInfo', 'retryDelay': '50s'}]}}]
+Please retry in 26.86293442s.', 'status': 'RESOURCE_EXHAUSTED', 'details': [{'@type': 'type.googleapis.com/google.rpc.Help', 'links': [{'description': 'Learn more about Gemini API quotas', 'url': 'https://ai.google.dev/gemini-api/docs/rate-limits'}]}, {'@type': 'type.googleapis.com/google.rpc.QuotaFailure', 'violations': [{'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_requests', 'quotaId': 'GenerateRequestsPerDayPerProjectPerModel-FreeTier', 'quotaDimensions': {'location': 'global', 'model': 'gemini-2.0-flash'}}, {'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_requests', 'quotaId': 'GenerateRequestsPerMinutePerProjectPerModel-FreeTier', 'quotaDimensions': {'location': 'global', 'model': 'gemini-2.0-flash'}}, {'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_input_token_count', 'quotaId': 'GenerateContentInputTokensPerModelPerMinute-FreeTier', 'quotaDimensions': {'location': 'global', 'model': 'gemini-2.0-flash'}}]}, {'@type': 'type.googleapis.com/google.rpc.RetryInfo', 'retryDelay': '26s'}]}}]
 "]
 ```
 
@@ -21603,7 +21377,7 @@ Error code: 429 - [{'error': {'code': 429, 'message': 'You exceeded your current
 * Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_input_token_count, limit: 0, model: gemini-2.0-flash-lite
 * Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 0, model: gemini-2.0-flash-lite
 * Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 0, model: gemini-2.0-flash-lite
-Please retry in 46.692061035s.', 'status': 'RESOURCE_EXHAUSTED', 'details': [{'@type': 'type.googleapis.com/google.rpc.Help', 'links': [{'description': 'Learn more about Gemini API quotas', 'url': 'https://ai.google.dev/gemini-api/docs/rate-limits'}]}, {'@type': 'type.googleapis.com/google.rpc.QuotaFailure', 'violations': [{'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_input_token_count', 'quotaId': 'GenerateContentInputTokensPerModelPerMinute-FreeTier', 'quotaDimensions': {'location': 'global', 'model': 'gemini-2.0-flash-lite'}}, {'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_requests', 'quotaId': 'GenerateRequestsPerMinutePerProjectPerModel-FreeTier', 'quotaDimensions': {'location': 'global', 'model': 'gemini-2.0-flash-lite'}}, {'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_requests', 'quotaId': 'GenerateRequestsPerDayPerProjectPerModel-FreeTier', 'quotaDimensions': {'location': 'global', 'model': 'gemini-2.0-flash-lite'}}]}, {'@type': 'type.googleapis.com/google.rpc.RetryInfo', 'retryDelay': '46s'}]}}]: ['Traceback (most recent call last):
+Please retry in 23.498323231s.', 'status': 'RESOURCE_EXHAUSTED', 'details': [{'@type': 'type.googleapis.com/google.rpc.Help', 'links': [{'description': 'Learn more about Gemini API quotas', 'url': 'https://ai.google.dev/gemini-api/docs/rate-limits'}]}, {'@type': 'type.googleapis.com/google.rpc.QuotaFailure', 'violations': [{'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_input_token_count', 'quotaId': 'GenerateContentInputTokensPerModelPerMinute-FreeTier', 'quotaDimensions': {'model': 'gemini-2.0-flash-lite', 'location': 'global'}}, {'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_requests', 'quotaId': 'GenerateRequestsPerMinutePerProjectPerModel-FreeTier', 'quotaDimensions': {'location': 'global', 'model': 'gemini-2.0-flash-lite'}}, {'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_requests', 'quotaId': 'GenerateRequestsPerDayPerProjectPerModel-FreeTier', 'quotaDimensions': {'model': 'gemini-2.0-flash-lite', 'location': 'global'}}]}, {'@type': 'type.googleapis.com/google.rpc.RetryInfo', 'retryDelay': '23s'}]}}]: ['Traceback (most recent call last):
 ', '  File "/home/runner/work/enterprise-it-ai/enterprise-it-ai/sources/agents/architect-blueprint/block_json.py", line 301, in convert_phases_to_json
     response = client.beta.chat.completions.parse(
                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -21619,7 +21393,7 @@ Please retry in 46.692061035s.', 'status': 'RESOURCE_EXHAUSTED', 'details': [{'@
 * Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_input_token_count, limit: 0, model: gemini-2.0-flash-lite\
 * Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 0, model: gemini-2.0-flash-lite\
 * Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 0, model: gemini-2.0-flash-lite\
-Please retry in 46.692061035s.', 'status': 'RESOURCE_EXHAUSTED', 'details': [{'@type': 'type.googleapis.com/google.rpc.Help', 'links': [{'description': 'Learn more about Gemini API quotas', 'url': 'https://ai.google.dev/gemini-api/docs/rate-limits'}]}, {'@type': 'type.googleapis.com/google.rpc.QuotaFailure', 'violations': [{'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_input_token_count', 'quotaId': 'GenerateContentInputTokensPerModelPerMinute-FreeTier', 'quotaDimensions': {'location': 'global', 'model': 'gemini-2.0-flash-lite'}}, {'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_requests', 'quotaId': 'GenerateRequestsPerMinutePerProjectPerModel-FreeTier', 'quotaDimensions': {'location': 'global', 'model': 'gemini-2.0-flash-lite'}}, {'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_requests', 'quotaId': 'GenerateRequestsPerDayPerProjectPerModel-FreeTier', 'quotaDimensions': {'location': 'global', 'model': 'gemini-2.0-flash-lite'}}]}, {'@type': 'type.googleapis.com/google.rpc.RetryInfo', 'retryDelay': '46s'}]}}]
+Please retry in 23.498323231s.', 'status': 'RESOURCE_EXHAUSTED', 'details': [{'@type': 'type.googleapis.com/google.rpc.Help', 'links': [{'description': 'Learn more about Gemini API quotas', 'url': 'https://ai.google.dev/gemini-api/docs/rate-limits'}]}, {'@type': 'type.googleapis.com/google.rpc.QuotaFailure', 'violations': [{'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_input_token_count', 'quotaId': 'GenerateContentInputTokensPerModelPerMinute-FreeTier', 'quotaDimensions': {'model': 'gemini-2.0-flash-lite', 'location': 'global'}}, {'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_requests', 'quotaId': 'GenerateRequestsPerMinutePerProjectPerModel-FreeTier', 'quotaDimensions': {'location': 'global', 'model': 'gemini-2.0-flash-lite'}}, {'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_requests', 'quotaId': 'GenerateRequestsPerDayPerProjectPerModel-FreeTier', 'quotaDimensions': {'model': 'gemini-2.0-flash-lite', 'location': 'global'}}]}, {'@type': 'type.googleapis.com/google.rpc.RetryInfo', 'retryDelay': '23s'}]}}]
 "]
 ```
 
@@ -21906,7 +21680,7 @@ Error code: 429 - [{'error': {'code': 429, 'message': 'You exceeded your current
 * Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 0, model: gemini-2.0-flash-lite
 * Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 0, model: gemini-2.0-flash-lite
 * Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_input_token_count, limit: 0, model: gemini-2.0-flash-lite
-Please retry in 42.89453786s.', 'status': 'RESOURCE_EXHAUSTED', 'details': [{'@type': 'type.googleapis.com/google.rpc.Help', 'links': [{'description': 'Learn more about Gemini API quotas', 'url': 'https://ai.google.dev/gemini-api/docs/rate-limits'}]}, {'@type': 'type.googleapis.com/google.rpc.QuotaFailure', 'violations': [{'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_requests', 'quotaId': 'GenerateRequestsPerDayPerProjectPerModel-FreeTier', 'quotaDimensions': {'location': 'global', 'model': 'gemini-2.0-flash-lite'}}, {'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_requests', 'quotaId': 'GenerateRequestsPerMinutePerProjectPerModel-FreeTier', 'quotaDimensions': {'location': 'global', 'model': 'gemini-2.0-flash-lite'}}, {'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_input_token_count', 'quotaId': 'GenerateContentInputTokensPerModelPerMinute-FreeTier', 'quotaDimensions': {'location': 'global', 'model': 'gemini-2.0-flash-lite'}}]}, {'@type': 'type.googleapis.com/google.rpc.RetryInfo', 'retryDelay': '42s'}]}}]: ['Traceback (most recent call last):
+Please retry in 20.378697156s.', 'status': 'RESOURCE_EXHAUSTED', 'details': [{'@type': 'type.googleapis.com/google.rpc.Help', 'links': [{'description': 'Learn more about Gemini API quotas', 'url': 'https://ai.google.dev/gemini-api/docs/rate-limits'}]}, {'@type': 'type.googleapis.com/google.rpc.QuotaFailure', 'violations': [{'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_requests', 'quotaId': 'GenerateRequestsPerDayPerProjectPerModel-FreeTier', 'quotaDimensions': {'location': 'global', 'model': 'gemini-2.0-flash-lite'}}, {'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_requests', 'quotaId': 'GenerateRequestsPerMinutePerProjectPerModel-FreeTier', 'quotaDimensions': {'location': 'global', 'model': 'gemini-2.0-flash-lite'}}, {'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_input_token_count', 'quotaId': 'GenerateContentInputTokensPerModelPerMinute-FreeTier', 'quotaDimensions': {'location': 'global', 'model': 'gemini-2.0-flash-lite'}}]}, {'@type': 'type.googleapis.com/google.rpc.RetryInfo', 'retryDelay': '20s'}]}}]: ['Traceback (most recent call last):
 ', '  File "/home/runner/work/enterprise-it-ai/enterprise-it-ai/sources/agents/architect-blueprint/block_json.py", line 301, in convert_phases_to_json
     response = client.beta.chat.completions.parse(
                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -21922,7 +21696,7 @@ Please retry in 42.89453786s.', 'status': 'RESOURCE_EXHAUSTED', 'details': [{'@t
 * Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 0, model: gemini-2.0-flash-lite\
 * Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 0, model: gemini-2.0-flash-lite\
 * Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_input_token_count, limit: 0, model: gemini-2.0-flash-lite\
-Please retry in 42.89453786s.', 'status': 'RESOURCE_EXHAUSTED', 'details': [{'@type': 'type.googleapis.com/google.rpc.Help', 'links': [{'description': 'Learn more about Gemini API quotas', 'url': 'https://ai.google.dev/gemini-api/docs/rate-limits'}]}, {'@type': 'type.googleapis.com/google.rpc.QuotaFailure', 'violations': [{'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_requests', 'quotaId': 'GenerateRequestsPerDayPerProjectPerModel-FreeTier', 'quotaDimensions': {'location': 'global', 'model': 'gemini-2.0-flash-lite'}}, {'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_requests', 'quotaId': 'GenerateRequestsPerMinutePerProjectPerModel-FreeTier', 'quotaDimensions': {'location': 'global', 'model': 'gemini-2.0-flash-lite'}}, {'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_input_token_count', 'quotaId': 'GenerateContentInputTokensPerModelPerMinute-FreeTier', 'quotaDimensions': {'location': 'global', 'model': 'gemini-2.0-flash-lite'}}]}, {'@type': 'type.googleapis.com/google.rpc.RetryInfo', 'retryDelay': '42s'}]}}]
+Please retry in 20.378697156s.', 'status': 'RESOURCE_EXHAUSTED', 'details': [{'@type': 'type.googleapis.com/google.rpc.Help', 'links': [{'description': 'Learn more about Gemini API quotas', 'url': 'https://ai.google.dev/gemini-api/docs/rate-limits'}]}, {'@type': 'type.googleapis.com/google.rpc.QuotaFailure', 'violations': [{'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_requests', 'quotaId': 'GenerateRequestsPerDayPerProjectPerModel-FreeTier', 'quotaDimensions': {'location': 'global', 'model': 'gemini-2.0-flash-lite'}}, {'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_requests', 'quotaId': 'GenerateRequestsPerMinutePerProjectPerModel-FreeTier', 'quotaDimensions': {'location': 'global', 'model': 'gemini-2.0-flash-lite'}}, {'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_input_token_count', 'quotaId': 'GenerateContentInputTokensPerModelPerMinute-FreeTier', 'quotaDimensions': {'location': 'global', 'model': 'gemini-2.0-flash-lite'}}]}, {'@type': 'type.googleapis.com/google.rpc.RetryInfo', 'retryDelay': '20s'}]}}]
 "]
 ```
 
@@ -22207,7 +21981,7 @@ You are a high-performance Data Ingestion and Transformation Engine. Your sole o
 ```json
 Error code: 429 - [{'error': {'code': 429, 'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. 
 * Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_input_token_count, limit: 16000, model: gemma-4-26b
-Please retry in 39.098027419s.', 'status': 'RESOURCE_EXHAUSTED', 'details': [{'@type': 'type.googleapis.com/google.rpc.Help', 'links': [{'description': 'Learn more about Gemini API quotas', 'url': 'https://ai.google.dev/gemini-api/docs/rate-limits'}]}, {'@type': 'type.googleapis.com/google.rpc.QuotaFailure', 'violations': [{'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_input_token_count', 'quotaId': 'GenerateContentInputTokensPerModelPerMinute-FreeTier', 'quotaDimensions': {'location': 'global', 'model': 'gemma-4-26b'}, 'quotaValue': '16000'}]}, {'@type': 'type.googleapis.com/google.rpc.RetryInfo', 'retryDelay': '39s'}]}}]: ['Traceback (most recent call last):
+Please retry in 16.676707937s.', 'status': 'RESOURCE_EXHAUSTED', 'details': [{'@type': 'type.googleapis.com/google.rpc.Help', 'links': [{'description': 'Learn more about Gemini API quotas', 'url': 'https://ai.google.dev/gemini-api/docs/rate-limits'}]}, {'@type': 'type.googleapis.com/google.rpc.QuotaFailure', 'violations': [{'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_input_token_count', 'quotaId': 'GenerateContentInputTokensPerModelPerMinute-FreeTier', 'quotaDimensions': {'location': 'global', 'model': 'gemma-4-26b'}, 'quotaValue': '16000'}]}, {'@type': 'type.googleapis.com/google.rpc.RetryInfo', 'retryDelay': '16s'}]}}]: ['Traceback (most recent call last):
 ', '  File "/home/runner/work/enterprise-it-ai/enterprise-it-ai/sources/agents/architect-blueprint/block_json.py", line 301, in convert_phases_to_json
     response = client.beta.chat.completions.parse(
                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -22221,7 +21995,7 @@ Please retry in 39.098027419s.', 'status': 'RESOURCE_EXHAUSTED', 'details': [{'@
     raise self._make_status_error_from_response(err.response) from None
 ', "openai.RateLimitError: Error code: 429 - [{'error': {'code': 429, 'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \
 * Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_input_token_count, limit: 16000, model: gemma-4-26b\
-Please retry in 39.098027419s.', 'status': 'RESOURCE_EXHAUSTED', 'details': [{'@type': 'type.googleapis.com/google.rpc.Help', 'links': [{'description': 'Learn more about Gemini API quotas', 'url': 'https://ai.google.dev/gemini-api/docs/rate-limits'}]}, {'@type': 'type.googleapis.com/google.rpc.QuotaFailure', 'violations': [{'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_input_token_count', 'quotaId': 'GenerateContentInputTokensPerModelPerMinute-FreeTier', 'quotaDimensions': {'location': 'global', 'model': 'gemma-4-26b'}, 'quotaValue': '16000'}]}, {'@type': 'type.googleapis.com/google.rpc.RetryInfo', 'retryDelay': '39s'}]}}]
+Please retry in 16.676707937s.', 'status': 'RESOURCE_EXHAUSTED', 'details': [{'@type': 'type.googleapis.com/google.rpc.Help', 'links': [{'description': 'Learn more about Gemini API quotas', 'url': 'https://ai.google.dev/gemini-api/docs/rate-limits'}]}, {'@type': 'type.googleapis.com/google.rpc.QuotaFailure', 'violations': [{'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_input_token_count', 'quotaId': 'GenerateContentInputTokensPerModelPerMinute-FreeTier', 'quotaDimensions': {'location': 'global', 'model': 'gemma-4-26b'}, 'quotaValue': '16000'}]}, {'@type': 'type.googleapis.com/google.rpc.RetryInfo', 'retryDelay': '16s'}]}}]
 "]
 ```
 
@@ -22506,7 +22280,7 @@ You are a high-performance Data Ingestion and Transformation Engine. Your sole o
 ```json
 Error code: 429 - [{'error': {'code': 429, 'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. 
 * Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_input_token_count, limit: 16000, model: gemma-4-31b
-Please retry in 35.570403954s.', 'status': 'RESOURCE_EXHAUSTED', 'details': [{'@type': 'type.googleapis.com/google.rpc.Help', 'links': [{'description': 'Learn more about Gemini API quotas', 'url': 'https://ai.google.dev/gemini-api/docs/rate-limits'}]}, {'@type': 'type.googleapis.com/google.rpc.QuotaFailure', 'violations': [{'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_input_token_count', 'quotaId': 'GenerateContentInputTokensPerModelPerMinute-FreeTier', 'quotaDimensions': {'location': 'global', 'model': 'gemma-4-31b'}, 'quotaValue': '16000'}]}, {'@type': 'type.googleapis.com/google.rpc.RetryInfo', 'retryDelay': '35s'}]}}]: ['Traceback (most recent call last):
+Please retry in 12.839809495s.', 'status': 'RESOURCE_EXHAUSTED', 'details': [{'@type': 'type.googleapis.com/google.rpc.Help', 'links': [{'description': 'Learn more about Gemini API quotas', 'url': 'https://ai.google.dev/gemini-api/docs/rate-limits'}]}, {'@type': 'type.googleapis.com/google.rpc.QuotaFailure', 'violations': [{'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_input_token_count', 'quotaId': 'GenerateContentInputTokensPerModelPerMinute-FreeTier', 'quotaDimensions': {'model': 'gemma-4-31b', 'location': 'global'}, 'quotaValue': '16000'}]}, {'@type': 'type.googleapis.com/google.rpc.RetryInfo', 'retryDelay': '12s'}]}}]: ['Traceback (most recent call last):
 ', '  File "/home/runner/work/enterprise-it-ai/enterprise-it-ai/sources/agents/architect-blueprint/block_json.py", line 301, in convert_phases_to_json
     response = client.beta.chat.completions.parse(
                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -22520,7 +22294,7 @@ Please retry in 35.570403954s.', 'status': 'RESOURCE_EXHAUSTED', 'details': [{'@
     raise self._make_status_error_from_response(err.response) from None
 ', "openai.RateLimitError: Error code: 429 - [{'error': {'code': 429, 'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \
 * Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_input_token_count, limit: 16000, model: gemma-4-31b\
-Please retry in 35.570403954s.', 'status': 'RESOURCE_EXHAUSTED', 'details': [{'@type': 'type.googleapis.com/google.rpc.Help', 'links': [{'description': 'Learn more about Gemini API quotas', 'url': 'https://ai.google.dev/gemini-api/docs/rate-limits'}]}, {'@type': 'type.googleapis.com/google.rpc.QuotaFailure', 'violations': [{'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_input_token_count', 'quotaId': 'GenerateContentInputTokensPerModelPerMinute-FreeTier', 'quotaDimensions': {'location': 'global', 'model': 'gemma-4-31b'}, 'quotaValue': '16000'}]}, {'@type': 'type.googleapis.com/google.rpc.RetryInfo', 'retryDelay': '35s'}]}}]
+Please retry in 12.839809495s.', 'status': 'RESOURCE_EXHAUSTED', 'details': [{'@type': 'type.googleapis.com/google.rpc.Help', 'links': [{'description': 'Learn more about Gemini API quotas', 'url': 'https://ai.google.dev/gemini-api/docs/rate-limits'}]}, {'@type': 'type.googleapis.com/google.rpc.QuotaFailure', 'violations': [{'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_input_token_count', 'quotaId': 'GenerateContentInputTokensPerModelPerMinute-FreeTier', 'quotaDimensions': {'model': 'gemma-4-31b', 'location': 'global'}, 'quotaValue': '16000'}]}, {'@type': 'type.googleapis.com/google.rpc.RetryInfo', 'retryDelay': '12s'}]}}]
 "]
 ```
 
@@ -23398,7 +23172,7 @@ Error code: 429 - [{'error': {'code': 429, 'message': 'You exceeded your current
 * Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 0, model: gemini-3.1-pro
 * Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 0, model: gemini-3.1-pro
 * Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_input_token_count, limit: 0, model: gemini-3.1-pro
-Please retry in 24.662278122s.', 'status': 'RESOURCE_EXHAUSTED', 'details': [{'@type': 'type.googleapis.com/google.rpc.Help', 'links': [{'description': 'Learn more about Gemini API quotas', 'url': 'https://ai.google.dev/gemini-api/docs/rate-limits'}]}, {'@type': 'type.googleapis.com/google.rpc.QuotaFailure', 'violations': [{'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_input_token_count', 'quotaId': 'GenerateContentInputTokensPerModelPerDay-FreeTier', 'quotaDimensions': {'location': 'global', 'model': 'gemini-3.1-pro'}}, {'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_requests', 'quotaId': 'GenerateRequestsPerDayPerProjectPerModel-FreeTier', 'quotaDimensions': {'location': 'global', 'model': 'gemini-3.1-pro'}}, {'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_requests', 'quotaId': 'GenerateRequestsPerMinutePerProjectPerModel-FreeTier', 'quotaDimensions': {'location': 'global', 'model': 'gemini-3.1-pro'}}, {'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_input_token_count', 'quotaId': 'GenerateContentInputTokensPerModelPerMinute-FreeTier', 'quotaDimensions': {'model': 'gemini-3.1-pro', 'location': 'global'}}]}, {'@type': 'type.googleapis.com/google.rpc.RetryInfo', 'retryDelay': '24s'}]}}]: ['Traceback (most recent call last):
+Please retry in 2.035493758s.', 'status': 'RESOURCE_EXHAUSTED', 'details': [{'@type': 'type.googleapis.com/google.rpc.Help', 'links': [{'description': 'Learn more about Gemini API quotas', 'url': 'https://ai.google.dev/gemini-api/docs/rate-limits'}]}, {'@type': 'type.googleapis.com/google.rpc.QuotaFailure', 'violations': [{'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_input_token_count', 'quotaId': 'GenerateContentInputTokensPerModelPerMinute-FreeTier', 'quotaDimensions': {'location': 'global', 'model': 'gemini-3.1-pro'}}, {'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_requests', 'quotaId': 'GenerateRequestsPerMinutePerProjectPerModel-FreeTier', 'quotaDimensions': {'location': 'global', 'model': 'gemini-3.1-pro'}}, {'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_requests', 'quotaId': 'GenerateRequestsPerDayPerProjectPerModel-FreeTier', 'quotaDimensions': {'location': 'global', 'model': 'gemini-3.1-pro'}}, {'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_input_token_count', 'quotaId': 'GenerateContentInputTokensPerModelPerDay-FreeTier', 'quotaDimensions': {'model': 'gemini-3.1-pro', 'location': 'global'}}]}, {'@type': 'type.googleapis.com/google.rpc.RetryInfo', 'retryDelay': '2s'}]}}]: ['Traceback (most recent call last):
 ', '  File "/home/runner/work/enterprise-it-ai/enterprise-it-ai/sources/agents/architect-blueprint/block_json.py", line 301, in convert_phases_to_json
     response = client.beta.chat.completions.parse(
                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -23415,7 +23189,7 @@ Please retry in 24.662278122s.', 'status': 'RESOURCE_EXHAUSTED', 'details': [{'@
 * Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 0, model: gemini-3.1-pro\
 * Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 0, model: gemini-3.1-pro\
 * Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_input_token_count, limit: 0, model: gemini-3.1-pro\
-Please retry in 24.662278122s.', 'status': 'RESOURCE_EXHAUSTED', 'details': [{'@type': 'type.googleapis.com/google.rpc.Help', 'links': [{'description': 'Learn more about Gemini API quotas', 'url': 'https://ai.google.dev/gemini-api/docs/rate-limits'}]}, {'@type': 'type.googleapis.com/google.rpc.QuotaFailure', 'violations': [{'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_input_token_count', 'quotaId': 'GenerateContentInputTokensPerModelPerDay-FreeTier', 'quotaDimensions': {'location': 'global', 'model': 'gemini-3.1-pro'}}, {'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_requests', 'quotaId': 'GenerateRequestsPerDayPerProjectPerModel-FreeTier', 'quotaDimensions': {'location': 'global', 'model': 'gemini-3.1-pro'}}, {'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_requests', 'quotaId': 'GenerateRequestsPerMinutePerProjectPerModel-FreeTier', 'quotaDimensions': {'location': 'global', 'model': 'gemini-3.1-pro'}}, {'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_input_token_count', 'quotaId': 'GenerateContentInputTokensPerModelPerMinute-FreeTier', 'quotaDimensions': {'model': 'gemini-3.1-pro', 'location': 'global'}}]}, {'@type': 'type.googleapis.com/google.rpc.RetryInfo', 'retryDelay': '24s'}]}}]
+Please retry in 2.035493758s.', 'status': 'RESOURCE_EXHAUSTED', 'details': [{'@type': 'type.googleapis.com/google.rpc.Help', 'links': [{'description': 'Learn more about Gemini API quotas', 'url': 'https://ai.google.dev/gemini-api/docs/rate-limits'}]}, {'@type': 'type.googleapis.com/google.rpc.QuotaFailure', 'violations': [{'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_input_token_count', 'quotaId': 'GenerateContentInputTokensPerModelPerMinute-FreeTier', 'quotaDimensions': {'location': 'global', 'model': 'gemini-3.1-pro'}}, {'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_requests', 'quotaId': 'GenerateRequestsPerMinutePerProjectPerModel-FreeTier', 'quotaDimensions': {'location': 'global', 'model': 'gemini-3.1-pro'}}, {'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_requests', 'quotaId': 'GenerateRequestsPerDayPerProjectPerModel-FreeTier', 'quotaDimensions': {'location': 'global', 'model': 'gemini-3.1-pro'}}, {'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_input_token_count', 'quotaId': 'GenerateContentInputTokensPerModelPerDay-FreeTier', 'quotaDimensions': {'model': 'gemini-3.1-pro', 'location': 'global'}}]}, {'@type': 'type.googleapis.com/google.rpc.RetryInfo', 'retryDelay': '2s'}]}}]
 "]
 ```
 
@@ -24878,7 +24652,7 @@ You are a high-performance Data Ingestion and Transformation Engine. Your sole o
 # Raw Response / Exception:
 
 ```json
-Error code: 404 - {'error': {'message': 'Model not found, inaccessible, and/or not deployed', 'param': 'model', 'code': 'NOT_FOUND', 'type': 'error'}, 'request_id': 'chatcmpl-e92eb7727d73406ca291fe1ab7d32916'}: ['Traceback (most recent call last):
+Error code: 404 - {'error': {'message': 'Model not found, inaccessible, and/or not deployed', 'param': 'model', 'code': 'NOT_FOUND', 'type': 'error'}, 'request_id': 'chatcmpl-8f0b9f0a711c45698bdf730bdd91f427'}: ['Traceback (most recent call last):
 ', '  File "/home/runner/work/enterprise-it-ai/enterprise-it-ai/sources/agents/architect-blueprint/block_json.py", line 301, in convert_phases_to_json
     response = client.beta.chat.completions.parse(
                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -24890,7 +24664,7 @@ Error code: 404 - {'error': {'message': 'Model not found, inaccessible, and/or n
                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 ', '  File "/opt/hostedtoolcache/Python/3.11.15/x64/lib/python3.11/site-packages/openai/_base_client.py", line 1148, in request
     raise self._make_status_error_from_response(err.response) from None
-', "openai.NotFoundError: Error code: 404 - {'error': {'message': 'Model not found, inaccessible, and/or not deployed', 'param': 'model', 'code': 'NOT_FOUND', 'type': 'error'}, 'request_id': 'chatcmpl-e92eb7727d73406ca291fe1ab7d32916'}
+', "openai.NotFoundError: Error code: 404 - {'error': {'message': 'Model not found, inaccessible, and/or not deployed', 'param': 'model', 'code': 'NOT_FOUND', 'type': 'error'}, 'request_id': 'chatcmpl-8f0b9f0a711c45698bdf730bdd91f427'}
 "]
 ```
 
@@ -25173,7 +24947,7 @@ You are a high-performance Data Ingestion and Transformation Engine. Your sole o
 # Raw Response / Exception:
 
 ```json
-Error code: 404 - {'error': {'message': 'Model not found, inaccessible, and/or not deployed', 'param': 'model', 'code': 'NOT_FOUND', 'type': 'error'}, 'request_id': 'chatcmpl-bcb23cf7e2d942e5adae642a1b461469'}: ['Traceback (most recent call last):
+Error code: 404 - {'error': {'message': 'Model not found, inaccessible, and/or not deployed', 'param': 'model', 'code': 'NOT_FOUND', 'type': 'error'}, 'request_id': 'chatcmpl-a18bdc495c28441690da49f5c2cd9103'}: ['Traceback (most recent call last):
 ', '  File "/home/runner/work/enterprise-it-ai/enterprise-it-ai/sources/agents/architect-blueprint/block_json.py", line 301, in convert_phases_to_json
     response = client.beta.chat.completions.parse(
                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -25185,7 +24959,7 @@ Error code: 404 - {'error': {'message': 'Model not found, inaccessible, and/or n
                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 ', '  File "/opt/hostedtoolcache/Python/3.11.15/x64/lib/python3.11/site-packages/openai/_base_client.py", line 1148, in request
     raise self._make_status_error_from_response(err.response) from None
-', "openai.NotFoundError: Error code: 404 - {'error': {'message': 'Model not found, inaccessible, and/or not deployed', 'param': 'model', 'code': 'NOT_FOUND', 'type': 'error'}, 'request_id': 'chatcmpl-bcb23cf7e2d942e5adae642a1b461469'}
+', "openai.NotFoundError: Error code: 404 - {'error': {'message': 'Model not found, inaccessible, and/or not deployed', 'param': 'model', 'code': 'NOT_FOUND', 'type': 'error'}, 'request_id': 'chatcmpl-a18bdc495c28441690da49f5c2cd9103'}
 "]
 ```
 
@@ -25556,7 +25330,8 @@ You are a high-performance Data Ingestion and Transformation Engine. Your sole o
           "desc": "Kiểm thử đơn vị cho các phương thức register và socialAuthenticate",
           "targeted_tags": ["[REQ-001]", "[REQ-002]", "[DAT-001]", "[EXC-004]"],
           "components": [
-            "./sources/backend.membershiphub.user/user-service.java;./sources/backend.membershiphub.user/userservice-test.java"
+            "./sources/backend.membershiphub.user/user-service.java",
+            "./sources/backend.membershiphub.user/userservice-test.java"
           ]
         },
         {
@@ -25565,7 +25340,8 @@ You are a high-performance Data Ingestion and Transformation Engine. Your sole o
           "desc": "Kiểm thử tích hợp cho API endpoints",
           "targeted_tags": ["[REQ-001]", "[REQ-002]", "[ARC-006]", "[EXC-004]"],
           "components": [
-            "./sources/backend.membershiphub.user/user-service.java;./sources/backend.membershiphub.user/user-controller-test.java"
+            "./sources/backend.membershiphub.user/user-service.java",
+            "./sources/backend.membershiphub.user/user-controller-test.java"
           ]
         }
       ]
@@ -25915,11 +25691,34 @@ You are a high-performance Data Ingestion and Transformation Engine. Your sole o
         {
           "id": "D1_ST1",
           "agent": "Coder",
-          "desc": "Triển khai schema cơ sở dữ liệu cho bảng Users và Roles với các ràng buộc toàn vẹn dữ liệu bao gồm:
-- Bảng Users: id (UUID, primary key), email (varchar, unique, not null), password_hash (varchar, not null), provider (enum: 'local', 'google', 'facebook'), provider_id (varchar), role_id (UUID, foreign key), created_at (timestamp), updated_at (timestamp), last_login (timestamp), is_active (boolean, default true).
-- Bảng Roles: id (UUID, primary key), name (varchar, unique, not null), description (text), created_at (timestamp), updated_at (timestamp).
-- Thiết lập ràng buộc khóa ngoại giữa Users.role_id và Roles.id với ON DELETE RESTRICT.
-- Áp dụng chỉ mục cho các trường email, provider_id và role_id để tối ưu truy vấn.",
+          "desc": "Triển khai schema cơ sở dữ liệu cho bảng Users và Roles với các ràng buộc toàn vẹn dữ liệu bao gồm: khóa chính, khóa ngoại, ràng buộc duy nhất cho email và username, và các trường bắt buộc. Đảm bảo schema tuân thủ mô hình dữ liệu [DAT-001] và tương thích với Flyway migration. Các tệp DDL phải được đặt tại:
+- `./sources/backend.membershiphub.user/users.sql`
+- `./sources/backend.membershiphub.user/roles.sql`
+
+Ví dụ cấu trúc bảng Users:
+```sql
+CREATE TABLE users (
+  user_id UUID PRIMARY KEY,
+  username VARCHAR(50) UNIQUE NOT NULL,
+  email VARCHAR(255) UNIQUE NOT NULL,
+  password_hash VARCHAR(255) NOT NULL,
+  first_name VARCHAR(100),
+  last_name VARCHAR(100),
+  is_active BOOLEAN DEFAULT TRUE,
+  created_at TIMESTAMP NOT NULL,
+  updated_at TIMESTAMP NOT NULL,
+  CONSTRAINT chk_email CHECK (email ~* '^[A-Za-z0-9._%-]+@[A-Za-z0-9.-]+[.][A-Za-z]+$')
+);
+```
+
+Ví dụ cấu trúc bảng Roles:
+```sql
+CREATE TABLE roles (
+  role_id UUID PRIMARY KEY,
+  role_name VARCHAR(50) UNIQUE NOT NULL,
+  description TEXT
+);
+```",
           "targeted_tags": [
             "[DAT-001]"
           ],
@@ -25931,25 +25730,60 @@ You are a high-performance Data Ingestion and Transformation Engine. Your sole o
         {
           "id": "D1_ST2",
           "agent": "Coder",
-          "desc": "Triển khai lớp UserService với các phương thức:
-- `register(UserRegistrationRequest request)`: Xử lý đăng ký người dùng mới với các bước:
-  1. Validate đầu vào sử dụng @Valid (email hợp lệ, mật khẩu ≥8 ký tự, không trùng email).
-  2. Mã hóa mật khẩu sử dụng BCrypt với salt rounds=12.
-  3. Lưu người dùng vào cơ sở dữ liệu với provider='local'.
-  4. Gửi sự kiện UserRegisteredEvent để kích hoạt email xác nhận.
-  5. Trả về UserResponse chứa userId và email.
-- `socialAuthenticate(SocialAuthRequest request)`: Xử lý xác thực xã hội:
-  1. Validate provider (google/facebook) và token từ nhà cung cấp.
-  2. Kiểm tra provider_id đã tồn tại trong hệ thống.
-  3. Nếu tồn tại: cập nhật last_login và trả về JWT.
-  4. Nếu không tồn tại: tạo người dùng mới với provider và provider_id, gán vai trò mặc định 'user'.
-  5. Tạo JWT access token (15 phút) và refresh token (7 ngày) sử dụng thuật toán HS256.
-- Áp dụng @Transactional cho tất cả các thao tác ghi dữ liệu.
-- Xử lý ngoại lệ chi tiết cho các trường hợp:
-  - EmailAlreadyExistsException (HTTP 409)
-  - InvalidInputException (HTTP 400)
-  - SocialAuthFailedException (HTTP 401)
-- Tích hợp logging kiểm toán cho tất cả các thao tác đăng ký/xác thực.",
+          "desc": "Triển khai lớp dịch vụ `UserService` trong `./sources/backend.membershiphub.user/user-service.java` với các phương thức sau:
+
+1. **`register(UserRegistrationRequest request)`**
+   - Yêu cầu payload:
+     ```json
+     {
+       \"username\": \"string(3-50)\",
+       \"email\": \"string(valid email format)\",
+       \"password\": \"string(8-64, with complexity requirements)\",
+       \"firstName\": \"string(1-100)\",
+       \"lastName\": \"string(1-100)\"
+     }
+     ```
+   - Xử lý:
+     - Mã hóa mật khẩu sử dụng BCrypt (cost factor = 12)
+     - Tạo UUID cho user_id
+     - Lưu người dùng vào cơ sở dữ liệu với trạng thái `is_active = true`
+     - Gửi sự kiện `UserRegisteredEvent` đến hàng đợi kiểm toán
+   - Ngoại lệ:
+     - `EmailAlreadyExistsException` nếu email đã tồn tại
+     - `UsernameAlreadyExistsException` nếu username đã tồn tại
+     - `InvalidInputException` cho các lỗi validation
+
+2. **`socialAuthenticate(SocialAuthRequest request)`**
+   - Yêu cầu payload:
+     ```json
+     {
+       \"provider\": \"string(enum: GOOGLE, FACEBOOK, FIREBASE)\",
+       \"token\": \"string\"
+     }
+     ```
+   - Xử lý:
+     - Xác thực token với nhà cung cấp xã hội tương ứng
+     - Nếu người dùng tồn tại: trả về JWT access token (15 phút) và refresh token (7 ngày)
+     - Nếu người dùng không tồn tại: tạo người dùng mới với vai trò mặc định `USER` và trả về token
+   - Ngoại lệ:
+     - `InvalidSocialTokenException` nếu token không hợp lệ
+     - `AuthenticationFailedException` nếu xác thực thất bại
+
+3. **Bảo mật và Tuân thủ:**
+   - Sử dụng `@Valid` cho validation đầu vào
+   - Sử dụng `@Transactional` cho tất cả các thao tác ghi
+   - Tuân thủ OWASP Top 10 cho bảo mật API
+   - Tất cả các token phải được ký bằng thuật toán HS256 với khóa bí mật 256-bit
+
+4. **Định nghĩa JWT Payload Schema:**
+   ```json
+   {
+     \"sub\": \"user_id (UUID)\",
+     \"roles\": [\"array of role names\"],
+     \"iat\": \"issued at timestamp\",
+     \"exp\": \"expiration timestamp\"
+   }
+   ```",
           "targeted_tags": [
             "[REQ-001]",
             "[REQ-002]",
@@ -25973,21 +25807,40 @@ You are a high-performance Data Ingestion and Transformation Engine. Your sole o
         {
           "id": "D2_ST1",
           "agent": "Tester",
-          "desc": "Xây dựng bộ kiểm thử đơn vị cho lớp UserService với các trường hợp:
-- Kiểm thử phương thức `register`:
-  1. Happy path: Đăng ký thành công với email và mật khẩu hợp lệ.
-  2. Email đã tồn tại: Xác nhận ném ra EmailAlreadyExistsException.
-  3. Email không hợp lệ: Xác nhận ném ra InvalidInputException.
-  4. Mật khẩu yếu: Xác nhận ném ra InvalidInputException.
-  5. Mã hóa mật khẩu: Xác nhận BCrypt được áp dụng đúng.
-- Kiểm thử phương thức `socialAuthenticate`:
-  1. Happy path: Xác thực xã hội thành công với provider hợp lệ.
-  2. Provider không hợp lệ: Xác nhận ném ra InvalidInputException.
-  3. Token không hợp lệ: Xác nhận ném ra SocialAuthFailedException.
-  4. Người dùng mới: Xác nhận tạo người dùng với vai trò mặc định.
-  5. Người dùng hiện có: Xác nhận cập nhật last_login.
-- Sử dụng Mockito để mock UserRepository và AuditLogger.
-- Đảm bảo độ phủ mã ≥85% cho tất cả các phương thức.",
+          "desc": "Xây dựng bộ kiểm thử đơn vị cho các phương thức `register` và `socialAuthenticate` trong `UserService` với các yêu cầu sau:
+
+1. **Phạm vi kiểm thử:**
+   - Độ phủ mã ≥85% cho tất cả các nhánh logic
+   - Sử dụng JUnit 5 và Mockito cho các dependency
+   - Kiểm thử cả happy path và các scenario lỗi
+
+2. **Kiểm thử phương thức `register`:**
+   - Kiểm thử đăng ký thành công với dữ liệu hợp lệ
+   - Kiểm thử ngoại lệ `EmailAlreadyExistsException` khi email đã tồn tại
+   - Kiểm thử ngoại lệ `UsernameAlreadyExistsException` khi username đã tồn tại
+   - Kiểm thử ngoại lệ `InvalidInputException` cho các trường hợp:
+     - Email không hợp lệ
+     - Mật khẩu không đủ mạnh
+     - Username quá ngắn/dài
+   - Kiểm thử mã hóa mật khẩu sử dụng BCrypt
+   - Kiểm thử sự kiện `UserRegisteredEvent` được gửi đến hàng đợi kiểm toán
+
+3. **Kiểm thử phương thức `socialAuthenticate`:**
+   - Kiểm thử xác thực thành công với token xã hội hợp lệ
+   - Kiểm thử tạo người dùng mới khi người dùng không tồn tại
+   - Kiểm thử ngoại lệ `InvalidSocialTokenException` khi token không hợp lệ
+   - Kiểm thử ngoại lệ `AuthenticationFailedException` khi xác thực thất bại
+   - Kiểm thử JWT token được tạo với thời hạn đúng (15 phút cho access token, 7 ngày cho refresh token)
+
+4. **Cấu hình kiểm thử:**
+   - Sử dụng `@ExtendWith(MockitoExtension.class)` cho lớp kiểm thử
+   - Mock tất cả các dependency bên ngoài (ví dụ: `UserRepository`, `AuditQueue`)
+   - Sử dụng `@Test` cho mỗi trường hợp kiểm thử
+   - Sử dụng `@DisplayName` để mô tả rõ ràng mục đích kiểm thử
+
+5. **Đường dẫn tệp:**
+   - Tệp kiểm thử: `./sources/backend.membershiphub.user/userservice-test.java`
+   - Tệp dịch vụ: `./sources/backend.membershiphub.user/user-service.java`",
           "targeted_tags": [
             "[REQ-001]",
             "[REQ-002]",
@@ -26002,44 +25855,71 @@ You are a high-performance Data Ingestion and Transformation Engine. Your sole o
         {
           "id": "D2_ST2",
           "agent": "Tester",
-          "desc": "Xây dựng bộ kiểm thử tích hợp cho các API endpoints:
-- Kiểm thử endpoint `POST /api/v1/auth/register`:
-  1. Happy path: Đăng ký thành công với trả về HTTP 201 và UserResponse.
-  2. Email đã tồn tại: Xác nhận trả về HTTP 409.
-  3. Dữ liệu không hợp lệ: Xác nhận trả về HTTP 400 với chi tiết lỗi.
-- Kiểm thử endpoint `POST /api/v1/auth/social`:
-  1. Happy path: Xác thực xã hội thành công với trả về HTTP 200 và JWT.
-  2. Token không hợp lệ: Xác nhận trả về HTTP 401.
-- Kiểm thử tích hợp với cơ sở dữ liệu thực tế (test container).
-- Xác minh logging kiểm toán được ghi đúng cho tất cả các thao tác.
-- Sử dụng RestAssured cho kiểm thử API.
-- Đảm bảo độ phủ tích hợp ≥85%.
-Request/Response Payload Schemas:
-```json
-{
-  \"register\": {
-    \"request\": {
-      \"email\": \"string\",
-      \"password\": \"string\"
-    },
-    \"response\": {
-      \"userId\": \"uuid\",
-      \"email\": \"string\"
-    }
-  },
-  \"socialAuth\": {
-    \"request\": {
-      \"provider\": \"string\",
-      \"token\": \"string\"
-    },
-    \"response\": {
-      \"accessToken\": \"string\",
-      \"refreshToken\": \"string\",
-      \"expiresIn\": 900
-    }
-  }
-}
-```",
+          "desc": "Xây dựng bộ kiểm thử tích hợp cho các API endpoints `POST /api/v1/auth/register` và `POST /api/v1/auth/social` với các yêu cầu sau:
+
+1. **Phạm vi kiểm thử:**
+   - Kiểm thử tích hợp đầy đủ từ tầng controller đến tầng dịch vụ
+   - Sử dụng TestContainers cho cơ sở dữ liệu PostgreSQL
+   - Kiểm thử cả happy path và các scenario lỗi
+
+2. **Kiểm thử endpoint `POST /api/v1/auth/register`:**
+   - Kiểm thử đăng ký thành công với dữ liệu hợp lệ:
+     ```json
+     {
+       \"username\": \"testuser\",
+       \"email\": \"test@example.com\",
+       \"password\": \"SecurePass123!\",
+       \"firstName\": \"Test\",
+       \"lastName\": \"User\"
+     }
+     ```
+     - Kiểm tra phản hồi HTTP 201 Created với payload:
+       ```json
+       {
+         \"userId\": \"UUID\",
+         \"username\": \"testuser\",
+         \"email\": \"test@example.com\"
+       }
+       ```
+   - Kiểm thử các trường hợp lỗi:
+     - HTTP 400 Bad Request cho dữ liệu không hợp lệ
+     - HTTP 409 Conflict cho email/username đã tồn tại
+     - Kiểm tra thông báo lỗi chi tiết trong phản hồi
+
+3. **Kiểm thử endpoint `POST /api/v1/auth/social`:**
+   - Kiểm thử xác thực thành công với token xã hội hợp lệ:
+     ```json
+     {
+       \"provider\": \"GOOGLE\",
+       \"token\": \"valid_social_token\"
+     }
+     ```
+     - Kiểm tra phản hồi HTTP 200 OK với payload:
+       ```json
+       {
+         \"accessToken\": \"JWT string\",
+         \"refreshToken\": \"JWT string\",
+         \"expiresIn\": 900
+       }
+       ```
+   - Kiểm thử các trường hợp lỗi:
+     - HTTP 401 Unauthorized cho token không hợp lệ
+     - HTTP 400 Bad Request cho provider không hợp lệ
+
+4. **Cấu hình kiểm thử:**
+   - Sử dụng `@QuarkusTest` cho lớp kiểm thử tích hợp
+   - Sử dụng `@TestHTTPResource` cho các endpoint
+   - Sử dụng `@TestTransaction` cho các thao tác cơ sở dữ liệu
+   - Cấu hình TestContainers cho PostgreSQL với Flyway migration
+
+5. **Đường dẫn tệp:**
+   - Tệp kiểm thử: `./sources/backend.membershiphub.user/user-controller-test.java`
+   - Tệp dịch vụ: `./sources/backend.membershiphub.user/user-service.java`
+
+6. **Yêu cầu bảo mật:**
+   - Kiểm thử rằng tất cả các phản hồi lỗi không tiết lộ thông tin nhạy cảm
+   - Kiểm thử rằng mật khẩu không bao giờ được trả về trong phản hồi
+   - Kiểm thử rằng JWT token được tạo với thuật toán HS256 và khóa bí mật đúng",
           "targeted_tags": [
             "[REQ-001]",
             "[REQ-002]",
@@ -26047,7 +25927,50 @@ Request/Response Payload Schemas:
             "[EXC-004]"
           ],
           "components": [
-            "INTEGRATION_SCOPE;./sources/backend.membershiphub.user/user-controller-test.java"
+            "./sources/backend.membershiphub.user/user-service.java",
+            "./sources/backend.membershiphub.user/user-controller-test.java"
+          ]
+        },
+        {
+          "id": "D2_ST3",
+          "agent": "Doc",
+          "desc": "Biên soạn tài liệu kỹ thuật chi tiết cho các chức năng triển khai trong Ngày 1 và Ngày 2, bao gồm:
+
+1. **Tài liệu API với OpenAPI/Swagger:**
+   - Định nghĩa đầy đủ cho các endpoints:
+     - `POST /api/v1/auth/register`
+     - `POST /api/v1/auth/social`
+   - Bao gồm:
+     - Mô tả endpoint
+     - Request payload schema với ví dụ
+     - Response payload schema với ví dụ
+     - Các mã trạng thái HTTP và mô tả
+     - Ví dụ về lỗi validation
+   - Tài liệu phải tuân thủ tiêu chuẩn OpenAPI 3.0
+
+2. **Tài liệu Schema Cơ sở dữ liệu:**
+   - Mô tả chi tiết các bảng:
+     - `users` (bao gồm tất cả các trường, kiểu dữ liệu, ràng buộc)
+     - `roles` (bao gồm tất cả các trường, kiểu dữ liệu, ràng buộc)
+   - Mô tả mối quan hệ giữa các bảng
+   - Bao gồm ví dụ dữ liệu mẫu
+
+3. **Hướng dẫn triển khai:**
+   - Hướng dẫn cài đặt môi trường phát triển
+   - Hướng dẫn chạy Flyway migration
+   - Hướng dẫn chạy kiểm thử đơn vị và tích hợp
+   - Hướng dẫn cấu hình OAuth2 cho các nhà cung cấp xã hội
+
+4. **Tài liệu bảo mật:**
+   - Mô tả cơ chế mã hóa mật khẩu (BCrypt)
+   - Mô tả cơ chế JWT (thời hạn token, thuật toán ký)
+   - Mô tả các biện pháp bảo vệ chống tấn công (SQL injection, XSS)
+
+5. **Đường dẫn tệp tài liệu:**
+   - Tài liệu phải được đặt tại: `.ai/.plan/.context/phase-1.context.blueprint.md`",
+          "targeted_tags": [],
+          "components": [
+            ".ai/.plan/.context/phase-1.context.blueprint.md"
           ]
         }
       ]
@@ -26467,13 +26390,21 @@ UpdateCenterRequest: {
 - Kiểm thử xung đột Tax ID (tạo trung tâm mới với Tax ID đã tồn tại).
 - Kiểm thử phân quyền RBAC (đảm bảo chỉ System Admin có thể tạo, cập nhật, xóa trung tâm).
 - Kiểm thử xóa mềm (đảm bảo trung tâm không bị xóa cứng).
-- Kiểm thử logging kiểm toán (đảm bảo các sự kiện quan trọng được ghi log).
+- Kiểm thử logging kiểm toán (đảm bảo mọi thay đổi được ghi lại).
 
 **Test Data Setup:**
 - Sử dụng Testcontainers để khởi tạo cơ sở dữ liệu PostgreSQL tạm thời.
-- Tạo dữ liệu giả cho ít nhất 3 trung tâm và 2 người dùng (1 System Admin, 1 người dùng thường).
+- Tạo dữ liệu giả cho 3 trung tâm và 2 người dùng (1 System Admin, 1 người dùng thường).
 
-**Coverage Requirement:** Độ phủ mã ≥85% cho tất cả các lớp dịch vụ và repository liên quan.",
+**Test Coverage:**
+- Độ phủ mã ≥85% cho tất cả các lớp dịch vụ và repository.
+- Bao gồm kiểm thử tích hợp với cơ sở dữ liệu thực tế (không mock).
+
+**Error Scenarios:**
+- `400 Bad Request`: Validation thất bại.
+- `403 Forbidden`: Không có quyền truy cập.
+- `404 Not Found`: Trung tâm không tồn tại.
+- `409 Conflict`: Xung đột Tax ID.",
           "targeted_tags": [
             "[REQ-004]",
             "[REQ-005]",
@@ -26832,20 +26763,7 @@ You are a high-performance Data Ingestion and Transformation Engine. Your sole o
         {
           "id": "D1_ST1",
           "agent": "Coder",
-          "desc": "Triển khai schema cơ sở dữ liệu cho bảng Courses với các ràng buộc toàn vẹn dữ liệu bao gồm: khóa chính, khóa ngoại, ràng buộc duy nhất, và các trường bắt buộc. Đảm bảo schema tuân thủ thiết kế [DAT-004] và hỗ trợ đầy đủ cho các chức năng CRUD khóa học, kiểm tra xung đột lịch giảng, và gán giáo viên. Schema phải bao gồm các trường sau:
-- `course_id` (UUID, khóa chính)
-- `course_name` (varchar, không null)
-- `description` (text)
-- `start_date` (timestamp, không null)
-- `end_date` (timestamp, không null)
-- `max_students` (integer, không null)
-- `status` (enum: ACTIVE, INACTIVE, CANCELLED)
-- `created_at` (timestamp, mặc định current_timestamp)
-- `updated_at` (timestamp, mặc định current_timestamp)
-- `center_id` (UUID, khóa ngoại tham chiếu đến bảng Centers)
-- `created_by` (UUID, khóa ngoại tham chiếu đến bảng Users)
-
-Đảm bảo tạo các chỉ mục cho các trường thường xuyên được truy vấn như `course_name`, `start_date`, `end_date`, và `center_id`.",
+          "desc": "Triển khai schema cơ sở dữ liệu cho bảng Courses với các ràng buộc toàn vẹn dữ liệu bao gồm: khóa chính, khóa ngoại, ràng buộc duy nhất, kiểm tra định dạng dữ liệu, và các chỉ mục tối ưu hóa truy vấn. Đảm bảo schema tuân thủ yêu cầu [DAT-004] và tương thích với JPA/Hibernate. Schema phải bao gồm các trường: course_id (UUID), title (varchar), description (text), start_date (timestamp), end_date (timestamp), max_students (integer), teacher_id (UUID, nullable), status (enum: DRAFT, PUBLISHED, CANCELLED), created_at (timestamp), updated_at (timestamp). Áp dụng các ràng buộc CHECK để đảm bảo start_date < end_date và max_students > 0.",
           "targeted_tags": [
             "[DAT-004]"
           ],
@@ -26856,57 +26774,7 @@ You are a high-performance Data Ingestion and Transformation Engine. Your sole o
         {
           "id": "D1_ST2",
           "agent": "Coder",
-          "desc": "Triển khai lớp `CourseService` với các phương thức CRUD đầy đủ và logic kiểm tra xung đột lịch giảng. Lớp này phải:
-- Sử dụng `CourseRepository` để tương tác với cơ sở dữ liệu.
-- Áp dụng `@Transactional` cho tất cả các phương thức ghi để đảm bảo tính toàn vẹn dữ liệu.
-- Triển khai logic kiểm tra xung đột lịch giảng trong phương thức `checkScheduleConflict`:
-  * Kiểm tra xem giáo viên có bất kỳ khóa học nào khác trong cùng khoảng thời gian không.
-  * Trả về `true` nếu phát hiện xung đột, `false` nếu không.
-  * Sử dụng truy vấn JPA tùy chỉnh để tối ưu hiệu suất.
-- Triển khai các phương thức sau:
-  * `createCourse(CourseDTO courseDTO)`: Tạo khóa học mới với validation đầu vào và kiểm tra xung đột lịch.
-  * `updateCourse(UUID courseId, CourseDTO courseDTO)`: Cập nhật thông tin khóa học với validation và kiểm tra xung đột.
-  * `deleteCourse(UUID courseId)`: Xóa mềm khóa học (cập nhật trạng thái thành CANCELLED).
-  * `getCourseById(UUID courseId)`: Lấy thông tin chi tiết khóa học.
-  * `getAllCourses()`: Lấy danh sách tất cả khóa học công khai.
-  * `assignTeacherToCourse(UUID courseId, UUID teacherId)`: Gán giáo viên vào khóa học với kiểm tra xung đột lịch.
-
-Đảm bảo tất cả các phương thức đều áp dụng `@PreAuthorize` để kiểm tra quyền truy cập theo RBAC (chỉ System Admin và Center Admin được phép tạo, cập nhật, xóa khóa học).
-
-**Request Payload Schema cho `CourseDTO`:**
-```json
-{
-  \"course_name\": \"string (required, max 255 chars)\",
-  \"description\": \"string (optional)\",
-  \"start_date\": \"ISO-8601 timestamp (required)\",
-  \"end_date\": \"ISO-8601 timestamp (required, must be after start_date)\",
-  \"max_students\": \"integer (required, min 1)\",
-  \"center_id\": \"UUID (required, must exist in Centers table)\"
-}
-```
-
-**Response Payload Schema cho `CourseResponseDTO`:**
-```json
-{
-  \"course_id\": \"UUID\",
-  \"course_name\": \"string\",
-  \"description\": \"string\",
-  \"start_date\": \"ISO-8601 timestamp\",
-  \"end_date\": \"ISO-8601 timestamp\",
-  \"max_students\": \"integer\",
-  \"status\": \"enum (ACTIVE, INACTIVE, CANCELLED)\",
-  \"center_id\": \"UUID\",
-  \"created_by\": \"UUID\",
-  \"created_at\": \"ISO-8601 timestamp\",
-  \"updated_at\": \"ISO-8601 timestamp\"
-}
-```
-
-**Error Status Codes:**
-- `400 Bad Request`: Validation lỗi hoặc xung đột lịch giảng.
-- `403 Forbidden`: Không có quyền truy cập.
-- `404 Not Found`: Khóa học hoặc giáo viên không tồn tại.
-- `500 Internal Server Error`: Lỗi hệ thống.",
+          "desc": "Triển khai lớp CourseService với các phương thức CRUD đầy đủ cho quản lý khóa học, bao gồm: createCourse, updateCourse, getCourseById, getAllCourses, deleteCourse (xóa mềm). Tích hợp logic kiểm tra xung đột lịch giảng để đảm bảo giáo viên không bị trùng lịch giữa các khóa học. Sử dụng @Transactional cho tất cả các thao tác ghi. Áp dụng @Valid cho validation đầu vào và @PreAuthorize cho phân quyền RBAC (chỉ System Admin và Center Admin được phép tạo, cập nhật, xóa). Đảm bảo phương thức gán giáo viên (assignTeacherToCourse) kiểm tra xung đột lịch trước khi thực hiện. Tích hợp với CourseRepository để tương tác với cơ sở dữ liệu. Đáp ứng các yêu cầu [REQ-007], [REQ-008], [REQ-009], [ARC-003], [NFR-001], [NFR-002].",
           "targeted_tags": [
             "[REQ-007]",
             "[REQ-008]",
@@ -26930,57 +26798,52 @@ You are a high-performance Data Ingestion and Transformation Engine. Your sole o
         {
           "id": "D2_ST1",
           "agent": "Tester",
-          "desc": "Xây dựng bộ kiểm thử tích hợp cho các API CRUD khóa học và logic kiểm tra xung đột lịch giảng sử dụng JUnit 5 và Testcontainers. Bộ kiểm thử phải đạt độ phủ mã ≥85% và bao gồm các kịch bản sau:
-
-**Kiểm thử Happy Path:**
-- Tạo khóa học thành công với dữ liệu hợp lệ.
-- Cập nhật khóa học thành công với dữ liệu hợp lệ.
-- Xóa mềm khóa học thành công.
-- Gán giáo viên vào khóa học thành công khi không có xung đột lịch.
-- Lấy danh sách tất cả khóa học công khai.
-
-**Kiểm thử Validation:**
-- Tạo khóa học thất bại khi `course_name` vượt quá 255 ký tự.
-- Tạo khóa học thất bại khi `start_date` sau `end_date`.
-- Tạo khóa học thất bại khi `max_students` ≤ 0.
-- Cập nhật khóa học thất bại khi `center_id` không tồn tại.
-
-**Kiểm thử Xung đột Lịch Giảng:**
-- Gán giáo viên thất bại khi giáo viên đã có khóa học khác trong cùng khoảng thời gian.
-- Tạo khóa học thất bại khi giáo viên được gán có xung đột lịch.
-
-**Kiểm thử Phân quyền:**
-- Tạo khóa học thất bại khi người dùng không có quyền (không phải System Admin hoặc Center Admin).
-- Cập nhật khóa học thất bại khi người dùng không có quyền.
-- Xóa khóa học thất bại khi người dùng không có quyền.
-
-**Kiểm thử Lỗi Hệ thống:**
-- Xử lý lỗi khi cơ sở dữ liệu không khả dụng.
-- Xử lý lỗi khi service phụ thuộc (như `TeacherService`) không khả dụng.
-
-**Cấu hình Testcontainers:**
-- Sử dụng PostgreSQL container cho kiểm thử cơ sở dữ liệu.
-- Tạo dữ liệu giả lập cho các bảng `Centers`, `Users`, và `Teachers` trước khi chạy kiểm thử.
-
-**Đường dẫn kiểm thử:**
-- Tạo tệp `courseservice-integration-test.java` trong thư mục kiểm thử tích hợp.
-
-**Payload Kiểm thử Mẫu:**
+          "desc": "Xây dựng bộ kiểm thử tích hợp cho các API CRUD khóa học và logic kiểm tra xung đột lịch giảng. Sử dụng JUnit 5 và Testcontainers để kiểm thử các trường hợp sau:
+1. Kiểm thử happy path cho tất cả các API (GET /api/v1/courses, POST /api/v1/courses, PUT /api/v1/courses/{courseId}, DELETE /api/v1/courses/{courseId}, POST /api/v1/courses/{courseId}/teachers/{teacherId}).
+2. Kiểm thử validation đầu vào: trường bắt buộc, định dạng dữ liệu, ràng buộc CHECK.
+3. Kiểm thử logic xung đột lịch giảng: tạo khóa học trùng lịch với giáo viên đã có lịch.
+4. Kiểm thử phân quyền: đảm bảo chỉ System Admin và Center Admin có quyền tạo, cập nhật, xóa khóa học.
+5. Kiểm thử xóa mềm: đảm bảo khóa học được đánh dấu là CANCELLED thay vì xóa vật lý.
+Đảm bảo độ phủ mã ≥85% cho tất cả các dịch vụ. Sử dụng các yêu cầu và phản hồi mẫu sau cho kiểm thử:
 ```json
+// Request mẫu cho POST /api/v1/courses
 {
-  \"course_name\": \"Lập trình Java cơ bản\",
-  \"description\": \"Khóa học giới thiệu về lập trình Java\",
-  \"start_date\": \"2026-09-01T09:00:00Z\",
-  \"end_date\": \"2026-12-01T17:00:00Z\",
+  \"title\": \"Lập trình Java cơ bản\",
+  \"description\": \"Khóa học lập trình Java từ cơ bản đến nâng cao\",
+  \"start_date\": \"2023-10-01T09:00:00Z\",
+  \"end_date\": \"2023-12-31T17:00:00Z\",
   \"max_students\": 30,
-  \"center_id\": \"550e8400-e29b-41d4-a716-446655440000\"
+  \"teacher_id\": \"550e8400-e29b-41d4-a716-446655440000\"
+}
+
+// Response mẫu cho GET /api/v1/courses
+{
+  \"data\": [
+    {
+      \"course_id\": \"550e8400-e29b-41d4-a716-446655440000\",
+      \"title\": \"Lập trình Java cơ bản\",
+      \"description\": \"Khóa học lập trình Java từ cơ bản đến nâng cao\",
+      \"start_date\": \"2023-10-01T09:00:00Z\",
+      \"end_date\": \"2023-12-31T17:00:00Z\",
+      \"max_students\": 30,
+      \"teacher_id\": \"550e8400-e29b-41d4-a716-446655440000\",
+      \"status\": \"PUBLISHED\",
+      \"created_at\": \"2023-09-01T10:00:00Z\",
+      \"updated_at\": \"2023-09-01T10:00:00Z\"
+    }
+  ],
+  \"pagination\": {
+    \"total\": 1,
+    \"page\": 1,
+    \"size\": 10
+  }
 }
 ```
-
-**Assertions:**
-- Kiểm tra mã trạng thái HTTP trả về.
-- Kiểm tra cấu trúc và nội dung của response payload.
-- Kiểm tra dữ liệu trong cơ sở dữ liệu sau các thao tác CRUD.",
+Mã lỗi HTTP phải trả về:
+- 400 Bad Request cho validation lỗi
+- 403 Forbidden cho lỗi phân quyền
+- 409 Conflict cho xung đột lịch giảng
+- 404 Not Found cho khóa học không tồn tại",
           "targeted_tags": [
             "[REQ-007]",
             "[REQ-008]",
@@ -27348,7 +27211,7 @@ You are a high-performance Data Ingestion and Transformation Engine. Your sole o
         {
           "id": "D1_ST1",
           "agent": "Coder",
-          "desc": "Triển khai schema cơ sở dữ liệu cho bảng Enrollments với các ràng buộc toàn vẹn dữ liệu bao gồm: khóa chính (enrollment_id), khóa ngoại (student_id, course_id), các trường trạng thái (enrollment_status), thời gian tạo (created_at), và thời gian cập nhật (updated_at). Đảm bảo schema tuân thủ các tiêu chuẩn bảo mật doanh nghiệp và hỗ trợ tính năng ghi danh idempotent.",
+          "desc": "Triển khai schema cơ sở dữ liệu cho bảng Enrollments với các trường: enrollment_id (UUID, PK), student_id (UUID, FK), course_id (UUID, FK), enrollment_date (TIMESTAMP), status (ENUM: ACTIVE, CANCELLED, COMPLETED), created_at (TIMESTAMP), updated_at (TIMESTAMP). Áp dụng các ràng buộc toàn vẹn dữ liệu bao gồm khóa ngoại, kiểm tra trạng thái hợp lệ, và chỉ mục cho các truy vấn thường xuyên. Đảm bảo schema tuân thủ chuẩn [DAT-005].",
           "targeted_tags": [
             "[DAT-005]"
           ],
@@ -27359,9 +27222,10 @@ You are a high-performance Data Ingestion and Transformation Engine. Your sole o
         {
           "id": "D1_ST2",
           "agent": "Coder",
-          "desc": "Triển khai schema cơ sở dữ liệu cho bảng Attendance với các ràng buộc toàn vẹn dữ liệu bao gồm: khóa chính (attendance_id), khóa ngoại (enrollment_id, student_id), các trường trạng thái (attendance_status), thời gian quét (scan_time), và mã QR duy nhất (qr_code_hash). Đảm bảo schema hỗ trợ tính năng điểm danh idempotent và xử lý ngoại lệ network.",
+          "desc": "Triển khai schema cơ sở dữ liệu cho bảng Attendance với các trường: attendance_id (UUID, PK), enrollment_id (UUID, FK), scan_time (TIMESTAMP), scan_location (GEOMETRY), qr_code_hash (VARCHAR, UNIQUE), status (ENUM: PRESENT, LATE, ABSENT), created_at (TIMESTAMP). Áp dụng ràng buộc idempotent trên trường qr_code_hash để ngăn chặn duplicate scans. Đảm bảo schema tuân thủ chuẩn [DAT-006] và tích hợp xử lý ngoại lệ network [EXC-001].",
           "targeted_tags": [
-            "[DAT-006]"
+            "[DAT-006]",
+            "[EXC-001]"
           ],
           "components": [
             "./sources/backend.membershiphub.attendance/attendances.sql"
@@ -27370,7 +27234,7 @@ You are a high-performance Data Ingestion and Transformation Engine. Your sole o
         {
           "id": "D1_ST3",
           "agent": "Coder",
-          "desc": "Triển khai schema cơ sở dữ liệu cho bảng StudentCards với các ràng buộc toàn vẹn dữ liệu bao gồm: khóa chính (card_id), khóa ngoại (student_id), các trường trạng thái (card_status), ngày hết hạn (expiry_date), và ngày kích hoạt (activation_date). Đảm bảo schema hỗ trợ tính năng gia hạn thẻ và tuân thủ các tiêu chuẩn bảo mật.",
+          "desc": "Triển khai schema cơ sở dữ liệu cho bảng StudentCards với các trường: card_id (UUID, PK), student_id (UUID, FK), issue_date (TIMESTAMP), expiry_date (TIMESTAMP), status (ENUM: ACTIVE, EXPIRED, REVOKED), barcode (VARCHAR, UNIQUE), created_at (TIMESTAMP), updated_at (TIMESTAMP). Áp dụng ràng buộc kiểm tra ngày hết hạn và trạng thái hợp lệ. Đảm bảo schema tuân thủ chuẩn [DAT-007].",
           "targeted_tags": [
             "[DAT-007]"
           ],
@@ -27382,44 +27246,10 @@ You are a high-performance Data Ingestion and Transformation Engine. Your sole o
           "id": "D1_ST4",
           "agent": "Coder",
           "desc": "Triển khai EnrollmentService với các phương thức sau:
-- `enrollStudent(courseId: UUID, studentId: UUID): EnrollmentResponse` - Ghi danh học viên vào khóa học với validation nghiêm ngặt (kiểm tra trùng lặp, trạng thái khóa học, hạn đăng ký).
-- `scanQRCode(qrCode: String, studentId: UUID): AttendanceResponse` - Xử lý điểm danh QR idempotent với logic kiểm tra trùng lặp và xử lý ngoại lệ network.
-- `getEnrollmentStatus(enrollmentId: UUID): EnrollmentStatusResponse` - Lấy trạng thái ghi danh.
-
-**Request/Response Payload Schemas:**
-```json
-{
-  \"enrollStudent\": {
-    \"request\": {
-      \"courseId\": \"UUID\",
-      \"studentId\": \"UUID\"
-    },
-    \"response\": {
-      \"enrollmentId\": \"UUID\",
-      \"status\": \"String\",
-      \"createdAt\": \"ISO8601\"
-    }
-  },
-  \"scanQRCode\": {
-    \"request\": {
-      \"qrCode\": \"String\",
-      \"studentId\": \"UUID\"
-    },
-    \"response\": {
-      \"attendanceId\": \"UUID\",
-      \"status\": \"String\",
-      \"scanTime\": \"ISO8601\"
-    }
-  }
-}
-```
-
-**Error Status Codes:**
-- `400 Bad Request` - Validation failed
-- `409 Conflict` - Duplicate enrollment/scan
-- `503 Service Unavailable` - Network exception
-
-Đảm bảo sử dụng @Transactional cho các thao tác ghi và @Valid cho validation.",
+- `enrollStudent(UUID studentId, UUID courseId)`: Ghi danh học viên vào khóa học với validation nghiêm ngặt (kiểm tra tồn tại khóa học, trạng thái học viên, trùng lặp ghi danh).
+- `scanQRCode(UUID enrollmentId, String qrCodeHash, Geometry scanLocation)`: Xử lý điểm danh QR với logic idempotent (kiểm tra trùng lặp qr_code_hash), xử lý ngoại lệ network (retry mechanism với exponential backoff), và cập nhật trạng thái điểm danh.
+- `getEnrollmentStatus(UUID enrollmentId)`: Lấy trạng thái ghi danh hiện tại.
+Đảm bảo tất cả các phương thức tuân thủ [REQ-010], [REQ-011], [REQ-012], [REQ-013], [ARC-007], [EXC-001], [EXC-002], [NFR-001], [NFR-003]. Sử dụng @Transactional cho các thao tác ghi và @Valid cho validation.",
           "targeted_tags": [
             "[REQ-010]",
             "[REQ-011]",
@@ -27449,40 +27279,11 @@ You are a high-performance Data Ingestion and Transformation Engine. Your sole o
           "id": "D2_ST1",
           "agent": "Coder",
           "desc": "Triển khai StudentCardService với các phương thức sau:
-- `getStudentCard(studentId: UUID): StudentCardResponse` - Lấy thông tin thẻ hội viên với các trường: card_id, student_id, card_status, expiry_date, activation_date.
-- `renewStudentCard(studentId: UUID, renewalPeriod: Integer): StudentCardResponse` - Gia hạn thẻ hội viên với logic kiểm tra trạng thái thẻ hiện tại và tính toán ngày hết hạn mới.
-
-**Request/Response Payload Schemas:**
-```json
-{
-  \"getStudentCard\": {
-    \"response\": {
-      \"cardId\": \"UUID\",
-      \"studentId\": \"UUID\",
-      \"cardStatus\": \"String\",
-      \"expiryDate\": \"ISO8601\",
-      \"activationDate\": \"ISO8601\"
-    }
-  },
-  \"renewStudentCard\": {
-    \"request\": {
-      \"studentId\": \"UUID\",
-      \"renewalPeriod\": \"Integer\"
-    },
-    \"response\": {
-      \"cardId\": \"UUID\",
-      \"newExpiryDate\": \"ISO8601\"
-    }
-  }
-}
-```
-
-**Error Status Codes:**
-- `400 Bad Request` - Invalid renewal period
-- `404 Not Found` - Student card not found
-- `409 Conflict` - Card not active or expired
-
-Đảm bảo sử dụng @Transactional cho các thao tác ghi và tuân thủ các tiêu chuẩn bảo mật.",
+- `issueStudentCard(UUID studentId)`: Phát hành thẻ hội viên mới với barcode duy nhất, ngày hết hạn mặc định (1 năm kể từ ngày phát hành), và trạng thái ACTIVE.
+- `renewStudentCard(UUID cardId)`: Gia hạn thẻ hội viên với ngày hết hạn mới (1 năm kể từ ngày hiện tại) và cập nhật trạng thái thành ACTIVE. Áp dụng validation kiểm tra trạng thái thẻ hiện tại (chỉ cho phép gia hạn nếu trạng thái là ACTIVE hoặc EXPIRED).
+- `revokeStudentCard(UUID cardId)`: Thu hồi thẻ hội viên và cập nhật trạng thái thành REVOKED.
+- `getStudentCard(UUID studentId)`: Lấy thông tin thẻ hội viên hiện tại của học viên.
+Đảm bảo tất cả các phương thức tuân thủ [REQ-014], [REQ-015], [DAT-007], [NFR-003]. Sử dụng @Transactional cho các thao tác ghi và @Valid cho validation.",
           "targeted_tags": [
             "[REQ-014]",
             "[REQ-015]",
@@ -27504,24 +27305,12 @@ You are a high-performance Data Ingestion and Transformation Engine. Your sole o
           "id": "D3_ST1",
           "agent": "Tester",
           "desc": "Xây dựng bộ kiểm thử tích hợp cho EnrollmentService với các kịch bản sau:
-1. **Happy Path:**
-   - Ghi danh học viên thành công vào khóa học
-   - Điểm danh QR thành công với mã hợp lệ
-   - Lấy trạng thái ghi danh thành công
-
-2. **Error Scenarios:**
-   - Kiểm thử duplicate enrollment (409 Conflict)
-   - Kiểm thử duplicate QR scan (409 Conflict)
-   - Kiểm thử network exception (503 Service Unavailable)
-   - Kiểm thử validation failed (400 Bad Request)
-
-3. **Integration Scope:**
-   - Kiểm thử tích hợp với cơ sở dữ liệu (Testcontainers)
-   - Kiểm thử tích hợp với hệ thống thông báo
-
-**Test Coverage:** Độ phủ mã ≥85% cho tất cả các phương thức trong EnrollmentService.
-
-**Test Data:** Sử dụng dữ liệu mẫu cho student_id, course_id, và qr_code_hash.",
+- Kiểm thử happy path cho ghi danh học viên và điểm danh QR.
+- Kiểm thử xử lý ngoại lệ network (mô phỏng lỗi kết nối cơ sở dữ liệu và retry mechanism).
+- Kiểm thử logic idempotent cho điểm danh QR (đảm bảo không có bản ghi trùng lặp khi quét cùng một mã QR nhiều lần).
+- Kiểm thử validation cho các trường hợp dữ liệu không hợp lệ (ví dụ: ghi danh vào khóa học không tồn tại, học viên không tồn tại).
+- Kiểm thử tích hợp với StudentCardService cho các kịch bản liên quan đến thẻ hội viên.
+Sử dụng Testcontainers để thiết lập môi trường kiểm thử với cơ sở dữ liệu PostgreSQL thực tế. Đảm bảo độ phủ mã ≥85% và tất cả các yêu cầu [REQ-010], [REQ-011], [REQ-012], [REQ-013], [DAT-005], [DAT-006], [DAT-007], [ARC-007], [EXC-001], [EXC-002] được kiểm tra.",
           "targeted_tags": [
             "[REQ-010]",
             "[REQ-011]",
@@ -27543,18 +27332,10 @@ You are a high-performance Data Ingestion and Transformation Engine. Your sole o
           "id": "D3_ST2",
           "agent": "Tester",
           "desc": "Xây dựng bộ kiểm thử tích hợp cho StudentCardService với các kịch bản sau:
-1. **Happy Path:**
-   - Lấy thông tin thẻ hội viên thành công
-   - Gia hạn thẻ hội viên thành công
-
-2. **Error Scenarios:**
-   - Kiểm thử thẻ không tồn tại (404 Not Found)
-   - Kiểm thử gia hạn thẻ không hoạt động (409 Conflict)
-   - Kiểm thử gia hạn với thời gian không hợp lệ (400 Bad Request)
-
-**Test Coverage:** Độ phủ mã ≥85% cho tất cả các phương thức trong StudentCardService.
-
-**Test Data:** Sử dụng dữ liệu mẫu cho student_id và renewal_period.",
+- Kiểm thử happy path cho phát hành, gia hạn và thu hồi thẻ hội viên.
+- Kiểm thử validation cho các trường hợp dữ liệu không hợp lệ (ví dụ: gia hạn thẻ không tồn tại, thu hồi thẻ đã bị thu hồi).
+- Kiểm thử tích hợp với EnrollmentService cho các kịch bản liên quan đến ghi danh và điểm danh.
+Sử dụng Testcontainers để thiết lập môi trường kiểm thử với cơ sở dữ liệu PostgreSQL thực tế. Đảm bảo độ phủ mã ≥85% và tất cả các yêu cầu [REQ-014], [REQ-015], [DAT-007], [NFR-003] được kiểm tra.",
           "targeted_tags": [
             "[REQ-014]",
             "[REQ-015]",
@@ -27568,36 +27349,12 @@ You are a high-performance Data Ingestion and Transformation Engine. Your sole o
         },
         {
           "id": "D3_ST3",
-          "agent": "Reviewer",
-          "desc": "Thực hiện phân tích tĩnh mã nguồn cho toàn bộ module attendance_enrollment_module:
-- Kiểm tra tuân thủ OWASP Top 10 (A01: Broken Access Control, A03: Injection, A07: Identification and Authentication Failures).
-- Đảm bảo không có lỗ hổng SQL injection trong các truy vấn JPA/Hibernate.
-- Kiểm tra tính bảo mật của các API điểm danh và ghi danh (xác thực, ủy quyền, và mã hóa dữ liệu).
-- Xác minh rằng tất cả các thao tác ghi đều được bảo vệ bởi @Transactional và các validation được áp dụng đúng cách.
-- Đảm bảo hệ thống logging kiểm toán đáp ứng các tiêu chuẩn bảo mật doanh nghiệp.",
-          "targeted_tags": [
-            "[REQ-010]",
-            "[REQ-011]",
-            "[REQ-012]",
-            "[REQ-013]",
-            "[REQ-014]",
-            "[REQ-015]",
-            "[NFR-001]",
-            "[NFR-003]"
-          ],
-          "components": [
-            "./sources/backend.membershiphub.attendance/enrollment-service.java",
-            "./sources/backend.membershiphub.attendance/studentcard-service.java"
-          ]
-        },
-        {
-          "id": "D3_ST4",
           "agent": "Doc",
-          "desc": "Biên soạn tài liệu kỹ thuật đầy đủ cho module attendance_enrollment_module bao gồm:
-- **API Documentation:** Tài liệu OpenAPI cho tất cả các endpoint API (GET /api/v1/courses/browse, POST /api/v1/enrollments, POST /api/v1/attendance/scan, GET /api/v1/studentcards/{studentId}, POST /api/v1/studentcards/{studentId}/renew).
-- **Schema Documentation:** Mô tả chi tiết schema cơ sở dữ liệu cho các bảng Enrollments, Attendance, và StudentCards.
-- **Hướng dẫn triển khai:** Các bước triển khai module, cấu hình cơ sở dữ liệu, và tích hợp với hệ thống thông báo.
-- **Hướng dẫn sử dụng:** Cách sử dụng các API cho ghi danh, điểm danh, và quản lý thẻ hội viên.",
+          "desc": "Biên soạn tài liệu kỹ thuật cho module ghi danh và điểm danh bao gồm:
+- API documentation với OpenAPI/Swagger cho tất cả các endpoint: `GET /api/v1/courses/browse`, `POST /api/v1/enrollments`, `POST /api/v1/attendance/scan`, `GET /api/v1/studentcards/{studentId}`, `POST /api/v1/studentcards/{studentId}/renew`.
+- Schema documentation cho các bảng Enrollments, Attendance, StudentCards với mô tả chi tiết từng trường, ràng buộc và chỉ mục.
+- Hướng dẫn triển khai module bao gồm cấu hình cơ sở dữ liệu, biến môi trường và các bước khởi động dịch vụ.
+- Tài liệu về cơ chế xử lý ngoại lệ network và logic idempotent cho điểm danh QR.",
           "targeted_tags": [
             "[REQ-010]",
             "[REQ-011]",
@@ -27620,9 +27377,9 @@ You are a high-performance Data Ingestion and Transformation Engine. Your sole o
 ```
 ```
 
-# AI Model: mistral-large-latest - Phase 5 STEPS - Prompt:
+# AI Model: mistral-small-latest - Phase 1 STEPS - Prompt:
 
-Analyze the attached Phase 5 Context Markdown content.
+Analyze the attached Phase 1 Context Markdown content.
 
 Extract and translate ALL daily steps, checklists, and agent tasks from the entire document.
 
@@ -27631,7 +27388,7 @@ Extract and translate ALL daily steps, checklists, and agent tasks from the enti
 - **STRICT TASK ID ALIGNMENT BLUEPRINT:** You MUST strictly generate the "id" field string for every single sub-task using the exact sequential formatting blueprint: `D<day_num>_ST<task_index>` (e.g., `D1_ST1`, `D1_ST2`, `D2_ST1`).
 - **STRICT AGENT ROLE LITERAL VALUES:** The "agent" field inside the JSON sub-task object MUST strictly enforce a capitalized first letter and lowercase subsequent letters pattern matching the exact tokens: 'Coder' | 'Tester' | 'Reviewer' | 'Doc' | 'Docker' | 'Gcp' | 'Gke'. Any other values or lowercase blocks (e.g., NO "coder") are strictly banned.
 - **NO ZERO-COMPONENT TASKS (ABSOLUTE HARD LIMIT):** You are STRICTLY BANNED from generating any sub-task object where the 'components' array is empty `[]`, null, or missing. If an Agent does not have any physical file paths to create, modify, or document, you MUST NOT generate that sub-task object node.
-- **FALLBACK COMPONENT RULE:** If a day has technical descriptions but lacks physical file paths, assign the task to "Doc" agent and populate 'components' with exactly the value of: ".ai/.plan/.context/phase-5.context.blueprint.md".
+- **FALLBACK COMPONENT RULE:** If a day has technical descriptions but lacks physical file paths, assign the task to "Doc" agent and populate 'components' with exactly the value of: ".ai/.plan/.context/phase-1.context.blueprint.md".
 - **STRICT AGENT ROLE SEGREGATION (ANTI-AGGREGATION):** If a workflow file involves multiple actions by different personas on the same calendar day, you MUST split this workflow into completely separate, sequential task objects inside the 'sub_tasks' array.
 - **HIGH-DENSITY TECHNICAL SPECIFICATION:** The 'task' field MUST contain an exhaustive, granular engineering instruction. If the sub-task involves an API route, integration endpoint, database query, or message block, you MUST explicitly inline the complete technical contract (e.g., Request/Response Payload Schemas, Data Types, Error Status Codes, or Queue names) directly inside this string. Vague high-level bullet summaries are forbidden.
 - **WORKSPACE PREFIX RULE & MULTI-LANGUAGE TEST EXCEPTION:** Every path in 'components' array MUST strictly begin with `./sources/`. 
@@ -27639,7 +27396,7 @@ Extract and translate ALL daily steps, checklists, and agent tasks from the enti
 
 ## 🛠️ MANDATORY TOP-LEVEL FIELD VALUES INJECTION & ANCHOR PARSING (STRICT FIDELITY):
 You MUST dynamically populate the top-level keys of the JSON object using EXACT raw variable values without any modifications, or parse them directly from the primary Markdown header HTML comments:
-- **`phase_id`**: 5
+- **`phase_id`**: 1
 - **`phase_name`**: [Locate the primary Markdown title header line, extract the clean technical string text located exactly between the hidden HTML delimiters `<!--PHASE_NAME_START-->` and `<!--PHASE_NAME_END-->` without any alterations or translations]
 - **`phase_description`**: [Locate the primary Markdown title header line, extract the exact translated phase description text that follows after the literal marker `| Description:` or its translated equivalent]
 - **`project_name`**: "membership-hub"
@@ -27647,14 +27404,14 @@ You MUST dynamically populate the top-level keys of the JSON object using EXACT 
 - **`source_target_dir`**: "sources/"
 
 #### 7. Context Fields Integration Mandate
-- For each day object inside the array, set 'day' to its calculated integer value, set 'context_file' to exact string ".ai/.plan/.context/phase-5.context.blueprint.md", and **set 'context_section' to the exact raw string value of the entire primary Day Header extracted from the source Markdown context text** (e.g., `"context_section": "DAY 1: Multi-Tenant Inception Schema & Flyway Migration Setup"`).
+- For each day object inside the array, set 'day' to its calculated integer value, set 'context_file' to exact string ".ai/.plan/.context/phase-1.context.blueprint.md", and **set 'context_section' to the exact raw string value of the entire primary Day Header extracted from the source Markdown context text** (e.g., `"context_section": "DAY 1: Multi-Tenant Inception Schema & Flyway Migration Setup"`).
 
 #### 8. CHRONOLOGICAL TIMELINE SEQUENCING MANDATE (ABSOLUTE):
 #### 8. CHRONOLOGICAL TIMELINE SEQUENCING MANDATE (ABSOLUTE):
 
 ## SYSTEM CRITICAL BOUNDARY: FLAT CONFIGURATION IS ACTIVE (is_chunked is FALSE)
 - Regardless of the actual day numbers documented in the source Markdown content (e.g., even if the text states "DAY 4", "DAY 5"), you MUST completely reset the timeline sequence internally so that the first operational day inside this Phase always starts from integer 1. Progression follows sequentially as 2, 3, 4, etc. 
-- Map the first targeted day to `"day": 1`, set 'context_file' to ".ai/.plan/.context/phase-5.context.blueprint.md", and strictly set 'context_section' to the exact raw primary header line of the first day parsed from the text. Incremental days follow this relative baseline.
+- Map the first targeted day to `"day": 1`, set 'context_file' to ".ai/.plan/.context/phase-1.context.blueprint.md", and strictly set 'context_section' to the exact raw primary header line of the first day parsed from the text. Incremental days follow this relative baseline.
 
 
 ## 🛑 MANDATORY STRUCTURE ENFORCEMENT FOR TRACEABILITY TAGS VIA HTML ANCHORS (CRITICAL):
@@ -27795,8 +27552,8 @@ You must conform strictly to your required JSON Schema layout design structure:
   "type": "object"
 }
 
---- PHASE 5 CONTEXT MARKDOWN ---
-## Giai đoạn 5: <!--PHASE_NAME_START-->notification_frontend_integration_and_devops_deployment<!--PHASE_NAME_END--> | Mô tả: Triển khai toàn diện module thông báo, khuyến mãi, thông báo, chatbot AI, UI di động responsive, đa ngôn ngữ, SEO, và thiết lập hạ tầng DevOps hoàn chỉnh với Docker, GCP và GKE
+--- PHASE 1 CONTEXT MARKDOWN ---
+## Giai đoạn 1: <!--PHASE_NAME_START-->user_core_services<!--PHASE_NAME_END--> | Mô tả: Triển khai các dịch vụ cốt lõi quản lý người dùng bao gồm đăng ký, xác thực xã hội, gán vai trò, schema cơ sở dữ liệu và logging kiểm toán bảo mật
 
 #### 📊 Kiểm soát tài liệu
 
@@ -27804,9 +27561,9 @@ You must conform strictly to your required JSON Schema layout design structure:
 | :--- | :--- |
 | **ID Blueprint** | ARCH-20260803053505 |
 | **Tên dự án** | membership-hub |
-| **Giai đoạn** | 5 |
-| **Tên kỹ thuật giai đoạn** | <!--PHASE_NAME_START-->notification_frontend_integration_and_devops_deployment<!--PHASE_NAME_END--> |
-| **Mô tả** | Triển khai toàn diện module thông báo, khuyến mãi, thông báo, chatbot AI, UI di động responsive, đa ngôn ngữ, SEO, và thiết lập hạ tầng DevOps hoàn chỉnh với Docker, GCP và GKE |
+| **Giai đoạn** | 1 |
+| **Tên kỹ thuật giai đoạn** | <!--PHASE_NAME_START-->user_core_services<!--PHASE_NAME_END--> |
+| **Mô tả** | Triển khai các dịch vụ cốt lõi quản lý người dùng bao gồm đăng ký, xác thực xã hội, gán vai trò, schema cơ sở dữ liệu và logging kiểm toán bảo mật |
 | **Phiên bản** | 1.0 (Baseline) |
 | **Ngày/Giờ** | 2026/08/03 05:35:05 |
 | **Tác giả** | Enterprise System Architect (SA Agent) |
@@ -27814,120 +27571,4417 @@ You must conform strictly to your required JSON Schema layout design structure:
 
 #### 1. Phạm vi hoạt động và mục tiêu giai đoạn
 
-Giai đoạn này tập trung vào việc hoàn thiện hệ thống với các chức năng nâng cao và triển khai hạ tầng production:
+Giai đoạn này tập trung vào việc xây dựng nền tảng cốt lõi cho hệ thống quản lý người dùng, bao gồm:
 
-- Triển khai schema cơ sở dữ liệu cho bảng Notifications, Promotions, Announcements và SystemSettings
-- Xây dựng dịch vụ thông báo đa kênh (push notification, Zalo integration) với retry mechanism
-- Triển khai API quản lý khuyến mãi và thông báo với validation nghiêm ngặt
-- Tích hợp chatbot AI với OpenAI/Gemini API cho dịch vụ khách hàng tự động
-- Phát triển frontend Next.js với responsive design, đa ngôn ngữ và SEO optimization
-- Thiết lập cơ sở hạ tầng GCP hoàn chỉnh với VPC, IAM, Cloud SQL và Secret Manager
-- Xây dựng Docker multi-stage images cho backend và frontend
-- Triển khai lên Google Kubernetes Engine với HPA, canary deployment và monitoring stack
+- Triển khai schema cơ sở dữ liệu cho bảng Users và Roles với các ràng buộc toàn vẹn dữ liệu
+- Xây dựng dịch vụ đăng ký người dùng với xác thực email/mật khẩu và hỗ trợ OAuth2 cho các nhà cung cấp xã hội (Firebase, Google, Facebook)
+- Triển khai cơ chế phân quyền RBAC với khả năng gán và thay đổi vai trò người dùng
+- Thiết lập hệ thống logging kiểm toán đáp ứng các tiêu chuẩn bảo mật doanh nghiệp
+- Triển khai xử lý ngoại lệ chi tiết cho validation đầu vào và xung đột dữ liệu
 
 #### 2. Phạm vi kỹ thuật và ranh giới thư mục được phép
 
 **Thư mục và tệp được phép:**
-- `./sources/backend.membershiphub.notification/notifications.sql` - DDL schema cho bảng Notifications
-- `./sources/backend.membershiphub.notification/promotions.sql` - DDL schema cho bảng Promotions
-- `./sources/backend.membershiphub.notification/announcements.sql` - DDL schema cho bảng Announcements
-- `./sources/backend.membershiphub.notification/systemsettings.sql` - DDL schema cho bảng SystemSettings
-- `./sources/backend.membershiphub.notification/notification-service.java` - Dịch vụ chính quản lý thông báo
-- `./sources/backend.membershiphub.notification/chatbot-service.java` - Dịch vụ chatbot AI
-- `./sources/frontend.nextjs/package.json` - Cấu hình frontend Next.js
-- `./sources/infra/gcp/infrastructure.tf` - Cấu hình Terraform cho GCP
-- `./sources/infra/docker/backend/Dockerfile` - Dockerfile cho backend
-- `./sources/infra/gke/deployments.yaml` - Kubernetes deployments cho GKE
+- `./sources/backend.membershiphub.user/users.sql` - DDL schema cho bảng Users
+- `./sources/backend.membershiphub.user/roles.sql` - DDL schema cho bảng Roles  
+- `./sources/backend.membershiphub.user/user-service.java` - Dịch vụ chính quản lý người dùng
 
 **Endpoint API:**
-- `POST /api/v1/notifications` - Tạo và gửi thông báo đa kênh
-- `GET /api/v1/promotions` - Lấy danh sách khuyến mãi hiệu lực
-- `POST /api/v1/promotions` - Tạo khuyến mãi mới
-- `PUT /api/v1/promotions/{promoId}` - Cập nhật khuyến mãi
-- `DELETE /api/v1/promotions/{promoId}` - Xóa khuyến mãi
-- `POST /api/v1/announcements` - Tạo thông báo mới
-- `GET /api/v1/announcements` - Lấy danh sách thông báo hiệu lực
-- `POST /api/v1/chatbot/interact` - Tương tác với chatbot AI
-- `GET /api/v1/i18n/{locale}` - Lấy bản dịch theo locale
-- `GET /api/v1/seo/{locale}/{path}` - Lấy meta tags SEO
+- `POST /api/v1/auth/register` - Đăng ký người dùng mới
+- `POST /api/v1/auth/social` - Xác thực qua nhà cung cấp xã hội
+- `PUT /api/v1/users/{userId}/role` - Cập nhật vai trò người dùng (chỉ System Admin)
 
 #### 3. Chỉ đạo chức năng cho Sub-Agent chuyên dụng
 
-**Coder:** Triển khai mã nguồn Java/Quarkus cho các dịch vụ thông báo và chatbot, sử dụng @Transactional, tích hợp FCM, APNs và Zalo API. Phát triển frontend Next.js với TypeScript, Tailwind CSS, react-i18next và SEO optimization.
+**Coder:** Triển khai mã nguồn Java/Quarkus với tuân thủ SOLID, sử dụng BCrypt cho mã hóa mật khẩu, JWT với access token 15 phút và refresh token 7 ngày, áp dụng @Valid cho validation và @Transactional cho các thao tác ghi.
 
-**Tester:** Xây dựng bộ kiểm thử JUnit 5 và Testcontainers cho các dịch vụ thông báo, kiểm thử integration với FCM và Zalo API mock, đảm bảo độ phủ mã ≥85%.
+**Tester:** Xây dựng bộ kiểm thử JUnit 5 với độ phủ mã ≥85%, sử dụng Mock cho các dependency, kiểm thử happy path và các scenario lỗi validation.
 
-**Docker:** Tạo multi-stage Dockerfile cho backend và frontend, đảm bảo kích thước image cuối cùng <500MB, thiết lập healthcheck và non-root user.
+**Reviewer:** Thực hiện phân tích tĩnh mã nguồn, kiểm tra tuân thủ OWASP Top 10, đảm bảo không có lỗ hổng SQL injection hoặc XSS.
 
-**GCP:** Triển khai Terraform configuration cho GCP infrastructure bao gồm VPC, IAM, Cloud SQL, Secret Manager và Cloud Scheduler.
-
-**GKE:** Tạo Kubernetes manifests cho deployment, service, ingress, HPA và monitoring stack, triển khai canary deployment với health checks.
+**Doc:** Biên soạn tài liệu kỹ thuật đầy đủ bao gồm API documentation với OpenAPI, schema documentation và hướng dẫn triển khai.
 
 #### 4. Định nghĩa hoàn thành (DoD) cho giai đoạn
 
-- ✅ 100% các requirement [REQ-016], [REQ-017], [REQ-018], [REQ-019], [REQ-020], [REQ-021], [REQ-022], [REQ-023] được triển khai đầy đủ
-- ✅ Schema database [DAT-008], [DAT-009], [DAT-011] được tạo thành công với tất cả ràng buộc
-- ✅ Tích hợp thành công FCM, APNs và Zalo API cho thông báo đa kênh
-- ✅ Frontend Next.js responsive với đa ngôn ngữ và SEO optimization
-- ✅ Infrastructure as Code hoàn chỉnh cho GCP và GKE
-- ✅ Docker images optimized với kích thước <500MB
-- ✅ Tuân thủ các tiêu chuẩn bảo mật [NFR-003], [NFR-006], [NFR-007]
-- ✅ Độ phủ kiểm thử ≥85% cho tất cả các dịch vụ mới
+- ✅ 100% các requirement [REQ-001], [REQ-002], [REQ-003] được triển khai đầy đủ
+- ✅ Schema database [DAT-001] được tạo thành công với tất cả ràng buộc
+- ✅ Luồng xác thực [ARC-006] hoạt động với OAuth2 và JWT
+- ✅ Xử lý ngoại lệ [EXC-004] cho validation đầu vào
+- ✅ Tuân thủ các tiêu chuẩn bảo mật [NFR-001], [NFR-003], [NFR-006]
+- ✅ Độ phủ kiểm thử ≥85% cho tất cả các dịch vụ
 - ✅ 100% các Tag ID được ánh xạ và kiểm tra
 
 #### 5. NHẬT KÝ THỰC THI KIẾN TRÚC THEO NGÀY
 
-###### NGÀY 10: TRIỂN KHAI SERVICE THÔNG BÁO, KHUYẾN MÃI, THÔNG BÁO
+###### NGÀY 1: TRIỂN KHAI DỊCH VỤ ĐĂNG KÝ NGƯỜI DÙNG VÀ API XÁC THỰC XÃ HỘI
 
-######## SUB-TASK 10.1: Triển khai schema cơ sở dữ liệu Notifications, Promotions, Announcements và SystemSettings
+######## SUB-TASK 1.1: Triển khai schema cơ sở dữ liệu Users và Roles
 ########## Sub-Agent được chỉ định: Coder
 ########## Các thành phần mục tiêu và yêu cầu kỹ thuật:
-* **Đường dẫn mục tiêu:** `./sources/backend.membershiphub.notification/notifications.sql`
-* **Các thẻ truy xuất nguồn gốc:** <!--START_TAGS-->[DAT-008]<!--END_TAGS-->
+* **Đường dẫn mục tiêu:** `./sources/backend.membershiphub.user/users.sql`, `./sources/backend.membershiphub.user/roles.sql`
+* **Các thẻ truy xuất nguồn gốc:** <!--START_TAGS-->[DAT-001]<!--END_TAGS-->
 
-######## SUB-TASK 10.2: Triển khai NotificationService với các phương thức thông báo đa kênh và retry mechanism
+######## SUB-TASK 1.2: Triển khai UserService với phương thức register và socialAuthenticate
 ########## Sub-Agent được chỉ định: Coder
 ########## Các thành phần mục tiêu và yêu cầu kỹ thuật:
-* **Đường dẫn mục tiêu:** `./sources/backend.membershiphub.notification/notification-service.java`
-* **Các thẻ truy xuất nguồn gốc:** <!--START_TAGS-->[REQ-016], [REQ-017], [REQ-018], [REQ-019], [DAT-008], [DAT-009], [NFR-003], [NFR-006]<!--END_TAGS-->
+* **Đường dẫn mục tiêu:** `./sources/backend.membershiphub.user/user-service.java`
+* **Các thẻ truy xuất nguồn gốc:** <!--START_TAGS-->[REQ-001], [REQ-002], [ARC-006], [EXC-004], [NFR-001], [NFR-003], [NFR-006]<!--END_TAGS-->
 
-###### NGÀY 11: TRIỂN KHAI TÍCH HỢP CHATBOT AI, UI DI ĐỘNG VÀ CẤU HÌNH ĐA NGÔN NGỮ/SEO
+###### NGÀY 2: VIẾT BỘ KIỂM TRA ĐƠN VỊ VÀ TÍCH HỢP CHO CÁC CHỨC NĂNG NGƯỜI DÙNG
 
-######## SUB-TASK 11.1: Triển khai ChatbotService với tích hợp OpenAI/Gemini API và xử lý tương tác
+######## SUB-TASK 2.1: Kiểm thử đơn vị cho các phương thức register và socialAuthenticate
+########## Sub-Agent được chỉ định: Tester
+########## Các thành phần mục tiêu và yêu cầu kỹ thuật:
+* **Đường dẫn mục tiêu:** `./sources/backend.membershiphub.user/user-service.java;./sources/backend.membershiphub.user/userservice-test.java`
+* **Các thẻ truy xuất nguồn gốc:** <!--START_TAGS-->[REQ-001], [REQ-002], [DAT-001], [EXC-004]<!--END_TAGS-->
+
+######## SUB-TASK 2.2: Kiểm thử tích hợp cho API endpoints
+########## Sub-Agent được chỉ định: Tester
+########## Các thành phần mục tiêu và yêu cầu kỹ thuật:
+* **Đường dẫn mục tiêu:** `./sources/backend.membershiphub.user/user-service.java;./sources/backend.membershiphub.user/user-controller-test.java`
+* **Các thẻ truy xuất nguồn gốc:** <!--START_TAGS-->[REQ-001], [REQ-002], [ARC-006], [EXC-004]<!--END_TAGS-->
+------------------------------------------
+
+# System Instruction
+
+<GLOBAL_GOVERNANCE_MATRIX>
+# ==============================================================================
+# MASTER ENTERPRISE GOVERNANCE GUARDRAILS MATRIX (GLOBAL TASK ENFORCEMENT)
+# ==============================================================================
+
+## 🌐 1. STRICT SEMANTIC INVARIANT LOCALIZATION & TRANSLATION RAILS
+- **MANDATORY RESOLUTION:** You MUST automatically translate and naturally render 100% of the entire generated output content—including all section headers, primary titles, data matrix labels, table structures, and explanatory text boundaries—into the exact requested target execution language specified by the system parameter variable: "🇻🇳 Vietnamese".
+- **ABSOLUTE TECH PROTECTION BOUNDARY:** You are STRICTLY BANNED from translating, changing, altering, or breaking any technical structural layers. You MUST preserve these elements natively in their pristine Technical English/Primitive code state:
+  * All markdown syntax operators (`#`, `##`, `| :--- |`, `-`, `*`).
+  * All unique Tracking Tag IDs and Technical Nodes (e.g., `[REQ-XXX]`, `[DAT-XXX]`, `[EXC-XXX]`, `[IDEA_X]`).
+  * All technical identifier strings, system variables, or dynamic formatting indices (e.g., `D1_ST1`).
+  * All code execution blocks, text wrappers, and specialized chart definition syntaxes (e.g., Mermaid.js graphs, structural layout configurations).
+  * 🚨 **STRICT CODE BLOCK FORMATTING LAW**: You are ABSOLUTELY FORBIDDEN from nesting or combining markdown code block ticks. When outputting a JSON payload, you MUST start exactly with a single line of triple backticks followed immediately by 'json' (i.e., ```json). Do NOT prepend or wrap it with ```text or any other outer text syntax. The block must open clean and close clean.
+
+## 🔒 2. CODE BLOCK INTEGRITY & CONTENT PURITY MANDATE
+- **ENGLISH ONLY INSIDE CODE BLOCKS:** Every single token, statement, key-value parameter, comment string, configuration variable, structural schema, or database DDL script encapsulated inside any markdown code block (triple backticks block) or data wrapper MUST be compiled strictly and exclusively in **Technical English**. 
+- **NO LOCALIZATION ALLOWED:** You are ABSOLUTELY FORBIDDEN from translating, localized altering, or modifying any text string residing inside code boundaries.
+
+## 🛑 3. ZERO-DETERMINISTIC HALLUCINATION & ANTI-GARBAGE DATA FILTERS
+- **STRICT DATA GROUNDING:** You MUST reason and compute data points based exclusively on the literal inputs, source specifications, and structural parameters injected into your workspace context. 
+- **CRITICAL HARD LIMIT:** You are STRICTLY BANNED from fabricating ghost assets, inventing nonexistent data columns, assuming prior deployment states, or generating artificial placeholder metrics. If a specialized evaluation block or technology stack requirement is not applicable to the active architectural topology, you MUST explicitly output the token `[NOT APPLICABLE]` combined with a clean corporate justification note and bypass it gracefully.
+
+## 🛡️ 4. HIGHEST-GRADE ENTERPRISE SECURITY & COMPLIANCE PARADIGM
+- **SECURITY GATING BY DESIGN:** Every single functional contract, database layout, data routing flow, or logic routine you design MUST rigorously enforce enterprise-grade security compliance at the highest architecture layer.
+- **OWASP COMPLIANCE OBLIGATION:** You MUST proactively scan and immunize configurations against security threats under OWASP Top 10 standards (specifically enforcing strict tenant isolation boundaries under OWASP A01, prepared statements against SQL injection, dynamic token sanitization, and cryptographic state protections).
+
+## 📋 5. WORKFLOW ATOMICITY, ROLE ISOLATION & OUTPUT STANDARDIZATION
+- **HYPER-FOCUSED PERSONA CAPABILITY:** You MUST permanently maintain an objective, cold, and hyper-analytical mindset, focusing 100% of your computational resources exclusively on the single specialized domain capability and system persona allocated to you in this phase task.
+- **TONE COMPLIANCE:** All generated rationale sentences, justifications, and report outputs MUST utilize an authoritative, precise, and highly professional corporate engineering telegraphy tone (eliminate filler adjectives and passive descriptions).
+- **ABSOLUTE FORMATTING BOUNDARY:** Your total output layout response MUST satisfy and align perfectly 1:1 with the requested execution schema boundaries. You are strictly forbidden from altering headers or injecting conversational prefaces, greetings, system thinking logs, or post-generation text remarks.
+
+## 🧮 6. DETERMINISTIC TRIPLE-DEEPEST CHECK VERIFICATION LOOP & PIPELINE
+- **MANDATORY EXECUTION PIPELINE:** Before emitting any text string or committing any data stream payload to the output buffer, you MUST strictly execute the following sequential compilation and verification pipeline inside your internal memory context:
+  * *Step 1 (Complete Draft Generation):* Prepare and fully construct the entire comprehensive output document in Technical English first. Ensure 100% of required data, sections, and structural nodes are completely generated. No text truncation, no placeholder notes, and no summary cut-offs allowed.
+  * *Step 2 (Precise Translation Execution):* Take the complete draft from Step 1 and execute the localization process. Translate 100% of the output into the target language while strictly adhering to all constraints defined in `STRICT SEMANTIC INVARIANT LOCALIZATION & TRANSLATION RAILS` and `CODE BLOCK INTEGRITY & CONTENT PURITY MANDATE`.
+  * *Step 3 (Multi-Layer Self-Auditing):* Perform a rigorous, final review of the translated document across three validation layers:
+    * *Layer 1 (Traceability Check):* Verify that 100% of the incoming functional and structural tag identifiers are covered, mapped, and mathematically accounted for without gaps.
+    * *Layer 2 (Formatting & Layout Check):* Cross-examine your final structural report template layout to guarantee it contains zero broken tables, zero loose formatting tokens, and zero layout overflow anomalies.
+    * *Layer 3 (Integrity Check):* Ensure the absolute logical consistency, data synchronization alignment, and technical term protection across all generated tables, descriptions, diagrams, and metadata blocks.
+- Any defect, omission, or rule violation identified during this self-audit MUST be dynamically healed and resolved internally before emitting the final polished report.
+</GLOBAL_GOVERNANCE_MATRIX>
+
+<ACTIVE_TASK_SYSTEM_INSTRUCTION>
+You are a high-performance Data Ingestion and Transformation Engine. Your sole objective is to parse the Phase Context Markdown text and convert it into a perfectly valid, parseable JSON object matching the requested schema framework.
+
+# YOUR CRITICAL OPERATIONAL MANDATES (ZERO LOOPHOLES):
+1. **STRICT VARIABLE FIDELITY & NO PREFIXES:** You MUST use the exact raw values provided in the template variables for file paths and project names. You are STRICTLY BANNED from appending, prepending, or injecting any custom folders or prefixes like "sources/" to the `global_context_file`, `context_file`, `source_target_dir`, or `project_name` fields. Use the variable values exactly as they are passed.
+2. **ABSOLUTE PYDANTIC SCHEMA ALIGNMENT:** Your final generated JSON object MUST perfectly satisfy the structural schema parameters of the target enterprise contract. You are STRICTLY BANNED from omitting, renaming, formatting, or stripping out key elements (specifically `phase_id`, `phase_name`, `phase_description`, `project_name`, `global_context_file`, `source_target_dir`, and `days`).
+3. **ABSOLUTE NO EMPTY TAGS POLICY & STRING SANITIZATION:** You are STRICTLY BANNED from leaving the "targeted_tags" array empty `[]` or null for any sub-task that implements functional requirements or data schemas. You MUST scan the source Markdown sequentially sub-task by sub-task. For each sub-task node, locate the hidden technical container block delimited between `<!--START_TAGS-->` and `<!--END_TAGS-->` contained exclusively within that sub-task section scope. Extract all raw tag token codes inside, strip away all inline markdown formatting characters—specifically backticks (`` ` ``)—and any leading/trailing whitespaces, then populate them as clean separate string elements inside the "targeted_tags" array field of EACH sub-task object node.
+4. **NO TAG BUNDLING:** Every tag must be its own array node (e.g., `"targeted_tags": ["[REQ-001]", "[DAT-002]"]`). You are strictly forbidden from combining multiple tags into a single string element.
+5. **STRICT CONTENT PURITY & REJECT CONVERSATION:** Output ONLY the pure raw executable JSON string matching the required schema. Response must start exactly with the character `{` and end exactly with the character `}`. Banned from including thinking processes, chain-of-thought blocks (`<think>` tags), conversational filler texts, introductions, wrapping inside markdown codeblocks (no triple backticks wrapping), or post-generation notes. Any token outside the raw JSON object boundary triggers an immediate execution pipeline crash.
+</ACTIVE_TASK_SYSTEM_INSTRUCTION>
+
+# Raw Response / Exception:
+
+```json
+{
+    "phase_id": 1,
+    "phase_name": "user_core_services",
+    "phase_description": "Triển khai các dịch vụ cốt lõi quản lý người dùng bao gồm đăng ký, xác thực xã hội, gán vai trò, schema cơ sở dữ liệu và logging kiểm toán bảo mật",
+    "project_name": "membership-hub",
+    "global_context_file": ".ai/.context/membership-hub.global.blueprint.md",
+    "source_target_dir": "sources/",
+    "days": [
+        {
+            "day": 1,
+            "context_file": ".ai/.plan/.context/phase-1.context.blueprint.md",
+            "context_section": "NGÀY 1: TRIỂN KHAI DỊCH VỤ ĐĂNG KÝ NGƯỜI DÙNG VÀ API XÁC THỰC XÃ HỘI",
+            "sub_tasks": [
+                {
+                    "id": "D1_ST1",
+                    "agent": "Coder",
+                    "desc": "Triển khai schema cơ sở dữ liệu Users và Roles bằng SQL tuân thủ chuẩn ACID. Bao gồm: bảng Users (user_id, email, password_hash, created_at, updated_at, is_active, last_login_at) với ràng buộc UNIQUE trên email, NOT NULL trên tất cả trường trừ last_login_at, CHECK cho định dạng email; bảng Roles (role_id, role_name, description) với ràng buộc UNIQUE trên role_name. Áp dụng các ràng buộc toàn vẹn dữ liệu (PK, FK, CHECK) và chỉ định charset utf8mb4. Đảm bảo schema tương thích với Flyway migration framework.",
+                    "targeted_tags": [
+                        "[DAT-001]"
+                    ],
+                    "components": [
+                        "./sources/backend.membershiphub.user/users.sql",
+                        "./sources/backend.membershiphub.user/roles.sql"
+                    ]
+                },
+                {
+                    "id": "D1_ST2",
+                    "agent": "Coder",
+                    "desc": "Triển khai lớp UserService.java bằng Java/Quarkus tuân thủ SOLID. Bao gồm: phương thức register(String email, String password, String role) thực hiện: 1) Mã hóa mật khẩu bằng BCrypt (rounds=12), 2) Kiểm tra email tồn tại (ném UserAlreadyExistsException nếu trùng), 3) Gán role mặc định (USER) nếu không chỉ định, 4) Tạo JWT access token (15 phút) và refresh token (7 ngày) sử dụng thuật toán HS256, 5) Ghi log kiểm toán (user_id, action=REGISTER, timestamp). Phương thức socialAuthenticate(String provider, String accessToken) tích hợp OAuth2: 1) Xác thực accessToken với provider tương ứng (Firebase/Google/Facebook), 2) Trích xuất email từ profile, 3) Tạo user mới nếu chưa tồn tại, 4) Trả về JWT token tương tự register. Sử dụng @Valid cho validation đầu vào, @Transactional cho giao dịch ghi, và tuân thủ OWASP Top 10 chống SQLi/XSS.",
+                    "targeted_tags": [
+                        "[REQ-001]",
+                        "[REQ-002]",
+                        "[ARC-006]",
+                        "[EXC-004]",
+                        "[NFR-001]",
+                        "[NFR-003]",
+                        "[NFR-006]"
+                    ],
+                    "components": [
+                        "./sources/backend.membershiphub.user/user-service.java"
+                    ]
+                }
+            ]
+        },
+        {
+            "day": 2,
+            "context_file": ".ai/.plan/.context/phase-1.context.blueprint.md",
+            "context_section": "NGÀY 2: VIẾT BỘ KIỂM TRA ĐƠN VỊ VÀ TÍCH HỢP CHO CÁC CHỨC NĂNG NGƯỜI DÙNG",
+            "sub_tasks": [
+                {
+                    "id": "D2_ST1",
+                    "agent": "Tester",
+                    "desc": "Viết bộ kiểm thử đơn vị JUnit 5 cho UserService.java bao gồm: 1) testRegisterSuccess() kiểm tra đăng ký user thành công với email/mật khẩu hợp lệ, 2) testRegisterDuplicateEmail() kiểm tra ném UserAlreadyExistsException khi email trùng, 3) testRegisterInvalidEmail() kiểm tra ném ValidationException cho email không hợp lệ, 4) testSocialAuthenticateSuccess() kiểm tra xác thực xã hội thành công, 5) testSocialAuthenticateInvalidToken() kiểm tra ném OAuthException khi token không hợp lệ. Sử dụng Mockito để mock dependency (EmailService, RoleRepository, JwtService). Đảm bảo độ phủ mã ≥85% cho lớp UserService.",
+                    "targeted_tags": [
+                        "[REQ-001]",
+                        "[REQ-002]",
+                        "[DAT-001]",
+                        "[EXC-004]"
+                    ],
+                    "components": [
+                        "./sources/backend.membershiphub.user/user-service.java",
+                        "./sources/backend.membershiphub.user/userservice-test.java"
+                    ]
+                },
+                {
+                    "id": "D2_ST2",
+                    "agent": "Tester",
+                    "desc": "Viết bộ kiểm thử tích hợp cho API endpoints POST /api/v1/auth/register và POST /api/v1/auth/social sử dụng RestAssured. Bao gồm: 1) testRegisterApiSuccess() kiểm tra response 201 với JWT token trong body, 2) testRegisterApiInvalidPayload() kiểm tra response 400 cho payload không hợp lệ, 3) testSocialAuthenticateApiSuccess() kiểm tra response 200 với token, 4) testSocialAuthenticateApiInvalidToken() kiểm tra response 401 cho token không hợp lệ. Đảm bảo kiểm thử happy path và error scenario cho validation.",
+                    "targeted_tags": [
+                        "[REQ-001]",
+                        "[REQ-002]",
+                        "[ARC-006]",
+                        "[EXC-004]"
+                    ],
+                    "components": [
+                        "./sources/backend.membershiphub.user/user-service.java",
+                        "./sources/backend.membershiphub.user/user-controller-test.java"
+                    ]
+                }
+            ]
+        }
+    ]
+}
+```
+
+# AI Model: llama3.3-70b - Phase 1 STEPS - Prompt:
+
+Analyze the attached Phase 1 Context Markdown content.
+
+Extract and translate ALL daily steps, checklists, and agent tasks from the entire document.
+
+
+## 🔒 AGENT ATOMICITY, TASK ID FORMAT & COMPONENT MANDATES (ABSOLUTE):
+- **STRICT TASK ID ALIGNMENT BLUEPRINT:** You MUST strictly generate the "id" field string for every single sub-task using the exact sequential formatting blueprint: `D<day_num>_ST<task_index>` (e.g., `D1_ST1`, `D1_ST2`, `D2_ST1`).
+- **STRICT AGENT ROLE LITERAL VALUES:** The "agent" field inside the JSON sub-task object MUST strictly enforce a capitalized first letter and lowercase subsequent letters pattern matching the exact tokens: 'Coder' | 'Tester' | 'Reviewer' | 'Doc' | 'Docker' | 'Gcp' | 'Gke'. Any other values or lowercase blocks (e.g., NO "coder") are strictly banned.
+- **NO ZERO-COMPONENT TASKS (ABSOLUTE HARD LIMIT):** You are STRICTLY BANNED from generating any sub-task object where the 'components' array is empty `[]`, null, or missing. If an Agent does not have any physical file paths to create, modify, or document, you MUST NOT generate that sub-task object node.
+- **FALLBACK COMPONENT RULE:** If a day has technical descriptions but lacks physical file paths, assign the task to "Doc" agent and populate 'components' with exactly the value of: ".ai/.plan/.context/phase-1.context.blueprint.md".
+- **STRICT AGENT ROLE SEGREGATION (ANTI-AGGREGATION):** If a workflow file involves multiple actions by different personas on the same calendar day, you MUST split this workflow into completely separate, sequential task objects inside the 'sub_tasks' array.
+- **HIGH-DENSITY TECHNICAL SPECIFICATION:** The 'task' field MUST contain an exhaustive, granular engineering instruction. If the sub-task involves an API route, integration endpoint, database query, or message block, you MUST explicitly inline the complete technical contract (e.g., Request/Response Payload Schemas, Data Types, Error Status Codes, or Queue names) directly inside this string. Vague high-level bullet summaries are forbidden.
+- **WORKSPACE PREFIX RULE & MULTI-LANGUAGE TEST EXCEPTION:** Every path in 'components' array MUST strictly begin with `./sources/`. 
+  * *CRITICAL EXCEPTION:* If the first parameter before the semi-colon character in a tester task is the literal string token `INTEGRATION_SCOPE`, you MUST leave that token completely unmodified. Do NOT append any path prefix to it (e.g., `"components": ["INTEGRATION_SCOPE;./sources/frontend/tests/auth.spec.ts"]`).
+
+## 🛠️ MANDATORY TOP-LEVEL FIELD VALUES INJECTION & ANCHOR PARSING (STRICT FIDELITY):
+You MUST dynamically populate the top-level keys of the JSON object using EXACT raw variable values without any modifications, or parse them directly from the primary Markdown header HTML comments:
+- **`phase_id`**: 1
+- **`phase_name`**: [Locate the primary Markdown title header line, extract the clean technical string text located exactly between the hidden HTML delimiters `<!--PHASE_NAME_START-->` and `<!--PHASE_NAME_END-->` without any alterations or translations]
+- **`phase_description`**: [Locate the primary Markdown title header line, extract the exact translated phase description text that follows after the literal marker `| Description:` or its translated equivalent]
+- **`project_name`**: "membership-hub"
+- **`global_context_file`**: ".ai/.context/membership-hub.global.blueprint.md"
+- **`source_target_dir`**: "sources/"
+
+#### 7. Context Fields Integration Mandate
+- For each day object inside the array, set 'day' to its calculated integer value, set 'context_file' to exact string ".ai/.plan/.context/phase-1.context.blueprint.md", and **set 'context_section' to the exact raw string value of the entire primary Day Header extracted from the source Markdown context text** (e.g., `"context_section": "DAY 1: Multi-Tenant Inception Schema & Flyway Migration Setup"`).
+
+#### 8. CHRONOLOGICAL TIMELINE SEQUENCING MANDATE (ABSOLUTE):
+#### 8. CHRONOLOGICAL TIMELINE SEQUENCING MANDATE (ABSOLUTE):
+
+## SYSTEM CRITICAL BOUNDARY: FLAT CONFIGURATION IS ACTIVE (is_chunked is FALSE)
+- Regardless of the actual day numbers documented in the source Markdown content (e.g., even if the text states "DAY 4", "DAY 5"), you MUST completely reset the timeline sequence internally so that the first operational day inside this Phase always starts from integer 1. Progression follows sequentially as 2, 3, 4, etc. 
+- Map the first targeted day to `"day": 1`, set 'context_file' to ".ai/.plan/.context/phase-1.context.blueprint.md", and strictly set 'context_section' to the exact raw primary header line of the first day parsed from the text. Incremental days follow this relative baseline.
+
+
+## 🛑 MANDATORY STRUCTURE ENFORCEMENT FOR TRACEABILITY TAGS VIA HTML ANCHORS (CRITICAL):
+- For each sub-task block, locate the hidden technical container bounds delimited strictly between `<!--START_TAGS-->` and `<!--END_TAGS-->`. Extract all individual inherited Tag IDs from inside that container, completely purge all markdown backticks (`` ` ``) and padding spaces, and populate them as clean individual string elements inside the "targeted_tags" array field (e.g., `"targeted_tags": ["[REQ-001]", "[DAT-005]"]`).
+- You are STRICTLY BANNED from leaving the "targeted_tags" array empty `[]` or null. Every single tag token must be its own separated array element string.
+
+You must conform strictly to your required JSON Schema layout design structure:
+{
+  "$defs": {
+    "DailyStep": {
+      "properties": {
+        "day": {
+          "description": "Timeline iteration day inside this isolated phase.",
+          "title": "Day",
+          "type": "integer"
+        },
+        "context_file": {
+          "description": "The phase context Markdown file for closure on this day.",
+          "title": "Context File",
+          "type": "string"
+        },
+        "context_section": {
+          "description": "The day targeted for closure on this day.",
+          "title": "Context Section",
+          "type": "string"
+        },
+        "sub_tasks": {
+          "description": "Array of isolated micro-tasks assigned to sub-agents.",
+          "items": {
+            "$ref": "##/$defs/SubAgentTask"
+          },
+          "title": "Sub Tasks",
+          "type": "array"
+        }
+      },
+      "required": [
+        "day",
+        "context_file",
+        "context_section",
+        "sub_tasks"
+      ],
+      "title": "DailyStep",
+      "type": "object"
+    },
+    "SubAgentTask": {
+      "properties": {
+        "id": {
+          "description": "Sub-Task identity of Task that sub-agent role executing.",
+          "title": "Id",
+          "type": "string"
+        },
+        "agent": {
+          "description": "Target sub-agent role executing the task.",
+          "title": "Agent",
+          "type": "string"
+        },
+        "desc": {
+          "description": "Literal, low-level technical step assigned to the agent.",
+          "title": "Desc",
+          "type": "string"
+        },
+        "targeted_tags": {
+          "description": "Flat string array of exact inherited BA Tag IDs that this specific sub-task implements or verifies (e.g. ['[REQ-001]', '[ARC-002]']). MUST match the raw requirements 1:1.",
+          "items": {
+            "type": "string"
+          },
+          "title": "Targeted Tags",
+          "type": "array"
+        },
+        "components": {
+          "description": "Flat array of physical localized file paths or scripts modified or targeted by this single task. Return an empty array [] if no files are involved.",
+          "items": {
+            "type": "string"
+          },
+          "title": "Components",
+          "type": "array"
+        }
+      },
+      "required": [
+        "id",
+        "agent",
+        "desc"
+      ],
+      "title": "SubAgentTask",
+      "type": "object"
+    }
+  },
+  "properties": {
+    "phase_id": {
+      "description": "Target phase tracker index.",
+      "title": "Phase Id",
+      "type": "integer"
+    },
+    "phase_name": {
+      "description": "Target phase tracker name.",
+      "title": "Phase Name",
+      "type": "string"
+    },
+    "phase_description": {
+      "description": "Target phase description.",
+      "title": "Phase Description",
+      "type": "string"
+    },
+    "project_name": {
+      "description": "Target project tracker name.",
+      "title": "Project Name",
+      "type": "string"
+    },
+    "global_context_file": {
+      "description": "Project global context Markdown file for closure.",
+      "title": "Global Context File",
+      "type": "string"
+    },
+    "source_target_dir": {
+      "description": "Project sources folder path for closure.",
+      "title": "Source Target Dir",
+      "type": "string"
+    },
+    "days": {
+      "description": "Day-by-day engineering tracking steps.",
+      "items": {
+        "$ref": "##/$defs/DailyStep"
+      },
+      "title": "Days",
+      "type": "array"
+    }
+  },
+  "required": [
+    "phase_id",
+    "phase_name",
+    "phase_description",
+    "project_name",
+    "global_context_file",
+    "source_target_dir",
+    "days"
+  ],
+  "title": "PhaseStepsPlan",
+  "type": "object"
+}
+
+--- PHASE 1 CONTEXT MARKDOWN ---
+## Giai đoạn 1: <!--PHASE_NAME_START-->user_core_services<!--PHASE_NAME_END--> | Mô tả: Triển khai các dịch vụ cốt lõi quản lý người dùng bao gồm đăng ký, xác thực xã hội, gán vai trò, schema cơ sở dữ liệu và logging kiểm toán bảo mật
+
+#### 📊 Kiểm soát tài liệu
+
+| Mục | Chi tiết |
+| :--- | :--- |
+| **ID Blueprint** | ARCH-20260803053505 |
+| **Tên dự án** | membership-hub |
+| **Giai đoạn** | 1 |
+| **Tên kỹ thuật giai đoạn** | <!--PHASE_NAME_START-->user_core_services<!--PHASE_NAME_END--> |
+| **Mô tả** | Triển khai các dịch vụ cốt lõi quản lý người dùng bao gồm đăng ký, xác thực xã hội, gán vai trò, schema cơ sở dữ liệu và logging kiểm toán bảo mật |
+| **Phiên bản** | 1.0 (Baseline) |
+| **Ngày/Giờ** | 2026/08/03 05:35:05 |
+| **Tác giả** | Enterprise System Architect (SA Agent) |
+| **Phê duyệt** | Pending Technical Governance Review |
+
+#### 1. Phạm vi hoạt động và mục tiêu giai đoạn
+
+Giai đoạn này tập trung vào việc xây dựng nền tảng cốt lõi cho hệ thống quản lý người dùng, bao gồm:
+
+- Triển khai schema cơ sở dữ liệu cho bảng Users và Roles với các ràng buộc toàn vẹn dữ liệu
+- Xây dựng dịch vụ đăng ký người dùng với xác thực email/mật khẩu và hỗ trợ OAuth2 cho các nhà cung cấp xã hội (Firebase, Google, Facebook)
+- Triển khai cơ chế phân quyền RBAC với khả năng gán và thay đổi vai trò người dùng
+- Thiết lập hệ thống logging kiểm toán đáp ứng các tiêu chuẩn bảo mật doanh nghiệp
+- Triển khai xử lý ngoại lệ chi tiết cho validation đầu vào và xung đột dữ liệu
+
+#### 2. Phạm vi kỹ thuật và ranh giới thư mục được phép
+
+**Thư mục và tệp được phép:**
+- `./sources/backend.membershiphub.user/users.sql` - DDL schema cho bảng Users
+- `./sources/backend.membershiphub.user/roles.sql` - DDL schema cho bảng Roles  
+- `./sources/backend.membershiphub.user/user-service.java` - Dịch vụ chính quản lý người dùng
+
+**Endpoint API:**
+- `POST /api/v1/auth/register` - Đăng ký người dùng mới
+- `POST /api/v1/auth/social` - Xác thực qua nhà cung cấp xã hội
+- `PUT /api/v1/users/{userId}/role` - Cập nhật vai trò người dùng (chỉ System Admin)
+
+#### 3. Chỉ đạo chức năng cho Sub-Agent chuyên dụng
+
+**Coder:** Triển khai mã nguồn Java/Quarkus với tuân thủ SOLID, sử dụng BCrypt cho mã hóa mật khẩu, JWT với access token 15 phút và refresh token 7 ngày, áp dụng @Valid cho validation và @Transactional cho các thao tác ghi.
+
+**Tester:** Xây dựng bộ kiểm thử JUnit 5 với độ phủ mã ≥85%, sử dụng Mock cho các dependency, kiểm thử happy path và các scenario lỗi validation.
+
+**Reviewer:** Thực hiện phân tích tĩnh mã nguồn, kiểm tra tuân thủ OWASP Top 10, đảm bảo không có lỗ hổng SQL injection hoặc XSS.
+
+**Doc:** Biên soạn tài liệu kỹ thuật đầy đủ bao gồm API documentation với OpenAPI, schema documentation và hướng dẫn triển khai.
+
+#### 4. Định nghĩa hoàn thành (DoD) cho giai đoạn
+
+- ✅ 100% các requirement [REQ-001], [REQ-002], [REQ-003] được triển khai đầy đủ
+- ✅ Schema database [DAT-001] được tạo thành công với tất cả ràng buộc
+- ✅ Luồng xác thực [ARC-006] hoạt động với OAuth2 và JWT
+- ✅ Xử lý ngoại lệ [EXC-004] cho validation đầu vào
+- ✅ Tuân thủ các tiêu chuẩn bảo mật [NFR-001], [NFR-003], [NFR-006]
+- ✅ Độ phủ kiểm thử ≥85% cho tất cả các dịch vụ
+- ✅ 100% các Tag ID được ánh xạ và kiểm tra
+
+#### 5. NHẬT KÝ THỰC THI KIẾN TRÚC THEO NGÀY
+
+###### NGÀY 1: TRIỂN KHAI DỊCH VỤ ĐĂNG KÝ NGƯỜI DÙNG VÀ API XÁC THỰC XÃ HỘI
+
+######## SUB-TASK 1.1: Triển khai schema cơ sở dữ liệu Users và Roles
 ########## Sub-Agent được chỉ định: Coder
 ########## Các thành phần mục tiêu và yêu cầu kỹ thuật:
-* **Đường dẫn mục tiêu:** `./sources/backend.membershiphub.notification/chatbot-service.java`
-* **Các thẻ truy xuất nguồn gốc:** <!--START_TAGS-->[REQ-019], [REQ-020], [REQ-021], [REQ-022], [REQ-023], [DAT-011], [NFR-007]<!--END_TAGS-->
+* **Đường dẫn mục tiêu:** `./sources/backend.membershiphub.user/users.sql`, `./sources/backend.membershiphub.user/roles.sql`
+* **Các thẻ truy xuất nguồn gốc:** <!--START_TAGS-->[DAT-001]<!--END_TAGS-->
 
-######## SUB-TASK 11.2: Triển khai frontend Next.js với responsive design, i18n và SEO optimization
+######## SUB-TASK 1.2: Triển khai UserService với phương thức register và socialAuthenticate
 ########## Sub-Agent được chỉ định: Coder
 ########## Các thành phần mục tiêu và yêu cầu kỹ thuật:
-* **Đường dẫn mục tiêu:** `./sources/frontend.nextjs/package.json`
-* **Các thẻ truy xuất nguồn gốc:** <!--START_TAGS-->[REQ-020], [REQ-021], [REQ-022], [REQ-023]<!--END_TAGS-->
+* **Đường dẫn mục tiêu:** `./sources/backend.membershiphub.user/user-service.java`
+* **Các thẻ truy xuất nguồn gốc:** <!--START_TAGS-->[REQ-001], [REQ-002], [ARC-006], [EXC-004], [NFR-001], [NFR-003], [NFR-006]<!--END_TAGS-->
 
-###### NGÀY 12: CUNG CẤP CẤU HÌNH HẠ TẦNG GCP (VPC, IAM, CLOUD STORAGE, CLOUD RUN)
+###### NGÀY 2: VIẾT BỘ KIỂM TRA ĐƠN VỊ VÀ TÍCH HỢP CHO CÁC CHỨC NĂNG NGƯỜI DÙNG
 
-######## SUB-TASK 12.1: Triển khai Terraform configuration cho GCP infrastructure với VPC, IAM và Cloud SQL
-########## Sub-Agent được chỉ định: GCP
+######## SUB-TASK 2.1: Kiểm thử đơn vị cho các phương thức register và socialAuthenticate
+########## Sub-Agent được chỉ định: Tester
 ########## Các thành phần mục tiêu và yêu cầu kỹ thuật:
-* **Đường dẫn mục tiêu:** `./sources/infra/gcp/infrastructure.tf`
-* **Các thẻ truy xuất nguồn gốc:** <!--START_TAGS-->[NFR-004], [NFR-008]<!--END_TAGS-->
+* **Đường dẫn mục tiêu:** `./sources/backend.membershiphub.user/user-service.java;./sources/backend.membershiphub.user/userservice-test.java`
+* **Các thẻ truy xuất nguồn gốc:** <!--START_TAGS-->[REQ-001], [REQ-002], [DAT-001], [EXC-004]<!--END_TAGS-->
 
-###### NGÀY 13: XÂY DỰNG DOCKER IMAGE ĐA GIAI ĐOẠN CHO BACKEND VÀ FRONTEND
-
-######## SUB-TASK 13.1: Tạo multi-stage Dockerfile cho backend Quarkus với optimization kích thước
-########## Sub-Agent được chỉ định: Docker
+######## SUB-TASK 2.2: Kiểm thử tích hợp cho API endpoints
+########## Sub-Agent được chỉ định: Tester
 ########## Các thành phần mục tiêu và yêu cầu kỹ thuật:
-* **Đường dẫn mục tiêu:** `./sources/infra/docker/backend/Dockerfile`
-* **Các thẻ truy xuất nguồn gốc:** <!--START_TAGS-->[NFR-005], [NFR-009]<!--END_TAGS-->
+* **Đường dẫn mục tiêu:** `./sources/backend.membershiphub.user/user-service.java;./sources/backend.membershiphub.user/user-controller-test.java`
+* **Các thẻ truy xuất nguồn gốc:** <!--START_TAGS-->[REQ-001], [REQ-002], [ARC-006], [EXC-004]<!--END_TAGS-->
+------------------------------------------
 
-###### NGÀY 14: TRIỂN KHAI LÊN GOOGLE KUBERNETES ENGINE (GKE) VỚI HPA VÀ QUẢN LÝ RELEASE
+# System Instruction
 
-######## SUB-TASK 14.1: Tạo Kubernetes manifests cho deployment, service, ingress và HPA
-########## Sub-Agent được chỉ định: GKE
+You are a high-performance Data Ingestion and Transformation Engine. Your sole objective is to parse the Phase Context Markdown text and convert it into a perfectly valid, parseable JSON object matching the requested schema framework.
+
+# YOUR CRITICAL OPERATIONAL MANDATES (ZERO LOOPHOLES):
+1. **STRICT VARIABLE FIDELITY & NO PREFIXES:** You MUST use the exact raw values provided in the template variables for file paths and project names. You are STRICTLY BANNED from appending, prepending, or injecting any custom folders or prefixes like "sources/" to the `global_context_file`, `context_file`, `source_target_dir`, or `project_name` fields. Use the variable values exactly as they are passed.
+2. **ABSOLUTE PYDANTIC SCHEMA ALIGNMENT:** Your final generated JSON object MUST perfectly satisfy the structural schema parameters of the target enterprise contract. You are STRICTLY BANNED from omitting, renaming, formatting, or stripping out key elements (specifically `phase_id`, `phase_name`, `phase_description`, `project_name`, `global_context_file`, `source_target_dir`, and `days`).
+3. **ABSOLUTE NO EMPTY TAGS POLICY & STRING SANITIZATION:** You are STRICTLY BANNED from leaving the "targeted_tags" array empty `[]` or null for any sub-task that implements functional requirements or data schemas. You MUST scan the source Markdown sequentially sub-task by sub-task. For each sub-task node, locate the hidden technical container block delimited between `<!--START_TAGS-->` and `<!--END_TAGS-->` contained exclusively within that sub-task section scope. Extract all raw tag token codes inside, strip away all inline markdown formatting characters—specifically backticks (`` ` ``)—and any leading/trailing whitespaces, then populate them as clean separate string elements inside the "targeted_tags" array field of EACH sub-task object node.
+4. **NO TAG BUNDLING:** Every tag must be its own array node (e.g., `"targeted_tags": ["[REQ-001]", "[DAT-002]"]`). You are strictly forbidden from combining multiple tags into a single string element.
+5. **STRICT CONTENT PURITY & REJECT CONVERSATION:** Output ONLY the pure raw executable JSON string matching the required schema. Response must start exactly with the character `{` and end exactly with the character `}`. Banned from including thinking processes, chain-of-thought blocks (`<think>` tags), conversational filler texts, introductions, wrapping inside markdown codeblocks (no triple backticks wrapping), or post-generation notes. Any token outside the raw JSON object boundary triggers an immediate execution pipeline crash.
+
+# Raw Response / Exception:
+
+```json
+Error code: 404 - {'message': 'Model does not exist or you do not have access to it.', 'type': 'not_found_error', 'param': 'model', 'code': 'model_not_found'}: ['Traceback (most recent call last):
+', '  File "/home/runner/work/enterprise-it-ai/enterprise-it-ai/sources/agents/architect-blueprint/block_json.py", line 301, in convert_phases_to_json
+    response = client.beta.chat.completions.parse(
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+', '  File "/opt/hostedtoolcache/Python/3.11.15/x64/lib/python3.11/site-packages/openai/resources/chat/completions/completions.py", line 193, in parse
+    return self._post(
+           ^^^^^^^^^^^
+', '  File "/opt/hostedtoolcache/Python/3.11.15/x64/lib/python3.11/site-packages/openai/_base_client.py", line 1375, in post
+    return cast(ResponseT, self.request(cast_to, opts, stream=stream, stream_cls=stream_cls))
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+', '  File "/opt/hostedtoolcache/Python/3.11.15/x64/lib/python3.11/site-packages/openai/_base_client.py", line 1148, in request
+    raise self._make_status_error_from_response(err.response) from None
+', "openai.NotFoundError: Error code: 404 - {'message': 'Model does not exist or you do not have access to it.', 'type': 'not_found_error', 'param': 'model', 'code': 'model_not_found'}
+"]
+```
+
+# AI Model: meta-llama/llama-3.3-70b-instruct - Phase 1 STEPS - Prompt:
+
+Analyze the attached Phase 1 Context Markdown content.
+
+Extract and translate ALL daily steps, checklists, and agent tasks from the entire document.
+
+
+## 🔒 AGENT ATOMICITY, TASK ID FORMAT & COMPONENT MANDATES (ABSOLUTE):
+- **STRICT TASK ID ALIGNMENT BLUEPRINT:** You MUST strictly generate the "id" field string for every single sub-task using the exact sequential formatting blueprint: `D<day_num>_ST<task_index>` (e.g., `D1_ST1`, `D1_ST2`, `D2_ST1`).
+- **STRICT AGENT ROLE LITERAL VALUES:** The "agent" field inside the JSON sub-task object MUST strictly enforce a capitalized first letter and lowercase subsequent letters pattern matching the exact tokens: 'Coder' | 'Tester' | 'Reviewer' | 'Doc' | 'Docker' | 'Gcp' | 'Gke'. Any other values or lowercase blocks (e.g., NO "coder") are strictly banned.
+- **NO ZERO-COMPONENT TASKS (ABSOLUTE HARD LIMIT):** You are STRICTLY BANNED from generating any sub-task object where the 'components' array is empty `[]`, null, or missing. If an Agent does not have any physical file paths to create, modify, or document, you MUST NOT generate that sub-task object node.
+- **FALLBACK COMPONENT RULE:** If a day has technical descriptions but lacks physical file paths, assign the task to "Doc" agent and populate 'components' with exactly the value of: ".ai/.plan/.context/phase-1.context.blueprint.md".
+- **STRICT AGENT ROLE SEGREGATION (ANTI-AGGREGATION):** If a workflow file involves multiple actions by different personas on the same calendar day, you MUST split this workflow into completely separate, sequential task objects inside the 'sub_tasks' array.
+- **HIGH-DENSITY TECHNICAL SPECIFICATION:** The 'task' field MUST contain an exhaustive, granular engineering instruction. If the sub-task involves an API route, integration endpoint, database query, or message block, you MUST explicitly inline the complete technical contract (e.g., Request/Response Payload Schemas, Data Types, Error Status Codes, or Queue names) directly inside this string. Vague high-level bullet summaries are forbidden.
+- **WORKSPACE PREFIX RULE & MULTI-LANGUAGE TEST EXCEPTION:** Every path in 'components' array MUST strictly begin with `./sources/`. 
+  * *CRITICAL EXCEPTION:* If the first parameter before the semi-colon character in a tester task is the literal string token `INTEGRATION_SCOPE`, you MUST leave that token completely unmodified. Do NOT append any path prefix to it (e.g., `"components": ["INTEGRATION_SCOPE;./sources/frontend/tests/auth.spec.ts"]`).
+
+## 🛠️ MANDATORY TOP-LEVEL FIELD VALUES INJECTION & ANCHOR PARSING (STRICT FIDELITY):
+You MUST dynamically populate the top-level keys of the JSON object using EXACT raw variable values without any modifications, or parse them directly from the primary Markdown header HTML comments:
+- **`phase_id`**: 1
+- **`phase_name`**: [Locate the primary Markdown title header line, extract the clean technical string text located exactly between the hidden HTML delimiters `<!--PHASE_NAME_START-->` and `<!--PHASE_NAME_END-->` without any alterations or translations]
+- **`phase_description`**: [Locate the primary Markdown title header line, extract the exact translated phase description text that follows after the literal marker `| Description:` or its translated equivalent]
+- **`project_name`**: "membership-hub"
+- **`global_context_file`**: ".ai/.context/membership-hub.global.blueprint.md"
+- **`source_target_dir`**: "sources/"
+
+#### 7. Context Fields Integration Mandate
+- For each day object inside the array, set 'day' to its calculated integer value, set 'context_file' to exact string ".ai/.plan/.context/phase-1.context.blueprint.md", and **set 'context_section' to the exact raw string value of the entire primary Day Header extracted from the source Markdown context text** (e.g., `"context_section": "DAY 1: Multi-Tenant Inception Schema & Flyway Migration Setup"`).
+
+#### 8. CHRONOLOGICAL TIMELINE SEQUENCING MANDATE (ABSOLUTE):
+#### 8. CHRONOLOGICAL TIMELINE SEQUENCING MANDATE (ABSOLUTE):
+
+## SYSTEM CRITICAL BOUNDARY: FLAT CONFIGURATION IS ACTIVE (is_chunked is FALSE)
+- Regardless of the actual day numbers documented in the source Markdown content (e.g., even if the text states "DAY 4", "DAY 5"), you MUST completely reset the timeline sequence internally so that the first operational day inside this Phase always starts from integer 1. Progression follows sequentially as 2, 3, 4, etc. 
+- Map the first targeted day to `"day": 1`, set 'context_file' to ".ai/.plan/.context/phase-1.context.blueprint.md", and strictly set 'context_section' to the exact raw primary header line of the first day parsed from the text. Incremental days follow this relative baseline.
+
+
+## 🛑 MANDATORY STRUCTURE ENFORCEMENT FOR TRACEABILITY TAGS VIA HTML ANCHORS (CRITICAL):
+- For each sub-task block, locate the hidden technical container bounds delimited strictly between `<!--START_TAGS-->` and `<!--END_TAGS-->`. Extract all individual inherited Tag IDs from inside that container, completely purge all markdown backticks (`` ` ``) and padding spaces, and populate them as clean individual string elements inside the "targeted_tags" array field (e.g., `"targeted_tags": ["[REQ-001]", "[DAT-005]"]`).
+- You are STRICTLY BANNED from leaving the "targeted_tags" array empty `[]` or null. Every single tag token must be its own separated array element string.
+
+You must conform strictly to your required JSON Schema layout design structure:
+{
+  "$defs": {
+    "DailyStep": {
+      "properties": {
+        "day": {
+          "description": "Timeline iteration day inside this isolated phase.",
+          "title": "Day",
+          "type": "integer"
+        },
+        "context_file": {
+          "description": "The phase context Markdown file for closure on this day.",
+          "title": "Context File",
+          "type": "string"
+        },
+        "context_section": {
+          "description": "The day targeted for closure on this day.",
+          "title": "Context Section",
+          "type": "string"
+        },
+        "sub_tasks": {
+          "description": "Array of isolated micro-tasks assigned to sub-agents.",
+          "items": {
+            "$ref": "##/$defs/SubAgentTask"
+          },
+          "title": "Sub Tasks",
+          "type": "array"
+        }
+      },
+      "required": [
+        "day",
+        "context_file",
+        "context_section",
+        "sub_tasks"
+      ],
+      "title": "DailyStep",
+      "type": "object"
+    },
+    "SubAgentTask": {
+      "properties": {
+        "id": {
+          "description": "Sub-Task identity of Task that sub-agent role executing.",
+          "title": "Id",
+          "type": "string"
+        },
+        "agent": {
+          "description": "Target sub-agent role executing the task.",
+          "title": "Agent",
+          "type": "string"
+        },
+        "desc": {
+          "description": "Literal, low-level technical step assigned to the agent.",
+          "title": "Desc",
+          "type": "string"
+        },
+        "targeted_tags": {
+          "description": "Flat string array of exact inherited BA Tag IDs that this specific sub-task implements or verifies (e.g. ['[REQ-001]', '[ARC-002]']). MUST match the raw requirements 1:1.",
+          "items": {
+            "type": "string"
+          },
+          "title": "Targeted Tags",
+          "type": "array"
+        },
+        "components": {
+          "description": "Flat array of physical localized file paths or scripts modified or targeted by this single task. Return an empty array [] if no files are involved.",
+          "items": {
+            "type": "string"
+          },
+          "title": "Components",
+          "type": "array"
+        }
+      },
+      "required": [
+        "id",
+        "agent",
+        "desc"
+      ],
+      "title": "SubAgentTask",
+      "type": "object"
+    }
+  },
+  "properties": {
+    "phase_id": {
+      "description": "Target phase tracker index.",
+      "title": "Phase Id",
+      "type": "integer"
+    },
+    "phase_name": {
+      "description": "Target phase tracker name.",
+      "title": "Phase Name",
+      "type": "string"
+    },
+    "phase_description": {
+      "description": "Target phase description.",
+      "title": "Phase Description",
+      "type": "string"
+    },
+    "project_name": {
+      "description": "Target project tracker name.",
+      "title": "Project Name",
+      "type": "string"
+    },
+    "global_context_file": {
+      "description": "Project global context Markdown file for closure.",
+      "title": "Global Context File",
+      "type": "string"
+    },
+    "source_target_dir": {
+      "description": "Project sources folder path for closure.",
+      "title": "Source Target Dir",
+      "type": "string"
+    },
+    "days": {
+      "description": "Day-by-day engineering tracking steps.",
+      "items": {
+        "$ref": "##/$defs/DailyStep"
+      },
+      "title": "Days",
+      "type": "array"
+    }
+  },
+  "required": [
+    "phase_id",
+    "phase_name",
+    "phase_description",
+    "project_name",
+    "global_context_file",
+    "source_target_dir",
+    "days"
+  ],
+  "title": "PhaseStepsPlan",
+  "type": "object"
+}
+
+--- PHASE 1 CONTEXT MARKDOWN ---
+## Giai đoạn 1: <!--PHASE_NAME_START-->user_core_services<!--PHASE_NAME_END--> | Mô tả: Triển khai các dịch vụ cốt lõi quản lý người dùng bao gồm đăng ký, xác thực xã hội, gán vai trò, schema cơ sở dữ liệu và logging kiểm toán bảo mật
+
+#### 📊 Kiểm soát tài liệu
+
+| Mục | Chi tiết |
+| :--- | :--- |
+| **ID Blueprint** | ARCH-20260803053505 |
+| **Tên dự án** | membership-hub |
+| **Giai đoạn** | 1 |
+| **Tên kỹ thuật giai đoạn** | <!--PHASE_NAME_START-->user_core_services<!--PHASE_NAME_END--> |
+| **Mô tả** | Triển khai các dịch vụ cốt lõi quản lý người dùng bao gồm đăng ký, xác thực xã hội, gán vai trò, schema cơ sở dữ liệu và logging kiểm toán bảo mật |
+| **Phiên bản** | 1.0 (Baseline) |
+| **Ngày/Giờ** | 2026/08/03 05:35:05 |
+| **Tác giả** | Enterprise System Architect (SA Agent) |
+| **Phê duyệt** | Pending Technical Governance Review |
+
+#### 1. Phạm vi hoạt động và mục tiêu giai đoạn
+
+Giai đoạn này tập trung vào việc xây dựng nền tảng cốt lõi cho hệ thống quản lý người dùng, bao gồm:
+
+- Triển khai schema cơ sở dữ liệu cho bảng Users và Roles với các ràng buộc toàn vẹn dữ liệu
+- Xây dựng dịch vụ đăng ký người dùng với xác thực email/mật khẩu và hỗ trợ OAuth2 cho các nhà cung cấp xã hội (Firebase, Google, Facebook)
+- Triển khai cơ chế phân quyền RBAC với khả năng gán và thay đổi vai trò người dùng
+- Thiết lập hệ thống logging kiểm toán đáp ứng các tiêu chuẩn bảo mật doanh nghiệp
+- Triển khai xử lý ngoại lệ chi tiết cho validation đầu vào và xung đột dữ liệu
+
+#### 2. Phạm vi kỹ thuật và ranh giới thư mục được phép
+
+**Thư mục và tệp được phép:**
+- `./sources/backend.membershiphub.user/users.sql` - DDL schema cho bảng Users
+- `./sources/backend.membershiphub.user/roles.sql` - DDL schema cho bảng Roles  
+- `./sources/backend.membershiphub.user/user-service.java` - Dịch vụ chính quản lý người dùng
+
+**Endpoint API:**
+- `POST /api/v1/auth/register` - Đăng ký người dùng mới
+- `POST /api/v1/auth/social` - Xác thực qua nhà cung cấp xã hội
+- `PUT /api/v1/users/{userId}/role` - Cập nhật vai trò người dùng (chỉ System Admin)
+
+#### 3. Chỉ đạo chức năng cho Sub-Agent chuyên dụng
+
+**Coder:** Triển khai mã nguồn Java/Quarkus với tuân thủ SOLID, sử dụng BCrypt cho mã hóa mật khẩu, JWT với access token 15 phút và refresh token 7 ngày, áp dụng @Valid cho validation và @Transactional cho các thao tác ghi.
+
+**Tester:** Xây dựng bộ kiểm thử JUnit 5 với độ phủ mã ≥85%, sử dụng Mock cho các dependency, kiểm thử happy path và các scenario lỗi validation.
+
+**Reviewer:** Thực hiện phân tích tĩnh mã nguồn, kiểm tra tuân thủ OWASP Top 10, đảm bảo không có lỗ hổng SQL injection hoặc XSS.
+
+**Doc:** Biên soạn tài liệu kỹ thuật đầy đủ bao gồm API documentation với OpenAPI, schema documentation và hướng dẫn triển khai.
+
+#### 4. Định nghĩa hoàn thành (DoD) cho giai đoạn
+
+- ✅ 100% các requirement [REQ-001], [REQ-002], [REQ-003] được triển khai đầy đủ
+- ✅ Schema database [DAT-001] được tạo thành công với tất cả ràng buộc
+- ✅ Luồng xác thực [ARC-006] hoạt động với OAuth2 và JWT
+- ✅ Xử lý ngoại lệ [EXC-004] cho validation đầu vào
+- ✅ Tuân thủ các tiêu chuẩn bảo mật [NFR-001], [NFR-003], [NFR-006]
+- ✅ Độ phủ kiểm thử ≥85% cho tất cả các dịch vụ
+- ✅ 100% các Tag ID được ánh xạ và kiểm tra
+
+#### 5. NHẬT KÝ THỰC THI KIẾN TRÚC THEO NGÀY
+
+###### NGÀY 1: TRIỂN KHAI DỊCH VỤ ĐĂNG KÝ NGƯỜI DÙNG VÀ API XÁC THỰC XÃ HỘI
+
+######## SUB-TASK 1.1: Triển khai schema cơ sở dữ liệu Users và Roles
+########## Sub-Agent được chỉ định: Coder
 ########## Các thành phần mục tiêu và yêu cầu kỹ thuật:
-* **Đường dẫn mục tiêu:** `./sources/infra/gke/deployments.yaml`
-* **Các thẻ truy xuất nguồn gốc:** <!--START_TAGS-->[NFR-002], [NFR-004], [NFR-009]<!--END_TAGS-->
+* **Đường dẫn mục tiêu:** `./sources/backend.membershiphub.user/users.sql`, `./sources/backend.membershiphub.user/roles.sql`
+* **Các thẻ truy xuất nguồn gốc:** <!--START_TAGS-->[DAT-001]<!--END_TAGS-->
+
+######## SUB-TASK 1.2: Triển khai UserService với phương thức register và socialAuthenticate
+########## Sub-Agent được chỉ định: Coder
+########## Các thành phần mục tiêu và yêu cầu kỹ thuật:
+* **Đường dẫn mục tiêu:** `./sources/backend.membershiphub.user/user-service.java`
+* **Các thẻ truy xuất nguồn gốc:** <!--START_TAGS-->[REQ-001], [REQ-002], [ARC-006], [EXC-004], [NFR-001], [NFR-003], [NFR-006]<!--END_TAGS-->
+
+###### NGÀY 2: VIẾT BỘ KIỂM TRA ĐƠN VỊ VÀ TÍCH HỢP CHO CÁC CHỨC NĂNG NGƯỜI DÙNG
+
+######## SUB-TASK 2.1: Kiểm thử đơn vị cho các phương thức register và socialAuthenticate
+########## Sub-Agent được chỉ định: Tester
+########## Các thành phần mục tiêu và yêu cầu kỹ thuật:
+* **Đường dẫn mục tiêu:** `./sources/backend.membershiphub.user/user-service.java;./sources/backend.membershiphub.user/userservice-test.java`
+* **Các thẻ truy xuất nguồn gốc:** <!--START_TAGS-->[REQ-001], [REQ-002], [DAT-001], [EXC-004]<!--END_TAGS-->
+
+######## SUB-TASK 2.2: Kiểm thử tích hợp cho API endpoints
+########## Sub-Agent được chỉ định: Tester
+########## Các thành phần mục tiêu và yêu cầu kỹ thuật:
+* **Đường dẫn mục tiêu:** `./sources/backend.membershiphub.user/user-service.java;./sources/backend.membershiphub.user/user-controller-test.java`
+* **Các thẻ truy xuất nguồn gốc:** <!--START_TAGS-->[REQ-001], [REQ-002], [ARC-006], [EXC-004]<!--END_TAGS-->
+------------------------------------------
+
+# System Instruction
+
+You are a high-performance Data Ingestion and Transformation Engine. Your sole objective is to parse the Phase Context Markdown text and convert it into a perfectly valid, parseable JSON object matching the requested schema framework.
+
+# YOUR CRITICAL OPERATIONAL MANDATES (ZERO LOOPHOLES):
+1. **STRICT VARIABLE FIDELITY & NO PREFIXES:** You MUST use the exact raw values provided in the template variables for file paths and project names. You are STRICTLY BANNED from appending, prepending, or injecting any custom folders or prefixes like "sources/" to the `global_context_file`, `context_file`, `source_target_dir`, or `project_name` fields. Use the variable values exactly as they are passed.
+2. **ABSOLUTE PYDANTIC SCHEMA ALIGNMENT:** Your final generated JSON object MUST perfectly satisfy the structural schema parameters of the target enterprise contract. You are STRICTLY BANNED from omitting, renaming, formatting, or stripping out key elements (specifically `phase_id`, `phase_name`, `phase_description`, `project_name`, `global_context_file`, `source_target_dir`, and `days`).
+3. **ABSOLUTE NO EMPTY TAGS POLICY & STRING SANITIZATION:** You are STRICTLY BANNED from leaving the "targeted_tags" array empty `[]` or null for any sub-task that implements functional requirements or data schemas. You MUST scan the source Markdown sequentially sub-task by sub-task. For each sub-task node, locate the hidden technical container block delimited between `<!--START_TAGS-->` and `<!--END_TAGS-->` contained exclusively within that sub-task section scope. Extract all raw tag token codes inside, strip away all inline markdown formatting characters—specifically backticks (`` ` ``)—and any leading/trailing whitespaces, then populate them as clean separate string elements inside the "targeted_tags" array field of EACH sub-task object node.
+4. **NO TAG BUNDLING:** Every tag must be its own array node (e.g., `"targeted_tags": ["[REQ-001]", "[DAT-002]"]`). You are strictly forbidden from combining multiple tags into a single string element.
+5. **STRICT CONTENT PURITY & REJECT CONVERSATION:** Output ONLY the pure raw executable JSON string matching the required schema. Response must start exactly with the character `{` and end exactly with the character `}`. Banned from including thinking processes, chain-of-thought blocks (`<think>` tags), conversational filler texts, introductions, wrapping inside markdown codeblocks (no triple backticks wrapping), or post-generation notes. Any token outside the raw JSON object boundary triggers an immediate execution pipeline crash.
+
+# Raw Response / Exception:
+
+```json
+404 page not found: ['Traceback (most recent call last):
+', '  File "/home/runner/work/enterprise-it-ai/enterprise-it-ai/sources/agents/architect-blueprint/block_json.py", line 301, in convert_phases_to_json
+    response = client.beta.chat.completions.parse(
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+', '  File "/opt/hostedtoolcache/Python/3.11.15/x64/lib/python3.11/site-packages/openai/resources/chat/completions/completions.py", line 193, in parse
+    return self._post(
+           ^^^^^^^^^^^
+', '  File "/opt/hostedtoolcache/Python/3.11.15/x64/lib/python3.11/site-packages/openai/_base_client.py", line 1375, in post
+    return cast(ResponseT, self.request(cast_to, opts, stream=stream, stream_cls=stream_cls))
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+', '  File "/opt/hostedtoolcache/Python/3.11.15/x64/lib/python3.11/site-packages/openai/_base_client.py", line 1148, in request
+    raise self._make_status_error_from_response(err.response) from None
+', 'openai.NotFoundError: 404 page not found
+']
+```
+
+# AI Model: deepseek/deepseek-r1 - Phase 1 STEPS - Prompt:
+
+Analyze the attached Phase 1 Context Markdown content.
+
+Extract and translate ALL daily steps, checklists, and agent tasks from the entire document.
+
+
+## 🔒 AGENT ATOMICITY, TASK ID FORMAT & COMPONENT MANDATES (ABSOLUTE):
+- **STRICT TASK ID ALIGNMENT BLUEPRINT:** You MUST strictly generate the "id" field string for every single sub-task using the exact sequential formatting blueprint: `D<day_num>_ST<task_index>` (e.g., `D1_ST1`, `D1_ST2`, `D2_ST1`).
+- **STRICT AGENT ROLE LITERAL VALUES:** The "agent" field inside the JSON sub-task object MUST strictly enforce a capitalized first letter and lowercase subsequent letters pattern matching the exact tokens: 'Coder' | 'Tester' | 'Reviewer' | 'Doc' | 'Docker' | 'Gcp' | 'Gke'. Any other values or lowercase blocks (e.g., NO "coder") are strictly banned.
+- **NO ZERO-COMPONENT TASKS (ABSOLUTE HARD LIMIT):** You are STRICTLY BANNED from generating any sub-task object where the 'components' array is empty `[]`, null, or missing. If an Agent does not have any physical file paths to create, modify, or document, you MUST NOT generate that sub-task object node.
+- **FALLBACK COMPONENT RULE:** If a day has technical descriptions but lacks physical file paths, assign the task to "Doc" agent and populate 'components' with exactly the value of: ".ai/.plan/.context/phase-1.context.blueprint.md".
+- **STRICT AGENT ROLE SEGREGATION (ANTI-AGGREGATION):** If a workflow file involves multiple actions by different personas on the same calendar day, you MUST split this workflow into completely separate, sequential task objects inside the 'sub_tasks' array.
+- **HIGH-DENSITY TECHNICAL SPECIFICATION:** The 'task' field MUST contain an exhaustive, granular engineering instruction. If the sub-task involves an API route, integration endpoint, database query, or message block, you MUST explicitly inline the complete technical contract (e.g., Request/Response Payload Schemas, Data Types, Error Status Codes, or Queue names) directly inside this string. Vague high-level bullet summaries are forbidden.
+- **WORKSPACE PREFIX RULE & MULTI-LANGUAGE TEST EXCEPTION:** Every path in 'components' array MUST strictly begin with `./sources/`. 
+  * *CRITICAL EXCEPTION:* If the first parameter before the semi-colon character in a tester task is the literal string token `INTEGRATION_SCOPE`, you MUST leave that token completely unmodified. Do NOT append any path prefix to it (e.g., `"components": ["INTEGRATION_SCOPE;./sources/frontend/tests/auth.spec.ts"]`).
+
+## 🛠️ MANDATORY TOP-LEVEL FIELD VALUES INJECTION & ANCHOR PARSING (STRICT FIDELITY):
+You MUST dynamically populate the top-level keys of the JSON object using EXACT raw variable values without any modifications, or parse them directly from the primary Markdown header HTML comments:
+- **`phase_id`**: 1
+- **`phase_name`**: [Locate the primary Markdown title header line, extract the clean technical string text located exactly between the hidden HTML delimiters `<!--PHASE_NAME_START-->` and `<!--PHASE_NAME_END-->` without any alterations or translations]
+- **`phase_description`**: [Locate the primary Markdown title header line, extract the exact translated phase description text that follows after the literal marker `| Description:` or its translated equivalent]
+- **`project_name`**: "membership-hub"
+- **`global_context_file`**: ".ai/.context/membership-hub.global.blueprint.md"
+- **`source_target_dir`**: "sources/"
+
+#### 7. Context Fields Integration Mandate
+- For each day object inside the array, set 'day' to its calculated integer value, set 'context_file' to exact string ".ai/.plan/.context/phase-1.context.blueprint.md", and **set 'context_section' to the exact raw string value of the entire primary Day Header extracted from the source Markdown context text** (e.g., `"context_section": "DAY 1: Multi-Tenant Inception Schema & Flyway Migration Setup"`).
+
+#### 8. CHRONOLOGICAL TIMELINE SEQUENCING MANDATE (ABSOLUTE):
+#### 8. CHRONOLOGICAL TIMELINE SEQUENCING MANDATE (ABSOLUTE):
+
+## SYSTEM CRITICAL BOUNDARY: FLAT CONFIGURATION IS ACTIVE (is_chunked is FALSE)
+- Regardless of the actual day numbers documented in the source Markdown content (e.g., even if the text states "DAY 4", "DAY 5"), you MUST completely reset the timeline sequence internally so that the first operational day inside this Phase always starts from integer 1. Progression follows sequentially as 2, 3, 4, etc. 
+- Map the first targeted day to `"day": 1`, set 'context_file' to ".ai/.plan/.context/phase-1.context.blueprint.md", and strictly set 'context_section' to the exact raw primary header line of the first day parsed from the text. Incremental days follow this relative baseline.
+
+
+## 🛑 MANDATORY STRUCTURE ENFORCEMENT FOR TRACEABILITY TAGS VIA HTML ANCHORS (CRITICAL):
+- For each sub-task block, locate the hidden technical container bounds delimited strictly between `<!--START_TAGS-->` and `<!--END_TAGS-->`. Extract all individual inherited Tag IDs from inside that container, completely purge all markdown backticks (`` ` ``) and padding spaces, and populate them as clean individual string elements inside the "targeted_tags" array field (e.g., `"targeted_tags": ["[REQ-001]", "[DAT-005]"]`).
+- You are STRICTLY BANNED from leaving the "targeted_tags" array empty `[]` or null. Every single tag token must be its own separated array element string.
+
+You must conform strictly to your required JSON Schema layout design structure:
+{
+  "$defs": {
+    "DailyStep": {
+      "properties": {
+        "day": {
+          "description": "Timeline iteration day inside this isolated phase.",
+          "title": "Day",
+          "type": "integer"
+        },
+        "context_file": {
+          "description": "The phase context Markdown file for closure on this day.",
+          "title": "Context File",
+          "type": "string"
+        },
+        "context_section": {
+          "description": "The day targeted for closure on this day.",
+          "title": "Context Section",
+          "type": "string"
+        },
+        "sub_tasks": {
+          "description": "Array of isolated micro-tasks assigned to sub-agents.",
+          "items": {
+            "$ref": "##/$defs/SubAgentTask"
+          },
+          "title": "Sub Tasks",
+          "type": "array"
+        }
+      },
+      "required": [
+        "day",
+        "context_file",
+        "context_section",
+        "sub_tasks"
+      ],
+      "title": "DailyStep",
+      "type": "object"
+    },
+    "SubAgentTask": {
+      "properties": {
+        "id": {
+          "description": "Sub-Task identity of Task that sub-agent role executing.",
+          "title": "Id",
+          "type": "string"
+        },
+        "agent": {
+          "description": "Target sub-agent role executing the task.",
+          "title": "Agent",
+          "type": "string"
+        },
+        "desc": {
+          "description": "Literal, low-level technical step assigned to the agent.",
+          "title": "Desc",
+          "type": "string"
+        },
+        "targeted_tags": {
+          "description": "Flat string array of exact inherited BA Tag IDs that this specific sub-task implements or verifies (e.g. ['[REQ-001]', '[ARC-002]']). MUST match the raw requirements 1:1.",
+          "items": {
+            "type": "string"
+          },
+          "title": "Targeted Tags",
+          "type": "array"
+        },
+        "components": {
+          "description": "Flat array of physical localized file paths or scripts modified or targeted by this single task. Return an empty array [] if no files are involved.",
+          "items": {
+            "type": "string"
+          },
+          "title": "Components",
+          "type": "array"
+        }
+      },
+      "required": [
+        "id",
+        "agent",
+        "desc"
+      ],
+      "title": "SubAgentTask",
+      "type": "object"
+    }
+  },
+  "properties": {
+    "phase_id": {
+      "description": "Target phase tracker index.",
+      "title": "Phase Id",
+      "type": "integer"
+    },
+    "phase_name": {
+      "description": "Target phase tracker name.",
+      "title": "Phase Name",
+      "type": "string"
+    },
+    "phase_description": {
+      "description": "Target phase description.",
+      "title": "Phase Description",
+      "type": "string"
+    },
+    "project_name": {
+      "description": "Target project tracker name.",
+      "title": "Project Name",
+      "type": "string"
+    },
+    "global_context_file": {
+      "description": "Project global context Markdown file for closure.",
+      "title": "Global Context File",
+      "type": "string"
+    },
+    "source_target_dir": {
+      "description": "Project sources folder path for closure.",
+      "title": "Source Target Dir",
+      "type": "string"
+    },
+    "days": {
+      "description": "Day-by-day engineering tracking steps.",
+      "items": {
+        "$ref": "##/$defs/DailyStep"
+      },
+      "title": "Days",
+      "type": "array"
+    }
+  },
+  "required": [
+    "phase_id",
+    "phase_name",
+    "phase_description",
+    "project_name",
+    "global_context_file",
+    "source_target_dir",
+    "days"
+  ],
+  "title": "PhaseStepsPlan",
+  "type": "object"
+}
+
+--- PHASE 1 CONTEXT MARKDOWN ---
+## Giai đoạn 1: <!--PHASE_NAME_START-->user_core_services<!--PHASE_NAME_END--> | Mô tả: Triển khai các dịch vụ cốt lõi quản lý người dùng bao gồm đăng ký, xác thực xã hội, gán vai trò, schema cơ sở dữ liệu và logging kiểm toán bảo mật
+
+#### 📊 Kiểm soát tài liệu
+
+| Mục | Chi tiết |
+| :--- | :--- |
+| **ID Blueprint** | ARCH-20260803053505 |
+| **Tên dự án** | membership-hub |
+| **Giai đoạn** | 1 |
+| **Tên kỹ thuật giai đoạn** | <!--PHASE_NAME_START-->user_core_services<!--PHASE_NAME_END--> |
+| **Mô tả** | Triển khai các dịch vụ cốt lõi quản lý người dùng bao gồm đăng ký, xác thực xã hội, gán vai trò, schema cơ sở dữ liệu và logging kiểm toán bảo mật |
+| **Phiên bản** | 1.0 (Baseline) |
+| **Ngày/Giờ** | 2026/08/03 05:35:05 |
+| **Tác giả** | Enterprise System Architect (SA Agent) |
+| **Phê duyệt** | Pending Technical Governance Review |
+
+#### 1. Phạm vi hoạt động và mục tiêu giai đoạn
+
+Giai đoạn này tập trung vào việc xây dựng nền tảng cốt lõi cho hệ thống quản lý người dùng, bao gồm:
+
+- Triển khai schema cơ sở dữ liệu cho bảng Users và Roles với các ràng buộc toàn vẹn dữ liệu
+- Xây dựng dịch vụ đăng ký người dùng với xác thực email/mật khẩu và hỗ trợ OAuth2 cho các nhà cung cấp xã hội (Firebase, Google, Facebook)
+- Triển khai cơ chế phân quyền RBAC với khả năng gán và thay đổi vai trò người dùng
+- Thiết lập hệ thống logging kiểm toán đáp ứng các tiêu chuẩn bảo mật doanh nghiệp
+- Triển khai xử lý ngoại lệ chi tiết cho validation đầu vào và xung đột dữ liệu
+
+#### 2. Phạm vi kỹ thuật và ranh giới thư mục được phép
+
+**Thư mục và tệp được phép:**
+- `./sources/backend.membershiphub.user/users.sql` - DDL schema cho bảng Users
+- `./sources/backend.membershiphub.user/roles.sql` - DDL schema cho bảng Roles  
+- `./sources/backend.membershiphub.user/user-service.java` - Dịch vụ chính quản lý người dùng
+
+**Endpoint API:**
+- `POST /api/v1/auth/register` - Đăng ký người dùng mới
+- `POST /api/v1/auth/social` - Xác thực qua nhà cung cấp xã hội
+- `PUT /api/v1/users/{userId}/role` - Cập nhật vai trò người dùng (chỉ System Admin)
+
+#### 3. Chỉ đạo chức năng cho Sub-Agent chuyên dụng
+
+**Coder:** Triển khai mã nguồn Java/Quarkus với tuân thủ SOLID, sử dụng BCrypt cho mã hóa mật khẩu, JWT với access token 15 phút và refresh token 7 ngày, áp dụng @Valid cho validation và @Transactional cho các thao tác ghi.
+
+**Tester:** Xây dựng bộ kiểm thử JUnit 5 với độ phủ mã ≥85%, sử dụng Mock cho các dependency, kiểm thử happy path và các scenario lỗi validation.
+
+**Reviewer:** Thực hiện phân tích tĩnh mã nguồn, kiểm tra tuân thủ OWASP Top 10, đảm bảo không có lỗ hổng SQL injection hoặc XSS.
+
+**Doc:** Biên soạn tài liệu kỹ thuật đầy đủ bao gồm API documentation với OpenAPI, schema documentation và hướng dẫn triển khai.
+
+#### 4. Định nghĩa hoàn thành (DoD) cho giai đoạn
+
+- ✅ 100% các requirement [REQ-001], [REQ-002], [REQ-003] được triển khai đầy đủ
+- ✅ Schema database [DAT-001] được tạo thành công với tất cả ràng buộc
+- ✅ Luồng xác thực [ARC-006] hoạt động với OAuth2 và JWT
+- ✅ Xử lý ngoại lệ [EXC-004] cho validation đầu vào
+- ✅ Tuân thủ các tiêu chuẩn bảo mật [NFR-001], [NFR-003], [NFR-006]
+- ✅ Độ phủ kiểm thử ≥85% cho tất cả các dịch vụ
+- ✅ 100% các Tag ID được ánh xạ và kiểm tra
+
+#### 5. NHẬT KÝ THỰC THI KIẾN TRÚC THEO NGÀY
+
+###### NGÀY 1: TRIỂN KHAI DỊCH VỤ ĐĂNG KÝ NGƯỜI DÙNG VÀ API XÁC THỰC XÃ HỘI
+
+######## SUB-TASK 1.1: Triển khai schema cơ sở dữ liệu Users và Roles
+########## Sub-Agent được chỉ định: Coder
+########## Các thành phần mục tiêu và yêu cầu kỹ thuật:
+* **Đường dẫn mục tiêu:** `./sources/backend.membershiphub.user/users.sql`, `./sources/backend.membershiphub.user/roles.sql`
+* **Các thẻ truy xuất nguồn gốc:** <!--START_TAGS-->[DAT-001]<!--END_TAGS-->
+
+######## SUB-TASK 1.2: Triển khai UserService với phương thức register và socialAuthenticate
+########## Sub-Agent được chỉ định: Coder
+########## Các thành phần mục tiêu và yêu cầu kỹ thuật:
+* **Đường dẫn mục tiêu:** `./sources/backend.membershiphub.user/user-service.java`
+* **Các thẻ truy xuất nguồn gốc:** <!--START_TAGS-->[REQ-001], [REQ-002], [ARC-006], [EXC-004], [NFR-001], [NFR-003], [NFR-006]<!--END_TAGS-->
+
+###### NGÀY 2: VIẾT BỘ KIỂM TRA ĐƠN VỊ VÀ TÍCH HỢP CHO CÁC CHỨC NĂNG NGƯỜI DÙNG
+
+######## SUB-TASK 2.1: Kiểm thử đơn vị cho các phương thức register và socialAuthenticate
+########## Sub-Agent được chỉ định: Tester
+########## Các thành phần mục tiêu và yêu cầu kỹ thuật:
+* **Đường dẫn mục tiêu:** `./sources/backend.membershiphub.user/user-service.java;./sources/backend.membershiphub.user/userservice-test.java`
+* **Các thẻ truy xuất nguồn gốc:** <!--START_TAGS-->[REQ-001], [REQ-002], [DAT-001], [EXC-004]<!--END_TAGS-->
+
+######## SUB-TASK 2.2: Kiểm thử tích hợp cho API endpoints
+########## Sub-Agent được chỉ định: Tester
+########## Các thành phần mục tiêu và yêu cầu kỹ thuật:
+* **Đường dẫn mục tiêu:** `./sources/backend.membershiphub.user/user-service.java;./sources/backend.membershiphub.user/user-controller-test.java`
+* **Các thẻ truy xuất nguồn gốc:** <!--START_TAGS-->[REQ-001], [REQ-002], [ARC-006], [EXC-004]<!--END_TAGS-->
+------------------------------------------
+
+# System Instruction
+
+You are a high-performance Data Ingestion and Transformation Engine. Your sole objective is to parse the Phase Context Markdown text and convert it into a perfectly valid, parseable JSON object matching the requested schema framework.
+
+# YOUR CRITICAL OPERATIONAL MANDATES (ZERO LOOPHOLES):
+1. **STRICT VARIABLE FIDELITY & NO PREFIXES:** You MUST use the exact raw values provided in the template variables for file paths and project names. You are STRICTLY BANNED from appending, prepending, or injecting any custom folders or prefixes like "sources/" to the `global_context_file`, `context_file`, `source_target_dir`, or `project_name` fields. Use the variable values exactly as they are passed.
+2. **ABSOLUTE PYDANTIC SCHEMA ALIGNMENT:** Your final generated JSON object MUST perfectly satisfy the structural schema parameters of the target enterprise contract. You are STRICTLY BANNED from omitting, renaming, formatting, or stripping out key elements (specifically `phase_id`, `phase_name`, `phase_description`, `project_name`, `global_context_file`, `source_target_dir`, and `days`).
+3. **ABSOLUTE NO EMPTY TAGS POLICY & STRING SANITIZATION:** You are STRICTLY BANNED from leaving the "targeted_tags" array empty `[]` or null for any sub-task that implements functional requirements or data schemas. You MUST scan the source Markdown sequentially sub-task by sub-task. For each sub-task node, locate the hidden technical container block delimited between `<!--START_TAGS-->` and `<!--END_TAGS-->` contained exclusively within that sub-task section scope. Extract all raw tag token codes inside, strip away all inline markdown formatting characters—specifically backticks (`` ` ``)—and any leading/trailing whitespaces, then populate them as clean separate string elements inside the "targeted_tags" array field of EACH sub-task object node.
+4. **NO TAG BUNDLING:** Every tag must be its own array node (e.g., `"targeted_tags": ["[REQ-001]", "[DAT-002]"]`). You are strictly forbidden from combining multiple tags into a single string element.
+5. **STRICT CONTENT PURITY & REJECT CONVERSATION:** Output ONLY the pure raw executable JSON string matching the required schema. Response must start exactly with the character `{` and end exactly with the character `}`. Banned from including thinking processes, chain-of-thought blocks (`<think>` tags), conversational filler texts, introductions, wrapping inside markdown codeblocks (no triple backticks wrapping), or post-generation notes. Any token outside the raw JSON object boundary triggers an immediate execution pipeline crash.
+
+# Raw Response / Exception:
+
+```json
+404 page not found: ['Traceback (most recent call last):
+', '  File "/home/runner/work/enterprise-it-ai/enterprise-it-ai/sources/agents/architect-blueprint/block_json.py", line 301, in convert_phases_to_json
+    response = client.beta.chat.completions.parse(
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+', '  File "/opt/hostedtoolcache/Python/3.11.15/x64/lib/python3.11/site-packages/openai/resources/chat/completions/completions.py", line 193, in parse
+    return self._post(
+           ^^^^^^^^^^^
+', '  File "/opt/hostedtoolcache/Python/3.11.15/x64/lib/python3.11/site-packages/openai/_base_client.py", line 1375, in post
+    return cast(ResponseT, self.request(cast_to, opts, stream=stream, stream_cls=stream_cls))
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+', '  File "/opt/hostedtoolcache/Python/3.11.15/x64/lib/python3.11/site-packages/openai/_base_client.py", line 1148, in request
+    raise self._make_status_error_from_response(err.response) from None
+', 'openai.NotFoundError: 404 page not found
+']
+```
+
+# AI Model: nvidia/nemotron-4-340b-instruct - Phase 1 STEPS - Prompt:
+
+Analyze the attached Phase 1 Context Markdown content.
+
+Extract and translate ALL daily steps, checklists, and agent tasks from the entire document.
+
+
+## 🔒 AGENT ATOMICITY, TASK ID FORMAT & COMPONENT MANDATES (ABSOLUTE):
+- **STRICT TASK ID ALIGNMENT BLUEPRINT:** You MUST strictly generate the "id" field string for every single sub-task using the exact sequential formatting blueprint: `D<day_num>_ST<task_index>` (e.g., `D1_ST1`, `D1_ST2`, `D2_ST1`).
+- **STRICT AGENT ROLE LITERAL VALUES:** The "agent" field inside the JSON sub-task object MUST strictly enforce a capitalized first letter and lowercase subsequent letters pattern matching the exact tokens: 'Coder' | 'Tester' | 'Reviewer' | 'Doc' | 'Docker' | 'Gcp' | 'Gke'. Any other values or lowercase blocks (e.g., NO "coder") are strictly banned.
+- **NO ZERO-COMPONENT TASKS (ABSOLUTE HARD LIMIT):** You are STRICTLY BANNED from generating any sub-task object where the 'components' array is empty `[]`, null, or missing. If an Agent does not have any physical file paths to create, modify, or document, you MUST NOT generate that sub-task object node.
+- **FALLBACK COMPONENT RULE:** If a day has technical descriptions but lacks physical file paths, assign the task to "Doc" agent and populate 'components' with exactly the value of: ".ai/.plan/.context/phase-1.context.blueprint.md".
+- **STRICT AGENT ROLE SEGREGATION (ANTI-AGGREGATION):** If a workflow file involves multiple actions by different personas on the same calendar day, you MUST split this workflow into completely separate, sequential task objects inside the 'sub_tasks' array.
+- **HIGH-DENSITY TECHNICAL SPECIFICATION:** The 'task' field MUST contain an exhaustive, granular engineering instruction. If the sub-task involves an API route, integration endpoint, database query, or message block, you MUST explicitly inline the complete technical contract (e.g., Request/Response Payload Schemas, Data Types, Error Status Codes, or Queue names) directly inside this string. Vague high-level bullet summaries are forbidden.
+- **WORKSPACE PREFIX RULE & MULTI-LANGUAGE TEST EXCEPTION:** Every path in 'components' array MUST strictly begin with `./sources/`. 
+  * *CRITICAL EXCEPTION:* If the first parameter before the semi-colon character in a tester task is the literal string token `INTEGRATION_SCOPE`, you MUST leave that token completely unmodified. Do NOT append any path prefix to it (e.g., `"components": ["INTEGRATION_SCOPE;./sources/frontend/tests/auth.spec.ts"]`).
+
+## 🛠️ MANDATORY TOP-LEVEL FIELD VALUES INJECTION & ANCHOR PARSING (STRICT FIDELITY):
+You MUST dynamically populate the top-level keys of the JSON object using EXACT raw variable values without any modifications, or parse them directly from the primary Markdown header HTML comments:
+- **`phase_id`**: 1
+- **`phase_name`**: [Locate the primary Markdown title header line, extract the clean technical string text located exactly between the hidden HTML delimiters `<!--PHASE_NAME_START-->` and `<!--PHASE_NAME_END-->` without any alterations or translations]
+- **`phase_description`**: [Locate the primary Markdown title header line, extract the exact translated phase description text that follows after the literal marker `| Description:` or its translated equivalent]
+- **`project_name`**: "membership-hub"
+- **`global_context_file`**: ".ai/.context/membership-hub.global.blueprint.md"
+- **`source_target_dir`**: "sources/"
+
+#### 7. Context Fields Integration Mandate
+- For each day object inside the array, set 'day' to its calculated integer value, set 'context_file' to exact string ".ai/.plan/.context/phase-1.context.blueprint.md", and **set 'context_section' to the exact raw string value of the entire primary Day Header extracted from the source Markdown context text** (e.g., `"context_section": "DAY 1: Multi-Tenant Inception Schema & Flyway Migration Setup"`).
+
+#### 8. CHRONOLOGICAL TIMELINE SEQUENCING MANDATE (ABSOLUTE):
+#### 8. CHRONOLOGICAL TIMELINE SEQUENCING MANDATE (ABSOLUTE):
+
+## SYSTEM CRITICAL BOUNDARY: FLAT CONFIGURATION IS ACTIVE (is_chunked is FALSE)
+- Regardless of the actual day numbers documented in the source Markdown content (e.g., even if the text states "DAY 4", "DAY 5"), you MUST completely reset the timeline sequence internally so that the first operational day inside this Phase always starts from integer 1. Progression follows sequentially as 2, 3, 4, etc. 
+- Map the first targeted day to `"day": 1`, set 'context_file' to ".ai/.plan/.context/phase-1.context.blueprint.md", and strictly set 'context_section' to the exact raw primary header line of the first day parsed from the text. Incremental days follow this relative baseline.
+
+
+## 🛑 MANDATORY STRUCTURE ENFORCEMENT FOR TRACEABILITY TAGS VIA HTML ANCHORS (CRITICAL):
+- For each sub-task block, locate the hidden technical container bounds delimited strictly between `<!--START_TAGS-->` and `<!--END_TAGS-->`. Extract all individual inherited Tag IDs from inside that container, completely purge all markdown backticks (`` ` ``) and padding spaces, and populate them as clean individual string elements inside the "targeted_tags" array field (e.g., `"targeted_tags": ["[REQ-001]", "[DAT-005]"]`).
+- You are STRICTLY BANNED from leaving the "targeted_tags" array empty `[]` or null. Every single tag token must be its own separated array element string.
+
+You must conform strictly to your required JSON Schema layout design structure:
+{
+  "$defs": {
+    "DailyStep": {
+      "properties": {
+        "day": {
+          "description": "Timeline iteration day inside this isolated phase.",
+          "title": "Day",
+          "type": "integer"
+        },
+        "context_file": {
+          "description": "The phase context Markdown file for closure on this day.",
+          "title": "Context File",
+          "type": "string"
+        },
+        "context_section": {
+          "description": "The day targeted for closure on this day.",
+          "title": "Context Section",
+          "type": "string"
+        },
+        "sub_tasks": {
+          "description": "Array of isolated micro-tasks assigned to sub-agents.",
+          "items": {
+            "$ref": "##/$defs/SubAgentTask"
+          },
+          "title": "Sub Tasks",
+          "type": "array"
+        }
+      },
+      "required": [
+        "day",
+        "context_file",
+        "context_section",
+        "sub_tasks"
+      ],
+      "title": "DailyStep",
+      "type": "object"
+    },
+    "SubAgentTask": {
+      "properties": {
+        "id": {
+          "description": "Sub-Task identity of Task that sub-agent role executing.",
+          "title": "Id",
+          "type": "string"
+        },
+        "agent": {
+          "description": "Target sub-agent role executing the task.",
+          "title": "Agent",
+          "type": "string"
+        },
+        "desc": {
+          "description": "Literal, low-level technical step assigned to the agent.",
+          "title": "Desc",
+          "type": "string"
+        },
+        "targeted_tags": {
+          "description": "Flat string array of exact inherited BA Tag IDs that this specific sub-task implements or verifies (e.g. ['[REQ-001]', '[ARC-002]']). MUST match the raw requirements 1:1.",
+          "items": {
+            "type": "string"
+          },
+          "title": "Targeted Tags",
+          "type": "array"
+        },
+        "components": {
+          "description": "Flat array of physical localized file paths or scripts modified or targeted by this single task. Return an empty array [] if no files are involved.",
+          "items": {
+            "type": "string"
+          },
+          "title": "Components",
+          "type": "array"
+        }
+      },
+      "required": [
+        "id",
+        "agent",
+        "desc"
+      ],
+      "title": "SubAgentTask",
+      "type": "object"
+    }
+  },
+  "properties": {
+    "phase_id": {
+      "description": "Target phase tracker index.",
+      "title": "Phase Id",
+      "type": "integer"
+    },
+    "phase_name": {
+      "description": "Target phase tracker name.",
+      "title": "Phase Name",
+      "type": "string"
+    },
+    "phase_description": {
+      "description": "Target phase description.",
+      "title": "Phase Description",
+      "type": "string"
+    },
+    "project_name": {
+      "description": "Target project tracker name.",
+      "title": "Project Name",
+      "type": "string"
+    },
+    "global_context_file": {
+      "description": "Project global context Markdown file for closure.",
+      "title": "Global Context File",
+      "type": "string"
+    },
+    "source_target_dir": {
+      "description": "Project sources folder path for closure.",
+      "title": "Source Target Dir",
+      "type": "string"
+    },
+    "days": {
+      "description": "Day-by-day engineering tracking steps.",
+      "items": {
+        "$ref": "##/$defs/DailyStep"
+      },
+      "title": "Days",
+      "type": "array"
+    }
+  },
+  "required": [
+    "phase_id",
+    "phase_name",
+    "phase_description",
+    "project_name",
+    "global_context_file",
+    "source_target_dir",
+    "days"
+  ],
+  "title": "PhaseStepsPlan",
+  "type": "object"
+}
+
+--- PHASE 1 CONTEXT MARKDOWN ---
+## Giai đoạn 1: <!--PHASE_NAME_START-->user_core_services<!--PHASE_NAME_END--> | Mô tả: Triển khai các dịch vụ cốt lõi quản lý người dùng bao gồm đăng ký, xác thực xã hội, gán vai trò, schema cơ sở dữ liệu và logging kiểm toán bảo mật
+
+#### 📊 Kiểm soát tài liệu
+
+| Mục | Chi tiết |
+| :--- | :--- |
+| **ID Blueprint** | ARCH-20260803053505 |
+| **Tên dự án** | membership-hub |
+| **Giai đoạn** | 1 |
+| **Tên kỹ thuật giai đoạn** | <!--PHASE_NAME_START-->user_core_services<!--PHASE_NAME_END--> |
+| **Mô tả** | Triển khai các dịch vụ cốt lõi quản lý người dùng bao gồm đăng ký, xác thực xã hội, gán vai trò, schema cơ sở dữ liệu và logging kiểm toán bảo mật |
+| **Phiên bản** | 1.0 (Baseline) |
+| **Ngày/Giờ** | 2026/08/03 05:35:05 |
+| **Tác giả** | Enterprise System Architect (SA Agent) |
+| **Phê duyệt** | Pending Technical Governance Review |
+
+#### 1. Phạm vi hoạt động và mục tiêu giai đoạn
+
+Giai đoạn này tập trung vào việc xây dựng nền tảng cốt lõi cho hệ thống quản lý người dùng, bao gồm:
+
+- Triển khai schema cơ sở dữ liệu cho bảng Users và Roles với các ràng buộc toàn vẹn dữ liệu
+- Xây dựng dịch vụ đăng ký người dùng với xác thực email/mật khẩu và hỗ trợ OAuth2 cho các nhà cung cấp xã hội (Firebase, Google, Facebook)
+- Triển khai cơ chế phân quyền RBAC với khả năng gán và thay đổi vai trò người dùng
+- Thiết lập hệ thống logging kiểm toán đáp ứng các tiêu chuẩn bảo mật doanh nghiệp
+- Triển khai xử lý ngoại lệ chi tiết cho validation đầu vào và xung đột dữ liệu
+
+#### 2. Phạm vi kỹ thuật và ranh giới thư mục được phép
+
+**Thư mục và tệp được phép:**
+- `./sources/backend.membershiphub.user/users.sql` - DDL schema cho bảng Users
+- `./sources/backend.membershiphub.user/roles.sql` - DDL schema cho bảng Roles  
+- `./sources/backend.membershiphub.user/user-service.java` - Dịch vụ chính quản lý người dùng
+
+**Endpoint API:**
+- `POST /api/v1/auth/register` - Đăng ký người dùng mới
+- `POST /api/v1/auth/social` - Xác thực qua nhà cung cấp xã hội
+- `PUT /api/v1/users/{userId}/role` - Cập nhật vai trò người dùng (chỉ System Admin)
+
+#### 3. Chỉ đạo chức năng cho Sub-Agent chuyên dụng
+
+**Coder:** Triển khai mã nguồn Java/Quarkus với tuân thủ SOLID, sử dụng BCrypt cho mã hóa mật khẩu, JWT với access token 15 phút và refresh token 7 ngày, áp dụng @Valid cho validation và @Transactional cho các thao tác ghi.
+
+**Tester:** Xây dựng bộ kiểm thử JUnit 5 với độ phủ mã ≥85%, sử dụng Mock cho các dependency, kiểm thử happy path và các scenario lỗi validation.
+
+**Reviewer:** Thực hiện phân tích tĩnh mã nguồn, kiểm tra tuân thủ OWASP Top 10, đảm bảo không có lỗ hổng SQL injection hoặc XSS.
+
+**Doc:** Biên soạn tài liệu kỹ thuật đầy đủ bao gồm API documentation với OpenAPI, schema documentation và hướng dẫn triển khai.
+
+#### 4. Định nghĩa hoàn thành (DoD) cho giai đoạn
+
+- ✅ 100% các requirement [REQ-001], [REQ-002], [REQ-003] được triển khai đầy đủ
+- ✅ Schema database [DAT-001] được tạo thành công với tất cả ràng buộc
+- ✅ Luồng xác thực [ARC-006] hoạt động với OAuth2 và JWT
+- ✅ Xử lý ngoại lệ [EXC-004] cho validation đầu vào
+- ✅ Tuân thủ các tiêu chuẩn bảo mật [NFR-001], [NFR-003], [NFR-006]
+- ✅ Độ phủ kiểm thử ≥85% cho tất cả các dịch vụ
+- ✅ 100% các Tag ID được ánh xạ và kiểm tra
+
+#### 5. NHẬT KÝ THỰC THI KIẾN TRÚC THEO NGÀY
+
+###### NGÀY 1: TRIỂN KHAI DỊCH VỤ ĐĂNG KÝ NGƯỜI DÙNG VÀ API XÁC THỰC XÃ HỘI
+
+######## SUB-TASK 1.1: Triển khai schema cơ sở dữ liệu Users và Roles
+########## Sub-Agent được chỉ định: Coder
+########## Các thành phần mục tiêu và yêu cầu kỹ thuật:
+* **Đường dẫn mục tiêu:** `./sources/backend.membershiphub.user/users.sql`, `./sources/backend.membershiphub.user/roles.sql`
+* **Các thẻ truy xuất nguồn gốc:** <!--START_TAGS-->[DAT-001]<!--END_TAGS-->
+
+######## SUB-TASK 1.2: Triển khai UserService với phương thức register và socialAuthenticate
+########## Sub-Agent được chỉ định: Coder
+########## Các thành phần mục tiêu và yêu cầu kỹ thuật:
+* **Đường dẫn mục tiêu:** `./sources/backend.membershiphub.user/user-service.java`
+* **Các thẻ truy xuất nguồn gốc:** <!--START_TAGS-->[REQ-001], [REQ-002], [ARC-006], [EXC-004], [NFR-001], [NFR-003], [NFR-006]<!--END_TAGS-->
+
+###### NGÀY 2: VIẾT BỘ KIỂM TRA ĐƠN VỊ VÀ TÍCH HỢP CHO CÁC CHỨC NĂNG NGƯỜI DÙNG
+
+######## SUB-TASK 2.1: Kiểm thử đơn vị cho các phương thức register và socialAuthenticate
+########## Sub-Agent được chỉ định: Tester
+########## Các thành phần mục tiêu và yêu cầu kỹ thuật:
+* **Đường dẫn mục tiêu:** `./sources/backend.membershiphub.user/user-service.java;./sources/backend.membershiphub.user/userservice-test.java`
+* **Các thẻ truy xuất nguồn gốc:** <!--START_TAGS-->[REQ-001], [REQ-002], [DAT-001], [EXC-004]<!--END_TAGS-->
+
+######## SUB-TASK 2.2: Kiểm thử tích hợp cho API endpoints
+########## Sub-Agent được chỉ định: Tester
+########## Các thành phần mục tiêu và yêu cầu kỹ thuật:
+* **Đường dẫn mục tiêu:** `./sources/backend.membershiphub.user/user-service.java;./sources/backend.membershiphub.user/user-controller-test.java`
+* **Các thẻ truy xuất nguồn gốc:** <!--START_TAGS-->[REQ-001], [REQ-002], [ARC-006], [EXC-004]<!--END_TAGS-->
+------------------------------------------
+
+# System Instruction
+
+You are a high-performance Data Ingestion and Transformation Engine. Your sole objective is to parse the Phase Context Markdown text and convert it into a perfectly valid, parseable JSON object matching the requested schema framework.
+
+# YOUR CRITICAL OPERATIONAL MANDATES (ZERO LOOPHOLES):
+1. **STRICT VARIABLE FIDELITY & NO PREFIXES:** You MUST use the exact raw values provided in the template variables for file paths and project names. You are STRICTLY BANNED from appending, prepending, or injecting any custom folders or prefixes like "sources/" to the `global_context_file`, `context_file`, `source_target_dir`, or `project_name` fields. Use the variable values exactly as they are passed.
+2. **ABSOLUTE PYDANTIC SCHEMA ALIGNMENT:** Your final generated JSON object MUST perfectly satisfy the structural schema parameters of the target enterprise contract. You are STRICTLY BANNED from omitting, renaming, formatting, or stripping out key elements (specifically `phase_id`, `phase_name`, `phase_description`, `project_name`, `global_context_file`, `source_target_dir`, and `days`).
+3. **ABSOLUTE NO EMPTY TAGS POLICY & STRING SANITIZATION:** You are STRICTLY BANNED from leaving the "targeted_tags" array empty `[]` or null for any sub-task that implements functional requirements or data schemas. You MUST scan the source Markdown sequentially sub-task by sub-task. For each sub-task node, locate the hidden technical container block delimited between `<!--START_TAGS-->` and `<!--END_TAGS-->` contained exclusively within that sub-task section scope. Extract all raw tag token codes inside, strip away all inline markdown formatting characters—specifically backticks (`` ` ``)—and any leading/trailing whitespaces, then populate them as clean separate string elements inside the "targeted_tags" array field of EACH sub-task object node.
+4. **NO TAG BUNDLING:** Every tag must be its own array node (e.g., `"targeted_tags": ["[REQ-001]", "[DAT-002]"]`). You are strictly forbidden from combining multiple tags into a single string element.
+5. **STRICT CONTENT PURITY & REJECT CONVERSATION:** Output ONLY the pure raw executable JSON string matching the required schema. Response must start exactly with the character `{` and end exactly with the character `}`. Banned from including thinking processes, chain-of-thought blocks (`<think>` tags), conversational filler texts, introductions, wrapping inside markdown codeblocks (no triple backticks wrapping), or post-generation notes. Any token outside the raw JSON object boundary triggers an immediate execution pipeline crash.
+
+# Raw Response / Exception:
+
+```json
+Error code: 404 - {'status': 404, 'title': 'Not Found', 'detail': "Function 'b0fcd392-e905-4ab4-8eb9-aeae95c30b37': Not found for account 'rijecuFsZxP4BkMmOWfckWzp-52GPblCXwQIH6i5RL0'"}: ['Traceback (most recent call last):
+', '  File "/home/runner/work/enterprise-it-ai/enterprise-it-ai/sources/agents/architect-blueprint/block_json.py", line 301, in convert_phases_to_json
+    response = client.beta.chat.completions.parse(
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+', '  File "/opt/hostedtoolcache/Python/3.11.15/x64/lib/python3.11/site-packages/openai/resources/chat/completions/completions.py", line 193, in parse
+    return self._post(
+           ^^^^^^^^^^^
+', '  File "/opt/hostedtoolcache/Python/3.11.15/x64/lib/python3.11/site-packages/openai/_base_client.py", line 1375, in post
+    return cast(ResponseT, self.request(cast_to, opts, stream=stream, stream_cls=stream_cls))
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+', '  File "/opt/hostedtoolcache/Python/3.11.15/x64/lib/python3.11/site-packages/openai/_base_client.py", line 1148, in request
+    raise self._make_status_error_from_response(err.response) from None
+', 'openai.NotFoundError: Error code: 404 - {\'status\': 404, \'title\': \'Not Found\', \'detail\': "Function \'b0fcd392-e905-4ab4-8eb9-aeae95c30b37\': Not found for account \'rijecuFsZxP4BkMmOWfckWzp-52GPblCXwQIH6i5RL0\'"}
+']
+```
+
+# AI Model: gpt-4o-mini - Phase 1 STEPS - Prompt:
+
+Analyze the attached Phase 1 Context Markdown content.
+
+Extract and translate ALL daily steps, checklists, and agent tasks from the entire document.
+
+
+## 🔒 AGENT ATOMICITY, TASK ID FORMAT & COMPONENT MANDATES (ABSOLUTE):
+- **STRICT TASK ID ALIGNMENT BLUEPRINT:** You MUST strictly generate the "id" field string for every single sub-task using the exact sequential formatting blueprint: `D<day_num>_ST<task_index>` (e.g., `D1_ST1`, `D1_ST2`, `D2_ST1`).
+- **STRICT AGENT ROLE LITERAL VALUES:** The "agent" field inside the JSON sub-task object MUST strictly enforce a capitalized first letter and lowercase subsequent letters pattern matching the exact tokens: 'Coder' | 'Tester' | 'Reviewer' | 'Doc' | 'Docker' | 'Gcp' | 'Gke'. Any other values or lowercase blocks (e.g., NO "coder") are strictly banned.
+- **NO ZERO-COMPONENT TASKS (ABSOLUTE HARD LIMIT):** You are STRICTLY BANNED from generating any sub-task object where the 'components' array is empty `[]`, null, or missing. If an Agent does not have any physical file paths to create, modify, or document, you MUST NOT generate that sub-task object node.
+- **FALLBACK COMPONENT RULE:** If a day has technical descriptions but lacks physical file paths, assign the task to "Doc" agent and populate 'components' with exactly the value of: ".ai/.plan/.context/phase-1.context.blueprint.md".
+- **STRICT AGENT ROLE SEGREGATION (ANTI-AGGREGATION):** If a workflow file involves multiple actions by different personas on the same calendar day, you MUST split this workflow into completely separate, sequential task objects inside the 'sub_tasks' array.
+- **HIGH-DENSITY TECHNICAL SPECIFICATION:** The 'task' field MUST contain an exhaustive, granular engineering instruction. If the sub-task involves an API route, integration endpoint, database query, or message block, you MUST explicitly inline the complete technical contract (e.g., Request/Response Payload Schemas, Data Types, Error Status Codes, or Queue names) directly inside this string. Vague high-level bullet summaries are forbidden.
+- **WORKSPACE PREFIX RULE & MULTI-LANGUAGE TEST EXCEPTION:** Every path in 'components' array MUST strictly begin with `./sources/`. 
+  * *CRITICAL EXCEPTION:* If the first parameter before the semi-colon character in a tester task is the literal string token `INTEGRATION_SCOPE`, you MUST leave that token completely unmodified. Do NOT append any path prefix to it (e.g., `"components": ["INTEGRATION_SCOPE;./sources/frontend/tests/auth.spec.ts"]`).
+
+## 🛠️ MANDATORY TOP-LEVEL FIELD VALUES INJECTION & ANCHOR PARSING (STRICT FIDELITY):
+You MUST dynamically populate the top-level keys of the JSON object using EXACT raw variable values without any modifications, or parse them directly from the primary Markdown header HTML comments:
+- **`phase_id`**: 1
+- **`phase_name`**: [Locate the primary Markdown title header line, extract the clean technical string text located exactly between the hidden HTML delimiters `<!--PHASE_NAME_START-->` and `<!--PHASE_NAME_END-->` without any alterations or translations]
+- **`phase_description`**: [Locate the primary Markdown title header line, extract the exact translated phase description text that follows after the literal marker `| Description:` or its translated equivalent]
+- **`project_name`**: "membership-hub"
+- **`global_context_file`**: ".ai/.context/membership-hub.global.blueprint.md"
+- **`source_target_dir`**: "sources/"
+
+#### 7. Context Fields Integration Mandate
+- For each day object inside the array, set 'day' to its calculated integer value, set 'context_file' to exact string ".ai/.plan/.context/phase-1.context.blueprint.md", and **set 'context_section' to the exact raw string value of the entire primary Day Header extracted from the source Markdown context text** (e.g., `"context_section": "DAY 1: Multi-Tenant Inception Schema & Flyway Migration Setup"`).
+
+#### 8. CHRONOLOGICAL TIMELINE SEQUENCING MANDATE (ABSOLUTE):
+#### 8. CHRONOLOGICAL TIMELINE SEQUENCING MANDATE (ABSOLUTE):
+
+## SYSTEM CRITICAL BOUNDARY: FLAT CONFIGURATION IS ACTIVE (is_chunked is FALSE)
+- Regardless of the actual day numbers documented in the source Markdown content (e.g., even if the text states "DAY 4", "DAY 5"), you MUST completely reset the timeline sequence internally so that the first operational day inside this Phase always starts from integer 1. Progression follows sequentially as 2, 3, 4, etc. 
+- Map the first targeted day to `"day": 1`, set 'context_file' to ".ai/.plan/.context/phase-1.context.blueprint.md", and strictly set 'context_section' to the exact raw primary header line of the first day parsed from the text. Incremental days follow this relative baseline.
+
+
+## 🛑 MANDATORY STRUCTURE ENFORCEMENT FOR TRACEABILITY TAGS VIA HTML ANCHORS (CRITICAL):
+- For each sub-task block, locate the hidden technical container bounds delimited strictly between `<!--START_TAGS-->` and `<!--END_TAGS-->`. Extract all individual inherited Tag IDs from inside that container, completely purge all markdown backticks (`` ` ``) and padding spaces, and populate them as clean individual string elements inside the "targeted_tags" array field (e.g., `"targeted_tags": ["[REQ-001]", "[DAT-005]"]`).
+- You are STRICTLY BANNED from leaving the "targeted_tags" array empty `[]` or null. Every single tag token must be its own separated array element string.
+
+You must conform strictly to your required JSON Schema layout design structure:
+{
+  "$defs": {
+    "DailyStep": {
+      "properties": {
+        "day": {
+          "description": "Timeline iteration day inside this isolated phase.",
+          "title": "Day",
+          "type": "integer"
+        },
+        "context_file": {
+          "description": "The phase context Markdown file for closure on this day.",
+          "title": "Context File",
+          "type": "string"
+        },
+        "context_section": {
+          "description": "The day targeted for closure on this day.",
+          "title": "Context Section",
+          "type": "string"
+        },
+        "sub_tasks": {
+          "description": "Array of isolated micro-tasks assigned to sub-agents.",
+          "items": {
+            "$ref": "##/$defs/SubAgentTask"
+          },
+          "title": "Sub Tasks",
+          "type": "array"
+        }
+      },
+      "required": [
+        "day",
+        "context_file",
+        "context_section",
+        "sub_tasks"
+      ],
+      "title": "DailyStep",
+      "type": "object"
+    },
+    "SubAgentTask": {
+      "properties": {
+        "id": {
+          "description": "Sub-Task identity of Task that sub-agent role executing.",
+          "title": "Id",
+          "type": "string"
+        },
+        "agent": {
+          "description": "Target sub-agent role executing the task.",
+          "title": "Agent",
+          "type": "string"
+        },
+        "desc": {
+          "description": "Literal, low-level technical step assigned to the agent.",
+          "title": "Desc",
+          "type": "string"
+        },
+        "targeted_tags": {
+          "description": "Flat string array of exact inherited BA Tag IDs that this specific sub-task implements or verifies (e.g. ['[REQ-001]', '[ARC-002]']). MUST match the raw requirements 1:1.",
+          "items": {
+            "type": "string"
+          },
+          "title": "Targeted Tags",
+          "type": "array"
+        },
+        "components": {
+          "description": "Flat array of physical localized file paths or scripts modified or targeted by this single task. Return an empty array [] if no files are involved.",
+          "items": {
+            "type": "string"
+          },
+          "title": "Components",
+          "type": "array"
+        }
+      },
+      "required": [
+        "id",
+        "agent",
+        "desc"
+      ],
+      "title": "SubAgentTask",
+      "type": "object"
+    }
+  },
+  "properties": {
+    "phase_id": {
+      "description": "Target phase tracker index.",
+      "title": "Phase Id",
+      "type": "integer"
+    },
+    "phase_name": {
+      "description": "Target phase tracker name.",
+      "title": "Phase Name",
+      "type": "string"
+    },
+    "phase_description": {
+      "description": "Target phase description.",
+      "title": "Phase Description",
+      "type": "string"
+    },
+    "project_name": {
+      "description": "Target project tracker name.",
+      "title": "Project Name",
+      "type": "string"
+    },
+    "global_context_file": {
+      "description": "Project global context Markdown file for closure.",
+      "title": "Global Context File",
+      "type": "string"
+    },
+    "source_target_dir": {
+      "description": "Project sources folder path for closure.",
+      "title": "Source Target Dir",
+      "type": "string"
+    },
+    "days": {
+      "description": "Day-by-day engineering tracking steps.",
+      "items": {
+        "$ref": "##/$defs/DailyStep"
+      },
+      "title": "Days",
+      "type": "array"
+    }
+  },
+  "required": [
+    "phase_id",
+    "phase_name",
+    "phase_description",
+    "project_name",
+    "global_context_file",
+    "source_target_dir",
+    "days"
+  ],
+  "title": "PhaseStepsPlan",
+  "type": "object"
+}
+
+--- PHASE 1 CONTEXT MARKDOWN ---
+## Giai đoạn 1: <!--PHASE_NAME_START-->user_core_services<!--PHASE_NAME_END--> | Mô tả: Triển khai các dịch vụ cốt lõi quản lý người dùng bao gồm đăng ký, xác thực xã hội, gán vai trò, schema cơ sở dữ liệu và logging kiểm toán bảo mật
+
+#### 📊 Kiểm soát tài liệu
+
+| Mục | Chi tiết |
+| :--- | :--- |
+| **ID Blueprint** | ARCH-20260803053505 |
+| **Tên dự án** | membership-hub |
+| **Giai đoạn** | 1 |
+| **Tên kỹ thuật giai đoạn** | <!--PHASE_NAME_START-->user_core_services<!--PHASE_NAME_END--> |
+| **Mô tả** | Triển khai các dịch vụ cốt lõi quản lý người dùng bao gồm đăng ký, xác thực xã hội, gán vai trò, schema cơ sở dữ liệu và logging kiểm toán bảo mật |
+| **Phiên bản** | 1.0 (Baseline) |
+| **Ngày/Giờ** | 2026/08/03 05:35:05 |
+| **Tác giả** | Enterprise System Architect (SA Agent) |
+| **Phê duyệt** | Pending Technical Governance Review |
+
+#### 1. Phạm vi hoạt động và mục tiêu giai đoạn
+
+Giai đoạn này tập trung vào việc xây dựng nền tảng cốt lõi cho hệ thống quản lý người dùng, bao gồm:
+
+- Triển khai schema cơ sở dữ liệu cho bảng Users và Roles với các ràng buộc toàn vẹn dữ liệu
+- Xây dựng dịch vụ đăng ký người dùng với xác thực email/mật khẩu và hỗ trợ OAuth2 cho các nhà cung cấp xã hội (Firebase, Google, Facebook)
+- Triển khai cơ chế phân quyền RBAC với khả năng gán và thay đổi vai trò người dùng
+- Thiết lập hệ thống logging kiểm toán đáp ứng các tiêu chuẩn bảo mật doanh nghiệp
+- Triển khai xử lý ngoại lệ chi tiết cho validation đầu vào và xung đột dữ liệu
+
+#### 2. Phạm vi kỹ thuật và ranh giới thư mục được phép
+
+**Thư mục và tệp được phép:**
+- `./sources/backend.membershiphub.user/users.sql` - DDL schema cho bảng Users
+- `./sources/backend.membershiphub.user/roles.sql` - DDL schema cho bảng Roles  
+- `./sources/backend.membershiphub.user/user-service.java` - Dịch vụ chính quản lý người dùng
+
+**Endpoint API:**
+- `POST /api/v1/auth/register` - Đăng ký người dùng mới
+- `POST /api/v1/auth/social` - Xác thực qua nhà cung cấp xã hội
+- `PUT /api/v1/users/{userId}/role` - Cập nhật vai trò người dùng (chỉ System Admin)
+
+#### 3. Chỉ đạo chức năng cho Sub-Agent chuyên dụng
+
+**Coder:** Triển khai mã nguồn Java/Quarkus với tuân thủ SOLID, sử dụng BCrypt cho mã hóa mật khẩu, JWT với access token 15 phút và refresh token 7 ngày, áp dụng @Valid cho validation và @Transactional cho các thao tác ghi.
+
+**Tester:** Xây dựng bộ kiểm thử JUnit 5 với độ phủ mã ≥85%, sử dụng Mock cho các dependency, kiểm thử happy path và các scenario lỗi validation.
+
+**Reviewer:** Thực hiện phân tích tĩnh mã nguồn, kiểm tra tuân thủ OWASP Top 10, đảm bảo không có lỗ hổng SQL injection hoặc XSS.
+
+**Doc:** Biên soạn tài liệu kỹ thuật đầy đủ bao gồm API documentation với OpenAPI, schema documentation và hướng dẫn triển khai.
+
+#### 4. Định nghĩa hoàn thành (DoD) cho giai đoạn
+
+- ✅ 100% các requirement [REQ-001], [REQ-002], [REQ-003] được triển khai đầy đủ
+- ✅ Schema database [DAT-001] được tạo thành công với tất cả ràng buộc
+- ✅ Luồng xác thực [ARC-006] hoạt động với OAuth2 và JWT
+- ✅ Xử lý ngoại lệ [EXC-004] cho validation đầu vào
+- ✅ Tuân thủ các tiêu chuẩn bảo mật [NFR-001], [NFR-003], [NFR-006]
+- ✅ Độ phủ kiểm thử ≥85% cho tất cả các dịch vụ
+- ✅ 100% các Tag ID được ánh xạ và kiểm tra
+
+#### 5. NHẬT KÝ THỰC THI KIẾN TRÚC THEO NGÀY
+
+###### NGÀY 1: TRIỂN KHAI DỊCH VỤ ĐĂNG KÝ NGƯỜI DÙNG VÀ API XÁC THỰC XÃ HỘI
+
+######## SUB-TASK 1.1: Triển khai schema cơ sở dữ liệu Users và Roles
+########## Sub-Agent được chỉ định: Coder
+########## Các thành phần mục tiêu và yêu cầu kỹ thuật:
+* **Đường dẫn mục tiêu:** `./sources/backend.membershiphub.user/users.sql`, `./sources/backend.membershiphub.user/roles.sql`
+* **Các thẻ truy xuất nguồn gốc:** <!--START_TAGS-->[DAT-001]<!--END_TAGS-->
+
+######## SUB-TASK 1.2: Triển khai UserService với phương thức register và socialAuthenticate
+########## Sub-Agent được chỉ định: Coder
+########## Các thành phần mục tiêu và yêu cầu kỹ thuật:
+* **Đường dẫn mục tiêu:** `./sources/backend.membershiphub.user/user-service.java`
+* **Các thẻ truy xuất nguồn gốc:** <!--START_TAGS-->[REQ-001], [REQ-002], [ARC-006], [EXC-004], [NFR-001], [NFR-003], [NFR-006]<!--END_TAGS-->
+
+###### NGÀY 2: VIẾT BỘ KIỂM TRA ĐƠN VỊ VÀ TÍCH HỢP CHO CÁC CHỨC NĂNG NGƯỜI DÙNG
+
+######## SUB-TASK 2.1: Kiểm thử đơn vị cho các phương thức register và socialAuthenticate
+########## Sub-Agent được chỉ định: Tester
+########## Các thành phần mục tiêu và yêu cầu kỹ thuật:
+* **Đường dẫn mục tiêu:** `./sources/backend.membershiphub.user/user-service.java;./sources/backend.membershiphub.user/userservice-test.java`
+* **Các thẻ truy xuất nguồn gốc:** <!--START_TAGS-->[REQ-001], [REQ-002], [DAT-001], [EXC-004]<!--END_TAGS-->
+
+######## SUB-TASK 2.2: Kiểm thử tích hợp cho API endpoints
+########## Sub-Agent được chỉ định: Tester
+########## Các thành phần mục tiêu và yêu cầu kỹ thuật:
+* **Đường dẫn mục tiêu:** `./sources/backend.membershiphub.user/user-service.java;./sources/backend.membershiphub.user/user-controller-test.java`
+* **Các thẻ truy xuất nguồn gốc:** <!--START_TAGS-->[REQ-001], [REQ-002], [ARC-006], [EXC-004]<!--END_TAGS-->
+------------------------------------------
+
+# System Instruction
+
+You are a high-performance Data Ingestion and Transformation Engine. Your sole objective is to parse the Phase Context Markdown text and convert it into a perfectly valid, parseable JSON object matching the requested schema framework.
+
+# YOUR CRITICAL OPERATIONAL MANDATES (ZERO LOOPHOLES):
+1. **STRICT VARIABLE FIDELITY & NO PREFIXES:** You MUST use the exact raw values provided in the template variables for file paths and project names. You are STRICTLY BANNED from appending, prepending, or injecting any custom folders or prefixes like "sources/" to the `global_context_file`, `context_file`, `source_target_dir`, or `project_name` fields. Use the variable values exactly as they are passed.
+2. **ABSOLUTE PYDANTIC SCHEMA ALIGNMENT:** Your final generated JSON object MUST perfectly satisfy the structural schema parameters of the target enterprise contract. You are STRICTLY BANNED from omitting, renaming, formatting, or stripping out key elements (specifically `phase_id`, `phase_name`, `phase_description`, `project_name`, `global_context_file`, `source_target_dir`, and `days`).
+3. **ABSOLUTE NO EMPTY TAGS POLICY & STRING SANITIZATION:** You are STRICTLY BANNED from leaving the "targeted_tags" array empty `[]` or null for any sub-task that implements functional requirements or data schemas. You MUST scan the source Markdown sequentially sub-task by sub-task. For each sub-task node, locate the hidden technical container block delimited between `<!--START_TAGS-->` and `<!--END_TAGS-->` contained exclusively within that sub-task section scope. Extract all raw tag token codes inside, strip away all inline markdown formatting characters—specifically backticks (`` ` ``)—and any leading/trailing whitespaces, then populate them as clean separate string elements inside the "targeted_tags" array field of EACH sub-task object node.
+4. **NO TAG BUNDLING:** Every tag must be its own array node (e.g., `"targeted_tags": ["[REQ-001]", "[DAT-002]"]`). You are strictly forbidden from combining multiple tags into a single string element.
+5. **STRICT CONTENT PURITY & REJECT CONVERSATION:** Output ONLY the pure raw executable JSON string matching the required schema. Response must start exactly with the character `{` and end exactly with the character `}`. Banned from including thinking processes, chain-of-thought blocks (`<think>` tags), conversational filler texts, introductions, wrapping inside markdown codeblocks (no triple backticks wrapping), or post-generation notes. Any token outside the raw JSON object boundary triggers an immediate execution pipeline crash.
+
+# Raw Response / Exception:
+
+```json
+Error code: 410 - {'error': {'code': 'github_models_retirement_brownout', 'message': 'GitHub Models is temporarily unavailable as part of a scheduled retirement brownout.'}}: ['Traceback (most recent call last):
+', '  File "/home/runner/work/enterprise-it-ai/enterprise-it-ai/sources/agents/architect-blueprint/block_json.py", line 301, in convert_phases_to_json
+    response = client.beta.chat.completions.parse(
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+', '  File "/opt/hostedtoolcache/Python/3.11.15/x64/lib/python3.11/site-packages/openai/resources/chat/completions/completions.py", line 193, in parse
+    return self._post(
+           ^^^^^^^^^^^
+', '  File "/opt/hostedtoolcache/Python/3.11.15/x64/lib/python3.11/site-packages/openai/_base_client.py", line 1375, in post
+    return cast(ResponseT, self.request(cast_to, opts, stream=stream, stream_cls=stream_cls))
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+', '  File "/opt/hostedtoolcache/Python/3.11.15/x64/lib/python3.11/site-packages/openai/_base_client.py", line 1148, in request
+    raise self._make_status_error_from_response(err.response) from None
+', "openai.APIStatusError: Error code: 410 - {'error': {'code': 'github_models_retirement_brownout', 'message': 'GitHub Models is temporarily unavailable as part of a scheduled retirement brownout.'}}
+"]
+```
+
+# AI Model: phi-4 - Phase 1 STEPS - Prompt:
+
+Analyze the attached Phase 1 Context Markdown content.
+
+Extract and translate ALL daily steps, checklists, and agent tasks from the entire document.
+
+
+## 🔒 AGENT ATOMICITY, TASK ID FORMAT & COMPONENT MANDATES (ABSOLUTE):
+- **STRICT TASK ID ALIGNMENT BLUEPRINT:** You MUST strictly generate the "id" field string for every single sub-task using the exact sequential formatting blueprint: `D<day_num>_ST<task_index>` (e.g., `D1_ST1`, `D1_ST2`, `D2_ST1`).
+- **STRICT AGENT ROLE LITERAL VALUES:** The "agent" field inside the JSON sub-task object MUST strictly enforce a capitalized first letter and lowercase subsequent letters pattern matching the exact tokens: 'Coder' | 'Tester' | 'Reviewer' | 'Doc' | 'Docker' | 'Gcp' | 'Gke'. Any other values or lowercase blocks (e.g., NO "coder") are strictly banned.
+- **NO ZERO-COMPONENT TASKS (ABSOLUTE HARD LIMIT):** You are STRICTLY BANNED from generating any sub-task object where the 'components' array is empty `[]`, null, or missing. If an Agent does not have any physical file paths to create, modify, or document, you MUST NOT generate that sub-task object node.
+- **FALLBACK COMPONENT RULE:** If a day has technical descriptions but lacks physical file paths, assign the task to "Doc" agent and populate 'components' with exactly the value of: ".ai/.plan/.context/phase-1.context.blueprint.md".
+- **STRICT AGENT ROLE SEGREGATION (ANTI-AGGREGATION):** If a workflow file involves multiple actions by different personas on the same calendar day, you MUST split this workflow into completely separate, sequential task objects inside the 'sub_tasks' array.
+- **HIGH-DENSITY TECHNICAL SPECIFICATION:** The 'task' field MUST contain an exhaustive, granular engineering instruction. If the sub-task involves an API route, integration endpoint, database query, or message block, you MUST explicitly inline the complete technical contract (e.g., Request/Response Payload Schemas, Data Types, Error Status Codes, or Queue names) directly inside this string. Vague high-level bullet summaries are forbidden.
+- **WORKSPACE PREFIX RULE & MULTI-LANGUAGE TEST EXCEPTION:** Every path in 'components' array MUST strictly begin with `./sources/`. 
+  * *CRITICAL EXCEPTION:* If the first parameter before the semi-colon character in a tester task is the literal string token `INTEGRATION_SCOPE`, you MUST leave that token completely unmodified. Do NOT append any path prefix to it (e.g., `"components": ["INTEGRATION_SCOPE;./sources/frontend/tests/auth.spec.ts"]`).
+
+## 🛠️ MANDATORY TOP-LEVEL FIELD VALUES INJECTION & ANCHOR PARSING (STRICT FIDELITY):
+You MUST dynamically populate the top-level keys of the JSON object using EXACT raw variable values without any modifications, or parse them directly from the primary Markdown header HTML comments:
+- **`phase_id`**: 1
+- **`phase_name`**: [Locate the primary Markdown title header line, extract the clean technical string text located exactly between the hidden HTML delimiters `<!--PHASE_NAME_START-->` and `<!--PHASE_NAME_END-->` without any alterations or translations]
+- **`phase_description`**: [Locate the primary Markdown title header line, extract the exact translated phase description text that follows after the literal marker `| Description:` or its translated equivalent]
+- **`project_name`**: "membership-hub"
+- **`global_context_file`**: ".ai/.context/membership-hub.global.blueprint.md"
+- **`source_target_dir`**: "sources/"
+
+#### 7. Context Fields Integration Mandate
+- For each day object inside the array, set 'day' to its calculated integer value, set 'context_file' to exact string ".ai/.plan/.context/phase-1.context.blueprint.md", and **set 'context_section' to the exact raw string value of the entire primary Day Header extracted from the source Markdown context text** (e.g., `"context_section": "DAY 1: Multi-Tenant Inception Schema & Flyway Migration Setup"`).
+
+#### 8. CHRONOLOGICAL TIMELINE SEQUENCING MANDATE (ABSOLUTE):
+#### 8. CHRONOLOGICAL TIMELINE SEQUENCING MANDATE (ABSOLUTE):
+
+## SYSTEM CRITICAL BOUNDARY: FLAT CONFIGURATION IS ACTIVE (is_chunked is FALSE)
+- Regardless of the actual day numbers documented in the source Markdown content (e.g., even if the text states "DAY 4", "DAY 5"), you MUST completely reset the timeline sequence internally so that the first operational day inside this Phase always starts from integer 1. Progression follows sequentially as 2, 3, 4, etc. 
+- Map the first targeted day to `"day": 1`, set 'context_file' to ".ai/.plan/.context/phase-1.context.blueprint.md", and strictly set 'context_section' to the exact raw primary header line of the first day parsed from the text. Incremental days follow this relative baseline.
+
+
+## 🛑 MANDATORY STRUCTURE ENFORCEMENT FOR TRACEABILITY TAGS VIA HTML ANCHORS (CRITICAL):
+- For each sub-task block, locate the hidden technical container bounds delimited strictly between `<!--START_TAGS-->` and `<!--END_TAGS-->`. Extract all individual inherited Tag IDs from inside that container, completely purge all markdown backticks (`` ` ``) and padding spaces, and populate them as clean individual string elements inside the "targeted_tags" array field (e.g., `"targeted_tags": ["[REQ-001]", "[DAT-005]"]`).
+- You are STRICTLY BANNED from leaving the "targeted_tags" array empty `[]` or null. Every single tag token must be its own separated array element string.
+
+You must conform strictly to your required JSON Schema layout design structure:
+{
+  "$defs": {
+    "DailyStep": {
+      "properties": {
+        "day": {
+          "description": "Timeline iteration day inside this isolated phase.",
+          "title": "Day",
+          "type": "integer"
+        },
+        "context_file": {
+          "description": "The phase context Markdown file for closure on this day.",
+          "title": "Context File",
+          "type": "string"
+        },
+        "context_section": {
+          "description": "The day targeted for closure on this day.",
+          "title": "Context Section",
+          "type": "string"
+        },
+        "sub_tasks": {
+          "description": "Array of isolated micro-tasks assigned to sub-agents.",
+          "items": {
+            "$ref": "##/$defs/SubAgentTask"
+          },
+          "title": "Sub Tasks",
+          "type": "array"
+        }
+      },
+      "required": [
+        "day",
+        "context_file",
+        "context_section",
+        "sub_tasks"
+      ],
+      "title": "DailyStep",
+      "type": "object"
+    },
+    "SubAgentTask": {
+      "properties": {
+        "id": {
+          "description": "Sub-Task identity of Task that sub-agent role executing.",
+          "title": "Id",
+          "type": "string"
+        },
+        "agent": {
+          "description": "Target sub-agent role executing the task.",
+          "title": "Agent",
+          "type": "string"
+        },
+        "desc": {
+          "description": "Literal, low-level technical step assigned to the agent.",
+          "title": "Desc",
+          "type": "string"
+        },
+        "targeted_tags": {
+          "description": "Flat string array of exact inherited BA Tag IDs that this specific sub-task implements or verifies (e.g. ['[REQ-001]', '[ARC-002]']). MUST match the raw requirements 1:1.",
+          "items": {
+            "type": "string"
+          },
+          "title": "Targeted Tags",
+          "type": "array"
+        },
+        "components": {
+          "description": "Flat array of physical localized file paths or scripts modified or targeted by this single task. Return an empty array [] if no files are involved.",
+          "items": {
+            "type": "string"
+          },
+          "title": "Components",
+          "type": "array"
+        }
+      },
+      "required": [
+        "id",
+        "agent",
+        "desc"
+      ],
+      "title": "SubAgentTask",
+      "type": "object"
+    }
+  },
+  "properties": {
+    "phase_id": {
+      "description": "Target phase tracker index.",
+      "title": "Phase Id",
+      "type": "integer"
+    },
+    "phase_name": {
+      "description": "Target phase tracker name.",
+      "title": "Phase Name",
+      "type": "string"
+    },
+    "phase_description": {
+      "description": "Target phase description.",
+      "title": "Phase Description",
+      "type": "string"
+    },
+    "project_name": {
+      "description": "Target project tracker name.",
+      "title": "Project Name",
+      "type": "string"
+    },
+    "global_context_file": {
+      "description": "Project global context Markdown file for closure.",
+      "title": "Global Context File",
+      "type": "string"
+    },
+    "source_target_dir": {
+      "description": "Project sources folder path for closure.",
+      "title": "Source Target Dir",
+      "type": "string"
+    },
+    "days": {
+      "description": "Day-by-day engineering tracking steps.",
+      "items": {
+        "$ref": "##/$defs/DailyStep"
+      },
+      "title": "Days",
+      "type": "array"
+    }
+  },
+  "required": [
+    "phase_id",
+    "phase_name",
+    "phase_description",
+    "project_name",
+    "global_context_file",
+    "source_target_dir",
+    "days"
+  ],
+  "title": "PhaseStepsPlan",
+  "type": "object"
+}
+
+--- PHASE 1 CONTEXT MARKDOWN ---
+## Giai đoạn 1: <!--PHASE_NAME_START-->user_core_services<!--PHASE_NAME_END--> | Mô tả: Triển khai các dịch vụ cốt lõi quản lý người dùng bao gồm đăng ký, xác thực xã hội, gán vai trò, schema cơ sở dữ liệu và logging kiểm toán bảo mật
+
+#### 📊 Kiểm soát tài liệu
+
+| Mục | Chi tiết |
+| :--- | :--- |
+| **ID Blueprint** | ARCH-20260803053505 |
+| **Tên dự án** | membership-hub |
+| **Giai đoạn** | 1 |
+| **Tên kỹ thuật giai đoạn** | <!--PHASE_NAME_START-->user_core_services<!--PHASE_NAME_END--> |
+| **Mô tả** | Triển khai các dịch vụ cốt lõi quản lý người dùng bao gồm đăng ký, xác thực xã hội, gán vai trò, schema cơ sở dữ liệu và logging kiểm toán bảo mật |
+| **Phiên bản** | 1.0 (Baseline) |
+| **Ngày/Giờ** | 2026/08/03 05:35:05 |
+| **Tác giả** | Enterprise System Architect (SA Agent) |
+| **Phê duyệt** | Pending Technical Governance Review |
+
+#### 1. Phạm vi hoạt động và mục tiêu giai đoạn
+
+Giai đoạn này tập trung vào việc xây dựng nền tảng cốt lõi cho hệ thống quản lý người dùng, bao gồm:
+
+- Triển khai schema cơ sở dữ liệu cho bảng Users và Roles với các ràng buộc toàn vẹn dữ liệu
+- Xây dựng dịch vụ đăng ký người dùng với xác thực email/mật khẩu và hỗ trợ OAuth2 cho các nhà cung cấp xã hội (Firebase, Google, Facebook)
+- Triển khai cơ chế phân quyền RBAC với khả năng gán và thay đổi vai trò người dùng
+- Thiết lập hệ thống logging kiểm toán đáp ứng các tiêu chuẩn bảo mật doanh nghiệp
+- Triển khai xử lý ngoại lệ chi tiết cho validation đầu vào và xung đột dữ liệu
+
+#### 2. Phạm vi kỹ thuật và ranh giới thư mục được phép
+
+**Thư mục và tệp được phép:**
+- `./sources/backend.membershiphub.user/users.sql` - DDL schema cho bảng Users
+- `./sources/backend.membershiphub.user/roles.sql` - DDL schema cho bảng Roles  
+- `./sources/backend.membershiphub.user/user-service.java` - Dịch vụ chính quản lý người dùng
+
+**Endpoint API:**
+- `POST /api/v1/auth/register` - Đăng ký người dùng mới
+- `POST /api/v1/auth/social` - Xác thực qua nhà cung cấp xã hội
+- `PUT /api/v1/users/{userId}/role` - Cập nhật vai trò người dùng (chỉ System Admin)
+
+#### 3. Chỉ đạo chức năng cho Sub-Agent chuyên dụng
+
+**Coder:** Triển khai mã nguồn Java/Quarkus với tuân thủ SOLID, sử dụng BCrypt cho mã hóa mật khẩu, JWT với access token 15 phút và refresh token 7 ngày, áp dụng @Valid cho validation và @Transactional cho các thao tác ghi.
+
+**Tester:** Xây dựng bộ kiểm thử JUnit 5 với độ phủ mã ≥85%, sử dụng Mock cho các dependency, kiểm thử happy path và các scenario lỗi validation.
+
+**Reviewer:** Thực hiện phân tích tĩnh mã nguồn, kiểm tra tuân thủ OWASP Top 10, đảm bảo không có lỗ hổng SQL injection hoặc XSS.
+
+**Doc:** Biên soạn tài liệu kỹ thuật đầy đủ bao gồm API documentation với OpenAPI, schema documentation và hướng dẫn triển khai.
+
+#### 4. Định nghĩa hoàn thành (DoD) cho giai đoạn
+
+- ✅ 100% các requirement [REQ-001], [REQ-002], [REQ-003] được triển khai đầy đủ
+- ✅ Schema database [DAT-001] được tạo thành công với tất cả ràng buộc
+- ✅ Luồng xác thực [ARC-006] hoạt động với OAuth2 và JWT
+- ✅ Xử lý ngoại lệ [EXC-004] cho validation đầu vào
+- ✅ Tuân thủ các tiêu chuẩn bảo mật [NFR-001], [NFR-003], [NFR-006]
+- ✅ Độ phủ kiểm thử ≥85% cho tất cả các dịch vụ
+- ✅ 100% các Tag ID được ánh xạ và kiểm tra
+
+#### 5. NHẬT KÝ THỰC THI KIẾN TRÚC THEO NGÀY
+
+###### NGÀY 1: TRIỂN KHAI DỊCH VỤ ĐĂNG KÝ NGƯỜI DÙNG VÀ API XÁC THỰC XÃ HỘI
+
+######## SUB-TASK 1.1: Triển khai schema cơ sở dữ liệu Users và Roles
+########## Sub-Agent được chỉ định: Coder
+########## Các thành phần mục tiêu và yêu cầu kỹ thuật:
+* **Đường dẫn mục tiêu:** `./sources/backend.membershiphub.user/users.sql`, `./sources/backend.membershiphub.user/roles.sql`
+* **Các thẻ truy xuất nguồn gốc:** <!--START_TAGS-->[DAT-001]<!--END_TAGS-->
+
+######## SUB-TASK 1.2: Triển khai UserService với phương thức register và socialAuthenticate
+########## Sub-Agent được chỉ định: Coder
+########## Các thành phần mục tiêu và yêu cầu kỹ thuật:
+* **Đường dẫn mục tiêu:** `./sources/backend.membershiphub.user/user-service.java`
+* **Các thẻ truy xuất nguồn gốc:** <!--START_TAGS-->[REQ-001], [REQ-002], [ARC-006], [EXC-004], [NFR-001], [NFR-003], [NFR-006]<!--END_TAGS-->
+
+###### NGÀY 2: VIẾT BỘ KIỂM TRA ĐƠN VỊ VÀ TÍCH HỢP CHO CÁC CHỨC NĂNG NGƯỜI DÙNG
+
+######## SUB-TASK 2.1: Kiểm thử đơn vị cho các phương thức register và socialAuthenticate
+########## Sub-Agent được chỉ định: Tester
+########## Các thành phần mục tiêu và yêu cầu kỹ thuật:
+* **Đường dẫn mục tiêu:** `./sources/backend.membershiphub.user/user-service.java;./sources/backend.membershiphub.user/userservice-test.java`
+* **Các thẻ truy xuất nguồn gốc:** <!--START_TAGS-->[REQ-001], [REQ-002], [DAT-001], [EXC-004]<!--END_TAGS-->
+
+######## SUB-TASK 2.2: Kiểm thử tích hợp cho API endpoints
+########## Sub-Agent được chỉ định: Tester
+########## Các thành phần mục tiêu và yêu cầu kỹ thuật:
+* **Đường dẫn mục tiêu:** `./sources/backend.membershiphub.user/user-service.java;./sources/backend.membershiphub.user/user-controller-test.java`
+* **Các thẻ truy xuất nguồn gốc:** <!--START_TAGS-->[REQ-001], [REQ-002], [ARC-006], [EXC-004]<!--END_TAGS-->
+------------------------------------------
+
+# System Instruction
+
+You are a high-performance Data Ingestion and Transformation Engine. Your sole objective is to parse the Phase Context Markdown text and convert it into a perfectly valid, parseable JSON object matching the requested schema framework.
+
+# YOUR CRITICAL OPERATIONAL MANDATES (ZERO LOOPHOLES):
+1. **STRICT VARIABLE FIDELITY & NO PREFIXES:** You MUST use the exact raw values provided in the template variables for file paths and project names. You are STRICTLY BANNED from appending, prepending, or injecting any custom folders or prefixes like "sources/" to the `global_context_file`, `context_file`, `source_target_dir`, or `project_name` fields. Use the variable values exactly as they are passed.
+2. **ABSOLUTE PYDANTIC SCHEMA ALIGNMENT:** Your final generated JSON object MUST perfectly satisfy the structural schema parameters of the target enterprise contract. You are STRICTLY BANNED from omitting, renaming, formatting, or stripping out key elements (specifically `phase_id`, `phase_name`, `phase_description`, `project_name`, `global_context_file`, `source_target_dir`, and `days`).
+3. **ABSOLUTE NO EMPTY TAGS POLICY & STRING SANITIZATION:** You are STRICTLY BANNED from leaving the "targeted_tags" array empty `[]` or null for any sub-task that implements functional requirements or data schemas. You MUST scan the source Markdown sequentially sub-task by sub-task. For each sub-task node, locate the hidden technical container block delimited between `<!--START_TAGS-->` and `<!--END_TAGS-->` contained exclusively within that sub-task section scope. Extract all raw tag token codes inside, strip away all inline markdown formatting characters—specifically backticks (`` ` ``)—and any leading/trailing whitespaces, then populate them as clean separate string elements inside the "targeted_tags" array field of EACH sub-task object node.
+4. **NO TAG BUNDLING:** Every tag must be its own array node (e.g., `"targeted_tags": ["[REQ-001]", "[DAT-002]"]`). You are strictly forbidden from combining multiple tags into a single string element.
+5. **STRICT CONTENT PURITY & REJECT CONVERSATION:** Output ONLY the pure raw executable JSON string matching the required schema. Response must start exactly with the character `{` and end exactly with the character `}`. Banned from including thinking processes, chain-of-thought blocks (`<think>` tags), conversational filler texts, introductions, wrapping inside markdown codeblocks (no triple backticks wrapping), or post-generation notes. Any token outside the raw JSON object boundary triggers an immediate execution pipeline crash.
+
+# Raw Response / Exception:
+
+```json
+Error code: 410 - {'error': {'code': 'github_models_retirement_brownout', 'message': 'GitHub Models is temporarily unavailable as part of a scheduled retirement brownout.'}}: ['Traceback (most recent call last):
+', '  File "/home/runner/work/enterprise-it-ai/enterprise-it-ai/sources/agents/architect-blueprint/block_json.py", line 301, in convert_phases_to_json
+    response = client.beta.chat.completions.parse(
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+', '  File "/opt/hostedtoolcache/Python/3.11.15/x64/lib/python3.11/site-packages/openai/resources/chat/completions/completions.py", line 193, in parse
+    return self._post(
+           ^^^^^^^^^^^
+', '  File "/opt/hostedtoolcache/Python/3.11.15/x64/lib/python3.11/site-packages/openai/_base_client.py", line 1375, in post
+    return cast(ResponseT, self.request(cast_to, opts, stream=stream, stream_cls=stream_cls))
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+', '  File "/opt/hostedtoolcache/Python/3.11.15/x64/lib/python3.11/site-packages/openai/_base_client.py", line 1148, in request
+    raise self._make_status_error_from_response(err.response) from None
+', "openai.APIStatusError: Error code: 410 - {'error': {'code': 'github_models_retirement_brownout', 'message': 'GitHub Models is temporarily unavailable as part of a scheduled retirement brownout.'}}
+"]
+```
+
+# AI Model: codestral-2501 - Phase 1 STEPS - Prompt:
+
+Analyze the attached Phase 1 Context Markdown content.
+
+Extract and translate ALL daily steps, checklists, and agent tasks from the entire document.
+
+
+## 🔒 AGENT ATOMICITY, TASK ID FORMAT & COMPONENT MANDATES (ABSOLUTE):
+- **STRICT TASK ID ALIGNMENT BLUEPRINT:** You MUST strictly generate the "id" field string for every single sub-task using the exact sequential formatting blueprint: `D<day_num>_ST<task_index>` (e.g., `D1_ST1`, `D1_ST2`, `D2_ST1`).
+- **STRICT AGENT ROLE LITERAL VALUES:** The "agent" field inside the JSON sub-task object MUST strictly enforce a capitalized first letter and lowercase subsequent letters pattern matching the exact tokens: 'Coder' | 'Tester' | 'Reviewer' | 'Doc' | 'Docker' | 'Gcp' | 'Gke'. Any other values or lowercase blocks (e.g., NO "coder") are strictly banned.
+- **NO ZERO-COMPONENT TASKS (ABSOLUTE HARD LIMIT):** You are STRICTLY BANNED from generating any sub-task object where the 'components' array is empty `[]`, null, or missing. If an Agent does not have any physical file paths to create, modify, or document, you MUST NOT generate that sub-task object node.
+- **FALLBACK COMPONENT RULE:** If a day has technical descriptions but lacks physical file paths, assign the task to "Doc" agent and populate 'components' with exactly the value of: ".ai/.plan/.context/phase-1.context.blueprint.md".
+- **STRICT AGENT ROLE SEGREGATION (ANTI-AGGREGATION):** If a workflow file involves multiple actions by different personas on the same calendar day, you MUST split this workflow into completely separate, sequential task objects inside the 'sub_tasks' array.
+- **HIGH-DENSITY TECHNICAL SPECIFICATION:** The 'task' field MUST contain an exhaustive, granular engineering instruction. If the sub-task involves an API route, integration endpoint, database query, or message block, you MUST explicitly inline the complete technical contract (e.g., Request/Response Payload Schemas, Data Types, Error Status Codes, or Queue names) directly inside this string. Vague high-level bullet summaries are forbidden.
+- **WORKSPACE PREFIX RULE & MULTI-LANGUAGE TEST EXCEPTION:** Every path in 'components' array MUST strictly begin with `./sources/`. 
+  * *CRITICAL EXCEPTION:* If the first parameter before the semi-colon character in a tester task is the literal string token `INTEGRATION_SCOPE`, you MUST leave that token completely unmodified. Do NOT append any path prefix to it (e.g., `"components": ["INTEGRATION_SCOPE;./sources/frontend/tests/auth.spec.ts"]`).
+
+## 🛠️ MANDATORY TOP-LEVEL FIELD VALUES INJECTION & ANCHOR PARSING (STRICT FIDELITY):
+You MUST dynamically populate the top-level keys of the JSON object using EXACT raw variable values without any modifications, or parse them directly from the primary Markdown header HTML comments:
+- **`phase_id`**: 1
+- **`phase_name`**: [Locate the primary Markdown title header line, extract the clean technical string text located exactly between the hidden HTML delimiters `<!--PHASE_NAME_START-->` and `<!--PHASE_NAME_END-->` without any alterations or translations]
+- **`phase_description`**: [Locate the primary Markdown title header line, extract the exact translated phase description text that follows after the literal marker `| Description:` or its translated equivalent]
+- **`project_name`**: "membership-hub"
+- **`global_context_file`**: ".ai/.context/membership-hub.global.blueprint.md"
+- **`source_target_dir`**: "sources/"
+
+#### 7. Context Fields Integration Mandate
+- For each day object inside the array, set 'day' to its calculated integer value, set 'context_file' to exact string ".ai/.plan/.context/phase-1.context.blueprint.md", and **set 'context_section' to the exact raw string value of the entire primary Day Header extracted from the source Markdown context text** (e.g., `"context_section": "DAY 1: Multi-Tenant Inception Schema & Flyway Migration Setup"`).
+
+#### 8. CHRONOLOGICAL TIMELINE SEQUENCING MANDATE (ABSOLUTE):
+#### 8. CHRONOLOGICAL TIMELINE SEQUENCING MANDATE (ABSOLUTE):
+
+## SYSTEM CRITICAL BOUNDARY: FLAT CONFIGURATION IS ACTIVE (is_chunked is FALSE)
+- Regardless of the actual day numbers documented in the source Markdown content (e.g., even if the text states "DAY 4", "DAY 5"), you MUST completely reset the timeline sequence internally so that the first operational day inside this Phase always starts from integer 1. Progression follows sequentially as 2, 3, 4, etc. 
+- Map the first targeted day to `"day": 1`, set 'context_file' to ".ai/.plan/.context/phase-1.context.blueprint.md", and strictly set 'context_section' to the exact raw primary header line of the first day parsed from the text. Incremental days follow this relative baseline.
+
+
+## 🛑 MANDATORY STRUCTURE ENFORCEMENT FOR TRACEABILITY TAGS VIA HTML ANCHORS (CRITICAL):
+- For each sub-task block, locate the hidden technical container bounds delimited strictly between `<!--START_TAGS-->` and `<!--END_TAGS-->`. Extract all individual inherited Tag IDs from inside that container, completely purge all markdown backticks (`` ` ``) and padding spaces, and populate them as clean individual string elements inside the "targeted_tags" array field (e.g., `"targeted_tags": ["[REQ-001]", "[DAT-005]"]`).
+- You are STRICTLY BANNED from leaving the "targeted_tags" array empty `[]` or null. Every single tag token must be its own separated array element string.
+
+You must conform strictly to your required JSON Schema layout design structure:
+{
+  "$defs": {
+    "DailyStep": {
+      "properties": {
+        "day": {
+          "description": "Timeline iteration day inside this isolated phase.",
+          "title": "Day",
+          "type": "integer"
+        },
+        "context_file": {
+          "description": "The phase context Markdown file for closure on this day.",
+          "title": "Context File",
+          "type": "string"
+        },
+        "context_section": {
+          "description": "The day targeted for closure on this day.",
+          "title": "Context Section",
+          "type": "string"
+        },
+        "sub_tasks": {
+          "description": "Array of isolated micro-tasks assigned to sub-agents.",
+          "items": {
+            "$ref": "##/$defs/SubAgentTask"
+          },
+          "title": "Sub Tasks",
+          "type": "array"
+        }
+      },
+      "required": [
+        "day",
+        "context_file",
+        "context_section",
+        "sub_tasks"
+      ],
+      "title": "DailyStep",
+      "type": "object"
+    },
+    "SubAgentTask": {
+      "properties": {
+        "id": {
+          "description": "Sub-Task identity of Task that sub-agent role executing.",
+          "title": "Id",
+          "type": "string"
+        },
+        "agent": {
+          "description": "Target sub-agent role executing the task.",
+          "title": "Agent",
+          "type": "string"
+        },
+        "desc": {
+          "description": "Literal, low-level technical step assigned to the agent.",
+          "title": "Desc",
+          "type": "string"
+        },
+        "targeted_tags": {
+          "description": "Flat string array of exact inherited BA Tag IDs that this specific sub-task implements or verifies (e.g. ['[REQ-001]', '[ARC-002]']). MUST match the raw requirements 1:1.",
+          "items": {
+            "type": "string"
+          },
+          "title": "Targeted Tags",
+          "type": "array"
+        },
+        "components": {
+          "description": "Flat array of physical localized file paths or scripts modified or targeted by this single task. Return an empty array [] if no files are involved.",
+          "items": {
+            "type": "string"
+          },
+          "title": "Components",
+          "type": "array"
+        }
+      },
+      "required": [
+        "id",
+        "agent",
+        "desc"
+      ],
+      "title": "SubAgentTask",
+      "type": "object"
+    }
+  },
+  "properties": {
+    "phase_id": {
+      "description": "Target phase tracker index.",
+      "title": "Phase Id",
+      "type": "integer"
+    },
+    "phase_name": {
+      "description": "Target phase tracker name.",
+      "title": "Phase Name",
+      "type": "string"
+    },
+    "phase_description": {
+      "description": "Target phase description.",
+      "title": "Phase Description",
+      "type": "string"
+    },
+    "project_name": {
+      "description": "Target project tracker name.",
+      "title": "Project Name",
+      "type": "string"
+    },
+    "global_context_file": {
+      "description": "Project global context Markdown file for closure.",
+      "title": "Global Context File",
+      "type": "string"
+    },
+    "source_target_dir": {
+      "description": "Project sources folder path for closure.",
+      "title": "Source Target Dir",
+      "type": "string"
+    },
+    "days": {
+      "description": "Day-by-day engineering tracking steps.",
+      "items": {
+        "$ref": "##/$defs/DailyStep"
+      },
+      "title": "Days",
+      "type": "array"
+    }
+  },
+  "required": [
+    "phase_id",
+    "phase_name",
+    "phase_description",
+    "project_name",
+    "global_context_file",
+    "source_target_dir",
+    "days"
+  ],
+  "title": "PhaseStepsPlan",
+  "type": "object"
+}
+
+--- PHASE 1 CONTEXT MARKDOWN ---
+## Giai đoạn 1: <!--PHASE_NAME_START-->user_core_services<!--PHASE_NAME_END--> | Mô tả: Triển khai các dịch vụ cốt lõi quản lý người dùng bao gồm đăng ký, xác thực xã hội, gán vai trò, schema cơ sở dữ liệu và logging kiểm toán bảo mật
+
+#### 📊 Kiểm soát tài liệu
+
+| Mục | Chi tiết |
+| :--- | :--- |
+| **ID Blueprint** | ARCH-20260803053505 |
+| **Tên dự án** | membership-hub |
+| **Giai đoạn** | 1 |
+| **Tên kỹ thuật giai đoạn** | <!--PHASE_NAME_START-->user_core_services<!--PHASE_NAME_END--> |
+| **Mô tả** | Triển khai các dịch vụ cốt lõi quản lý người dùng bao gồm đăng ký, xác thực xã hội, gán vai trò, schema cơ sở dữ liệu và logging kiểm toán bảo mật |
+| **Phiên bản** | 1.0 (Baseline) |
+| **Ngày/Giờ** | 2026/08/03 05:35:05 |
+| **Tác giả** | Enterprise System Architect (SA Agent) |
+| **Phê duyệt** | Pending Technical Governance Review |
+
+#### 1. Phạm vi hoạt động và mục tiêu giai đoạn
+
+Giai đoạn này tập trung vào việc xây dựng nền tảng cốt lõi cho hệ thống quản lý người dùng, bao gồm:
+
+- Triển khai schema cơ sở dữ liệu cho bảng Users và Roles với các ràng buộc toàn vẹn dữ liệu
+- Xây dựng dịch vụ đăng ký người dùng với xác thực email/mật khẩu và hỗ trợ OAuth2 cho các nhà cung cấp xã hội (Firebase, Google, Facebook)
+- Triển khai cơ chế phân quyền RBAC với khả năng gán và thay đổi vai trò người dùng
+- Thiết lập hệ thống logging kiểm toán đáp ứng các tiêu chuẩn bảo mật doanh nghiệp
+- Triển khai xử lý ngoại lệ chi tiết cho validation đầu vào và xung đột dữ liệu
+
+#### 2. Phạm vi kỹ thuật và ranh giới thư mục được phép
+
+**Thư mục và tệp được phép:**
+- `./sources/backend.membershiphub.user/users.sql` - DDL schema cho bảng Users
+- `./sources/backend.membershiphub.user/roles.sql` - DDL schema cho bảng Roles  
+- `./sources/backend.membershiphub.user/user-service.java` - Dịch vụ chính quản lý người dùng
+
+**Endpoint API:**
+- `POST /api/v1/auth/register` - Đăng ký người dùng mới
+- `POST /api/v1/auth/social` - Xác thực qua nhà cung cấp xã hội
+- `PUT /api/v1/users/{userId}/role` - Cập nhật vai trò người dùng (chỉ System Admin)
+
+#### 3. Chỉ đạo chức năng cho Sub-Agent chuyên dụng
+
+**Coder:** Triển khai mã nguồn Java/Quarkus với tuân thủ SOLID, sử dụng BCrypt cho mã hóa mật khẩu, JWT với access token 15 phút và refresh token 7 ngày, áp dụng @Valid cho validation và @Transactional cho các thao tác ghi.
+
+**Tester:** Xây dựng bộ kiểm thử JUnit 5 với độ phủ mã ≥85%, sử dụng Mock cho các dependency, kiểm thử happy path và các scenario lỗi validation.
+
+**Reviewer:** Thực hiện phân tích tĩnh mã nguồn, kiểm tra tuân thủ OWASP Top 10, đảm bảo không có lỗ hổng SQL injection hoặc XSS.
+
+**Doc:** Biên soạn tài liệu kỹ thuật đầy đủ bao gồm API documentation với OpenAPI, schema documentation và hướng dẫn triển khai.
+
+#### 4. Định nghĩa hoàn thành (DoD) cho giai đoạn
+
+- ✅ 100% các requirement [REQ-001], [REQ-002], [REQ-003] được triển khai đầy đủ
+- ✅ Schema database [DAT-001] được tạo thành công với tất cả ràng buộc
+- ✅ Luồng xác thực [ARC-006] hoạt động với OAuth2 và JWT
+- ✅ Xử lý ngoại lệ [EXC-004] cho validation đầu vào
+- ✅ Tuân thủ các tiêu chuẩn bảo mật [NFR-001], [NFR-003], [NFR-006]
+- ✅ Độ phủ kiểm thử ≥85% cho tất cả các dịch vụ
+- ✅ 100% các Tag ID được ánh xạ và kiểm tra
+
+#### 5. NHẬT KÝ THỰC THI KIẾN TRÚC THEO NGÀY
+
+###### NGÀY 1: TRIỂN KHAI DỊCH VỤ ĐĂNG KÝ NGƯỜI DÙNG VÀ API XÁC THỰC XÃ HỘI
+
+######## SUB-TASK 1.1: Triển khai schema cơ sở dữ liệu Users và Roles
+########## Sub-Agent được chỉ định: Coder
+########## Các thành phần mục tiêu và yêu cầu kỹ thuật:
+* **Đường dẫn mục tiêu:** `./sources/backend.membershiphub.user/users.sql`, `./sources/backend.membershiphub.user/roles.sql`
+* **Các thẻ truy xuất nguồn gốc:** <!--START_TAGS-->[DAT-001]<!--END_TAGS-->
+
+######## SUB-TASK 1.2: Triển khai UserService với phương thức register và socialAuthenticate
+########## Sub-Agent được chỉ định: Coder
+########## Các thành phần mục tiêu và yêu cầu kỹ thuật:
+* **Đường dẫn mục tiêu:** `./sources/backend.membershiphub.user/user-service.java`
+* **Các thẻ truy xuất nguồn gốc:** <!--START_TAGS-->[REQ-001], [REQ-002], [ARC-006], [EXC-004], [NFR-001], [NFR-003], [NFR-006]<!--END_TAGS-->
+
+###### NGÀY 2: VIẾT BỘ KIỂM TRA ĐƠN VỊ VÀ TÍCH HỢP CHO CÁC CHỨC NĂNG NGƯỜI DÙNG
+
+######## SUB-TASK 2.1: Kiểm thử đơn vị cho các phương thức register và socialAuthenticate
+########## Sub-Agent được chỉ định: Tester
+########## Các thành phần mục tiêu và yêu cầu kỹ thuật:
+* **Đường dẫn mục tiêu:** `./sources/backend.membershiphub.user/user-service.java;./sources/backend.membershiphub.user/userservice-test.java`
+* **Các thẻ truy xuất nguồn gốc:** <!--START_TAGS-->[REQ-001], [REQ-002], [DAT-001], [EXC-004]<!--END_TAGS-->
+
+######## SUB-TASK 2.2: Kiểm thử tích hợp cho API endpoints
+########## Sub-Agent được chỉ định: Tester
+########## Các thành phần mục tiêu và yêu cầu kỹ thuật:
+* **Đường dẫn mục tiêu:** `./sources/backend.membershiphub.user/user-service.java;./sources/backend.membershiphub.user/user-controller-test.java`
+* **Các thẻ truy xuất nguồn gốc:** <!--START_TAGS-->[REQ-001], [REQ-002], [ARC-006], [EXC-004]<!--END_TAGS-->
+------------------------------------------
+
+# System Instruction
+
+You are a high-performance Data Ingestion and Transformation Engine. Your sole objective is to parse the Phase Context Markdown text and convert it into a perfectly valid, parseable JSON object matching the requested schema framework.
+
+# YOUR CRITICAL OPERATIONAL MANDATES (ZERO LOOPHOLES):
+1. **STRICT VARIABLE FIDELITY & NO PREFIXES:** You MUST use the exact raw values provided in the template variables for file paths and project names. You are STRICTLY BANNED from appending, prepending, or injecting any custom folders or prefixes like "sources/" to the `global_context_file`, `context_file`, `source_target_dir`, or `project_name` fields. Use the variable values exactly as they are passed.
+2. **ABSOLUTE PYDANTIC SCHEMA ALIGNMENT:** Your final generated JSON object MUST perfectly satisfy the structural schema parameters of the target enterprise contract. You are STRICTLY BANNED from omitting, renaming, formatting, or stripping out key elements (specifically `phase_id`, `phase_name`, `phase_description`, `project_name`, `global_context_file`, `source_target_dir`, and `days`).
+3. **ABSOLUTE NO EMPTY TAGS POLICY & STRING SANITIZATION:** You are STRICTLY BANNED from leaving the "targeted_tags" array empty `[]` or null for any sub-task that implements functional requirements or data schemas. You MUST scan the source Markdown sequentially sub-task by sub-task. For each sub-task node, locate the hidden technical container block delimited between `<!--START_TAGS-->` and `<!--END_TAGS-->` contained exclusively within that sub-task section scope. Extract all raw tag token codes inside, strip away all inline markdown formatting characters—specifically backticks (`` ` ``)—and any leading/trailing whitespaces, then populate them as clean separate string elements inside the "targeted_tags" array field of EACH sub-task object node.
+4. **NO TAG BUNDLING:** Every tag must be its own array node (e.g., `"targeted_tags": ["[REQ-001]", "[DAT-002]"]`). You are strictly forbidden from combining multiple tags into a single string element.
+5. **STRICT CONTENT PURITY & REJECT CONVERSATION:** Output ONLY the pure raw executable JSON string matching the required schema. Response must start exactly with the character `{` and end exactly with the character `}`. Banned from including thinking processes, chain-of-thought blocks (`<think>` tags), conversational filler texts, introductions, wrapping inside markdown codeblocks (no triple backticks wrapping), or post-generation notes. Any token outside the raw JSON object boundary triggers an immediate execution pipeline crash.
+
+# Raw Response / Exception:
+
+```json
+Error code: 410 - {'error': {'code': 'github_models_retirement_brownout', 'message': 'GitHub Models is temporarily unavailable as part of a scheduled retirement brownout.'}}: ['Traceback (most recent call last):
+', '  File "/home/runner/work/enterprise-it-ai/enterprise-it-ai/sources/agents/architect-blueprint/block_json.py", line 301, in convert_phases_to_json
+    response = client.beta.chat.completions.parse(
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+', '  File "/opt/hostedtoolcache/Python/3.11.15/x64/lib/python3.11/site-packages/openai/resources/chat/completions/completions.py", line 193, in parse
+    return self._post(
+           ^^^^^^^^^^^
+', '  File "/opt/hostedtoolcache/Python/3.11.15/x64/lib/python3.11/site-packages/openai/_base_client.py", line 1375, in post
+    return cast(ResponseT, self.request(cast_to, opts, stream=stream, stream_cls=stream_cls))
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+', '  File "/opt/hostedtoolcache/Python/3.11.15/x64/lib/python3.11/site-packages/openai/_base_client.py", line 1148, in request
+    raise self._make_status_error_from_response(err.response) from None
+', "openai.APIStatusError: Error code: 410 - {'error': {'code': 'github_models_retirement_brownout', 'message': 'GitHub Models is temporarily unavailable as part of a scheduled retirement brownout.'}}
+"]
+```
+
+# AI Model: kilo-auto/free - Phase 1 STEPS - Prompt:
+
+Analyze the attached Phase 1 Context Markdown content.
+
+Extract and translate ALL daily steps, checklists, and agent tasks from the entire document.
+
+
+## 🔒 AGENT ATOMICITY, TASK ID FORMAT & COMPONENT MANDATES (ABSOLUTE):
+- **STRICT TASK ID ALIGNMENT BLUEPRINT:** You MUST strictly generate the "id" field string for every single sub-task using the exact sequential formatting blueprint: `D<day_num>_ST<task_index>` (e.g., `D1_ST1`, `D1_ST2`, `D2_ST1`).
+- **STRICT AGENT ROLE LITERAL VALUES:** The "agent" field inside the JSON sub-task object MUST strictly enforce a capitalized first letter and lowercase subsequent letters pattern matching the exact tokens: 'Coder' | 'Tester' | 'Reviewer' | 'Doc' | 'Docker' | 'Gcp' | 'Gke'. Any other values or lowercase blocks (e.g., NO "coder") are strictly banned.
+- **NO ZERO-COMPONENT TASKS (ABSOLUTE HARD LIMIT):** You are STRICTLY BANNED from generating any sub-task object where the 'components' array is empty `[]`, null, or missing. If an Agent does not have any physical file paths to create, modify, or document, you MUST NOT generate that sub-task object node.
+- **FALLBACK COMPONENT RULE:** If a day has technical descriptions but lacks physical file paths, assign the task to "Doc" agent and populate 'components' with exactly the value of: ".ai/.plan/.context/phase-1.context.blueprint.md".
+- **STRICT AGENT ROLE SEGREGATION (ANTI-AGGREGATION):** If a workflow file involves multiple actions by different personas on the same calendar day, you MUST split this workflow into completely separate, sequential task objects inside the 'sub_tasks' array.
+- **HIGH-DENSITY TECHNICAL SPECIFICATION:** The 'task' field MUST contain an exhaustive, granular engineering instruction. If the sub-task involves an API route, integration endpoint, database query, or message block, you MUST explicitly inline the complete technical contract (e.g., Request/Response Payload Schemas, Data Types, Error Status Codes, or Queue names) directly inside this string. Vague high-level bullet summaries are forbidden.
+- **WORKSPACE PREFIX RULE & MULTI-LANGUAGE TEST EXCEPTION:** Every path in 'components' array MUST strictly begin with `./sources/`. 
+  * *CRITICAL EXCEPTION:* If the first parameter before the semi-colon character in a tester task is the literal string token `INTEGRATION_SCOPE`, you MUST leave that token completely unmodified. Do NOT append any path prefix to it (e.g., `"components": ["INTEGRATION_SCOPE;./sources/frontend/tests/auth.spec.ts"]`).
+
+## 🛠️ MANDATORY TOP-LEVEL FIELD VALUES INJECTION & ANCHOR PARSING (STRICT FIDELITY):
+You MUST dynamically populate the top-level keys of the JSON object using EXACT raw variable values without any modifications, or parse them directly from the primary Markdown header HTML comments:
+- **`phase_id`**: 1
+- **`phase_name`**: [Locate the primary Markdown title header line, extract the clean technical string text located exactly between the hidden HTML delimiters `<!--PHASE_NAME_START-->` and `<!--PHASE_NAME_END-->` without any alterations or translations]
+- **`phase_description`**: [Locate the primary Markdown title header line, extract the exact translated phase description text that follows after the literal marker `| Description:` or its translated equivalent]
+- **`project_name`**: "membership-hub"
+- **`global_context_file`**: ".ai/.context/membership-hub.global.blueprint.md"
+- **`source_target_dir`**: "sources/"
+
+#### 7. Context Fields Integration Mandate
+- For each day object inside the array, set 'day' to its calculated integer value, set 'context_file' to exact string ".ai/.plan/.context/phase-1.context.blueprint.md", and **set 'context_section' to the exact raw string value of the entire primary Day Header extracted from the source Markdown context text** (e.g., `"context_section": "DAY 1: Multi-Tenant Inception Schema & Flyway Migration Setup"`).
+
+#### 8. CHRONOLOGICAL TIMELINE SEQUENCING MANDATE (ABSOLUTE):
+#### 8. CHRONOLOGICAL TIMELINE SEQUENCING MANDATE (ABSOLUTE):
+
+## SYSTEM CRITICAL BOUNDARY: FLAT CONFIGURATION IS ACTIVE (is_chunked is FALSE)
+- Regardless of the actual day numbers documented in the source Markdown content (e.g., even if the text states "DAY 4", "DAY 5"), you MUST completely reset the timeline sequence internally so that the first operational day inside this Phase always starts from integer 1. Progression follows sequentially as 2, 3, 4, etc. 
+- Map the first targeted day to `"day": 1`, set 'context_file' to ".ai/.plan/.context/phase-1.context.blueprint.md", and strictly set 'context_section' to the exact raw primary header line of the first day parsed from the text. Incremental days follow this relative baseline.
+
+
+## 🛑 MANDATORY STRUCTURE ENFORCEMENT FOR TRACEABILITY TAGS VIA HTML ANCHORS (CRITICAL):
+- For each sub-task block, locate the hidden technical container bounds delimited strictly between `<!--START_TAGS-->` and `<!--END_TAGS-->`. Extract all individual inherited Tag IDs from inside that container, completely purge all markdown backticks (`` ` ``) and padding spaces, and populate them as clean individual string elements inside the "targeted_tags" array field (e.g., `"targeted_tags": ["[REQ-001]", "[DAT-005]"]`).
+- You are STRICTLY BANNED from leaving the "targeted_tags" array empty `[]` or null. Every single tag token must be its own separated array element string.
+
+You must conform strictly to your required JSON Schema layout design structure:
+{
+  "$defs": {
+    "DailyStep": {
+      "properties": {
+        "day": {
+          "description": "Timeline iteration day inside this isolated phase.",
+          "title": "Day",
+          "type": "integer"
+        },
+        "context_file": {
+          "description": "The phase context Markdown file for closure on this day.",
+          "title": "Context File",
+          "type": "string"
+        },
+        "context_section": {
+          "description": "The day targeted for closure on this day.",
+          "title": "Context Section",
+          "type": "string"
+        },
+        "sub_tasks": {
+          "description": "Array of isolated micro-tasks assigned to sub-agents.",
+          "items": {
+            "$ref": "##/$defs/SubAgentTask"
+          },
+          "title": "Sub Tasks",
+          "type": "array"
+        }
+      },
+      "required": [
+        "day",
+        "context_file",
+        "context_section",
+        "sub_tasks"
+      ],
+      "title": "DailyStep",
+      "type": "object"
+    },
+    "SubAgentTask": {
+      "properties": {
+        "id": {
+          "description": "Sub-Task identity of Task that sub-agent role executing.",
+          "title": "Id",
+          "type": "string"
+        },
+        "agent": {
+          "description": "Target sub-agent role executing the task.",
+          "title": "Agent",
+          "type": "string"
+        },
+        "desc": {
+          "description": "Literal, low-level technical step assigned to the agent.",
+          "title": "Desc",
+          "type": "string"
+        },
+        "targeted_tags": {
+          "description": "Flat string array of exact inherited BA Tag IDs that this specific sub-task implements or verifies (e.g. ['[REQ-001]', '[ARC-002]']). MUST match the raw requirements 1:1.",
+          "items": {
+            "type": "string"
+          },
+          "title": "Targeted Tags",
+          "type": "array"
+        },
+        "components": {
+          "description": "Flat array of physical localized file paths or scripts modified or targeted by this single task. Return an empty array [] if no files are involved.",
+          "items": {
+            "type": "string"
+          },
+          "title": "Components",
+          "type": "array"
+        }
+      },
+      "required": [
+        "id",
+        "agent",
+        "desc"
+      ],
+      "title": "SubAgentTask",
+      "type": "object"
+    }
+  },
+  "properties": {
+    "phase_id": {
+      "description": "Target phase tracker index.",
+      "title": "Phase Id",
+      "type": "integer"
+    },
+    "phase_name": {
+      "description": "Target phase tracker name.",
+      "title": "Phase Name",
+      "type": "string"
+    },
+    "phase_description": {
+      "description": "Target phase description.",
+      "title": "Phase Description",
+      "type": "string"
+    },
+    "project_name": {
+      "description": "Target project tracker name.",
+      "title": "Project Name",
+      "type": "string"
+    },
+    "global_context_file": {
+      "description": "Project global context Markdown file for closure.",
+      "title": "Global Context File",
+      "type": "string"
+    },
+    "source_target_dir": {
+      "description": "Project sources folder path for closure.",
+      "title": "Source Target Dir",
+      "type": "string"
+    },
+    "days": {
+      "description": "Day-by-day engineering tracking steps.",
+      "items": {
+        "$ref": "##/$defs/DailyStep"
+      },
+      "title": "Days",
+      "type": "array"
+    }
+  },
+  "required": [
+    "phase_id",
+    "phase_name",
+    "phase_description",
+    "project_name",
+    "global_context_file",
+    "source_target_dir",
+    "days"
+  ],
+  "title": "PhaseStepsPlan",
+  "type": "object"
+}
+
+--- PHASE 1 CONTEXT MARKDOWN ---
+## Giai đoạn 1: <!--PHASE_NAME_START-->user_core_services<!--PHASE_NAME_END--> | Mô tả: Triển khai các dịch vụ cốt lõi quản lý người dùng bao gồm đăng ký, xác thực xã hội, gán vai trò, schema cơ sở dữ liệu và logging kiểm toán bảo mật
+
+#### 📊 Kiểm soát tài liệu
+
+| Mục | Chi tiết |
+| :--- | :--- |
+| **ID Blueprint** | ARCH-20260803053505 |
+| **Tên dự án** | membership-hub |
+| **Giai đoạn** | 1 |
+| **Tên kỹ thuật giai đoạn** | <!--PHASE_NAME_START-->user_core_services<!--PHASE_NAME_END--> |
+| **Mô tả** | Triển khai các dịch vụ cốt lõi quản lý người dùng bao gồm đăng ký, xác thực xã hội, gán vai trò, schema cơ sở dữ liệu và logging kiểm toán bảo mật |
+| **Phiên bản** | 1.0 (Baseline) |
+| **Ngày/Giờ** | 2026/08/03 05:35:05 |
+| **Tác giả** | Enterprise System Architect (SA Agent) |
+| **Phê duyệt** | Pending Technical Governance Review |
+
+#### 1. Phạm vi hoạt động và mục tiêu giai đoạn
+
+Giai đoạn này tập trung vào việc xây dựng nền tảng cốt lõi cho hệ thống quản lý người dùng, bao gồm:
+
+- Triển khai schema cơ sở dữ liệu cho bảng Users và Roles với các ràng buộc toàn vẹn dữ liệu
+- Xây dựng dịch vụ đăng ký người dùng với xác thực email/mật khẩu và hỗ trợ OAuth2 cho các nhà cung cấp xã hội (Firebase, Google, Facebook)
+- Triển khai cơ chế phân quyền RBAC với khả năng gán và thay đổi vai trò người dùng
+- Thiết lập hệ thống logging kiểm toán đáp ứng các tiêu chuẩn bảo mật doanh nghiệp
+- Triển khai xử lý ngoại lệ chi tiết cho validation đầu vào và xung đột dữ liệu
+
+#### 2. Phạm vi kỹ thuật và ranh giới thư mục được phép
+
+**Thư mục và tệp được phép:**
+- `./sources/backend.membershiphub.user/users.sql` - DDL schema cho bảng Users
+- `./sources/backend.membershiphub.user/roles.sql` - DDL schema cho bảng Roles  
+- `./sources/backend.membershiphub.user/user-service.java` - Dịch vụ chính quản lý người dùng
+
+**Endpoint API:**
+- `POST /api/v1/auth/register` - Đăng ký người dùng mới
+- `POST /api/v1/auth/social` - Xác thực qua nhà cung cấp xã hội
+- `PUT /api/v1/users/{userId}/role` - Cập nhật vai trò người dùng (chỉ System Admin)
+
+#### 3. Chỉ đạo chức năng cho Sub-Agent chuyên dụng
+
+**Coder:** Triển khai mã nguồn Java/Quarkus với tuân thủ SOLID, sử dụng BCrypt cho mã hóa mật khẩu, JWT với access token 15 phút và refresh token 7 ngày, áp dụng @Valid cho validation và @Transactional cho các thao tác ghi.
+
+**Tester:** Xây dựng bộ kiểm thử JUnit 5 với độ phủ mã ≥85%, sử dụng Mock cho các dependency, kiểm thử happy path và các scenario lỗi validation.
+
+**Reviewer:** Thực hiện phân tích tĩnh mã nguồn, kiểm tra tuân thủ OWASP Top 10, đảm bảo không có lỗ hổng SQL injection hoặc XSS.
+
+**Doc:** Biên soạn tài liệu kỹ thuật đầy đủ bao gồm API documentation với OpenAPI, schema documentation và hướng dẫn triển khai.
+
+#### 4. Định nghĩa hoàn thành (DoD) cho giai đoạn
+
+- ✅ 100% các requirement [REQ-001], [REQ-002], [REQ-003] được triển khai đầy đủ
+- ✅ Schema database [DAT-001] được tạo thành công với tất cả ràng buộc
+- ✅ Luồng xác thực [ARC-006] hoạt động với OAuth2 và JWT
+- ✅ Xử lý ngoại lệ [EXC-004] cho validation đầu vào
+- ✅ Tuân thủ các tiêu chuẩn bảo mật [NFR-001], [NFR-003], [NFR-006]
+- ✅ Độ phủ kiểm thử ≥85% cho tất cả các dịch vụ
+- ✅ 100% các Tag ID được ánh xạ và kiểm tra
+
+#### 5. NHẬT KÝ THỰC THI KIẾN TRÚC THEO NGÀY
+
+###### NGÀY 1: TRIỂN KHAI DỊCH VỤ ĐĂNG KÝ NGƯỜI DÙNG VÀ API XÁC THỰC XÃ HỘI
+
+######## SUB-TASK 1.1: Triển khai schema cơ sở dữ liệu Users và Roles
+########## Sub-Agent được chỉ định: Coder
+########## Các thành phần mục tiêu và yêu cầu kỹ thuật:
+* **Đường dẫn mục tiêu:** `./sources/backend.membershiphub.user/users.sql`, `./sources/backend.membershiphub.user/roles.sql`
+* **Các thẻ truy xuất nguồn gốc:** <!--START_TAGS-->[DAT-001]<!--END_TAGS-->
+
+######## SUB-TASK 1.2: Triển khai UserService với phương thức register và socialAuthenticate
+########## Sub-Agent được chỉ định: Coder
+########## Các thành phần mục tiêu và yêu cầu kỹ thuật:
+* **Đường dẫn mục tiêu:** `./sources/backend.membershiphub.user/user-service.java`
+* **Các thẻ truy xuất nguồn gốc:** <!--START_TAGS-->[REQ-001], [REQ-002], [ARC-006], [EXC-004], [NFR-001], [NFR-003], [NFR-006]<!--END_TAGS-->
+
+###### NGÀY 2: VIẾT BỘ KIỂM TRA ĐƠN VỊ VÀ TÍCH HỢP CHO CÁC CHỨC NĂNG NGƯỜI DÙNG
+
+######## SUB-TASK 2.1: Kiểm thử đơn vị cho các phương thức register và socialAuthenticate
+########## Sub-Agent được chỉ định: Tester
+########## Các thành phần mục tiêu và yêu cầu kỹ thuật:
+* **Đường dẫn mục tiêu:** `./sources/backend.membershiphub.user/user-service.java;./sources/backend.membershiphub.user/userservice-test.java`
+* **Các thẻ truy xuất nguồn gốc:** <!--START_TAGS-->[REQ-001], [REQ-002], [DAT-001], [EXC-004]<!--END_TAGS-->
+
+######## SUB-TASK 2.2: Kiểm thử tích hợp cho API endpoints
+########## Sub-Agent được chỉ định: Tester
+########## Các thành phần mục tiêu và yêu cầu kỹ thuật:
+* **Đường dẫn mục tiêu:** `./sources/backend.membershiphub.user/user-service.java;./sources/backend.membershiphub.user/user-controller-test.java`
+* **Các thẻ truy xuất nguồn gốc:** <!--START_TAGS-->[REQ-001], [REQ-002], [ARC-006], [EXC-004]<!--END_TAGS-->
+------------------------------------------
+
+# System Instruction
+
+You are a high-performance Data Ingestion and Transformation Engine. Your sole objective is to parse the Phase Context Markdown text and convert it into a perfectly valid, parseable JSON object matching the requested schema framework.
+
+# YOUR CRITICAL OPERATIONAL MANDATES (ZERO LOOPHOLES):
+1. **STRICT VARIABLE FIDELITY & NO PREFIXES:** You MUST use the exact raw values provided in the template variables for file paths and project names. You are STRICTLY BANNED from appending, prepending, or injecting any custom folders or prefixes like "sources/" to the `global_context_file`, `context_file`, `source_target_dir`, or `project_name` fields. Use the variable values exactly as they are passed.
+2. **ABSOLUTE PYDANTIC SCHEMA ALIGNMENT:** Your final generated JSON object MUST perfectly satisfy the structural schema parameters of the target enterprise contract. You are STRICTLY BANNED from omitting, renaming, formatting, or stripping out key elements (specifically `phase_id`, `phase_name`, `phase_description`, `project_name`, `global_context_file`, `source_target_dir`, and `days`).
+3. **ABSOLUTE NO EMPTY TAGS POLICY & STRING SANITIZATION:** You are STRICTLY BANNED from leaving the "targeted_tags" array empty `[]` or null for any sub-task that implements functional requirements or data schemas. You MUST scan the source Markdown sequentially sub-task by sub-task. For each sub-task node, locate the hidden technical container block delimited between `<!--START_TAGS-->` and `<!--END_TAGS-->` contained exclusively within that sub-task section scope. Extract all raw tag token codes inside, strip away all inline markdown formatting characters—specifically backticks (`` ` ``)—and any leading/trailing whitespaces, then populate them as clean separate string elements inside the "targeted_tags" array field of EACH sub-task object node.
+4. **NO TAG BUNDLING:** Every tag must be its own array node (e.g., `"targeted_tags": ["[REQ-001]", "[DAT-002]"]`). You are strictly forbidden from combining multiple tags into a single string element.
+5. **STRICT CONTENT PURITY & REJECT CONVERSATION:** Output ONLY the pure raw executable JSON string matching the required schema. Response must start exactly with the character `{` and end exactly with the character `}`. Banned from including thinking processes, chain-of-thought blocks (`<think>` tags), conversational filler texts, introductions, wrapping inside markdown codeblocks (no triple backticks wrapping), or post-generation notes. Any token outside the raw JSON object boundary triggers an immediate execution pipeline crash.
+
+# Raw Response / Exception:
+
+```json
+Could not parse response content as the length limit was reached - CompletionUsage(completion_tokens=4096, prompt_tokens=6276, total_tokens=10372, completion_tokens_details=CompletionTokensDetails(accepted_prediction_tokens=None, audio_tokens=0, reasoning_tokens=0, rejected_prediction_tokens=None, image_tokens=0), prompt_tokens_details=PromptTokensDetails(audio_tokens=0, cache_write_tokens=0, cached_tokens=0, video_tokens=0)): ['Traceback (most recent call last):
+', '  File "/home/runner/work/enterprise-it-ai/enterprise-it-ai/sources/agents/architect-blueprint/block_json.py", line 301, in convert_phases_to_json
+    response = client.beta.chat.completions.parse(
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+', '  File "/opt/hostedtoolcache/Python/3.11.15/x64/lib/python3.11/site-packages/openai/resources/chat/completions/completions.py", line 193, in parse
+    return self._post(
+           ^^^^^^^^^^^
+', '  File "/opt/hostedtoolcache/Python/3.11.15/x64/lib/python3.11/site-packages/openai/_base_client.py", line 1375, in post
+    return cast(ResponseT, self.request(cast_to, opts, stream=stream, stream_cls=stream_cls))
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+', '  File "/opt/hostedtoolcache/Python/3.11.15/x64/lib/python3.11/site-packages/openai/_base_client.py", line 1153, in request
+    return self._process_response(
+           ^^^^^^^^^^^^^^^^^^^^^^^
+', '  File "/opt/hostedtoolcache/Python/3.11.15/x64/lib/python3.11/site-packages/openai/_base_client.py", line 1242, in _process_response
+    return api_response.parse()
+           ^^^^^^^^^^^^^^^^^^^^
+', '  File "/opt/hostedtoolcache/Python/3.11.15/x64/lib/python3.11/site-packages/openai/_response.py", line 330, in parse
+    parsed = self._options.post_parser(parsed)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+', '  File "/opt/hostedtoolcache/Python/3.11.15/x64/lib/python3.11/site-packages/openai/resources/chat/completions/completions.py", line 187, in parser
+    return _parse_chat_completion(
+           ^^^^^^^^^^^^^^^^^^^^^^^
+', '  File "/opt/hostedtoolcache/Python/3.11.15/x64/lib/python3.11/site-packages/openai/lib/_parsing/_completions.py", line 100, in parse_chat_completion
+    raise LengthFinishReasonError(completion=chat_completion)
+', 'openai.LengthFinishReasonError: Could not parse response content as the length limit was reached - CompletionUsage(completion_tokens=4096, prompt_tokens=6276, total_tokens=10372, completion_tokens_details=CompletionTokensDetails(accepted_prediction_tokens=None, audio_tokens=0, reasoning_tokens=0, rejected_prediction_tokens=None, image_tokens=0), prompt_tokens_details=PromptTokensDetails(audio_tokens=0, cache_write_tokens=0, cached_tokens=0, video_tokens=0))
+']
+```
+
+# AI Model: minimax/minimax-m2.5:free - Phase 1 STEPS - Prompt:
+
+Analyze the attached Phase 1 Context Markdown content.
+
+Extract and translate ALL daily steps, checklists, and agent tasks from the entire document.
+
+
+## 🔒 AGENT ATOMICITY, TASK ID FORMAT & COMPONENT MANDATES (ABSOLUTE):
+- **STRICT TASK ID ALIGNMENT BLUEPRINT:** You MUST strictly generate the "id" field string for every single sub-task using the exact sequential formatting blueprint: `D<day_num>_ST<task_index>` (e.g., `D1_ST1`, `D1_ST2`, `D2_ST1`).
+- **STRICT AGENT ROLE LITERAL VALUES:** The "agent" field inside the JSON sub-task object MUST strictly enforce a capitalized first letter and lowercase subsequent letters pattern matching the exact tokens: 'Coder' | 'Tester' | 'Reviewer' | 'Doc' | 'Docker' | 'Gcp' | 'Gke'. Any other values or lowercase blocks (e.g., NO "coder") are strictly banned.
+- **NO ZERO-COMPONENT TASKS (ABSOLUTE HARD LIMIT):** You are STRICTLY BANNED from generating any sub-task object where the 'components' array is empty `[]`, null, or missing. If an Agent does not have any physical file paths to create, modify, or document, you MUST NOT generate that sub-task object node.
+- **FALLBACK COMPONENT RULE:** If a day has technical descriptions but lacks physical file paths, assign the task to "Doc" agent and populate 'components' with exactly the value of: ".ai/.plan/.context/phase-1.context.blueprint.md".
+- **STRICT AGENT ROLE SEGREGATION (ANTI-AGGREGATION):** If a workflow file involves multiple actions by different personas on the same calendar day, you MUST split this workflow into completely separate, sequential task objects inside the 'sub_tasks' array.
+- **HIGH-DENSITY TECHNICAL SPECIFICATION:** The 'task' field MUST contain an exhaustive, granular engineering instruction. If the sub-task involves an API route, integration endpoint, database query, or message block, you MUST explicitly inline the complete technical contract (e.g., Request/Response Payload Schemas, Data Types, Error Status Codes, or Queue names) directly inside this string. Vague high-level bullet summaries are forbidden.
+- **WORKSPACE PREFIX RULE & MULTI-LANGUAGE TEST EXCEPTION:** Every path in 'components' array MUST strictly begin with `./sources/`. 
+  * *CRITICAL EXCEPTION:* If the first parameter before the semi-colon character in a tester task is the literal string token `INTEGRATION_SCOPE`, you MUST leave that token completely unmodified. Do NOT append any path prefix to it (e.g., `"components": ["INTEGRATION_SCOPE;./sources/frontend/tests/auth.spec.ts"]`).
+
+## 🛠️ MANDATORY TOP-LEVEL FIELD VALUES INJECTION & ANCHOR PARSING (STRICT FIDELITY):
+You MUST dynamically populate the top-level keys of the JSON object using EXACT raw variable values without any modifications, or parse them directly from the primary Markdown header HTML comments:
+- **`phase_id`**: 1
+- **`phase_name`**: [Locate the primary Markdown title header line, extract the clean technical string text located exactly between the hidden HTML delimiters `<!--PHASE_NAME_START-->` and `<!--PHASE_NAME_END-->` without any alterations or translations]
+- **`phase_description`**: [Locate the primary Markdown title header line, extract the exact translated phase description text that follows after the literal marker `| Description:` or its translated equivalent]
+- **`project_name`**: "membership-hub"
+- **`global_context_file`**: ".ai/.context/membership-hub.global.blueprint.md"
+- **`source_target_dir`**: "sources/"
+
+#### 7. Context Fields Integration Mandate
+- For each day object inside the array, set 'day' to its calculated integer value, set 'context_file' to exact string ".ai/.plan/.context/phase-1.context.blueprint.md", and **set 'context_section' to the exact raw string value of the entire primary Day Header extracted from the source Markdown context text** (e.g., `"context_section": "DAY 1: Multi-Tenant Inception Schema & Flyway Migration Setup"`).
+
+#### 8. CHRONOLOGICAL TIMELINE SEQUENCING MANDATE (ABSOLUTE):
+#### 8. CHRONOLOGICAL TIMELINE SEQUENCING MANDATE (ABSOLUTE):
+
+## SYSTEM CRITICAL BOUNDARY: FLAT CONFIGURATION IS ACTIVE (is_chunked is FALSE)
+- Regardless of the actual day numbers documented in the source Markdown content (e.g., even if the text states "DAY 4", "DAY 5"), you MUST completely reset the timeline sequence internally so that the first operational day inside this Phase always starts from integer 1. Progression follows sequentially as 2, 3, 4, etc. 
+- Map the first targeted day to `"day": 1`, set 'context_file' to ".ai/.plan/.context/phase-1.context.blueprint.md", and strictly set 'context_section' to the exact raw primary header line of the first day parsed from the text. Incremental days follow this relative baseline.
+
+
+## 🛑 MANDATORY STRUCTURE ENFORCEMENT FOR TRACEABILITY TAGS VIA HTML ANCHORS (CRITICAL):
+- For each sub-task block, locate the hidden technical container bounds delimited strictly between `<!--START_TAGS-->` and `<!--END_TAGS-->`. Extract all individual inherited Tag IDs from inside that container, completely purge all markdown backticks (`` ` ``) and padding spaces, and populate them as clean individual string elements inside the "targeted_tags" array field (e.g., `"targeted_tags": ["[REQ-001]", "[DAT-005]"]`).
+- You are STRICTLY BANNED from leaving the "targeted_tags" array empty `[]` or null. Every single tag token must be its own separated array element string.
+
+You must conform strictly to your required JSON Schema layout design structure:
+{
+  "$defs": {
+    "DailyStep": {
+      "properties": {
+        "day": {
+          "description": "Timeline iteration day inside this isolated phase.",
+          "title": "Day",
+          "type": "integer"
+        },
+        "context_file": {
+          "description": "The phase context Markdown file for closure on this day.",
+          "title": "Context File",
+          "type": "string"
+        },
+        "context_section": {
+          "description": "The day targeted for closure on this day.",
+          "title": "Context Section",
+          "type": "string"
+        },
+        "sub_tasks": {
+          "description": "Array of isolated micro-tasks assigned to sub-agents.",
+          "items": {
+            "$ref": "##/$defs/SubAgentTask"
+          },
+          "title": "Sub Tasks",
+          "type": "array"
+        }
+      },
+      "required": [
+        "day",
+        "context_file",
+        "context_section",
+        "sub_tasks"
+      ],
+      "title": "DailyStep",
+      "type": "object"
+    },
+    "SubAgentTask": {
+      "properties": {
+        "id": {
+          "description": "Sub-Task identity of Task that sub-agent role executing.",
+          "title": "Id",
+          "type": "string"
+        },
+        "agent": {
+          "description": "Target sub-agent role executing the task.",
+          "title": "Agent",
+          "type": "string"
+        },
+        "desc": {
+          "description": "Literal, low-level technical step assigned to the agent.",
+          "title": "Desc",
+          "type": "string"
+        },
+        "targeted_tags": {
+          "description": "Flat string array of exact inherited BA Tag IDs that this specific sub-task implements or verifies (e.g. ['[REQ-001]', '[ARC-002]']). MUST match the raw requirements 1:1.",
+          "items": {
+            "type": "string"
+          },
+          "title": "Targeted Tags",
+          "type": "array"
+        },
+        "components": {
+          "description": "Flat array of physical localized file paths or scripts modified or targeted by this single task. Return an empty array [] if no files are involved.",
+          "items": {
+            "type": "string"
+          },
+          "title": "Components",
+          "type": "array"
+        }
+      },
+      "required": [
+        "id",
+        "agent",
+        "desc"
+      ],
+      "title": "SubAgentTask",
+      "type": "object"
+    }
+  },
+  "properties": {
+    "phase_id": {
+      "description": "Target phase tracker index.",
+      "title": "Phase Id",
+      "type": "integer"
+    },
+    "phase_name": {
+      "description": "Target phase tracker name.",
+      "title": "Phase Name",
+      "type": "string"
+    },
+    "phase_description": {
+      "description": "Target phase description.",
+      "title": "Phase Description",
+      "type": "string"
+    },
+    "project_name": {
+      "description": "Target project tracker name.",
+      "title": "Project Name",
+      "type": "string"
+    },
+    "global_context_file": {
+      "description": "Project global context Markdown file for closure.",
+      "title": "Global Context File",
+      "type": "string"
+    },
+    "source_target_dir": {
+      "description": "Project sources folder path for closure.",
+      "title": "Source Target Dir",
+      "type": "string"
+    },
+    "days": {
+      "description": "Day-by-day engineering tracking steps.",
+      "items": {
+        "$ref": "##/$defs/DailyStep"
+      },
+      "title": "Days",
+      "type": "array"
+    }
+  },
+  "required": [
+    "phase_id",
+    "phase_name",
+    "phase_description",
+    "project_name",
+    "global_context_file",
+    "source_target_dir",
+    "days"
+  ],
+  "title": "PhaseStepsPlan",
+  "type": "object"
+}
+
+--- PHASE 1 CONTEXT MARKDOWN ---
+## Giai đoạn 1: <!--PHASE_NAME_START-->user_core_services<!--PHASE_NAME_END--> | Mô tả: Triển khai các dịch vụ cốt lõi quản lý người dùng bao gồm đăng ký, xác thực xã hội, gán vai trò, schema cơ sở dữ liệu và logging kiểm toán bảo mật
+
+#### 📊 Kiểm soát tài liệu
+
+| Mục | Chi tiết |
+| :--- | :--- |
+| **ID Blueprint** | ARCH-20260803053505 |
+| **Tên dự án** | membership-hub |
+| **Giai đoạn** | 1 |
+| **Tên kỹ thuật giai đoạn** | <!--PHASE_NAME_START-->user_core_services<!--PHASE_NAME_END--> |
+| **Mô tả** | Triển khai các dịch vụ cốt lõi quản lý người dùng bao gồm đăng ký, xác thực xã hội, gán vai trò, schema cơ sở dữ liệu và logging kiểm toán bảo mật |
+| **Phiên bản** | 1.0 (Baseline) |
+| **Ngày/Giờ** | 2026/08/03 05:35:05 |
+| **Tác giả** | Enterprise System Architect (SA Agent) |
+| **Phê duyệt** | Pending Technical Governance Review |
+
+#### 1. Phạm vi hoạt động và mục tiêu giai đoạn
+
+Giai đoạn này tập trung vào việc xây dựng nền tảng cốt lõi cho hệ thống quản lý người dùng, bao gồm:
+
+- Triển khai schema cơ sở dữ liệu cho bảng Users và Roles với các ràng buộc toàn vẹn dữ liệu
+- Xây dựng dịch vụ đăng ký người dùng với xác thực email/mật khẩu và hỗ trợ OAuth2 cho các nhà cung cấp xã hội (Firebase, Google, Facebook)
+- Triển khai cơ chế phân quyền RBAC với khả năng gán và thay đổi vai trò người dùng
+- Thiết lập hệ thống logging kiểm toán đáp ứng các tiêu chuẩn bảo mật doanh nghiệp
+- Triển khai xử lý ngoại lệ chi tiết cho validation đầu vào và xung đột dữ liệu
+
+#### 2. Phạm vi kỹ thuật và ranh giới thư mục được phép
+
+**Thư mục và tệp được phép:**
+- `./sources/backend.membershiphub.user/users.sql` - DDL schema cho bảng Users
+- `./sources/backend.membershiphub.user/roles.sql` - DDL schema cho bảng Roles  
+- `./sources/backend.membershiphub.user/user-service.java` - Dịch vụ chính quản lý người dùng
+
+**Endpoint API:**
+- `POST /api/v1/auth/register` - Đăng ký người dùng mới
+- `POST /api/v1/auth/social` - Xác thực qua nhà cung cấp xã hội
+- `PUT /api/v1/users/{userId}/role` - Cập nhật vai trò người dùng (chỉ System Admin)
+
+#### 3. Chỉ đạo chức năng cho Sub-Agent chuyên dụng
+
+**Coder:** Triển khai mã nguồn Java/Quarkus với tuân thủ SOLID, sử dụng BCrypt cho mã hóa mật khẩu, JWT với access token 15 phút và refresh token 7 ngày, áp dụng @Valid cho validation và @Transactional cho các thao tác ghi.
+
+**Tester:** Xây dựng bộ kiểm thử JUnit 5 với độ phủ mã ≥85%, sử dụng Mock cho các dependency, kiểm thử happy path và các scenario lỗi validation.
+
+**Reviewer:** Thực hiện phân tích tĩnh mã nguồn, kiểm tra tuân thủ OWASP Top 10, đảm bảo không có lỗ hổng SQL injection hoặc XSS.
+
+**Doc:** Biên soạn tài liệu kỹ thuật đầy đủ bao gồm API documentation với OpenAPI, schema documentation và hướng dẫn triển khai.
+
+#### 4. Định nghĩa hoàn thành (DoD) cho giai đoạn
+
+- ✅ 100% các requirement [REQ-001], [REQ-002], [REQ-003] được triển khai đầy đủ
+- ✅ Schema database [DAT-001] được tạo thành công với tất cả ràng buộc
+- ✅ Luồng xác thực [ARC-006] hoạt động với OAuth2 và JWT
+- ✅ Xử lý ngoại lệ [EXC-004] cho validation đầu vào
+- ✅ Tuân thủ các tiêu chuẩn bảo mật [NFR-001], [NFR-003], [NFR-006]
+- ✅ Độ phủ kiểm thử ≥85% cho tất cả các dịch vụ
+- ✅ 100% các Tag ID được ánh xạ và kiểm tra
+
+#### 5. NHẬT KÝ THỰC THI KIẾN TRÚC THEO NGÀY
+
+###### NGÀY 1: TRIỂN KHAI DỊCH VỤ ĐĂNG KÝ NGƯỜI DÙNG VÀ API XÁC THỰC XÃ HỘI
+
+######## SUB-TASK 1.1: Triển khai schema cơ sở dữ liệu Users và Roles
+########## Sub-Agent được chỉ định: Coder
+########## Các thành phần mục tiêu và yêu cầu kỹ thuật:
+* **Đường dẫn mục tiêu:** `./sources/backend.membershiphub.user/users.sql`, `./sources/backend.membershiphub.user/roles.sql`
+* **Các thẻ truy xuất nguồn gốc:** <!--START_TAGS-->[DAT-001]<!--END_TAGS-->
+
+######## SUB-TASK 1.2: Triển khai UserService với phương thức register và socialAuthenticate
+########## Sub-Agent được chỉ định: Coder
+########## Các thành phần mục tiêu và yêu cầu kỹ thuật:
+* **Đường dẫn mục tiêu:** `./sources/backend.membershiphub.user/user-service.java`
+* **Các thẻ truy xuất nguồn gốc:** <!--START_TAGS-->[REQ-001], [REQ-002], [ARC-006], [EXC-004], [NFR-001], [NFR-003], [NFR-006]<!--END_TAGS-->
+
+###### NGÀY 2: VIẾT BỘ KIỂM TRA ĐƠN VỊ VÀ TÍCH HỢP CHO CÁC CHỨC NĂNG NGƯỜI DÙNG
+
+######## SUB-TASK 2.1: Kiểm thử đơn vị cho các phương thức register và socialAuthenticate
+########## Sub-Agent được chỉ định: Tester
+########## Các thành phần mục tiêu và yêu cầu kỹ thuật:
+* **Đường dẫn mục tiêu:** `./sources/backend.membershiphub.user/user-service.java;./sources/backend.membershiphub.user/userservice-test.java`
+* **Các thẻ truy xuất nguồn gốc:** <!--START_TAGS-->[REQ-001], [REQ-002], [DAT-001], [EXC-004]<!--END_TAGS-->
+
+######## SUB-TASK 2.2: Kiểm thử tích hợp cho API endpoints
+########## Sub-Agent được chỉ định: Tester
+########## Các thành phần mục tiêu và yêu cầu kỹ thuật:
+* **Đường dẫn mục tiêu:** `./sources/backend.membershiphub.user/user-service.java;./sources/backend.membershiphub.user/user-controller-test.java`
+* **Các thẻ truy xuất nguồn gốc:** <!--START_TAGS-->[REQ-001], [REQ-002], [ARC-006], [EXC-004]<!--END_TAGS-->
+------------------------------------------
+
+# System Instruction
+
+You are a high-performance Data Ingestion and Transformation Engine. Your sole objective is to parse the Phase Context Markdown text and convert it into a perfectly valid, parseable JSON object matching the requested schema framework.
+
+# YOUR CRITICAL OPERATIONAL MANDATES (ZERO LOOPHOLES):
+1. **STRICT VARIABLE FIDELITY & NO PREFIXES:** You MUST use the exact raw values provided in the template variables for file paths and project names. You are STRICTLY BANNED from appending, prepending, or injecting any custom folders or prefixes like "sources/" to the `global_context_file`, `context_file`, `source_target_dir`, or `project_name` fields. Use the variable values exactly as they are passed.
+2. **ABSOLUTE PYDANTIC SCHEMA ALIGNMENT:** Your final generated JSON object MUST perfectly satisfy the structural schema parameters of the target enterprise contract. You are STRICTLY BANNED from omitting, renaming, formatting, or stripping out key elements (specifically `phase_id`, `phase_name`, `phase_description`, `project_name`, `global_context_file`, `source_target_dir`, and `days`).
+3. **ABSOLUTE NO EMPTY TAGS POLICY & STRING SANITIZATION:** You are STRICTLY BANNED from leaving the "targeted_tags" array empty `[]` or null for any sub-task that implements functional requirements or data schemas. You MUST scan the source Markdown sequentially sub-task by sub-task. For each sub-task node, locate the hidden technical container block delimited between `<!--START_TAGS-->` and `<!--END_TAGS-->` contained exclusively within that sub-task section scope. Extract all raw tag token codes inside, strip away all inline markdown formatting characters—specifically backticks (`` ` ``)—and any leading/trailing whitespaces, then populate them as clean separate string elements inside the "targeted_tags" array field of EACH sub-task object node.
+4. **NO TAG BUNDLING:** Every tag must be its own array node (e.g., `"targeted_tags": ["[REQ-001]", "[DAT-002]"]`). You are strictly forbidden from combining multiple tags into a single string element.
+5. **STRICT CONTENT PURITY & REJECT CONVERSATION:** Output ONLY the pure raw executable JSON string matching the required schema. Response must start exactly with the character `{` and end exactly with the character `}`. Banned from including thinking processes, chain-of-thought blocks (`<think>` tags), conversational filler texts, introductions, wrapping inside markdown codeblocks (no triple backticks wrapping), or post-generation notes. Any token outside the raw JSON object boundary triggers an immediate execution pipeline crash.
+
+# Raw Response / Exception:
+
+```json
+Error code: 404 - {'error': 'The free period of this model ended. Please use kilo-auto/balanced for affordable inference or kilo-auto/free for limited free inference.', 'error_type': 'discontinued_free_model', 'message': 'The free period of this model ended. Please use kilo-auto/balanced for affordable inference or kilo-auto/free for limited free inference.'}: ['Traceback (most recent call last):
+', '  File "/home/runner/work/enterprise-it-ai/enterprise-it-ai/sources/agents/architect-blueprint/block_json.py", line 301, in convert_phases_to_json
+    response = client.beta.chat.completions.parse(
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+', '  File "/opt/hostedtoolcache/Python/3.11.15/x64/lib/python3.11/site-packages/openai/resources/chat/completions/completions.py", line 193, in parse
+    return self._post(
+           ^^^^^^^^^^^
+', '  File "/opt/hostedtoolcache/Python/3.11.15/x64/lib/python3.11/site-packages/openai/_base_client.py", line 1375, in post
+    return cast(ResponseT, self.request(cast_to, opts, stream=stream, stream_cls=stream_cls))
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+', '  File "/opt/hostedtoolcache/Python/3.11.15/x64/lib/python3.11/site-packages/openai/_base_client.py", line 1148, in request
+    raise self._make_status_error_from_response(err.response) from None
+', "openai.NotFoundError: Error code: 404 - {'error': 'The free period of this model ended. Please use kilo-auto/balanced for affordable inference or kilo-auto/free for limited free inference.', 'error_type': 'discontinued_free_model', 'message': 'The free period of this model ended. Please use kilo-auto/balanced for affordable inference or kilo-auto/free for limited free inference.'}
+"]
+```
+
+# AI Model: stepfun/step-3.5-flash:free - Phase 1 STEPS - Prompt:
+
+Analyze the attached Phase 1 Context Markdown content.
+
+Extract and translate ALL daily steps, checklists, and agent tasks from the entire document.
+
+
+## 🔒 AGENT ATOMICITY, TASK ID FORMAT & COMPONENT MANDATES (ABSOLUTE):
+- **STRICT TASK ID ALIGNMENT BLUEPRINT:** You MUST strictly generate the "id" field string for every single sub-task using the exact sequential formatting blueprint: `D<day_num>_ST<task_index>` (e.g., `D1_ST1`, `D1_ST2`, `D2_ST1`).
+- **STRICT AGENT ROLE LITERAL VALUES:** The "agent" field inside the JSON sub-task object MUST strictly enforce a capitalized first letter and lowercase subsequent letters pattern matching the exact tokens: 'Coder' | 'Tester' | 'Reviewer' | 'Doc' | 'Docker' | 'Gcp' | 'Gke'. Any other values or lowercase blocks (e.g., NO "coder") are strictly banned.
+- **NO ZERO-COMPONENT TASKS (ABSOLUTE HARD LIMIT):** You are STRICTLY BANNED from generating any sub-task object where the 'components' array is empty `[]`, null, or missing. If an Agent does not have any physical file paths to create, modify, or document, you MUST NOT generate that sub-task object node.
+- **FALLBACK COMPONENT RULE:** If a day has technical descriptions but lacks physical file paths, assign the task to "Doc" agent and populate 'components' with exactly the value of: ".ai/.plan/.context/phase-1.context.blueprint.md".
+- **STRICT AGENT ROLE SEGREGATION (ANTI-AGGREGATION):** If a workflow file involves multiple actions by different personas on the same calendar day, you MUST split this workflow into completely separate, sequential task objects inside the 'sub_tasks' array.
+- **HIGH-DENSITY TECHNICAL SPECIFICATION:** The 'task' field MUST contain an exhaustive, granular engineering instruction. If the sub-task involves an API route, integration endpoint, database query, or message block, you MUST explicitly inline the complete technical contract (e.g., Request/Response Payload Schemas, Data Types, Error Status Codes, or Queue names) directly inside this string. Vague high-level bullet summaries are forbidden.
+- **WORKSPACE PREFIX RULE & MULTI-LANGUAGE TEST EXCEPTION:** Every path in 'components' array MUST strictly begin with `./sources/`. 
+  * *CRITICAL EXCEPTION:* If the first parameter before the semi-colon character in a tester task is the literal string token `INTEGRATION_SCOPE`, you MUST leave that token completely unmodified. Do NOT append any path prefix to it (e.g., `"components": ["INTEGRATION_SCOPE;./sources/frontend/tests/auth.spec.ts"]`).
+
+## 🛠️ MANDATORY TOP-LEVEL FIELD VALUES INJECTION & ANCHOR PARSING (STRICT FIDELITY):
+You MUST dynamically populate the top-level keys of the JSON object using EXACT raw variable values without any modifications, or parse them directly from the primary Markdown header HTML comments:
+- **`phase_id`**: 1
+- **`phase_name`**: [Locate the primary Markdown title header line, extract the clean technical string text located exactly between the hidden HTML delimiters `<!--PHASE_NAME_START-->` and `<!--PHASE_NAME_END-->` without any alterations or translations]
+- **`phase_description`**: [Locate the primary Markdown title header line, extract the exact translated phase description text that follows after the literal marker `| Description:` or its translated equivalent]
+- **`project_name`**: "membership-hub"
+- **`global_context_file`**: ".ai/.context/membership-hub.global.blueprint.md"
+- **`source_target_dir`**: "sources/"
+
+#### 7. Context Fields Integration Mandate
+- For each day object inside the array, set 'day' to its calculated integer value, set 'context_file' to exact string ".ai/.plan/.context/phase-1.context.blueprint.md", and **set 'context_section' to the exact raw string value of the entire primary Day Header extracted from the source Markdown context text** (e.g., `"context_section": "DAY 1: Multi-Tenant Inception Schema & Flyway Migration Setup"`).
+
+#### 8. CHRONOLOGICAL TIMELINE SEQUENCING MANDATE (ABSOLUTE):
+#### 8. CHRONOLOGICAL TIMELINE SEQUENCING MANDATE (ABSOLUTE):
+
+## SYSTEM CRITICAL BOUNDARY: FLAT CONFIGURATION IS ACTIVE (is_chunked is FALSE)
+- Regardless of the actual day numbers documented in the source Markdown content (e.g., even if the text states "DAY 4", "DAY 5"), you MUST completely reset the timeline sequence internally so that the first operational day inside this Phase always starts from integer 1. Progression follows sequentially as 2, 3, 4, etc. 
+- Map the first targeted day to `"day": 1`, set 'context_file' to ".ai/.plan/.context/phase-1.context.blueprint.md", and strictly set 'context_section' to the exact raw primary header line of the first day parsed from the text. Incremental days follow this relative baseline.
+
+
+## 🛑 MANDATORY STRUCTURE ENFORCEMENT FOR TRACEABILITY TAGS VIA HTML ANCHORS (CRITICAL):
+- For each sub-task block, locate the hidden technical container bounds delimited strictly between `<!--START_TAGS-->` and `<!--END_TAGS-->`. Extract all individual inherited Tag IDs from inside that container, completely purge all markdown backticks (`` ` ``) and padding spaces, and populate them as clean individual string elements inside the "targeted_tags" array field (e.g., `"targeted_tags": ["[REQ-001]", "[DAT-005]"]`).
+- You are STRICTLY BANNED from leaving the "targeted_tags" array empty `[]` or null. Every single tag token must be its own separated array element string.
+
+You must conform strictly to your required JSON Schema layout design structure:
+{
+  "$defs": {
+    "DailyStep": {
+      "properties": {
+        "day": {
+          "description": "Timeline iteration day inside this isolated phase.",
+          "title": "Day",
+          "type": "integer"
+        },
+        "context_file": {
+          "description": "The phase context Markdown file for closure on this day.",
+          "title": "Context File",
+          "type": "string"
+        },
+        "context_section": {
+          "description": "The day targeted for closure on this day.",
+          "title": "Context Section",
+          "type": "string"
+        },
+        "sub_tasks": {
+          "description": "Array of isolated micro-tasks assigned to sub-agents.",
+          "items": {
+            "$ref": "##/$defs/SubAgentTask"
+          },
+          "title": "Sub Tasks",
+          "type": "array"
+        }
+      },
+      "required": [
+        "day",
+        "context_file",
+        "context_section",
+        "sub_tasks"
+      ],
+      "title": "DailyStep",
+      "type": "object"
+    },
+    "SubAgentTask": {
+      "properties": {
+        "id": {
+          "description": "Sub-Task identity of Task that sub-agent role executing.",
+          "title": "Id",
+          "type": "string"
+        },
+        "agent": {
+          "description": "Target sub-agent role executing the task.",
+          "title": "Agent",
+          "type": "string"
+        },
+        "desc": {
+          "description": "Literal, low-level technical step assigned to the agent.",
+          "title": "Desc",
+          "type": "string"
+        },
+        "targeted_tags": {
+          "description": "Flat string array of exact inherited BA Tag IDs that this specific sub-task implements or verifies (e.g. ['[REQ-001]', '[ARC-002]']). MUST match the raw requirements 1:1.",
+          "items": {
+            "type": "string"
+          },
+          "title": "Targeted Tags",
+          "type": "array"
+        },
+        "components": {
+          "description": "Flat array of physical localized file paths or scripts modified or targeted by this single task. Return an empty array [] if no files are involved.",
+          "items": {
+            "type": "string"
+          },
+          "title": "Components",
+          "type": "array"
+        }
+      },
+      "required": [
+        "id",
+        "agent",
+        "desc"
+      ],
+      "title": "SubAgentTask",
+      "type": "object"
+    }
+  },
+  "properties": {
+    "phase_id": {
+      "description": "Target phase tracker index.",
+      "title": "Phase Id",
+      "type": "integer"
+    },
+    "phase_name": {
+      "description": "Target phase tracker name.",
+      "title": "Phase Name",
+      "type": "string"
+    },
+    "phase_description": {
+      "description": "Target phase description.",
+      "title": "Phase Description",
+      "type": "string"
+    },
+    "project_name": {
+      "description": "Target project tracker name.",
+      "title": "Project Name",
+      "type": "string"
+    },
+    "global_context_file": {
+      "description": "Project global context Markdown file for closure.",
+      "title": "Global Context File",
+      "type": "string"
+    },
+    "source_target_dir": {
+      "description": "Project sources folder path for closure.",
+      "title": "Source Target Dir",
+      "type": "string"
+    },
+    "days": {
+      "description": "Day-by-day engineering tracking steps.",
+      "items": {
+        "$ref": "##/$defs/DailyStep"
+      },
+      "title": "Days",
+      "type": "array"
+    }
+  },
+  "required": [
+    "phase_id",
+    "phase_name",
+    "phase_description",
+    "project_name",
+    "global_context_file",
+    "source_target_dir",
+    "days"
+  ],
+  "title": "PhaseStepsPlan",
+  "type": "object"
+}
+
+--- PHASE 1 CONTEXT MARKDOWN ---
+## Giai đoạn 1: <!--PHASE_NAME_START-->user_core_services<!--PHASE_NAME_END--> | Mô tả: Triển khai các dịch vụ cốt lõi quản lý người dùng bao gồm đăng ký, xác thực xã hội, gán vai trò, schema cơ sở dữ liệu và logging kiểm toán bảo mật
+
+#### 📊 Kiểm soát tài liệu
+
+| Mục | Chi tiết |
+| :--- | :--- |
+| **ID Blueprint** | ARCH-20260803053505 |
+| **Tên dự án** | membership-hub |
+| **Giai đoạn** | 1 |
+| **Tên kỹ thuật giai đoạn** | <!--PHASE_NAME_START-->user_core_services<!--PHASE_NAME_END--> |
+| **Mô tả** | Triển khai các dịch vụ cốt lõi quản lý người dùng bao gồm đăng ký, xác thực xã hội, gán vai trò, schema cơ sở dữ liệu và logging kiểm toán bảo mật |
+| **Phiên bản** | 1.0 (Baseline) |
+| **Ngày/Giờ** | 2026/08/03 05:35:05 |
+| **Tác giả** | Enterprise System Architect (SA Agent) |
+| **Phê duyệt** | Pending Technical Governance Review |
+
+#### 1. Phạm vi hoạt động và mục tiêu giai đoạn
+
+Giai đoạn này tập trung vào việc xây dựng nền tảng cốt lõi cho hệ thống quản lý người dùng, bao gồm:
+
+- Triển khai schema cơ sở dữ liệu cho bảng Users và Roles với các ràng buộc toàn vẹn dữ liệu
+- Xây dựng dịch vụ đăng ký người dùng với xác thực email/mật khẩu và hỗ trợ OAuth2 cho các nhà cung cấp xã hội (Firebase, Google, Facebook)
+- Triển khai cơ chế phân quyền RBAC với khả năng gán và thay đổi vai trò người dùng
+- Thiết lập hệ thống logging kiểm toán đáp ứng các tiêu chuẩn bảo mật doanh nghiệp
+- Triển khai xử lý ngoại lệ chi tiết cho validation đầu vào và xung đột dữ liệu
+
+#### 2. Phạm vi kỹ thuật và ranh giới thư mục được phép
+
+**Thư mục và tệp được phép:**
+- `./sources/backend.membershiphub.user/users.sql` - DDL schema cho bảng Users
+- `./sources/backend.membershiphub.user/roles.sql` - DDL schema cho bảng Roles  
+- `./sources/backend.membershiphub.user/user-service.java` - Dịch vụ chính quản lý người dùng
+
+**Endpoint API:**
+- `POST /api/v1/auth/register` - Đăng ký người dùng mới
+- `POST /api/v1/auth/social` - Xác thực qua nhà cung cấp xã hội
+- `PUT /api/v1/users/{userId}/role` - Cập nhật vai trò người dùng (chỉ System Admin)
+
+#### 3. Chỉ đạo chức năng cho Sub-Agent chuyên dụng
+
+**Coder:** Triển khai mã nguồn Java/Quarkus với tuân thủ SOLID, sử dụng BCrypt cho mã hóa mật khẩu, JWT với access token 15 phút và refresh token 7 ngày, áp dụng @Valid cho validation và @Transactional cho các thao tác ghi.
+
+**Tester:** Xây dựng bộ kiểm thử JUnit 5 với độ phủ mã ≥85%, sử dụng Mock cho các dependency, kiểm thử happy path và các scenario lỗi validation.
+
+**Reviewer:** Thực hiện phân tích tĩnh mã nguồn, kiểm tra tuân thủ OWASP Top 10, đảm bảo không có lỗ hổng SQL injection hoặc XSS.
+
+**Doc:** Biên soạn tài liệu kỹ thuật đầy đủ bao gồm API documentation với OpenAPI, schema documentation và hướng dẫn triển khai.
+
+#### 4. Định nghĩa hoàn thành (DoD) cho giai đoạn
+
+- ✅ 100% các requirement [REQ-001], [REQ-002], [REQ-003] được triển khai đầy đủ
+- ✅ Schema database [DAT-001] được tạo thành công với tất cả ràng buộc
+- ✅ Luồng xác thực [ARC-006] hoạt động với OAuth2 và JWT
+- ✅ Xử lý ngoại lệ [EXC-004] cho validation đầu vào
+- ✅ Tuân thủ các tiêu chuẩn bảo mật [NFR-001], [NFR-003], [NFR-006]
+- ✅ Độ phủ kiểm thử ≥85% cho tất cả các dịch vụ
+- ✅ 100% các Tag ID được ánh xạ và kiểm tra
+
+#### 5. NHẬT KÝ THỰC THI KIẾN TRÚC THEO NGÀY
+
+###### NGÀY 1: TRIỂN KHAI DỊCH VỤ ĐĂNG KÝ NGƯỜI DÙNG VÀ API XÁC THỰC XÃ HỘI
+
+######## SUB-TASK 1.1: Triển khai schema cơ sở dữ liệu Users và Roles
+########## Sub-Agent được chỉ định: Coder
+########## Các thành phần mục tiêu và yêu cầu kỹ thuật:
+* **Đường dẫn mục tiêu:** `./sources/backend.membershiphub.user/users.sql`, `./sources/backend.membershiphub.user/roles.sql`
+* **Các thẻ truy xuất nguồn gốc:** <!--START_TAGS-->[DAT-001]<!--END_TAGS-->
+
+######## SUB-TASK 1.2: Triển khai UserService với phương thức register và socialAuthenticate
+########## Sub-Agent được chỉ định: Coder
+########## Các thành phần mục tiêu và yêu cầu kỹ thuật:
+* **Đường dẫn mục tiêu:** `./sources/backend.membershiphub.user/user-service.java`
+* **Các thẻ truy xuất nguồn gốc:** <!--START_TAGS-->[REQ-001], [REQ-002], [ARC-006], [EXC-004], [NFR-001], [NFR-003], [NFR-006]<!--END_TAGS-->
+
+###### NGÀY 2: VIẾT BỘ KIỂM TRA ĐƠN VỊ VÀ TÍCH HỢP CHO CÁC CHỨC NĂNG NGƯỜI DÙNG
+
+######## SUB-TASK 2.1: Kiểm thử đơn vị cho các phương thức register và socialAuthenticate
+########## Sub-Agent được chỉ định: Tester
+########## Các thành phần mục tiêu và yêu cầu kỹ thuật:
+* **Đường dẫn mục tiêu:** `./sources/backend.membershiphub.user/user-service.java;./sources/backend.membershiphub.user/userservice-test.java`
+* **Các thẻ truy xuất nguồn gốc:** <!--START_TAGS-->[REQ-001], [REQ-002], [DAT-001], [EXC-004]<!--END_TAGS-->
+
+######## SUB-TASK 2.2: Kiểm thử tích hợp cho API endpoints
+########## Sub-Agent được chỉ định: Tester
+########## Các thành phần mục tiêu và yêu cầu kỹ thuật:
+* **Đường dẫn mục tiêu:** `./sources/backend.membershiphub.user/user-service.java;./sources/backend.membershiphub.user/user-controller-test.java`
+* **Các thẻ truy xuất nguồn gốc:** <!--START_TAGS-->[REQ-001], [REQ-002], [ARC-006], [EXC-004]<!--END_TAGS-->
+------------------------------------------
+
+# System Instruction
+
+You are a high-performance Data Ingestion and Transformation Engine. Your sole objective is to parse the Phase Context Markdown text and convert it into a perfectly valid, parseable JSON object matching the requested schema framework.
+
+# YOUR CRITICAL OPERATIONAL MANDATES (ZERO LOOPHOLES):
+1. **STRICT VARIABLE FIDELITY & NO PREFIXES:** You MUST use the exact raw values provided in the template variables for file paths and project names. You are STRICTLY BANNED from appending, prepending, or injecting any custom folders or prefixes like "sources/" to the `global_context_file`, `context_file`, `source_target_dir`, or `project_name` fields. Use the variable values exactly as they are passed.
+2. **ABSOLUTE PYDANTIC SCHEMA ALIGNMENT:** Your final generated JSON object MUST perfectly satisfy the structural schema parameters of the target enterprise contract. You are STRICTLY BANNED from omitting, renaming, formatting, or stripping out key elements (specifically `phase_id`, `phase_name`, `phase_description`, `project_name`, `global_context_file`, `source_target_dir`, and `days`).
+3. **ABSOLUTE NO EMPTY TAGS POLICY & STRING SANITIZATION:** You are STRICTLY BANNED from leaving the "targeted_tags" array empty `[]` or null for any sub-task that implements functional requirements or data schemas. You MUST scan the source Markdown sequentially sub-task by sub-task. For each sub-task node, locate the hidden technical container block delimited between `<!--START_TAGS-->` and `<!--END_TAGS-->` contained exclusively within that sub-task section scope. Extract all raw tag token codes inside, strip away all inline markdown formatting characters—specifically backticks (`` ` ``)—and any leading/trailing whitespaces, then populate them as clean separate string elements inside the "targeted_tags" array field of EACH sub-task object node.
+4. **NO TAG BUNDLING:** Every tag must be its own array node (e.g., `"targeted_tags": ["[REQ-001]", "[DAT-002]"]`). You are strictly forbidden from combining multiple tags into a single string element.
+5. **STRICT CONTENT PURITY & REJECT CONVERSATION:** Output ONLY the pure raw executable JSON string matching the required schema. Response must start exactly with the character `{` and end exactly with the character `}`. Banned from including thinking processes, chain-of-thought blocks (`<think>` tags), conversational filler texts, introductions, wrapping inside markdown codeblocks (no triple backticks wrapping), or post-generation notes. Any token outside the raw JSON object boundary triggers an immediate execution pipeline crash.
+
+# Raw Response / Exception:
+
+```json
+Error code: 404 - {'error': 'The free period of this model ended. Please use kilo-auto/balanced for affordable inference or kilo-auto/free for limited free inference.', 'error_type': 'discontinued_free_model', 'message': 'The free period of this model ended. Please use kilo-auto/balanced for affordable inference or kilo-auto/free for limited free inference.'}: ['Traceback (most recent call last):
+', '  File "/home/runner/work/enterprise-it-ai/enterprise-it-ai/sources/agents/architect-blueprint/block_json.py", line 301, in convert_phases_to_json
+    response = client.beta.chat.completions.parse(
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+', '  File "/opt/hostedtoolcache/Python/3.11.15/x64/lib/python3.11/site-packages/openai/resources/chat/completions/completions.py", line 193, in parse
+    return self._post(
+           ^^^^^^^^^^^
+', '  File "/opt/hostedtoolcache/Python/3.11.15/x64/lib/python3.11/site-packages/openai/_base_client.py", line 1375, in post
+    return cast(ResponseT, self.request(cast_to, opts, stream=stream, stream_cls=stream_cls))
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+', '  File "/opt/hostedtoolcache/Python/3.11.15/x64/lib/python3.11/site-packages/openai/_base_client.py", line 1148, in request
+    raise self._make_status_error_from_response(err.response) from None
+', "openai.NotFoundError: Error code: 404 - {'error': 'The free period of this model ended. Please use kilo-auto/balanced for affordable inference or kilo-auto/free for limited free inference.', 'error_type': 'discontinued_free_model', 'message': 'The free period of this model ended. Please use kilo-auto/balanced for affordable inference or kilo-auto/free for limited free inference.'}
+"]
+```
+
+# AI Model: command-r-plus - Phase 1 STEPS - Prompt:
+
+Analyze the attached Phase 1 Context Markdown content.
+
+Extract and translate ALL daily steps, checklists, and agent tasks from the entire document.
+
+
+## 🔒 AGENT ATOMICITY, TASK ID FORMAT & COMPONENT MANDATES (ABSOLUTE):
+- **STRICT TASK ID ALIGNMENT BLUEPRINT:** You MUST strictly generate the "id" field string for every single sub-task using the exact sequential formatting blueprint: `D<day_num>_ST<task_index>` (e.g., `D1_ST1`, `D1_ST2`, `D2_ST1`).
+- **STRICT AGENT ROLE LITERAL VALUES:** The "agent" field inside the JSON sub-task object MUST strictly enforce a capitalized first letter and lowercase subsequent letters pattern matching the exact tokens: 'Coder' | 'Tester' | 'Reviewer' | 'Doc' | 'Docker' | 'Gcp' | 'Gke'. Any other values or lowercase blocks (e.g., NO "coder") are strictly banned.
+- **NO ZERO-COMPONENT TASKS (ABSOLUTE HARD LIMIT):** You are STRICTLY BANNED from generating any sub-task object where the 'components' array is empty `[]`, null, or missing. If an Agent does not have any physical file paths to create, modify, or document, you MUST NOT generate that sub-task object node.
+- **FALLBACK COMPONENT RULE:** If a day has technical descriptions but lacks physical file paths, assign the task to "Doc" agent and populate 'components' with exactly the value of: ".ai/.plan/.context/phase-1.context.blueprint.md".
+- **STRICT AGENT ROLE SEGREGATION (ANTI-AGGREGATION):** If a workflow file involves multiple actions by different personas on the same calendar day, you MUST split this workflow into completely separate, sequential task objects inside the 'sub_tasks' array.
+- **HIGH-DENSITY TECHNICAL SPECIFICATION:** The 'task' field MUST contain an exhaustive, granular engineering instruction. If the sub-task involves an API route, integration endpoint, database query, or message block, you MUST explicitly inline the complete technical contract (e.g., Request/Response Payload Schemas, Data Types, Error Status Codes, or Queue names) directly inside this string. Vague high-level bullet summaries are forbidden.
+- **WORKSPACE PREFIX RULE & MULTI-LANGUAGE TEST EXCEPTION:** Every path in 'components' array MUST strictly begin with `./sources/`. 
+  * *CRITICAL EXCEPTION:* If the first parameter before the semi-colon character in a tester task is the literal string token `INTEGRATION_SCOPE`, you MUST leave that token completely unmodified. Do NOT append any path prefix to it (e.g., `"components": ["INTEGRATION_SCOPE;./sources/frontend/tests/auth.spec.ts"]`).
+
+## 🛠️ MANDATORY TOP-LEVEL FIELD VALUES INJECTION & ANCHOR PARSING (STRICT FIDELITY):
+You MUST dynamically populate the top-level keys of the JSON object using EXACT raw variable values without any modifications, or parse them directly from the primary Markdown header HTML comments:
+- **`phase_id`**: 1
+- **`phase_name`**: [Locate the primary Markdown title header line, extract the clean technical string text located exactly between the hidden HTML delimiters `<!--PHASE_NAME_START-->` and `<!--PHASE_NAME_END-->` without any alterations or translations]
+- **`phase_description`**: [Locate the primary Markdown title header line, extract the exact translated phase description text that follows after the literal marker `| Description:` or its translated equivalent]
+- **`project_name`**: "membership-hub"
+- **`global_context_file`**: ".ai/.context/membership-hub.global.blueprint.md"
+- **`source_target_dir`**: "sources/"
+
+#### 7. Context Fields Integration Mandate
+- For each day object inside the array, set 'day' to its calculated integer value, set 'context_file' to exact string ".ai/.plan/.context/phase-1.context.blueprint.md", and **set 'context_section' to the exact raw string value of the entire primary Day Header extracted from the source Markdown context text** (e.g., `"context_section": "DAY 1: Multi-Tenant Inception Schema & Flyway Migration Setup"`).
+
+#### 8. CHRONOLOGICAL TIMELINE SEQUENCING MANDATE (ABSOLUTE):
+#### 8. CHRONOLOGICAL TIMELINE SEQUENCING MANDATE (ABSOLUTE):
+
+## SYSTEM CRITICAL BOUNDARY: FLAT CONFIGURATION IS ACTIVE (is_chunked is FALSE)
+- Regardless of the actual day numbers documented in the source Markdown content (e.g., even if the text states "DAY 4", "DAY 5"), you MUST completely reset the timeline sequence internally so that the first operational day inside this Phase always starts from integer 1. Progression follows sequentially as 2, 3, 4, etc. 
+- Map the first targeted day to `"day": 1`, set 'context_file' to ".ai/.plan/.context/phase-1.context.blueprint.md", and strictly set 'context_section' to the exact raw primary header line of the first day parsed from the text. Incremental days follow this relative baseline.
+
+
+## 🛑 MANDATORY STRUCTURE ENFORCEMENT FOR TRACEABILITY TAGS VIA HTML ANCHORS (CRITICAL):
+- For each sub-task block, locate the hidden technical container bounds delimited strictly between `<!--START_TAGS-->` and `<!--END_TAGS-->`. Extract all individual inherited Tag IDs from inside that container, completely purge all markdown backticks (`` ` ``) and padding spaces, and populate them as clean individual string elements inside the "targeted_tags" array field (e.g., `"targeted_tags": ["[REQ-001]", "[DAT-005]"]`).
+- You are STRICTLY BANNED from leaving the "targeted_tags" array empty `[]` or null. Every single tag token must be its own separated array element string.
+
+You must conform strictly to your required JSON Schema layout design structure:
+{
+  "$defs": {
+    "DailyStep": {
+      "properties": {
+        "day": {
+          "description": "Timeline iteration day inside this isolated phase.",
+          "title": "Day",
+          "type": "integer"
+        },
+        "context_file": {
+          "description": "The phase context Markdown file for closure on this day.",
+          "title": "Context File",
+          "type": "string"
+        },
+        "context_section": {
+          "description": "The day targeted for closure on this day.",
+          "title": "Context Section",
+          "type": "string"
+        },
+        "sub_tasks": {
+          "description": "Array of isolated micro-tasks assigned to sub-agents.",
+          "items": {
+            "$ref": "##/$defs/SubAgentTask"
+          },
+          "title": "Sub Tasks",
+          "type": "array"
+        }
+      },
+      "required": [
+        "day",
+        "context_file",
+        "context_section",
+        "sub_tasks"
+      ],
+      "title": "DailyStep",
+      "type": "object"
+    },
+    "SubAgentTask": {
+      "properties": {
+        "id": {
+          "description": "Sub-Task identity of Task that sub-agent role executing.",
+          "title": "Id",
+          "type": "string"
+        },
+        "agent": {
+          "description": "Target sub-agent role executing the task.",
+          "title": "Agent",
+          "type": "string"
+        },
+        "desc": {
+          "description": "Literal, low-level technical step assigned to the agent.",
+          "title": "Desc",
+          "type": "string"
+        },
+        "targeted_tags": {
+          "description": "Flat string array of exact inherited BA Tag IDs that this specific sub-task implements or verifies (e.g. ['[REQ-001]', '[ARC-002]']). MUST match the raw requirements 1:1.",
+          "items": {
+            "type": "string"
+          },
+          "title": "Targeted Tags",
+          "type": "array"
+        },
+        "components": {
+          "description": "Flat array of physical localized file paths or scripts modified or targeted by this single task. Return an empty array [] if no files are involved.",
+          "items": {
+            "type": "string"
+          },
+          "title": "Components",
+          "type": "array"
+        }
+      },
+      "required": [
+        "id",
+        "agent",
+        "desc"
+      ],
+      "title": "SubAgentTask",
+      "type": "object"
+    }
+  },
+  "properties": {
+    "phase_id": {
+      "description": "Target phase tracker index.",
+      "title": "Phase Id",
+      "type": "integer"
+    },
+    "phase_name": {
+      "description": "Target phase tracker name.",
+      "title": "Phase Name",
+      "type": "string"
+    },
+    "phase_description": {
+      "description": "Target phase description.",
+      "title": "Phase Description",
+      "type": "string"
+    },
+    "project_name": {
+      "description": "Target project tracker name.",
+      "title": "Project Name",
+      "type": "string"
+    },
+    "global_context_file": {
+      "description": "Project global context Markdown file for closure.",
+      "title": "Global Context File",
+      "type": "string"
+    },
+    "source_target_dir": {
+      "description": "Project sources folder path for closure.",
+      "title": "Source Target Dir",
+      "type": "string"
+    },
+    "days": {
+      "description": "Day-by-day engineering tracking steps.",
+      "items": {
+        "$ref": "##/$defs/DailyStep"
+      },
+      "title": "Days",
+      "type": "array"
+    }
+  },
+  "required": [
+    "phase_id",
+    "phase_name",
+    "phase_description",
+    "project_name",
+    "global_context_file",
+    "source_target_dir",
+    "days"
+  ],
+  "title": "PhaseStepsPlan",
+  "type": "object"
+}
+
+--- PHASE 1 CONTEXT MARKDOWN ---
+## Giai đoạn 1: <!--PHASE_NAME_START-->user_core_services<!--PHASE_NAME_END--> | Mô tả: Triển khai các dịch vụ cốt lõi quản lý người dùng bao gồm đăng ký, xác thực xã hội, gán vai trò, schema cơ sở dữ liệu và logging kiểm toán bảo mật
+
+#### 📊 Kiểm soát tài liệu
+
+| Mục | Chi tiết |
+| :--- | :--- |
+| **ID Blueprint** | ARCH-20260803053505 |
+| **Tên dự án** | membership-hub |
+| **Giai đoạn** | 1 |
+| **Tên kỹ thuật giai đoạn** | <!--PHASE_NAME_START-->user_core_services<!--PHASE_NAME_END--> |
+| **Mô tả** | Triển khai các dịch vụ cốt lõi quản lý người dùng bao gồm đăng ký, xác thực xã hội, gán vai trò, schema cơ sở dữ liệu và logging kiểm toán bảo mật |
+| **Phiên bản** | 1.0 (Baseline) |
+| **Ngày/Giờ** | 2026/08/03 05:35:05 |
+| **Tác giả** | Enterprise System Architect (SA Agent) |
+| **Phê duyệt** | Pending Technical Governance Review |
+
+#### 1. Phạm vi hoạt động và mục tiêu giai đoạn
+
+Giai đoạn này tập trung vào việc xây dựng nền tảng cốt lõi cho hệ thống quản lý người dùng, bao gồm:
+
+- Triển khai schema cơ sở dữ liệu cho bảng Users và Roles với các ràng buộc toàn vẹn dữ liệu
+- Xây dựng dịch vụ đăng ký người dùng với xác thực email/mật khẩu và hỗ trợ OAuth2 cho các nhà cung cấp xã hội (Firebase, Google, Facebook)
+- Triển khai cơ chế phân quyền RBAC với khả năng gán và thay đổi vai trò người dùng
+- Thiết lập hệ thống logging kiểm toán đáp ứng các tiêu chuẩn bảo mật doanh nghiệp
+- Triển khai xử lý ngoại lệ chi tiết cho validation đầu vào và xung đột dữ liệu
+
+#### 2. Phạm vi kỹ thuật và ranh giới thư mục được phép
+
+**Thư mục và tệp được phép:**
+- `./sources/backend.membershiphub.user/users.sql` - DDL schema cho bảng Users
+- `./sources/backend.membershiphub.user/roles.sql` - DDL schema cho bảng Roles  
+- `./sources/backend.membershiphub.user/user-service.java` - Dịch vụ chính quản lý người dùng
+
+**Endpoint API:**
+- `POST /api/v1/auth/register` - Đăng ký người dùng mới
+- `POST /api/v1/auth/social` - Xác thực qua nhà cung cấp xã hội
+- `PUT /api/v1/users/{userId}/role` - Cập nhật vai trò người dùng (chỉ System Admin)
+
+#### 3. Chỉ đạo chức năng cho Sub-Agent chuyên dụng
+
+**Coder:** Triển khai mã nguồn Java/Quarkus với tuân thủ SOLID, sử dụng BCrypt cho mã hóa mật khẩu, JWT với access token 15 phút và refresh token 7 ngày, áp dụng @Valid cho validation và @Transactional cho các thao tác ghi.
+
+**Tester:** Xây dựng bộ kiểm thử JUnit 5 với độ phủ mã ≥85%, sử dụng Mock cho các dependency, kiểm thử happy path và các scenario lỗi validation.
+
+**Reviewer:** Thực hiện phân tích tĩnh mã nguồn, kiểm tra tuân thủ OWASP Top 10, đảm bảo không có lỗ hổng SQL injection hoặc XSS.
+
+**Doc:** Biên soạn tài liệu kỹ thuật đầy đủ bao gồm API documentation với OpenAPI, schema documentation và hướng dẫn triển khai.
+
+#### 4. Định nghĩa hoàn thành (DoD) cho giai đoạn
+
+- ✅ 100% các requirement [REQ-001], [REQ-002], [REQ-003] được triển khai đầy đủ
+- ✅ Schema database [DAT-001] được tạo thành công với tất cả ràng buộc
+- ✅ Luồng xác thực [ARC-006] hoạt động với OAuth2 và JWT
+- ✅ Xử lý ngoại lệ [EXC-004] cho validation đầu vào
+- ✅ Tuân thủ các tiêu chuẩn bảo mật [NFR-001], [NFR-003], [NFR-006]
+- ✅ Độ phủ kiểm thử ≥85% cho tất cả các dịch vụ
+- ✅ 100% các Tag ID được ánh xạ và kiểm tra
+
+#### 5. NHẬT KÝ THỰC THI KIẾN TRÚC THEO NGÀY
+
+###### NGÀY 1: TRIỂN KHAI DỊCH VỤ ĐĂNG KÝ NGƯỜI DÙNG VÀ API XÁC THỰC XÃ HỘI
+
+######## SUB-TASK 1.1: Triển khai schema cơ sở dữ liệu Users và Roles
+########## Sub-Agent được chỉ định: Coder
+########## Các thành phần mục tiêu và yêu cầu kỹ thuật:
+* **Đường dẫn mục tiêu:** `./sources/backend.membershiphub.user/users.sql`, `./sources/backend.membershiphub.user/roles.sql`
+* **Các thẻ truy xuất nguồn gốc:** <!--START_TAGS-->[DAT-001]<!--END_TAGS-->
+
+######## SUB-TASK 1.2: Triển khai UserService với phương thức register và socialAuthenticate
+########## Sub-Agent được chỉ định: Coder
+########## Các thành phần mục tiêu và yêu cầu kỹ thuật:
+* **Đường dẫn mục tiêu:** `./sources/backend.membershiphub.user/user-service.java`
+* **Các thẻ truy xuất nguồn gốc:** <!--START_TAGS-->[REQ-001], [REQ-002], [ARC-006], [EXC-004], [NFR-001], [NFR-003], [NFR-006]<!--END_TAGS-->
+
+###### NGÀY 2: VIẾT BỘ KIỂM TRA ĐƠN VỊ VÀ TÍCH HỢP CHO CÁC CHỨC NĂNG NGƯỜI DÙNG
+
+######## SUB-TASK 2.1: Kiểm thử đơn vị cho các phương thức register và socialAuthenticate
+########## Sub-Agent được chỉ định: Tester
+########## Các thành phần mục tiêu và yêu cầu kỹ thuật:
+* **Đường dẫn mục tiêu:** `./sources/backend.membershiphub.user/user-service.java;./sources/backend.membershiphub.user/userservice-test.java`
+* **Các thẻ truy xuất nguồn gốc:** <!--START_TAGS-->[REQ-001], [REQ-002], [DAT-001], [EXC-004]<!--END_TAGS-->
+
+######## SUB-TASK 2.2: Kiểm thử tích hợp cho API endpoints
+########## Sub-Agent được chỉ định: Tester
+########## Các thành phần mục tiêu và yêu cầu kỹ thuật:
+* **Đường dẫn mục tiêu:** `./sources/backend.membershiphub.user/user-service.java;./sources/backend.membershiphub.user/user-controller-test.java`
+* **Các thẻ truy xuất nguồn gốc:** <!--START_TAGS-->[REQ-001], [REQ-002], [ARC-006], [EXC-004]<!--END_TAGS-->
+------------------------------------------
+
+# System Instruction
+
+You are a high-performance Data Ingestion and Transformation Engine. Your sole objective is to parse the Phase Context Markdown text and convert it into a perfectly valid, parseable JSON object matching the requested schema framework.
+
+# YOUR CRITICAL OPERATIONAL MANDATES (ZERO LOOPHOLES):
+1. **STRICT VARIABLE FIDELITY & NO PREFIXES:** You MUST use the exact raw values provided in the template variables for file paths and project names. You are STRICTLY BANNED from appending, prepending, or injecting any custom folders or prefixes like "sources/" to the `global_context_file`, `context_file`, `source_target_dir`, or `project_name` fields. Use the variable values exactly as they are passed.
+2. **ABSOLUTE PYDANTIC SCHEMA ALIGNMENT:** Your final generated JSON object MUST perfectly satisfy the structural schema parameters of the target enterprise contract. You are STRICTLY BANNED from omitting, renaming, formatting, or stripping out key elements (specifically `phase_id`, `phase_name`, `phase_description`, `project_name`, `global_context_file`, `source_target_dir`, and `days`).
+3. **ABSOLUTE NO EMPTY TAGS POLICY & STRING SANITIZATION:** You are STRICTLY BANNED from leaving the "targeted_tags" array empty `[]` or null for any sub-task that implements functional requirements or data schemas. You MUST scan the source Markdown sequentially sub-task by sub-task. For each sub-task node, locate the hidden technical container block delimited between `<!--START_TAGS-->` and `<!--END_TAGS-->` contained exclusively within that sub-task section scope. Extract all raw tag token codes inside, strip away all inline markdown formatting characters—specifically backticks (`` ` ``)—and any leading/trailing whitespaces, then populate them as clean separate string elements inside the "targeted_tags" array field of EACH sub-task object node.
+4. **NO TAG BUNDLING:** Every tag must be its own array node (e.g., `"targeted_tags": ["[REQ-001]", "[DAT-002]"]`). You are strictly forbidden from combining multiple tags into a single string element.
+5. **STRICT CONTENT PURITY & REJECT CONVERSATION:** Output ONLY the pure raw executable JSON string matching the required schema. Response must start exactly with the character `{` and end exactly with the character `}`. Banned from including thinking processes, chain-of-thought blocks (`<think>` tags), conversational filler texts, introductions, wrapping inside markdown codeblocks (no triple backticks wrapping), or post-generation notes. Any token outside the raw JSON object boundary triggers an immediate execution pipeline crash.
+
+# Raw Response / Exception:
+
+```json
+Error code: 404 - {'id': '68228bbe-c27e-4364-849d-0bbf2b6488fe', 'message': "model 'command-r-plus' was removed on September 15, 2025. See https://docs.cohere.com/docs/models#command for a list of models you can use instead."}: ['Traceback (most recent call last):
+', '  File "/home/runner/work/enterprise-it-ai/enterprise-it-ai/sources/agents/architect-blueprint/block_json.py", line 301, in convert_phases_to_json
+    response = client.beta.chat.completions.parse(
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+', '  File "/opt/hostedtoolcache/Python/3.11.15/x64/lib/python3.11/site-packages/openai/resources/chat/completions/completions.py", line 193, in parse
+    return self._post(
+           ^^^^^^^^^^^
+', '  File "/opt/hostedtoolcache/Python/3.11.15/x64/lib/python3.11/site-packages/openai/_base_client.py", line 1375, in post
+    return cast(ResponseT, self.request(cast_to, opts, stream=stream, stream_cls=stream_cls))
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+', '  File "/opt/hostedtoolcache/Python/3.11.15/x64/lib/python3.11/site-packages/openai/_base_client.py", line 1148, in request
+    raise self._make_status_error_from_response(err.response) from None
+', 'openai.NotFoundError: Error code: 404 - {\'id\': \'68228bbe-c27e-4364-849d-0bbf2b6488fe\', \'message\': "model \'command-r-plus\' was removed on September 15, 2025. See https://docs.cohere.com/docs/models#command for a list of models you can use instead."}
+']
+```
+
+# AI Model: command-r7b - Phase 1 STEPS - Prompt:
+
+Analyze the attached Phase 1 Context Markdown content.
+
+Extract and translate ALL daily steps, checklists, and agent tasks from the entire document.
+
+
+## 🔒 AGENT ATOMICITY, TASK ID FORMAT & COMPONENT MANDATES (ABSOLUTE):
+- **STRICT TASK ID ALIGNMENT BLUEPRINT:** You MUST strictly generate the "id" field string for every single sub-task using the exact sequential formatting blueprint: `D<day_num>_ST<task_index>` (e.g., `D1_ST1`, `D1_ST2`, `D2_ST1`).
+- **STRICT AGENT ROLE LITERAL VALUES:** The "agent" field inside the JSON sub-task object MUST strictly enforce a capitalized first letter and lowercase subsequent letters pattern matching the exact tokens: 'Coder' | 'Tester' | 'Reviewer' | 'Doc' | 'Docker' | 'Gcp' | 'Gke'. Any other values or lowercase blocks (e.g., NO "coder") are strictly banned.
+- **NO ZERO-COMPONENT TASKS (ABSOLUTE HARD LIMIT):** You are STRICTLY BANNED from generating any sub-task object where the 'components' array is empty `[]`, null, or missing. If an Agent does not have any physical file paths to create, modify, or document, you MUST NOT generate that sub-task object node.
+- **FALLBACK COMPONENT RULE:** If a day has technical descriptions but lacks physical file paths, assign the task to "Doc" agent and populate 'components' with exactly the value of: ".ai/.plan/.context/phase-1.context.blueprint.md".
+- **STRICT AGENT ROLE SEGREGATION (ANTI-AGGREGATION):** If a workflow file involves multiple actions by different personas on the same calendar day, you MUST split this workflow into completely separate, sequential task objects inside the 'sub_tasks' array.
+- **HIGH-DENSITY TECHNICAL SPECIFICATION:** The 'task' field MUST contain an exhaustive, granular engineering instruction. If the sub-task involves an API route, integration endpoint, database query, or message block, you MUST explicitly inline the complete technical contract (e.g., Request/Response Payload Schemas, Data Types, Error Status Codes, or Queue names) directly inside this string. Vague high-level bullet summaries are forbidden.
+- **WORKSPACE PREFIX RULE & MULTI-LANGUAGE TEST EXCEPTION:** Every path in 'components' array MUST strictly begin with `./sources/`. 
+  * *CRITICAL EXCEPTION:* If the first parameter before the semi-colon character in a tester task is the literal string token `INTEGRATION_SCOPE`, you MUST leave that token completely unmodified. Do NOT append any path prefix to it (e.g., `"components": ["INTEGRATION_SCOPE;./sources/frontend/tests/auth.spec.ts"]`).
+
+## 🛠️ MANDATORY TOP-LEVEL FIELD VALUES INJECTION & ANCHOR PARSING (STRICT FIDELITY):
+You MUST dynamically populate the top-level keys of the JSON object using EXACT raw variable values without any modifications, or parse them directly from the primary Markdown header HTML comments:
+- **`phase_id`**: 1
+- **`phase_name`**: [Locate the primary Markdown title header line, extract the clean technical string text located exactly between the hidden HTML delimiters `<!--PHASE_NAME_START-->` and `<!--PHASE_NAME_END-->` without any alterations or translations]
+- **`phase_description`**: [Locate the primary Markdown title header line, extract the exact translated phase description text that follows after the literal marker `| Description:` or its translated equivalent]
+- **`project_name`**: "membership-hub"
+- **`global_context_file`**: ".ai/.context/membership-hub.global.blueprint.md"
+- **`source_target_dir`**: "sources/"
+
+#### 7. Context Fields Integration Mandate
+- For each day object inside the array, set 'day' to its calculated integer value, set 'context_file' to exact string ".ai/.plan/.context/phase-1.context.blueprint.md", and **set 'context_section' to the exact raw string value of the entire primary Day Header extracted from the source Markdown context text** (e.g., `"context_section": "DAY 1: Multi-Tenant Inception Schema & Flyway Migration Setup"`).
+
+#### 8. CHRONOLOGICAL TIMELINE SEQUENCING MANDATE (ABSOLUTE):
+#### 8. CHRONOLOGICAL TIMELINE SEQUENCING MANDATE (ABSOLUTE):
+
+## SYSTEM CRITICAL BOUNDARY: FLAT CONFIGURATION IS ACTIVE (is_chunked is FALSE)
+- Regardless of the actual day numbers documented in the source Markdown content (e.g., even if the text states "DAY 4", "DAY 5"), you MUST completely reset the timeline sequence internally so that the first operational day inside this Phase always starts from integer 1. Progression follows sequentially as 2, 3, 4, etc. 
+- Map the first targeted day to `"day": 1`, set 'context_file' to ".ai/.plan/.context/phase-1.context.blueprint.md", and strictly set 'context_section' to the exact raw primary header line of the first day parsed from the text. Incremental days follow this relative baseline.
+
+
+## 🛑 MANDATORY STRUCTURE ENFORCEMENT FOR TRACEABILITY TAGS VIA HTML ANCHORS (CRITICAL):
+- For each sub-task block, locate the hidden technical container bounds delimited strictly between `<!--START_TAGS-->` and `<!--END_TAGS-->`. Extract all individual inherited Tag IDs from inside that container, completely purge all markdown backticks (`` ` ``) and padding spaces, and populate them as clean individual string elements inside the "targeted_tags" array field (e.g., `"targeted_tags": ["[REQ-001]", "[DAT-005]"]`).
+- You are STRICTLY BANNED from leaving the "targeted_tags" array empty `[]` or null. Every single tag token must be its own separated array element string.
+
+You must conform strictly to your required JSON Schema layout design structure:
+{
+  "$defs": {
+    "DailyStep": {
+      "properties": {
+        "day": {
+          "description": "Timeline iteration day inside this isolated phase.",
+          "title": "Day",
+          "type": "integer"
+        },
+        "context_file": {
+          "description": "The phase context Markdown file for closure on this day.",
+          "title": "Context File",
+          "type": "string"
+        },
+        "context_section": {
+          "description": "The day targeted for closure on this day.",
+          "title": "Context Section",
+          "type": "string"
+        },
+        "sub_tasks": {
+          "description": "Array of isolated micro-tasks assigned to sub-agents.",
+          "items": {
+            "$ref": "##/$defs/SubAgentTask"
+          },
+          "title": "Sub Tasks",
+          "type": "array"
+        }
+      },
+      "required": [
+        "day",
+        "context_file",
+        "context_section",
+        "sub_tasks"
+      ],
+      "title": "DailyStep",
+      "type": "object"
+    },
+    "SubAgentTask": {
+      "properties": {
+        "id": {
+          "description": "Sub-Task identity of Task that sub-agent role executing.",
+          "title": "Id",
+          "type": "string"
+        },
+        "agent": {
+          "description": "Target sub-agent role executing the task.",
+          "title": "Agent",
+          "type": "string"
+        },
+        "desc": {
+          "description": "Literal, low-level technical step assigned to the agent.",
+          "title": "Desc",
+          "type": "string"
+        },
+        "targeted_tags": {
+          "description": "Flat string array of exact inherited BA Tag IDs that this specific sub-task implements or verifies (e.g. ['[REQ-001]', '[ARC-002]']). MUST match the raw requirements 1:1.",
+          "items": {
+            "type": "string"
+          },
+          "title": "Targeted Tags",
+          "type": "array"
+        },
+        "components": {
+          "description": "Flat array of physical localized file paths or scripts modified or targeted by this single task. Return an empty array [] if no files are involved.",
+          "items": {
+            "type": "string"
+          },
+          "title": "Components",
+          "type": "array"
+        }
+      },
+      "required": [
+        "id",
+        "agent",
+        "desc"
+      ],
+      "title": "SubAgentTask",
+      "type": "object"
+    }
+  },
+  "properties": {
+    "phase_id": {
+      "description": "Target phase tracker index.",
+      "title": "Phase Id",
+      "type": "integer"
+    },
+    "phase_name": {
+      "description": "Target phase tracker name.",
+      "title": "Phase Name",
+      "type": "string"
+    },
+    "phase_description": {
+      "description": "Target phase description.",
+      "title": "Phase Description",
+      "type": "string"
+    },
+    "project_name": {
+      "description": "Target project tracker name.",
+      "title": "Project Name",
+      "type": "string"
+    },
+    "global_context_file": {
+      "description": "Project global context Markdown file for closure.",
+      "title": "Global Context File",
+      "type": "string"
+    },
+    "source_target_dir": {
+      "description": "Project sources folder path for closure.",
+      "title": "Source Target Dir",
+      "type": "string"
+    },
+    "days": {
+      "description": "Day-by-day engineering tracking steps.",
+      "items": {
+        "$ref": "##/$defs/DailyStep"
+      },
+      "title": "Days",
+      "type": "array"
+    }
+  },
+  "required": [
+    "phase_id",
+    "phase_name",
+    "phase_description",
+    "project_name",
+    "global_context_file",
+    "source_target_dir",
+    "days"
+  ],
+  "title": "PhaseStepsPlan",
+  "type": "object"
+}
+
+--- PHASE 1 CONTEXT MARKDOWN ---
+## Giai đoạn 1: <!--PHASE_NAME_START-->user_core_services<!--PHASE_NAME_END--> | Mô tả: Triển khai các dịch vụ cốt lõi quản lý người dùng bao gồm đăng ký, xác thực xã hội, gán vai trò, schema cơ sở dữ liệu và logging kiểm toán bảo mật
+
+#### 📊 Kiểm soát tài liệu
+
+| Mục | Chi tiết |
+| :--- | :--- |
+| **ID Blueprint** | ARCH-20260803053505 |
+| **Tên dự án** | membership-hub |
+| **Giai đoạn** | 1 |
+| **Tên kỹ thuật giai đoạn** | <!--PHASE_NAME_START-->user_core_services<!--PHASE_NAME_END--> |
+| **Mô tả** | Triển khai các dịch vụ cốt lõi quản lý người dùng bao gồm đăng ký, xác thực xã hội, gán vai trò, schema cơ sở dữ liệu và logging kiểm toán bảo mật |
+| **Phiên bản** | 1.0 (Baseline) |
+| **Ngày/Giờ** | 2026/08/03 05:35:05 |
+| **Tác giả** | Enterprise System Architect (SA Agent) |
+| **Phê duyệt** | Pending Technical Governance Review |
+
+#### 1. Phạm vi hoạt động và mục tiêu giai đoạn
+
+Giai đoạn này tập trung vào việc xây dựng nền tảng cốt lõi cho hệ thống quản lý người dùng, bao gồm:
+
+- Triển khai schema cơ sở dữ liệu cho bảng Users và Roles với các ràng buộc toàn vẹn dữ liệu
+- Xây dựng dịch vụ đăng ký người dùng với xác thực email/mật khẩu và hỗ trợ OAuth2 cho các nhà cung cấp xã hội (Firebase, Google, Facebook)
+- Triển khai cơ chế phân quyền RBAC với khả năng gán và thay đổi vai trò người dùng
+- Thiết lập hệ thống logging kiểm toán đáp ứng các tiêu chuẩn bảo mật doanh nghiệp
+- Triển khai xử lý ngoại lệ chi tiết cho validation đầu vào và xung đột dữ liệu
+
+#### 2. Phạm vi kỹ thuật và ranh giới thư mục được phép
+
+**Thư mục và tệp được phép:**
+- `./sources/backend.membershiphub.user/users.sql` - DDL schema cho bảng Users
+- `./sources/backend.membershiphub.user/roles.sql` - DDL schema cho bảng Roles  
+- `./sources/backend.membershiphub.user/user-service.java` - Dịch vụ chính quản lý người dùng
+
+**Endpoint API:**
+- `POST /api/v1/auth/register` - Đăng ký người dùng mới
+- `POST /api/v1/auth/social` - Xác thực qua nhà cung cấp xã hội
+- `PUT /api/v1/users/{userId}/role` - Cập nhật vai trò người dùng (chỉ System Admin)
+
+#### 3. Chỉ đạo chức năng cho Sub-Agent chuyên dụng
+
+**Coder:** Triển khai mã nguồn Java/Quarkus với tuân thủ SOLID, sử dụng BCrypt cho mã hóa mật khẩu, JWT với access token 15 phút và refresh token 7 ngày, áp dụng @Valid cho validation và @Transactional cho các thao tác ghi.
+
+**Tester:** Xây dựng bộ kiểm thử JUnit 5 với độ phủ mã ≥85%, sử dụng Mock cho các dependency, kiểm thử happy path và các scenario lỗi validation.
+
+**Reviewer:** Thực hiện phân tích tĩnh mã nguồn, kiểm tra tuân thủ OWASP Top 10, đảm bảo không có lỗ hổng SQL injection hoặc XSS.
+
+**Doc:** Biên soạn tài liệu kỹ thuật đầy đủ bao gồm API documentation với OpenAPI, schema documentation và hướng dẫn triển khai.
+
+#### 4. Định nghĩa hoàn thành (DoD) cho giai đoạn
+
+- ✅ 100% các requirement [REQ-001], [REQ-002], [REQ-003] được triển khai đầy đủ
+- ✅ Schema database [DAT-001] được tạo thành công với tất cả ràng buộc
+- ✅ Luồng xác thực [ARC-006] hoạt động với OAuth2 và JWT
+- ✅ Xử lý ngoại lệ [EXC-004] cho validation đầu vào
+- ✅ Tuân thủ các tiêu chuẩn bảo mật [NFR-001], [NFR-003], [NFR-006]
+- ✅ Độ phủ kiểm thử ≥85% cho tất cả các dịch vụ
+- ✅ 100% các Tag ID được ánh xạ và kiểm tra
+
+#### 5. NHẬT KÝ THỰC THI KIẾN TRÚC THEO NGÀY
+
+###### NGÀY 1: TRIỂN KHAI DỊCH VỤ ĐĂNG KÝ NGƯỜI DÙNG VÀ API XÁC THỰC XÃ HỘI
+
+######## SUB-TASK 1.1: Triển khai schema cơ sở dữ liệu Users và Roles
+########## Sub-Agent được chỉ định: Coder
+########## Các thành phần mục tiêu và yêu cầu kỹ thuật:
+* **Đường dẫn mục tiêu:** `./sources/backend.membershiphub.user/users.sql`, `./sources/backend.membershiphub.user/roles.sql`
+* **Các thẻ truy xuất nguồn gốc:** <!--START_TAGS-->[DAT-001]<!--END_TAGS-->
+
+######## SUB-TASK 1.2: Triển khai UserService với phương thức register và socialAuthenticate
+########## Sub-Agent được chỉ định: Coder
+########## Các thành phần mục tiêu và yêu cầu kỹ thuật:
+* **Đường dẫn mục tiêu:** `./sources/backend.membershiphub.user/user-service.java`
+* **Các thẻ truy xuất nguồn gốc:** <!--START_TAGS-->[REQ-001], [REQ-002], [ARC-006], [EXC-004], [NFR-001], [NFR-003], [NFR-006]<!--END_TAGS-->
+
+###### NGÀY 2: VIẾT BỘ KIỂM TRA ĐƠN VỊ VÀ TÍCH HỢP CHO CÁC CHỨC NĂNG NGƯỜI DÙNG
+
+######## SUB-TASK 2.1: Kiểm thử đơn vị cho các phương thức register và socialAuthenticate
+########## Sub-Agent được chỉ định: Tester
+########## Các thành phần mục tiêu và yêu cầu kỹ thuật:
+* **Đường dẫn mục tiêu:** `./sources/backend.membershiphub.user/user-service.java;./sources/backend.membershiphub.user/userservice-test.java`
+* **Các thẻ truy xuất nguồn gốc:** <!--START_TAGS-->[REQ-001], [REQ-002], [DAT-001], [EXC-004]<!--END_TAGS-->
+
+######## SUB-TASK 2.2: Kiểm thử tích hợp cho API endpoints
+########## Sub-Agent được chỉ định: Tester
+########## Các thành phần mục tiêu và yêu cầu kỹ thuật:
+* **Đường dẫn mục tiêu:** `./sources/backend.membershiphub.user/user-service.java;./sources/backend.membershiphub.user/user-controller-test.java`
+* **Các thẻ truy xuất nguồn gốc:** <!--START_TAGS-->[REQ-001], [REQ-002], [ARC-006], [EXC-004]<!--END_TAGS-->
+------------------------------------------
+
+# System Instruction
+
+You are a high-performance Data Ingestion and Transformation Engine. Your sole objective is to parse the Phase Context Markdown text and convert it into a perfectly valid, parseable JSON object matching the requested schema framework.
+
+# YOUR CRITICAL OPERATIONAL MANDATES (ZERO LOOPHOLES):
+1. **STRICT VARIABLE FIDELITY & NO PREFIXES:** You MUST use the exact raw values provided in the template variables for file paths and project names. You are STRICTLY BANNED from appending, prepending, or injecting any custom folders or prefixes like "sources/" to the `global_context_file`, `context_file`, `source_target_dir`, or `project_name` fields. Use the variable values exactly as they are passed.
+2. **ABSOLUTE PYDANTIC SCHEMA ALIGNMENT:** Your final generated JSON object MUST perfectly satisfy the structural schema parameters of the target enterprise contract. You are STRICTLY BANNED from omitting, renaming, formatting, or stripping out key elements (specifically `phase_id`, `phase_name`, `phase_description`, `project_name`, `global_context_file`, `source_target_dir`, and `days`).
+3. **ABSOLUTE NO EMPTY TAGS POLICY & STRING SANITIZATION:** You are STRICTLY BANNED from leaving the "targeted_tags" array empty `[]` or null for any sub-task that implements functional requirements or data schemas. You MUST scan the source Markdown sequentially sub-task by sub-task. For each sub-task node, locate the hidden technical container block delimited between `<!--START_TAGS-->` and `<!--END_TAGS-->` contained exclusively within that sub-task section scope. Extract all raw tag token codes inside, strip away all inline markdown formatting characters—specifically backticks (`` ` ``)—and any leading/trailing whitespaces, then populate them as clean separate string elements inside the "targeted_tags" array field of EACH sub-task object node.
+4. **NO TAG BUNDLING:** Every tag must be its own array node (e.g., `"targeted_tags": ["[REQ-001]", "[DAT-002]"]`). You are strictly forbidden from combining multiple tags into a single string element.
+5. **STRICT CONTENT PURITY & REJECT CONVERSATION:** Output ONLY the pure raw executable JSON string matching the required schema. Response must start exactly with the character `{` and end exactly with the character `}`. Banned from including thinking processes, chain-of-thought blocks (`<think>` tags), conversational filler texts, introductions, wrapping inside markdown codeblocks (no triple backticks wrapping), or post-generation notes. Any token outside the raw JSON object boundary triggers an immediate execution pipeline crash.
+
+# Raw Response / Exception:
+
+```json
+Error code: 404 - {'id': '31ac74c0-729d-41e3-a8f1-c2380899f335', 'message': "model 'command-r7b' not found, make sure the correct model ID was used and that you have access to the model."}: ['Traceback (most recent call last):
+', '  File "/home/runner/work/enterprise-it-ai/enterprise-it-ai/sources/agents/architect-blueprint/block_json.py", line 301, in convert_phases_to_json
+    response = client.beta.chat.completions.parse(
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+', '  File "/opt/hostedtoolcache/Python/3.11.15/x64/lib/python3.11/site-packages/openai/resources/chat/completions/completions.py", line 193, in parse
+    return self._post(
+           ^^^^^^^^^^^
+', '  File "/opt/hostedtoolcache/Python/3.11.15/x64/lib/python3.11/site-packages/openai/_base_client.py", line 1375, in post
+    return cast(ResponseT, self.request(cast_to, opts, stream=stream, stream_cls=stream_cls))
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+', '  File "/opt/hostedtoolcache/Python/3.11.15/x64/lib/python3.11/site-packages/openai/_base_client.py", line 1148, in request
+    raise self._make_status_error_from_response(err.response) from None
+', 'openai.NotFoundError: Error code: 404 - {\'id\': \'31ac74c0-729d-41e3-a8f1-c2380899f335\', \'message\': "model \'command-r7b\' not found, make sure the correct model ID was used and that you have access to the model."}
+']
+```
+
+# AI Model: @cf/meta/llama-3.3-70b-instruct-fp8-fast - Phase 1 STEPS - Prompt:
+
+Analyze the attached Phase 1 Context Markdown content.
+
+Extract and translate ALL daily steps, checklists, and agent tasks from the entire document.
+
+
+## 🔒 AGENT ATOMICITY, TASK ID FORMAT & COMPONENT MANDATES (ABSOLUTE):
+- **STRICT TASK ID ALIGNMENT BLUEPRINT:** You MUST strictly generate the "id" field string for every single sub-task using the exact sequential formatting blueprint: `D<day_num>_ST<task_index>` (e.g., `D1_ST1`, `D1_ST2`, `D2_ST1`).
+- **STRICT AGENT ROLE LITERAL VALUES:** The "agent" field inside the JSON sub-task object MUST strictly enforce a capitalized first letter and lowercase subsequent letters pattern matching the exact tokens: 'Coder' | 'Tester' | 'Reviewer' | 'Doc' | 'Docker' | 'Gcp' | 'Gke'. Any other values or lowercase blocks (e.g., NO "coder") are strictly banned.
+- **NO ZERO-COMPONENT TASKS (ABSOLUTE HARD LIMIT):** You are STRICTLY BANNED from generating any sub-task object where the 'components' array is empty `[]`, null, or missing. If an Agent does not have any physical file paths to create, modify, or document, you MUST NOT generate that sub-task object node.
+- **FALLBACK COMPONENT RULE:** If a day has technical descriptions but lacks physical file paths, assign the task to "Doc" agent and populate 'components' with exactly the value of: ".ai/.plan/.context/phase-1.context.blueprint.md".
+- **STRICT AGENT ROLE SEGREGATION (ANTI-AGGREGATION):** If a workflow file involves multiple actions by different personas on the same calendar day, you MUST split this workflow into completely separate, sequential task objects inside the 'sub_tasks' array.
+- **HIGH-DENSITY TECHNICAL SPECIFICATION:** The 'task' field MUST contain an exhaustive, granular engineering instruction. If the sub-task involves an API route, integration endpoint, database query, or message block, you MUST explicitly inline the complete technical contract (e.g., Request/Response Payload Schemas, Data Types, Error Status Codes, or Queue names) directly inside this string. Vague high-level bullet summaries are forbidden.
+- **WORKSPACE PREFIX RULE & MULTI-LANGUAGE TEST EXCEPTION:** Every path in 'components' array MUST strictly begin with `./sources/`. 
+  * *CRITICAL EXCEPTION:* If the first parameter before the semi-colon character in a tester task is the literal string token `INTEGRATION_SCOPE`, you MUST leave that token completely unmodified. Do NOT append any path prefix to it (e.g., `"components": ["INTEGRATION_SCOPE;./sources/frontend/tests/auth.spec.ts"]`).
+
+## 🛠️ MANDATORY TOP-LEVEL FIELD VALUES INJECTION & ANCHOR PARSING (STRICT FIDELITY):
+You MUST dynamically populate the top-level keys of the JSON object using EXACT raw variable values without any modifications, or parse them directly from the primary Markdown header HTML comments:
+- **`phase_id`**: 1
+- **`phase_name`**: [Locate the primary Markdown title header line, extract the clean technical string text located exactly between the hidden HTML delimiters `<!--PHASE_NAME_START-->` and `<!--PHASE_NAME_END-->` without any alterations or translations]
+- **`phase_description`**: [Locate the primary Markdown title header line, extract the exact translated phase description text that follows after the literal marker `| Description:` or its translated equivalent]
+- **`project_name`**: "membership-hub"
+- **`global_context_file`**: ".ai/.context/membership-hub.global.blueprint.md"
+- **`source_target_dir`**: "sources/"
+
+#### 7. Context Fields Integration Mandate
+- For each day object inside the array, set 'day' to its calculated integer value, set 'context_file' to exact string ".ai/.plan/.context/phase-1.context.blueprint.md", and **set 'context_section' to the exact raw string value of the entire primary Day Header extracted from the source Markdown context text** (e.g., `"context_section": "DAY 1: Multi-Tenant Inception Schema & Flyway Migration Setup"`).
+
+#### 8. CHRONOLOGICAL TIMELINE SEQUENCING MANDATE (ABSOLUTE):
+#### 8. CHRONOLOGICAL TIMELINE SEQUENCING MANDATE (ABSOLUTE):
+
+## SYSTEM CRITICAL BOUNDARY: FLAT CONFIGURATION IS ACTIVE (is_chunked is FALSE)
+- Regardless of the actual day numbers documented in the source Markdown content (e.g., even if the text states "DAY 4", "DAY 5"), you MUST completely reset the timeline sequence internally so that the first operational day inside this Phase always starts from integer 1. Progression follows sequentially as 2, 3, 4, etc. 
+- Map the first targeted day to `"day": 1`, set 'context_file' to ".ai/.plan/.context/phase-1.context.blueprint.md", and strictly set 'context_section' to the exact raw primary header line of the first day parsed from the text. Incremental days follow this relative baseline.
+
+
+## 🛑 MANDATORY STRUCTURE ENFORCEMENT FOR TRACEABILITY TAGS VIA HTML ANCHORS (CRITICAL):
+- For each sub-task block, locate the hidden technical container bounds delimited strictly between `<!--START_TAGS-->` and `<!--END_TAGS-->`. Extract all individual inherited Tag IDs from inside that container, completely purge all markdown backticks (`` ` ``) and padding spaces, and populate them as clean individual string elements inside the "targeted_tags" array field (e.g., `"targeted_tags": ["[REQ-001]", "[DAT-005]"]`).
+- You are STRICTLY BANNED from leaving the "targeted_tags" array empty `[]` or null. Every single tag token must be its own separated array element string.
+
+You must conform strictly to your required JSON Schema layout design structure:
+{
+  "$defs": {
+    "DailyStep": {
+      "properties": {
+        "day": {
+          "description": "Timeline iteration day inside this isolated phase.",
+          "title": "Day",
+          "type": "integer"
+        },
+        "context_file": {
+          "description": "The phase context Markdown file for closure on this day.",
+          "title": "Context File",
+          "type": "string"
+        },
+        "context_section": {
+          "description": "The day targeted for closure on this day.",
+          "title": "Context Section",
+          "type": "string"
+        },
+        "sub_tasks": {
+          "description": "Array of isolated micro-tasks assigned to sub-agents.",
+          "items": {
+            "$ref": "##/$defs/SubAgentTask"
+          },
+          "title": "Sub Tasks",
+          "type": "array"
+        }
+      },
+      "required": [
+        "day",
+        "context_file",
+        "context_section",
+        "sub_tasks"
+      ],
+      "title": "DailyStep",
+      "type": "object"
+    },
+    "SubAgentTask": {
+      "properties": {
+        "id": {
+          "description": "Sub-Task identity of Task that sub-agent role executing.",
+          "title": "Id",
+          "type": "string"
+        },
+        "agent": {
+          "description": "Target sub-agent role executing the task.",
+          "title": "Agent",
+          "type": "string"
+        },
+        "desc": {
+          "description": "Literal, low-level technical step assigned to the agent.",
+          "title": "Desc",
+          "type": "string"
+        },
+        "targeted_tags": {
+          "description": "Flat string array of exact inherited BA Tag IDs that this specific sub-task implements or verifies (e.g. ['[REQ-001]', '[ARC-002]']). MUST match the raw requirements 1:1.",
+          "items": {
+            "type": "string"
+          },
+          "title": "Targeted Tags",
+          "type": "array"
+        },
+        "components": {
+          "description": "Flat array of physical localized file paths or scripts modified or targeted by this single task. Return an empty array [] if no files are involved.",
+          "items": {
+            "type": "string"
+          },
+          "title": "Components",
+          "type": "array"
+        }
+      },
+      "required": [
+        "id",
+        "agent",
+        "desc"
+      ],
+      "title": "SubAgentTask",
+      "type": "object"
+    }
+  },
+  "properties": {
+    "phase_id": {
+      "description": "Target phase tracker index.",
+      "title": "Phase Id",
+      "type": "integer"
+    },
+    "phase_name": {
+      "description": "Target phase tracker name.",
+      "title": "Phase Name",
+      "type": "string"
+    },
+    "phase_description": {
+      "description": "Target phase description.",
+      "title": "Phase Description",
+      "type": "string"
+    },
+    "project_name": {
+      "description": "Target project tracker name.",
+      "title": "Project Name",
+      "type": "string"
+    },
+    "global_context_file": {
+      "description": "Project global context Markdown file for closure.",
+      "title": "Global Context File",
+      "type": "string"
+    },
+    "source_target_dir": {
+      "description": "Project sources folder path for closure.",
+      "title": "Source Target Dir",
+      "type": "string"
+    },
+    "days": {
+      "description": "Day-by-day engineering tracking steps.",
+      "items": {
+        "$ref": "##/$defs/DailyStep"
+      },
+      "title": "Days",
+      "type": "array"
+    }
+  },
+  "required": [
+    "phase_id",
+    "phase_name",
+    "phase_description",
+    "project_name",
+    "global_context_file",
+    "source_target_dir",
+    "days"
+  ],
+  "title": "PhaseStepsPlan",
+  "type": "object"
+}
+
+--- PHASE 1 CONTEXT MARKDOWN ---
+## Giai đoạn 1: <!--PHASE_NAME_START-->user_core_services<!--PHASE_NAME_END--> | Mô tả: Triển khai các dịch vụ cốt lõi quản lý người dùng bao gồm đăng ký, xác thực xã hội, gán vai trò, schema cơ sở dữ liệu và logging kiểm toán bảo mật
+
+#### 📊 Kiểm soát tài liệu
+
+| Mục | Chi tiết |
+| :--- | :--- |
+| **ID Blueprint** | ARCH-20260803053505 |
+| **Tên dự án** | membership-hub |
+| **Giai đoạn** | 1 |
+| **Tên kỹ thuật giai đoạn** | <!--PHASE_NAME_START-->user_core_services<!--PHASE_NAME_END--> |
+| **Mô tả** | Triển khai các dịch vụ cốt lõi quản lý người dùng bao gồm đăng ký, xác thực xã hội, gán vai trò, schema cơ sở dữ liệu và logging kiểm toán bảo mật |
+| **Phiên bản** | 1.0 (Baseline) |
+| **Ngày/Giờ** | 2026/08/03 05:35:05 |
+| **Tác giả** | Enterprise System Architect (SA Agent) |
+| **Phê duyệt** | Pending Technical Governance Review |
+
+#### 1. Phạm vi hoạt động và mục tiêu giai đoạn
+
+Giai đoạn này tập trung vào việc xây dựng nền tảng cốt lõi cho hệ thống quản lý người dùng, bao gồm:
+
+- Triển khai schema cơ sở dữ liệu cho bảng Users và Roles với các ràng buộc toàn vẹn dữ liệu
+- Xây dựng dịch vụ đăng ký người dùng với xác thực email/mật khẩu và hỗ trợ OAuth2 cho các nhà cung cấp xã hội (Firebase, Google, Facebook)
+- Triển khai cơ chế phân quyền RBAC với khả năng gán và thay đổi vai trò người dùng
+- Thiết lập hệ thống logging kiểm toán đáp ứng các tiêu chuẩn bảo mật doanh nghiệp
+- Triển khai xử lý ngoại lệ chi tiết cho validation đầu vào và xung đột dữ liệu
+
+#### 2. Phạm vi kỹ thuật và ranh giới thư mục được phép
+
+**Thư mục và tệp được phép:**
+- `./sources/backend.membershiphub.user/users.sql` - DDL schema cho bảng Users
+- `./sources/backend.membershiphub.user/roles.sql` - DDL schema cho bảng Roles  
+- `./sources/backend.membershiphub.user/user-service.java` - Dịch vụ chính quản lý người dùng
+
+**Endpoint API:**
+- `POST /api/v1/auth/register` - Đăng ký người dùng mới
+- `POST /api/v1/auth/social` - Xác thực qua nhà cung cấp xã hội
+- `PUT /api/v1/users/{userId}/role` - Cập nhật vai trò người dùng (chỉ System Admin)
+
+#### 3. Chỉ đạo chức năng cho Sub-Agent chuyên dụng
+
+**Coder:** Triển khai mã nguồn Java/Quarkus với tuân thủ SOLID, sử dụng BCrypt cho mã hóa mật khẩu, JWT với access token 15 phút và refresh token 7 ngày, áp dụng @Valid cho validation và @Transactional cho các thao tác ghi.
+
+**Tester:** Xây dựng bộ kiểm thử JUnit 5 với độ phủ mã ≥85%, sử dụng Mock cho các dependency, kiểm thử happy path và các scenario lỗi validation.
+
+**Reviewer:** Thực hiện phân tích tĩnh mã nguồn, kiểm tra tuân thủ OWASP Top 10, đảm bảo không có lỗ hổng SQL injection hoặc XSS.
+
+**Doc:** Biên soạn tài liệu kỹ thuật đầy đủ bao gồm API documentation với OpenAPI, schema documentation và hướng dẫn triển khai.
+
+#### 4. Định nghĩa hoàn thành (DoD) cho giai đoạn
+
+- ✅ 100% các requirement [REQ-001], [REQ-002], [REQ-003] được triển khai đầy đủ
+- ✅ Schema database [DAT-001] được tạo thành công với tất cả ràng buộc
+- ✅ Luồng xác thực [ARC-006] hoạt động với OAuth2 và JWT
+- ✅ Xử lý ngoại lệ [EXC-004] cho validation đầu vào
+- ✅ Tuân thủ các tiêu chuẩn bảo mật [NFR-001], [NFR-003], [NFR-006]
+- ✅ Độ phủ kiểm thử ≥85% cho tất cả các dịch vụ
+- ✅ 100% các Tag ID được ánh xạ và kiểm tra
+
+#### 5. NHẬT KÝ THỰC THI KIẾN TRÚC THEO NGÀY
+
+###### NGÀY 1: TRIỂN KHAI DỊCH VỤ ĐĂNG KÝ NGƯỜI DÙNG VÀ API XÁC THỰC XÃ HỘI
+
+######## SUB-TASK 1.1: Triển khai schema cơ sở dữ liệu Users và Roles
+########## Sub-Agent được chỉ định: Coder
+########## Các thành phần mục tiêu và yêu cầu kỹ thuật:
+* **Đường dẫn mục tiêu:** `./sources/backend.membershiphub.user/users.sql`, `./sources/backend.membershiphub.user/roles.sql`
+* **Các thẻ truy xuất nguồn gốc:** <!--START_TAGS-->[DAT-001]<!--END_TAGS-->
+
+######## SUB-TASK 1.2: Triển khai UserService với phương thức register và socialAuthenticate
+########## Sub-Agent được chỉ định: Coder
+########## Các thành phần mục tiêu và yêu cầu kỹ thuật:
+* **Đường dẫn mục tiêu:** `./sources/backend.membershiphub.user/user-service.java`
+* **Các thẻ truy xuất nguồn gốc:** <!--START_TAGS-->[REQ-001], [REQ-002], [ARC-006], [EXC-004], [NFR-001], [NFR-003], [NFR-006]<!--END_TAGS-->
+
+###### NGÀY 2: VIẾT BỘ KIỂM TRA ĐƠN VỊ VÀ TÍCH HỢP CHO CÁC CHỨC NĂNG NGƯỜI DÙNG
+
+######## SUB-TASK 2.1: Kiểm thử đơn vị cho các phương thức register và socialAuthenticate
+########## Sub-Agent được chỉ định: Tester
+########## Các thành phần mục tiêu và yêu cầu kỹ thuật:
+* **Đường dẫn mục tiêu:** `./sources/backend.membershiphub.user/user-service.java;./sources/backend.membershiphub.user/userservice-test.java`
+* **Các thẻ truy xuất nguồn gốc:** <!--START_TAGS-->[REQ-001], [REQ-002], [DAT-001], [EXC-004]<!--END_TAGS-->
+
+######## SUB-TASK 2.2: Kiểm thử tích hợp cho API endpoints
+########## Sub-Agent được chỉ định: Tester
+########## Các thành phần mục tiêu và yêu cầu kỹ thuật:
+* **Đường dẫn mục tiêu:** `./sources/backend.membershiphub.user/user-service.java;./sources/backend.membershiphub.user/user-controller-test.java`
+* **Các thẻ truy xuất nguồn gốc:** <!--START_TAGS-->[REQ-001], [REQ-002], [ARC-006], [EXC-004]<!--END_TAGS-->
+------------------------------------------
+
+# System Instruction
+
+<GLOBAL_GOVERNANCE_MATRIX>
+# ==============================================================================
+# MASTER ENTERPRISE GOVERNANCE GUARDRAILS MATRIX (GLOBAL TASK ENFORCEMENT)
+# ==============================================================================
+
+## 🌐 1. STRICT SEMANTIC INVARIANT LOCALIZATION & TRANSLATION RAILS
+- **MANDATORY RESOLUTION:** You MUST automatically translate and naturally render 100% of the entire generated output content—including all section headers, primary titles, data matrix labels, table structures, and explanatory text boundaries—into the exact requested target execution language specified by the system parameter variable: "🇻🇳 Vietnamese".
+- **ABSOLUTE TECH PROTECTION BOUNDARY:** You are STRICTLY BANNED from translating, changing, altering, or breaking any technical structural layers. You MUST preserve these elements natively in their pristine Technical English/Primitive code state:
+  * All markdown syntax operators (`#`, `##`, `| :--- |`, `-`, `*`).
+  * All unique Tracking Tag IDs and Technical Nodes (e.g., `[REQ-XXX]`, `[DAT-XXX]`, `[EXC-XXX]`, `[IDEA_X]`).
+  * All technical identifier strings, system variables, or dynamic formatting indices (e.g., `D1_ST1`).
+  * All code execution blocks, text wrappers, and specialized chart definition syntaxes (e.g., Mermaid.js graphs, structural layout configurations).
+  * 🚨 **STRICT CODE BLOCK FORMATTING LAW**: You are ABSOLUTELY FORBIDDEN from nesting or combining markdown code block ticks. When outputting a JSON payload, you MUST start exactly with a single line of triple backticks followed immediately by 'json' (i.e., ```json). Do NOT prepend or wrap it with ```text or any other outer text syntax. The block must open clean and close clean.
+
+## 🔒 2. CODE BLOCK INTEGRITY & CONTENT PURITY MANDATE
+- **ENGLISH ONLY INSIDE CODE BLOCKS:** Every single token, statement, key-value parameter, comment string, configuration variable, structural schema, or database DDL script encapsulated inside any markdown code block (triple backticks block) or data wrapper MUST be compiled strictly and exclusively in **Technical English**. 
+- **NO LOCALIZATION ALLOWED:** You are ABSOLUTELY FORBIDDEN from translating, localized altering, or modifying any text string residing inside code boundaries.
+
+## 🛑 3. ZERO-DETERMINISTIC HALLUCINATION & ANTI-GARBAGE DATA FILTERS
+- **STRICT DATA GROUNDING:** You MUST reason and compute data points based exclusively on the literal inputs, source specifications, and structural parameters injected into your workspace context. 
+- **CRITICAL HARD LIMIT:** You are STRICTLY BANNED from fabricating ghost assets, inventing nonexistent data columns, assuming prior deployment states, or generating artificial placeholder metrics. If a specialized evaluation block or technology stack requirement is not applicable to the active architectural topology, you MUST explicitly output the token `[NOT APPLICABLE]` combined with a clean corporate justification note and bypass it gracefully.
+
+## 🛡️ 4. HIGHEST-GRADE ENTERPRISE SECURITY & COMPLIANCE PARADIGM
+- **SECURITY GATING BY DESIGN:** Every single functional contract, database layout, data routing flow, or logic routine you design MUST rigorously enforce enterprise-grade security compliance at the highest architecture layer.
+- **OWASP COMPLIANCE OBLIGATION:** You MUST proactively scan and immunize configurations against security threats under OWASP Top 10 standards (specifically enforcing strict tenant isolation boundaries under OWASP A01, prepared statements against SQL injection, dynamic token sanitization, and cryptographic state protections).
+
+## 📋 5. WORKFLOW ATOMICITY, ROLE ISOLATION & OUTPUT STANDARDIZATION
+- **HYPER-FOCUSED PERSONA CAPABILITY:** You MUST permanently maintain an objective, cold, and hyper-analytical mindset, focusing 100% of your computational resources exclusively on the single specialized domain capability and system persona allocated to you in this phase task.
+- **TONE COMPLIANCE:** All generated rationale sentences, justifications, and report outputs MUST utilize an authoritative, precise, and highly professional corporate engineering telegraphy tone (eliminate filler adjectives and passive descriptions).
+- **ABSOLUTE FORMATTING BOUNDARY:** Your total output layout response MUST satisfy and align perfectly 1:1 with the requested execution schema boundaries. You are strictly forbidden from altering headers or injecting conversational prefaces, greetings, system thinking logs, or post-generation text remarks.
+
+## 🧮 6. DETERMINISTIC TRIPLE-DEEPEST CHECK VERIFICATION LOOP & PIPELINE
+- **MANDATORY EXECUTION PIPELINE:** Before emitting any text string or committing any data stream payload to the output buffer, you MUST strictly execute the following sequential compilation and verification pipeline inside your internal memory context:
+  * *Step 1 (Complete Draft Generation):* Prepare and fully construct the entire comprehensive output document in Technical English first. Ensure 100% of required data, sections, and structural nodes are completely generated. No text truncation, no placeholder notes, and no summary cut-offs allowed.
+  * *Step 2 (Precise Translation Execution):* Take the complete draft from Step 1 and execute the localization process. Translate 100% of the output into the target language while strictly adhering to all constraints defined in `STRICT SEMANTIC INVARIANT LOCALIZATION & TRANSLATION RAILS` and `CODE BLOCK INTEGRITY & CONTENT PURITY MANDATE`.
+  * *Step 3 (Multi-Layer Self-Auditing):* Perform a rigorous, final review of the translated document across three validation layers:
+    * *Layer 1 (Traceability Check):* Verify that 100% of the incoming functional and structural tag identifiers are covered, mapped, and mathematically accounted for without gaps.
+    * *Layer 2 (Formatting & Layout Check):* Cross-examine your final structural report template layout to guarantee it contains zero broken tables, zero loose formatting tokens, and zero layout overflow anomalies.
+    * *Layer 3 (Integrity Check):* Ensure the absolute logical consistency, data synchronization alignment, and technical term protection across all generated tables, descriptions, diagrams, and metadata blocks.
+- Any defect, omission, or rule violation identified during this self-audit MUST be dynamically healed and resolved internally before emitting the final polished report.
+</GLOBAL_GOVERNANCE_MATRIX>
+
+<ACTIVE_TASK_SYSTEM_INSTRUCTION>
+You are a high-performance Data Ingestion and Transformation Engine. Your sole objective is to parse the Phase Context Markdown text and convert it into a perfectly valid, parseable JSON object matching the requested schema framework.
+
+# YOUR CRITICAL OPERATIONAL MANDATES (ZERO LOOPHOLES):
+1. **STRICT VARIABLE FIDELITY & NO PREFIXES:** You MUST use the exact raw values provided in the template variables for file paths and project names. You are STRICTLY BANNED from appending, prepending, or injecting any custom folders or prefixes like "sources/" to the `global_context_file`, `context_file`, `source_target_dir`, or `project_name` fields. Use the variable values exactly as they are passed.
+2. **ABSOLUTE PYDANTIC SCHEMA ALIGNMENT:** Your final generated JSON object MUST perfectly satisfy the structural schema parameters of the target enterprise contract. You are STRICTLY BANNED from omitting, renaming, formatting, or stripping out key elements (specifically `phase_id`, `phase_name`, `phase_description`, `project_name`, `global_context_file`, `source_target_dir`, and `days`).
+3. **ABSOLUTE NO EMPTY TAGS POLICY & STRING SANITIZATION:** You are STRICTLY BANNED from leaving the "targeted_tags" array empty `[]` or null for any sub-task that implements functional requirements or data schemas. You MUST scan the source Markdown sequentially sub-task by sub-task. For each sub-task node, locate the hidden technical container block delimited between `<!--START_TAGS-->` and `<!--END_TAGS-->` contained exclusively within that sub-task section scope. Extract all raw tag token codes inside, strip away all inline markdown formatting characters—specifically backticks (`` ` ``)—and any leading/trailing whitespaces, then populate them as clean separate string elements inside the "targeted_tags" array field of EACH sub-task object node.
+4. **NO TAG BUNDLING:** Every tag must be its own array node (e.g., `"targeted_tags": ["[REQ-001]", "[DAT-002]"]`). You are strictly forbidden from combining multiple tags into a single string element.
+5. **STRICT CONTENT PURITY & REJECT CONVERSATION:** Output ONLY the pure raw executable JSON string matching the required schema. Response must start exactly with the character `{` and end exactly with the character `}`. Banned from including thinking processes, chain-of-thought blocks (`<think>` tags), conversational filler texts, introductions, wrapping inside markdown codeblocks (no triple backticks wrapping), or post-generation notes. Any token outside the raw JSON object boundary triggers an immediate execution pipeline crash.
+</ACTIVE_TASK_SYSTEM_INSTRUCTION>
+
+# Raw Response / Exception:
+
+```json
+Dưới đây là kết quả phân tích và chuyển đổi nội dung từ Markdown sang JSON theo yêu cầu:
+
+
+```json
+{
+  "phase_id": 1,
+  "phase_name": "user_core_services",
+  "phase_description": "Triển khai các dịch vụ cốt lõi quản lý người dùng bao gồm đăng ký, xác thực xã hội, gán vai trò, schema cơ sở dữ liệu và logging kiểm toán bảo mật",
+  "project_name": "membership-hub",
+  "global_context_file": ".ai/.context/membership-hub.global.blueprint.md",
+  "source_target_dir": "sources/",
+  "days": [
+    {
+      "day": 1,
+      "context_file": ".ai/.plan/.context/phase-1.context.blueprint.md",
+      "context_section": "NGÀY 1: TRIỂN KHAI DỊCH VỤ ĐĂNG KÝ NGƯỜI DÙNG VÀ API XÁC THỰC XÃ HỘI",
+      "sub_tasks": [
+        {
+          "id": "D1_ST1",
+          "agent": "Coder",
+          "desc": "Triển khai schema cơ sở dữ liệu Users và Roles",
+          "targeted_tags": ["[DAT-001]"],
+          "components": ["./sources/backend.membershiphub.user/users.sql", "./sources/backend.membershiphub.user/roles.sql"]
+        },
+        {
+          "id": "D1_ST2",
+          "agent": "Coder",
+          "desc": "Triển khai UserService với phương thức register và socialAuthenticate",
+          "targeted_tags": ["[REQ-001]", "[REQ-002]", "[ARC-006]", "[EXC-004]", "[NFR-001]", "[NFR-003]", "[NFR-006]"],
+          "components": ["./sources/backend.membershiphub.user/user-service.java"]
+        }
+      ]
+    },
+    {
+      "day": 2,
+      "context_file": ".ai/.plan/.context/phase-1.context.blueprint.md",
+      "context_section": "NGÀY 2: VIẾT BỘ KIỂM TRA ĐƠN VỊ VÀ TÍCH HỢP CHO CÁC CHỨC NĂNG NGƯỜI DÙNG",
+      "sub_tasks": [
+        {
+          "id": "D2_ST1",
+          "agent": "Tester",
+          "desc": "Kiểm thử đơn vị cho các phương thức register và socialAuthenticate",
+          "targeted_tags": ["[REQ-001]", "[REQ-002]", "[DAT-001]", "[EXC-004]"],
+          "components": ["./sources/backend.membershiphub.user/user-service.java;./sources/backend.membershiphub.user/userservice-test.java"]
+        },
+        {
+          "id": "D2_ST2",
+          "agent": "Tester",
+          "desc": "Kiểm thử tích hợp cho API endpoints",
+          "targeted_tags": ["[REQ-001]", "[REQ-002]", "[ARC-006]", "[EXC-004]"],
+          "components": ["./sources/backend.membershiphub.user/user-service.java;./sources/backend.membershiphub.user/user-controller-test.java"]
+        }
+      ]
+    }
+  ]
+}
+```
+```
+
+# AI Model: @cf/meta/llama-4-scout-17b-16e-instruct - Phase 1 STEPS - Prompt:
+
+Analyze the attached Phase 1 Context Markdown content.
+
+Extract and translate ALL daily steps, checklists, and agent tasks from the entire document.
+
+
+## 🔒 AGENT ATOMICITY, TASK ID FORMAT & COMPONENT MANDATES (ABSOLUTE):
+- **STRICT TASK ID ALIGNMENT BLUEPRINT:** You MUST strictly generate the "id" field string for every single sub-task using the exact sequential formatting blueprint: `D<day_num>_ST<task_index>` (e.g., `D1_ST1`, `D1_ST2`, `D2_ST1`).
+- **STRICT AGENT ROLE LITERAL VALUES:** The "agent" field inside the JSON sub-task object MUST strictly enforce a capitalized first letter and lowercase subsequent letters pattern matching the exact tokens: 'Coder' | 'Tester' | 'Reviewer' | 'Doc' | 'Docker' | 'Gcp' | 'Gke'. Any other values or lowercase blocks (e.g., NO "coder") are strictly banned.
+- **NO ZERO-COMPONENT TASKS (ABSOLUTE HARD LIMIT):** You are STRICTLY BANNED from generating any sub-task object where the 'components' array is empty `[]`, null, or missing. If an Agent does not have any physical file paths to create, modify, or document, you MUST NOT generate that sub-task object node.
+- **FALLBACK COMPONENT RULE:** If a day has technical descriptions but lacks physical file paths, assign the task to "Doc" agent and populate 'components' with exactly the value of: ".ai/.plan/.context/phase-1.context.blueprint.md".
+- **STRICT AGENT ROLE SEGREGATION (ANTI-AGGREGATION):** If a workflow file involves multiple actions by different personas on the same calendar day, you MUST split this workflow into completely separate, sequential task objects inside the 'sub_tasks' array.
+- **HIGH-DENSITY TECHNICAL SPECIFICATION:** The 'task' field MUST contain an exhaustive, granular engineering instruction. If the sub-task involves an API route, integration endpoint, database query, or message block, you MUST explicitly inline the complete technical contract (e.g., Request/Response Payload Schemas, Data Types, Error Status Codes, or Queue names) directly inside this string. Vague high-level bullet summaries are forbidden.
+- **WORKSPACE PREFIX RULE & MULTI-LANGUAGE TEST EXCEPTION:** Every path in 'components' array MUST strictly begin with `./sources/`. 
+  * *CRITICAL EXCEPTION:* If the first parameter before the semi-colon character in a tester task is the literal string token `INTEGRATION_SCOPE`, you MUST leave that token completely unmodified. Do NOT append any path prefix to it (e.g., `"components": ["INTEGRATION_SCOPE;./sources/frontend/tests/auth.spec.ts"]`).
+
+## 🛠️ MANDATORY TOP-LEVEL FIELD VALUES INJECTION & ANCHOR PARSING (STRICT FIDELITY):
+You MUST dynamically populate the top-level keys of the JSON object using EXACT raw variable values without any modifications, or parse them directly from the primary Markdown header HTML comments:
+- **`phase_id`**: 1
+- **`phase_name`**: [Locate the primary Markdown title header line, extract the clean technical string text located exactly between the hidden HTML delimiters `<!--PHASE_NAME_START-->` and `<!--PHASE_NAME_END-->` without any alterations or translations]
+- **`phase_description`**: [Locate the primary Markdown title header line, extract the exact translated phase description text that follows after the literal marker `| Description:` or its translated equivalent]
+- **`project_name`**: "membership-hub"
+- **`global_context_file`**: ".ai/.context/membership-hub.global.blueprint.md"
+- **`source_target_dir`**: "sources/"
+
+#### 7. Context Fields Integration Mandate
+- For each day object inside the array, set 'day' to its calculated integer value, set 'context_file' to exact string ".ai/.plan/.context/phase-1.context.blueprint.md", and **set 'context_section' to the exact raw string value of the entire primary Day Header extracted from the source Markdown context text** (e.g., `"context_section": "DAY 1: Multi-Tenant Inception Schema & Flyway Migration Setup"`).
+
+#### 8. CHRONOLOGICAL TIMELINE SEQUENCING MANDATE (ABSOLUTE):
+#### 8. CHRONOLOGICAL TIMELINE SEQUENCING MANDATE (ABSOLUTE):
+
+## SYSTEM CRITICAL BOUNDARY: FLAT CONFIGURATION IS ACTIVE (is_chunked is FALSE)
+- Regardless of the actual day numbers documented in the source Markdown content (e.g., even if the text states "DAY 4", "DAY 5"), you MUST completely reset the timeline sequence internally so that the first operational day inside this Phase always starts from integer 1. Progression follows sequentially as 2, 3, 4, etc. 
+- Map the first targeted day to `"day": 1`, set 'context_file' to ".ai/.plan/.context/phase-1.context.blueprint.md", and strictly set 'context_section' to the exact raw primary header line of the first day parsed from the text. Incremental days follow this relative baseline.
+
+
+## 🛑 MANDATORY STRUCTURE ENFORCEMENT FOR TRACEABILITY TAGS VIA HTML ANCHORS (CRITICAL):
+- For each sub-task block, locate the hidden technical container bounds delimited strictly between `<!--START_TAGS-->` and `<!--END_TAGS-->`. Extract all individual inherited Tag IDs from inside that container, completely purge all markdown backticks (`` ` ``) and padding spaces, and populate them as clean individual string elements inside the "targeted_tags" array field (e.g., `"targeted_tags": ["[REQ-001]", "[DAT-005]"]`).
+- You are STRICTLY BANNED from leaving the "targeted_tags" array empty `[]` or null. Every single tag token must be its own separated array element string.
+
+You must conform strictly to your required JSON Schema layout design structure:
+{
+  "$defs": {
+    "DailyStep": {
+      "properties": {
+        "day": {
+          "description": "Timeline iteration day inside this isolated phase.",
+          "title": "Day",
+          "type": "integer"
+        },
+        "context_file": {
+          "description": "The phase context Markdown file for closure on this day.",
+          "title": "Context File",
+          "type": "string"
+        },
+        "context_section": {
+          "description": "The day targeted for closure on this day.",
+          "title": "Context Section",
+          "type": "string"
+        },
+        "sub_tasks": {
+          "description": "Array of isolated micro-tasks assigned to sub-agents.",
+          "items": {
+            "$ref": "##/$defs/SubAgentTask"
+          },
+          "title": "Sub Tasks",
+          "type": "array"
+        }
+      },
+      "required": [
+        "day",
+        "context_file",
+        "context_section",
+        "sub_tasks"
+      ],
+      "title": "DailyStep",
+      "type": "object"
+    },
+    "SubAgentTask": {
+      "properties": {
+        "id": {
+          "description": "Sub-Task identity of Task that sub-agent role executing.",
+          "title": "Id",
+          "type": "string"
+        },
+        "agent": {
+          "description": "Target sub-agent role executing the task.",
+          "title": "Agent",
+          "type": "string"
+        },
+        "desc": {
+          "description": "Literal, low-level technical step assigned to the agent.",
+          "title": "Desc",
+          "type": "string"
+        },
+        "targeted_tags": {
+          "description": "Flat string array of exact inherited BA Tag IDs that this specific sub-task implements or verifies (e.g. ['[REQ-001]', '[ARC-002]']). MUST match the raw requirements 1:1.",
+          "items": {
+            "type": "string"
+          },
+          "title": "Targeted Tags",
+          "type": "array"
+        },
+        "components": {
+          "description": "Flat array of physical localized file paths or scripts modified or targeted by this single task. Return an empty array [] if no files are involved.",
+          "items": {
+            "type": "string"
+          },
+          "title": "Components",
+          "type": "array"
+        }
+      },
+      "required": [
+        "id",
+        "agent",
+        "desc"
+      ],
+      "title": "SubAgentTask",
+      "type": "object"
+    }
+  },
+  "properties": {
+    "phase_id": {
+      "description": "Target phase tracker index.",
+      "title": "Phase Id",
+      "type": "integer"
+    },
+    "phase_name": {
+      "description": "Target phase tracker name.",
+      "title": "Phase Name",
+      "type": "string"
+    },
+    "phase_description": {
+      "description": "Target phase description.",
+      "title": "Phase Description",
+      "type": "string"
+    },
+    "project_name": {
+      "description": "Target project tracker name.",
+      "title": "Project Name",
+      "type": "string"
+    },
+    "global_context_file": {
+      "description": "Project global context Markdown file for closure.",
+      "title": "Global Context File",
+      "type": "string"
+    },
+    "source_target_dir": {
+      "description": "Project sources folder path for closure.",
+      "title": "Source Target Dir",
+      "type": "string"
+    },
+    "days": {
+      "description": "Day-by-day engineering tracking steps.",
+      "items": {
+        "$ref": "##/$defs/DailyStep"
+      },
+      "title": "Days",
+      "type": "array"
+    }
+  },
+  "required": [
+    "phase_id",
+    "phase_name",
+    "phase_description",
+    "project_name",
+    "global_context_file",
+    "source_target_dir",
+    "days"
+  ],
+  "title": "PhaseStepsPlan",
+  "type": "object"
+}
+
+--- PHASE 1 CONTEXT MARKDOWN ---
+## Giai đoạn 1: <!--PHASE_NAME_START-->user_core_services<!--PHASE_NAME_END--> | Mô tả: Triển khai các dịch vụ cốt lõi quản lý người dùng bao gồm đăng ký, xác thực xã hội, gán vai trò, schema cơ sở dữ liệu và logging kiểm toán bảo mật
+
+#### 📊 Kiểm soát tài liệu
+
+| Mục | Chi tiết |
+| :--- | :--- |
+| **ID Blueprint** | ARCH-20260803053505 |
+| **Tên dự án** | membership-hub |
+| **Giai đoạn** | 1 |
+| **Tên kỹ thuật giai đoạn** | <!--PHASE_NAME_START-->user_core_services<!--PHASE_NAME_END--> |
+| **Mô tả** | Triển khai các dịch vụ cốt lõi quản lý người dùng bao gồm đăng ký, xác thực xã hội, gán vai trò, schema cơ sở dữ liệu và logging kiểm toán bảo mật |
+| **Phiên bản** | 1.0 (Baseline) |
+| **Ngày/Giờ** | 2026/08/03 05:35:05 |
+| **Tác giả** | Enterprise System Architect (SA Agent) |
+| **Phê duyệt** | Pending Technical Governance Review |
+
+#### 1. Phạm vi hoạt động và mục tiêu giai đoạn
+
+Giai đoạn này tập trung vào việc xây dựng nền tảng cốt lõi cho hệ thống quản lý người dùng, bao gồm:
+
+- Triển khai schema cơ sở dữ liệu cho bảng Users và Roles với các ràng buộc toàn vẹn dữ liệu
+- Xây dựng dịch vụ đăng ký người dùng với xác thực email/mật khẩu và hỗ trợ OAuth2 cho các nhà cung cấp xã hội (Firebase, Google, Facebook)
+- Triển khai cơ chế phân quyền RBAC với khả năng gán và thay đổi vai trò người dùng
+- Thiết lập hệ thống logging kiểm toán đáp ứng các tiêu chuẩn bảo mật doanh nghiệp
+- Triển khai xử lý ngoại lệ chi tiết cho validation đầu vào và xung đột dữ liệu
+
+#### 2. Phạm vi kỹ thuật và ranh giới thư mục được phép
+
+**Thư mục và tệp được phép:**
+- `./sources/backend.membershiphub.user/users.sql` - DDL schema cho bảng Users
+- `./sources/backend.membershiphub.user/roles.sql` - DDL schema cho bảng Roles  
+- `./sources/backend.membershiphub.user/user-service.java` - Dịch vụ chính quản lý người dùng
+
+**Endpoint API:**
+- `POST /api/v1/auth/register` - Đăng ký người dùng mới
+- `POST /api/v1/auth/social` - Xác thực qua nhà cung cấp xã hội
+- `PUT /api/v1/users/{userId}/role` - Cập nhật vai trò người dùng (chỉ System Admin)
+
+#### 3. Chỉ đạo chức năng cho Sub-Agent chuyên dụng
+
+**Coder:** Triển khai mã nguồn Java/Quarkus với tuân thủ SOLID, sử dụng BCrypt cho mã hóa mật khẩu, JWT với access token 15 phút và refresh token 7 ngày, áp dụng @Valid cho validation và @Transactional cho các thao tác ghi.
+
+**Tester:** Xây dựng bộ kiểm thử JUnit 5 với độ phủ mã ≥85%, sử dụng Mock cho các dependency, kiểm thử happy path và các scenario lỗi validation.
+
+**Reviewer:** Thực hiện phân tích tĩnh mã nguồn, kiểm tra tuân thủ OWASP Top 10, đảm bảo không có lỗ hổng SQL injection hoặc XSS.
+
+**Doc:** Biên soạn tài liệu kỹ thuật đầy đủ bao gồm API documentation với OpenAPI, schema documentation và hướng dẫn triển khai.
+
+#### 4. Định nghĩa hoàn thành (DoD) cho giai đoạn
+
+- ✅ 100% các requirement [REQ-001], [REQ-002], [REQ-003] được triển khai đầy đủ
+- ✅ Schema database [DAT-001] được tạo thành công với tất cả ràng buộc
+- ✅ Luồng xác thực [ARC-006] hoạt động với OAuth2 và JWT
+- ✅ Xử lý ngoại lệ [EXC-004] cho validation đầu vào
+- ✅ Tuân thủ các tiêu chuẩn bảo mật [NFR-001], [NFR-003], [NFR-006]
+- ✅ Độ phủ kiểm thử ≥85% cho tất cả các dịch vụ
+- ✅ 100% các Tag ID được ánh xạ và kiểm tra
+
+#### 5. NHẬT KÝ THỰC THI KIẾN TRÚC THEO NGÀY
+
+###### NGÀY 1: TRIỂN KHAI DỊCH VỤ ĐĂNG KÝ NGƯỜI DÙNG VÀ API XÁC THỰC XÃ HỘI
+
+######## SUB-TASK 1.1: Triển khai schema cơ sở dữ liệu Users và Roles
+########## Sub-Agent được chỉ định: Coder
+########## Các thành phần mục tiêu và yêu cầu kỹ thuật:
+* **Đường dẫn mục tiêu:** `./sources/backend.membershiphub.user/users.sql`, `./sources/backend.membershiphub.user/roles.sql`
+* **Các thẻ truy xuất nguồn gốc:** <!--START_TAGS-->[DAT-001]<!--END_TAGS-->
+
+######## SUB-TASK 1.2: Triển khai UserService với phương thức register và socialAuthenticate
+########## Sub-Agent được chỉ định: Coder
+########## Các thành phần mục tiêu và yêu cầu kỹ thuật:
+* **Đường dẫn mục tiêu:** `./sources/backend.membershiphub.user/user-service.java`
+* **Các thẻ truy xuất nguồn gốc:** <!--START_TAGS-->[REQ-001], [REQ-002], [ARC-006], [EXC-004], [NFR-001], [NFR-003], [NFR-006]<!--END_TAGS-->
+
+###### NGÀY 2: VIẾT BỘ KIỂM TRA ĐƠN VỊ VÀ TÍCH HỢP CHO CÁC CHỨC NĂNG NGƯỜI DÙNG
+
+######## SUB-TASK 2.1: Kiểm thử đơn vị cho các phương thức register và socialAuthenticate
+########## Sub-Agent được chỉ định: Tester
+########## Các thành phần mục tiêu và yêu cầu kỹ thuật:
+* **Đường dẫn mục tiêu:** `./sources/backend.membershiphub.user/user-service.java;./sources/backend.membershiphub.user/userservice-test.java`
+* **Các thẻ truy xuất nguồn gốc:** <!--START_TAGS-->[REQ-001], [REQ-002], [DAT-001], [EXC-004]<!--END_TAGS-->
+
+######## SUB-TASK 2.2: Kiểm thử tích hợp cho API endpoints
+########## Sub-Agent được chỉ định: Tester
+########## Các thành phần mục tiêu và yêu cầu kỹ thuật:
+* **Đường dẫn mục tiêu:** `./sources/backend.membershiphub.user/user-service.java;./sources/backend.membershiphub.user/user-controller-test.java`
+* **Các thẻ truy xuất nguồn gốc:** <!--START_TAGS-->[REQ-001], [REQ-002], [ARC-006], [EXC-004]<!--END_TAGS-->
 ------------------------------------------
 
 # System Instruction
@@ -27990,315 +32044,6842 @@ You are a high-performance Data Ingestion and Transformation Engine. Your sole o
 ```json
 ```json
 {
-  "phase_id": 5,
-  "phase_name": "notification_frontend_integration_and_devops_deployment",
-  "phase_description": "Triển khai toàn diện module thông báo, khuyến mãi, thông báo, chatbot AI, UI di động responsive, đa ngôn ngữ, SEO, và thiết lập hạ tầng DevOps hoàn chỉnh với Docker, GCP và GKE",
+  "phase_id": 1,
+  "phase_name": "user_core_services",
+  "phase_description": "Triển khai các dịch vụ cốt lõi quản lý người dùng bao gồm đăng ký, xác thực xã hội, gán vai trò, schema cơ sở dữ liệu và logging kiểm toán bảo mật",
   "project_name": "membership-hub",
   "global_context_file": ".ai/.context/membership-hub.global.blueprint.md",
   "source_target_dir": "sources/",
   "days": [
     {
       "day": 1,
-      "context_file": ".ai/.plan/.context/phase-5.context.blueprint.md",
-      "context_section": "NGÀY 10: TRIỂN KHAI SERVICE THÔNG BÁO, KHUYẾN MÃI, THÔNG BÁO",
+      "context_file": ".ai/.plan/.context/phase-1.context.blueprint.md",
+      "context_section": "NGÀY 1: TRIỂN KHAI DỊCH VỤ ĐĂNG KÝ NGƯỜI DÙNG VÀ API XÁC THỰC XÃ HỘI",
       "sub_tasks": [
         {
           "id": "D1_ST1",
           "agent": "Coder",
-          "desc": "Triển khai schema cơ sở dữ liệu cho bảng Notifications, Promotions, Announcements và SystemSettings với tất cả các ràng buộc và chỉ mục cần thiết. Đảm bảo tuân thủ các yêu cầu kỹ thuật sau:
-- Bảng Notifications: phải bao gồm các trường `id`, `user_id`, `type`, `title`, `content`, `is_read`, `created_at`, `updated_at`, `channel` (FCM/Zalo/APNs), `retry_count`, `status` (PENDING/SENT/FAILED).
-- Bảng Promotions: phải bao gồm các trường `id`, `title`, `description`, `discount_percent`, `start_date`, `end_date`, `is_active`, `created_at`, `updated_at`, `max_usage`, `current_usage`.
-- Bảng Announcements: phải bao gồm các trường `id`, `title`, `content`, `is_active`, `start_date`, `end_date`, `created_at`, `updated_at`.
-- Bảng SystemSettings: phải bao gồm các trường `key`, `value`, `description`, `updated_at`.
-- Áp dụng các ràng buộc khóa ngoại, chỉ mục và kiểm tra tính toàn vẹn dữ liệu.",
-          "targeted_tags": [
-            "[DAT-008]"
-          ],
-          "components": [
-            "./sources/backend.membershiphub.notification/notifications.sql",
-            "./sources/backend.membershiphub.notification/promotions.sql",
-            "./sources/backend.membershiphub.notification/announcements.sql",
-            "./sources/backend.membershiphub.notification/systemsettings.sql"
-          ]
+          "desc": "Triển khai schema cơ sở dữ liệu Users và Roles",
+          "targeted_tags": ["[DAT-001]"],
+          "components": ["./sources/backend.membershiphub.user/users.sql", "./sources/backend.membershiphub.user/roles.sql"]
         },
         {
           "id": "D1_ST2",
           "agent": "Coder",
-          "desc": "Triển khai NotificationService với các chức năng sau:
-- Gửi thông báo đa kênh (FCM, APNs, Zalo) với retry mechanism (tối đa 3 lần retry cho mỗi thông báo thất bại).
-- Quản lý trạng thái thông báo (PENDING/SENT/FAILED) và ghi log chi tiết cho mỗi lần gửi.
-- Cung cấp API endpoint `POST /api/v1/notifications` với payload schema:
-```json
-{
-  \"user_id\": \"string\",
-  \"type\": \"string\",
-  \"title\": \"string\",
-  \"content\": \"string\",
-  \"channel\": [\"FCM\" | \"Zalo\" | \"APNs\"]
-}
-```
-- Response schema:
-```json
-{
-  \"notification_id\": \"string\",
-  \"status\": \"string\",
-  \"retry_count\": \"integer\"
-}
-```
-- Đảm bảo tích hợp với các thư viện FCM, APNs và Zalo SDK chính thức.
-- Áp dụng @Transactional cho tất cả các thao tác ghi dữ liệu.",
-          "targeted_tags": [
-            "[REQ-016]",
-            "[REQ-017]",
-            "[REQ-018]",
-            "[REQ-019]",
-            "[DAT-008]",
-            "[DAT-009]",
-            "[NFR-003]",
-            "[NFR-006]"
-          ],
-          "components": [
-            "./sources/backend.membershiphub.notification/notification-service.java"
-          ]
+          "desc": "Triển khai UserService với phương thức register và socialAuthenticate",
+          "targeted_tags": ["[REQ-001]", "[REQ-002]", "[ARC-006]", "[EXC-004]", "[NFR-001]", "[NFR-003]", "[NFR-006]"],
+          "components": ["./sources/backend.membershiphub.user/user-service.java"]
         }
       ]
     },
     {
       "day": 2,
-      "context_file": ".ai/.plan/.context/phase-5.context.blueprint.md",
-      "context_section": "NGÀY 11: TRIỂN KHAI TÍCH HỢP CHATBOT AI, UI DI ĐỘNG VÀ CẤU HÌNH ĐA NGÔN NGỮ/SEO",
+      "context_file": ".ai/.plan/.context/phase-1.context.blueprint.md",
+      "context_section": "NGÀY 2: VIẾT BỘ KIỂM TRA ĐƠN VỊ VÀ TÍCH HỢP CHO CÁC CHỨC NĂNG NGƯỜI DÙNG",
       "sub_tasks": [
         {
           "id": "D2_ST1",
-          "agent": "Coder",
-          "desc": "Triển khai ChatbotService với các chức năng sau:
-- Tích hợp với OpenAI/Gemini API để xử lý tương tác tự động với khách hàng.
-- Cung cấp API endpoint `POST /api/v1/chatbot/interact` với payload schema:
-```json
-{
-  \"user_id\": \"string\",
-  \"message\": \"string\",
-  \"locale\": \"string\"
-}
-```
-- Response schema:
-```json
-{
-  \"response\": \"string\",
-  \"session_id\": \"string\",
-  \"suggested_actions\": [\"string\"]
-}
-```
-- Lưu trữ lịch sử hội thoại trong cơ sở dữ liệu với bảng `chatbot_sessions` (bao gồm các trường `session_id`, `user_id`, `messages`, `created_at`, `updated_at`).
-- Áp dụng cơ chế rate limiting để ngăn chặn lạm dụng API.
-- Đảm bảo tuân thủ các tiêu chuẩn bảo mật [NFR-007] cho dữ liệu nhạy cảm.",
-          "targeted_tags": [
-            "[REQ-019]",
-            "[REQ-020]",
-            "[REQ-021]",
-            "[REQ-022]",
-            "[REQ-023]",
-            "[DAT-011]",
-            "[NFR-007]"
-          ],
-          "components": [
-            "./sources/backend.membershiphub.notification/chatbot-service.java"
-          ]
+          "agent": "Tester",
+          "desc": "Kiểm thử đơn vị cho các phương thức register và socialAuthenticate",
+          "targeted_tags": ["[REQ-001]", "[REQ-002]", "[DAT-001]", "[EXC-004]"],
+          "components": ["./sources/backend.membershiphub.user/user-service.java;./sources/backend.membershiphub.user/userservice-test.java"]
         },
         {
           "id": "D2_ST2",
-          "agent": "Coder",
-          "desc": "Triển khai frontend Next.js với các yêu cầu sau:
-- Thiết kế responsive cho tất cả các kích thước màn hình (mobile, tablet, desktop).
-- Tích hợp đa ngôn ngữ với react-i18next, hỗ trợ ít nhất 2 ngôn ngữ (Vietnamese, English).
-- Cấu hình SEO optimization với dynamic meta tags cho từng trang.
-- Cung cấp API endpoint `GET /api/v1/i18n/{locale}` để lấy bản dịch theo locale.
-- Cung cấp API endpoint `GET /api/v1/seo/{locale}/{path}` để lấy meta tags SEO cho từng đường dẫn.
-- Cấu hình Tailwind CSS cho styling và đảm bảo hiệu suất tối ưu.
-- Cập nhật `package.json` với các dependencies cần thiết:
-```json
-{
-  \"dependencies\": {
-    \"next\": \"^14.0.0\",
-    \"react\": \"^18.2.0\",
-    \"react-dom\": \"^18.2.0\",
-    \"react-i18next\": \"^12.0.0\",
-    \"i18next\": \"^22.0.0\",
-    \"tailwindcss\": \"^3.0.0\",
-    \"@headlessui/react\": \"^1.7.0\"
-  }
-}
-```",
-          "targeted_tags": [
-            "[REQ-020]",
-            "[REQ-021]",
-            "[REQ-022]",
-            "[REQ-023]"
-          ],
-          "components": [
-            "./sources/frontend.nextjs/package.json"
-          ]
-        }
-      ]
-    },
-    {
-      "day": 3,
-      "context_file": ".ai/.plan/.context/phase-5.context.blueprint.md",
-      "context_section": "NGÀY 12: CUNG CẤP CẤU HÌNH HẠ TẦNG GCP (VPC, IAM, CLOUD STORAGE, CLOUD RUN)",
-      "sub_tasks": [
-        {
-          "id": "D3_ST1",
-          "agent": "Gcp",
-          "desc": "Triển khai Terraform configuration cho GCP infrastructure với các thành phần sau:
-- VPC network với subnets riêng biệt cho production và staging.
-- IAM roles và service accounts với quyền hạn tối thiểu (least privilege principle).
-- Cloud SQL instance (PostgreSQL) với cấu hình HA và tự động backup.
-- Secret Manager để quản lý các thông tin nhạy cảm như API keys, database credentials.
-- Cloud Scheduler để lên lịch các tác vụ định kỳ (ví dụ: dọn dẹp thông báo cũ).
-- Cấu hình logging và monitoring cho tất cả các tài nguyên.
-- Đảm bảo tuân thủ các tiêu chuẩn bảo mật [NFR-004] và [NFR-008].
-- Output cấu hình Terraform phải bao gồm:
-```hcl
-output \"vpc_network_name\" {
-  value = google_compute_network.vpc.name
-}
-
-output \"cloud_sql_connection_name\" {
-  value = google_sql_database_instance.instance.connection_name
-}
-```",
-          "targeted_tags": [
-            "[NFR-004]",
-            "[NFR-008]"
-          ],
-          "components": [
-            "./sources/infra/gcp/infrastructure.tf"
-          ]
-        }
-      ]
-    },
-    {
-      "day": 4,
-      "context_file": ".ai/.plan/.context/phase-5.context.blueprint.md",
-      "context_section": "NGÀY 13: XÂY DỰNG DOCKER IMAGE ĐA GIAI ĐOẠN CHO BACKEND VÀ FRONTEND",
-      "sub_tasks": [
-        {
-          "id": "D4_ST1",
-          "agent": "Docker",
-          "desc": "Tạo multi-stage Dockerfile cho backend Quarkus với các yêu cầu sau:
-- Sử dụng multi-stage build để tối ưu kích thước image cuối cùng (<500MB).
-- Stage 1: Build ứng dụng với Maven.
-- Stage 2: Chỉ sao chép các tệp cần thiết từ stage 1 sang image cuối cùng.
-- Sử dụng non-root user để chạy ứng dụng.
-- Thiết lập healthcheck để kiểm tra trạng thái ứng dụng.
-- Cấu hình logging driver cho Docker.
-- Đảm bảo tuân thủ các tiêu chuẩn [NFR-005] và [NFR-009].
-- Ví dụ cấu trúc Dockerfile:
-```dockerfile
-FROM maven:3.8.4-jdk-11 AS build
-WORKDIR /app
-COPY pom.xml ./
-RUN mvn dependency:go-offline
-COPY src ./src
-RUN mvn package -DskipTests
-
-FROM openjdk:11-jre-slim
-WORKDIR /app
-COPY --from=build /app/target/quarkus-app/lib/ ./lib/
-COPY --from=build /app/target/quarkus-app/*.jar ./app.jar
-COPY --from=build /app/target/quarkus-app/app/ ./app/
-COPY --from=build /app/target/quarkus-app/quarkus/ ./quarkus/
-
-RUN useradd -m appuser && chown -R appuser /app
-USER appuser
-
-HEALTHCHECK --interval=30s --timeout=3s --start-period=5s --retries=3 \\
-  CMD curl -f http://localhost:8080/health || exit 1
-
-EXPOSE 8080
-ENTRYPOINT [\"java\", \"-jar\", \"./app.jar\"]
-```",
-          "targeted_tags": [
-            "[NFR-005]",
-            "[NFR-009]"
-          ],
-          "components": [
-            "./sources/infra/docker/backend/Dockerfile"
-          ]
-        }
-      ]
-    },
-    {
-      "day": 5,
-      "context_file": ".ai/.plan/.context/phase-5.context.blueprint.md",
-      "context_section": "NGÀY 14: TRIỂN KHAI LÊN GOOGLE KUBERNETES ENGINE (GKE) VỚI HPA VÀ QUẢN LÝ RELEASE",
-      "sub_tasks": [
-        {
-          "id": "D5_ST1",
-          "agent": "Gke",
-          "desc": "Tạo Kubernetes manifests cho các thành phần sau:
-- Deployment cho backend và frontend với cấu hình resource requests/limits.
-- Service để expose các ứng dụng.
-- Ingress để định tuyến traffic từ bên ngoài.
-- Horizontal Pod Autoscaler (HPA) để tự động scale ứng dụng dựa trên CPU/memory usage.
-- ConfigMap và Secret để quản lý cấu hình và thông tin nhạy cảm.
-- Triển khai canary deployment với health checks để đảm bảo tính sẵn sàng cao.
-- Cấu hình monitoring stack với Prometheus và Grafana.
-- Đảm bảo tuân thủ các tiêu chuẩn [NFR-002], [NFR-004], [NFR-009].
-- Ví dụ cấu trúc deployment.yaml:
-```yaml
-apiVersion: apps/v1
-kind: Deployment
-metadata:
-  name: backend-deployment
-spec:
-  replicas: 3
-  selector:
-    matchLabels:
-      app: backend
-  template:
-    metadata:
-      labels:
-        app: backend
-    spec:
-      containers:
-      - name: backend
-        image: gcr.io/membership-hub/backend:latest
-        ports:
-        - containerPort: 8080
-        resources:
-          requests:
-            cpu: \"500m\"
-            memory: \"512Mi\"
-          limits:
-            cpu: \"1000m\"
-            memory: \"1024Mi\"
-        livenessProbe:
-          httpGet:
-            path: /health
-            port: 8080
-          initialDelaySeconds: 30
-          periodSeconds: 10
-        readinessProbe:
-          httpGet:
-            path: /ready
-            port: 8080
-          initialDelaySeconds: 5
-          periodSeconds: 5
-```",
-          "targeted_tags": [
-            "[NFR-002]",
-            "[NFR-004]",
-            "[NFR-009]"
-          ],
-          "components": [
-            "./sources/infra/gke/deployments.yaml"
-          ]
+          "agent": "Tester",
+          "desc": "Kiểm thử tích hợp cho API endpoints",
+          "targeted_tags": ["[REQ-001]", "[REQ-002]", "[ARC-006]", "[EXC-004]"],
+          "components": ["./sources/backend.membershiphub.user/user-service.java;./sources/backend.membershiphub.user/user-controller-test.java"]
         }
       ]
     }
   ]
 }
 ```
+```
+
+# AI Model: aion-labs/aion-2.5 - Phase 1 STEPS - Prompt:
+
+Analyze the attached Phase 1 Context Markdown content.
+
+Extract and translate ALL daily steps, checklists, and agent tasks from the entire document.
+
+
+## 🔒 AGENT ATOMICITY, TASK ID FORMAT & COMPONENT MANDATES (ABSOLUTE):
+- **STRICT TASK ID ALIGNMENT BLUEPRINT:** You MUST strictly generate the "id" field string for every single sub-task using the exact sequential formatting blueprint: `D<day_num>_ST<task_index>` (e.g., `D1_ST1`, `D1_ST2`, `D2_ST1`).
+- **STRICT AGENT ROLE LITERAL VALUES:** The "agent" field inside the JSON sub-task object MUST strictly enforce a capitalized first letter and lowercase subsequent letters pattern matching the exact tokens: 'Coder' | 'Tester' | 'Reviewer' | 'Doc' | 'Docker' | 'Gcp' | 'Gke'. Any other values or lowercase blocks (e.g., NO "coder") are strictly banned.
+- **NO ZERO-COMPONENT TASKS (ABSOLUTE HARD LIMIT):** You are STRICTLY BANNED from generating any sub-task object where the 'components' array is empty `[]`, null, or missing. If an Agent does not have any physical file paths to create, modify, or document, you MUST NOT generate that sub-task object node.
+- **FALLBACK COMPONENT RULE:** If a day has technical descriptions but lacks physical file paths, assign the task to "Doc" agent and populate 'components' with exactly the value of: ".ai/.plan/.context/phase-1.context.blueprint.md".
+- **STRICT AGENT ROLE SEGREGATION (ANTI-AGGREGATION):** If a workflow file involves multiple actions by different personas on the same calendar day, you MUST split this workflow into completely separate, sequential task objects inside the 'sub_tasks' array.
+- **HIGH-DENSITY TECHNICAL SPECIFICATION:** The 'task' field MUST contain an exhaustive, granular engineering instruction. If the sub-task involves an API route, integration endpoint, database query, or message block, you MUST explicitly inline the complete technical contract (e.g., Request/Response Payload Schemas, Data Types, Error Status Codes, or Queue names) directly inside this string. Vague high-level bullet summaries are forbidden.
+- **WORKSPACE PREFIX RULE & MULTI-LANGUAGE TEST EXCEPTION:** Every path in 'components' array MUST strictly begin with `./sources/`. 
+  * *CRITICAL EXCEPTION:* If the first parameter before the semi-colon character in a tester task is the literal string token `INTEGRATION_SCOPE`, you MUST leave that token completely unmodified. Do NOT append any path prefix to it (e.g., `"components": ["INTEGRATION_SCOPE;./sources/frontend/tests/auth.spec.ts"]`).
+
+## 🛠️ MANDATORY TOP-LEVEL FIELD VALUES INJECTION & ANCHOR PARSING (STRICT FIDELITY):
+You MUST dynamically populate the top-level keys of the JSON object using EXACT raw variable values without any modifications, or parse them directly from the primary Markdown header HTML comments:
+- **`phase_id`**: 1
+- **`phase_name`**: [Locate the primary Markdown title header line, extract the clean technical string text located exactly between the hidden HTML delimiters `<!--PHASE_NAME_START-->` and `<!--PHASE_NAME_END-->` without any alterations or translations]
+- **`phase_description`**: [Locate the primary Markdown title header line, extract the exact translated phase description text that follows after the literal marker `| Description:` or its translated equivalent]
+- **`project_name`**: "membership-hub"
+- **`global_context_file`**: ".ai/.context/membership-hub.global.blueprint.md"
+- **`source_target_dir`**: "sources/"
+
+#### 7. Context Fields Integration Mandate
+- For each day object inside the array, set 'day' to its calculated integer value, set 'context_file' to exact string ".ai/.plan/.context/phase-1.context.blueprint.md", and **set 'context_section' to the exact raw string value of the entire primary Day Header extracted from the source Markdown context text** (e.g., `"context_section": "DAY 1: Multi-Tenant Inception Schema & Flyway Migration Setup"`).
+
+#### 8. CHRONOLOGICAL TIMELINE SEQUENCING MANDATE (ABSOLUTE):
+#### 8. CHRONOLOGICAL TIMELINE SEQUENCING MANDATE (ABSOLUTE):
+
+## SYSTEM CRITICAL BOUNDARY: FLAT CONFIGURATION IS ACTIVE (is_chunked is FALSE)
+- Regardless of the actual day numbers documented in the source Markdown content (e.g., even if the text states "DAY 4", "DAY 5"), you MUST completely reset the timeline sequence internally so that the first operational day inside this Phase always starts from integer 1. Progression follows sequentially as 2, 3, 4, etc. 
+- Map the first targeted day to `"day": 1`, set 'context_file' to ".ai/.plan/.context/phase-1.context.blueprint.md", and strictly set 'context_section' to the exact raw primary header line of the first day parsed from the text. Incremental days follow this relative baseline.
+
+
+## 🛑 MANDATORY STRUCTURE ENFORCEMENT FOR TRACEABILITY TAGS VIA HTML ANCHORS (CRITICAL):
+- For each sub-task block, locate the hidden technical container bounds delimited strictly between `<!--START_TAGS-->` and `<!--END_TAGS-->`. Extract all individual inherited Tag IDs from inside that container, completely purge all markdown backticks (`` ` ``) and padding spaces, and populate them as clean individual string elements inside the "targeted_tags" array field (e.g., `"targeted_tags": ["[REQ-001]", "[DAT-005]"]`).
+- You are STRICTLY BANNED from leaving the "targeted_tags" array empty `[]` or null. Every single tag token must be its own separated array element string.
+
+You must conform strictly to your required JSON Schema layout design structure:
+{
+  "$defs": {
+    "DailyStep": {
+      "properties": {
+        "day": {
+          "description": "Timeline iteration day inside this isolated phase.",
+          "title": "Day",
+          "type": "integer"
+        },
+        "context_file": {
+          "description": "The phase context Markdown file for closure on this day.",
+          "title": "Context File",
+          "type": "string"
+        },
+        "context_section": {
+          "description": "The day targeted for closure on this day.",
+          "title": "Context Section",
+          "type": "string"
+        },
+        "sub_tasks": {
+          "description": "Array of isolated micro-tasks assigned to sub-agents.",
+          "items": {
+            "$ref": "##/$defs/SubAgentTask"
+          },
+          "title": "Sub Tasks",
+          "type": "array"
+        }
+      },
+      "required": [
+        "day",
+        "context_file",
+        "context_section",
+        "sub_tasks"
+      ],
+      "title": "DailyStep",
+      "type": "object"
+    },
+    "SubAgentTask": {
+      "properties": {
+        "id": {
+          "description": "Sub-Task identity of Task that sub-agent role executing.",
+          "title": "Id",
+          "type": "string"
+        },
+        "agent": {
+          "description": "Target sub-agent role executing the task.",
+          "title": "Agent",
+          "type": "string"
+        },
+        "desc": {
+          "description": "Literal, low-level technical step assigned to the agent.",
+          "title": "Desc",
+          "type": "string"
+        },
+        "targeted_tags": {
+          "description": "Flat string array of exact inherited BA Tag IDs that this specific sub-task implements or verifies (e.g. ['[REQ-001]', '[ARC-002]']). MUST match the raw requirements 1:1.",
+          "items": {
+            "type": "string"
+          },
+          "title": "Targeted Tags",
+          "type": "array"
+        },
+        "components": {
+          "description": "Flat array of physical localized file paths or scripts modified or targeted by this single task. Return an empty array [] if no files are involved.",
+          "items": {
+            "type": "string"
+          },
+          "title": "Components",
+          "type": "array"
+        }
+      },
+      "required": [
+        "id",
+        "agent",
+        "desc"
+      ],
+      "title": "SubAgentTask",
+      "type": "object"
+    }
+  },
+  "properties": {
+    "phase_id": {
+      "description": "Target phase tracker index.",
+      "title": "Phase Id",
+      "type": "integer"
+    },
+    "phase_name": {
+      "description": "Target phase tracker name.",
+      "title": "Phase Name",
+      "type": "string"
+    },
+    "phase_description": {
+      "description": "Target phase description.",
+      "title": "Phase Description",
+      "type": "string"
+    },
+    "project_name": {
+      "description": "Target project tracker name.",
+      "title": "Project Name",
+      "type": "string"
+    },
+    "global_context_file": {
+      "description": "Project global context Markdown file for closure.",
+      "title": "Global Context File",
+      "type": "string"
+    },
+    "source_target_dir": {
+      "description": "Project sources folder path for closure.",
+      "title": "Source Target Dir",
+      "type": "string"
+    },
+    "days": {
+      "description": "Day-by-day engineering tracking steps.",
+      "items": {
+        "$ref": "##/$defs/DailyStep"
+      },
+      "title": "Days",
+      "type": "array"
+    }
+  },
+  "required": [
+    "phase_id",
+    "phase_name",
+    "phase_description",
+    "project_name",
+    "global_context_file",
+    "source_target_dir",
+    "days"
+  ],
+  "title": "PhaseStepsPlan",
+  "type": "object"
+}
+
+--- PHASE 1 CONTEXT MARKDOWN ---
+## Giai đoạn 1: <!--PHASE_NAME_START-->user_core_services<!--PHASE_NAME_END--> | Mô tả: Triển khai các dịch vụ cốt lõi quản lý người dùng bao gồm đăng ký, xác thực xã hội, gán vai trò, schema cơ sở dữ liệu và logging kiểm toán bảo mật
+
+#### 📊 Kiểm soát tài liệu
+
+| Mục | Chi tiết |
+| :--- | :--- |
+| **ID Blueprint** | ARCH-20260803053505 |
+| **Tên dự án** | membership-hub |
+| **Giai đoạn** | 1 |
+| **Tên kỹ thuật giai đoạn** | <!--PHASE_NAME_START-->user_core_services<!--PHASE_NAME_END--> |
+| **Mô tả** | Triển khai các dịch vụ cốt lõi quản lý người dùng bao gồm đăng ký, xác thực xã hội, gán vai trò, schema cơ sở dữ liệu và logging kiểm toán bảo mật |
+| **Phiên bản** | 1.0 (Baseline) |
+| **Ngày/Giờ** | 2026/08/03 05:35:05 |
+| **Tác giả** | Enterprise System Architect (SA Agent) |
+| **Phê duyệt** | Pending Technical Governance Review |
+
+#### 1. Phạm vi hoạt động và mục tiêu giai đoạn
+
+Giai đoạn này tập trung vào việc xây dựng nền tảng cốt lõi cho hệ thống quản lý người dùng, bao gồm:
+
+- Triển khai schema cơ sở dữ liệu cho bảng Users và Roles với các ràng buộc toàn vẹn dữ liệu
+- Xây dựng dịch vụ đăng ký người dùng với xác thực email/mật khẩu và hỗ trợ OAuth2 cho các nhà cung cấp xã hội (Firebase, Google, Facebook)
+- Triển khai cơ chế phân quyền RBAC với khả năng gán và thay đổi vai trò người dùng
+- Thiết lập hệ thống logging kiểm toán đáp ứng các tiêu chuẩn bảo mật doanh nghiệp
+- Triển khai xử lý ngoại lệ chi tiết cho validation đầu vào và xung đột dữ liệu
+
+#### 2. Phạm vi kỹ thuật và ranh giới thư mục được phép
+
+**Thư mục và tệp được phép:**
+- `./sources/backend.membershiphub.user/users.sql` - DDL schema cho bảng Users
+- `./sources/backend.membershiphub.user/roles.sql` - DDL schema cho bảng Roles  
+- `./sources/backend.membershiphub.user/user-service.java` - Dịch vụ chính quản lý người dùng
+
+**Endpoint API:**
+- `POST /api/v1/auth/register` - Đăng ký người dùng mới
+- `POST /api/v1/auth/social` - Xác thực qua nhà cung cấp xã hội
+- `PUT /api/v1/users/{userId}/role` - Cập nhật vai trò người dùng (chỉ System Admin)
+
+#### 3. Chỉ đạo chức năng cho Sub-Agent chuyên dụng
+
+**Coder:** Triển khai mã nguồn Java/Quarkus với tuân thủ SOLID, sử dụng BCrypt cho mã hóa mật khẩu, JWT với access token 15 phút và refresh token 7 ngày, áp dụng @Valid cho validation và @Transactional cho các thao tác ghi.
+
+**Tester:** Xây dựng bộ kiểm thử JUnit 5 với độ phủ mã ≥85%, sử dụng Mock cho các dependency, kiểm thử happy path và các scenario lỗi validation.
+
+**Reviewer:** Thực hiện phân tích tĩnh mã nguồn, kiểm tra tuân thủ OWASP Top 10, đảm bảo không có lỗ hổng SQL injection hoặc XSS.
+
+**Doc:** Biên soạn tài liệu kỹ thuật đầy đủ bao gồm API documentation với OpenAPI, schema documentation và hướng dẫn triển khai.
+
+#### 4. Định nghĩa hoàn thành (DoD) cho giai đoạn
+
+- ✅ 100% các requirement [REQ-001], [REQ-002], [REQ-003] được triển khai đầy đủ
+- ✅ Schema database [DAT-001] được tạo thành công với tất cả ràng buộc
+- ✅ Luồng xác thực [ARC-006] hoạt động với OAuth2 và JWT
+- ✅ Xử lý ngoại lệ [EXC-004] cho validation đầu vào
+- ✅ Tuân thủ các tiêu chuẩn bảo mật [NFR-001], [NFR-003], [NFR-006]
+- ✅ Độ phủ kiểm thử ≥85% cho tất cả các dịch vụ
+- ✅ 100% các Tag ID được ánh xạ và kiểm tra
+
+#### 5. NHẬT KÝ THỰC THI KIẾN TRÚC THEO NGÀY
+
+###### NGÀY 1: TRIỂN KHAI DỊCH VỤ ĐĂNG KÝ NGƯỜI DÙNG VÀ API XÁC THỰC XÃ HỘI
+
+######## SUB-TASK 1.1: Triển khai schema cơ sở dữ liệu Users và Roles
+########## Sub-Agent được chỉ định: Coder
+########## Các thành phần mục tiêu và yêu cầu kỹ thuật:
+* **Đường dẫn mục tiêu:** `./sources/backend.membershiphub.user/users.sql`, `./sources/backend.membershiphub.user/roles.sql`
+* **Các thẻ truy xuất nguồn gốc:** <!--START_TAGS-->[DAT-001]<!--END_TAGS-->
+
+######## SUB-TASK 1.2: Triển khai UserService với phương thức register và socialAuthenticate
+########## Sub-Agent được chỉ định: Coder
+########## Các thành phần mục tiêu và yêu cầu kỹ thuật:
+* **Đường dẫn mục tiêu:** `./sources/backend.membershiphub.user/user-service.java`
+* **Các thẻ truy xuất nguồn gốc:** <!--START_TAGS-->[REQ-001], [REQ-002], [ARC-006], [EXC-004], [NFR-001], [NFR-003], [NFR-006]<!--END_TAGS-->
+
+###### NGÀY 2: VIẾT BỘ KIỂM TRA ĐƠN VỊ VÀ TÍCH HỢP CHO CÁC CHỨC NĂNG NGƯỜI DÙNG
+
+######## SUB-TASK 2.1: Kiểm thử đơn vị cho các phương thức register và socialAuthenticate
+########## Sub-Agent được chỉ định: Tester
+########## Các thành phần mục tiêu và yêu cầu kỹ thuật:
+* **Đường dẫn mục tiêu:** `./sources/backend.membershiphub.user/user-service.java;./sources/backend.membershiphub.user/userservice-test.java`
+* **Các thẻ truy xuất nguồn gốc:** <!--START_TAGS-->[REQ-001], [REQ-002], [DAT-001], [EXC-004]<!--END_TAGS-->
+
+######## SUB-TASK 2.2: Kiểm thử tích hợp cho API endpoints
+########## Sub-Agent được chỉ định: Tester
+########## Các thành phần mục tiêu và yêu cầu kỹ thuật:
+* **Đường dẫn mục tiêu:** `./sources/backend.membershiphub.user/user-service.java;./sources/backend.membershiphub.user/user-controller-test.java`
+* **Các thẻ truy xuất nguồn gốc:** <!--START_TAGS-->[REQ-001], [REQ-002], [ARC-006], [EXC-004]<!--END_TAGS-->
+------------------------------------------
+
+# System Instruction
+
+You are a high-performance Data Ingestion and Transformation Engine. Your sole objective is to parse the Phase Context Markdown text and convert it into a perfectly valid, parseable JSON object matching the requested schema framework.
+
+# YOUR CRITICAL OPERATIONAL MANDATES (ZERO LOOPHOLES):
+1. **STRICT VARIABLE FIDELITY & NO PREFIXES:** You MUST use the exact raw values provided in the template variables for file paths and project names. You are STRICTLY BANNED from appending, prepending, or injecting any custom folders or prefixes like "sources/" to the `global_context_file`, `context_file`, `source_target_dir`, or `project_name` fields. Use the variable values exactly as they are passed.
+2. **ABSOLUTE PYDANTIC SCHEMA ALIGNMENT:** Your final generated JSON object MUST perfectly satisfy the structural schema parameters of the target enterprise contract. You are STRICTLY BANNED from omitting, renaming, formatting, or stripping out key elements (specifically `phase_id`, `phase_name`, `phase_description`, `project_name`, `global_context_file`, `source_target_dir`, and `days`).
+3. **ABSOLUTE NO EMPTY TAGS POLICY & STRING SANITIZATION:** You are STRICTLY BANNED from leaving the "targeted_tags" array empty `[]` or null for any sub-task that implements functional requirements or data schemas. You MUST scan the source Markdown sequentially sub-task by sub-task. For each sub-task node, locate the hidden technical container block delimited between `<!--START_TAGS-->` and `<!--END_TAGS-->` contained exclusively within that sub-task section scope. Extract all raw tag token codes inside, strip away all inline markdown formatting characters—specifically backticks (`` ` ``)—and any leading/trailing whitespaces, then populate them as clean separate string elements inside the "targeted_tags" array field of EACH sub-task object node.
+4. **NO TAG BUNDLING:** Every tag must be its own array node (e.g., `"targeted_tags": ["[REQ-001]", "[DAT-002]"]`). You are strictly forbidden from combining multiple tags into a single string element.
+5. **STRICT CONTENT PURITY & REJECT CONVERSATION:** Output ONLY the pure raw executable JSON string matching the required schema. Response must start exactly with the character `{` and end exactly with the character `}`. Banned from including thinking processes, chain-of-thought blocks (`<think>` tags), conversational filler texts, introductions, wrapping inside markdown codeblocks (no triple backticks wrapping), or post-generation notes. Any token outside the raw JSON object boundary triggers an immediate execution pipeline crash.
+
+# Raw Response / Exception:
+
+```json
+Error code: 429 - {'error': {'message': 'Daily token limit exceeded.', 'type': 'rate_limit_error'}}: ['Traceback (most recent call last):
+', '  File "/home/runner/work/enterprise-it-ai/enterprise-it-ai/sources/agents/architect-blueprint/block_json.py", line 301, in convert_phases_to_json
+    response = client.beta.chat.completions.parse(
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+', '  File "/opt/hostedtoolcache/Python/3.11.15/x64/lib/python3.11/site-packages/openai/resources/chat/completions/completions.py", line 193, in parse
+    return self._post(
+           ^^^^^^^^^^^
+', '  File "/opt/hostedtoolcache/Python/3.11.15/x64/lib/python3.11/site-packages/openai/_base_client.py", line 1375, in post
+    return cast(ResponseT, self.request(cast_to, opts, stream=stream, stream_cls=stream_cls))
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+', '  File "/opt/hostedtoolcache/Python/3.11.15/x64/lib/python3.11/site-packages/openai/_base_client.py", line 1148, in request
+    raise self._make_status_error_from_response(err.response) from None
+', "openai.RateLimitError: Error code: 429 - {'error': {'message': 'Daily token limit exceeded.', 'type': 'rate_limit_error'}}
+"]
+```
+
+# AI Model: aion-labs/aion-rp-llama-3.1-8b - Phase 1 STEPS - Prompt:
+
+Analyze the attached Phase 1 Context Markdown content.
+
+Extract and translate ALL daily steps, checklists, and agent tasks from the entire document.
+
+
+## 🔒 AGENT ATOMICITY, TASK ID FORMAT & COMPONENT MANDATES (ABSOLUTE):
+- **STRICT TASK ID ALIGNMENT BLUEPRINT:** You MUST strictly generate the "id" field string for every single sub-task using the exact sequential formatting blueprint: `D<day_num>_ST<task_index>` (e.g., `D1_ST1`, `D1_ST2`, `D2_ST1`).
+- **STRICT AGENT ROLE LITERAL VALUES:** The "agent" field inside the JSON sub-task object MUST strictly enforce a capitalized first letter and lowercase subsequent letters pattern matching the exact tokens: 'Coder' | 'Tester' | 'Reviewer' | 'Doc' | 'Docker' | 'Gcp' | 'Gke'. Any other values or lowercase blocks (e.g., NO "coder") are strictly banned.
+- **NO ZERO-COMPONENT TASKS (ABSOLUTE HARD LIMIT):** You are STRICTLY BANNED from generating any sub-task object where the 'components' array is empty `[]`, null, or missing. If an Agent does not have any physical file paths to create, modify, or document, you MUST NOT generate that sub-task object node.
+- **FALLBACK COMPONENT RULE:** If a day has technical descriptions but lacks physical file paths, assign the task to "Doc" agent and populate 'components' with exactly the value of: ".ai/.plan/.context/phase-1.context.blueprint.md".
+- **STRICT AGENT ROLE SEGREGATION (ANTI-AGGREGATION):** If a workflow file involves multiple actions by different personas on the same calendar day, you MUST split this workflow into completely separate, sequential task objects inside the 'sub_tasks' array.
+- **HIGH-DENSITY TECHNICAL SPECIFICATION:** The 'task' field MUST contain an exhaustive, granular engineering instruction. If the sub-task involves an API route, integration endpoint, database query, or message block, you MUST explicitly inline the complete technical contract (e.g., Request/Response Payload Schemas, Data Types, Error Status Codes, or Queue names) directly inside this string. Vague high-level bullet summaries are forbidden.
+- **WORKSPACE PREFIX RULE & MULTI-LANGUAGE TEST EXCEPTION:** Every path in 'components' array MUST strictly begin with `./sources/`. 
+  * *CRITICAL EXCEPTION:* If the first parameter before the semi-colon character in a tester task is the literal string token `INTEGRATION_SCOPE`, you MUST leave that token completely unmodified. Do NOT append any path prefix to it (e.g., `"components": ["INTEGRATION_SCOPE;./sources/frontend/tests/auth.spec.ts"]`).
+
+## 🛠️ MANDATORY TOP-LEVEL FIELD VALUES INJECTION & ANCHOR PARSING (STRICT FIDELITY):
+You MUST dynamically populate the top-level keys of the JSON object using EXACT raw variable values without any modifications, or parse them directly from the primary Markdown header HTML comments:
+- **`phase_id`**: 1
+- **`phase_name`**: [Locate the primary Markdown title header line, extract the clean technical string text located exactly between the hidden HTML delimiters `<!--PHASE_NAME_START-->` and `<!--PHASE_NAME_END-->` without any alterations or translations]
+- **`phase_description`**: [Locate the primary Markdown title header line, extract the exact translated phase description text that follows after the literal marker `| Description:` or its translated equivalent]
+- **`project_name`**: "membership-hub"
+- **`global_context_file`**: ".ai/.context/membership-hub.global.blueprint.md"
+- **`source_target_dir`**: "sources/"
+
+#### 7. Context Fields Integration Mandate
+- For each day object inside the array, set 'day' to its calculated integer value, set 'context_file' to exact string ".ai/.plan/.context/phase-1.context.blueprint.md", and **set 'context_section' to the exact raw string value of the entire primary Day Header extracted from the source Markdown context text** (e.g., `"context_section": "DAY 1: Multi-Tenant Inception Schema & Flyway Migration Setup"`).
+
+#### 8. CHRONOLOGICAL TIMELINE SEQUENCING MANDATE (ABSOLUTE):
+#### 8. CHRONOLOGICAL TIMELINE SEQUENCING MANDATE (ABSOLUTE):
+
+## SYSTEM CRITICAL BOUNDARY: FLAT CONFIGURATION IS ACTIVE (is_chunked is FALSE)
+- Regardless of the actual day numbers documented in the source Markdown content (e.g., even if the text states "DAY 4", "DAY 5"), you MUST completely reset the timeline sequence internally so that the first operational day inside this Phase always starts from integer 1. Progression follows sequentially as 2, 3, 4, etc. 
+- Map the first targeted day to `"day": 1`, set 'context_file' to ".ai/.plan/.context/phase-1.context.blueprint.md", and strictly set 'context_section' to the exact raw primary header line of the first day parsed from the text. Incremental days follow this relative baseline.
+
+
+## 🛑 MANDATORY STRUCTURE ENFORCEMENT FOR TRACEABILITY TAGS VIA HTML ANCHORS (CRITICAL):
+- For each sub-task block, locate the hidden technical container bounds delimited strictly between `<!--START_TAGS-->` and `<!--END_TAGS-->`. Extract all individual inherited Tag IDs from inside that container, completely purge all markdown backticks (`` ` ``) and padding spaces, and populate them as clean individual string elements inside the "targeted_tags" array field (e.g., `"targeted_tags": ["[REQ-001]", "[DAT-005]"]`).
+- You are STRICTLY BANNED from leaving the "targeted_tags" array empty `[]` or null. Every single tag token must be its own separated array element string.
+
+You must conform strictly to your required JSON Schema layout design structure:
+{
+  "$defs": {
+    "DailyStep": {
+      "properties": {
+        "day": {
+          "description": "Timeline iteration day inside this isolated phase.",
+          "title": "Day",
+          "type": "integer"
+        },
+        "context_file": {
+          "description": "The phase context Markdown file for closure on this day.",
+          "title": "Context File",
+          "type": "string"
+        },
+        "context_section": {
+          "description": "The day targeted for closure on this day.",
+          "title": "Context Section",
+          "type": "string"
+        },
+        "sub_tasks": {
+          "description": "Array of isolated micro-tasks assigned to sub-agents.",
+          "items": {
+            "$ref": "##/$defs/SubAgentTask"
+          },
+          "title": "Sub Tasks",
+          "type": "array"
+        }
+      },
+      "required": [
+        "day",
+        "context_file",
+        "context_section",
+        "sub_tasks"
+      ],
+      "title": "DailyStep",
+      "type": "object"
+    },
+    "SubAgentTask": {
+      "properties": {
+        "id": {
+          "description": "Sub-Task identity of Task that sub-agent role executing.",
+          "title": "Id",
+          "type": "string"
+        },
+        "agent": {
+          "description": "Target sub-agent role executing the task.",
+          "title": "Agent",
+          "type": "string"
+        },
+        "desc": {
+          "description": "Literal, low-level technical step assigned to the agent.",
+          "title": "Desc",
+          "type": "string"
+        },
+        "targeted_tags": {
+          "description": "Flat string array of exact inherited BA Tag IDs that this specific sub-task implements or verifies (e.g. ['[REQ-001]', '[ARC-002]']). MUST match the raw requirements 1:1.",
+          "items": {
+            "type": "string"
+          },
+          "title": "Targeted Tags",
+          "type": "array"
+        },
+        "components": {
+          "description": "Flat array of physical localized file paths or scripts modified or targeted by this single task. Return an empty array [] if no files are involved.",
+          "items": {
+            "type": "string"
+          },
+          "title": "Components",
+          "type": "array"
+        }
+      },
+      "required": [
+        "id",
+        "agent",
+        "desc"
+      ],
+      "title": "SubAgentTask",
+      "type": "object"
+    }
+  },
+  "properties": {
+    "phase_id": {
+      "description": "Target phase tracker index.",
+      "title": "Phase Id",
+      "type": "integer"
+    },
+    "phase_name": {
+      "description": "Target phase tracker name.",
+      "title": "Phase Name",
+      "type": "string"
+    },
+    "phase_description": {
+      "description": "Target phase description.",
+      "title": "Phase Description",
+      "type": "string"
+    },
+    "project_name": {
+      "description": "Target project tracker name.",
+      "title": "Project Name",
+      "type": "string"
+    },
+    "global_context_file": {
+      "description": "Project global context Markdown file for closure.",
+      "title": "Global Context File",
+      "type": "string"
+    },
+    "source_target_dir": {
+      "description": "Project sources folder path for closure.",
+      "title": "Source Target Dir",
+      "type": "string"
+    },
+    "days": {
+      "description": "Day-by-day engineering tracking steps.",
+      "items": {
+        "$ref": "##/$defs/DailyStep"
+      },
+      "title": "Days",
+      "type": "array"
+    }
+  },
+  "required": [
+    "phase_id",
+    "phase_name",
+    "phase_description",
+    "project_name",
+    "global_context_file",
+    "source_target_dir",
+    "days"
+  ],
+  "title": "PhaseStepsPlan",
+  "type": "object"
+}
+
+--- PHASE 1 CONTEXT MARKDOWN ---
+## Giai đoạn 1: <!--PHASE_NAME_START-->user_core_services<!--PHASE_NAME_END--> | Mô tả: Triển khai các dịch vụ cốt lõi quản lý người dùng bao gồm đăng ký, xác thực xã hội, gán vai trò, schema cơ sở dữ liệu và logging kiểm toán bảo mật
+
+#### 📊 Kiểm soát tài liệu
+
+| Mục | Chi tiết |
+| :--- | :--- |
+| **ID Blueprint** | ARCH-20260803053505 |
+| **Tên dự án** | membership-hub |
+| **Giai đoạn** | 1 |
+| **Tên kỹ thuật giai đoạn** | <!--PHASE_NAME_START-->user_core_services<!--PHASE_NAME_END--> |
+| **Mô tả** | Triển khai các dịch vụ cốt lõi quản lý người dùng bao gồm đăng ký, xác thực xã hội, gán vai trò, schema cơ sở dữ liệu và logging kiểm toán bảo mật |
+| **Phiên bản** | 1.0 (Baseline) |
+| **Ngày/Giờ** | 2026/08/03 05:35:05 |
+| **Tác giả** | Enterprise System Architect (SA Agent) |
+| **Phê duyệt** | Pending Technical Governance Review |
+
+#### 1. Phạm vi hoạt động và mục tiêu giai đoạn
+
+Giai đoạn này tập trung vào việc xây dựng nền tảng cốt lõi cho hệ thống quản lý người dùng, bao gồm:
+
+- Triển khai schema cơ sở dữ liệu cho bảng Users và Roles với các ràng buộc toàn vẹn dữ liệu
+- Xây dựng dịch vụ đăng ký người dùng với xác thực email/mật khẩu và hỗ trợ OAuth2 cho các nhà cung cấp xã hội (Firebase, Google, Facebook)
+- Triển khai cơ chế phân quyền RBAC với khả năng gán và thay đổi vai trò người dùng
+- Thiết lập hệ thống logging kiểm toán đáp ứng các tiêu chuẩn bảo mật doanh nghiệp
+- Triển khai xử lý ngoại lệ chi tiết cho validation đầu vào và xung đột dữ liệu
+
+#### 2. Phạm vi kỹ thuật và ranh giới thư mục được phép
+
+**Thư mục và tệp được phép:**
+- `./sources/backend.membershiphub.user/users.sql` - DDL schema cho bảng Users
+- `./sources/backend.membershiphub.user/roles.sql` - DDL schema cho bảng Roles  
+- `./sources/backend.membershiphub.user/user-service.java` - Dịch vụ chính quản lý người dùng
+
+**Endpoint API:**
+- `POST /api/v1/auth/register` - Đăng ký người dùng mới
+- `POST /api/v1/auth/social` - Xác thực qua nhà cung cấp xã hội
+- `PUT /api/v1/users/{userId}/role` - Cập nhật vai trò người dùng (chỉ System Admin)
+
+#### 3. Chỉ đạo chức năng cho Sub-Agent chuyên dụng
+
+**Coder:** Triển khai mã nguồn Java/Quarkus với tuân thủ SOLID, sử dụng BCrypt cho mã hóa mật khẩu, JWT với access token 15 phút và refresh token 7 ngày, áp dụng @Valid cho validation và @Transactional cho các thao tác ghi.
+
+**Tester:** Xây dựng bộ kiểm thử JUnit 5 với độ phủ mã ≥85%, sử dụng Mock cho các dependency, kiểm thử happy path và các scenario lỗi validation.
+
+**Reviewer:** Thực hiện phân tích tĩnh mã nguồn, kiểm tra tuân thủ OWASP Top 10, đảm bảo không có lỗ hổng SQL injection hoặc XSS.
+
+**Doc:** Biên soạn tài liệu kỹ thuật đầy đủ bao gồm API documentation với OpenAPI, schema documentation và hướng dẫn triển khai.
+
+#### 4. Định nghĩa hoàn thành (DoD) cho giai đoạn
+
+- ✅ 100% các requirement [REQ-001], [REQ-002], [REQ-003] được triển khai đầy đủ
+- ✅ Schema database [DAT-001] được tạo thành công với tất cả ràng buộc
+- ✅ Luồng xác thực [ARC-006] hoạt động với OAuth2 và JWT
+- ✅ Xử lý ngoại lệ [EXC-004] cho validation đầu vào
+- ✅ Tuân thủ các tiêu chuẩn bảo mật [NFR-001], [NFR-003], [NFR-006]
+- ✅ Độ phủ kiểm thử ≥85% cho tất cả các dịch vụ
+- ✅ 100% các Tag ID được ánh xạ và kiểm tra
+
+#### 5. NHẬT KÝ THỰC THI KIẾN TRÚC THEO NGÀY
+
+###### NGÀY 1: TRIỂN KHAI DỊCH VỤ ĐĂNG KÝ NGƯỜI DÙNG VÀ API XÁC THỰC XÃ HỘI
+
+######## SUB-TASK 1.1: Triển khai schema cơ sở dữ liệu Users và Roles
+########## Sub-Agent được chỉ định: Coder
+########## Các thành phần mục tiêu và yêu cầu kỹ thuật:
+* **Đường dẫn mục tiêu:** `./sources/backend.membershiphub.user/users.sql`, `./sources/backend.membershiphub.user/roles.sql`
+* **Các thẻ truy xuất nguồn gốc:** <!--START_TAGS-->[DAT-001]<!--END_TAGS-->
+
+######## SUB-TASK 1.2: Triển khai UserService với phương thức register và socialAuthenticate
+########## Sub-Agent được chỉ định: Coder
+########## Các thành phần mục tiêu và yêu cầu kỹ thuật:
+* **Đường dẫn mục tiêu:** `./sources/backend.membershiphub.user/user-service.java`
+* **Các thẻ truy xuất nguồn gốc:** <!--START_TAGS-->[REQ-001], [REQ-002], [ARC-006], [EXC-004], [NFR-001], [NFR-003], [NFR-006]<!--END_TAGS-->
+
+###### NGÀY 2: VIẾT BỘ KIỂM TRA ĐƠN VỊ VÀ TÍCH HỢP CHO CÁC CHỨC NĂNG NGƯỜI DÙNG
+
+######## SUB-TASK 2.1: Kiểm thử đơn vị cho các phương thức register và socialAuthenticate
+########## Sub-Agent được chỉ định: Tester
+########## Các thành phần mục tiêu và yêu cầu kỹ thuật:
+* **Đường dẫn mục tiêu:** `./sources/backend.membershiphub.user/user-service.java;./sources/backend.membershiphub.user/userservice-test.java`
+* **Các thẻ truy xuất nguồn gốc:** <!--START_TAGS-->[REQ-001], [REQ-002], [DAT-001], [EXC-004]<!--END_TAGS-->
+
+######## SUB-TASK 2.2: Kiểm thử tích hợp cho API endpoints
+########## Sub-Agent được chỉ định: Tester
+########## Các thành phần mục tiêu và yêu cầu kỹ thuật:
+* **Đường dẫn mục tiêu:** `./sources/backend.membershiphub.user/user-service.java;./sources/backend.membershiphub.user/user-controller-test.java`
+* **Các thẻ truy xuất nguồn gốc:** <!--START_TAGS-->[REQ-001], [REQ-002], [ARC-006], [EXC-004]<!--END_TAGS-->
+------------------------------------------
+
+# System Instruction
+
+You are a high-performance Data Ingestion and Transformation Engine. Your sole objective is to parse the Phase Context Markdown text and convert it into a perfectly valid, parseable JSON object matching the requested schema framework.
+
+# YOUR CRITICAL OPERATIONAL MANDATES (ZERO LOOPHOLES):
+1. **STRICT VARIABLE FIDELITY & NO PREFIXES:** You MUST use the exact raw values provided in the template variables for file paths and project names. You are STRICTLY BANNED from appending, prepending, or injecting any custom folders or prefixes like "sources/" to the `global_context_file`, `context_file`, `source_target_dir`, or `project_name` fields. Use the variable values exactly as they are passed.
+2. **ABSOLUTE PYDANTIC SCHEMA ALIGNMENT:** Your final generated JSON object MUST perfectly satisfy the structural schema parameters of the target enterprise contract. You are STRICTLY BANNED from omitting, renaming, formatting, or stripping out key elements (specifically `phase_id`, `phase_name`, `phase_description`, `project_name`, `global_context_file`, `source_target_dir`, and `days`).
+3. **ABSOLUTE NO EMPTY TAGS POLICY & STRING SANITIZATION:** You are STRICTLY BANNED from leaving the "targeted_tags" array empty `[]` or null for any sub-task that implements functional requirements or data schemas. You MUST scan the source Markdown sequentially sub-task by sub-task. For each sub-task node, locate the hidden technical container block delimited between `<!--START_TAGS-->` and `<!--END_TAGS-->` contained exclusively within that sub-task section scope. Extract all raw tag token codes inside, strip away all inline markdown formatting characters—specifically backticks (`` ` ``)—and any leading/trailing whitespaces, then populate them as clean separate string elements inside the "targeted_tags" array field of EACH sub-task object node.
+4. **NO TAG BUNDLING:** Every tag must be its own array node (e.g., `"targeted_tags": ["[REQ-001]", "[DAT-002]"]`). You are strictly forbidden from combining multiple tags into a single string element.
+5. **STRICT CONTENT PURITY & REJECT CONVERSATION:** Output ONLY the pure raw executable JSON string matching the required schema. Response must start exactly with the character `{` and end exactly with the character `}`. Banned from including thinking processes, chain-of-thought blocks (`<think>` tags), conversational filler texts, introductions, wrapping inside markdown codeblocks (no triple backticks wrapping), or post-generation notes. Any token outside the raw JSON object boundary triggers an immediate execution pipeline crash.
+
+# Raw Response / Exception:
+
+```json
+Error code: 429 - {'error': {'message': 'Daily token limit exceeded.', 'type': 'rate_limit_error'}}: ['Traceback (most recent call last):
+', '  File "/home/runner/work/enterprise-it-ai/enterprise-it-ai/sources/agents/architect-blueprint/block_json.py", line 301, in convert_phases_to_json
+    response = client.beta.chat.completions.parse(
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+', '  File "/opt/hostedtoolcache/Python/3.11.15/x64/lib/python3.11/site-packages/openai/resources/chat/completions/completions.py", line 193, in parse
+    return self._post(
+           ^^^^^^^^^^^
+', '  File "/opt/hostedtoolcache/Python/3.11.15/x64/lib/python3.11/site-packages/openai/_base_client.py", line 1375, in post
+    return cast(ResponseT, self.request(cast_to, opts, stream=stream, stream_cls=stream_cls))
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+', '  File "/opt/hostedtoolcache/Python/3.11.15/x64/lib/python3.11/site-packages/openai/_base_client.py", line 1148, in request
+    raise self._make_status_error_from_response(err.response) from None
+', "openai.RateLimitError: Error code: 429 - {'error': {'message': 'Daily token limit exceeded.', 'type': 'rate_limit_error'}}
+"]
+```
+
+# AI Model: openai/gpt-4.1 - Phase 1 STEPS - Prompt:
+
+Analyze the attached Phase 1 Context Markdown content.
+
+Extract and translate ALL daily steps, checklists, and agent tasks from the entire document.
+
+
+## 🔒 AGENT ATOMICITY, TASK ID FORMAT & COMPONENT MANDATES (ABSOLUTE):
+- **STRICT TASK ID ALIGNMENT BLUEPRINT:** You MUST strictly generate the "id" field string for every single sub-task using the exact sequential formatting blueprint: `D<day_num>_ST<task_index>` (e.g., `D1_ST1`, `D1_ST2`, `D2_ST1`).
+- **STRICT AGENT ROLE LITERAL VALUES:** The "agent" field inside the JSON sub-task object MUST strictly enforce a capitalized first letter and lowercase subsequent letters pattern matching the exact tokens: 'Coder' | 'Tester' | 'Reviewer' | 'Doc' | 'Docker' | 'Gcp' | 'Gke'. Any other values or lowercase blocks (e.g., NO "coder") are strictly banned.
+- **NO ZERO-COMPONENT TASKS (ABSOLUTE HARD LIMIT):** You are STRICTLY BANNED from generating any sub-task object where the 'components' array is empty `[]`, null, or missing. If an Agent does not have any physical file paths to create, modify, or document, you MUST NOT generate that sub-task object node.
+- **FALLBACK COMPONENT RULE:** If a day has technical descriptions but lacks physical file paths, assign the task to "Doc" agent and populate 'components' with exactly the value of: ".ai/.plan/.context/phase-1.context.blueprint.md".
+- **STRICT AGENT ROLE SEGREGATION (ANTI-AGGREGATION):** If a workflow file involves multiple actions by different personas on the same calendar day, you MUST split this workflow into completely separate, sequential task objects inside the 'sub_tasks' array.
+- **HIGH-DENSITY TECHNICAL SPECIFICATION:** The 'task' field MUST contain an exhaustive, granular engineering instruction. If the sub-task involves an API route, integration endpoint, database query, or message block, you MUST explicitly inline the complete technical contract (e.g., Request/Response Payload Schemas, Data Types, Error Status Codes, or Queue names) directly inside this string. Vague high-level bullet summaries are forbidden.
+- **WORKSPACE PREFIX RULE & MULTI-LANGUAGE TEST EXCEPTION:** Every path in 'components' array MUST strictly begin with `./sources/`. 
+  * *CRITICAL EXCEPTION:* If the first parameter before the semi-colon character in a tester task is the literal string token `INTEGRATION_SCOPE`, you MUST leave that token completely unmodified. Do NOT append any path prefix to it (e.g., `"components": ["INTEGRATION_SCOPE;./sources/frontend/tests/auth.spec.ts"]`).
+
+## 🛠️ MANDATORY TOP-LEVEL FIELD VALUES INJECTION & ANCHOR PARSING (STRICT FIDELITY):
+You MUST dynamically populate the top-level keys of the JSON object using EXACT raw variable values without any modifications, or parse them directly from the primary Markdown header HTML comments:
+- **`phase_id`**: 1
+- **`phase_name`**: [Locate the primary Markdown title header line, extract the clean technical string text located exactly between the hidden HTML delimiters `<!--PHASE_NAME_START-->` and `<!--PHASE_NAME_END-->` without any alterations or translations]
+- **`phase_description`**: [Locate the primary Markdown title header line, extract the exact translated phase description text that follows after the literal marker `| Description:` or its translated equivalent]
+- **`project_name`**: "membership-hub"
+- **`global_context_file`**: ".ai/.context/membership-hub.global.blueprint.md"
+- **`source_target_dir`**: "sources/"
+
+#### 7. Context Fields Integration Mandate
+- For each day object inside the array, set 'day' to its calculated integer value, set 'context_file' to exact string ".ai/.plan/.context/phase-1.context.blueprint.md", and **set 'context_section' to the exact raw string value of the entire primary Day Header extracted from the source Markdown context text** (e.g., `"context_section": "DAY 1: Multi-Tenant Inception Schema & Flyway Migration Setup"`).
+
+#### 8. CHRONOLOGICAL TIMELINE SEQUENCING MANDATE (ABSOLUTE):
+#### 8. CHRONOLOGICAL TIMELINE SEQUENCING MANDATE (ABSOLUTE):
+
+## SYSTEM CRITICAL BOUNDARY: FLAT CONFIGURATION IS ACTIVE (is_chunked is FALSE)
+- Regardless of the actual day numbers documented in the source Markdown content (e.g., even if the text states "DAY 4", "DAY 5"), you MUST completely reset the timeline sequence internally so that the first operational day inside this Phase always starts from integer 1. Progression follows sequentially as 2, 3, 4, etc. 
+- Map the first targeted day to `"day": 1`, set 'context_file' to ".ai/.plan/.context/phase-1.context.blueprint.md", and strictly set 'context_section' to the exact raw primary header line of the first day parsed from the text. Incremental days follow this relative baseline.
+
+
+## 🛑 MANDATORY STRUCTURE ENFORCEMENT FOR TRACEABILITY TAGS VIA HTML ANCHORS (CRITICAL):
+- For each sub-task block, locate the hidden technical container bounds delimited strictly between `<!--START_TAGS-->` and `<!--END_TAGS-->`. Extract all individual inherited Tag IDs from inside that container, completely purge all markdown backticks (`` ` ``) and padding spaces, and populate them as clean individual string elements inside the "targeted_tags" array field (e.g., `"targeted_tags": ["[REQ-001]", "[DAT-005]"]`).
+- You are STRICTLY BANNED from leaving the "targeted_tags" array empty `[]` or null. Every single tag token must be its own separated array element string.
+
+You must conform strictly to your required JSON Schema layout design structure:
+{
+  "$defs": {
+    "DailyStep": {
+      "properties": {
+        "day": {
+          "description": "Timeline iteration day inside this isolated phase.",
+          "title": "Day",
+          "type": "integer"
+        },
+        "context_file": {
+          "description": "The phase context Markdown file for closure on this day.",
+          "title": "Context File",
+          "type": "string"
+        },
+        "context_section": {
+          "description": "The day targeted for closure on this day.",
+          "title": "Context Section",
+          "type": "string"
+        },
+        "sub_tasks": {
+          "description": "Array of isolated micro-tasks assigned to sub-agents.",
+          "items": {
+            "$ref": "##/$defs/SubAgentTask"
+          },
+          "title": "Sub Tasks",
+          "type": "array"
+        }
+      },
+      "required": [
+        "day",
+        "context_file",
+        "context_section",
+        "sub_tasks"
+      ],
+      "title": "DailyStep",
+      "type": "object"
+    },
+    "SubAgentTask": {
+      "properties": {
+        "id": {
+          "description": "Sub-Task identity of Task that sub-agent role executing.",
+          "title": "Id",
+          "type": "string"
+        },
+        "agent": {
+          "description": "Target sub-agent role executing the task.",
+          "title": "Agent",
+          "type": "string"
+        },
+        "desc": {
+          "description": "Literal, low-level technical step assigned to the agent.",
+          "title": "Desc",
+          "type": "string"
+        },
+        "targeted_tags": {
+          "description": "Flat string array of exact inherited BA Tag IDs that this specific sub-task implements or verifies (e.g. ['[REQ-001]', '[ARC-002]']). MUST match the raw requirements 1:1.",
+          "items": {
+            "type": "string"
+          },
+          "title": "Targeted Tags",
+          "type": "array"
+        },
+        "components": {
+          "description": "Flat array of physical localized file paths or scripts modified or targeted by this single task. Return an empty array [] if no files are involved.",
+          "items": {
+            "type": "string"
+          },
+          "title": "Components",
+          "type": "array"
+        }
+      },
+      "required": [
+        "id",
+        "agent",
+        "desc"
+      ],
+      "title": "SubAgentTask",
+      "type": "object"
+    }
+  },
+  "properties": {
+    "phase_id": {
+      "description": "Target phase tracker index.",
+      "title": "Phase Id",
+      "type": "integer"
+    },
+    "phase_name": {
+      "description": "Target phase tracker name.",
+      "title": "Phase Name",
+      "type": "string"
+    },
+    "phase_description": {
+      "description": "Target phase description.",
+      "title": "Phase Description",
+      "type": "string"
+    },
+    "project_name": {
+      "description": "Target project tracker name.",
+      "title": "Project Name",
+      "type": "string"
+    },
+    "global_context_file": {
+      "description": "Project global context Markdown file for closure.",
+      "title": "Global Context File",
+      "type": "string"
+    },
+    "source_target_dir": {
+      "description": "Project sources folder path for closure.",
+      "title": "Source Target Dir",
+      "type": "string"
+    },
+    "days": {
+      "description": "Day-by-day engineering tracking steps.",
+      "items": {
+        "$ref": "##/$defs/DailyStep"
+      },
+      "title": "Days",
+      "type": "array"
+    }
+  },
+  "required": [
+    "phase_id",
+    "phase_name",
+    "phase_description",
+    "project_name",
+    "global_context_file",
+    "source_target_dir",
+    "days"
+  ],
+  "title": "PhaseStepsPlan",
+  "type": "object"
+}
+
+--- PHASE 1 CONTEXT MARKDOWN ---
+## Giai đoạn 1: <!--PHASE_NAME_START-->user_core_services<!--PHASE_NAME_END--> | Mô tả: Triển khai các dịch vụ cốt lõi quản lý người dùng bao gồm đăng ký, xác thực xã hội, gán vai trò, schema cơ sở dữ liệu và logging kiểm toán bảo mật
+
+#### 📊 Kiểm soát tài liệu
+
+| Mục | Chi tiết |
+| :--- | :--- |
+| **ID Blueprint** | ARCH-20260803053505 |
+| **Tên dự án** | membership-hub |
+| **Giai đoạn** | 1 |
+| **Tên kỹ thuật giai đoạn** | <!--PHASE_NAME_START-->user_core_services<!--PHASE_NAME_END--> |
+| **Mô tả** | Triển khai các dịch vụ cốt lõi quản lý người dùng bao gồm đăng ký, xác thực xã hội, gán vai trò, schema cơ sở dữ liệu và logging kiểm toán bảo mật |
+| **Phiên bản** | 1.0 (Baseline) |
+| **Ngày/Giờ** | 2026/08/03 05:35:05 |
+| **Tác giả** | Enterprise System Architect (SA Agent) |
+| **Phê duyệt** | Pending Technical Governance Review |
+
+#### 1. Phạm vi hoạt động và mục tiêu giai đoạn
+
+Giai đoạn này tập trung vào việc xây dựng nền tảng cốt lõi cho hệ thống quản lý người dùng, bao gồm:
+
+- Triển khai schema cơ sở dữ liệu cho bảng Users và Roles với các ràng buộc toàn vẹn dữ liệu
+- Xây dựng dịch vụ đăng ký người dùng với xác thực email/mật khẩu và hỗ trợ OAuth2 cho các nhà cung cấp xã hội (Firebase, Google, Facebook)
+- Triển khai cơ chế phân quyền RBAC với khả năng gán và thay đổi vai trò người dùng
+- Thiết lập hệ thống logging kiểm toán đáp ứng các tiêu chuẩn bảo mật doanh nghiệp
+- Triển khai xử lý ngoại lệ chi tiết cho validation đầu vào và xung đột dữ liệu
+
+#### 2. Phạm vi kỹ thuật và ranh giới thư mục được phép
+
+**Thư mục và tệp được phép:**
+- `./sources/backend.membershiphub.user/users.sql` - DDL schema cho bảng Users
+- `./sources/backend.membershiphub.user/roles.sql` - DDL schema cho bảng Roles  
+- `./sources/backend.membershiphub.user/user-service.java` - Dịch vụ chính quản lý người dùng
+
+**Endpoint API:**
+- `POST /api/v1/auth/register` - Đăng ký người dùng mới
+- `POST /api/v1/auth/social` - Xác thực qua nhà cung cấp xã hội
+- `PUT /api/v1/users/{userId}/role` - Cập nhật vai trò người dùng (chỉ System Admin)
+
+#### 3. Chỉ đạo chức năng cho Sub-Agent chuyên dụng
+
+**Coder:** Triển khai mã nguồn Java/Quarkus với tuân thủ SOLID, sử dụng BCrypt cho mã hóa mật khẩu, JWT với access token 15 phút và refresh token 7 ngày, áp dụng @Valid cho validation và @Transactional cho các thao tác ghi.
+
+**Tester:** Xây dựng bộ kiểm thử JUnit 5 với độ phủ mã ≥85%, sử dụng Mock cho các dependency, kiểm thử happy path và các scenario lỗi validation.
+
+**Reviewer:** Thực hiện phân tích tĩnh mã nguồn, kiểm tra tuân thủ OWASP Top 10, đảm bảo không có lỗ hổng SQL injection hoặc XSS.
+
+**Doc:** Biên soạn tài liệu kỹ thuật đầy đủ bao gồm API documentation với OpenAPI, schema documentation và hướng dẫn triển khai.
+
+#### 4. Định nghĩa hoàn thành (DoD) cho giai đoạn
+
+- ✅ 100% các requirement [REQ-001], [REQ-002], [REQ-003] được triển khai đầy đủ
+- ✅ Schema database [DAT-001] được tạo thành công với tất cả ràng buộc
+- ✅ Luồng xác thực [ARC-006] hoạt động với OAuth2 và JWT
+- ✅ Xử lý ngoại lệ [EXC-004] cho validation đầu vào
+- ✅ Tuân thủ các tiêu chuẩn bảo mật [NFR-001], [NFR-003], [NFR-006]
+- ✅ Độ phủ kiểm thử ≥85% cho tất cả các dịch vụ
+- ✅ 100% các Tag ID được ánh xạ và kiểm tra
+
+#### 5. NHẬT KÝ THỰC THI KIẾN TRÚC THEO NGÀY
+
+###### NGÀY 1: TRIỂN KHAI DỊCH VỤ ĐĂNG KÝ NGƯỜI DÙNG VÀ API XÁC THỰC XÃ HỘI
+
+######## SUB-TASK 1.1: Triển khai schema cơ sở dữ liệu Users và Roles
+########## Sub-Agent được chỉ định: Coder
+########## Các thành phần mục tiêu và yêu cầu kỹ thuật:
+* **Đường dẫn mục tiêu:** `./sources/backend.membershiphub.user/users.sql`, `./sources/backend.membershiphub.user/roles.sql`
+* **Các thẻ truy xuất nguồn gốc:** <!--START_TAGS-->[DAT-001]<!--END_TAGS-->
+
+######## SUB-TASK 1.2: Triển khai UserService với phương thức register và socialAuthenticate
+########## Sub-Agent được chỉ định: Coder
+########## Các thành phần mục tiêu và yêu cầu kỹ thuật:
+* **Đường dẫn mục tiêu:** `./sources/backend.membershiphub.user/user-service.java`
+* **Các thẻ truy xuất nguồn gốc:** <!--START_TAGS-->[REQ-001], [REQ-002], [ARC-006], [EXC-004], [NFR-001], [NFR-003], [NFR-006]<!--END_TAGS-->
+
+###### NGÀY 2: VIẾT BỘ KIỂM TRA ĐƠN VỊ VÀ TÍCH HỢP CHO CÁC CHỨC NĂNG NGƯỜI DÙNG
+
+######## SUB-TASK 2.1: Kiểm thử đơn vị cho các phương thức register và socialAuthenticate
+########## Sub-Agent được chỉ định: Tester
+########## Các thành phần mục tiêu và yêu cầu kỹ thuật:
+* **Đường dẫn mục tiêu:** `./sources/backend.membershiphub.user/user-service.java;./sources/backend.membershiphub.user/userservice-test.java`
+* **Các thẻ truy xuất nguồn gốc:** <!--START_TAGS-->[REQ-001], [REQ-002], [DAT-001], [EXC-004]<!--END_TAGS-->
+
+######## SUB-TASK 2.2: Kiểm thử tích hợp cho API endpoints
+########## Sub-Agent được chỉ định: Tester
+########## Các thành phần mục tiêu và yêu cầu kỹ thuật:
+* **Đường dẫn mục tiêu:** `./sources/backend.membershiphub.user/user-service.java;./sources/backend.membershiphub.user/user-controller-test.java`
+* **Các thẻ truy xuất nguồn gốc:** <!--START_TAGS-->[REQ-001], [REQ-002], [ARC-006], [EXC-004]<!--END_TAGS-->
+------------------------------------------
+
+# System Instruction
+
+You are a high-performance Data Ingestion and Transformation Engine. Your sole objective is to parse the Phase Context Markdown text and convert it into a perfectly valid, parseable JSON object matching the requested schema framework.
+
+# YOUR CRITICAL OPERATIONAL MANDATES (ZERO LOOPHOLES):
+1. **STRICT VARIABLE FIDELITY & NO PREFIXES:** You MUST use the exact raw values provided in the template variables for file paths and project names. You are STRICTLY BANNED from appending, prepending, or injecting any custom folders or prefixes like "sources/" to the `global_context_file`, `context_file`, `source_target_dir`, or `project_name` fields. Use the variable values exactly as they are passed.
+2. **ABSOLUTE PYDANTIC SCHEMA ALIGNMENT:** Your final generated JSON object MUST perfectly satisfy the structural schema parameters of the target enterprise contract. You are STRICTLY BANNED from omitting, renaming, formatting, or stripping out key elements (specifically `phase_id`, `phase_name`, `phase_description`, `project_name`, `global_context_file`, `source_target_dir`, and `days`).
+3. **ABSOLUTE NO EMPTY TAGS POLICY & STRING SANITIZATION:** You are STRICTLY BANNED from leaving the "targeted_tags" array empty `[]` or null for any sub-task that implements functional requirements or data schemas. You MUST scan the source Markdown sequentially sub-task by sub-task. For each sub-task node, locate the hidden technical container block delimited between `<!--START_TAGS-->` and `<!--END_TAGS-->` contained exclusively within that sub-task section scope. Extract all raw tag token codes inside, strip away all inline markdown formatting characters—specifically backticks (`` ` ``)—and any leading/trailing whitespaces, then populate them as clean separate string elements inside the "targeted_tags" array field of EACH sub-task object node.
+4. **NO TAG BUNDLING:** Every tag must be its own array node (e.g., `"targeted_tags": ["[REQ-001]", "[DAT-002]"]`). You are strictly forbidden from combining multiple tags into a single string element.
+5. **STRICT CONTENT PURITY & REJECT CONVERSATION:** Output ONLY the pure raw executable JSON string matching the required schema. Response must start exactly with the character `{` and end exactly with the character `}`. Banned from including thinking processes, chain-of-thought blocks (`<think>` tags), conversational filler texts, introductions, wrapping inside markdown codeblocks (no triple backticks wrapping), or post-generation notes. Any token outside the raw JSON object boundary triggers an immediate execution pipeline crash.
+
+# Raw Response / Exception:
+
+```json
+Error code: 410 - {'error': {'code': 'github_models_retirement_brownout', 'message': 'GitHub Models is temporarily unavailable as part of a scheduled retirement brownout.'}}: ['Traceback (most recent call last):
+', '  File "/home/runner/work/enterprise-it-ai/enterprise-it-ai/sources/agents/architect-blueprint/block_json.py", line 301, in convert_phases_to_json
+    response = client.beta.chat.completions.parse(
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+', '  File "/opt/hostedtoolcache/Python/3.11.15/x64/lib/python3.11/site-packages/openai/resources/chat/completions/completions.py", line 193, in parse
+    return self._post(
+           ^^^^^^^^^^^
+', '  File "/opt/hostedtoolcache/Python/3.11.15/x64/lib/python3.11/site-packages/openai/_base_client.py", line 1375, in post
+    return cast(ResponseT, self.request(cast_to, opts, stream=stream, stream_cls=stream_cls))
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+', '  File "/opt/hostedtoolcache/Python/3.11.15/x64/lib/python3.11/site-packages/openai/_base_client.py", line 1148, in request
+    raise self._make_status_error_from_response(err.response) from None
+', "openai.APIStatusError: Error code: 410 - {'error': {'code': 'github_models_retirement_brownout', 'message': 'GitHub Models is temporarily unavailable as part of a scheduled retirement brownout.'}}
+"]
+```
+
+# AI Model: openai/gpt-4.1-mini - Phase 1 STEPS - Prompt:
+
+Analyze the attached Phase 1 Context Markdown content.
+
+Extract and translate ALL daily steps, checklists, and agent tasks from the entire document.
+
+
+## 🔒 AGENT ATOMICITY, TASK ID FORMAT & COMPONENT MANDATES (ABSOLUTE):
+- **STRICT TASK ID ALIGNMENT BLUEPRINT:** You MUST strictly generate the "id" field string for every single sub-task using the exact sequential formatting blueprint: `D<day_num>_ST<task_index>` (e.g., `D1_ST1`, `D1_ST2`, `D2_ST1`).
+- **STRICT AGENT ROLE LITERAL VALUES:** The "agent" field inside the JSON sub-task object MUST strictly enforce a capitalized first letter and lowercase subsequent letters pattern matching the exact tokens: 'Coder' | 'Tester' | 'Reviewer' | 'Doc' | 'Docker' | 'Gcp' | 'Gke'. Any other values or lowercase blocks (e.g., NO "coder") are strictly banned.
+- **NO ZERO-COMPONENT TASKS (ABSOLUTE HARD LIMIT):** You are STRICTLY BANNED from generating any sub-task object where the 'components' array is empty `[]`, null, or missing. If an Agent does not have any physical file paths to create, modify, or document, you MUST NOT generate that sub-task object node.
+- **FALLBACK COMPONENT RULE:** If a day has technical descriptions but lacks physical file paths, assign the task to "Doc" agent and populate 'components' with exactly the value of: ".ai/.plan/.context/phase-1.context.blueprint.md".
+- **STRICT AGENT ROLE SEGREGATION (ANTI-AGGREGATION):** If a workflow file involves multiple actions by different personas on the same calendar day, you MUST split this workflow into completely separate, sequential task objects inside the 'sub_tasks' array.
+- **HIGH-DENSITY TECHNICAL SPECIFICATION:** The 'task' field MUST contain an exhaustive, granular engineering instruction. If the sub-task involves an API route, integration endpoint, database query, or message block, you MUST explicitly inline the complete technical contract (e.g., Request/Response Payload Schemas, Data Types, Error Status Codes, or Queue names) directly inside this string. Vague high-level bullet summaries are forbidden.
+- **WORKSPACE PREFIX RULE & MULTI-LANGUAGE TEST EXCEPTION:** Every path in 'components' array MUST strictly begin with `./sources/`. 
+  * *CRITICAL EXCEPTION:* If the first parameter before the semi-colon character in a tester task is the literal string token `INTEGRATION_SCOPE`, you MUST leave that token completely unmodified. Do NOT append any path prefix to it (e.g., `"components": ["INTEGRATION_SCOPE;./sources/frontend/tests/auth.spec.ts"]`).
+
+## 🛠️ MANDATORY TOP-LEVEL FIELD VALUES INJECTION & ANCHOR PARSING (STRICT FIDELITY):
+You MUST dynamically populate the top-level keys of the JSON object using EXACT raw variable values without any modifications, or parse them directly from the primary Markdown header HTML comments:
+- **`phase_id`**: 1
+- **`phase_name`**: [Locate the primary Markdown title header line, extract the clean technical string text located exactly between the hidden HTML delimiters `<!--PHASE_NAME_START-->` and `<!--PHASE_NAME_END-->` without any alterations or translations]
+- **`phase_description`**: [Locate the primary Markdown title header line, extract the exact translated phase description text that follows after the literal marker `| Description:` or its translated equivalent]
+- **`project_name`**: "membership-hub"
+- **`global_context_file`**: ".ai/.context/membership-hub.global.blueprint.md"
+- **`source_target_dir`**: "sources/"
+
+#### 7. Context Fields Integration Mandate
+- For each day object inside the array, set 'day' to its calculated integer value, set 'context_file' to exact string ".ai/.plan/.context/phase-1.context.blueprint.md", and **set 'context_section' to the exact raw string value of the entire primary Day Header extracted from the source Markdown context text** (e.g., `"context_section": "DAY 1: Multi-Tenant Inception Schema & Flyway Migration Setup"`).
+
+#### 8. CHRONOLOGICAL TIMELINE SEQUENCING MANDATE (ABSOLUTE):
+#### 8. CHRONOLOGICAL TIMELINE SEQUENCING MANDATE (ABSOLUTE):
+
+## SYSTEM CRITICAL BOUNDARY: FLAT CONFIGURATION IS ACTIVE (is_chunked is FALSE)
+- Regardless of the actual day numbers documented in the source Markdown content (e.g., even if the text states "DAY 4", "DAY 5"), you MUST completely reset the timeline sequence internally so that the first operational day inside this Phase always starts from integer 1. Progression follows sequentially as 2, 3, 4, etc. 
+- Map the first targeted day to `"day": 1`, set 'context_file' to ".ai/.plan/.context/phase-1.context.blueprint.md", and strictly set 'context_section' to the exact raw primary header line of the first day parsed from the text. Incremental days follow this relative baseline.
+
+
+## 🛑 MANDATORY STRUCTURE ENFORCEMENT FOR TRACEABILITY TAGS VIA HTML ANCHORS (CRITICAL):
+- For each sub-task block, locate the hidden technical container bounds delimited strictly between `<!--START_TAGS-->` and `<!--END_TAGS-->`. Extract all individual inherited Tag IDs from inside that container, completely purge all markdown backticks (`` ` ``) and padding spaces, and populate them as clean individual string elements inside the "targeted_tags" array field (e.g., `"targeted_tags": ["[REQ-001]", "[DAT-005]"]`).
+- You are STRICTLY BANNED from leaving the "targeted_tags" array empty `[]` or null. Every single tag token must be its own separated array element string.
+
+You must conform strictly to your required JSON Schema layout design structure:
+{
+  "$defs": {
+    "DailyStep": {
+      "properties": {
+        "day": {
+          "description": "Timeline iteration day inside this isolated phase.",
+          "title": "Day",
+          "type": "integer"
+        },
+        "context_file": {
+          "description": "The phase context Markdown file for closure on this day.",
+          "title": "Context File",
+          "type": "string"
+        },
+        "context_section": {
+          "description": "The day targeted for closure on this day.",
+          "title": "Context Section",
+          "type": "string"
+        },
+        "sub_tasks": {
+          "description": "Array of isolated micro-tasks assigned to sub-agents.",
+          "items": {
+            "$ref": "##/$defs/SubAgentTask"
+          },
+          "title": "Sub Tasks",
+          "type": "array"
+        }
+      },
+      "required": [
+        "day",
+        "context_file",
+        "context_section",
+        "sub_tasks"
+      ],
+      "title": "DailyStep",
+      "type": "object"
+    },
+    "SubAgentTask": {
+      "properties": {
+        "id": {
+          "description": "Sub-Task identity of Task that sub-agent role executing.",
+          "title": "Id",
+          "type": "string"
+        },
+        "agent": {
+          "description": "Target sub-agent role executing the task.",
+          "title": "Agent",
+          "type": "string"
+        },
+        "desc": {
+          "description": "Literal, low-level technical step assigned to the agent.",
+          "title": "Desc",
+          "type": "string"
+        },
+        "targeted_tags": {
+          "description": "Flat string array of exact inherited BA Tag IDs that this specific sub-task implements or verifies (e.g. ['[REQ-001]', '[ARC-002]']). MUST match the raw requirements 1:1.",
+          "items": {
+            "type": "string"
+          },
+          "title": "Targeted Tags",
+          "type": "array"
+        },
+        "components": {
+          "description": "Flat array of physical localized file paths or scripts modified or targeted by this single task. Return an empty array [] if no files are involved.",
+          "items": {
+            "type": "string"
+          },
+          "title": "Components",
+          "type": "array"
+        }
+      },
+      "required": [
+        "id",
+        "agent",
+        "desc"
+      ],
+      "title": "SubAgentTask",
+      "type": "object"
+    }
+  },
+  "properties": {
+    "phase_id": {
+      "description": "Target phase tracker index.",
+      "title": "Phase Id",
+      "type": "integer"
+    },
+    "phase_name": {
+      "description": "Target phase tracker name.",
+      "title": "Phase Name",
+      "type": "string"
+    },
+    "phase_description": {
+      "description": "Target phase description.",
+      "title": "Phase Description",
+      "type": "string"
+    },
+    "project_name": {
+      "description": "Target project tracker name.",
+      "title": "Project Name",
+      "type": "string"
+    },
+    "global_context_file": {
+      "description": "Project global context Markdown file for closure.",
+      "title": "Global Context File",
+      "type": "string"
+    },
+    "source_target_dir": {
+      "description": "Project sources folder path for closure.",
+      "title": "Source Target Dir",
+      "type": "string"
+    },
+    "days": {
+      "description": "Day-by-day engineering tracking steps.",
+      "items": {
+        "$ref": "##/$defs/DailyStep"
+      },
+      "title": "Days",
+      "type": "array"
+    }
+  },
+  "required": [
+    "phase_id",
+    "phase_name",
+    "phase_description",
+    "project_name",
+    "global_context_file",
+    "source_target_dir",
+    "days"
+  ],
+  "title": "PhaseStepsPlan",
+  "type": "object"
+}
+
+--- PHASE 1 CONTEXT MARKDOWN ---
+## Giai đoạn 1: <!--PHASE_NAME_START-->user_core_services<!--PHASE_NAME_END--> | Mô tả: Triển khai các dịch vụ cốt lõi quản lý người dùng bao gồm đăng ký, xác thực xã hội, gán vai trò, schema cơ sở dữ liệu và logging kiểm toán bảo mật
+
+#### 📊 Kiểm soát tài liệu
+
+| Mục | Chi tiết |
+| :--- | :--- |
+| **ID Blueprint** | ARCH-20260803053505 |
+| **Tên dự án** | membership-hub |
+| **Giai đoạn** | 1 |
+| **Tên kỹ thuật giai đoạn** | <!--PHASE_NAME_START-->user_core_services<!--PHASE_NAME_END--> |
+| **Mô tả** | Triển khai các dịch vụ cốt lõi quản lý người dùng bao gồm đăng ký, xác thực xã hội, gán vai trò, schema cơ sở dữ liệu và logging kiểm toán bảo mật |
+| **Phiên bản** | 1.0 (Baseline) |
+| **Ngày/Giờ** | 2026/08/03 05:35:05 |
+| **Tác giả** | Enterprise System Architect (SA Agent) |
+| **Phê duyệt** | Pending Technical Governance Review |
+
+#### 1. Phạm vi hoạt động và mục tiêu giai đoạn
+
+Giai đoạn này tập trung vào việc xây dựng nền tảng cốt lõi cho hệ thống quản lý người dùng, bao gồm:
+
+- Triển khai schema cơ sở dữ liệu cho bảng Users và Roles với các ràng buộc toàn vẹn dữ liệu
+- Xây dựng dịch vụ đăng ký người dùng với xác thực email/mật khẩu và hỗ trợ OAuth2 cho các nhà cung cấp xã hội (Firebase, Google, Facebook)
+- Triển khai cơ chế phân quyền RBAC với khả năng gán và thay đổi vai trò người dùng
+- Thiết lập hệ thống logging kiểm toán đáp ứng các tiêu chuẩn bảo mật doanh nghiệp
+- Triển khai xử lý ngoại lệ chi tiết cho validation đầu vào và xung đột dữ liệu
+
+#### 2. Phạm vi kỹ thuật và ranh giới thư mục được phép
+
+**Thư mục và tệp được phép:**
+- `./sources/backend.membershiphub.user/users.sql` - DDL schema cho bảng Users
+- `./sources/backend.membershiphub.user/roles.sql` - DDL schema cho bảng Roles  
+- `./sources/backend.membershiphub.user/user-service.java` - Dịch vụ chính quản lý người dùng
+
+**Endpoint API:**
+- `POST /api/v1/auth/register` - Đăng ký người dùng mới
+- `POST /api/v1/auth/social` - Xác thực qua nhà cung cấp xã hội
+- `PUT /api/v1/users/{userId}/role` - Cập nhật vai trò người dùng (chỉ System Admin)
+
+#### 3. Chỉ đạo chức năng cho Sub-Agent chuyên dụng
+
+**Coder:** Triển khai mã nguồn Java/Quarkus với tuân thủ SOLID, sử dụng BCrypt cho mã hóa mật khẩu, JWT với access token 15 phút và refresh token 7 ngày, áp dụng @Valid cho validation và @Transactional cho các thao tác ghi.
+
+**Tester:** Xây dựng bộ kiểm thử JUnit 5 với độ phủ mã ≥85%, sử dụng Mock cho các dependency, kiểm thử happy path và các scenario lỗi validation.
+
+**Reviewer:** Thực hiện phân tích tĩnh mã nguồn, kiểm tra tuân thủ OWASP Top 10, đảm bảo không có lỗ hổng SQL injection hoặc XSS.
+
+**Doc:** Biên soạn tài liệu kỹ thuật đầy đủ bao gồm API documentation với OpenAPI, schema documentation và hướng dẫn triển khai.
+
+#### 4. Định nghĩa hoàn thành (DoD) cho giai đoạn
+
+- ✅ 100% các requirement [REQ-001], [REQ-002], [REQ-003] được triển khai đầy đủ
+- ✅ Schema database [DAT-001] được tạo thành công với tất cả ràng buộc
+- ✅ Luồng xác thực [ARC-006] hoạt động với OAuth2 và JWT
+- ✅ Xử lý ngoại lệ [EXC-004] cho validation đầu vào
+- ✅ Tuân thủ các tiêu chuẩn bảo mật [NFR-001], [NFR-003], [NFR-006]
+- ✅ Độ phủ kiểm thử ≥85% cho tất cả các dịch vụ
+- ✅ 100% các Tag ID được ánh xạ và kiểm tra
+
+#### 5. NHẬT KÝ THỰC THI KIẾN TRÚC THEO NGÀY
+
+###### NGÀY 1: TRIỂN KHAI DỊCH VỤ ĐĂNG KÝ NGƯỜI DÙNG VÀ API XÁC THỰC XÃ HỘI
+
+######## SUB-TASK 1.1: Triển khai schema cơ sở dữ liệu Users và Roles
+########## Sub-Agent được chỉ định: Coder
+########## Các thành phần mục tiêu và yêu cầu kỹ thuật:
+* **Đường dẫn mục tiêu:** `./sources/backend.membershiphub.user/users.sql`, `./sources/backend.membershiphub.user/roles.sql`
+* **Các thẻ truy xuất nguồn gốc:** <!--START_TAGS-->[DAT-001]<!--END_TAGS-->
+
+######## SUB-TASK 1.2: Triển khai UserService với phương thức register và socialAuthenticate
+########## Sub-Agent được chỉ định: Coder
+########## Các thành phần mục tiêu và yêu cầu kỹ thuật:
+* **Đường dẫn mục tiêu:** `./sources/backend.membershiphub.user/user-service.java`
+* **Các thẻ truy xuất nguồn gốc:** <!--START_TAGS-->[REQ-001], [REQ-002], [ARC-006], [EXC-004], [NFR-001], [NFR-003], [NFR-006]<!--END_TAGS-->
+
+###### NGÀY 2: VIẾT BỘ KIỂM TRA ĐƠN VỊ VÀ TÍCH HỢP CHO CÁC CHỨC NĂNG NGƯỜI DÙNG
+
+######## SUB-TASK 2.1: Kiểm thử đơn vị cho các phương thức register và socialAuthenticate
+########## Sub-Agent được chỉ định: Tester
+########## Các thành phần mục tiêu và yêu cầu kỹ thuật:
+* **Đường dẫn mục tiêu:** `./sources/backend.membershiphub.user/user-service.java;./sources/backend.membershiphub.user/userservice-test.java`
+* **Các thẻ truy xuất nguồn gốc:** <!--START_TAGS-->[REQ-001], [REQ-002], [DAT-001], [EXC-004]<!--END_TAGS-->
+
+######## SUB-TASK 2.2: Kiểm thử tích hợp cho API endpoints
+########## Sub-Agent được chỉ định: Tester
+########## Các thành phần mục tiêu và yêu cầu kỹ thuật:
+* **Đường dẫn mục tiêu:** `./sources/backend.membershiphub.user/user-service.java;./sources/backend.membershiphub.user/user-controller-test.java`
+* **Các thẻ truy xuất nguồn gốc:** <!--START_TAGS-->[REQ-001], [REQ-002], [ARC-006], [EXC-004]<!--END_TAGS-->
+------------------------------------------
+
+# System Instruction
+
+You are a high-performance Data Ingestion and Transformation Engine. Your sole objective is to parse the Phase Context Markdown text and convert it into a perfectly valid, parseable JSON object matching the requested schema framework.
+
+# YOUR CRITICAL OPERATIONAL MANDATES (ZERO LOOPHOLES):
+1. **STRICT VARIABLE FIDELITY & NO PREFIXES:** You MUST use the exact raw values provided in the template variables for file paths and project names. You are STRICTLY BANNED from appending, prepending, or injecting any custom folders or prefixes like "sources/" to the `global_context_file`, `context_file`, `source_target_dir`, or `project_name` fields. Use the variable values exactly as they are passed.
+2. **ABSOLUTE PYDANTIC SCHEMA ALIGNMENT:** Your final generated JSON object MUST perfectly satisfy the structural schema parameters of the target enterprise contract. You are STRICTLY BANNED from omitting, renaming, formatting, or stripping out key elements (specifically `phase_id`, `phase_name`, `phase_description`, `project_name`, `global_context_file`, `source_target_dir`, and `days`).
+3. **ABSOLUTE NO EMPTY TAGS POLICY & STRING SANITIZATION:** You are STRICTLY BANNED from leaving the "targeted_tags" array empty `[]` or null for any sub-task that implements functional requirements or data schemas. You MUST scan the source Markdown sequentially sub-task by sub-task. For each sub-task node, locate the hidden technical container block delimited between `<!--START_TAGS-->` and `<!--END_TAGS-->` contained exclusively within that sub-task section scope. Extract all raw tag token codes inside, strip away all inline markdown formatting characters—specifically backticks (`` ` ``)—and any leading/trailing whitespaces, then populate them as clean separate string elements inside the "targeted_tags" array field of EACH sub-task object node.
+4. **NO TAG BUNDLING:** Every tag must be its own array node (e.g., `"targeted_tags": ["[REQ-001]", "[DAT-002]"]`). You are strictly forbidden from combining multiple tags into a single string element.
+5. **STRICT CONTENT PURITY & REJECT CONVERSATION:** Output ONLY the pure raw executable JSON string matching the required schema. Response must start exactly with the character `{` and end exactly with the character `}`. Banned from including thinking processes, chain-of-thought blocks (`<think>` tags), conversational filler texts, introductions, wrapping inside markdown codeblocks (no triple backticks wrapping), or post-generation notes. Any token outside the raw JSON object boundary triggers an immediate execution pipeline crash.
+
+# Raw Response / Exception:
+
+```json
+Error code: 410 - {'error': {'code': 'github_models_retirement_brownout', 'message': 'GitHub Models is temporarily unavailable as part of a scheduled retirement brownout.'}}: ['Traceback (most recent call last):
+', '  File "/home/runner/work/enterprise-it-ai/enterprise-it-ai/sources/agents/architect-blueprint/block_json.py", line 301, in convert_phases_to_json
+    response = client.beta.chat.completions.parse(
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+', '  File "/opt/hostedtoolcache/Python/3.11.15/x64/lib/python3.11/site-packages/openai/resources/chat/completions/completions.py", line 193, in parse
+    return self._post(
+           ^^^^^^^^^^^
+', '  File "/opt/hostedtoolcache/Python/3.11.15/x64/lib/python3.11/site-packages/openai/_base_client.py", line 1375, in post
+    return cast(ResponseT, self.request(cast_to, opts, stream=stream, stream_cls=stream_cls))
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+', '  File "/opt/hostedtoolcache/Python/3.11.15/x64/lib/python3.11/site-packages/openai/_base_client.py", line 1148, in request
+    raise self._make_status_error_from_response(err.response) from None
+', "openai.APIStatusError: Error code: 410 - {'error': {'code': 'github_models_retirement_brownout', 'message': 'GitHub Models is temporarily unavailable as part of a scheduled retirement brownout.'}}
+"]
+```
+
+# AI Model: openai/gpt-4.1-mini - Phase 1 STEPS - Prompt:
+
+Analyze the attached Phase 1 Context Markdown content.
+
+Extract and translate ALL daily steps, checklists, and agent tasks from the entire document.
+
+
+## 🔒 AGENT ATOMICITY, TASK ID FORMAT & COMPONENT MANDATES (ABSOLUTE):
+- **STRICT TASK ID ALIGNMENT BLUEPRINT:** You MUST strictly generate the "id" field string for every single sub-task using the exact sequential formatting blueprint: `D<day_num>_ST<task_index>` (e.g., `D1_ST1`, `D1_ST2`, `D2_ST1`).
+- **STRICT AGENT ROLE LITERAL VALUES:** The "agent" field inside the JSON sub-task object MUST strictly enforce a capitalized first letter and lowercase subsequent letters pattern matching the exact tokens: 'Coder' | 'Tester' | 'Reviewer' | 'Doc' | 'Docker' | 'Gcp' | 'Gke'. Any other values or lowercase blocks (e.g., NO "coder") are strictly banned.
+- **NO ZERO-COMPONENT TASKS (ABSOLUTE HARD LIMIT):** You are STRICTLY BANNED from generating any sub-task object where the 'components' array is empty `[]`, null, or missing. If an Agent does not have any physical file paths to create, modify, or document, you MUST NOT generate that sub-task object node.
+- **FALLBACK COMPONENT RULE:** If a day has technical descriptions but lacks physical file paths, assign the task to "Doc" agent and populate 'components' with exactly the value of: ".ai/.plan/.context/phase-1.context.blueprint.md".
+- **STRICT AGENT ROLE SEGREGATION (ANTI-AGGREGATION):** If a workflow file involves multiple actions by different personas on the same calendar day, you MUST split this workflow into completely separate, sequential task objects inside the 'sub_tasks' array.
+- **HIGH-DENSITY TECHNICAL SPECIFICATION:** The 'task' field MUST contain an exhaustive, granular engineering instruction. If the sub-task involves an API route, integration endpoint, database query, or message block, you MUST explicitly inline the complete technical contract (e.g., Request/Response Payload Schemas, Data Types, Error Status Codes, or Queue names) directly inside this string. Vague high-level bullet summaries are forbidden.
+- **WORKSPACE PREFIX RULE & MULTI-LANGUAGE TEST EXCEPTION:** Every path in 'components' array MUST strictly begin with `./sources/`. 
+  * *CRITICAL EXCEPTION:* If the first parameter before the semi-colon character in a tester task is the literal string token `INTEGRATION_SCOPE`, you MUST leave that token completely unmodified. Do NOT append any path prefix to it (e.g., `"components": ["INTEGRATION_SCOPE;./sources/frontend/tests/auth.spec.ts"]`).
+
+## 🛠️ MANDATORY TOP-LEVEL FIELD VALUES INJECTION & ANCHOR PARSING (STRICT FIDELITY):
+You MUST dynamically populate the top-level keys of the JSON object using EXACT raw variable values without any modifications, or parse them directly from the primary Markdown header HTML comments:
+- **`phase_id`**: 1
+- **`phase_name`**: [Locate the primary Markdown title header line, extract the clean technical string text located exactly between the hidden HTML delimiters `<!--PHASE_NAME_START-->` and `<!--PHASE_NAME_END-->` without any alterations or translations]
+- **`phase_description`**: [Locate the primary Markdown title header line, extract the exact translated phase description text that follows after the literal marker `| Description:` or its translated equivalent]
+- **`project_name`**: "membership-hub"
+- **`global_context_file`**: ".ai/.context/membership-hub.global.blueprint.md"
+- **`source_target_dir`**: "sources/"
+
+#### 7. Context Fields Integration Mandate
+- For each day object inside the array, set 'day' to its calculated integer value, set 'context_file' to exact string ".ai/.plan/.context/phase-1.context.blueprint.md", and **set 'context_section' to the exact raw string value of the entire primary Day Header extracted from the source Markdown context text** (e.g., `"context_section": "DAY 1: Multi-Tenant Inception Schema & Flyway Migration Setup"`).
+
+#### 8. CHRONOLOGICAL TIMELINE SEQUENCING MANDATE (ABSOLUTE):
+#### 8. CHRONOLOGICAL TIMELINE SEQUENCING MANDATE (ABSOLUTE):
+
+## SYSTEM CRITICAL BOUNDARY: FLAT CONFIGURATION IS ACTIVE (is_chunked is FALSE)
+- Regardless of the actual day numbers documented in the source Markdown content (e.g., even if the text states "DAY 4", "DAY 5"), you MUST completely reset the timeline sequence internally so that the first operational day inside this Phase always starts from integer 1. Progression follows sequentially as 2, 3, 4, etc. 
+- Map the first targeted day to `"day": 1`, set 'context_file' to ".ai/.plan/.context/phase-1.context.blueprint.md", and strictly set 'context_section' to the exact raw primary header line of the first day parsed from the text. Incremental days follow this relative baseline.
+
+
+## 🛑 MANDATORY STRUCTURE ENFORCEMENT FOR TRACEABILITY TAGS VIA HTML ANCHORS (CRITICAL):
+- For each sub-task block, locate the hidden technical container bounds delimited strictly between `<!--START_TAGS-->` and `<!--END_TAGS-->`. Extract all individual inherited Tag IDs from inside that container, completely purge all markdown backticks (`` ` ``) and padding spaces, and populate them as clean individual string elements inside the "targeted_tags" array field (e.g., `"targeted_tags": ["[REQ-001]", "[DAT-005]"]`).
+- You are STRICTLY BANNED from leaving the "targeted_tags" array empty `[]` or null. Every single tag token must be its own separated array element string.
+
+You must conform strictly to your required JSON Schema layout design structure:
+{
+  "$defs": {
+    "DailyStep": {
+      "properties": {
+        "day": {
+          "description": "Timeline iteration day inside this isolated phase.",
+          "title": "Day",
+          "type": "integer"
+        },
+        "context_file": {
+          "description": "The phase context Markdown file for closure on this day.",
+          "title": "Context File",
+          "type": "string"
+        },
+        "context_section": {
+          "description": "The day targeted for closure on this day.",
+          "title": "Context Section",
+          "type": "string"
+        },
+        "sub_tasks": {
+          "description": "Array of isolated micro-tasks assigned to sub-agents.",
+          "items": {
+            "$ref": "##/$defs/SubAgentTask"
+          },
+          "title": "Sub Tasks",
+          "type": "array"
+        }
+      },
+      "required": [
+        "day",
+        "context_file",
+        "context_section",
+        "sub_tasks"
+      ],
+      "title": "DailyStep",
+      "type": "object"
+    },
+    "SubAgentTask": {
+      "properties": {
+        "id": {
+          "description": "Sub-Task identity of Task that sub-agent role executing.",
+          "title": "Id",
+          "type": "string"
+        },
+        "agent": {
+          "description": "Target sub-agent role executing the task.",
+          "title": "Agent",
+          "type": "string"
+        },
+        "desc": {
+          "description": "Literal, low-level technical step assigned to the agent.",
+          "title": "Desc",
+          "type": "string"
+        },
+        "targeted_tags": {
+          "description": "Flat string array of exact inherited BA Tag IDs that this specific sub-task implements or verifies (e.g. ['[REQ-001]', '[ARC-002]']). MUST match the raw requirements 1:1.",
+          "items": {
+            "type": "string"
+          },
+          "title": "Targeted Tags",
+          "type": "array"
+        },
+        "components": {
+          "description": "Flat array of physical localized file paths or scripts modified or targeted by this single task. Return an empty array [] if no files are involved.",
+          "items": {
+            "type": "string"
+          },
+          "title": "Components",
+          "type": "array"
+        }
+      },
+      "required": [
+        "id",
+        "agent",
+        "desc"
+      ],
+      "title": "SubAgentTask",
+      "type": "object"
+    }
+  },
+  "properties": {
+    "phase_id": {
+      "description": "Target phase tracker index.",
+      "title": "Phase Id",
+      "type": "integer"
+    },
+    "phase_name": {
+      "description": "Target phase tracker name.",
+      "title": "Phase Name",
+      "type": "string"
+    },
+    "phase_description": {
+      "description": "Target phase description.",
+      "title": "Phase Description",
+      "type": "string"
+    },
+    "project_name": {
+      "description": "Target project tracker name.",
+      "title": "Project Name",
+      "type": "string"
+    },
+    "global_context_file": {
+      "description": "Project global context Markdown file for closure.",
+      "title": "Global Context File",
+      "type": "string"
+    },
+    "source_target_dir": {
+      "description": "Project sources folder path for closure.",
+      "title": "Source Target Dir",
+      "type": "string"
+    },
+    "days": {
+      "description": "Day-by-day engineering tracking steps.",
+      "items": {
+        "$ref": "##/$defs/DailyStep"
+      },
+      "title": "Days",
+      "type": "array"
+    }
+  },
+  "required": [
+    "phase_id",
+    "phase_name",
+    "phase_description",
+    "project_name",
+    "global_context_file",
+    "source_target_dir",
+    "days"
+  ],
+  "title": "PhaseStepsPlan",
+  "type": "object"
+}
+
+--- PHASE 1 CONTEXT MARKDOWN ---
+## Giai đoạn 1: <!--PHASE_NAME_START-->user_core_services<!--PHASE_NAME_END--> | Mô tả: Triển khai các dịch vụ cốt lõi quản lý người dùng bao gồm đăng ký, xác thực xã hội, gán vai trò, schema cơ sở dữ liệu và logging kiểm toán bảo mật
+
+#### 📊 Kiểm soát tài liệu
+
+| Mục | Chi tiết |
+| :--- | :--- |
+| **ID Blueprint** | ARCH-20260803053505 |
+| **Tên dự án** | membership-hub |
+| **Giai đoạn** | 1 |
+| **Tên kỹ thuật giai đoạn** | <!--PHASE_NAME_START-->user_core_services<!--PHASE_NAME_END--> |
+| **Mô tả** | Triển khai các dịch vụ cốt lõi quản lý người dùng bao gồm đăng ký, xác thực xã hội, gán vai trò, schema cơ sở dữ liệu và logging kiểm toán bảo mật |
+| **Phiên bản** | 1.0 (Baseline) |
+| **Ngày/Giờ** | 2026/08/03 05:35:05 |
+| **Tác giả** | Enterprise System Architect (SA Agent) |
+| **Phê duyệt** | Pending Technical Governance Review |
+
+#### 1. Phạm vi hoạt động và mục tiêu giai đoạn
+
+Giai đoạn này tập trung vào việc xây dựng nền tảng cốt lõi cho hệ thống quản lý người dùng, bao gồm:
+
+- Triển khai schema cơ sở dữ liệu cho bảng Users và Roles với các ràng buộc toàn vẹn dữ liệu
+- Xây dựng dịch vụ đăng ký người dùng với xác thực email/mật khẩu và hỗ trợ OAuth2 cho các nhà cung cấp xã hội (Firebase, Google, Facebook)
+- Triển khai cơ chế phân quyền RBAC với khả năng gán và thay đổi vai trò người dùng
+- Thiết lập hệ thống logging kiểm toán đáp ứng các tiêu chuẩn bảo mật doanh nghiệp
+- Triển khai xử lý ngoại lệ chi tiết cho validation đầu vào và xung đột dữ liệu
+
+#### 2. Phạm vi kỹ thuật và ranh giới thư mục được phép
+
+**Thư mục và tệp được phép:**
+- `./sources/backend.membershiphub.user/users.sql` - DDL schema cho bảng Users
+- `./sources/backend.membershiphub.user/roles.sql` - DDL schema cho bảng Roles  
+- `./sources/backend.membershiphub.user/user-service.java` - Dịch vụ chính quản lý người dùng
+
+**Endpoint API:**
+- `POST /api/v1/auth/register` - Đăng ký người dùng mới
+- `POST /api/v1/auth/social` - Xác thực qua nhà cung cấp xã hội
+- `PUT /api/v1/users/{userId}/role` - Cập nhật vai trò người dùng (chỉ System Admin)
+
+#### 3. Chỉ đạo chức năng cho Sub-Agent chuyên dụng
+
+**Coder:** Triển khai mã nguồn Java/Quarkus với tuân thủ SOLID, sử dụng BCrypt cho mã hóa mật khẩu, JWT với access token 15 phút và refresh token 7 ngày, áp dụng @Valid cho validation và @Transactional cho các thao tác ghi.
+
+**Tester:** Xây dựng bộ kiểm thử JUnit 5 với độ phủ mã ≥85%, sử dụng Mock cho các dependency, kiểm thử happy path và các scenario lỗi validation.
+
+**Reviewer:** Thực hiện phân tích tĩnh mã nguồn, kiểm tra tuân thủ OWASP Top 10, đảm bảo không có lỗ hổng SQL injection hoặc XSS.
+
+**Doc:** Biên soạn tài liệu kỹ thuật đầy đủ bao gồm API documentation với OpenAPI, schema documentation và hướng dẫn triển khai.
+
+#### 4. Định nghĩa hoàn thành (DoD) cho giai đoạn
+
+- ✅ 100% các requirement [REQ-001], [REQ-002], [REQ-003] được triển khai đầy đủ
+- ✅ Schema database [DAT-001] được tạo thành công với tất cả ràng buộc
+- ✅ Luồng xác thực [ARC-006] hoạt động với OAuth2 và JWT
+- ✅ Xử lý ngoại lệ [EXC-004] cho validation đầu vào
+- ✅ Tuân thủ các tiêu chuẩn bảo mật [NFR-001], [NFR-003], [NFR-006]
+- ✅ Độ phủ kiểm thử ≥85% cho tất cả các dịch vụ
+- ✅ 100% các Tag ID được ánh xạ và kiểm tra
+
+#### 5. NHẬT KÝ THỰC THI KIẾN TRÚC THEO NGÀY
+
+###### NGÀY 1: TRIỂN KHAI DỊCH VỤ ĐĂNG KÝ NGƯỜI DÙNG VÀ API XÁC THỰC XÃ HỘI
+
+######## SUB-TASK 1.1: Triển khai schema cơ sở dữ liệu Users và Roles
+########## Sub-Agent được chỉ định: Coder
+########## Các thành phần mục tiêu và yêu cầu kỹ thuật:
+* **Đường dẫn mục tiêu:** `./sources/backend.membershiphub.user/users.sql`, `./sources/backend.membershiphub.user/roles.sql`
+* **Các thẻ truy xuất nguồn gốc:** <!--START_TAGS-->[DAT-001]<!--END_TAGS-->
+
+######## SUB-TASK 1.2: Triển khai UserService với phương thức register và socialAuthenticate
+########## Sub-Agent được chỉ định: Coder
+########## Các thành phần mục tiêu và yêu cầu kỹ thuật:
+* **Đường dẫn mục tiêu:** `./sources/backend.membershiphub.user/user-service.java`
+* **Các thẻ truy xuất nguồn gốc:** <!--START_TAGS-->[REQ-001], [REQ-002], [ARC-006], [EXC-004], [NFR-001], [NFR-003], [NFR-006]<!--END_TAGS-->
+
+###### NGÀY 2: VIẾT BỘ KIỂM TRA ĐƠN VỊ VÀ TÍCH HỢP CHO CÁC CHỨC NĂNG NGƯỜI DÙNG
+
+######## SUB-TASK 2.1: Kiểm thử đơn vị cho các phương thức register và socialAuthenticate
+########## Sub-Agent được chỉ định: Tester
+########## Các thành phần mục tiêu và yêu cầu kỹ thuật:
+* **Đường dẫn mục tiêu:** `./sources/backend.membershiphub.user/user-service.java;./sources/backend.membershiphub.user/userservice-test.java`
+* **Các thẻ truy xuất nguồn gốc:** <!--START_TAGS-->[REQ-001], [REQ-002], [DAT-001], [EXC-004]<!--END_TAGS-->
+
+######## SUB-TASK 2.2: Kiểm thử tích hợp cho API endpoints
+########## Sub-Agent được chỉ định: Tester
+########## Các thành phần mục tiêu và yêu cầu kỹ thuật:
+* **Đường dẫn mục tiêu:** `./sources/backend.membershiphub.user/user-service.java;./sources/backend.membershiphub.user/user-controller-test.java`
+* **Các thẻ truy xuất nguồn gốc:** <!--START_TAGS-->[REQ-001], [REQ-002], [ARC-006], [EXC-004]<!--END_TAGS-->
+------------------------------------------
+
+# System Instruction
+
+You are a high-performance Data Ingestion and Transformation Engine. Your sole objective is to parse the Phase Context Markdown text and convert it into a perfectly valid, parseable JSON object matching the requested schema framework.
+
+# YOUR CRITICAL OPERATIONAL MANDATES (ZERO LOOPHOLES):
+1. **STRICT VARIABLE FIDELITY & NO PREFIXES:** You MUST use the exact raw values provided in the template variables for file paths and project names. You are STRICTLY BANNED from appending, prepending, or injecting any custom folders or prefixes like "sources/" to the `global_context_file`, `context_file`, `source_target_dir`, or `project_name` fields. Use the variable values exactly as they are passed.
+2. **ABSOLUTE PYDANTIC SCHEMA ALIGNMENT:** Your final generated JSON object MUST perfectly satisfy the structural schema parameters of the target enterprise contract. You are STRICTLY BANNED from omitting, renaming, formatting, or stripping out key elements (specifically `phase_id`, `phase_name`, `phase_description`, `project_name`, `global_context_file`, `source_target_dir`, and `days`).
+3. **ABSOLUTE NO EMPTY TAGS POLICY & STRING SANITIZATION:** You are STRICTLY BANNED from leaving the "targeted_tags" array empty `[]` or null for any sub-task that implements functional requirements or data schemas. You MUST scan the source Markdown sequentially sub-task by sub-task. For each sub-task node, locate the hidden technical container block delimited between `<!--START_TAGS-->` and `<!--END_TAGS-->` contained exclusively within that sub-task section scope. Extract all raw tag token codes inside, strip away all inline markdown formatting characters—specifically backticks (`` ` ``)—and any leading/trailing whitespaces, then populate them as clean separate string elements inside the "targeted_tags" array field of EACH sub-task object node.
+4. **NO TAG BUNDLING:** Every tag must be its own array node (e.g., `"targeted_tags": ["[REQ-001]", "[DAT-002]"]`). You are strictly forbidden from combining multiple tags into a single string element.
+5. **STRICT CONTENT PURITY & REJECT CONVERSATION:** Output ONLY the pure raw executable JSON string matching the required schema. Response must start exactly with the character `{` and end exactly with the character `}`. Banned from including thinking processes, chain-of-thought blocks (`<think>` tags), conversational filler texts, introductions, wrapping inside markdown codeblocks (no triple backticks wrapping), or post-generation notes. Any token outside the raw JSON object boundary triggers an immediate execution pipeline crash.
+
+# Raw Response / Exception:
+
+```json
+Error code: 410 - {'error': {'code': 'github_models_retirement_brownout', 'message': 'GitHub Models is temporarily unavailable as part of a scheduled retirement brownout.'}}: ['Traceback (most recent call last):
+', '  File "/home/runner/work/enterprise-it-ai/enterprise-it-ai/sources/agents/architect-blueprint/block_json.py", line 301, in convert_phases_to_json
+    response = client.beta.chat.completions.parse(
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+', '  File "/opt/hostedtoolcache/Python/3.11.15/x64/lib/python3.11/site-packages/openai/resources/chat/completions/completions.py", line 193, in parse
+    return self._post(
+           ^^^^^^^^^^^
+', '  File "/opt/hostedtoolcache/Python/3.11.15/x64/lib/python3.11/site-packages/openai/_base_client.py", line 1375, in post
+    return cast(ResponseT, self.request(cast_to, opts, stream=stream, stream_cls=stream_cls))
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+', '  File "/opt/hostedtoolcache/Python/3.11.15/x64/lib/python3.11/site-packages/openai/_base_client.py", line 1148, in request
+    raise self._make_status_error_from_response(err.response) from None
+', "openai.APIStatusError: Error code: 410 - {'error': {'code': 'github_models_retirement_brownout', 'message': 'GitHub Models is temporarily unavailable as part of a scheduled retirement brownout.'}}
+"]
+```
+
+# AI Model: openai/gpt-5 - Phase 1 STEPS - Prompt:
+
+Analyze the attached Phase 1 Context Markdown content.
+
+Extract and translate ALL daily steps, checklists, and agent tasks from the entire document.
+
+
+## 🔒 AGENT ATOMICITY, TASK ID FORMAT & COMPONENT MANDATES (ABSOLUTE):
+- **STRICT TASK ID ALIGNMENT BLUEPRINT:** You MUST strictly generate the "id" field string for every single sub-task using the exact sequential formatting blueprint: `D<day_num>_ST<task_index>` (e.g., `D1_ST1`, `D1_ST2`, `D2_ST1`).
+- **STRICT AGENT ROLE LITERAL VALUES:** The "agent" field inside the JSON sub-task object MUST strictly enforce a capitalized first letter and lowercase subsequent letters pattern matching the exact tokens: 'Coder' | 'Tester' | 'Reviewer' | 'Doc' | 'Docker' | 'Gcp' | 'Gke'. Any other values or lowercase blocks (e.g., NO "coder") are strictly banned.
+- **NO ZERO-COMPONENT TASKS (ABSOLUTE HARD LIMIT):** You are STRICTLY BANNED from generating any sub-task object where the 'components' array is empty `[]`, null, or missing. If an Agent does not have any physical file paths to create, modify, or document, you MUST NOT generate that sub-task object node.
+- **FALLBACK COMPONENT RULE:** If a day has technical descriptions but lacks physical file paths, assign the task to "Doc" agent and populate 'components' with exactly the value of: ".ai/.plan/.context/phase-1.context.blueprint.md".
+- **STRICT AGENT ROLE SEGREGATION (ANTI-AGGREGATION):** If a workflow file involves multiple actions by different personas on the same calendar day, you MUST split this workflow into completely separate, sequential task objects inside the 'sub_tasks' array.
+- **HIGH-DENSITY TECHNICAL SPECIFICATION:** The 'task' field MUST contain an exhaustive, granular engineering instruction. If the sub-task involves an API route, integration endpoint, database query, or message block, you MUST explicitly inline the complete technical contract (e.g., Request/Response Payload Schemas, Data Types, Error Status Codes, or Queue names) directly inside this string. Vague high-level bullet summaries are forbidden.
+- **WORKSPACE PREFIX RULE & MULTI-LANGUAGE TEST EXCEPTION:** Every path in 'components' array MUST strictly begin with `./sources/`. 
+  * *CRITICAL EXCEPTION:* If the first parameter before the semi-colon character in a tester task is the literal string token `INTEGRATION_SCOPE`, you MUST leave that token completely unmodified. Do NOT append any path prefix to it (e.g., `"components": ["INTEGRATION_SCOPE;./sources/frontend/tests/auth.spec.ts"]`).
+
+## 🛠️ MANDATORY TOP-LEVEL FIELD VALUES INJECTION & ANCHOR PARSING (STRICT FIDELITY):
+You MUST dynamically populate the top-level keys of the JSON object using EXACT raw variable values without any modifications, or parse them directly from the primary Markdown header HTML comments:
+- **`phase_id`**: 1
+- **`phase_name`**: [Locate the primary Markdown title header line, extract the clean technical string text located exactly between the hidden HTML delimiters `<!--PHASE_NAME_START-->` and `<!--PHASE_NAME_END-->` without any alterations or translations]
+- **`phase_description`**: [Locate the primary Markdown title header line, extract the exact translated phase description text that follows after the literal marker `| Description:` or its translated equivalent]
+- **`project_name`**: "membership-hub"
+- **`global_context_file`**: ".ai/.context/membership-hub.global.blueprint.md"
+- **`source_target_dir`**: "sources/"
+
+#### 7. Context Fields Integration Mandate
+- For each day object inside the array, set 'day' to its calculated integer value, set 'context_file' to exact string ".ai/.plan/.context/phase-1.context.blueprint.md", and **set 'context_section' to the exact raw string value of the entire primary Day Header extracted from the source Markdown context text** (e.g., `"context_section": "DAY 1: Multi-Tenant Inception Schema & Flyway Migration Setup"`).
+
+#### 8. CHRONOLOGICAL TIMELINE SEQUENCING MANDATE (ABSOLUTE):
+#### 8. CHRONOLOGICAL TIMELINE SEQUENCING MANDATE (ABSOLUTE):
+
+## SYSTEM CRITICAL BOUNDARY: FLAT CONFIGURATION IS ACTIVE (is_chunked is FALSE)
+- Regardless of the actual day numbers documented in the source Markdown content (e.g., even if the text states "DAY 4", "DAY 5"), you MUST completely reset the timeline sequence internally so that the first operational day inside this Phase always starts from integer 1. Progression follows sequentially as 2, 3, 4, etc. 
+- Map the first targeted day to `"day": 1`, set 'context_file' to ".ai/.plan/.context/phase-1.context.blueprint.md", and strictly set 'context_section' to the exact raw primary header line of the first day parsed from the text. Incremental days follow this relative baseline.
+
+
+## 🛑 MANDATORY STRUCTURE ENFORCEMENT FOR TRACEABILITY TAGS VIA HTML ANCHORS (CRITICAL):
+- For each sub-task block, locate the hidden technical container bounds delimited strictly between `<!--START_TAGS-->` and `<!--END_TAGS-->`. Extract all individual inherited Tag IDs from inside that container, completely purge all markdown backticks (`` ` ``) and padding spaces, and populate them as clean individual string elements inside the "targeted_tags" array field (e.g., `"targeted_tags": ["[REQ-001]", "[DAT-005]"]`).
+- You are STRICTLY BANNED from leaving the "targeted_tags" array empty `[]` or null. Every single tag token must be its own separated array element string.
+
+You must conform strictly to your required JSON Schema layout design structure:
+{
+  "$defs": {
+    "DailyStep": {
+      "properties": {
+        "day": {
+          "description": "Timeline iteration day inside this isolated phase.",
+          "title": "Day",
+          "type": "integer"
+        },
+        "context_file": {
+          "description": "The phase context Markdown file for closure on this day.",
+          "title": "Context File",
+          "type": "string"
+        },
+        "context_section": {
+          "description": "The day targeted for closure on this day.",
+          "title": "Context Section",
+          "type": "string"
+        },
+        "sub_tasks": {
+          "description": "Array of isolated micro-tasks assigned to sub-agents.",
+          "items": {
+            "$ref": "##/$defs/SubAgentTask"
+          },
+          "title": "Sub Tasks",
+          "type": "array"
+        }
+      },
+      "required": [
+        "day",
+        "context_file",
+        "context_section",
+        "sub_tasks"
+      ],
+      "title": "DailyStep",
+      "type": "object"
+    },
+    "SubAgentTask": {
+      "properties": {
+        "id": {
+          "description": "Sub-Task identity of Task that sub-agent role executing.",
+          "title": "Id",
+          "type": "string"
+        },
+        "agent": {
+          "description": "Target sub-agent role executing the task.",
+          "title": "Agent",
+          "type": "string"
+        },
+        "desc": {
+          "description": "Literal, low-level technical step assigned to the agent.",
+          "title": "Desc",
+          "type": "string"
+        },
+        "targeted_tags": {
+          "description": "Flat string array of exact inherited BA Tag IDs that this specific sub-task implements or verifies (e.g. ['[REQ-001]', '[ARC-002]']). MUST match the raw requirements 1:1.",
+          "items": {
+            "type": "string"
+          },
+          "title": "Targeted Tags",
+          "type": "array"
+        },
+        "components": {
+          "description": "Flat array of physical localized file paths or scripts modified or targeted by this single task. Return an empty array [] if no files are involved.",
+          "items": {
+            "type": "string"
+          },
+          "title": "Components",
+          "type": "array"
+        }
+      },
+      "required": [
+        "id",
+        "agent",
+        "desc"
+      ],
+      "title": "SubAgentTask",
+      "type": "object"
+    }
+  },
+  "properties": {
+    "phase_id": {
+      "description": "Target phase tracker index.",
+      "title": "Phase Id",
+      "type": "integer"
+    },
+    "phase_name": {
+      "description": "Target phase tracker name.",
+      "title": "Phase Name",
+      "type": "string"
+    },
+    "phase_description": {
+      "description": "Target phase description.",
+      "title": "Phase Description",
+      "type": "string"
+    },
+    "project_name": {
+      "description": "Target project tracker name.",
+      "title": "Project Name",
+      "type": "string"
+    },
+    "global_context_file": {
+      "description": "Project global context Markdown file for closure.",
+      "title": "Global Context File",
+      "type": "string"
+    },
+    "source_target_dir": {
+      "description": "Project sources folder path for closure.",
+      "title": "Source Target Dir",
+      "type": "string"
+    },
+    "days": {
+      "description": "Day-by-day engineering tracking steps.",
+      "items": {
+        "$ref": "##/$defs/DailyStep"
+      },
+      "title": "Days",
+      "type": "array"
+    }
+  },
+  "required": [
+    "phase_id",
+    "phase_name",
+    "phase_description",
+    "project_name",
+    "global_context_file",
+    "source_target_dir",
+    "days"
+  ],
+  "title": "PhaseStepsPlan",
+  "type": "object"
+}
+
+--- PHASE 1 CONTEXT MARKDOWN ---
+## Giai đoạn 1: <!--PHASE_NAME_START-->user_core_services<!--PHASE_NAME_END--> | Mô tả: Triển khai các dịch vụ cốt lõi quản lý người dùng bao gồm đăng ký, xác thực xã hội, gán vai trò, schema cơ sở dữ liệu và logging kiểm toán bảo mật
+
+#### 📊 Kiểm soát tài liệu
+
+| Mục | Chi tiết |
+| :--- | :--- |
+| **ID Blueprint** | ARCH-20260803053505 |
+| **Tên dự án** | membership-hub |
+| **Giai đoạn** | 1 |
+| **Tên kỹ thuật giai đoạn** | <!--PHASE_NAME_START-->user_core_services<!--PHASE_NAME_END--> |
+| **Mô tả** | Triển khai các dịch vụ cốt lõi quản lý người dùng bao gồm đăng ký, xác thực xã hội, gán vai trò, schema cơ sở dữ liệu và logging kiểm toán bảo mật |
+| **Phiên bản** | 1.0 (Baseline) |
+| **Ngày/Giờ** | 2026/08/03 05:35:05 |
+| **Tác giả** | Enterprise System Architect (SA Agent) |
+| **Phê duyệt** | Pending Technical Governance Review |
+
+#### 1. Phạm vi hoạt động và mục tiêu giai đoạn
+
+Giai đoạn này tập trung vào việc xây dựng nền tảng cốt lõi cho hệ thống quản lý người dùng, bao gồm:
+
+- Triển khai schema cơ sở dữ liệu cho bảng Users và Roles với các ràng buộc toàn vẹn dữ liệu
+- Xây dựng dịch vụ đăng ký người dùng với xác thực email/mật khẩu và hỗ trợ OAuth2 cho các nhà cung cấp xã hội (Firebase, Google, Facebook)
+- Triển khai cơ chế phân quyền RBAC với khả năng gán và thay đổi vai trò người dùng
+- Thiết lập hệ thống logging kiểm toán đáp ứng các tiêu chuẩn bảo mật doanh nghiệp
+- Triển khai xử lý ngoại lệ chi tiết cho validation đầu vào và xung đột dữ liệu
+
+#### 2. Phạm vi kỹ thuật và ranh giới thư mục được phép
+
+**Thư mục và tệp được phép:**
+- `./sources/backend.membershiphub.user/users.sql` - DDL schema cho bảng Users
+- `./sources/backend.membershiphub.user/roles.sql` - DDL schema cho bảng Roles  
+- `./sources/backend.membershiphub.user/user-service.java` - Dịch vụ chính quản lý người dùng
+
+**Endpoint API:**
+- `POST /api/v1/auth/register` - Đăng ký người dùng mới
+- `POST /api/v1/auth/social` - Xác thực qua nhà cung cấp xã hội
+- `PUT /api/v1/users/{userId}/role` - Cập nhật vai trò người dùng (chỉ System Admin)
+
+#### 3. Chỉ đạo chức năng cho Sub-Agent chuyên dụng
+
+**Coder:** Triển khai mã nguồn Java/Quarkus với tuân thủ SOLID, sử dụng BCrypt cho mã hóa mật khẩu, JWT với access token 15 phút và refresh token 7 ngày, áp dụng @Valid cho validation và @Transactional cho các thao tác ghi.
+
+**Tester:** Xây dựng bộ kiểm thử JUnit 5 với độ phủ mã ≥85%, sử dụng Mock cho các dependency, kiểm thử happy path và các scenario lỗi validation.
+
+**Reviewer:** Thực hiện phân tích tĩnh mã nguồn, kiểm tra tuân thủ OWASP Top 10, đảm bảo không có lỗ hổng SQL injection hoặc XSS.
+
+**Doc:** Biên soạn tài liệu kỹ thuật đầy đủ bao gồm API documentation với OpenAPI, schema documentation và hướng dẫn triển khai.
+
+#### 4. Định nghĩa hoàn thành (DoD) cho giai đoạn
+
+- ✅ 100% các requirement [REQ-001], [REQ-002], [REQ-003] được triển khai đầy đủ
+- ✅ Schema database [DAT-001] được tạo thành công với tất cả ràng buộc
+- ✅ Luồng xác thực [ARC-006] hoạt động với OAuth2 và JWT
+- ✅ Xử lý ngoại lệ [EXC-004] cho validation đầu vào
+- ✅ Tuân thủ các tiêu chuẩn bảo mật [NFR-001], [NFR-003], [NFR-006]
+- ✅ Độ phủ kiểm thử ≥85% cho tất cả các dịch vụ
+- ✅ 100% các Tag ID được ánh xạ và kiểm tra
+
+#### 5. NHẬT KÝ THỰC THI KIẾN TRÚC THEO NGÀY
+
+###### NGÀY 1: TRIỂN KHAI DỊCH VỤ ĐĂNG KÝ NGƯỜI DÙNG VÀ API XÁC THỰC XÃ HỘI
+
+######## SUB-TASK 1.1: Triển khai schema cơ sở dữ liệu Users và Roles
+########## Sub-Agent được chỉ định: Coder
+########## Các thành phần mục tiêu và yêu cầu kỹ thuật:
+* **Đường dẫn mục tiêu:** `./sources/backend.membershiphub.user/users.sql`, `./sources/backend.membershiphub.user/roles.sql`
+* **Các thẻ truy xuất nguồn gốc:** <!--START_TAGS-->[DAT-001]<!--END_TAGS-->
+
+######## SUB-TASK 1.2: Triển khai UserService với phương thức register và socialAuthenticate
+########## Sub-Agent được chỉ định: Coder
+########## Các thành phần mục tiêu và yêu cầu kỹ thuật:
+* **Đường dẫn mục tiêu:** `./sources/backend.membershiphub.user/user-service.java`
+* **Các thẻ truy xuất nguồn gốc:** <!--START_TAGS-->[REQ-001], [REQ-002], [ARC-006], [EXC-004], [NFR-001], [NFR-003], [NFR-006]<!--END_TAGS-->
+
+###### NGÀY 2: VIẾT BỘ KIỂM TRA ĐƠN VỊ VÀ TÍCH HỢP CHO CÁC CHỨC NĂNG NGƯỜI DÙNG
+
+######## SUB-TASK 2.1: Kiểm thử đơn vị cho các phương thức register và socialAuthenticate
+########## Sub-Agent được chỉ định: Tester
+########## Các thành phần mục tiêu và yêu cầu kỹ thuật:
+* **Đường dẫn mục tiêu:** `./sources/backend.membershiphub.user/user-service.java;./sources/backend.membershiphub.user/userservice-test.java`
+* **Các thẻ truy xuất nguồn gốc:** <!--START_TAGS-->[REQ-001], [REQ-002], [DAT-001], [EXC-004]<!--END_TAGS-->
+
+######## SUB-TASK 2.2: Kiểm thử tích hợp cho API endpoints
+########## Sub-Agent được chỉ định: Tester
+########## Các thành phần mục tiêu và yêu cầu kỹ thuật:
+* **Đường dẫn mục tiêu:** `./sources/backend.membershiphub.user/user-service.java;./sources/backend.membershiphub.user/user-controller-test.java`
+* **Các thẻ truy xuất nguồn gốc:** <!--START_TAGS-->[REQ-001], [REQ-002], [ARC-006], [EXC-004]<!--END_TAGS-->
+------------------------------------------
+
+# System Instruction
+
+You are a high-performance Data Ingestion and Transformation Engine. Your sole objective is to parse the Phase Context Markdown text and convert it into a perfectly valid, parseable JSON object matching the requested schema framework.
+
+# YOUR CRITICAL OPERATIONAL MANDATES (ZERO LOOPHOLES):
+1. **STRICT VARIABLE FIDELITY & NO PREFIXES:** You MUST use the exact raw values provided in the template variables for file paths and project names. You are STRICTLY BANNED from appending, prepending, or injecting any custom folders or prefixes like "sources/" to the `global_context_file`, `context_file`, `source_target_dir`, or `project_name` fields. Use the variable values exactly as they are passed.
+2. **ABSOLUTE PYDANTIC SCHEMA ALIGNMENT:** Your final generated JSON object MUST perfectly satisfy the structural schema parameters of the target enterprise contract. You are STRICTLY BANNED from omitting, renaming, formatting, or stripping out key elements (specifically `phase_id`, `phase_name`, `phase_description`, `project_name`, `global_context_file`, `source_target_dir`, and `days`).
+3. **ABSOLUTE NO EMPTY TAGS POLICY & STRING SANITIZATION:** You are STRICTLY BANNED from leaving the "targeted_tags" array empty `[]` or null for any sub-task that implements functional requirements or data schemas. You MUST scan the source Markdown sequentially sub-task by sub-task. For each sub-task node, locate the hidden technical container block delimited between `<!--START_TAGS-->` and `<!--END_TAGS-->` contained exclusively within that sub-task section scope. Extract all raw tag token codes inside, strip away all inline markdown formatting characters—specifically backticks (`` ` ``)—and any leading/trailing whitespaces, then populate them as clean separate string elements inside the "targeted_tags" array field of EACH sub-task object node.
+4. **NO TAG BUNDLING:** Every tag must be its own array node (e.g., `"targeted_tags": ["[REQ-001]", "[DAT-002]"]`). You are strictly forbidden from combining multiple tags into a single string element.
+5. **STRICT CONTENT PURITY & REJECT CONVERSATION:** Output ONLY the pure raw executable JSON string matching the required schema. Response must start exactly with the character `{` and end exactly with the character `}`. Banned from including thinking processes, chain-of-thought blocks (`<think>` tags), conversational filler texts, introductions, wrapping inside markdown codeblocks (no triple backticks wrapping), or post-generation notes. Any token outside the raw JSON object boundary triggers an immediate execution pipeline crash.
+
+# Raw Response / Exception:
+
+```json
+Error code: 410 - {'error': {'code': 'github_models_retirement_brownout', 'message': 'GitHub Models is temporarily unavailable as part of a scheduled retirement brownout.'}}: ['Traceback (most recent call last):
+', '  File "/home/runner/work/enterprise-it-ai/enterprise-it-ai/sources/agents/architect-blueprint/block_json.py", line 301, in convert_phases_to_json
+    response = client.beta.chat.completions.parse(
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+', '  File "/opt/hostedtoolcache/Python/3.11.15/x64/lib/python3.11/site-packages/openai/resources/chat/completions/completions.py", line 193, in parse
+    return self._post(
+           ^^^^^^^^^^^
+', '  File "/opt/hostedtoolcache/Python/3.11.15/x64/lib/python3.11/site-packages/openai/_base_client.py", line 1375, in post
+    return cast(ResponseT, self.request(cast_to, opts, stream=stream, stream_cls=stream_cls))
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+', '  File "/opt/hostedtoolcache/Python/3.11.15/x64/lib/python3.11/site-packages/openai/_base_client.py", line 1148, in request
+    raise self._make_status_error_from_response(err.response) from None
+', "openai.APIStatusError: Error code: 410 - {'error': {'code': 'github_models_retirement_brownout', 'message': 'GitHub Models is temporarily unavailable as part of a scheduled retirement brownout.'}}
+"]
+```
+
+# AI Model: openai/gpt-5-mini - Phase 1 STEPS - Prompt:
+
+Analyze the attached Phase 1 Context Markdown content.
+
+Extract and translate ALL daily steps, checklists, and agent tasks from the entire document.
+
+
+## 🔒 AGENT ATOMICITY, TASK ID FORMAT & COMPONENT MANDATES (ABSOLUTE):
+- **STRICT TASK ID ALIGNMENT BLUEPRINT:** You MUST strictly generate the "id" field string for every single sub-task using the exact sequential formatting blueprint: `D<day_num>_ST<task_index>` (e.g., `D1_ST1`, `D1_ST2`, `D2_ST1`).
+- **STRICT AGENT ROLE LITERAL VALUES:** The "agent" field inside the JSON sub-task object MUST strictly enforce a capitalized first letter and lowercase subsequent letters pattern matching the exact tokens: 'Coder' | 'Tester' | 'Reviewer' | 'Doc' | 'Docker' | 'Gcp' | 'Gke'. Any other values or lowercase blocks (e.g., NO "coder") are strictly banned.
+- **NO ZERO-COMPONENT TASKS (ABSOLUTE HARD LIMIT):** You are STRICTLY BANNED from generating any sub-task object where the 'components' array is empty `[]`, null, or missing. If an Agent does not have any physical file paths to create, modify, or document, you MUST NOT generate that sub-task object node.
+- **FALLBACK COMPONENT RULE:** If a day has technical descriptions but lacks physical file paths, assign the task to "Doc" agent and populate 'components' with exactly the value of: ".ai/.plan/.context/phase-1.context.blueprint.md".
+- **STRICT AGENT ROLE SEGREGATION (ANTI-AGGREGATION):** If a workflow file involves multiple actions by different personas on the same calendar day, you MUST split this workflow into completely separate, sequential task objects inside the 'sub_tasks' array.
+- **HIGH-DENSITY TECHNICAL SPECIFICATION:** The 'task' field MUST contain an exhaustive, granular engineering instruction. If the sub-task involves an API route, integration endpoint, database query, or message block, you MUST explicitly inline the complete technical contract (e.g., Request/Response Payload Schemas, Data Types, Error Status Codes, or Queue names) directly inside this string. Vague high-level bullet summaries are forbidden.
+- **WORKSPACE PREFIX RULE & MULTI-LANGUAGE TEST EXCEPTION:** Every path in 'components' array MUST strictly begin with `./sources/`. 
+  * *CRITICAL EXCEPTION:* If the first parameter before the semi-colon character in a tester task is the literal string token `INTEGRATION_SCOPE`, you MUST leave that token completely unmodified. Do NOT append any path prefix to it (e.g., `"components": ["INTEGRATION_SCOPE;./sources/frontend/tests/auth.spec.ts"]`).
+
+## 🛠️ MANDATORY TOP-LEVEL FIELD VALUES INJECTION & ANCHOR PARSING (STRICT FIDELITY):
+You MUST dynamically populate the top-level keys of the JSON object using EXACT raw variable values without any modifications, or parse them directly from the primary Markdown header HTML comments:
+- **`phase_id`**: 1
+- **`phase_name`**: [Locate the primary Markdown title header line, extract the clean technical string text located exactly between the hidden HTML delimiters `<!--PHASE_NAME_START-->` and `<!--PHASE_NAME_END-->` without any alterations or translations]
+- **`phase_description`**: [Locate the primary Markdown title header line, extract the exact translated phase description text that follows after the literal marker `| Description:` or its translated equivalent]
+- **`project_name`**: "membership-hub"
+- **`global_context_file`**: ".ai/.context/membership-hub.global.blueprint.md"
+- **`source_target_dir`**: "sources/"
+
+#### 7. Context Fields Integration Mandate
+- For each day object inside the array, set 'day' to its calculated integer value, set 'context_file' to exact string ".ai/.plan/.context/phase-1.context.blueprint.md", and **set 'context_section' to the exact raw string value of the entire primary Day Header extracted from the source Markdown context text** (e.g., `"context_section": "DAY 1: Multi-Tenant Inception Schema & Flyway Migration Setup"`).
+
+#### 8. CHRONOLOGICAL TIMELINE SEQUENCING MANDATE (ABSOLUTE):
+#### 8. CHRONOLOGICAL TIMELINE SEQUENCING MANDATE (ABSOLUTE):
+
+## SYSTEM CRITICAL BOUNDARY: FLAT CONFIGURATION IS ACTIVE (is_chunked is FALSE)
+- Regardless of the actual day numbers documented in the source Markdown content (e.g., even if the text states "DAY 4", "DAY 5"), you MUST completely reset the timeline sequence internally so that the first operational day inside this Phase always starts from integer 1. Progression follows sequentially as 2, 3, 4, etc. 
+- Map the first targeted day to `"day": 1`, set 'context_file' to ".ai/.plan/.context/phase-1.context.blueprint.md", and strictly set 'context_section' to the exact raw primary header line of the first day parsed from the text. Incremental days follow this relative baseline.
+
+
+## 🛑 MANDATORY STRUCTURE ENFORCEMENT FOR TRACEABILITY TAGS VIA HTML ANCHORS (CRITICAL):
+- For each sub-task block, locate the hidden technical container bounds delimited strictly between `<!--START_TAGS-->` and `<!--END_TAGS-->`. Extract all individual inherited Tag IDs from inside that container, completely purge all markdown backticks (`` ` ``) and padding spaces, and populate them as clean individual string elements inside the "targeted_tags" array field (e.g., `"targeted_tags": ["[REQ-001]", "[DAT-005]"]`).
+- You are STRICTLY BANNED from leaving the "targeted_tags" array empty `[]` or null. Every single tag token must be its own separated array element string.
+
+You must conform strictly to your required JSON Schema layout design structure:
+{
+  "$defs": {
+    "DailyStep": {
+      "properties": {
+        "day": {
+          "description": "Timeline iteration day inside this isolated phase.",
+          "title": "Day",
+          "type": "integer"
+        },
+        "context_file": {
+          "description": "The phase context Markdown file for closure on this day.",
+          "title": "Context File",
+          "type": "string"
+        },
+        "context_section": {
+          "description": "The day targeted for closure on this day.",
+          "title": "Context Section",
+          "type": "string"
+        },
+        "sub_tasks": {
+          "description": "Array of isolated micro-tasks assigned to sub-agents.",
+          "items": {
+            "$ref": "##/$defs/SubAgentTask"
+          },
+          "title": "Sub Tasks",
+          "type": "array"
+        }
+      },
+      "required": [
+        "day",
+        "context_file",
+        "context_section",
+        "sub_tasks"
+      ],
+      "title": "DailyStep",
+      "type": "object"
+    },
+    "SubAgentTask": {
+      "properties": {
+        "id": {
+          "description": "Sub-Task identity of Task that sub-agent role executing.",
+          "title": "Id",
+          "type": "string"
+        },
+        "agent": {
+          "description": "Target sub-agent role executing the task.",
+          "title": "Agent",
+          "type": "string"
+        },
+        "desc": {
+          "description": "Literal, low-level technical step assigned to the agent.",
+          "title": "Desc",
+          "type": "string"
+        },
+        "targeted_tags": {
+          "description": "Flat string array of exact inherited BA Tag IDs that this specific sub-task implements or verifies (e.g. ['[REQ-001]', '[ARC-002]']). MUST match the raw requirements 1:1.",
+          "items": {
+            "type": "string"
+          },
+          "title": "Targeted Tags",
+          "type": "array"
+        },
+        "components": {
+          "description": "Flat array of physical localized file paths or scripts modified or targeted by this single task. Return an empty array [] if no files are involved.",
+          "items": {
+            "type": "string"
+          },
+          "title": "Components",
+          "type": "array"
+        }
+      },
+      "required": [
+        "id",
+        "agent",
+        "desc"
+      ],
+      "title": "SubAgentTask",
+      "type": "object"
+    }
+  },
+  "properties": {
+    "phase_id": {
+      "description": "Target phase tracker index.",
+      "title": "Phase Id",
+      "type": "integer"
+    },
+    "phase_name": {
+      "description": "Target phase tracker name.",
+      "title": "Phase Name",
+      "type": "string"
+    },
+    "phase_description": {
+      "description": "Target phase description.",
+      "title": "Phase Description",
+      "type": "string"
+    },
+    "project_name": {
+      "description": "Target project tracker name.",
+      "title": "Project Name",
+      "type": "string"
+    },
+    "global_context_file": {
+      "description": "Project global context Markdown file for closure.",
+      "title": "Global Context File",
+      "type": "string"
+    },
+    "source_target_dir": {
+      "description": "Project sources folder path for closure.",
+      "title": "Source Target Dir",
+      "type": "string"
+    },
+    "days": {
+      "description": "Day-by-day engineering tracking steps.",
+      "items": {
+        "$ref": "##/$defs/DailyStep"
+      },
+      "title": "Days",
+      "type": "array"
+    }
+  },
+  "required": [
+    "phase_id",
+    "phase_name",
+    "phase_description",
+    "project_name",
+    "global_context_file",
+    "source_target_dir",
+    "days"
+  ],
+  "title": "PhaseStepsPlan",
+  "type": "object"
+}
+
+--- PHASE 1 CONTEXT MARKDOWN ---
+## Giai đoạn 1: <!--PHASE_NAME_START-->user_core_services<!--PHASE_NAME_END--> | Mô tả: Triển khai các dịch vụ cốt lõi quản lý người dùng bao gồm đăng ký, xác thực xã hội, gán vai trò, schema cơ sở dữ liệu và logging kiểm toán bảo mật
+
+#### 📊 Kiểm soát tài liệu
+
+| Mục | Chi tiết |
+| :--- | :--- |
+| **ID Blueprint** | ARCH-20260803053505 |
+| **Tên dự án** | membership-hub |
+| **Giai đoạn** | 1 |
+| **Tên kỹ thuật giai đoạn** | <!--PHASE_NAME_START-->user_core_services<!--PHASE_NAME_END--> |
+| **Mô tả** | Triển khai các dịch vụ cốt lõi quản lý người dùng bao gồm đăng ký, xác thực xã hội, gán vai trò, schema cơ sở dữ liệu và logging kiểm toán bảo mật |
+| **Phiên bản** | 1.0 (Baseline) |
+| **Ngày/Giờ** | 2026/08/03 05:35:05 |
+| **Tác giả** | Enterprise System Architect (SA Agent) |
+| **Phê duyệt** | Pending Technical Governance Review |
+
+#### 1. Phạm vi hoạt động và mục tiêu giai đoạn
+
+Giai đoạn này tập trung vào việc xây dựng nền tảng cốt lõi cho hệ thống quản lý người dùng, bao gồm:
+
+- Triển khai schema cơ sở dữ liệu cho bảng Users và Roles với các ràng buộc toàn vẹn dữ liệu
+- Xây dựng dịch vụ đăng ký người dùng với xác thực email/mật khẩu và hỗ trợ OAuth2 cho các nhà cung cấp xã hội (Firebase, Google, Facebook)
+- Triển khai cơ chế phân quyền RBAC với khả năng gán và thay đổi vai trò người dùng
+- Thiết lập hệ thống logging kiểm toán đáp ứng các tiêu chuẩn bảo mật doanh nghiệp
+- Triển khai xử lý ngoại lệ chi tiết cho validation đầu vào và xung đột dữ liệu
+
+#### 2. Phạm vi kỹ thuật và ranh giới thư mục được phép
+
+**Thư mục và tệp được phép:**
+- `./sources/backend.membershiphub.user/users.sql` - DDL schema cho bảng Users
+- `./sources/backend.membershiphub.user/roles.sql` - DDL schema cho bảng Roles  
+- `./sources/backend.membershiphub.user/user-service.java` - Dịch vụ chính quản lý người dùng
+
+**Endpoint API:**
+- `POST /api/v1/auth/register` - Đăng ký người dùng mới
+- `POST /api/v1/auth/social` - Xác thực qua nhà cung cấp xã hội
+- `PUT /api/v1/users/{userId}/role` - Cập nhật vai trò người dùng (chỉ System Admin)
+
+#### 3. Chỉ đạo chức năng cho Sub-Agent chuyên dụng
+
+**Coder:** Triển khai mã nguồn Java/Quarkus với tuân thủ SOLID, sử dụng BCrypt cho mã hóa mật khẩu, JWT với access token 15 phút và refresh token 7 ngày, áp dụng @Valid cho validation và @Transactional cho các thao tác ghi.
+
+**Tester:** Xây dựng bộ kiểm thử JUnit 5 với độ phủ mã ≥85%, sử dụng Mock cho các dependency, kiểm thử happy path và các scenario lỗi validation.
+
+**Reviewer:** Thực hiện phân tích tĩnh mã nguồn, kiểm tra tuân thủ OWASP Top 10, đảm bảo không có lỗ hổng SQL injection hoặc XSS.
+
+**Doc:** Biên soạn tài liệu kỹ thuật đầy đủ bao gồm API documentation với OpenAPI, schema documentation và hướng dẫn triển khai.
+
+#### 4. Định nghĩa hoàn thành (DoD) cho giai đoạn
+
+- ✅ 100% các requirement [REQ-001], [REQ-002], [REQ-003] được triển khai đầy đủ
+- ✅ Schema database [DAT-001] được tạo thành công với tất cả ràng buộc
+- ✅ Luồng xác thực [ARC-006] hoạt động với OAuth2 và JWT
+- ✅ Xử lý ngoại lệ [EXC-004] cho validation đầu vào
+- ✅ Tuân thủ các tiêu chuẩn bảo mật [NFR-001], [NFR-003], [NFR-006]
+- ✅ Độ phủ kiểm thử ≥85% cho tất cả các dịch vụ
+- ✅ 100% các Tag ID được ánh xạ và kiểm tra
+
+#### 5. NHẬT KÝ THỰC THI KIẾN TRÚC THEO NGÀY
+
+###### NGÀY 1: TRIỂN KHAI DỊCH VỤ ĐĂNG KÝ NGƯỜI DÙNG VÀ API XÁC THỰC XÃ HỘI
+
+######## SUB-TASK 1.1: Triển khai schema cơ sở dữ liệu Users và Roles
+########## Sub-Agent được chỉ định: Coder
+########## Các thành phần mục tiêu và yêu cầu kỹ thuật:
+* **Đường dẫn mục tiêu:** `./sources/backend.membershiphub.user/users.sql`, `./sources/backend.membershiphub.user/roles.sql`
+* **Các thẻ truy xuất nguồn gốc:** <!--START_TAGS-->[DAT-001]<!--END_TAGS-->
+
+######## SUB-TASK 1.2: Triển khai UserService với phương thức register và socialAuthenticate
+########## Sub-Agent được chỉ định: Coder
+########## Các thành phần mục tiêu và yêu cầu kỹ thuật:
+* **Đường dẫn mục tiêu:** `./sources/backend.membershiphub.user/user-service.java`
+* **Các thẻ truy xuất nguồn gốc:** <!--START_TAGS-->[REQ-001], [REQ-002], [ARC-006], [EXC-004], [NFR-001], [NFR-003], [NFR-006]<!--END_TAGS-->
+
+###### NGÀY 2: VIẾT BỘ KIỂM TRA ĐƠN VỊ VÀ TÍCH HỢP CHO CÁC CHỨC NĂNG NGƯỜI DÙNG
+
+######## SUB-TASK 2.1: Kiểm thử đơn vị cho các phương thức register và socialAuthenticate
+########## Sub-Agent được chỉ định: Tester
+########## Các thành phần mục tiêu và yêu cầu kỹ thuật:
+* **Đường dẫn mục tiêu:** `./sources/backend.membershiphub.user/user-service.java;./sources/backend.membershiphub.user/userservice-test.java`
+* **Các thẻ truy xuất nguồn gốc:** <!--START_TAGS-->[REQ-001], [REQ-002], [DAT-001], [EXC-004]<!--END_TAGS-->
+
+######## SUB-TASK 2.2: Kiểm thử tích hợp cho API endpoints
+########## Sub-Agent được chỉ định: Tester
+########## Các thành phần mục tiêu và yêu cầu kỹ thuật:
+* **Đường dẫn mục tiêu:** `./sources/backend.membershiphub.user/user-service.java;./sources/backend.membershiphub.user/user-controller-test.java`
+* **Các thẻ truy xuất nguồn gốc:** <!--START_TAGS-->[REQ-001], [REQ-002], [ARC-006], [EXC-004]<!--END_TAGS-->
+------------------------------------------
+
+# System Instruction
+
+You are a high-performance Data Ingestion and Transformation Engine. Your sole objective is to parse the Phase Context Markdown text and convert it into a perfectly valid, parseable JSON object matching the requested schema framework.
+
+# YOUR CRITICAL OPERATIONAL MANDATES (ZERO LOOPHOLES):
+1. **STRICT VARIABLE FIDELITY & NO PREFIXES:** You MUST use the exact raw values provided in the template variables for file paths and project names. You are STRICTLY BANNED from appending, prepending, or injecting any custom folders or prefixes like "sources/" to the `global_context_file`, `context_file`, `source_target_dir`, or `project_name` fields. Use the variable values exactly as they are passed.
+2. **ABSOLUTE PYDANTIC SCHEMA ALIGNMENT:** Your final generated JSON object MUST perfectly satisfy the structural schema parameters of the target enterprise contract. You are STRICTLY BANNED from omitting, renaming, formatting, or stripping out key elements (specifically `phase_id`, `phase_name`, `phase_description`, `project_name`, `global_context_file`, `source_target_dir`, and `days`).
+3. **ABSOLUTE NO EMPTY TAGS POLICY & STRING SANITIZATION:** You are STRICTLY BANNED from leaving the "targeted_tags" array empty `[]` or null for any sub-task that implements functional requirements or data schemas. You MUST scan the source Markdown sequentially sub-task by sub-task. For each sub-task node, locate the hidden technical container block delimited between `<!--START_TAGS-->` and `<!--END_TAGS-->` contained exclusively within that sub-task section scope. Extract all raw tag token codes inside, strip away all inline markdown formatting characters—specifically backticks (`` ` ``)—and any leading/trailing whitespaces, then populate them as clean separate string elements inside the "targeted_tags" array field of EACH sub-task object node.
+4. **NO TAG BUNDLING:** Every tag must be its own array node (e.g., `"targeted_tags": ["[REQ-001]", "[DAT-002]"]`). You are strictly forbidden from combining multiple tags into a single string element.
+5. **STRICT CONTENT PURITY & REJECT CONVERSATION:** Output ONLY the pure raw executable JSON string matching the required schema. Response must start exactly with the character `{` and end exactly with the character `}`. Banned from including thinking processes, chain-of-thought blocks (`<think>` tags), conversational filler texts, introductions, wrapping inside markdown codeblocks (no triple backticks wrapping), or post-generation notes. Any token outside the raw JSON object boundary triggers an immediate execution pipeline crash.
+
+# Raw Response / Exception:
+
+```json
+Error code: 410 - {'error': {'code': 'github_models_retirement_brownout', 'message': 'GitHub Models is temporarily unavailable as part of a scheduled retirement brownout.'}}: ['Traceback (most recent call last):
+', '  File "/home/runner/work/enterprise-it-ai/enterprise-it-ai/sources/agents/architect-blueprint/block_json.py", line 301, in convert_phases_to_json
+    response = client.beta.chat.completions.parse(
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+', '  File "/opt/hostedtoolcache/Python/3.11.15/x64/lib/python3.11/site-packages/openai/resources/chat/completions/completions.py", line 193, in parse
+    return self._post(
+           ^^^^^^^^^^^
+', '  File "/opt/hostedtoolcache/Python/3.11.15/x64/lib/python3.11/site-packages/openai/_base_client.py", line 1375, in post
+    return cast(ResponseT, self.request(cast_to, opts, stream=stream, stream_cls=stream_cls))
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+', '  File "/opt/hostedtoolcache/Python/3.11.15/x64/lib/python3.11/site-packages/openai/_base_client.py", line 1148, in request
+    raise self._make_status_error_from_response(err.response) from None
+', "openai.APIStatusError: Error code: 410 - {'error': {'code': 'github_models_retirement_brownout', 'message': 'GitHub Models is temporarily unavailable as part of a scheduled retirement brownout.'}}
+"]
+```
+
+# AI Model: openai/gpt-4o - Phase 1 STEPS - Prompt:
+
+Analyze the attached Phase 1 Context Markdown content.
+
+Extract and translate ALL daily steps, checklists, and agent tasks from the entire document.
+
+
+## 🔒 AGENT ATOMICITY, TASK ID FORMAT & COMPONENT MANDATES (ABSOLUTE):
+- **STRICT TASK ID ALIGNMENT BLUEPRINT:** You MUST strictly generate the "id" field string for every single sub-task using the exact sequential formatting blueprint: `D<day_num>_ST<task_index>` (e.g., `D1_ST1`, `D1_ST2`, `D2_ST1`).
+- **STRICT AGENT ROLE LITERAL VALUES:** The "agent" field inside the JSON sub-task object MUST strictly enforce a capitalized first letter and lowercase subsequent letters pattern matching the exact tokens: 'Coder' | 'Tester' | 'Reviewer' | 'Doc' | 'Docker' | 'Gcp' | 'Gke'. Any other values or lowercase blocks (e.g., NO "coder") are strictly banned.
+- **NO ZERO-COMPONENT TASKS (ABSOLUTE HARD LIMIT):** You are STRICTLY BANNED from generating any sub-task object where the 'components' array is empty `[]`, null, or missing. If an Agent does not have any physical file paths to create, modify, or document, you MUST NOT generate that sub-task object node.
+- **FALLBACK COMPONENT RULE:** If a day has technical descriptions but lacks physical file paths, assign the task to "Doc" agent and populate 'components' with exactly the value of: ".ai/.plan/.context/phase-1.context.blueprint.md".
+- **STRICT AGENT ROLE SEGREGATION (ANTI-AGGREGATION):** If a workflow file involves multiple actions by different personas on the same calendar day, you MUST split this workflow into completely separate, sequential task objects inside the 'sub_tasks' array.
+- **HIGH-DENSITY TECHNICAL SPECIFICATION:** The 'task' field MUST contain an exhaustive, granular engineering instruction. If the sub-task involves an API route, integration endpoint, database query, or message block, you MUST explicitly inline the complete technical contract (e.g., Request/Response Payload Schemas, Data Types, Error Status Codes, or Queue names) directly inside this string. Vague high-level bullet summaries are forbidden.
+- **WORKSPACE PREFIX RULE & MULTI-LANGUAGE TEST EXCEPTION:** Every path in 'components' array MUST strictly begin with `./sources/`. 
+  * *CRITICAL EXCEPTION:* If the first parameter before the semi-colon character in a tester task is the literal string token `INTEGRATION_SCOPE`, you MUST leave that token completely unmodified. Do NOT append any path prefix to it (e.g., `"components": ["INTEGRATION_SCOPE;./sources/frontend/tests/auth.spec.ts"]`).
+
+## 🛠️ MANDATORY TOP-LEVEL FIELD VALUES INJECTION & ANCHOR PARSING (STRICT FIDELITY):
+You MUST dynamically populate the top-level keys of the JSON object using EXACT raw variable values without any modifications, or parse them directly from the primary Markdown header HTML comments:
+- **`phase_id`**: 1
+- **`phase_name`**: [Locate the primary Markdown title header line, extract the clean technical string text located exactly between the hidden HTML delimiters `<!--PHASE_NAME_START-->` and `<!--PHASE_NAME_END-->` without any alterations or translations]
+- **`phase_description`**: [Locate the primary Markdown title header line, extract the exact translated phase description text that follows after the literal marker `| Description:` or its translated equivalent]
+- **`project_name`**: "membership-hub"
+- **`global_context_file`**: ".ai/.context/membership-hub.global.blueprint.md"
+- **`source_target_dir`**: "sources/"
+
+#### 7. Context Fields Integration Mandate
+- For each day object inside the array, set 'day' to its calculated integer value, set 'context_file' to exact string ".ai/.plan/.context/phase-1.context.blueprint.md", and **set 'context_section' to the exact raw string value of the entire primary Day Header extracted from the source Markdown context text** (e.g., `"context_section": "DAY 1: Multi-Tenant Inception Schema & Flyway Migration Setup"`).
+
+#### 8. CHRONOLOGICAL TIMELINE SEQUENCING MANDATE (ABSOLUTE):
+#### 8. CHRONOLOGICAL TIMELINE SEQUENCING MANDATE (ABSOLUTE):
+
+## SYSTEM CRITICAL BOUNDARY: FLAT CONFIGURATION IS ACTIVE (is_chunked is FALSE)
+- Regardless of the actual day numbers documented in the source Markdown content (e.g., even if the text states "DAY 4", "DAY 5"), you MUST completely reset the timeline sequence internally so that the first operational day inside this Phase always starts from integer 1. Progression follows sequentially as 2, 3, 4, etc. 
+- Map the first targeted day to `"day": 1`, set 'context_file' to ".ai/.plan/.context/phase-1.context.blueprint.md", and strictly set 'context_section' to the exact raw primary header line of the first day parsed from the text. Incremental days follow this relative baseline.
+
+
+## 🛑 MANDATORY STRUCTURE ENFORCEMENT FOR TRACEABILITY TAGS VIA HTML ANCHORS (CRITICAL):
+- For each sub-task block, locate the hidden technical container bounds delimited strictly between `<!--START_TAGS-->` and `<!--END_TAGS-->`. Extract all individual inherited Tag IDs from inside that container, completely purge all markdown backticks (`` ` ``) and padding spaces, and populate them as clean individual string elements inside the "targeted_tags" array field (e.g., `"targeted_tags": ["[REQ-001]", "[DAT-005]"]`).
+- You are STRICTLY BANNED from leaving the "targeted_tags" array empty `[]` or null. Every single tag token must be its own separated array element string.
+
+You must conform strictly to your required JSON Schema layout design structure:
+{
+  "$defs": {
+    "DailyStep": {
+      "properties": {
+        "day": {
+          "description": "Timeline iteration day inside this isolated phase.",
+          "title": "Day",
+          "type": "integer"
+        },
+        "context_file": {
+          "description": "The phase context Markdown file for closure on this day.",
+          "title": "Context File",
+          "type": "string"
+        },
+        "context_section": {
+          "description": "The day targeted for closure on this day.",
+          "title": "Context Section",
+          "type": "string"
+        },
+        "sub_tasks": {
+          "description": "Array of isolated micro-tasks assigned to sub-agents.",
+          "items": {
+            "$ref": "##/$defs/SubAgentTask"
+          },
+          "title": "Sub Tasks",
+          "type": "array"
+        }
+      },
+      "required": [
+        "day",
+        "context_file",
+        "context_section",
+        "sub_tasks"
+      ],
+      "title": "DailyStep",
+      "type": "object"
+    },
+    "SubAgentTask": {
+      "properties": {
+        "id": {
+          "description": "Sub-Task identity of Task that sub-agent role executing.",
+          "title": "Id",
+          "type": "string"
+        },
+        "agent": {
+          "description": "Target sub-agent role executing the task.",
+          "title": "Agent",
+          "type": "string"
+        },
+        "desc": {
+          "description": "Literal, low-level technical step assigned to the agent.",
+          "title": "Desc",
+          "type": "string"
+        },
+        "targeted_tags": {
+          "description": "Flat string array of exact inherited BA Tag IDs that this specific sub-task implements or verifies (e.g. ['[REQ-001]', '[ARC-002]']). MUST match the raw requirements 1:1.",
+          "items": {
+            "type": "string"
+          },
+          "title": "Targeted Tags",
+          "type": "array"
+        },
+        "components": {
+          "description": "Flat array of physical localized file paths or scripts modified or targeted by this single task. Return an empty array [] if no files are involved.",
+          "items": {
+            "type": "string"
+          },
+          "title": "Components",
+          "type": "array"
+        }
+      },
+      "required": [
+        "id",
+        "agent",
+        "desc"
+      ],
+      "title": "SubAgentTask",
+      "type": "object"
+    }
+  },
+  "properties": {
+    "phase_id": {
+      "description": "Target phase tracker index.",
+      "title": "Phase Id",
+      "type": "integer"
+    },
+    "phase_name": {
+      "description": "Target phase tracker name.",
+      "title": "Phase Name",
+      "type": "string"
+    },
+    "phase_description": {
+      "description": "Target phase description.",
+      "title": "Phase Description",
+      "type": "string"
+    },
+    "project_name": {
+      "description": "Target project tracker name.",
+      "title": "Project Name",
+      "type": "string"
+    },
+    "global_context_file": {
+      "description": "Project global context Markdown file for closure.",
+      "title": "Global Context File",
+      "type": "string"
+    },
+    "source_target_dir": {
+      "description": "Project sources folder path for closure.",
+      "title": "Source Target Dir",
+      "type": "string"
+    },
+    "days": {
+      "description": "Day-by-day engineering tracking steps.",
+      "items": {
+        "$ref": "##/$defs/DailyStep"
+      },
+      "title": "Days",
+      "type": "array"
+    }
+  },
+  "required": [
+    "phase_id",
+    "phase_name",
+    "phase_description",
+    "project_name",
+    "global_context_file",
+    "source_target_dir",
+    "days"
+  ],
+  "title": "PhaseStepsPlan",
+  "type": "object"
+}
+
+--- PHASE 1 CONTEXT MARKDOWN ---
+## Giai đoạn 1: <!--PHASE_NAME_START-->user_core_services<!--PHASE_NAME_END--> | Mô tả: Triển khai các dịch vụ cốt lõi quản lý người dùng bao gồm đăng ký, xác thực xã hội, gán vai trò, schema cơ sở dữ liệu và logging kiểm toán bảo mật
+
+#### 📊 Kiểm soát tài liệu
+
+| Mục | Chi tiết |
+| :--- | :--- |
+| **ID Blueprint** | ARCH-20260803053505 |
+| **Tên dự án** | membership-hub |
+| **Giai đoạn** | 1 |
+| **Tên kỹ thuật giai đoạn** | <!--PHASE_NAME_START-->user_core_services<!--PHASE_NAME_END--> |
+| **Mô tả** | Triển khai các dịch vụ cốt lõi quản lý người dùng bao gồm đăng ký, xác thực xã hội, gán vai trò, schema cơ sở dữ liệu và logging kiểm toán bảo mật |
+| **Phiên bản** | 1.0 (Baseline) |
+| **Ngày/Giờ** | 2026/08/03 05:35:05 |
+| **Tác giả** | Enterprise System Architect (SA Agent) |
+| **Phê duyệt** | Pending Technical Governance Review |
+
+#### 1. Phạm vi hoạt động và mục tiêu giai đoạn
+
+Giai đoạn này tập trung vào việc xây dựng nền tảng cốt lõi cho hệ thống quản lý người dùng, bao gồm:
+
+- Triển khai schema cơ sở dữ liệu cho bảng Users và Roles với các ràng buộc toàn vẹn dữ liệu
+- Xây dựng dịch vụ đăng ký người dùng với xác thực email/mật khẩu và hỗ trợ OAuth2 cho các nhà cung cấp xã hội (Firebase, Google, Facebook)
+- Triển khai cơ chế phân quyền RBAC với khả năng gán và thay đổi vai trò người dùng
+- Thiết lập hệ thống logging kiểm toán đáp ứng các tiêu chuẩn bảo mật doanh nghiệp
+- Triển khai xử lý ngoại lệ chi tiết cho validation đầu vào và xung đột dữ liệu
+
+#### 2. Phạm vi kỹ thuật và ranh giới thư mục được phép
+
+**Thư mục và tệp được phép:**
+- `./sources/backend.membershiphub.user/users.sql` - DDL schema cho bảng Users
+- `./sources/backend.membershiphub.user/roles.sql` - DDL schema cho bảng Roles  
+- `./sources/backend.membershiphub.user/user-service.java` - Dịch vụ chính quản lý người dùng
+
+**Endpoint API:**
+- `POST /api/v1/auth/register` - Đăng ký người dùng mới
+- `POST /api/v1/auth/social` - Xác thực qua nhà cung cấp xã hội
+- `PUT /api/v1/users/{userId}/role` - Cập nhật vai trò người dùng (chỉ System Admin)
+
+#### 3. Chỉ đạo chức năng cho Sub-Agent chuyên dụng
+
+**Coder:** Triển khai mã nguồn Java/Quarkus với tuân thủ SOLID, sử dụng BCrypt cho mã hóa mật khẩu, JWT với access token 15 phút và refresh token 7 ngày, áp dụng @Valid cho validation và @Transactional cho các thao tác ghi.
+
+**Tester:** Xây dựng bộ kiểm thử JUnit 5 với độ phủ mã ≥85%, sử dụng Mock cho các dependency, kiểm thử happy path và các scenario lỗi validation.
+
+**Reviewer:** Thực hiện phân tích tĩnh mã nguồn, kiểm tra tuân thủ OWASP Top 10, đảm bảo không có lỗ hổng SQL injection hoặc XSS.
+
+**Doc:** Biên soạn tài liệu kỹ thuật đầy đủ bao gồm API documentation với OpenAPI, schema documentation và hướng dẫn triển khai.
+
+#### 4. Định nghĩa hoàn thành (DoD) cho giai đoạn
+
+- ✅ 100% các requirement [REQ-001], [REQ-002], [REQ-003] được triển khai đầy đủ
+- ✅ Schema database [DAT-001] được tạo thành công với tất cả ràng buộc
+- ✅ Luồng xác thực [ARC-006] hoạt động với OAuth2 và JWT
+- ✅ Xử lý ngoại lệ [EXC-004] cho validation đầu vào
+- ✅ Tuân thủ các tiêu chuẩn bảo mật [NFR-001], [NFR-003], [NFR-006]
+- ✅ Độ phủ kiểm thử ≥85% cho tất cả các dịch vụ
+- ✅ 100% các Tag ID được ánh xạ và kiểm tra
+
+#### 5. NHẬT KÝ THỰC THI KIẾN TRÚC THEO NGÀY
+
+###### NGÀY 1: TRIỂN KHAI DỊCH VỤ ĐĂNG KÝ NGƯỜI DÙNG VÀ API XÁC THỰC XÃ HỘI
+
+######## SUB-TASK 1.1: Triển khai schema cơ sở dữ liệu Users và Roles
+########## Sub-Agent được chỉ định: Coder
+########## Các thành phần mục tiêu và yêu cầu kỹ thuật:
+* **Đường dẫn mục tiêu:** `./sources/backend.membershiphub.user/users.sql`, `./sources/backend.membershiphub.user/roles.sql`
+* **Các thẻ truy xuất nguồn gốc:** <!--START_TAGS-->[DAT-001]<!--END_TAGS-->
+
+######## SUB-TASK 1.2: Triển khai UserService với phương thức register và socialAuthenticate
+########## Sub-Agent được chỉ định: Coder
+########## Các thành phần mục tiêu và yêu cầu kỹ thuật:
+* **Đường dẫn mục tiêu:** `./sources/backend.membershiphub.user/user-service.java`
+* **Các thẻ truy xuất nguồn gốc:** <!--START_TAGS-->[REQ-001], [REQ-002], [ARC-006], [EXC-004], [NFR-001], [NFR-003], [NFR-006]<!--END_TAGS-->
+
+###### NGÀY 2: VIẾT BỘ KIỂM TRA ĐƠN VỊ VÀ TÍCH HỢP CHO CÁC CHỨC NĂNG NGƯỜI DÙNG
+
+######## SUB-TASK 2.1: Kiểm thử đơn vị cho các phương thức register và socialAuthenticate
+########## Sub-Agent được chỉ định: Tester
+########## Các thành phần mục tiêu và yêu cầu kỹ thuật:
+* **Đường dẫn mục tiêu:** `./sources/backend.membershiphub.user/user-service.java;./sources/backend.membershiphub.user/userservice-test.java`
+* **Các thẻ truy xuất nguồn gốc:** <!--START_TAGS-->[REQ-001], [REQ-002], [DAT-001], [EXC-004]<!--END_TAGS-->
+
+######## SUB-TASK 2.2: Kiểm thử tích hợp cho API endpoints
+########## Sub-Agent được chỉ định: Tester
+########## Các thành phần mục tiêu và yêu cầu kỹ thuật:
+* **Đường dẫn mục tiêu:** `./sources/backend.membershiphub.user/user-service.java;./sources/backend.membershiphub.user/user-controller-test.java`
+* **Các thẻ truy xuất nguồn gốc:** <!--START_TAGS-->[REQ-001], [REQ-002], [ARC-006], [EXC-004]<!--END_TAGS-->
+------------------------------------------
+
+# System Instruction
+
+You are a high-performance Data Ingestion and Transformation Engine. Your sole objective is to parse the Phase Context Markdown text and convert it into a perfectly valid, parseable JSON object matching the requested schema framework.
+
+# YOUR CRITICAL OPERATIONAL MANDATES (ZERO LOOPHOLES):
+1. **STRICT VARIABLE FIDELITY & NO PREFIXES:** You MUST use the exact raw values provided in the template variables for file paths and project names. You are STRICTLY BANNED from appending, prepending, or injecting any custom folders or prefixes like "sources/" to the `global_context_file`, `context_file`, `source_target_dir`, or `project_name` fields. Use the variable values exactly as they are passed.
+2. **ABSOLUTE PYDANTIC SCHEMA ALIGNMENT:** Your final generated JSON object MUST perfectly satisfy the structural schema parameters of the target enterprise contract. You are STRICTLY BANNED from omitting, renaming, formatting, or stripping out key elements (specifically `phase_id`, `phase_name`, `phase_description`, `project_name`, `global_context_file`, `source_target_dir`, and `days`).
+3. **ABSOLUTE NO EMPTY TAGS POLICY & STRING SANITIZATION:** You are STRICTLY BANNED from leaving the "targeted_tags" array empty `[]` or null for any sub-task that implements functional requirements or data schemas. You MUST scan the source Markdown sequentially sub-task by sub-task. For each sub-task node, locate the hidden technical container block delimited between `<!--START_TAGS-->` and `<!--END_TAGS-->` contained exclusively within that sub-task section scope. Extract all raw tag token codes inside, strip away all inline markdown formatting characters—specifically backticks (`` ` ``)—and any leading/trailing whitespaces, then populate them as clean separate string elements inside the "targeted_tags" array field of EACH sub-task object node.
+4. **NO TAG BUNDLING:** Every tag must be its own array node (e.g., `"targeted_tags": ["[REQ-001]", "[DAT-002]"]`). You are strictly forbidden from combining multiple tags into a single string element.
+5. **STRICT CONTENT PURITY & REJECT CONVERSATION:** Output ONLY the pure raw executable JSON string matching the required schema. Response must start exactly with the character `{` and end exactly with the character `}`. Banned from including thinking processes, chain-of-thought blocks (`<think>` tags), conversational filler texts, introductions, wrapping inside markdown codeblocks (no triple backticks wrapping), or post-generation notes. Any token outside the raw JSON object boundary triggers an immediate execution pipeline crash.
+
+# Raw Response / Exception:
+
+```json
+Error code: 410 - {'error': {'code': 'github_models_retirement_brownout', 'message': 'GitHub Models is temporarily unavailable as part of a scheduled retirement brownout.'}}: ['Traceback (most recent call last):
+', '  File "/home/runner/work/enterprise-it-ai/enterprise-it-ai/sources/agents/architect-blueprint/block_json.py", line 301, in convert_phases_to_json
+    response = client.beta.chat.completions.parse(
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+', '  File "/opt/hostedtoolcache/Python/3.11.15/x64/lib/python3.11/site-packages/openai/resources/chat/completions/completions.py", line 193, in parse
+    return self._post(
+           ^^^^^^^^^^^
+', '  File "/opt/hostedtoolcache/Python/3.11.15/x64/lib/python3.11/site-packages/openai/_base_client.py", line 1375, in post
+    return cast(ResponseT, self.request(cast_to, opts, stream=stream, stream_cls=stream_cls))
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+', '  File "/opt/hostedtoolcache/Python/3.11.15/x64/lib/python3.11/site-packages/openai/_base_client.py", line 1148, in request
+    raise self._make_status_error_from_response(err.response) from None
+', "openai.APIStatusError: Error code: 410 - {'error': {'code': 'github_models_retirement_brownout', 'message': 'GitHub Models is temporarily unavailable as part of a scheduled retirement brownout.'}}
+"]
+```
+
+# AI Model: openai/o4-mini - Phase 1 STEPS - Prompt:
+
+Analyze the attached Phase 1 Context Markdown content.
+
+Extract and translate ALL daily steps, checklists, and agent tasks from the entire document.
+
+
+## 🔒 AGENT ATOMICITY, TASK ID FORMAT & COMPONENT MANDATES (ABSOLUTE):
+- **STRICT TASK ID ALIGNMENT BLUEPRINT:** You MUST strictly generate the "id" field string for every single sub-task using the exact sequential formatting blueprint: `D<day_num>_ST<task_index>` (e.g., `D1_ST1`, `D1_ST2`, `D2_ST1`).
+- **STRICT AGENT ROLE LITERAL VALUES:** The "agent" field inside the JSON sub-task object MUST strictly enforce a capitalized first letter and lowercase subsequent letters pattern matching the exact tokens: 'Coder' | 'Tester' | 'Reviewer' | 'Doc' | 'Docker' | 'Gcp' | 'Gke'. Any other values or lowercase blocks (e.g., NO "coder") are strictly banned.
+- **NO ZERO-COMPONENT TASKS (ABSOLUTE HARD LIMIT):** You are STRICTLY BANNED from generating any sub-task object where the 'components' array is empty `[]`, null, or missing. If an Agent does not have any physical file paths to create, modify, or document, you MUST NOT generate that sub-task object node.
+- **FALLBACK COMPONENT RULE:** If a day has technical descriptions but lacks physical file paths, assign the task to "Doc" agent and populate 'components' with exactly the value of: ".ai/.plan/.context/phase-1.context.blueprint.md".
+- **STRICT AGENT ROLE SEGREGATION (ANTI-AGGREGATION):** If a workflow file involves multiple actions by different personas on the same calendar day, you MUST split this workflow into completely separate, sequential task objects inside the 'sub_tasks' array.
+- **HIGH-DENSITY TECHNICAL SPECIFICATION:** The 'task' field MUST contain an exhaustive, granular engineering instruction. If the sub-task involves an API route, integration endpoint, database query, or message block, you MUST explicitly inline the complete technical contract (e.g., Request/Response Payload Schemas, Data Types, Error Status Codes, or Queue names) directly inside this string. Vague high-level bullet summaries are forbidden.
+- **WORKSPACE PREFIX RULE & MULTI-LANGUAGE TEST EXCEPTION:** Every path in 'components' array MUST strictly begin with `./sources/`. 
+  * *CRITICAL EXCEPTION:* If the first parameter before the semi-colon character in a tester task is the literal string token `INTEGRATION_SCOPE`, you MUST leave that token completely unmodified. Do NOT append any path prefix to it (e.g., `"components": ["INTEGRATION_SCOPE;./sources/frontend/tests/auth.spec.ts"]`).
+
+## 🛠️ MANDATORY TOP-LEVEL FIELD VALUES INJECTION & ANCHOR PARSING (STRICT FIDELITY):
+You MUST dynamically populate the top-level keys of the JSON object using EXACT raw variable values without any modifications, or parse them directly from the primary Markdown header HTML comments:
+- **`phase_id`**: 1
+- **`phase_name`**: [Locate the primary Markdown title header line, extract the clean technical string text located exactly between the hidden HTML delimiters `<!--PHASE_NAME_START-->` and `<!--PHASE_NAME_END-->` without any alterations or translations]
+- **`phase_description`**: [Locate the primary Markdown title header line, extract the exact translated phase description text that follows after the literal marker `| Description:` or its translated equivalent]
+- **`project_name`**: "membership-hub"
+- **`global_context_file`**: ".ai/.context/membership-hub.global.blueprint.md"
+- **`source_target_dir`**: "sources/"
+
+#### 7. Context Fields Integration Mandate
+- For each day object inside the array, set 'day' to its calculated integer value, set 'context_file' to exact string ".ai/.plan/.context/phase-1.context.blueprint.md", and **set 'context_section' to the exact raw string value of the entire primary Day Header extracted from the source Markdown context text** (e.g., `"context_section": "DAY 1: Multi-Tenant Inception Schema & Flyway Migration Setup"`).
+
+#### 8. CHRONOLOGICAL TIMELINE SEQUENCING MANDATE (ABSOLUTE):
+#### 8. CHRONOLOGICAL TIMELINE SEQUENCING MANDATE (ABSOLUTE):
+
+## SYSTEM CRITICAL BOUNDARY: FLAT CONFIGURATION IS ACTIVE (is_chunked is FALSE)
+- Regardless of the actual day numbers documented in the source Markdown content (e.g., even if the text states "DAY 4", "DAY 5"), you MUST completely reset the timeline sequence internally so that the first operational day inside this Phase always starts from integer 1. Progression follows sequentially as 2, 3, 4, etc. 
+- Map the first targeted day to `"day": 1`, set 'context_file' to ".ai/.plan/.context/phase-1.context.blueprint.md", and strictly set 'context_section' to the exact raw primary header line of the first day parsed from the text. Incremental days follow this relative baseline.
+
+
+## 🛑 MANDATORY STRUCTURE ENFORCEMENT FOR TRACEABILITY TAGS VIA HTML ANCHORS (CRITICAL):
+- For each sub-task block, locate the hidden technical container bounds delimited strictly between `<!--START_TAGS-->` and `<!--END_TAGS-->`. Extract all individual inherited Tag IDs from inside that container, completely purge all markdown backticks (`` ` ``) and padding spaces, and populate them as clean individual string elements inside the "targeted_tags" array field (e.g., `"targeted_tags": ["[REQ-001]", "[DAT-005]"]`).
+- You are STRICTLY BANNED from leaving the "targeted_tags" array empty `[]` or null. Every single tag token must be its own separated array element string.
+
+You must conform strictly to your required JSON Schema layout design structure:
+{
+  "$defs": {
+    "DailyStep": {
+      "properties": {
+        "day": {
+          "description": "Timeline iteration day inside this isolated phase.",
+          "title": "Day",
+          "type": "integer"
+        },
+        "context_file": {
+          "description": "The phase context Markdown file for closure on this day.",
+          "title": "Context File",
+          "type": "string"
+        },
+        "context_section": {
+          "description": "The day targeted for closure on this day.",
+          "title": "Context Section",
+          "type": "string"
+        },
+        "sub_tasks": {
+          "description": "Array of isolated micro-tasks assigned to sub-agents.",
+          "items": {
+            "$ref": "##/$defs/SubAgentTask"
+          },
+          "title": "Sub Tasks",
+          "type": "array"
+        }
+      },
+      "required": [
+        "day",
+        "context_file",
+        "context_section",
+        "sub_tasks"
+      ],
+      "title": "DailyStep",
+      "type": "object"
+    },
+    "SubAgentTask": {
+      "properties": {
+        "id": {
+          "description": "Sub-Task identity of Task that sub-agent role executing.",
+          "title": "Id",
+          "type": "string"
+        },
+        "agent": {
+          "description": "Target sub-agent role executing the task.",
+          "title": "Agent",
+          "type": "string"
+        },
+        "desc": {
+          "description": "Literal, low-level technical step assigned to the agent.",
+          "title": "Desc",
+          "type": "string"
+        },
+        "targeted_tags": {
+          "description": "Flat string array of exact inherited BA Tag IDs that this specific sub-task implements or verifies (e.g. ['[REQ-001]', '[ARC-002]']). MUST match the raw requirements 1:1.",
+          "items": {
+            "type": "string"
+          },
+          "title": "Targeted Tags",
+          "type": "array"
+        },
+        "components": {
+          "description": "Flat array of physical localized file paths or scripts modified or targeted by this single task. Return an empty array [] if no files are involved.",
+          "items": {
+            "type": "string"
+          },
+          "title": "Components",
+          "type": "array"
+        }
+      },
+      "required": [
+        "id",
+        "agent",
+        "desc"
+      ],
+      "title": "SubAgentTask",
+      "type": "object"
+    }
+  },
+  "properties": {
+    "phase_id": {
+      "description": "Target phase tracker index.",
+      "title": "Phase Id",
+      "type": "integer"
+    },
+    "phase_name": {
+      "description": "Target phase tracker name.",
+      "title": "Phase Name",
+      "type": "string"
+    },
+    "phase_description": {
+      "description": "Target phase description.",
+      "title": "Phase Description",
+      "type": "string"
+    },
+    "project_name": {
+      "description": "Target project tracker name.",
+      "title": "Project Name",
+      "type": "string"
+    },
+    "global_context_file": {
+      "description": "Project global context Markdown file for closure.",
+      "title": "Global Context File",
+      "type": "string"
+    },
+    "source_target_dir": {
+      "description": "Project sources folder path for closure.",
+      "title": "Source Target Dir",
+      "type": "string"
+    },
+    "days": {
+      "description": "Day-by-day engineering tracking steps.",
+      "items": {
+        "$ref": "##/$defs/DailyStep"
+      },
+      "title": "Days",
+      "type": "array"
+    }
+  },
+  "required": [
+    "phase_id",
+    "phase_name",
+    "phase_description",
+    "project_name",
+    "global_context_file",
+    "source_target_dir",
+    "days"
+  ],
+  "title": "PhaseStepsPlan",
+  "type": "object"
+}
+
+--- PHASE 1 CONTEXT MARKDOWN ---
+## Giai đoạn 1: <!--PHASE_NAME_START-->user_core_services<!--PHASE_NAME_END--> | Mô tả: Triển khai các dịch vụ cốt lõi quản lý người dùng bao gồm đăng ký, xác thực xã hội, gán vai trò, schema cơ sở dữ liệu và logging kiểm toán bảo mật
+
+#### 📊 Kiểm soát tài liệu
+
+| Mục | Chi tiết |
+| :--- | :--- |
+| **ID Blueprint** | ARCH-20260803053505 |
+| **Tên dự án** | membership-hub |
+| **Giai đoạn** | 1 |
+| **Tên kỹ thuật giai đoạn** | <!--PHASE_NAME_START-->user_core_services<!--PHASE_NAME_END--> |
+| **Mô tả** | Triển khai các dịch vụ cốt lõi quản lý người dùng bao gồm đăng ký, xác thực xã hội, gán vai trò, schema cơ sở dữ liệu và logging kiểm toán bảo mật |
+| **Phiên bản** | 1.0 (Baseline) |
+| **Ngày/Giờ** | 2026/08/03 05:35:05 |
+| **Tác giả** | Enterprise System Architect (SA Agent) |
+| **Phê duyệt** | Pending Technical Governance Review |
+
+#### 1. Phạm vi hoạt động và mục tiêu giai đoạn
+
+Giai đoạn này tập trung vào việc xây dựng nền tảng cốt lõi cho hệ thống quản lý người dùng, bao gồm:
+
+- Triển khai schema cơ sở dữ liệu cho bảng Users và Roles với các ràng buộc toàn vẹn dữ liệu
+- Xây dựng dịch vụ đăng ký người dùng với xác thực email/mật khẩu và hỗ trợ OAuth2 cho các nhà cung cấp xã hội (Firebase, Google, Facebook)
+- Triển khai cơ chế phân quyền RBAC với khả năng gán và thay đổi vai trò người dùng
+- Thiết lập hệ thống logging kiểm toán đáp ứng các tiêu chuẩn bảo mật doanh nghiệp
+- Triển khai xử lý ngoại lệ chi tiết cho validation đầu vào và xung đột dữ liệu
+
+#### 2. Phạm vi kỹ thuật và ranh giới thư mục được phép
+
+**Thư mục và tệp được phép:**
+- `./sources/backend.membershiphub.user/users.sql` - DDL schema cho bảng Users
+- `./sources/backend.membershiphub.user/roles.sql` - DDL schema cho bảng Roles  
+- `./sources/backend.membershiphub.user/user-service.java` - Dịch vụ chính quản lý người dùng
+
+**Endpoint API:**
+- `POST /api/v1/auth/register` - Đăng ký người dùng mới
+- `POST /api/v1/auth/social` - Xác thực qua nhà cung cấp xã hội
+- `PUT /api/v1/users/{userId}/role` - Cập nhật vai trò người dùng (chỉ System Admin)
+
+#### 3. Chỉ đạo chức năng cho Sub-Agent chuyên dụng
+
+**Coder:** Triển khai mã nguồn Java/Quarkus với tuân thủ SOLID, sử dụng BCrypt cho mã hóa mật khẩu, JWT với access token 15 phút và refresh token 7 ngày, áp dụng @Valid cho validation và @Transactional cho các thao tác ghi.
+
+**Tester:** Xây dựng bộ kiểm thử JUnit 5 với độ phủ mã ≥85%, sử dụng Mock cho các dependency, kiểm thử happy path và các scenario lỗi validation.
+
+**Reviewer:** Thực hiện phân tích tĩnh mã nguồn, kiểm tra tuân thủ OWASP Top 10, đảm bảo không có lỗ hổng SQL injection hoặc XSS.
+
+**Doc:** Biên soạn tài liệu kỹ thuật đầy đủ bao gồm API documentation với OpenAPI, schema documentation và hướng dẫn triển khai.
+
+#### 4. Định nghĩa hoàn thành (DoD) cho giai đoạn
+
+- ✅ 100% các requirement [REQ-001], [REQ-002], [REQ-003] được triển khai đầy đủ
+- ✅ Schema database [DAT-001] được tạo thành công với tất cả ràng buộc
+- ✅ Luồng xác thực [ARC-006] hoạt động với OAuth2 và JWT
+- ✅ Xử lý ngoại lệ [EXC-004] cho validation đầu vào
+- ✅ Tuân thủ các tiêu chuẩn bảo mật [NFR-001], [NFR-003], [NFR-006]
+- ✅ Độ phủ kiểm thử ≥85% cho tất cả các dịch vụ
+- ✅ 100% các Tag ID được ánh xạ và kiểm tra
+
+#### 5. NHẬT KÝ THỰC THI KIẾN TRÚC THEO NGÀY
+
+###### NGÀY 1: TRIỂN KHAI DỊCH VỤ ĐĂNG KÝ NGƯỜI DÙNG VÀ API XÁC THỰC XÃ HỘI
+
+######## SUB-TASK 1.1: Triển khai schema cơ sở dữ liệu Users và Roles
+########## Sub-Agent được chỉ định: Coder
+########## Các thành phần mục tiêu và yêu cầu kỹ thuật:
+* **Đường dẫn mục tiêu:** `./sources/backend.membershiphub.user/users.sql`, `./sources/backend.membershiphub.user/roles.sql`
+* **Các thẻ truy xuất nguồn gốc:** <!--START_TAGS-->[DAT-001]<!--END_TAGS-->
+
+######## SUB-TASK 1.2: Triển khai UserService với phương thức register và socialAuthenticate
+########## Sub-Agent được chỉ định: Coder
+########## Các thành phần mục tiêu và yêu cầu kỹ thuật:
+* **Đường dẫn mục tiêu:** `./sources/backend.membershiphub.user/user-service.java`
+* **Các thẻ truy xuất nguồn gốc:** <!--START_TAGS-->[REQ-001], [REQ-002], [ARC-006], [EXC-004], [NFR-001], [NFR-003], [NFR-006]<!--END_TAGS-->
+
+###### NGÀY 2: VIẾT BỘ KIỂM TRA ĐƠN VỊ VÀ TÍCH HỢP CHO CÁC CHỨC NĂNG NGƯỜI DÙNG
+
+######## SUB-TASK 2.1: Kiểm thử đơn vị cho các phương thức register và socialAuthenticate
+########## Sub-Agent được chỉ định: Tester
+########## Các thành phần mục tiêu và yêu cầu kỹ thuật:
+* **Đường dẫn mục tiêu:** `./sources/backend.membershiphub.user/user-service.java;./sources/backend.membershiphub.user/userservice-test.java`
+* **Các thẻ truy xuất nguồn gốc:** <!--START_TAGS-->[REQ-001], [REQ-002], [DAT-001], [EXC-004]<!--END_TAGS-->
+
+######## SUB-TASK 2.2: Kiểm thử tích hợp cho API endpoints
+########## Sub-Agent được chỉ định: Tester
+########## Các thành phần mục tiêu và yêu cầu kỹ thuật:
+* **Đường dẫn mục tiêu:** `./sources/backend.membershiphub.user/user-service.java;./sources/backend.membershiphub.user/user-controller-test.java`
+* **Các thẻ truy xuất nguồn gốc:** <!--START_TAGS-->[REQ-001], [REQ-002], [ARC-006], [EXC-004]<!--END_TAGS-->
+------------------------------------------
+
+# System Instruction
+
+You are a high-performance Data Ingestion and Transformation Engine. Your sole objective is to parse the Phase Context Markdown text and convert it into a perfectly valid, parseable JSON object matching the requested schema framework.
+
+# YOUR CRITICAL OPERATIONAL MANDATES (ZERO LOOPHOLES):
+1. **STRICT VARIABLE FIDELITY & NO PREFIXES:** You MUST use the exact raw values provided in the template variables for file paths and project names. You are STRICTLY BANNED from appending, prepending, or injecting any custom folders or prefixes like "sources/" to the `global_context_file`, `context_file`, `source_target_dir`, or `project_name` fields. Use the variable values exactly as they are passed.
+2. **ABSOLUTE PYDANTIC SCHEMA ALIGNMENT:** Your final generated JSON object MUST perfectly satisfy the structural schema parameters of the target enterprise contract. You are STRICTLY BANNED from omitting, renaming, formatting, or stripping out key elements (specifically `phase_id`, `phase_name`, `phase_description`, `project_name`, `global_context_file`, `source_target_dir`, and `days`).
+3. **ABSOLUTE NO EMPTY TAGS POLICY & STRING SANITIZATION:** You are STRICTLY BANNED from leaving the "targeted_tags" array empty `[]` or null for any sub-task that implements functional requirements or data schemas. You MUST scan the source Markdown sequentially sub-task by sub-task. For each sub-task node, locate the hidden technical container block delimited between `<!--START_TAGS-->` and `<!--END_TAGS-->` contained exclusively within that sub-task section scope. Extract all raw tag token codes inside, strip away all inline markdown formatting characters—specifically backticks (`` ` ``)—and any leading/trailing whitespaces, then populate them as clean separate string elements inside the "targeted_tags" array field of EACH sub-task object node.
+4. **NO TAG BUNDLING:** Every tag must be its own array node (e.g., `"targeted_tags": ["[REQ-001]", "[DAT-002]"]`). You are strictly forbidden from combining multiple tags into a single string element.
+5. **STRICT CONTENT PURITY & REJECT CONVERSATION:** Output ONLY the pure raw executable JSON string matching the required schema. Response must start exactly with the character `{` and end exactly with the character `}`. Banned from including thinking processes, chain-of-thought blocks (`<think>` tags), conversational filler texts, introductions, wrapping inside markdown codeblocks (no triple backticks wrapping), or post-generation notes. Any token outside the raw JSON object boundary triggers an immediate execution pipeline crash.
+
+# Raw Response / Exception:
+
+```json
+Error code: 410 - {'error': {'code': 'github_models_retirement_brownout', 'message': 'GitHub Models is temporarily unavailable as part of a scheduled retirement brownout.'}}: ['Traceback (most recent call last):
+', '  File "/home/runner/work/enterprise-it-ai/enterprise-it-ai/sources/agents/architect-blueprint/block_json.py", line 301, in convert_phases_to_json
+    response = client.beta.chat.completions.parse(
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+', '  File "/opt/hostedtoolcache/Python/3.11.15/x64/lib/python3.11/site-packages/openai/resources/chat/completions/completions.py", line 193, in parse
+    return self._post(
+           ^^^^^^^^^^^
+', '  File "/opt/hostedtoolcache/Python/3.11.15/x64/lib/python3.11/site-packages/openai/_base_client.py", line 1375, in post
+    return cast(ResponseT, self.request(cast_to, opts, stream=stream, stream_cls=stream_cls))
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+', '  File "/opt/hostedtoolcache/Python/3.11.15/x64/lib/python3.11/site-packages/openai/_base_client.py", line 1148, in request
+    raise self._make_status_error_from_response(err.response) from None
+', "openai.APIStatusError: Error code: 410 - {'error': {'code': 'github_models_retirement_brownout', 'message': 'GitHub Models is temporarily unavailable as part of a scheduled retirement brownout.'}}
+"]
+```
+
+# AI Model: microsoft/Phi-4 - Phase 1 STEPS - Prompt:
+
+Analyze the attached Phase 1 Context Markdown content.
+
+Extract and translate ALL daily steps, checklists, and agent tasks from the entire document.
+
+
+## 🔒 AGENT ATOMICITY, TASK ID FORMAT & COMPONENT MANDATES (ABSOLUTE):
+- **STRICT TASK ID ALIGNMENT BLUEPRINT:** You MUST strictly generate the "id" field string for every single sub-task using the exact sequential formatting blueprint: `D<day_num>_ST<task_index>` (e.g., `D1_ST1`, `D1_ST2`, `D2_ST1`).
+- **STRICT AGENT ROLE LITERAL VALUES:** The "agent" field inside the JSON sub-task object MUST strictly enforce a capitalized first letter and lowercase subsequent letters pattern matching the exact tokens: 'Coder' | 'Tester' | 'Reviewer' | 'Doc' | 'Docker' | 'Gcp' | 'Gke'. Any other values or lowercase blocks (e.g., NO "coder") are strictly banned.
+- **NO ZERO-COMPONENT TASKS (ABSOLUTE HARD LIMIT):** You are STRICTLY BANNED from generating any sub-task object where the 'components' array is empty `[]`, null, or missing. If an Agent does not have any physical file paths to create, modify, or document, you MUST NOT generate that sub-task object node.
+- **FALLBACK COMPONENT RULE:** If a day has technical descriptions but lacks physical file paths, assign the task to "Doc" agent and populate 'components' with exactly the value of: ".ai/.plan/.context/phase-1.context.blueprint.md".
+- **STRICT AGENT ROLE SEGREGATION (ANTI-AGGREGATION):** If a workflow file involves multiple actions by different personas on the same calendar day, you MUST split this workflow into completely separate, sequential task objects inside the 'sub_tasks' array.
+- **HIGH-DENSITY TECHNICAL SPECIFICATION:** The 'task' field MUST contain an exhaustive, granular engineering instruction. If the sub-task involves an API route, integration endpoint, database query, or message block, you MUST explicitly inline the complete technical contract (e.g., Request/Response Payload Schemas, Data Types, Error Status Codes, or Queue names) directly inside this string. Vague high-level bullet summaries are forbidden.
+- **WORKSPACE PREFIX RULE & MULTI-LANGUAGE TEST EXCEPTION:** Every path in 'components' array MUST strictly begin with `./sources/`. 
+  * *CRITICAL EXCEPTION:* If the first parameter before the semi-colon character in a tester task is the literal string token `INTEGRATION_SCOPE`, you MUST leave that token completely unmodified. Do NOT append any path prefix to it (e.g., `"components": ["INTEGRATION_SCOPE;./sources/frontend/tests/auth.spec.ts"]`).
+
+## 🛠️ MANDATORY TOP-LEVEL FIELD VALUES INJECTION & ANCHOR PARSING (STRICT FIDELITY):
+You MUST dynamically populate the top-level keys of the JSON object using EXACT raw variable values without any modifications, or parse them directly from the primary Markdown header HTML comments:
+- **`phase_id`**: 1
+- **`phase_name`**: [Locate the primary Markdown title header line, extract the clean technical string text located exactly between the hidden HTML delimiters `<!--PHASE_NAME_START-->` and `<!--PHASE_NAME_END-->` without any alterations or translations]
+- **`phase_description`**: [Locate the primary Markdown title header line, extract the exact translated phase description text that follows after the literal marker `| Description:` or its translated equivalent]
+- **`project_name`**: "membership-hub"
+- **`global_context_file`**: ".ai/.context/membership-hub.global.blueprint.md"
+- **`source_target_dir`**: "sources/"
+
+#### 7. Context Fields Integration Mandate
+- For each day object inside the array, set 'day' to its calculated integer value, set 'context_file' to exact string ".ai/.plan/.context/phase-1.context.blueprint.md", and **set 'context_section' to the exact raw string value of the entire primary Day Header extracted from the source Markdown context text** (e.g., `"context_section": "DAY 1: Multi-Tenant Inception Schema & Flyway Migration Setup"`).
+
+#### 8. CHRONOLOGICAL TIMELINE SEQUENCING MANDATE (ABSOLUTE):
+#### 8. CHRONOLOGICAL TIMELINE SEQUENCING MANDATE (ABSOLUTE):
+
+## SYSTEM CRITICAL BOUNDARY: FLAT CONFIGURATION IS ACTIVE (is_chunked is FALSE)
+- Regardless of the actual day numbers documented in the source Markdown content (e.g., even if the text states "DAY 4", "DAY 5"), you MUST completely reset the timeline sequence internally so that the first operational day inside this Phase always starts from integer 1. Progression follows sequentially as 2, 3, 4, etc. 
+- Map the first targeted day to `"day": 1`, set 'context_file' to ".ai/.plan/.context/phase-1.context.blueprint.md", and strictly set 'context_section' to the exact raw primary header line of the first day parsed from the text. Incremental days follow this relative baseline.
+
+
+## 🛑 MANDATORY STRUCTURE ENFORCEMENT FOR TRACEABILITY TAGS VIA HTML ANCHORS (CRITICAL):
+- For each sub-task block, locate the hidden technical container bounds delimited strictly between `<!--START_TAGS-->` and `<!--END_TAGS-->`. Extract all individual inherited Tag IDs from inside that container, completely purge all markdown backticks (`` ` ``) and padding spaces, and populate them as clean individual string elements inside the "targeted_tags" array field (e.g., `"targeted_tags": ["[REQ-001]", "[DAT-005]"]`).
+- You are STRICTLY BANNED from leaving the "targeted_tags" array empty `[]` or null. Every single tag token must be its own separated array element string.
+
+You must conform strictly to your required JSON Schema layout design structure:
+{
+  "$defs": {
+    "DailyStep": {
+      "properties": {
+        "day": {
+          "description": "Timeline iteration day inside this isolated phase.",
+          "title": "Day",
+          "type": "integer"
+        },
+        "context_file": {
+          "description": "The phase context Markdown file for closure on this day.",
+          "title": "Context File",
+          "type": "string"
+        },
+        "context_section": {
+          "description": "The day targeted for closure on this day.",
+          "title": "Context Section",
+          "type": "string"
+        },
+        "sub_tasks": {
+          "description": "Array of isolated micro-tasks assigned to sub-agents.",
+          "items": {
+            "$ref": "##/$defs/SubAgentTask"
+          },
+          "title": "Sub Tasks",
+          "type": "array"
+        }
+      },
+      "required": [
+        "day",
+        "context_file",
+        "context_section",
+        "sub_tasks"
+      ],
+      "title": "DailyStep",
+      "type": "object"
+    },
+    "SubAgentTask": {
+      "properties": {
+        "id": {
+          "description": "Sub-Task identity of Task that sub-agent role executing.",
+          "title": "Id",
+          "type": "string"
+        },
+        "agent": {
+          "description": "Target sub-agent role executing the task.",
+          "title": "Agent",
+          "type": "string"
+        },
+        "desc": {
+          "description": "Literal, low-level technical step assigned to the agent.",
+          "title": "Desc",
+          "type": "string"
+        },
+        "targeted_tags": {
+          "description": "Flat string array of exact inherited BA Tag IDs that this specific sub-task implements or verifies (e.g. ['[REQ-001]', '[ARC-002]']). MUST match the raw requirements 1:1.",
+          "items": {
+            "type": "string"
+          },
+          "title": "Targeted Tags",
+          "type": "array"
+        },
+        "components": {
+          "description": "Flat array of physical localized file paths or scripts modified or targeted by this single task. Return an empty array [] if no files are involved.",
+          "items": {
+            "type": "string"
+          },
+          "title": "Components",
+          "type": "array"
+        }
+      },
+      "required": [
+        "id",
+        "agent",
+        "desc"
+      ],
+      "title": "SubAgentTask",
+      "type": "object"
+    }
+  },
+  "properties": {
+    "phase_id": {
+      "description": "Target phase tracker index.",
+      "title": "Phase Id",
+      "type": "integer"
+    },
+    "phase_name": {
+      "description": "Target phase tracker name.",
+      "title": "Phase Name",
+      "type": "string"
+    },
+    "phase_description": {
+      "description": "Target phase description.",
+      "title": "Phase Description",
+      "type": "string"
+    },
+    "project_name": {
+      "description": "Target project tracker name.",
+      "title": "Project Name",
+      "type": "string"
+    },
+    "global_context_file": {
+      "description": "Project global context Markdown file for closure.",
+      "title": "Global Context File",
+      "type": "string"
+    },
+    "source_target_dir": {
+      "description": "Project sources folder path for closure.",
+      "title": "Source Target Dir",
+      "type": "string"
+    },
+    "days": {
+      "description": "Day-by-day engineering tracking steps.",
+      "items": {
+        "$ref": "##/$defs/DailyStep"
+      },
+      "title": "Days",
+      "type": "array"
+    }
+  },
+  "required": [
+    "phase_id",
+    "phase_name",
+    "phase_description",
+    "project_name",
+    "global_context_file",
+    "source_target_dir",
+    "days"
+  ],
+  "title": "PhaseStepsPlan",
+  "type": "object"
+}
+
+--- PHASE 1 CONTEXT MARKDOWN ---
+## Giai đoạn 1: <!--PHASE_NAME_START-->user_core_services<!--PHASE_NAME_END--> | Mô tả: Triển khai các dịch vụ cốt lõi quản lý người dùng bao gồm đăng ký, xác thực xã hội, gán vai trò, schema cơ sở dữ liệu và logging kiểm toán bảo mật
+
+#### 📊 Kiểm soát tài liệu
+
+| Mục | Chi tiết |
+| :--- | :--- |
+| **ID Blueprint** | ARCH-20260803053505 |
+| **Tên dự án** | membership-hub |
+| **Giai đoạn** | 1 |
+| **Tên kỹ thuật giai đoạn** | <!--PHASE_NAME_START-->user_core_services<!--PHASE_NAME_END--> |
+| **Mô tả** | Triển khai các dịch vụ cốt lõi quản lý người dùng bao gồm đăng ký, xác thực xã hội, gán vai trò, schema cơ sở dữ liệu và logging kiểm toán bảo mật |
+| **Phiên bản** | 1.0 (Baseline) |
+| **Ngày/Giờ** | 2026/08/03 05:35:05 |
+| **Tác giả** | Enterprise System Architect (SA Agent) |
+| **Phê duyệt** | Pending Technical Governance Review |
+
+#### 1. Phạm vi hoạt động và mục tiêu giai đoạn
+
+Giai đoạn này tập trung vào việc xây dựng nền tảng cốt lõi cho hệ thống quản lý người dùng, bao gồm:
+
+- Triển khai schema cơ sở dữ liệu cho bảng Users và Roles với các ràng buộc toàn vẹn dữ liệu
+- Xây dựng dịch vụ đăng ký người dùng với xác thực email/mật khẩu và hỗ trợ OAuth2 cho các nhà cung cấp xã hội (Firebase, Google, Facebook)
+- Triển khai cơ chế phân quyền RBAC với khả năng gán và thay đổi vai trò người dùng
+- Thiết lập hệ thống logging kiểm toán đáp ứng các tiêu chuẩn bảo mật doanh nghiệp
+- Triển khai xử lý ngoại lệ chi tiết cho validation đầu vào và xung đột dữ liệu
+
+#### 2. Phạm vi kỹ thuật và ranh giới thư mục được phép
+
+**Thư mục và tệp được phép:**
+- `./sources/backend.membershiphub.user/users.sql` - DDL schema cho bảng Users
+- `./sources/backend.membershiphub.user/roles.sql` - DDL schema cho bảng Roles  
+- `./sources/backend.membershiphub.user/user-service.java` - Dịch vụ chính quản lý người dùng
+
+**Endpoint API:**
+- `POST /api/v1/auth/register` - Đăng ký người dùng mới
+- `POST /api/v1/auth/social` - Xác thực qua nhà cung cấp xã hội
+- `PUT /api/v1/users/{userId}/role` - Cập nhật vai trò người dùng (chỉ System Admin)
+
+#### 3. Chỉ đạo chức năng cho Sub-Agent chuyên dụng
+
+**Coder:** Triển khai mã nguồn Java/Quarkus với tuân thủ SOLID, sử dụng BCrypt cho mã hóa mật khẩu, JWT với access token 15 phút và refresh token 7 ngày, áp dụng @Valid cho validation và @Transactional cho các thao tác ghi.
+
+**Tester:** Xây dựng bộ kiểm thử JUnit 5 với độ phủ mã ≥85%, sử dụng Mock cho các dependency, kiểm thử happy path và các scenario lỗi validation.
+
+**Reviewer:** Thực hiện phân tích tĩnh mã nguồn, kiểm tra tuân thủ OWASP Top 10, đảm bảo không có lỗ hổng SQL injection hoặc XSS.
+
+**Doc:** Biên soạn tài liệu kỹ thuật đầy đủ bao gồm API documentation với OpenAPI, schema documentation và hướng dẫn triển khai.
+
+#### 4. Định nghĩa hoàn thành (DoD) cho giai đoạn
+
+- ✅ 100% các requirement [REQ-001], [REQ-002], [REQ-003] được triển khai đầy đủ
+- ✅ Schema database [DAT-001] được tạo thành công với tất cả ràng buộc
+- ✅ Luồng xác thực [ARC-006] hoạt động với OAuth2 và JWT
+- ✅ Xử lý ngoại lệ [EXC-004] cho validation đầu vào
+- ✅ Tuân thủ các tiêu chuẩn bảo mật [NFR-001], [NFR-003], [NFR-006]
+- ✅ Độ phủ kiểm thử ≥85% cho tất cả các dịch vụ
+- ✅ 100% các Tag ID được ánh xạ và kiểm tra
+
+#### 5. NHẬT KÝ THỰC THI KIẾN TRÚC THEO NGÀY
+
+###### NGÀY 1: TRIỂN KHAI DỊCH VỤ ĐĂNG KÝ NGƯỜI DÙNG VÀ API XÁC THỰC XÃ HỘI
+
+######## SUB-TASK 1.1: Triển khai schema cơ sở dữ liệu Users và Roles
+########## Sub-Agent được chỉ định: Coder
+########## Các thành phần mục tiêu và yêu cầu kỹ thuật:
+* **Đường dẫn mục tiêu:** `./sources/backend.membershiphub.user/users.sql`, `./sources/backend.membershiphub.user/roles.sql`
+* **Các thẻ truy xuất nguồn gốc:** <!--START_TAGS-->[DAT-001]<!--END_TAGS-->
+
+######## SUB-TASK 1.2: Triển khai UserService với phương thức register và socialAuthenticate
+########## Sub-Agent được chỉ định: Coder
+########## Các thành phần mục tiêu và yêu cầu kỹ thuật:
+* **Đường dẫn mục tiêu:** `./sources/backend.membershiphub.user/user-service.java`
+* **Các thẻ truy xuất nguồn gốc:** <!--START_TAGS-->[REQ-001], [REQ-002], [ARC-006], [EXC-004], [NFR-001], [NFR-003], [NFR-006]<!--END_TAGS-->
+
+###### NGÀY 2: VIẾT BỘ KIỂM TRA ĐƠN VỊ VÀ TÍCH HỢP CHO CÁC CHỨC NĂNG NGƯỜI DÙNG
+
+######## SUB-TASK 2.1: Kiểm thử đơn vị cho các phương thức register và socialAuthenticate
+########## Sub-Agent được chỉ định: Tester
+########## Các thành phần mục tiêu và yêu cầu kỹ thuật:
+* **Đường dẫn mục tiêu:** `./sources/backend.membershiphub.user/user-service.java;./sources/backend.membershiphub.user/userservice-test.java`
+* **Các thẻ truy xuất nguồn gốc:** <!--START_TAGS-->[REQ-001], [REQ-002], [DAT-001], [EXC-004]<!--END_TAGS-->
+
+######## SUB-TASK 2.2: Kiểm thử tích hợp cho API endpoints
+########## Sub-Agent được chỉ định: Tester
+########## Các thành phần mục tiêu và yêu cầu kỹ thuật:
+* **Đường dẫn mục tiêu:** `./sources/backend.membershiphub.user/user-service.java;./sources/backend.membershiphub.user/user-controller-test.java`
+* **Các thẻ truy xuất nguồn gốc:** <!--START_TAGS-->[REQ-001], [REQ-002], [ARC-006], [EXC-004]<!--END_TAGS-->
+------------------------------------------
+
+# System Instruction
+
+You are a high-performance Data Ingestion and Transformation Engine. Your sole objective is to parse the Phase Context Markdown text and convert it into a perfectly valid, parseable JSON object matching the requested schema framework.
+
+# YOUR CRITICAL OPERATIONAL MANDATES (ZERO LOOPHOLES):
+1. **STRICT VARIABLE FIDELITY & NO PREFIXES:** You MUST use the exact raw values provided in the template variables for file paths and project names. You are STRICTLY BANNED from appending, prepending, or injecting any custom folders or prefixes like "sources/" to the `global_context_file`, `context_file`, `source_target_dir`, or `project_name` fields. Use the variable values exactly as they are passed.
+2. **ABSOLUTE PYDANTIC SCHEMA ALIGNMENT:** Your final generated JSON object MUST perfectly satisfy the structural schema parameters of the target enterprise contract. You are STRICTLY BANNED from omitting, renaming, formatting, or stripping out key elements (specifically `phase_id`, `phase_name`, `phase_description`, `project_name`, `global_context_file`, `source_target_dir`, and `days`).
+3. **ABSOLUTE NO EMPTY TAGS POLICY & STRING SANITIZATION:** You are STRICTLY BANNED from leaving the "targeted_tags" array empty `[]` or null for any sub-task that implements functional requirements or data schemas. You MUST scan the source Markdown sequentially sub-task by sub-task. For each sub-task node, locate the hidden technical container block delimited between `<!--START_TAGS-->` and `<!--END_TAGS-->` contained exclusively within that sub-task section scope. Extract all raw tag token codes inside, strip away all inline markdown formatting characters—specifically backticks (`` ` ``)—and any leading/trailing whitespaces, then populate them as clean separate string elements inside the "targeted_tags" array field of EACH sub-task object node.
+4. **NO TAG BUNDLING:** Every tag must be its own array node (e.g., `"targeted_tags": ["[REQ-001]", "[DAT-002]"]`). You are strictly forbidden from combining multiple tags into a single string element.
+5. **STRICT CONTENT PURITY & REJECT CONVERSATION:** Output ONLY the pure raw executable JSON string matching the required schema. Response must start exactly with the character `{` and end exactly with the character `}`. Banned from including thinking processes, chain-of-thought blocks (`<think>` tags), conversational filler texts, introductions, wrapping inside markdown codeblocks (no triple backticks wrapping), or post-generation notes. Any token outside the raw JSON object boundary triggers an immediate execution pipeline crash.
+
+# Raw Response / Exception:
+
+```json
+Error code: 410 - {'error': {'code': 'github_models_retirement_brownout', 'message': 'GitHub Models is temporarily unavailable as part of a scheduled retirement brownout.'}}: ['Traceback (most recent call last):
+', '  File "/home/runner/work/enterprise-it-ai/enterprise-it-ai/sources/agents/architect-blueprint/block_json.py", line 301, in convert_phases_to_json
+    response = client.beta.chat.completions.parse(
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+', '  File "/opt/hostedtoolcache/Python/3.11.15/x64/lib/python3.11/site-packages/openai/resources/chat/completions/completions.py", line 193, in parse
+    return self._post(
+           ^^^^^^^^^^^
+', '  File "/opt/hostedtoolcache/Python/3.11.15/x64/lib/python3.11/site-packages/openai/_base_client.py", line 1375, in post
+    return cast(ResponseT, self.request(cast_to, opts, stream=stream, stream_cls=stream_cls))
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+', '  File "/opt/hostedtoolcache/Python/3.11.15/x64/lib/python3.11/site-packages/openai/_base_client.py", line 1148, in request
+    raise self._make_status_error_from_response(err.response) from None
+', "openai.APIStatusError: Error code: 410 - {'error': {'code': 'github_models_retirement_brownout', 'message': 'GitHub Models is temporarily unavailable as part of a scheduled retirement brownout.'}}
+"]
+```
+
+# AI Model: microsoft/Phi-4-mini-instruct - Phase 1 STEPS - Prompt:
+
+Analyze the attached Phase 1 Context Markdown content.
+
+Extract and translate ALL daily steps, checklists, and agent tasks from the entire document.
+
+
+## 🔒 AGENT ATOMICITY, TASK ID FORMAT & COMPONENT MANDATES (ABSOLUTE):
+- **STRICT TASK ID ALIGNMENT BLUEPRINT:** You MUST strictly generate the "id" field string for every single sub-task using the exact sequential formatting blueprint: `D<day_num>_ST<task_index>` (e.g., `D1_ST1`, `D1_ST2`, `D2_ST1`).
+- **STRICT AGENT ROLE LITERAL VALUES:** The "agent" field inside the JSON sub-task object MUST strictly enforce a capitalized first letter and lowercase subsequent letters pattern matching the exact tokens: 'Coder' | 'Tester' | 'Reviewer' | 'Doc' | 'Docker' | 'Gcp' | 'Gke'. Any other values or lowercase blocks (e.g., NO "coder") are strictly banned.
+- **NO ZERO-COMPONENT TASKS (ABSOLUTE HARD LIMIT):** You are STRICTLY BANNED from generating any sub-task object where the 'components' array is empty `[]`, null, or missing. If an Agent does not have any physical file paths to create, modify, or document, you MUST NOT generate that sub-task object node.
+- **FALLBACK COMPONENT RULE:** If a day has technical descriptions but lacks physical file paths, assign the task to "Doc" agent and populate 'components' with exactly the value of: ".ai/.plan/.context/phase-1.context.blueprint.md".
+- **STRICT AGENT ROLE SEGREGATION (ANTI-AGGREGATION):** If a workflow file involves multiple actions by different personas on the same calendar day, you MUST split this workflow into completely separate, sequential task objects inside the 'sub_tasks' array.
+- **HIGH-DENSITY TECHNICAL SPECIFICATION:** The 'task' field MUST contain an exhaustive, granular engineering instruction. If the sub-task involves an API route, integration endpoint, database query, or message block, you MUST explicitly inline the complete technical contract (e.g., Request/Response Payload Schemas, Data Types, Error Status Codes, or Queue names) directly inside this string. Vague high-level bullet summaries are forbidden.
+- **WORKSPACE PREFIX RULE & MULTI-LANGUAGE TEST EXCEPTION:** Every path in 'components' array MUST strictly begin with `./sources/`. 
+  * *CRITICAL EXCEPTION:* If the first parameter before the semi-colon character in a tester task is the literal string token `INTEGRATION_SCOPE`, you MUST leave that token completely unmodified. Do NOT append any path prefix to it (e.g., `"components": ["INTEGRATION_SCOPE;./sources/frontend/tests/auth.spec.ts"]`).
+
+## 🛠️ MANDATORY TOP-LEVEL FIELD VALUES INJECTION & ANCHOR PARSING (STRICT FIDELITY):
+You MUST dynamically populate the top-level keys of the JSON object using EXACT raw variable values without any modifications, or parse them directly from the primary Markdown header HTML comments:
+- **`phase_id`**: 1
+- **`phase_name`**: [Locate the primary Markdown title header line, extract the clean technical string text located exactly between the hidden HTML delimiters `<!--PHASE_NAME_START-->` and `<!--PHASE_NAME_END-->` without any alterations or translations]
+- **`phase_description`**: [Locate the primary Markdown title header line, extract the exact translated phase description text that follows after the literal marker `| Description:` or its translated equivalent]
+- **`project_name`**: "membership-hub"
+- **`global_context_file`**: ".ai/.context/membership-hub.global.blueprint.md"
+- **`source_target_dir`**: "sources/"
+
+#### 7. Context Fields Integration Mandate
+- For each day object inside the array, set 'day' to its calculated integer value, set 'context_file' to exact string ".ai/.plan/.context/phase-1.context.blueprint.md", and **set 'context_section' to the exact raw string value of the entire primary Day Header extracted from the source Markdown context text** (e.g., `"context_section": "DAY 1: Multi-Tenant Inception Schema & Flyway Migration Setup"`).
+
+#### 8. CHRONOLOGICAL TIMELINE SEQUENCING MANDATE (ABSOLUTE):
+#### 8. CHRONOLOGICAL TIMELINE SEQUENCING MANDATE (ABSOLUTE):
+
+## SYSTEM CRITICAL BOUNDARY: FLAT CONFIGURATION IS ACTIVE (is_chunked is FALSE)
+- Regardless of the actual day numbers documented in the source Markdown content (e.g., even if the text states "DAY 4", "DAY 5"), you MUST completely reset the timeline sequence internally so that the first operational day inside this Phase always starts from integer 1. Progression follows sequentially as 2, 3, 4, etc. 
+- Map the first targeted day to `"day": 1`, set 'context_file' to ".ai/.plan/.context/phase-1.context.blueprint.md", and strictly set 'context_section' to the exact raw primary header line of the first day parsed from the text. Incremental days follow this relative baseline.
+
+
+## 🛑 MANDATORY STRUCTURE ENFORCEMENT FOR TRACEABILITY TAGS VIA HTML ANCHORS (CRITICAL):
+- For each sub-task block, locate the hidden technical container bounds delimited strictly between `<!--START_TAGS-->` and `<!--END_TAGS-->`. Extract all individual inherited Tag IDs from inside that container, completely purge all markdown backticks (`` ` ``) and padding spaces, and populate them as clean individual string elements inside the "targeted_tags" array field (e.g., `"targeted_tags": ["[REQ-001]", "[DAT-005]"]`).
+- You are STRICTLY BANNED from leaving the "targeted_tags" array empty `[]` or null. Every single tag token must be its own separated array element string.
+
+You must conform strictly to your required JSON Schema layout design structure:
+{
+  "$defs": {
+    "DailyStep": {
+      "properties": {
+        "day": {
+          "description": "Timeline iteration day inside this isolated phase.",
+          "title": "Day",
+          "type": "integer"
+        },
+        "context_file": {
+          "description": "The phase context Markdown file for closure on this day.",
+          "title": "Context File",
+          "type": "string"
+        },
+        "context_section": {
+          "description": "The day targeted for closure on this day.",
+          "title": "Context Section",
+          "type": "string"
+        },
+        "sub_tasks": {
+          "description": "Array of isolated micro-tasks assigned to sub-agents.",
+          "items": {
+            "$ref": "##/$defs/SubAgentTask"
+          },
+          "title": "Sub Tasks",
+          "type": "array"
+        }
+      },
+      "required": [
+        "day",
+        "context_file",
+        "context_section",
+        "sub_tasks"
+      ],
+      "title": "DailyStep",
+      "type": "object"
+    },
+    "SubAgentTask": {
+      "properties": {
+        "id": {
+          "description": "Sub-Task identity of Task that sub-agent role executing.",
+          "title": "Id",
+          "type": "string"
+        },
+        "agent": {
+          "description": "Target sub-agent role executing the task.",
+          "title": "Agent",
+          "type": "string"
+        },
+        "desc": {
+          "description": "Literal, low-level technical step assigned to the agent.",
+          "title": "Desc",
+          "type": "string"
+        },
+        "targeted_tags": {
+          "description": "Flat string array of exact inherited BA Tag IDs that this specific sub-task implements or verifies (e.g. ['[REQ-001]', '[ARC-002]']). MUST match the raw requirements 1:1.",
+          "items": {
+            "type": "string"
+          },
+          "title": "Targeted Tags",
+          "type": "array"
+        },
+        "components": {
+          "description": "Flat array of physical localized file paths or scripts modified or targeted by this single task. Return an empty array [] if no files are involved.",
+          "items": {
+            "type": "string"
+          },
+          "title": "Components",
+          "type": "array"
+        }
+      },
+      "required": [
+        "id",
+        "agent",
+        "desc"
+      ],
+      "title": "SubAgentTask",
+      "type": "object"
+    }
+  },
+  "properties": {
+    "phase_id": {
+      "description": "Target phase tracker index.",
+      "title": "Phase Id",
+      "type": "integer"
+    },
+    "phase_name": {
+      "description": "Target phase tracker name.",
+      "title": "Phase Name",
+      "type": "string"
+    },
+    "phase_description": {
+      "description": "Target phase description.",
+      "title": "Phase Description",
+      "type": "string"
+    },
+    "project_name": {
+      "description": "Target project tracker name.",
+      "title": "Project Name",
+      "type": "string"
+    },
+    "global_context_file": {
+      "description": "Project global context Markdown file for closure.",
+      "title": "Global Context File",
+      "type": "string"
+    },
+    "source_target_dir": {
+      "description": "Project sources folder path for closure.",
+      "title": "Source Target Dir",
+      "type": "string"
+    },
+    "days": {
+      "description": "Day-by-day engineering tracking steps.",
+      "items": {
+        "$ref": "##/$defs/DailyStep"
+      },
+      "title": "Days",
+      "type": "array"
+    }
+  },
+  "required": [
+    "phase_id",
+    "phase_name",
+    "phase_description",
+    "project_name",
+    "global_context_file",
+    "source_target_dir",
+    "days"
+  ],
+  "title": "PhaseStepsPlan",
+  "type": "object"
+}
+
+--- PHASE 1 CONTEXT MARKDOWN ---
+## Giai đoạn 1: <!--PHASE_NAME_START-->user_core_services<!--PHASE_NAME_END--> | Mô tả: Triển khai các dịch vụ cốt lõi quản lý người dùng bao gồm đăng ký, xác thực xã hội, gán vai trò, schema cơ sở dữ liệu và logging kiểm toán bảo mật
+
+#### 📊 Kiểm soát tài liệu
+
+| Mục | Chi tiết |
+| :--- | :--- |
+| **ID Blueprint** | ARCH-20260803053505 |
+| **Tên dự án** | membership-hub |
+| **Giai đoạn** | 1 |
+| **Tên kỹ thuật giai đoạn** | <!--PHASE_NAME_START-->user_core_services<!--PHASE_NAME_END--> |
+| **Mô tả** | Triển khai các dịch vụ cốt lõi quản lý người dùng bao gồm đăng ký, xác thực xã hội, gán vai trò, schema cơ sở dữ liệu và logging kiểm toán bảo mật |
+| **Phiên bản** | 1.0 (Baseline) |
+| **Ngày/Giờ** | 2026/08/03 05:35:05 |
+| **Tác giả** | Enterprise System Architect (SA Agent) |
+| **Phê duyệt** | Pending Technical Governance Review |
+
+#### 1. Phạm vi hoạt động và mục tiêu giai đoạn
+
+Giai đoạn này tập trung vào việc xây dựng nền tảng cốt lõi cho hệ thống quản lý người dùng, bao gồm:
+
+- Triển khai schema cơ sở dữ liệu cho bảng Users và Roles với các ràng buộc toàn vẹn dữ liệu
+- Xây dựng dịch vụ đăng ký người dùng với xác thực email/mật khẩu và hỗ trợ OAuth2 cho các nhà cung cấp xã hội (Firebase, Google, Facebook)
+- Triển khai cơ chế phân quyền RBAC với khả năng gán và thay đổi vai trò người dùng
+- Thiết lập hệ thống logging kiểm toán đáp ứng các tiêu chuẩn bảo mật doanh nghiệp
+- Triển khai xử lý ngoại lệ chi tiết cho validation đầu vào và xung đột dữ liệu
+
+#### 2. Phạm vi kỹ thuật và ranh giới thư mục được phép
+
+**Thư mục và tệp được phép:**
+- `./sources/backend.membershiphub.user/users.sql` - DDL schema cho bảng Users
+- `./sources/backend.membershiphub.user/roles.sql` - DDL schema cho bảng Roles  
+- `./sources/backend.membershiphub.user/user-service.java` - Dịch vụ chính quản lý người dùng
+
+**Endpoint API:**
+- `POST /api/v1/auth/register` - Đăng ký người dùng mới
+- `POST /api/v1/auth/social` - Xác thực qua nhà cung cấp xã hội
+- `PUT /api/v1/users/{userId}/role` - Cập nhật vai trò người dùng (chỉ System Admin)
+
+#### 3. Chỉ đạo chức năng cho Sub-Agent chuyên dụng
+
+**Coder:** Triển khai mã nguồn Java/Quarkus với tuân thủ SOLID, sử dụng BCrypt cho mã hóa mật khẩu, JWT với access token 15 phút và refresh token 7 ngày, áp dụng @Valid cho validation và @Transactional cho các thao tác ghi.
+
+**Tester:** Xây dựng bộ kiểm thử JUnit 5 với độ phủ mã ≥85%, sử dụng Mock cho các dependency, kiểm thử happy path và các scenario lỗi validation.
+
+**Reviewer:** Thực hiện phân tích tĩnh mã nguồn, kiểm tra tuân thủ OWASP Top 10, đảm bảo không có lỗ hổng SQL injection hoặc XSS.
+
+**Doc:** Biên soạn tài liệu kỹ thuật đầy đủ bao gồm API documentation với OpenAPI, schema documentation và hướng dẫn triển khai.
+
+#### 4. Định nghĩa hoàn thành (DoD) cho giai đoạn
+
+- ✅ 100% các requirement [REQ-001], [REQ-002], [REQ-003] được triển khai đầy đủ
+- ✅ Schema database [DAT-001] được tạo thành công với tất cả ràng buộc
+- ✅ Luồng xác thực [ARC-006] hoạt động với OAuth2 và JWT
+- ✅ Xử lý ngoại lệ [EXC-004] cho validation đầu vào
+- ✅ Tuân thủ các tiêu chuẩn bảo mật [NFR-001], [NFR-003], [NFR-006]
+- ✅ Độ phủ kiểm thử ≥85% cho tất cả các dịch vụ
+- ✅ 100% các Tag ID được ánh xạ và kiểm tra
+
+#### 5. NHẬT KÝ THỰC THI KIẾN TRÚC THEO NGÀY
+
+###### NGÀY 1: TRIỂN KHAI DỊCH VỤ ĐĂNG KÝ NGƯỜI DÙNG VÀ API XÁC THỰC XÃ HỘI
+
+######## SUB-TASK 1.1: Triển khai schema cơ sở dữ liệu Users và Roles
+########## Sub-Agent được chỉ định: Coder
+########## Các thành phần mục tiêu và yêu cầu kỹ thuật:
+* **Đường dẫn mục tiêu:** `./sources/backend.membershiphub.user/users.sql`, `./sources/backend.membershiphub.user/roles.sql`
+* **Các thẻ truy xuất nguồn gốc:** <!--START_TAGS-->[DAT-001]<!--END_TAGS-->
+
+######## SUB-TASK 1.2: Triển khai UserService với phương thức register và socialAuthenticate
+########## Sub-Agent được chỉ định: Coder
+########## Các thành phần mục tiêu và yêu cầu kỹ thuật:
+* **Đường dẫn mục tiêu:** `./sources/backend.membershiphub.user/user-service.java`
+* **Các thẻ truy xuất nguồn gốc:** <!--START_TAGS-->[REQ-001], [REQ-002], [ARC-006], [EXC-004], [NFR-001], [NFR-003], [NFR-006]<!--END_TAGS-->
+
+###### NGÀY 2: VIẾT BỘ KIỂM TRA ĐƠN VỊ VÀ TÍCH HỢP CHO CÁC CHỨC NĂNG NGƯỜI DÙNG
+
+######## SUB-TASK 2.1: Kiểm thử đơn vị cho các phương thức register và socialAuthenticate
+########## Sub-Agent được chỉ định: Tester
+########## Các thành phần mục tiêu và yêu cầu kỹ thuật:
+* **Đường dẫn mục tiêu:** `./sources/backend.membershiphub.user/user-service.java;./sources/backend.membershiphub.user/userservice-test.java`
+* **Các thẻ truy xuất nguồn gốc:** <!--START_TAGS-->[REQ-001], [REQ-002], [DAT-001], [EXC-004]<!--END_TAGS-->
+
+######## SUB-TASK 2.2: Kiểm thử tích hợp cho API endpoints
+########## Sub-Agent được chỉ định: Tester
+########## Các thành phần mục tiêu và yêu cầu kỹ thuật:
+* **Đường dẫn mục tiêu:** `./sources/backend.membershiphub.user/user-service.java;./sources/backend.membershiphub.user/user-controller-test.java`
+* **Các thẻ truy xuất nguồn gốc:** <!--START_TAGS-->[REQ-001], [REQ-002], [ARC-006], [EXC-004]<!--END_TAGS-->
+------------------------------------------
+
+# System Instruction
+
+You are a high-performance Data Ingestion and Transformation Engine. Your sole objective is to parse the Phase Context Markdown text and convert it into a perfectly valid, parseable JSON object matching the requested schema framework.
+
+# YOUR CRITICAL OPERATIONAL MANDATES (ZERO LOOPHOLES):
+1. **STRICT VARIABLE FIDELITY & NO PREFIXES:** You MUST use the exact raw values provided in the template variables for file paths and project names. You are STRICTLY BANNED from appending, prepending, or injecting any custom folders or prefixes like "sources/" to the `global_context_file`, `context_file`, `source_target_dir`, or `project_name` fields. Use the variable values exactly as they are passed.
+2. **ABSOLUTE PYDANTIC SCHEMA ALIGNMENT:** Your final generated JSON object MUST perfectly satisfy the structural schema parameters of the target enterprise contract. You are STRICTLY BANNED from omitting, renaming, formatting, or stripping out key elements (specifically `phase_id`, `phase_name`, `phase_description`, `project_name`, `global_context_file`, `source_target_dir`, and `days`).
+3. **ABSOLUTE NO EMPTY TAGS POLICY & STRING SANITIZATION:** You are STRICTLY BANNED from leaving the "targeted_tags" array empty `[]` or null for any sub-task that implements functional requirements or data schemas. You MUST scan the source Markdown sequentially sub-task by sub-task. For each sub-task node, locate the hidden technical container block delimited between `<!--START_TAGS-->` and `<!--END_TAGS-->` contained exclusively within that sub-task section scope. Extract all raw tag token codes inside, strip away all inline markdown formatting characters—specifically backticks (`` ` ``)—and any leading/trailing whitespaces, then populate them as clean separate string elements inside the "targeted_tags" array field of EACH sub-task object node.
+4. **NO TAG BUNDLING:** Every tag must be its own array node (e.g., `"targeted_tags": ["[REQ-001]", "[DAT-002]"]`). You are strictly forbidden from combining multiple tags into a single string element.
+5. **STRICT CONTENT PURITY & REJECT CONVERSATION:** Output ONLY the pure raw executable JSON string matching the required schema. Response must start exactly with the character `{` and end exactly with the character `}`. Banned from including thinking processes, chain-of-thought blocks (`<think>` tags), conversational filler texts, introductions, wrapping inside markdown codeblocks (no triple backticks wrapping), or post-generation notes. Any token outside the raw JSON object boundary triggers an immediate execution pipeline crash.
+
+# Raw Response / Exception:
+
+```json
+Error code: 410 - {'error': {'code': 'github_models_retirement_brownout', 'message': 'GitHub Models is temporarily unavailable as part of a scheduled retirement brownout.'}}: ['Traceback (most recent call last):
+', '  File "/home/runner/work/enterprise-it-ai/enterprise-it-ai/sources/agents/architect-blueprint/block_json.py", line 301, in convert_phases_to_json
+    response = client.beta.chat.completions.parse(
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+', '  File "/opt/hostedtoolcache/Python/3.11.15/x64/lib/python3.11/site-packages/openai/resources/chat/completions/completions.py", line 193, in parse
+    return self._post(
+           ^^^^^^^^^^^
+', '  File "/opt/hostedtoolcache/Python/3.11.15/x64/lib/python3.11/site-packages/openai/_base_client.py", line 1375, in post
+    return cast(ResponseT, self.request(cast_to, opts, stream=stream, stream_cls=stream_cls))
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+', '  File "/opt/hostedtoolcache/Python/3.11.15/x64/lib/python3.11/site-packages/openai/_base_client.py", line 1148, in request
+    raise self._make_status_error_from_response(err.response) from None
+', "openai.APIStatusError: Error code: 410 - {'error': {'code': 'github_models_retirement_brownout', 'message': 'GitHub Models is temporarily unavailable as part of a scheduled retirement brownout.'}}
+"]
+```
+
+# AI Model: microsoft/Phi-4-multimodal-instruct - Phase 1 STEPS - Prompt:
+
+Analyze the attached Phase 1 Context Markdown content.
+
+Extract and translate ALL daily steps, checklists, and agent tasks from the entire document.
+
+
+## 🔒 AGENT ATOMICITY, TASK ID FORMAT & COMPONENT MANDATES (ABSOLUTE):
+- **STRICT TASK ID ALIGNMENT BLUEPRINT:** You MUST strictly generate the "id" field string for every single sub-task using the exact sequential formatting blueprint: `D<day_num>_ST<task_index>` (e.g., `D1_ST1`, `D1_ST2`, `D2_ST1`).
+- **STRICT AGENT ROLE LITERAL VALUES:** The "agent" field inside the JSON sub-task object MUST strictly enforce a capitalized first letter and lowercase subsequent letters pattern matching the exact tokens: 'Coder' | 'Tester' | 'Reviewer' | 'Doc' | 'Docker' | 'Gcp' | 'Gke'. Any other values or lowercase blocks (e.g., NO "coder") are strictly banned.
+- **NO ZERO-COMPONENT TASKS (ABSOLUTE HARD LIMIT):** You are STRICTLY BANNED from generating any sub-task object where the 'components' array is empty `[]`, null, or missing. If an Agent does not have any physical file paths to create, modify, or document, you MUST NOT generate that sub-task object node.
+- **FALLBACK COMPONENT RULE:** If a day has technical descriptions but lacks physical file paths, assign the task to "Doc" agent and populate 'components' with exactly the value of: ".ai/.plan/.context/phase-1.context.blueprint.md".
+- **STRICT AGENT ROLE SEGREGATION (ANTI-AGGREGATION):** If a workflow file involves multiple actions by different personas on the same calendar day, you MUST split this workflow into completely separate, sequential task objects inside the 'sub_tasks' array.
+- **HIGH-DENSITY TECHNICAL SPECIFICATION:** The 'task' field MUST contain an exhaustive, granular engineering instruction. If the sub-task involves an API route, integration endpoint, database query, or message block, you MUST explicitly inline the complete technical contract (e.g., Request/Response Payload Schemas, Data Types, Error Status Codes, or Queue names) directly inside this string. Vague high-level bullet summaries are forbidden.
+- **WORKSPACE PREFIX RULE & MULTI-LANGUAGE TEST EXCEPTION:** Every path in 'components' array MUST strictly begin with `./sources/`. 
+  * *CRITICAL EXCEPTION:* If the first parameter before the semi-colon character in a tester task is the literal string token `INTEGRATION_SCOPE`, you MUST leave that token completely unmodified. Do NOT append any path prefix to it (e.g., `"components": ["INTEGRATION_SCOPE;./sources/frontend/tests/auth.spec.ts"]`).
+
+## 🛠️ MANDATORY TOP-LEVEL FIELD VALUES INJECTION & ANCHOR PARSING (STRICT FIDELITY):
+You MUST dynamically populate the top-level keys of the JSON object using EXACT raw variable values without any modifications, or parse them directly from the primary Markdown header HTML comments:
+- **`phase_id`**: 1
+- **`phase_name`**: [Locate the primary Markdown title header line, extract the clean technical string text located exactly between the hidden HTML delimiters `<!--PHASE_NAME_START-->` and `<!--PHASE_NAME_END-->` without any alterations or translations]
+- **`phase_description`**: [Locate the primary Markdown title header line, extract the exact translated phase description text that follows after the literal marker `| Description:` or its translated equivalent]
+- **`project_name`**: "membership-hub"
+- **`global_context_file`**: ".ai/.context/membership-hub.global.blueprint.md"
+- **`source_target_dir`**: "sources/"
+
+#### 7. Context Fields Integration Mandate
+- For each day object inside the array, set 'day' to its calculated integer value, set 'context_file' to exact string ".ai/.plan/.context/phase-1.context.blueprint.md", and **set 'context_section' to the exact raw string value of the entire primary Day Header extracted from the source Markdown context text** (e.g., `"context_section": "DAY 1: Multi-Tenant Inception Schema & Flyway Migration Setup"`).
+
+#### 8. CHRONOLOGICAL TIMELINE SEQUENCING MANDATE (ABSOLUTE):
+#### 8. CHRONOLOGICAL TIMELINE SEQUENCING MANDATE (ABSOLUTE):
+
+## SYSTEM CRITICAL BOUNDARY: FLAT CONFIGURATION IS ACTIVE (is_chunked is FALSE)
+- Regardless of the actual day numbers documented in the source Markdown content (e.g., even if the text states "DAY 4", "DAY 5"), you MUST completely reset the timeline sequence internally so that the first operational day inside this Phase always starts from integer 1. Progression follows sequentially as 2, 3, 4, etc. 
+- Map the first targeted day to `"day": 1`, set 'context_file' to ".ai/.plan/.context/phase-1.context.blueprint.md", and strictly set 'context_section' to the exact raw primary header line of the first day parsed from the text. Incremental days follow this relative baseline.
+
+
+## 🛑 MANDATORY STRUCTURE ENFORCEMENT FOR TRACEABILITY TAGS VIA HTML ANCHORS (CRITICAL):
+- For each sub-task block, locate the hidden technical container bounds delimited strictly between `<!--START_TAGS-->` and `<!--END_TAGS-->`. Extract all individual inherited Tag IDs from inside that container, completely purge all markdown backticks (`` ` ``) and padding spaces, and populate them as clean individual string elements inside the "targeted_tags" array field (e.g., `"targeted_tags": ["[REQ-001]", "[DAT-005]"]`).
+- You are STRICTLY BANNED from leaving the "targeted_tags" array empty `[]` or null. Every single tag token must be its own separated array element string.
+
+You must conform strictly to your required JSON Schema layout design structure:
+{
+  "$defs": {
+    "DailyStep": {
+      "properties": {
+        "day": {
+          "description": "Timeline iteration day inside this isolated phase.",
+          "title": "Day",
+          "type": "integer"
+        },
+        "context_file": {
+          "description": "The phase context Markdown file for closure on this day.",
+          "title": "Context File",
+          "type": "string"
+        },
+        "context_section": {
+          "description": "The day targeted for closure on this day.",
+          "title": "Context Section",
+          "type": "string"
+        },
+        "sub_tasks": {
+          "description": "Array of isolated micro-tasks assigned to sub-agents.",
+          "items": {
+            "$ref": "##/$defs/SubAgentTask"
+          },
+          "title": "Sub Tasks",
+          "type": "array"
+        }
+      },
+      "required": [
+        "day",
+        "context_file",
+        "context_section",
+        "sub_tasks"
+      ],
+      "title": "DailyStep",
+      "type": "object"
+    },
+    "SubAgentTask": {
+      "properties": {
+        "id": {
+          "description": "Sub-Task identity of Task that sub-agent role executing.",
+          "title": "Id",
+          "type": "string"
+        },
+        "agent": {
+          "description": "Target sub-agent role executing the task.",
+          "title": "Agent",
+          "type": "string"
+        },
+        "desc": {
+          "description": "Literal, low-level technical step assigned to the agent.",
+          "title": "Desc",
+          "type": "string"
+        },
+        "targeted_tags": {
+          "description": "Flat string array of exact inherited BA Tag IDs that this specific sub-task implements or verifies (e.g. ['[REQ-001]', '[ARC-002]']). MUST match the raw requirements 1:1.",
+          "items": {
+            "type": "string"
+          },
+          "title": "Targeted Tags",
+          "type": "array"
+        },
+        "components": {
+          "description": "Flat array of physical localized file paths or scripts modified or targeted by this single task. Return an empty array [] if no files are involved.",
+          "items": {
+            "type": "string"
+          },
+          "title": "Components",
+          "type": "array"
+        }
+      },
+      "required": [
+        "id",
+        "agent",
+        "desc"
+      ],
+      "title": "SubAgentTask",
+      "type": "object"
+    }
+  },
+  "properties": {
+    "phase_id": {
+      "description": "Target phase tracker index.",
+      "title": "Phase Id",
+      "type": "integer"
+    },
+    "phase_name": {
+      "description": "Target phase tracker name.",
+      "title": "Phase Name",
+      "type": "string"
+    },
+    "phase_description": {
+      "description": "Target phase description.",
+      "title": "Phase Description",
+      "type": "string"
+    },
+    "project_name": {
+      "description": "Target project tracker name.",
+      "title": "Project Name",
+      "type": "string"
+    },
+    "global_context_file": {
+      "description": "Project global context Markdown file for closure.",
+      "title": "Global Context File",
+      "type": "string"
+    },
+    "source_target_dir": {
+      "description": "Project sources folder path for closure.",
+      "title": "Source Target Dir",
+      "type": "string"
+    },
+    "days": {
+      "description": "Day-by-day engineering tracking steps.",
+      "items": {
+        "$ref": "##/$defs/DailyStep"
+      },
+      "title": "Days",
+      "type": "array"
+    }
+  },
+  "required": [
+    "phase_id",
+    "phase_name",
+    "phase_description",
+    "project_name",
+    "global_context_file",
+    "source_target_dir",
+    "days"
+  ],
+  "title": "PhaseStepsPlan",
+  "type": "object"
+}
+
+--- PHASE 1 CONTEXT MARKDOWN ---
+## Giai đoạn 1: <!--PHASE_NAME_START-->user_core_services<!--PHASE_NAME_END--> | Mô tả: Triển khai các dịch vụ cốt lõi quản lý người dùng bao gồm đăng ký, xác thực xã hội, gán vai trò, schema cơ sở dữ liệu và logging kiểm toán bảo mật
+
+#### 📊 Kiểm soát tài liệu
+
+| Mục | Chi tiết |
+| :--- | :--- |
+| **ID Blueprint** | ARCH-20260803053505 |
+| **Tên dự án** | membership-hub |
+| **Giai đoạn** | 1 |
+| **Tên kỹ thuật giai đoạn** | <!--PHASE_NAME_START-->user_core_services<!--PHASE_NAME_END--> |
+| **Mô tả** | Triển khai các dịch vụ cốt lõi quản lý người dùng bao gồm đăng ký, xác thực xã hội, gán vai trò, schema cơ sở dữ liệu và logging kiểm toán bảo mật |
+| **Phiên bản** | 1.0 (Baseline) |
+| **Ngày/Giờ** | 2026/08/03 05:35:05 |
+| **Tác giả** | Enterprise System Architect (SA Agent) |
+| **Phê duyệt** | Pending Technical Governance Review |
+
+#### 1. Phạm vi hoạt động và mục tiêu giai đoạn
+
+Giai đoạn này tập trung vào việc xây dựng nền tảng cốt lõi cho hệ thống quản lý người dùng, bao gồm:
+
+- Triển khai schema cơ sở dữ liệu cho bảng Users và Roles với các ràng buộc toàn vẹn dữ liệu
+- Xây dựng dịch vụ đăng ký người dùng với xác thực email/mật khẩu và hỗ trợ OAuth2 cho các nhà cung cấp xã hội (Firebase, Google, Facebook)
+- Triển khai cơ chế phân quyền RBAC với khả năng gán và thay đổi vai trò người dùng
+- Thiết lập hệ thống logging kiểm toán đáp ứng các tiêu chuẩn bảo mật doanh nghiệp
+- Triển khai xử lý ngoại lệ chi tiết cho validation đầu vào và xung đột dữ liệu
+
+#### 2. Phạm vi kỹ thuật và ranh giới thư mục được phép
+
+**Thư mục và tệp được phép:**
+- `./sources/backend.membershiphub.user/users.sql` - DDL schema cho bảng Users
+- `./sources/backend.membershiphub.user/roles.sql` - DDL schema cho bảng Roles  
+- `./sources/backend.membershiphub.user/user-service.java` - Dịch vụ chính quản lý người dùng
+
+**Endpoint API:**
+- `POST /api/v1/auth/register` - Đăng ký người dùng mới
+- `POST /api/v1/auth/social` - Xác thực qua nhà cung cấp xã hội
+- `PUT /api/v1/users/{userId}/role` - Cập nhật vai trò người dùng (chỉ System Admin)
+
+#### 3. Chỉ đạo chức năng cho Sub-Agent chuyên dụng
+
+**Coder:** Triển khai mã nguồn Java/Quarkus với tuân thủ SOLID, sử dụng BCrypt cho mã hóa mật khẩu, JWT với access token 15 phút và refresh token 7 ngày, áp dụng @Valid cho validation và @Transactional cho các thao tác ghi.
+
+**Tester:** Xây dựng bộ kiểm thử JUnit 5 với độ phủ mã ≥85%, sử dụng Mock cho các dependency, kiểm thử happy path và các scenario lỗi validation.
+
+**Reviewer:** Thực hiện phân tích tĩnh mã nguồn, kiểm tra tuân thủ OWASP Top 10, đảm bảo không có lỗ hổng SQL injection hoặc XSS.
+
+**Doc:** Biên soạn tài liệu kỹ thuật đầy đủ bao gồm API documentation với OpenAPI, schema documentation và hướng dẫn triển khai.
+
+#### 4. Định nghĩa hoàn thành (DoD) cho giai đoạn
+
+- ✅ 100% các requirement [REQ-001], [REQ-002], [REQ-003] được triển khai đầy đủ
+- ✅ Schema database [DAT-001] được tạo thành công với tất cả ràng buộc
+- ✅ Luồng xác thực [ARC-006] hoạt động với OAuth2 và JWT
+- ✅ Xử lý ngoại lệ [EXC-004] cho validation đầu vào
+- ✅ Tuân thủ các tiêu chuẩn bảo mật [NFR-001], [NFR-003], [NFR-006]
+- ✅ Độ phủ kiểm thử ≥85% cho tất cả các dịch vụ
+- ✅ 100% các Tag ID được ánh xạ và kiểm tra
+
+#### 5. NHẬT KÝ THỰC THI KIẾN TRÚC THEO NGÀY
+
+###### NGÀY 1: TRIỂN KHAI DỊCH VỤ ĐĂNG KÝ NGƯỜI DÙNG VÀ API XÁC THỰC XÃ HỘI
+
+######## SUB-TASK 1.1: Triển khai schema cơ sở dữ liệu Users và Roles
+########## Sub-Agent được chỉ định: Coder
+########## Các thành phần mục tiêu và yêu cầu kỹ thuật:
+* **Đường dẫn mục tiêu:** `./sources/backend.membershiphub.user/users.sql`, `./sources/backend.membershiphub.user/roles.sql`
+* **Các thẻ truy xuất nguồn gốc:** <!--START_TAGS-->[DAT-001]<!--END_TAGS-->
+
+######## SUB-TASK 1.2: Triển khai UserService với phương thức register và socialAuthenticate
+########## Sub-Agent được chỉ định: Coder
+########## Các thành phần mục tiêu và yêu cầu kỹ thuật:
+* **Đường dẫn mục tiêu:** `./sources/backend.membershiphub.user/user-service.java`
+* **Các thẻ truy xuất nguồn gốc:** <!--START_TAGS-->[REQ-001], [REQ-002], [ARC-006], [EXC-004], [NFR-001], [NFR-003], [NFR-006]<!--END_TAGS-->
+
+###### NGÀY 2: VIẾT BỘ KIỂM TRA ĐƠN VỊ VÀ TÍCH HỢP CHO CÁC CHỨC NĂNG NGƯỜI DÙNG
+
+######## SUB-TASK 2.1: Kiểm thử đơn vị cho các phương thức register và socialAuthenticate
+########## Sub-Agent được chỉ định: Tester
+########## Các thành phần mục tiêu và yêu cầu kỹ thuật:
+* **Đường dẫn mục tiêu:** `./sources/backend.membershiphub.user/user-service.java;./sources/backend.membershiphub.user/userservice-test.java`
+* **Các thẻ truy xuất nguồn gốc:** <!--START_TAGS-->[REQ-001], [REQ-002], [DAT-001], [EXC-004]<!--END_TAGS-->
+
+######## SUB-TASK 2.2: Kiểm thử tích hợp cho API endpoints
+########## Sub-Agent được chỉ định: Tester
+########## Các thành phần mục tiêu và yêu cầu kỹ thuật:
+* **Đường dẫn mục tiêu:** `./sources/backend.membershiphub.user/user-service.java;./sources/backend.membershiphub.user/user-controller-test.java`
+* **Các thẻ truy xuất nguồn gốc:** <!--START_TAGS-->[REQ-001], [REQ-002], [ARC-006], [EXC-004]<!--END_TAGS-->
+------------------------------------------
+
+# System Instruction
+
+You are a high-performance Data Ingestion and Transformation Engine. Your sole objective is to parse the Phase Context Markdown text and convert it into a perfectly valid, parseable JSON object matching the requested schema framework.
+
+# YOUR CRITICAL OPERATIONAL MANDATES (ZERO LOOPHOLES):
+1. **STRICT VARIABLE FIDELITY & NO PREFIXES:** You MUST use the exact raw values provided in the template variables for file paths and project names. You are STRICTLY BANNED from appending, prepending, or injecting any custom folders or prefixes like "sources/" to the `global_context_file`, `context_file`, `source_target_dir`, or `project_name` fields. Use the variable values exactly as they are passed.
+2. **ABSOLUTE PYDANTIC SCHEMA ALIGNMENT:** Your final generated JSON object MUST perfectly satisfy the structural schema parameters of the target enterprise contract. You are STRICTLY BANNED from omitting, renaming, formatting, or stripping out key elements (specifically `phase_id`, `phase_name`, `phase_description`, `project_name`, `global_context_file`, `source_target_dir`, and `days`).
+3. **ABSOLUTE NO EMPTY TAGS POLICY & STRING SANITIZATION:** You are STRICTLY BANNED from leaving the "targeted_tags" array empty `[]` or null for any sub-task that implements functional requirements or data schemas. You MUST scan the source Markdown sequentially sub-task by sub-task. For each sub-task node, locate the hidden technical container block delimited between `<!--START_TAGS-->` and `<!--END_TAGS-->` contained exclusively within that sub-task section scope. Extract all raw tag token codes inside, strip away all inline markdown formatting characters—specifically backticks (`` ` ``)—and any leading/trailing whitespaces, then populate them as clean separate string elements inside the "targeted_tags" array field of EACH sub-task object node.
+4. **NO TAG BUNDLING:** Every tag must be its own array node (e.g., `"targeted_tags": ["[REQ-001]", "[DAT-002]"]`). You are strictly forbidden from combining multiple tags into a single string element.
+5. **STRICT CONTENT PURITY & REJECT CONVERSATION:** Output ONLY the pure raw executable JSON string matching the required schema. Response must start exactly with the character `{` and end exactly with the character `}`. Banned from including thinking processes, chain-of-thought blocks (`<think>` tags), conversational filler texts, introductions, wrapping inside markdown codeblocks (no triple backticks wrapping), or post-generation notes. Any token outside the raw JSON object boundary triggers an immediate execution pipeline crash.
+
+# Raw Response / Exception:
+
+```json
+Error code: 410 - {'error': {'code': 'github_models_retirement_brownout', 'message': 'GitHub Models is temporarily unavailable as part of a scheduled retirement brownout.'}}: ['Traceback (most recent call last):
+', '  File "/home/runner/work/enterprise-it-ai/enterprise-it-ai/sources/agents/architect-blueprint/block_json.py", line 301, in convert_phases_to_json
+    response = client.beta.chat.completions.parse(
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+', '  File "/opt/hostedtoolcache/Python/3.11.15/x64/lib/python3.11/site-packages/openai/resources/chat/completions/completions.py", line 193, in parse
+    return self._post(
+           ^^^^^^^^^^^
+', '  File "/opt/hostedtoolcache/Python/3.11.15/x64/lib/python3.11/site-packages/openai/_base_client.py", line 1375, in post
+    return cast(ResponseT, self.request(cast_to, opts, stream=stream, stream_cls=stream_cls))
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+', '  File "/opt/hostedtoolcache/Python/3.11.15/x64/lib/python3.11/site-packages/openai/_base_client.py", line 1148, in request
+    raise self._make_status_error_from_response(err.response) from None
+', "openai.APIStatusError: Error code: 410 - {'error': {'code': 'github_models_retirement_brownout', 'message': 'GitHub Models is temporarily unavailable as part of a scheduled retirement brownout.'}}
+"]
+```
+
+# AI Model: mistral-ai/Codestral-2501 - Phase 1 STEPS - Prompt:
+
+Analyze the attached Phase 1 Context Markdown content.
+
+Extract and translate ALL daily steps, checklists, and agent tasks from the entire document.
+
+
+## 🔒 AGENT ATOMICITY, TASK ID FORMAT & COMPONENT MANDATES (ABSOLUTE):
+- **STRICT TASK ID ALIGNMENT BLUEPRINT:** You MUST strictly generate the "id" field string for every single sub-task using the exact sequential formatting blueprint: `D<day_num>_ST<task_index>` (e.g., `D1_ST1`, `D1_ST2`, `D2_ST1`).
+- **STRICT AGENT ROLE LITERAL VALUES:** The "agent" field inside the JSON sub-task object MUST strictly enforce a capitalized first letter and lowercase subsequent letters pattern matching the exact tokens: 'Coder' | 'Tester' | 'Reviewer' | 'Doc' | 'Docker' | 'Gcp' | 'Gke'. Any other values or lowercase blocks (e.g., NO "coder") are strictly banned.
+- **NO ZERO-COMPONENT TASKS (ABSOLUTE HARD LIMIT):** You are STRICTLY BANNED from generating any sub-task object where the 'components' array is empty `[]`, null, or missing. If an Agent does not have any physical file paths to create, modify, or document, you MUST NOT generate that sub-task object node.
+- **FALLBACK COMPONENT RULE:** If a day has technical descriptions but lacks physical file paths, assign the task to "Doc" agent and populate 'components' with exactly the value of: ".ai/.plan/.context/phase-1.context.blueprint.md".
+- **STRICT AGENT ROLE SEGREGATION (ANTI-AGGREGATION):** If a workflow file involves multiple actions by different personas on the same calendar day, you MUST split this workflow into completely separate, sequential task objects inside the 'sub_tasks' array.
+- **HIGH-DENSITY TECHNICAL SPECIFICATION:** The 'task' field MUST contain an exhaustive, granular engineering instruction. If the sub-task involves an API route, integration endpoint, database query, or message block, you MUST explicitly inline the complete technical contract (e.g., Request/Response Payload Schemas, Data Types, Error Status Codes, or Queue names) directly inside this string. Vague high-level bullet summaries are forbidden.
+- **WORKSPACE PREFIX RULE & MULTI-LANGUAGE TEST EXCEPTION:** Every path in 'components' array MUST strictly begin with `./sources/`. 
+  * *CRITICAL EXCEPTION:* If the first parameter before the semi-colon character in a tester task is the literal string token `INTEGRATION_SCOPE`, you MUST leave that token completely unmodified. Do NOT append any path prefix to it (e.g., `"components": ["INTEGRATION_SCOPE;./sources/frontend/tests/auth.spec.ts"]`).
+
+## 🛠️ MANDATORY TOP-LEVEL FIELD VALUES INJECTION & ANCHOR PARSING (STRICT FIDELITY):
+You MUST dynamically populate the top-level keys of the JSON object using EXACT raw variable values without any modifications, or parse them directly from the primary Markdown header HTML comments:
+- **`phase_id`**: 1
+- **`phase_name`**: [Locate the primary Markdown title header line, extract the clean technical string text located exactly between the hidden HTML delimiters `<!--PHASE_NAME_START-->` and `<!--PHASE_NAME_END-->` without any alterations or translations]
+- **`phase_description`**: [Locate the primary Markdown title header line, extract the exact translated phase description text that follows after the literal marker `| Description:` or its translated equivalent]
+- **`project_name`**: "membership-hub"
+- **`global_context_file`**: ".ai/.context/membership-hub.global.blueprint.md"
+- **`source_target_dir`**: "sources/"
+
+#### 7. Context Fields Integration Mandate
+- For each day object inside the array, set 'day' to its calculated integer value, set 'context_file' to exact string ".ai/.plan/.context/phase-1.context.blueprint.md", and **set 'context_section' to the exact raw string value of the entire primary Day Header extracted from the source Markdown context text** (e.g., `"context_section": "DAY 1: Multi-Tenant Inception Schema & Flyway Migration Setup"`).
+
+#### 8. CHRONOLOGICAL TIMELINE SEQUENCING MANDATE (ABSOLUTE):
+#### 8. CHRONOLOGICAL TIMELINE SEQUENCING MANDATE (ABSOLUTE):
+
+## SYSTEM CRITICAL BOUNDARY: FLAT CONFIGURATION IS ACTIVE (is_chunked is FALSE)
+- Regardless of the actual day numbers documented in the source Markdown content (e.g., even if the text states "DAY 4", "DAY 5"), you MUST completely reset the timeline sequence internally so that the first operational day inside this Phase always starts from integer 1. Progression follows sequentially as 2, 3, 4, etc. 
+- Map the first targeted day to `"day": 1`, set 'context_file' to ".ai/.plan/.context/phase-1.context.blueprint.md", and strictly set 'context_section' to the exact raw primary header line of the first day parsed from the text. Incremental days follow this relative baseline.
+
+
+## 🛑 MANDATORY STRUCTURE ENFORCEMENT FOR TRACEABILITY TAGS VIA HTML ANCHORS (CRITICAL):
+- For each sub-task block, locate the hidden technical container bounds delimited strictly between `<!--START_TAGS-->` and `<!--END_TAGS-->`. Extract all individual inherited Tag IDs from inside that container, completely purge all markdown backticks (`` ` ``) and padding spaces, and populate them as clean individual string elements inside the "targeted_tags" array field (e.g., `"targeted_tags": ["[REQ-001]", "[DAT-005]"]`).
+- You are STRICTLY BANNED from leaving the "targeted_tags" array empty `[]` or null. Every single tag token must be its own separated array element string.
+
+You must conform strictly to your required JSON Schema layout design structure:
+{
+  "$defs": {
+    "DailyStep": {
+      "properties": {
+        "day": {
+          "description": "Timeline iteration day inside this isolated phase.",
+          "title": "Day",
+          "type": "integer"
+        },
+        "context_file": {
+          "description": "The phase context Markdown file for closure on this day.",
+          "title": "Context File",
+          "type": "string"
+        },
+        "context_section": {
+          "description": "The day targeted for closure on this day.",
+          "title": "Context Section",
+          "type": "string"
+        },
+        "sub_tasks": {
+          "description": "Array of isolated micro-tasks assigned to sub-agents.",
+          "items": {
+            "$ref": "##/$defs/SubAgentTask"
+          },
+          "title": "Sub Tasks",
+          "type": "array"
+        }
+      },
+      "required": [
+        "day",
+        "context_file",
+        "context_section",
+        "sub_tasks"
+      ],
+      "title": "DailyStep",
+      "type": "object"
+    },
+    "SubAgentTask": {
+      "properties": {
+        "id": {
+          "description": "Sub-Task identity of Task that sub-agent role executing.",
+          "title": "Id",
+          "type": "string"
+        },
+        "agent": {
+          "description": "Target sub-agent role executing the task.",
+          "title": "Agent",
+          "type": "string"
+        },
+        "desc": {
+          "description": "Literal, low-level technical step assigned to the agent.",
+          "title": "Desc",
+          "type": "string"
+        },
+        "targeted_tags": {
+          "description": "Flat string array of exact inherited BA Tag IDs that this specific sub-task implements or verifies (e.g. ['[REQ-001]', '[ARC-002]']). MUST match the raw requirements 1:1.",
+          "items": {
+            "type": "string"
+          },
+          "title": "Targeted Tags",
+          "type": "array"
+        },
+        "components": {
+          "description": "Flat array of physical localized file paths or scripts modified or targeted by this single task. Return an empty array [] if no files are involved.",
+          "items": {
+            "type": "string"
+          },
+          "title": "Components",
+          "type": "array"
+        }
+      },
+      "required": [
+        "id",
+        "agent",
+        "desc"
+      ],
+      "title": "SubAgentTask",
+      "type": "object"
+    }
+  },
+  "properties": {
+    "phase_id": {
+      "description": "Target phase tracker index.",
+      "title": "Phase Id",
+      "type": "integer"
+    },
+    "phase_name": {
+      "description": "Target phase tracker name.",
+      "title": "Phase Name",
+      "type": "string"
+    },
+    "phase_description": {
+      "description": "Target phase description.",
+      "title": "Phase Description",
+      "type": "string"
+    },
+    "project_name": {
+      "description": "Target project tracker name.",
+      "title": "Project Name",
+      "type": "string"
+    },
+    "global_context_file": {
+      "description": "Project global context Markdown file for closure.",
+      "title": "Global Context File",
+      "type": "string"
+    },
+    "source_target_dir": {
+      "description": "Project sources folder path for closure.",
+      "title": "Source Target Dir",
+      "type": "string"
+    },
+    "days": {
+      "description": "Day-by-day engineering tracking steps.",
+      "items": {
+        "$ref": "##/$defs/DailyStep"
+      },
+      "title": "Days",
+      "type": "array"
+    }
+  },
+  "required": [
+    "phase_id",
+    "phase_name",
+    "phase_description",
+    "project_name",
+    "global_context_file",
+    "source_target_dir",
+    "days"
+  ],
+  "title": "PhaseStepsPlan",
+  "type": "object"
+}
+
+--- PHASE 1 CONTEXT MARKDOWN ---
+## Giai đoạn 1: <!--PHASE_NAME_START-->user_core_services<!--PHASE_NAME_END--> | Mô tả: Triển khai các dịch vụ cốt lõi quản lý người dùng bao gồm đăng ký, xác thực xã hội, gán vai trò, schema cơ sở dữ liệu và logging kiểm toán bảo mật
+
+#### 📊 Kiểm soát tài liệu
+
+| Mục | Chi tiết |
+| :--- | :--- |
+| **ID Blueprint** | ARCH-20260803053505 |
+| **Tên dự án** | membership-hub |
+| **Giai đoạn** | 1 |
+| **Tên kỹ thuật giai đoạn** | <!--PHASE_NAME_START-->user_core_services<!--PHASE_NAME_END--> |
+| **Mô tả** | Triển khai các dịch vụ cốt lõi quản lý người dùng bao gồm đăng ký, xác thực xã hội, gán vai trò, schema cơ sở dữ liệu và logging kiểm toán bảo mật |
+| **Phiên bản** | 1.0 (Baseline) |
+| **Ngày/Giờ** | 2026/08/03 05:35:05 |
+| **Tác giả** | Enterprise System Architect (SA Agent) |
+| **Phê duyệt** | Pending Technical Governance Review |
+
+#### 1. Phạm vi hoạt động và mục tiêu giai đoạn
+
+Giai đoạn này tập trung vào việc xây dựng nền tảng cốt lõi cho hệ thống quản lý người dùng, bao gồm:
+
+- Triển khai schema cơ sở dữ liệu cho bảng Users và Roles với các ràng buộc toàn vẹn dữ liệu
+- Xây dựng dịch vụ đăng ký người dùng với xác thực email/mật khẩu và hỗ trợ OAuth2 cho các nhà cung cấp xã hội (Firebase, Google, Facebook)
+- Triển khai cơ chế phân quyền RBAC với khả năng gán và thay đổi vai trò người dùng
+- Thiết lập hệ thống logging kiểm toán đáp ứng các tiêu chuẩn bảo mật doanh nghiệp
+- Triển khai xử lý ngoại lệ chi tiết cho validation đầu vào và xung đột dữ liệu
+
+#### 2. Phạm vi kỹ thuật và ranh giới thư mục được phép
+
+**Thư mục và tệp được phép:**
+- `./sources/backend.membershiphub.user/users.sql` - DDL schema cho bảng Users
+- `./sources/backend.membershiphub.user/roles.sql` - DDL schema cho bảng Roles  
+- `./sources/backend.membershiphub.user/user-service.java` - Dịch vụ chính quản lý người dùng
+
+**Endpoint API:**
+- `POST /api/v1/auth/register` - Đăng ký người dùng mới
+- `POST /api/v1/auth/social` - Xác thực qua nhà cung cấp xã hội
+- `PUT /api/v1/users/{userId}/role` - Cập nhật vai trò người dùng (chỉ System Admin)
+
+#### 3. Chỉ đạo chức năng cho Sub-Agent chuyên dụng
+
+**Coder:** Triển khai mã nguồn Java/Quarkus với tuân thủ SOLID, sử dụng BCrypt cho mã hóa mật khẩu, JWT với access token 15 phút và refresh token 7 ngày, áp dụng @Valid cho validation và @Transactional cho các thao tác ghi.
+
+**Tester:** Xây dựng bộ kiểm thử JUnit 5 với độ phủ mã ≥85%, sử dụng Mock cho các dependency, kiểm thử happy path và các scenario lỗi validation.
+
+**Reviewer:** Thực hiện phân tích tĩnh mã nguồn, kiểm tra tuân thủ OWASP Top 10, đảm bảo không có lỗ hổng SQL injection hoặc XSS.
+
+**Doc:** Biên soạn tài liệu kỹ thuật đầy đủ bao gồm API documentation với OpenAPI, schema documentation và hướng dẫn triển khai.
+
+#### 4. Định nghĩa hoàn thành (DoD) cho giai đoạn
+
+- ✅ 100% các requirement [REQ-001], [REQ-002], [REQ-003] được triển khai đầy đủ
+- ✅ Schema database [DAT-001] được tạo thành công với tất cả ràng buộc
+- ✅ Luồng xác thực [ARC-006] hoạt động với OAuth2 và JWT
+- ✅ Xử lý ngoại lệ [EXC-004] cho validation đầu vào
+- ✅ Tuân thủ các tiêu chuẩn bảo mật [NFR-001], [NFR-003], [NFR-006]
+- ✅ Độ phủ kiểm thử ≥85% cho tất cả các dịch vụ
+- ✅ 100% các Tag ID được ánh xạ và kiểm tra
+
+#### 5. NHẬT KÝ THỰC THI KIẾN TRÚC THEO NGÀY
+
+###### NGÀY 1: TRIỂN KHAI DỊCH VỤ ĐĂNG KÝ NGƯỜI DÙNG VÀ API XÁC THỰC XÃ HỘI
+
+######## SUB-TASK 1.1: Triển khai schema cơ sở dữ liệu Users và Roles
+########## Sub-Agent được chỉ định: Coder
+########## Các thành phần mục tiêu và yêu cầu kỹ thuật:
+* **Đường dẫn mục tiêu:** `./sources/backend.membershiphub.user/users.sql`, `./sources/backend.membershiphub.user/roles.sql`
+* **Các thẻ truy xuất nguồn gốc:** <!--START_TAGS-->[DAT-001]<!--END_TAGS-->
+
+######## SUB-TASK 1.2: Triển khai UserService với phương thức register và socialAuthenticate
+########## Sub-Agent được chỉ định: Coder
+########## Các thành phần mục tiêu và yêu cầu kỹ thuật:
+* **Đường dẫn mục tiêu:** `./sources/backend.membershiphub.user/user-service.java`
+* **Các thẻ truy xuất nguồn gốc:** <!--START_TAGS-->[REQ-001], [REQ-002], [ARC-006], [EXC-004], [NFR-001], [NFR-003], [NFR-006]<!--END_TAGS-->
+
+###### NGÀY 2: VIẾT BỘ KIỂM TRA ĐƠN VỊ VÀ TÍCH HỢP CHO CÁC CHỨC NĂNG NGƯỜI DÙNG
+
+######## SUB-TASK 2.1: Kiểm thử đơn vị cho các phương thức register và socialAuthenticate
+########## Sub-Agent được chỉ định: Tester
+########## Các thành phần mục tiêu và yêu cầu kỹ thuật:
+* **Đường dẫn mục tiêu:** `./sources/backend.membershiphub.user/user-service.java;./sources/backend.membershiphub.user/userservice-test.java`
+* **Các thẻ truy xuất nguồn gốc:** <!--START_TAGS-->[REQ-001], [REQ-002], [DAT-001], [EXC-004]<!--END_TAGS-->
+
+######## SUB-TASK 2.2: Kiểm thử tích hợp cho API endpoints
+########## Sub-Agent được chỉ định: Tester
+########## Các thành phần mục tiêu và yêu cầu kỹ thuật:
+* **Đường dẫn mục tiêu:** `./sources/backend.membershiphub.user/user-service.java;./sources/backend.membershiphub.user/user-controller-test.java`
+* **Các thẻ truy xuất nguồn gốc:** <!--START_TAGS-->[REQ-001], [REQ-002], [ARC-006], [EXC-004]<!--END_TAGS-->
+------------------------------------------
+
+# System Instruction
+
+You are a high-performance Data Ingestion and Transformation Engine. Your sole objective is to parse the Phase Context Markdown text and convert it into a perfectly valid, parseable JSON object matching the requested schema framework.
+
+# YOUR CRITICAL OPERATIONAL MANDATES (ZERO LOOPHOLES):
+1. **STRICT VARIABLE FIDELITY & NO PREFIXES:** You MUST use the exact raw values provided in the template variables for file paths and project names. You are STRICTLY BANNED from appending, prepending, or injecting any custom folders or prefixes like "sources/" to the `global_context_file`, `context_file`, `source_target_dir`, or `project_name` fields. Use the variable values exactly as they are passed.
+2. **ABSOLUTE PYDANTIC SCHEMA ALIGNMENT:** Your final generated JSON object MUST perfectly satisfy the structural schema parameters of the target enterprise contract. You are STRICTLY BANNED from omitting, renaming, formatting, or stripping out key elements (specifically `phase_id`, `phase_name`, `phase_description`, `project_name`, `global_context_file`, `source_target_dir`, and `days`).
+3. **ABSOLUTE NO EMPTY TAGS POLICY & STRING SANITIZATION:** You are STRICTLY BANNED from leaving the "targeted_tags" array empty `[]` or null for any sub-task that implements functional requirements or data schemas. You MUST scan the source Markdown sequentially sub-task by sub-task. For each sub-task node, locate the hidden technical container block delimited between `<!--START_TAGS-->` and `<!--END_TAGS-->` contained exclusively within that sub-task section scope. Extract all raw tag token codes inside, strip away all inline markdown formatting characters—specifically backticks (`` ` ``)—and any leading/trailing whitespaces, then populate them as clean separate string elements inside the "targeted_tags" array field of EACH sub-task object node.
+4. **NO TAG BUNDLING:** Every tag must be its own array node (e.g., `"targeted_tags": ["[REQ-001]", "[DAT-002]"]`). You are strictly forbidden from combining multiple tags into a single string element.
+5. **STRICT CONTENT PURITY & REJECT CONVERSATION:** Output ONLY the pure raw executable JSON string matching the required schema. Response must start exactly with the character `{` and end exactly with the character `}`. Banned from including thinking processes, chain-of-thought blocks (`<think>` tags), conversational filler texts, introductions, wrapping inside markdown codeblocks (no triple backticks wrapping), or post-generation notes. Any token outside the raw JSON object boundary triggers an immediate execution pipeline crash.
+
+# Raw Response / Exception:
+
+```json
+Error code: 410 - {'error': {'code': 'github_models_retirement_brownout', 'message': 'GitHub Models is temporarily unavailable as part of a scheduled retirement brownout.'}}: ['Traceback (most recent call last):
+', '  File "/home/runner/work/enterprise-it-ai/enterprise-it-ai/sources/agents/architect-blueprint/block_json.py", line 301, in convert_phases_to_json
+    response = client.beta.chat.completions.parse(
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+', '  File "/opt/hostedtoolcache/Python/3.11.15/x64/lib/python3.11/site-packages/openai/resources/chat/completions/completions.py", line 193, in parse
+    return self._post(
+           ^^^^^^^^^^^
+', '  File "/opt/hostedtoolcache/Python/3.11.15/x64/lib/python3.11/site-packages/openai/_base_client.py", line 1375, in post
+    return cast(ResponseT, self.request(cast_to, opts, stream=stream, stream_cls=stream_cls))
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+', '  File "/opt/hostedtoolcache/Python/3.11.15/x64/lib/python3.11/site-packages/openai/_base_client.py", line 1148, in request
+    raise self._make_status_error_from_response(err.response) from None
+', "openai.APIStatusError: Error code: 410 - {'error': {'code': 'github_models_retirement_brownout', 'message': 'GitHub Models is temporarily unavailable as part of a scheduled retirement brownout.'}}
+"]
+```
+
+# AI Model: deepseek/DeepSeek-R1 - Phase 1 STEPS - Prompt:
+
+Analyze the attached Phase 1 Context Markdown content.
+
+Extract and translate ALL daily steps, checklists, and agent tasks from the entire document.
+
+
+## 🔒 AGENT ATOMICITY, TASK ID FORMAT & COMPONENT MANDATES (ABSOLUTE):
+- **STRICT TASK ID ALIGNMENT BLUEPRINT:** You MUST strictly generate the "id" field string for every single sub-task using the exact sequential formatting blueprint: `D<day_num>_ST<task_index>` (e.g., `D1_ST1`, `D1_ST2`, `D2_ST1`).
+- **STRICT AGENT ROLE LITERAL VALUES:** The "agent" field inside the JSON sub-task object MUST strictly enforce a capitalized first letter and lowercase subsequent letters pattern matching the exact tokens: 'Coder' | 'Tester' | 'Reviewer' | 'Doc' | 'Docker' | 'Gcp' | 'Gke'. Any other values or lowercase blocks (e.g., NO "coder") are strictly banned.
+- **NO ZERO-COMPONENT TASKS (ABSOLUTE HARD LIMIT):** You are STRICTLY BANNED from generating any sub-task object where the 'components' array is empty `[]`, null, or missing. If an Agent does not have any physical file paths to create, modify, or document, you MUST NOT generate that sub-task object node.
+- **FALLBACK COMPONENT RULE:** If a day has technical descriptions but lacks physical file paths, assign the task to "Doc" agent and populate 'components' with exactly the value of: ".ai/.plan/.context/phase-1.context.blueprint.md".
+- **STRICT AGENT ROLE SEGREGATION (ANTI-AGGREGATION):** If a workflow file involves multiple actions by different personas on the same calendar day, you MUST split this workflow into completely separate, sequential task objects inside the 'sub_tasks' array.
+- **HIGH-DENSITY TECHNICAL SPECIFICATION:** The 'task' field MUST contain an exhaustive, granular engineering instruction. If the sub-task involves an API route, integration endpoint, database query, or message block, you MUST explicitly inline the complete technical contract (e.g., Request/Response Payload Schemas, Data Types, Error Status Codes, or Queue names) directly inside this string. Vague high-level bullet summaries are forbidden.
+- **WORKSPACE PREFIX RULE & MULTI-LANGUAGE TEST EXCEPTION:** Every path in 'components' array MUST strictly begin with `./sources/`. 
+  * *CRITICAL EXCEPTION:* If the first parameter before the semi-colon character in a tester task is the literal string token `INTEGRATION_SCOPE`, you MUST leave that token completely unmodified. Do NOT append any path prefix to it (e.g., `"components": ["INTEGRATION_SCOPE;./sources/frontend/tests/auth.spec.ts"]`).
+
+## 🛠️ MANDATORY TOP-LEVEL FIELD VALUES INJECTION & ANCHOR PARSING (STRICT FIDELITY):
+You MUST dynamically populate the top-level keys of the JSON object using EXACT raw variable values without any modifications, or parse them directly from the primary Markdown header HTML comments:
+- **`phase_id`**: 1
+- **`phase_name`**: [Locate the primary Markdown title header line, extract the clean technical string text located exactly between the hidden HTML delimiters `<!--PHASE_NAME_START-->` and `<!--PHASE_NAME_END-->` without any alterations or translations]
+- **`phase_description`**: [Locate the primary Markdown title header line, extract the exact translated phase description text that follows after the literal marker `| Description:` or its translated equivalent]
+- **`project_name`**: "membership-hub"
+- **`global_context_file`**: ".ai/.context/membership-hub.global.blueprint.md"
+- **`source_target_dir`**: "sources/"
+
+#### 7. Context Fields Integration Mandate
+- For each day object inside the array, set 'day' to its calculated integer value, set 'context_file' to exact string ".ai/.plan/.context/phase-1.context.blueprint.md", and **set 'context_section' to the exact raw string value of the entire primary Day Header extracted from the source Markdown context text** (e.g., `"context_section": "DAY 1: Multi-Tenant Inception Schema & Flyway Migration Setup"`).
+
+#### 8. CHRONOLOGICAL TIMELINE SEQUENCING MANDATE (ABSOLUTE):
+#### 8. CHRONOLOGICAL TIMELINE SEQUENCING MANDATE (ABSOLUTE):
+
+## SYSTEM CRITICAL BOUNDARY: FLAT CONFIGURATION IS ACTIVE (is_chunked is FALSE)
+- Regardless of the actual day numbers documented in the source Markdown content (e.g., even if the text states "DAY 4", "DAY 5"), you MUST completely reset the timeline sequence internally so that the first operational day inside this Phase always starts from integer 1. Progression follows sequentially as 2, 3, 4, etc. 
+- Map the first targeted day to `"day": 1`, set 'context_file' to ".ai/.plan/.context/phase-1.context.blueprint.md", and strictly set 'context_section' to the exact raw primary header line of the first day parsed from the text. Incremental days follow this relative baseline.
+
+
+## 🛑 MANDATORY STRUCTURE ENFORCEMENT FOR TRACEABILITY TAGS VIA HTML ANCHORS (CRITICAL):
+- For each sub-task block, locate the hidden technical container bounds delimited strictly between `<!--START_TAGS-->` and `<!--END_TAGS-->`. Extract all individual inherited Tag IDs from inside that container, completely purge all markdown backticks (`` ` ``) and padding spaces, and populate them as clean individual string elements inside the "targeted_tags" array field (e.g., `"targeted_tags": ["[REQ-001]", "[DAT-005]"]`).
+- You are STRICTLY BANNED from leaving the "targeted_tags" array empty `[]` or null. Every single tag token must be its own separated array element string.
+
+You must conform strictly to your required JSON Schema layout design structure:
+{
+  "$defs": {
+    "DailyStep": {
+      "properties": {
+        "day": {
+          "description": "Timeline iteration day inside this isolated phase.",
+          "title": "Day",
+          "type": "integer"
+        },
+        "context_file": {
+          "description": "The phase context Markdown file for closure on this day.",
+          "title": "Context File",
+          "type": "string"
+        },
+        "context_section": {
+          "description": "The day targeted for closure on this day.",
+          "title": "Context Section",
+          "type": "string"
+        },
+        "sub_tasks": {
+          "description": "Array of isolated micro-tasks assigned to sub-agents.",
+          "items": {
+            "$ref": "##/$defs/SubAgentTask"
+          },
+          "title": "Sub Tasks",
+          "type": "array"
+        }
+      },
+      "required": [
+        "day",
+        "context_file",
+        "context_section",
+        "sub_tasks"
+      ],
+      "title": "DailyStep",
+      "type": "object"
+    },
+    "SubAgentTask": {
+      "properties": {
+        "id": {
+          "description": "Sub-Task identity of Task that sub-agent role executing.",
+          "title": "Id",
+          "type": "string"
+        },
+        "agent": {
+          "description": "Target sub-agent role executing the task.",
+          "title": "Agent",
+          "type": "string"
+        },
+        "desc": {
+          "description": "Literal, low-level technical step assigned to the agent.",
+          "title": "Desc",
+          "type": "string"
+        },
+        "targeted_tags": {
+          "description": "Flat string array of exact inherited BA Tag IDs that this specific sub-task implements or verifies (e.g. ['[REQ-001]', '[ARC-002]']). MUST match the raw requirements 1:1.",
+          "items": {
+            "type": "string"
+          },
+          "title": "Targeted Tags",
+          "type": "array"
+        },
+        "components": {
+          "description": "Flat array of physical localized file paths or scripts modified or targeted by this single task. Return an empty array [] if no files are involved.",
+          "items": {
+            "type": "string"
+          },
+          "title": "Components",
+          "type": "array"
+        }
+      },
+      "required": [
+        "id",
+        "agent",
+        "desc"
+      ],
+      "title": "SubAgentTask",
+      "type": "object"
+    }
+  },
+  "properties": {
+    "phase_id": {
+      "description": "Target phase tracker index.",
+      "title": "Phase Id",
+      "type": "integer"
+    },
+    "phase_name": {
+      "description": "Target phase tracker name.",
+      "title": "Phase Name",
+      "type": "string"
+    },
+    "phase_description": {
+      "description": "Target phase description.",
+      "title": "Phase Description",
+      "type": "string"
+    },
+    "project_name": {
+      "description": "Target project tracker name.",
+      "title": "Project Name",
+      "type": "string"
+    },
+    "global_context_file": {
+      "description": "Project global context Markdown file for closure.",
+      "title": "Global Context File",
+      "type": "string"
+    },
+    "source_target_dir": {
+      "description": "Project sources folder path for closure.",
+      "title": "Source Target Dir",
+      "type": "string"
+    },
+    "days": {
+      "description": "Day-by-day engineering tracking steps.",
+      "items": {
+        "$ref": "##/$defs/DailyStep"
+      },
+      "title": "Days",
+      "type": "array"
+    }
+  },
+  "required": [
+    "phase_id",
+    "phase_name",
+    "phase_description",
+    "project_name",
+    "global_context_file",
+    "source_target_dir",
+    "days"
+  ],
+  "title": "PhaseStepsPlan",
+  "type": "object"
+}
+
+--- PHASE 1 CONTEXT MARKDOWN ---
+## Giai đoạn 1: <!--PHASE_NAME_START-->user_core_services<!--PHASE_NAME_END--> | Mô tả: Triển khai các dịch vụ cốt lõi quản lý người dùng bao gồm đăng ký, xác thực xã hội, gán vai trò, schema cơ sở dữ liệu và logging kiểm toán bảo mật
+
+#### 📊 Kiểm soát tài liệu
+
+| Mục | Chi tiết |
+| :--- | :--- |
+| **ID Blueprint** | ARCH-20260803053505 |
+| **Tên dự án** | membership-hub |
+| **Giai đoạn** | 1 |
+| **Tên kỹ thuật giai đoạn** | <!--PHASE_NAME_START-->user_core_services<!--PHASE_NAME_END--> |
+| **Mô tả** | Triển khai các dịch vụ cốt lõi quản lý người dùng bao gồm đăng ký, xác thực xã hội, gán vai trò, schema cơ sở dữ liệu và logging kiểm toán bảo mật |
+| **Phiên bản** | 1.0 (Baseline) |
+| **Ngày/Giờ** | 2026/08/03 05:35:05 |
+| **Tác giả** | Enterprise System Architect (SA Agent) |
+| **Phê duyệt** | Pending Technical Governance Review |
+
+#### 1. Phạm vi hoạt động và mục tiêu giai đoạn
+
+Giai đoạn này tập trung vào việc xây dựng nền tảng cốt lõi cho hệ thống quản lý người dùng, bao gồm:
+
+- Triển khai schema cơ sở dữ liệu cho bảng Users và Roles với các ràng buộc toàn vẹn dữ liệu
+- Xây dựng dịch vụ đăng ký người dùng với xác thực email/mật khẩu và hỗ trợ OAuth2 cho các nhà cung cấp xã hội (Firebase, Google, Facebook)
+- Triển khai cơ chế phân quyền RBAC với khả năng gán và thay đổi vai trò người dùng
+- Thiết lập hệ thống logging kiểm toán đáp ứng các tiêu chuẩn bảo mật doanh nghiệp
+- Triển khai xử lý ngoại lệ chi tiết cho validation đầu vào và xung đột dữ liệu
+
+#### 2. Phạm vi kỹ thuật và ranh giới thư mục được phép
+
+**Thư mục và tệp được phép:**
+- `./sources/backend.membershiphub.user/users.sql` - DDL schema cho bảng Users
+- `./sources/backend.membershiphub.user/roles.sql` - DDL schema cho bảng Roles  
+- `./sources/backend.membershiphub.user/user-service.java` - Dịch vụ chính quản lý người dùng
+
+**Endpoint API:**
+- `POST /api/v1/auth/register` - Đăng ký người dùng mới
+- `POST /api/v1/auth/social` - Xác thực qua nhà cung cấp xã hội
+- `PUT /api/v1/users/{userId}/role` - Cập nhật vai trò người dùng (chỉ System Admin)
+
+#### 3. Chỉ đạo chức năng cho Sub-Agent chuyên dụng
+
+**Coder:** Triển khai mã nguồn Java/Quarkus với tuân thủ SOLID, sử dụng BCrypt cho mã hóa mật khẩu, JWT với access token 15 phút và refresh token 7 ngày, áp dụng @Valid cho validation và @Transactional cho các thao tác ghi.
+
+**Tester:** Xây dựng bộ kiểm thử JUnit 5 với độ phủ mã ≥85%, sử dụng Mock cho các dependency, kiểm thử happy path và các scenario lỗi validation.
+
+**Reviewer:** Thực hiện phân tích tĩnh mã nguồn, kiểm tra tuân thủ OWASP Top 10, đảm bảo không có lỗ hổng SQL injection hoặc XSS.
+
+**Doc:** Biên soạn tài liệu kỹ thuật đầy đủ bao gồm API documentation với OpenAPI, schema documentation và hướng dẫn triển khai.
+
+#### 4. Định nghĩa hoàn thành (DoD) cho giai đoạn
+
+- ✅ 100% các requirement [REQ-001], [REQ-002], [REQ-003] được triển khai đầy đủ
+- ✅ Schema database [DAT-001] được tạo thành công với tất cả ràng buộc
+- ✅ Luồng xác thực [ARC-006] hoạt động với OAuth2 và JWT
+- ✅ Xử lý ngoại lệ [EXC-004] cho validation đầu vào
+- ✅ Tuân thủ các tiêu chuẩn bảo mật [NFR-001], [NFR-003], [NFR-006]
+- ✅ Độ phủ kiểm thử ≥85% cho tất cả các dịch vụ
+- ✅ 100% các Tag ID được ánh xạ và kiểm tra
+
+#### 5. NHẬT KÝ THỰC THI KIẾN TRÚC THEO NGÀY
+
+###### NGÀY 1: TRIỂN KHAI DỊCH VỤ ĐĂNG KÝ NGƯỜI DÙNG VÀ API XÁC THỰC XÃ HỘI
+
+######## SUB-TASK 1.1: Triển khai schema cơ sở dữ liệu Users và Roles
+########## Sub-Agent được chỉ định: Coder
+########## Các thành phần mục tiêu và yêu cầu kỹ thuật:
+* **Đường dẫn mục tiêu:** `./sources/backend.membershiphub.user/users.sql`, `./sources/backend.membershiphub.user/roles.sql`
+* **Các thẻ truy xuất nguồn gốc:** <!--START_TAGS-->[DAT-001]<!--END_TAGS-->
+
+######## SUB-TASK 1.2: Triển khai UserService với phương thức register và socialAuthenticate
+########## Sub-Agent được chỉ định: Coder
+########## Các thành phần mục tiêu và yêu cầu kỹ thuật:
+* **Đường dẫn mục tiêu:** `./sources/backend.membershiphub.user/user-service.java`
+* **Các thẻ truy xuất nguồn gốc:** <!--START_TAGS-->[REQ-001], [REQ-002], [ARC-006], [EXC-004], [NFR-001], [NFR-003], [NFR-006]<!--END_TAGS-->
+
+###### NGÀY 2: VIẾT BỘ KIỂM TRA ĐƠN VỊ VÀ TÍCH HỢP CHO CÁC CHỨC NĂNG NGƯỜI DÙNG
+
+######## SUB-TASK 2.1: Kiểm thử đơn vị cho các phương thức register và socialAuthenticate
+########## Sub-Agent được chỉ định: Tester
+########## Các thành phần mục tiêu và yêu cầu kỹ thuật:
+* **Đường dẫn mục tiêu:** `./sources/backend.membershiphub.user/user-service.java;./sources/backend.membershiphub.user/userservice-test.java`
+* **Các thẻ truy xuất nguồn gốc:** <!--START_TAGS-->[REQ-001], [REQ-002], [DAT-001], [EXC-004]<!--END_TAGS-->
+
+######## SUB-TASK 2.2: Kiểm thử tích hợp cho API endpoints
+########## Sub-Agent được chỉ định: Tester
+########## Các thành phần mục tiêu và yêu cầu kỹ thuật:
+* **Đường dẫn mục tiêu:** `./sources/backend.membershiphub.user/user-service.java;./sources/backend.membershiphub.user/user-controller-test.java`
+* **Các thẻ truy xuất nguồn gốc:** <!--START_TAGS-->[REQ-001], [REQ-002], [ARC-006], [EXC-004]<!--END_TAGS-->
+------------------------------------------
+
+# System Instruction
+
+You are a high-performance Data Ingestion and Transformation Engine. Your sole objective is to parse the Phase Context Markdown text and convert it into a perfectly valid, parseable JSON object matching the requested schema framework.
+
+# YOUR CRITICAL OPERATIONAL MANDATES (ZERO LOOPHOLES):
+1. **STRICT VARIABLE FIDELITY & NO PREFIXES:** You MUST use the exact raw values provided in the template variables for file paths and project names. You are STRICTLY BANNED from appending, prepending, or injecting any custom folders or prefixes like "sources/" to the `global_context_file`, `context_file`, `source_target_dir`, or `project_name` fields. Use the variable values exactly as they are passed.
+2. **ABSOLUTE PYDANTIC SCHEMA ALIGNMENT:** Your final generated JSON object MUST perfectly satisfy the structural schema parameters of the target enterprise contract. You are STRICTLY BANNED from omitting, renaming, formatting, or stripping out key elements (specifically `phase_id`, `phase_name`, `phase_description`, `project_name`, `global_context_file`, `source_target_dir`, and `days`).
+3. **ABSOLUTE NO EMPTY TAGS POLICY & STRING SANITIZATION:** You are STRICTLY BANNED from leaving the "targeted_tags" array empty `[]` or null for any sub-task that implements functional requirements or data schemas. You MUST scan the source Markdown sequentially sub-task by sub-task. For each sub-task node, locate the hidden technical container block delimited between `<!--START_TAGS-->` and `<!--END_TAGS-->` contained exclusively within that sub-task section scope. Extract all raw tag token codes inside, strip away all inline markdown formatting characters—specifically backticks (`` ` ``)—and any leading/trailing whitespaces, then populate them as clean separate string elements inside the "targeted_tags" array field of EACH sub-task object node.
+4. **NO TAG BUNDLING:** Every tag must be its own array node (e.g., `"targeted_tags": ["[REQ-001]", "[DAT-002]"]`). You are strictly forbidden from combining multiple tags into a single string element.
+5. **STRICT CONTENT PURITY & REJECT CONVERSATION:** Output ONLY the pure raw executable JSON string matching the required schema. Response must start exactly with the character `{` and end exactly with the character `}`. Banned from including thinking processes, chain-of-thought blocks (`<think>` tags), conversational filler texts, introductions, wrapping inside markdown codeblocks (no triple backticks wrapping), or post-generation notes. Any token outside the raw JSON object boundary triggers an immediate execution pipeline crash.
+
+# Raw Response / Exception:
+
+```json
+Error code: 410 - {'error': {'code': 'github_models_retirement_brownout', 'message': 'GitHub Models is temporarily unavailable as part of a scheduled retirement brownout.'}}: ['Traceback (most recent call last):
+', '  File "/home/runner/work/enterprise-it-ai/enterprise-it-ai/sources/agents/architect-blueprint/block_json.py", line 301, in convert_phases_to_json
+    response = client.beta.chat.completions.parse(
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+', '  File "/opt/hostedtoolcache/Python/3.11.15/x64/lib/python3.11/site-packages/openai/resources/chat/completions/completions.py", line 193, in parse
+    return self._post(
+           ^^^^^^^^^^^
+', '  File "/opt/hostedtoolcache/Python/3.11.15/x64/lib/python3.11/site-packages/openai/_base_client.py", line 1375, in post
+    return cast(ResponseT, self.request(cast_to, opts, stream=stream, stream_cls=stream_cls))
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+', '  File "/opt/hostedtoolcache/Python/3.11.15/x64/lib/python3.11/site-packages/openai/_base_client.py", line 1148, in request
+    raise self._make_status_error_from_response(err.response) from None
+', "openai.APIStatusError: Error code: 410 - {'error': {'code': 'github_models_retirement_brownout', 'message': 'GitHub Models is temporarily unavailable as part of a scheduled retirement brownout.'}}
+"]
+```
+
+# AI Model: deepseek/DeepSeek-R1-0528 - Phase 1 STEPS - Prompt:
+
+Analyze the attached Phase 1 Context Markdown content.
+
+Extract and translate ALL daily steps, checklists, and agent tasks from the entire document.
+
+
+## 🔒 AGENT ATOMICITY, TASK ID FORMAT & COMPONENT MANDATES (ABSOLUTE):
+- **STRICT TASK ID ALIGNMENT BLUEPRINT:** You MUST strictly generate the "id" field string for every single sub-task using the exact sequential formatting blueprint: `D<day_num>_ST<task_index>` (e.g., `D1_ST1`, `D1_ST2`, `D2_ST1`).
+- **STRICT AGENT ROLE LITERAL VALUES:** The "agent" field inside the JSON sub-task object MUST strictly enforce a capitalized first letter and lowercase subsequent letters pattern matching the exact tokens: 'Coder' | 'Tester' | 'Reviewer' | 'Doc' | 'Docker' | 'Gcp' | 'Gke'. Any other values or lowercase blocks (e.g., NO "coder") are strictly banned.
+- **NO ZERO-COMPONENT TASKS (ABSOLUTE HARD LIMIT):** You are STRICTLY BANNED from generating any sub-task object where the 'components' array is empty `[]`, null, or missing. If an Agent does not have any physical file paths to create, modify, or document, you MUST NOT generate that sub-task object node.
+- **FALLBACK COMPONENT RULE:** If a day has technical descriptions but lacks physical file paths, assign the task to "Doc" agent and populate 'components' with exactly the value of: ".ai/.plan/.context/phase-1.context.blueprint.md".
+- **STRICT AGENT ROLE SEGREGATION (ANTI-AGGREGATION):** If a workflow file involves multiple actions by different personas on the same calendar day, you MUST split this workflow into completely separate, sequential task objects inside the 'sub_tasks' array.
+- **HIGH-DENSITY TECHNICAL SPECIFICATION:** The 'task' field MUST contain an exhaustive, granular engineering instruction. If the sub-task involves an API route, integration endpoint, database query, or message block, you MUST explicitly inline the complete technical contract (e.g., Request/Response Payload Schemas, Data Types, Error Status Codes, or Queue names) directly inside this string. Vague high-level bullet summaries are forbidden.
+- **WORKSPACE PREFIX RULE & MULTI-LANGUAGE TEST EXCEPTION:** Every path in 'components' array MUST strictly begin with `./sources/`. 
+  * *CRITICAL EXCEPTION:* If the first parameter before the semi-colon character in a tester task is the literal string token `INTEGRATION_SCOPE`, you MUST leave that token completely unmodified. Do NOT append any path prefix to it (e.g., `"components": ["INTEGRATION_SCOPE;./sources/frontend/tests/auth.spec.ts"]`).
+
+## 🛠️ MANDATORY TOP-LEVEL FIELD VALUES INJECTION & ANCHOR PARSING (STRICT FIDELITY):
+You MUST dynamically populate the top-level keys of the JSON object using EXACT raw variable values without any modifications, or parse them directly from the primary Markdown header HTML comments:
+- **`phase_id`**: 1
+- **`phase_name`**: [Locate the primary Markdown title header line, extract the clean technical string text located exactly between the hidden HTML delimiters `<!--PHASE_NAME_START-->` and `<!--PHASE_NAME_END-->` without any alterations or translations]
+- **`phase_description`**: [Locate the primary Markdown title header line, extract the exact translated phase description text that follows after the literal marker `| Description:` or its translated equivalent]
+- **`project_name`**: "membership-hub"
+- **`global_context_file`**: ".ai/.context/membership-hub.global.blueprint.md"
+- **`source_target_dir`**: "sources/"
+
+#### 7. Context Fields Integration Mandate
+- For each day object inside the array, set 'day' to its calculated integer value, set 'context_file' to exact string ".ai/.plan/.context/phase-1.context.blueprint.md", and **set 'context_section' to the exact raw string value of the entire primary Day Header extracted from the source Markdown context text** (e.g., `"context_section": "DAY 1: Multi-Tenant Inception Schema & Flyway Migration Setup"`).
+
+#### 8. CHRONOLOGICAL TIMELINE SEQUENCING MANDATE (ABSOLUTE):
+#### 8. CHRONOLOGICAL TIMELINE SEQUENCING MANDATE (ABSOLUTE):
+
+## SYSTEM CRITICAL BOUNDARY: FLAT CONFIGURATION IS ACTIVE (is_chunked is FALSE)
+- Regardless of the actual day numbers documented in the source Markdown content (e.g., even if the text states "DAY 4", "DAY 5"), you MUST completely reset the timeline sequence internally so that the first operational day inside this Phase always starts from integer 1. Progression follows sequentially as 2, 3, 4, etc. 
+- Map the first targeted day to `"day": 1`, set 'context_file' to ".ai/.plan/.context/phase-1.context.blueprint.md", and strictly set 'context_section' to the exact raw primary header line of the first day parsed from the text. Incremental days follow this relative baseline.
+
+
+## 🛑 MANDATORY STRUCTURE ENFORCEMENT FOR TRACEABILITY TAGS VIA HTML ANCHORS (CRITICAL):
+- For each sub-task block, locate the hidden technical container bounds delimited strictly between `<!--START_TAGS-->` and `<!--END_TAGS-->`. Extract all individual inherited Tag IDs from inside that container, completely purge all markdown backticks (`` ` ``) and padding spaces, and populate them as clean individual string elements inside the "targeted_tags" array field (e.g., `"targeted_tags": ["[REQ-001]", "[DAT-005]"]`).
+- You are STRICTLY BANNED from leaving the "targeted_tags" array empty `[]` or null. Every single tag token must be its own separated array element string.
+
+You must conform strictly to your required JSON Schema layout design structure:
+{
+  "$defs": {
+    "DailyStep": {
+      "properties": {
+        "day": {
+          "description": "Timeline iteration day inside this isolated phase.",
+          "title": "Day",
+          "type": "integer"
+        },
+        "context_file": {
+          "description": "The phase context Markdown file for closure on this day.",
+          "title": "Context File",
+          "type": "string"
+        },
+        "context_section": {
+          "description": "The day targeted for closure on this day.",
+          "title": "Context Section",
+          "type": "string"
+        },
+        "sub_tasks": {
+          "description": "Array of isolated micro-tasks assigned to sub-agents.",
+          "items": {
+            "$ref": "##/$defs/SubAgentTask"
+          },
+          "title": "Sub Tasks",
+          "type": "array"
+        }
+      },
+      "required": [
+        "day",
+        "context_file",
+        "context_section",
+        "sub_tasks"
+      ],
+      "title": "DailyStep",
+      "type": "object"
+    },
+    "SubAgentTask": {
+      "properties": {
+        "id": {
+          "description": "Sub-Task identity of Task that sub-agent role executing.",
+          "title": "Id",
+          "type": "string"
+        },
+        "agent": {
+          "description": "Target sub-agent role executing the task.",
+          "title": "Agent",
+          "type": "string"
+        },
+        "desc": {
+          "description": "Literal, low-level technical step assigned to the agent.",
+          "title": "Desc",
+          "type": "string"
+        },
+        "targeted_tags": {
+          "description": "Flat string array of exact inherited BA Tag IDs that this specific sub-task implements or verifies (e.g. ['[REQ-001]', '[ARC-002]']). MUST match the raw requirements 1:1.",
+          "items": {
+            "type": "string"
+          },
+          "title": "Targeted Tags",
+          "type": "array"
+        },
+        "components": {
+          "description": "Flat array of physical localized file paths or scripts modified or targeted by this single task. Return an empty array [] if no files are involved.",
+          "items": {
+            "type": "string"
+          },
+          "title": "Components",
+          "type": "array"
+        }
+      },
+      "required": [
+        "id",
+        "agent",
+        "desc"
+      ],
+      "title": "SubAgentTask",
+      "type": "object"
+    }
+  },
+  "properties": {
+    "phase_id": {
+      "description": "Target phase tracker index.",
+      "title": "Phase Id",
+      "type": "integer"
+    },
+    "phase_name": {
+      "description": "Target phase tracker name.",
+      "title": "Phase Name",
+      "type": "string"
+    },
+    "phase_description": {
+      "description": "Target phase description.",
+      "title": "Phase Description",
+      "type": "string"
+    },
+    "project_name": {
+      "description": "Target project tracker name.",
+      "title": "Project Name",
+      "type": "string"
+    },
+    "global_context_file": {
+      "description": "Project global context Markdown file for closure.",
+      "title": "Global Context File",
+      "type": "string"
+    },
+    "source_target_dir": {
+      "description": "Project sources folder path for closure.",
+      "title": "Source Target Dir",
+      "type": "string"
+    },
+    "days": {
+      "description": "Day-by-day engineering tracking steps.",
+      "items": {
+        "$ref": "##/$defs/DailyStep"
+      },
+      "title": "Days",
+      "type": "array"
+    }
+  },
+  "required": [
+    "phase_id",
+    "phase_name",
+    "phase_description",
+    "project_name",
+    "global_context_file",
+    "source_target_dir",
+    "days"
+  ],
+  "title": "PhaseStepsPlan",
+  "type": "object"
+}
+
+--- PHASE 1 CONTEXT MARKDOWN ---
+## Giai đoạn 1: <!--PHASE_NAME_START-->user_core_services<!--PHASE_NAME_END--> | Mô tả: Triển khai các dịch vụ cốt lõi quản lý người dùng bao gồm đăng ký, xác thực xã hội, gán vai trò, schema cơ sở dữ liệu và logging kiểm toán bảo mật
+
+#### 📊 Kiểm soát tài liệu
+
+| Mục | Chi tiết |
+| :--- | :--- |
+| **ID Blueprint** | ARCH-20260803053505 |
+| **Tên dự án** | membership-hub |
+| **Giai đoạn** | 1 |
+| **Tên kỹ thuật giai đoạn** | <!--PHASE_NAME_START-->user_core_services<!--PHASE_NAME_END--> |
+| **Mô tả** | Triển khai các dịch vụ cốt lõi quản lý người dùng bao gồm đăng ký, xác thực xã hội, gán vai trò, schema cơ sở dữ liệu và logging kiểm toán bảo mật |
+| **Phiên bản** | 1.0 (Baseline) |
+| **Ngày/Giờ** | 2026/08/03 05:35:05 |
+| **Tác giả** | Enterprise System Architect (SA Agent) |
+| **Phê duyệt** | Pending Technical Governance Review |
+
+#### 1. Phạm vi hoạt động và mục tiêu giai đoạn
+
+Giai đoạn này tập trung vào việc xây dựng nền tảng cốt lõi cho hệ thống quản lý người dùng, bao gồm:
+
+- Triển khai schema cơ sở dữ liệu cho bảng Users và Roles với các ràng buộc toàn vẹn dữ liệu
+- Xây dựng dịch vụ đăng ký người dùng với xác thực email/mật khẩu và hỗ trợ OAuth2 cho các nhà cung cấp xã hội (Firebase, Google, Facebook)
+- Triển khai cơ chế phân quyền RBAC với khả năng gán và thay đổi vai trò người dùng
+- Thiết lập hệ thống logging kiểm toán đáp ứng các tiêu chuẩn bảo mật doanh nghiệp
+- Triển khai xử lý ngoại lệ chi tiết cho validation đầu vào và xung đột dữ liệu
+
+#### 2. Phạm vi kỹ thuật và ranh giới thư mục được phép
+
+**Thư mục và tệp được phép:**
+- `./sources/backend.membershiphub.user/users.sql` - DDL schema cho bảng Users
+- `./sources/backend.membershiphub.user/roles.sql` - DDL schema cho bảng Roles  
+- `./sources/backend.membershiphub.user/user-service.java` - Dịch vụ chính quản lý người dùng
+
+**Endpoint API:**
+- `POST /api/v1/auth/register` - Đăng ký người dùng mới
+- `POST /api/v1/auth/social` - Xác thực qua nhà cung cấp xã hội
+- `PUT /api/v1/users/{userId}/role` - Cập nhật vai trò người dùng (chỉ System Admin)
+
+#### 3. Chỉ đạo chức năng cho Sub-Agent chuyên dụng
+
+**Coder:** Triển khai mã nguồn Java/Quarkus với tuân thủ SOLID, sử dụng BCrypt cho mã hóa mật khẩu, JWT với access token 15 phút và refresh token 7 ngày, áp dụng @Valid cho validation và @Transactional cho các thao tác ghi.
+
+**Tester:** Xây dựng bộ kiểm thử JUnit 5 với độ phủ mã ≥85%, sử dụng Mock cho các dependency, kiểm thử happy path và các scenario lỗi validation.
+
+**Reviewer:** Thực hiện phân tích tĩnh mã nguồn, kiểm tra tuân thủ OWASP Top 10, đảm bảo không có lỗ hổng SQL injection hoặc XSS.
+
+**Doc:** Biên soạn tài liệu kỹ thuật đầy đủ bao gồm API documentation với OpenAPI, schema documentation và hướng dẫn triển khai.
+
+#### 4. Định nghĩa hoàn thành (DoD) cho giai đoạn
+
+- ✅ 100% các requirement [REQ-001], [REQ-002], [REQ-003] được triển khai đầy đủ
+- ✅ Schema database [DAT-001] được tạo thành công với tất cả ràng buộc
+- ✅ Luồng xác thực [ARC-006] hoạt động với OAuth2 và JWT
+- ✅ Xử lý ngoại lệ [EXC-004] cho validation đầu vào
+- ✅ Tuân thủ các tiêu chuẩn bảo mật [NFR-001], [NFR-003], [NFR-006]
+- ✅ Độ phủ kiểm thử ≥85% cho tất cả các dịch vụ
+- ✅ 100% các Tag ID được ánh xạ và kiểm tra
+
+#### 5. NHẬT KÝ THỰC THI KIẾN TRÚC THEO NGÀY
+
+###### NGÀY 1: TRIỂN KHAI DỊCH VỤ ĐĂNG KÝ NGƯỜI DÙNG VÀ API XÁC THỰC XÃ HỘI
+
+######## SUB-TASK 1.1: Triển khai schema cơ sở dữ liệu Users và Roles
+########## Sub-Agent được chỉ định: Coder
+########## Các thành phần mục tiêu và yêu cầu kỹ thuật:
+* **Đường dẫn mục tiêu:** `./sources/backend.membershiphub.user/users.sql`, `./sources/backend.membershiphub.user/roles.sql`
+* **Các thẻ truy xuất nguồn gốc:** <!--START_TAGS-->[DAT-001]<!--END_TAGS-->
+
+######## SUB-TASK 1.2: Triển khai UserService với phương thức register và socialAuthenticate
+########## Sub-Agent được chỉ định: Coder
+########## Các thành phần mục tiêu và yêu cầu kỹ thuật:
+* **Đường dẫn mục tiêu:** `./sources/backend.membershiphub.user/user-service.java`
+* **Các thẻ truy xuất nguồn gốc:** <!--START_TAGS-->[REQ-001], [REQ-002], [ARC-006], [EXC-004], [NFR-001], [NFR-003], [NFR-006]<!--END_TAGS-->
+
+###### NGÀY 2: VIẾT BỘ KIỂM TRA ĐƠN VỊ VÀ TÍCH HỢP CHO CÁC CHỨC NĂNG NGƯỜI DÙNG
+
+######## SUB-TASK 2.1: Kiểm thử đơn vị cho các phương thức register và socialAuthenticate
+########## Sub-Agent được chỉ định: Tester
+########## Các thành phần mục tiêu và yêu cầu kỹ thuật:
+* **Đường dẫn mục tiêu:** `./sources/backend.membershiphub.user/user-service.java;./sources/backend.membershiphub.user/userservice-test.java`
+* **Các thẻ truy xuất nguồn gốc:** <!--START_TAGS-->[REQ-001], [REQ-002], [DAT-001], [EXC-004]<!--END_TAGS-->
+
+######## SUB-TASK 2.2: Kiểm thử tích hợp cho API endpoints
+########## Sub-Agent được chỉ định: Tester
+########## Các thành phần mục tiêu và yêu cầu kỹ thuật:
+* **Đường dẫn mục tiêu:** `./sources/backend.membershiphub.user/user-service.java;./sources/backend.membershiphub.user/user-controller-test.java`
+* **Các thẻ truy xuất nguồn gốc:** <!--START_TAGS-->[REQ-001], [REQ-002], [ARC-006], [EXC-004]<!--END_TAGS-->
+------------------------------------------
+
+# System Instruction
+
+You are a high-performance Data Ingestion and Transformation Engine. Your sole objective is to parse the Phase Context Markdown text and convert it into a perfectly valid, parseable JSON object matching the requested schema framework.
+
+# YOUR CRITICAL OPERATIONAL MANDATES (ZERO LOOPHOLES):
+1. **STRICT VARIABLE FIDELITY & NO PREFIXES:** You MUST use the exact raw values provided in the template variables for file paths and project names. You are STRICTLY BANNED from appending, prepending, or injecting any custom folders or prefixes like "sources/" to the `global_context_file`, `context_file`, `source_target_dir`, or `project_name` fields. Use the variable values exactly as they are passed.
+2. **ABSOLUTE PYDANTIC SCHEMA ALIGNMENT:** Your final generated JSON object MUST perfectly satisfy the structural schema parameters of the target enterprise contract. You are STRICTLY BANNED from omitting, renaming, formatting, or stripping out key elements (specifically `phase_id`, `phase_name`, `phase_description`, `project_name`, `global_context_file`, `source_target_dir`, and `days`).
+3. **ABSOLUTE NO EMPTY TAGS POLICY & STRING SANITIZATION:** You are STRICTLY BANNED from leaving the "targeted_tags" array empty `[]` or null for any sub-task that implements functional requirements or data schemas. You MUST scan the source Markdown sequentially sub-task by sub-task. For each sub-task node, locate the hidden technical container block delimited between `<!--START_TAGS-->` and `<!--END_TAGS-->` contained exclusively within that sub-task section scope. Extract all raw tag token codes inside, strip away all inline markdown formatting characters—specifically backticks (`` ` ``)—and any leading/trailing whitespaces, then populate them as clean separate string elements inside the "targeted_tags" array field of EACH sub-task object node.
+4. **NO TAG BUNDLING:** Every tag must be its own array node (e.g., `"targeted_tags": ["[REQ-001]", "[DAT-002]"]`). You are strictly forbidden from combining multiple tags into a single string element.
+5. **STRICT CONTENT PURITY & REJECT CONVERSATION:** Output ONLY the pure raw executable JSON string matching the required schema. Response must start exactly with the character `{` and end exactly with the character `}`. Banned from including thinking processes, chain-of-thought blocks (`<think>` tags), conversational filler texts, introductions, wrapping inside markdown codeblocks (no triple backticks wrapping), or post-generation notes. Any token outside the raw JSON object boundary triggers an immediate execution pipeline crash.
+
+# Raw Response / Exception:
+
+```json
+Error code: 410 - {'error': {'code': 'github_models_retirement_brownout', 'message': 'GitHub Models is temporarily unavailable as part of a scheduled retirement brownout.'}}: ['Traceback (most recent call last):
+', '  File "/home/runner/work/enterprise-it-ai/enterprise-it-ai/sources/agents/architect-blueprint/block_json.py", line 301, in convert_phases_to_json
+    response = client.beta.chat.completions.parse(
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+', '  File "/opt/hostedtoolcache/Python/3.11.15/x64/lib/python3.11/site-packages/openai/resources/chat/completions/completions.py", line 193, in parse
+    return self._post(
+           ^^^^^^^^^^^
+', '  File "/opt/hostedtoolcache/Python/3.11.15/x64/lib/python3.11/site-packages/openai/_base_client.py", line 1375, in post
+    return cast(ResponseT, self.request(cast_to, opts, stream=stream, stream_cls=stream_cls))
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+', '  File "/opt/hostedtoolcache/Python/3.11.15/x64/lib/python3.11/site-packages/openai/_base_client.py", line 1148, in request
+    raise self._make_status_error_from_response(err.response) from None
+', "openai.APIStatusError: Error code: 410 - {'error': {'code': 'github_models_retirement_brownout', 'message': 'GitHub Models is temporarily unavailable as part of a scheduled retirement brownout.'}}
+"]
+```
+
+# AI Model: deepseek/DeepSeek-V3-0324 - Phase 1 STEPS - Prompt:
+
+Analyze the attached Phase 1 Context Markdown content.
+
+Extract and translate ALL daily steps, checklists, and agent tasks from the entire document.
+
+
+## 🔒 AGENT ATOMICITY, TASK ID FORMAT & COMPONENT MANDATES (ABSOLUTE):
+- **STRICT TASK ID ALIGNMENT BLUEPRINT:** You MUST strictly generate the "id" field string for every single sub-task using the exact sequential formatting blueprint: `D<day_num>_ST<task_index>` (e.g., `D1_ST1`, `D1_ST2`, `D2_ST1`).
+- **STRICT AGENT ROLE LITERAL VALUES:** The "agent" field inside the JSON sub-task object MUST strictly enforce a capitalized first letter and lowercase subsequent letters pattern matching the exact tokens: 'Coder' | 'Tester' | 'Reviewer' | 'Doc' | 'Docker' | 'Gcp' | 'Gke'. Any other values or lowercase blocks (e.g., NO "coder") are strictly banned.
+- **NO ZERO-COMPONENT TASKS (ABSOLUTE HARD LIMIT):** You are STRICTLY BANNED from generating any sub-task object where the 'components' array is empty `[]`, null, or missing. If an Agent does not have any physical file paths to create, modify, or document, you MUST NOT generate that sub-task object node.
+- **FALLBACK COMPONENT RULE:** If a day has technical descriptions but lacks physical file paths, assign the task to "Doc" agent and populate 'components' with exactly the value of: ".ai/.plan/.context/phase-1.context.blueprint.md".
+- **STRICT AGENT ROLE SEGREGATION (ANTI-AGGREGATION):** If a workflow file involves multiple actions by different personas on the same calendar day, you MUST split this workflow into completely separate, sequential task objects inside the 'sub_tasks' array.
+- **HIGH-DENSITY TECHNICAL SPECIFICATION:** The 'task' field MUST contain an exhaustive, granular engineering instruction. If the sub-task involves an API route, integration endpoint, database query, or message block, you MUST explicitly inline the complete technical contract (e.g., Request/Response Payload Schemas, Data Types, Error Status Codes, or Queue names) directly inside this string. Vague high-level bullet summaries are forbidden.
+- **WORKSPACE PREFIX RULE & MULTI-LANGUAGE TEST EXCEPTION:** Every path in 'components' array MUST strictly begin with `./sources/`. 
+  * *CRITICAL EXCEPTION:* If the first parameter before the semi-colon character in a tester task is the literal string token `INTEGRATION_SCOPE`, you MUST leave that token completely unmodified. Do NOT append any path prefix to it (e.g., `"components": ["INTEGRATION_SCOPE;./sources/frontend/tests/auth.spec.ts"]`).
+
+## 🛠️ MANDATORY TOP-LEVEL FIELD VALUES INJECTION & ANCHOR PARSING (STRICT FIDELITY):
+You MUST dynamically populate the top-level keys of the JSON object using EXACT raw variable values without any modifications, or parse them directly from the primary Markdown header HTML comments:
+- **`phase_id`**: 1
+- **`phase_name`**: [Locate the primary Markdown title header line, extract the clean technical string text located exactly between the hidden HTML delimiters `<!--PHASE_NAME_START-->` and `<!--PHASE_NAME_END-->` without any alterations or translations]
+- **`phase_description`**: [Locate the primary Markdown title header line, extract the exact translated phase description text that follows after the literal marker `| Description:` or its translated equivalent]
+- **`project_name`**: "membership-hub"
+- **`global_context_file`**: ".ai/.context/membership-hub.global.blueprint.md"
+- **`source_target_dir`**: "sources/"
+
+#### 7. Context Fields Integration Mandate
+- For each day object inside the array, set 'day' to its calculated integer value, set 'context_file' to exact string ".ai/.plan/.context/phase-1.context.blueprint.md", and **set 'context_section' to the exact raw string value of the entire primary Day Header extracted from the source Markdown context text** (e.g., `"context_section": "DAY 1: Multi-Tenant Inception Schema & Flyway Migration Setup"`).
+
+#### 8. CHRONOLOGICAL TIMELINE SEQUENCING MANDATE (ABSOLUTE):
+#### 8. CHRONOLOGICAL TIMELINE SEQUENCING MANDATE (ABSOLUTE):
+
+## SYSTEM CRITICAL BOUNDARY: FLAT CONFIGURATION IS ACTIVE (is_chunked is FALSE)
+- Regardless of the actual day numbers documented in the source Markdown content (e.g., even if the text states "DAY 4", "DAY 5"), you MUST completely reset the timeline sequence internally so that the first operational day inside this Phase always starts from integer 1. Progression follows sequentially as 2, 3, 4, etc. 
+- Map the first targeted day to `"day": 1`, set 'context_file' to ".ai/.plan/.context/phase-1.context.blueprint.md", and strictly set 'context_section' to the exact raw primary header line of the first day parsed from the text. Incremental days follow this relative baseline.
+
+
+## 🛑 MANDATORY STRUCTURE ENFORCEMENT FOR TRACEABILITY TAGS VIA HTML ANCHORS (CRITICAL):
+- For each sub-task block, locate the hidden technical container bounds delimited strictly between `<!--START_TAGS-->` and `<!--END_TAGS-->`. Extract all individual inherited Tag IDs from inside that container, completely purge all markdown backticks (`` ` ``) and padding spaces, and populate them as clean individual string elements inside the "targeted_tags" array field (e.g., `"targeted_tags": ["[REQ-001]", "[DAT-005]"]`).
+- You are STRICTLY BANNED from leaving the "targeted_tags" array empty `[]` or null. Every single tag token must be its own separated array element string.
+
+You must conform strictly to your required JSON Schema layout design structure:
+{
+  "$defs": {
+    "DailyStep": {
+      "properties": {
+        "day": {
+          "description": "Timeline iteration day inside this isolated phase.",
+          "title": "Day",
+          "type": "integer"
+        },
+        "context_file": {
+          "description": "The phase context Markdown file for closure on this day.",
+          "title": "Context File",
+          "type": "string"
+        },
+        "context_section": {
+          "description": "The day targeted for closure on this day.",
+          "title": "Context Section",
+          "type": "string"
+        },
+        "sub_tasks": {
+          "description": "Array of isolated micro-tasks assigned to sub-agents.",
+          "items": {
+            "$ref": "##/$defs/SubAgentTask"
+          },
+          "title": "Sub Tasks",
+          "type": "array"
+        }
+      },
+      "required": [
+        "day",
+        "context_file",
+        "context_section",
+        "sub_tasks"
+      ],
+      "title": "DailyStep",
+      "type": "object"
+    },
+    "SubAgentTask": {
+      "properties": {
+        "id": {
+          "description": "Sub-Task identity of Task that sub-agent role executing.",
+          "title": "Id",
+          "type": "string"
+        },
+        "agent": {
+          "description": "Target sub-agent role executing the task.",
+          "title": "Agent",
+          "type": "string"
+        },
+        "desc": {
+          "description": "Literal, low-level technical step assigned to the agent.",
+          "title": "Desc",
+          "type": "string"
+        },
+        "targeted_tags": {
+          "description": "Flat string array of exact inherited BA Tag IDs that this specific sub-task implements or verifies (e.g. ['[REQ-001]', '[ARC-002]']). MUST match the raw requirements 1:1.",
+          "items": {
+            "type": "string"
+          },
+          "title": "Targeted Tags",
+          "type": "array"
+        },
+        "components": {
+          "description": "Flat array of physical localized file paths or scripts modified or targeted by this single task. Return an empty array [] if no files are involved.",
+          "items": {
+            "type": "string"
+          },
+          "title": "Components",
+          "type": "array"
+        }
+      },
+      "required": [
+        "id",
+        "agent",
+        "desc"
+      ],
+      "title": "SubAgentTask",
+      "type": "object"
+    }
+  },
+  "properties": {
+    "phase_id": {
+      "description": "Target phase tracker index.",
+      "title": "Phase Id",
+      "type": "integer"
+    },
+    "phase_name": {
+      "description": "Target phase tracker name.",
+      "title": "Phase Name",
+      "type": "string"
+    },
+    "phase_description": {
+      "description": "Target phase description.",
+      "title": "Phase Description",
+      "type": "string"
+    },
+    "project_name": {
+      "description": "Target project tracker name.",
+      "title": "Project Name",
+      "type": "string"
+    },
+    "global_context_file": {
+      "description": "Project global context Markdown file for closure.",
+      "title": "Global Context File",
+      "type": "string"
+    },
+    "source_target_dir": {
+      "description": "Project sources folder path for closure.",
+      "title": "Source Target Dir",
+      "type": "string"
+    },
+    "days": {
+      "description": "Day-by-day engineering tracking steps.",
+      "items": {
+        "$ref": "##/$defs/DailyStep"
+      },
+      "title": "Days",
+      "type": "array"
+    }
+  },
+  "required": [
+    "phase_id",
+    "phase_name",
+    "phase_description",
+    "project_name",
+    "global_context_file",
+    "source_target_dir",
+    "days"
+  ],
+  "title": "PhaseStepsPlan",
+  "type": "object"
+}
+
+--- PHASE 1 CONTEXT MARKDOWN ---
+## Giai đoạn 1: <!--PHASE_NAME_START-->user_core_services<!--PHASE_NAME_END--> | Mô tả: Triển khai các dịch vụ cốt lõi quản lý người dùng bao gồm đăng ký, xác thực xã hội, gán vai trò, schema cơ sở dữ liệu và logging kiểm toán bảo mật
+
+#### 📊 Kiểm soát tài liệu
+
+| Mục | Chi tiết |
+| :--- | :--- |
+| **ID Blueprint** | ARCH-20260803053505 |
+| **Tên dự án** | membership-hub |
+| **Giai đoạn** | 1 |
+| **Tên kỹ thuật giai đoạn** | <!--PHASE_NAME_START-->user_core_services<!--PHASE_NAME_END--> |
+| **Mô tả** | Triển khai các dịch vụ cốt lõi quản lý người dùng bao gồm đăng ký, xác thực xã hội, gán vai trò, schema cơ sở dữ liệu và logging kiểm toán bảo mật |
+| **Phiên bản** | 1.0 (Baseline) |
+| **Ngày/Giờ** | 2026/08/03 05:35:05 |
+| **Tác giả** | Enterprise System Architect (SA Agent) |
+| **Phê duyệt** | Pending Technical Governance Review |
+
+#### 1. Phạm vi hoạt động và mục tiêu giai đoạn
+
+Giai đoạn này tập trung vào việc xây dựng nền tảng cốt lõi cho hệ thống quản lý người dùng, bao gồm:
+
+- Triển khai schema cơ sở dữ liệu cho bảng Users và Roles với các ràng buộc toàn vẹn dữ liệu
+- Xây dựng dịch vụ đăng ký người dùng với xác thực email/mật khẩu và hỗ trợ OAuth2 cho các nhà cung cấp xã hội (Firebase, Google, Facebook)
+- Triển khai cơ chế phân quyền RBAC với khả năng gán và thay đổi vai trò người dùng
+- Thiết lập hệ thống logging kiểm toán đáp ứng các tiêu chuẩn bảo mật doanh nghiệp
+- Triển khai xử lý ngoại lệ chi tiết cho validation đầu vào và xung đột dữ liệu
+
+#### 2. Phạm vi kỹ thuật và ranh giới thư mục được phép
+
+**Thư mục và tệp được phép:**
+- `./sources/backend.membershiphub.user/users.sql` - DDL schema cho bảng Users
+- `./sources/backend.membershiphub.user/roles.sql` - DDL schema cho bảng Roles  
+- `./sources/backend.membershiphub.user/user-service.java` - Dịch vụ chính quản lý người dùng
+
+**Endpoint API:**
+- `POST /api/v1/auth/register` - Đăng ký người dùng mới
+- `POST /api/v1/auth/social` - Xác thực qua nhà cung cấp xã hội
+- `PUT /api/v1/users/{userId}/role` - Cập nhật vai trò người dùng (chỉ System Admin)
+
+#### 3. Chỉ đạo chức năng cho Sub-Agent chuyên dụng
+
+**Coder:** Triển khai mã nguồn Java/Quarkus với tuân thủ SOLID, sử dụng BCrypt cho mã hóa mật khẩu, JWT với access token 15 phút và refresh token 7 ngày, áp dụng @Valid cho validation và @Transactional cho các thao tác ghi.
+
+**Tester:** Xây dựng bộ kiểm thử JUnit 5 với độ phủ mã ≥85%, sử dụng Mock cho các dependency, kiểm thử happy path và các scenario lỗi validation.
+
+**Reviewer:** Thực hiện phân tích tĩnh mã nguồn, kiểm tra tuân thủ OWASP Top 10, đảm bảo không có lỗ hổng SQL injection hoặc XSS.
+
+**Doc:** Biên soạn tài liệu kỹ thuật đầy đủ bao gồm API documentation với OpenAPI, schema documentation và hướng dẫn triển khai.
+
+#### 4. Định nghĩa hoàn thành (DoD) cho giai đoạn
+
+- ✅ 100% các requirement [REQ-001], [REQ-002], [REQ-003] được triển khai đầy đủ
+- ✅ Schema database [DAT-001] được tạo thành công với tất cả ràng buộc
+- ✅ Luồng xác thực [ARC-006] hoạt động với OAuth2 và JWT
+- ✅ Xử lý ngoại lệ [EXC-004] cho validation đầu vào
+- ✅ Tuân thủ các tiêu chuẩn bảo mật [NFR-001], [NFR-003], [NFR-006]
+- ✅ Độ phủ kiểm thử ≥85% cho tất cả các dịch vụ
+- ✅ 100% các Tag ID được ánh xạ và kiểm tra
+
+#### 5. NHẬT KÝ THỰC THI KIẾN TRÚC THEO NGÀY
+
+###### NGÀY 1: TRIỂN KHAI DỊCH VỤ ĐĂNG KÝ NGƯỜI DÙNG VÀ API XÁC THỰC XÃ HỘI
+
+######## SUB-TASK 1.1: Triển khai schema cơ sở dữ liệu Users và Roles
+########## Sub-Agent được chỉ định: Coder
+########## Các thành phần mục tiêu và yêu cầu kỹ thuật:
+* **Đường dẫn mục tiêu:** `./sources/backend.membershiphub.user/users.sql`, `./sources/backend.membershiphub.user/roles.sql`
+* **Các thẻ truy xuất nguồn gốc:** <!--START_TAGS-->[DAT-001]<!--END_TAGS-->
+
+######## SUB-TASK 1.2: Triển khai UserService với phương thức register và socialAuthenticate
+########## Sub-Agent được chỉ định: Coder
+########## Các thành phần mục tiêu và yêu cầu kỹ thuật:
+* **Đường dẫn mục tiêu:** `./sources/backend.membershiphub.user/user-service.java`
+* **Các thẻ truy xuất nguồn gốc:** <!--START_TAGS-->[REQ-001], [REQ-002], [ARC-006], [EXC-004], [NFR-001], [NFR-003], [NFR-006]<!--END_TAGS-->
+
+###### NGÀY 2: VIẾT BỘ KIỂM TRA ĐƠN VỊ VÀ TÍCH HỢP CHO CÁC CHỨC NĂNG NGƯỜI DÙNG
+
+######## SUB-TASK 2.1: Kiểm thử đơn vị cho các phương thức register và socialAuthenticate
+########## Sub-Agent được chỉ định: Tester
+########## Các thành phần mục tiêu và yêu cầu kỹ thuật:
+* **Đường dẫn mục tiêu:** `./sources/backend.membershiphub.user/user-service.java;./sources/backend.membershiphub.user/userservice-test.java`
+* **Các thẻ truy xuất nguồn gốc:** <!--START_TAGS-->[REQ-001], [REQ-002], [DAT-001], [EXC-004]<!--END_TAGS-->
+
+######## SUB-TASK 2.2: Kiểm thử tích hợp cho API endpoints
+########## Sub-Agent được chỉ định: Tester
+########## Các thành phần mục tiêu và yêu cầu kỹ thuật:
+* **Đường dẫn mục tiêu:** `./sources/backend.membershiphub.user/user-service.java;./sources/backend.membershiphub.user/user-controller-test.java`
+* **Các thẻ truy xuất nguồn gốc:** <!--START_TAGS-->[REQ-001], [REQ-002], [ARC-006], [EXC-004]<!--END_TAGS-->
+------------------------------------------
+
+# System Instruction
+
+You are a high-performance Data Ingestion and Transformation Engine. Your sole objective is to parse the Phase Context Markdown text and convert it into a perfectly valid, parseable JSON object matching the requested schema framework.
+
+# YOUR CRITICAL OPERATIONAL MANDATES (ZERO LOOPHOLES):
+1. **STRICT VARIABLE FIDELITY & NO PREFIXES:** You MUST use the exact raw values provided in the template variables for file paths and project names. You are STRICTLY BANNED from appending, prepending, or injecting any custom folders or prefixes like "sources/" to the `global_context_file`, `context_file`, `source_target_dir`, or `project_name` fields. Use the variable values exactly as they are passed.
+2. **ABSOLUTE PYDANTIC SCHEMA ALIGNMENT:** Your final generated JSON object MUST perfectly satisfy the structural schema parameters of the target enterprise contract. You are STRICTLY BANNED from omitting, renaming, formatting, or stripping out key elements (specifically `phase_id`, `phase_name`, `phase_description`, `project_name`, `global_context_file`, `source_target_dir`, and `days`).
+3. **ABSOLUTE NO EMPTY TAGS POLICY & STRING SANITIZATION:** You are STRICTLY BANNED from leaving the "targeted_tags" array empty `[]` or null for any sub-task that implements functional requirements or data schemas. You MUST scan the source Markdown sequentially sub-task by sub-task. For each sub-task node, locate the hidden technical container block delimited between `<!--START_TAGS-->` and `<!--END_TAGS-->` contained exclusively within that sub-task section scope. Extract all raw tag token codes inside, strip away all inline markdown formatting characters—specifically backticks (`` ` ``)—and any leading/trailing whitespaces, then populate them as clean separate string elements inside the "targeted_tags" array field of EACH sub-task object node.
+4. **NO TAG BUNDLING:** Every tag must be its own array node (e.g., `"targeted_tags": ["[REQ-001]", "[DAT-002]"]`). You are strictly forbidden from combining multiple tags into a single string element.
+5. **STRICT CONTENT PURITY & REJECT CONVERSATION:** Output ONLY the pure raw executable JSON string matching the required schema. Response must start exactly with the character `{` and end exactly with the character `}`. Banned from including thinking processes, chain-of-thought blocks (`<think>` tags), conversational filler texts, introductions, wrapping inside markdown codeblocks (no triple backticks wrapping), or post-generation notes. Any token outside the raw JSON object boundary triggers an immediate execution pipeline crash.
+
+# Raw Response / Exception:
+
+```json
+Error code: 410 - {'error': {'code': 'github_models_retirement_brownout', 'message': 'GitHub Models is temporarily unavailable as part of a scheduled retirement brownout.'}}: ['Traceback (most recent call last):
+', '  File "/home/runner/work/enterprise-it-ai/enterprise-it-ai/sources/agents/architect-blueprint/block_json.py", line 301, in convert_phases_to_json
+    response = client.beta.chat.completions.parse(
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+', '  File "/opt/hostedtoolcache/Python/3.11.15/x64/lib/python3.11/site-packages/openai/resources/chat/completions/completions.py", line 193, in parse
+    return self._post(
+           ^^^^^^^^^^^
+', '  File "/opt/hostedtoolcache/Python/3.11.15/x64/lib/python3.11/site-packages/openai/_base_client.py", line 1375, in post
+    return cast(ResponseT, self.request(cast_to, opts, stream=stream, stream_cls=stream_cls))
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+', '  File "/opt/hostedtoolcache/Python/3.11.15/x64/lib/python3.11/site-packages/openai/_base_client.py", line 1148, in request
+    raise self._make_status_error_from_response(err.response) from None
+', "openai.APIStatusError: Error code: 410 - {'error': {'code': 'github_models_retirement_brownout', 'message': 'GitHub Models is temporarily unavailable as part of a scheduled retirement brownout.'}}
+"]
+```
+
+# AI Model: meta/Llama-3.2-11B-Vision-Instruct - Phase 1 STEPS - Prompt:
+
+Analyze the attached Phase 1 Context Markdown content.
+
+Extract and translate ALL daily steps, checklists, and agent tasks from the entire document.
+
+
+## 🔒 AGENT ATOMICITY, TASK ID FORMAT & COMPONENT MANDATES (ABSOLUTE):
+- **STRICT TASK ID ALIGNMENT BLUEPRINT:** You MUST strictly generate the "id" field string for every single sub-task using the exact sequential formatting blueprint: `D<day_num>_ST<task_index>` (e.g., `D1_ST1`, `D1_ST2`, `D2_ST1`).
+- **STRICT AGENT ROLE LITERAL VALUES:** The "agent" field inside the JSON sub-task object MUST strictly enforce a capitalized first letter and lowercase subsequent letters pattern matching the exact tokens: 'Coder' | 'Tester' | 'Reviewer' | 'Doc' | 'Docker' | 'Gcp' | 'Gke'. Any other values or lowercase blocks (e.g., NO "coder") are strictly banned.
+- **NO ZERO-COMPONENT TASKS (ABSOLUTE HARD LIMIT):** You are STRICTLY BANNED from generating any sub-task object where the 'components' array is empty `[]`, null, or missing. If an Agent does not have any physical file paths to create, modify, or document, you MUST NOT generate that sub-task object node.
+- **FALLBACK COMPONENT RULE:** If a day has technical descriptions but lacks physical file paths, assign the task to "Doc" agent and populate 'components' with exactly the value of: ".ai/.plan/.context/phase-1.context.blueprint.md".
+- **STRICT AGENT ROLE SEGREGATION (ANTI-AGGREGATION):** If a workflow file involves multiple actions by different personas on the same calendar day, you MUST split this workflow into completely separate, sequential task objects inside the 'sub_tasks' array.
+- **HIGH-DENSITY TECHNICAL SPECIFICATION:** The 'task' field MUST contain an exhaustive, granular engineering instruction. If the sub-task involves an API route, integration endpoint, database query, or message block, you MUST explicitly inline the complete technical contract (e.g., Request/Response Payload Schemas, Data Types, Error Status Codes, or Queue names) directly inside this string. Vague high-level bullet summaries are forbidden.
+- **WORKSPACE PREFIX RULE & MULTI-LANGUAGE TEST EXCEPTION:** Every path in 'components' array MUST strictly begin with `./sources/`. 
+  * *CRITICAL EXCEPTION:* If the first parameter before the semi-colon character in a tester task is the literal string token `INTEGRATION_SCOPE`, you MUST leave that token completely unmodified. Do NOT append any path prefix to it (e.g., `"components": ["INTEGRATION_SCOPE;./sources/frontend/tests/auth.spec.ts"]`).
+
+## 🛠️ MANDATORY TOP-LEVEL FIELD VALUES INJECTION & ANCHOR PARSING (STRICT FIDELITY):
+You MUST dynamically populate the top-level keys of the JSON object using EXACT raw variable values without any modifications, or parse them directly from the primary Markdown header HTML comments:
+- **`phase_id`**: 1
+- **`phase_name`**: [Locate the primary Markdown title header line, extract the clean technical string text located exactly between the hidden HTML delimiters `<!--PHASE_NAME_START-->` and `<!--PHASE_NAME_END-->` without any alterations or translations]
+- **`phase_description`**: [Locate the primary Markdown title header line, extract the exact translated phase description text that follows after the literal marker `| Description:` or its translated equivalent]
+- **`project_name`**: "membership-hub"
+- **`global_context_file`**: ".ai/.context/membership-hub.global.blueprint.md"
+- **`source_target_dir`**: "sources/"
+
+#### 7. Context Fields Integration Mandate
+- For each day object inside the array, set 'day' to its calculated integer value, set 'context_file' to exact string ".ai/.plan/.context/phase-1.context.blueprint.md", and **set 'context_section' to the exact raw string value of the entire primary Day Header extracted from the source Markdown context text** (e.g., `"context_section": "DAY 1: Multi-Tenant Inception Schema & Flyway Migration Setup"`).
+
+#### 8. CHRONOLOGICAL TIMELINE SEQUENCING MANDATE (ABSOLUTE):
+#### 8. CHRONOLOGICAL TIMELINE SEQUENCING MANDATE (ABSOLUTE):
+
+## SYSTEM CRITICAL BOUNDARY: FLAT CONFIGURATION IS ACTIVE (is_chunked is FALSE)
+- Regardless of the actual day numbers documented in the source Markdown content (e.g., even if the text states "DAY 4", "DAY 5"), you MUST completely reset the timeline sequence internally so that the first operational day inside this Phase always starts from integer 1. Progression follows sequentially as 2, 3, 4, etc. 
+- Map the first targeted day to `"day": 1`, set 'context_file' to ".ai/.plan/.context/phase-1.context.blueprint.md", and strictly set 'context_section' to the exact raw primary header line of the first day parsed from the text. Incremental days follow this relative baseline.
+
+
+## 🛑 MANDATORY STRUCTURE ENFORCEMENT FOR TRACEABILITY TAGS VIA HTML ANCHORS (CRITICAL):
+- For each sub-task block, locate the hidden technical container bounds delimited strictly between `<!--START_TAGS-->` and `<!--END_TAGS-->`. Extract all individual inherited Tag IDs from inside that container, completely purge all markdown backticks (`` ` ``) and padding spaces, and populate them as clean individual string elements inside the "targeted_tags" array field (e.g., `"targeted_tags": ["[REQ-001]", "[DAT-005]"]`).
+- You are STRICTLY BANNED from leaving the "targeted_tags" array empty `[]` or null. Every single tag token must be its own separated array element string.
+
+You must conform strictly to your required JSON Schema layout design structure:
+{
+  "$defs": {
+    "DailyStep": {
+      "properties": {
+        "day": {
+          "description": "Timeline iteration day inside this isolated phase.",
+          "title": "Day",
+          "type": "integer"
+        },
+        "context_file": {
+          "description": "The phase context Markdown file for closure on this day.",
+          "title": "Context File",
+          "type": "string"
+        },
+        "context_section": {
+          "description": "The day targeted for closure on this day.",
+          "title": "Context Section",
+          "type": "string"
+        },
+        "sub_tasks": {
+          "description": "Array of isolated micro-tasks assigned to sub-agents.",
+          "items": {
+            "$ref": "##/$defs/SubAgentTask"
+          },
+          "title": "Sub Tasks",
+          "type": "array"
+        }
+      },
+      "required": [
+        "day",
+        "context_file",
+        "context_section",
+        "sub_tasks"
+      ],
+      "title": "DailyStep",
+      "type": "object"
+    },
+    "SubAgentTask": {
+      "properties": {
+        "id": {
+          "description": "Sub-Task identity of Task that sub-agent role executing.",
+          "title": "Id",
+          "type": "string"
+        },
+        "agent": {
+          "description": "Target sub-agent role executing the task.",
+          "title": "Agent",
+          "type": "string"
+        },
+        "desc": {
+          "description": "Literal, low-level technical step assigned to the agent.",
+          "title": "Desc",
+          "type": "string"
+        },
+        "targeted_tags": {
+          "description": "Flat string array of exact inherited BA Tag IDs that this specific sub-task implements or verifies (e.g. ['[REQ-001]', '[ARC-002]']). MUST match the raw requirements 1:1.",
+          "items": {
+            "type": "string"
+          },
+          "title": "Targeted Tags",
+          "type": "array"
+        },
+        "components": {
+          "description": "Flat array of physical localized file paths or scripts modified or targeted by this single task. Return an empty array [] if no files are involved.",
+          "items": {
+            "type": "string"
+          },
+          "title": "Components",
+          "type": "array"
+        }
+      },
+      "required": [
+        "id",
+        "agent",
+        "desc"
+      ],
+      "title": "SubAgentTask",
+      "type": "object"
+    }
+  },
+  "properties": {
+    "phase_id": {
+      "description": "Target phase tracker index.",
+      "title": "Phase Id",
+      "type": "integer"
+    },
+    "phase_name": {
+      "description": "Target phase tracker name.",
+      "title": "Phase Name",
+      "type": "string"
+    },
+    "phase_description": {
+      "description": "Target phase description.",
+      "title": "Phase Description",
+      "type": "string"
+    },
+    "project_name": {
+      "description": "Target project tracker name.",
+      "title": "Project Name",
+      "type": "string"
+    },
+    "global_context_file": {
+      "description": "Project global context Markdown file for closure.",
+      "title": "Global Context File",
+      "type": "string"
+    },
+    "source_target_dir": {
+      "description": "Project sources folder path for closure.",
+      "title": "Source Target Dir",
+      "type": "string"
+    },
+    "days": {
+      "description": "Day-by-day engineering tracking steps.",
+      "items": {
+        "$ref": "##/$defs/DailyStep"
+      },
+      "title": "Days",
+      "type": "array"
+    }
+  },
+  "required": [
+    "phase_id",
+    "phase_name",
+    "phase_description",
+    "project_name",
+    "global_context_file",
+    "source_target_dir",
+    "days"
+  ],
+  "title": "PhaseStepsPlan",
+  "type": "object"
+}
+
+--- PHASE 1 CONTEXT MARKDOWN ---
+## Giai đoạn 1: <!--PHASE_NAME_START-->user_core_services<!--PHASE_NAME_END--> | Mô tả: Triển khai các dịch vụ cốt lõi quản lý người dùng bao gồm đăng ký, xác thực xã hội, gán vai trò, schema cơ sở dữ liệu và logging kiểm toán bảo mật
+
+#### 📊 Kiểm soát tài liệu
+
+| Mục | Chi tiết |
+| :--- | :--- |
+| **ID Blueprint** | ARCH-20260803053505 |
+| **Tên dự án** | membership-hub |
+| **Giai đoạn** | 1 |
+| **Tên kỹ thuật giai đoạn** | <!--PHASE_NAME_START-->user_core_services<!--PHASE_NAME_END--> |
+| **Mô tả** | Triển khai các dịch vụ cốt lõi quản lý người dùng bao gồm đăng ký, xác thực xã hội, gán vai trò, schema cơ sở dữ liệu và logging kiểm toán bảo mật |
+| **Phiên bản** | 1.0 (Baseline) |
+| **Ngày/Giờ** | 2026/08/03 05:35:05 |
+| **Tác giả** | Enterprise System Architect (SA Agent) |
+| **Phê duyệt** | Pending Technical Governance Review |
+
+#### 1. Phạm vi hoạt động và mục tiêu giai đoạn
+
+Giai đoạn này tập trung vào việc xây dựng nền tảng cốt lõi cho hệ thống quản lý người dùng, bao gồm:
+
+- Triển khai schema cơ sở dữ liệu cho bảng Users và Roles với các ràng buộc toàn vẹn dữ liệu
+- Xây dựng dịch vụ đăng ký người dùng với xác thực email/mật khẩu và hỗ trợ OAuth2 cho các nhà cung cấp xã hội (Firebase, Google, Facebook)
+- Triển khai cơ chế phân quyền RBAC với khả năng gán và thay đổi vai trò người dùng
+- Thiết lập hệ thống logging kiểm toán đáp ứng các tiêu chuẩn bảo mật doanh nghiệp
+- Triển khai xử lý ngoại lệ chi tiết cho validation đầu vào và xung đột dữ liệu
+
+#### 2. Phạm vi kỹ thuật và ranh giới thư mục được phép
+
+**Thư mục và tệp được phép:**
+- `./sources/backend.membershiphub.user/users.sql` - DDL schema cho bảng Users
+- `./sources/backend.membershiphub.user/roles.sql` - DDL schema cho bảng Roles  
+- `./sources/backend.membershiphub.user/user-service.java` - Dịch vụ chính quản lý người dùng
+
+**Endpoint API:**
+- `POST /api/v1/auth/register` - Đăng ký người dùng mới
+- `POST /api/v1/auth/social` - Xác thực qua nhà cung cấp xã hội
+- `PUT /api/v1/users/{userId}/role` - Cập nhật vai trò người dùng (chỉ System Admin)
+
+#### 3. Chỉ đạo chức năng cho Sub-Agent chuyên dụng
+
+**Coder:** Triển khai mã nguồn Java/Quarkus với tuân thủ SOLID, sử dụng BCrypt cho mã hóa mật khẩu, JWT với access token 15 phút và refresh token 7 ngày, áp dụng @Valid cho validation và @Transactional cho các thao tác ghi.
+
+**Tester:** Xây dựng bộ kiểm thử JUnit 5 với độ phủ mã ≥85%, sử dụng Mock cho các dependency, kiểm thử happy path và các scenario lỗi validation.
+
+**Reviewer:** Thực hiện phân tích tĩnh mã nguồn, kiểm tra tuân thủ OWASP Top 10, đảm bảo không có lỗ hổng SQL injection hoặc XSS.
+
+**Doc:** Biên soạn tài liệu kỹ thuật đầy đủ bao gồm API documentation với OpenAPI, schema documentation và hướng dẫn triển khai.
+
+#### 4. Định nghĩa hoàn thành (DoD) cho giai đoạn
+
+- ✅ 100% các requirement [REQ-001], [REQ-002], [REQ-003] được triển khai đầy đủ
+- ✅ Schema database [DAT-001] được tạo thành công với tất cả ràng buộc
+- ✅ Luồng xác thực [ARC-006] hoạt động với OAuth2 và JWT
+- ✅ Xử lý ngoại lệ [EXC-004] cho validation đầu vào
+- ✅ Tuân thủ các tiêu chuẩn bảo mật [NFR-001], [NFR-003], [NFR-006]
+- ✅ Độ phủ kiểm thử ≥85% cho tất cả các dịch vụ
+- ✅ 100% các Tag ID được ánh xạ và kiểm tra
+
+#### 5. NHẬT KÝ THỰC THI KIẾN TRÚC THEO NGÀY
+
+###### NGÀY 1: TRIỂN KHAI DỊCH VỤ ĐĂNG KÝ NGƯỜI DÙNG VÀ API XÁC THỰC XÃ HỘI
+
+######## SUB-TASK 1.1: Triển khai schema cơ sở dữ liệu Users và Roles
+########## Sub-Agent được chỉ định: Coder
+########## Các thành phần mục tiêu và yêu cầu kỹ thuật:
+* **Đường dẫn mục tiêu:** `./sources/backend.membershiphub.user/users.sql`, `./sources/backend.membershiphub.user/roles.sql`
+* **Các thẻ truy xuất nguồn gốc:** <!--START_TAGS-->[DAT-001]<!--END_TAGS-->
+
+######## SUB-TASK 1.2: Triển khai UserService với phương thức register và socialAuthenticate
+########## Sub-Agent được chỉ định: Coder
+########## Các thành phần mục tiêu và yêu cầu kỹ thuật:
+* **Đường dẫn mục tiêu:** `./sources/backend.membershiphub.user/user-service.java`
+* **Các thẻ truy xuất nguồn gốc:** <!--START_TAGS-->[REQ-001], [REQ-002], [ARC-006], [EXC-004], [NFR-001], [NFR-003], [NFR-006]<!--END_TAGS-->
+
+###### NGÀY 2: VIẾT BỘ KIỂM TRA ĐƠN VỊ VÀ TÍCH HỢP CHO CÁC CHỨC NĂNG NGƯỜI DÙNG
+
+######## SUB-TASK 2.1: Kiểm thử đơn vị cho các phương thức register và socialAuthenticate
+########## Sub-Agent được chỉ định: Tester
+########## Các thành phần mục tiêu và yêu cầu kỹ thuật:
+* **Đường dẫn mục tiêu:** `./sources/backend.membershiphub.user/user-service.java;./sources/backend.membershiphub.user/userservice-test.java`
+* **Các thẻ truy xuất nguồn gốc:** <!--START_TAGS-->[REQ-001], [REQ-002], [DAT-001], [EXC-004]<!--END_TAGS-->
+
+######## SUB-TASK 2.2: Kiểm thử tích hợp cho API endpoints
+########## Sub-Agent được chỉ định: Tester
+########## Các thành phần mục tiêu và yêu cầu kỹ thuật:
+* **Đường dẫn mục tiêu:** `./sources/backend.membershiphub.user/user-service.java;./sources/backend.membershiphub.user/user-controller-test.java`
+* **Các thẻ truy xuất nguồn gốc:** <!--START_TAGS-->[REQ-001], [REQ-002], [ARC-006], [EXC-004]<!--END_TAGS-->
+------------------------------------------
+
+# System Instruction
+
+You are a high-performance Data Ingestion and Transformation Engine. Your sole objective is to parse the Phase Context Markdown text and convert it into a perfectly valid, parseable JSON object matching the requested schema framework.
+
+# YOUR CRITICAL OPERATIONAL MANDATES (ZERO LOOPHOLES):
+1. **STRICT VARIABLE FIDELITY & NO PREFIXES:** You MUST use the exact raw values provided in the template variables for file paths and project names. You are STRICTLY BANNED from appending, prepending, or injecting any custom folders or prefixes like "sources/" to the `global_context_file`, `context_file`, `source_target_dir`, or `project_name` fields. Use the variable values exactly as they are passed.
+2. **ABSOLUTE PYDANTIC SCHEMA ALIGNMENT:** Your final generated JSON object MUST perfectly satisfy the structural schema parameters of the target enterprise contract. You are STRICTLY BANNED from omitting, renaming, formatting, or stripping out key elements (specifically `phase_id`, `phase_name`, `phase_description`, `project_name`, `global_context_file`, `source_target_dir`, and `days`).
+3. **ABSOLUTE NO EMPTY TAGS POLICY & STRING SANITIZATION:** You are STRICTLY BANNED from leaving the "targeted_tags" array empty `[]` or null for any sub-task that implements functional requirements or data schemas. You MUST scan the source Markdown sequentially sub-task by sub-task. For each sub-task node, locate the hidden technical container block delimited between `<!--START_TAGS-->` and `<!--END_TAGS-->` contained exclusively within that sub-task section scope. Extract all raw tag token codes inside, strip away all inline markdown formatting characters—specifically backticks (`` ` ``)—and any leading/trailing whitespaces, then populate them as clean separate string elements inside the "targeted_tags" array field of EACH sub-task object node.
+4. **NO TAG BUNDLING:** Every tag must be its own array node (e.g., `"targeted_tags": ["[REQ-001]", "[DAT-002]"]`). You are strictly forbidden from combining multiple tags into a single string element.
+5. **STRICT CONTENT PURITY & REJECT CONVERSATION:** Output ONLY the pure raw executable JSON string matching the required schema. Response must start exactly with the character `{` and end exactly with the character `}`. Banned from including thinking processes, chain-of-thought blocks (`<think>` tags), conversational filler texts, introductions, wrapping inside markdown codeblocks (no triple backticks wrapping), or post-generation notes. Any token outside the raw JSON object boundary triggers an immediate execution pipeline crash.
+
+# Raw Response / Exception:
+
+```json
+Error code: 410 - {'error': {'code': 'github_models_retirement_brownout', 'message': 'GitHub Models is temporarily unavailable as part of a scheduled retirement brownout.'}}: ['Traceback (most recent call last):
+', '  File "/home/runner/work/enterprise-it-ai/enterprise-it-ai/sources/agents/architect-blueprint/block_json.py", line 301, in convert_phases_to_json
+    response = client.beta.chat.completions.parse(
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+', '  File "/opt/hostedtoolcache/Python/3.11.15/x64/lib/python3.11/site-packages/openai/resources/chat/completions/completions.py", line 193, in parse
+    return self._post(
+           ^^^^^^^^^^^
+', '  File "/opt/hostedtoolcache/Python/3.11.15/x64/lib/python3.11/site-packages/openai/_base_client.py", line 1375, in post
+    return cast(ResponseT, self.request(cast_to, opts, stream=stream, stream_cls=stream_cls))
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+', '  File "/opt/hostedtoolcache/Python/3.11.15/x64/lib/python3.11/site-packages/openai/_base_client.py", line 1148, in request
+    raise self._make_status_error_from_response(err.response) from None
+', "openai.APIStatusError: Error code: 410 - {'error': {'code': 'github_models_retirement_brownout', 'message': 'GitHub Models is temporarily unavailable as part of a scheduled retirement brownout.'}}
+"]
+```
+
+# AI Model: meta/Llama-3.2-90B-Vision-Instruct - Phase 1 STEPS - Prompt:
+
+Analyze the attached Phase 1 Context Markdown content.
+
+Extract and translate ALL daily steps, checklists, and agent tasks from the entire document.
+
+
+## 🔒 AGENT ATOMICITY, TASK ID FORMAT & COMPONENT MANDATES (ABSOLUTE):
+- **STRICT TASK ID ALIGNMENT BLUEPRINT:** You MUST strictly generate the "id" field string for every single sub-task using the exact sequential formatting blueprint: `D<day_num>_ST<task_index>` (e.g., `D1_ST1`, `D1_ST2`, `D2_ST1`).
+- **STRICT AGENT ROLE LITERAL VALUES:** The "agent" field inside the JSON sub-task object MUST strictly enforce a capitalized first letter and lowercase subsequent letters pattern matching the exact tokens: 'Coder' | 'Tester' | 'Reviewer' | 'Doc' | 'Docker' | 'Gcp' | 'Gke'. Any other values or lowercase blocks (e.g., NO "coder") are strictly banned.
+- **NO ZERO-COMPONENT TASKS (ABSOLUTE HARD LIMIT):** You are STRICTLY BANNED from generating any sub-task object where the 'components' array is empty `[]`, null, or missing. If an Agent does not have any physical file paths to create, modify, or document, you MUST NOT generate that sub-task object node.
+- **FALLBACK COMPONENT RULE:** If a day has technical descriptions but lacks physical file paths, assign the task to "Doc" agent and populate 'components' with exactly the value of: ".ai/.plan/.context/phase-1.context.blueprint.md".
+- **STRICT AGENT ROLE SEGREGATION (ANTI-AGGREGATION):** If a workflow file involves multiple actions by different personas on the same calendar day, you MUST split this workflow into completely separate, sequential task objects inside the 'sub_tasks' array.
+- **HIGH-DENSITY TECHNICAL SPECIFICATION:** The 'task' field MUST contain an exhaustive, granular engineering instruction. If the sub-task involves an API route, integration endpoint, database query, or message block, you MUST explicitly inline the complete technical contract (e.g., Request/Response Payload Schemas, Data Types, Error Status Codes, or Queue names) directly inside this string. Vague high-level bullet summaries are forbidden.
+- **WORKSPACE PREFIX RULE & MULTI-LANGUAGE TEST EXCEPTION:** Every path in 'components' array MUST strictly begin with `./sources/`. 
+  * *CRITICAL EXCEPTION:* If the first parameter before the semi-colon character in a tester task is the literal string token `INTEGRATION_SCOPE`, you MUST leave that token completely unmodified. Do NOT append any path prefix to it (e.g., `"components": ["INTEGRATION_SCOPE;./sources/frontend/tests/auth.spec.ts"]`).
+
+## 🛠️ MANDATORY TOP-LEVEL FIELD VALUES INJECTION & ANCHOR PARSING (STRICT FIDELITY):
+You MUST dynamically populate the top-level keys of the JSON object using EXACT raw variable values without any modifications, or parse them directly from the primary Markdown header HTML comments:
+- **`phase_id`**: 1
+- **`phase_name`**: [Locate the primary Markdown title header line, extract the clean technical string text located exactly between the hidden HTML delimiters `<!--PHASE_NAME_START-->` and `<!--PHASE_NAME_END-->` without any alterations or translations]
+- **`phase_description`**: [Locate the primary Markdown title header line, extract the exact translated phase description text that follows after the literal marker `| Description:` or its translated equivalent]
+- **`project_name`**: "membership-hub"
+- **`global_context_file`**: ".ai/.context/membership-hub.global.blueprint.md"
+- **`source_target_dir`**: "sources/"
+
+#### 7. Context Fields Integration Mandate
+- For each day object inside the array, set 'day' to its calculated integer value, set 'context_file' to exact string ".ai/.plan/.context/phase-1.context.blueprint.md", and **set 'context_section' to the exact raw string value of the entire primary Day Header extracted from the source Markdown context text** (e.g., `"context_section": "DAY 1: Multi-Tenant Inception Schema & Flyway Migration Setup"`).
+
+#### 8. CHRONOLOGICAL TIMELINE SEQUENCING MANDATE (ABSOLUTE):
+#### 8. CHRONOLOGICAL TIMELINE SEQUENCING MANDATE (ABSOLUTE):
+
+## SYSTEM CRITICAL BOUNDARY: FLAT CONFIGURATION IS ACTIVE (is_chunked is FALSE)
+- Regardless of the actual day numbers documented in the source Markdown content (e.g., even if the text states "DAY 4", "DAY 5"), you MUST completely reset the timeline sequence internally so that the first operational day inside this Phase always starts from integer 1. Progression follows sequentially as 2, 3, 4, etc. 
+- Map the first targeted day to `"day": 1`, set 'context_file' to ".ai/.plan/.context/phase-1.context.blueprint.md", and strictly set 'context_section' to the exact raw primary header line of the first day parsed from the text. Incremental days follow this relative baseline.
+
+
+## 🛑 MANDATORY STRUCTURE ENFORCEMENT FOR TRACEABILITY TAGS VIA HTML ANCHORS (CRITICAL):
+- For each sub-task block, locate the hidden technical container bounds delimited strictly between `<!--START_TAGS-->` and `<!--END_TAGS-->`. Extract all individual inherited Tag IDs from inside that container, completely purge all markdown backticks (`` ` ``) and padding spaces, and populate them as clean individual string elements inside the "targeted_tags" array field (e.g., `"targeted_tags": ["[REQ-001]", "[DAT-005]"]`).
+- You are STRICTLY BANNED from leaving the "targeted_tags" array empty `[]` or null. Every single tag token must be its own separated array element string.
+
+You must conform strictly to your required JSON Schema layout design structure:
+{
+  "$defs": {
+    "DailyStep": {
+      "properties": {
+        "day": {
+          "description": "Timeline iteration day inside this isolated phase.",
+          "title": "Day",
+          "type": "integer"
+        },
+        "context_file": {
+          "description": "The phase context Markdown file for closure on this day.",
+          "title": "Context File",
+          "type": "string"
+        },
+        "context_section": {
+          "description": "The day targeted for closure on this day.",
+          "title": "Context Section",
+          "type": "string"
+        },
+        "sub_tasks": {
+          "description": "Array of isolated micro-tasks assigned to sub-agents.",
+          "items": {
+            "$ref": "##/$defs/SubAgentTask"
+          },
+          "title": "Sub Tasks",
+          "type": "array"
+        }
+      },
+      "required": [
+        "day",
+        "context_file",
+        "context_section",
+        "sub_tasks"
+      ],
+      "title": "DailyStep",
+      "type": "object"
+    },
+    "SubAgentTask": {
+      "properties": {
+        "id": {
+          "description": "Sub-Task identity of Task that sub-agent role executing.",
+          "title": "Id",
+          "type": "string"
+        },
+        "agent": {
+          "description": "Target sub-agent role executing the task.",
+          "title": "Agent",
+          "type": "string"
+        },
+        "desc": {
+          "description": "Literal, low-level technical step assigned to the agent.",
+          "title": "Desc",
+          "type": "string"
+        },
+        "targeted_tags": {
+          "description": "Flat string array of exact inherited BA Tag IDs that this specific sub-task implements or verifies (e.g. ['[REQ-001]', '[ARC-002]']). MUST match the raw requirements 1:1.",
+          "items": {
+            "type": "string"
+          },
+          "title": "Targeted Tags",
+          "type": "array"
+        },
+        "components": {
+          "description": "Flat array of physical localized file paths or scripts modified or targeted by this single task. Return an empty array [] if no files are involved.",
+          "items": {
+            "type": "string"
+          },
+          "title": "Components",
+          "type": "array"
+        }
+      },
+      "required": [
+        "id",
+        "agent",
+        "desc"
+      ],
+      "title": "SubAgentTask",
+      "type": "object"
+    }
+  },
+  "properties": {
+    "phase_id": {
+      "description": "Target phase tracker index.",
+      "title": "Phase Id",
+      "type": "integer"
+    },
+    "phase_name": {
+      "description": "Target phase tracker name.",
+      "title": "Phase Name",
+      "type": "string"
+    },
+    "phase_description": {
+      "description": "Target phase description.",
+      "title": "Phase Description",
+      "type": "string"
+    },
+    "project_name": {
+      "description": "Target project tracker name.",
+      "title": "Project Name",
+      "type": "string"
+    },
+    "global_context_file": {
+      "description": "Project global context Markdown file for closure.",
+      "title": "Global Context File",
+      "type": "string"
+    },
+    "source_target_dir": {
+      "description": "Project sources folder path for closure.",
+      "title": "Source Target Dir",
+      "type": "string"
+    },
+    "days": {
+      "description": "Day-by-day engineering tracking steps.",
+      "items": {
+        "$ref": "##/$defs/DailyStep"
+      },
+      "title": "Days",
+      "type": "array"
+    }
+  },
+  "required": [
+    "phase_id",
+    "phase_name",
+    "phase_description",
+    "project_name",
+    "global_context_file",
+    "source_target_dir",
+    "days"
+  ],
+  "title": "PhaseStepsPlan",
+  "type": "object"
+}
+
+--- PHASE 1 CONTEXT MARKDOWN ---
+## Giai đoạn 1: <!--PHASE_NAME_START-->user_core_services<!--PHASE_NAME_END--> | Mô tả: Triển khai các dịch vụ cốt lõi quản lý người dùng bao gồm đăng ký, xác thực xã hội, gán vai trò, schema cơ sở dữ liệu và logging kiểm toán bảo mật
+
+#### 📊 Kiểm soát tài liệu
+
+| Mục | Chi tiết |
+| :--- | :--- |
+| **ID Blueprint** | ARCH-20260803053505 |
+| **Tên dự án** | membership-hub |
+| **Giai đoạn** | 1 |
+| **Tên kỹ thuật giai đoạn** | <!--PHASE_NAME_START-->user_core_services<!--PHASE_NAME_END--> |
+| **Mô tả** | Triển khai các dịch vụ cốt lõi quản lý người dùng bao gồm đăng ký, xác thực xã hội, gán vai trò, schema cơ sở dữ liệu và logging kiểm toán bảo mật |
+| **Phiên bản** | 1.0 (Baseline) |
+| **Ngày/Giờ** | 2026/08/03 05:35:05 |
+| **Tác giả** | Enterprise System Architect (SA Agent) |
+| **Phê duyệt** | Pending Technical Governance Review |
+
+#### 1. Phạm vi hoạt động và mục tiêu giai đoạn
+
+Giai đoạn này tập trung vào việc xây dựng nền tảng cốt lõi cho hệ thống quản lý người dùng, bao gồm:
+
+- Triển khai schema cơ sở dữ liệu cho bảng Users và Roles với các ràng buộc toàn vẹn dữ liệu
+- Xây dựng dịch vụ đăng ký người dùng với xác thực email/mật khẩu và hỗ trợ OAuth2 cho các nhà cung cấp xã hội (Firebase, Google, Facebook)
+- Triển khai cơ chế phân quyền RBAC với khả năng gán và thay đổi vai trò người dùng
+- Thiết lập hệ thống logging kiểm toán đáp ứng các tiêu chuẩn bảo mật doanh nghiệp
+- Triển khai xử lý ngoại lệ chi tiết cho validation đầu vào và xung đột dữ liệu
+
+#### 2. Phạm vi kỹ thuật và ranh giới thư mục được phép
+
+**Thư mục và tệp được phép:**
+- `./sources/backend.membershiphub.user/users.sql` - DDL schema cho bảng Users
+- `./sources/backend.membershiphub.user/roles.sql` - DDL schema cho bảng Roles  
+- `./sources/backend.membershiphub.user/user-service.java` - Dịch vụ chính quản lý người dùng
+
+**Endpoint API:**
+- `POST /api/v1/auth/register` - Đăng ký người dùng mới
+- `POST /api/v1/auth/social` - Xác thực qua nhà cung cấp xã hội
+- `PUT /api/v1/users/{userId}/role` - Cập nhật vai trò người dùng (chỉ System Admin)
+
+#### 3. Chỉ đạo chức năng cho Sub-Agent chuyên dụng
+
+**Coder:** Triển khai mã nguồn Java/Quarkus với tuân thủ SOLID, sử dụng BCrypt cho mã hóa mật khẩu, JWT với access token 15 phút và refresh token 7 ngày, áp dụng @Valid cho validation và @Transactional cho các thao tác ghi.
+
+**Tester:** Xây dựng bộ kiểm thử JUnit 5 với độ phủ mã ≥85%, sử dụng Mock cho các dependency, kiểm thử happy path và các scenario lỗi validation.
+
+**Reviewer:** Thực hiện phân tích tĩnh mã nguồn, kiểm tra tuân thủ OWASP Top 10, đảm bảo không có lỗ hổng SQL injection hoặc XSS.
+
+**Doc:** Biên soạn tài liệu kỹ thuật đầy đủ bao gồm API documentation với OpenAPI, schema documentation và hướng dẫn triển khai.
+
+#### 4. Định nghĩa hoàn thành (DoD) cho giai đoạn
+
+- ✅ 100% các requirement [REQ-001], [REQ-002], [REQ-003] được triển khai đầy đủ
+- ✅ Schema database [DAT-001] được tạo thành công với tất cả ràng buộc
+- ✅ Luồng xác thực [ARC-006] hoạt động với OAuth2 và JWT
+- ✅ Xử lý ngoại lệ [EXC-004] cho validation đầu vào
+- ✅ Tuân thủ các tiêu chuẩn bảo mật [NFR-001], [NFR-003], [NFR-006]
+- ✅ Độ phủ kiểm thử ≥85% cho tất cả các dịch vụ
+- ✅ 100% các Tag ID được ánh xạ và kiểm tra
+
+#### 5. NHẬT KÝ THỰC THI KIẾN TRÚC THEO NGÀY
+
+###### NGÀY 1: TRIỂN KHAI DỊCH VỤ ĐĂNG KÝ NGƯỜI DÙNG VÀ API XÁC THỰC XÃ HỘI
+
+######## SUB-TASK 1.1: Triển khai schema cơ sở dữ liệu Users và Roles
+########## Sub-Agent được chỉ định: Coder
+########## Các thành phần mục tiêu và yêu cầu kỹ thuật:
+* **Đường dẫn mục tiêu:** `./sources/backend.membershiphub.user/users.sql`, `./sources/backend.membershiphub.user/roles.sql`
+* **Các thẻ truy xuất nguồn gốc:** <!--START_TAGS-->[DAT-001]<!--END_TAGS-->
+
+######## SUB-TASK 1.2: Triển khai UserService với phương thức register và socialAuthenticate
+########## Sub-Agent được chỉ định: Coder
+########## Các thành phần mục tiêu và yêu cầu kỹ thuật:
+* **Đường dẫn mục tiêu:** `./sources/backend.membershiphub.user/user-service.java`
+* **Các thẻ truy xuất nguồn gốc:** <!--START_TAGS-->[REQ-001], [REQ-002], [ARC-006], [EXC-004], [NFR-001], [NFR-003], [NFR-006]<!--END_TAGS-->
+
+###### NGÀY 2: VIẾT BỘ KIỂM TRA ĐƠN VỊ VÀ TÍCH HỢP CHO CÁC CHỨC NĂNG NGƯỜI DÙNG
+
+######## SUB-TASK 2.1: Kiểm thử đơn vị cho các phương thức register và socialAuthenticate
+########## Sub-Agent được chỉ định: Tester
+########## Các thành phần mục tiêu và yêu cầu kỹ thuật:
+* **Đường dẫn mục tiêu:** `./sources/backend.membershiphub.user/user-service.java;./sources/backend.membershiphub.user/userservice-test.java`
+* **Các thẻ truy xuất nguồn gốc:** <!--START_TAGS-->[REQ-001], [REQ-002], [DAT-001], [EXC-004]<!--END_TAGS-->
+
+######## SUB-TASK 2.2: Kiểm thử tích hợp cho API endpoints
+########## Sub-Agent được chỉ định: Tester
+########## Các thành phần mục tiêu và yêu cầu kỹ thuật:
+* **Đường dẫn mục tiêu:** `./sources/backend.membershiphub.user/user-service.java;./sources/backend.membershiphub.user/user-controller-test.java`
+* **Các thẻ truy xuất nguồn gốc:** <!--START_TAGS-->[REQ-001], [REQ-002], [ARC-006], [EXC-004]<!--END_TAGS-->
+------------------------------------------
+
+# System Instruction
+
+You are a high-performance Data Ingestion and Transformation Engine. Your sole objective is to parse the Phase Context Markdown text and convert it into a perfectly valid, parseable JSON object matching the requested schema framework.
+
+# YOUR CRITICAL OPERATIONAL MANDATES (ZERO LOOPHOLES):
+1. **STRICT VARIABLE FIDELITY & NO PREFIXES:** You MUST use the exact raw values provided in the template variables for file paths and project names. You are STRICTLY BANNED from appending, prepending, or injecting any custom folders or prefixes like "sources/" to the `global_context_file`, `context_file`, `source_target_dir`, or `project_name` fields. Use the variable values exactly as they are passed.
+2. **ABSOLUTE PYDANTIC SCHEMA ALIGNMENT:** Your final generated JSON object MUST perfectly satisfy the structural schema parameters of the target enterprise contract. You are STRICTLY BANNED from omitting, renaming, formatting, or stripping out key elements (specifically `phase_id`, `phase_name`, `phase_description`, `project_name`, `global_context_file`, `source_target_dir`, and `days`).
+3. **ABSOLUTE NO EMPTY TAGS POLICY & STRING SANITIZATION:** You are STRICTLY BANNED from leaving the "targeted_tags" array empty `[]` or null for any sub-task that implements functional requirements or data schemas. You MUST scan the source Markdown sequentially sub-task by sub-task. For each sub-task node, locate the hidden technical container block delimited between `<!--START_TAGS-->` and `<!--END_TAGS-->` contained exclusively within that sub-task section scope. Extract all raw tag token codes inside, strip away all inline markdown formatting characters—specifically backticks (`` ` ``)—and any leading/trailing whitespaces, then populate them as clean separate string elements inside the "targeted_tags" array field of EACH sub-task object node.
+4. **NO TAG BUNDLING:** Every tag must be its own array node (e.g., `"targeted_tags": ["[REQ-001]", "[DAT-002]"]`). You are strictly forbidden from combining multiple tags into a single string element.
+5. **STRICT CONTENT PURITY & REJECT CONVERSATION:** Output ONLY the pure raw executable JSON string matching the required schema. Response must start exactly with the character `{` and end exactly with the character `}`. Banned from including thinking processes, chain-of-thought blocks (`<think>` tags), conversational filler texts, introductions, wrapping inside markdown codeblocks (no triple backticks wrapping), or post-generation notes. Any token outside the raw JSON object boundary triggers an immediate execution pipeline crash.
+
+# Raw Response / Exception:
+
+```json
+Error code: 410 - {'error': {'code': 'github_models_retirement_brownout', 'message': 'GitHub Models is temporarily unavailable as part of a scheduled retirement brownout.'}}: ['Traceback (most recent call last):
+', '  File "/home/runner/work/enterprise-it-ai/enterprise-it-ai/sources/agents/architect-blueprint/block_json.py", line 301, in convert_phases_to_json
+    response = client.beta.chat.completions.parse(
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+', '  File "/opt/hostedtoolcache/Python/3.11.15/x64/lib/python3.11/site-packages/openai/resources/chat/completions/completions.py", line 193, in parse
+    return self._post(
+           ^^^^^^^^^^^
+', '  File "/opt/hostedtoolcache/Python/3.11.15/x64/lib/python3.11/site-packages/openai/_base_client.py", line 1375, in post
+    return cast(ResponseT, self.request(cast_to, opts, stream=stream, stream_cls=stream_cls))
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+', '  File "/opt/hostedtoolcache/Python/3.11.15/x64/lib/python3.11/site-packages/openai/_base_client.py", line 1148, in request
+    raise self._make_status_error_from_response(err.response) from None
+', "openai.APIStatusError: Error code: 410 - {'error': {'code': 'github_models_retirement_brownout', 'message': 'GitHub Models is temporarily unavailable as part of a scheduled retirement brownout.'}}
+"]
+```
+
+# AI Model: meta/Llama-3.3-70B-Instruct - Phase 1 STEPS - Prompt:
+
+Analyze the attached Phase 1 Context Markdown content.
+
+Extract and translate ALL daily steps, checklists, and agent tasks from the entire document.
+
+
+## 🔒 AGENT ATOMICITY, TASK ID FORMAT & COMPONENT MANDATES (ABSOLUTE):
+- **STRICT TASK ID ALIGNMENT BLUEPRINT:** You MUST strictly generate the "id" field string for every single sub-task using the exact sequential formatting blueprint: `D<day_num>_ST<task_index>` (e.g., `D1_ST1`, `D1_ST2`, `D2_ST1`).
+- **STRICT AGENT ROLE LITERAL VALUES:** The "agent" field inside the JSON sub-task object MUST strictly enforce a capitalized first letter and lowercase subsequent letters pattern matching the exact tokens: 'Coder' | 'Tester' | 'Reviewer' | 'Doc' | 'Docker' | 'Gcp' | 'Gke'. Any other values or lowercase blocks (e.g., NO "coder") are strictly banned.
+- **NO ZERO-COMPONENT TASKS (ABSOLUTE HARD LIMIT):** You are STRICTLY BANNED from generating any sub-task object where the 'components' array is empty `[]`, null, or missing. If an Agent does not have any physical file paths to create, modify, or document, you MUST NOT generate that sub-task object node.
+- **FALLBACK COMPONENT RULE:** If a day has technical descriptions but lacks physical file paths, assign the task to "Doc" agent and populate 'components' with exactly the value of: ".ai/.plan/.context/phase-1.context.blueprint.md".
+- **STRICT AGENT ROLE SEGREGATION (ANTI-AGGREGATION):** If a workflow file involves multiple actions by different personas on the same calendar day, you MUST split this workflow into completely separate, sequential task objects inside the 'sub_tasks' array.
+- **HIGH-DENSITY TECHNICAL SPECIFICATION:** The 'task' field MUST contain an exhaustive, granular engineering instruction. If the sub-task involves an API route, integration endpoint, database query, or message block, you MUST explicitly inline the complete technical contract (e.g., Request/Response Payload Schemas, Data Types, Error Status Codes, or Queue names) directly inside this string. Vague high-level bullet summaries are forbidden.
+- **WORKSPACE PREFIX RULE & MULTI-LANGUAGE TEST EXCEPTION:** Every path in 'components' array MUST strictly begin with `./sources/`. 
+  * *CRITICAL EXCEPTION:* If the first parameter before the semi-colon character in a tester task is the literal string token `INTEGRATION_SCOPE`, you MUST leave that token completely unmodified. Do NOT append any path prefix to it (e.g., `"components": ["INTEGRATION_SCOPE;./sources/frontend/tests/auth.spec.ts"]`).
+
+## 🛠️ MANDATORY TOP-LEVEL FIELD VALUES INJECTION & ANCHOR PARSING (STRICT FIDELITY):
+You MUST dynamically populate the top-level keys of the JSON object using EXACT raw variable values without any modifications, or parse them directly from the primary Markdown header HTML comments:
+- **`phase_id`**: 1
+- **`phase_name`**: [Locate the primary Markdown title header line, extract the clean technical string text located exactly between the hidden HTML delimiters `<!--PHASE_NAME_START-->` and `<!--PHASE_NAME_END-->` without any alterations or translations]
+- **`phase_description`**: [Locate the primary Markdown title header line, extract the exact translated phase description text that follows after the literal marker `| Description:` or its translated equivalent]
+- **`project_name`**: "membership-hub"
+- **`global_context_file`**: ".ai/.context/membership-hub.global.blueprint.md"
+- **`source_target_dir`**: "sources/"
+
+#### 7. Context Fields Integration Mandate
+- For each day object inside the array, set 'day' to its calculated integer value, set 'context_file' to exact string ".ai/.plan/.context/phase-1.context.blueprint.md", and **set 'context_section' to the exact raw string value of the entire primary Day Header extracted from the source Markdown context text** (e.g., `"context_section": "DAY 1: Multi-Tenant Inception Schema & Flyway Migration Setup"`).
+
+#### 8. CHRONOLOGICAL TIMELINE SEQUENCING MANDATE (ABSOLUTE):
+#### 8. CHRONOLOGICAL TIMELINE SEQUENCING MANDATE (ABSOLUTE):
+
+## SYSTEM CRITICAL BOUNDARY: FLAT CONFIGURATION IS ACTIVE (is_chunked is FALSE)
+- Regardless of the actual day numbers documented in the source Markdown content (e.g., even if the text states "DAY 4", "DAY 5"), you MUST completely reset the timeline sequence internally so that the first operational day inside this Phase always starts from integer 1. Progression follows sequentially as 2, 3, 4, etc. 
+- Map the first targeted day to `"day": 1`, set 'context_file' to ".ai/.plan/.context/phase-1.context.blueprint.md", and strictly set 'context_section' to the exact raw primary header line of the first day parsed from the text. Incremental days follow this relative baseline.
+
+
+## 🛑 MANDATORY STRUCTURE ENFORCEMENT FOR TRACEABILITY TAGS VIA HTML ANCHORS (CRITICAL):
+- For each sub-task block, locate the hidden technical container bounds delimited strictly between `<!--START_TAGS-->` and `<!--END_TAGS-->`. Extract all individual inherited Tag IDs from inside that container, completely purge all markdown backticks (`` ` ``) and padding spaces, and populate them as clean individual string elements inside the "targeted_tags" array field (e.g., `"targeted_tags": ["[REQ-001]", "[DAT-005]"]`).
+- You are STRICTLY BANNED from leaving the "targeted_tags" array empty `[]` or null. Every single tag token must be its own separated array element string.
+
+You must conform strictly to your required JSON Schema layout design structure:
+{
+  "$defs": {
+    "DailyStep": {
+      "properties": {
+        "day": {
+          "description": "Timeline iteration day inside this isolated phase.",
+          "title": "Day",
+          "type": "integer"
+        },
+        "context_file": {
+          "description": "The phase context Markdown file for closure on this day.",
+          "title": "Context File",
+          "type": "string"
+        },
+        "context_section": {
+          "description": "The day targeted for closure on this day.",
+          "title": "Context Section",
+          "type": "string"
+        },
+        "sub_tasks": {
+          "description": "Array of isolated micro-tasks assigned to sub-agents.",
+          "items": {
+            "$ref": "##/$defs/SubAgentTask"
+          },
+          "title": "Sub Tasks",
+          "type": "array"
+        }
+      },
+      "required": [
+        "day",
+        "context_file",
+        "context_section",
+        "sub_tasks"
+      ],
+      "title": "DailyStep",
+      "type": "object"
+    },
+    "SubAgentTask": {
+      "properties": {
+        "id": {
+          "description": "Sub-Task identity of Task that sub-agent role executing.",
+          "title": "Id",
+          "type": "string"
+        },
+        "agent": {
+          "description": "Target sub-agent role executing the task.",
+          "title": "Agent",
+          "type": "string"
+        },
+        "desc": {
+          "description": "Literal, low-level technical step assigned to the agent.",
+          "title": "Desc",
+          "type": "string"
+        },
+        "targeted_tags": {
+          "description": "Flat string array of exact inherited BA Tag IDs that this specific sub-task implements or verifies (e.g. ['[REQ-001]', '[ARC-002]']). MUST match the raw requirements 1:1.",
+          "items": {
+            "type": "string"
+          },
+          "title": "Targeted Tags",
+          "type": "array"
+        },
+        "components": {
+          "description": "Flat array of physical localized file paths or scripts modified or targeted by this single task. Return an empty array [] if no files are involved.",
+          "items": {
+            "type": "string"
+          },
+          "title": "Components",
+          "type": "array"
+        }
+      },
+      "required": [
+        "id",
+        "agent",
+        "desc"
+      ],
+      "title": "SubAgentTask",
+      "type": "object"
+    }
+  },
+  "properties": {
+    "phase_id": {
+      "description": "Target phase tracker index.",
+      "title": "Phase Id",
+      "type": "integer"
+    },
+    "phase_name": {
+      "description": "Target phase tracker name.",
+      "title": "Phase Name",
+      "type": "string"
+    },
+    "phase_description": {
+      "description": "Target phase description.",
+      "title": "Phase Description",
+      "type": "string"
+    },
+    "project_name": {
+      "description": "Target project tracker name.",
+      "title": "Project Name",
+      "type": "string"
+    },
+    "global_context_file": {
+      "description": "Project global context Markdown file for closure.",
+      "title": "Global Context File",
+      "type": "string"
+    },
+    "source_target_dir": {
+      "description": "Project sources folder path for closure.",
+      "title": "Source Target Dir",
+      "type": "string"
+    },
+    "days": {
+      "description": "Day-by-day engineering tracking steps.",
+      "items": {
+        "$ref": "##/$defs/DailyStep"
+      },
+      "title": "Days",
+      "type": "array"
+    }
+  },
+  "required": [
+    "phase_id",
+    "phase_name",
+    "phase_description",
+    "project_name",
+    "global_context_file",
+    "source_target_dir",
+    "days"
+  ],
+  "title": "PhaseStepsPlan",
+  "type": "object"
+}
+
+--- PHASE 1 CONTEXT MARKDOWN ---
+## Giai đoạn 1: <!--PHASE_NAME_START-->user_core_services<!--PHASE_NAME_END--> | Mô tả: Triển khai các dịch vụ cốt lõi quản lý người dùng bao gồm đăng ký, xác thực xã hội, gán vai trò, schema cơ sở dữ liệu và logging kiểm toán bảo mật
+
+#### 📊 Kiểm soát tài liệu
+
+| Mục | Chi tiết |
+| :--- | :--- |
+| **ID Blueprint** | ARCH-20260803053505 |
+| **Tên dự án** | membership-hub |
+| **Giai đoạn** | 1 |
+| **Tên kỹ thuật giai đoạn** | <!--PHASE_NAME_START-->user_core_services<!--PHASE_NAME_END--> |
+| **Mô tả** | Triển khai các dịch vụ cốt lõi quản lý người dùng bao gồm đăng ký, xác thực xã hội, gán vai trò, schema cơ sở dữ liệu và logging kiểm toán bảo mật |
+| **Phiên bản** | 1.0 (Baseline) |
+| **Ngày/Giờ** | 2026/08/03 05:35:05 |
+| **Tác giả** | Enterprise System Architect (SA Agent) |
+| **Phê duyệt** | Pending Technical Governance Review |
+
+#### 1. Phạm vi hoạt động và mục tiêu giai đoạn
+
+Giai đoạn này tập trung vào việc xây dựng nền tảng cốt lõi cho hệ thống quản lý người dùng, bao gồm:
+
+- Triển khai schema cơ sở dữ liệu cho bảng Users và Roles với các ràng buộc toàn vẹn dữ liệu
+- Xây dựng dịch vụ đăng ký người dùng với xác thực email/mật khẩu và hỗ trợ OAuth2 cho các nhà cung cấp xã hội (Firebase, Google, Facebook)
+- Triển khai cơ chế phân quyền RBAC với khả năng gán và thay đổi vai trò người dùng
+- Thiết lập hệ thống logging kiểm toán đáp ứng các tiêu chuẩn bảo mật doanh nghiệp
+- Triển khai xử lý ngoại lệ chi tiết cho validation đầu vào và xung đột dữ liệu
+
+#### 2. Phạm vi kỹ thuật và ranh giới thư mục được phép
+
+**Thư mục và tệp được phép:**
+- `./sources/backend.membershiphub.user/users.sql` - DDL schema cho bảng Users
+- `./sources/backend.membershiphub.user/roles.sql` - DDL schema cho bảng Roles  
+- `./sources/backend.membershiphub.user/user-service.java` - Dịch vụ chính quản lý người dùng
+
+**Endpoint API:**
+- `POST /api/v1/auth/register` - Đăng ký người dùng mới
+- `POST /api/v1/auth/social` - Xác thực qua nhà cung cấp xã hội
+- `PUT /api/v1/users/{userId}/role` - Cập nhật vai trò người dùng (chỉ System Admin)
+
+#### 3. Chỉ đạo chức năng cho Sub-Agent chuyên dụng
+
+**Coder:** Triển khai mã nguồn Java/Quarkus với tuân thủ SOLID, sử dụng BCrypt cho mã hóa mật khẩu, JWT với access token 15 phút và refresh token 7 ngày, áp dụng @Valid cho validation và @Transactional cho các thao tác ghi.
+
+**Tester:** Xây dựng bộ kiểm thử JUnit 5 với độ phủ mã ≥85%, sử dụng Mock cho các dependency, kiểm thử happy path và các scenario lỗi validation.
+
+**Reviewer:** Thực hiện phân tích tĩnh mã nguồn, kiểm tra tuân thủ OWASP Top 10, đảm bảo không có lỗ hổng SQL injection hoặc XSS.
+
+**Doc:** Biên soạn tài liệu kỹ thuật đầy đủ bao gồm API documentation với OpenAPI, schema documentation và hướng dẫn triển khai.
+
+#### 4. Định nghĩa hoàn thành (DoD) cho giai đoạn
+
+- ✅ 100% các requirement [REQ-001], [REQ-002], [REQ-003] được triển khai đầy đủ
+- ✅ Schema database [DAT-001] được tạo thành công với tất cả ràng buộc
+- ✅ Luồng xác thực [ARC-006] hoạt động với OAuth2 và JWT
+- ✅ Xử lý ngoại lệ [EXC-004] cho validation đầu vào
+- ✅ Tuân thủ các tiêu chuẩn bảo mật [NFR-001], [NFR-003], [NFR-006]
+- ✅ Độ phủ kiểm thử ≥85% cho tất cả các dịch vụ
+- ✅ 100% các Tag ID được ánh xạ và kiểm tra
+
+#### 5. NHẬT KÝ THỰC THI KIẾN TRÚC THEO NGÀY
+
+###### NGÀY 1: TRIỂN KHAI DỊCH VỤ ĐĂNG KÝ NGƯỜI DÙNG VÀ API XÁC THỰC XÃ HỘI
+
+######## SUB-TASK 1.1: Triển khai schema cơ sở dữ liệu Users và Roles
+########## Sub-Agent được chỉ định: Coder
+########## Các thành phần mục tiêu và yêu cầu kỹ thuật:
+* **Đường dẫn mục tiêu:** `./sources/backend.membershiphub.user/users.sql`, `./sources/backend.membershiphub.user/roles.sql`
+* **Các thẻ truy xuất nguồn gốc:** <!--START_TAGS-->[DAT-001]<!--END_TAGS-->
+
+######## SUB-TASK 1.2: Triển khai UserService với phương thức register và socialAuthenticate
+########## Sub-Agent được chỉ định: Coder
+########## Các thành phần mục tiêu và yêu cầu kỹ thuật:
+* **Đường dẫn mục tiêu:** `./sources/backend.membershiphub.user/user-service.java`
+* **Các thẻ truy xuất nguồn gốc:** <!--START_TAGS-->[REQ-001], [REQ-002], [ARC-006], [EXC-004], [NFR-001], [NFR-003], [NFR-006]<!--END_TAGS-->
+
+###### NGÀY 2: VIẾT BỘ KIỂM TRA ĐƠN VỊ VÀ TÍCH HỢP CHO CÁC CHỨC NĂNG NGƯỜI DÙNG
+
+######## SUB-TASK 2.1: Kiểm thử đơn vị cho các phương thức register và socialAuthenticate
+########## Sub-Agent được chỉ định: Tester
+########## Các thành phần mục tiêu và yêu cầu kỹ thuật:
+* **Đường dẫn mục tiêu:** `./sources/backend.membershiphub.user/user-service.java;./sources/backend.membershiphub.user/userservice-test.java`
+* **Các thẻ truy xuất nguồn gốc:** <!--START_TAGS-->[REQ-001], [REQ-002], [DAT-001], [EXC-004]<!--END_TAGS-->
+
+######## SUB-TASK 2.2: Kiểm thử tích hợp cho API endpoints
+########## Sub-Agent được chỉ định: Tester
+########## Các thành phần mục tiêu và yêu cầu kỹ thuật:
+* **Đường dẫn mục tiêu:** `./sources/backend.membershiphub.user/user-service.java;./sources/backend.membershiphub.user/user-controller-test.java`
+* **Các thẻ truy xuất nguồn gốc:** <!--START_TAGS-->[REQ-001], [REQ-002], [ARC-006], [EXC-004]<!--END_TAGS-->
+------------------------------------------
+
+# System Instruction
+
+You are a high-performance Data Ingestion and Transformation Engine. Your sole objective is to parse the Phase Context Markdown text and convert it into a perfectly valid, parseable JSON object matching the requested schema framework.
+
+# YOUR CRITICAL OPERATIONAL MANDATES (ZERO LOOPHOLES):
+1. **STRICT VARIABLE FIDELITY & NO PREFIXES:** You MUST use the exact raw values provided in the template variables for file paths and project names. You are STRICTLY BANNED from appending, prepending, or injecting any custom folders or prefixes like "sources/" to the `global_context_file`, `context_file`, `source_target_dir`, or `project_name` fields. Use the variable values exactly as they are passed.
+2. **ABSOLUTE PYDANTIC SCHEMA ALIGNMENT:** Your final generated JSON object MUST perfectly satisfy the structural schema parameters of the target enterprise contract. You are STRICTLY BANNED from omitting, renaming, formatting, or stripping out key elements (specifically `phase_id`, `phase_name`, `phase_description`, `project_name`, `global_context_file`, `source_target_dir`, and `days`).
+3. **ABSOLUTE NO EMPTY TAGS POLICY & STRING SANITIZATION:** You are STRICTLY BANNED from leaving the "targeted_tags" array empty `[]` or null for any sub-task that implements functional requirements or data schemas. You MUST scan the source Markdown sequentially sub-task by sub-task. For each sub-task node, locate the hidden technical container block delimited between `<!--START_TAGS-->` and `<!--END_TAGS-->` contained exclusively within that sub-task section scope. Extract all raw tag token codes inside, strip away all inline markdown formatting characters—specifically backticks (`` ` ``)—and any leading/trailing whitespaces, then populate them as clean separate string elements inside the "targeted_tags" array field of EACH sub-task object node.
+4. **NO TAG BUNDLING:** Every tag must be its own array node (e.g., `"targeted_tags": ["[REQ-001]", "[DAT-002]"]`). You are strictly forbidden from combining multiple tags into a single string element.
+5. **STRICT CONTENT PURITY & REJECT CONVERSATION:** Output ONLY the pure raw executable JSON string matching the required schema. Response must start exactly with the character `{` and end exactly with the character `}`. Banned from including thinking processes, chain-of-thought blocks (`<think>` tags), conversational filler texts, introductions, wrapping inside markdown codeblocks (no triple backticks wrapping), or post-generation notes. Any token outside the raw JSON object boundary triggers an immediate execution pipeline crash.
+
+# Raw Response / Exception:
+
+```json
+Error code: 410 - {'error': {'code': 'github_models_retirement_brownout', 'message': 'GitHub Models is temporarily unavailable as part of a scheduled retirement brownout.'}}: ['Traceback (most recent call last):
+', '  File "/home/runner/work/enterprise-it-ai/enterprise-it-ai/sources/agents/architect-blueprint/block_json.py", line 301, in convert_phases_to_json
+    response = client.beta.chat.completions.parse(
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+', '  File "/opt/hostedtoolcache/Python/3.11.15/x64/lib/python3.11/site-packages/openai/resources/chat/completions/completions.py", line 193, in parse
+    return self._post(
+           ^^^^^^^^^^^
+', '  File "/opt/hostedtoolcache/Python/3.11.15/x64/lib/python3.11/site-packages/openai/_base_client.py", line 1375, in post
+    return cast(ResponseT, self.request(cast_to, opts, stream=stream, stream_cls=stream_cls))
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+', '  File "/opt/hostedtoolcache/Python/3.11.15/x64/lib/python3.11/site-packages/openai/_base_client.py", line 1148, in request
+    raise self._make_status_error_from_response(err.response) from None
+', "openai.APIStatusError: Error code: 410 - {'error': {'code': 'github_models_retirement_brownout', 'message': 'GitHub Models is temporarily unavailable as part of a scheduled retirement brownout.'}}
+"]
+```
+
+# AI Model: meta/Meta-Llama-3.1-405B-Instruct - Phase 1 STEPS - Prompt:
+
+Analyze the attached Phase 1 Context Markdown content.
+
+Extract and translate ALL daily steps, checklists, and agent tasks from the entire document.
+
+
+## 🔒 AGENT ATOMICITY, TASK ID FORMAT & COMPONENT MANDATES (ABSOLUTE):
+- **STRICT TASK ID ALIGNMENT BLUEPRINT:** You MUST strictly generate the "id" field string for every single sub-task using the exact sequential formatting blueprint: `D<day_num>_ST<task_index>` (e.g., `D1_ST1`, `D1_ST2`, `D2_ST1`).
+- **STRICT AGENT ROLE LITERAL VALUES:** The "agent" field inside the JSON sub-task object MUST strictly enforce a capitalized first letter and lowercase subsequent letters pattern matching the exact tokens: 'Coder' | 'Tester' | 'Reviewer' | 'Doc' | 'Docker' | 'Gcp' | 'Gke'. Any other values or lowercase blocks (e.g., NO "coder") are strictly banned.
+- **NO ZERO-COMPONENT TASKS (ABSOLUTE HARD LIMIT):** You are STRICTLY BANNED from generating any sub-task object where the 'components' array is empty `[]`, null, or missing. If an Agent does not have any physical file paths to create, modify, or document, you MUST NOT generate that sub-task object node.
+- **FALLBACK COMPONENT RULE:** If a day has technical descriptions but lacks physical file paths, assign the task to "Doc" agent and populate 'components' with exactly the value of: ".ai/.plan/.context/phase-1.context.blueprint.md".
+- **STRICT AGENT ROLE SEGREGATION (ANTI-AGGREGATION):** If a workflow file involves multiple actions by different personas on the same calendar day, you MUST split this workflow into completely separate, sequential task objects inside the 'sub_tasks' array.
+- **HIGH-DENSITY TECHNICAL SPECIFICATION:** The 'task' field MUST contain an exhaustive, granular engineering instruction. If the sub-task involves an API route, integration endpoint, database query, or message block, you MUST explicitly inline the complete technical contract (e.g., Request/Response Payload Schemas, Data Types, Error Status Codes, or Queue names) directly inside this string. Vague high-level bullet summaries are forbidden.
+- **WORKSPACE PREFIX RULE & MULTI-LANGUAGE TEST EXCEPTION:** Every path in 'components' array MUST strictly begin with `./sources/`. 
+  * *CRITICAL EXCEPTION:* If the first parameter before the semi-colon character in a tester task is the literal string token `INTEGRATION_SCOPE`, you MUST leave that token completely unmodified. Do NOT append any path prefix to it (e.g., `"components": ["INTEGRATION_SCOPE;./sources/frontend/tests/auth.spec.ts"]`).
+
+## 🛠️ MANDATORY TOP-LEVEL FIELD VALUES INJECTION & ANCHOR PARSING (STRICT FIDELITY):
+You MUST dynamically populate the top-level keys of the JSON object using EXACT raw variable values without any modifications, or parse them directly from the primary Markdown header HTML comments:
+- **`phase_id`**: 1
+- **`phase_name`**: [Locate the primary Markdown title header line, extract the clean technical string text located exactly between the hidden HTML delimiters `<!--PHASE_NAME_START-->` and `<!--PHASE_NAME_END-->` without any alterations or translations]
+- **`phase_description`**: [Locate the primary Markdown title header line, extract the exact translated phase description text that follows after the literal marker `| Description:` or its translated equivalent]
+- **`project_name`**: "membership-hub"
+- **`global_context_file`**: ".ai/.context/membership-hub.global.blueprint.md"
+- **`source_target_dir`**: "sources/"
+
+#### 7. Context Fields Integration Mandate
+- For each day object inside the array, set 'day' to its calculated integer value, set 'context_file' to exact string ".ai/.plan/.context/phase-1.context.blueprint.md", and **set 'context_section' to the exact raw string value of the entire primary Day Header extracted from the source Markdown context text** (e.g., `"context_section": "DAY 1: Multi-Tenant Inception Schema & Flyway Migration Setup"`).
+
+#### 8. CHRONOLOGICAL TIMELINE SEQUENCING MANDATE (ABSOLUTE):
+#### 8. CHRONOLOGICAL TIMELINE SEQUENCING MANDATE (ABSOLUTE):
+
+## SYSTEM CRITICAL BOUNDARY: FLAT CONFIGURATION IS ACTIVE (is_chunked is FALSE)
+- Regardless of the actual day numbers documented in the source Markdown content (e.g., even if the text states "DAY 4", "DAY 5"), you MUST completely reset the timeline sequence internally so that the first operational day inside this Phase always starts from integer 1. Progression follows sequentially as 2, 3, 4, etc. 
+- Map the first targeted day to `"day": 1`, set 'context_file' to ".ai/.plan/.context/phase-1.context.blueprint.md", and strictly set 'context_section' to the exact raw primary header line of the first day parsed from the text. Incremental days follow this relative baseline.
+
+
+## 🛑 MANDATORY STRUCTURE ENFORCEMENT FOR TRACEABILITY TAGS VIA HTML ANCHORS (CRITICAL):
+- For each sub-task block, locate the hidden technical container bounds delimited strictly between `<!--START_TAGS-->` and `<!--END_TAGS-->`. Extract all individual inherited Tag IDs from inside that container, completely purge all markdown backticks (`` ` ``) and padding spaces, and populate them as clean individual string elements inside the "targeted_tags" array field (e.g., `"targeted_tags": ["[REQ-001]", "[DAT-005]"]`).
+- You are STRICTLY BANNED from leaving the "targeted_tags" array empty `[]` or null. Every single tag token must be its own separated array element string.
+
+You must conform strictly to your required JSON Schema layout design structure:
+{
+  "$defs": {
+    "DailyStep": {
+      "properties": {
+        "day": {
+          "description": "Timeline iteration day inside this isolated phase.",
+          "title": "Day",
+          "type": "integer"
+        },
+        "context_file": {
+          "description": "The phase context Markdown file for closure on this day.",
+          "title": "Context File",
+          "type": "string"
+        },
+        "context_section": {
+          "description": "The day targeted for closure on this day.",
+          "title": "Context Section",
+          "type": "string"
+        },
+        "sub_tasks": {
+          "description": "Array of isolated micro-tasks assigned to sub-agents.",
+          "items": {
+            "$ref": "##/$defs/SubAgentTask"
+          },
+          "title": "Sub Tasks",
+          "type": "array"
+        }
+      },
+      "required": [
+        "day",
+        "context_file",
+        "context_section",
+        "sub_tasks"
+      ],
+      "title": "DailyStep",
+      "type": "object"
+    },
+    "SubAgentTask": {
+      "properties": {
+        "id": {
+          "description": "Sub-Task identity of Task that sub-agent role executing.",
+          "title": "Id",
+          "type": "string"
+        },
+        "agent": {
+          "description": "Target sub-agent role executing the task.",
+          "title": "Agent",
+          "type": "string"
+        },
+        "desc": {
+          "description": "Literal, low-level technical step assigned to the agent.",
+          "title": "Desc",
+          "type": "string"
+        },
+        "targeted_tags": {
+          "description": "Flat string array of exact inherited BA Tag IDs that this specific sub-task implements or verifies (e.g. ['[REQ-001]', '[ARC-002]']). MUST match the raw requirements 1:1.",
+          "items": {
+            "type": "string"
+          },
+          "title": "Targeted Tags",
+          "type": "array"
+        },
+        "components": {
+          "description": "Flat array of physical localized file paths or scripts modified or targeted by this single task. Return an empty array [] if no files are involved.",
+          "items": {
+            "type": "string"
+          },
+          "title": "Components",
+          "type": "array"
+        }
+      },
+      "required": [
+        "id",
+        "agent",
+        "desc"
+      ],
+      "title": "SubAgentTask",
+      "type": "object"
+    }
+  },
+  "properties": {
+    "phase_id": {
+      "description": "Target phase tracker index.",
+      "title": "Phase Id",
+      "type": "integer"
+    },
+    "phase_name": {
+      "description": "Target phase tracker name.",
+      "title": "Phase Name",
+      "type": "string"
+    },
+    "phase_description": {
+      "description": "Target phase description.",
+      "title": "Phase Description",
+      "type": "string"
+    },
+    "project_name": {
+      "description": "Target project tracker name.",
+      "title": "Project Name",
+      "type": "string"
+    },
+    "global_context_file": {
+      "description": "Project global context Markdown file for closure.",
+      "title": "Global Context File",
+      "type": "string"
+    },
+    "source_target_dir": {
+      "description": "Project sources folder path for closure.",
+      "title": "Source Target Dir",
+      "type": "string"
+    },
+    "days": {
+      "description": "Day-by-day engineering tracking steps.",
+      "items": {
+        "$ref": "##/$defs/DailyStep"
+      },
+      "title": "Days",
+      "type": "array"
+    }
+  },
+  "required": [
+    "phase_id",
+    "phase_name",
+    "phase_description",
+    "project_name",
+    "global_context_file",
+    "source_target_dir",
+    "days"
+  ],
+  "title": "PhaseStepsPlan",
+  "type": "object"
+}
+
+--- PHASE 1 CONTEXT MARKDOWN ---
+## Giai đoạn 1: <!--PHASE_NAME_START-->user_core_services<!--PHASE_NAME_END--> | Mô tả: Triển khai các dịch vụ cốt lõi quản lý người dùng bao gồm đăng ký, xác thực xã hội, gán vai trò, schema cơ sở dữ liệu và logging kiểm toán bảo mật
+
+#### 📊 Kiểm soát tài liệu
+
+| Mục | Chi tiết |
+| :--- | :--- |
+| **ID Blueprint** | ARCH-20260803053505 |
+| **Tên dự án** | membership-hub |
+| **Giai đoạn** | 1 |
+| **Tên kỹ thuật giai đoạn** | <!--PHASE_NAME_START-->user_core_services<!--PHASE_NAME_END--> |
+| **Mô tả** | Triển khai các dịch vụ cốt lõi quản lý người dùng bao gồm đăng ký, xác thực xã hội, gán vai trò, schema cơ sở dữ liệu và logging kiểm toán bảo mật |
+| **Phiên bản** | 1.0 (Baseline) |
+| **Ngày/Giờ** | 2026/08/03 05:35:05 |
+| **Tác giả** | Enterprise System Architect (SA Agent) |
+| **Phê duyệt** | Pending Technical Governance Review |
+
+#### 1. Phạm vi hoạt động và mục tiêu giai đoạn
+
+Giai đoạn này tập trung vào việc xây dựng nền tảng cốt lõi cho hệ thống quản lý người dùng, bao gồm:
+
+- Triển khai schema cơ sở dữ liệu cho bảng Users và Roles với các ràng buộc toàn vẹn dữ liệu
+- Xây dựng dịch vụ đăng ký người dùng với xác thực email/mật khẩu và hỗ trợ OAuth2 cho các nhà cung cấp xã hội (Firebase, Google, Facebook)
+- Triển khai cơ chế phân quyền RBAC với khả năng gán và thay đổi vai trò người dùng
+- Thiết lập hệ thống logging kiểm toán đáp ứng các tiêu chuẩn bảo mật doanh nghiệp
+- Triển khai xử lý ngoại lệ chi tiết cho validation đầu vào và xung đột dữ liệu
+
+#### 2. Phạm vi kỹ thuật và ranh giới thư mục được phép
+
+**Thư mục và tệp được phép:**
+- `./sources/backend.membershiphub.user/users.sql` - DDL schema cho bảng Users
+- `./sources/backend.membershiphub.user/roles.sql` - DDL schema cho bảng Roles  
+- `./sources/backend.membershiphub.user/user-service.java` - Dịch vụ chính quản lý người dùng
+
+**Endpoint API:**
+- `POST /api/v1/auth/register` - Đăng ký người dùng mới
+- `POST /api/v1/auth/social` - Xác thực qua nhà cung cấp xã hội
+- `PUT /api/v1/users/{userId}/role` - Cập nhật vai trò người dùng (chỉ System Admin)
+
+#### 3. Chỉ đạo chức năng cho Sub-Agent chuyên dụng
+
+**Coder:** Triển khai mã nguồn Java/Quarkus với tuân thủ SOLID, sử dụng BCrypt cho mã hóa mật khẩu, JWT với access token 15 phút và refresh token 7 ngày, áp dụng @Valid cho validation và @Transactional cho các thao tác ghi.
+
+**Tester:** Xây dựng bộ kiểm thử JUnit 5 với độ phủ mã ≥85%, sử dụng Mock cho các dependency, kiểm thử happy path và các scenario lỗi validation.
+
+**Reviewer:** Thực hiện phân tích tĩnh mã nguồn, kiểm tra tuân thủ OWASP Top 10, đảm bảo không có lỗ hổng SQL injection hoặc XSS.
+
+**Doc:** Biên soạn tài liệu kỹ thuật đầy đủ bao gồm API documentation với OpenAPI, schema documentation và hướng dẫn triển khai.
+
+#### 4. Định nghĩa hoàn thành (DoD) cho giai đoạn
+
+- ✅ 100% các requirement [REQ-001], [REQ-002], [REQ-003] được triển khai đầy đủ
+- ✅ Schema database [DAT-001] được tạo thành công với tất cả ràng buộc
+- ✅ Luồng xác thực [ARC-006] hoạt động với OAuth2 và JWT
+- ✅ Xử lý ngoại lệ [EXC-004] cho validation đầu vào
+- ✅ Tuân thủ các tiêu chuẩn bảo mật [NFR-001], [NFR-003], [NFR-006]
+- ✅ Độ phủ kiểm thử ≥85% cho tất cả các dịch vụ
+- ✅ 100% các Tag ID được ánh xạ và kiểm tra
+
+#### 5. NHẬT KÝ THỰC THI KIẾN TRÚC THEO NGÀY
+
+###### NGÀY 1: TRIỂN KHAI DỊCH VỤ ĐĂNG KÝ NGƯỜI DÙNG VÀ API XÁC THỰC XÃ HỘI
+
+######## SUB-TASK 1.1: Triển khai schema cơ sở dữ liệu Users và Roles
+########## Sub-Agent được chỉ định: Coder
+########## Các thành phần mục tiêu và yêu cầu kỹ thuật:
+* **Đường dẫn mục tiêu:** `./sources/backend.membershiphub.user/users.sql`, `./sources/backend.membershiphub.user/roles.sql`
+* **Các thẻ truy xuất nguồn gốc:** <!--START_TAGS-->[DAT-001]<!--END_TAGS-->
+
+######## SUB-TASK 1.2: Triển khai UserService với phương thức register và socialAuthenticate
+########## Sub-Agent được chỉ định: Coder
+########## Các thành phần mục tiêu và yêu cầu kỹ thuật:
+* **Đường dẫn mục tiêu:** `./sources/backend.membershiphub.user/user-service.java`
+* **Các thẻ truy xuất nguồn gốc:** <!--START_TAGS-->[REQ-001], [REQ-002], [ARC-006], [EXC-004], [NFR-001], [NFR-003], [NFR-006]<!--END_TAGS-->
+
+###### NGÀY 2: VIẾT BỘ KIỂM TRA ĐƠN VỊ VÀ TÍCH HỢP CHO CÁC CHỨC NĂNG NGƯỜI DÙNG
+
+######## SUB-TASK 2.1: Kiểm thử đơn vị cho các phương thức register và socialAuthenticate
+########## Sub-Agent được chỉ định: Tester
+########## Các thành phần mục tiêu và yêu cầu kỹ thuật:
+* **Đường dẫn mục tiêu:** `./sources/backend.membershiphub.user/user-service.java;./sources/backend.membershiphub.user/userservice-test.java`
+* **Các thẻ truy xuất nguồn gốc:** <!--START_TAGS-->[REQ-001], [REQ-002], [DAT-001], [EXC-004]<!--END_TAGS-->
+
+######## SUB-TASK 2.2: Kiểm thử tích hợp cho API endpoints
+########## Sub-Agent được chỉ định: Tester
+########## Các thành phần mục tiêu và yêu cầu kỹ thuật:
+* **Đường dẫn mục tiêu:** `./sources/backend.membershiphub.user/user-service.java;./sources/backend.membershiphub.user/user-controller-test.java`
+* **Các thẻ truy xuất nguồn gốc:** <!--START_TAGS-->[REQ-001], [REQ-002], [ARC-006], [EXC-004]<!--END_TAGS-->
+------------------------------------------
+
+# System Instruction
+
+You are a high-performance Data Ingestion and Transformation Engine. Your sole objective is to parse the Phase Context Markdown text and convert it into a perfectly valid, parseable JSON object matching the requested schema framework.
+
+# YOUR CRITICAL OPERATIONAL MANDATES (ZERO LOOPHOLES):
+1. **STRICT VARIABLE FIDELITY & NO PREFIXES:** You MUST use the exact raw values provided in the template variables for file paths and project names. You are STRICTLY BANNED from appending, prepending, or injecting any custom folders or prefixes like "sources/" to the `global_context_file`, `context_file`, `source_target_dir`, or `project_name` fields. Use the variable values exactly as they are passed.
+2. **ABSOLUTE PYDANTIC SCHEMA ALIGNMENT:** Your final generated JSON object MUST perfectly satisfy the structural schema parameters of the target enterprise contract. You are STRICTLY BANNED from omitting, renaming, formatting, or stripping out key elements (specifically `phase_id`, `phase_name`, `phase_description`, `project_name`, `global_context_file`, `source_target_dir`, and `days`).
+3. **ABSOLUTE NO EMPTY TAGS POLICY & STRING SANITIZATION:** You are STRICTLY BANNED from leaving the "targeted_tags" array empty `[]` or null for any sub-task that implements functional requirements or data schemas. You MUST scan the source Markdown sequentially sub-task by sub-task. For each sub-task node, locate the hidden technical container block delimited between `<!--START_TAGS-->` and `<!--END_TAGS-->` contained exclusively within that sub-task section scope. Extract all raw tag token codes inside, strip away all inline markdown formatting characters—specifically backticks (`` ` ``)—and any leading/trailing whitespaces, then populate them as clean separate string elements inside the "targeted_tags" array field of EACH sub-task object node.
+4. **NO TAG BUNDLING:** Every tag must be its own array node (e.g., `"targeted_tags": ["[REQ-001]", "[DAT-002]"]`). You are strictly forbidden from combining multiple tags into a single string element.
+5. **STRICT CONTENT PURITY & REJECT CONVERSATION:** Output ONLY the pure raw executable JSON string matching the required schema. Response must start exactly with the character `{` and end exactly with the character `}`. Banned from including thinking processes, chain-of-thought blocks (`<think>` tags), conversational filler texts, introductions, wrapping inside markdown codeblocks (no triple backticks wrapping), or post-generation notes. Any token outside the raw JSON object boundary triggers an immediate execution pipeline crash.
+
+# Raw Response / Exception:
+
+```json
+Error code: 410 - {'error': {'code': 'github_models_retirement_brownout', 'message': 'GitHub Models is temporarily unavailable as part of a scheduled retirement brownout.'}}: ['Traceback (most recent call last):
+', '  File "/home/runner/work/enterprise-it-ai/enterprise-it-ai/sources/agents/architect-blueprint/block_json.py", line 301, in convert_phases_to_json
+    response = client.beta.chat.completions.parse(
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+', '  File "/opt/hostedtoolcache/Python/3.11.15/x64/lib/python3.11/site-packages/openai/resources/chat/completions/completions.py", line 193, in parse
+    return self._post(
+           ^^^^^^^^^^^
+', '  File "/opt/hostedtoolcache/Python/3.11.15/x64/lib/python3.11/site-packages/openai/_base_client.py", line 1375, in post
+    return cast(ResponseT, self.request(cast_to, opts, stream=stream, stream_cls=stream_cls))
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+', '  File "/opt/hostedtoolcache/Python/3.11.15/x64/lib/python3.11/site-packages/openai/_base_client.py", line 1148, in request
+    raise self._make_status_error_from_response(err.response) from None
+', "openai.APIStatusError: Error code: 410 - {'error': {'code': 'github_models_retirement_brownout', 'message': 'GitHub Models is temporarily unavailable as part of a scheduled retirement brownout.'}}
+"]
+```
+
+# AI Model: meta/Meta-Llama-3.1-8B-Instruct - Phase 1 STEPS - Prompt:
+
+Analyze the attached Phase 1 Context Markdown content.
+
+Extract and translate ALL daily steps, checklists, and agent tasks from the entire document.
+
+
+## 🔒 AGENT ATOMICITY, TASK ID FORMAT & COMPONENT MANDATES (ABSOLUTE):
+- **STRICT TASK ID ALIGNMENT BLUEPRINT:** You MUST strictly generate the "id" field string for every single sub-task using the exact sequential formatting blueprint: `D<day_num>_ST<task_index>` (e.g., `D1_ST1`, `D1_ST2`, `D2_ST1`).
+- **STRICT AGENT ROLE LITERAL VALUES:** The "agent" field inside the JSON sub-task object MUST strictly enforce a capitalized first letter and lowercase subsequent letters pattern matching the exact tokens: 'Coder' | 'Tester' | 'Reviewer' | 'Doc' | 'Docker' | 'Gcp' | 'Gke'. Any other values or lowercase blocks (e.g., NO "coder") are strictly banned.
+- **NO ZERO-COMPONENT TASKS (ABSOLUTE HARD LIMIT):** You are STRICTLY BANNED from generating any sub-task object where the 'components' array is empty `[]`, null, or missing. If an Agent does not have any physical file paths to create, modify, or document, you MUST NOT generate that sub-task object node.
+- **FALLBACK COMPONENT RULE:** If a day has technical descriptions but lacks physical file paths, assign the task to "Doc" agent and populate 'components' with exactly the value of: ".ai/.plan/.context/phase-1.context.blueprint.md".
+- **STRICT AGENT ROLE SEGREGATION (ANTI-AGGREGATION):** If a workflow file involves multiple actions by different personas on the same calendar day, you MUST split this workflow into completely separate, sequential task objects inside the 'sub_tasks' array.
+- **HIGH-DENSITY TECHNICAL SPECIFICATION:** The 'task' field MUST contain an exhaustive, granular engineering instruction. If the sub-task involves an API route, integration endpoint, database query, or message block, you MUST explicitly inline the complete technical contract (e.g., Request/Response Payload Schemas, Data Types, Error Status Codes, or Queue names) directly inside this string. Vague high-level bullet summaries are forbidden.
+- **WORKSPACE PREFIX RULE & MULTI-LANGUAGE TEST EXCEPTION:** Every path in 'components' array MUST strictly begin with `./sources/`. 
+  * *CRITICAL EXCEPTION:* If the first parameter before the semi-colon character in a tester task is the literal string token `INTEGRATION_SCOPE`, you MUST leave that token completely unmodified. Do NOT append any path prefix to it (e.g., `"components": ["INTEGRATION_SCOPE;./sources/frontend/tests/auth.spec.ts"]`).
+
+## 🛠️ MANDATORY TOP-LEVEL FIELD VALUES INJECTION & ANCHOR PARSING (STRICT FIDELITY):
+You MUST dynamically populate the top-level keys of the JSON object using EXACT raw variable values without any modifications, or parse them directly from the primary Markdown header HTML comments:
+- **`phase_id`**: 1
+- **`phase_name`**: [Locate the primary Markdown title header line, extract the clean technical string text located exactly between the hidden HTML delimiters `<!--PHASE_NAME_START-->` and `<!--PHASE_NAME_END-->` without any alterations or translations]
+- **`phase_description`**: [Locate the primary Markdown title header line, extract the exact translated phase description text that follows after the literal marker `| Description:` or its translated equivalent]
+- **`project_name`**: "membership-hub"
+- **`global_context_file`**: ".ai/.context/membership-hub.global.blueprint.md"
+- **`source_target_dir`**: "sources/"
+
+#### 7. Context Fields Integration Mandate
+- For each day object inside the array, set 'day' to its calculated integer value, set 'context_file' to exact string ".ai/.plan/.context/phase-1.context.blueprint.md", and **set 'context_section' to the exact raw string value of the entire primary Day Header extracted from the source Markdown context text** (e.g., `"context_section": "DAY 1: Multi-Tenant Inception Schema & Flyway Migration Setup"`).
+
+#### 8. CHRONOLOGICAL TIMELINE SEQUENCING MANDATE (ABSOLUTE):
+#### 8. CHRONOLOGICAL TIMELINE SEQUENCING MANDATE (ABSOLUTE):
+
+## SYSTEM CRITICAL BOUNDARY: FLAT CONFIGURATION IS ACTIVE (is_chunked is FALSE)
+- Regardless of the actual day numbers documented in the source Markdown content (e.g., even if the text states "DAY 4", "DAY 5"), you MUST completely reset the timeline sequence internally so that the first operational day inside this Phase always starts from integer 1. Progression follows sequentially as 2, 3, 4, etc. 
+- Map the first targeted day to `"day": 1`, set 'context_file' to ".ai/.plan/.context/phase-1.context.blueprint.md", and strictly set 'context_section' to the exact raw primary header line of the first day parsed from the text. Incremental days follow this relative baseline.
+
+
+## 🛑 MANDATORY STRUCTURE ENFORCEMENT FOR TRACEABILITY TAGS VIA HTML ANCHORS (CRITICAL):
+- For each sub-task block, locate the hidden technical container bounds delimited strictly between `<!--START_TAGS-->` and `<!--END_TAGS-->`. Extract all individual inherited Tag IDs from inside that container, completely purge all markdown backticks (`` ` ``) and padding spaces, and populate them as clean individual string elements inside the "targeted_tags" array field (e.g., `"targeted_tags": ["[REQ-001]", "[DAT-005]"]`).
+- You are STRICTLY BANNED from leaving the "targeted_tags" array empty `[]` or null. Every single tag token must be its own separated array element string.
+
+You must conform strictly to your required JSON Schema layout design structure:
+{
+  "$defs": {
+    "DailyStep": {
+      "properties": {
+        "day": {
+          "description": "Timeline iteration day inside this isolated phase.",
+          "title": "Day",
+          "type": "integer"
+        },
+        "context_file": {
+          "description": "The phase context Markdown file for closure on this day.",
+          "title": "Context File",
+          "type": "string"
+        },
+        "context_section": {
+          "description": "The day targeted for closure on this day.",
+          "title": "Context Section",
+          "type": "string"
+        },
+        "sub_tasks": {
+          "description": "Array of isolated micro-tasks assigned to sub-agents.",
+          "items": {
+            "$ref": "##/$defs/SubAgentTask"
+          },
+          "title": "Sub Tasks",
+          "type": "array"
+        }
+      },
+      "required": [
+        "day",
+        "context_file",
+        "context_section",
+        "sub_tasks"
+      ],
+      "title": "DailyStep",
+      "type": "object"
+    },
+    "SubAgentTask": {
+      "properties": {
+        "id": {
+          "description": "Sub-Task identity of Task that sub-agent role executing.",
+          "title": "Id",
+          "type": "string"
+        },
+        "agent": {
+          "description": "Target sub-agent role executing the task.",
+          "title": "Agent",
+          "type": "string"
+        },
+        "desc": {
+          "description": "Literal, low-level technical step assigned to the agent.",
+          "title": "Desc",
+          "type": "string"
+        },
+        "targeted_tags": {
+          "description": "Flat string array of exact inherited BA Tag IDs that this specific sub-task implements or verifies (e.g. ['[REQ-001]', '[ARC-002]']). MUST match the raw requirements 1:1.",
+          "items": {
+            "type": "string"
+          },
+          "title": "Targeted Tags",
+          "type": "array"
+        },
+        "components": {
+          "description": "Flat array of physical localized file paths or scripts modified or targeted by this single task. Return an empty array [] if no files are involved.",
+          "items": {
+            "type": "string"
+          },
+          "title": "Components",
+          "type": "array"
+        }
+      },
+      "required": [
+        "id",
+        "agent",
+        "desc"
+      ],
+      "title": "SubAgentTask",
+      "type": "object"
+    }
+  },
+  "properties": {
+    "phase_id": {
+      "description": "Target phase tracker index.",
+      "title": "Phase Id",
+      "type": "integer"
+    },
+    "phase_name": {
+      "description": "Target phase tracker name.",
+      "title": "Phase Name",
+      "type": "string"
+    },
+    "phase_description": {
+      "description": "Target phase description.",
+      "title": "Phase Description",
+      "type": "string"
+    },
+    "project_name": {
+      "description": "Target project tracker name.",
+      "title": "Project Name",
+      "type": "string"
+    },
+    "global_context_file": {
+      "description": "Project global context Markdown file for closure.",
+      "title": "Global Context File",
+      "type": "string"
+    },
+    "source_target_dir": {
+      "description": "Project sources folder path for closure.",
+      "title": "Source Target Dir",
+      "type": "string"
+    },
+    "days": {
+      "description": "Day-by-day engineering tracking steps.",
+      "items": {
+        "$ref": "##/$defs/DailyStep"
+      },
+      "title": "Days",
+      "type": "array"
+    }
+  },
+  "required": [
+    "phase_id",
+    "phase_name",
+    "phase_description",
+    "project_name",
+    "global_context_file",
+    "source_target_dir",
+    "days"
+  ],
+  "title": "PhaseStepsPlan",
+  "type": "object"
+}
+
+--- PHASE 1 CONTEXT MARKDOWN ---
+## Giai đoạn 1: <!--PHASE_NAME_START-->user_core_services<!--PHASE_NAME_END--> | Mô tả: Triển khai các dịch vụ cốt lõi quản lý người dùng bao gồm đăng ký, xác thực xã hội, gán vai trò, schema cơ sở dữ liệu và logging kiểm toán bảo mật
+
+#### 📊 Kiểm soát tài liệu
+
+| Mục | Chi tiết |
+| :--- | :--- |
+| **ID Blueprint** | ARCH-20260803053505 |
+| **Tên dự án** | membership-hub |
+| **Giai đoạn** | 1 |
+| **Tên kỹ thuật giai đoạn** | <!--PHASE_NAME_START-->user_core_services<!--PHASE_NAME_END--> |
+| **Mô tả** | Triển khai các dịch vụ cốt lõi quản lý người dùng bao gồm đăng ký, xác thực xã hội, gán vai trò, schema cơ sở dữ liệu và logging kiểm toán bảo mật |
+| **Phiên bản** | 1.0 (Baseline) |
+| **Ngày/Giờ** | 2026/08/03 05:35:05 |
+| **Tác giả** | Enterprise System Architect (SA Agent) |
+| **Phê duyệt** | Pending Technical Governance Review |
+
+#### 1. Phạm vi hoạt động và mục tiêu giai đoạn
+
+Giai đoạn này tập trung vào việc xây dựng nền tảng cốt lõi cho hệ thống quản lý người dùng, bao gồm:
+
+- Triển khai schema cơ sở dữ liệu cho bảng Users và Roles với các ràng buộc toàn vẹn dữ liệu
+- Xây dựng dịch vụ đăng ký người dùng với xác thực email/mật khẩu và hỗ trợ OAuth2 cho các nhà cung cấp xã hội (Firebase, Google, Facebook)
+- Triển khai cơ chế phân quyền RBAC với khả năng gán và thay đổi vai trò người dùng
+- Thiết lập hệ thống logging kiểm toán đáp ứng các tiêu chuẩn bảo mật doanh nghiệp
+- Triển khai xử lý ngoại lệ chi tiết cho validation đầu vào và xung đột dữ liệu
+
+#### 2. Phạm vi kỹ thuật và ranh giới thư mục được phép
+
+**Thư mục và tệp được phép:**
+- `./sources/backend.membershiphub.user/users.sql` - DDL schema cho bảng Users
+- `./sources/backend.membershiphub.user/roles.sql` - DDL schema cho bảng Roles  
+- `./sources/backend.membershiphub.user/user-service.java` - Dịch vụ chính quản lý người dùng
+
+**Endpoint API:**
+- `POST /api/v1/auth/register` - Đăng ký người dùng mới
+- `POST /api/v1/auth/social` - Xác thực qua nhà cung cấp xã hội
+- `PUT /api/v1/users/{userId}/role` - Cập nhật vai trò người dùng (chỉ System Admin)
+
+#### 3. Chỉ đạo chức năng cho Sub-Agent chuyên dụng
+
+**Coder:** Triển khai mã nguồn Java/Quarkus với tuân thủ SOLID, sử dụng BCrypt cho mã hóa mật khẩu, JWT với access token 15 phút và refresh token 7 ngày, áp dụng @Valid cho validation và @Transactional cho các thao tác ghi.
+
+**Tester:** Xây dựng bộ kiểm thử JUnit 5 với độ phủ mã ≥85%, sử dụng Mock cho các dependency, kiểm thử happy path và các scenario lỗi validation.
+
+**Reviewer:** Thực hiện phân tích tĩnh mã nguồn, kiểm tra tuân thủ OWASP Top 10, đảm bảo không có lỗ hổng SQL injection hoặc XSS.
+
+**Doc:** Biên soạn tài liệu kỹ thuật đầy đủ bao gồm API documentation với OpenAPI, schema documentation và hướng dẫn triển khai.
+
+#### 4. Định nghĩa hoàn thành (DoD) cho giai đoạn
+
+- ✅ 100% các requirement [REQ-001], [REQ-002], [REQ-003] được triển khai đầy đủ
+- ✅ Schema database [DAT-001] được tạo thành công với tất cả ràng buộc
+- ✅ Luồng xác thực [ARC-006] hoạt động với OAuth2 và JWT
+- ✅ Xử lý ngoại lệ [EXC-004] cho validation đầu vào
+- ✅ Tuân thủ các tiêu chuẩn bảo mật [NFR-001], [NFR-003], [NFR-006]
+- ✅ Độ phủ kiểm thử ≥85% cho tất cả các dịch vụ
+- ✅ 100% các Tag ID được ánh xạ và kiểm tra
+
+#### 5. NHẬT KÝ THỰC THI KIẾN TRÚC THEO NGÀY
+
+###### NGÀY 1: TRIỂN KHAI DỊCH VỤ ĐĂNG KÝ NGƯỜI DÙNG VÀ API XÁC THỰC XÃ HỘI
+
+######## SUB-TASK 1.1: Triển khai schema cơ sở dữ liệu Users và Roles
+########## Sub-Agent được chỉ định: Coder
+########## Các thành phần mục tiêu và yêu cầu kỹ thuật:
+* **Đường dẫn mục tiêu:** `./sources/backend.membershiphub.user/users.sql`, `./sources/backend.membershiphub.user/roles.sql`
+* **Các thẻ truy xuất nguồn gốc:** <!--START_TAGS-->[DAT-001]<!--END_TAGS-->
+
+######## SUB-TASK 1.2: Triển khai UserService với phương thức register và socialAuthenticate
+########## Sub-Agent được chỉ định: Coder
+########## Các thành phần mục tiêu và yêu cầu kỹ thuật:
+* **Đường dẫn mục tiêu:** `./sources/backend.membershiphub.user/user-service.java`
+* **Các thẻ truy xuất nguồn gốc:** <!--START_TAGS-->[REQ-001], [REQ-002], [ARC-006], [EXC-004], [NFR-001], [NFR-003], [NFR-006]<!--END_TAGS-->
+
+###### NGÀY 2: VIẾT BỘ KIỂM TRA ĐƠN VỊ VÀ TÍCH HỢP CHO CÁC CHỨC NĂNG NGƯỜI DÙNG
+
+######## SUB-TASK 2.1: Kiểm thử đơn vị cho các phương thức register và socialAuthenticate
+########## Sub-Agent được chỉ định: Tester
+########## Các thành phần mục tiêu và yêu cầu kỹ thuật:
+* **Đường dẫn mục tiêu:** `./sources/backend.membershiphub.user/user-service.java;./sources/backend.membershiphub.user/userservice-test.java`
+* **Các thẻ truy xuất nguồn gốc:** <!--START_TAGS-->[REQ-001], [REQ-002], [DAT-001], [EXC-004]<!--END_TAGS-->
+
+######## SUB-TASK 2.2: Kiểm thử tích hợp cho API endpoints
+########## Sub-Agent được chỉ định: Tester
+########## Các thành phần mục tiêu và yêu cầu kỹ thuật:
+* **Đường dẫn mục tiêu:** `./sources/backend.membershiphub.user/user-service.java;./sources/backend.membershiphub.user/user-controller-test.java`
+* **Các thẻ truy xuất nguồn gốc:** <!--START_TAGS-->[REQ-001], [REQ-002], [ARC-006], [EXC-004]<!--END_TAGS-->
+------------------------------------------
+
+# System Instruction
+
+You are a high-performance Data Ingestion and Transformation Engine. Your sole objective is to parse the Phase Context Markdown text and convert it into a perfectly valid, parseable JSON object matching the requested schema framework.
+
+# YOUR CRITICAL OPERATIONAL MANDATES (ZERO LOOPHOLES):
+1. **STRICT VARIABLE FIDELITY & NO PREFIXES:** You MUST use the exact raw values provided in the template variables for file paths and project names. You are STRICTLY BANNED from appending, prepending, or injecting any custom folders or prefixes like "sources/" to the `global_context_file`, `context_file`, `source_target_dir`, or `project_name` fields. Use the variable values exactly as they are passed.
+2. **ABSOLUTE PYDANTIC SCHEMA ALIGNMENT:** Your final generated JSON object MUST perfectly satisfy the structural schema parameters of the target enterprise contract. You are STRICTLY BANNED from omitting, renaming, formatting, or stripping out key elements (specifically `phase_id`, `phase_name`, `phase_description`, `project_name`, `global_context_file`, `source_target_dir`, and `days`).
+3. **ABSOLUTE NO EMPTY TAGS POLICY & STRING SANITIZATION:** You are STRICTLY BANNED from leaving the "targeted_tags" array empty `[]` or null for any sub-task that implements functional requirements or data schemas. You MUST scan the source Markdown sequentially sub-task by sub-task. For each sub-task node, locate the hidden technical container block delimited between `<!--START_TAGS-->` and `<!--END_TAGS-->` contained exclusively within that sub-task section scope. Extract all raw tag token codes inside, strip away all inline markdown formatting characters—specifically backticks (`` ` ``)—and any leading/trailing whitespaces, then populate them as clean separate string elements inside the "targeted_tags" array field of EACH sub-task object node.
+4. **NO TAG BUNDLING:** Every tag must be its own array node (e.g., `"targeted_tags": ["[REQ-001]", "[DAT-002]"]`). You are strictly forbidden from combining multiple tags into a single string element.
+5. **STRICT CONTENT PURITY & REJECT CONVERSATION:** Output ONLY the pure raw executable JSON string matching the required schema. Response must start exactly with the character `{` and end exactly with the character `}`. Banned from including thinking processes, chain-of-thought blocks (`<think>` tags), conversational filler texts, introductions, wrapping inside markdown codeblocks (no triple backticks wrapping), or post-generation notes. Any token outside the raw JSON object boundary triggers an immediate execution pipeline crash.
+
+# Raw Response / Exception:
+
+```json
+Error code: 410 - {'error': {'code': 'github_models_retirement_brownout', 'message': 'GitHub Models is temporarily unavailable as part of a scheduled retirement brownout.'}}: ['Traceback (most recent call last):
+', '  File "/home/runner/work/enterprise-it-ai/enterprise-it-ai/sources/agents/architect-blueprint/block_json.py", line 301, in convert_phases_to_json
+    response = client.beta.chat.completions.parse(
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+', '  File "/opt/hostedtoolcache/Python/3.11.15/x64/lib/python3.11/site-packages/openai/resources/chat/completions/completions.py", line 193, in parse
+    return self._post(
+           ^^^^^^^^^^^
+', '  File "/opt/hostedtoolcache/Python/3.11.15/x64/lib/python3.11/site-packages/openai/_base_client.py", line 1375, in post
+    return cast(ResponseT, self.request(cast_to, opts, stream=stream, stream_cls=stream_cls))
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+', '  File "/opt/hostedtoolcache/Python/3.11.15/x64/lib/python3.11/site-packages/openai/_base_client.py", line 1148, in request
+    raise self._make_status_error_from_response(err.response) from None
+', "openai.APIStatusError: Error code: 410 - {'error': {'code': 'github_models_retirement_brownout', 'message': 'GitHub Models is temporarily unavailable as part of a scheduled retirement brownout.'}}
+"]
+```
+
+# AI Model: mistral-ai/Ministral-3B - Phase 1 STEPS - Prompt:
+
+Analyze the attached Phase 1 Context Markdown content.
+
+Extract and translate ALL daily steps, checklists, and agent tasks from the entire document.
+
+
+## 🔒 AGENT ATOMICITY, TASK ID FORMAT & COMPONENT MANDATES (ABSOLUTE):
+- **STRICT TASK ID ALIGNMENT BLUEPRINT:** You MUST strictly generate the "id" field string for every single sub-task using the exact sequential formatting blueprint: `D<day_num>_ST<task_index>` (e.g., `D1_ST1`, `D1_ST2`, `D2_ST1`).
+- **STRICT AGENT ROLE LITERAL VALUES:** The "agent" field inside the JSON sub-task object MUST strictly enforce a capitalized first letter and lowercase subsequent letters pattern matching the exact tokens: 'Coder' | 'Tester' | 'Reviewer' | 'Doc' | 'Docker' | 'Gcp' | 'Gke'. Any other values or lowercase blocks (e.g., NO "coder") are strictly banned.
+- **NO ZERO-COMPONENT TASKS (ABSOLUTE HARD LIMIT):** You are STRICTLY BANNED from generating any sub-task object where the 'components' array is empty `[]`, null, or missing. If an Agent does not have any physical file paths to create, modify, or document, you MUST NOT generate that sub-task object node.
+- **FALLBACK COMPONENT RULE:** If a day has technical descriptions but lacks physical file paths, assign the task to "Doc" agent and populate 'components' with exactly the value of: ".ai/.plan/.context/phase-1.context.blueprint.md".
+- **STRICT AGENT ROLE SEGREGATION (ANTI-AGGREGATION):** If a workflow file involves multiple actions by different personas on the same calendar day, you MUST split this workflow into completely separate, sequential task objects inside the 'sub_tasks' array.
+- **HIGH-DENSITY TECHNICAL SPECIFICATION:** The 'task' field MUST contain an exhaustive, granular engineering instruction. If the sub-task involves an API route, integration endpoint, database query, or message block, you MUST explicitly inline the complete technical contract (e.g., Request/Response Payload Schemas, Data Types, Error Status Codes, or Queue names) directly inside this string. Vague high-level bullet summaries are forbidden.
+- **WORKSPACE PREFIX RULE & MULTI-LANGUAGE TEST EXCEPTION:** Every path in 'components' array MUST strictly begin with `./sources/`. 
+  * *CRITICAL EXCEPTION:* If the first parameter before the semi-colon character in a tester task is the literal string token `INTEGRATION_SCOPE`, you MUST leave that token completely unmodified. Do NOT append any path prefix to it (e.g., `"components": ["INTEGRATION_SCOPE;./sources/frontend/tests/auth.spec.ts"]`).
+
+## 🛠️ MANDATORY TOP-LEVEL FIELD VALUES INJECTION & ANCHOR PARSING (STRICT FIDELITY):
+You MUST dynamically populate the top-level keys of the JSON object using EXACT raw variable values without any modifications, or parse them directly from the primary Markdown header HTML comments:
+- **`phase_id`**: 1
+- **`phase_name`**: [Locate the primary Markdown title header line, extract the clean technical string text located exactly between the hidden HTML delimiters `<!--PHASE_NAME_START-->` and `<!--PHASE_NAME_END-->` without any alterations or translations]
+- **`phase_description`**: [Locate the primary Markdown title header line, extract the exact translated phase description text that follows after the literal marker `| Description:` or its translated equivalent]
+- **`project_name`**: "membership-hub"
+- **`global_context_file`**: ".ai/.context/membership-hub.global.blueprint.md"
+- **`source_target_dir`**: "sources/"
+
+#### 7. Context Fields Integration Mandate
+- For each day object inside the array, set 'day' to its calculated integer value, set 'context_file' to exact string ".ai/.plan/.context/phase-1.context.blueprint.md", and **set 'context_section' to the exact raw string value of the entire primary Day Header extracted from the source Markdown context text** (e.g., `"context_section": "DAY 1: Multi-Tenant Inception Schema & Flyway Migration Setup"`).
+
+#### 8. CHRONOLOGICAL TIMELINE SEQUENCING MANDATE (ABSOLUTE):
+#### 8. CHRONOLOGICAL TIMELINE SEQUENCING MANDATE (ABSOLUTE):
+
+## SYSTEM CRITICAL BOUNDARY: FLAT CONFIGURATION IS ACTIVE (is_chunked is FALSE)
+- Regardless of the actual day numbers documented in the source Markdown content (e.g., even if the text states "DAY 4", "DAY 5"), you MUST completely reset the timeline sequence internally so that the first operational day inside this Phase always starts from integer 1. Progression follows sequentially as 2, 3, 4, etc. 
+- Map the first targeted day to `"day": 1`, set 'context_file' to ".ai/.plan/.context/phase-1.context.blueprint.md", and strictly set 'context_section' to the exact raw primary header line of the first day parsed from the text. Incremental days follow this relative baseline.
+
+
+## 🛑 MANDATORY STRUCTURE ENFORCEMENT FOR TRACEABILITY TAGS VIA HTML ANCHORS (CRITICAL):
+- For each sub-task block, locate the hidden technical container bounds delimited strictly between `<!--START_TAGS-->` and `<!--END_TAGS-->`. Extract all individual inherited Tag IDs from inside that container, completely purge all markdown backticks (`` ` ``) and padding spaces, and populate them as clean individual string elements inside the "targeted_tags" array field (e.g., `"targeted_tags": ["[REQ-001]", "[DAT-005]"]`).
+- You are STRICTLY BANNED from leaving the "targeted_tags" array empty `[]` or null. Every single tag token must be its own separated array element string.
+
+You must conform strictly to your required JSON Schema layout design structure:
+{
+  "$defs": {
+    "DailyStep": {
+      "properties": {
+        "day": {
+          "description": "Timeline iteration day inside this isolated phase.",
+          "title": "Day",
+          "type": "integer"
+        },
+        "context_file": {
+          "description": "The phase context Markdown file for closure on this day.",
+          "title": "Context File",
+          "type": "string"
+        },
+        "context_section": {
+          "description": "The day targeted for closure on this day.",
+          "title": "Context Section",
+          "type": "string"
+        },
+        "sub_tasks": {
+          "description": "Array of isolated micro-tasks assigned to sub-agents.",
+          "items": {
+            "$ref": "##/$defs/SubAgentTask"
+          },
+          "title": "Sub Tasks",
+          "type": "array"
+        }
+      },
+      "required": [
+        "day",
+        "context_file",
+        "context_section",
+        "sub_tasks"
+      ],
+      "title": "DailyStep",
+      "type": "object"
+    },
+    "SubAgentTask": {
+      "properties": {
+        "id": {
+          "description": "Sub-Task identity of Task that sub-agent role executing.",
+          "title": "Id",
+          "type": "string"
+        },
+        "agent": {
+          "description": "Target sub-agent role executing the task.",
+          "title": "Agent",
+          "type": "string"
+        },
+        "desc": {
+          "description": "Literal, low-level technical step assigned to the agent.",
+          "title": "Desc",
+          "type": "string"
+        },
+        "targeted_tags": {
+          "description": "Flat string array of exact inherited BA Tag IDs that this specific sub-task implements or verifies (e.g. ['[REQ-001]', '[ARC-002]']). MUST match the raw requirements 1:1.",
+          "items": {
+            "type": "string"
+          },
+          "title": "Targeted Tags",
+          "type": "array"
+        },
+        "components": {
+          "description": "Flat array of physical localized file paths or scripts modified or targeted by this single task. Return an empty array [] if no files are involved.",
+          "items": {
+            "type": "string"
+          },
+          "title": "Components",
+          "type": "array"
+        }
+      },
+      "required": [
+        "id",
+        "agent",
+        "desc"
+      ],
+      "title": "SubAgentTask",
+      "type": "object"
+    }
+  },
+  "properties": {
+    "phase_id": {
+      "description": "Target phase tracker index.",
+      "title": "Phase Id",
+      "type": "integer"
+    },
+    "phase_name": {
+      "description": "Target phase tracker name.",
+      "title": "Phase Name",
+      "type": "string"
+    },
+    "phase_description": {
+      "description": "Target phase description.",
+      "title": "Phase Description",
+      "type": "string"
+    },
+    "project_name": {
+      "description": "Target project tracker name.",
+      "title": "Project Name",
+      "type": "string"
+    },
+    "global_context_file": {
+      "description": "Project global context Markdown file for closure.",
+      "title": "Global Context File",
+      "type": "string"
+    },
+    "source_target_dir": {
+      "description": "Project sources folder path for closure.",
+      "title": "Source Target Dir",
+      "type": "string"
+    },
+    "days": {
+      "description": "Day-by-day engineering tracking steps.",
+      "items": {
+        "$ref": "##/$defs/DailyStep"
+      },
+      "title": "Days",
+      "type": "array"
+    }
+  },
+  "required": [
+    "phase_id",
+    "phase_name",
+    "phase_description",
+    "project_name",
+    "global_context_file",
+    "source_target_dir",
+    "days"
+  ],
+  "title": "PhaseStepsPlan",
+  "type": "object"
+}
+
+--- PHASE 1 CONTEXT MARKDOWN ---
+## Giai đoạn 1: <!--PHASE_NAME_START-->user_core_services<!--PHASE_NAME_END--> | Mô tả: Triển khai các dịch vụ cốt lõi quản lý người dùng bao gồm đăng ký, xác thực xã hội, gán vai trò, schema cơ sở dữ liệu và logging kiểm toán bảo mật
+
+#### 📊 Kiểm soát tài liệu
+
+| Mục | Chi tiết |
+| :--- | :--- |
+| **ID Blueprint** | ARCH-20260803053505 |
+| **Tên dự án** | membership-hub |
+| **Giai đoạn** | 1 |
+| **Tên kỹ thuật giai đoạn** | <!--PHASE_NAME_START-->user_core_services<!--PHASE_NAME_END--> |
+| **Mô tả** | Triển khai các dịch vụ cốt lõi quản lý người dùng bao gồm đăng ký, xác thực xã hội, gán vai trò, schema cơ sở dữ liệu và logging kiểm toán bảo mật |
+| **Phiên bản** | 1.0 (Baseline) |
+| **Ngày/Giờ** | 2026/08/03 05:35:05 |
+| **Tác giả** | Enterprise System Architect (SA Agent) |
+| **Phê duyệt** | Pending Technical Governance Review |
+
+#### 1. Phạm vi hoạt động và mục tiêu giai đoạn
+
+Giai đoạn này tập trung vào việc xây dựng nền tảng cốt lõi cho hệ thống quản lý người dùng, bao gồm:
+
+- Triển khai schema cơ sở dữ liệu cho bảng Users và Roles với các ràng buộc toàn vẹn dữ liệu
+- Xây dựng dịch vụ đăng ký người dùng với xác thực email/mật khẩu và hỗ trợ OAuth2 cho các nhà cung cấp xã hội (Firebase, Google, Facebook)
+- Triển khai cơ chế phân quyền RBAC với khả năng gán và thay đổi vai trò người dùng
+- Thiết lập hệ thống logging kiểm toán đáp ứng các tiêu chuẩn bảo mật doanh nghiệp
+- Triển khai xử lý ngoại lệ chi tiết cho validation đầu vào và xung đột dữ liệu
+
+#### 2. Phạm vi kỹ thuật và ranh giới thư mục được phép
+
+**Thư mục và tệp được phép:**
+- `./sources/backend.membershiphub.user/users.sql` - DDL schema cho bảng Users
+- `./sources/backend.membershiphub.user/roles.sql` - DDL schema cho bảng Roles  
+- `./sources/backend.membershiphub.user/user-service.java` - Dịch vụ chính quản lý người dùng
+
+**Endpoint API:**
+- `POST /api/v1/auth/register` - Đăng ký người dùng mới
+- `POST /api/v1/auth/social` - Xác thực qua nhà cung cấp xã hội
+- `PUT /api/v1/users/{userId}/role` - Cập nhật vai trò người dùng (chỉ System Admin)
+
+#### 3. Chỉ đạo chức năng cho Sub-Agent chuyên dụng
+
+**Coder:** Triển khai mã nguồn Java/Quarkus với tuân thủ SOLID, sử dụng BCrypt cho mã hóa mật khẩu, JWT với access token 15 phút và refresh token 7 ngày, áp dụng @Valid cho validation và @Transactional cho các thao tác ghi.
+
+**Tester:** Xây dựng bộ kiểm thử JUnit 5 với độ phủ mã ≥85%, sử dụng Mock cho các dependency, kiểm thử happy path và các scenario lỗi validation.
+
+**Reviewer:** Thực hiện phân tích tĩnh mã nguồn, kiểm tra tuân thủ OWASP Top 10, đảm bảo không có lỗ hổng SQL injection hoặc XSS.
+
+**Doc:** Biên soạn tài liệu kỹ thuật đầy đủ bao gồm API documentation với OpenAPI, schema documentation và hướng dẫn triển khai.
+
+#### 4. Định nghĩa hoàn thành (DoD) cho giai đoạn
+
+- ✅ 100% các requirement [REQ-001], [REQ-002], [REQ-003] được triển khai đầy đủ
+- ✅ Schema database [DAT-001] được tạo thành công với tất cả ràng buộc
+- ✅ Luồng xác thực [ARC-006] hoạt động với OAuth2 và JWT
+- ✅ Xử lý ngoại lệ [EXC-004] cho validation đầu vào
+- ✅ Tuân thủ các tiêu chuẩn bảo mật [NFR-001], [NFR-003], [NFR-006]
+- ✅ Độ phủ kiểm thử ≥85% cho tất cả các dịch vụ
+- ✅ 100% các Tag ID được ánh xạ và kiểm tra
+
+#### 5. NHẬT KÝ THỰC THI KIẾN TRÚC THEO NGÀY
+
+###### NGÀY 1: TRIỂN KHAI DỊCH VỤ ĐĂNG KÝ NGƯỜI DÙNG VÀ API XÁC THỰC XÃ HỘI
+
+######## SUB-TASK 1.1: Triển khai schema cơ sở dữ liệu Users và Roles
+########## Sub-Agent được chỉ định: Coder
+########## Các thành phần mục tiêu và yêu cầu kỹ thuật:
+* **Đường dẫn mục tiêu:** `./sources/backend.membershiphub.user/users.sql`, `./sources/backend.membershiphub.user/roles.sql`
+* **Các thẻ truy xuất nguồn gốc:** <!--START_TAGS-->[DAT-001]<!--END_TAGS-->
+
+######## SUB-TASK 1.2: Triển khai UserService với phương thức register và socialAuthenticate
+########## Sub-Agent được chỉ định: Coder
+########## Các thành phần mục tiêu và yêu cầu kỹ thuật:
+* **Đường dẫn mục tiêu:** `./sources/backend.membershiphub.user/user-service.java`
+* **Các thẻ truy xuất nguồn gốc:** <!--START_TAGS-->[REQ-001], [REQ-002], [ARC-006], [EXC-004], [NFR-001], [NFR-003], [NFR-006]<!--END_TAGS-->
+
+###### NGÀY 2: VIẾT BỘ KIỂM TRA ĐƠN VỊ VÀ TÍCH HỢP CHO CÁC CHỨC NĂNG NGƯỜI DÙNG
+
+######## SUB-TASK 2.1: Kiểm thử đơn vị cho các phương thức register và socialAuthenticate
+########## Sub-Agent được chỉ định: Tester
+########## Các thành phần mục tiêu và yêu cầu kỹ thuật:
+* **Đường dẫn mục tiêu:** `./sources/backend.membershiphub.user/user-service.java;./sources/backend.membershiphub.user/userservice-test.java`
+* **Các thẻ truy xuất nguồn gốc:** <!--START_TAGS-->[REQ-001], [REQ-002], [DAT-001], [EXC-004]<!--END_TAGS-->
+
+######## SUB-TASK 2.2: Kiểm thử tích hợp cho API endpoints
+########## Sub-Agent được chỉ định: Tester
+########## Các thành phần mục tiêu và yêu cầu kỹ thuật:
+* **Đường dẫn mục tiêu:** `./sources/backend.membershiphub.user/user-service.java;./sources/backend.membershiphub.user/user-controller-test.java`
+* **Các thẻ truy xuất nguồn gốc:** <!--START_TAGS-->[REQ-001], [REQ-002], [ARC-006], [EXC-004]<!--END_TAGS-->
+------------------------------------------
+
+# System Instruction
+
+You are a high-performance Data Ingestion and Transformation Engine. Your sole objective is to parse the Phase Context Markdown text and convert it into a perfectly valid, parseable JSON object matching the requested schema framework.
+
+# YOUR CRITICAL OPERATIONAL MANDATES (ZERO LOOPHOLES):
+1. **STRICT VARIABLE FIDELITY & NO PREFIXES:** You MUST use the exact raw values provided in the template variables for file paths and project names. You are STRICTLY BANNED from appending, prepending, or injecting any custom folders or prefixes like "sources/" to the `global_context_file`, `context_file`, `source_target_dir`, or `project_name` fields. Use the variable values exactly as they are passed.
+2. **ABSOLUTE PYDANTIC SCHEMA ALIGNMENT:** Your final generated JSON object MUST perfectly satisfy the structural schema parameters of the target enterprise contract. You are STRICTLY BANNED from omitting, renaming, formatting, or stripping out key elements (specifically `phase_id`, `phase_name`, `phase_description`, `project_name`, `global_context_file`, `source_target_dir`, and `days`).
+3. **ABSOLUTE NO EMPTY TAGS POLICY & STRING SANITIZATION:** You are STRICTLY BANNED from leaving the "targeted_tags" array empty `[]` or null for any sub-task that implements functional requirements or data schemas. You MUST scan the source Markdown sequentially sub-task by sub-task. For each sub-task node, locate the hidden technical container block delimited between `<!--START_TAGS-->` and `<!--END_TAGS-->` contained exclusively within that sub-task section scope. Extract all raw tag token codes inside, strip away all inline markdown formatting characters—specifically backticks (`` ` ``)—and any leading/trailing whitespaces, then populate them as clean separate string elements inside the "targeted_tags" array field of EACH sub-task object node.
+4. **NO TAG BUNDLING:** Every tag must be its own array node (e.g., `"targeted_tags": ["[REQ-001]", "[DAT-002]"]`). You are strictly forbidden from combining multiple tags into a single string element.
+5. **STRICT CONTENT PURITY & REJECT CONVERSATION:** Output ONLY the pure raw executable JSON string matching the required schema. Response must start exactly with the character `{` and end exactly with the character `}`. Banned from including thinking processes, chain-of-thought blocks (`<think>` tags), conversational filler texts, introductions, wrapping inside markdown codeblocks (no triple backticks wrapping), or post-generation notes. Any token outside the raw JSON object boundary triggers an immediate execution pipeline crash.
+
+# Raw Response / Exception:
+
+```json
+Error code: 410 - {'error': {'code': 'github_models_retirement_brownout', 'message': 'GitHub Models is temporarily unavailable as part of a scheduled retirement brownout.'}}: ['Traceback (most recent call last):
+', '  File "/home/runner/work/enterprise-it-ai/enterprise-it-ai/sources/agents/architect-blueprint/block_json.py", line 301, in convert_phases_to_json
+    response = client.beta.chat.completions.parse(
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+', '  File "/opt/hostedtoolcache/Python/3.11.15/x64/lib/python3.11/site-packages/openai/resources/chat/completions/completions.py", line 193, in parse
+    return self._post(
+           ^^^^^^^^^^^
+', '  File "/opt/hostedtoolcache/Python/3.11.15/x64/lib/python3.11/site-packages/openai/_base_client.py", line 1375, in post
+    return cast(ResponseT, self.request(cast_to, opts, stream=stream, stream_cls=stream_cls))
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+', '  File "/opt/hostedtoolcache/Python/3.11.15/x64/lib/python3.11/site-packages/openai/_base_client.py", line 1148, in request
+    raise self._make_status_error_from_response(err.response) from None
+', "openai.APIStatusError: Error code: 410 - {'error': {'code': 'github_models_retirement_brownout', 'message': 'GitHub Models is temporarily unavailable as part of a scheduled retirement brownout.'}}
+"]
+```
+
+# AI Model: mistral-ai/mistral-medium-2505 - Phase 1 STEPS - Prompt:
+
+Analyze the attached Phase 1 Context Markdown content.
+
+Extract and translate ALL daily steps, checklists, and agent tasks from the entire document.
+
+
+## 🔒 AGENT ATOMICITY, TASK ID FORMAT & COMPONENT MANDATES (ABSOLUTE):
+- **STRICT TASK ID ALIGNMENT BLUEPRINT:** You MUST strictly generate the "id" field string for every single sub-task using the exact sequential formatting blueprint: `D<day_num>_ST<task_index>` (e.g., `D1_ST1`, `D1_ST2`, `D2_ST1`).
+- **STRICT AGENT ROLE LITERAL VALUES:** The "agent" field inside the JSON sub-task object MUST strictly enforce a capitalized first letter and lowercase subsequent letters pattern matching the exact tokens: 'Coder' | 'Tester' | 'Reviewer' | 'Doc' | 'Docker' | 'Gcp' | 'Gke'. Any other values or lowercase blocks (e.g., NO "coder") are strictly banned.
+- **NO ZERO-COMPONENT TASKS (ABSOLUTE HARD LIMIT):** You are STRICTLY BANNED from generating any sub-task object where the 'components' array is empty `[]`, null, or missing. If an Agent does not have any physical file paths to create, modify, or document, you MUST NOT generate that sub-task object node.
+- **FALLBACK COMPONENT RULE:** If a day has technical descriptions but lacks physical file paths, assign the task to "Doc" agent and populate 'components' with exactly the value of: ".ai/.plan/.context/phase-1.context.blueprint.md".
+- **STRICT AGENT ROLE SEGREGATION (ANTI-AGGREGATION):** If a workflow file involves multiple actions by different personas on the same calendar day, you MUST split this workflow into completely separate, sequential task objects inside the 'sub_tasks' array.
+- **HIGH-DENSITY TECHNICAL SPECIFICATION:** The 'task' field MUST contain an exhaustive, granular engineering instruction. If the sub-task involves an API route, integration endpoint, database query, or message block, you MUST explicitly inline the complete technical contract (e.g., Request/Response Payload Schemas, Data Types, Error Status Codes, or Queue names) directly inside this string. Vague high-level bullet summaries are forbidden.
+- **WORKSPACE PREFIX RULE & MULTI-LANGUAGE TEST EXCEPTION:** Every path in 'components' array MUST strictly begin with `./sources/`. 
+  * *CRITICAL EXCEPTION:* If the first parameter before the semi-colon character in a tester task is the literal string token `INTEGRATION_SCOPE`, you MUST leave that token completely unmodified. Do NOT append any path prefix to it (e.g., `"components": ["INTEGRATION_SCOPE;./sources/frontend/tests/auth.spec.ts"]`).
+
+## 🛠️ MANDATORY TOP-LEVEL FIELD VALUES INJECTION & ANCHOR PARSING (STRICT FIDELITY):
+You MUST dynamically populate the top-level keys of the JSON object using EXACT raw variable values without any modifications, or parse them directly from the primary Markdown header HTML comments:
+- **`phase_id`**: 1
+- **`phase_name`**: [Locate the primary Markdown title header line, extract the clean technical string text located exactly between the hidden HTML delimiters `<!--PHASE_NAME_START-->` and `<!--PHASE_NAME_END-->` without any alterations or translations]
+- **`phase_description`**: [Locate the primary Markdown title header line, extract the exact translated phase description text that follows after the literal marker `| Description:` or its translated equivalent]
+- **`project_name`**: "membership-hub"
+- **`global_context_file`**: ".ai/.context/membership-hub.global.blueprint.md"
+- **`source_target_dir`**: "sources/"
+
+#### 7. Context Fields Integration Mandate
+- For each day object inside the array, set 'day' to its calculated integer value, set 'context_file' to exact string ".ai/.plan/.context/phase-1.context.blueprint.md", and **set 'context_section' to the exact raw string value of the entire primary Day Header extracted from the source Markdown context text** (e.g., `"context_section": "DAY 1: Multi-Tenant Inception Schema & Flyway Migration Setup"`).
+
+#### 8. CHRONOLOGICAL TIMELINE SEQUENCING MANDATE (ABSOLUTE):
+#### 8. CHRONOLOGICAL TIMELINE SEQUENCING MANDATE (ABSOLUTE):
+
+## SYSTEM CRITICAL BOUNDARY: FLAT CONFIGURATION IS ACTIVE (is_chunked is FALSE)
+- Regardless of the actual day numbers documented in the source Markdown content (e.g., even if the text states "DAY 4", "DAY 5"), you MUST completely reset the timeline sequence internally so that the first operational day inside this Phase always starts from integer 1. Progression follows sequentially as 2, 3, 4, etc. 
+- Map the first targeted day to `"day": 1`, set 'context_file' to ".ai/.plan/.context/phase-1.context.blueprint.md", and strictly set 'context_section' to the exact raw primary header line of the first day parsed from the text. Incremental days follow this relative baseline.
+
+
+## 🛑 MANDATORY STRUCTURE ENFORCEMENT FOR TRACEABILITY TAGS VIA HTML ANCHORS (CRITICAL):
+- For each sub-task block, locate the hidden technical container bounds delimited strictly between `<!--START_TAGS-->` and `<!--END_TAGS-->`. Extract all individual inherited Tag IDs from inside that container, completely purge all markdown backticks (`` ` ``) and padding spaces, and populate them as clean individual string elements inside the "targeted_tags" array field (e.g., `"targeted_tags": ["[REQ-001]", "[DAT-005]"]`).
+- You are STRICTLY BANNED from leaving the "targeted_tags" array empty `[]` or null. Every single tag token must be its own separated array element string.
+
+You must conform strictly to your required JSON Schema layout design structure:
+{
+  "$defs": {
+    "DailyStep": {
+      "properties": {
+        "day": {
+          "description": "Timeline iteration day inside this isolated phase.",
+          "title": "Day",
+          "type": "integer"
+        },
+        "context_file": {
+          "description": "The phase context Markdown file for closure on this day.",
+          "title": "Context File",
+          "type": "string"
+        },
+        "context_section": {
+          "description": "The day targeted for closure on this day.",
+          "title": "Context Section",
+          "type": "string"
+        },
+        "sub_tasks": {
+          "description": "Array of isolated micro-tasks assigned to sub-agents.",
+          "items": {
+            "$ref": "##/$defs/SubAgentTask"
+          },
+          "title": "Sub Tasks",
+          "type": "array"
+        }
+      },
+      "required": [
+        "day",
+        "context_file",
+        "context_section",
+        "sub_tasks"
+      ],
+      "title": "DailyStep",
+      "type": "object"
+    },
+    "SubAgentTask": {
+      "properties": {
+        "id": {
+          "description": "Sub-Task identity of Task that sub-agent role executing.",
+          "title": "Id",
+          "type": "string"
+        },
+        "agent": {
+          "description": "Target sub-agent role executing the task.",
+          "title": "Agent",
+          "type": "string"
+        },
+        "desc": {
+          "description": "Literal, low-level technical step assigned to the agent.",
+          "title": "Desc",
+          "type": "string"
+        },
+        "targeted_tags": {
+          "description": "Flat string array of exact inherited BA Tag IDs that this specific sub-task implements or verifies (e.g. ['[REQ-001]', '[ARC-002]']). MUST match the raw requirements 1:1.",
+          "items": {
+            "type": "string"
+          },
+          "title": "Targeted Tags",
+          "type": "array"
+        },
+        "components": {
+          "description": "Flat array of physical localized file paths or scripts modified or targeted by this single task. Return an empty array [] if no files are involved.",
+          "items": {
+            "type": "string"
+          },
+          "title": "Components",
+          "type": "array"
+        }
+      },
+      "required": [
+        "id",
+        "agent",
+        "desc"
+      ],
+      "title": "SubAgentTask",
+      "type": "object"
+    }
+  },
+  "properties": {
+    "phase_id": {
+      "description": "Target phase tracker index.",
+      "title": "Phase Id",
+      "type": "integer"
+    },
+    "phase_name": {
+      "description": "Target phase tracker name.",
+      "title": "Phase Name",
+      "type": "string"
+    },
+    "phase_description": {
+      "description": "Target phase description.",
+      "title": "Phase Description",
+      "type": "string"
+    },
+    "project_name": {
+      "description": "Target project tracker name.",
+      "title": "Project Name",
+      "type": "string"
+    },
+    "global_context_file": {
+      "description": "Project global context Markdown file for closure.",
+      "title": "Global Context File",
+      "type": "string"
+    },
+    "source_target_dir": {
+      "description": "Project sources folder path for closure.",
+      "title": "Source Target Dir",
+      "type": "string"
+    },
+    "days": {
+      "description": "Day-by-day engineering tracking steps.",
+      "items": {
+        "$ref": "##/$defs/DailyStep"
+      },
+      "title": "Days",
+      "type": "array"
+    }
+  },
+  "required": [
+    "phase_id",
+    "phase_name",
+    "phase_description",
+    "project_name",
+    "global_context_file",
+    "source_target_dir",
+    "days"
+  ],
+  "title": "PhaseStepsPlan",
+  "type": "object"
+}
+
+--- PHASE 1 CONTEXT MARKDOWN ---
+## Giai đoạn 1: <!--PHASE_NAME_START-->user_core_services<!--PHASE_NAME_END--> | Mô tả: Triển khai các dịch vụ cốt lõi quản lý người dùng bao gồm đăng ký, xác thực xã hội, gán vai trò, schema cơ sở dữ liệu và logging kiểm toán bảo mật
+
+#### 📊 Kiểm soát tài liệu
+
+| Mục | Chi tiết |
+| :--- | :--- |
+| **ID Blueprint** | ARCH-20260803053505 |
+| **Tên dự án** | membership-hub |
+| **Giai đoạn** | 1 |
+| **Tên kỹ thuật giai đoạn** | <!--PHASE_NAME_START-->user_core_services<!--PHASE_NAME_END--> |
+| **Mô tả** | Triển khai các dịch vụ cốt lõi quản lý người dùng bao gồm đăng ký, xác thực xã hội, gán vai trò, schema cơ sở dữ liệu và logging kiểm toán bảo mật |
+| **Phiên bản** | 1.0 (Baseline) |
+| **Ngày/Giờ** | 2026/08/03 05:35:05 |
+| **Tác giả** | Enterprise System Architect (SA Agent) |
+| **Phê duyệt** | Pending Technical Governance Review |
+
+#### 1. Phạm vi hoạt động và mục tiêu giai đoạn
+
+Giai đoạn này tập trung vào việc xây dựng nền tảng cốt lõi cho hệ thống quản lý người dùng, bao gồm:
+
+- Triển khai schema cơ sở dữ liệu cho bảng Users và Roles với các ràng buộc toàn vẹn dữ liệu
+- Xây dựng dịch vụ đăng ký người dùng với xác thực email/mật khẩu và hỗ trợ OAuth2 cho các nhà cung cấp xã hội (Firebase, Google, Facebook)
+- Triển khai cơ chế phân quyền RBAC với khả năng gán và thay đổi vai trò người dùng
+- Thiết lập hệ thống logging kiểm toán đáp ứng các tiêu chuẩn bảo mật doanh nghiệp
+- Triển khai xử lý ngoại lệ chi tiết cho validation đầu vào và xung đột dữ liệu
+
+#### 2. Phạm vi kỹ thuật và ranh giới thư mục được phép
+
+**Thư mục và tệp được phép:**
+- `./sources/backend.membershiphub.user/users.sql` - DDL schema cho bảng Users
+- `./sources/backend.membershiphub.user/roles.sql` - DDL schema cho bảng Roles  
+- `./sources/backend.membershiphub.user/user-service.java` - Dịch vụ chính quản lý người dùng
+
+**Endpoint API:**
+- `POST /api/v1/auth/register` - Đăng ký người dùng mới
+- `POST /api/v1/auth/social` - Xác thực qua nhà cung cấp xã hội
+- `PUT /api/v1/users/{userId}/role` - Cập nhật vai trò người dùng (chỉ System Admin)
+
+#### 3. Chỉ đạo chức năng cho Sub-Agent chuyên dụng
+
+**Coder:** Triển khai mã nguồn Java/Quarkus với tuân thủ SOLID, sử dụng BCrypt cho mã hóa mật khẩu, JWT với access token 15 phút và refresh token 7 ngày, áp dụng @Valid cho validation và @Transactional cho các thao tác ghi.
+
+**Tester:** Xây dựng bộ kiểm thử JUnit 5 với độ phủ mã ≥85%, sử dụng Mock cho các dependency, kiểm thử happy path và các scenario lỗi validation.
+
+**Reviewer:** Thực hiện phân tích tĩnh mã nguồn, kiểm tra tuân thủ OWASP Top 10, đảm bảo không có lỗ hổng SQL injection hoặc XSS.
+
+**Doc:** Biên soạn tài liệu kỹ thuật đầy đủ bao gồm API documentation với OpenAPI, schema documentation và hướng dẫn triển khai.
+
+#### 4. Định nghĩa hoàn thành (DoD) cho giai đoạn
+
+- ✅ 100% các requirement [REQ-001], [REQ-002], [REQ-003] được triển khai đầy đủ
+- ✅ Schema database [DAT-001] được tạo thành công với tất cả ràng buộc
+- ✅ Luồng xác thực [ARC-006] hoạt động với OAuth2 và JWT
+- ✅ Xử lý ngoại lệ [EXC-004] cho validation đầu vào
+- ✅ Tuân thủ các tiêu chuẩn bảo mật [NFR-001], [NFR-003], [NFR-006]
+- ✅ Độ phủ kiểm thử ≥85% cho tất cả các dịch vụ
+- ✅ 100% các Tag ID được ánh xạ và kiểm tra
+
+#### 5. NHẬT KÝ THỰC THI KIẾN TRÚC THEO NGÀY
+
+###### NGÀY 1: TRIỂN KHAI DỊCH VỤ ĐĂNG KÝ NGƯỜI DÙNG VÀ API XÁC THỰC XÃ HỘI
+
+######## SUB-TASK 1.1: Triển khai schema cơ sở dữ liệu Users và Roles
+########## Sub-Agent được chỉ định: Coder
+########## Các thành phần mục tiêu và yêu cầu kỹ thuật:
+* **Đường dẫn mục tiêu:** `./sources/backend.membershiphub.user/users.sql`, `./sources/backend.membershiphub.user/roles.sql`
+* **Các thẻ truy xuất nguồn gốc:** <!--START_TAGS-->[DAT-001]<!--END_TAGS-->
+
+######## SUB-TASK 1.2: Triển khai UserService với phương thức register và socialAuthenticate
+########## Sub-Agent được chỉ định: Coder
+########## Các thành phần mục tiêu và yêu cầu kỹ thuật:
+* **Đường dẫn mục tiêu:** `./sources/backend.membershiphub.user/user-service.java`
+* **Các thẻ truy xuất nguồn gốc:** <!--START_TAGS-->[REQ-001], [REQ-002], [ARC-006], [EXC-004], [NFR-001], [NFR-003], [NFR-006]<!--END_TAGS-->
+
+###### NGÀY 2: VIẾT BỘ KIỂM TRA ĐƠN VỊ VÀ TÍCH HỢP CHO CÁC CHỨC NĂNG NGƯỜI DÙNG
+
+######## SUB-TASK 2.1: Kiểm thử đơn vị cho các phương thức register và socialAuthenticate
+########## Sub-Agent được chỉ định: Tester
+########## Các thành phần mục tiêu và yêu cầu kỹ thuật:
+* **Đường dẫn mục tiêu:** `./sources/backend.membershiphub.user/user-service.java;./sources/backend.membershiphub.user/userservice-test.java`
+* **Các thẻ truy xuất nguồn gốc:** <!--START_TAGS-->[REQ-001], [REQ-002], [DAT-001], [EXC-004]<!--END_TAGS-->
+
+######## SUB-TASK 2.2: Kiểm thử tích hợp cho API endpoints
+########## Sub-Agent được chỉ định: Tester
+########## Các thành phần mục tiêu và yêu cầu kỹ thuật:
+* **Đường dẫn mục tiêu:** `./sources/backend.membershiphub.user/user-service.java;./sources/backend.membershiphub.user/user-controller-test.java`
+* **Các thẻ truy xuất nguồn gốc:** <!--START_TAGS-->[REQ-001], [REQ-002], [ARC-006], [EXC-004]<!--END_TAGS-->
+------------------------------------------
+
+# System Instruction
+
+You are a high-performance Data Ingestion and Transformation Engine. Your sole objective is to parse the Phase Context Markdown text and convert it into a perfectly valid, parseable JSON object matching the requested schema framework.
+
+# YOUR CRITICAL OPERATIONAL MANDATES (ZERO LOOPHOLES):
+1. **STRICT VARIABLE FIDELITY & NO PREFIXES:** You MUST use the exact raw values provided in the template variables for file paths and project names. You are STRICTLY BANNED from appending, prepending, or injecting any custom folders or prefixes like "sources/" to the `global_context_file`, `context_file`, `source_target_dir`, or `project_name` fields. Use the variable values exactly as they are passed.
+2. **ABSOLUTE PYDANTIC SCHEMA ALIGNMENT:** Your final generated JSON object MUST perfectly satisfy the structural schema parameters of the target enterprise contract. You are STRICTLY BANNED from omitting, renaming, formatting, or stripping out key elements (specifically `phase_id`, `phase_name`, `phase_description`, `project_name`, `global_context_file`, `source_target_dir`, and `days`).
+3. **ABSOLUTE NO EMPTY TAGS POLICY & STRING SANITIZATION:** You are STRICTLY BANNED from leaving the "targeted_tags" array empty `[]` or null for any sub-task that implements functional requirements or data schemas. You MUST scan the source Markdown sequentially sub-task by sub-task. For each sub-task node, locate the hidden technical container block delimited between `<!--START_TAGS-->` and `<!--END_TAGS-->` contained exclusively within that sub-task section scope. Extract all raw tag token codes inside, strip away all inline markdown formatting characters—specifically backticks (`` ` ``)—and any leading/trailing whitespaces, then populate them as clean separate string elements inside the "targeted_tags" array field of EACH sub-task object node.
+4. **NO TAG BUNDLING:** Every tag must be its own array node (e.g., `"targeted_tags": ["[REQ-001]", "[DAT-002]"]`). You are strictly forbidden from combining multiple tags into a single string element.
+5. **STRICT CONTENT PURITY & REJECT CONVERSATION:** Output ONLY the pure raw executable JSON string matching the required schema. Response must start exactly with the character `{` and end exactly with the character `}`. Banned from including thinking processes, chain-of-thought blocks (`<think>` tags), conversational filler texts, introductions, wrapping inside markdown codeblocks (no triple backticks wrapping), or post-generation notes. Any token outside the raw JSON object boundary triggers an immediate execution pipeline crash.
+
+# Raw Response / Exception:
+
+```json
+Error code: 410 - {'error': {'code': 'github_models_retirement_brownout', 'message': 'GitHub Models is temporarily unavailable as part of a scheduled retirement brownout.'}}: ['Traceback (most recent call last):
+', '  File "/home/runner/work/enterprise-it-ai/enterprise-it-ai/sources/agents/architect-blueprint/block_json.py", line 301, in convert_phases_to_json
+    response = client.beta.chat.completions.parse(
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+', '  File "/opt/hostedtoolcache/Python/3.11.15/x64/lib/python3.11/site-packages/openai/resources/chat/completions/completions.py", line 193, in parse
+    return self._post(
+           ^^^^^^^^^^^
+', '  File "/opt/hostedtoolcache/Python/3.11.15/x64/lib/python3.11/site-packages/openai/_base_client.py", line 1375, in post
+    return cast(ResponseT, self.request(cast_to, opts, stream=stream, stream_cls=stream_cls))
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+', '  File "/opt/hostedtoolcache/Python/3.11.15/x64/lib/python3.11/site-packages/openai/_base_client.py", line 1148, in request
+    raise self._make_status_error_from_response(err.response) from None
+', "openai.APIStatusError: Error code: 410 - {'error': {'code': 'github_models_retirement_brownout', 'message': 'GitHub Models is temporarily unavailable as part of a scheduled retirement brownout.'}}
+"]
 ```
 
