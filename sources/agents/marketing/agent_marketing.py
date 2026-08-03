@@ -16,40 +16,6 @@ class AbstractMarketingAgent(AbstractSubAgent):
     def __init__(self, agent_id, **kwargs):
         super().__init__(agent_id=agent_id, **kwargs)
     
-    def __pre_initialize__(self):
-        # require idea identity to analyze
-        if not self.project_info:
-            self.logger.critical(f"💀 (1) Invalid idea identity / project name to analyze!")
-            sys.exit(1)
-        
-        # check idea file
-        abs_idea_file, phys_idea_file = self.__idea_files__()
-        if not os.path.exists(phys_idea_file):
-            self.logger.critical(f"💀 (4) Not found IDEA file {abs_idea_file}")
-            sys.exit(1)
-        else:
-            self.idea_file = abs_idea_file
-        
-        # check requirments file
-        self.ba_file = self.__ba_file__()
-        if not os.path.exists(self.ba_file):
-            self.logger.critical(f"💀 (5) Not found BA file by idea identity / project name '{self.idea_id}'")
-            sys.exit(1)
-        
-        # check blueprint file
-        self.blueprint_file = self.__sa_file__()
-        if not os.path.exists(self.blueprint_file):
-            self.logger.critical(f"💀 (6) Not found BLUEPRINT file by idea identity / project name '{self.idea_id}")
-            sys.exit(1)
-    
-    # @override
-    def initialize(self):
-        # pre-initialize
-        self.__pre_initialize__()
-        
-        # initialize super
-        super().initialize()
-    
     def master_prompt_file(self) -> str:
         return MASTER_RULE_PROMPT_TEMPLATE
     
