@@ -1,0 +1,68 @@
+{
+    "phase_id": 2,
+    "phase_name": "center_management_module",
+    "phase_description": "Triển khai module quản lý trung tâm bao gồm CRUD trung tâm, danh sách trung tâm công khai, phân quyền quản trị trung tâm, và tích hợp với RBAC cho Center Admin",
+    "project_name": "membership-hub",
+    "global_context_file": ".ai/.context/membership-hub.global.blueprint.md",
+    "source_target_dir": "sources/",
+    "days": [
+        {
+            "day": 1,
+            "context_file": ".ai/.plan/.context/phase-2.context.blueprint.md",
+            "context_section": "DAY 1",
+            "sub_tasks": [
+                {
+                    "id": "D1_ST1",
+                    "agent": "Coder",
+                    "desc": "Coder Agent: No description provided",
+                    "targeted_tags": [
+                        "[DAT-003]"
+                    ],
+                    "components": [
+                        "./sources/backend.membershiphub.center/centers.sql"
+                    ]
+                },
+                {
+                    "id": "D1_ST2",
+                    "agent": "Coder",
+                    "desc": "Coder Agent: No description provided",
+                    "targeted_tags": [
+                        "[REQ-004]",
+                        "[REQ-005]",
+                        "[REQ-006]",
+                        "[DAT-003]",
+                        "[ARC-002]",
+                        "[NFR-003]",
+                        "[NFR-004]",
+                        "[NFR-005]"
+                    ],
+                    "components": [
+                        "./sources/backend.membershiphub.center/center-service.java"
+                    ]
+                }
+            ]
+        },
+        {
+            "day": 2,
+            "context_file": ".ai/.plan/.context/phase-2.context.blueprint.md",
+            "context_section": "DAY 2",
+            "sub_tasks": [
+                {
+                    "id": "D2_ST1",
+                    "agent": "Tester",
+                    "desc": "Tester Agent: No description provided",
+                    "targeted_tags": [
+                        "[REQ-004]",
+                        "[REQ-005]",
+                        "[REQ-006]",
+                        "[DAT-003]",
+                        "[ARC-002]"
+                    ],
+                    "components": [
+                        "INTEGRATION_SCOPE;./sources/backend.membershiphub.center/centerservice-integration-test.java"
+                    ]
+                }
+            ]
+        }
+    ]
+}
