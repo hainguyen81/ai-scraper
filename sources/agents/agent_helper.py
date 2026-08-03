@@ -446,6 +446,20 @@ def count_files_by_pattern(dir, file_filter_pattern) -> int:
 def kwargs_by_key(key: str, **kwargs):
     return (kwargs or {}).get(key) if key else None
 
+def extract_data_part(data: str, start_delimiter: str, end_delimiter: str) -> str:
+    if not data or not start_delimiter or not end_delimiter:
+        return data
+    
+    start_idx = str(data).find(start_delimiter)
+    end_idx = str(data).find(end_delimiter)
+    extracted_content = None
+
+    if start_idx != -1 and end_idx != -1 and start_idx < end_idx:
+        # Shift index forward to exclude the raw opening comment token itself
+        actual_start = start_idx + len(start_delimiter)
+        extracted_content = data[actual_start:end_idx].strip()
+    
+    return extracted_content
 
 
 # ==============================================================================

@@ -1,8 +1,12 @@
 import os
 import sys
 
+# for abstract class
+from abc import abstractmethod
+
 # Now Python can seamlessly see and import the centralized helper utility cleanly!
 from sources.agents.agent_helper import (
+    datetime_for_agent,
     read_json_file,
     read_file_raw,
     json_tostring
@@ -47,6 +51,17 @@ class AbstractSubAgent(AbstractAgent):
     # @override
     def agent_secrets_key(self) -> str:
         pass
+    
+    def __common_prompt_context__(self) -> dict:
+        datetime_prompt, datetime_docid = datetime_for_agent()
+        return {
+            "doc_id": datetime_docid,
+            "language": self.language,
+            "idea_id": self.idea_id,
+            "project_name": self.__current_project_name__() or "-",
+            "project_description": self.__current_project_description__() or "-",
+            "current_timestamp": datetime_prompt
+        }
     
     def __storage_path__(self, storage_name, file) -> str:
         return os.path.join(self.storage.get(storage_name), file)
@@ -158,4 +173,14 @@ class AbstractSubAgent(AbstractAgent):
     def __read_ideas_history__(self, ignore_not_found=False) -> str:
         return self.__read_storage_json__(storage_name="storage_ideas", file="history_ideas.json", ignore_not_found=ignore_not_found)
 
-
+    @abstractmethod
+    def __pre_execute__(self, **kwargs):
+        pass
+    
+    # @override
+    def pre_execute(self, **kwargs):
+        kwargs = self.__pre_execute__(**kwargs)
+        return {
+            **self.__common_prompt_context__(),
+            **(kwargs or {}),
+        }

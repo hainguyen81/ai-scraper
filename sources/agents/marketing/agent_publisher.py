@@ -58,7 +58,7 @@ class EnterpriseSocialPublisherAgent(AbstractMarketingAgent):
         return self.__agents_path__(storage_name="storage_marketing_prompts", file=USER_PROMPT_TEMPLATE)
     
     # @override
-    def pre_execute(self, **kwargs):
+    def __pre_execute__(self, **kwargs):
         # read social approval file
         social_approval_file = self.__social_approval_file__()
         _, social_approval_json_vault = read_json_file(file_path=social_approval_file)

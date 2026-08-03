@@ -56,7 +56,7 @@ class PrincipalBusinessAnalysisAgent(AbstractSubAgent):
         return 0.8 # high ideas
     
     # @override
-    def pre_execute(self, **kwargs):
+    def __pre_execute__(self, **kwargs):
         # read idea
         idea_same_project, file_content = self.__read_idea_or_requirements__(ignore_not_found=True)
         self.idea_is_project = idea_same_project
@@ -71,7 +71,6 @@ class PrincipalBusinessAnalysisAgent(AbstractSubAgent):
         return {
             **kwargs,
             "project_name": self.project_name if self.idea_is_project else None,
-            "language": self.language,
             "idea_file": idea_file,
             "raw_idea_content": file_content
         }

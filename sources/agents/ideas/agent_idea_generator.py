@@ -86,7 +86,7 @@ class EnterpriseIdeaGeneratorAgent(AbstractSubAgent):
         return 0.8 # high ideas
     
     # @override
-    def pre_execute(self, **kwargs):
+    def __pre_execute__(self, **kwargs):
         pass
     
     # @override

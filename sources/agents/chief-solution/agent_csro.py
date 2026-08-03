@@ -24,7 +24,6 @@ from sources.agents.agent_helper import (
     render_kwargs_prompt,
     get_logger,
     parse_args,
-    datetime_for_agent
 )
 
 # super agent
@@ -234,17 +233,6 @@ class AbstractCrewEnterpriseSuperAgent(AbstractSubAgent):
     def template_prompt_task_diff_analysis(self):
         return self.__agents_path__(storage_name="storage_csro_prompts", file=PROMPT_TEMPLATE_TASK_DIFF_ANALYZER)
     
-    def __common_prompt_context__(self):
-        datetime_prompt, datetime_docid = datetime_for_agent()
-        return {
-            "idea_id": self.idea_id,
-            "language": self.language,
-            "project_name": self.__current_project_name__() or "-",
-            "project_description": self.__current_project_description__() or "-",
-            "current_timestamp": datetime_prompt,
-            "doc_id": datetime_docid
-        }
-    
     def __pre_initialize__(self):
         # require idea identity to analyze
         if not self.project_info:
@@ -325,7 +313,7 @@ class AbstractCrewEnterpriseSuperAgent(AbstractSubAgent):
         pass
     
     # @override
-    def pre_execute(self, **kwargs):
+    def __pre_execute__(self, **kwargs):
         pass
 
 
@@ -637,7 +625,7 @@ class CrewEnterpriseSolutionWorkflowAgent(AbstractCrewEnterpriseWorkflowAgent):
         return None
     
     # @override
-    def pre_execute(self, **kwargs):
+    def __pre_execute__(self, **kwargs):
         # read idea file
         _, raw_idea_content = self.__read_idea_or_requirements__(ignore_not_found=True)
         
@@ -655,7 +643,6 @@ class CrewEnterpriseSolutionWorkflowAgent(AbstractCrewEnterpriseWorkflowAgent):
         # return merged new values
         return {
             **kwargs,
-            **self.__common_prompt_context__(),
             "raw_idea_content": raw_idea_content,
             "raw_srs_content": raw_ba_content,
             "raw_blueprint_content": raw_blueprint_content
@@ -876,14 +863,13 @@ class CrewEnterpriseBluePrintDiffAnalyzerAgent(AbstractCrewEnterpriseWorkflowAge
         return self.__output_storage_path__(storage_name="output_csro", file=CSRO_LOG_DA_FILE)
     
     # @override
-    def pre_execute(self, **kwargs):
+    def __pre_execute__(self, **kwargs):
         # read BluePrint file
         raw_blueprint_content = self.__read_blueprint__()
         
         # return merged new values
         return {
             **kwargs,
-            **self.__common_prompt_context__(),
             "raw_blueprint_content": raw_blueprint_content
         }
     
