@@ -1,7 +1,7 @@
 {
     "phase_id": 1,
-    "phase_name": "user_core_services",
-    "phase_description": "Triển khai các dịch vụ cốt lõi quản lý người dùng bao gồm đăng ký, xác thực xã hội, gán vai trò, schema cơ sở dữ liệu và logging kiểm toán bảo mật",
+    "phase_name": "phase1_userAuthDocker",
+    "phase_description": "Xây dựng nền tảng người dùng, xác thực OAuth2, và cấu hình Docker/GCP ban đầu cho hệ thống membership-hub.",
     "project_name": "membership-hub",
     "global_context_file": ".ai/.context/membership-hub.global.blueprint.md",
     "source_target_dir": "sources/",
@@ -16,28 +16,24 @@
                     "agent": "Coder",
                     "desc": "Coder Agent: No description provided",
                     "targeted_tags": [
-                        "[DAT-001]"
+                        "[REQ-001]",
+                        "[DAT-001]",
+                        "[EXC-004]"
                     ],
                     "components": [
-                        "./sources/backend.membershiphub.user/users.sql",
-                        "./sources/backend.membershiphub.user/roles.sql"
+                        "./sources/backend.users"
                     ]
                 },
                 {
                     "id": "D1_ST2",
-                    "agent": "Coder",
-                    "desc": "Coder Agent: No description provided",
+                    "agent": "Doc",
+                    "desc": "Doc Agent: No description provided",
                     "targeted_tags": [
                         "[REQ-001]",
-                        "[REQ-002]",
-                        "[ARC-006]",
-                        "[EXC-004]",
-                        "[NFR-001]",
-                        "[NFR-003]",
-                        "[NFR-006]"
+                        "[DAT-001]"
                     ],
                     "components": [
-                        "./sources/backend.membershiphub.user/user-service.java"
+                        "./sources/docs.api"
                     ]
                 }
             ]
@@ -49,32 +45,101 @@
             "sub_tasks": [
                 {
                     "id": "D2_ST1",
-                    "agent": "Tester",
-                    "desc": "Tester Agent: No description provided",
+                    "agent": "Coder",
+                    "desc": "Coder Agent: No description provided",
                     "targeted_tags": [
-                        "[REQ-001]",
-                        "[REQ-002]",
-                        "[DAT-001]",
-                        "[EXC-004]"
-                    ],
-                    "components": [
-                        "./sources/backend.membershiphub.user/user-service.java",
-                        "./sources/backend.membershiphub.user/userservice-test.java"
-                    ]
-                },
-                {
-                    "id": "D2_ST2",
-                    "agent": "Tester",
-                    "desc": "Tester Agent: No description provided",
-                    "targeted_tags": [
-                        "[REQ-001]",
                         "[REQ-002]",
                         "[ARC-006]",
                         "[EXC-004]"
                     ],
                     "components": [
-                        "./sources/backend.membershiphub.user/user-service.java",
-                        "./sources/backend.membershiphub.user/user-controller-test.java"
+                        "./sources/backend.auth"
+                    ]
+                },
+                {
+                    "id": "D2_ST2",
+                    "agent": "Doc",
+                    "desc": "Doc Agent: No description provided",
+                    "targeted_tags": [
+                        "[REQ-002]",
+                        "[ARC-006]"
+                    ],
+                    "components": [
+                        "./sources/docs.api"
+                    ]
+                },
+                {
+                    "id": "D2_ST3",
+                    "agent": "Coder",
+                    "desc": "Coder Agent: No description provided",
+                    "targeted_tags": [
+                        "[REQ-002]",
+                        "[ARC-006]"
+                    ],
+                    "components": [
+                        "./sources/backend.auth"
+                    ]
+                }
+            ]
+        },
+        {
+            "day": 3,
+            "context_file": ".ai/.plan/.context/phase-1.context.blueprint.md",
+            "context_section": "DAY 3",
+            "sub_tasks": [
+                {
+                    "id": "D3_ST1",
+                    "agent": "Reviewer",
+                    "desc": "Reviewer Agent: No description provided",
+                    "targeted_tags": [
+                        "[REQ-001]",
+                        "[REQ-002]",
+                        "[DAT-001]",
+                        "[NFR-001]",
+                        "[NFR-006]",
+                        "[EXC-004]"
+                    ],
+                    "components": [
+                        "./sources/backend.users",
+                        "./sources/backend.auth",
+                        "INTEGRATION_SCOPE;./sources/frontend/tests/auth.spec.ts"
+                    ]
+                },
+                {
+                    "id": "D3_ST2",
+                    "agent": "Docker",
+                    "desc": "Docker Agent: No description provided",
+                    "targeted_tags": [
+                        "[REQ-001]",
+                        "[REQ-002]",
+                        "[NFR-006]"
+                    ],
+                    "components": [
+                        "./sources/infra.dockerfile"
+                    ]
+                },
+                {
+                    "id": "D3_ST3",
+                    "agent": "Gcp",
+                    "desc": "Gcp Agent: No description provided",
+                    "targeted_tags": [
+                        "[REQ-003]",
+                        "[ARC-007]"
+                    ],
+                    "components": [
+                        "./sources/infra.gcp"
+                    ]
+                },
+                {
+                    "id": "D3_ST4",
+                    "agent": "Doc",
+                    "desc": "Doc Agent: No description provided",
+                    "targeted_tags": [
+                        "[NFR-001]",
+                        "[NFR-006]"
+                    ],
+                    "components": [
+                        "./sources/docs.api"
                     ]
                 }
             ]

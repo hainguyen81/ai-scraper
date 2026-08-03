@@ -1,87 +1,69 @@
-# Giai đoạn 1: <!--PHASE_NAME_START-->user_core_services<!--PHASE_NAME_END--> | Mô tả: Triển khai các dịch vụ cốt lõi quản lý người dùng bao gồm đăng ký, xác thực xã hội, gán vai trò, schema cơ sở dữ liệu và logging kiểm toán bảo mật
+# Giai đoạn 1: <!--PHASE_NAME_START-->phase1_userAuthDocker<!--PHASE_NAME_END--> | Mô tả: Xây dựng nền tảng người dùng, xác thực OAuth2, và cấu hình Docker/GCP ban đầu cho hệ thống membership-hub.  
+## 📊 Document Control  
 
-## 📊 Kiểm soát tài liệu
+| Mục | Chi tiết |  
+| :--- | :--- |  
+| **Mã Blueprint** | ARCH-20260803132420 |  
+| **Tên Dự án** | membership-hub |  
+| **Giai đoạn** | 1 |  
+| **Tên Giai đoạn Kỹ thuật** | <!--PHASE_NAME_START-->phase1_userAuthDocker<!--PHASE_NAME_END--> |  
+| **Mô tả** | Xây dựng nền tảng người dùng, xác thực OAuth2, và cấu hình Docker/GCP ban đầu cho hệ thống membership-hub. |  
+| **Phiên bản** | 1.0 (Baseline) |  
+| **Ngày/Giờ** | 2026/08/03 13:24:20 |  
+| **Tác giả** | Enterprise System Architect (SA Agent) |  
+| **Phê duyệt** | Pending Technical Governance Review |  
 
-| Mục | Chi tiết |
-| :--- | :--- |
-| **ID Blueprint** | ARCH-20260803053505 |
-| **Tên dự án** | membership-hub |
-| **Giai đoạn** | 1 |
-| **Tên kỹ thuật giai đoạn** | <!--PHASE_NAME_START-->user_core_services<!--PHASE_NAME_END--> |
-| **Mô tả** | Triển khai các dịch vụ cốt lõi quản lý người dùng bao gồm đăng ký, xác thực xã hội, gán vai trò, schema cơ sở dữ liệu và logging kiểm toán bảo mật |
-| **Phiên bản** | 1.0 (Baseline) |
-| **Ngày/Giờ** | 2026/08/03 05:35:05 |
-| **Tác giả** | Enterprise System Architect (SA Agent) |
-| **Phê duyệt** | Pending Technical Governance Review |
+## 1. Phạm vi và Mục tiêu Giai đoạn  
+Giai đoạn 1 tập trung vào việc triển khai hai dịch vụ cốt lõi: **User Service** và **Auth Service**. Các dịch vụ này cung cấp API đăng ký, đăng nhập, và lấy thông tin người dùng, đồng thời tích hợp OAuth2 với Firebase, Google, và Facebook. Ngoài ra, giai đoạn còn xây dựng Dockerfile đa giai đoạn và cấu hình tài nguyên GCP ban đầu (VPC, Cloud SQL, Redis, Secret Manager). Mọi thành phần phải tuân thủ nguyên tắc OWASP Top 10, bảo mật JWT, và bảo vệ dữ liệu nhạy cảm.  
 
-## 1. Phạm vi hoạt động và mục tiêu giai đoạn
+## 2. Phạm vi Kỹ thuật & Ranh giới Thư mục  
+- **Backend**  
+  - `./sources/backend.users` – Resource `UserResource`, entity `User`, repository `UserRepository`.  
+  - `./sources/backend.auth` – Resource `AuthResource`, service `AuthService`, event `UserAuthenticatedEvent`.  
+- **Infrastructure**  
+  - `./sources/infra.dockerfile` – Dockerfile đa giai đoạn cho cả `users` và `auth`.  
+  - `./sources/infra.gcp` – Terraform/IaC cho VPC, Cloud SQL, Redis, Secret Manager.  
+- **REST Endpoints**  
+  - `POST /api/v1/auth/register` – đăng ký người dùng.  
+  - `POST /api/v1/auth/social` – đăng nhập bằng OAuth2.  
+  - `GET /api/v1/auth/me` – lấy thông tin người dùng hiện tại.  
+  - `POST /api/v1/users` – endpoint đăng ký (được dùng trong test).  
 
-Giai đoạn này tập trung vào việc xây dựng nền tảng cốt lõi cho hệ thống quản lý người dùng, bao gồm:
+## 3. Chỉ đạo Chức năng Đặc thù Agent  
+- **Coder**: triển khai mã nguồn Java/Kotlin, cấu hình Quarkus, bảo mật JWT, mã hóa BCrypt, tạo Dockerfile.  
+- **Reviewer**: thực hiện static code analysis (SonarQube), kiểm tra OWASP, chạy unit test, kiểm tra coverage ≥ 85 %.  
+- **Doc**: biên soạn tài liệu API (OpenAPI), ghi chú trong `./sources/docs.api`.  
 
-- Triển khai schema cơ sở dữ liệu cho bảng Users và Roles với các ràng buộc toàn vẹn dữ liệu
-- Xây dựng dịch vụ đăng ký người dùng với xác thực email/mật khẩu và hỗ trợ OAuth2 cho các nhà cung cấp xã hội (Firebase, Google, Facebook)
-- Triển khai cơ chế phân quyền RBAC với khả năng gán và thay đổi vai trò người dùng
-- Thiết lập hệ thống logging kiểm toán đáp ứng các tiêu chuẩn bảo mật doanh nghiệp
-- Triển khai xử lý ngoại lệ chi tiết cho validation đầu vào và xung đột dữ liệu
+## 4. Định nghĩa Hoàn thành Giai đoạn  
+- Tất cả yêu cầu [REQ-001], [REQ-002], [REQ-003] được triển khai và kiểm thử thành công.  
+- Mọi tag trong Phase 1 được ánh xạ chính xác (25 tag).  
+- Đạt OWASP compliance: SQLi, XSS, CSRF, JWT, TLS 1.3.  
+- Coverage unit test ≥ 85 % cho `users` và `auth`.  
+- Docker image size < 500 MB.  
+- GCP IaC triển khai thành công, các tài nguyên được ghi nhận trong `./sources/infra.gcp`.  
 
-## 2. Phạm vi kỹ thuật và ranh giới thư mục được phép
+## 5. Nhật ký Thực thi Kiến trúc Theo Ngày  
 
-**Thư mục và tệp được phép:**
-- `./sources/backend.membershiphub.user/users.sql` - DDL schema cho bảng Users
-- `./sources/backend.membershiphub.user/roles.sql` - DDL schema cho bảng Roles  
-- `./sources/backend.membershiphub.user/user-service.java` - Dịch vụ chính quản lý người dùng
+### DAY 1: XÂY DỰNG DỊCH VỤ NGƯỜI DÙNG  
 
-**Endpoint API:**
-- `POST /api/v1/auth/register` - Đăng ký người dùng mới
-- `POST /api/v1/auth/social` - Xác thực qua nhà cung cấp xã hội
-- `PUT /api/v1/users/{userId}/role` - Cập nhật vai trò người dùng (chỉ System Admin)
+#### SUB-TASK 1.1: Triển khai UserResource và User entity  
+##### Assigned Sub-Agent: Coder  
+##### Targeted Components & Technical Requirements:  
+* **Đường dẫn**: `./sources/backend.users`  
+* **Thẻ Định danh**: <!--START_TAGS-->[REQ-001], [DAT-001], [EXC-004]<!--END_TAGS-->  
 
-## 3. Chỉ đạo chức năng cho Sub-Agent chuyên dụng
+### DAY 2: XÂY DỰNG DỊCH VỤ XÁC THỰC OAuth2  
 
-**Coder:** Triển khai mã nguồn Java/Quarkus với tuân thủ SOLID, sử dụng BCrypt cho mã hóa mật khẩu, JWT với access token 15 phút và refresh token 7 ngày, áp dụng @Valid cho validation và @Transactional cho các thao tác ghi.
+#### SUB-TASK 2.1: Triển khai AuthResource và AuthService  
+##### Assigned Sub-Agent: Coder  
+##### Targeted Components & Technical Requirements:  
+* **Đường dẫn**: `./sources/backend.auth`  
+* **Thẻ Định danh**: <!--START_TAGS-->[REQ-002], [ARC-006], [EXC-004]<!--END_TAGS-->  
 
-**Tester:** Xây dựng bộ kiểm thử JUnit 5 với độ phủ mã ≥85%, sử dụng Mock cho các dependency, kiểm thử happy path và các scenario lỗi validation.
+### DAY 3: ĐÁNH GIÁ CHẤT LƯỢNG MÃ VÀ KIỂM TRA BẢO MẬT  
 
-**Reviewer:** Thực hiện phân tích tĩnh mã nguồn, kiểm tra tuân thủ OWASP Top 10, đảm bảo không có lỗ hổng SQL injection hoặc XSS.
-
-**Doc:** Biên soạn tài liệu kỹ thuật đầy đủ bao gồm API documentation với OpenAPI, schema documentation và hướng dẫn triển khai.
-
-## 4. Định nghĩa hoàn thành (DoD) cho giai đoạn
-
-- ✅ 100% các requirement [REQ-001], [REQ-002], [REQ-003] được triển khai đầy đủ
-- ✅ Schema database [DAT-001] được tạo thành công với tất cả ràng buộc
-- ✅ Luồng xác thực [ARC-006] hoạt động với OAuth2 và JWT
-- ✅ Xử lý ngoại lệ [EXC-004] cho validation đầu vào
-- ✅ Tuân thủ các tiêu chuẩn bảo mật [NFR-001], [NFR-003], [NFR-006]
-- ✅ Độ phủ kiểm thử ≥85% cho tất cả các dịch vụ
-- ✅ 100% các Tag ID được ánh xạ và kiểm tra
-
-## 5. NHẬT KÝ THỰC THI KIẾN TRÚC THEO NGÀY
-
-### NGÀY 1: TRIỂN KHAI DỊCH VỤ ĐĂNG KÝ NGƯỜI DÙNG VÀ API XÁC THỰC XÃ HỘI
-
-#### SUB-TASK 1.1: Triển khai schema cơ sở dữ liệu Users và Roles
-##### Sub-Agent được chỉ định: Coder
-##### Các thành phần mục tiêu và yêu cầu kỹ thuật:
-* **Đường dẫn mục tiêu:** `./sources/backend.membershiphub.user/users.sql`, `./sources/backend.membershiphub.user/roles.sql`
-* **Các thẻ truy xuất nguồn gốc:** <!--START_TAGS-->[DAT-001]<!--END_TAGS-->
-
-#### SUB-TASK 1.2: Triển khai UserService với phương thức register và socialAuthenticate
-##### Sub-Agent được chỉ định: Coder
-##### Các thành phần mục tiêu và yêu cầu kỹ thuật:
-* **Đường dẫn mục tiêu:** `./sources/backend.membershiphub.user/user-service.java`
-* **Các thẻ truy xuất nguồn gốc:** <!--START_TAGS-->[REQ-001], [REQ-002], [ARC-006], [EXC-004], [NFR-001], [NFR-003], [NFR-006]<!--END_TAGS-->
-
-### NGÀY 2: VIẾT BỘ KIỂM TRA ĐƠN VỊ VÀ TÍCH HỢP CHO CÁC CHỨC NĂNG NGƯỜI DÙNG
-
-#### SUB-TASK 2.1: Kiểm thử đơn vị cho các phương thức register và socialAuthenticate
-##### Sub-Agent được chỉ định: Tester
-##### Các thành phần mục tiêu và yêu cầu kỹ thuật:
-* **Đường dẫn mục tiêu:** `./sources/backend.membershiphub.user/user-service.java;./sources/backend.membershiphub.user/userservice-test.java`
-* **Các thẻ truy xuất nguồn gốc:** <!--START_TAGS-->[REQ-001], [REQ-002], [DAT-001], [EXC-004]<!--END_TAGS-->
-
-#### SUB-TASK 2.2: Kiểm thử tích hợp cho API endpoints
-##### Sub-Agent được chỉ định: Tester
-##### Các thành phần mục tiêu và yêu cầu kỹ thuật:
-* **Đường dẫn mục tiêu:** `./sources/backend.membershiphub.user/user-service.java;./sources/backend.membershiphub.user/user-controller-test.java`
-* **Các thẻ truy xuất nguồn gốc:** <!--START_TAGS-->[REQ-001], [REQ-002], [ARC-006], [EXC-004]<!--END_TAGS-->
+#### SUB-TASK 3.1: Kiểm tra static code, unit test, coverage, và Docker build  
+##### Assigned Sub-Agent: Reviewer  
+##### Targeted Components & Technical Requirements:  
+* **Đường dẫn**: `./sources/backend.users`  
+* **Thẻ Định danh**: <!--START_TAGS-->[REQ-001], [REQ-002], [DAT-001], [NFR-001], [NFR-006], [EXC-004]<!--END_TAGS-->

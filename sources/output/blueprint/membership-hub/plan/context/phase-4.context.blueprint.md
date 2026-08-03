@@ -1,95 +1,96 @@
-# Giai đoạn 4: <!--PHASE_NAME_START-->attendance_enrollment_module<!--PHASE_NAME_END--> | Mô tả: Triển khai module ghi danh học viên, điểm danh QR, và quản lý thẻ hội viên với service điểm danh QR idempotent, xử lý ngoại lệ network và duplicate scans, và tích hợp với hệ thống thông báo
+# Giai đoạn 4: <!--PHASE_NAME_START-->phase4_notification_and_security<!--PHASE_NAME_END--> | Mô tả: Triển khai hạ tầng Docker đa giai đoạn, cấu hình tài nguyên GCP (VPC, IAM, Cloud Storage), triển khai dịch vụ thông báo push, và ghi chép quy tắc bảo mật, đồng thời thực hiện kiểm tra OWASP và NFR.
 
-## 📊 Kiểm soát tài liệu
+## 📊 Document Control
 
 | Mục | Chi tiết |
 | :--- | :--- |
-| **ID Blueprint** | ARCH-20260803053505 |
-| **Tên dự án** | membership-hub |
+| **Mã Blueprint** | ARCH-20260803132420 |
+| **Tên Dự án** | membership-hub |
 | **Giai đoạn** | 4 |
-| **Tên kỹ thuật giai đoạn** | <!--PHASE_NAME_START-->attendance_enrollment_module<!--PHASE_NAME_END--> |
-| **Mô tả** | Triển khai module ghi danh học viên, điểm danh QR, và quản lý thẻ hội viên với service điểm danh QR idempotent, xử lý ngoại lệ network và duplicate scans, và tích hợp với hệ thống thông báo |
+| **Tên Giai đoạn Kỹ thuật** | <!--PHASE_NAME_START-->phase4_notification_and_security<!--PHASE_NAME_END--> |
+| **Mô tả** | Triển khai hạ tầng Docker đa giai đoạn, cấu hình tài nguyên GCP (VPC, IAM, Cloud Storage), triển khai dịch vụ thông báo push, và ghi chép quy tắc bảo mật, đồng thời thực hiện kiểm tra OWASP và NFR. |
 | **Phiên bản** | 1.0 (Baseline) |
-| **Ngày/Giờ** | 2026/08/03 05:35:05 |
+| **Ngày/Giờ** | 2026/08/03 13:24:20 |
 | **Tác giả** | Enterprise System Architect (SA Agent) |
 | **Phê duyệt** | Pending Technical Governance Review |
 
-## 1. Phạm vi hoạt động và mục tiêu giai đoạn
+## 1. Phase Operational Scope & Objectives
+Giai đoạn 4 tập trung vào việc hoàn thiện hạ tầng triển khai và bảo mật cho hệ thống membership‑hub. Các mục tiêu chính bao gồm:
+- Cập nhật Dockerfile đa giai đoạn để giảm kích thước ảnh, tối ưu thời gian build và tuân thủ NFR‑005 (độ lớn ảnh < 500 MB).
+- Cấu hình tài nguyên GCP (VPC, IAM, Cloud Storage, Secret Manager, Cloud SQL, Redis) theo mô hình IaC, đáp ứng NFR‑009 (đảm bảo sao lưu và khôi phục).
+- Triển khai dịch vụ thông báo push (NotificationService) với logic retry, ghi nhận trạng thái delivered, và xử lý ngoại lệ EXC‑003.
+- Soạn tài liệu bảo mật (docs.security) ghi nhận các quy tắc RBAC, OWASP Top 10, và các biện pháp bảo vệ dữ liệu.
+- Đảm bảo toàn bộ các yêu cầu NFR, REQ, DAT, EXC được kiểm tra, ghi nhận và liên kết đầy đủ.
 
-Giai đoạn này tập trung vào việc xây dựng module quản lý ghi danh, điểm danh và thẻ hội viên với các chức năng chính:
+## 2. Allowed Technical Scope & Directory Boundaries (Files, paths, and endpoints)
+| Đường dẫn | Mô tả |
+| :--- | :--- |
+| `./sources/infra.dockerfile` | Dockerfile đa giai đoạn cho toàn bộ backend |
+| `./sources/infra.gcp` | Terraform/IaC scripts tạo VPC, IAM, Cloud Storage, Secret Manager, Cloud SQL, Redis |
+| `./sources/backend.notifications` | Dịch vụ NotificationResource (REST API) |
+| `./sources/docs.security` | Tài liệu bảo mật, quy tắc OWASP, RBAC, audit log |
 
-- Triển khai schema cơ sở dữ liệu cho bảng Enrollments, Attendance và StudentCards với các ràng buộc toàn vẹn dữ liệu
-- Xây dựng dịch vụ ghi danh học viên vào khóa học với validation nghiêm ngặt
-- Triển khai API điểm danh QR idempotent đảm bảo không có bản ghi trùng lặp
-- Thiết lập cơ chế xử lý ngoại lệ network và duplicate scans
-- Triển khai chức năng quản lý thẻ hội viên với tính năng gia hạn
-- Tích hợp với hệ thống thông báo tự động cho các sự kiện ghi danh và điểm danh
-- Triển khai hệ thống logging kiểm toán đáp ứng các tiêu chuẩn bảo mật doanh nghiệp
+REST endpoint cho NotificationService:
+```
+POST /api/v1/notifications
+```
+- Body: `{ "userId": "<UUID>", "groupZalo": "<string>", "message": "<string>" }`
+- Response: `{ "notificationId": "<UUID>", "sentAt": "<timestamp>", "delivered": false }`
 
-## 2. Phạm vi kỹ thuật và ranh giới thư mục được phép
+## 3. Dedicated Sub-Agent Functional Directives
+| Agent | Trách nhiệm |
+| :--- | :--- |
+| **Docker** | Cập nhật Dockerfile, kiểm tra kích thước ảnh, thực thi build, push lên registry. |
+| **GCP** | Triển khai IaC, cấu hình IAM, VPC, Cloud Storage, Secret Manager, Cloud SQL, Redis. |
+| **Coder** | Phát triển NotificationResource, triển khai logic retry, ghi nhận trạng thái delivered, xử lý EXC‑003. |
+| **Doc** | Soạn tài liệu bảo mật, ghi nhận quy tắc OWASP, RBAC, audit log, liên kết tag. |
+| **Tester** | Kiểm tra unit, integration, và end‑to‑end cho NotificationService, Docker build, IaC deployment. |
+| **Reviewer** | Phân tích tĩnh mã, kiểm tra OWASP, bảo mật, và tuân thủ NFR. |
 
-**Thư mục và tệp được phép:**
-- `./sources/backend.membershiphub.attendance/enrollments.sql` - DDL schema cho bảng Enrollments
-- `./sources/backend.membershiphub.attendance/attendances.sql` - DDL schema cho bảng Attendance
-- `./sources/backend.membershiphub.attendance/studentcards.sql` - DDL schema cho bảng StudentCards
-- `./sources/backend.membershiphub.attendance/enrollment-service.java` - Dịch vụ chính quản lý ghi danh và điểm danh
-- `./sources/backend.membershiphub.attendance/studentcard-service.java` - Dịch vụ quản lý thẻ hội viên
+## 4. Phase Definition of Done (DoD)
+- **Tất cả REQ, DAT, EXC, NFR** trong Phase 4 được triển khai, kiểm tra và ghi nhận đầy đủ.
+- **Docker image** < 500 MB, build thành công, push lên registry.
+- **IaC deployment** thành công, tài nguyên GCP khởi tạo đúng cấu hình, backup được cấu hình.
+- **NotificationService** trả về `delivered=true` sau retry tối đa 3 lần, ghi nhận log chi tiết.
+- **Tài liệu bảo mật** hoàn chỉnh, liên kết tất cả tag, kiểm tra OWASP Top 10, audit log tuân thủ NFR‑006.
+- **Coverage**: Unit test ≥ 85 %, integration test ≥ 80 %, end‑to‑end ≥ 70 %.
+- **CI/CD**: GitHub Actions chạy thành công, build, test, push, deploy.
+- **Tag mapping**: Mỗi tag trong Phase 4 xuất hiện ít nhất một lần trong logs.
 
-**Endpoint API:**
-- `GET /api/v1/courses/browse` - Lấy danh sách khóa học có sẵn cho học viên
-- `POST /api/v1/enrollments` - Ghi danh học viên vào khóa học
-- `POST /api/v1/attendance/scan` - Quét mã QR điểm danh
-- `GET /api/v1/studentcards/{studentId}` - Lấy thông tin thẻ hội viên
-- `POST /api/v1/studentcards/{studentId}/renew` - Gia hạn thẻ hội viên
+## 5. DAY‑BY‑DAY ARCHITECTURAL EXECUTION LOGS
 
-## 3. Chỉ đạo chức năng cho Sub-Agent chuyên dụng
+### DAY 1: CẬP NHẬT DOCKERFILE ĐA GIAI ĐỘNG
 
-**Coder:** Triển khai mã nguồn Java/Quarkus với tuân thủ SOLID, sử dụng JPA/Hibernate cho persistence, áp dụng @Valid cho validation, @Transactional cho các thao tác ghi. Đảm bảo logic điểm danh QR idempotent hoạt động chính xác và xử lý ngoại lệ network đúng cách.
+#### SUB-TASK 1.1: Cập nhật Dockerfile đa giai đoạn
+##### Assigned Sub-Agent: Docker
+##### Targeted Components & Technical Requirements:
+* **Target Path**: `./sources/infra.dockerfile`
+* **Traceability Tag Tokens**: <!--START_TAGS-->[REQ-016], [NFR-006]<!--END_TAGS-->
+* **OWASP Compliance**: Sử dụng multi‑stage build, loại bỏ layer không cần thiết, chỉ giữ runtime dependencies, bảo vệ image khỏi injection.
 
-**Tester:** Xây dựng bộ kiểm thử JUnit 5 và Testcontainers với độ phủ mã ≥85%, kiểm thử happy path và các scenario lỗi network, duplicate scans, và validation.
+### DAY 2: CẤU HÌNH TÀI NGUYÊN GCP
 
-**Reviewer:** Thực hiện phân tích tĩnh mã nguồn, kiểm tra tuân thủ OWASP Top 10, đảm bảo không có lỗ hổng SQL injection hoặc XSS trong các API điểm danh và ghi danh.
+#### SUB-TASK 2.1: Cấu hình VPC, IAM, Cloud Storage
+##### Assigned Sub-Agent: GCP
+##### Targeted Components & Technical Requirements:
+* **Target Path**: `./sources/infra.gcp`
+* **Traceability Tag Tokens**: <!--START_TAGS-->[REQ-017], [REQ-018], [NFR-009]<!--END_TAGS-->
+* **OWASP Compliance**: IAM roles được phân quyền tối thiểu, VPC firewall rules, encryption at rest, secret management.
 
-**Doc:** Biên soạn tài liệu kỹ thuật đầy đủ bao gồm API documentation với OpenAPI, schema documentation và hướng dẫn triển khai cho module ghi danh và điểm danh.
+### DAY 3: TRIỂN KHAI DỊCH VỤ THÔNG BÁO PUSH
 
-## 4. Định nghĩa hoàn thành (DoD) cho giai đoạn
+#### SUB-TASK 3.1: Triển khai NotificationResource
+##### Assigned Sub-Agent: Coder
+##### Targeted Components & Technical Requirements:
+* **Target Path**: `./sources/backend.notifications`
+* **Traceability Tag Tokens**: <!--START_TAGS-->[REQ-016], [DAT-008], [EXC-003]<!--END_TAGS-->
+* **OWASP Compliance**: Prepared statements, input validation, retry logic, audit logging, token sanitization.
 
-- ✅ 100% các requirement [REQ-010], [REQ-011], [REQ-012], [REQ-013], [REQ-014], [REQ-015] được triển khai đầy đủ
-- ✅ Schema database [DAT-005], [DAT-006], [DAT-007] được tạo thành công với tất cả ràng buộc
-- ✅ Logic điểm danh QR idempotent hoạt động chính xác
-- ✅ Xử lý ngoại lệ network và duplicate scans [EXC-001], [EXC-002]
-- ✅ Tuân thủ các tiêu chuẩn bảo mật [NFR-001], [NFR-003]
-- ✅ Độ phủ kiểm thử ≥85% cho tất cả các dịch vụ
-- ✅ 100% các Tag ID được ánh xạ và kiểm tra
+### DAY 4: GHI CHÉP QUY TẮC BẢO MẬT VÀ KIỂM TRA OWASP
 
-## 5. NHẬT KÝ THỰC THI KIẾN TRÚC THEO NGÀY
-
-### NGÀY 7: TRIỂN KHAI SERVICE GHI DANH HỌC VIÊN VÀ ĐIỂM DANH QR
-
-#### SUB-TASK 7.1: Triển khai schema cơ sở dữ liệu Enrollments, Attendance và StudentCards
-##### Sub-Agent được chỉ định: Coder
-##### Các thành phần mục tiêu và yêu cầu kỹ thuật:
-* **Đường dẫn mục tiêu:** `./sources/backend.membershiphub.attendance/enrollments.sql`
-* **Các thẻ truy xuất nguồn gốc:** <!--START_TAGS-->[DAT-005]<!--END_TAGS-->
-
-#### SUB-TASK 7.2: Triển khai EnrollmentService với các phương thức ghi danh và điểm danh QR idempotent
-##### Sub-Agent được chỉ định: Coder
-##### Các thành phần mục tiêu và yêu cầu kỹ thuật:
-* **Đường dẫn mục tiêu:** `./sources/backend.membershiphub.attendance/enrollment-service.java`
-* **Các thẻ truy xuất nguồn gốc:** <!--START_TAGS-->[REQ-010], [REQ-011], [REQ-012], [REQ-013], [DAT-005], [DAT-006], [DAT-007], [ARC-007], [EXC-001], [EXC-002], [NFR-001], [NFR-003]<!--END_TAGS-->
-
-### NGÀY 8: TRIỂN KHAI SERVICE QUẢN LÝ THẺ HỘI VIÊN VÀ GIA HẠN
-
-#### SUB-TASK 8.1: Triển khai StudentCardService với các phương thức quản lý thẻ và gia hạn
-##### Sub-Agent được chỉ định: Coder
-##### Các thành phần mục tiêu và yêu cầu kỹ thuật:
-* **Đường dẫn mục tiêu:** `./sources/backend.membershiphub.attendance/studentcard-service.java`
-* **Các thẻ truy xuất nguồn gốc:** <!--START_TAGS-->[REQ-014], [REQ-015], [DAT-007], [NFR-003]<!--END_TAGS-->
-
-### NGÀY 9: VIẾT BỘ KIỂM TRA TÍCH HỢP CHO GHI DANH, ĐIỂM DANH, VÀ THẺ
-
-#### SUB-TASK 9.1: Kiểm thử tích hợp cho các API ghi danh, điểm danh và quản lý thẻ
-##### Sub-Agent được chỉ định: Tester
-##### Các thành phần mục tiêu và yêu cầu kỹ thuật:
-* **Đường dẫn mục tiêu:** `./sources/backend.membershiphub.attendance/enrollment-service.java;./sources/backend.membershiphub.attendance/enrollmentservice-integration-test.java`
-* **Các thẻ truy xuất nguồn gốc:** <!--START_TAGS-->[REQ-010], [REQ-011], [REQ-012], [REQ-013], [DAT-005], [DAT-006], [DAT-007], [ARC-007], [EXC-001], [EXC-002]<!--END_TAGS-->
+#### SUB-TASK 4.1: Soạn tài liệu bảo mật
+##### Assigned Sub-Agent: Doc
+##### Targeted Components & Technical Requirements:
+* **Target Path**: `./sources/docs.security`
+* **Traceability Tag Tokens**: <!--START_TAGS-->[REQ-017], [REQ-018], [DAT-008], [EXC-003], [NFR-006], [NFR-009]<!--END_TAGS-->
+* **OWASP Compliance**: Ghi nhận các biện pháp bảo vệ, audit log, RBAC, encryption, backup, disaster recovery.
