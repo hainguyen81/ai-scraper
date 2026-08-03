@@ -1,132 +1,101 @@
-# Giai đoạn 5: <!--PHASE_NAME_START-->notification_frontend_integration_and_devops_deployment<!--PHASE_NAME_END--> | Mô tả: Triển khai toàn diện module thông báo, khuyến mãi, thông báo, chatbot AI, UI di động responsive, đa ngôn ngữ, SEO, và thiết lập hạ tầng DevOps hoàn chỉnh với Docker, GCP và GKE
+# Giai đoạn 5: <!--PHASE_NAME_START-->phase5_reporting_dashboard_k8s_frontend<!--PHASE_NAME_END--> | Mô tả: Triển khai giao diện web Next.js, ứng dụng di động Capacitor, dịch vụ báo cáo, manifest Kubernetes GKE, và hoàn thiện pipeline CI/CD, đồng thời ghi chép tài liệu kỹ thuật và tuân thủ OWASP, NFR.
 
-## 📊 Kiểm soát tài liệu
+## 📊 Document Control
 
 | Mục | Chi tiết |
 | :--- | :--- |
-| **ID Blueprint** | ARCH-20260803053505 |
-| **Tên dự án** | membership-hub |
+| **Mã Blueprint** | ARCH-20260803132420 |
+| **Tên Dự án** | membership-hub |
 | **Giai đoạn** | 5 |
-| **Tên kỹ thuật giai đoạn** | <!--PHASE_NAME_START-->notification_frontend_integration_and_devops_deployment<!--PHASE_NAME_END--> |
-| **Mô tả** | Triển khai toàn diện module thông báo, khuyến mãi, thông báo, chatbot AI, UI di động responsive, đa ngôn ngữ, SEO, và thiết lập hạ tầng DevOps hoàn chỉnh với Docker, GCP và GKE |
+| **Tên Giai đoạn Kỹ thuật** | <!--PHASE_NAME_START-->phase5_reporting_dashboard_k8s_frontend<!--PHASE_NAME_END--> |
+| **Mô tả** | Triển khai giao diện web Next.js, ứng dụng di động Capacitor, dịch vụ báo cáo và dashboard, chuẩn bị manifest Kubernetes cho GKE, và hoàn thiện pipeline CI/CD, đồng thời ghi chép tài liệu kỹ thuật và tuân thủ OWASP, NFR. |
 | **Phiên bản** | 1.0 (Baseline) |
-| **Ngày/Giờ** | 2026/08/03 05:35:05 |
+| **Ngày/Giờ** | 2026/08/03 13:24:20 |
 | **Tác giả** | Enterprise System Architect (SA Agent) |
 | **Phê duyệt** | Pending Technical Governance Review |
 
-## 1. Phạm vi hoạt động và mục tiêu giai đoạn
+## 1. Phạm vi và Mục tiêu của Giai đoạn
+Trong Giai đoạn 5, đội ngũ sẽ triển khai toàn bộ giao diện người dùng web Next.js và ứng dụng di động Capacitor, đồng thời xây dựng dịch vụ báo cáo và dashboard, chuẩn bị manifest Kubernetes cho GKE, và hoàn thiện pipeline CI/CD. Các thành phần sẽ được xây dựng theo nguyên tắc modular, bảo mật OWASP, tuân thủ NFR, và được kiểm tra đầy đủ qua unit, integration, và end‑to‑end tests. Tài liệu kỹ thuật sẽ được ghi chép chi tiết, bao gồm kiến trúc, quy trình triển khai, và các biện pháp bảo mật.
 
-Giai đoạn này tập trung vào việc hoàn thiện hệ thống với các chức năng nâng cao và triển khai hạ tầng production:
+## 2. Phạm vi Kỹ thuật & Giới hạn Đường dẫn
+| Đường dẫn | Mô tả |
+| :--- | :--- |
+| `./sources/frontend.web` | Giao diện web Next.js |
+| `./sources/frontend.mobile` | Ứng dụng di động Capacitor |
+| `./sources/backend.reporting` | Dịch vụ báo cáo và dashboard |
+| `./sources/infra.k8s` | Manifest Kubernetes cho GKE |
+| `./sources/infra.cicd` | Pipeline CI/CD và cấu hình GitHub Actions |
 
-- Triển khai schema cơ sở dữ liệu cho bảng Notifications, Promotions, Announcements và SystemSettings
-- Xây dựng dịch vụ thông báo đa kênh (push notification, Zalo integration) với retry mechanism
-- Triển khai API quản lý khuyến mãi và thông báo với validation nghiêm ngặt
-- Tích hợp chatbot AI với OpenAI/Gemini API cho dịch vụ khách hàng tự động
-- Phát triển frontend Next.js với responsive design, đa ngôn ngữ và SEO optimization
-- Thiết lập cơ sở hạ tầng GCP hoàn chỉnh với VPC, IAM, Cloud SQL và Secret Manager
-- Xây dựng Docker multi-stage images cho backend và frontend
-- Triển khai lên Google Kubernetes Engine với HPA, canary deployment và monitoring stack
+**REST Endpoints:**
+- `GET /api/v1/reports/attendance`
+- `GET /api/v1/dashboard/enrollment`
+- `GET /api/v1/i18n/{lang}`
+- `GET /api/v1/seo/{lang}`
+- `POST /api/v1/chatbot/query`
 
-## 2. Phạm vi kỹ thuật và ranh giới thư mục được phép
+## 3. Hướng dẫn Đặc thù Sub-Agent
+- **Coder**: Xây dựng mã nguồn, triển khai tính năng, tuân thủ OWASP, NFR.  
+- **GKE**: Xây dựng manifest Kubernetes, triển khai, cấu hình HPA, TLS, Ingress.  
+- **Doc**: Soạn tài liệu kỹ thuật, ghi chép quy trình, bảo mật, OWASP.  
+- **Tester**: Viết và chạy unit, integration, end‑to‑end tests, báo cáo coverage.  
+- **Reviewer**: Phân tích tĩnh mã, kiểm tra OWASP, bảo mật, tuân thủ NFR.
 
-**Thư mục và tệp được phép:**
-- `./sources/backend.membershiphub.notification/notifications.sql` - DDL schema cho bảng Notifications
-- `./sources/backend.membershiphub.notification/promotions.sql` - DDL schema cho bảng Promotions
-- `./sources/backend.membershiphub.notification/announcements.sql` - DDL schema cho bảng Announcements
-- `./sources/backend.membershiphub.notification/systemsettings.sql` - DDL schema cho bảng SystemSettings
-- `./sources/backend.membershiphub.notification/notification-service.java` - Dịch vụ chính quản lý thông báo
-- `./sources/backend.membershiphub.notification/chatbot-service.java` - Dịch vụ chatbot AI
-- `./sources/frontend.nextjs/package.json` - Cấu hình frontend Next.js
-- `./sources/infra/gcp/infrastructure.tf` - Cấu hình Terraform cho GCP
-- `./sources/infra/docker/backend/Dockerfile` - Dockerfile cho backend
-- `./sources/infra/gke/deployments.yaml` - Kubernetes deployments cho GKE
+## 4. Định nghĩa Hoàn thành (DoD)
+- Tất cả các yêu cầu [REQ-019] đến [REQ-025] được triển khai và kiểm tra.  
+- Tất cả các tag được ánh xạ ít nhất một lần trong logs.  
+- OWASP Top 10 được kiểm tra và khắc phục.  
+- Coverage unit ≥ 85 %, integration ≥ 80 %, end‑to‑end ≥ 70 %.  
+- Docker image < 500 MB.  
+- Kubernetes deployment thành công, HPA hoạt động.  
+- CI/CD pipeline chạy thành công, push image, deploy.  
+- Tài liệu kỹ thuật hoàn chỉnh, bao gồm kiến trúc, quy trình, bảo mật.
 
-**Endpoint API:**
-- `POST /api/v1/notifications` - Tạo và gửi thông báo đa kênh
-- `GET /api/v1/promotions` - Lấy danh sách khuyến mãi hiệu lực
-- `POST /api/v1/promotions` - Tạo khuyến mãi mới
-- `PUT /api/v1/promotions/{promoId}` - Cập nhật khuyến mãi
-- `DELETE /api/v1/promotions/{promoId}` - Xóa khuyến mãi
-- `POST /api/v1/announcements` - Tạo thông báo mới
-- `GET /api/v1/announcements` - Lấy danh sách thông báo hiệu lực
-- `POST /api/v1/chatbot/interact` - Tương tác với chatbot AI
-- `GET /api/v1/i18n/{locale}` - Lấy bản dịch theo locale
-- `GET /api/v1/seo/{locale}/{path}` - Lấy meta tags SEO
+## 5. DAY-BY-DAY ARCHITECTURAL EXECUTION LOGS
 
-## 3. Chỉ đạo chức năng cho Sub-Agent chuyên dụng
+### DAY 1: TRIỂN KHAI GIAO DIỆN WEB VÀ ỨNG DỤNG DI ĐỘNG
 
-**Coder:** Triển khai mã nguồn Java/Quarkus cho các dịch vụ thông báo và chatbot, sử dụng @Transactional, tích hợp FCM, APNs và Zalo API. Phát triển frontend Next.js với TypeScript, Tailwind CSS, react-i18next và SEO optimization.
+#### SUB-TASK 1.1: Xây dựng giao diện web Next.js
+##### Trách nhiệm Sub-Agent: Coder
+##### Công cụ mục tiêu & Yêu cầu kỹ thuật:
+* **Đường dẫn mục tiêu**: `./sources/frontend.web`
+* **Thẻ Tracability**: <!--START_TAGS-->[REQ-019], [REQ-022], [REQ-023], [NFR-001], [NFR-003], [NFR-007], [NFR-008]<!--END_TAGS-->
 
-**Tester:** Xây dựng bộ kiểm thử JUnit 5 và Testcontainers cho các dịch vụ thông báo, kiểm thử integration với FCM và Zalo API mock, đảm bảo độ phủ mã ≥85%.
+#### SUB-TASK 1.2: Xây dựng ứng dụng di động Capacitor
+##### Trách nhiệm Sub-Agent: Coder
+##### Công cụ mục tiêu & Yêu cầu kỹ thuật:
+* **Đường dẫn mục tiêu**: `./sources/frontend.mobile`
+* **Thẻ Tracability**: <!--START_TAGS-->[REQ-020], [REQ-021], [NFR-001], [NFR-003], [NFR-007], [NFR-008]<!--END_TAGS-->
 
-**Docker:** Tạo multi-stage Dockerfile cho backend và frontend, đảm bảo kích thước image cuối cùng <500MB, thiết lập healthcheck và non-root user.
+### DAY 2: TRIỂN KHAI DỊCH VỤ BÁO CÁO VÀ MANIFEST KUBERNETES
 
-**GCP:** Triển khai Terraform configuration cho GCP infrastructure bao gồm VPC, IAM, Cloud SQL, Secret Manager và Cloud Scheduler.
+#### SUB-TASK 2.1: Xây dựng dịch vụ báo cáo và dashboard
+##### Trách nhiệm Sub-Agent: Coder
+##### Công cụ mục tiêu & Yêu cầu kỹ thuật:
+* **Đường dẫn mục tiêu**: `./sources/backend.reporting`
+* **Thẻ Tracability**: <!--START_TAGS-->[REQ-024], [REQ-025], [ARC-009], [NFR-001], [NFR-004], [NFR-006]<!--END_TAGS-->
 
-**GKE:** Tạo Kubernetes manifests cho deployment, service, ingress, HPA và monitoring stack, triển khai canary deployment với health checks.
+#### SUB-TASK 2.2: Xây dựng manifest Kubernetes cho GKE
+##### Trách nhiệm Sub-Agent: GKE
+##### Công cụ mục tiêu & Yêu cầu kỹ thuật:
+* **Đường dẫn mục tiêu**: `./sources/infra.k8s`
+* **Thẻ Tracability**: <!--START_TAGS-->[ARC-010], [NFR-001], [NFR-002], [NFR-004], [NFR-005]<!--END_TAGS-->
 
-## 4. Định nghĩa hoàn thành (DoD) cho giai đoạn
+### DAY 3: HOÀN THI CI/CD PIPELINE VÀ TÀI LIỆU KỸ THUẬT
 
-- ✅ 100% các requirement [REQ-016], [REQ-017], [REQ-018], [REQ-019], [REQ-020], [REQ-021], [REQ-022], [REQ-023] được triển khai đầy đủ
-- ✅ Schema database [DAT-008], [DAT-009], [DAT-011] được tạo thành công với tất cả ràng buộc
-- ✅ Tích hợp thành công FCM, APNs và Zalo API cho thông báo đa kênh
-- ✅ Frontend Next.js responsive với đa ngôn ngữ và SEO optimization
-- ✅ Infrastructure as Code hoàn chỉnh cho GCP và GKE
-- ✅ Docker images optimized với kích thước <500MB
-- ✅ Tuân thủ các tiêu chuẩn bảo mật [NFR-003], [NFR-006], [NFR-007]
-- ✅ Độ phủ kiểm thử ≥85% cho tất cả các dịch vụ mới
-- ✅ 100% các Tag ID được ánh xạ và kiểm tra
+#### SUB-TASK 3.1: Thiết lập pipeline CI/CD và ghi chép tài liệu
+##### Trách nhiệm Sub-Agent: Doc
+##### Công cụ mục tiêu & Yêu cầu kỹ thuật:
+* **Đường dẫn mục tiêu**: `./sources/infra.cicd`
+* **Thẻ Tracability**: <!--START_TAGS-->[NFR-001], [NFR-002], [NFR-003], [NFR-004], [NFR-005], [NFR-006], [NFR-008], [EXC-005]<!--END_TAGS-->
 
-## 5. NHẬT KÝ THỰC THI KIẾN TRÚC THEO NGÀY
+#### SUB-TASK 3.2: Kiểm tra tích hợp và end‑to‑end
+##### Trách nhiệm Sub-Agent: Tester
+##### Công cụ mục tiêu & Yêu cầu kỹ thuật:
+* **Đường dẫn mục tiêu**: `./sources/backend.reporting;./sources/tests/backend.reporting.test`
+* **Thẻ Tracability**: <!--START_TAGS-->[REQ-024], [REQ-025], [ARC-009], [NFR-001], [NFR-004], [NFR-006]<!--END_TAGS-->
 
-### NGÀY 10: TRIỂN KHAI SERVICE THÔNG BÁO, KHUYẾN MÃI, THÔNG BÁO
-
-#### SUB-TASK 10.1: Triển khai schema cơ sở dữ liệu Notifications, Promotions, Announcements và SystemSettings
-##### Sub-Agent được chỉ định: Coder
-##### Các thành phần mục tiêu và yêu cầu kỹ thuật:
-* **Đường dẫn mục tiêu:** `./sources/backend.membershiphub.notification/notifications.sql`
-* **Các thẻ truy xuất nguồn gốc:** <!--START_TAGS-->[DAT-008]<!--END_TAGS-->
-
-#### SUB-TASK 10.2: Triển khai NotificationService với các phương thức thông báo đa kênh và retry mechanism
-##### Sub-Agent được chỉ định: Coder
-##### Các thành phần mục tiêu và yêu cầu kỹ thuật:
-* **Đường dẫn mục tiêu:** `./sources/backend.membershiphub.notification/notification-service.java`
-* **Các thẻ truy xuất nguồn gốc:** <!--START_TAGS-->[REQ-016], [REQ-017], [REQ-018], [REQ-019], [DAT-008], [DAT-009], [NFR-003], [NFR-006]<!--END_TAGS-->
-
-### NGÀY 11: TRIỂN KHAI TÍCH HỢP CHATBOT AI, UI DI ĐỘNG VÀ CẤU HÌNH ĐA NGÔN NGỮ/SEO
-
-#### SUB-TASK 11.1: Triển khai ChatbotService với tích hợp OpenAI/Gemini API và xử lý tương tác
-##### Sub-Agent được chỉ định: Coder
-##### Các thành phần mục tiêu và yêu cầu kỹ thuật:
-* **Đường dẫn mục tiêu:** `./sources/backend.membershiphub.notification/chatbot-service.java`
-* **Các thẻ truy xuất nguồn gốc:** <!--START_TAGS-->[REQ-019], [REQ-020], [REQ-021], [REQ-022], [REQ-023], [DAT-011], [NFR-007]<!--END_TAGS-->
-
-#### SUB-TASK 11.2: Triển khai frontend Next.js với responsive design, i18n và SEO optimization
-##### Sub-Agent được chỉ định: Coder
-##### Các thành phần mục tiêu và yêu cầu kỹ thuật:
-* **Đường dẫn mục tiêu:** `./sources/frontend.nextjs/package.json`
-* **Các thẻ truy xuất nguồn gốc:** <!--START_TAGS-->[REQ-020], [REQ-021], [REQ-022], [REQ-023]<!--END_TAGS-->
-
-### NGÀY 12: CUNG CẤP CẤU HÌNH HẠ TẦNG GCP (VPC, IAM, CLOUD STORAGE, CLOUD RUN)
-
-#### SUB-TASK 12.1: Triển khai Terraform configuration cho GCP infrastructure với VPC, IAM và Cloud SQL
-##### Sub-Agent được chỉ định: GCP
-##### Các thành phần mục tiêu và yêu cầu kỹ thuật:
-* **Đường dẫn mục tiêu:** `./sources/infra/gcp/infrastructure.tf`
-* **Các thẻ truy xuất nguồn gốc:** <!--START_TAGS-->[NFR-004], [NFR-008]<!--END_TAGS-->
-
-### NGÀY 13: XÂY DỰNG DOCKER IMAGE ĐA GIAI ĐOẠN CHO BACKEND VÀ FRONTEND
-
-#### SUB-TASK 13.1: Tạo multi-stage Dockerfile cho backend Quarkus với optimization kích thước
-##### Sub-Agent được chỉ định: Docker
-##### Các thành phần mục tiêu và yêu cầu kỹ thuật:
-* **Đường dẫn mục tiêu:** `./sources/infra/docker/backend/Dockerfile`
-* **Các thẻ truy xuất nguồn gốc:** <!--START_TAGS-->[NFR-005], [NFR-009]<!--END_TAGS-->
-
-### NGÀY 14: TRIỂN KHAI LÊN GOOGLE KUBERNETES ENGINE (GKE) VỚI HPA VÀ QUẢN LÝ RELEASE
-
-#### SUB-TASK 14.1: Tạo Kubernetes manifests cho deployment, service, ingress và HPA
-##### Sub-Agent được chỉ định: GKE
-##### Các thành phần mục tiêu và yêu cầu kỹ thuật:
-* **Đường dẫn mục tiêu:** `./sources/infra/gke/deployments.yaml`
-* **Các thẻ truy xuất nguồn gốc:** <!--START_TAGS-->[NFR-002], [NFR-004], [NFR-009]<!--END_TAGS-->
+#### SUB-TASK 3.3: Phân tích tĩnh mã và bảo mật
+##### Trách nhiệm Sub-Agent: Reviewer
+##### Công cụ mục tiêu & Yêu cầu kỹ thuật:
+* **Đường dẫn mục tiêu**: `./sources/backend.reporting`
+* **Thẻ Tracability**: <!--START_TAGS-->[NFR-001], [NFR-003], [NFR-006]<!--END_TAGS-->

@@ -1,8 +1,8 @@
 ```text```json
 {
   "phase_id": 1,
-  "phase_name": "user_core_services",
-  "phase_description": "Triển khai các dịch vụ cốt lõi quản lý người dùng bao gồm đăng ký, xác thực xã hội, gán vai trò, schema cơ sở dữ liệu và logging kiểm toán bảo mật",
+  "phase_name": "phase1_userAuthDocker",
+  "phase_description": "Xây dựng nền tảng người dùng, xác thực OAuth2, và cấu hình Docker/GCP ban đầu cho hệ thống membership-hub.",
   "project_name": "membership-hub",
   "global_context_file": ".ai/.context/membership-hub.global.blueprint.md",
   "source_target_dir": "sources/",
@@ -10,42 +10,42 @@
     {
       "day": 1,
       "context_file": ".ai/.plan/.context/phase-1.context.blueprint.md",
-      "context_section": "NGÀY 1: TRIỂN KHAI DỊCH VỤ ĐĂNG KÝ NGƯỜI DÙNG VÀ API XÁC THỰC XÃ HỘI",
+      "context_section": "DAY 1: XÂY DỰNG DỊCH VỤ NGƯỜI DÙNG",
       "sub_tasks": [
         {
           "id": "D1_ST1",
           "agent": "Coder",
-          "desc": "Triển khai schema cơ sở dữ liệu Users và Roles",
-          "targeted_tags": ["[DAT-001]"],
-          "components": ["./sources/backend.membershiphub.user/users.sql", "./sources/backend.membershiphub.user/roles.sql"]
-        },
-        {
-          "id": "D1_ST2",
-          "agent": "Coder",
-          "desc": "Triển khai UserService với phương thức register và socialAuthenticate",
-          "targeted_tags": ["[REQ-001]", "[REQ-002]", "[ARC-006]", "[EXC-004]", "[NFR-001]", "[NFR-003]", "[NFR-006]"],
-          "components": ["./sources/backend.membershiphub.user/user-service.java"]
+          "desc": "Triển khai UserResource và User entity",
+          "targeted_tags": ["[REQ-001]", "[DAT-001]", "[EXC-004]"],
+          "components": ["./sources/backend.users"]
         }
       ]
     },
     {
       "day": 2,
       "context_file": ".ai/.plan/.context/phase-1.context.blueprint.md",
-      "context_section": "NGÀY 2: VIẾT BỘ KIỂM TRA ĐƠN VỊ VÀ TÍCH HỢP CHO CÁC CHỨC NĂNG NGƯỜI DÙNG",
+      "context_section": "DAY 2: XÂY DỰNG DỊCH VỤ XÁC THỰC OAuth2",
       "sub_tasks": [
         {
           "id": "D2_ST1",
-          "agent": "Tester",
-          "desc": "Kiểm thử đơn vị cho các phương thức register và socialAuthenticate",
-          "targeted_tags": ["[REQ-001]", "[REQ-002]", "[DAT-001]", "[EXC-004]"],
-          "components": ["./sources/backend.membershiphub.user/user-service.java;./sources/backend.membershiphub.user/user-service-test.java"]
-        },
+          "agent": "Coder",
+          "desc": "Triển khai AuthResource và AuthService",
+          "targeted_tags": ["[REQ-002]", "[ARC-006]", "[EXC-004]"],
+          "components": ["./sources/backend.auth"]
+        }
+      ]
+    },
+    {
+      "day": 3,
+      "context_file": ".ai/.plan/.context/phase-1.context.blueprint.md",
+      "context_section": "DAY 3: ĐÁNH GIÁ CHẤT LƯỢNG MÃ VÀ KIỂM TRA BẢO MẬT",
+      "sub_tasks": [
         {
-          "id": "D2_ST2",
-          "agent": "Tester",
-          "desc": "Kiểm thử tích hợp cho API endpoints",
-          "targeted_tags": ["[REQ-001]", "[REQ-002]", "[ARC-006]", "[EXC-004]"],
-          "components": ["./sources/backend.membershiphub.user/user-service.java;./sources/backend.membershiphub.user/user-controller-test.java"]
+          "id": "D3_ST1",
+          "agent": "Reviewer",
+          "desc": "Kiểm tra static code, unit test, coverage, và Docker build",
+          "targeted_tags": ["[REQ-001]", "[REQ-002]", "[DAT-001]", "[NFR-001]", "[NFR-006]", "[EXC-004]"],
+          "components": ["./sources/backend.users"]
         }
       ]
     }
@@ -55,8 +55,8 @@
 -------------------------------------------------
 ```text{
     "phase_id": 1,
-    "phase_name": "user_core_services",
-    "phase_description": "Triển khai các dịch vụ cốt lõi quản lý người dùng bao gồm đăng ký, xác thực xã hội, gán vai trò, schema cơ sở dữ liệu và logging kiểm toán bảo mật",
+    "phase_name": "phase1_userAuthDocker",
+    "phase_description": "Xây dựng nền tảng người dùng, xác thực OAuth2, và cấu hình Docker/GCP ban đầu cho hệ thống membership-hub.",
     "project_name": "membership-hub",
     "global_context_file": ".ai/.context/membership-hub.global.blueprint.md",
     "source_target_dir": "sources/",
@@ -65,35 +65,19 @@
         {
             "day": 1,
             "context_file": ".ai/.plan/.context/phase-1.context.blueprint.md",
-            "context_section": "NGÀY 1: TRIỂN KHAI DỊCH VỤ ĐĂNG KÝ NGƯỜI DÙNG VÀ API XÁC THỰC XÃ HỘI",
+            "context_section": "DAY 1: XÂY DỰNG DỊCH VỤ NGƯỜI DÙNG",
             "sub_tasks": [
                 {
                     "id": "D1_ST1",
                     "agent": "Coder",
-                    "desc": "Triển khai schema cơ sở dữ liệu Users và Roles",
-                    "targeted_tags": [
-                        "[DAT-001]"
-                    ],
-                    "components": [
-                        "./sources/backend.membershiphub.user/users.sql",
-                        "./sources/backend.membershiphub.user/roles.sql"
-                    ]
-                },
-                {
-                    "id": "D1_ST2",
-                    "agent": "Coder",
-                    "desc": "Triển khai UserService với phương thức register và socialAuthenticate",
+                    "desc": "Triển khai UserResource và User entity",
                     "targeted_tags": [
                         "[REQ-001]",
-                        "[REQ-002]",
-                        "[ARC-006]",
-                        "[EXC-004]",
-                        "[NFR-001]",
-                        "[NFR-003]",
-                        "[NFR-006]"
+                        "[DAT-001]",
+                        "[EXC-004]"
                     ],
                     "components": [
-                        "./sources/backend.membershiphub.user/user-service.java"
+                        "./sources/backend.users"
                     ]
                 }
             ]
@@ -101,34 +85,42 @@
         {
             "day": 2,
             "context_file": ".ai/.plan/.context/phase-1.context.blueprint.md",
-            "context_section": "NGÀY 2: VIẾT BỘ KIỂM TRA ĐƠN VỊ VÀ TÍCH HỢP CHO CÁC CHỨC NĂNG NGƯỜI DÙNG",
+            "context_section": "DAY 2: XÂY DỰNG DỊCH VỤ XÁC THỰC OAuth2",
             "sub_tasks": [
                 {
                     "id": "D2_ST1",
-                    "agent": "Tester",
-                    "desc": "Kiểm thử đơn vị cho các phương thức register và socialAuthenticate",
+                    "agent": "Coder",
+                    "desc": "Triển khai AuthResource và AuthService",
                     "targeted_tags": [
-                        "[REQ-001]",
-                        "[REQ-002]",
-                        "[DAT-001]",
-                        "[EXC-004]"
-                    ],
-                    "components": [
-                        "./sources/backend.membershiphub.user/user-service.java;./sources/backend.membershiphub.user/user-service-test.java"
-                    ]
-                },
-                {
-                    "id": "D2_ST2",
-                    "agent": "Tester",
-                    "desc": "Kiểm thử tích hợp cho API endpoints",
-                    "targeted_tags": [
-                        "[REQ-001]",
                         "[REQ-002]",
                         "[ARC-006]",
                         "[EXC-004]"
                     ],
                     "components": [
-                        "./sources/backend.membershiphub.user/user-service.java;./sources/backend.membershiphub.user/user-controller-test.java"
+                        "./sources/backend.auth"
+                    ]
+                }
+            ]
+        },
+        {
+            "day": 3,
+            "context_file": ".ai/.plan/.context/phase-1.context.blueprint.md",
+            "context_section": "DAY 3: ĐÁNH GIÁ CHẤT LƯỢNG MÃ VÀ KIỂM TRA BẢO MẬT",
+            "sub_tasks": [
+                {
+                    "id": "D3_ST1",
+                    "agent": "Reviewer",
+                    "desc": "Kiểm tra static code, unit test, coverage, và Docker build",
+                    "targeted_tags": [
+                        "[REQ-001]",
+                        "[REQ-002]",
+                        "[DAT-001]",
+                        "[NFR-001]",
+                        "[NFR-006]",
+                        "[EXC-004]"
+                    ],
+                    "components": [
+                        "./sources/backend.users"
                     ]
                 }
             ]
