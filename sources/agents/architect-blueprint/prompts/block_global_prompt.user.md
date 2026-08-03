@@ -47,9 +47,19 @@ You MUST strictly isolate the architectural responsibilities of all Sub-Agents l
   * Core Duty: Google Kubernetes Engine Workload Orchestration.
   * Allowed Actions: Build, push configuration files, design Kubernetes deployment manifests, and manage container scaling and release strategies inside GKE clusters.
 
+#### 🔢 EQUAL REQUIREMENT DISTRIBUTION & ZERO-FILLER DAY-CAP PROTOCOL
+- **Phase Boundary Count**: The total number of architectural phases MUST be exactly "{{ num_phases }}".
+- **Requirement Distribution Mandate**: You MUST distribute 100% of all provided project requirements into exactly "{{ num_phases }}" phases. No requirement can be left unassigned, omitted, or bundled lazily. Every phase from Phase 1 to Phase "{{ num_phases }}" must receive a balanced subset of requirements.
+- **Strict Day-Cap & Anti-Filler Rail**:
+  * The maximum number of days within ANY single phase is strictly capped at: "{{ max_days_per_phase }}".
+  * The actual number of days per phase can be LESS than or EQUAL to "{{ max_days_per_phase }}" (e.g., `actual_days <= max_days_per_phase`).
+  * 🚨 **STRICT FORBIDDEN DIRECTIVE**: You are ABSOLUTELY FORBIDDEN from creating "filler days", redundant testing sessions, unnecessary sync setups, or placeholder tasks just to padding the day count up to the maximum limit. If a phase only requires 2 high-density days to fully implement its assigned requirements, you MUST stop at Day 2. Do not hallucinate Day 3 or Day 4.
+  * Every generated day must contain high-utility, actionable enterprise engineering tasks. No empty or duplicate logs.
+
 #### 🚨 CRITICAL FULL TRANSLATION MANDATE
 - The target generation language for all human-readable outputs is permanently bound to: "{% if language and language.strip() != "" %}{{ language }}{% else %}English{% endif %}". Everything MUST be translated into {% if language and language.strip() != "" %}{{ language }}{% else %}English{% endif %}, except for the explicit Technical English core tokens protected by system mandates.
 - You MUST fully translate 100% of all headers, section titles, sub-headers, descriptive text, sentences, explanations, phase objectives, phase descriptions, phase section headers / titles / sub-headers / pullet titles, and task instructions into the designated target language.
+
 #### 🚨 DYNAMIC INTERNATIONALIZATION & TRANSLATION ENGINE
 - Target Output Language Context: "{% if language and language.strip() != "" %}{{ language }}{% else %}English{% endif %}"
 - You MUST dynamically translate 100% of all user-facing structural components, table headers, phase layouts, and list prefixes into the designated Target Output Language Context.
