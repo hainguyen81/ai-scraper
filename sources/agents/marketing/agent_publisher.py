@@ -71,7 +71,50 @@ class EnterpriseSocialPublisherAgent(AbstractMarketingAgent):
         # return merged new values
         return {
             **kwargs,
+            # Example (approved_content_vault_json):
+            # {
+            #     "audit_metadata": {
+            #         "reviewer_agent": "ComplianceReviewer",
+            #         "audit_status": "APPROVED_VAULT",
+            #         "approval_timestamp": "2026-08-03 15:25:00",
+            #         "compliance_rule_version": "v2.1-corporate"
+            #     },
+            #     "project_identity": {
+            #         "project_name": "Membership-Hub",
+            #         "campaign_interval": "Week 1"
+            #     },
+            #     "approved_distribution_assets": [
+            #         {
+            #         "platform": "LinkedIn",
+            #         "content_body": "Cắt giảm 40% chi phí in ấn thẻ nhựa vật lý và tối ưu hóa 35% tốc độ phục vụ tại quầy cho chuỗi bán lẻ bằng giải pháp số hóa hội viên trên nền tảng Cloud-Native EDA vững chắc. Tìm hiểu thêm tại chiến dịch của chúng tôi: __HTTPS__://membership-hub__DOT__com__SLASH__roi-calculator",
+            #         "tags": ["#EnterpriseTech", "#RetailAutomation", "#CloudNative"]
+            #         },
+            #         {
+            #         "platform": "X",
+            #         "content_body": "Giải mã cấu trúc hạ tầng Redis Cluster giúp hệ thống Membership-Hub xử lý mượt mà 10,000 lượt quét mã QR bảo mật mỗi giây mà không nghẽn hạ tầng. Toàn văn báo cáo SA: __HTTPS__://membership-hub__DOT__com__SLASH__architecture-deepdive",
+            #         "tags": ["#EDA", "#GKE", "#RedisCluster"]
+            #         }
+            #     ]
+            # }
             "approved_content_vault_json": social_approval_json_vault,
+            # Example (social_credentials_json):
+            # {
+            #     "target_routing_environment": "PRODUCTION",
+            #     "platforms_auth_matrix": {
+            #         "X": {
+            #         "api_endpoint": "__HTTPS__://api__DOT__x__SLASH__2__SLASH__tweets",
+            #         "oauth_client_id": "X_CLIENT_ENT_90128",
+            #         "bearer_token_vault_reference": "ENV_VAULT_X_AUTH_BEARER",
+            #         "target_account_handle": "@MembershipHubEnt"
+            #         },
+            #         "LinkedIn": {
+            #         "api_endpoint": "__HTTPS__://api__DOT__linkedin__DOT__com__SLASH__v2__SLASH__ugcPosts",
+            #         "author_organization_urn": "urn:li:organization:8912743",
+            #         "access_token_vault_reference": "ENV_VAULT_LINKEDIN_ACCESS_TOKEN",
+            #         "target_page_name": "Membership-Hub Enterprise Solutions"
+            #         }
+            #     }
+            # }
             "social_credentials_meta": self.secrets
         }
     
@@ -80,6 +123,26 @@ class EnterpriseSocialPublisherAgent(AbstractMarketingAgent):
         response_data = self.get_kwargs_by_key(key="clean_response", **kwargs)
         if not response_data:
             raise RuntimeError("❌ Invalid AI raw response: No data to process")
+        
+        # Example (response_data):
+        # {
+        #     "status": "SUCCESS",
+        #     "project_name": "Membership-Hub",
+        #     "execution_timestamp": "2026-08-03 15:30:00",
+        #     "dispatched_accounts": {
+        #         "linkedin_enterprise_id": "urn:li:organization:8912743",
+        #         "x_corporate_handle": "@MembershipHubEnt"
+        #     },
+        #     "platform_post_ids": {
+        #         "LinkedIn": "activity:7129847192847192384",
+        #         "X": "tweet_1819283719238127361"
+        #     },
+        #     "diagnostic_meta": {
+        #         "http_status_code": 201,
+        #         "api_response_message": "All payloads successfully committed to external webhooks.",
+        #         "rate_limit_remaining": 498
+        #     }
+        # }
         
         # export raw response if necessary as log tracing
         raw_response = self.get_kwargs_by_key(key="raw_response", **kwargs)
