@@ -25,7 +25,8 @@ from sources.agents.agent_helper import (
     parse_args,
     storage_info,
     enabledLogDebug,
-    render_prompt
+    render_prompt,
+    exception_stacktrace
 )
 
 # Import decoupled functional components cleanly
@@ -71,6 +72,13 @@ def load_models_keys():
         return None
     
     return json_loads(json_key_secrets)
+    
+def __close_ai_client__(client, logger):
+    if client:
+        try:
+            client.close()
+        except Exception as e:
+            logger.error(f"⚠️ Exception while closing AI client: {exception_stacktrace(e)}")
 
 def rotate_matching_model(json_ai_models, json_ai_keys, model_idx):
     models_len = len(json_ai_models) if json_ai_models else 0
@@ -208,6 +216,7 @@ def run_architect_agent(
     result_phase = False if exec_mode in (0, 2) else True       # Phase should be ok if not running it
     result_steps = False if exec_mode in (0, 3) else True       # Steps should be ok if not running it
     everything_ok = False
+    client = None
     while not everything_ok and model_idx < models_len:
         # rotate to find matching AI models
         if model_idx >= 0:
@@ -234,11 +243,13 @@ def run_architect_agent(
             api_model_steps = api_model_steps if api_model_steps else api_model_phase
             api_model_steps = api_model_steps if api_model_steps else api_model_global
         
+        # close old AI client if existing
+        __close_ai_client__(client, logger)
+        
         # GEMINI
         # client = genai.Client(api_key=api_key)
         
         # OpenAI
-        client = None
         if not is_build_plan_spec:
             client = OpenAI(
                 base_url=api_endpoint,
@@ -428,6 +439,9 @@ def run_architect_agent(
         
         # write output plan spec
         write_json_file(dir=plan_context_dir, file=PLAN_SPEC_FILE, json_data=plan_spec)
+    
+    # close AI client if existing
+    __close_ai_client__(client, logger)
     
     # log for tracing
     if not everything_ok:
