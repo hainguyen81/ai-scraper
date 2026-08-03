@@ -157,6 +157,6 @@ Generate a clean, highly structured Markdown Table mapping the exact distributio
 - **Daily Workspace Forking Isolation:** Programmatic forking controls for branch `features/development-day-X`.
 - **Validation Guard Pipeline Gates:** Execution rules for compilation verification, automated code coverage goals (`>= 85%`), and context summary serialization logs.
 
-### 🛑 MATRIX COVERAGE CHECK MANDATE (Translate this header into "{% if language and language.strip() != "" %}{{ language }}{% else %}English{% endif %}")
+### 🛑 MATRIX COVERAGE CHECK MANDATE
 Immediately at the absolute end of the document text, you MUST print a strict mathematical traceability verification text block by parsing and counting every unique tag string present in your output:
 `[TRACEABILITY MATRIX ENFORCEMENT: 100% COVERAGE VALIDATED. TOTAL UNIQUE REQ TAGS MAPPED: X, TOTAL ARC TAGS: Y, TOTAL EXC TAGS: Z, TOTAL DAT TAGS: V, TOTAL NFR TAGS: W. ZERO UNASSIGNED CODES FOUND.]`
