@@ -390,8 +390,17 @@ def parseAIResponseJsonData(response):
             return (raw_data, json_loads(clean_json_str))
         except Exception:
             pass # Continue evaluating alternative pattern structures if parsing breaks
+        
+    # Pattern 2: Targeted scan for standard markdown language JSON codeblocks
+    json_match = re.search(r"```text\s*([\s\S]*?)\s*```", raw_data, re.DOTALL)
+    if json_match:
+        try:
+            clean_json_str = json_match.group(1).strip()
+            return (raw_data, json_loads(clean_json_str))
+        except Exception:
+            pass # Continue evaluating alternative pattern structures if parsing breaks
             
-    # Pattern 2: Generic codeblock fallback without language tags
+    # Pattern 3: Generic codeblock fallback without language tags
     json_match = re.search(r"```\s*([\s\S]*?)\s*```", raw_data, re.DOTALL)
     if json_match:
         try:
@@ -400,7 +409,7 @@ def parseAIResponseJsonData(response):
         except Exception:
             pass
 
-    # Pattern 3: Hardened bracket boundary locator leveraging non-greedy isolation
+    # Pattern 4: Hardened bracket boundary locator leveraging non-greedy isolation
     # Fixes the broken greedy regex logic to ensure text outside the curly braces is safely ignored
     try:
         return (raw_data, json_loads(splitOpenAIResponseJsonData(raw_data)))
