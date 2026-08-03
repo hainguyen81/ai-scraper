@@ -189,8 +189,11 @@ class AbstractAgent(ABC):
             append=append
         )
     
+    def master_prompt_file(self) -> str:
+        pass
+    
     def master_prompt_template(self) -> str:
-        return os.path.join(AGENT_MASTER_PROMPTS_PATH, MASTER_RULE_PROMPT_TEMPLATE)
+        return os.path.join(AGENT_MASTER_PROMPTS_PATH, self.master_prompt_file() or MASTER_RULE_PROMPT_TEMPLATE)
     
     def build_master_prompt_context(self, **kwargs):
         return {

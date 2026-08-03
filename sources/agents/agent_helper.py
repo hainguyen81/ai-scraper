@@ -483,6 +483,7 @@ REL_STORAGE_BLUEPRINT_PATH              = os.path.join(REL_STORAGE_PATH, "bluepr
 REL_STORAGE_BA_PATH                     = os.path.join(REL_STORAGE_PATH, "business-analysis")
 REL_STORAGE_EST_PATH                    = os.path.join(REL_STORAGE_PATH, "estimation")
 REL_STORAGE_CSRO_PATH                   = os.path.join(REL_STORAGE_PATH, "chief-solution")
+REL_STORAGE_MARKETING_PATH              = os.path.join(REL_STORAGE_PATH, "marketing")
 
 REL_OUTPUT_SCRAPER_PATH                 = os.path.join(REL_OUTPUT_PATH, "scrapers")
 REL_OUTPUT_IDEAS_PATH                   = os.path.join(REL_OUTPUT_PATH, "ideas")
@@ -490,6 +491,7 @@ REL_OUTPUT_BLUEPRINT_PATH               = os.path.join(REL_OUTPUT_PATH, "bluepri
 REL_OUTPUT_BA_PATH                      = os.path.join(REL_OUTPUT_PATH, "business-analysis")
 REL_OUTPUT_EST_PATH                     = os.path.join(REL_OUTPUT_PATH, "estimation")
 REL_OUTPUT_CSRO_PATH                    = os.path.join(REL_OUTPUT_PATH, "chief-solution")
+REL_OUTPUT_MARKETING_PATH               = os.path.join(REL_OUTPUT_PATH, "marketing")
 
 AGENT_MODELS_PATH                       = resolve_absolute_path(REL_AGENT_MODELS_PATH)
 AGENT_MASTER_PROMPTS_PATH               = resolve_absolute_path(REL_AGENT_MASTER_PROMPTS_PATH)
@@ -511,6 +513,7 @@ STORAGE_BLUEPRINT_PATH                  = resolve_absolute_path(REL_STORAGE_BLUE
 STORAGE_BA_PATH                         = resolve_absolute_path(REL_STORAGE_BA_PATH)
 STORAGE_EST_PATH                        = resolve_absolute_path(REL_STORAGE_EST_PATH)
 STORAGE_CSRO_PATH                       = resolve_absolute_path(REL_STORAGE_CSRO_PATH)
+STORAGE_MARKETING_PATH                  = resolve_absolute_path(REL_STORAGE_MARKETING_PATH)
 
 OUTPUT_SCRAPER_PATH                     = resolve_absolute_path(REL_OUTPUT_SCRAPER_PATH)
 OUTPUT_IDEAS_PATH                       = resolve_absolute_path(REL_OUTPUT_IDEAS_PATH)
@@ -518,6 +521,7 @@ OUTPUT_BLUEPRINT_PATH                   = resolve_absolute_path(REL_OUTPUT_BLUEP
 OUTPUT_BA_PATH                          = resolve_absolute_path(REL_OUTPUT_BA_PATH)
 OUTPUT_EST_PATH                         = resolve_absolute_path(REL_OUTPUT_EST_PATH)
 OUTPUT_CSRO_PATH                        = resolve_absolute_path(REL_OUTPUT_CSRO_PATH)
+OUTPUT_MARKETING_PATH                   = resolve_absolute_path(REL_OUTPUT_MARKETING_PATH)
 
 REL_BLUEPRINT_WORKING_HISTORY_FILE      = os.path.join(REL_OUTPUT_BLUEPRINT_PATH, "architecture-blueprint.md")
 BLUEPRINT_WORKING_HISTORY_FILE          = resolve_absolute_path(REL_BLUEPRINT_WORKING_HISTORY_FILE)
@@ -583,7 +587,10 @@ storage_info = {
         "storage_csro": STORAGE_CSRO_PATH,
         
         "relative_requirements": REL_REQ_STORAGE_PATH,
-        "storage_requirements": REQ_STORAGE_PATH
+        "storage_requirements": REQ_STORAGE_PATH,
+        
+        "relative_marketing": REL_STORAGE_MARKETING_PATH,
+        "storage_marketing": STORAGE_MARKETING_PATH,
     },
     
     "output": {
@@ -606,7 +613,10 @@ storage_info = {
         "output_estimation": OUTPUT_EST_PATH,
         
         "relative_csro": REL_OUTPUT_CSRO_PATH,
-        "output_csro": OUTPUT_CSRO_PATH
+        "output_csro": OUTPUT_CSRO_PATH,
+        
+        "relative_marketing": REL_OUTPUT_MARKETING_PATH,
+        "output_marketing": OUTPUT_MARKETING_PATH,
     }
 }
 
