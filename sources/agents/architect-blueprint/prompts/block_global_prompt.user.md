@@ -23,7 +23,7 @@ Analyze the attached project requirements. Build the GLOBAL PROJECT CONTEXT for 
 
 #### 🚨 CRITICAL FULL TRANSLATION MANDATE
 - The target generation language for all human-readable outputs is permanently bound to: "{% if language and language.strip() != "" %}{{ language }}{% else %}English{% endif %}". Everything MUST be translated into {% if language and language.strip() != "" %}{{ language }}{% else %}English{% endif %}, except for the explicit Technical English core tokens protected by system mandates.
-- You MUST fully translate 100% of all headers, section title, sub-headers, descriptive text, sentences, explanations, phase objectives, and task instructions into the designated target language.
+- You MUST fully translate 100% of all headers, section titles, sub-headers, descriptive text, sentences, explanations, phase objectives, phase descriptions, phase section headers / titles / sub-headers / pullet titles, and task instructions into the designated target language.
 - 🚨 SPECIFIC SECTION CONTENT TRANSLATION RAILS:
   * For Sections 1 & 2: Translate all comprehensive technical overviews, main headers, sub-headers, section titles, labels, table columns, ecosystem descriptions, stack details, and asynchronous channel analysis.
   * For Section 3: Translate all , main headers, sub-headers, section titles, labels, table columns, descriptions of workspace rules, compliance standards, and condition explanations.
@@ -38,9 +38,9 @@ Analyze the attached project requirements. Build the GLOBAL PROJECT CONTEXT for 
   * All hidden HTML comment tags, system data splitters, and data extraction anchors (e.g., `<!--START_DELIMITTER-->`, `<!--END_DELIMITTER-->`, `[PAYLOAD_DELIMITER]`). These must remain in their original raw character format to prevent backend processing errors.
 
 ### 📋 MANDATORY OUTPUT STRUCTURE (MARKDOWN REPORT LAYOUT):
-You MUST include every single section below without exception to satisfy enterprise compliance requirements:
+You MUST include every single section below without exception to satisfy enterprise compliance requirements, and fully translating them following the rules in `CRITICAL FULL TRANSLATION MANDATE`:
 
-# [TRANSLATED "GLOBAL PROJECT CONTEXT"]: {{ project_name }}
+# GLOBAL PROJECT CONTEXT: {{ project_name }}
 
 ## 📊 Document Control
 
@@ -79,7 +79,7 @@ Generate a clean, highly structured Markdown Table mapping the exact distributio
 
 ## 5. GRANULAR PHASE SPECIALIZATIONS & DAY-BY-DAY DELIVERABLES
 # STRICT 1:1 SYNOPSIS MIRROR MANDATE:
-- Section 5 MUST act as a strict structural mirror of the dynamic phases calculated in Section 4. You MUST generate an independent, complete detailed block below for EVERY phase sequence from Phase 1 up to Phase N (where N <= {{ num_phases }}).
+- Section 5 MUST act as a strict structural mirror of the dynamic phases calculated in Section 4. You MUST generate an independent, complete detailed block below for EVERY phase sequence from Phase 1 up to Phase N (where N <= {{ num_phases }}). Absolutely no phase that has been calculated in section 4 can be omitted.
 - Truncating, omitting, or combining phases is an absolute pipeline violation. You are strictly commanded to detail every phase that appeared in your Section 4 table.
 
 # DYNAMIC CEILING BOUNDARY ENFORCEMENT:
