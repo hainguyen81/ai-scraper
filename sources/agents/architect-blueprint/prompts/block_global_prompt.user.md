@@ -154,7 +154,7 @@ Generate a clean, highly structured Markdown Table mapping the exact distributio
 - **Internationalization (i18n) & Dynamic SEO Injection:** Edge-layer locale recognition middleware architectures, hreflang dynamic hypermedia control injection, and search crawler robots indexing limits.
 
 ## 📁 8. PIPELINE AUTOMATED DAILY SESSION GIT BRANCH FLOW
-- **Daily Workspace Forking Isolation:** Programmatic forking controls for branch `features/development-phase-X-day-Y` (`X` is the number of phase, from 1 to {{ num_phases }}; `Y` is the day number in phase, it will start from 1 for each phase).
+- **Daily Workspace Forking Isolation:** Programmatic forking controls for branch `features/development-phase-X-day-Y` (`X` is the number of phase, from 1 to N, where N <= {{ num_phases }}; `Y` is the day number in phase, it will start from 1 for each phase).
 - **Validation Guard Pipeline Gates:** Execution rules for compilation verification, automated code coverage goals (`>= 85%`), and context summary serialization logs.
 
 ### 🛑 MATRIX COVERAGE CHECK MANDATE
