@@ -1,77 +1,87 @@
-# Giai đoạn 1: <!--PHASE_NAME_START-->phase1UserCenterService<!--PHASE_NAME_END--> | Mô tả: Thiết kế và triển khai dịch vụ người dùng và trung tâm, bao gồm định nghĩa schema, API, và logic xử lý, đáp ứng các yêu cầu đăng ký, quản lý người dùng, và quản lý trung tâm.
+# Giai đoạn 1: <!--PHASE_NAME_START-->user_core_services<!--PHASE_NAME_END--> | Mô tả: Triển khai các dịch vụ cốt lõi quản lý người dùng bao gồm đăng ký, xác thực xã hội, gán vai trò, schema cơ sở dữ liệu và logging kiểm toán bảo mật
 
-## 📊 Document Control
+## 📊 Kiểm soát tài liệu
 
 | Mục | Chi tiết |
 | :--- | :--- |
-| **ID Kiến trúc** | ARCH-20260802135007 |
-| **Tên Dự án** | membership-hub |
+| **ID Blueprint** | ARCH-20260803053505 |
+| **Tên dự án** | membership-hub |
 | **Giai đoạn** | 1 |
-| **Tên Giai đoạn Kỹ thuật** | <!--PHASE_NAME_START-->phase1UserCenterService<!--PHASE_NAME_END--> |
-| **Mô tả** | Thiết kế và triển khai dịch vụ người dùng và trung tâm, bao gồm định nghĩa schema, API, và logic xử lý, đáp ứng các yêu cầu đăng ký, quản lý người dùng, và quản lý trung tâm. |
+| **Tên kỹ thuật giai đoạn** | <!--PHASE_NAME_START-->user_core_services<!--PHASE_NAME_END--> |
+| **Mô tả** | Triển khai các dịch vụ cốt lõi quản lý người dùng bao gồm đăng ký, xác thực xã hội, gán vai trò, schema cơ sở dữ liệu và logging kiểm toán bảo mật |
 | **Phiên bản** | 1.0 (Baseline) |
-| **Ngày/Thời gian** | 2026/08/02 13:50:07 |
+| **Ngày/Giờ** | 2026/08/03 05:35:05 |
 | **Tác giả** | Enterprise System Architect (SA Agent) |
 | **Phê duyệt** | Pending Technical Governance Review |
 
-## 1. Phase Operational Scope & Objectives
-Giai đoạn 1 tập trung vào việc xây dựng hai dịch vụ cốt lõi của hệ thống membership-hub: **User Service** và **Center Service**. Các dịch vụ này chịu trách nhiệm:
-- Định nghĩa và triển khai schema PostgreSQL cho bảng `users` và `centers`.
-- Cung cấp REST API `/users` và `/centers` với các phương thức POST/GET/PUT/DELETE phù hợp.
-- Xử lý đăng ký, xác thực, và quản lý vai trò người dùng (System Admin, Center Admin, Manager, Teacher, Student).
-- Quản lý thông tin trung tâm, bao gồm tên, địa chỉ, mã số thuế, và liên hệ quản trị.
-- Đảm bảo tuân thủ các tiêu chuẩn bảo mật OWASP, bảo vệ chống SQL Injection, XSS, CSRF, và bảo mật JWT.
-- Đảm bảo tính nhất quán dữ liệu, tính toàn vẹn tham chiếu, và khả năng mở rộng theo kiến trúc microservices.
+## 1. Phạm vi hoạt động và mục tiêu giai đoạn
 
-## 2. Allowed Technical Scope & Directory Boundaries (Files, paths, and endpoints)
-- **Backend Directory Matrix**  
-  - `./sources/backend/users` – chứa mã nguồn Java Quarkus cho User Service.  
-  - `./sources/backend/centers` – chứa mã nguồn Java Quarkus cho Center Service.
-- **Database Schema**  
-  - `users` table (DAT-001) – định nghĩa trong DDL SQL.  
-  - `centers` table (DAT-003) – định nghĩa trong DDL SQL.
-- **REST Endpoints**  
-  - `/users` – POST (đăng ký), GET (liệt kê), PUT (cập nhật), DELETE (xóa).  
-  - `/centers` – POST (tạo), GET (liệt kê), PUT (cập nhật), DELETE (xóa).
-- **Event Routing** – các sự kiện đăng ký và cập nhật sẽ được phát ra qua Kafka (ARC-001, ARC-004) để đồng bộ dữ liệu giữa các microservice.
+Giai đoạn này tập trung vào việc xây dựng nền tảng cốt lõi cho hệ thống quản lý người dùng, bao gồm:
 
-## 3. Dedicated Sub-Agent Functional Directives
-| Agent | Trách nhiệm chính |
-| :--- | :--- |
-| **Coder** | Viết mã nguồn Java, triển khai DDL, viết unit test, và chuẩn bị tài liệu API. |
-| **Tester** | Viết và chạy integration tests, kiểm tra tính toàn vẹn dữ liệu và bảo mật. |
-| **Reviewer** | Phân tích tĩnh, kiểm tra cú pháp, và đảm bảo tuân thủ quy chuẩn mã nguồn. |
-| **Doc** | Tạo tài liệu kỹ thuật, mô tả API, và hướng dẫn triển khai. |
-| **Docker** | Xây dựng Docker image cho các service. |
-| **GCP** | Cấu hình tài nguyên GCP (Cloud SQL, Cloud Pub/Sub). |
-| **GKE** | Triển khai và quản lý cluster Kubernetes. |
+- Triển khai schema cơ sở dữ liệu cho bảng Users và Roles với các ràng buộc toàn vẹn dữ liệu
+- Xây dựng dịch vụ đăng ký người dùng với xác thực email/mật khẩu và hỗ trợ OAuth2 cho các nhà cung cấp xã hội (Firebase, Google, Facebook)
+- Triển khai cơ chế phân quyền RBAC với khả năng gán và thay đổi vai trò người dùng
+- Thiết lập hệ thống logging kiểm toán đáp ứng các tiêu chuẩn bảo mật doanh nghiệp
+- Triển khai xử lý ngoại lệ chi tiết cho validation đầu vào và xung đột dữ liệu
 
-## 4. Phase Definition of Done (DoD)
-- Tất cả các yêu cầu [REQ-001], [REQ-004] được triển khai hoàn chỉnh.  
-- Schema PostgreSQL cho `users` và `centers` được tạo và migration thành công.  
-- API `/users` và `/centers` đáp ứng đúng contract JSON và bảo mật JWT.  
-- Unit test coverage ≥ 85 % cho cả hai dịch vụ.  
-- Integration test coverage ≥ 80 % và không có lỗi bảo mật OWASP.  
-- Tất cả tag ID được map 100 % trong logs.  
-- Code được review và static analysis không phát hiện lỗi nghiêm trọng.  
-- Tài liệu API và hướng dẫn triển khai được hoàn thiện.  
-- Docker image được build và push tới registry.  
-- Đã triển khai thử nghiệm trên GKE (đối với giai đoạn này, deployment có thể được mock).  
+## 2. Phạm vi kỹ thuật và ranh giới thư mục được phép
 
-## 5. DAY-BY-DAY ARCHITECTURAL EXECUTION LOGS
+**Thư mục và tệp được phép:**
+- `./sources/backend.membershiphub.user/users.sql` - DDL schema cho bảng Users
+- `./sources/backend.membershiphub.user/roles.sql` - DDL schema cho bảng Roles  
+- `./sources/backend.membershiphub.user/user-service.java` - Dịch vụ chính quản lý người dùng
 
-### DAY 1: XÂY ĐOÁN DỊCH VỤ NGƯỜI DÙNG
+**Endpoint API:**
+- `POST /api/v1/auth/register` - Đăng ký người dùng mới
+- `POST /api/v1/auth/social` - Xác thực qua nhà cung cấp xã hội
+- `PUT /api/v1/users/{userId}/role` - Cập nhật vai trò người dùng (chỉ System Admin)
 
-#### SUB-TASK 1.1: Thiết kế và triển khai lớp UserService để xử lý đăng ký và quản lý người dùng, bao gồm xác thực, hashing mật khẩu, và lưu trữ dữ liệu vào bảng users.  
-##### Người phụ trách: Coder  
-##### Các thành phần & Yêu cầu kỹ thuật:  
-* **Đường dẫn mục tiêu**: ./sources/backend/users/UserService.java  
-* **Thẻ Trac theo dõi**: <!--START_TAGS-->[REQ-001], [DAT-001]<!--END_TAGS-->
+## 3. Chỉ đạo chức năng cho Sub-Agent chuyên dụng
 
-### DAY 2: XÂY ĐOÁN DỊCH VỤ TRUNG TÂM
+**Coder:** Triển khai mã nguồn Java/Quarkus với tuân thủ SOLID, sử dụng BCrypt cho mã hóa mật khẩu, JWT với access token 15 phút và refresh token 7 ngày, áp dụng @Valid cho validation và @Transactional cho các thao tác ghi.
 
-#### SUB-TASK 2.1: Thiết kế và triển khai lớp CenterService để xử lý tạo, cập nhật, và xóa trung tâm, bao gồm kiểm tra tính duy nhất của mã số thuế và lưu trữ dữ liệu vào bảng centers.  
-##### Người phụ trách: Coder  
-##### Các thành phần & Yêu cầu kỹ thuật:  
-* **Đường dẫn mục tiêu**: ./sources/backend/centers/CenterService.java  
-* **Thẻ Trac theo dõi**: <!--START_TAGS-->[REQ-004], [DAT-003]<!--END_TAGS-->
+**Tester:** Xây dựng bộ kiểm thử JUnit 5 với độ phủ mã ≥85%, sử dụng Mock cho các dependency, kiểm thử happy path và các scenario lỗi validation.
+
+**Reviewer:** Thực hiện phân tích tĩnh mã nguồn, kiểm tra tuân thủ OWASP Top 10, đảm bảo không có lỗ hổng SQL injection hoặc XSS.
+
+**Doc:** Biên soạn tài liệu kỹ thuật đầy đủ bao gồm API documentation với OpenAPI, schema documentation và hướng dẫn triển khai.
+
+## 4. Định nghĩa hoàn thành (DoD) cho giai đoạn
+
+- ✅ 100% các requirement [REQ-001], [REQ-002], [REQ-003] được triển khai đầy đủ
+- ✅ Schema database [DAT-001] được tạo thành công với tất cả ràng buộc
+- ✅ Luồng xác thực [ARC-006] hoạt động với OAuth2 và JWT
+- ✅ Xử lý ngoại lệ [EXC-004] cho validation đầu vào
+- ✅ Tuân thủ các tiêu chuẩn bảo mật [NFR-001], [NFR-003], [NFR-006]
+- ✅ Độ phủ kiểm thử ≥85% cho tất cả các dịch vụ
+- ✅ 100% các Tag ID được ánh xạ và kiểm tra
+
+## 5. NHẬT KÝ THỰC THI KIẾN TRÚC THEO NGÀY
+
+### NGÀY 1: TRIỂN KHAI DỊCH VỤ ĐĂNG KÝ NGƯỜI DÙNG VÀ API XÁC THỰC XÃ HỘI
+
+#### SUB-TASK 1.1: Triển khai schema cơ sở dữ liệu Users và Roles
+##### Sub-Agent được chỉ định: Coder
+##### Các thành phần mục tiêu và yêu cầu kỹ thuật:
+* **Đường dẫn mục tiêu:** `./sources/backend.membershiphub.user/users.sql`, `./sources/backend.membershiphub.user/roles.sql`
+* **Các thẻ truy xuất nguồn gốc:** <!--START_TAGS-->[DAT-001]<!--END_TAGS-->
+
+#### SUB-TASK 1.2: Triển khai UserService với phương thức register và socialAuthenticate
+##### Sub-Agent được chỉ định: Coder
+##### Các thành phần mục tiêu và yêu cầu kỹ thuật:
+* **Đường dẫn mục tiêu:** `./sources/backend.membershiphub.user/user-service.java`
+* **Các thẻ truy xuất nguồn gốc:** <!--START_TAGS-->[REQ-001], [REQ-002], [ARC-006], [EXC-004], [NFR-001], [NFR-003], [NFR-006]<!--END_TAGS-->
+
+### NGÀY 2: VIẾT BỘ KIỂM TRA ĐƠN VỊ VÀ TÍCH HỢP CHO CÁC CHỨC NĂNG NGƯỜI DÙNG
+
+#### SUB-TASK 2.1: Kiểm thử đơn vị cho các phương thức register và socialAuthenticate
+##### Sub-Agent được chỉ định: Tester
+##### Các thành phần mục tiêu và yêu cầu kỹ thuật:
+* **Đường dẫn mục tiêu:** `./sources/backend.membershiphub.user/user-service.java;./sources/backend.membershiphub.user/userservice-test.java`
+* **Các thẻ truy xuất nguồn gốc:** <!--START_TAGS-->[REQ-001], [REQ-002], [DAT-001], [EXC-004]<!--END_TAGS-->
+
+#### SUB-TASK 2.2: Kiểm thử tích hợp cho API endpoints
+##### Sub-Agent được chỉ định: Tester
+##### Các thành phần mục tiêu và yêu cầu kỹ thuật:
+* **Đường dẫn mục tiêu:** `./sources/backend.membershiphub.user/user-service.java;./sources/backend.membershiphub.user/user-controller-test.java`
+* **Các thẻ truy xuất nguồn gốc:** <!--START_TAGS-->[REQ-001], [REQ-002], [ARC-006], [EXC-004]<!--END_TAGS-->

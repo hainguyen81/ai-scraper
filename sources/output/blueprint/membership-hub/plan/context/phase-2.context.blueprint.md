@@ -1,119 +1,85 @@
-# Giai đoạn 2: <!--PHASE_NAME_START-->phase2WebInterface<!--PHASE_NAME_END--> | Mô tả: Thiết kế, triển khai giao diện web cho membership-hub, bao gồm hiển thị danh sách khóa học, xử lý thông báo đẩy, và bảo mật OWASP cho toàn bộ frontend.
+# Giai đoạn 2: <!--PHASE_NAME_START-->center_management_module<!--PHASE_NAME_END--> | Mô tả: Triển khai module quản lý trung tâm bao gồm CRUD trung tâm, danh sách trung tâm công khai, phân quyền quản trị trung tâm, và tích hợp với RBAC cho Center Admin
 
-## 📊 Document Control
+## 📊 Kiểm soát tài liệu
 
 | Mục | Chi tiết |
 | :--- | :--- |
-| **ID Kiến trúc** | ARCH-20260802135007 |
-| **Tên Dự án** | membership-hub |
+| **ID Blueprint** | ARCH-20260803053505 |
+| **Tên dự án** | membership-hub |
 | **Giai đoạn** | 2 |
-| **Tên Giai đoạn Kỹ thuật** | <!--PHASE_NAME_START-->phase2WebInterface<!--PHASE_NAME_END--> |
-| **Mô tả** | Thiết kế, triển khai giao diện web cho membership-hub, bao gồm hiển thị danh sách khóa học, xử lý thông báo đẩy, và bảo mật OWASP cho toàn bộ frontend. |
+| **Tên kỹ thuật giai đoạn** | <!--PHASE_NAME_START-->center_management_module<!--PHASE_NAME_END--> |
+| **Mô tả** | Triển khai module quản lý trung tâm bao gồm CRUD trung tâm, danh sách trung tâm công khai, phân quyền quản trị trung tâm, và tích hợp với RBAC cho Center Admin |
 | **Phiên bản** | 1.0 (Baseline) |
-| **Ngày/Thời gian** | 2026/08/02 13:50:07 |
+| **Ngày/Giờ** | 2026/08/03 05:35:05 |
 | **Tác giả** | Enterprise System Architect (SA Agent) |
 | **Phê duyệt** | Pending Technical Governance Review |
 
-## 1. Phạm vi và Mục tiêu Giai đoạn
-Giai đoạn 2 tập trung vào việc xây dựng toàn bộ giao diện web của membership-hub, bao gồm:
-- Tạo và duy trì schema dữ liệu `courses` (DDL) để phục vụ frontend.
-- Phát triển component `CourseList` hiển thị danh sách khóa học, lấy dữ liệu từ API `/courses`.
-- Tích hợp hệ thống thông báo đẩy (FCM/APNs) qua component `NotificationHandler`.
-- Đảm bảo tuân thủ các tiêu chuẩn bảo mật OWASP (XSS, CSRF, CSP, token management).
-- Viết unit và integration tests, thực hiện static code review, và chuẩn bị tài liệu kỹ thuật.
+## 1. Phạm vi hoạt động và mục tiêu giai đoạn
 
-## 2. Phạm vi Kỹ thuật & Giới hạn Thư mục
-| Đường dẫn tuyệt đối | Mô tả |
-| :--- | :--- |
-| `./sources/frontend/web/migrations` | Tập tin DDL SQL cho bảng `courses`. |
-| `./sources/frontend/web/components` | Các component React: `CourseList.js`, `NotificationHandler.js`. |
-| `./sources/frontend/web/pages` | Trang `CoursesPage.js`, `NotificationPage.js`. |
-| `./sources/frontend/web/security` | Kiểm tra OWASP: `OWASPCompliance.js`. |
-| `./sources/frontend/web/components/__tests__` | Unit tests cho component. |
-| `./sources/frontend/web/pages/__tests__` | Integration tests cho trang. |
-| `./sources/frontend/web/docs` | Tài liệu kỹ thuật. |
+Giai đoạn này tập trung vào việc xây dựng module quản lý trung tâm với các chức năng chính:
 
-## 3. Hướng dẫn Đặc thù cho Sub-Agent
-| Agent | Trách nhiệm |
-| :--- | :--- |
-| **Coder** | Viết mã nguồn frontend, DDL, và các component. |
-| **Tester** | Viết và chạy unit/integration tests, xác thực tính đúng đắn. |
-| **Reviewer** | Phân tích tĩnh, kiểm tra cú pháp, tuân thủ OWASP. |
-| **Doc** | Tạo và cập nhật tài liệu kỹ thuật. |
-| **Docker** | (Không áp dụng trong giai đoạn này) |
-| **GCP** | (Không áp dụng trong giai đoạn này) |
-| **GKE** | (Không áp dụng trong giai đoạn này) |
+- Triển khai schema cơ sở dữ liệu cho bảng Centers với các ràng buộc toàn vẹn dữ liệu
+- Xây dựng dịch vụ CRUD đầy đủ cho quản lý trung tâm với validation nghiêm ngặt
+- Triển khai API danh sách trung tâm công khai cho tất cả người dùng đã xác thực
+- Thiết lập cơ chế phân quyền RBAC cho Center Admin với khả năng gán và hủy gán
+- Kiểm tra xung đột Tax ID để đảm bảo tính duy nhất
+- Triển khai hệ thống logging kiểm toán đáp ứng các tiêu chuẩn bảo mật doanh nghiệp
 
-## 4. Định nghĩa Hoàn thành (DoD)
-- Tất cả các yêu cầu `[REQ-020]`, `[REQ-021]` được triển khai đầy đủ.
-- Schema `courses` được tạo và migration file tồn tại trong `./sources/frontend/web/migrations/courses.sql`.
-- Tất cả component và trang đều tuân thủ OWASP: XSS, CSRF, CSP, token handling.
-- Unit test coverage ≥ 85 % cho component `CourseList` và `NotificationHandler`.
-- Integration test coverage ≥ 80 % cho `CoursesPage`.
-- Static code review không phát hiện lỗi nghiêm trọng.
-- Tài liệu kỹ thuật hoàn chỉnh trong `./sources/frontend/web/docs/README.md`.
-- 100 % tag ID được map trong logs.
+## 2. Phạm vi kỹ thuật và ranh giới thư mục được phép
 
-## 5. DAY-BY-DAY ARCHITECTURAL EXECUTION LOGS
+**Thư mục và tệp được phép:**
+- `./sources/backend.membershiphub.center/centers.sql` - DDL schema cho bảng Centers
+- `./sources/backend.membershiphub.center/center-service.java` - Dịch vụ chính quản lý trung tâm
+- `./sources/backend.membershiphub.center/center-repository.java` - Repository JPA cho Centers
+- `./sources/backend.membershiphub.center/center-controller.java` - REST Controller cho API trung tâm
 
-### DAY 4: THIẾT KẾ VÀ TRIỂN KHAI GIAO DIỆN WEB
+**Endpoint API:**
+- `GET /api/v1/centers` - Lấy danh sách tất cả trung tâm (công khai)
+- `POST /api/v1/centers` - Tạo trung tâm mới (chỉ System Admin)
+- `PUT /api/v1/centers/{centerId}` - Cập nhật thông tin trung tâm (chỉ System Admin)
+- `DELETE /api/v1/centers/{centerId}` - Xóa mềm trung tâm (chỉ System Admin)
+- `POST /api/v1/centers/{centerId}/admins/{userId}` - Gán người dùng làm Center Admin (chỉ System Admin)
 
-#### SUB-TASK 4.1: Tạo file DDL cho bảng courses
-##### Coder
-##### Targeted Components & Technical Requirements:
-* **Target Path**: ./sources/frontend/web/migrations/courses.sql
-* **Traceability Tag Tokens**: <!--START_TAGS-->[DAT-001]<!--END_TAGS-->
+## 3. Chỉ đạo chức năng cho Sub-Agent chuyên dụng
 
-#### SUB-TASK 4.2: Tạo component CourseList.js
-##### Coder
-##### Targeted Components & Technical Requirements:
-* **Target Path**: ./sources/frontend/web/components/CourseList.js
-* **Traceability Tag Tokens**: <!--START_TAGS-->[REQ-020], [DAT-001]<!--END_TAGS-->
+**Coder:** Triển khai mã nguồn Java/Quarkus với tuân thủ SOLID, sử dụng JPA/Hibernate cho persistence, áp dụng @Valid cho validation, @PreAuthorize cho phân quyền, và @Transactional cho các thao tác ghi.
 
-#### SUB-TASK 4.3: Tạo component NotificationHandler.js
-##### Coder
-##### Targeted Components & Technical Requirements:
-* **Target Path**: ./sources/frontend/web/components/NotificationHandler.js
-* **Traceability Tag Tokens**: <!--START_TAGS-->[REQ-021]<!--END_TAGS-->
+**Tester:** Xây dựng bộ kiểm thử JUnit 5 và Testcontainers với độ phủ mã ≥85%, kiểm thử happy path và các scenario lỗi validation, xung đột Tax ID.
 
-#### SUB-TASK 4.4: Tích hợp API fetch courses và hiển thị danh sách
-##### Coder
-##### Targeted Components & Technical Requirements:
-* **Target Path**: ./sources/frontend/web/pages/CoursesPage.js
-* **Traceability Tag Tokens**: <!--START_TAGS-->[REQ-020], [DAT-001]<!--END_TAGS-->
+**Reviewer:** Thực hiện phân tích tĩnh mã nguồn, kiểm tra tuân thủ OWASP Top 10, đảm bảo không có lỗ hổng SQL injection hoặc XSS.
 
-#### SUB-TASK 4.5: Tích hợp push notification listener và hiển thị toast
-##### Coder
-##### Targeted Components & Technical Requirements:
-* **Target Path**: ./sources/frontend/web/pages/NotificationPage.js
-* **Traceability Tag Tokens**: <!--START_TAGS-->[REQ-021]<!--END_TAGS-->
+**Doc:** Biên soạn tài liệu kỹ thuật đầy đủ bao gồm API documentation với OpenAPI, schema documentation và hướng dẫn triển khai.
 
-#### SUB-TASK 4.6: Kiểm tra OWASP XSS, CSRF, CSP, và bảo mật token
-##### Reviewer
-##### Targeted Components & Technical Requirements:
-* **Target Path**: ./sources/frontend/web/security/OWASPCompliance.js
-* **Traceability Tag Tokens**: <!--START_TAGS-->[REQ-020], [REQ-021]<!--END_TAGS-->
+## 4. Định nghĩa hoàn thành (DoD) cho giai đoạn
 
-#### SUB-TASK 4.7: Viết unit tests cho CourseList và NotificationHandler
-##### Tester
-##### Targeted Components & Technical Requirements:
-* **Target Path**: ./sources/frontend/web/components/__tests__/CourseList.test.js;./sources/frontend/web/components/__tests__/NotificationHandler.test.js
-* **Traceability Tag Tokens**: <!--START_TAGS-->[REQ-020], [REQ-021]<!--END_TAGS-->
+- ✅ 100% các requirement [REQ-004], [REQ-005], [REQ-006] được triển khai đầy đủ
+- ✅ Schema database [DAT-003] được tạo thành công với tất cả ràng buộc
+- ✅ Luồng phân quyền [ARC-002] hoạt động với RBAC cho Center Admin
+- ✅ Xử lý validation đầu vào và xung đột Tax ID
+- ✅ Tuân thủ các tiêu chuẩn bảo mật [NFR-003], [NFR-004], [NFR-005]
+- ✅ Độ phủ kiểm thử ≥85% cho tất cả các dịch vụ
+- ✅ 100% các Tag ID được ánh xạ và kiểm tra
 
-#### SUB-TASK 4.8: Viết integration test cho CoursesPage
-##### Tester
-##### Targeted Components & Technical Requirements:
-* **Target Path**: INTEGRATION_SCOPE;./sources/frontend/web/pages/CoursesPage.test.js
-* **Traceability Tag Tokens**: <!--START_TAGS-->[REQ-020]<!--END_TAGS-->
+## 5. NHẬT KÝ THỰC THI KIẾN TRÚC THEO NGÀY
 
-#### SUB-TASK 4.9: Review code static analysis
-##### Reviewer
-##### Targeted Components & Technical Requirements:
-* **Target Path**: ./sources/frontend/web
-* **Traceability Tag Tokens**: <!--START_TAGS-->[REQ-020], [REQ-021]<!--END_TAGS-->
+### NGÀY 3: TRIỂN KHAI SERVICE QUẢN LÝ TRUNG TÂM VÀ CÁC ENDPOINT CRUD
 
-#### SUB-TASK 4.10: Compile documentation
-##### Doc
-##### Targeted Components & Technical Requirements:
-* **Target Path**: ./sources/frontend/web/docs/README.md
-* **Traceability Tag Tokens**: <!--START_TAGS-->[REQ-020], [REQ-021]<!--END_TAGS-->
+#### SUB-TASK 3.1: Triển khai schema cơ sở dữ liệu Centers
+##### Sub-Agent được chỉ định: Coder
+##### Các thành phần mục tiêu và yêu cầu kỹ thuật:
+* **Đường dẫn mục tiêu:** `./sources/backend.membershiphub.center/centers.sql`
+* **Các thẻ truy xuất nguồn gốc:** <!--START_TAGS-->[DAT-003]<!--END_TAGS-->
+
+#### SUB-TASK 3.2: Triển khai CenterService với các phương thức CRUD và phân quyền
+##### Sub-Agent được chỉ định: Coder
+##### Các thành phần mục tiêu và yêu cầu kỹ thuật:
+* **Đường dẫn mục tiêu:** `./sources/backend.membershiphub.center/center-service.java`
+* **Các thẻ truy xuất nguồn gốc:** <!--START_TAGS-->[REQ-004], [REQ-005], [REQ-006], [DAT-003], [ARC-002], [NFR-003], [NFR-004], [NFR-005]<!--END_TAGS-->
+
+### NGÀY 4: VIẾT BỘ KIỂM TRA TÍCH HỢP CHO CÁC API TRUNG TÂM
+
+#### SUB-TASK 4.1: Kiểm thử tích hợp cho các API CRUD trung tâm
+##### Sub-Agent được chỉ định: Tester
+##### Các thành phần mục tiêu và yêu cầu kỹ thuật:
+* **Đường dẫn mục tiêu:** `./sources/backend.membershiphub.center/center-service.java;./sources/backend.membershiphub.center/centerservice-integration-test.java`
+* **Các thẻ truy xuất nguồn gốc:** <!--START_TAGS-->[REQ-004], [REQ-005], [REQ-006], [DAT-003], [ARC-002]<!--END_TAGS-->
