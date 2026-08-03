@@ -22,13 +22,13 @@ Analyze the attached project requirements. Build the GLOBAL PROJECT CONTEXT for 
 - You are STRICTLY BANNED from bundling tags together (e.g., NO `[REQ-001-005]`). Every single tag must be written out individually and separated by commas. Leaving any task or field without its trace tracking identifier inline is a critical framework violation.
 
 #### 🚨 CRITICAL FULL TRANSLATION MANDATE
-- The target generation language for all human-readable outputs is permanently bound to: "{% if language and language.strip() != "" %}{{ language }}{% else %}English{% endif %}".
-- You MUST fully translate 100% of all descriptive text, sentences, explanations, phase objectives, and task instructions into the designated target language.
+- The target generation language for all human-readable outputs is permanently bound to: "{% if language and language.strip() != "" %}{{ language }}{% else %}English{% endif %}". Everything MUST be translated into {% if language and language.strip() != "" %}{{ language }}{% else %}English{% endif %}, except for the explicit Technical English core tokens protected by system mandates.
+- You MUST fully translate 100% of all headers, section title, sub-headers, descriptive text, sentences, explanations, phase objectives, and task instructions into the designated target language.
 - 🚨 SPECIFIC SECTION CONTENT TRANSLATION RAILS:
-  * For Sections 1 & 2: Translate all comprehensive technical overviews, ecosystem descriptions, stack details, and asynchronous channel analysis.
-  * For Section 3: Translate all descriptions of workspace rules, compliance standards, and condition explanations.
-  * For Section 4 & 5: Translate all table headers (except technical tokens), deliverables summaries, core objectives, localized exception handling descriptions, and low-level task instruction texts.
-  * For Sections 6, 7 & 8: Translate all detail descriptions of injection countermeasures, security rails, hybrid compliance rules, SEO mechanisms, and pipeline git flow gating rules.
+  * For Sections 1 & 2: Translate all comprehensive technical overviews, main headers, sub-headers, section titles, labels, table columns, ecosystem descriptions, stack details, and asynchronous channel analysis.
+  * For Section 3: Translate all , main headers, sub-headers, section titles, labels, table columns, descriptions of workspace rules, compliance standards, and condition explanations.
+  * For Section 4 & 5: Translate all table headers (except technical tokens), main headers, sub-headers, section titles, labels, table columns, deliverables summaries, core objectives, localized exception handling descriptions, and low-level task instruction texts.
+  * For Sections 6, 7 & 8: Translate all detail descriptions of injection countermeasures, main headers, sub-headers, section titles, labels, table columns, security rails, hybrid compliance rules, SEO mechanisms, and pipeline git flow gating rules.
 - 🚨 TECHNICAL EXCLUSION ZONE (DO NOT TRANSLATE): You are strictly forbidden from translating or modifying technical structures, including:
   * All markdown structural tokens (`#`, `##`, `|`, `---`) and functional emojis.
   * All code blocks (SQL DDL, JSON schemas, JSON payloads, Java, etc.) and Mermaid flow diagrams.
@@ -38,13 +38,7 @@ Analyze the attached project requirements. Build the GLOBAL PROJECT CONTEXT for 
   * All hidden HTML comment tags, system data splitters, and data extraction anchors (e.g., `<!--START_DELIMITTER-->`, `<!--END_DELIMITTER-->`, `[PAYLOAD_DELIMITER]`). These must remain in their original raw character format to prevent backend processing errors.
 
 ### 📋 MANDATORY OUTPUT STRUCTURE (MARKDOWN REPORT LAYOUT):
-- Current Target Language Variable: "{% if language and language.strip() != "" %}{{ language }}{% else %}English{% endif %}"
-- You MUST execute a full contextual translation for the entire MARKDOWN REPORT LAYOUT structure below into the Current Target Language Variable ({% if language and language.strip() != "" %}{{ language }}{% else %}English{% endif %}).
-- This translation directive strictly applies to:
-  1. All main headers, section titles, sub-headers, labels, descriptions, details.
-  2. All internal descriptive text, details, list items, tables, explanations, and bullet points within those sections.
-- 🚨 CRITICAL PARSING EXCLUSION GUARD: You are strictly forbidden from altering or translating technical tokens, variables, markdown operators, code snippets, Tag IDs, mermaid syntax, or hidden HTML comments. Output them exactly as written in technical English syntax.
-- You MUST include every single section below without exception to satisfy enterprise compliance requirements:
+You MUST include every single section below without exception to satisfy enterprise compliance requirements:
 
 # GLOBAL PROJECT CONTEXT: {{ project_name }}
 
