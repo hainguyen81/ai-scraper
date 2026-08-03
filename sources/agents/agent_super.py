@@ -12,7 +12,6 @@ from openai import OpenAI
 
 # agent helper
 from sources.agents.agent_helper import (
-    resolve_absolute_path,
     write_file,
     read_json_file,
     render_prompt,
@@ -25,7 +24,8 @@ from sources.agents.agent_helper import (
     json_loads,
     enabledLogDebug,
     AGENT_MODELS_PATH,
-    AGENT_MASTER_PROMPTS_PATH
+    AGENT_MASTER_PROMPTS_PATH,
+    merge_master_prompt
 )
 
 # ==============================================================================
@@ -325,7 +325,7 @@ class AbstractAgent(ABC):
             master_prompt = self.build_master_prompt(**kwargs)
             # build system prompt
             system_prompt = self.build_system_prompt(**kwargs)
-            system_prompt = f"{master_prompt}\n\n{system_prompt}" if master_prompt and system_prompt else system_prompt if not master_prompt else master_prompt
+            system_prompt = merge_master_prompt(master_prompt, system_prompt)
             # build user prompt
             user_prompt = self.build_user_prompt(**kwargs)
             

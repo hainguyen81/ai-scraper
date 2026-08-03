@@ -32,6 +32,16 @@ if PARENT_AGENTS_DIR not in sys.path:
     sys.path.insert(0, PARENT_AGENTS_DIR)
 
 
+def merge_master_prompt(master_prompt: str, system_prompt: str) -> str:
+    return (
+        "<GLOBAL_GOVERNANCE_MATRIX>\n"
+        f"{master_prompt}\n"
+        "</GLOBAL_GOVERNANCE_MATRIX>\n\n"
+        "<ACTIVE_TASK_SYSTEM_INSTRUCTION>\n"
+        f"{system_prompt}\n"
+        "</ACTIVE_TASK_SYSTEM_INSTRUCTION>"
+    ) if master_prompt and system_prompt else system_prompt if not master_prompt else None
+
 def datetime_for_prompts(dt=datetime.now()):
     dt = dt or datetime.now()
     return dt.strftime("%Y/%m/%d %H:%M:%S")

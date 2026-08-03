@@ -28,7 +28,8 @@ from sources.agents.agent_helper import (
     parseAIResponseJsonData,
     get_logger,
     json_loads,
-    storage_info
+    storage_info,
+    merge_master_prompt
 )
 
 # ==============================================================================
@@ -281,7 +282,7 @@ def convert_phases_to_json(client: OpenAI, model_name: str, project_name: str, n
                 # parse system prompt from template
                 system_prompt = render_prompt(STEPS_SYSTEM_PROMPT_TEMPLATE_PATH, prompt_context)
                 log_system_prompt = system_prompt  # Stores the latest prompt state for error block fallback capture
-                system_prompt = f"{master_prompt}\n\n{system_prompt}" if master_prompt and system_prompt else system_prompt if not master_prompt else master_prompt
+                system_prompt = merge_master_prompt(master_prompt, system_prompt)
                 
                 # parse user prompt from template
                 user_prompt = render_prompt(STEPS_USER_PROMPT_TEMPLATE_PATH, prompt_context)
