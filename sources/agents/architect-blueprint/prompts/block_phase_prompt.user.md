@@ -32,7 +32,7 @@ You are tasked to detail **PHASE {{ phase_idx }} OUT OF {{ num_phases }}**. You 
 ---
 
 Your output MUST follow this exact Markdown layout structure (translate all label tokens but preserve the hidden HTML anchor formatting exactly):
-# [Translate "Phase"] {{ phase_idx }}: <!--PHASE_NAME_START-->[Provide a short, clear, human-readable title of this phase, max 5-7 words, e.g., "Core Infrastructure & Authentication Setup", fully rendered in {% if language and language.strip() != "" %}{{ language }}{% else %}English{% endif %}]<!--PHASE_NAME_END--> | [Translate "Description"]: [Granular professional engineering summary phrase of the operational scope, fully rendered in {% if language and language.strip() != "" %}{{ language }}{% else %}English{% endif %}]
+# [Translate "Phase"] {{ phase_idx }}: <!--PHASE_NAME_START-->[Generate a beautiful, clean, professional title for this phase. It MUST use space-separated words, capitalize the first letter of every word, and it is STRICTLY BANNED from containing underscores "_", dashes "-", or raw technical slugs. Fully translate and render this title completely into the target language context requested by the parameters: {% if language and language.strip() != "" %}{{ language }}{% else %}English{% endif %}. Example of target format architecture: "Core Infrastructure And Authentication Setup"]<!--PHASE_NAME_END--> | [Translate "Description"]: [Granular professional engineering summary phrase of the operational scope, fully rendered in {% if language and language.strip() != "" %}{{ language }}{% else %}English{% endif %}]
 ## 📊 Document Control
 
 | [Translate "Item"] | [Translate "Details"] |
@@ -40,7 +40,7 @@ Your output MUST follow this exact Markdown layout structure (translate all labe
 | **[Translate "Blueprint ID"]** | ARCH-{{ doc_id }} |
 | **[Translate "Project Name"]** | {{ project_name }} |
 | **[Translate "Phase"]** | {{ phase_idx }} |
-| **[Translate "Phase Name"]** | <!--PHASE_NAME_START-->[Provide a short, clear, human-readable title of this phase, max 5-7 words, e.g., "Core Infrastructure & Authentication Setup", fully rendered in {% if language and language.strip() != "" %}{{ language }}{% else %}English{% endif %}]<!--PHASE_NAME_END--> |
+| **[Translate "Phase Name"]** | <!--PHASE_NAME_START-->[Generate a beautiful, clean, professional title for this phase. It MUST use space-separated words, capitalize the first letter of every word, and it is STRICTLY BANNED from containing underscores "_", dashes "-", or raw technical slugs. Fully translate and render this title completely into the target language context requested by the parameters: {% if language and language.strip() != "" %}{{ language }}{% else %}English{% endif %}. Example of target format architecture: "Core Infrastructure And Authentication Setup"]<!--PHASE_NAME_END--> |
 | **[Translate "Description"]** | [Granular professional engineering summary description of the absolute operational scope of this specific phase, fully rendered in {% if language and language.strip() != "" %}{{ language }}{% else %}English{% endif %}] |
 | **[You MUST translate the literal token "Version" into {% if language and language.strip() != "" %}{{ language }}{% else %}English{% endif %}]** | 1.0 (Baseline) |
 | **[You MUST translate the literal token "Date/Time" into {% if language and language.strip() != "" %}{{ language }}{% else %}English{% endif %}]** | {{ current_timestamp }} |
