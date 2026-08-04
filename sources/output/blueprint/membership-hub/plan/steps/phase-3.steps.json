@@ -1,0 +1,129 @@
+{
+    "phase_id": 3,
+    "phase_name": "phase_3",
+    "phase_description": "Triển khai các tính năng đăng ký và ghi danh học viên, điểm danh và quét mã QR",
+    "project_name": "membership-hub",
+    "global_context_file": ".ai/.context/membership-hub.global.blueprint.md",
+    "source_target_dir": "sources/",
+    "days": [
+        {
+            "day": 1,
+            "context_file": ".ai/.plan/.context/phase-3.context.blueprint.md",
+            "context_section": "DAY 1",
+            "sub_tasks": [
+                {
+                    "id": "D1_ST1",
+                    "agent": "Coder",
+                    "desc": "Coder Agent: Triển khai các dịch vụ duyệt khóa học, đăng ký khóa học của học viên",
+                    "targeted_tags": [],
+                    "components": [
+                        "./sources/backend/src/main/java/org/nlh4j/saas/membershiphub/enrollment/EnrollmentService.java",
+                        "./sources/backend/src/main/java/org/nlh4j/saas/membershiphub/enrollment/EnrollmentController.java",
+                        "./sources/backend/src/main/java/org/nlh4j/saas/membershiphub/enrollment/EnrollmentRepository.java"
+                    ]
+                },
+                {
+                    "id": "D1_ST2",
+                    "agent": "Tester",
+                    "desc": "Tester Agent: Viết các test case cho các tính năng duyệt khóa học, đăng ký khóa học của học viên",
+                    "targeted_tags": [],
+                    "components": [
+                        "./sources/backend/src/test/java/org/nlh4j/saas/membershiphub/enrollment/EnrollmentServiceTest.java",
+                        "./sources/backend/src/test/java/org/nlh4j/saas/membershiphub/enrollment/EnrollmentControllerTest.java",
+                        "./sources/backend/src/main/java/org/nlh4j/saas/membershiphub/enrollment/EnrollmentService.java",
+                        "./sources/backend/src/main/java/org/nlh4j/saas/membershiphub/enrollment/EnrollmentController.java"
+                    ]
+                },
+                {
+                    "id": "D1_ST3",
+                    "agent": "Reviewer",
+                    "desc": "Reviewer Agent: Review code cho các tính năng duyệt khóa học, đăng ký khóa học của học viên",
+                    "targeted_tags": [],
+                    "components": [
+                        "./sources/backend/src/main/java/org/nlh4j/saas/membershiphub/enrollment/EnrollmentService.java",
+                        "./sources/backend/src/main/java/org/nlh4j/saas/membershiphub/enrollment/EnrollmentController.java"
+                    ]
+                }
+            ]
+        },
+        {
+            "day": 2,
+            "context_file": ".ai/.plan/.context/phase-3.context.blueprint.md",
+            "context_section": "DAY 2",
+            "sub_tasks": [
+                {
+                    "id": "D2_ST1",
+                    "agent": "Coder",
+                    "desc": "Coder Agent: Triển khai các dịch vụ chụp ảnh điểm danh QR, tính chất bất biến của điểm danh",
+                    "targeted_tags": [],
+                    "components": [
+                        "./sources/backend/src/main/java/org/nlh4j/saas/membershiphub/attendance/AttendanceService.java",
+                        "./sources/backend/src/main/java/org/nlh4j/saas/membershiphub/attendance/AttendanceController.java",
+                        "./sources/backend/src/main/java/org/nlh4j/saas/membershiphub/attendance/AttendanceRepository.java"
+                    ]
+                },
+                {
+                    "id": "D2_ST2",
+                    "agent": "Tester",
+                    "desc": "Tester Agent: Viết các test case cho các tính năng chụp ảnh điểm danh QR, tính chất bất biến của điểm danh",
+                    "targeted_tags": [],
+                    "components": [
+                        "./sources/backend/src/test/java/org/nlh4j/saas/membershiphub/attendance/AttendanceServiceTest.java",
+                        "./sources/backend/src/test/java/org/nlh4j/saas/membershiphub/attendance/AttendanceControllerTest.java",
+                        "./sources/backend/src/main/java/org/nlh4j/saas/membershiphub/attendance/AttendanceService.java",
+                        "./sources/backend/src/main/java/org/nlh4j/saas/membershiphub/attendance/AttendanceController.java"
+                    ]
+                },
+                {
+                    "id": "D2_ST3",
+                    "agent": "Reviewer",
+                    "desc": "Reviewer Agent: Review code cho các tính năng chụp ảnh điểm danh QR, tính chất bất biến của điểm danh",
+                    "targeted_tags": [],
+                    "components": [
+                        "./sources/backend/src/main/java/org/nlh4j/saas/membershiphub/attendance/AttendanceService.java",
+                        "./sources/backend/src/main/java/org/nlh4j/saas/membershiphub/attendance/AttendanceController.java"
+                    ]
+                }
+            ]
+        },
+        {
+            "day": 3,
+            "context_file": ".ai/.plan/.context/phase-3.context.blueprint.md",
+            "context_section": "DAY 3",
+            "sub_tasks": [
+                {
+                    "id": "D3_ST1",
+                    "agent": "Coder",
+                    "desc": "Coder Agent: Tích hợp các tính năng điểm danh và quét mã QR với ứng dụng di động",
+                    "targeted_tags": [],
+                    "components": [
+                        "./sources/frontend/src/components/attendance/AttendanceComponent.vue",
+                        "./sources/frontend/src/components/attendance/AttendanceService.js"
+                    ]
+                },
+                {
+                    "id": "D3_ST2",
+                    "agent": "Tester",
+                    "desc": "Tester Agent: Viết các test case cho các tính năng điểm danh và quét mã QR trên ứng dụng di động",
+                    "targeted_tags": [],
+                    "components": [
+                        "./sources/frontend/src/components/attendance/AttendanceComponent.spec.js",
+                        "./sources/frontend/src/components/attendance/AttendanceService.spec.js",
+                        "./sources/frontend/src/components/attendance/AttendanceComponent.vue",
+                        "./sources/frontend/src/components/attendance/AttendanceService.js"
+                    ]
+                },
+                {
+                    "id": "D3_ST3",
+                    "agent": "Reviewer",
+                    "desc": "Reviewer Agent: Review code cho các tính năng điểm danh và quét mã QR trên ứng dụng di động",
+                    "targeted_tags": [],
+                    "components": [
+                        "./sources/frontend/src/components/attendance/AttendanceComponent.vue",
+                        "./sources/frontend/src/components/attendance/AttendanceService.js"
+                    ]
+                }
+            ]
+        }
+    ]
+}
