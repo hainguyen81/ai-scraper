@@ -181,7 +181,8 @@ def run_architect_agent(
     safe_name = project_name.replace(' ', '-')
     
     # make sure output directory existing
-    absolute_out_dir = resolve_absolute_path(os.path.join(output_dir, safe_name))
+    relative_out_dir = os.path.join(output_dir, safe_name)
+    absolute_out_dir = resolve_absolute_path(relative_out_dir)
     os.makedirs(absolute_out_dir, exist_ok=True)
     
     # remove previous log if necessary
@@ -272,7 +273,7 @@ def run_architect_agent(
         logger.info(f"    - Language:                     {language}")
         logger.info(f"    - Max Phases:                   {num_phases}")
         logger.info(f"    - Max Days Per Phase:           {max_days_per_phase}")
-        logger.info(f"    - Out Directory:                {absolute_out_dir}")
+        logger.info(f"    - Out Directory:                {relative_out_dir}")
         logger.info("=============================================================================")
         logger.info(f"    - ROTATE MODEL INTEGRATION:     {model_idx}")
         logger.info("=============================================================================")
