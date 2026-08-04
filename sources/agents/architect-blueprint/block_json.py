@@ -139,6 +139,7 @@ def dynamic_transform(json_data, project_name: str, phase_idx: int, template_fil
         return json_loads(cleaned_str)
     except Exception as e:
         logger.warning(f" │   └── ❌ Exception while mapping JSON: { str(e) }. So using manual transform...")
+        logger.warning(f" │          StackTrace: { exception_stacktrace(e) }")
         return manual_transform(json_data, project_name, phase_idx)
 
 def manual_transform(json_data, project_name: str, phase_idx: int):
