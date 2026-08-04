@@ -22,7 +22,7 @@ Extract and parse ALL daily steps, checklists, and agent tasks from the entire d
 You MUST dynamically populate the top-level keys of the JSON object using EXACT raw variable values without any modifications, or parse them directly from the primary Markdown header HTML comments:
 - **`phase_id`**: {{ phase_idx }}
 - **`phase_name`**: [Locate the primary Markdown title header line, extract the clean technical string text located exactly between the hidden HTML delimiters `<!--PHASE_NAME_START-->` and `<!--PHASE_NAME_END-->` without any alterations or translations]
-- **`phase_description`**: [Locate the primary Markdown title header line, extract the exact contextually translated phase description text that follows after the literal marker `| Description:` or its translated equivalent]
+- **`phase_description`**: [Locate the primary Markdown title header line, extract the clean technical string text located exactly between the hidden HTML delimiters `<!--PHASE_DESC_START-->` and `<!--PHASE_DESC_END-->` without any alterations or translations]
 - **`project_name`**: "{{ project_name }}"
 - **`global_context_file`**: "{{ global_context_file }}"
 - **`source_target_dir`**: "{{ source_target_dir }}"
