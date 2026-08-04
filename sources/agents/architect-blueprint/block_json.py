@@ -356,8 +356,7 @@ def convert_phases_to_json(client: OpenAI, model_name: str, master_rules: str, p
                         # Auto-inject string metadata if AI fills them with blank placeholders during chunking
                         if not day_node.get("context_file"):
                             day_node["context_file"] = f"{project_phase_context_file}"
-                        if not day_node.get("context_section"):
-                            day_node["context_section"] = f"## Day {day_num}"
+                        day_node["context_section"] = day_node.get("context_section", day_node.get("context", day_node.get("section", f"Day {day_num}")))
                         master_phase_plan["days"].append(day_node)
                         new_days_added_in_this_chunk += 1
                 
