@@ -1,7 +1,7 @@
 {
     "phase_id": 3,
-    "phase_name": "notificationPromotionChatbot",
-    "phase_description": "Triển khai và hoàn thiện các dịch vụ thông báo, khuyến mãi và chatbot, bao gồm thiết kế schema, API, logic nghiệp vụ, kiểm thử, bảo mật OWASP, và tài liệu kỹ thuật.",
+    "phase_name": "phase_3",
+    "phase_description": "Triển khai các tính năng đăng ký và ghi danh học viên, điểm danh và quét mã QR",
     "project_name": "membership-hub",
     "global_context_file": ".ai/.context/membership-hub.global.blueprint.md",
     "source_target_dir": "sources/",
@@ -9,58 +9,43 @@
         {
             "day": 1,
             "context_file": ".ai/.plan/.context/phase-3.context.blueprint.md",
-            "context_section": "DAY 1: PHÁT TRIỂN DỊCH VỤ THÔNG BÁO",
+            "context_section": "NGÀY 7: Triển khai các tính năng đăng ký và ghi danh học viên",
             "sub_tasks": [
                 {
                     "id": "D1_ST1",
                     "agent": "Coder",
-                    "desc": "Coder Agent: Xây dựng NotificationService, controller, repository, DTO, exception, và schema NOTIFICATIONS",
+                    "desc": "Coder Agent: Triển khai các dịch vụ duyệt khóa học, đăng ký khóa học của học viên",
                     "targeted_tags": [
-                        "[REQ-016]",
-                        "[ARC-008]",
-                        "[ARC-009]",
-                        "[ARC-010]",
-                        "[DAT-008]",
-                        "[EXC-003]",
-                        "[EXC-005]"
+                        "[REQ-010]",
+                        "[REQ-011]"
                     ],
                     "components": [
-                        "./sources/backend.notification/src/main/java/com/membershiphub/notification/NotificationService.java"
+                        "./sources/backend/src/main/java/org/nlh4j/saas/membershiphub/enrollment"
                     ]
                 },
                 {
                     "id": "D1_ST2",
                     "agent": "Tester",
-                    "desc": "Tester Agent: Viết unit test cho NotificationService, controller, repository, exception, và schema NOTIFICATIONS",
+                    "desc": "Tester Agent: Viết các test case cho các tính năng duyệt khóa học, đăng ký khóa học của học viên",
                     "targeted_tags": [
-                        "[REQ-016]",
-                        "[ARC-008]",
-                        "[ARC-009]",
-                        "[ARC-010]",
-                        "[DAT-008]",
-                        "[EXC-003]",
-                        "[EXC-005]"
+                        "[REQ-010]",
+                        "[REQ-011]"
                     ],
                     "components": [
-                        "./sources/backend.notification/src/test/java/com/membershiphub/notification/NotificationServiceTest.java",
-                        "./sources/backend.notification/src/main/java/com/membershiphub/notification/NotificationService.java"
+                        "./sources/backend/src/test/java/org/nlh4j/saas/membershiphub/enrollment",
+                        "./sources/backend/src/main/java/org/nlh4j/saas/membershiphub/enrollment"
                     ]
                 },
                 {
                     "id": "D1_ST3",
                     "agent": "Reviewer",
-                    "desc": "Reviewer Agent: Review NotificationService, controller, repository, exception, và schema NOTIFICATIONS",
+                    "desc": "Reviewer Agent: Review code cho các tính năng duyệt khóa học, đăng ký khóa học của học viên",
                     "targeted_tags": [
-                        "[REQ-016]",
-                        "[ARC-008]",
-                        "[ARC-009]",
-                        "[ARC-010]",
-                        "[DAT-008]",
-                        "[EXC-003]",
-                        "[EXC-005]"
+                        "[REQ-010]",
+                        "[REQ-011]"
                     ],
                     "components": [
-                        "./sources/backend.notification/src/main/java/com/membershiphub/notification/NotificationService.java"
+                        "./sources/backend/src/main/java/org/nlh4j/saas/membershiphub/enrollment"
                     ]
                 }
             ]
@@ -68,92 +53,49 @@
         {
             "day": 2,
             "context_file": ".ai/.plan/.context/phase-3.context.blueprint.md",
-            "context_section": "DAY 2: PHÁT TRIỂN DỊCH VỤ KHƯƠNG MÃ VÀ CHATBOT",
+            "context_section": "NGÀY 8: Triển khai các tính năng điểm danh và quét mã QR",
             "sub_tasks": [
                 {
                     "id": "D2_ST1",
                     "agent": "Coder",
-                    "desc": "Coder Agent: Xây dựng PromotionService, controller, repository, DTO, exception, và schema PROMOTIONS, ANNOUNCEMENTS",
+                    "desc": "Coder Agent: Triển khai các dịch vụ chụp ảnh điểm danh QR, tính chất bất biến của điểm danh",
                     "targeted_tags": [
-                        "[REQ-017]",
-                        "[REQ-018]",
-                        "[ARC-008]",
-                        "[ARC-009]",
-                        "[DAT-009]"
+                        "[REQ-012]",
+                        "[REQ-013]",
+                        "[EXC-001]",
+                        "[EXC-002]"
                     ],
                     "components": [
-                        "./sources/backend.promotion/src/main/java/com/membershiphub/promotion/PromotionService.java"
+                        "./sources/backend/src/main/java/org/nlh4j/saas/membershiphub/attendance"
                     ]
                 },
                 {
                     "id": "D2_ST2",
                     "agent": "Tester",
-                    "desc": "Tester Agent: Viết unit test cho PromotionService, controller, repository, exception, và schema PROMOTIONS, ANNOUNCEMENTS",
+                    "desc": "Tester Agent: Viết các test case cho các tính năng chụp ảnh điểm danh QR, tính chất bất biến của điểm danh",
                     "targeted_tags": [
-                        "[REQ-017]",
-                        "[REQ-018]",
-                        "[ARC-008]",
-                        "[ARC-009]",
-                        "[DAT-009]"
+                        "[REQ-012]",
+                        "[REQ-013]",
+                        "[EXC-001]",
+                        "[EXC-002]"
                     ],
                     "components": [
-                        "./sources/backend.promotion/src/test/java/com/membershiphub/promotion/PromotionServiceTest.java",
-                        "./sources/backend.promotion/src/main/java/com/membershiphub/promotion/PromotionService.java"
+                        "./sources/backend/src/test/java/org/nlh4j/saas/membershiphub/attendance",
+                        "./sources/backend/src/main/java/org/nlh4j/saas/membershiphub/attendance"
                     ]
                 },
                 {
                     "id": "D2_ST3",
                     "agent": "Reviewer",
-                    "desc": "Reviewer Agent: Review PromotionService, controller, repository, exception, và schema PROMOTIONS, ANNOUNCEMENTS",
+                    "desc": "Reviewer Agent: Review code cho các tính năng chụp ảnh điểm danh QR, tính chất bất biến của điểm danh",
                     "targeted_tags": [
-                        "[REQ-017]",
-                        "[REQ-018]",
-                        "[ARC-008]",
-                        "[ARC-009]",
-                        "[DAT-009]"
+                        "[REQ-012]",
+                        "[REQ-013]",
+                        "[EXC-001]",
+                        "[EXC-002]"
                     ],
                     "components": [
-                        "./sources/backend.promotion/src/main/java/com/membershiphub/promotion/PromotionService.java"
-                    ]
-                },
-                {
-                    "id": "D2_ST4",
-                    "agent": "Coder",
-                    "desc": "Coder Agent: Xây dựng ChatbotService, controller, repository, DTO, exception, và schema CHATBOT_LOGS (nếu có)",
-                    "targeted_tags": [
-                        "[REQ-019]",
-                        "[ARC-008]",
-                        "[ARC-009]"
-                    ],
-                    "components": [
-                        "./sources/backend.chatbot/src/main/java/com/membershiphub/chatbot/ChatbotService.java"
-                    ]
-                },
-                {
-                    "id": "D2_ST5",
-                    "agent": "Tester",
-                    "desc": "Tester Agent: Viết unit test cho ChatbotService, controller, repository, exception, và schema CHATBOT_LOGS (nếu có)",
-                    "targeted_tags": [
-                        "[REQ-019]",
-                        "[ARC-008]",
-                        "[ARC-009]"
-                    ],
-                    "components": [
-                        "./sources/backend.chatbot/src/test/java/com/membershiphub/chatbot/ChatbotServiceTest.java",
-                        "./sources/backend.chatbot/src/main/java/com/membershiphub/chatbot/ChatbotService.java"
-                    ]
-                },
-                {
-                    "id": "D2_ST6",
-                    "agent": "Reviewer",
-                    "desc": "Reviewer Agent: Review ChatbotService, controller, repository, exception, và schema CHATBOT_LOGS (nếu có)",
-                    "targeted_tags": [
-                        "[REQ-019]",
-                        "[ARC-008]",
-                        "[ARC-009]"
-                    ],
-                    "components": [
-                        "./sources/backend.chatbot/src/main/java/com/membershiphub/chatbot/ChatbotService.java"
+                        "./sources/backend/src/main/java/org/nlh4j/saas/membershiphub/attendance"
                     ]
                 }
             ]
@@ -161,73 +103,49 @@
         {
             "day": 3,
             "context_file": ".ai/.plan/.context/phase-3.context.blueprint.md",
-            "context_section": "DAY 3: KIỂM THỬ VÀ ĐÁNH GIÁ BẢO MẬT, TẠO TÀI LIỆU",
+            "context_section": "NGÀY 9: Tích hợp các tính năng điểm danh và quét mã QR với ứng dụng di động",
             "sub_tasks": [
                 {
                     "id": "D3_ST1",
-                    "agent": "Tester",
-                    "desc": "Tester Agent: Kiểm thử tích hợp toàn bộ dịch vụ Notification, Promotion, Chatbot (API, event, exception handling)",
+                    "agent": "Coder",
+                    "desc": "Coder Agent: Tích hợp các tính năng điểm danh và quét mã QR với ứng dụng di động",
                     "targeted_tags": [
-                        "[REQ-016]",
-                        "[REQ-017]",
-                        "[REQ-018]",
-                        "[REQ-019]",
-                        "[DAT-008]",
-                        "[DAT-009]",
-                        "[ARC-008]",
-                        "[ARC-009]",
-                        "[ARC-010]",
-                        "[EXC-003]",
-                        "[EXC-005]"
+                        "[REQ-012]",
+                        "[REQ-013]",
+                        "[EXC-001]",
+                        "[EXC-002]"
                     ],
                     "components": [
-                        "INTEGRATION_SCOPE"
+                        "./sources/frontend/src/components/attendance"
                     ]
                 },
                 {
                     "id": "D3_ST2",
-                    "agent": "Reviewer",
-                    "desc": "Reviewer Agent: Review toàn bộ mã nguồn, thực hiện static analysis, xác nhận tuân thủ OWASP, và ghi nhận audit logs",
+                    "agent": "Tester",
+                    "desc": "Tester Agent: Viết các test case cho các tính năng điểm danh và quét mã QR trên ứng dụng di động",
                     "targeted_tags": [
-                        "[REQ-016]",
-                        "[REQ-017]",
-                        "[REQ-018]",
-                        "[REQ-019]",
-                        "[DAT-008]",
-                        "[DAT-009]",
-                        "[ARC-008]",
-                        "[ARC-009]",
-                        "[ARC-010]",
-                        "[EXC-003]",
-                        "[EXC-005]"
+                        "[REQ-012]",
+                        "[REQ-013]",
+                        "[EXC-001]",
+                        "[EXC-002]"
                     ],
                     "components": [
-                        "./sources/backend.notification/",
-                        "./sources/backend.promotion/",
-                        "./sources/backend.chatbot/"
+                        "./sources/frontend/src/components/attendance",
+                        "./sources/frontend/src/components/attendance"
                     ]
                 },
                 {
                     "id": "D3_ST3",
-                    "agent": "Doc",
-                    "desc": "Doc Agent: Tạo tài liệu kỹ thuật chi tiết cho Notification, Promotion, Chatbot (API, schema, exception handling, deployment guide)",
+                    "agent": "Reviewer",
+                    "desc": "Reviewer Agent: Review code cho các tính năng điểm danh và quét mã QR trên ứng dụng di động",
                     "targeted_tags": [
-                        "[REQ-016]",
-                        "[REQ-017]",
-                        "[REQ-018]",
-                        "[REQ-019]",
-                        "[DAT-008]",
-                        "[DAT-009]",
-                        "[ARC-008]",
-                        "[ARC-009]",
-                        "[ARC-010]",
-                        "[EXC-003]",
-                        "[EXC-005]"
+                        "[REQ-012]",
+                        "[REQ-013]",
+                        "[EXC-001]",
+                        "[EXC-002]"
                     ],
                     "components": [
-                        "./sources/backend.notification/docs/NotificationService.md",
-                        "./sources/backend.promotion/docs/PromotionService.md",
-                        "./sources/backend.chatbot/docs/ChatbotService.md"
+                        "./sources/frontend/src/components/attendance"
                     ]
                 }
             ]

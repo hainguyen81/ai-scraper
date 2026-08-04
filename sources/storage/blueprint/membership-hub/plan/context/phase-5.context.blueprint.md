@@ -1,173 +1,104 @@
-# Giai đoạn 5: <!--PHASE_NAME_START-->infraDeployment<!--PHASE_NAME_END--> | Mô tả: Đóng gói Docker, triển khai GKE, và thiết lập CI/CD cho toàn bộ hệ thống membership‑hub, đảm bảo tuân thủ các yêu cầu NFR về khả năng sẵn sàng, bảo mật, quy mô, và hiệu năng.
-
+# Giai đoạn 5: <!--PHASE_NAME_START-->phase_5<!--PHASE_NAME_END--> | Mô tả: Triển khai các tính năng quản lý khuyến mãi và thông báo, chatbot dịch vụ khách hàng AI, các tính năng cốt lõi của ứng dụng di động, bản địa hóa và SEO
 ## 📊 Document Control
 
 | Mục | Chi tiết |
 | :--- | :--- |
-| **ID Kiến trúc** | ARCH-20260803170121 |
+| **ID Blueprint** | ARCH-20260804052551 |
 | **Tên dự án** | membership-hub |
 | **Giai đoạn** | 5 |
-| **Tên giai đoạn kỹ thuật** | <!--PHASE_NAME_START-->infraDeployment<!--PHASE_NAME_END--> |
-| **Mô tả** | Đóng gói Docker, triển khai GKE, và thiết lập CI/CD cho toàn bộ hệ thống membership‑hub, đảm bảo tuân thủ các yêu cầu NFR về khả năng sẵn sàng, bảo mật, quy mô, và hiệu năng. |
+| **Tên kỹ thuật giai đoạn** | <!--PHASE_NAME_START-->phase_5<!--PHASE_NAME_END--> |
+| **Mô tả** | Triển khai các tính năng quản lý khuyến mãi và thông báo, chatbot dịch vụ khách hàng AI, các tính năng cốt lõi của ứng dụng di động, bản địa hóa và SEO |
 | **Phiên bản** | 1.0 (Baseline) |
-| **Ngày/Thời gian** | 2026/08/03 17:01:21 |
+| **Ngày/Giờ** | 2026/08/04 05:25:51 |
 | **Tác giả** | Enterprise System Architect (SA Agent) |
 | **Phê duyệt** | Pending Technical Governance Review |
 
-## 1. Phạm vi và mục tiêu của giai đoạn
-Giai đoạn 5 tập trung vào việc xây dựng hạ tầng triển khai và CI/CD cho toàn bộ stack microservices, bao gồm:
-- **Docker**: Tạo Dockerfile đa stage, tối ưu kích thước, hỗ trợ multi‑arch, và chuẩn bị image cho Quarkus services.
-- **GCP**: Viết Terraform modules để provision GKE cluster, VPC, IAM, Cloud SQL, Pub/Sub, Cloud Storage, và cấu hình CI/CD pipeline.
-- **Kubernetes**: Tạo Helm chart cho deployment, service, ingress, và cấu hình HPA, liveness/readiness probes, và secrets management.
-- **CI/CD**: Thiết lập GitHub Actions workflow để build, test, push image, và deploy tới GKE, đồng thời kích hoạt rollback và canary.
+## 1. Phạm vi hoạt động và mục tiêu của giai đoạn
+Giai đoạn 5 tập trung vào việc triển khai các tính năng quản lý khuyến mãi và thông báo, chatbot dịch vụ khách hàng AI, các tính năng cốt lõi của ứng dụng di động, bản địa hóa và SEO. Các nhiệm vụ chính bao gồm:
+- Triển khai các dịch vụ quản lý khuyến mãi, quản lý thông báo.
+- Triển khai các dịch vụ chatbot dịch vụ khách hàng AI, các tính năng cốt lõi của ứng dụng di động, bản địa hóa và SEO.
 
-Mục tiêu chính:
-- Đảm bảo **image size < 500 MB** và **base image < 200 MB** (NFR‑005).
-- Đạt **99.9 % uptime** và **auto‑failover** (NFR‑002, NFR‑004).
-- Thực thi **OWASP Top 10** và **TLS 1.3** (NFR‑003, NFR‑006).
-- Hỗ trợ **đa ngôn ngữ** và **GDPR/CCPA** trong logs (NFR‑007, NFR‑008).
-- Cung cấp **backup** và **DR** cho GKE và Cloud SQL (NFR‑009).
+## 2. Phạm vi kỹ thuật và ranh giới thư mục được phép
+- `./sources/backend/src/main/java/org/nlh4j/saas/membershiphub/promotion`
+- `./sources/backend/src/main/java/org/nlh4j/saas/membershiphub/chatbot`
+- `./sources/frontend/src/components/chatbot`
 
-## 2. Phạm vi kỹ thuật và ranh giới thư mục
-| Đường dẫn | Mô tả |
-| :--- | :--- |
-| `./sources/infra/docker/` | Dockerfile và multi‑stage build scripts. |
-| `./sources/infra/gcp/terraform/` | Terraform modules: GKE, VPC, IAM, Cloud SQL, Pub/Sub, Cloud Storage, CI/CD. |
-| `./sources/infra/k8s/helm/` | Helm chart: deployment, service, ingress, HPA, probes, secrets. |
-| `./sources/infra/cicd/` | GitHub Actions workflow YAML. |
+## 3. Hướng dẫn chức năng chuyên dụng cho các tác vụ con
+- **Coder:** Triển khai các dịch vụ quản lý khuyến mãi, quản lý thông báo, chatbot dịch vụ khách hàng AI, các tính năng cốt lõi của ứng dụng di động, bản địa hóa và SEO.
+- **Tester:** Viết các test case cho các tính năng quản lý khuyến mãi, quản lý thông báo, chatbot dịch vụ khách hàng AI, các tính năng cốt lõi của ứng dụng di động, bản địa hóa và SEO.
+- **Reviewer:** Review code cho các tính năng quản lý khuyến mãi, quản lý thông báo, chatbot dịch vụ khách hàng AI, các tính năng cốt lõi của ứng dụng di động, bản địa hóa và SEO.
+- **Doc:** Viết tài liệu cho các tính năng chatbot dịch vụ khách hàng AI, các tính năng cốt lõi của ứng dụng di động, bản địa hóa và SEO.
 
-Endpoint routing không thay đổi; các services vẫn expose REST APIs qua Quarkus, được expose bởi Ingress trong Helm chart.
+## 4. Định nghĩa hoàn thành giai đoạn (DoD)
+- Hoàn thành 100% các nhiệm vụ được chỉ định cho giai đoạn 5.
+- Đảm bảo tuân thủ các tiêu chuẩn bảo mật OWASP.
+- Đảm bảo hoàn thành các bài kiểm tra chức năng cho các yêu cầu được phân bổ.
+- Đảm bảo 100% các Tag ID được ánh xạ.
 
-## 3. Hướng dẫn chức năng dành cho các đại lý phụ trách
-- **Docker**: Xây dựng Dockerfile, chạy `docker build`, kiểm tra kích thước, push tới GCR.  
-- **GCP**: Viết Terraform, chạy `terraform init`, `terraform plan`, `terraform apply`, kiểm tra trạng thái resource.  
-- **GKE**: Deploy Helm chart, kiểm tra pod readiness, HPA scaling, và canary rollout.  
-- **Doc**: Tạo tài liệu chi tiết về cấu hình Docker, Terraform, Helm, và CI/CD, lưu trong `./sources/infra/docs/`.  
-- **Reviewer**: Kiểm tra static code analysis, lint, và security scanning cho các file cấu hình.  
-- **Tester**: Viết unit tests cho Terraform modules (terraform validate), integration tests cho Helm chart (kubectl apply + health checks).  
+## 5. NHẬT KÝ THỰC HIỆN KIẾN TRÚC THEO NGÀY
 
-## 4. Định nghĩa Hoàn thành giai đoạn (DoD)
-- **Image size**: Docker image < 500 MB, base image < 200 MB.  
-- **Uptime**: GKE cluster đạt 99.9 % uptime, có auto‑failover.  
-- **Security**: Tất cả logs encrypted, TLS 1.3, OWASP mitigations, audit logs retained 1 year.  
-- **Scalability**: HPA hoạt động, read replicas cho Cloud SQL.  
-- **Backup**: Cloud SQL full backup daily, point‑in‑time recovery 24 h.  
-- **Tag coverage**: 100 % mapping of all NFR tags in phase.  
-- **Documentation**: Hoàn thiện tài liệu trong `./sources/infra/docs/`.  
-- **CI/CD**: Workflow chạy thành công, deploy tới GKE, rollback khả dụng.  
+### NGÀY 13: Triển khai các tính năng quản lý khuyến mãi và thông báo
 
-## 5. LỊCH THỰC HIỆN KIẾT THUẬT NGÀY ĐẾN NGÀY
+#### NHIỆM VỤ CON 13.1: Triển khai các dịch vụ quản lý khuyến mãi, quản lý thông báo
+##### Người phụ trách: Coder
+##### Yêu cầu kỹ thuật:
+* **Đường dẫn mục tiêu:** `./sources/backend/src/main/java/org/nlh4j/saas/membershiphub/promotion`
+* **Traceability Tag Tokens:** <!--START_TAGS-->[REQ-017], [REQ-018]<!--END_TAGS-->
 
-### DAY 1: XÂY DỰNG VÀ TỐI ƯU HÌNH ẢNH Docker
+#### NHIỆM VỤ CON 13.2: Viết các test case cho các tính năng quản lý khuyến mãi, quản lý thông báo
+##### Người phụ trách: Tester
+##### Yêu cầu kỹ thuật:
+* **Đường dẫn mục tiêu:** `./sources/backend/src/test/java/org/nlh4j/saas/membershiphub/promotion;./sources/backend/src/main/java/org/nlh4j/saas/membershiphub/promotion`
+* **Traceability Tag Tokens:** <!--START_TAGS-->[REQ-017], [REQ-018]<!--END_TAGS-->
 
-#### SUB-TASK 1.1: Viết Dockerfile đa stage, tối ưu kích thước, hỗ trợ multi‑arch
-##### Địa chỉ phụ trách: Docker
-##### Thành phần mục tiêu & Yêu cầu kỹ thuật:
-* **Đường dẫn mục tiêu**: `./sources/infra/docker/Dockerfile`
-* **Thẻ theo dõi**: <!--START_TAGS-->[NFR-005]<!--END_TAGS-->
-```dockerfile
-FROM eclipse-temurin:17-jdk-alpine AS build
-WORKDIR /app
-COPY pom.xml .
-COPY src ./src
-RUN ./mvnw -DskipTests clean package
+#### NHIỆM VỤ CON 13.3: Review code cho các tính năng quản lý khuyến mãi, quản lý thông báo
+##### Người phụ trách: Reviewer
+##### Yêu cầu kỹ thuật:
+* **Đường dẫn mục tiêu:** `./sources/backend/src/main/java/org/nlh4j/saas/membershiphub/promotion`
+* **Traceability Tag Tokens:** <!--START_TAGS-->[REQ-017], [REQ-018]<!--END_TAGS-->
 
-FROM eclipse-temurin:17-jdk-alpine
-WORKDIR /app
-COPY --from=build /app/target/*.jar app.jar
-CMD ["java", "-jar", "app.jar"]
-```
+### NGÀY 14: Triển khai các tính năng chatbot dịch vụ khách hàng AI, các tính năng cốt lõi của ứng dụng di động, bản địa hóa và SEO
 
-### DAY 2: PHIÊN BÁN VÀ CẤU HÌNH THỰC HIỆN Terraform trên GCP
+#### NHIỆM VỤ CON 14.1: Triển khai các dịch vụ chatbot dịch vụ khách hàng AI, các tính năng cốt lõi của ứng dụng di động, bản địa hóa và SEO
+##### Người phụ trách: Coder
+##### Yêu cầu kỹ thuật:
+* **Đường dẫn mục tiêu:** `./sources/backend/src/main/java/org/nlh4j/saas/membershiphub/chatbot`
+* **Traceability Tag Tokens:** <!--START_TAGS-->[REQ-019], [REQ-020], [REQ-021], [REQ-022], [REQ-023], [REQ-024], [REQ-025], [EXC-005], [NFR-001], [NFR-002], [NFR-003], [NFR-004], [NFR-005], [NFR-006], [NFR-007], [NFR-008], [NFR-009]<!--END_TAGS-->
 
-#### SUB-TASK 2.1: Viết Terraform modules để provision GKE, VPC, IAM, Cloud SQL, Pub/Sub, và cấu hình CI/CD
-##### Địa chỉ phụ trách: GCP
-##### Thành phần mục tiêu & Yêu cầu kỹ thuật:
-* **Đường dẫn mục tiêu**: `./sources/infra/gcp/terraform/main.tf`
-* **Thẻ theo dõi**: <!--START_TAGS-->[NFR-002], [NFR-004], [NFR-006], [NFR-007], [NFR-008], [NFR-009]<!--END_TAGS-->
-```hcl
-provider "google" {
-  project = var.project_id
-  region  = var.region
-}
+#### NHIỆM VỤ CON 14.2: Viết các test case cho các tính năng chatbot dịch vụ khách hàng AI, các tính năng cốt lõi của ứng dụng di động, bản địa hóa và SEO
+##### Người phụ trách: Tester
+##### Yêu cầu kỹ thuật:
+* **Đường dẫn mục tiêu:** `./sources/backend/src/test/java/org/nlh4j/saas/membershiphub/chatbot;./sources/backend/src/main/java/org/nlh4j/saas/membershiphub/chatbot`
+* **Traceability Tag Tokens:** <!--START_TAGS-->[REQ-019], [REQ-020], [REQ-021], [REQ-022], [REQ-023], [REQ-024], [REQ-025], [EXC-005], [NFR-001], [NFR-002], [NFR-003], [NFR-004], [NFR-005], [NFR-006], [NFR-007], [NFR-008], [NFR-009]<!--END_TAGS-->
 
-resource "google_container_cluster" "membership" {
-  name     = "membership-cluster"
-  location = var.region
-  initial_node_count = 3
-  node_config {
-    machine_type = "e2-medium"
-    oauth_scopes = ["https://www.googleapis.com/auth/cloud-platform"]
-  }
-  lifecycle {
-    prevent_destroy = true
-  }
-}
+#### NHIỆM VỤ CON 14.3: Review code cho các tính năng chatbot dịch vụ khách hàng AI, các tính năng cốt lõi của ứng dụng di động, bản địa hóa và SEO
+##### Người phụ trách: Reviewer
+##### Yêu cầu kỹ thuật:
+* **Đường dẫn mục tiêu:** `./sources/backend/src/main/java/org/nlh4j/saas/membershiphub/chatbot`
+* **Traceability Tag Tokens:** <!--START_TAGS-->[REQ-019], [REQ-020], [REQ-021], [REQ-022], [REQ-023], [REQ-024], [REQ-025], [EXC-005], [NFR-001], [NFR-002], [NFR-003], [NFR-004], [NFR-005], [NFR-006], [NFR-007], [NFR-008], [NFR-009]<!--END_TAGS-->
 
-resource "google_sql_database_instance" "membership" {
-  name = "membership-db"
-  region = var.region
-  database_version = "POSTGRES_15"
-  settings {
-    tier = "db-custom-1-3840"
-  }
-}
-```
+#### NHIỆM VỤ CON 14.4: Viết tài liệu cho các tính năng chatbot dịch vụ khách hàng AI, các tính năng cốt lõi của ứng dụng di động, bản địa hóa và SEO
+##### Người phụ trách: Doc
+##### Yêu cầu kỹ thuật:
+* **Đường dẫn mục tiêu:** `./sources/docs`
+* **Traceability Tag Tokens:** <!--START_TAGS-->[REQ-019], [REQ-020], [REQ-021], [REQ-022], [REQ-023], [REQ-024], [REQ-025], [EXC-005], [NFR-001], [NFR-002], [NFR-003], [NFR-004], [NFR-005], [NFR-006], [NFR-007], [NFR-008], [NFR-009]<!--END_TAGS-->
 
-### DAY 3: TRIỂN KHAI KUBERNETES BẰNG HELM CHART VÀ CI/CD PIPELINE
+### NGÀY 15: Tích hợp các tính năng chatbot dịch vụ khách hàng AI, các tính năng cốt lõi của ứng dụng di động, bản địa hóa và SEO với ứng dụng di động
 
-#### SUB-TASK 3.1: Deploy Helm chart, kiểm tra readiness, HPA, và canary rollout
-##### Địa chỉ phụ trách: GKE
-##### Thành phần mục tiêu & Yêu cầu kỹ thuật:
-* **Đường dẫn mục tiêu**: `./sources/infra/k8s/helm/membership-hub/Chart.yaml`
-* **Thẻ theo dõi**: <!--START_TAGS-->[NFR-002], [NFR-004], [NFR-006], [NFR-007], [NFR-008], [NFR-009]<!--END_TAGS-->
-```yaml
-apiVersion: v2
-name: membership-hub
-description: Helm chart for membership-hub services
-type: application
-version: 0.1.0
-appVersion: "1.0"
-```
+#### NHIỆM VỤ CON 15.1: Tích hợp các tính năng chatbot dịch vụ khách hàng AI, các tính năng cốt lõi của ứng dụng di động, bản địa hóa và SEO với ứng dụng di động
+##### Người phụ trách: Coder
+##### Yêu cầu kỹ thuật:
+* **Đường dẫn mục tiêu:** `./sources/frontend/src/components/chatbot`
+* **Traceability Tag Tokens:** <!--START_TAGS-->[REQ-019], [REQ-020], [REQ-021], [REQ-022], [REQ-023], [REQ-024], [REQ-025], [EXC-005], [NFR-001], [NFR-002], [NFR-003], [NFR-004], [NFR-005], [NFR-006], [NFR-007], [NFR-008], [NFR-009]<!--END_TAGS-->
 
-#### SUB-TASK 3.2: Thiết lập GitHub Actions workflow cho CI/CD
-##### Địa chỉ phụ trách: Docker
-##### Thành phần mục tiêu & Yêu cầu kỹ thuật:
-* **Đường dẫn mục tiêu**: `./sources/infra/cicd/ci-cd.yml`
-* **Thẻ theo dõi**: <!--START_TAGS-->[NFR-002], [NFR-004], [NFR-006], [NFR-007], [NFR-008], [NFR-009]<!--END_TAGS-->
-```yaml
-name: CI/CD
-on:
-  push:
-    branches: [ main ]
-jobs:
-  build:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v3
-      - name: Set up JDK 17
-        uses: actions/setup-java@v3
-        with:
-          java-version: '17'
-      - name: Build Docker
-        run: docker build -t gcr.io/${{ secrets.GCP_PROJECT }}/membership-hub:latest .
-      - name: Push Docker
-        run: docker push gcr.io/${{ secrets.GCP_PROJECT }}/membership-hub:latest
-  deploy:
-    needs: build
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v3
-      - name: Set up GCP credentials
-        uses: google-github-actions/auth@v1
-        with:
-          credentials_json: ${{ secrets.GCP_SA_KEY }}
-      - name: Deploy Helm
-        run: |
-          helm upgrade --install membership-hub ./sources/infra/k8s/helm/membership-hub \
-            --namespace membership \
-            --set image.repository=gcr.io/${{ secrets.GCP_PROJECT }}/membership-hub \
-            --set image.tag=latest
-```
+#### NHIỆM VỤ CON 15.2: Viết các test case cho các tính năng chatbot dịch vụ khách hàng AI, các tính năng cốt lõi của ứng dụng di động, bản địa hóa và SEO trên ứng dụng di động
+##### Người phụ trách: Tester
+##### Yêu cầu kỹ thuật:
+* **Đường dẫn mục tiêu:** `./sources/frontend/src/components/chatbot;./sources/frontend/src/components/chatbot`
+* **Traceability Tag Tokens:** <!--START_TAGS-->[REQ-019], [REQ-020], [REQ-021], [REQ-022], [REQ-023], [REQ-024], [REQ-025], [EXC-005], [NFR-001], [NFR-002], [NFR-003], [NFR-004], [NFR-005], [NFR-006], [NFR-007], [NFR-008], [NFR-009]<!--END_TAGS-->
 
----
+#### NHIỆM VỤ CON 15.3: Review code cho các tính năng chatbot dịch vụ khách hàng AI, các tính năng cốt lõi của ứng dụng di động, bản địa hóa và SEO trên ứng dụng di động
+##### Người phụ trách: Reviewer
+##### Yêu cầu kỹ thuật:
+* **Đường dẫn mục tiêu:** `./sources/frontend/src/components/chatbot`
+* **Traceability Tag Tokens:** <!--START_TAGS-->[REQ-019], [REQ-020], [REQ-021], [REQ-022], [REQ-023], [REQ-024], [REQ-025], [EXC-005], [NFR-001], [NFR-002], [NFR-003], [NFR-004], [NFR-005], [NFR-006], [NFR-007], [NFR-008], [NFR-009]<!--END_TAGS-->
