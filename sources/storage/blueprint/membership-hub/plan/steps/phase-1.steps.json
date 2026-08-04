@@ -1,0 +1,65 @@
+{
+    "phase_id": 1,
+    "phase_name": "Thiết lập Xác thực và Quản lý Người dùng",
+    "phase_description": "Giai đoạn này tập trung vào việc xây dựng nền tảng xác thực, quản lý người dùng và quyền truy cập, triển khai JWT, chuẩn hoá API, và thực hiện kiểm thử đơn vị.",
+    "project_name": "membership-hub",
+    "global_context_file": ".ai/.context/membership-hub.global.blueprint.md",
+    "source_target_dir": "sources/",
+    "days": [
+        {
+            "day": 1,
+            "context_file": ".ai/.plan/.context/phase-1.context.blueprint.md",
+            "context_section": "DAY 1",
+            "sub_tasks": [
+                {
+                    "id": "D1_ST1",
+                    "agent": "Coder",
+                    "desc": "Coder Agent: Xây dựng API đăng ký, đăng nhập và schema Users & Roles",
+                    "targeted_tags": [],
+                    "components": [
+                        "./sources/backend/auth-service/AuthController.java",
+                        "./sources/backend/auth-service/AuthService.java",
+                        "./sources/backend/auth-service/AuthRepository.java",
+                        "./sources/backend/auth-service/JwtProvider.java",
+                        "./sources/backend/auth-service/UserSchema.java",
+                        "./sources/backend/auth-service/RoleSchema.java"
+                    ]
+                }
+            ]
+        },
+        {
+            "day": 2,
+            "context_file": ".ai/.plan/.context/phase-1.context.blueprint.md",
+            "context_section": "DAY 2",
+            "sub_tasks": [
+                {
+                    "id": "D2_ST1",
+                    "agent": "Tester",
+                    "desc": "Tester Agent: Viết test integration, kiểm tra token expiration và idempotent",
+                    "targeted_tags": [],
+                    "components": [
+                        "./sources/backend/auth-service/src/test/java/com/membershiphub/auth/AuthServiceTest.java"
+                    ]
+                }
+            ]
+        },
+        {
+            "day": 3,
+            "context_file": ".ai/.plan/.context/phase-1.context.blueprint.md",
+            "context_section": "DAY 3",
+            "sub_tasks": [
+                {
+                    "id": "D3_ST1",
+                    "agent": "Reviewer",
+                    "desc": "Reviewer Agent: Đánh giá bảo mật, chuẩn hoá API và kiểm tra hiệu năng",
+                    "targeted_tags": [],
+                    "components": [
+                        "./sources/backend/auth-service/AuthSecurityReview.java",
+                        "./sources/backend/auth-service/ApiStandardization.java",
+                        "./sources/backend/auth-service/PerformanceTest.java"
+                    ]
+                }
+            ]
+        }
+    ]
+}
