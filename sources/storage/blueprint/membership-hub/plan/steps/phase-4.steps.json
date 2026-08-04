@@ -1,0 +1,70 @@
+{
+    "phase_id": 4,
+    "phase_name": "mobileUiSettings",
+    "phase_description": "No phase description provided",
+    "project_name": "membership-hub",
+    "global_context_file": ".ai/.context/membership-hub.global.blueprint.md",
+    "source_target_dir": "sources/",
+    "days": [
+        {
+            "day": 1,
+            "context_file": ".ai/.plan/.context/phase-4.context.blueprint.md",
+            "context_section": "DAY 1",
+            "sub_tasks": [
+                {
+                    "id": "D1_ST1",
+                    "agent": "Coder",
+                    "desc": "Coder Agent: Xây dựng giao diện di động, đăng ký push, đa ngôn ngữ, SEO",
+                    "targeted_tags": [],
+                    "components": [
+                        "./sources/frontend.mobile/src/main/js/App.js"
+                    ]
+                },
+                {
+                    "id": "D1_ST2",
+                    "agent": "Coder",
+                    "desc": "Coder Agent: Triển khai API và schema SystemSettings",
+                    "targeted_tags": [],
+                    "components": [
+                        "./sources/backend.settings/src/main/java/com/membershiphub/settings/SystemSettingsService.java"
+                    ]
+                }
+            ]
+        },
+        {
+            "day": 2,
+            "context_file": ".ai/.plan/.context/phase-4.context.blueprint.md",
+            "context_section": "DAY 2",
+            "sub_tasks": [
+                {
+                    "id": "D2_ST1",
+                    "agent": "Tester",
+                    "desc": "Tester Agent: Kiểm thử đơn vị cho giao diện di động",
+                    "targeted_tags": [],
+                    "components": [
+                        "./sources/frontend.mobile/src/test/js/App.test.js"
+                    ]
+                },
+                {
+                    "id": "D2_ST2",
+                    "agent": "Tester",
+                    "desc": "Tester Agent: Kiểm thử đơn vị cho API SystemSettings",
+                    "targeted_tags": [],
+                    "components": [
+                        "./sources/backend.settings/src/test/java/com/membershiphub/settings/SystemSettingsServiceTest.java"
+                    ]
+                },
+                {
+                    "id": "D2_ST3",
+                    "agent": "Doc",
+                    "desc": "Doc Agent: Tài liệu kỹ thuật cho mobile UI và SystemSettings",
+                    "targeted_tags": [],
+                    "components": [
+                        "./sources/frontend.mobile/docs/README.md",
+                        "./sources/backend.settings/docs/README.md"
+                    ]
+                }
+            ]
+        }
+    ]
+}
