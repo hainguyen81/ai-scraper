@@ -28,7 +28,7 @@
                     "targeted_tags": [],
                     "components": [
                         "./sources/backend/src/test/java/org/nlh4j/saas/membershiphub/studentcard/StudentCardServiceTest.java",
-                        "./sources/backend/src/main/java/org/nlh4j/saas/membershiphub/studentcard/StudentCardService.java"
+                        "./sources/backend/src/main/java/org/nlh4j/saas/membershiphub/studentcard/StudentCardController.java"
                     ]
                 },
                 {
@@ -65,7 +65,7 @@
                     "targeted_tags": [],
                     "components": [
                         "./sources/backend/src/test/java/org/nlh4j/saas/membershiphub/notification/NotificationServiceTest.java",
-                        "./sources/backend/src/main/java/org/nlh4j/saas/membershiphub/notification/NotificationService.java"
+                        "./sources/backend/src/main/java/org/nlh4j/saas/membershiphub/notification/NotificationController.java"
                     ]
                 },
                 {
@@ -92,7 +92,7 @@
                     "targeted_tags": [],
                     "components": [
                         "./sources/frontend/src/components/notification/NotificationComponent.vue",
-                        "./sources/frontend/src/components/notification/NotificationService.js"
+                        "./sources/frontend/src/services/NotificationService.js"
                     ]
                 },
                 {
@@ -101,8 +101,8 @@
                     "desc": "Tester Agent: Viết các test case cho các tính năng thông báo và truyền thông trên ứng dụng di động",
                     "targeted_tags": [],
                     "components": [
-                        "./sources/frontend/src/components/notification/NotificationComponent.spec.js",
-                        "./sources/frontend/src/components/notification/NotificationService.js"
+                        "./sources/frontend/src/tests/notification/NotificationComponent.spec.js",
+                        "./sources/frontend/src/services/NotificationService.js"
                     ]
                 },
                 {
@@ -112,7 +112,7 @@
                     "targeted_tags": [],
                     "components": [
                         "./sources/frontend/src/components/notification/NotificationComponent.vue",
-                        "./sources/frontend/src/components/notification/NotificationService.js"
+                        "./sources/frontend/src/services/NotificationService.js"
                     ]
                 }
             ]

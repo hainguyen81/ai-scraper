@@ -17,9 +17,7 @@
                     "desc": "Coder Agent: Triển khai các dịch vụ quản lý khuyến mãi, quản lý thông báo",
                     "targeted_tags": [],
                     "components": [
-                        "./sources/backend/src/main/java/org/nlh4j/saas/membershiphub/promotion/PromotionService.java",
-                        "./sources/backend/src/main/java/org/nlh4j/saas/membershiphub/promotion/PromotionController.java",
-                        "./sources/backend/src/main/java/org/nlh4j/saas/membershiphub/promotion/PromotionRepository.java"
+                        "./sources/backend/src/main/java/org/nlh4j/saas/membershiphub/promotion"
                     ]
                 },
                 {
@@ -28,10 +26,8 @@
                     "desc": "Tester Agent: Viết các test case cho các tính năng quản lý khuyến mãi, quản lý thông báo",
                     "targeted_tags": [],
                     "components": [
-                        "./sources/backend/src/test/java/org/nlh4j/saas/membershiphub/promotion/PromotionServiceTest.java",
-                        "./sources/backend/src/test/java/org/nlh4j/saas/membershiphub/promotion/PromotionControllerTest.java",
-                        "./sources/backend/src/main/java/org/nlh4j/saas/membershiphub/promotion/PromotionService.java",
-                        "./sources/backend/src/main/java/org/nlh4j/saas/membershiphub/promotion/PromotionController.java"
+                        "./sources/backend/src/test/java/org/nlh4j/saas/membershiphub/promotion",
+                        "./sources/backend/src/main/java/org/nlh4j/saas/membershiphub/promotion"
                     ]
                 },
                 {
@@ -40,9 +36,7 @@
                     "desc": "Reviewer Agent: Review code cho các tính năng quản lý khuyến mãi, quản lý thông báo",
                     "targeted_tags": [],
                     "components": [
-                        "./sources/backend/src/main/java/org/nlh4j/saas/membershiphub/promotion/PromotionService.java",
-                        "./sources/backend/src/main/java/org/nlh4j/saas/membershiphub/promotion/PromotionController.java",
-                        "./sources/backend/src/main/java/org/nlh4j/saas/membershiphub/promotion/PromotionRepository.java"
+                        "./sources/backend/src/main/java/org/nlh4j/saas/membershiphub/promotion"
                     ]
                 }
             ]
@@ -58,9 +52,7 @@
                     "desc": "Coder Agent: Triển khai các dịch vụ chatbot dịch vụ khách hàng AI, các tính năng cốt lõi của ứng dụng di động, bản địa hóa và SEO",
                     "targeted_tags": [],
                     "components": [
-                        "./sources/backend/src/main/java/org/nlh4j/saas/membershiphub/chatbot/ChatbotService.java",
-                        "./sources/backend/src/main/java/org/nlh4j/saas/membershiphub/chatbot/ChatbotController.java",
-                        "./sources/backend/src/main/java/org/nlh4j/saas/membershiphub/chatbot/ChatbotRepository.java"
+                        "./sources/backend/src/main/java/org/nlh4j/saas/membershiphub/chatbot"
                     ]
                 },
                 {
@@ -69,10 +61,8 @@
                     "desc": "Tester Agent: Viết các test case cho các tính năng chatbot dịch vụ khách hàng AI, các tính năng cốt lõi của ứng dụng di động, bản địa hóa và SEO",
                     "targeted_tags": [],
                     "components": [
-                        "./sources/backend/src/test/java/org/nlh4j/saas/membershiphub/chatbot/ChatbotServiceTest.java",
-                        "./sources/backend/src/test/java/org/nlh4j/saas/membershiphub/chatbot/ChatbotControllerTest.java",
-                        "./sources/backend/src/main/java/org/nlh4j/saas/membershiphub/chatbot/ChatbotService.java",
-                        "./sources/backend/src/main/java/org/nlh4j/saas/membershiphub/chatbot/ChatbotController.java"
+                        "./sources/backend/src/test/java/org/nlh4j/saas/membershiphub/chatbot",
+                        "./sources/backend/src/main/java/org/nlh4j/saas/membershiphub/chatbot"
                     ]
                 },
                 {
@@ -81,9 +71,7 @@
                     "desc": "Reviewer Agent: Review code cho các tính năng chatbot dịch vụ khách hàng AI, các tính năng cốt lõi của ứng dụng di động, bản địa hóa và SEO",
                     "targeted_tags": [],
                     "components": [
-                        "./sources/backend/src/main/java/org/nlh4j/saas/membershiphub/chatbot/ChatbotService.java",
-                        "./sources/backend/src/main/java/org/nlh4j/saas/membershiphub/chatbot/ChatbotController.java",
-                        "./sources/backend/src/main/java/org/nlh4j/saas/membershiphub/chatbot/ChatbotRepository.java"
+                        "./sources/backend/src/main/java/org/nlh4j/saas/membershiphub/chatbot"
                     ]
                 },
                 {
@@ -92,7 +80,7 @@
                     "desc": "Doc Agent: Viết tài liệu cho các tính năng chatbot dịch vụ khách hàng AI, các tính năng cốt lõi của ứng dụng di động, bản địa hóa và SEO",
                     "targeted_tags": [],
                     "components": [
-                        "./sources/docs/chatbot.md"
+                        "./sources/docs"
                     ]
                 }
             ]
@@ -108,9 +96,7 @@
                     "desc": "Coder Agent: Tích hợp các tính năng chatbot dịch vụ khách hàng AI, các tính năng cốt lõi của ứng dụng di động, bản địa hóa và SEO với ứng dụng di động",
                     "targeted_tags": [],
                     "components": [
-                        "./sources/frontend/src/components/chatbot/ChatbotComponent.vue",
-                        "./sources/frontend/src/components/chatbot/ChatbotService.js",
-                        "./sources/frontend/src/components/chatbot/ChatbotController.js"
+                        "./sources/frontend/src/components/chatbot"
                     ]
                 },
                 {
@@ -119,10 +105,8 @@
                     "desc": "Tester Agent: Viết các test case cho các tính năng chatbot dịch vụ khách hàng AI, các tính năng cốt lõi của ứng dụng di động, bản địa hóa và SEO trên ứng dụng di động",
                     "targeted_tags": [],
                     "components": [
-                        "./sources/frontend/src/components/chatbot/ChatbotComponent.spec.js",
-                        "./sources/frontend/src/components/chatbot/ChatbotService.spec.js",
-                        "./sources/frontend/src/components/chatbot/ChatbotComponent.vue",
-                        "./sources/frontend/src/components/chatbot/ChatbotService.js"
+                        "./sources/frontend/src/components/chatbot",
+                        "./sources/frontend/src/components/chatbot"
                     ]
                 },
                 {
@@ -131,9 +115,7 @@
                     "desc": "Reviewer Agent: Review code cho các tính năng chatbot dịch vụ khách hàng AI, các tính năng cốt lõi của ứng dụng di động, bản địa hóa và SEO trên ứng dụng di động",
                     "targeted_tags": [],
                     "components": [
-                        "./sources/frontend/src/components/chatbot/ChatbotComponent.vue",
-                        "./sources/frontend/src/components/chatbot/ChatbotService.js",
-                        "./sources/frontend/src/components/chatbot/ChatbotController.js"
+                        "./sources/frontend/src/components/chatbot"
                     ]
                 }
             ]

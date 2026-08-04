@@ -31,8 +31,8 @@
                 },
                 {
                     "id": "D1_ST3",
-                    "agent": "Gcp",
-                    "desc": "Gcp Agent: Triển khai cơ sở hạ tầng trên Google Cloud Platform, cấu hình VPC, IAM, và các dịch vụ cần thiết",
+                    "agent": "GCP",
+                    "desc": "GCP Agent: Triển khai cơ sở hạ tầng trên Google Cloud Platform, cấu hình VPC, IAM, và các dịch vụ cần thiết",
                     "targeted_tags": [],
                     "components": [
                         "./sources/infra/gcp"
