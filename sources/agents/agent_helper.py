@@ -179,19 +179,21 @@ def json_loads(data, silent=False):
 def json_raw_content(raw_content):
     """Securely serialize input telemetry payloads into structural double-quoted strings."""
     # If the payload is already a memory object list or dictionary
+    cleaned_str = str(raw_content).strip() if raw_content else None
     if isinstance(raw_content, (dict, list)):
-        return json.dumps(raw_content, indent=4, ensure_ascii=False)
+        try:
+            return json.dumps(raw_content, indent=4, ensure_ascii=False)
+        except Exception:
+            pass
     
-    if isinstance(raw_content, str):
-        cleaned_str = raw_content.strip()
-        # If it is a stringified JSON layout, decode and encode with indentation rules
-        if (cleaned_str.startswith("{") or cleaned_str.startswith("[")) and '"' in cleaned_str:
-            try:
-                return json.dumps(json_loads(cleaned_str), indent=4, ensure_ascii=False)
-            except Exception:
-                pass
-    
-    return str(raw_content)
+    # try to parse json
+    cleaned_json = json_loads(cleaned_str, silent=True)
+    if cleaned_json:
+        try:
+            cleaned_str = json.dumps(cleaned_json, indent=4, ensure_ascii=False)
+        except Exception:
+            pass
+    return cleaned_str
 
 def exception_stacktrace(e) -> str:
     stacktrace = traceback.format_exception(type(e), e, e.__traceback__, limit=10) if isinstance(e, BaseException) or isinstance(e, Exception) else None
@@ -253,9 +255,7 @@ def read_file_raw(file_path):
         return (file_path, f.read())
 
 def write_blueprint_log(phase_idx, instruction, prompt, raw_content, is_step, model_name=None, out_dir=None):
-    pattern = r"\{.*\}|\[.*\]"
-    raw_content = json_raw_content(raw_content)
-    is_json = bool(re.search(pattern, raw_content, re.DOTALL))
+    raw_json_content = json_raw_content(raw_content)
     model_name_safe = f"AI Model: {model_name} - " if model_name and len(model_name) > 0 else ""
     if phase_idx <= 0:
         header_title = f"# {model_name_safe}Global Prompt:\n\n{prompt}\n\n"
@@ -264,12 +264,7 @@ def write_blueprint_log(phase_idx, instruction, prompt, raw_content, is_step, mo
     else:
         header_title = f"# {model_name_safe}Phase {phase_idx} STEPS - Prompt:\n\n{prompt}\n\n"
     instruction_block = f"# System Instruction\n\n{instruction}\n\n"
-    if is_json and not raw_content.startswith("```json"):
-        response_block = f"# Raw Response / Exception:\n\n```json\n{raw_content}\n```\n\n"
-    elif not raw_content.startswith("```text"):
-        response_block = f"# Raw Response / Exception:\n\n```text\n{raw_content}\n```\n\n"
-    else:
-        response_block = f"# Raw Response / Exception:\n\n{raw_content}\n\n"
+    response_block = f"# Raw Response / Exception:\n\n{raw_json_content}\n\n"
     log_content = header_title + instruction_block + response_block
     log_file = BLUEPRINT_WORKING_HISTORY_FILE
     if out_dir and len(out_dir) > 0:
