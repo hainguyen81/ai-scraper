@@ -25,6 +25,7 @@ USER_PROMPT_TEMPLATE            = "prompt.user.publisher.md"
 PUBLISHER_SOCIAL_SECRETS_KEY    = "SOCIAL_SECRETS_KEY"
 
 PUBLISHER_APPROVAL_JSON_FILE    = "marketing-publisher-approval.json"
+PUBLISHER_SOCIAL_JSON_FILE      = "marketing-publisher-social-networks.json"
 PUBLISHER_JSON_FILE             = "marketing-publisher.json"
 PUBLISHER_RAW_FILE              = "marketing-publisher.md"
 PUBLISHER_LOG_FILE              = "marketing-publisher_log.md"
@@ -40,6 +41,10 @@ class EnterpriseSocialPublisherAgent(AbstractMarketingAgent):
     def __social_approval_file__(self) -> str:
         project_name = self.__current_project_name__()
         return self.__storage_path__(storage_name="storage_marketing", file=f"{project_name}/{PUBLISHER_APPROVAL_JSON_FILE}") if project_name else None
+    
+    def __social_networks_file__(self) -> str:
+        project_name = self.__current_project_name__()
+        return self.__agents_path__(storage_name="storage_marketing", file=PUBLISHER_SOCIAL_JSON_FILE) if project_name else None
     
     # @override
     def agent_secrets_key(self) -> str:
@@ -68,6 +73,38 @@ class EnterpriseSocialPublisherAgent(AbstractMarketingAgent):
             self.logger.critical(f"💀 Not found SOCIAL APPROVAL file to process")
             sys.exit(1)
         
+        # read social networks file
+        social_networks_file = self.__social_networks_file__()
+        _, social_networks_json_vault = read_json_file(file_path=social_networks_file)
+        
+        # not anything to publish, exit
+        if not social_networks_json_vault:
+            self.logger.critical(f"💀 Not found SOCIAL NETWORKS file to process")
+            sys.exit(1)
+        
+        # build social credentials
+        platforms_matrix = social_networks_json_vault.get("platforms_auth_matrix", {})
+        self.logger.info("[ SYSTEM ] Starting automated environment reference injection loop...")
+        for platform_name, platform_node in platforms_matrix.items():
+            self.logger.info(f"     | - Processing auth parameters node for platform: {platform_name}")
+            api_endpoint = platform_node["api_endpoint"] if isinstance(platform_node, dict) else None
+            if not api_endpoint:
+                self.logger.warning(f"     | ---> ⚠️ Not found endpoint of platform {platform_name}")
+                continue
+            
+            # check whether has config for this endpoint
+            if api_endpoint not in self.secrets:
+                self.logger.warning(f"     | ---> ⚠️ Not found secrets key for endpoint {api_endpoint} of platform {platform_name}")
+                continue
+            
+            # update secret token
+            endpoint_secrets = self.secrets.get(platform_name, self.secrets.get(api_endpoint, None))
+            if endpoint_secrets and isinstance(endpoint_secrets, dict):
+                platform_node.update(endpoint_secrets)
+            
+            elif endpoint_secrets:
+                platform_node["api_key"] = str(endpoint_secrets)
+        
         # return merged new values
         return {
             **kwargs,
@@ -83,18 +120,15 @@ class EnterpriseSocialPublisherAgent(AbstractMarketingAgent):
             #         "project_name": "Membership-Hub",
             #         "campaign_interval": "Week 1"
             #     },
-            #     "approved_distribution_assets": [
-            #         {
+            #     "approved_distribution_assets": [{
             #         "platform": "LinkedIn",
             #         "content_body": "Cắt giảm 40% chi phí in ấn thẻ nhựa vật lý và tối ưu hóa 35% tốc độ phục vụ tại quầy cho chuỗi bán lẻ bằng giải pháp số hóa hội viên trên nền tảng Cloud-Native EDA vững chắc. Tìm hiểu thêm tại chiến dịch của chúng tôi: __HTTPS__://membership-hub__DOT__com__SLASH__roi-calculator",
             #         "tags": ["#EnterpriseTech", "#RetailAutomation", "#CloudNative"]
-            #         },
-            #         {
+            #     }, {
             #         "platform": "X",
             #         "content_body": "Giải mã cấu trúc hạ tầng Redis Cluster giúp hệ thống Membership-Hub xử lý mượt mà 10,000 lượt quét mã QR bảo mật mỗi giây mà không nghẽn hạ tầng. Toàn văn báo cáo SA: __HTTPS__://membership-hub__DOT__com__SLASH__architecture-deepdive",
             #         "tags": ["#EDA", "#GKE", "#RedisCluster"]
-            #         }
-            #     ]
+            #     }]
             # }
             "approved_content_vault_json": social_approval_json_vault,
             # Example (social_credentials_json):
@@ -102,20 +136,22 @@ class EnterpriseSocialPublisherAgent(AbstractMarketingAgent):
             #     "target_routing_environment": "PRODUCTION",
             #     "platforms_auth_matrix": {
             #         "X": {
-            #         "api_endpoint": "__HTTPS__://api__DOT__x__SLASH__2__SLASH__tweets",
-            #         "oauth_client_id": "X_CLIENT_ENT_90128",
-            #         "bearer_token_vault_reference": "ENV_VAULT_X_AUTH_BEARER",
-            #         "target_account_handle": "@MembershipHubEnt"
+            #             "api_endpoint": "https://api.x/2/tweets",
+            #             "oauth_client_id": "X_CLIENT_ENT_90128",
+            #             "bearer_token_vault_reference": "ENV_VAULT_X_AUTH_BEARER",
+            #             "target_account_handle": "@MembershipHubEnt",
+            #             "timeout_milliseconds": 5000
             #         },
             #         "LinkedIn": {
-            #         "api_endpoint": "__HTTPS__://api__DOT__linkedin__DOT__com__SLASH__v2__SLASH__ugcPosts",
-            #         "author_organization_urn": "urn:li:organization:8912743",
-            #         "access_token_vault_reference": "ENV_VAULT_LINKEDIN_ACCESS_TOKEN",
-            #         "target_page_name": "Membership-Hub Enterprise Solutions"
+            #             "api_endpoint": "https://api.linkedin.com/v2/ugcPosts",
+            #             "author_organization_urn": "urn:li:organization:8912743",
+            #             "access_token_vault_reference": "ENV_VAULT_LINKEDIN_ACCESS_TOKEN",
+            #             "target_page_name": "Membership-Hub Enterprise Solutions",
+            #             "timeout_milliseconds": 5000
             #         }
             #     }
             # }
-            "social_credentials_meta": self.secrets
+            "social_credentials_meta": social_networks_json_vault
         }
     
     # @override

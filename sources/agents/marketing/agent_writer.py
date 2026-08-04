@@ -19,8 +19,8 @@ from sources.agents.marketing.agent_marketing import AbstractMarketingAgent
 # GLOBAL CONFIGURATION PATHS - CONFIG HERE TO CUSTOMIZE DIRECTORY STRUCTURE
 # ==============================================================================
 # models list
-SYSTEM_PROMPT_TEMPLATE          = "prompt.system.reviewer.md"
-USER_PROMPT_TEMPLATE            = "prompt.user.reviewer.md"
+SYSTEM_PROMPT_TEMPLATE          = "prompt.system.writer.md"
+USER_PROMPT_TEMPLATE            = "prompt.user.writer.md"
 
 CONTENT_WRITER_JSON_FILE        = "marketing-content-writer.json"
 CONTENT_WRITER_RAW_FILE         = "marketing-content-writer.md"

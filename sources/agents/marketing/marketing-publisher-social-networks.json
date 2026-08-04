@@ -1,0 +1,60 @@
+{
+	"target_routing_environment": "PRODUCTION",
+	"global_connection_retry_limit": 3,
+	"platforms_auth_matrix": {
+		"Generic": {
+			"api_endpoint": "http://localhost",
+			"target_account_handle": "Generic@Account",
+			"timeout_milliseconds": 5000
+		},
+		"X": {
+			"api_endpoint": "https://twitter.com",
+			"oauth_client_id": "X_CLIENT_ENTERPRISE_90128",
+			"bearer_token_vault_reference": "ENV_VAULT_X_AUTH_BEARER",
+			"target_account_handle": "@MembershipHubEnt",
+			"timeout_milliseconds": 5000
+		},
+		"LinkedIn": {
+			"api_endpoint": "https://linkedin.com",
+			"author_organization_urn": "urn:li:organization:8912743",
+			"access_token_vault_reference": "ENV_VAULT_LINKEDIN_ACCESS_TOKEN",
+			"target_page_name": "Membership-Hub Enterprise Solutions",
+			"timeout_milliseconds": 5000
+		},
+		"Facebook": {
+			"api_endpoint": "https://facebook.com",
+			"page_id": "fb_page_10293847192",
+			"page_access_token_vault_reference": "ENV_VAULT_FB_PAGE_TOKEN",
+			"target_page_name": "Membership-Hub Community Page",
+			"timeout_milliseconds": 8000
+		},
+		"Instagram": {
+			"api_endpoint": "https://facebook.com",
+			"instagram_business_account_id": "ig_biz_88291038471",
+			"page_access_token_vault_reference": "ENV_VAULT_IG_PAGE_ACCESS_TOKEN",
+			"target_account_handle": "@membership_hub_lifestyle",
+			"timeout_milliseconds": 10000
+		},
+		"Threads": {
+			"api_endpoint": "https://threads.net",
+			"threads_user_id": "threads_usr_773910283",
+			"access_token_vault_reference": "ENV_VAULT_THREADS_ACCESS_TOKEN",
+			"target_account_handle": "@membership_hub_threads",
+			"timeout_milliseconds": 5000
+		},
+		"TikTok": {
+			"api_endpoint": "https://tiktokapis.com",
+			"client_key": "tt_client_key_384719",
+			"access_token_vault_reference": "ENV_VAULT_TIKTOK_ACCESS_TOKEN",
+			"target_creator_username": "@membership_hub_shorts",
+			"timeout_milliseconds": 12000
+		},
+		"YouTube": {
+			"api_endpoint": "https://googleapis.com",
+			"youtube_channel_id": "UC_yt_hub_enterprise_99x",
+			"access_token_vault_reference": "ENV_VAULT_YOUTUBE_OAUTH_TOKEN",
+			"target_channel_name": "Membership-Hub Engineering Channel",
+			"timeout_milliseconds": 15000
+		}
+	}
+}
