@@ -264,10 +264,12 @@ def write_blueprint_log(phase_idx, instruction, prompt, raw_content, is_step, mo
     else:
         header_title = f"# {model_name_safe}Phase {phase_idx} STEPS - Prompt:\n\n{prompt}\n\n"
     instruction_block = f"# System Instruction\n\n{instruction}\n\n"
-    if is_json:
+    if is_json and not raw_content.startswith("```json"):
         response_block = f"# Raw Response / Exception:\n\n```json\n{raw_content}\n```\n\n"
-    else:
+    elif not raw_content.startswith("```text"):
         response_block = f"# Raw Response / Exception:\n\n```text\n{raw_content}\n```\n\n"
+    else:
+        response_block = f"# Raw Response / Exception:\n\n{raw_content}\n\n"
     log_content = header_title + instruction_block + response_block
     log_file = BLUEPRINT_WORKING_HISTORY_FILE
     if out_dir and len(out_dir) > 0:
