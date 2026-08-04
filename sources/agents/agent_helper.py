@@ -349,7 +349,7 @@ def parseAIResponseData(response):
     # Safe fallback if choice format changes or breaks unexpectedly
     return str(first_choice).strip()
 
-def splitOpenAIResponseJsonData(raw_data):
+def splitAIResponseJsonData(raw_data):
     clean_json_str = raw_data.strip()
     
     # Step 1: Strip out potential markdown code block artifacts using aggressive regex filtering
@@ -415,7 +415,7 @@ def parseAIResponseJsonData(response):
     # Pattern 4: Hardened bracket boundary locator leveraging non-greedy isolation
     # Fixes the broken greedy regex logic to ensure text outside the curly braces is safely ignored
     try:
-        return (raw_data, json_loads(splitOpenAIResponseJsonData(raw_data)))
+        return (raw_data, json_loads(splitAIResponseJsonData(raw_data)))
     except Exception:
         json_match = re.search(r"(\{[\s\S]*\})", raw_data, re.DOTALL)
         if json_match:

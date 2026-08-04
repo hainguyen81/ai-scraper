@@ -43,8 +43,11 @@ You MUST dynamically populate the top-level keys of the JSON object using EXACT 
 - For each sub-task block, locate the hidden technical container bounds delimited strictly between `<!--START_TAGS-->` and `<!--END_TAGS-->`. Extract all individual inherited Tag IDs from inside that container, completely purge all markdown backticks (`` ` ``) and padding spaces, and populate them as clean individual string elements inside the "targeted_tags" array field (e.g., `"targeted_tags": ["[REQ-001]", "[DAT-005]"]`).
 - You are STRICTLY BANNED from leaving the "targeted_tags" array empty `[]` or null. Every single tag token must be its own separated array element string.
 
-You must conform strictly to your required JSON Schema layout design structure:
-{{ phase_steps_json_schema }}
+You must conform strictly and output exactly ONE (1) single, standalone, unified JSON block containing all target fields including `objectives`, `phase_idx`, and `phase_context_file` from the very start. 
+
+🚨 **CRITICAL PIPELINE FREEZE MANDATE**: You are ABSOLUTELY FORBIDDEN from outputting conversational filler text, dashes, symbols, separators (NO `----------------------------------`), post-generation text remarks, or secondary blocks. Open exactly with a single line of triple backticks + json, render the unified schema, close with a closing brace, close with triple backticks, and STOP GENERATING INSTANTLY. Any token after the first valid closing fence crashes the enterprise runtime.
+
+Required JSON Schema layout design structure: {{ phase_steps_json_schema }}
 
 --- PHASE {{ phase_idx }} CONTEXT MARKDOWN ---
 {{ phase_markdown_content }}
