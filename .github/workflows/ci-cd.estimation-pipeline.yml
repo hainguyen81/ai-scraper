@@ -18,7 +18,7 @@ on:
       language:
         description: '🗣️ Estimation Language'
         required: false
-        default: '🇻🇳 Vietnamese'
+        default: '🇺🇸 English'
         type: choice
         options:
           - "🇻🇳 Vietnamese"
@@ -48,7 +48,7 @@ on:
       language:
         description: '🗣️ Estimation Language'
         required: false
-        default: '🇻🇳 Vietnamese'
+        default: '🇺🇸 English'
         type: string
       verbose:
         description: '🐞 Verbose'

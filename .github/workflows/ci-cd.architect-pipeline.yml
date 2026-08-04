@@ -12,7 +12,7 @@ on:
       language:
         description: '🗣️ SRS Language'
         required: false
-        default: '🇻🇳 Vietnamese'
+        default: '�� English'
         type: choice
         options:
           - "🇻🇳 Vietnamese"
@@ -128,7 +128,7 @@ on:
       language:
         description: '🗣️ SRS Language'
         required: false
-        default: '🇻🇳 Vietnamese'
+        default: '�� English'
         type: string
       project_name:
         description: "📁 Project Name / 💡 Idea"
