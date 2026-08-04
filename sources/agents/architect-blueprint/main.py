@@ -12,6 +12,11 @@ import time
 # OpenAI
 from openai import OpenAI
 
+# Import decoupled functional components cleanly
+from block_global import generate_global_context, logger as global_logger
+from block_phase import generate_phase_contexts, logger as phase_logger
+from block_json import convert_phases_to_json, logger as steps_logger
+
 # Now Python can seamlessly see and import the centralized helper utility cleanly!
 from sources.agents.agent_helper import (
     resolve_absolute_path,
@@ -28,11 +33,6 @@ from sources.agents.agent_helper import (
     render_prompt,
     exception_stacktrace
 )
-
-# Import decoupled functional components cleanly
-from block_global import generate_global_context, logger as global_logger
-from block_phase import generate_phase_contexts, logger as phase_logger
-from block_json import convert_phases_to_json, logger as steps_logger
 
 # ==============================================================================
 # GLOBAL CONFIGURATION PATHS - CONFIG HERE TO CUSTOMIZE DIRECTORY STRUCTURE

@@ -1,6 +1,5 @@
 import os
 import json
-import argparse
 import re
 from typing import Dict, Any
 import urllib.request

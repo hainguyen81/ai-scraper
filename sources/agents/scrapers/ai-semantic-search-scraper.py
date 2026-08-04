@@ -1,7 +1,6 @@
 import os
 import json
 import re
-import argparse
 from typing import List, Dict, Any
 from exa_py import Exa
 
