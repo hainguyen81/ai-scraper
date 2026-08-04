@@ -1,7 +1,32 @@
 {
-  "status": "APPROVED_VAULT",
-  "issue_analysis": "The draft creative assets payload is empty; no content to evaluate. All compliance checks pass as there are no violations, no URL placeholders, and no deviations from corporate guidelines. Therefore audit status is PASSED with full compliance coverage.",
-  "fix_directives": [],
-  "audited_project": "membership-hub",
-  "compliance_metrics_score": 100
+  "drafts": [
+    {
+      "platform": "generic",
+      "content_body": "Giới thiệu membership-hub: Nền tảng hội viên đa trung tâm tương lai\
+\
+membership-hub là nền tảng quản lý hội viên đa trung tâm, hỗ trợ điểm danh thời gian thực qua QR, thẻ hội viên kỹ thuật số với đếm ngày hiệu lực, giao tiếp đa kênh (web, di động, nhóm Zalo). Nền tảng được xây dựng trên kiến trúc microservices, triển khai trên GKE, sử dụng Redis Cluster cho caching, PostgreSQL cho dữ liệu quan trọng, và API gateway với rate limiting để bảo vệ tính sẵn sàng.\
+\
+Các lợi ích chính:\
+- Giảm chi phí vận hành: tự động hóa quy trình quản lý hội viên, giảm thời gian triển khai.\
+- Tăng tỷ lệ giữ chân: điểm danh <200 ms, hỗ trợ >10 000 người dùng đồng thời.\
+- Độ tin cậy & bảo mật: tuân thủ GDPR/CCPA, RBAC, JWT, audit logging, multi‑tenant isolation.\
+- Khả năng mở rộng: horizontal scaling trên GKE, auto‑scaling dựa trên HPA, uptime 99.9 %.\
+\
+Hãy liên hệ với chúng tôi để biết thêm chi tiết và triển khai ngay hôm nay.\
+\
+#MembershipHub #QuảnLýHộiViên #GKE #Microservices #ĐộTinCậy #MởRộng #BảoMật #ĐầuTư #SaaS #ĐịnhDạng",
+      "tags": [
+        "#MembershipHub",
+        "#QuảnLýHộiViên",
+        "#GKE",
+        "#Microservices",
+        "#ĐộTinCậy",
+        "#MởRộng",
+        "#BảoMật",
+        "#ĐầuTư",
+        "#SaaS",
+        "#ĐịnhDạng"
+      ]
+    }
+  ]
 }
