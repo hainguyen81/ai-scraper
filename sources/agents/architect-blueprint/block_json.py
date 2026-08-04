@@ -317,9 +317,9 @@ def convert_phases_to_json(client: OpenAI, model_name: str, master_rules: str, p
                 
                 # if response is ok, parse json
                 raw_data, json_data = parseAIResponseJsonData(response)
-                dump_json_data = json.dumps(json_data, indent=4, ensure_ascii=False) if json_data else "Invalid JSON Data"
-                logger.info(f" │   └── 🎉 Response Phase {phase_idx} Standardized JSON:")
-                logger.info(f" │         { dump_json_data }")
+                # dump_json_data = json.dumps(json_data, indent=4, ensure_ascii=False) if json_data else "Invalid JSON Data"
+                # logger.info(f" │   └── 🎉 Response Phase {phase_idx} Standardized JSON:")
+                # logger.info(f" │         { dump_json_data }")
                 
                 # write log
                 write_blueprint_log(log_phase_idx, system_prompt, log_prompt.replace('#', '##'), raw_data, True, model_name_safe, out_dir)
