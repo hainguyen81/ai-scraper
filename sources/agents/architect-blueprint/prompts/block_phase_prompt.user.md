@@ -32,7 +32,7 @@ You are tasked to detail **PHASE {{ phase_idx }} OUT OF {{ num_phases }}**. You 
 ---
 
 Your output MUST follow this exact Markdown layout structure (translate all label tokens but preserve the hidden HTML anchor formatting exactly):
-# [Translate "Phase"] {{ phase_idx }}: <!--PHASE_NAME_START-->[technical_short_name]<!--PHASE_NAME_END--> | [Translate "Description"]: [Granular professional engineering summary phrase of the operational scope, fully rendered in {% if language and language.strip() != "" %}{{ language }}{% else %}English{% endif %}]
+# [Translate "Phase"] {{ phase_idx }}: <!--PHASE_NAME_START-->[Provide a short, clear, human-readable title of this phase, max 5-7 words, e.g., "Core Infrastructure & Authentication Setup", fully rendered in {% if language and language.strip() != "" %}{{ language }}{% else %}English{% endif %}]<!--PHASE_NAME_END--> | [Translate "Description"]: [Granular professional engineering summary phrase of the operational scope, fully rendered in {% if language and language.strip() != "" %}{{ language }}{% else %}English{% endif %}]
 ## 📊 Document Control
 
 | [Translate "Item"] | [Translate "Details"] |
@@ -40,7 +40,7 @@ Your output MUST follow this exact Markdown layout structure (translate all labe
 | **[Translate "Blueprint ID"]** | ARCH-{{ doc_id }} |
 | **[Translate "Project Name"]** | {{ project_name }} |
 | **[Translate "Phase"]** | {{ phase_idx }} |
-| **[Translate "Technical Phase Name"]** | <!--PHASE_NAME_START-->[technical_short_name]<!--PHASE_NAME_END--> |
+| **[Translate "Phase Name"]** | <!--PHASE_NAME_START-->[Provide a short, clear, human-readable title of this phase, max 5-7 words, e.g., "Core Infrastructure & Authentication Setup", fully rendered in {% if language and language.strip() != "" %}{{ language }}{% else %}English{% endif %}]<!--PHASE_NAME_END--> |
 | **[Translate "Description"]** | [Granular professional engineering summary description of the absolute operational scope of this specific phase, fully rendered in {% if language and language.strip() != "" %}{{ language }}{% else %}English{% endif %}] |
 | **[You MUST translate the literal token "Version" into {% if language and language.strip() != "" %}{{ language }}{% else %}English{% endif %}]** | 1.0 (Baseline) |
 | **[You MUST translate the literal token "Date/Time" into {% if language and language.strip() != "" %}{{ language }}{% else %}English{% endif %}]** | {{ current_timestamp }} |
@@ -63,7 +63,7 @@ Your output MUST follow this exact Markdown layout structure (translate all labe
 
 # REMINDER: Enforce the 'Longitructural Day Partitioning Guardrail' and 'Anti-Padding Mandate'. Output each active day as an isolated standalone single integer subsection header from DAY 1 up to the dynamic freeze day. Do NOT generate empty padded days.
 
-### DAY [X]: [CAPITALIZED SHORT OBJECTIVE FOR THIS OPERATIONAL CALENDAR DAY]
+### DAY [X]: <!--DAY_HEADER_START-->[CAPITALIZED SHORT OBJECTIVE FOR THIS OPERATIONAL CALENDAR DAY]<!--DAY_HEADER_END-->
 
 #### SUB-TASK [X.Y]: [Clear, low-level engineering description of the specific sub-task goal, explicitly embedding OWASP compliance rules]
 ##### [Translate "Assigned Sub-Agent"]: [Insert exactly ONE unique literal Agent token: Coder | Tester | Reviewer | Doc | Docker | GCP | GKE]
