@@ -30,8 +30,7 @@
                     "components": [
                         "./sources/backend/src/test/java/org/nlh4j/saas/membershiphub/user/UserServiceTest.java",
                         "./sources/backend/src/test/java/org/nlh4j/saas/membershiphub/user/UserControllerTest.java",
-                        "./sources/backend/src/main/java/org/nlh4j/saas/membershiphub/user/UserService.java",
-                        "./sources/backend/src/main/java/org/nlh4j/saas/membershiphub/user/UserController.java"
+                        "./sources/backend/src/main/java/org/nlh4j/saas/membershiphub/user/UserRepository.java"
                     ]
                 },
                 {
@@ -71,8 +70,7 @@
                     "components": [
                         "./sources/backend/src/test/java/org/nlh4j/saas/membershiphub/center/CenterServiceTest.java",
                         "./sources/backend/src/test/java/org/nlh4j/saas/membershiphub/center/CenterControllerTest.java",
-                        "./sources/backend/src/main/java/org/nlh4j/saas/membershiphub/center/CenterService.java",
-                        "./sources/backend/src/main/java/org/nlh4j/saas/membershiphub/center/CenterController.java"
+                        "./sources/backend/src/main/java/org/nlh4j/saas/membershiphub/center/CenterRepository.java"
                     ]
                 },
                 {
@@ -112,8 +110,7 @@
                     "components": [
                         "./sources/backend/src/test/java/org/nlh4j/saas/membershiphub/course/CourseServiceTest.java",
                         "./sources/backend/src/test/java/org/nlh4j/saas/membershiphub/course/CourseControllerTest.java",
-                        "./sources/backend/src/main/java/org/nlh4j/saas/membershiphub/course/CourseService.java",
-                        "./sources/backend/src/main/java/org/nlh4j/saas/membershiphub/course/CourseController.java"
+                        "./sources/backend/src/main/java/org/nlh4j/saas/membershiphub/course/CourseRepository.java"
                     ]
                 },
                 {

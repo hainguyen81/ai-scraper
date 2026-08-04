@@ -17,8 +17,7 @@
                     "desc": "Coder Agent: Triển khai các dịch vụ hiển thị tính hợp lệ của thẻ, gia hạn thẻ",
                     "targeted_tags": [],
                     "components": [
-                        "./sources/backend/src/main/java/org/nlh4j/saas/membershiphub/studentcard/StudentCardService.java",
-                        "./sources/backend/src/main/java/org/nlh4j/saas/membershiphub/studentcard/StudentCardController.java"
+                        "./sources/backend/src/main/java/org/nlh4j/saas/membershiphub/studentcard/StudentCardService.java"
                     ]
                 },
                 {
@@ -28,7 +27,7 @@
                     "targeted_tags": [],
                     "components": [
                         "./sources/backend/src/test/java/org/nlh4j/saas/membershiphub/studentcard/StudentCardServiceTest.java",
-                        "./sources/backend/src/main/java/org/nlh4j/saas/membershiphub/studentcard/StudentCardController.java"
+                        "./sources/backend/src/main/java/org/nlh4j/saas/membershiphub/studentcard/StudentCardService.java"
                     ]
                 },
                 {
@@ -37,8 +36,7 @@
                     "desc": "Reviewer Agent: Review code cho các tính năng hiển thị tính hợp lệ của thẻ, gia hạn thẻ",
                     "targeted_tags": [],
                     "components": [
-                        "./sources/backend/src/main/java/org/nlh4j/saas/membershiphub/studentcard/StudentCardService.java",
-                        "./sources/backend/src/main/java/org/nlh4j/saas/membershiphub/studentcard/StudentCardController.java"
+                        "./sources/backend/src/main/java/org/nlh4j/saas/membershiphub/studentcard/StudentCardService.java"
                     ]
                 }
             ]
@@ -54,8 +52,7 @@
                     "desc": "Coder Agent: Triển khai các dịch vụ kích hoạt thông báo",
                     "targeted_tags": [],
                     "components": [
-                        "./sources/backend/src/main/java/org/nlh4j/saas/membershiphub/notification/NotificationService.java",
-                        "./sources/backend/src/main/java/org/nlh4j/saas/membershiphub/notification/NotificationController.java"
+                        "./sources/backend/src/main/java/org/nlh4j/saas/membershiphub/notification/NotificationService.java"
                     ]
                 },
                 {
@@ -65,7 +62,7 @@
                     "targeted_tags": [],
                     "components": [
                         "./sources/backend/src/test/java/org/nlh4j/saas/membershiphub/notification/NotificationServiceTest.java",
-                        "./sources/backend/src/main/java/org/nlh4j/saas/membershiphub/notification/NotificationController.java"
+                        "./sources/backend/src/main/java/org/nlh4j/saas/membershiphub/notification/NotificationService.java"
                     ]
                 },
                 {
@@ -74,8 +71,7 @@
                     "desc": "Reviewer Agent: Review code cho các tính năng kích hoạt thông báo",
                     "targeted_tags": [],
                     "components": [
-                        "./sources/backend/src/main/java/org/nlh4j/saas/membershiphub/notification/NotificationService.java",
-                        "./sources/backend/src/main/java/org/nlh4j/saas/membershiphub/notification/NotificationController.java"
+                        "./sources/backend/src/main/java/org/nlh4j/saas/membershiphub/notification/NotificationService.java"
                     ]
                 }
             ]
@@ -91,8 +87,7 @@
                     "desc": "Coder Agent: Tích hợp các tính năng thông báo và truyền thông với ứng dụng di động",
                     "targeted_tags": [],
                     "components": [
-                        "./sources/frontend/src/components/notification/NotificationComponent.vue",
-                        "./sources/frontend/src/services/NotificationService.js"
+                        "./sources/frontend/src/components/notification/NotificationComponent.tsx"
                     ]
                 },
                 {
@@ -101,8 +96,8 @@
                     "desc": "Tester Agent: Viết các test case cho các tính năng thông báo và truyền thông trên ứng dụng di động",
                     "targeted_tags": [],
                     "components": [
-                        "./sources/frontend/src/tests/notification/NotificationComponent.spec.js",
-                        "./sources/frontend/src/services/NotificationService.js"
+                        "./sources/frontend/src/components/notification/NotificationComponent.spec.ts",
+                        "./sources/frontend/src/components/notification/NotificationComponent.tsx"
                     ]
                 },
                 {
@@ -111,8 +106,7 @@
                     "desc": "Reviewer Agent: Review code cho các tính năng thông báo và truyền thông trên ứng dụng di động",
                     "targeted_tags": [],
                     "components": [
-                        "./sources/frontend/src/components/notification/NotificationComponent.vue",
-                        "./sources/frontend/src/services/NotificationService.js"
+                        "./sources/frontend/src/components/notification/NotificationComponent.tsx"
                     ]
                 }
             ]
