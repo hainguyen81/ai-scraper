@@ -316,9 +316,9 @@ def convert_phases_to_json(client: OpenAI, model_name: str, master_rules: str, p
                 
                 # if response is ok, parse json
                 raw_data, json_data = parseAIResponseJsonData(response)
-                # dump_json_data = json.dumps(json_data, indent=4, ensure_ascii=False) if json_data else "Invalid JSON Data"
-                # print(f" │   └── 🎉 Response Phase {phase_idx} Standardized JSON:")
-                # print(f" │         { dump_json_data }")
+                dump_json_data = json.dumps(json_data, indent=4, ensure_ascii=False) if json_data else "Invalid JSON Data"
+                logger.info(f" │   └── 🎉 Response Phase {phase_idx} Standardized JSON:")
+                logger.info(f" │         { dump_json_data }")
                 
                 # write log
                 write_blueprint_log(log_phase_idx, system_prompt, log_prompt.replace('#', '##'), raw_data, True, model_name_safe, out_dir)
@@ -327,9 +327,9 @@ def convert_phases_to_json(client: OpenAI, model_name: str, master_rules: str, p
                 # accumulated_raw_data += f"\n--- CHUNK {chunk_counter} RAW ---\n" + (raw_data if raw_data else "")
                 # if json_data:
                 #     accumulated_json_text += f"\n--- CHUNK {chunk_counter} JSON ---\n" + json.dumps(json_data, indent=2)
-                # print(f" │       └── ⚠️ Chunk {chunk_counter}:")
-                # print(f" │             {accumulated_raw_data}")
-                # print(f" │             {accumulated_json_text}")
+                # logger.info(f" │       └── ⚠️ Chunk {chunk_counter}:")
+                # logger.info(f" │             {accumulated_raw_data}")
+                # logger.info(f" │             {accumulated_json_text}")
                 
                 # Guard against corrupted extractions
                 if not json_data or not isinstance(json_data, dict):
@@ -381,8 +381,8 @@ def convert_phases_to_json(client: OpenAI, model_name: str, master_rules: str, p
             
             # --- END OF CHUNK SCROLL LOOP ---
             # dump_json_data = json.dumps(master_phase_plan, indent=4, ensure_ascii=False)
-            # print(f" │   └── 🎉 Master Phase Plan:")
-            # print(f"           { dump_json_data }")
+            # logger.info(f" │   └── 🎉 Master Phase Plan:")
+            # logger.info(f"           { dump_json_data }")
                 
             # write blueprint
             fallback_path = os.path.join(steps_context_dir, f"phase-{phase_idx}.steps.error.md")
@@ -390,8 +390,8 @@ def convert_phases_to_json(client: OpenAI, model_name: str, master_rules: str, p
                 # transform mapping
                 transform_json_data = dynamic_transform(master_phase_plan, project_name, phase_idx, json_mapping)
                 # dump_json_data = json.dumps(transform_json_data, indent=4, ensure_ascii=False) if transform_json_data else "Invalid JSON Data"
-                # print(f" │   └── 🎉 Transform Phase {phase_idx} Standardized JSON:")
-                # print(f" │         { dump_json_data }")
+                # logger.info(f" │   └── 🎉 Transform Phase {phase_idx} Standardized JSON:")
+                # logger.info(f" │         { dump_json_data }")
                 
                 # 2. Parse and validate the string payload locally with Pydantic core engine
                 logger.info(f" │   └── 🎉 Validate Phase {phase_idx} Standardized JSON...")
@@ -405,7 +405,7 @@ def convert_phases_to_json(client: OpenAI, model_name: str, master_rules: str, p
                 # dump model data
                 model_dump = validated_pydantic_object.model_dump()
                 # dump_json_data = json.dumps(model_dump, indent=4, ensure_ascii=False)
-                # print(f" │         { dump_json_data }")
+                # logger.info(f" │         { dump_json_data }")
                 
                 # convert project name
                 safe_name = project_name.replace(' ', '-').lower()
