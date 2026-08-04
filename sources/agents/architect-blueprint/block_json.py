@@ -52,7 +52,7 @@ logger = get_logger("🏗️ EnterpriseSystemArchitectureStepsAgent")
 class SubAgentTask(BaseModel):
     id: str = Field(description="Sub-Task identity of Task that sub-agent role executing.")
     agent: str = Field(description="Target sub-agent role executing the task.")
-    desc: str = Field(description="Literal, low-level technical step assigned to the agent.")
+    desc: str = Field(default="No task description provided", description="Literal, low-level technical step assigned to the agent.")
     
     # 🛑 to store requirement tagId
     targeted_tags: List[str] = Field(
@@ -70,13 +70,13 @@ class SubAgentTask(BaseModel):
 class DailyStep(BaseModel):
     day: int = Field(description="Timeline iteration day inside this isolated phase.")
     context_file: str = Field(description="The phase context Markdown file for closure on this day.")
-    context_section: str = Field(description="The day targeted for closure on this day.")
+    context_section: str = Field(default="No day context section provided", description="The day targeted for closure on this day.")
     sub_tasks: List[SubAgentTask] = Field(description="Array of isolated micro-tasks assigned to sub-agents.")
 
 class PhaseStepsPlan(BaseModel):
     phase_id: int = Field(description="Target phase tracker index.")
-    phase_name: str = Field(description="Target phase tracker name.")
-    phase_description: str = Field(description="Target phase description.")
+    phase_name: str = Field(default="No phase name provided", description="Target phase tracker name.")
+    phase_description: str = Field(default="No phase description provided", description="Target phase description.")
     project_name: str = Field(description="Target project tracker name.")
     global_context_file: str = Field(description="Project global context Markdown file for closure.")
     source_target_dir: str = Field(description="Project sources folder path for closure.")
@@ -145,7 +145,7 @@ def manual_transform(json_data, project_name: str, phase_idx: int):
     transform_json_data = {
         "phase_id": phase_idx,
         "phase_name": json_data.get("phase_name", json_data.get("phase", f"Phase {phase_idx}")),
-        "phase_description": json_data.get("phase_description", json_data.get("description", f"No description provided for Phase {phase_idx}.")),
+        "phase_description": json_data.get("phase_description", json_data.get("description", json_data.get("desc", f"No description provided for Phase {phase_idx}."))),
         "project_name": project_name.strip(),
         "global_context_file": project_context_file(project_name),
         "source_target_dir": "sources/",
@@ -158,7 +158,7 @@ def manual_transform(json_data, project_name: str, phase_idx: int):
         
         step_node = {
             "day": day_val,
-            "context_section": f"DAY {day_val}",
+            "context_section": item.get("context_section", item.get("context", item.get("section", f"DAY {day_val}"))),
             "context_file": phase_context_file(phase_idx),
             "sub_tasks": []
         }
@@ -171,7 +171,7 @@ def manual_transform(json_data, project_name: str, phase_idx: int):
                 desc = f"{ role } Agent: { t }"
             else:
                 role = t.get("agent", t.get("agent_role", t.get("assignee", "Coder")))
-                desc = t.get("task_description", t.get("task", "No description provided"))
+                desc = t.get("task_description", t.get("task", t.get("description", t.get("desc", "No task description provided"))))
                 desc = f"{ role } Agent: { desc }"
             
             step_node["sub_tasks"].append({
