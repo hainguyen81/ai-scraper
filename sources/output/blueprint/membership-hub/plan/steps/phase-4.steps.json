@@ -1,7 +1,7 @@
 {
     "phase_id": 4,
     "phase_name": "mobileUiSettings",
-    "phase_description": "No phase description provided",
+    "phase_description": "Triển khai giao diện di động đa nền tảng, tích hợp tính năng push, đa ngôn ngữ, SEO, và API cài đặt hệ thống, đồng thời bảo đảm tuân thủ OWASP, bảo mật JWT, và ghi nhận cấu hình trong bảng SYSTEMSETTINGS.",
     "project_name": "membership-hub",
     "global_context_file": ".ai/.context/membership-hub.global.blueprint.md",
     "source_target_dir": "sources/",
@@ -9,13 +9,19 @@
         {
             "day": 1,
             "context_file": ".ai/.plan/.context/phase-4.context.blueprint.md",
-            "context_section": "DAY 1",
+            "context_section": "DAY 1: XÂY DỰNG GIAO DIỆN DI ĐỘNG VÀ API CÀI ĐẶT HỆ THỐNG",
             "sub_tasks": [
                 {
                     "id": "D1_ST1",
                     "agent": "Coder",
                     "desc": "Coder Agent: Xây dựng giao diện di động, đăng ký push, đa ngôn ngữ, SEO",
-                    "targeted_tags": [],
+                    "targeted_tags": [
+                        "[REQ-020]",
+                        "[REQ-021]",
+                        "[REQ-022]",
+                        "[REQ-023]",
+                        "[DAT-011]"
+                    ],
                     "components": [
                         "./sources/frontend.mobile/src/main/js/App.js"
                     ]
@@ -24,7 +30,9 @@
                     "id": "D1_ST2",
                     "agent": "Coder",
                     "desc": "Coder Agent: Triển khai API và schema SystemSettings",
-                    "targeted_tags": [],
+                    "targeted_tags": [
+                        "[DAT-011]"
+                    ],
                     "components": [
                         "./sources/backend.settings/src/main/java/com/membershiphub/settings/SystemSettingsService.java"
                     ]
@@ -34,13 +42,19 @@
         {
             "day": 2,
             "context_file": ".ai/.plan/.context/phase-4.context.blueprint.md",
-            "context_section": "DAY 2",
+            "context_section": "DAY 2: KIỂM THỬ VÀ TÀI LIỆU",
             "sub_tasks": [
                 {
                     "id": "D2_ST1",
                     "agent": "Tester",
                     "desc": "Tester Agent: Kiểm thử đơn vị cho giao diện di động",
-                    "targeted_tags": [],
+                    "targeted_tags": [
+                        "[REQ-020]",
+                        "[REQ-021]",
+                        "[REQ-022]",
+                        "[REQ-023]",
+                        "[DAT-011]"
+                    ],
                     "components": [
                         "./sources/frontend.mobile/src/test/js/App.test.js"
                     ]
@@ -49,7 +63,9 @@
                     "id": "D2_ST2",
                     "agent": "Tester",
                     "desc": "Tester Agent: Kiểm thử đơn vị cho API SystemSettings",
-                    "targeted_tags": [],
+                    "targeted_tags": [
+                        "[DAT-011]"
+                    ],
                     "components": [
                         "./sources/backend.settings/src/test/java/com/membershiphub/settings/SystemSettingsServiceTest.java"
                     ]
@@ -58,7 +74,10 @@
                     "id": "D2_ST3",
                     "agent": "Doc",
                     "desc": "Doc Agent: Tài liệu kỹ thuật cho mobile UI và SystemSettings",
-                    "targeted_tags": [],
+                    "targeted_tags": [
+                        "[REQ-020]",
+                        "[DAT-011]"
+                    ],
                     "components": [
                         "./sources/frontend.mobile/docs/README.md",
                         "./sources/backend.settings/docs/README.md"

@@ -1,7 +1,7 @@
 {
     "phase_id": 2,
     "phase_name": "courseEnrollmentAttendanceCard",
-    "phase_description": "No phase description provided",
+    "phase_description": "Giai đoạn 2 tập trung vào xây dựng và triển khai các mô-đun khóa học, ghi danh, điểm danh và thẻ hội viên, bao gồm thiết kế schema, API, logic nghiệp vụ, kiểm thử, và tuân thủ các tiêu chuẩn bảo mật OWASP.",
     "project_name": "membership-hub",
     "global_context_file": ".ai/.context/membership-hub.global.blueprint.md",
     "source_target_dir": "sources/",
@@ -9,13 +9,29 @@
         {
             "day": 1,
             "context_file": ".ai/.plan/.context/phase-2.context.blueprint.md",
-            "context_section": "DAY 1",
+            "context_section": "DAY 1: XÂY DỰNG MÔ-ĐUN KHÓA HỌC",
             "sub_tasks": [
                 {
                     "id": "D1_ST1",
                     "agent": "Coder",
                     "desc": "Coder Agent: Xây dựng CourseService, CRUD khóa học và kiểm tra xung đột lịch",
-                    "targeted_tags": [],
+                    "targeted_tags": [
+                        "[REQ-007]",
+                        "[REQ-008]",
+                        "[REQ-009]",
+                        "[ARC-007]",
+                        "[ARC-008]",
+                        "[ARC-009]",
+                        "[DAT-004]",
+                        "[EXC-001]",
+                        "[EXC-002]",
+                        "[NFR-001]",
+                        "[NFR-003]",
+                        "[NFR-005]",
+                        "[NFR-006]",
+                        "[NFR-007]",
+                        "[NFR-008]"
+                    ],
                     "components": [
                         "./sources/backend.course/src/main/java/com/membershiphub/course/CourseService.java"
                     ]
@@ -24,7 +40,23 @@
                     "id": "D1_ST2",
                     "agent": "Tester",
                     "desc": "Tester Agent: Viết unit test cho CourseService",
-                    "targeted_tags": [],
+                    "targeted_tags": [
+                        "[REQ-007]",
+                        "[REQ-008]",
+                        "[REQ-009]",
+                        "[ARC-007]",
+                        "[ARC-008]",
+                        "[ARC-009]",
+                        "[DAT-004]",
+                        "[EXC-001]",
+                        "[EXC-002]",
+                        "[NFR-001]",
+                        "[NFR-003]",
+                        "[NFR-005]",
+                        "[NFR-006]",
+                        "[NFR-007]",
+                        "[NFR-008]"
+                    ],
                     "components": [
                         "./sources/backend.course/src/test/java/com/membershiphub/course/CourseServiceTest.java"
                     ]
@@ -33,7 +65,23 @@
                     "id": "D1_ST3",
                     "agent": "Reviewer",
                     "desc": "Reviewer Agent: Review CourseService cho tuân thủ OWASP và hiệu năng",
-                    "targeted_tags": [],
+                    "targeted_tags": [
+                        "[REQ-007]",
+                        "[REQ-008]",
+                        "[REQ-009]",
+                        "[ARC-007]",
+                        "[ARC-008]",
+                        "[ARC-009]",
+                        "[DAT-004]",
+                        "[EXC-001]",
+                        "[EXC-002]",
+                        "[NFR-001]",
+                        "[NFR-003]",
+                        "[NFR-005]",
+                        "[NFR-006]",
+                        "[NFR-007]",
+                        "[NFR-008]"
+                    ],
                     "components": [
                         "./sources/backend.course/src/main/java/com/membershiphub/course/CourseService.java"
                     ]
@@ -43,13 +91,28 @@
         {
             "day": 2,
             "context_file": ".ai/.plan/.context/phase-2.context.blueprint.md",
-            "context_section": "DAY 2",
+            "context_section": "DAY 2: XÂY DỰNG MÔ-ĐUN GHI DANH",
             "sub_tasks": [
                 {
                     "id": "D2_ST1",
                     "agent": "Coder",
                     "desc": "Coder Agent: Xây dựng EnrollmentService, logic ghi danh và kiểm tra quyền",
-                    "targeted_tags": [],
+                    "targeted_tags": [
+                        "[REQ-010]",
+                        "[REQ-011]",
+                        "[ARC-007]",
+                        "[ARC-008]",
+                        "[ARC-009]",
+                        "[DAT-005]",
+                        "[EXC-001]",
+                        "[EXC-002]",
+                        "[NFR-001]",
+                        "[NFR-003]",
+                        "[NFR-005]",
+                        "[NFR-006]",
+                        "[NFR-007]",
+                        "[NFR-008]"
+                    ],
                     "components": [
                         "./sources/backend.enrollment/src/main/java/com/membershiphub/enrollment/EnrollmentService.java"
                     ]
@@ -58,7 +121,22 @@
                     "id": "D2_ST2",
                     "agent": "Tester",
                     "desc": "Tester Agent: Viết unit test cho EnrollmentService",
-                    "targeted_tags": [],
+                    "targeted_tags": [
+                        "[REQ-010]",
+                        "[REQ-011]",
+                        "[ARC-007]",
+                        "[ARC-008]",
+                        "[ARC-009]",
+                        "[DAT-005]",
+                        "[EXC-001]",
+                        "[EXC-002]",
+                        "[NFR-001]",
+                        "[NFR-003]",
+                        "[NFR-005]",
+                        "[NFR-006]",
+                        "[NFR-007]",
+                        "[NFR-008]"
+                    ],
                     "components": [
                         "./sources/backend.enrollment/src/test/java/com/membershiphub/enrollment/EnrollmentServiceTest.java"
                     ]
@@ -67,7 +145,22 @@
                     "id": "D2_ST3",
                     "agent": "Reviewer",
                     "desc": "Reviewer Agent: Review EnrollmentService cho bảo mật và hiệu năng",
-                    "targeted_tags": [],
+                    "targeted_tags": [
+                        "[REQ-010]",
+                        "[REQ-011]",
+                        "[ARC-007]",
+                        "[ARC-008]",
+                        "[ARC-009]",
+                        "[DAT-005]",
+                        "[EXC-001]",
+                        "[EXC-002]",
+                        "[NFR-001]",
+                        "[NFR-003]",
+                        "[NFR-005]",
+                        "[NFR-006]",
+                        "[NFR-007]",
+                        "[NFR-008]"
+                    ],
                     "components": [
                         "./sources/backend.enrollment/src/main/java/com/membershiphub/enrollment/EnrollmentService.java"
                     ]
@@ -77,13 +170,31 @@
         {
             "day": 3,
             "context_file": ".ai/.plan/.context/phase-2.context.blueprint.md",
-            "context_section": "DAY 3",
+            "context_section": "DAY 3: XÂY DỰNG MÔ-ĐUN ĐIỂM DANH VÀ THẺ",
             "sub_tasks": [
                 {
                     "id": "D3_ST1",
                     "agent": "Coder",
                     "desc": "Coder Agent: Xây dựng AttendanceService và CardService, logic điểm danh bất biến và tính hợp lệ thẻ",
-                    "targeted_tags": [],
+                    "targeted_tags": [
+                        "[REQ-012]",
+                        "[REQ-013]",
+                        "[REQ-014]",
+                        "[REQ-015]",
+                        "[ARC-007]",
+                        "[ARC-008]",
+                        "[ARC-009]",
+                        "[DAT-006]",
+                        "[DAT-007]",
+                        "[EXC-001]",
+                        "[EXC-002]",
+                        "[NFR-001]",
+                        "[NFR-003]",
+                        "[NFR-005]",
+                        "[NFR-006]",
+                        "[NFR-007]",
+                        "[NFR-008]"
+                    ],
                     "components": [
                         "./sources/backend.attendance/src/main/java/com/membershiphub/attendance/AttendanceService.java",
                         "./sources/backend.card/src/main/java/com/membershiphub/card/CardService.java"
@@ -93,7 +204,25 @@
                     "id": "D3_ST2",
                     "agent": "Tester",
                     "desc": "Tester Agent: Viết unit test cho AttendanceService và CardService",
-                    "targeted_tags": [],
+                    "targeted_tags": [
+                        "[REQ-012]",
+                        "[REQ-013]",
+                        "[REQ-014]",
+                        "[REQ-015]",
+                        "[ARC-007]",
+                        "[ARC-008]",
+                        "[ARC-009]",
+                        "[DAT-006]",
+                        "[DAT-007]",
+                        "[EXC-001]",
+                        "[EXC-002]",
+                        "[NFR-001]",
+                        "[NFR-003]",
+                        "[NFR-005]",
+                        "[NFR-006]",
+                        "[NFR-007]",
+                        "[NFR-008]"
+                    ],
                     "components": [
                         "./sources/backend.attendance/src/test/java/com/membershiphub/attendance/AttendanceServiceTest.java",
                         "./sources/backend.card/src/test/java/com/membershiphub/card/CardServiceTest.java"
@@ -103,7 +232,25 @@
                     "id": "D3_ST3",
                     "agent": "Reviewer",
                     "desc": "Reviewer Agent: Review AttendanceService và CardService cho bảo mật và hiệu năng",
-                    "targeted_tags": [],
+                    "targeted_tags": [
+                        "[REQ-012]",
+                        "[REQ-013]",
+                        "[REQ-014]",
+                        "[REQ-015]",
+                        "[ARC-007]",
+                        "[ARC-008]",
+                        "[ARC-009]",
+                        "[DAT-006]",
+                        "[DAT-007]",
+                        "[EXC-001]",
+                        "[EXC-002]",
+                        "[NFR-001]",
+                        "[NFR-003]",
+                        "[NFR-005]",
+                        "[NFR-006]",
+                        "[NFR-007]",
+                        "[NFR-008]"
+                    ],
                     "components": [
                         "./sources/backend.attendance/src/main/java/com/membershiphub/attendance/AttendanceService.java",
                         "./sources/backend.card/src/main/java/com/membershiphub/card/CardService.java"

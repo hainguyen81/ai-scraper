@@ -1,7 +1,7 @@
 {
     "phase_id": 3,
     "phase_name": "notificationPromotionChatbot",
-    "phase_description": "No phase description provided",
+    "phase_description": "Triển khai và hoàn thiện các dịch vụ thông báo, khuyến mãi và chatbot, bao gồm thiết kế schema, API, logic nghiệp vụ, kiểm thử, bảo mật OWASP, và tài liệu kỹ thuật.",
     "project_name": "membership-hub",
     "global_context_file": ".ai/.context/membership-hub.global.blueprint.md",
     "source_target_dir": "sources/",
@@ -9,13 +9,21 @@
         {
             "day": 1,
             "context_file": ".ai/.plan/.context/phase-3.context.blueprint.md",
-            "context_section": "DAY 1",
+            "context_section": "DAY 1: PHÁT TRIỂN DỊCH VỤ THÔNG BÁO",
             "sub_tasks": [
                 {
                     "id": "D1_ST1",
                     "agent": "Coder",
                     "desc": "Coder Agent: Xây dựng NotificationService, controller, repository, DTO, exception, và schema NOTIFICATIONS",
-                    "targeted_tags": [],
+                    "targeted_tags": [
+                        "[REQ-016]",
+                        "[ARC-008]",
+                        "[ARC-009]",
+                        "[ARC-010]",
+                        "[DAT-008]",
+                        "[EXC-003]",
+                        "[EXC-005]"
+                    ],
                     "components": [
                         "./sources/backend.notification/src/main/java/com/membershiphub/notification/NotificationService.java"
                     ]
@@ -24,7 +32,15 @@
                     "id": "D1_ST2",
                     "agent": "Tester",
                     "desc": "Tester Agent: Viết unit test cho NotificationService, controller, repository, exception, và schema NOTIFICATIONS",
-                    "targeted_tags": [],
+                    "targeted_tags": [
+                        "[REQ-016]",
+                        "[ARC-008]",
+                        "[ARC-009]",
+                        "[ARC-010]",
+                        "[DAT-008]",
+                        "[EXC-003]",
+                        "[EXC-005]"
+                    ],
                     "components": [
                         "./sources/backend.notification/src/test/java/com/membershiphub/notification/NotificationServiceTest.java",
                         "./sources/backend.notification/src/main/java/com/membershiphub/notification/NotificationService.java"
@@ -34,7 +50,15 @@
                     "id": "D1_ST3",
                     "agent": "Reviewer",
                     "desc": "Reviewer Agent: Review NotificationService, controller, repository, exception, và schema NOTIFICATIONS",
-                    "targeted_tags": [],
+                    "targeted_tags": [
+                        "[REQ-016]",
+                        "[ARC-008]",
+                        "[ARC-009]",
+                        "[ARC-010]",
+                        "[DAT-008]",
+                        "[EXC-003]",
+                        "[EXC-005]"
+                    ],
                     "components": [
                         "./sources/backend.notification/src/main/java/com/membershiphub/notification/NotificationService.java"
                     ]
@@ -44,13 +68,19 @@
         {
             "day": 2,
             "context_file": ".ai/.plan/.context/phase-3.context.blueprint.md",
-            "context_section": "DAY 2",
+            "context_section": "DAY 2: PHÁT TRIỂN DỊCH VỤ KHƯƠNG MÃ VÀ CHATBOT",
             "sub_tasks": [
                 {
                     "id": "D2_ST1",
                     "agent": "Coder",
                     "desc": "Coder Agent: Xây dựng PromotionService, controller, repository, DTO, exception, và schema PROMOTIONS, ANNOUNCEMENTS",
-                    "targeted_tags": [],
+                    "targeted_tags": [
+                        "[REQ-017]",
+                        "[REQ-018]",
+                        "[ARC-008]",
+                        "[ARC-009]",
+                        "[DAT-009]"
+                    ],
                     "components": [
                         "./sources/backend.promotion/src/main/java/com/membershiphub/promotion/PromotionService.java"
                     ]
@@ -59,7 +89,13 @@
                     "id": "D2_ST2",
                     "agent": "Tester",
                     "desc": "Tester Agent: Viết unit test cho PromotionService, controller, repository, exception, và schema PROMOTIONS, ANNOUNCEMENTS",
-                    "targeted_tags": [],
+                    "targeted_tags": [
+                        "[REQ-017]",
+                        "[REQ-018]",
+                        "[ARC-008]",
+                        "[ARC-009]",
+                        "[DAT-009]"
+                    ],
                     "components": [
                         "./sources/backend.promotion/src/test/java/com/membershiphub/promotion/PromotionServiceTest.java",
                         "./sources/backend.promotion/src/main/java/com/membershiphub/promotion/PromotionService.java"
@@ -69,7 +105,13 @@
                     "id": "D2_ST3",
                     "agent": "Reviewer",
                     "desc": "Reviewer Agent: Review PromotionService, controller, repository, exception, và schema PROMOTIONS, ANNOUNCEMENTS",
-                    "targeted_tags": [],
+                    "targeted_tags": [
+                        "[REQ-017]",
+                        "[REQ-018]",
+                        "[ARC-008]",
+                        "[ARC-009]",
+                        "[DAT-009]"
+                    ],
                     "components": [
                         "./sources/backend.promotion/src/main/java/com/membershiphub/promotion/PromotionService.java"
                     ]
@@ -78,7 +120,11 @@
                     "id": "D2_ST4",
                     "agent": "Coder",
                     "desc": "Coder Agent: Xây dựng ChatbotService, controller, repository, DTO, exception, và schema CHATBOT_LOGS (nếu có)",
-                    "targeted_tags": [],
+                    "targeted_tags": [
+                        "[REQ-019]",
+                        "[ARC-008]",
+                        "[ARC-009]"
+                    ],
                     "components": [
                         "./sources/backend.chatbot/src/main/java/com/membershiphub/chatbot/ChatbotService.java"
                     ]
@@ -87,7 +133,11 @@
                     "id": "D2_ST5",
                     "agent": "Tester",
                     "desc": "Tester Agent: Viết unit test cho ChatbotService, controller, repository, exception, và schema CHATBOT_LOGS (nếu có)",
-                    "targeted_tags": [],
+                    "targeted_tags": [
+                        "[REQ-019]",
+                        "[ARC-008]",
+                        "[ARC-009]"
+                    ],
                     "components": [
                         "./sources/backend.chatbot/src/test/java/com/membershiphub/chatbot/ChatbotServiceTest.java",
                         "./sources/backend.chatbot/src/main/java/com/membershiphub/chatbot/ChatbotService.java"
@@ -97,7 +147,11 @@
                     "id": "D2_ST6",
                     "agent": "Reviewer",
                     "desc": "Reviewer Agent: Review ChatbotService, controller, repository, exception, và schema CHATBOT_LOGS (nếu có)",
-                    "targeted_tags": [],
+                    "targeted_tags": [
+                        "[REQ-019]",
+                        "[ARC-008]",
+                        "[ARC-009]"
+                    ],
                     "components": [
                         "./sources/backend.chatbot/src/main/java/com/membershiphub/chatbot/ChatbotService.java"
                     ]
@@ -107,13 +161,25 @@
         {
             "day": 3,
             "context_file": ".ai/.plan/.context/phase-3.context.blueprint.md",
-            "context_section": "DAY 3",
+            "context_section": "DAY 3: KIỂM THỬ VÀ ĐÁNH GIÁ BẢO MẬT, TẠO TÀI LIỆU",
             "sub_tasks": [
                 {
                     "id": "D3_ST1",
                     "agent": "Tester",
                     "desc": "Tester Agent: Kiểm thử tích hợp toàn bộ dịch vụ Notification, Promotion, Chatbot (API, event, exception handling)",
-                    "targeted_tags": [],
+                    "targeted_tags": [
+                        "[REQ-016]",
+                        "[REQ-017]",
+                        "[REQ-018]",
+                        "[REQ-019]",
+                        "[DAT-008]",
+                        "[DAT-009]",
+                        "[ARC-008]",
+                        "[ARC-009]",
+                        "[ARC-010]",
+                        "[EXC-003]",
+                        "[EXC-005]"
+                    ],
                     "components": [
                         "INTEGRATION_SCOPE"
                     ]
@@ -122,7 +188,19 @@
                     "id": "D3_ST2",
                     "agent": "Reviewer",
                     "desc": "Reviewer Agent: Review toàn bộ mã nguồn, thực hiện static analysis, xác nhận tuân thủ OWASP, và ghi nhận audit logs",
-                    "targeted_tags": [],
+                    "targeted_tags": [
+                        "[REQ-016]",
+                        "[REQ-017]",
+                        "[REQ-018]",
+                        "[REQ-019]",
+                        "[DAT-008]",
+                        "[DAT-009]",
+                        "[ARC-008]",
+                        "[ARC-009]",
+                        "[ARC-010]",
+                        "[EXC-003]",
+                        "[EXC-005]"
+                    ],
                     "components": [
                         "./sources/backend.notification/",
                         "./sources/backend.promotion/",
@@ -133,7 +211,19 @@
                     "id": "D3_ST3",
                     "agent": "Doc",
                     "desc": "Doc Agent: Tạo tài liệu kỹ thuật chi tiết cho Notification, Promotion, Chatbot (API, schema, exception handling, deployment guide)",
-                    "targeted_tags": [],
+                    "targeted_tags": [
+                        "[REQ-016]",
+                        "[REQ-017]",
+                        "[REQ-018]",
+                        "[REQ-019]",
+                        "[DAT-008]",
+                        "[DAT-009]",
+                        "[ARC-008]",
+                        "[ARC-009]",
+                        "[ARC-010]",
+                        "[EXC-003]",
+                        "[EXC-005]"
+                    ],
                     "components": [
                         "./sources/backend.notification/docs/NotificationService.md",
                         "./sources/backend.promotion/docs/PromotionService.md",

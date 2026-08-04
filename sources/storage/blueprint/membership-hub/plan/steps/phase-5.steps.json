@@ -1,7 +1,7 @@
 {
     "phase_id": 5,
     "phase_name": "infraDeployment",
-    "phase_description": "No phase description provided",
+    "phase_description": "Đóng gói Docker, triển khai GKE, và thiết lập CI/CD cho toàn bộ hệ thống membership-hub, đảm bảo tuân thủ các yêu cầu NFR về khả năng sẵn sàng, bảo mật, quy mô, và hiệu năng.",
     "project_name": "membership-hub",
     "global_context_file": ".ai/.context/membership-hub.global.blueprint.md",
     "source_target_dir": "sources/",
@@ -9,13 +9,15 @@
         {
             "day": 1,
             "context_file": ".ai/.plan/.context/phase-5.context.blueprint.md",
-            "context_section": "DAY 1",
+            "context_section": "DAY 1: XÂY DỰNG VÀ TỐI ƯU HÌNH ẢNH Docker",
             "sub_tasks": [
                 {
                     "id": "D1_ST1",
                     "agent": "Docker",
                     "desc": "Docker Agent: Viết Dockerfile đa stage, tối ưu kích thước, hỗ trợ multi-arch",
-                    "targeted_tags": [],
+                    "targeted_tags": [
+                        "[NFR-005]"
+                    ],
                     "components": [
                         "./sources/infra/docker/Dockerfile"
                     ]
@@ -25,13 +27,20 @@
         {
             "day": 2,
             "context_file": ".ai/.plan/.context/phase-5.context.blueprint.md",
-            "context_section": "DAY 2",
+            "context_section": "DAY 2: PHIÊN BÁN VÀ CẤU HÌNH THỰC HIỆN Terraform trên GCP",
             "sub_tasks": [
                 {
                     "id": "D2_ST1",
                     "agent": "Gcp",
                     "desc": "Gcp Agent: Viết Terraform modules để provision GKE, VPC, IAM, Cloud SQL, Pub/Sub, và cấu hình CI/CD",
-                    "targeted_tags": [],
+                    "targeted_tags": [
+                        "[NFR-002]",
+                        "[NFR-004]",
+                        "[NFR-006]",
+                        "[NFR-007]",
+                        "[NFR-008]",
+                        "[NFR-009]"
+                    ],
                     "components": [
                         "./sources/infra/gcp/terraform/main.tf"
                     ]
@@ -41,13 +50,20 @@
         {
             "day": 3,
             "context_file": ".ai/.plan/.context/phase-5.context.blueprint.md",
-            "context_section": "DAY 3",
+            "context_section": "DAY 3: TRIỂN KHAI KUBERNETES BẰNG HELM CHART VÀ CI/CD PIPELINE",
             "sub_tasks": [
                 {
                     "id": "D3_ST1",
                     "agent": "Gke",
                     "desc": "Gke Agent: Deploy Helm chart, kiểm tra readiness, HPA, và canary rollout",
-                    "targeted_tags": [],
+                    "targeted_tags": [
+                        "[NFR-002]",
+                        "[NFR-004]",
+                        "[NFR-006]",
+                        "[NFR-007]",
+                        "[NFR-008]",
+                        "[NFR-009]"
+                    ],
                     "components": [
                         "./sources/infra/k8s/helm/membership-hub/Chart.yaml"
                     ]
@@ -56,7 +72,14 @@
                     "id": "D3_ST2",
                     "agent": "Docker",
                     "desc": "Docker Agent: Thiết lập GitHub Actions workflow cho CI/CD",
-                    "targeted_tags": [],
+                    "targeted_tags": [
+                        "[NFR-002]",
+                        "[NFR-004]",
+                        "[NFR-006]",
+                        "[NFR-007]",
+                        "[NFR-008]",
+                        "[NFR-009]"
+                    ],
                     "components": [
                         "./sources/infra/cicd/ci-cd.yml"
                     ]
