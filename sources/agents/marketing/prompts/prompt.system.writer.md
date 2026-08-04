@@ -36,7 +36,7 @@ Render the fully fleshed-out, finalized article text here. Use clean markdown fo
   "drafts": [
     {
       "platform": "{{ platform_target }}",
-      "content_body": "[Insert the absolute exact copy of the raw generated article body from Section 1 above here as a single string line with proper newline escapings]",
+      "content_body": "[CRITICAL MANDATE: Insert the generated article copy here as a single, continuous, straight line string block. You are STRICTLY BANNED from executing physical multi-line enter breaks or injecting literal trailing backslashes like '\' inside this value field. To construct a clear newline break for markdown scannability, you MUST exclusively embed the technical escaped token sequence '\\n' directly inline within the continuous string text. Failure to compile this as a single-line parseable string violates runtime contracts]",
       "tags": [
         "[Tag token 1]",
         "[Tag token 2]"
