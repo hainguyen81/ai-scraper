@@ -125,7 +125,7 @@ END_TECHNICAL_MATRIX_DO_NOT_TRANSLATE -->
 <!-- START_TRANSLATION_DIRECTIVE_DO_NOT_DISPLAY
 [CRITICAL TRANSLATION COMMAND: You MUST fully translate 100% of the titles, item names, and human-readable text descriptions of this section 3 into the designated Target Output Language: {% if language and language.strip() != "" %}{{ language }}{% else %}English{% endif %}. You are STRICTLY FORBIDDEN from leaving this section in raw English. However, you MUST lock and preserve all specific technical tokens, literal paths like `./sources/`, and package names like `org.nlh4j.saas.<project_name_alphanumeric_lowercase>` in pure unaccented Technical English wrapped inside inline code backticks. You MUST NOT leak this instruction block into the final text output].
 END_TRANSLATION_DIRECTIVE_DO_NOT_DISPLAY -->
-- **Absolute Workspace Boundary Rule:** The true repository workspace root is permanently fixed at the project root `..`. All paths generated MUST begin with `./sources/`.
+- **Absolute Workspace Boundary Rule:** The true repository workspace root is permanently fixed at the project root `./`. All paths generated MUST begin with `./sources/`.
 - **Dynamic Directory Prefixing Compliance:** Enforce the dynamic path mapping rules defined in Protocol 1 strictly matching the detected project structure.
 - **[CONDITION: JAVA_STACK_ONLY] Java Package Standard:** If the tech stack utilizes Java frameworks, all Java source codes MUST strictly reside within the corporate package foundation: `org.nlh4j.saas.<project_name_alphanumeric_lowercase>`. You MUST dynamically convert the string "{{ project_name }}" into a strict pure alphanumeric lowercase token by stripping out whitespaces, hyphens, and underscores. Non-Java projects are completely banned from applying this package segment.
 - **Strict Tester Target Path Syntax:** Any component targeted by a Tester Sub-Agent must be structured as a strict semi-colon separated pair `<source_component_or_token>;<test_suite_file_to_execute>`. Both paths inside the pair MUST begin with `./sources/`.
@@ -158,7 +158,7 @@ Generate a clean, highly structured Markdown Table mapping the exact distributio
 END_COMMAND_DIRECTIVE_DO_NOT_DISPLAY -->
 
 <!--START_DELIMITTER-->
-### Phase [X] [TRANSLATED DETAILED ARCHITECTURAL SPECIFICATION]
+### 📈 Phase [X] [TRANSLATED DETAILED ARCHITECTURAL SPECIFICATION]
 - **[Translate "Phase Core Objective & Purpose"]:** [Detailed technical explanation of what this phase achieves and its functional goals, fully translated into {% if language and language.strip() != "" %}{{ language }}{% else %}English{% endif %}]
 - **[Translate "Target Physical Directory Matrix Map"]:** List all specific file paths underneath `./sources/` initialized or modified in this phase. Every single line path generated MUST be appended with its tracking Tag IDs inline.
     *   *Documentation Gating Boundary:* Any line representing an enterprise specification, reference blueprint, relational database mapping catalog, or architecture layout MUST strictly reside under the unified root directory path: `./sources/docs/`.
