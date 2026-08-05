@@ -1,7 +1,7 @@
 {
     "phase_id": 1,
-    "phase_name": "Xây dựng dịch vụ xác thực, quản lý trung tâm và khóa học",
-    "phase_description": "Xây dựng dịch vụ xác thực, quản lý trung tâm và khóa học",
+    "phase_name": "Xây dựng hệ thống xác thực người dùng, quản lý trung tâm và quản lý khóa học",
+    "phase_description": "Giai đoạn này tập trung vào việc xây dựng hệ thống xác thực người dùng, quản lý trung tâm và quản lý khóa học.",
     "project_name": "membership-hub",
     "global_context_file": ".ai/.context/membership-hub.global.blueprint.md",
     "source_target_dir": "sources/",
@@ -9,45 +9,32 @@
         {
             "day": 1,
             "context_file": ".ai/.plan/.context/phase-1.context.blueprint.md",
-            "context_section": "XÂY DỰNG DỊCH VỤ XÁC THỰC",
+            "context_section": "XÂY DỰNG HỆ THỐNG XÁC THỰC NGƯỜI DÙNG",
             "sub_tasks": [
                 {
                     "id": "D1_ST1",
                     "agent": "Coder",
-                    "desc": "Coder Agent: Triển khai dịch vụ xác thực với các phương thức đăng ký và đăng nhập qua email/mật khẩu và OAuth2",
+                    "desc": "Triển khai chức năng đăng ký và đăng nhập người dùng",
                     "targeted_tags": [
                         "[REQ-001]",
                         "[REQ-002]",
-                        "[DAT-001]"
+                        "[REQ-003]"
                     ],
                     "components": [
-                        "./sources/backend/auth/src/main/java/org/nlh4j/saas/membershiphub/auth/AuthController.java",
-                        "./sources/backend/auth/src/main/java/org/nlh4j/saas/membershiphub/auth/AuthService.java"
+                        "./sources/backend/auth/src/main/java/org/nlh4j/membershiphub/controller/AuthController.java",
+                        "./sources/backend/auth/src/main/java/org/nlh4j/membershiphub/service/AuthService.java"
                     ]
                 },
                 {
                     "id": "D1_ST2",
-                    "agent": "Tester",
-                    "desc": "Tester Agent: Viết các bài kiểm tra đơn vị và tích hợp cho dịch vụ xác thực",
+                    "agent": "Coder",
+                    "desc": "Tích hợp xác thực qua mạng xã hội",
                     "targeted_tags": [
-                        "[REQ-001]",
                         "[REQ-002]"
                     ],
                     "components": [
-                        "./sources/backend/auth/src/main/java/org/nlh4j/saas/membershiphub/auth/AuthService.java;./sources/backend/auth/src/test/java/org/nlh4j/saas/membershiphub/auth/AuthServiceTest.java"
-                    ]
-                },
-                {
-                    "id": "D1_ST3",
-                    "agent": "Reviewer",
-                    "desc": "Reviewer Agent: Đánh giá mã nguồn và đảm bảo tuân thủ các tiêu chuẩn lập trình",
-                    "targeted_tags": [
-                        "[REQ-001]",
-                        "[REQ-002]"
-                    ],
-                    "components": [
-                        "./sources/backend/auth/src/main/java/org/nlh4j/saas/membershiphub/auth/AuthController.java",
-                        "./sources/backend/auth/src/main/java/org/nlh4j/saas/membershiphub/auth/AuthService.java"
+                        "./sources/backend/auth/src/main/java/org/nlh4j/membershiphub/controller/SocialAuthController.java",
+                        "./sources/backend/auth/src/main/java/org/nlh4j/membershiphub/service/SocialAuthService.java"
                     ]
                 }
             ]
@@ -55,48 +42,64 @@
         {
             "day": 2,
             "context_file": ".ai/.plan/.context/phase-1.context.blueprint.md",
-            "context_section": "XÂY DỰNG DỊCH VỤ QUẢN LÝ TRUNG TÂM VÀ KHÓA HỌC",
+            "context_section": "XÂY DỰNG QUẢN LÝ TRUNG TÂM",
             "sub_tasks": [
                 {
                     "id": "D2_ST1",
                     "agent": "Coder",
-                    "desc": "Coder Agent: Triển khai dịch vụ quản lý trung tâm và khóa học",
+                    "desc": "Triển khai chức năng quản lý trung tâm",
                     "targeted_tags": [
+                        "[REQ-004]",
+                        "[REQ-005]",
+                        "[REQ-006]"
+                    ],
+                    "components": [
+                        "./sources/backend/centers/src/main/java/org/nlh4j/membershiphub/controller/CenterController.java",
+                        "./sources/backend/centers/src/main/java/org/nlh4j/membershiphub/service/CenterService.java"
+                    ]
+                }
+            ]
+        },
+        {
+            "day": 3,
+            "context_file": ".ai/.plan/.context/phase-1.context.blueprint.md",
+            "context_section": "XÂY DỰNG QUẢN LÝ KHÓA HỌC",
+            "sub_tasks": [
+                {
+                    "id": "D3_ST1",
+                    "agent": "Coder",
+                    "desc": "Triển khai chức năng quản lý khóa học",
+                    "targeted_tags": [
+                        "[REQ-007]",
+                        "[REQ-008]",
+                        "[REQ-009]"
+                    ],
+                    "components": [
+                        "./sources/backend/courses/src/main/java/org/nlh4j/membershiphub/controller/CourseController.java",
+                        "./sources/backend/courses/src/main/java/org/nlh4j/membershiphub/service/CourseService.java"
+                    ]
+                },
+                {
+                    "id": "D3_ST2",
+                    "agent": "Doc",
+                    "desc": "Tài liệu kiến trúc",
+                    "targeted_tags": [
+                        "[REQ-001]",
+                        "[REQ-002]",
+                        "[REQ-003]",
                         "[REQ-004]",
                         "[REQ-005]",
                         "[REQ-006]",
-                        "[DAT-003]"
+                        "[REQ-007]",
+                        "[REQ-008]",
+                        "[REQ-009]"
                     ],
                     "components": [
-                        "./sources/backend/centers/src/main/java/org/nlh4j/saas/membershiphub/centers/CenterController.java",
-                        "./sources/backend/centers/src/main/java/org/nlh4j/saas/membershiphub/centers/CenterService.java"
-                    ]
-                },
-                {
-                    "id": "D2_ST2",
-                    "agent": "Tester",
-                    "desc": "Tester Agent: Viết các bài kiểm tra đơn vị và tích hợp cho dịch vụ quản lý trung tâm và khóa học",
-                    "targeted_tags": [
-                        "[REQ-004]",
-                        "[REQ-005]",
-                        "[REQ-006]"
-                    ],
-                    "components": [
-                        "./sources/backend/centers/src/main/java/org/nlh4j/saas/membershiphub/centers/CenterService.java;./sources/backend/centers/src/test/java/org/nlh4j/saas/membershiphub/centers/CenterServiceTest.java"
-                    ]
-                },
-                {
-                    "id": "D2_ST3",
-                    "agent": "Reviewer",
-                    "desc": "Reviewer Agent: Đánh giá mã nguồn và đảm bảo tuân thủ các tiêu chuẩn lập trình",
-                    "targeted_tags": [
-                        "[REQ-004]",
-                        "[REQ-005]",
-                        "[REQ-006]"
-                    ],
-                    "components": [
-                        "./sources/backend/centers/src/main/java/org/nlh4j/saas/membershiphub/centers/CenterController.java",
-                        "./sources/backend/centers/src/main/java/org/nlh4j/saas/membershiphub/centers/CenterService.java"
+                        "./sources/docs/architecture/ENTERPRISE_SYSTEM_ARCHITECTURE_BLUEPRINT.md",
+                        "./sources/docs/architecture/CENTRAL_ENDPOINT_API_CONTRACT_SPECS.md",
+                        "./sources/docs/architecture/CROSS_PLATFORM_INTEGRATED_BUSINESS_FLOWS.md",
+                        "./sources/docs/security/ENTERPRISE_SECURITY_OWASP_COMPLIANCE_MATRIX.md",
+                        "./sources/docs/security/CENTRAL_MONITORING_LOGGING_ARCHITECTURE.md"
                     ]
                 }
             ]

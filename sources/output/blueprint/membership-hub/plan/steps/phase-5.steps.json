@@ -1,7 +1,7 @@
 {
     "phase_id": 5,
-    "phase_name": "Triển khai hệ thống và cấu hình hạ tầng",
-    "phase_description": "Triển khai hệ thống và cấu hình hạ tầng",
+    "phase_name": "Triển khai hạ tầng và tối ưu hóa hệ thống",
+    "phase_description": "Giai đoạn này tập trung vào việc triển khai hạ tầng và tối ưu hóa hệ thống.",
     "project_name": "membership-hub",
     "global_context_file": ".ai/.context/membership-hub.global.blueprint.md",
     "source_target_dir": "sources/",
@@ -9,41 +9,37 @@
         {
             "day": 1,
             "context_file": ".ai/.plan/.context/phase-5.context.blueprint.md",
-            "context_section": "TRIỂN KHAI HỆ THỐNG VÀ CẤU HÌNH HẠ TẦNG",
+            "context_section": "TRIỂN KHAI HẠ TẦNG",
             "sub_tasks": [
                 {
                     "id": "D1_ST1",
                     "agent": "Docker",
-                    "desc": "Docker Agent: Triển khai Docker và cấu hình hạ tầng",
+                    "desc": "Triển khai Docker và tối ưu hóa kích thước hình ảnh",
                     "targeted_tags": [
                         "[NFR-005]"
                     ],
                     "components": [
-                        "./sources/infra/docker/Dockerfile"
+                        "./sources/infra/Dockerfile"
                     ]
                 },
                 {
                     "id": "D1_ST2",
                     "agent": "GCP",
-                    "desc": "GCP Agent: Triển khai Google Cloud Platform và cấu hình hạ tầng",
+                    "desc": "Triển khai hạ tầng trên Google Cloud Platform và đảm bảo tính khả dụng và bảo mật",
                     "targeted_tags": [
                         "[NFR-002]",
                         "[NFR-003]",
-                        "[NFR-006]",
-                        "[NFR-007]",
-                        "[NFR-008]",
-                        "[NFR-009]"
+                        "[NFR-004]"
                     ],
                     "components": [
                         "./sources/infra/gcp/cloudbuild.yaml",
-                        "./sources/infra/gcp/firebase.json",
                         "./sources/infra/gcp/main.tf"
                     ]
                 },
                 {
                     "id": "D1_ST3",
                     "agent": "GKE",
-                    "desc": "GKE Agent: Triển khai Google Kubernetes Engine và cấu hình hạ tầng",
+                    "desc": "Triển khai và quản lý Kubernetes trên Google Kubernetes Engine",
                     "targeted_tags": [
                         "[NFR-001]",
                         "[NFR-004]"
@@ -58,31 +54,34 @@
         {
             "day": 2,
             "context_file": ".ai/.plan/.context/phase-5.context.blueprint.md",
-            "context_section": "KIỂM TRA VÀ TRIỂN KHAI HỆ THỐNG",
+            "context_section": "TỐI ƯU HÓA HỆ THỐNG",
             "sub_tasks": [
                 {
                     "id": "D2_ST1",
-                    "agent": "Tester",
-                    "desc": "Tester Agent: Viết các bài kiểm tra đơn vị và tích hợp cho hạ tầng",
+                    "agent": "Coder",
+                    "desc": "Tối ưu hóa hiệu suất hệ thống, đảm bảo tính bảo mật và tuân thủ các quy định",
                     "targeted_tags": [
                         "[NFR-001]",
-                        "[NFR-002]",
-                        "[NFR-003]",
-                        "[NFR-004]",
-                        "[NFR-005]",
                         "[NFR-006]",
                         "[NFR-007]",
                         "[NFR-008]",
                         "[NFR-009]"
                     ],
                     "components": [
-                        "./sources/infra/src/test/java/org/nlh4j/saas/membershiphub/infra/InfraServiceTest.java"
+                        "./sources/backend/src/main/java/org/nlh4j/membershiphub/service/SystemOptimizationService.java"
                     ]
-                },
+                }
+            ]
+        },
+        {
+            "day": 3,
+            "context_file": ".ai/.plan/.context/phase-5.context.blueprint.md",
+            "context_section": "TÀI LIỆU KIẾN TRÚC",
+            "sub_tasks": [
                 {
-                    "id": "D2_ST2",
-                    "agent": "Reviewer",
-                    "desc": "Reviewer Agent: Đánh giá mã nguồn và đảm bảo tuân thủ các tiêu chuẩn lập trình",
+                    "id": "D3_ST1",
+                    "agent": "Doc",
+                    "desc": "Tài liệu kiến trúc",
                     "targeted_tags": [
                         "[NFR-001]",
                         "[NFR-002]",
@@ -95,7 +94,11 @@
                         "[NFR-009]"
                     ],
                     "components": [
-                        "./sources/infra/src/main/java/org/nlh4j/saas/membershiphub/infra/InfraService.java"
+                        "./sources/docs/architecture/ENTERPRISE_SYSTEM_ARCHITECTURE_BLUEPRINT.md",
+                        "./sources/docs/architecture/CENTRAL_ENDPOINT_API_CONTRACT_SPECS.md",
+                        "./sources/docs/architecture/CROSS_PLATFORM_INTEGRATED_BUSINESS_FLOWS.md",
+                        "./sources/docs/security/ENTERPRISE_SECURITY_OWASP_COMPLIANCE_MATRIX.md",
+                        "./sources/docs/security/CENTRAL_MONITORING_LOGGING_ARCHITECTURE.md"
                     ]
                 }
             ]

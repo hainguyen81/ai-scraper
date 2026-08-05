@@ -1,7 +1,7 @@
 {
     "phase_id": 2,
-    "phase_name": "Xây dựng dịch vụ đăng ký, điểm danh và quản lý thẻ hội viên",
-    "phase_description": "Xây dựng dịch vụ đăng ký, điểm danh và quản lý thẻ hội viên",
+    "phase_name": "Xây dựng hệ thống đăng ký học viên, điểm danh và quản lý thẻ hội viên",
+    "phase_description": "Giai đoạn này tập trung vào việc xây dựng hệ thống đăng ký học viên, điểm danh và quản lý thẻ hội viên.",
     "project_name": "membership-hub",
     "global_context_file": ".ai/.context/membership-hub.global.blueprint.md",
     "source_target_dir": "sources/",
@@ -9,43 +9,28 @@
         {
             "day": 1,
             "context_file": ".ai/.plan/.context/phase-2.context.blueprint.md",
-            "context_section": "XÂY DỰNG DỊCH VỤ ĐĂNG KÝ VÀ ĐIỂM DANH",
+            "context_section": "XÂY DỰNG HỆ THỐNG ĐĂNG KÝ HỌC VIÊN",
             "sub_tasks": [
                 {
                     "id": "D1_ST1",
                     "agent": "Coder",
-                    "desc": "Coder Agent: Triển khai dịch vụ đăng ký khóa học và điểm danh",
+                    "desc": "Triển khai chức năng duyệt khóa học",
                     "targeted_tags": [
-                        "[REQ-010]",
-                        "[REQ-011]",
-                        "[DAT-005]"
+                        "[REQ-010]"
                     ],
                     "components": [
-                        "./sources/backend/enrollments/src/main/java/org/nlh4j/saas/membershiphub/enrollments/EnrollmentService.java"
+                        "./sources/backend/enrollments/CourseBrowsingService.java"
                     ]
                 },
                 {
                     "id": "D1_ST2",
-                    "agent": "Tester",
-                    "desc": "Tester Agent: Viết các bài kiểm tra đơn vị và tích hợp cho dịch vụ đăng ký và điểm danh",
+                    "agent": "Coder",
+                    "desc": "Triển khai chức năng đăng ký khóa học của học viên",
                     "targeted_tags": [
-                        "[REQ-010]",
                         "[REQ-011]"
                     ],
                     "components": [
-                        "./sources/backend/enrollments/src/main/java/org/nlh4j/saas/membershiphub/enrollments/EnrollmentService.java;./sources/backend/enrollments/src/test/java/org/nlh4j/saas/membershiphub/enrollments/EnrollmentServiceTest.java"
-                    ]
-                },
-                {
-                    "id": "D1_ST3",
-                    "agent": "Reviewer",
-                    "desc": "Reviewer Agent: Đánh giá mã nguồn và đảm bảo tuân thủ các tiêu chuẩn lập trình",
-                    "targeted_tags": [
-                        "[REQ-010]",
-                        "[REQ-011]"
-                    ],
-                    "components": [
-                        "./sources/backend/enrollments/src/main/java/org/nlh4j/saas/membershiphub/enrollments/EnrollmentService.java"
+                        "./sources/backend/enrollments/StudentEnrollmentService.java"
                     ]
                 }
             ]
@@ -53,43 +38,77 @@
         {
             "day": 2,
             "context_file": ".ai/.plan/.context/phase-2.context.blueprint.md",
-            "context_section": "XÂY DỰNG DỊCH VỤ QUẢN LÝ THẺ HỘI VIÊN",
+            "context_section": "XÂY DỰNG HỆ THỐNG ĐIỂM DANH",
             "sub_tasks": [
                 {
                     "id": "D2_ST1",
                     "agent": "Coder",
-                    "desc": "Coder Agent: Triển khai dịch vụ quản lý thẻ hội viên",
+                    "desc": "Triển khai chức năng điểm danh qua mã QR",
                     "targeted_tags": [
-                        "[REQ-014]",
-                        "[REQ-015]",
-                        "[DAT-007]"
+                        "[REQ-012]"
                     ],
                     "components": [
-                        "./sources/backend/membership/src/main/java/org/nlh4j/saas/membershiphub/membership/MembershipService.java"
+                        "./sources/backend/attendance/QRAttendanceService.java"
                     ]
                 },
                 {
                     "id": "D2_ST2",
-                    "agent": "Tester",
-                    "desc": "Tester Agent: Viết các bài kiểm tra đơn vị và tích hợp cho dịch vụ quản lý thẻ hội viên",
+                    "agent": "Coder",
+                    "desc": "Đảm bảo tính bất biến của điểm danh",
                     "targeted_tags": [
-                        "[REQ-014]",
-                        "[REQ-015]"
+                        "[REQ-013]"
                     ],
                     "components": [
-                        "./sources/backend/membership/src/main/java/org/nlh4j/saas/membershiphub/membership/MembershipService.java;./sources/backend/membership/src/test/java/org/nlh4j/saas/membershiphub/membership/MembershipServiceTest.java"
+                        "./sources/backend/attendance/AttendanceImmutabilityService.java"
+                    ]
+                }
+            ]
+        },
+        {
+            "day": 3,
+            "context_file": ".ai/.plan/.context/phase-2.context.blueprint.md",
+            "context_section": "XÂY DỰNG QUẢN LÝ THẺ HỘI VIÊN",
+            "sub_tasks": [
+                {
+                    "id": "D3_ST1",
+                    "agent": "Coder",
+                    "desc": "Triển khai chức năng hiển thị tính hợp lệ của thẻ",
+                    "targeted_tags": [
+                        "[REQ-014]"
+                    ],
+                    "components": [
+                        "./sources/backend/membership/MembershipValidationService.java"
                     ]
                 },
                 {
-                    "id": "D2_ST3",
-                    "agent": "Reviewer",
-                    "desc": "Reviewer Agent: Đánh giá mã nguồn và đảm bảo tuân thủ các tiêu chuẩn lập trình",
+                    "id": "D3_ST2",
+                    "agent": "Coder",
+                    "desc": "Triển khai chức năng gia hạn thẻ hội viên",
                     "targeted_tags": [
+                        "[REQ-015]"
+                    ],
+                    "components": [
+                        "./sources/backend/membership/MembershipRenewalService.java"
+                    ]
+                },
+                {
+                    "id": "D3_ST3",
+                    "agent": "Doc",
+                    "desc": "Tài liệu kiến trúc",
+                    "targeted_tags": [
+                        "[REQ-010]",
+                        "[REQ-011]",
+                        "[REQ-012]",
+                        "[REQ-013]",
                         "[REQ-014]",
                         "[REQ-015]"
                     ],
                     "components": [
-                        "./sources/backend/membership/src/main/java/org/nlh4j/saas/membershiphub/membership/MembershipService.java"
+                        "./sources/docs/architecture/ENTERPRISE_SYSTEM_ARCHITECTURE_BLUEPRINT.md",
+                        "./sources/docs/architecture/CENTRAL_ENDPOINT_API_CONTRACT_SPECS.md",
+                        "./sources/docs/architecture/CROSS_PLATFORM_INTEGRATED_BUSINESS_FLOWS.md",
+                        "./sources/docs/security/ENTERPRISE_SECURITY_OWASP_COMPLIANCE_MATRIX.md",
+                        "./sources/docs/security/CENTRAL_MONITORING_LOGGING_ARCHITECTURE.md"
                     ]
                 }
             ]

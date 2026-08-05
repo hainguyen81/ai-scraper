@@ -1,7 +1,7 @@
 {
     "phase_id": 4,
     "phase_name": "Xây dựng giao diện người dùng và ứng dụng di động",
-    "phase_description": "Xây dựng giao diện người dùng và ứng dụng di động",
+    "phase_description": "Giai đoạn này tập trung vào việc xây dựng giao diện người dùng và ứng dụng di động.",
     "project_name": "membership-hub",
     "global_context_file": ".ai/.context/membership-hub.global.blueprint.md",
     "source_target_dir": "sources/",
@@ -9,52 +9,60 @@
         {
             "day": 1,
             "context_file": ".ai/.plan/.context/phase-4.context.blueprint.md",
-            "context_section": "XÂY DỰNG GIAO DIỆN NGƯỜI DÙNG VÀ ỨNG DỤNG DI ĐỘNG",
+            "context_section": "XÂY DỰNG GIAO DIỆN NGƯỜI DÙNG",
             "sub_tasks": [
                 {
                     "id": "D1_ST1",
                     "agent": "Coder",
-                    "desc": "Coder Agent: Triển khai giao diện người dùng và ứng dụng di động",
+                    "desc": "Triển khai giao diện người dùng cho các vai trò khác nhau",
                     "targeted_tags": [
-                        "[REQ-019]",
-                        "[REQ-020]",
-                        "[REQ-021]",
-                        "[REQ-022]",
-                        "[REQ-023]",
-                        "[DAT-011]"
-                    ],
-                    "components": [
-                        "./sources/frontend/src/main/java/org/nlh4j/saas/membershiphub/frontend/FrontendService.java"
-                    ]
-                },
-                {
-                    "id": "D1_ST2",
-                    "agent": "Tester",
-                    "desc": "Tester Agent: Viết các bài kiểm tra đơn vị và tích hợp cho giao diện người dùng và ứng dụng di động",
-                    "targeted_tags": [
-                        "[REQ-019]",
                         "[REQ-020]",
                         "[REQ-021]",
                         "[REQ-022]",
                         "[REQ-023]"
                     ],
                     "components": [
-                        "./sources/frontend/src/test/java/org/nlh4j/saas/membershiphub/frontend/FrontendServiceTest.java"
+                        "./sources/frontend/"
                     ]
-                },
+                }
+            ]
+        },
+        {
+            "day": 2,
+            "context_file": ".ai/.plan/.context/phase-4.context.blueprint.md",
+            "context_section": "XÂY DỰNG ỨNG DỤNG DI ĐỘNG",
+            "sub_tasks": [
                 {
-                    "id": "D1_ST3",
-                    "agent": "Reviewer",
-                    "desc": "Reviewer Agent: Đánh giá mã nguồn và đảm bảo tuân thủ các tiêu chuẩn lập trình",
+                    "id": "D2_ST1",
+                    "agent": "Coder",
+                    "desc": "Triển khai ứng dụng di động cho các vai trò khác nhau",
                     "targeted_tags": [
-                        "[REQ-019]",
+                        "[REQ-020]",
+                        "[REQ-021]"
+                    ],
+                    "components": [
+                        "./sources/mobile/"
+                    ]
+                }
+            ]
+        },
+        {
+            "day": 3,
+            "context_file": ".ai/.plan/.context/phase-4.context.blueprint.md",
+            "context_section": "TÀI LIỆU KIẾN TRÚC",
+            "sub_tasks": [
+                {
+                    "id": "D3_ST1",
+                    "agent": "Doc",
+                    "desc": "Tài liệu kiến trúc",
+                    "targeted_tags": [
                         "[REQ-020]",
                         "[REQ-021]",
                         "[REQ-022]",
                         "[REQ-023]"
                     ],
                     "components": [
-                        "./sources/frontend/src/main/java/org/nlh4j/saas/membershiphub/frontend/FrontendService.java"
+                        "./sources/docs/"
                     ]
                 }
             ]
