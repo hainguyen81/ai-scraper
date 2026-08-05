@@ -29,11 +29,6 @@ You are tasked to detail **PHASE {{ phase_idx }} OUT OF {{ num_phases }}**. You 
    - For tester Agent: Each component MUST be declared as a strict semi-colon separated pair: `<source file path to verify by test>;<source test file to execute>`. Both paths inside the pair MUST begin with `./sources/`. If no single source file is isolated for Integration/E2E tests, utilize the literal token `INTEGRATION_SCOPE` as the first parameter.
    - **[CONDITION: JAVA_STACK_ONLY] Java Package Enforcement Rule:** If a file path targets a Java source or test component (.java), you MUST verify that the path contains the directory segment: `/org/nlh4j/sources/<calculated_lowercase_token>/`.
 
-# MANDATORY AGENT DOC ALLOCATION MANDATE (CRITICAL GATE):
-   - You are STRICTLY FORBIDDEN from omitting or dropping the 'Doc' agent from any computed phase. 
-   - For EVERY calculated phase, on **Day 1** of that phase, you MUST explicitly allocate a foundational system documentation task to the **Doc** agent. This task MUST require the 'Doc' agent to map out the architecture, endpoints, database schemas, or deployment topology blueprints corresponding to the active stack of that phase.
-   - Failing to allocate the 'Doc' agent on Day 1 of any phase triggers a catastrophic engineering contract violation.
-
 ---
 
 Your output MUST follow this exact Markdown layout structure (translate all label tokens but preserve the hidden HTML anchor formatting exactly):
@@ -66,6 +61,13 @@ Your output MUST follow this exact Markdown layout structure (translate all labe
 *   **Tester**: Acts as a Lead/Principal QC/QA. Specialized in test suite engineering, validation, and quality gates. Responsible for generating JUnit, integration tests, E2E automation tests, and performance validation scripts. Banned from modifying application production code.
 *   **Reviewer**: Responsible for compiler verification, static analysis gating, and defensive patching. Specialized in code quality audits, resolving compilation bugs, fixing OWASP security vulnerabilities, and addressing SonarQube quality gate blockers.
 *   **Doc**: Functions as a Principal Technical Writer and Enterprise Systems Architect. Specialized in compiling comprehensive Markdown technical specifications, schema references, system blueprints, and architecture catalogs. Every single document file generated MUST reside strictly within the centralized storage layout: `./sources/docs/`.
+[CRITICAL_SYSTEM_PIPELINE_RAIL: DO NOT TRANSLATE THIS DIRECTIVE]
+{% raw %}
+- You are STRICTLY PROHIBITED from omitting, dropping, or filtering out the 'Doc' agent from any computed phase logs.
+- For EVERY calculated phase generated in your output, on Day 1 of that phase, you MUST explicitly allocate a foundational system documentation task to the 'Doc' agent.
+- This task description MUST require the 'Doc' agent to initialize and map out the system architecture blueprints, entity relationships, technical contracts, or deployment topologies corresponding to the active stack matrix of that current phase.
+- Failing to write the 'Doc' agent inside Day 1 of any phase triggers a fatal pipeline contract breach.
+{% endraw %}
 *   **Docker**: Specialized strictly in containerization, multi-stage Dockerfile engineering, package optimization, and pushing verified application image assets to DockerHub.
 *   **GCP**: Specialized in cloud automation within Google Cloud Platform. Responsible for building and pushing images to Google Cloud Artifact Registry (GCR), and orchestrating container environments natively on Google Cloud Run.
 *   **GKE**: Specialized in production container orchestration inside Google Kubernetes Engine. Responsible for building Kubernetes deployment manifests, routing controls, HPA configurations, Helm charts, and deploying microservices workloads into active GKE clusters.
