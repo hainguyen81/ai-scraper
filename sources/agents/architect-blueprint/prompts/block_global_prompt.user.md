@@ -107,8 +107,8 @@ You MUST include every single section below without exception to satisfy enterpr
 [Detail the asynchronous messaging channels, ingestion gateway parameters, topic topologies, and cross-channel external fan-out architectures]
 
 ## 📁 2. [TRANSLATED "TECH STACK DEPENDENCIES & ECOSYSTEM LIBRARIES"]
-- **Backend Infrastructure Core Stack:** [Detail precise versions, runtime engines, dependency injection abstractions, ORMs, and messaging frameworks extracted from requirements]
-- **Frontend & Cross-Platform UI Mobile Stack:** [Detail strict web frameworks, dynamic localized routing, responsive layouts, and native mobile runtime wrappers if present]
+- **[Translate "Backend Infrastructure Core Stack"]:** [Detail precise versions, runtime engines, dependency injection abstractions, ORMs, and messaging frameworks extracted from requirements]
+- **[Translate "Frontend & Cross-Platform UI Mobile Stack"]:** [Detail strict web frameworks, dynamic localized routing, responsive layouts, and native mobile runtime wrappers if present]
 
 <!-- START_TECHNICAL_MATRIX_DO_NOT_TRANSLATE
 ### ARCHITECTURAL STACK MATRIX
@@ -144,6 +144,8 @@ Generate a clean, highly structured Markdown Table mapping the exact distributio
 | :--- | :--- | :--- | :--- | :--- | :--- |
 
 ## 5. [TRANSLATED "GRANULAR PHASE SPECIALIZATIONS & DAY-BY-DAY DELIVERABLES"]
+<!-- START_COMMAND_DIRECTIVE_DO_NOT_DISPLAY
+[CRITIAL COMMAND:
 # STRICT 1:1 SYNOPSIS MIRROR MANDATE:
 - Section 5 MUST act as a strict structural mirror of the dynamic phases calculated in Section 4. You MUST generate an independent, complete detailed block below for EVERY phase sequence from Phase 1 up to Phase N (where N <= {{ num_phases }}). Absolutely no phase that has been calculated in section 4 can be omitted.
 - Truncating, omitting, or combining phases is an absolute pipeline violation. You are strictly commanded to detail every phase that appeared in your Section 4 table.
@@ -152,6 +154,8 @@ Generate a clean, highly structured Markdown Table mapping the exact distributio
 - For each active Phase [X], the day-by-day logs MUST strictly map to the exact day range defined for that phase in Section 4.
 - The total days within any single phase MUST NOT exceed the absolute upperbound of {{ max_days_per_phase }} days.
 - You MUST execute a hard log freeze and terminate the active day loop immediately on the exact day when 100% of the baseline BA tracking codes for Phase [X] are covered. Fabricating dummy tasks or synthetic requirements to pad out the timeline up to {{ max_days_per_phase }} is completely banned.
+]
+END_COMMAND_DIRECTIVE_DO_NOT_DISPLAY -->
 
 <!--START_DELIMITTER-->
 ### Phase [X] [TRANSLATED DETAILED ARCHITECTURAL SPECIFICATION]
@@ -170,7 +174,7 @@ Generate a clean, highly structured Markdown Table mapping the exact distributio
 - Ensure all inner properties are properly indented with spaces to maintain a beautiful nested list hierarchy. Ensure exactly ONE single Sub-Agent with Capitalized first-letter formatting is assigned per active task line.
 
 - **DAY [Y]: [TRANSLATED SHORT OBJECTIVE FOR THIS OPERATIONAL CALENDAR DAY]**
-  - **Sub-Agent Workflow Specialization:**
+  - **[Translate "Sub-Agent Workflow Specialization"]:**
     * **[Assigned Sub-Agent literal token: Coder | Tester | Reviewer | Doc | Docker | GCP | GKE]:**
       - **[Translate "Target Component file path"] (`target_component`):** [Insert explicit physical file path starting with `./sources/` or Tester pair syntax in Technical English. Append its corresponding Tag IDs inline here, e.g., `./sources/backend.... [REQ-001], [DAT-002]`]
       - **[Translate "Low-Level Technical Task Instruction"]:** [Exhaustive, high-density engineering instruction, framework conventions, API contract layouts, data fields validation, or unit test case parameters translated completely into {% if language and language.strip() != "" %}{{ language }}{% else %}English{% endif %}, attaching Tag IDs]
@@ -200,5 +204,10 @@ END_TRANSLATION_DIRECTIVE_DO_NOT_DISPLAY -->
 - **Validation Guard Pipeline Gates:** Execution rules for compilation verification, automated code coverage goals (`>= 85%`), and context summary serialization logs.
 
 ### 🛑 [TRANSLATED "MATRIX COVERAGE CHECK MANDATE"]
+<!-- START_COMMAND_DIRECTIVE_DO_NOT_DISPLAY
+[CRITIAL COMMAND:
 Immediately at the absolute end of the document text, you MUST print a strict mathematical traceability verification text block by parsing and counting every unique tag string present in your output:
+]
+END_COMMAND_DIRECTIVE_DO_NOT_DISPLAY-->
+
 `[TRACEABILITY MATRIX ENFORCEMENT: 100% COVERAGE VALIDATED. TOTAL UNIQUE REQ TAGS MAPPED: X, TOTAL ARC TAGS: Y, TOTAL EXC TAGS: Z, TOTAL DAT TAGS: V, TOTAL NFR TAGS: W. ZERO UNASSIGNED CODES FOUND.]`
