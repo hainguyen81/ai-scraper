@@ -9,7 +9,7 @@
         {
             "day": 1,
             "context_file": "No Specific Project Phase BluePrint Context File",
-            "context_section": "XÂY DỰNG CRUD TRUNG TÂM",
+            "context_section": "DAY 1: XÂY DỰNG CRUD TRUNG TÂM",
             "sub_tasks": [
                 {
                     "id": "D1_ST1",
@@ -25,7 +25,6 @@
                         "./sources/backend/center-service/src/main/java/org/nlh4j/membershiphub/controller/CenterController.java",
                         "./sources/backend/center-service/src/main/java/org/nlh4j/membershiphub/service/CenterService.java",
                         "./sources/backend/center-service/src/main/java/org/nlh4j/membershiphub/repository/CenterRepository.java",
-                        "./sources/backend/center-service/src/test/java/org/nlh4j/membershiphub/controller/CenterControllerTest.java",
                         "./sources/backend/center-service/src/test/java/org/nlh4j/membershiphub/service/CenterServiceTest.java"
                     ]
                 }
@@ -34,7 +33,7 @@
         {
             "day": 2,
             "context_file": "No Specific Project Phase BluePrint Context File",
-            "context_section": "XÂY DỰNG CRUD KHÓA HỌC",
+            "context_section": "DAY 2: XÂY DỰNG CRUD KHÓA HỌC",
             "sub_tasks": [
                 {
                     "id": "D2_ST1",
@@ -50,7 +49,6 @@
                         "./sources/backend/course-service/src/main/java/org/nlh4j/membershiphub/controller/CourseController.java",
                         "./sources/backend/course-service/src/main/java/org/nlh4j/membershiphub/service/CourseService.java",
                         "./sources/backend/course-service/src/main/java/org/nlh4j/membershiphub/repository/CourseRepository.java",
-                        "./sources/backend/course-service/src/test/java/org/nlh4j/membershiphub/controller/CourseControllerTest.java",
                         "./sources/backend/course-service/src/test/java/org/nlh4j/membershiphub/service/CourseServiceTest.java"
                     ]
                 }
@@ -59,7 +57,7 @@
         {
             "day": 3,
             "context_file": "No Specific Project Phase BluePrint Context File",
-            "context_section": "XÂY DỰNG GHI DANH VÀ ĐIỂM DANH",
+            "context_section": "DAY 3: XÂY DỰNG GHI DANH VÀ ĐIỂM DANH",
             "sub_tasks": [
                 {
                     "id": "D3_ST1",
@@ -74,8 +72,6 @@
                         "./sources/backend/enrollment-service/src/main/java/org/nlh4j/membershiphub/controller/EnrollmentController.java",
                         "./sources/backend/enrollment-service/src/main/java/org/nlh4j/membershiphub/service/EnrollmentService.java",
                         "./sources/backend/enrollment-service/src/main/java/org/nlh4j/membershiphub/repository/EnrollmentRepository.java",
-                        "./sources/backend/enrollment-service/src/main/java/org/nlh4j/membershiphub/exception/EnrollmentExceptionHandler.java",
-                        "./sources/backend/enrollment-service/src/test/java/org/nlh4j/membershiphub/controller/EnrollmentControllerTest.java",
                         "./sources/backend/enrollment-service/src/test/java/org/nlh4j/membershiphub/service/EnrollmentServiceTest.java"
                     ]
                 },
@@ -92,7 +88,7 @@
                     ],
                     "components": [
                         "./sources/backend/attendance-service/src/main/java/org/nlh4j/membershiphub/controller/AttendanceController.java",
-                        "./sources/backend/attendance-service/src/test/java/org/nlh4j/membershiphub/controller/AttendanceControllerTest.java"
+                        "./sources/backend/attendance-service/src/test/java/org/nlh4j/membershiphub/service/AttendanceServiceTest.java"
                     ]
                 },
                 {
