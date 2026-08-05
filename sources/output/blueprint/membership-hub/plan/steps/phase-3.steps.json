@@ -110,7 +110,7 @@
                         "[DAT-011]"
                     ],
                     "components": [
-                        "./sources/backend/mobile-service/src/test/java/org/nlh4j/membershiphub/MobileServiceTest.java"
+                        "INTEGRATION_SCOPE;./sources/backend/mobile-service/src/test/java/org/nlh4j/membershiphub/service/MobileServiceTest.java"
                     ]
                 }
             ]

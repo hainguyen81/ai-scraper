@@ -9,7 +9,7 @@
         {
             "day": 1,
             "context_file": "No Specific Project Phase BluePrint Context File",
-            "context_section": "Ngày 1: Xây dựng Dockerfile đa giai đoạn và tối ưu kích thước",
+            "context_section": "Ngày 1: XÂY DỰNG Dockerfile Đa Giai Đoạn VÀ TỐI ƯU KÍCH THƯỚC",
             "sub_tasks": [
                 {
                     "id": "D1_ST1",
@@ -56,12 +56,12 @@
         {
             "day": 2,
             "context_file": "No Specific Project Phase BluePrint Context File",
-            "context_section": "Ngày 2: Xây dựng Helm chart, HPA, autoscaling, monitoring, logging, CI/CD",
+            "context_section": "Ngày 2: XÂY DỰNG Helm chart, HPA, autoscaling, monitoring, logging, CI/CD",
             "sub_tasks": [
                 {
                     "id": "D2_ST1",
-                    "agent": "Gke",
-                    "desc": "Gke Agent: Viết Helm chart, cấu hình HPA, autoscaling, monitoring, logging, CI/CD",
+                    "agent": "GKE",
+                    "desc": "GKE Agent: Viết Helm chart, cấu hình HPA, autoscaling, monitoring, logging, CI/CD",
                     "targeted_tags": [
                         "[NFR-001]",
                         "[NFR-002]",
@@ -75,14 +75,14 @@
                         "[ARC-010]"
                     ],
                     "components": [
-                        "./sources/infra/gke/charts/Chart.yaml",
-                        "./sources/infra/gke/charts/values.yaml"
+                        "./sources/infra/gke/charts/gateway/Chart.yaml",
+                        "./sources/infra/gke/charts/gateway/values.yaml"
                     ]
                 },
                 {
                     "id": "D2_ST2",
-                    "agent": "Gke",
-                    "desc": "Gke Agent: Kiểm thử triển khai, xác nhận scaling, monitoring, logging, bảo mật",
+                    "agent": "GKE",
+                    "desc": "GKE Agent: Kiểm thử triển khai, xác nhận scaling, monitoring, logging, bảo mật",
                     "targeted_tags": [
                         "[NFR-001]",
                         "[NFR-002]",

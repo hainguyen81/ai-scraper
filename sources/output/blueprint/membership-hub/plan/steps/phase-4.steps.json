@@ -26,8 +26,7 @@
                     ],
                     "components": [
                         "./sources/frontend/mobile-app/README.md",
-                        "./sources/frontend/web-app/README.md",
-                        "./ai/.plan/.context/phase-4.context.blueprint.md"
+                        "./sources/frontend/web-app/README.md"
                     ]
                 }
             ]
@@ -39,8 +38,8 @@
             "sub_tasks": [
                 {
                     "id": "D2_ST1",
-                    "agent": "Gcp",
-                    "desc": "Gcp Agent: Cấu hình và triển khai dịch vụ trên GCP",
+                    "agent": "GCP",
+                    "desc": "GCP Agent: Cấu hình và triển khai dịch vụ trên GCP",
                     "targeted_tags": [
                         "[REQ-020]",
                         "[REQ-021]",
