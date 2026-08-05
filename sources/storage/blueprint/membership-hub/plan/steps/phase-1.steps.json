@@ -1,7 +1,7 @@
 {
     "phase_id": 1,
-    "phase_name": "Thiết lập Xác thực và Quản lý Người dùng",
-    "phase_description": "Giai đoạn này tập trung vào việc xây dựng nền tảng xác thực, quản lý người dùng và quyền truy cập, triển khai JWT, chuẩn hoá API, và thực hiện kiểm thử đơn vị.",
+    "phase_name": "Thiết kế kiến trúc tổng thể và thiết lập cơ sở hạ tầng",
+    "phase_description": "Thiết kế kiến trúc tổng thể, thiết lập cơ sở hạ tầng, triển khai cơ sở dữ liệu",
     "project_name": "membership-hub",
     "global_context_file": ".ai/.context/membership-hub.global.blueprint.md",
     "source_target_dir": "sources/",
@@ -9,42 +9,50 @@
         {
             "day": 1,
             "context_file": ".ai/.plan/.context/phase-1.context.blueprint.md",
-            "context_section": "XÂY ĐẾN API ĐĂNG KÝ VÀ XÁC THỰC",
+            "context_section": "THIẾT KẾ KIẾN TRÚC TỔNG THỂ VÀ THIẾT LẬP CƠ SỞ HẠ TẦNG",
             "sub_tasks": [
                 {
                     "id": "D1_ST1",
                     "agent": "Coder",
-                    "desc": "Coder Agent: Xây dựng API đăng ký, đăng nhập và schema Users & Roles",
+                    "desc": "Coder Agent: Triển khai dịch vụ xác thực với email/mật khẩu, Firebase, Google, Facebook qua OAuth2; cấp JWT token với thời hạn 15 phút và refresh token",
                     "targeted_tags": [
-                        "[REQ-001]",
-                        "[REQ-002]",
-                        "[ARC-001]",
-                        "[ARC-002]",
-                        "[ARC-003]",
-                        "[ARC-004]",
-                        "[ARC-005]",
-                        "[DAT-001]",
-                        "[DAT-002]",
-                        "[NFR-001]",
-                        "[NFR-002]",
-                        "[NFR-003]",
-                        "[NFR-004]",
-                        "[NFR-005]",
-                        "[NFR-006]",
-                        "[NFR-007]",
-                        "[NFR-008]",
-                        "[NFR-009]"
+                        "[ARC-006]"
                     ],
                     "components": [
-                        "./sources/backend/auth-service/src/main/java/org/nlh4j/membershiphub/controller/AuthController.java",
-                        "./sources/backend/auth-service/src/main/java/org/nlh4j/membershiphub/service/AuthService.java",
-                        "./sources/backend/auth-service/src/main/java/org/nlh4j/membershiphub/repository/UserRepository.java",
-                        "./sources/backend/auth-service/src/main/java/org/nlh4j/membershiphub/repository/RoleRepository.java",
-                        "./sources/backend/auth-service/src/main/java/org/nlh4j/membershiphub/security/JwtProvider.java",
-                        "./sources/backend/auth-service/src/main/java/org/nlh4j/membershiphub/validation/AuthValidator.java",
-                        "./sources/backend/auth-service/src/main/java/org/nlh4j/membershiphub/exception/AuthExceptionHandler.java",
-                        "./sources/backend/auth-service/src/test/java/org/nlh4j/membershiphub/controller/AuthControllerTest.java",
-                        "./sources/backend/auth-service/src/test/java/org/nlh4j/membershiphub/service/AuthServiceTest.java"
+                        "./sources/backend/auth-service/src/main/java/org/nlh4j/saas/membershiphub/auth/AuthService.java"
+                    ]
+                },
+                {
+                    "id": "D1_ST2",
+                    "agent": "Docker",
+                    "desc": "Docker Agent: Viết Docker Compose file để triển khai PostgreSQL, Redis, và các dịch vụ backend",
+                    "targeted_tags": [
+                        "[ARC-010]"
+                    ],
+                    "components": [
+                        "./sources/infra/docker-compose.yml"
+                    ]
+                },
+                {
+                    "id": "D1_ST3",
+                    "agent": "GCP",
+                    "desc": "GCP Agent: Viết Terraform script để triển khai cơ sở hạ tầng trên Google Cloud Platform",
+                    "targeted_tags": [
+                        "[ARC-010]"
+                    ],
+                    "components": [
+                        "./sources/infra/gcp/terraform/main.tf"
+                    ]
+                },
+                {
+                    "id": "D1_ST4",
+                    "agent": "GKE",
+                    "desc": "GKE Agent: Viết Kubernetes deployment manifest để triển khai các dịch vụ backend trên Google Kubernetes Engine",
+                    "targeted_tags": [
+                        "[ARC-010]"
+                    ],
+                    "components": [
+                        "./sources/infra/gke/deployment.yml"
                     ]
                 }
             ]
@@ -52,34 +60,54 @@
         {
             "day": 2,
             "context_file": ".ai/.plan/.context/phase-1.context.blueprint.md",
-            "context_section": "THỰC HIỆN KIỂM THỬ TÍNH NĂNG XÁC THỰC",
+            "context_section": "TRIỂN KHAI CƠ SỞ DỮ LIỆU VÀ CÁC DỊCH VỤ CƠ BẢN",
             "sub_tasks": [
                 {
                     "id": "D2_ST1",
-                    "agent": "Tester",
-                    "desc": "Tester Agent: Viết test integration, kiểm tra token expiration và idempotent",
+                    "agent": "Coder",
+                    "desc": "Coder Agent: Triển khai dịch vụ quản lý người dùng với các vai trò System Admin, Center Admin, Manager, Teacher, Student",
                     "targeted_tags": [
-                        "[ARC-006]",
-                        "[ARC-007]",
-                        "[ARC-008]",
-                        "[ARC-009]",
-                        "[ARC-0010]",
-                        "[EXC-004]",
-                        "[DAT-001]",
-                        "[DAT-002]",
-                        "[NFR-001]",
-                        "[NFR-002]",
-                        "[NFR-003]",
-                        "[NFR-004]",
-                        "[NFR-005]",
-                        "[NFR-006]",
-                        "[NFR-007]",
-                        "[NFR-008]",
-                        "[NFR-009]"
+                        "[ARC-001]",
+                        "[ARC-002]",
+                        "[ARC-003]",
+                        "[ARC-004]",
+                        "[ARC-005]"
                     ],
                     "components": [
-                        "./sources/backend/auth-service/src/test/java/org/nlh4j/membershiphub/AuthServiceIntegrationTest.java",
-                        "./sources/backend/auth-service/src/test/java/org/nlh4j/membershiphub/AuthControllerIntegrationTest.java"
+                        "./sources/backend/user-service/src/main/java/org/nlh4j/saas/membershiphub/user/UserService.java"
+                    ]
+                },
+                {
+                    "id": "D2_ST2",
+                    "agent": "Docker",
+                    "desc": "Docker Agent: Cập nhật Docker Compose file để triển khai các dịch vụ cơ bản",
+                    "targeted_tags": [
+                        "[ARC-010]"
+                    ],
+                    "components": [
+                        "./sources/infra/docker-compose.yml"
+                    ]
+                },
+                {
+                    "id": "D2_ST3",
+                    "agent": "GCP",
+                    "desc": "GCP Agent: Cập nhật Terraform script để triển khai cơ sở hạ tầng trên Google Cloud Platform",
+                    "targeted_tags": [
+                        "[ARC-010]"
+                    ],
+                    "components": [
+                        "./sources/infra/gcp/terraform/main.tf"
+                    ]
+                },
+                {
+                    "id": "D2_ST4",
+                    "agent": "GKE",
+                    "desc": "GKE Agent: Cập nhật Kubernetes deployment manifest để triển khai các dịch vụ cơ bản trên Google Kubernetes Engine",
+                    "targeted_tags": [
+                        "[ARC-010]"
+                    ],
+                    "components": [
+                        "./sources/infra/gke/deployment.yml"
                     ]
                 }
             ]
@@ -87,36 +115,39 @@
         {
             "day": 3,
             "context_file": ".ai/.plan/.context/phase-1.context.blueprint.md",
-            "context_section": "ĐÁNH GIÁ BẢO MẬT VÀ TIỆN ĐIỆN",
+            "context_section": "TRIỂN KHAI CÁC TÍNH NĂNG CƠ BẢN VÀ KIỂM THỬ",
             "sub_tasks": [
                 {
                     "id": "D3_ST1",
-                    "agent": "Reviewer",
-                    "desc": "Reviewer Agent: Đánh giá bảo mật, chuẩn hoá API và kiểm tra hiệu năng",
+                    "agent": "Coder",
+                    "desc": "Coder Agent: Triển khai dịch vụ thông báo với push notification đến ứng dụng di động và đăng bài lên nhóm Zalo",
                     "targeted_tags": [
-                        "[ARC-001]",
-                        "[ARC-002]",
-                        "[ARC-003]",
-                        "[ARC-004]",
-                        "[ARC-005]",
-                        "[DAT-001]",
-                        "[DAT-002]",
-                        "[NFR-001]",
-                        "[NFR-002]",
-                        "[NFR-003]",
-                        "[NFR-004]",
-                        "[NFR-005]",
-                        "[NFR-006]",
-                        "[NFR-007]",
-                        "[NFR-008]",
-                        "[NFR-009]"
+                        "[ARC-008]"
                     ],
                     "components": [
-                        "./sources/backend/auth-service/src/main/java/org/nlh4j/membershiphub/controller/AuthController.java",
-                        "./sources/backend/auth-service/src/main/java/org/nlh4j/membershiphub/service/AuthService.java",
-                        "./sources/backend/auth-service/src/main/java/org/nlh4j/membershiphub/security/JwtProvider.java",
-                        "./sources/backend/auth-service/src/main/java/org/nlh4j/membershiphub/validation/AuthValidator.java",
-                        "./sources/backend/auth-service/src/main/java/org/nlh4j/membershiphub/exception/AuthExceptionHandler.java"
+                        "./sources/backend/notification-service/src/main/java/org/nlh4j/saas/membershiphub/notification/NotificationService.java"
+                    ]
+                },
+                {
+                    "id": "D3_ST2",
+                    "agent": "Tester",
+                    "desc": "Tester Agent: Viết các test case cho dịch vụ xác thực",
+                    "targeted_tags": [
+                        "[ARC-006]"
+                    ],
+                    "components": [
+                        "./sources/backend/auth-service/src/test/java/org/nlh4j/saas/membershiphub/auth/AuthServiceTest.java;./sources/backend/auth-service/src/main/java/org/nlh4j/saas/membershiphub/auth/AuthService.java"
+                    ]
+                },
+                {
+                    "id": "D3_ST3",
+                    "agent": "Reviewer",
+                    "desc": "Reviewer Agent: Review code cho dịch vụ xác thực",
+                    "targeted_tags": [
+                        "[ARC-006]"
+                    ],
+                    "components": [
+                        "./sources/backend/auth-service/src/main/java/org/nlh4j/saas/membershiphub/auth/AuthService.java"
                     ]
                 }
             ]

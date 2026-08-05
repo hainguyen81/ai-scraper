@@ -1,7 +1,7 @@
 {
     "phase_id": 4,
-    "phase_name": "Phát triển giao diện người dùng đáp ứng, đa ngôn ngữ, tối ưu SEO và triển khai trên GCP",
-    "phase_description": "Giai đoạn này tập trung vào việc xây dựng giao diện người dùng đáp ứng cho cả web và ứng dụng di động, triển khai đa ngôn ngữ, tối ưu SEO, tạo tài liệu kỹ thuật chi tiết và triển khai toàn bộ dịch vụ trên nền tảng GCP, bao gồm Cloud Build, Cloud Run, Firebase Hosting và Terraform.",
+    "phase_name": "Triển khai các tính năng thông báo, khuyến mãi, chatbot AI",
+    "phase_description": "Triển khai các tính năng thông báo, khuyến mãi, chatbot AI",
     "project_name": "membership-hub",
     "global_context_file": ".ai/.context/membership-hub.global.blueprint.md",
     "source_target_dir": "sources/",
@@ -9,28 +9,40 @@
         {
             "day": 1,
             "context_file": ".ai/.plan/.context/phase-4.context.blueprint.md",
-            "context_section": "Viết tài liệu chi tiết UI, API, i18n, SEO",
+            "context_section": "TRIỂN KHAI CÁC TÍNH NĂNG THÔNG BÁO VÀ KHUYẾN MÃI",
             "sub_tasks": [
                 {
                     "id": "D1_ST1",
-                    "agent": "Doc",
-                    "desc": "Doc Agent: Tạo tài liệu chi tiết UI, API, i18n, SEO",
+                    "agent": "Coder",
+                    "desc": "Coder Agent: Triển khai các tính năng kích hoạt thông báo, quản lý khuyến mãi, quản lý thông báo",
                     "targeted_tags": [
-                        "[REQ-020]",
-                        "[REQ-021]",
-                        "[REQ-022]",
-                        "[REQ-023]",
-                        "[REQ-024]",
-                        "[REQ-025]",
-                        "[DAT-011]"
+                        "[REQ-016]"
                     ],
                     "components": [
-                        "./sources/frontend/mobile-app/docs/ARCHITECTURE.md",
-                        "./sources/frontend/mobile-app/docs/CENTRAL_ENDPOINT_API_CONTRACT_SPECS.md",
-                        "./sources/frontend/mobile-app/docs/CROSS_PLATFORM_INTEGRATED_BUSINESS_FLOWS.md",
-                        "./sources/frontend/web-app/docs/ARCHITECTURE.md",
-                        "./sources/frontend/web-app/docs/CENTRAL_ENDPOINT_API_CONTRACT_SPECS.md",
-                        "./sources/frontend/web-app/docs/CROSS_PLATFORM_INTEGRATED_BUSINESS_FLOWS.md"
+                        "./sources/backend/notification-service/src/main/java/org/nlh4j/saas/membershiphub/notification/NotificationService.java"
+                    ]
+                },
+                {
+                    "id": "D1_ST2",
+                    "agent": "Tester",
+                    "desc": "Tester Agent: Viết các test case cho các tính năng thông báo và khuyến mãi",
+                    "targeted_tags": [
+                        "[REQ-016]"
+                    ],
+                    "components": [
+                        "./sources/backend/notification-service/src/test/java/org/nlh4j/saas/membershiphub/notification/NotificationServiceTest.java",
+                        "./sources/backend/notification-service/src/main/java/org/nlh4j/saas/membershiphub/notification/NotificationService.java"
+                    ]
+                },
+                {
+                    "id": "D1_ST3",
+                    "agent": "Reviewer",
+                    "desc": "Reviewer Agent: Review code cho các tính năng thông báo và khuyến mãi",
+                    "targeted_tags": [
+                        "[REQ-016]"
+                    ],
+                    "components": [
+                        "./sources/backend/notification-service/src/main/java/org/nlh4j/saas/membershiphub/notification/NotificationService.java"
                     ]
                 }
             ]
@@ -38,26 +50,40 @@
         {
             "day": 2,
             "context_file": ".ai/.plan/.context/phase-4.context.blueprint.md",
-            "context_section": "Cấu hình GCP Cloud Build, Cloud Run, Firebase Hosting",
+            "context_section": "TRIỂN KHAI CÁC TÍNH NĂNG CHATBOT AI",
             "sub_tasks": [
                 {
                     "id": "D2_ST1",
-                    "agent": "GCP",
-                    "desc": "GCP Agent: Cấu hình và triển khai dịch vụ trên GCP",
+                    "agent": "Coder",
+                    "desc": "Coder Agent: Triển khai các tính năng tích hợp chatbot AI",
                     "targeted_tags": [
-                        "[REQ-020]",
-                        "[REQ-021]",
-                        "[REQ-022]",
-                        "[REQ-023]",
-                        "[REQ-024]",
-                        "[REQ-025]",
-                        "[DAT-011]"
+                        "[REQ-019]"
                     ],
                     "components": [
-                        "./sources/frontend/mobile-app/cloudbuild.yaml",
-                        "./sources/frontend/mobile-app/firebase.json",
-                        "./sources/frontend/web-app/cloudbuild.yaml",
-                        "./sources/frontend/web-app/firebase.json"
+                        "./sources/backend/chatbot-service/src/main/java/org/nlh4j/saas/membershiphub/chatbot/ChatbotService.java"
+                    ]
+                },
+                {
+                    "id": "D2_ST2",
+                    "agent": "Tester",
+                    "desc": "Tester Agent: Viết các test case cho các tính năng chatbot AI",
+                    "targeted_tags": [
+                        "[REQ-019]"
+                    ],
+                    "components": [
+                        "./sources/backend/chatbot-service/src/test/java/org/nlh4j/saas/membershiphub/chatbot/ChatbotServiceTest.java",
+                        "./sources/backend/chatbot-service/src/main/java/org/nlh4j/saas/membershiphub/chatbot/ChatbotService.java"
+                    ]
+                },
+                {
+                    "id": "D2_ST3",
+                    "agent": "Reviewer",
+                    "desc": "Reviewer Agent: Review code cho các tính năng chatbot AI",
+                    "targeted_tags": [
+                        "[REQ-019]"
+                    ],
+                    "components": [
+                        "./sources/backend/chatbot-service/src/main/java/org/nlh4j/saas/membershiphub/chatbot/ChatbotService.java"
                     ]
                 }
             ]

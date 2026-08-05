@@ -1,7 +1,7 @@
 {
     "phase_id": 5,
-    "phase_name": "Containerization, triển khai GCP, điều phối GKE, bảo mật, tuân thủ",
-    "phase_description": "Giai đoạn này tập trung vào việc container hóa toàn bộ dịch vụ, triển khai các dịch vụ lên GCP thông qua Docker và Helm, cấu hình GKE với HPA, autoscaling, monitoring, logging, và đảm bảo tuân thủ các tiêu chuẩn bảo mật OWASP, GDPR, và các yêu cầu hiệu suất, sẵn sàng, bảo mật dữ liệu.",
+    "phase_name": "Triển khai các tính năng báo cáo, phân tích, bản địa hóa, SEO",
+    "phase_description": "Triển khai các tính năng báo cáo, phân tích, bản địa hóa, SEO",
     "project_name": "membership-hub",
     "global_context_file": ".ai/.context/membership-hub.global.blueprint.md",
     "source_target_dir": "sources/",
@@ -9,46 +9,43 @@
         {
             "day": 1,
             "context_file": ".ai/.plan/.context/phase-5.context.blueprint.md",
-            "context_section": "XÂY DỰNG Dockerfile Đa Giai Đoạn VÀ TỐI ƯU KÍCH THƯỚC",
+            "context_section": "TRIỂN KHAI CÁC TÍNH NĂNG BÁO CÁO VÀ PHÂN TÍCH",
             "sub_tasks": [
                 {
                     "id": "D1_ST1",
-                    "agent": "Docker",
-                    "desc": "Docker Agent: Viết Dockerfile đa giai đoạn, giảm kích thước, build, push tới registry, kiểm thử hình ảnh",
+                    "agent": "Coder",
+                    "desc": "Coder Agent: Triển khai các tính năng tạo báo cáo điểm danh, bảng điều khiển tóm tắt ghi danh",
                     "targeted_tags": [
-                        "[NFR-001]",
-                        "[NFR-002]",
-                        "[NFR-003]",
-                        "[NFR-004]",
-                        "[NFR-005]",
-                        "[NFR-006]",
-                        "[NFR-007]",
-                        "[NFR-008]",
-                        "[NFR-009]",
-                        "[ARC-010]"
+                        "[REQ-024]",
+                        "[REQ-025]"
                     ],
                     "components": [
-                        "./sources/infra/docker/Dockerfile"
+                        "./sources/backend/report-service/src/main/java/org/nlh4j/saas/membershiphub/report/ReportService.java"
                     ]
                 },
                 {
                     "id": "D1_ST2",
-                    "agent": "Docker",
-                    "desc": "Docker Agent: Kiểm thử và xác nhận image, thực hiện scan bảo mật, chuẩn hóa metadata",
+                    "agent": "Tester",
+                    "desc": "Tester Agent: Viết các test case cho các tính năng báo cáo và phân tích",
                     "targeted_tags": [
-                        "[NFR-001]",
-                        "[NFR-002]",
-                        "[NFR-003]",
-                        "[NFR-004]",
-                        "[NFR-005]",
-                        "[NFR-006]",
-                        "[NFR-007]",
-                        "[NFR-008]",
-                        "[NFR-009]",
-                        "[ARC-010]"
+                        "[REQ-024]",
+                        "[REQ-025]"
                     ],
                     "components": [
-                        "./sources/infra/docker/Dockerfile"
+                        "./sources/backend/report-service/src/test/java/org/nlh4j/saas/membershiphub/report/ReportServiceTest.java",
+                        "./sources/backend/report-service/src/main/java/org/nlh4j/saas/membershiphub/report/ReportService.java"
+                    ]
+                },
+                {
+                    "id": "D1_ST3",
+                    "agent": "Reviewer",
+                    "desc": "Reviewer Agent: Review code cho các tính năng báo cáo và phân tích",
+                    "targeted_tags": [
+                        "[REQ-024]",
+                        "[REQ-025]"
+                    ],
+                    "components": [
+                        "./sources/backend/report-service/src/main/java/org/nlh4j/saas/membershiphub/report/ReportService.java"
                     ]
                 }
             ]
@@ -56,48 +53,43 @@
         {
             "day": 2,
             "context_file": ".ai/.plan/.context/phase-5.context.blueprint.md",
-            "context_section": "XÂY DỰNG Helm chart, HPA, autoscaling, monitoring, logging, CI/CD",
+            "context_section": "TRIỂN KHAI CÁC TÍNH NĂNG BẢN ĐỊA HÓA VÀ SEO",
             "sub_tasks": [
                 {
                     "id": "D2_ST1",
-                    "agent": "GKE",
-                    "desc": "GKE Agent: Viết Helm chart, cấu hình HPA, autoscaling, monitoring, logging, CI/CD",
+                    "agent": "Coder",
+                    "desc": "Coder Agent: Triển khai các tính năng phát hiện ngôn ngữ mặc định, SEO đa ngôn ngữ",
                     "targeted_tags": [
-                        "[NFR-001]",
-                        "[NFR-002]",
-                        "[NFR-003]",
-                        "[NFR-004]",
-                        "[NFR-005]",
-                        "[NFR-006]",
-                        "[NFR-007]",
-                        "[NFR-008]",
-                        "[NFR-009]",
-                        "[ARC-010]"
+                        "[REQ-022]",
+                        "[REQ-023]"
                     ],
                     "components": [
-                        "./sources/infra/gke/charts/gateway/Chart.yaml",
-                        "./sources/infra/gke/charts/gateway/values.yaml"
+                        "./sources/backend/i18n-service/src/main/java/org/nlh4j/saas/membershiphub/i18n/I18nService.java"
                     ]
                 },
                 {
                     "id": "D2_ST2",
-                    "agent": "GKE",
-                    "desc": "GKE Agent: Kiểm thử triển khai, xác nhận scaling, monitoring, logging, bảo mật",
+                    "agent": "Tester",
+                    "desc": "Tester Agent: Viết các test case cho các tính năng bản địa hóa và SEO",
                     "targeted_tags": [
-                        "[NFR-001]",
-                        "[NFR-002]",
-                        "[NFR-003]",
-                        "[NFR-004]",
-                        "[NFR-005]",
-                        "[NFR-006]",
-                        "[NFR-007]",
-                        "[NFR-008]",
-                        "[NFR-009]",
-                        "[ARC-010]"
+                        "[REQ-022]",
+                        "[REQ-023]"
                     ],
                     "components": [
-                        "./sources/infra/gke/manifests/hpa.yaml",
-                        "./sources/infra/gke/manifests/ingress.yaml"
+                        "./sources/backend/i18n-service/src/test/java/org/nlh4j/saas/membershiphub/i18n/I18nServiceTest.java",
+                        "./sources/backend/i18n-service/src/main/java/org/nlh4j/saas/membershiphub/i18n/I18nService.java"
+                    ]
+                },
+                {
+                    "id": "D2_ST3",
+                    "agent": "Reviewer",
+                    "desc": "Reviewer Agent: Review code cho các tính năng bản địa hóa và SEO",
+                    "targeted_tags": [
+                        "[REQ-022]",
+                        "[REQ-023]"
+                    ],
+                    "components": [
+                        "./sources/backend/i18n-service/src/main/java/org/nlh4j/saas/membershiphub/i18n/I18nService.java"
                     ]
                 }
             ]

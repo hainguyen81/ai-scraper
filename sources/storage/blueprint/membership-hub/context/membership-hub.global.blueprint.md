@@ -1,329 +1,304 @@
 # GLOBAL PROJECT CONTEXT: membership-hub
 
-## 📊 Kiểm soát tài liệu
+## 📊 Document Control
 
 | Item | Details |
 | :--- | :--- |
-| **Blueprint ID** | ARCH-20260804165526 |
+| **Blueprint ID** | ARCH-20260805144718 |
 | **Project Name** | membership-hub |
 | **Version** | 1.0 (Baseline) |
-| **Date.Time** | 2026/08/04 16:55:26 |
+| **Date.Time** | 2026/08/05 14:47:18 |
 | **Author** | Enterprise System Architect (SA Agent) |
 | **Approval** | Pending Technical Governance Review |
 
-## 📊 1. TỔNG QUAN HỆ THỐNG & MÔ HÌNH KIẾN TRÚC CỐT LÕ
+## 📊 1. SYSTEM OVERVIEW & CORE ARCHITECTURE MODALITY
 
-### 1.1. Mô hình hệ thống cốt lõi và mô hình kiến trúc
+### 1.1. Core System Modality & Architecture Modality
+Hệ thống membership-hub là một nền tảng quản lý hội viên đa trung tâm với kiến trúc đa lớp bao gồm:
+- Lớp giao diện người dùng (UI) bao gồm web và ứng dụng di động
+- Lớp backend với các dịch vụ microservices
+- Lớp cơ sở dữ liệu với PostgreSQL
+- Lớp hạ tầng với Docker và Kubernetes (GKE)
+- Lớp tích hợp với Firebase Authentication, Google Cloud Messaging (FCM)/Apple APNs, và Zalo API
 
-Hệ thống được thiết kế theo kiến trúc **microservices** với các dịch vụ Quarkus độc lập, giao tiếp qua **REST** và **Kafka** cho các sự kiện. Mỗi dịch vụ có **CQRS** riêng, sử dụng **PostgreSQL** làm nguồn dữ liệu chính và **Redis** cho session caching. Các API được bảo vệ bằng **JWT** (15 phút) và **refresh token** (7 ngày). Frontend là **Next.js** (React + TypeScript) và ứng dụng di động **Capacitor** (React Native) chia sẻ logic và tài nguyên.
+### 1.2. Enterprise Data Flow Topologies & Core Ecosystems
+Hệ thống sử dụng các kênh truyền thông đa kênh bao gồm:
+- REST APIs cho giao tiếp giữa frontend và backend
+- Event-driven architecture cho các thông báo và điểm danh
+- Push notifications thông qua FCM/APNs
+- Tích hợp với Zalo API cho các thông báo nhóm
 
-### 1.2. Định hướng luồng dữ liệu và hệ sinh thái
+## 📁 2. TECH STACK DEPENDENCIES & ECOSYSTEM LIBRARIES
+- **Backend Infrastructure Core Stack:** Java/Quarkus, PostgreSQL, Docker, Kubernetes (GKE), Firebase Authentication, Google Cloud Messaging (FCM)/Apple APNs, Redis, GitHub Actions
+- **Frontend & Cross-Platform UI Mobile Stack:** Next.js, React, Capacitor, Firebase Authentication
 
-- **Luồng xác thực**: OAuth2 (Firebase, Google, Facebook) → JWT → API Gateway.  
-- **Luồng điểm danh QR**: Mobile scan → API → idempotent attendance record.  
-- **Luồng thông báo**: Event bus → Push (FCM/APNs) + Zalo API.  
-- **Luồng backend di động**: Next.js tiêu thụ REST, caching offline, retry logic.
+<!-- START_TECHNICAL_MATRIX_DO_NOT_TRANSLATE -->
+### ARCHITECTURAL STACK MATRIX
+[CRITICAL WARNING: You MUST keep this entire block 100% in raw Technical English. You are STRICTLY FORBIDDEN from translating any keys, values, or tokens inside this section into 🇻🇳 Vietnamese, as it serves as a strict backend machine-gating matrix. Keep literal `true` or `false` tokens in pure lower-case].
 
-## 📁 2. ĐỘC ĐẠO CÔNG NGHỆ & THƯ VIỆN
+```properties
+PERSISTENCE_LAYER_REQUIRED=true
+BACKEND_LAYER_REQUIRED=true
+FRONTEND_LAYER_REQUIRED=true
+MOBILE_LAYER_REQUIRED=true
+DEVOPS_LAYER_REQUIRED=true
+```
+<!-- END_TECHNICAL_MATRIX_DO_NOT_TRANSLATE -->
 
-- **Backend**: Java 17, Quarkus 3, Hibernate ORM, Flyway, Redis, Firebase Admin SDK, GCP SDK.  
-- **Frontend**: Next.js 13, React 18, TypeScript, Tailwind CSS, Capacitor 4.  
-- **CI/CD**: GitHub Actions, Docker, GKE, Helm, Terraform.
+## 📁 3. GLOBAL GUARDRAILS & ENTERPRISE COMPLIANCE STANDARDS
+- **Absolute Workspace Boundary Rule:** The true repository workspace root is permanently fixed at the project root `..`. All paths generated MUST begin with `./sources/`.
+- **Dynamic Directory Prefixing Compliance:** Enforce the dynamic path mapping rules defined in Protocol 1 strictly matching the detected project structure.
+- **[CONDITION: JAVA_STACK_ONLY] Java Package Standard:** If the tech stack utilizes Java frameworks, all Java source codes MUST strictly reside within the corporate package foundation: `org.nlh4j.saas.<project_name_alphanumeric_lowercase>`. You MUST dynamically convert the string "membership-hub" into a strict pure alphanumeric lowercase token by stripping out whitespaces, hyphens, and underscores. Non-Java projects are completely banned from applying this package segment.
+- **Strict Tester Target Path Syntax:** Any component targeted by a Tester Sub-Agent must be structured as a strict semi-colon separated pair `<source_component_or_token>;<test_suite_file_to_execute>`. Both paths inside the pair MUST begin with `./sources/`.
 
-## 📁 3. QUY ĐỊNH BẢO VỆ & CHẤT LƯỢNG DOANH NGHIỆP
+## 4. HIGH-LEVEL MULTI-PHASE ARCHITECTURAL SYNOPSIS GRID
 
-- **Root repository**: `..` → tất cả các đường dẫn bắt đầu bằng `./sources/`.  
-- **Dynamic prefix**: Backend → `./sources/backend.<service-name>.`, Frontend → `./sources/frontend.<app-name>.`, Infra → `./sources/infra.`  
-- **Java package**: `org.nlh4j.saas.membershiphub`.  
-- **Tester target syntax**: `<source_component>;<test_suite_file>` bắt đầu bằng `./sources/`.
-
-## 📁 4. BẢNG TỔNG QUAN ĐIỀU HƯỚNG GIAO DIỆN GIAO ĐIỆN
-
-| Giai đoạn | Khoảng ngày | Đường dẫn Cấu phần / Module | Tóm tắt Sản phẩm Bàn giao | Sub-Agent | Tag IDs Mục tiêu |
+| Giai đoạn | Khoảng ngày | Cấu phần Kiến trúc / Module Đường dẫn | Tóm tắt Sản phẩm Bàn giao | Sub-Agent | Tag IDs Mục tiêu |
 | :--- | :--- | :--- | :--- | :--- | :--- |
-| 1 | 1-3 | `./sources/backend/auth-service`, `./sources/backend/user-service`, `./sources/backend/role-service`, `./sources/backend/database/migrations` | Xây dựng xác thực, RBAC, schema Users & Roles, JWT, unit test | Coder, Tester, Reviewer | [REQ-001], [REQ-002], [REQ-003], [ARC-001], [ARC-002], [ARC-003], [ARC-004], [ARC-005], [ARC-006], [ARC-007], [ARC-008], [ARC-009], [ARC-010], [DAT-001], [DAT-002], [NFR-001], [NFR-002], [NFR-003], [NFR-004], [NFR-005], [NFR-006], [NFR-007], [NFR-008], [NFR-009] |
-| 2 | 1-3 | `./sources/backend/center-service`, `./sources/backend/course-service`, `./sources/backend/enrollment-service`, `./sources/backend/attendance-service`, `./sources/backend/database/migrations` | CRUD trung tâm, khóa học, ghi danh, điểm danh, schema Centers, Courses, Enrollments, Attendance | Coder, Tester, Reviewer | [REQ-004], [REQ-005], [REQ-006], [REQ-007], [REQ-008], [REQ-009], [REQ-010], [REQ-011], [REQ-012], [REQ-013], [DAT-003], [DAT-004], [DAT-005], [DAT-006], [EXC-001], [EXC-002], [EXC-003], [EXC-004], [EXC-005] |
-| 3 | 1-3 | `./sources/backend/notification-service`, `./sources/backend/promotion-service`, `./sources/backend/announcement-service`, `./sources/backend/chatbot-service`, `./sources/backend/mobile-service` | Thông báo push/Zalo, khuyến mãi, thông báo, chatbot, mobile API | Coder, Tester, Reviewer | [REQ-016], [REQ-017], [REQ-018], [REQ-019], [REQ-020], [REQ-021], [REQ-022], [REQ-023], [REQ-024], [REQ-025], [DAT-007], [DAT-008], [DAT-009], [DAT-010], [DAT-011], [EXC-003] |
-| 4 | 1-2 | `./sources/frontend/mobile-app`, `./sources/frontend/web-app` | UI responsive, i18n, SEO, documentation | Doc, GCP | [REQ-020], [REQ-021], [REQ-022], [REQ-023], [REQ-024], [REQ-025], [DAT-011] |
-| 5 | 1-2 | `./sources/infra/docker`, `./sources/infra/gcp`, `./sources/infra/gke` | Dockerfile, GCP deployment, GKE orchestration | Docker, GKE | [NFR-001], [NFR-002], [NFR-003], [NFR-004], [NFR-005], [NFR-006], [NFR-007], [NFR-008], [NFR-009], [ARC-010] |
+| 1 | Ngày 1-3 | `./sources/backend`, `./sources/frontend`, `./sources/infra` | Thiết kế kiến trúc tổng thể, thiết lập cơ sở hạ tầng, triển khai cơ sở dữ liệu | Coder, Docker, GCP, GKE | [ARC-001], [ARC-002], [ARC-003], [ARC-004], [ARC-005], [ARC-006], [ARC-007], [ARC-008], [ARC-009], [ARC-010] |
+| 2 | Ngày 4-5 | `./sources/backend`, `./sources/frontend` | Triển khai các tính năng quản lý người dùng, trung tâm, khóa học | Coder, Tester, Reviewer | [REQ-001], [REQ-002], [REQ-003], [REQ-004], [REQ-005], [REQ-006], [REQ-007], [REQ-008], [REQ-009], [DAT-001], [DAT-003], [DAT-004] |
+| 3 | Ngày 6-7 | `./sources/backend`, `./sources/frontend` | Triển khai các tính năng đăng ký học viên, điểm danh QR, quản lý thẻ hội viên | Coder, Tester, Reviewer | [REQ-010], [REQ-011], [REQ-012], [REQ-013], [REQ-014], [REQ-015], [DAT-005], [DAT-006], [DAT-007], [EXC-001], [EXC-002], [EXC-004] |
+| 4 | Ngày 1-2 | `./sources/backend`, `./sources/frontend` | Triển khai các tính năng thông báo, khuyến mãi, chatbot AI | Coder, Tester, Reviewer | [REQ-016], [REQ-017], [REQ-018], [REQ-019], [DAT-008], [DAT-009], [EXC-003] |
+| 5 | Ngày 3-4 | `./sources/backend`, `./sources/frontend` | Triển khai các tính năng báo cáo, phân tích, bản địa hóa, SEO | Coder, Tester, Reviewer | [REQ-020], [REQ-021], [REQ-022], [REQ-023], [REQ-024], [REQ-025], [DAT-011], [EXC-005], [NFR-001], [NFR-002], [NFR-003], [NFR-004], [NFR-005], [NFR-006], [NFR-007], [NFR-008], [NFR-009] |
 
-## 5. CHI TIẾT GIAO DIỆN GIAO ĐIỆN MỖI GIAO DIỆN
+## 5. GRANULAR PHASE SPECIALIZATIONS & DAY-BY-DAY DELIVERABLES
 
 ### Phase 1 Detailed Architectural Specification
-- **Mục tiêu Cốt lõi & Mục đích của Giai đoạn 1**: Thiết lập nền tảng xác thực, quản lý người dùng và quyền truy cập, xây dựng schema cơ sở dữ liệu Users & Roles, triển khai JWT, chuẩn hoá API, kiểm thử đơn vị.
-- **Ma trận Bản đồ Thư mục Vật lý Mục tiêu**:  
-  - `./sources/backend/auth-service [REQ-001], [REQ-002], [ARC-001], [ARC-002], [ARC-003], [ARC-004], [ARC-005], [DAT-001], [DAT-002], [NFR-001], [NFR-002], [NFR-003], [NFR-004], [NFR-005], [NFR-006], [NFR-007], [NFR-008], [NFR-009]`  
-  - `./sources/backend/user-service [REQ-001], [REQ-002], [ARC-001], [ARC-002], [ARC-003], [ARC-004], [ARC-005], [DAT-001], [DAT-002], [NFR-001], [NFR-002], [NFR-003], [NFR-004], [NFR-005], [NFR-006], [NFR-007], [NFR-008], [NFR-009]`  
-  - `./sources/backend/role-service [REQ-001], [REQ-002], [ARC-001], [ARC-002], [ARC-003], [ARC-004], [ARC-005], [DAT-001], [DAT-002], [NFR-001], [NFR-002], [NFR-003], [NFR-004], [NFR-005], [NFR-006], [NFR-007], [NFR-008], [NFR-009]`  
-  - `./sources/backend/database/migrations [DAT-001], [DAT-002]`
-- **Đặc tả DDL SQL Schema Cơ sở Dữ liệu**  
-  ```sql
-  CREATE TABLE USERS (
-      userId UUID PRIMARY KEY,
-      email VARCHAR(255) NOT NULL UNIQUE,
-      passwordHash CHAR(60) NOT NULL,
-      fullName VARCHAR(100) NOT NULL,
-      roleId SMALLINT NOT NULL,
-      provider VARCHAR(20) NOT NULL DEFAULT 'local',
-      createdAt TIMESTAMP NOT NULL DEFAULT now(),
-      updatedAt TIMESTAMP NOT NULL DEFAULT now()
-  );
-  CREATE TABLE ROLES (
-      roleId SMALLINT PRIMARY KEY,
-      name VARCHAR(30) NOT NULL UNIQUE,
-      description VARCHAR(200)
-  );
-  ALTER TABLE USERS ADD CONSTRAINT fk_user_role FOREIGN KEY (roleId) REFERENCES ROLES(roleId);
-  ```
-- **Hợp đồng Định tuyến API và Sự kiện**  
-  - `POST /api/auth/register` → Body: `{email, password, provider}` → Response: `{token, refreshToken}`  
-  - `POST /api/auth/login` → Body: `{email, password}` → Response: `{token, refreshToken}`  
-  - `GET /api/auth/me` → Header: `Authorization: Bearer <token>` → Response: `{userId, email, role}`  
-- **Xử lý ngoại lệ**  
-  - `[EXC-004]` → Kiểm tra đầu vào email, password, provider. Trả lỗi 400 với chi tiết trường sai.
+- **Phase Core Objective & Purpose:** Thiết kế kiến trúc tổng thể, thiết lập cơ sở hạ tầng, triển khai cơ sở dữ liệu
+- **Target Physical Directory Matrix Map:** List all specific file paths underneath `./sources/` initialized or modified in this phase. Every single line path generated MUST be appended with its tracking Tag IDs inline.
+    *   *Documentation Gating Boundary:* Any line representing an enterprise specification, reference blueprint, relational database mapping catalog, or architecture layout MUST strictly reside under the unified root directory path: `./sources/docs/`.
+- **Database Schema DDL SQL Specification [DAT-XXX]:** Provide raw, complete, and valid DDL SQL migration statements containing explicit columns, data types, primary/foreign keys, matrix mappings, indexes, and nullability constraints applied under this phase scope. (Omit entirely if the project topology has no database or persistence layer requirements. This technical block MUST NOT be translated).
+- **API and Event Routing Contracts [REQ-XXX], [ARC-XXX]:** Document the complete technical contracts (precise endpoint paths, HTTP methods, request/response JSON payload schemas, or message broker topic configurations. Technical blocks MUST NOT be translated).
+- **Phase Localized Exception Handlers [EXC-XXX]:** Detail explicit business validation rules, error codes, and system exception handling pathways mapping strictly to the current phase scope, contextually translated into 🇻🇳 Vietnamese.
 
 #### 📅 Chronological Day-by-Day Sub-Agent Task Distribution Logs (Phase 1)
 
-- **DAY 1:** Xây dựng API đăng ký và login, tạo schema Users & Roles, triển khai JWT, unit test.  
-  - **Sub-Agent Workflow Specialization:**  
-    * **Coder:**  
-      - **Target Component file path (`target_component`):** `./sources/backend/auth-service [REQ-001], [REQ-002], [ARC-001], [ARC-002], [ARC-003], [ARC-004], [ARC-005], [DAT-001], [DAT-002], [NFR-001], [NFR-002], [NFR-003], [NFR-004], [NFR-005], [NFR-006], [NFR-007], [NFR-008], [NFR-009]`  
-      - **Low-Level Technical Task Instruction:** Xây dựng controller, service, repository, JWT provider, validation, exception handling, unit test.  
-      - **Targeted Tag IDs:** [REQ-001], [REQ-002], [ARC-001], [ARC-002], [ARC-003], [ARC-004], [ARC-005], [DAT-001], [DAT-002], [NFR-001], [NFR-002], [NFR-003], [NFR-004], [NFR-005], [NFR-006], [NFR-007], [NFR-008], [NFR-009]  
-- **DAY 2:** Viết test tích hợp cho luồng xác thực, kiểm tra token expiration, idempotent.  
-  - **Sub-Agent Workflow Specialization:**  
-    * **Tester:**  
-      - **Target Component file path (`target_component`):** `./sources/backend/auth-service;./sources/backend/auth-service/src/test/java/com/membershiphub/auth/AuthServiceTest.java [ARC-006], [ARC-007], [ARC-008], [ARC-009], [ARC-010]`  
-      - **Low-Level Technical Task Instruction:** Viết test unit và integration, mock Firebase, kiểm tra refresh token, kiểm tra bảo mật.  
-      - **Targeted Tag IDs:** [ARC-006], [ARC-007], [ARC-008], [ARC-009], [ARC-010]  
-- **DAY 3:** Đánh giá mã, kiểm tra bảo mật, chuẩn hoá API, kiểm tra performance.  
-  - **Sub-Agent Workflow Specialization:**  
-    * **Reviewer:**  
-      - **Target Component file path (`target_component`):** `./sources/backend/auth-service [ARC-001], [ARC-002], [ARC-003], [ARC-004], [ARC-005], [DAT-001], [DAT-002], [NFR-001], [NFR-002], [NFR-003], [NFR-004], [NFR-005], [NFR-006], [NFR-007], [NFR-008], [NFR-009]`  
-      - **Low-Level Technical Task Instruction:** Đánh giá code quality, kiểm tra OWASP, performance profiling, đề xuất cải tiến.  
-      - **Targeted Tag IDs:** [ARC-001], [ARC-002], [ARC-003], [ARC-004], [ARC-005], [DAT-001], [DAT-002], [NFR-001], [NFR-002], [NFR-003], [NFR-004], [NFR-005], [NFR-006], [NFR-007], [NFR-008], [NFR-009]  
+- **DAY 1: Thiết kế kiến trúc tổng thể và thiết lập cơ sở hạ tầng**
+  - **Sub-Agent Workflow Specialization:**
+    * **Coder:**
+      - **Target Component file path (`target_component`):** `./sources/backend/auth-service/src/main/java/org/nlh4j/saas/membershiphub/auth/AuthService.java [ARC-006]`
+      - **Low-Level Technical Task Instruction:** Triển khai dịch vụ xác thực với email/mật khẩu, Firebase, Google, Facebook qua OAuth2; cấp JWT token với thời hạn 15 phút và refresh token
+      - **Targeted Tag IDs:** [ARC-006]
+    * **Docker:**
+      - **Target Component file path (`target_component`):** `./sources/infra/docker-compose.yml [ARC-010]`
+      - **Low-Level Technical Task Instruction:** Viết Docker Compose file để triển khai PostgreSQL, Redis, và các dịch vụ backend
+      - **Targeted Tag IDs:** [ARC-010]
+    * **GCP:**
+      - **Target Component file path (`target_component`):** `./sources/infra/gcp/terraform/main.tf [ARC-010]`
+      - **Low-Level Technical Task Instruction:** Viết Terraform script để triển khai cơ sở hạ tầng trên Google Cloud Platform
+      - **Targeted Tag IDs:** [ARC-010]
+    * **GKE:**
+      - **Target Component file path (`target_component`):** `./sources/infra/gke/deployment.yml [ARC-010]`
+      - **Low-Level Technical Task Instruction:** Viết Kubernetes deployment manifest để triển khai các dịch vụ backend trên Google Kubernetes Engine
+      - **Targeted Tag IDs:** [ARC-010]
+
+- **DAY 2: Triển khai cơ sở dữ liệu và các dịch vụ cơ bản**
+  - **Sub-Agent Workflow Specialization:**
+    * **Coder:**
+      - **Target Component file path (`target_component`):** `./sources/backend/user-service/src/main/java/org/nlh4j/saas/membershiphub/user/UserService.java [ARC-001], [ARC-002], [ARC-003], [ARC-004], [ARC-005]`
+      - **Low-Level Technical Task Instruction:** Triển khai dịch vụ quản lý người dùng với các vai trò System Admin, Center Admin, Manager, Teacher, Student
+      - **Targeted Tag IDs:** [ARC-001], [ARC-002], [ARC-003], [ARC-004], [ARC-005]
+    * **Docker:**
+      - **Target Component file path (`target_component`):** `./sources/infra/docker-compose.yml [ARC-010]`
+      - **Low-Level Technical Task Instruction:** Cập nhật Docker Compose file để triển khai các dịch vụ cơ bản
+      - **Targeted Tag IDs:** [ARC-010]
+    * **GCP:**
+      - **Target Component file path (`target_component`):** `./sources/infra/gcp/terraform/main.tf [ARC-010]`
+      - **Low-Level Technical Task Instruction:** Cập nhật Terraform script để triển khai cơ sở hạ tầng trên Google Cloud Platform
+      - **Targeted Tag IDs:** [ARC-010]
+    * **GKE:**
+      - **Target Component file path (`target_component`):** `./sources/infra/gke/deployment.yml [ARC-010]`
+      - **Low-Level Technical Task Instruction:** Cập nhật Kubernetes deployment manifest để triển khai các dịch vụ cơ bản trên Google Kubernetes Engine
+      - **Targeted Tag IDs:** [ARC-010]
+
+- **DAY 3: Triển khai các tính năng cơ bản và kiểm thử**
+  - **Sub-Agent Workflow Specialization:**
+    * **Coder:**
+      - **Target Component file path (`target_component`):** `./sources/backend/notification-service/src/main/java/org/nlh4j/saas/membershiphub/notification/NotificationService.java [ARC-008]`
+      - **Low-Level Technical Task Instruction:** Triển khai dịch vụ thông báo với push notification đến ứng dụng di động và đăng bài lên nhóm Zalo
+      - **Targeted Tag IDs:** [ARC-008]
+    * **Tester:**
+      - **Target Component file path (`target_component`):** `./sources/backend/auth-service/src/test/java/org/nlh4j/saas/membershiphub/auth/AuthServiceTest.java;./sources/backend/auth-service/src/main/java/org/nlh4j/saas/membershiphub/auth/AuthService.java [ARC-006]`
+      - **Low-Level Technical Task Instruction:** Viết các test case cho dịch vụ xác thực
+      - **Targeted Tag IDs:** [ARC-006]
+    * **Reviewer:**
+      - **Target Component file path (`target_component`):** `./sources/backend/auth-service/src/main/java/org/nlh4j/saas/membershiphub/auth/AuthService.java [ARC-006]`
+      - **Low-Level Technical Task Instruction:** Review code cho dịch vụ xác thực
+      - **Targeted Tag IDs:** [ARC-006]
 
 ### Phase 2 Detailed Architectural Specification
-- **Mục tiêu Cốt lõi & Mục đích của Giai đoạn 2**: Xây dựng CRUD trung tâm, khóa học, ghi danh, điểm danh, schema Centers, Courses, Enrollments, Attendance, kiểm thử, exception handling.
-- **Ma trận Bản đồ Thư mục Vật lý Mục tiêu**:  
-  - `./sources/backend/center-service [REQ-004], [REQ-005], [REQ-006], [DAT-003]`  
-  - `./sources/backend/course-service [REQ-007], [REQ-008], [REQ-009], [DAT-004]`  
-  - `./sources/backend/enrollment-service [REQ-010], [REQ-011], [DAT-005]`  
-  - `./sources/backend/attendance-service [REQ-012], [REQ-013], [DAT-006]`  
-  - `./sources/backend/database/migrations [DAT-003], [DAT-004], [DAT-005], [DAT-006]`
-- **Đặc tả DDL SQL Schema Cơ sở Dữ liệu**  
-  ```sql
-  CREATE TABLE CENTERS (
-      centerId UUID PRIMARY KEY,
-      name VARCHAR(100) NOT NULL,
-      address VARCHAR(255) NOT NULL,
-      taxId VARCHAR(13) NOT NULL UNIQUE,
-      contactPhone VARCHAR(50),
-      contactEmail VARCHAR(255)
-  );
-  CREATE TABLE COURSES (
-      courseId UUID PRIMARY KEY,
-      title VARCHAR(150) NOT NULL,
-      description TEXT,
-      startDate DATE NOT NULL,
-      endDate DATE NOT NULL,
-      teacherId UUID NOT NULL,
-      maxStudents INT DEFAULT 30,
-      CONSTRAINT fk_course_teacher FOREIGN KEY (teacherId) REFERENCES USERS(userId)
-  );
-  CREATE TABLE ENROLLMENTS (
-      enrollmentId UUID PRIMARY KEY,
-      studentId UUID NOT NULL,
-      courseId UUID NOT NULL,
-      enrollmentDate TIMESTAMP NOT NULL DEFAULT now(),
-      CONSTRAINT fk_enrollment_student FOREIGN KEY (studentId) REFERENCES USERS(userId),
-      CONSTRAINT fk_enrollment_course FOREIGN KEY (courseId) REFERENCES COURSES(courseId)
-  );
-  CREATE TABLE ATTENDANCE (
-      attendanceId UUID PRIMARY KEY,
-      studentId UUID NOT NULL,
-      courseId UUID NOT NULL,
-      attendanceDate DATE NOT NULL,
-      timestamp TIMESTAMP NOT NULL DEFAULT now(),
-      CONSTRAINT fk_attendance_student FOREIGN KEY (studentId) REFERENCES USERS(userId),
-      CONSTRAINT fk_attendance_course FOREIGN KEY (courseId) REFERENCES COURSES(courseId),
-      CONSTRAINT uq_attendance UNIQUE (studentId, courseId, attendanceDate)
-  );
-  ```
-- **Hợp đồng Định tuyến API và Sự kiện**  
-  - `GET /api/centers` → Response: list of centers.  
-  - `POST /api/centers` → Body: center details → Response: created center.  
-  - `GET /api/courses` → Response: list of courses.  
-  - `POST /api/courses` → Body: course details → Response: created course.  
-  - `POST /api/enrollments` → Body: enrollment details → Response: created enrollment.  
-  - `POST /api/attendance` → Body: studentId, courseId → Response: attendance record.  
-- **Xử lý ngoại lệ**  
-  - `[EXC-001]` → Network drop during QR scan.  
-  - `[EXC-002]` → Duplicate attendance submission.  
-  - `[EXC-003]` → Duplicate tax ID.  
-  - `[EXC-004]` → Input validation failure.  
-  - `[EXC-005]` → System outage recovery.
+- **Phase Core Objective & Purpose:** Triển khai các tính năng quản lý người dùng, trung tâm, khóa học
+- **Target Physical Directory Matrix Map:** List all specific file paths underneath `./sources/` initialized or modified in this phase. Every single line path generated MUST be appended with its tracking Tag IDs inline.
+    *   *Documentation Gating Boundary:* Any line representing an enterprise specification, reference blueprint, relational database mapping catalog, or architecture layout MUST strictly reside under the unified root directory path: `./sources/docs/`.
+- **Database Schema DDL SQL Specification [DAT-XXX]:** Provide raw, complete, and valid DDL SQL migration statements containing explicit columns, data types, primary/foreign keys, matrix mappings, indexes, and nullability constraints applied under this phase scope. (Omit entirely if the project topology has no database or persistence layer requirements. This technical block MUST NOT be translated).
+- **API and Event Routing Contracts [REQ-XXX], [ARC-XXX]:** Document the complete technical contracts (precise endpoint paths, HTTP methods, request/response JSON payload schemas, or message broker topic configurations. Technical blocks MUST NOT be translated).
+- **Phase Localized Exception Handlers [EXC-XXX]:** Detail explicit business validation rules, error codes, and system exception handling pathways mapping strictly to the current phase scope, contextually translated into 🇻🇳 Vietnamese.
 
 #### 📅 Chronological Day-by-Day Sub-Agent Task Distribution Logs (Phase 2)
 
-- **DAY 1:** Xây dựng CRUD trung tâm, schema Centers, kiểm thử.  
-  - **Sub-Agent Workflow Specialization:**  
-    * **Coder:**  
-      - **Target Component file path (`target_component`):** `./sources/backend/center-service [REQ-004], [REQ-005], [REQ-006], [DAT-003]`  
-      - **Low-Level Technical Task Instruction:** Xây dựng controller, service, repository, validation, exception handling, unit test.  
-      - **Targeted Tag IDs:** [REQ-004], [REQ-005], [REQ-006], [DAT-003]  
-- **DAY 2:** Xây dựng CRUD khóa học, schema Courses, kiểm thử.  
-  - **Sub-Agent Workflow Specialization:**  
-    * **Coder:**  
-      - **Target Component file path (`target_component`):** `./sources/backend/course-service [REQ-007], [REQ-008], [REQ-009], [DAT-004]`  
-      - **Low-Level Technical Task Instruction:** Xây dựng controller, service, repository, validation, conflict detection, unit test.  
-      - **Targeted Tag IDs:** [REQ-007], [REQ-008], [REQ-009], [DAT-004]  
-- **DAY 3:** Xây dựng ghi danh, điểm danh, schema Enrollments & Attendance, exception handling, integration test.  
-  - **Sub-Agent Workflow Specialization:**  
-    * **Coder:**  
-      - **Target Component file path (`target_component`):** `./sources/backend/enrollment-service [REQ-010], [REQ-011], [DAT-005]`  
-      - **Low-Level Technical Task Instruction:** Xây dựng controller, service, repository, validation, idempotent attendance, unit test.  
-      - **Targeted Tag IDs:** [REQ-010], [REQ-011], [DAT-005]  
-    * **Tester:**  
-      - **Target Component file path (`target_component`):** `./sources/backend/attendance-service;./sources/backend/attendance-service/src/test/java/com/membershiphub/attendance/AttendanceServiceTest.java [REQ-012], [REQ-013], [DAT-006], [EXC-001], [EXC-002]`  
-      - **Low-Level Technical Task Instruction:** Viết test integration, mock network, test idempotency, test duplicate handling.  
-      - **Targeted Tag IDs:** [REQ-012], [REQ-013], [DAT-006], [EXC-001], [EXC-002]  
-    * **Reviewer:**  
-      - **Target Component file path (`target_component`):** `./sources/backend/enrollment-service [REQ-010], [REQ-011], [DAT-005]`  
-      - **Low-Level Technical Task Instruction:** Đánh giá code quality, kiểm tra exception handling, performance.  
-      - **Targeted Tag IDs:** [REQ-010], [REQ-011], [DAT-005]  
+- **DAY 4: Triển khai các tính năng quản lý người dùng**
+  - **Sub-Agent Workflow Specialization:**
+    * **Coder:**
+      - **Target Component file path (`target_component`):** `./sources/backend/user-service/src/main/java/org/nlh4j/saas/membershiphub/user/UserService.java [REQ-001], [REQ-002], [REQ-003]`
+      - **Low-Level Technical Task Instruction:** Triển khai các tính năng đăng ký người dùng, xác thực qua mạng xã hội, phân quyền người dùng
+      - **Targeted Tag IDs:** [REQ-001], [REQ-002], [REQ-003]
+    * **Tester:**
+      - **Target Component file path (`target_component`):** `./sources/backend/user-service/src/test/java/org/nlh4j/saas/membershiphub/user/UserServiceTest.java;./sources/backend/user-service/src/main/java/org/nlh4j/saas/membershiphub/user/UserService.java [REQ-001], [REQ-002], [REQ-003]`
+      - **Low-Level Technical Task Instruction:** Viết các test case cho các tính năng quản lý người dùng
+      - **Targeted Tag IDs:** [REQ-001], [REQ-002], [REQ-003]
+    * **Reviewer:**
+      - **Target Component file path (`target_component`):** `./sources/backend/user-service/src/main/java/org/nlh4j/saas/membershiphub/user/UserService.java [REQ-001], [REQ-002], [REQ-003]`
+      - **Low-Level Technical Task Instruction:** Review code cho các tính năng quản lý người dùng
+      - **Targeted Tag IDs:** [REQ-001], [REQ-002], [REQ-003]
+
+- **DAY 5: Triển khai các tính năng quản lý trung tâm và khóa học**
+  - **Sub-Agent Workflow Specialization:**
+    * **Coder:**
+      - **Target Component file path (`target_component`):** `./sources/backend/center-service/src/main/java/org/nlh4j/saas/membershiphub/center/CenterService.java [REQ-004], [REQ-005], [REQ-006]`
+      - **Low-Level Technical Task Instruction:** Triển khai các tính năng xem danh sách trung tâm, tạo/cập nhật/xóa trung tâm, phân quyền quản trị trung tâm
+      - **Targeted Tag IDs:** [REQ-004], [REQ-005], [REQ-006]
+    * **Tester:**
+      - **Target Component file path (`target_component`):** `./sources/backend/center-service/src/test/java/org/nlh4j/saas/membershiphub/center/CenterServiceTest.java;./sources/backend/center-service/src/main/java/org/nlh4j/saas/membershiphub/center/CenterService.java [REQ-004], [REQ-005], [REQ-006]`
+      - **Low-Level Technical Task Instruction:** Viết các test case cho các tính năng quản lý trung tâm
+      - **Targeted Tag IDs:** [REQ-004], [REQ-005], [REQ-006]
+    * **Reviewer:**
+      - **Target Component file path (`target_component`):** `./sources/backend/center-service/src/main/java/org/nlh4j/saas/membershiphub/center/CenterService.java [REQ-004], [REQ-005], [REQ-006]`
+      - **Low-Level Technical Task Instruction:** Review code cho các tính năng quản lý trung tâm
+      - **Targeted Tag IDs:** [REQ-004], [REQ-005], [REQ-006]
 
 ### Phase 3 Detailed Architectural Specification
-- **Mục tiêu Cốt lõi & Mục đích của Giai đoạn 3**: Xây dựng dịch vụ thông báo, khuyến mãi, thông báo, chatbot, mobile API, kiểm thử, exception handling.
-- **Ma trận Bản đồ Thư mục Vật lý Mục tiêu**:  
-  - `./sources/backend/notification-service [REQ-016], [REQ-017], [REQ-018], [REQ-019], [DAT-007], [DAT-008]`  
-  - `./sources/backend/promotion-service [REQ-017], [DAT-009]`  
-  - `./sources/backend/announcement-service [REQ-018], [DAT-010]`  
-  - `./sources/backend/chatbot-service [REQ-019]`  
-  - `./sources/backend/mobile-service [REQ-020], [REQ-021], [REQ-022], [REQ-023], [REQ-024], [REQ-025], [DAT-011]`  
-  - `./sources/backend/database/migrations [DAT-007], [DAT-008], [DAT-009], [DAT-010], [DAT-011]`
-- **Đặc tả DDL SQL Schema Cơ sở Dữ liệu**  
-  ```sql
-  CREATE TABLE NOTIFICATIONS (
-      notificationId UUID PRIMARY KEY,
-      userId UUID,
-      groupZalo VARCHAR(255),
-      message TEXT NOT NULL,
-      sentAt TIMESTAMP NOT NULL DEFAULT now(),
-      delivered BOOLEAN NOT NULL DEFAULT false
-  );
-  CREATE TABLE PROMOTIONS (
-      promoId UUID PRIMARY KEY,
-      code VARCHAR(50) NOT NULL UNIQUE,
-      discountPercent SMALLINT NOT NULL,
-      startDate DATE,
-      endDate DATE,
-      description TEXT
-  );
-  CREATE TABLE ANNOUNCEMENTS (
-      announcementId UUID PRIMARY KEY,
-      title VARCHAR(150) NOT NULL,
-      content TEXT NOT NULL,
-      startDate DATE,
-      endDate DATE
-  );
-  ```
-- **Hợp đồng Định tuyến API và Sự kiện**  
-  - `POST /api/notifications` → Body: notification details → Response: created notification.  
-  - `POST /api/promotions` → Body: promotion details → Response: created promotion.  
-  - `POST /api/announcements` → Body: announcement details → Response: created announcement.  
-  - `POST /api/chatbot/message` → Body: user message → Response: bot reply.  
-  - `GET /api/mobile/cards` → Response: student card info.  
-- **Xử lý ngoại lệ**  
-  - `[EXC-003]` → Failed notification delivery.
+- **Phase Core Objective & Purpose:** Triển khai các tính năng đăng ký học viên, điểm danh QR, quản lý thẻ hội viên
+- **Target Physical Directory Matrix Map:** List all specific file paths underneath `./sources/` initialized or modified in this phase. Every single line path generated MUST be appended with its tracking Tag IDs inline.
+    *   *Documentation Gating Boundary:* Any line representing an enterprise specification, reference blueprint, relational database mapping catalog, or architecture layout MUST strictly reside under the unified root directory path: `./sources/docs/`.
+- **Database Schema DDL SQL Specification [DAT-XXX]:** Provide raw, complete, and valid DDL SQL migration statements containing explicit columns, data types, primary/foreign keys, matrix mappings, indexes, and nullability constraints applied under this phase scope. (Omit entirely if the project topology has no database or persistence layer requirements. This technical block MUST NOT be translated).
+- **API and Event Routing Contracts [REQ-XXX], [ARC-XXX]:** Document the complete technical contracts (precise endpoint paths, HTTP methods, request/response JSON payload schemas, or message broker topic configurations. Technical blocks MUST NOT be translated).
+- **Phase Localized Exception Handlers [EXC-XXX]:** Detail explicit business validation rules, error codes, and system exception handling pathways mapping strictly to the current phase scope, contextually translated into 🇻🇳 Vietnamese.
 
 #### 📅 Chronological Day-by-Day Sub-Agent Task Distribution Logs (Phase 3)
 
-- **DAY 1:** Xây dựng dịch vụ thông báo, khuyến mãi, thông báo, chatbot, schema Notifications, Promotions, Announcements.  
-  - **Sub-Agent Workflow Specialization:**  
-    * **Coder:**  
-      - **Target Component file path (`target_component`):** `./sources/backend/notification-service [REQ-016], [REQ-017], [REQ-018], [REQ-019], [DAT-007], [DAT-008]`  
-      - **Low-Level Technical Task Instruction:** Xây dựng controller, service, repository, integration với Firebase, Zalo, unit test.  
-      - **Targeted Tag IDs:** [REQ-016], [REQ-017], [REQ-018], [REQ-019], [DAT-007], [DAT-008]  
-- **DAY 2:** Xây dựng mobile API, schema StudentCards, i18n, SEO, kiểm thử.  
-  - **Sub-Agent Workflow Specialization:**  
-    * **Tester:**  
-      - **Target Component file path (`target_component`):** `./sources/backend/mobile-service;./sources/backend/mobile-service/src/test/java/com/membershiphub/mobile/MobileServiceTest.java [REQ-020], [REQ-021], [REQ-022], [REQ-023], [REQ-024], [REQ-025], [DAT-011]`  
-      - **Low-Level Technical Task Instruction:** Viết test API, kiểm tra i18n, SEO meta tags, unit test.  
-      - **Targeted Tag IDs:** [REQ-020], [REQ-021], [REQ-022], [REQ-023], [REQ-024], [REQ-025], [DAT-011]  
-- **DAY 3:** Đánh giá bảo mật, exception handling, performance.  
-  - **Sub-Agent Workflow Specialization:**  
-    * **Reviewer:**  
-      - **Target Component file path (`target_component`):** `./sources/backend/notification-service [REQ-016], [REQ-017], [REQ-018], [REQ-019], [DAT-007], [DAT-008], [EXC-003]`  
-      - **Low-Level Technical Task Instruction:** Đánh giá code quality, kiểm tra exception handling, performance profiling.  
-      - **Targeted Tag IDs:** [REQ-016], [REQ-017], [REQ-018], [REQ-019], [DAT-007], [DAT-008], [EXC-003]  
+- **DAY 6: Triển khai các tính năng đăng ký học viên và điểm danh QR**
+  - **Sub-Agent Workflow Specialization:**
+    * **Coder:**
+      - **Target Component file path (`target_component`):** `./sources/backend/enrollment-service/src/main/java/org/nlh4j/saas/membershiphub/enrollment/EnrollmentService.java [REQ-010], [REQ-011]`
+      - **Low-Level Technical Task Instruction:** Triển khai các tính năng duyệt khóa học, đăng ký khóa học của học viên
+      - **Targeted Tag IDs:** [REQ-010], [REQ-011]
+    * **Tester:**
+      - **Target Component file path (`target_component`):** `./sources/backend/enrollment-service/src/test/java/org/nlh4j/saas/membershiphub/enrollment/EnrollmentServiceTest.java;./sources/backend/enrollment-service/src/main/java/org/nlh4j/saas/membershiphub/enrollment/EnrollmentService.java [REQ-010], [REQ-011]`
+      - **Low-Level Technical Task Instruction:** Viết các test case cho các tính năng đăng ký học viên
+      - **Targeted Tag IDs:** [REQ-010], [REQ-011]
+    * **Reviewer:**
+      - **Target Component file path (`target_component`):** `./sources/backend/enrollment-service/src/main/java/org/nlh4j/saas/membershiphub/enrollment/EnrollmentService.java [REQ-010], [REQ-011]`
+      - **Low-Level Technical Task Instruction:** Review code cho các tính năng đăng ký học viên
+      - **Targeted Tag IDs:** [REQ-010], [REQ-011]
+
+- **DAY 7: Triển khai các tính năng quản lý thẻ hội viên**
+  - **Sub-Agent Workflow Specialization:**
+    * **Coder:**
+      - **Target Component file path (`target_component`):** `./sources/backend/card-service/src/main/java/org/nlh4j/saas/membershiphub/card/CardService.java [REQ-014], [REQ-015]`
+      - **Low-Level Technical Task Instruction:** Triển khai các tính năng hiển thị tính hợp lệ của thẻ, gia hạn thẻ
+      - **Targeted Tag IDs:** [REQ-014], [REQ-015]
+    * **Tester:**
+      - **Target Component file path (`target_component`):** `./sources/backend/card-service/src/test/java/org/nlh4j/saas/membershiphub/card/CardServiceTest.java;./sources/backend/card-service/src/main/java/org/nlh4j/saas/membershiphub/card/CardService.java [REQ-014], [REQ-015]`
+      - **Low-Level Technical Task Instruction:** Viết các test case cho các tính năng quản lý thẻ hội viên
+      - **Targeted Tag IDs:** [REQ-014], [REQ-015]
+    * **Reviewer:**
+      - **Target Component file path (`target_component`):** `./sources/backend/card-service/src/main/java/org/nlh4j/saas/membershiphub/card/CardService.java [REQ-014], [REQ-015]`
+      - **Low-Level Technical Task Instruction:** Review code cho các tính năng quản lý thẻ hội viên
+      - **Targeted Tag IDs:** [REQ-014], [REQ-015]
 
 ### Phase 4 Detailed Architectural Specification
-- **Mục tiêu Cốt lõi & Mục đích của Giai đoạn 4**: Phát triển UI responsive, i18n, SEO, tài liệu, triển khai GCP.
-- **Ma trận Bản đồ Thư mục Vật lý Mục tiêu**:  
-  - `./sources/frontend/mobile-app [REQ-020], [REQ-021], [REQ-022], [REQ-023], [REQ-024], [REQ-025], [DAT-011]`  
-  - `./sources/frontend/web-app [REQ-020], [REQ-021], [REQ-022], [REQ-023], [REQ-024], [REQ-025], [DAT-011]`  
-  - `./sources/frontend/nextjs-app`  
-- **Hợp đồng Định tuyến API và Sự kiện**  
-  - `GET /api/mobile/cards` → Response: student card info.  
-  - `GET /api/announcements` → Response: announcements list.  
-- **Xử lý ngoại lệ**  
-  - Không có ngoại lệ riêng.
+- **Phase Core Objective & Purpose:** Triển khai các tính năng thông báo, khuyến mãi, chatbot AI
+- **Target Physical Directory Matrix Map:** List all specific file paths underneath `./sources/` initialized or modified in this phase. Every single line path generated MUST be appended with its tracking Tag IDs inline.
+    *   *Documentation Gating Boundary:* Any line representing an enterprise specification, reference blueprint, relational database mapping catalog, or architecture layout MUST strictly reside under the unified root directory path: `./sources/docs/`.
+- **Database Schema DDL SQL Specification [DAT-XXX]:** Provide raw, complete, and valid DDL SQL migration statements containing explicit columns, data types, primary/foreign keys, matrix mappings, indexes, and nullability constraints applied under this phase scope. (Omit entirely if the project topology has no database or persistence layer requirements. This technical block MUST NOT be translated).
+- **API and Event Routing Contracts [REQ-XXX], [ARC-XXX]:** Document the complete technical contracts (precise endpoint paths, HTTP methods, request/response JSON payload schemas, or message broker topic configurations. Technical blocks MUST NOT be translated).
+- **Phase Localized Exception Handlers [EXC-XXX]:** Detail explicit business validation rules, error codes, and system exception handling pathways mapping strictly to the current phase scope, contextually translated into 🇻🇳 Vietnamese.
 
 #### 📅 Chronological Day-by-Day Sub-Agent Task Distribution Logs (Phase 4)
 
-- **DAY 1:** Viết tài liệu chi tiết UI, API, i18n, SEO.  
-  - **Sub-Agent Workflow Specialization:**  
-    * **Doc:**  
-      - **Target Component file path (`target_component`):** `./sources/frontend/mobile-app [REQ-020], [REQ-021], [REQ-022], [REQ-023], [REQ-024], [REQ-025], [DAT-011]`  
-      - **Low-Level Technical Task Instruction:** Viết tài liệu chi tiết, hướng dẫn sử dụng, tài liệu API, cấu hình i18n, SEO meta tags.  
-      - **Targeted Tag IDs:** [REQ-020], [REQ-021], [REQ-022], [REQ-023], [REQ-024], [REQ-025], [DAT-011]  
-- **DAY 2:** Cấu hình GCP Cloud Build, Cloud Run, Firebase Hosting.  
-  - **Sub-Agent Workflow Specialization:**  
-    * **GCP:**  
-      - **Target Component file path (`target_component`):** `./sources/frontend/mobile-app;./sources/frontend/web-app [REQ-020], [REQ-021], [REQ-022], [REQ-023], [REQ-024], [REQ-025], [DAT-011]`  
-      - **Low-Level Technical Task Instruction:** Viết cấu hình Terraform, Cloud Build, Cloud Run, Firebase Hosting, CI/CD pipeline.  
-      - **Targeted Tag IDs:** [REQ-020], [REQ-021], [REQ-022], [REQ-023], [REQ-024], [REQ-025], [DAT-011]  
+- **DAY 1: Triển khai các tính năng thông báo và khuyến mãi**
+  - **Sub-Agent Workflow Specialization:**
+    * **Coder:**
+      - **Target Component file path (`target_component`):** `./sources/backend/notification-service/src/main/java/org/nlh4j/saas/membershiphub/notification/NotificationService.java [REQ-016]`
+      - **Low-Level Technical Task Instruction:** Triển khai các tính năng kích hoạt thông báo, quản lý khuyến mãi, quản lý thông báo
+      - **Targeted Tag IDs:** [REQ-016]
+    * **Tester:**
+      - **Target Component file path (`target_component`):** `./sources/backend/notification-service/src/test/java/org/nlh4j/saas/membershiphub/notification/NotificationServiceTest.java;./sources/backend/notification-service/src/main/java/org/nlh4j/saas/membershiphub/notification/NotificationService.java [REQ-016]`
+      - **Low-Level Technical Task Instruction:** Viết các test case cho các tính năng thông báo và khuyến mãi
+      - **Targeted Tag IDs:** [REQ-016]
+    * **Reviewer:**
+      - **Target Component file path (`target_component`):** `./sources/backend/notification-service/src/main/java/org/nlh4j/saas/membershiphub/notification/NotificationService.java [REQ-016]`
+      - **Low-Level Technical Task Instruction:** Review code cho các tính năng thông báo và khuyến mãi
+      - **Targeted Tag IDs:** [REQ-016]
+
+- **DAY 2: Triển khai các tính năng chatbot AI**
+  - **Sub-Agent Workflow Specialization:**
+    * **Coder:**
+      - **Target Component file path (`target_component`):** `./sources/backend/chatbot-service/src/main/java/org/nlh4j/saas/membershiphub/chatbot/ChatbotService.java [REQ-019]`
+      - **Low-Level Technical Task Instruction:** Triển khai các tính năng tích hợp chatbot AI
+      - **Targeted Tag IDs:** [REQ-019]
+    * **Tester:**
+      - **Target Component file path (`target_component`):** `./sources/backend/chatbot-service/src/test/java/org/nlh4j/saas/membershiphub/chatbot/ChatbotServiceTest.java;./sources/backend/chatbot-service/src/main/java/org/nlh4j/saas/membershiphub/chatbot/ChatbotService.java [REQ-019]`
+      - **Low-Level Technical Task Instruction:** Viết các test case cho các tính năng chatbot AI
+      - **Targeted Tag IDs:** [REQ-019]
+    * **Reviewer:**
+      - **Target Component file path (`target_component`):** `./sources/backend/chatbot-service/src/main/java/org/nlh4j/saas/membershiphub/chatbot/ChatbotService.java [REQ-019]`
+      - **Low-Level Technical Task Instruction:** Review code cho các tính năng chatbot AI
+      - **Targeted Tag IDs:** [REQ-019]
 
 ### Phase 5 Detailed Architectural Specification
-- **Mục tiêu Cốt lõi & Mục đích của Giai đoạn 5**: Containerization, GCP deployment, GKE orchestration, bảo mật, compliance.
-- **Ma trận Bản đồ Thư mục Vật lý Mục tiêu**:  
-  - `./sources/infra/docker [NFR-001], [NFR-002], [NFR-003], [NFR-004], [NFR-005], [NFR-006], [NFR-007], [NFR-008], [NFR-009], [ARC-010]`  
-  - `./sources/infra/gcp [NFR-001], [NFR-002], [NFR-003], [NFR-004], [NFR-005], [NFR-006], [NFR-007], [NFR-008], [NFR-009], [ARC-010]`  
-  - `./sources/infra/gke [NFR-001], [NFR-002], [NFR-003], [NFR-004], [NFR-005], [NFR-006], [NFR-007], [NFR-008], [NFR-009], [ARC-010]`  
-- **Hợp đồng Định tuyến API và Sự kiện**  
-  - Không có API riêng.
+- **Phase Core Objective & Purpose:** Triển khai các tính năng báo cáo, phân tích, bản địa hóa, SEO
+- **Target Physical Directory Matrix Map:** List all specific file paths underneath `./sources/` initialized or modified in this phase. Every single line path generated MUST be appended with its tracking Tag IDs inline.
+    *   *Documentation Gating Boundary:* Any line representing an enterprise specification, reference blueprint, relational database mapping catalog, or architecture layout MUST strictly reside under the unified root directory path: `./sources/docs/`.
+- **Database Schema DDL SQL Specification [DAT-XXX]:** Provide raw, complete, and valid DDL SQL migration statements containing explicit columns, data types, primary/foreign keys, matrix mappings, indexes, and nullability constraints applied under this phase scope. (Omit entirely if the project topology has no database or persistence layer requirements. This technical block MUST NOT be translated).
+- **API and Event Routing Contracts [REQ-XXX], [ARC-XXX]:** Document the complete technical contracts (precise endpoint paths, HTTP methods, request/response JSON payload schemas, or message broker topic configurations. Technical blocks MUST NOT be translated).
+- **Phase Localized Exception Handlers [EXC-XXX]:** Detail explicit business validation rules, error codes, and system exception handling pathways mapping strictly to the current phase scope, contextually translated into 🇻🇳 Vietnamese.
 
 #### 📅 Chronological Day-by-Day Sub-Agent Task Distribution Logs (Phase 5)
 
-- **DAY 1:** Xây dựng Dockerfile multi-stage, tối ưu kích thước, push registry.  
-  - **Sub-Agent Workflow Specialization:**  
-    * **Docker:**  
-      - **Target Component file path (`target_component`):** `./sources/infra/docker [NFR-001], [NFR-002], [NFR-003], [NFR-004], [NFR-005], [NFR-006], [NFR-007], [NFR-008], [NFR-009], [ARC-010]`  
-      - **Low-Level Technical Task Instruction:** Viết Dockerfile multi-stage, giảm kích thước, build, push tới registry, test image.  
-      - **Targeted Tag IDs:** [NFR-001], [NFR-002], [NFR-003], [NFR-004], [NFR-005], [NFR-006], [NFR-007], [NFR-008], [NFR-009], [ARC-010]  
-- **DAY 2:** Xây dựng Helm charts, HPA, autoscaling, monitoring.  
-  - **Sub-Agent Workflow Specialization:**  
-    * **GKE:**  
-      - **Target Component file path (`target_component`):** `./sources/infra/gke [NFR-001], [NFR-002], [NFR-003], [NFR-004], [NFR-005], [NFR-006], [NFR-007], [NFR-008], [NFR-009], [ARC-010]`  
-      - **Low-Level Technical Task Instruction:** Viết Helm chart, cấu hình HPA, autoscaling, monitoring, logging, CI/CD.  
-      - **Targeted Tag IDs:** [NFR-001], [NFR-002], [NFR-003], [NFR-004], [NFR-005], [NFR-006], [NFR-007], [NFR-008], [NFR-009], [ARC-010]  
+- **DAY 3: Triển khai các tính năng báo cáo và phân tích**
+  - **Sub-Agent Workflow Specialization:**
+    * **Coder:**
+      - **Target Component file path (`target_component`):** `./sources/backend/report-service/src/main/java/org/nlh4j/saas/membershiphub/report/ReportService.java [REQ-024], [REQ-025]`
+      - **Low-Level Technical Task Instruction:** Triển khai các tính năng tạo báo cáo điểm danh, bảng điều khiển tóm tắt ghi danh
+      - **Targeted Tag IDs:** [REQ-024], [REQ-025]
+    * **Tester:**
+      - **Target Component file path (`target_component`):** `./sources/backend/report-service/src/test/java/org/nlh4j/saas/membershiphub/report/ReportServiceTest.java;./sources/backend/report-service/src/main/java/org/nlh4j/saas/membershiphub/report/ReportService.java [REQ-024], [REQ-025]`
+      - **Low-Level Technical Task Instruction:** Viết các test case cho các tính năng báo cáo và phân tích
+      - **Targeted Tag IDs:** [REQ-024], [REQ-025]
+    * **Reviewer:**
+      - **Target Component file path (`target_component`):** `./sources/backend/report-service/src/main/java/org/nlh4j/saas/membershiphub/report/ReportService.java [REQ-024], [REQ-025]`
+      - **Low-Level Technical Task Instruction:** Review code cho các tính năng báo cáo và phân tích
+      - **Targeted Tag IDs:** [REQ-024], [REQ-025]
 
-## 📁 6. Mã Bảo Vệ & Biện Pháp Chống Xâm Nhập
+- **DAY 4: Triển khai các tính năng bản địa hóa và SEO**
+  - **Sub-Agent Workflow Specialization:**
+    * **Coder:**
+      - **Target Component file path (`target_component`):** `./sources/backend/i18n-service/src/main/java/org/nlh4j/saas/membershiphub/i18n/I18nService.java [REQ-022], [REQ-023]`
+      - **Low-Level Technical Task Instruction:** Triển khai các tính năng phát hiện ngôn ngữ mặc định, SEO đa ngôn ngữ
+      - **Targeted Tag IDs:** [REQ-022], [REQ-023]
+    * **Tester:**
+      - **Target Component file path (`target_component`):** `./sources/backend/i18n-service/src/test/java/org/nlh4j/saas/membershiphub/i18n/I18nServiceTest.java;./sources/backend/i18n-service/src/main/java/org/nlh4j/saas/membershiphub/i18n/I18nService.java [REQ-022], [REQ-023]`
+      - **Low-Level Technical Task Instruction:** Viết các test case cho các tính năng bản địa hóa và SEO
+      - **Targeted Tag IDs:** [REQ-022], [REQ-023]
+    * **Reviewer:**
+      - **Target Component file path (`target_component`):** `./sources/backend/i18n-service/src/main/java/org/nlh4j/saas/membershiphub/i18n/I18nService.java [REQ-022], [REQ-023]`
+      - **Low-Level Technical Task Instruction:** Review code cho các tính năng bản địa hóa và SEO
+      - **Targeted Tag IDs:** [REQ-022], [REQ-023]
 
-- **SQL Injection (SQLi) Absolute Countermeasures**: Sử dụng prepared statements, parameter binding, whitelist cho các tham số sắp xếp.  
-- **Cross-Site Scripting (XSS) & Content Security Policy (CSP)**: Tự động escape output, sử dụng `Content-Security-Policy: default-src 'self'; script-src 'self';`  
-- **Multi-Tenant CORS Security Rails**: Không cho phép wildcard, chỉ cho phép origin từ danh sách whitelist, xác thực tenant ID trong header.  
-- **Zero-Leak Log Scrubbing & PII Data Masking Engines**: Sử dụng interceptor `@JsonSerialize` để mask email, phone, token trong logs, giới hạn độ dài, ghi log với mức độ `INFO` hoặc `WARN`.
+## 📁 6. UNIVERSAL ENTERPRISE SECURITY CODES & INJECTION COUNTERMEASURES [NFR-XXX]
+- **SQL Injection (SQLi) Absolute Countermeasures:** Rule parameters for prepared statements, positional query parameters, and dynamic sorting input Whitelists.
+- **Cross-Site Scripting (XSS) & Content Security Policy (CSP):** Layout standards for automated context sanitization, JSX auto-escaping, and dynamic injection of strict CSP headers (`unsafe-inline` restriction).
+- **Multi-Tenant CORS Security Rails:** Configurations for origin wildcard prohibitions and dynamic tenant origin database metrics validation.
+- **Zero-Leak Log Scrubbing & PII Data Masking Engines:** Rules for automated masking interceptors (`@JsonSerialize`) and log scrubbing thresholds.
 
-## 📁 7. Quy Định Tuân Thủ Di Động & SEO
+## 📁 7. HYBRID MOBILE COMPLIANCE RAIL RULES & INTERNATIONALIZED SEO MECHANISMS
+- **Capacitor Mobile Hybrid Compliance Rails:** [IF Mobile active] Rules for dynamic client-side fetching, absolute URL addressing, hydration safeguards, native storage abstractions (`@capacitor/preferences`), and hardware back-button interception.
+- **Internationalization (i18n) & Dynamic SEO Injection:** Edge-layer locale recognition middleware architectures, hreflang dynamic hypermedia control injection, and search crawler robots indexing limits.
 
-- **Capacitor Mobile Hybrid Compliance Rails**: Sử dụng `@capacitor/preferences` cho lưu trữ, intercept back button, offline caching, dynamic URL handling.  
-- **Internationalization (i18n) & Dynamic SEO Injection**: Middleware nhận locale từ header hoặc URL, inject `<html lang='vi'>`, `<link rel='alternate' hreflang='en' href='...'>`, robots.txt, sitemap.xml.
+## 📁 8. PIPELINE AUTOMATED DAILY SESSION GIT BRANCH FLOW
+- **Daily Workspace Forking Isolation:** Programmatic forking controls for branch `features/development-phase-X-day-Y` (`X` is the number of phase, from 1 to N, where N <= 5; `Y` is the day number in phase, it will start from 1 for each phase).
+- **Validation Guard Pipeline Gates:** Execution rules for compilation verification, automated code coverage goals (`>= 85%`), and context summary serialization logs.
 
-## 📁 8. Pipeline Automated Daily Session Git Branch Flow
-
-- **Daily Workspace Forking Isolation**: Mỗi ngày tạo branch `features/development-phase-X-day-Y`.  
-- **Validation Guard Pipeline Gates**: Kiểm tra compile, coverage ≥ 85%, lint, unit test, integration test, build Docker image, push, deploy to GKE, run smoke test.
-
-[TRACEABILITY MATRIX ENFORCEMENT: 100% COVERAGE VALIDATED. TOTAL UNIQUE REQ TAGS MAPPED: 24, TOTAL ARC TAGS: 10, TOTAL EXC TAGS: 5, TOTAL DAT TAGS: 11, TOTAL NFR TAGS: 9. ZERO UNASSIGNED CODES FOUND.]
+### 🛑 MATRIX COVERAGE CHECK MANDATE
+`[TRACEABILITY MATRIX ENFORCEMENT: 100% COVERAGE VALIDATED. TOTAL UNIQUE REQ TAGS MAPPED: 25, TOTAL ARC TAGS: 10, TOTAL EXC TAGS: 5, TOTAL DAT TAGS: 11, TOTAL NFR TAGS: 9. ZERO UNASSIGNED CODES FOUND.]`
