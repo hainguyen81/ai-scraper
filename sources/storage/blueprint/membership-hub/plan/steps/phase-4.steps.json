@@ -26,7 +26,8 @@
                     ],
                     "components": [
                         "./sources/frontend/mobile-app/README.md",
-                        "./sources/frontend/web-app/README.md"
+                        "./sources/frontend/web-app/README.md",
+                        ".ai/.plan/.context/phase-4.context.blueprint.md"
                     ]
                 }
             ]
@@ -50,8 +51,8 @@
                         "[DAT-011]"
                     ],
                     "components": [
-                        "./sources/frontend/mobile-app/Dockerfile",
-                        "./sources/frontend/web-app/Dockerfile"
+                        "./sources/frontend/mobile-app/cloudbuild.yaml",
+                        "./sources/frontend/web-app/cloudbuild.yaml"
                     ]
                 }
             ]

@@ -24,11 +24,9 @@
                         "[DAT-008]"
                     ],
                     "components": [
-                        "./sources/backend/notification-service/src/main/java/com/membershiphub/notification/NotificationController.java",
-                        "./sources/backend/notification-service/src/main/java/com/membershiphub/notification/NotificationService.java",
-                        "./sources/backend/notification-service/src/main/java/com/membershiphub/notification/NotificationRepository.java",
-                        "./sources/backend/notification-service/src/main/java/com/membershiphub/notification/FirebaseIntegration.java",
-                        "./sources/backend/notification-service/src/main/java/com/membershiphub/notification/ZaloIntegration.java"
+                        "./sources/backend/notification-service/src/main/java/org/nlh4j/membershiphub/controller/NotificationController.java",
+                        "./sources/backend/notification-service/src/main/java/org/nlh4j/membershiphub/service/NotificationService.java",
+                        "./sources/backend/notification-service/src/main/java/org/nlh4j/membershiphub/repository/NotificationRepository.java"
                     ]
                 },
                 {
@@ -40,9 +38,9 @@
                         "[DAT-009]"
                     ],
                     "components": [
-                        "./sources/backend/promotion-service/src/main/java/com/membershiphub/promotion/PromotionController.java",
-                        "./sources/backend/promotion-service/src/main/java/com/membershiphub/promotion/PromotionService.java",
-                        "./sources/backend/promotion-service/src/main/java/com/membershiphub/promotion/PromotionRepository.java"
+                        "./sources/backend/promotion-service/src/main/java/org/nlh4j/membershiphub/controller/PromotionController.java",
+                        "./sources/backend/promotion-service/src/main/java/org/nlh4j/membershiphub/service/PromotionService.java",
+                        "./sources/backend/promotion-service/src/main/java/org/nlh4j/membershiphub/repository/PromotionRepository.java"
                     ]
                 },
                 {
@@ -54,9 +52,9 @@
                         "[DAT-010]"
                     ],
                     "components": [
-                        "./sources/backend/announcement-service/src/main/java/com/membershiphub/announcement/AnnouncementController.java",
-                        "./sources/backend/announcement-service/src/main/java/com/membershiphub/announcement/AnnouncementService.java",
-                        "./sources/backend/announcement-service/src/main/java/com/membershiphub/announcement/AnnouncementRepository.java"
+                        "./sources/backend/announcement-service/src/main/java/org/nlh4j/membershiphub/controller/AnnouncementController.java",
+                        "./sources/backend/announcement-service/src/main/java/org/nlh4j/membershiphub/service/AnnouncementService.java",
+                        "./sources/backend/announcement-service/src/main/java/org/nlh4j/membershiphub/repository/AnnouncementRepository.java"
                     ]
                 },
                 {
@@ -67,10 +65,9 @@
                         "[REQ-019]"
                     ],
                     "components": [
-                        "./sources/backend/chatbot-service/src/main/java/com/membershiphub/chatbot/ChatbotController.java",
-                        "./sources/backend/chatbot-service/src/main/java/com/membershiphub/chatbot/ChatbotService.java",
-                        "./sources/backend/chatbot-service/src/main/java/com/membershiphub/chatbot/ChatbotRepository.java",
-                        "./sources/backend/chatbot-service/src/main/java/com/membershiphub/chatbot/AIIntegration.java"
+                        "./sources/backend/chatbot-service/src/main/java/org/nlh4j/membershiphub/controller/ChatbotController.java",
+                        "./sources/backend/chatbot-service/src/main/java/org/nlh4j/membershiphub/service/ChatbotService.java",
+                        "./sources/backend/chatbot-service/src/main/java/org/nlh4j/membershiphub/repository/ChatbotRepository.java"
                     ]
                 },
                 {
@@ -87,11 +84,9 @@
                         "[DAT-011]"
                     ],
                     "components": [
-                        "./sources/backend/mobile-service/src/main/java/com/membershiphub/mobile/MobileController.java",
-                        "./sources/backend/mobile-service/src/main/java/com/membershiphub/mobile/MobileService.java",
-                        "./sources/backend/mobile-service/src/main/java/com/membershiphub/mobile/MobileRepository.java",
-                        "./sources/backend/mobile-service/src/main/java/com/membershiphub/mobile/I18nConfig.java",
-                        "./sources/backend/mobile-service/src/main/java/com/membershiphub/mobile/SEOConfig.java"
+                        "./sources/backend/mobile-service/src/main/java/org/nlh4j/membershiphub/controller/MobileController.java",
+                        "./sources/backend/mobile-service/src/main/java/org/nlh4j/membershiphub/service/MobileService.java",
+                        "./sources/backend/mobile-service/src/main/java/org/nlh4j/membershiphub/repository/MobileRepository.java"
                     ]
                 }
             ]
@@ -115,7 +110,7 @@
                         "[DAT-011]"
                     ],
                     "components": [
-                        "./sources/backend/mobile-service/src/test/java/com/membershiphub/mobile/MobileServiceTest.java"
+                        "./sources/backend/mobile-service/src/main/java/org/nlh4j/membershiphub/controller/MobileController.java;./sources/backend/mobile-service/src/test/java/org/nlh4j/membershiphub/controller/MobileControllerTest.java"
                     ]
                 }
             ]
@@ -139,11 +134,9 @@
                         "[EXC-003]"
                     ],
                     "components": [
-                        "./sources/backend/notification-service/src/main/java/com/membershiphub/notification/NotificationController.java",
-                        "./sources/backend/notification-service/src/main/java/com/membershiphub/notification/NotificationService.java",
-                        "./sources/backend/notification-service/src/main/java/com/membershiphub/notification/NotificationRepository.java",
-                        "./sources/backend/notification-service/src/main/java/com/membershiphub/notification/FirebaseIntegration.java",
-                        "./sources/backend/notification-service/src/main/java/com/membershiphub/notification/ZaloIntegration.java"
+                        "./sources/backend/notification-service/src/main/java/org/nlh4j/membershiphub/controller/NotificationController.java",
+                        "./sources/backend/notification-service/src/main/java/org/nlh4j/membershiphub/service/NotificationService.java",
+                        "./sources/backend/notification-service/src/main/java/org/nlh4j/membershiphub/repository/NotificationRepository.java"
                     ]
                 }
             ]

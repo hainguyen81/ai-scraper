@@ -22,10 +22,10 @@
                         "[DAT-003]"
                     ],
                     "components": [
-                        "./sources/backend/center-service/src/main/java/com/membershiphub/center/CenterController.java",
-                        "./sources/backend/center-service/src/main/java/com/membershiphub/center/CenterService.java",
-                        "./sources/backend/center-service/src/main/java/com/membershiphub/center/CenterRepository.java",
-                        "./sources/backend/center-service/src/test/java/com/membershiphub/center/CenterServiceTest.java"
+                        "./sources/backend/center-service/src/main/java/org/nlh4j/membershiphub/controller/CenterController.java",
+                        "./sources/backend/center-service/src/main/java/org/nlh4j/membershiphub/service/CenterService.java",
+                        "./sources/backend/center-service/src/main/java/org/nlh4j/membershiphub/repository/CenterRepository.java",
+                        "./sources/backend/center-service/src/test/java/org/nlh4j/membershiphub/service/CenterServiceTest.java"
                     ]
                 }
             ]
@@ -46,10 +46,10 @@
                         "[DAT-004]"
                     ],
                     "components": [
-                        "./sources/backend/course-service/src/main/java/com/membershiphub/course/CourseController.java",
-                        "./sources/backend/course-service/src/main/java/com/membershiphub/course/CourseService.java",
-                        "./sources/backend/course-service/src/main/java/com/membershiphub/course/CourseRepository.java",
-                        "./sources/backend/course-service/src/test/java/com/membershiphub/course/CourseServiceTest.java"
+                        "./sources/backend/course-service/src/main/java/org/nlh4j/membershiphub/controller/CourseController.java",
+                        "./sources/backend/course-service/src/main/java/org/nlh4j/membershiphub/service/CourseService.java",
+                        "./sources/backend/course-service/src/main/java/org/nlh4j/membershiphub/repository/CourseRepository.java",
+                        "./sources/backend/course-service/src/test/java/org/nlh4j/membershiphub/service/CourseServiceTest.java"
                     ]
                 }
             ]
@@ -69,10 +69,10 @@
                         "[DAT-005]"
                     ],
                     "components": [
-                        "./sources/backend/enrollment-service/src/main/java/com/membershiphub/enrollment/EnrollmentController.java",
-                        "./sources/backend/enrollment-service/src/main/java/com/membershiphub/enrollment/EnrollmentService.java",
-                        "./sources/backend/enrollment-service/src/main/java/com/membershiphub/enrollment/EnrollmentRepository.java",
-                        "./sources/backend/enrollment-service/src/test/java/com/membershiphub/enrollment/EnrollmentServiceTest.java"
+                        "./sources/backend/enrollment-service/src/main/java/org/nlh4j/membershiphub/controller/EnrollmentController.java",
+                        "./sources/backend/enrollment-service/src/main/java/org/nlh4j/membershiphub/service/EnrollmentService.java",
+                        "./sources/backend/enrollment-service/src/main/java/org/nlh4j/membershiphub/repository/EnrollmentRepository.java",
+                        "./sources/backend/enrollment-service/src/test/java/org/nlh4j/membershiphub/service/EnrollmentServiceTest.java"
                     ]
                 },
                 {
@@ -87,7 +87,8 @@
                         "[EXC-002]"
                     ],
                     "components": [
-                        "./sources/backend/attendance-service/src/test/java/com/membershiphub/attendance/AttendanceServiceTest.java"
+                        "./sources/backend/attendance-service/src/main/java/org/nlh4j/membershiphub/controller/AttendanceController.java",
+                        "./sources/backend/attendance-service/src/test/java/org/nlh4j/membershiphub/service/AttendanceServiceTest.java"
                     ]
                 },
                 {
@@ -100,8 +101,8 @@
                         "[DAT-005]"
                     ],
                     "components": [
-                        "./sources/backend/enrollment-service/src/main/java/com/membershiphub/enrollment/EnrollmentController.java",
-                        "./sources/backend/enrollment-service/src/main/java/com/membershiphub/enrollment/EnrollmentService.java"
+                        "./sources/backend/enrollment-service/src/main/java/org/nlh4j/membershiphub/controller/EnrollmentController.java",
+                        "./sources/backend/enrollment-service/src/main/java/org/nlh4j/membershiphub/service/EnrollmentService.java"
                     ]
                 }
             ]
