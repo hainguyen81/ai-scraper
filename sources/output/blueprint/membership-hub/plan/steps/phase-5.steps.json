@@ -15,7 +15,18 @@
                     "id": "D1_ST1",
                     "agent": "Docker",
                     "desc": "Docker Agent: Viết Dockerfile đa giai đoạn, giảm kích thước, build, push tới registry, kiểm thử hình ảnh",
-                    "targeted_tags": [],
+                    "targeted_tags": [
+                        "[NFR-001]",
+                        "[NFR-002]",
+                        "[NFR-003]",
+                        "[NFR-004]",
+                        "[NFR-005]",
+                        "[NFR-006]",
+                        "[NFR-007]",
+                        "[NFR-008]",
+                        "[NFR-009]",
+                        "[ARC-010]"
+                    ],
                     "components": [
                         "./sources/infra/docker/Dockerfile"
                     ]
@@ -24,7 +35,18 @@
                     "id": "D1_ST2",
                     "agent": "Docker",
                     "desc": "Docker Agent: Kiểm thử và xác nhận image, thực hiện scan bảo mật, chuẩn hóa metadata",
-                    "targeted_tags": [],
+                    "targeted_tags": [
+                        "[NFR-001]",
+                        "[NFR-002]",
+                        "[NFR-003]",
+                        "[NFR-004]",
+                        "[NFR-005]",
+                        "[NFR-006]",
+                        "[NFR-007]",
+                        "[NFR-008]",
+                        "[NFR-009]",
+                        "[ARC-010]"
+                    ],
                     "components": [
                         "./sources/infra/docker/Dockerfile"
                     ]
@@ -40,20 +62,48 @@
                     "id": "D2_ST1",
                     "agent": "Gke",
                     "desc": "Gke Agent: Viết Helm chart, cấu hình HPA, autoscaling, monitoring, logging, CI/CD",
-                    "targeted_tags": [],
+                    "targeted_tags": [
+                        "[NFR-001]",
+                        "[NFR-002]",
+                        "[NFR-003]",
+                        "[NFR-004]",
+                        "[NFR-005]",
+                        "[NFR-006]",
+                        "[NFR-007]",
+                        "[NFR-008]",
+                        "[NFR-009]",
+                        "[ARC-010]"
+                    ],
                     "components": [
                         "./sources/infra/gke/Chart.yaml",
-                        "./sources/infra/gke/values.yaml"
+                        "./sources/infra/gke/values.yaml",
+                        "./sources/infra/gke/templates/deployment.yaml",
+                        "./sources/infra/gke/templates/service.yaml",
+                        "./sources/infra/gke/templates/hpa.yaml"
                     ]
                 },
                 {
                     "id": "D2_ST2",
                     "agent": "Gke",
                     "desc": "Gke Agent: Kiểm thử triển khai, xác nhận scaling, monitoring, logging, bảo mật",
-                    "targeted_tags": [],
+                    "targeted_tags": [
+                        "[NFR-001]",
+                        "[NFR-002]",
+                        "[NFR-003]",
+                        "[NFR-004]",
+                        "[NFR-005]",
+                        "[NFR-006]",
+                        "[NFR-007]",
+                        "[NFR-008]",
+                        "[NFR-009]",
+                        "[ARC-010]"
+                    ],
                     "components": [
                         "./sources/infra/gke/Chart.yaml",
-                        "./sources/infra/gke/values.yaml"
+                        "./sources/infra/gke/values.yaml",
+                        "./sources/infra/gke/templates/deployment.yaml",
+                        "./sources/infra/gke/templates/service.yaml",
+                        "./sources/infra/gke/templates/hpa.yaml"
                     ]
                 }
             ]

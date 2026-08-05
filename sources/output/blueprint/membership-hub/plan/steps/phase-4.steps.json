@@ -15,7 +15,15 @@
                     "id": "D1_ST1",
                     "agent": "Doc",
                     "desc": "Doc Agent: Tạo tài liệu chi tiết UI, API, i18n, SEO",
-                    "targeted_tags": [],
+                    "targeted_tags": [
+                        "[REQ-020]",
+                        "[REQ-021]",
+                        "[REQ-022]",
+                        "[REQ-023]",
+                        "[REQ-024]",
+                        "[REQ-025]",
+                        "[DAT-011]"
+                    ],
                     "components": [
                         "./sources/frontend/mobile-app/README.md",
                         "./sources/frontend/web-app/README.md"
@@ -32,7 +40,15 @@
                     "id": "D2_ST1",
                     "agent": "Gcp",
                     "desc": "Gcp Agent: Cấu hình và triển khai dịch vụ trên GCP",
-                    "targeted_tags": [],
+                    "targeted_tags": [
+                        "[REQ-020]",
+                        "[REQ-021]",
+                        "[REQ-022]",
+                        "[REQ-023]",
+                        "[REQ-024]",
+                        "[REQ-025]",
+                        "[DAT-011]"
+                    ],
                     "components": [
                         "./sources/frontend/mobile-app/Dockerfile",
                         "./sources/frontend/web-app/Dockerfile"

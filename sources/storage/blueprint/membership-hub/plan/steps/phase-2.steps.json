@@ -15,7 +15,12 @@
                     "id": "D1_ST1",
                     "agent": "Coder",
                     "desc": "Coder Agent: Xây dựng API CRUD trung tâm, schema Centers, kiểm thử đơn vị",
-                    "targeted_tags": [],
+                    "targeted_tags": [
+                        "[REQ-004]",
+                        "[REQ-005]",
+                        "[REQ-006]",
+                        "[DAT-003]"
+                    ],
                     "components": [
                         "./sources/backend/center-service/src/main/java/com/membershiphub/center/CenterController.java",
                         "./sources/backend/center-service/src/main/java/com/membershiphub/center/CenterService.java",
@@ -34,7 +39,12 @@
                     "id": "D2_ST1",
                     "agent": "Coder",
                     "desc": "Coder Agent: Xây dựng API CRUD khóa học, schema Courses, kiểm thử đơn vị",
-                    "targeted_tags": [],
+                    "targeted_tags": [
+                        "[REQ-007]",
+                        "[REQ-008]",
+                        "[REQ-009]",
+                        "[DAT-004]"
+                    ],
                     "components": [
                         "./sources/backend/course-service/src/main/java/com/membershiphub/course/CourseController.java",
                         "./sources/backend/course-service/src/main/java/com/membershiphub/course/CourseService.java",
@@ -53,7 +63,11 @@
                     "id": "D3_ST1",
                     "agent": "Coder",
                     "desc": "Coder Agent: Xây dựng API ghi danh, attendance, schema Enrollments & Attendance, exception handling, kiểm thử đơn vị",
-                    "targeted_tags": [],
+                    "targeted_tags": [
+                        "[REQ-010]",
+                        "[REQ-011]",
+                        "[DAT-005]"
+                    ],
                     "components": [
                         "./sources/backend/enrollment-service/src/main/java/com/membershiphub/enrollment/EnrollmentController.java",
                         "./sources/backend/enrollment-service/src/main/java/com/membershiphub/enrollment/EnrollmentService.java",
@@ -65,7 +79,13 @@
                     "id": "D3_ST2",
                     "agent": "Tester",
                     "desc": "Tester Agent: Viết test integration cho attendance, kiểm tra idempotency, duplicate handling",
-                    "targeted_tags": [],
+                    "targeted_tags": [
+                        "[REQ-012]",
+                        "[REQ-013]",
+                        "[DAT-006]",
+                        "[EXC-001]",
+                        "[EXC-002]"
+                    ],
                     "components": [
                         "./sources/backend/attendance-service/src/test/java/com/membershiphub/attendance/AttendanceServiceTest.java"
                     ]
@@ -74,11 +94,14 @@
                     "id": "D3_ST3",
                     "agent": "Reviewer",
                     "desc": "Reviewer Agent: Đánh giá code quality, exception handling, performance",
-                    "targeted_tags": [],
+                    "targeted_tags": [
+                        "[REQ-010]",
+                        "[REQ-011]",
+                        "[DAT-005]"
+                    ],
                     "components": [
                         "./sources/backend/enrollment-service/src/main/java/com/membershiphub/enrollment/EnrollmentController.java",
-                        "./sources/backend/enrollment-service/src/main/java/com/membershiphub/enrollment/EnrollmentService.java",
-                        "./sources/backend/enrollment-service/src/main/java/com/membershiphub/enrollment/EnrollmentRepository.java"
+                        "./sources/backend/enrollment-service/src/main/java/com/membershiphub/enrollment/EnrollmentService.java"
                     ]
                 }
             ]

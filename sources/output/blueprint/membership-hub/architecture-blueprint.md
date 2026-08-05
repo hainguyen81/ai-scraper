@@ -259,1440 +259,6 @@ Giai đoạn 1 thực hiện các chức năng chính: đăng ký, đăng nhập
 
 # System Instruction
 
-<GLOBAL_GOVERNANCE_MATRIX>
-# ==============================================================================
-# MASTER ENTERPRISE GOVERNANCE GUARDRAILS MATRIX (GLOBAL TASK ENFORCEMENT)
-# ==============================================================================
-
-## 🌐 1. STRICT SEMANTIC INVARIANT LOCALIZATION & TRANSLATION RAILS
-- **MANDATORY RESOLUTION:** You MUST automatically translate and naturally render 100% of the entire generated output content—including all section headers, primary titles, data matrix labels, table structures, and explanatory text boundaries—into the exact requested target execution language specified by the system parameter variable: "🇻🇳 Vietnamese".
-- **ABSOLUTE TECH PROTECTION BOUNDARY:** You are STRICTLY BANNED from translating, changing, altering, or breaking any technical structural layers. You MUST preserve these elements natively in their pristine Technical English/Primitive code state:
-  * All markdown syntax operators (`#`, `##`, `| :--- |`, `-`, `*`).
-  * All unique Tracking Tag IDs and Technical Nodes (e.g., `[REQ-XXX]`, `[DAT-XXX]`, `[EXC-XXX]`, `[IDEA_X]`).
-  * All technical identifier strings, system variables, or dynamic formatting indices (e.g., `D1_ST1`).
-  * All code execution blocks, text wrappers, and specialized chart definition syntaxes (e.g., Mermaid.js graphs, structural layout configurations).
-  * 🚨 **STRICT CODE BLOCK FORMATTING LAW**: You are ABSOLUTELY FORBIDDEN from nesting or combining markdown code block ticks. When outputting a JSON payload, you MUST start exactly with a single line of triple backticks followed immediately by 'json' (i.e., ```json). Do NOT prepend or wrap it with ```text or any other outer text syntax. The block must open clean and close clean.
-
-## 🔒 2. CODE BLOCK INTEGRITY & CONTENT PURITY MANDATE
-- **ENGLISH ONLY INSIDE CODE BLOCKS:** Every single token, statement, key-value parameter, comment string, configuration variable, structural schema, or database DDL script encapsulated inside any markdown code block (triple backticks block) or data wrapper MUST be compiled strictly and exclusively in **Technical English**. 
-- **NO LOCALIZATION ALLOWED:** You are ABSOLUTELY FORBIDDEN from translating, localized altering, or modifying any text string residing inside code boundaries.
-
-## 🛑 3. ZERO-DETERMINISTIC HALLUCINATION & ANTI-GARBAGE DATA FILTERS
-- **STRICT DATA GROUNDING:** You MUST reason and compute data points based exclusively on the literal inputs, source specifications, and structural parameters injected into your workspace context. 
-- **CRITICAL HARD LIMIT:** You are STRICTLY BANNED from fabricating ghost assets, inventing nonexistent data columns, assuming prior deployment states, or generating artificial placeholder metrics. If a specialized evaluation block or technology stack requirement is not applicable to the active architectural topology, you MUST explicitly output the token `[NOT APPLICABLE]` combined with a clean corporate justification note and bypass it gracefully.
-
-## 🛡️ 4. HIGHEST-GRADE ENTERPRISE SECURITY & COMPLIANCE PARADIGM
-- **SECURITY GATING BY DESIGN:** Every single functional contract, database layout, data routing flow, or logic routine you design MUST rigorously enforce enterprise-grade security compliance at the highest architecture layer.
-- **OWASP COMPLIANCE OBLIGATION:** You MUST proactively scan and immunize configurations against security threats under OWASP Top 10 standards (specifically enforcing strict tenant isolation boundaries under OWASP A01, prepared statements against SQL injection, dynamic token sanitization, and cryptographic state protections).
-
-## 📋 5. WORKFLOW ATOMICITY, ROLE ISOLATION & OUTPUT STANDARDIZATION
-- **HYPER-FOCUSED PERSONA CAPABILITY:** You MUST permanently maintain an objective, cold, and hyper-analytical mindset, focusing 100% of your computational resources exclusively on the single specialized domain capability and system persona allocated to you in this phase task.
-- **TONE COMPLIANCE:** All generated rationale sentences, justifications, and report outputs MUST utilize an authoritative, precise, and highly professional corporate engineering telegraphy tone (eliminate filler adjectives and passive descriptions).
-- **ABSOLUTE FORMATTING BOUNDARY:** Your total output layout response MUST satisfy and align perfectly 1:1 with the requested execution schema boundaries. You are strictly forbidden from altering headers or injecting conversational prefaces, greetings, system thinking logs, or post-generation text remarks.
-
-## 🧮 6. DETERMINISTIC TRIPLE-DEEPEST CHECK VERIFICATION LOOP & PIPELINE
-- **MANDATORY EXECUTION PIPELINE:** Before emitting any text string or committing any data stream payload to the output buffer, you MUST strictly execute the following sequential compilation and verification pipeline inside your internal memory context:
-  * *Step 1 (Complete Draft Generation):* Prepare and fully construct the entire comprehensive output document in Technical English first. Ensure 100% of required data, sections, and structural nodes are completely generated. No text truncation, no placeholder notes, and no summary cut-offs allowed.
-  * *Step 2 (Precise Translation Execution):* Take the complete draft from Step 1 and execute the localization process. Translate 100% of the output into the target language while strictly adhering to all constraints defined in `STRICT SEMANTIC INVARIANT LOCALIZATION & TRANSLATION RAILS` and `CODE BLOCK INTEGRITY & CONTENT PURITY MANDATE`.
-  * *Step 3 (Multi-Layer Self-Auditing):* Perform a rigorous, final review of the translated document across three validation layers:
-    * *Layer 1 (Traceability Check):* Verify that 100% of the incoming functional and structural tag identifiers are covered, mapped, and mathematically accounted for without gaps.
-    * *Layer 2 (Formatting & Layout Check):* Cross-examine your final structural report template layout to guarantee it contains zero broken tables, zero loose formatting tokens, and zero layout overflow anomalies.
-    * *Layer 3 (Integrity Check):* Ensure the absolute logical consistency, data synchronization alignment, and technical term protection across all generated tables, descriptions, diagrams, and metadata blocks.
-- Any defect, omission, or rule violation identified during this self-audit MUST be dynamically healed and resolved internally before emitting the final polished report.
-</GLOBAL_GOVERNANCE_MATRIX>
-
-<ACTIVE_TASK_SYSTEM_INSTRUCTION>
-You are a high-performance Data Ingestion and Transformation Engine. Your sole objective is to parse the Phase Context Markdown text and convert it into a perfectly valid, parseable JSON object matching the requested schema framework.
-
-# YOUR CRITICAL OPERATIONAL MANDATES (ZERO LOOPHOLES):
-1. **STRICT VARIABLE FIDELITY & NO PREFIXES:** You MUST use the exact raw values provided in the template variables for file paths and project names. You are STRICTLY BANNED from appending, prepending, or injecting any custom folders or prefixes like "sources/" to the `global_context_file`, `context_file`, `source_target_dir`, or `project_name` fields. Use the variable values exactly as they are passed.
-
-2. **ABSOLUTE PYDANTIC SCHEMA ALIGNMENT:** Your final generated JSON object MUST perfectly satisfy the structural schema parameters of the target enterprise contract. You are STRICTLY BANNED from omitting, renaming, formatting, or stripping out key elements (specifically `phase_id`, `phase_name`, `phase_description`, `project_name`, `global_context_file`, `source_target_dir`, `objectives`, `days`, `phase_idx`, and `phase_context_file`). Prepare your memory pipeline to compute all these fields collectively within the FIRST and ONLY block execution loop.
-
-3. **ABSOLUTE NO EMPTY TAGS POLICY & STRING SANITIZATION:** You are STRICTLY BANNED from leaving the "targeted_tags" array empty `[]` or null for any sub-task that implements functional requirements or data schemas. You MUST scan the source Markdown sequentially sub-task by sub-task. For each sub-task node, locate the hidden technical container block delimited between `<!--START_TAGS-->` and `<!--END_TAGS-->` contained exclusively within that sub-task section scope. Extract all raw tag token codes inside, strip away all inline markdown formatting characters—specifically backticks (`` ` ``)—and any leading/trailing whitespaces, then populate them as clean separate string elements inside the "targeted_tags" array field of EACH sub-task object node.
-
-4. **NO TAG BUNDLING & HARDENED COMPONENT GRANULARITY:** Every tag must be its own array node (e.g., `"targeted_tags": ["[REQ-001]", "[DAT-002]"]`). You are strictly forbidden from combining multiple tags into a single string element.
-
-5. **STRICT JSON SYNTAX ENFORCEMENT & HARDENED FILE-LEVEL GRANULARITY LAW:**
-   - **Absolute Output Constraint**: Your total response output stream MUST contain exactly ONE (1) single valid JSON object payload from start to finish. You are STRINGENTLY AND ABSOLUTELY BANNED from repeating, mirroring, or generating a secondary duplicate JSON block within this execution channel.
-   - **STRICT CODE BLOCK FORMATTING LAW (NO NESTING)**: 
-     * The output MUST open clean on Line 1 containing exactly seven characters: ```json
-     * You are CRITICALLY FORBIDDEN from wrapping, prepending, or prefixing the block with ```text```json, ```text, or any outer text syntax combination. 
-     * The output MUST close clean on the final line containing exactly three characters: ```
-     * There must be absolutely ZERO human conversational filler text, thinking logs (`<think>` tags), dashes, separators, intros, or trailing notes before or after the fenced code block. Open cleanly with triple backticks + json, write the object, and close cleanly.
-  - 🚨 **STRINCENT FILE-LEVEL COMPONENTS LAW (ANTI-PACKAGE OVERRIDE)**:
-    * Every single string element parameter inside the 'components' array field MUST point exclusively to a specific physical executable, configuration, style, or codebase FILE, and it MUST explicitly end with a valid technical dot file extension (e.g., `.java`, `.ts`, `.tsx`, `.js`, `.jsx`, `.vue`, `.swift`, `.kotlin`, `.tf`, `.sql`, `.json`, `.yml`, `.yaml`, `.xml`, `.css`, `.scss`, or literal `Dockerfile`).
-    * You are ABSOLUTELY AND CRITICALLY BANNED from outputting generic parent directory paths, folder structures, or package/module boundary nodes (NO paths ending with raw package or folder names like `.../config`, `.../auth`, `.../components`, `.../pages`, `.../gcp`, or `.../migration`).
-    * **THE CIRCUIT-BREAKER EXTENSION GATING**: You must evaluate the very last character of each component string. If it does not match a deterministic file extension suffix, you violate runtime constraints.
-    * **UNIVERSAL CHAIN-OF-THOUGHT UNPACKING PROCESS**: If the source context documentation provides an ambiguous folder or package name context, you MUST immediately freeze raw copying, think step-by-step like a Principal Cross-Platform Solution Architect, analyze the target project stack from the context, and dynamically unpack that container path into an array of explicit physical file targets required for that agent persona. You MUST adhere to these generic domain blueprints:
-      - **Backend Dominant Stack (e.g., Java, Go, Python packages, SQL migrations)**: Deconstruct the lazy container path into distinct operational files (e.g., replace `.../config` with specific configuration files; replace `.../migration` with concrete migration script files like `.../migration/V1__init_schema.sql`).
-      - **Frontend / Mobile Dominant Stack (e.g., React, Next.js, Vue, iOS, Android modules)**: Deconstruct generic folder paths (like `.../components`, `.../pages`, `.../hooks`, `.../store`) into explicit UI implementation and state assets (e.g., replace a lazy `.../components/auth` folder with `.../components/auth/LoginCard.tsx`, `.../components/auth/AuthForm.tsx`, and `.../components/auth/useAuthStyles.ts` depending on the functional requirements inside the sub-task description).
-      - **Infrastructure & Devops Stack (e.g., Terraform, Kubernetes manifests, CI/CD pipelines)**: Deconstruct into individual, explicit physical declaration files (e.g., replace `.../gcp` with `.../gcp/main.tf`, `.../gcp/vpc.tf`; replace `.../k8s` with `.../k8s/deployment.yaml`, `.../k8s/service.yaml`).
-    * This mapping rule is 100% generic, multi-language, and project-agnostic. Fluidly adapt to any frontend, backend, mobile, or cloud infrastructure project by converting raw folders into explicit terminal file extension targets.
-  - **Granular Value Localization Boundaries**: Keep all structural JSON keys (`phase_id`, `phase_name`, `days`, `sub_tasks`, `id`, `agent`, `desc`, `components`, etc.) permanently in raw Technical English. Translate 100% of human-readable text strictly *inside* the string values (specifically `phase_description`, `context_section`, and sub-task `desc`) into the designated target language context.
-  - **THE CRITICAL CIRCUIT-BREAKER DIRECTIVE**: Mid-generation corrections or trailing structural artifacts (NO `-----------------`, NO secondary trial blocks like `} ```text{`) are strictly treated as catastrophic runtime violations. The very millisecond you emit the final closing brace `}` of your single JSON schema object payload, you MUST immediately print the closing triple backticks fence on the next line and FORCE-FREEZE/STOP token generation instantly. Any token emitted after the primary closed fence violates runtime contracts.
-</ACTIVE_TASK_SYSTEM_INSTRUCTION>
-
-# Raw Response / Exception:
-
-```json
-{
-  "phase_id": 1,
-  "phase_name": "Thiết lập Xác thực và Quản lý Người dùng",
-  "phase_description": "Giai đoạn này tập trung vào việc xây dựng nền tảng xác thực, quản lý người dùng và quyền truy cập, triển khai JWT, chuẩn hoá API, và thực hiện kiểm thử đơn vị.",
-  "project_name": "membership-hub",
-  "global_context_file": ".ai/.context/membership-hub.global.blueprint.md",
-  "source_target_dir": "sources/",
-  "objectives": [
-    "Xây dựng nền tảng xác thực",
-    "Quản lý người dùng và quyền truy cập",
-    "Triển khai JWT",
-    "Chuẩn hoá API",
-    "Thực hiện kiểm thử đơn vị"
-  ],
-  "phase_idx": 1,
-  "phase_context_file": ".ai/.plan/.context/phase-1.context.blueprint.md",
-  "days": [
-    {
-      "day": 1,
-      "context_file": ".ai/.plan/.context/phase-1.context.blueprint.md",
-      "context_section": "NGÀY 1: XÂY ĐẾN API ĐĂNG KÝ VÀ XÁC THỰC",
-      "sub_tasks": [
-        {
-          "id": "D1_ST1",
-          "agent": "Coder",
-          "desc": "Xây dựng API đăng ký, đăng nhập và schema Users & Roles",
-          "targeted_tags": [
-            "[REQ-001]",
-            "[REQ-002]",
-            "[ARC-001]",
-            "[ARC-002]",
-            "[ARC-003]",
-            "[ARC-004]",
-            "[ARC-005]",
-            "[DAT-001]",
-            "[DAT-002]",
-            "[NFR-001]",
-            "[NFR-002]",
-            "[NFR-003]",
-            "[NFR-004]",
-            "[NFR-005]",
-            "[NFR-006]",
-            "[NFR-007]",
-            "[NFR-008]",
-            "[NFR-009]"
-          ],
-          "components": [
-            "./sources/backend/auth-service/src/main/java/com/membershiphub/auth/AuthService.java",
-            "./sources/backend/auth-service/src/main/java/com/membershiphub/auth/UserService.java",
-            "./sources/backend/auth-service/src/main/java/com/membershiphub/auth/RoleService.java"
-          ]
-        }
-      ]
-    },
-    {
-      "day": 2,
-      "context_file": ".ai/.plan/.context/phase-1.context.blueprint.md",
-      "context_section": "NGÀY 2: THỰC HIỆN KIỂM THỬ TÍNH NĂNG XÁC THỰC",
-      "sub_tasks": [
-        {
-          "id": "D2_ST1",
-          "agent": "Tester",
-          "desc": "Viết test integration, kiểm tra token expiration và idempotent",
-          "targeted_tags": [
-            "[ARC-006]",
-            "[ARC-007]",
-            "[ARC-008]",
-            "[ARC-009]",
-            "[ARC-010]",
-            "[EXC-004]",
-            "[DAT-001]",
-            "[DAT-002]",
-            "[NFR-001]",
-            "[NFR-002]",
-            "[NFR-003]",
-            "[NFR-004]",
-            "[NFR-005]",
-            "[NFR-006]",
-            "[NFR-007]",
-            "[NFR-008]",
-            "[NFR-009]"
-          ],
-          "components": [
-            "./sources/backend/auth-service/src/test/java/com/membershiphub/auth/AuthServiceTest.java"
-          ]
-        }
-      ]
-    },
-    {
-      "day": 3,
-      "context_file": ".ai/.plan/.context/phase-1.context.blueprint.md",
-      "context_section": "NGÀY 3: ĐÁNH GIÁ BẢO MẬT VÀ TIỆN ĐIỆN",
-      "sub_tasks": [
-        {
-          "id": "D3_ST1",
-          "agent": "Reviewer",
-          "desc": "Đánh giá bảo mật, chuẩn hoá API và kiểm tra hiệu năng",
-          "targeted_tags": [
-            "[ARC-001]",
-            "[ARC-002]",
-            "[ARC-003]",
-            "[ARC-004]",
-            "[ARC-005]",
-            "[DAT-001]",
-            "[DAT-002]",
-            "[NFR-001]",
-            "[NFR-002]",
-            "[NFR-003]",
-            "[NFR-004]",
-            "[NFR-005]",
-            "[NFR-006]",
-            "[NFR-007]",
-            "[NFR-008]",
-            "[NFR-009]"
-          ],
-          "components": [
-            "./sources/backend/auth-service/src/main/java/com/membershiphub/auth/AuthService.java"
-          ]
-        }
-      ]
-    }
-  ]
-}
-```
-
-# AI Model: llama-3.3-70b-versatile - Phase 2 STEPS - Prompt:
-
-Analyze the attached Phase 2 Context Markdown content. 
-
-Extract and parse ALL daily steps, checklists, and agent tasks from the entire document. Localize the human-readable text strictly within the JSON string values according to your System Prompt Override rule.
-
-
-## 🔒 AGENT ATOMICITY, TASK ID FORMAT & FILE-LEVEL COMPONENT MANDATES (ABSOLUTE):
-- **STRICT TASK ID ALIGNMENT BLUEPRINT:** You MUST strictly generate the "id" field string for every single sub-task using the exact sequential formatting blueprint: `D<day_num>_ST<task_index>` (e.g., `D1_ST1`, `D1_ST2`, `D2_ST1`).
-- **STRICT AGENT ROLE LITERAL VALUES:** The "agent" field inside the JSON sub-task object MUST strictly enforce a capitalized first letter and lowercase subsequent letters pattern matching the exact tokens: 'Coder' | 'Tester' | 'Reviewer' | 'Doc' | 'Docker' | 'Gcp' | 'Gke'. Any other values or lowercase blocks (e.g., NO "coder") are strictly banned.
-- **🚨 NO FOLDER OR PACKAGE PATHS ALLOWED IN COMPONENTS (ABSOLUTE HARD LIMIT):** You are STRINCENTLY BANNED from generating any sub-task object where the 'components' array field contains a raw folder directory name or stops at a Java package structural layer. 
-  * 🚨 **THE STRICT TERMINAL EXPLICIT SUFFIX LAW (UNIVERSAL FILE-EXTENSION GATING)**: You MUST systematically cross-examine every predicted path string within the 'components' array. Every single output path string **MUST STRICTLY END** with one of the following explicit physical file format extensions: `.java`, `.tf`, `.sql`, `.yml`, `.yaml`, `.xml`, `.json`, `.properties`, `.md`, or the literal word `Dockerfile`. 
-  * If a path ends with a raw directory folder name or a package boundary node (meaning the last characters of the string do NOT form a valid code file dot-extension, regardless of any dot operators present at the beginning like `./sources/`), you are CRITICALLY FORBIDDEN from carrying it over blindly into the payload. 
-  * You MUST immediately intercept that truncated path container, think step-by-step like a Senior Solution Architect, evaluate the sub-task 'desc' context, and dynamically expand that plain folder path into an array of explicit physical file targets ending with proper code format suffixes (e.g., if the task 'desc' specifies implementing PostgreSQL and Firebase config inside a lazy `.../config` package boundary, you MUST programmatically refactor it into an array of individual explicit files: `.../config/DatabaseConfig.java`, `.../config/FirebaseAuthConfig.java`, and `.../config/SecurityConfig.java`). Every single array node element string must satisfy this explicit terminal file extension filter to pass backend runtime validation.
-- 🚨 **MANDATORY HARDENED AGENT DOC & FALLBACK ARTIFACT LAW**:
-  * The 'Doc' agent is strictly an engineering documentation persona and is ABSOLUTELY BANNED from outputting naked directories or folder paths in the 'components' array. 
-  * If a task is assigned to the 'Doc' agent, every string element inside its 'components' array MUST strictly point to a physical markdown documentation file ending with the explicit dot extension `..md` (e.g., replace raw folders like `.../mobile-app` with precise documentation assets such as `.../mobile-app/README.md` or `.../mobile-app/ARCHITECTURE.md`).
-  * If a calendar day contains high-level technical directives or documentation tasks but completely lacks pre-defined code file paths in the source markdown, you MUST populate the 'components' array with exactly two mandatory elements: the dedicated markdown documentation file target for that domain (ending in `..md`), and the exact literal path value of the current context file: ".ai/.plan/.context/phase-2.context.blueprint.md".
-  * Under no circumstance shall any agent persona (including Doc, Gcp, Gke, or Coder) emit a component string that terminates at a folder layer without a valid file extension suffix.
-- **STRICT AGENT ROLE SEGREGATION (ANTI-AGGREGATION):** If a workflow file involves multiple actions by different personas on the same calendar day, you MUST split this workflow into completely separate, sequential task objects inside the 'sub_tasks' array.
-- **HIGH-DENSITY TECHNICAL SPECIFICATION:** The 'task' field MUST contain an exhaustive, granular engineering instruction. If the sub-task involves an API route, integration endpoint, database query, or message block, you MUST explicitly inline the complete technical contract (e.g., Request/Response Payload Schemas, Data Types, Error Status Codes, or Queue names) directly inside this string value. Vague high-level bullet summaries are forbidden.
-- **WORKSPACE PREFIX RULE & MULTI-LANGUAGE TEST EXCEPTION:** Every path in 'components' array MUST strictly begin with `./sources/`. 
-  * *CRITICAL EXCEPTION:* If the first parameter before the semi-colon character in a tester task is the literal string token `INTEGRATION_SCOPE`, you MUST leave that token completely unmodified. Do NOT append any path prefix to it (e.g., `"components": ["INTEGRATION_SCOPE;./sources/frontend/tests/auth.spec.ts"]`).
-
-## 🛠️ MANDATORY TOP-LEVEL FIELD VALUES INJECTION & ANCHOR PARSING (STRICT FIDELITY):
-You MUST dynamically populate the top-level keys of the JSON object using EXACT raw variable values without any modifications, or parse them directly from the primary Markdown header HTML comments:
-- **`phase_id`**: 2
-- **`phase_name`**: [Locate the primary Markdown title header line, extract the clean technical string text located exactly between the hidden HTML delimiters `<!--PHASE_NAME_START-->` and `<!--PHASE_NAME_END-->` without any alterations or translations]
-- **`phase_description`**: [Locate the primary Markdown title header line, extract the clean technical string text located exactly between the hidden HTML delimiters `<!--PHASE_DESC_START-->` and `<!--PHASE_DESC_END-->` without any alterations or translations]
-- **`project_name`**: "membership-hub"
-- **`global_context_file`**: ".ai/.context/membership-hub.global.blueprint.md"
-- **`source_target_dir`**: "sources/"
-
-#### 7. Context Fields Integration Mandate
-- For each day object inside the array, set 'day' to its calculated integer value, set 'context_file' to exact string ".ai/.plan/.context/phase-2.context.blueprint.md", and set 'context_section' to the exact string value of the entire primary Day Header extracted from the source Markdown context text (render this value contextually translated into the target language context) (e.g., `"context_section": "DAY 1: Multi-Tenant Inception Schema & Flyway Migration Setup"`).
-- **`context_section`**: You MUST locate the exact day header line inside the source Markdown context and scan exclusively between the technical delimiters `<!--DAY_HEADER_START-->` and `<!--DAY_HEADER_END-->`. You MUST extract the ENTIRE clean human-readable title phrase enclosed within these markers. You are CRITICALLY BANNED from truncating, shortcutting, or slicing the string to just "DAY 1" or "DAY 2". You MUST capture the full, complete objective text after the day marker and render this value contextually translated into the target language context (e.g., if the localized text inside the anchors is in Vietnamese, extract and output it exactly, such as: `"context_section": "NGÀY 1: Thiết lập cấu hình cơ sở dữ liệu và hạ tầng"`).
-
-#### 8. CHRONOLOGICAL TIMELINE SEQUENCING MANDATE (ABSOLUTE):
-
-## SYSTEM CRITICAL BOUNDARY: FLAT CONFIGURATION IS ACTIVE (is_chunked is FALSE)
-- Regardless of the actual day numbers documented in the source Markdown content (e.g., even if the text states "DAY 4", "DAY 5"), you MUST completely reset the timeline sequence internally so that the first operational day inside this Phase always starts from integer 1. Progression follows sequentially as 2, 3, 4, etc.
-- Map the first targeted day to `"day": 1`, set 'context_file' to ".ai/.plan/.context/phase-2.context.blueprint.md", and strictly set 'context_section' to the localized primary header line of the first day parsed from the text. Incremental days follow this relative baseline.
-
-
-## 🛑 MANDATORY STRUCTURE ENFORCEMENT FOR TRACEABILITY TAGS VIA HTML ANCHORS (CRITICAL):
-- You MUST force your token processing core to sequentially look at every sub-task block in the source Markdown content. For each sub-task, locate the hidden technical container bounds delimited strictly between the HTML anchors `<!--START_TAGS-->` and `<!--END_TAGS-->`.
-- You MUST extract every individual inherited Tag ID token located inside these markers. You are CRITICALLY BANNED from leaving the "targeted_tags" array empty `[]` or null for any reason. 
-- **THE ANTI-PADDING AND SANITIZATION PROTOCOL**: You MUST completely strip away, purge, and filter out all markdown backticks (`` ` ``), commas, inline formatting tokens, or trailing whitespaces from the tag strings. Populate them as clean, separate, isolated string elements inside the "targeted_tags" array field (e.g., `"targeted_tags": ["[ARC-006]", "[ARC-010]"]`).
-- If a sub-task section in the Markdown context contains the `<!--START_TAGS-->` container, returning an empty array `[]` in your JSON payload is treated as a catastrophic runtime syntax failure and will instantly crash the system pipeline.
-- You are STRICTLY BANNED from leaving the "targeted_tags" array empty `[]` or null. Every single tag token must be its own separated array element string.
-
-You must conform strictly and output exactly ONE (1) single, standalone, unified JSON block containing all target fields including `objectives`, `phase_idx`, and `phase_context_file` from the very start. 
-
-🚨 **CRITICAL PIPELINE FREEZE MANDATE**: You are ABSOLUTELY FORBIDDEN from outputting conversational filler text, dashes, symbols, separators (NO `----------------------------------`), post-generation text remarks, or secondary blocks. Open exactly with a single line of triple backticks + json, render the unified schema, close with a closing brace, close with triple backticks, and STOP GENERATING INSTANTLY. Any token after the first valid closing fence crashes the enterprise runtime.
-
-Required JSON Schema layout design structure: {
-  "$defs": {
-    "DailyStep": {
-      "properties": {
-        "day": {
-          "description": "Timeline iteration day inside this isolated phase.",
-          "title": "Day",
-          "type": "integer"
-        },
-        "context_file": {
-          "description": "The phase context Markdown file for closure on this day.",
-          "title": "Context File",
-          "type": "string"
-        },
-        "context_section": {
-          "default": "No day context section provided",
-          "description": "The day targeted for closure on this day.",
-          "title": "Context Section",
-          "type": "string"
-        },
-        "sub_tasks": {
-          "description": "Array of isolated micro-tasks assigned to sub-agents.",
-          "items": {
-            "$ref": "##/$defs/SubAgentTask"
-          },
-          "title": "Sub Tasks",
-          "type": "array"
-        }
-      },
-      "required": [
-        "day",
-        "context_file",
-        "sub_tasks"
-      ],
-      "title": "DailyStep",
-      "type": "object"
-    },
-    "SubAgentTask": {
-      "properties": {
-        "id": {
-          "description": "Sub-Task identity of Task that sub-agent role executing.",
-          "title": "Id",
-          "type": "string"
-        },
-        "agent": {
-          "description": "Target sub-agent role executing the task.",
-          "title": "Agent",
-          "type": "string"
-        },
-        "desc": {
-          "default": "No task description provided",
-          "description": "Literal, low-level technical step assigned to the agent.",
-          "title": "Desc",
-          "type": "string"
-        },
-        "targeted_tags": {
-          "description": "Flat string array of exact inherited BA Tag IDs that this specific sub-task implements or verifies (e.g. ['[REQ-001]', '[ARC-002]']). MUST match the raw requirements 1:1.",
-          "items": {
-            "type": "string"
-          },
-          "title": "Targeted Tags",
-          "type": "array"
-        },
-        "components": {
-          "description": "Flat array of physical localized file paths or scripts modified or targeted by this single task. Return an empty array [] if no files are involved.",
-          "items": {
-            "type": "string"
-          },
-          "title": "Components",
-          "type": "array"
-        }
-      },
-      "required": [
-        "id",
-        "agent"
-      ],
-      "title": "SubAgentTask",
-      "type": "object"
-    }
-  },
-  "properties": {
-    "phase_id": {
-      "description": "Target phase tracker index.",
-      "title": "Phase Id",
-      "type": "integer"
-    },
-    "phase_name": {
-      "default": "No phase name provided",
-      "description": "Target phase tracker name.",
-      "title": "Phase Name",
-      "type": "string"
-    },
-    "phase_description": {
-      "default": "No phase description provided",
-      "description": "Target phase description.",
-      "title": "Phase Description",
-      "type": "string"
-    },
-    "project_name": {
-      "description": "Target project tracker name.",
-      "title": "Project Name",
-      "type": "string"
-    },
-    "global_context_file": {
-      "description": "Project global context Markdown file for closure.",
-      "title": "Global Context File",
-      "type": "string"
-    },
-    "source_target_dir": {
-      "description": "Project sources folder path for closure.",
-      "title": "Source Target Dir",
-      "type": "string"
-    },
-    "days": {
-      "description": "Day-by-day engineering tracking steps.",
-      "items": {
-        "$ref": "##/$defs/DailyStep"
-      },
-      "title": "Days",
-      "type": "array"
-    }
-  },
-  "required": [
-    "phase_id",
-    "project_name",
-    "global_context_file",
-    "source_target_dir",
-    "days"
-  ],
-  "title": "PhaseStepsPlan",
-  "type": "object"
-}
-
---- PHASE 2 CONTEXT MARKDOWN ---
-## Giai đoạn 2: <!--PHASE_NAME_START-->Xây dựng CRUD trung tâm, khóa học, ghi danh và điểm danh<!--PHASE_NAME_END-->
-
-#### 📊 Document Control
-
-| Mục | Chi tiết |
-| :--- | :--- |
-| **ID Kiến trúc** | ARCH-20260804165526 |
-| **Tên dự án** | membership-hub |
-| **Giai đoạn** | 2 |
-| **Tên Giai đoạn** | <!--PHASE_NAME_START-->Xây dựng CRUD trung tâm, khóa học, ghi danh và điểm danh<!--PHASE_NAME_END--> |
-| **Mô tả** | <!--PHASE_DESC_START-->Giai đoạn này tập trung vào việc triển khai các dịch vụ CRUD cho trung tâm, khóa học, ghi danh và điểm danh, đồng thời xây dựng schema dữ liệu tương ứng, thực hiện kiểm thử, xử lý ngoại lệ và đảm bảo tuân thủ các tiêu chuẩn bảo mật OWASP.<!--PHASE_DESC_END--> |
-| **Phiên bản** | 1.0 (Baseline) |
-| **Ngày/Giờ** | 2026/08/04 16:55:26 |
-| **Tác giả** | Enterprise System Architect (SA Agent) |
-| **Phê duyệt** | Pending Technical Governance Review |
-
-#### 1. Phạm vi và mục tiêu của Giai đoạn
-Giai đoạn 2 thực hiện xây dựng các dịch vụ CRUD cho trung tâm, khóa học, ghi danh và điểm danh, bao gồm thiết kế schema dữ liệu, triển khai API REST, thực hiện kiểm thử đơn vị và tích hợp, xử lý ngoại lệ, và đảm bảo tuân thủ các tiêu chuẩn bảo mật OWASP.
-
-#### 2. Phạm vi kỹ thuật và ranh giới thư mục
-- **Thư mục**  
-  - `./sources/backend/center-service`  
-  - `./sources/backend/course-service`  
-  - `./sources/backend/enrollment-service`  
-  - `./sources/backend/attendance-service`  
-  - `./sources/backend/database/migrations`  
-- **Endpoint REST**  
-  - `GET /api/centers` → danh sách trung tâm  
-  - `POST /api/centers` → tạo trung tâm  
-  - `GET /api/courses` → danh sách khóa học  
-  - `POST /api/courses` → tạo khóa học  
-  - `POST /api/enrollments` → ghi danh học viên  
-  - `POST /api/attendance` → ghi điểm danh
-
-#### 3. Hướng dẫn chức năng dành cho Sub-Agent
-- **Coder**: Xây dựng controller, service, repository, validation, exception handling, unit test cho các dịch vụ.  
-- **Tester**: Viết và thực thi test integration, kiểm tra idempotency, duplicate handling.  
-- **Reviewer**: Đánh giá code quality, kiểm tra exception handling, performance.  
-- **Doc**: Tài liệu chi tiết API, quy trình triển khai, hướng dẫn bảo mật.  
-- **Docker / GCP / GKE**: Không áp dụng trong giai đoạn này.
-
-#### 4. Định nghĩa Hoàn thành Giai đoạn (DoD)
-- Tất cả yêu cầu [REQ-004]–[REQ-013] và các dữ liệu [DAT-003]–[DAT-006] được triển khai và kiểm thử.  
-- Coverage test ≥ 90 % cho các module center, course, enrollment, attendance.  
-- Kiểm tra OWASP (SQLi, XSS, CSRF, JWT) đạt 100 %.  
-- Mọi tag ID được map đầy đủ, không còn tag chưa được sử dụng.
-
-#### 5. Nhật ký thực thi kiến trúc theo ngày
-
-###### DAY 1: <!--DAY_HEADER_START-->XÂY DỰNG CRUD TRUNG TÂM<!--DAY_HEADER_END-->
-
-######## SUB-TASK 1.1: Xây dựng API CRUD trung tâm, schema Centers, kiểm thử đơn vị
-########## Được giao cho Sub-Agent: Coder
-########## Yêu cầu thành phần & yêu cầu kỹ thuật:
-* **Đường dẫn mục tiêu**: `./sources/backend/center-service`
-* **Thẻ mã theo dõi**: <!--START_TAGS-->[REQ-004], [REQ-005], [REQ-006], [DAT-003]<!--END_TAGS-->
-
-###### DAY 2: <!--DAY_HEADER_START-->XÂY DỰNG CRUD KHÓA HỌC<!--DAY_HEADER_END-->
-
-######## SUB-TASK 2.1: Xây dựng API CRUD khóa học, schema Courses, kiểm thử đơn vị
-########## Được giao cho Sub-Agent: Coder
-########## Yêu cầu thành phần & yêu cầu kỹ thuật:
-* **Đường dẫn mục tiêu**: `./sources/backend/course-service`
-* **Thẻ mã theo dõi**: <!--START_TAGS-->[REQ-007], [REQ-008], [REQ-009], [DAT-004]<!--END_TAGS-->
-
-###### DAY 3: <!--DAY_HEADER_START-->XÂY DỰNG GHI DANH VÀ ĐIỂM DANH<!--DAY_HEADER_END-->
-
-######## SUB-TASK 3.1: Xây dựng API ghi danh, attendance, schema Enrollments & Attendance, exception handling, kiểm thử đơn vị
-########## Được giao cho Sub-Agent: Coder
-########## Yêu cầu thành phần & yêu cầu kỹ thuật:
-* **Đường dẫn mục tiêu**: `./sources/backend/enrollment-service`
-* **Thẻ mã theo dõi**: <!--START_TAGS-->[REQ-010], [REQ-011], [DAT-005]<!--END_TAGS-->
-
-######## SUB-TASK 3.2: Viết test integration cho attendance, kiểm tra idempotency, duplicate handling
-########## Được giao cho Sub-Agent: Tester
-########## Yêu cầu thành phần & yêu cầu kỹ thuật:
-* **Đường dẫn mục tiêu**: `./sources/backend/attendance-service;./sources/backend/attendance-service/src/test/java/com/membershiphub/attendance/AttendanceServiceTest.java`
-* **Thẻ mã theo dõi**: <!--START_TAGS-->[REQ-012], [REQ-013], [DAT-006], [EXC-001], [EXC-002]<!--END_TAGS-->
-
-######## SUB-TASK 3.3: Đánh giá code quality, exception handling, performance
-########## Được giao cho Sub-Agent: Reviewer
-########## Yêu cầu thành phần & yêu cầu kỹ thuật:
-* **Đường dẫn mục tiêu**: `./sources/backend/enrollment-service`
-* **Thẻ mã theo dõi**: <!--START_TAGS-->[REQ-010], [REQ-011], [DAT-005]<!--END_TAGS-->
-------------------------------------------
-
-# System Instruction
-
-<GLOBAL_GOVERNANCE_MATRIX>
-# ==============================================================================
-# MASTER ENTERPRISE GOVERNANCE GUARDRAILS MATRIX (GLOBAL TASK ENFORCEMENT)
-# ==============================================================================
-
-## 🌐 1. STRICT SEMANTIC INVARIANT LOCALIZATION & TRANSLATION RAILS
-- **MANDATORY RESOLUTION:** You MUST automatically translate and naturally render 100% of the entire generated output content—including all section headers, primary titles, data matrix labels, table structures, and explanatory text boundaries—into the exact requested target execution language specified by the system parameter variable: "🇻🇳 Vietnamese".
-- **ABSOLUTE TECH PROTECTION BOUNDARY:** You are STRICTLY BANNED from translating, changing, altering, or breaking any technical structural layers. You MUST preserve these elements natively in their pristine Technical English/Primitive code state:
-  * All markdown syntax operators (`#`, `##`, `| :--- |`, `-`, `*`).
-  * All unique Tracking Tag IDs and Technical Nodes (e.g., `[REQ-XXX]`, `[DAT-XXX]`, `[EXC-XXX]`, `[IDEA_X]`).
-  * All technical identifier strings, system variables, or dynamic formatting indices (e.g., `D1_ST1`).
-  * All code execution blocks, text wrappers, and specialized chart definition syntaxes (e.g., Mermaid.js graphs, structural layout configurations).
-  * 🚨 **STRICT CODE BLOCK FORMATTING LAW**: You are ABSOLUTELY FORBIDDEN from nesting or combining markdown code block ticks. When outputting a JSON payload, you MUST start exactly with a single line of triple backticks followed immediately by 'json' (i.e., ```json). Do NOT prepend or wrap it with ```text or any other outer text syntax. The block must open clean and close clean.
-
-## 🔒 2. CODE BLOCK INTEGRITY & CONTENT PURITY MANDATE
-- **ENGLISH ONLY INSIDE CODE BLOCKS:** Every single token, statement, key-value parameter, comment string, configuration variable, structural schema, or database DDL script encapsulated inside any markdown code block (triple backticks block) or data wrapper MUST be compiled strictly and exclusively in **Technical English**. 
-- **NO LOCALIZATION ALLOWED:** You are ABSOLUTELY FORBIDDEN from translating, localized altering, or modifying any text string residing inside code boundaries.
-
-## 🛑 3. ZERO-DETERMINISTIC HALLUCINATION & ANTI-GARBAGE DATA FILTERS
-- **STRICT DATA GROUNDING:** You MUST reason and compute data points based exclusively on the literal inputs, source specifications, and structural parameters injected into your workspace context. 
-- **CRITICAL HARD LIMIT:** You are STRICTLY BANNED from fabricating ghost assets, inventing nonexistent data columns, assuming prior deployment states, or generating artificial placeholder metrics. If a specialized evaluation block or technology stack requirement is not applicable to the active architectural topology, you MUST explicitly output the token `[NOT APPLICABLE]` combined with a clean corporate justification note and bypass it gracefully.
-
-## 🛡️ 4. HIGHEST-GRADE ENTERPRISE SECURITY & COMPLIANCE PARADIGM
-- **SECURITY GATING BY DESIGN:** Every single functional contract, database layout, data routing flow, or logic routine you design MUST rigorously enforce enterprise-grade security compliance at the highest architecture layer.
-- **OWASP COMPLIANCE OBLIGATION:** You MUST proactively scan and immunize configurations against security threats under OWASP Top 10 standards (specifically enforcing strict tenant isolation boundaries under OWASP A01, prepared statements against SQL injection, dynamic token sanitization, and cryptographic state protections).
-
-## 📋 5. WORKFLOW ATOMICITY, ROLE ISOLATION & OUTPUT STANDARDIZATION
-- **HYPER-FOCUSED PERSONA CAPABILITY:** You MUST permanently maintain an objective, cold, and hyper-analytical mindset, focusing 100% of your computational resources exclusively on the single specialized domain capability and system persona allocated to you in this phase task.
-- **TONE COMPLIANCE:** All generated rationale sentences, justifications, and report outputs MUST utilize an authoritative, precise, and highly professional corporate engineering telegraphy tone (eliminate filler adjectives and passive descriptions).
-- **ABSOLUTE FORMATTING BOUNDARY:** Your total output layout response MUST satisfy and align perfectly 1:1 with the requested execution schema boundaries. You are strictly forbidden from altering headers or injecting conversational prefaces, greetings, system thinking logs, or post-generation text remarks.
-
-## 🧮 6. DETERMINISTIC TRIPLE-DEEPEST CHECK VERIFICATION LOOP & PIPELINE
-- **MANDATORY EXECUTION PIPELINE:** Before emitting any text string or committing any data stream payload to the output buffer, you MUST strictly execute the following sequential compilation and verification pipeline inside your internal memory context:
-  * *Step 1 (Complete Draft Generation):* Prepare and fully construct the entire comprehensive output document in Technical English first. Ensure 100% of required data, sections, and structural nodes are completely generated. No text truncation, no placeholder notes, and no summary cut-offs allowed.
-  * *Step 2 (Precise Translation Execution):* Take the complete draft from Step 1 and execute the localization process. Translate 100% of the output into the target language while strictly adhering to all constraints defined in `STRICT SEMANTIC INVARIANT LOCALIZATION & TRANSLATION RAILS` and `CODE BLOCK INTEGRITY & CONTENT PURITY MANDATE`.
-  * *Step 3 (Multi-Layer Self-Auditing):* Perform a rigorous, final review of the translated document across three validation layers:
-    * *Layer 1 (Traceability Check):* Verify that 100% of the incoming functional and structural tag identifiers are covered, mapped, and mathematically accounted for without gaps.
-    * *Layer 2 (Formatting & Layout Check):* Cross-examine your final structural report template layout to guarantee it contains zero broken tables, zero loose formatting tokens, and zero layout overflow anomalies.
-    * *Layer 3 (Integrity Check):* Ensure the absolute logical consistency, data synchronization alignment, and technical term protection across all generated tables, descriptions, diagrams, and metadata blocks.
-- Any defect, omission, or rule violation identified during this self-audit MUST be dynamically healed and resolved internally before emitting the final polished report.
-</GLOBAL_GOVERNANCE_MATRIX>
-
-<ACTIVE_TASK_SYSTEM_INSTRUCTION>
-You are a high-performance Data Ingestion and Transformation Engine. Your sole objective is to parse the Phase Context Markdown text and convert it into a perfectly valid, parseable JSON object matching the requested schema framework.
-
-# YOUR CRITICAL OPERATIONAL MANDATES (ZERO LOOPHOLES):
-1. **STRICT VARIABLE FIDELITY & NO PREFIXES:** You MUST use the exact raw values provided in the template variables for file paths and project names. You are STRICTLY BANNED from appending, prepending, or injecting any custom folders or prefixes like "sources/" to the `global_context_file`, `context_file`, `source_target_dir`, or `project_name` fields. Use the variable values exactly as they are passed.
-
-2. **ABSOLUTE PYDANTIC SCHEMA ALIGNMENT:** Your final generated JSON object MUST perfectly satisfy the structural schema parameters of the target enterprise contract. You are STRICTLY BANNED from omitting, renaming, formatting, or stripping out key elements (specifically `phase_id`, `phase_name`, `phase_description`, `project_name`, `global_context_file`, `source_target_dir`, `objectives`, `days`, `phase_idx`, and `phase_context_file`). Prepare your memory pipeline to compute all these fields collectively within the FIRST and ONLY block execution loop.
-
-3. **ABSOLUTE NO EMPTY TAGS POLICY & STRING SANITIZATION:** You are STRICTLY BANNED from leaving the "targeted_tags" array empty `[]` or null for any sub-task that implements functional requirements or data schemas. You MUST scan the source Markdown sequentially sub-task by sub-task. For each sub-task node, locate the hidden technical container block delimited between `<!--START_TAGS-->` and `<!--END_TAGS-->` contained exclusively within that sub-task section scope. Extract all raw tag token codes inside, strip away all inline markdown formatting characters—specifically backticks (`` ` ``)—and any leading/trailing whitespaces, then populate them as clean separate string elements inside the "targeted_tags" array field of EACH sub-task object node.
-
-4. **NO TAG BUNDLING & HARDENED COMPONENT GRANULARITY:** Every tag must be its own array node (e.g., `"targeted_tags": ["[REQ-001]", "[DAT-002]"]`). You are strictly forbidden from combining multiple tags into a single string element.
-
-5. **STRICT JSON SYNTAX ENFORCEMENT & HARDENED FILE-LEVEL GRANULARITY LAW:**
-   - **Absolute Output Constraint**: Your total response output stream MUST contain exactly ONE (1) single valid JSON object payload from start to finish. You are STRINGENTLY AND ABSOLUTELY BANNED from repeating, mirroring, or generating a secondary duplicate JSON block within this execution channel.
-   - **STRICT CODE BLOCK FORMATTING LAW (NO NESTING)**: 
-     * The output MUST open clean on Line 1 containing exactly seven characters: ```json
-     * You are CRITICALLY FORBIDDEN from wrapping, prepending, or prefixing the block with ```text```json, ```text, or any outer text syntax combination. 
-     * The output MUST close clean on the final line containing exactly three characters: ```
-     * There must be absolutely ZERO human conversational filler text, thinking logs (`<think>` tags), dashes, separators, intros, or trailing notes before or after the fenced code block. Open cleanly with triple backticks + json, write the object, and close cleanly.
-  - 🚨 **STRINCENT FILE-LEVEL COMPONENTS LAW (ANTI-PACKAGE OVERRIDE)**:
-    * Every single string element parameter inside the 'components' array field MUST point exclusively to a specific physical executable, configuration, style, or codebase FILE, and it MUST explicitly end with a valid technical dot file extension (e.g., `.java`, `.ts`, `.tsx`, `.js`, `.jsx`, `.vue`, `.swift`, `.kotlin`, `.tf`, `.sql`, `.json`, `.yml`, `.yaml`, `.xml`, `.css`, `.scss`, or literal `Dockerfile`).
-    * You are ABSOLUTELY AND CRITICALLY BANNED from outputting generic parent directory paths, folder structures, or package/module boundary nodes (NO paths ending with raw package or folder names like `.../config`, `.../auth`, `.../components`, `.../pages`, `.../gcp`, or `.../migration`).
-    * **THE CIRCUIT-BREAKER EXTENSION GATING**: You must evaluate the very last character of each component string. If it does not match a deterministic file extension suffix, you violate runtime constraints.
-    * **UNIVERSAL CHAIN-OF-THOUGHT UNPACKING PROCESS**: If the source context documentation provides an ambiguous folder or package name context, you MUST immediately freeze raw copying, think step-by-step like a Principal Cross-Platform Solution Architect, analyze the target project stack from the context, and dynamically unpack that container path into an array of explicit physical file targets required for that agent persona. You MUST adhere to these generic domain blueprints:
-      - **Backend Dominant Stack (e.g., Java, Go, Python packages, SQL migrations)**: Deconstruct the lazy container path into distinct operational files (e.g., replace `.../config` with specific configuration files; replace `.../migration` with concrete migration script files like `.../migration/V1__init_schema.sql`).
-      - **Frontend / Mobile Dominant Stack (e.g., React, Next.js, Vue, iOS, Android modules)**: Deconstruct generic folder paths (like `.../components`, `.../pages`, `.../hooks`, `.../store`) into explicit UI implementation and state assets (e.g., replace a lazy `.../components/auth` folder with `.../components/auth/LoginCard.tsx`, `.../components/auth/AuthForm.tsx`, and `.../components/auth/useAuthStyles.ts` depending on the functional requirements inside the sub-task description).
-      - **Infrastructure & Devops Stack (e.g., Terraform, Kubernetes manifests, CI/CD pipelines)**: Deconstruct into individual, explicit physical declaration files (e.g., replace `.../gcp` with `.../gcp/main.tf`, `.../gcp/vpc.tf`; replace `.../k8s` with `.../k8s/deployment.yaml`, `.../k8s/service.yaml`).
-    * This mapping rule is 100% generic, multi-language, and project-agnostic. Fluidly adapt to any frontend, backend, mobile, or cloud infrastructure project by converting raw folders into explicit terminal file extension targets.
-  - **Granular Value Localization Boundaries**: Keep all structural JSON keys (`phase_id`, `phase_name`, `days`, `sub_tasks`, `id`, `agent`, `desc`, `components`, etc.) permanently in raw Technical English. Translate 100% of human-readable text strictly *inside* the string values (specifically `phase_description`, `context_section`, and sub-task `desc`) into the designated target language context.
-  - **THE CRITICAL CIRCUIT-BREAKER DIRECTIVE**: Mid-generation corrections or trailing structural artifacts (NO `-----------------`, NO secondary trial blocks like `} ```text{`) are strictly treated as catastrophic runtime violations. The very millisecond you emit the final closing brace `}` of your single JSON schema object payload, you MUST immediately print the closing triple backticks fence on the next line and FORCE-FREEZE/STOP token generation instantly. Any token emitted after the primary closed fence violates runtime contracts.
-</ACTIVE_TASK_SYSTEM_INSTRUCTION>
-
-# Raw Response / Exception:
-
-```json
-{
-  "phase_id": 2,
-  "phase_name": "Xây dựng CRUD trung tâm, khóa học, ghi danh và điểm danh",
-  "phase_description": "Giai đoạn này tập trung vào việc triển khai các dịch vụ CRUD cho trung tâm, khóa học, ghi danh và điểm danh, đồng thời xây dựng schema dữ liệu tương ứng, thực hiện kiểm thử, xử lý ngoại lệ và đảm bảo tuân thủ các tiêu chuẩn bảo mật OWASP.",
-  "project_name": "membership-hub",
-  "global_context_file": ".ai/.context/membership-hub.global.blueprint.md",
-  "source_target_dir": "sources/",
-  "days": [
-    {
-      "day": 1,
-      "context_file": ".ai/.plan/.context/phase-2.context.blueprint.md",
-      "context_section": "NGÀY 1: XÂY DỰNG CRUD TRUNG TÂM",
-      "sub_tasks": [
-        {
-          "id": "D1_ST1",
-          "agent": "Coder",
-          "desc": "Xây dựng API CRUD trung tâm, schema Centers, kiểm thử đơn vị",
-          "targeted_tags": [
-            "[REQ-004]",
-            "[REQ-005]",
-            "[REQ-006]",
-            "[DAT-003]"
-          ],
-          "components": [
-            "./sources/backend/center-service/CenterController.java",
-            "./sources/backend/center-service/CenterService.java",
-            "./sources/backend/center-service/CenterRepository.java",
-            "./sources/backend/center-service/CenterValidation.java"
-          ]
-        }
-      ]
-    },
-    {
-      "day": 2,
-      "context_file": ".ai/.plan/.context/phase-2.context.blueprint.md",
-      "context_section": "NGÀY 2: XÂY DỰNG CRUD KHÓA HỌC",
-      "sub_tasks": [
-        {
-          "id": "D2_ST1",
-          "agent": "Coder",
-          "desc": "Xây dựng API CRUD khóa học, schema Courses, kiểm thử đơn vị",
-          "targeted_tags": [
-            "[REQ-007]",
-            "[REQ-008]",
-            "[REQ-009]",
-            "[DAT-004]"
-          ],
-          "components": [
-            "./sources/backend/course-service/CourseController.java",
-            "./sources/backend/course-service/CourseService.java",
-            "./sources/backend/course-service/CourseRepository.java",
-            "./sources/backend/course-service/CourseValidation.java"
-          ]
-        }
-      ]
-    },
-    {
-      "day": 3,
-      "context_file": ".ai/.plan/.context/phase-2.context.blueprint.md",
-      "context_section": "NGÀY 3: XÂY DỰNG GHI DANH VÀ ĐIỂM DANH",
-      "sub_tasks": [
-        {
-          "id": "D3_ST1",
-          "agent": "Coder",
-          "desc": "Xây dựng API ghi danh, attendance, schema Enrollments & Attendance, exception handling, kiểm thử đơn vị",
-          "targeted_tags": [
-            "[REQ-010]",
-            "[REQ-011]",
-            "[DAT-005]"
-          ],
-          "components": [
-            "./sources/backend/enrollment-service/EnrollmentController.java",
-            "./sources/backend/enrollment-service/EnrollmentService.java",
-            "./sources/backend/enrollment-service/EnrollmentRepository.java",
-            "./sources/backend/enrollment-service/EnrollmentValidation.java"
-          ]
-        },
-        {
-          "id": "D3_ST2",
-          "agent": "Tester",
-          "desc": "Viết test integration cho attendance, kiểm tra idempotency, duplicate handling",
-          "targeted_tags": [
-            "[REQ-012]",
-            "[REQ-013]",
-            "[DAT-006]",
-            "[EXC-001]",
-            "[EXC-002]"
-          ],
-          "components": [
-            "./sources/backend/attendance-service/AttendanceServiceTest.java"
-          ]
-        },
-        {
-          "id": "D3_ST3",
-          "agent": "Reviewer",
-          "desc": "Đánh giá code quality, exception handling, performance",
-          "targeted_tags": [
-            "[REQ-010]",
-            "[REQ-011]",
-            "[DAT-005]"
-          ],
-          "components": [
-            "./sources/backend/enrollment-service/EnrollmentController.java",
-            "./sources/backend/enrollment-service/EnrollmentService.java",
-            "./sources/backend/enrollment-service/EnrollmentRepository.java",
-            "./sources/backend/enrollment-service/EnrollmentValidation.java"
-          ]
-        }
-      ]
-    }
-  ]
-}
-```
-
-# AI Model: llama-3.3-70b-versatile - Phase 3 STEPS - Prompt:
-
-Analyze the attached Phase 3 Context Markdown content. 
-
-Extract and parse ALL daily steps, checklists, and agent tasks from the entire document. Localize the human-readable text strictly within the JSON string values according to your System Prompt Override rule.
-
-
-## 🔒 AGENT ATOMICITY, TASK ID FORMAT & FILE-LEVEL COMPONENT MANDATES (ABSOLUTE):
-- **STRICT TASK ID ALIGNMENT BLUEPRINT:** You MUST strictly generate the "id" field string for every single sub-task using the exact sequential formatting blueprint: `D<day_num>_ST<task_index>` (e.g., `D1_ST1`, `D1_ST2`, `D2_ST1`).
-- **STRICT AGENT ROLE LITERAL VALUES:** The "agent" field inside the JSON sub-task object MUST strictly enforce a capitalized first letter and lowercase subsequent letters pattern matching the exact tokens: 'Coder' | 'Tester' | 'Reviewer' | 'Doc' | 'Docker' | 'Gcp' | 'Gke'. Any other values or lowercase blocks (e.g., NO "coder") are strictly banned.
-- **🚨 NO FOLDER OR PACKAGE PATHS ALLOWED IN COMPONENTS (ABSOLUTE HARD LIMIT):** You are STRINCENTLY BANNED from generating any sub-task object where the 'components' array field contains a raw folder directory name or stops at a Java package structural layer. 
-  * 🚨 **THE STRICT TERMINAL EXPLICIT SUFFIX LAW (UNIVERSAL FILE-EXTENSION GATING)**: You MUST systematically cross-examine every predicted path string within the 'components' array. Every single output path string **MUST STRICTLY END** with one of the following explicit physical file format extensions: `.java`, `.tf`, `.sql`, `.yml`, `.yaml`, `.xml`, `.json`, `.properties`, `.md`, or the literal word `Dockerfile`. 
-  * If a path ends with a raw directory folder name or a package boundary node (meaning the last characters of the string do NOT form a valid code file dot-extension, regardless of any dot operators present at the beginning like `./sources/`), you are CRITICALLY FORBIDDEN from carrying it over blindly into the payload. 
-  * You MUST immediately intercept that truncated path container, think step-by-step like a Senior Solution Architect, evaluate the sub-task 'desc' context, and dynamically expand that plain folder path into an array of explicit physical file targets ending with proper code format suffixes (e.g., if the task 'desc' specifies implementing PostgreSQL and Firebase config inside a lazy `.../config` package boundary, you MUST programmatically refactor it into an array of individual explicit files: `.../config/DatabaseConfig.java`, `.../config/FirebaseAuthConfig.java`, and `.../config/SecurityConfig.java`). Every single array node element string must satisfy this explicit terminal file extension filter to pass backend runtime validation.
-- 🚨 **MANDATORY HARDENED AGENT DOC & FALLBACK ARTIFACT LAW**:
-  * The 'Doc' agent is strictly an engineering documentation persona and is ABSOLUTELY BANNED from outputting naked directories or folder paths in the 'components' array. 
-  * If a task is assigned to the 'Doc' agent, every string element inside its 'components' array MUST strictly point to a physical markdown documentation file ending with the explicit dot extension `..md` (e.g., replace raw folders like `.../mobile-app` with precise documentation assets such as `.../mobile-app/README.md` or `.../mobile-app/ARCHITECTURE.md`).
-  * If a calendar day contains high-level technical directives or documentation tasks but completely lacks pre-defined code file paths in the source markdown, you MUST populate the 'components' array with exactly two mandatory elements: the dedicated markdown documentation file target for that domain (ending in `..md`), and the exact literal path value of the current context file: ".ai/.plan/.context/phase-3.context.blueprint.md".
-  * Under no circumstance shall any agent persona (including Doc, Gcp, Gke, or Coder) emit a component string that terminates at a folder layer without a valid file extension suffix.
-- **STRICT AGENT ROLE SEGREGATION (ANTI-AGGREGATION):** If a workflow file involves multiple actions by different personas on the same calendar day, you MUST split this workflow into completely separate, sequential task objects inside the 'sub_tasks' array.
-- **HIGH-DENSITY TECHNICAL SPECIFICATION:** The 'task' field MUST contain an exhaustive, granular engineering instruction. If the sub-task involves an API route, integration endpoint, database query, or message block, you MUST explicitly inline the complete technical contract (e.g., Request/Response Payload Schemas, Data Types, Error Status Codes, or Queue names) directly inside this string value. Vague high-level bullet summaries are forbidden.
-- **WORKSPACE PREFIX RULE & MULTI-LANGUAGE TEST EXCEPTION:** Every path in 'components' array MUST strictly begin with `./sources/`. 
-  * *CRITICAL EXCEPTION:* If the first parameter before the semi-colon character in a tester task is the literal string token `INTEGRATION_SCOPE`, you MUST leave that token completely unmodified. Do NOT append any path prefix to it (e.g., `"components": ["INTEGRATION_SCOPE;./sources/frontend/tests/auth.spec.ts"]`).
-
-## 🛠️ MANDATORY TOP-LEVEL FIELD VALUES INJECTION & ANCHOR PARSING (STRICT FIDELITY):
-You MUST dynamically populate the top-level keys of the JSON object using EXACT raw variable values without any modifications, or parse them directly from the primary Markdown header HTML comments:
-- **`phase_id`**: 3
-- **`phase_name`**: [Locate the primary Markdown title header line, extract the clean technical string text located exactly between the hidden HTML delimiters `<!--PHASE_NAME_START-->` and `<!--PHASE_NAME_END-->` without any alterations or translations]
-- **`phase_description`**: [Locate the primary Markdown title header line, extract the clean technical string text located exactly between the hidden HTML delimiters `<!--PHASE_DESC_START-->` and `<!--PHASE_DESC_END-->` without any alterations or translations]
-- **`project_name`**: "membership-hub"
-- **`global_context_file`**: ".ai/.context/membership-hub.global.blueprint.md"
-- **`source_target_dir`**: "sources/"
-
-#### 7. Context Fields Integration Mandate
-- For each day object inside the array, set 'day' to its calculated integer value, set 'context_file' to exact string ".ai/.plan/.context/phase-3.context.blueprint.md", and set 'context_section' to the exact string value of the entire primary Day Header extracted from the source Markdown context text (render this value contextually translated into the target language context) (e.g., `"context_section": "DAY 1: Multi-Tenant Inception Schema & Flyway Migration Setup"`).
-- **`context_section`**: You MUST locate the exact day header line inside the source Markdown context and scan exclusively between the technical delimiters `<!--DAY_HEADER_START-->` and `<!--DAY_HEADER_END-->`. You MUST extract the ENTIRE clean human-readable title phrase enclosed within these markers. You are CRITICALLY BANNED from truncating, shortcutting, or slicing the string to just "DAY 1" or "DAY 2". You MUST capture the full, complete objective text after the day marker and render this value contextually translated into the target language context (e.g., if the localized text inside the anchors is in Vietnamese, extract and output it exactly, such as: `"context_section": "NGÀY 1: Thiết lập cấu hình cơ sở dữ liệu và hạ tầng"`).
-
-#### 8. CHRONOLOGICAL TIMELINE SEQUENCING MANDATE (ABSOLUTE):
-
-## SYSTEM CRITICAL BOUNDARY: FLAT CONFIGURATION IS ACTIVE (is_chunked is FALSE)
-- Regardless of the actual day numbers documented in the source Markdown content (e.g., even if the text states "DAY 4", "DAY 5"), you MUST completely reset the timeline sequence internally so that the first operational day inside this Phase always starts from integer 1. Progression follows sequentially as 2, 3, 4, etc.
-- Map the first targeted day to `"day": 1`, set 'context_file' to ".ai/.plan/.context/phase-3.context.blueprint.md", and strictly set 'context_section' to the localized primary header line of the first day parsed from the text. Incremental days follow this relative baseline.
-
-
-## 🛑 MANDATORY STRUCTURE ENFORCEMENT FOR TRACEABILITY TAGS VIA HTML ANCHORS (CRITICAL):
-- You MUST force your token processing core to sequentially look at every sub-task block in the source Markdown content. For each sub-task, locate the hidden technical container bounds delimited strictly between the HTML anchors `<!--START_TAGS-->` and `<!--END_TAGS-->`.
-- You MUST extract every individual inherited Tag ID token located inside these markers. You are CRITICALLY BANNED from leaving the "targeted_tags" array empty `[]` or null for any reason. 
-- **THE ANTI-PADDING AND SANITIZATION PROTOCOL**: You MUST completely strip away, purge, and filter out all markdown backticks (`` ` ``), commas, inline formatting tokens, or trailing whitespaces from the tag strings. Populate them as clean, separate, isolated string elements inside the "targeted_tags" array field (e.g., `"targeted_tags": ["[ARC-006]", "[ARC-010]"]`).
-- If a sub-task section in the Markdown context contains the `<!--START_TAGS-->` container, returning an empty array `[]` in your JSON payload is treated as a catastrophic runtime syntax failure and will instantly crash the system pipeline.
-- You are STRICTLY BANNED from leaving the "targeted_tags" array empty `[]` or null. Every single tag token must be its own separated array element string.
-
-You must conform strictly and output exactly ONE (1) single, standalone, unified JSON block containing all target fields including `objectives`, `phase_idx`, and `phase_context_file` from the very start. 
-
-🚨 **CRITICAL PIPELINE FREEZE MANDATE**: You are ABSOLUTELY FORBIDDEN from outputting conversational filler text, dashes, symbols, separators (NO `----------------------------------`), post-generation text remarks, or secondary blocks. Open exactly with a single line of triple backticks + json, render the unified schema, close with a closing brace, close with triple backticks, and STOP GENERATING INSTANTLY. Any token after the first valid closing fence crashes the enterprise runtime.
-
-Required JSON Schema layout design structure: {
-  "$defs": {
-    "DailyStep": {
-      "properties": {
-        "day": {
-          "description": "Timeline iteration day inside this isolated phase.",
-          "title": "Day",
-          "type": "integer"
-        },
-        "context_file": {
-          "description": "The phase context Markdown file for closure on this day.",
-          "title": "Context File",
-          "type": "string"
-        },
-        "context_section": {
-          "default": "No day context section provided",
-          "description": "The day targeted for closure on this day.",
-          "title": "Context Section",
-          "type": "string"
-        },
-        "sub_tasks": {
-          "description": "Array of isolated micro-tasks assigned to sub-agents.",
-          "items": {
-            "$ref": "##/$defs/SubAgentTask"
-          },
-          "title": "Sub Tasks",
-          "type": "array"
-        }
-      },
-      "required": [
-        "day",
-        "context_file",
-        "sub_tasks"
-      ],
-      "title": "DailyStep",
-      "type": "object"
-    },
-    "SubAgentTask": {
-      "properties": {
-        "id": {
-          "description": "Sub-Task identity of Task that sub-agent role executing.",
-          "title": "Id",
-          "type": "string"
-        },
-        "agent": {
-          "description": "Target sub-agent role executing the task.",
-          "title": "Agent",
-          "type": "string"
-        },
-        "desc": {
-          "default": "No task description provided",
-          "description": "Literal, low-level technical step assigned to the agent.",
-          "title": "Desc",
-          "type": "string"
-        },
-        "targeted_tags": {
-          "description": "Flat string array of exact inherited BA Tag IDs that this specific sub-task implements or verifies (e.g. ['[REQ-001]', '[ARC-002]']). MUST match the raw requirements 1:1.",
-          "items": {
-            "type": "string"
-          },
-          "title": "Targeted Tags",
-          "type": "array"
-        },
-        "components": {
-          "description": "Flat array of physical localized file paths or scripts modified or targeted by this single task. Return an empty array [] if no files are involved.",
-          "items": {
-            "type": "string"
-          },
-          "title": "Components",
-          "type": "array"
-        }
-      },
-      "required": [
-        "id",
-        "agent"
-      ],
-      "title": "SubAgentTask",
-      "type": "object"
-    }
-  },
-  "properties": {
-    "phase_id": {
-      "description": "Target phase tracker index.",
-      "title": "Phase Id",
-      "type": "integer"
-    },
-    "phase_name": {
-      "default": "No phase name provided",
-      "description": "Target phase tracker name.",
-      "title": "Phase Name",
-      "type": "string"
-    },
-    "phase_description": {
-      "default": "No phase description provided",
-      "description": "Target phase description.",
-      "title": "Phase Description",
-      "type": "string"
-    },
-    "project_name": {
-      "description": "Target project tracker name.",
-      "title": "Project Name",
-      "type": "string"
-    },
-    "global_context_file": {
-      "description": "Project global context Markdown file for closure.",
-      "title": "Global Context File",
-      "type": "string"
-    },
-    "source_target_dir": {
-      "description": "Project sources folder path for closure.",
-      "title": "Source Target Dir",
-      "type": "string"
-    },
-    "days": {
-      "description": "Day-by-day engineering tracking steps.",
-      "items": {
-        "$ref": "##/$defs/DailyStep"
-      },
-      "title": "Days",
-      "type": "array"
-    }
-  },
-  "required": [
-    "phase_id",
-    "project_name",
-    "global_context_file",
-    "source_target_dir",
-    "days"
-  ],
-  "title": "PhaseStepsPlan",
-  "type": "object"
-}
-
---- PHASE 3 CONTEXT MARKDOWN ---
-## Xây dựng dịch vụ thông báo, khuyến mãi, và API di động 3: <!--PHASE_NAME_START-->Xây dựng dịch vụ thông báo, khuyến mãi, và API di động<!--PHASE_NAME_END-->
-
-#### 📊 Document Control
-
-| Mục | Chi tiết |
-| :--- | :--- |
-| **ID Kiến trúc** | ARCH-20260804165526 |
-| **Tên dự án** | membership-hub |
-| **Giai đoạn** | 3 |
-| **Tên Giai đoạn** | <!--PHASE_NAME_START-->Xây dựng dịch vụ thông báo, khuyến mãi, và API di động<!--PHASE_NAME_END--> |
-| **Mô tả** | <!--PHASE_DESC_START-->Giai đoạn này triển khai các dịch vụ thông báo push và Zalo, khuyến mãi, thông báo nội bộ, chatbot AI, và API di động, đồng thời thực hiện kiểm thử, xử lý ngoại lệ và bảo mật cho toàn bộ hệ thống.<!--PHASE_DESC_END--> |
-| **Phiên bản** | 1.0 (Baseline) |
-| **Ngày/Giờ** | 2026/08/04 16:55:26 |
-| **Tác giả** | Enterprise System Architect (SA Agent) |
-| **Phê duyệt** | Pending Technical Governance Review |
-
-#### 1. Phạm vi và mục tiêu của Giai đoạn
-Giai đoạn 3 tập trung vào việc triển khai các dịch vụ thông báo push và Zalo, khuyến mãi, thông báo nội bộ, chatbot AI, và API di động. Các dịch vụ này sẽ được xây dựng với kiến trúc microservices, sử dụng Quarkus, PostgreSQL, Redis, Firebase Admin SDK, và Zalo API. Mỗi dịch vụ sẽ được bảo vệ bằng JWT, tuân thủ OWASP Top 10, và được kiểm thử đầy đủ với coverage ≥ 90 %. Ngoài ra, các ngoại lệ và tính năng bảo mật sẽ được xử lý và ghi nhận theo chuẩn audit.
-
-#### 2. Phạm vi kỹ thuật cho phép & Giới hạn thư mục (tệp, đường dẫn và điểm cuối)
-- **Thư mục**  
-  - `./sources/backend/notification-service`  
-  - `./sources/backend/promotion-service`  
-  - `./sources/backend/announcement-service`  
-  - `./sources/backend/chatbot-service`  
-  - `./sources/backend/mobile-service`  
-  - `./sources/backend/database/migrations`  
-- **Điểm cuối API**  
-  - `POST /api/notifications` → tạo thông báo  
-  - `POST /api/promotions` → tạo khuyến mãi  
-  - `POST /api/announcements` → tạo thông báo nội bộ  
-  - `POST /api/chatbot/message` → gửi tin nhắn chatbot  
-  - `GET /api/mobile/cards` → lấy thông tin thẻ di động
-
-#### 3. Hướng dẫn chức năng dành cho Sub-Agent
-- **Coder**: Xây dựng controller, service, repository, tích hợp Firebase, Zalo, và AI; áp dụng OWASP Top 10 bảo mật cho API và dữ liệu; đảm bảo mã nguồn tuân thủ chuẩn OWASP và thực hiện unit test.  
-- **Tester**: Viết và thực thi test API, kiểm tra i18n, SEO meta tags, bảo mật; thực hiện integration test cho mobile-service; đảm bảo coverage ≥ 90 %.  
-- **Reviewer**: Đánh giá code quality, kiểm tra exception handling, performance, và bảo mật; thực hiện static analysis và OWASP review; ghi nhận các vấn đề bảo mật và đề xuất cải tiến.
-
-#### 4. Định nghĩa Hoàn thành Giai đoạn (DoD)
-- Tất cả yêu cầu [REQ-016]–[REQ-025] và dữ liệu [DAT-007]–[DAT-011] được triển khai và kiểm thử.  
-- Coverage test ≥ 90 % cho các module notification, promotion, announcement, chatbot, mobile.  
-- Kiểm tra OWASP (SQLi, XSS, CSRF, JWT) đạt 100 %.  
-- Tất cả tag ID được map đầy đủ, không còn tag chưa được sử dụng.
-
-#### 5. DAY-BY-DAY ARCHITECTURAL EXECUTION LOGS
-
-###### DAY 1: <!--DAY_HEADER_START-->XÂY ĐẾN DỊCH VỤ THÔNG BÁO VÀ MOBILE API<!--DAY_HEADER_END-->
-
-######## SUB-TASK 1.1: Xây dựng controller, service, repository, và tích hợp Firebase, Zalo, đồng thời áp dụng OWASP Top 10 bảo mật cho API và dữ liệu
-########## Sub-Agent được giao: Coder
-########## Yêu cầu thành phần & kỹ thuật:
-* **Đường dẫn mục tiêu**: ./sources/backend/notification-service
-* **Thẻ mã theo dõi**: <!--START_TAGS-->[REQ-016], [REQ-017], [REQ-018], [REQ-019], [DAT-007], [DAT-008]<!--END_TAGS-->
-
-######## SUB-TASK 1.2: Xây dựng promotion-service với mã code duy nhất, kiểm tra trùng lặp, áp dụng OWASP
-########## Sub-Agent được giao: Coder
-########## Yêu cầu thành phần & kỹ thuật:
-* **Đường dẫn mục tiêu**: ./sources/backend/promotion-service
-* **Thẻ mã theo dõi**: <!--START_TAGS-->[REQ-017], [DAT-009]<!--END_TAGS-->
-
-######## SUB-TASK 1.3: Xây dựng announcement-service, kiểm tra trùng lặp, bảo mật
-########## Sub-Agent được giao: Coder
-########## Yêu cầu thành phần & kỹ thuật:
-* **Đường dẫn mục tiêu**: ./sources/backend/announcement-service
-* **Thẻ mã theo dõi**: <!--START_TAGS-->[REQ-018], [DAT-010]<!--END_TAGS-->
-
-######## SUB-TASK 1.4: Xây dựng chatbot-service, tích hợp AI, bảo mật
-########## Sub-Agent được giao: Coder
-########## Yêu cầu thành phần & kỹ thuật:
-* **Đường dẫn mục tiêu**: ./sources/backend/chatbot-service
-* **Thẻ mã theo dõi**: <!--START_TAGS-->[REQ-019]<!--END_TAGS-->
-
-######## SUB-TASK 1.5: Xây dựng mobile-service, API, i18n, SEO, bảo mật
-########## Sub-Agent được giao: Coder
-########## Yêu cầu thành phần & kỹ thuật:
-* **Đường dẫn mục tiêu**: ./sources/backend/mobile-service
-* **Thẻ mã theo dõi**: <!--START_TAGS-->[REQ-020], [REQ-021], [REQ-022], [REQ-023], [REQ-024], [REQ-025], [DAT-011]<!--END_TAGS-->
-
-###### DAY 2: <!--DAY_HEADER_START-->KIỂM THỬ MOBILE API<!--DAY_HEADER_END-->
-
-######## SUB-TASK 2.1: Viết test API, kiểm tra i18n, SEO meta tags, bảo mật
-########## Sub-Agent được giao: Tester
-########## Yêu cầu thành phần & kỹ thuật:
-* **Đường dẫn mục tiêu**: ./sources/backend/mobile-service;./sources/backend/mobile-service/src/test/java/com/membershiphub/mobile/MobileServiceTest.java
-* **Thẻ mã theo dõi**: <!--START_TAGS-->[REQ-020], [REQ-021], [REQ-022], [REQ-023], [REQ-024], [REQ-025], [DAT-011]<!--END_TAGS-->
-
-###### DAY 3: <!--DAY_HEADER_START-->ĐÁNH GIÁ BẢO MẬT VÀ XỬ LÝ NGOẠI LỆ<!--DAY_HEADER_END-->
-
-######## SUB-TASK 3.1: Đánh giá code quality, kiểm tra exception handling, performance, bảo mật
-########## Sub-Agent được giao: Reviewer
-########## Yêu cầu thành phần & kỹ thuật:
-* **Đường dẫn mục tiêu**: ./sources/backend/notification-service
-* **Thẻ mã theo dõi**: <!--START_TAGS-->[REQ-016], [REQ-017], [REQ-018], [REQ-019], [DAT-007], [DAT-008], [EXC-003]<!--END_TAGS-->
-------------------------------------------
-
-# System Instruction
-
-<GLOBAL_GOVERNANCE_MATRIX>
-# ==============================================================================
-# MASTER ENTERPRISE GOVERNANCE GUARDRAILS MATRIX (GLOBAL TASK ENFORCEMENT)
-# ==============================================================================
-
-## 🌐 1. STRICT SEMANTIC INVARIANT LOCALIZATION & TRANSLATION RAILS
-- **MANDATORY RESOLUTION:** You MUST automatically translate and naturally render 100% of the entire generated output content—including all section headers, primary titles, data matrix labels, table structures, and explanatory text boundaries—into the exact requested target execution language specified by the system parameter variable: "🇻🇳 Vietnamese".
-- **ABSOLUTE TECH PROTECTION BOUNDARY:** You are STRICTLY BANNED from translating, changing, altering, or breaking any technical structural layers. You MUST preserve these elements natively in their pristine Technical English/Primitive code state:
-  * All markdown syntax operators (`#`, `##`, `| :--- |`, `-`, `*`).
-  * All unique Tracking Tag IDs and Technical Nodes (e.g., `[REQ-XXX]`, `[DAT-XXX]`, `[EXC-XXX]`, `[IDEA_X]`).
-  * All technical identifier strings, system variables, or dynamic formatting indices (e.g., `D1_ST1`).
-  * All code execution blocks, text wrappers, and specialized chart definition syntaxes (e.g., Mermaid.js graphs, structural layout configurations).
-  * 🚨 **STRICT CODE BLOCK FORMATTING LAW**: You are ABSOLUTELY FORBIDDEN from nesting or combining markdown code block ticks. When outputting a JSON payload, you MUST start exactly with a single line of triple backticks followed immediately by 'json' (i.e., ```json). Do NOT prepend or wrap it with ```text or any other outer text syntax. The block must open clean and close clean.
-
-## 🔒 2. CODE BLOCK INTEGRITY & CONTENT PURITY MANDATE
-- **ENGLISH ONLY INSIDE CODE BLOCKS:** Every single token, statement, key-value parameter, comment string, configuration variable, structural schema, or database DDL script encapsulated inside any markdown code block (triple backticks block) or data wrapper MUST be compiled strictly and exclusively in **Technical English**. 
-- **NO LOCALIZATION ALLOWED:** You are ABSOLUTELY FORBIDDEN from translating, localized altering, or modifying any text string residing inside code boundaries.
-
-## 🛑 3. ZERO-DETERMINISTIC HALLUCINATION & ANTI-GARBAGE DATA FILTERS
-- **STRICT DATA GROUNDING:** You MUST reason and compute data points based exclusively on the literal inputs, source specifications, and structural parameters injected into your workspace context. 
-- **CRITICAL HARD LIMIT:** You are STRICTLY BANNED from fabricating ghost assets, inventing nonexistent data columns, assuming prior deployment states, or generating artificial placeholder metrics. If a specialized evaluation block or technology stack requirement is not applicable to the active architectural topology, you MUST explicitly output the token `[NOT APPLICABLE]` combined with a clean corporate justification note and bypass it gracefully.
-
-## 🛡️ 4. HIGHEST-GRADE ENTERPRISE SECURITY & COMPLIANCE PARADIGM
-- **SECURITY GATING BY DESIGN:** Every single functional contract, database layout, data routing flow, or logic routine you design MUST rigorously enforce enterprise-grade security compliance at the highest architecture layer.
-- **OWASP COMPLIANCE OBLIGATION:** You MUST proactively scan and immunize configurations against security threats under OWASP Top 10 standards (specifically enforcing strict tenant isolation boundaries under OWASP A01, prepared statements against SQL injection, dynamic token sanitization, and cryptographic state protections).
-
-## 📋 5. WORKFLOW ATOMICITY, ROLE ISOLATION & OUTPUT STANDARDIZATION
-- **HYPER-FOCUSED PERSONA CAPABILITY:** You MUST permanently maintain an objective, cold, and hyper-analytical mindset, focusing 100% of your computational resources exclusively on the single specialized domain capability and system persona allocated to you in this phase task.
-- **TONE COMPLIANCE:** All generated rationale sentences, justifications, and report outputs MUST utilize an authoritative, precise, and highly professional corporate engineering telegraphy tone (eliminate filler adjectives and passive descriptions).
-- **ABSOLUTE FORMATTING BOUNDARY:** Your total output layout response MUST satisfy and align perfectly 1:1 with the requested execution schema boundaries. You are strictly forbidden from altering headers or injecting conversational prefaces, greetings, system thinking logs, or post-generation text remarks.
-
-## 🧮 6. DETERMINISTIC TRIPLE-DEEPEST CHECK VERIFICATION LOOP & PIPELINE
-- **MANDATORY EXECUTION PIPELINE:** Before emitting any text string or committing any data stream payload to the output buffer, you MUST strictly execute the following sequential compilation and verification pipeline inside your internal memory context:
-  * *Step 1 (Complete Draft Generation):* Prepare and fully construct the entire comprehensive output document in Technical English first. Ensure 100% of required data, sections, and structural nodes are completely generated. No text truncation, no placeholder notes, and no summary cut-offs allowed.
-  * *Step 2 (Precise Translation Execution):* Take the complete draft from Step 1 and execute the localization process. Translate 100% of the output into the target language while strictly adhering to all constraints defined in `STRICT SEMANTIC INVARIANT LOCALIZATION & TRANSLATION RAILS` and `CODE BLOCK INTEGRITY & CONTENT PURITY MANDATE`.
-  * *Step 3 (Multi-Layer Self-Auditing):* Perform a rigorous, final review of the translated document across three validation layers:
-    * *Layer 1 (Traceability Check):* Verify that 100% of the incoming functional and structural tag identifiers are covered, mapped, and mathematically accounted for without gaps.
-    * *Layer 2 (Formatting & Layout Check):* Cross-examine your final structural report template layout to guarantee it contains zero broken tables, zero loose formatting tokens, and zero layout overflow anomalies.
-    * *Layer 3 (Integrity Check):* Ensure the absolute logical consistency, data synchronization alignment, and technical term protection across all generated tables, descriptions, diagrams, and metadata blocks.
-- Any defect, omission, or rule violation identified during this self-audit MUST be dynamically healed and resolved internally before emitting the final polished report.
-</GLOBAL_GOVERNANCE_MATRIX>
-
-<ACTIVE_TASK_SYSTEM_INSTRUCTION>
-You are a high-performance Data Ingestion and Transformation Engine. Your sole objective is to parse the Phase Context Markdown text and convert it into a perfectly valid, parseable JSON object matching the requested schema framework.
-
-# YOUR CRITICAL OPERATIONAL MANDATES (ZERO LOOPHOLES):
-1. **STRICT VARIABLE FIDELITY & NO PREFIXES:** You MUST use the exact raw values provided in the template variables for file paths and project names. You are STRICTLY BANNED from appending, prepending, or injecting any custom folders or prefixes like "sources/" to the `global_context_file`, `context_file`, `source_target_dir`, or `project_name` fields. Use the variable values exactly as they are passed.
-
-2. **ABSOLUTE PYDANTIC SCHEMA ALIGNMENT:** Your final generated JSON object MUST perfectly satisfy the structural schema parameters of the target enterprise contract. You are STRICTLY BANNED from omitting, renaming, formatting, or stripping out key elements (specifically `phase_id`, `phase_name`, `phase_description`, `project_name`, `global_context_file`, `source_target_dir`, `objectives`, `days`, `phase_idx`, and `phase_context_file`). Prepare your memory pipeline to compute all these fields collectively within the FIRST and ONLY block execution loop.
-
-3. **ABSOLUTE NO EMPTY TAGS POLICY & STRING SANITIZATION:** You are STRICTLY BANNED from leaving the "targeted_tags" array empty `[]` or null for any sub-task that implements functional requirements or data schemas. You MUST scan the source Markdown sequentially sub-task by sub-task. For each sub-task node, locate the hidden technical container block delimited between `<!--START_TAGS-->` and `<!--END_TAGS-->` contained exclusively within that sub-task section scope. Extract all raw tag token codes inside, strip away all inline markdown formatting characters—specifically backticks (`` ` ``)—and any leading/trailing whitespaces, then populate them as clean separate string elements inside the "targeted_tags" array field of EACH sub-task object node.
-
-4. **NO TAG BUNDLING & HARDENED COMPONENT GRANULARITY:** Every tag must be its own array node (e.g., `"targeted_tags": ["[REQ-001]", "[DAT-002]"]`). You are strictly forbidden from combining multiple tags into a single string element.
-
-5. **STRICT JSON SYNTAX ENFORCEMENT & HARDENED FILE-LEVEL GRANULARITY LAW:**
-   - **Absolute Output Constraint**: Your total response output stream MUST contain exactly ONE (1) single valid JSON object payload from start to finish. You are STRINGENTLY AND ABSOLUTELY BANNED from repeating, mirroring, or generating a secondary duplicate JSON block within this execution channel.
-   - **STRICT CODE BLOCK FORMATTING LAW (NO NESTING)**: 
-     * The output MUST open clean on Line 1 containing exactly seven characters: ```json
-     * You are CRITICALLY FORBIDDEN from wrapping, prepending, or prefixing the block with ```text```json, ```text, or any outer text syntax combination. 
-     * The output MUST close clean on the final line containing exactly three characters: ```
-     * There must be absolutely ZERO human conversational filler text, thinking logs (`<think>` tags), dashes, separators, intros, or trailing notes before or after the fenced code block. Open cleanly with triple backticks + json, write the object, and close cleanly.
-  - 🚨 **STRINCENT FILE-LEVEL COMPONENTS LAW (ANTI-PACKAGE OVERRIDE)**:
-    * Every single string element parameter inside the 'components' array field MUST point exclusively to a specific physical executable, configuration, style, or codebase FILE, and it MUST explicitly end with a valid technical dot file extension (e.g., `.java`, `.ts`, `.tsx`, `.js`, `.jsx`, `.vue`, `.swift`, `.kotlin`, `.tf`, `.sql`, `.json`, `.yml`, `.yaml`, `.xml`, `.css`, `.scss`, or literal `Dockerfile`).
-    * You are ABSOLUTELY AND CRITICALLY BANNED from outputting generic parent directory paths, folder structures, or package/module boundary nodes (NO paths ending with raw package or folder names like `.../config`, `.../auth`, `.../components`, `.../pages`, `.../gcp`, or `.../migration`).
-    * **THE CIRCUIT-BREAKER EXTENSION GATING**: You must evaluate the very last character of each component string. If it does not match a deterministic file extension suffix, you violate runtime constraints.
-    * **UNIVERSAL CHAIN-OF-THOUGHT UNPACKING PROCESS**: If the source context documentation provides an ambiguous folder or package name context, you MUST immediately freeze raw copying, think step-by-step like a Principal Cross-Platform Solution Architect, analyze the target project stack from the context, and dynamically unpack that container path into an array of explicit physical file targets required for that agent persona. You MUST adhere to these generic domain blueprints:
-      - **Backend Dominant Stack (e.g., Java, Go, Python packages, SQL migrations)**: Deconstruct the lazy container path into distinct operational files (e.g., replace `.../config` with specific configuration files; replace `.../migration` with concrete migration script files like `.../migration/V1__init_schema.sql`).
-      - **Frontend / Mobile Dominant Stack (e.g., React, Next.js, Vue, iOS, Android modules)**: Deconstruct generic folder paths (like `.../components`, `.../pages`, `.../hooks`, `.../store`) into explicit UI implementation and state assets (e.g., replace a lazy `.../components/auth` folder with `.../components/auth/LoginCard.tsx`, `.../components/auth/AuthForm.tsx`, and `.../components/auth/useAuthStyles.ts` depending on the functional requirements inside the sub-task description).
-      - **Infrastructure & Devops Stack (e.g., Terraform, Kubernetes manifests, CI/CD pipelines)**: Deconstruct into individual, explicit physical declaration files (e.g., replace `.../gcp` with `.../gcp/main.tf`, `.../gcp/vpc.tf`; replace `.../k8s` with `.../k8s/deployment.yaml`, `.../k8s/service.yaml`).
-    * This mapping rule is 100% generic, multi-language, and project-agnostic. Fluidly adapt to any frontend, backend, mobile, or cloud infrastructure project by converting raw folders into explicit terminal file extension targets.
-  - **Granular Value Localization Boundaries**: Keep all structural JSON keys (`phase_id`, `phase_name`, `days`, `sub_tasks`, `id`, `agent`, `desc`, `components`, etc.) permanently in raw Technical English. Translate 100% of human-readable text strictly *inside* the string values (specifically `phase_description`, `context_section`, and sub-task `desc`) into the designated target language context.
-  - **THE CRITICAL CIRCUIT-BREAKER DIRECTIVE**: Mid-generation corrections or trailing structural artifacts (NO `-----------------`, NO secondary trial blocks like `} ```text{`) are strictly treated as catastrophic runtime violations. The very millisecond you emit the final closing brace `}` of your single JSON schema object payload, you MUST immediately print the closing triple backticks fence on the next line and FORCE-FREEZE/STOP token generation instantly. Any token emitted after the primary closed fence violates runtime contracts.
-</ACTIVE_TASK_SYSTEM_INSTRUCTION>
-
-# Raw Response / Exception:
-
-```json
-{
-  "phase_id": 3,
-  "phase_name": "Xây dựng dịch vụ thông báo, khuyến mãi, và API di động",
-  "phase_description": "Giai đoạn này triển khai các dịch vụ thông báo push và Zalo, khuyến mãi, thông báo nội bộ, chatbot AI, và API di động, đồng thời thực hiện kiểm thử, xử lý ngoại lệ và bảo mật cho toàn bộ hệ thống.",
-  "project_name": "membership-hub",
-  "global_context_file": ".ai/.context/membership-hub.global.blueprint.md",
-  "source_target_dir": "sources/",
-  "days": [
-    {
-      "day": 1,
-      "context_file": ".ai/.plan/.context/phase-3.context.blueprint.md",
-      "context_section": "XÂY ĐẾN DỊCH VỤ THÔNG BÁO VÀ MOBILE API",
-      "sub_tasks": [
-        {
-          "id": "D1_ST1",
-          "agent": "Coder",
-          "desc": "Xây dựng controller, service, repository, và tích hợp Firebase, Zalo, đồng thời áp dụng OWASP Top 10 bảo mật cho API và dữ liệu",
-          "targeted_tags": [
-            "[REQ-016]",
-            "[REQ-017]",
-            "[REQ-018]",
-            "[REQ-019]",
-            "[DAT-007]",
-            "[DAT-008]"
-          ],
-          "components": [
-            "./sources/backend/notification-service/NotificationController.java",
-            "./sources/backend/notification-service/NotificationService.java",
-            "./sources/backend/notification-service/NotificationRepository.java"
-          ]
-        },
-        {
-          "id": "D1_ST2",
-          "agent": "Coder",
-          "desc": "Xây dựng promotion-service với mã code duy nhất, kiểm tra trùng lặp, áp dụng OWASP",
-          "targeted_tags": [
-            "[REQ-017]",
-            "[DAT-009]"
-          ],
-          "components": [
-            "./sources/backend/promotion-service/PromotionController.java",
-            "./sources/backend/promotion-service/PromotionService.java",
-            "./sources/backend/promotion-service/PromotionRepository.java"
-          ]
-        },
-        {
-          "id": "D1_ST3",
-          "agent": "Coder",
-          "desc": "Xây dựng announcement-service, kiểm tra trùng lặp, bảo mật",
-          "targeted_tags": [
-            "[REQ-018]",
-            "[DAT-010]"
-          ],
-          "components": [
-            "./sources/backend/announcement-service/AnnouncementController.java",
-            "./sources/backend/announcement-service/AnnouncementService.java",
-            "./sources/backend/announcement-service/AnnouncementRepository.java"
-          ]
-        },
-        {
-          "id": "D1_ST4",
-          "agent": "Coder",
-          "desc": "Xây dựng chatbot-service, tích hợp AI, bảo mật",
-          "targeted_tags": [
-            "[REQ-019]"
-          ],
-          "components": [
-            "./sources/backend/chatbot-service/ChatbotController.java",
-            "./sources/backend/chatbot-service/ChatbotService.java",
-            "./sources/backend/chatbot-service/ChatbotRepository.java"
-          ]
-        },
-        {
-          "id": "D1_ST5",
-          "agent": "Coder",
-          "desc": "Xây dựng mobile-service, API, i18n, SEO, bảo mật",
-          "targeted_tags": [
-            "[REQ-020]",
-            "[REQ-021]",
-            "[REQ-022]",
-            "[REQ-023]",
-            "[REQ-024]",
-            "[REQ-025]",
-            "[DAT-011]"
-          ],
-          "components": [
-            "./sources/backend/mobile-service/MobileController.java",
-            "./sources/backend/mobile-service/MobileService.java",
-            "./sources/backend/mobile-service/MobileRepository.java"
-          ]
-        }
-      ]
-    },
-    {
-      "day": 2,
-      "context_file": ".ai/.plan/.context/phase-3.context.blueprint.md",
-      "context_section": "KIỂM THỬ MOBILE API",
-      "sub_tasks": [
-        {
-          "id": "D2_ST1",
-          "agent": "Tester",
-          "desc": "Viết test API, kiểm tra i18n, SEO meta tags, bảo mật",
-          "targeted_tags": [
-            "[REQ-020]",
-            "[REQ-021]",
-            "[REQ-022]",
-            "[REQ-023]",
-            "[REQ-024]",
-            "[REQ-025]",
-            "[DAT-011]"
-          ],
-          "components": [
-            "./sources/backend/mobile-service/src/test/java/com/membershiphub/mobile/MobileServiceTest.java"
-          ]
-        }
-      ]
-    },
-    {
-      "day": 3,
-      "context_file": ".ai/.plan/.context/phase-3.context.blueprint.md",
-      "context_section": "ĐÁNH GIÁ BẢO MẬT VÀ XỬ LÝ NGOẠI LỆ",
-      "sub_tasks": [
-        {
-          "id": "D3_ST1",
-          "agent": "Reviewer",
-          "desc": "Đánh giá code quality, kiểm tra exception handling, performance, bảo mật",
-          "targeted_tags": [
-            "[REQ-016]",
-            "[REQ-017]",
-            "[REQ-018]",
-            "[REQ-019]",
-            "[DAT-007]",
-            "[DAT-008]",
-            "[EXC-003]"
-          ],
-          "components": [
-            "./sources/backend/notification-service/NotificationController.java",
-            "./sources/backend/notification-service/NotificationService.java",
-            "./sources/backend/notification-service/NotificationRepository.java"
-          ]
-        }
-      ]
-    }
-  ]
-}
-```
-
-# AI Model: llama-3.3-70b-versatile - Phase 4 STEPS - Prompt:
-
-Analyze the attached Phase 4 Context Markdown content. 
-
-Extract and parse ALL daily steps, checklists, and agent tasks from the entire document. Localize the human-readable text strictly within the JSON string values according to your System Prompt Override rule.
-
-
-## 🔒 AGENT ATOMICITY, TASK ID FORMAT & FILE-LEVEL COMPONENT MANDATES (ABSOLUTE):
-- **STRICT TASK ID ALIGNMENT BLUEPRINT:** You MUST strictly generate the "id" field string for every single sub-task using the exact sequential formatting blueprint: `D<day_num>_ST<task_index>` (e.g., `D1_ST1`, `D1_ST2`, `D2_ST1`).
-- **STRICT AGENT ROLE LITERAL VALUES:** The "agent" field inside the JSON sub-task object MUST strictly enforce a capitalized first letter and lowercase subsequent letters pattern matching the exact tokens: 'Coder' | 'Tester' | 'Reviewer' | 'Doc' | 'Docker' | 'Gcp' | 'Gke'. Any other values or lowercase blocks (e.g., NO "coder") are strictly banned.
-- **🚨 NO FOLDER OR PACKAGE PATHS ALLOWED IN COMPONENTS (ABSOLUTE HARD LIMIT):** You are STRINCENTLY BANNED from generating any sub-task object where the 'components' array field contains a raw folder directory name or stops at a Java package structural layer. 
-  * 🚨 **THE STRICT TERMINAL EXPLICIT SUFFIX LAW (UNIVERSAL FILE-EXTENSION GATING)**: You MUST systematically cross-examine every predicted path string within the 'components' array. Every single output path string **MUST STRICTLY END** with one of the following explicit physical file format extensions: `.java`, `.tf`, `.sql`, `.yml`, `.yaml`, `.xml`, `.json`, `.properties`, `.md`, or the literal word `Dockerfile`. 
-  * If a path ends with a raw directory folder name or a package boundary node (meaning the last characters of the string do NOT form a valid code file dot-extension, regardless of any dot operators present at the beginning like `./sources/`), you are CRITICALLY FORBIDDEN from carrying it over blindly into the payload. 
-  * You MUST immediately intercept that truncated path container, think step-by-step like a Senior Solution Architect, evaluate the sub-task 'desc' context, and dynamically expand that plain folder path into an array of explicit physical file targets ending with proper code format suffixes (e.g., if the task 'desc' specifies implementing PostgreSQL and Firebase config inside a lazy `.../config` package boundary, you MUST programmatically refactor it into an array of individual explicit files: `.../config/DatabaseConfig.java`, `.../config/FirebaseAuthConfig.java`, and `.../config/SecurityConfig.java`). Every single array node element string must satisfy this explicit terminal file extension filter to pass backend runtime validation.
-- 🚨 **MANDATORY HARDENED AGENT DOC & FALLBACK ARTIFACT LAW**:
-  * The 'Doc' agent is strictly an engineering documentation persona and is ABSOLUTELY BANNED from outputting naked directories or folder paths in the 'components' array. 
-  * If a task is assigned to the 'Doc' agent, every string element inside its 'components' array MUST strictly point to a physical markdown documentation file ending with the explicit dot extension `..md` (e.g., replace raw folders like `.../mobile-app` with precise documentation assets such as `.../mobile-app/README.md` or `.../mobile-app/ARCHITECTURE.md`).
-  * If a calendar day contains high-level technical directives or documentation tasks but completely lacks pre-defined code file paths in the source markdown, you MUST populate the 'components' array with exactly two mandatory elements: the dedicated markdown documentation file target for that domain (ending in `..md`), and the exact literal path value of the current context file: ".ai/.plan/.context/phase-4.context.blueprint.md".
-  * Under no circumstance shall any agent persona (including Doc, Gcp, Gke, or Coder) emit a component string that terminates at a folder layer without a valid file extension suffix.
-- **STRICT AGENT ROLE SEGREGATION (ANTI-AGGREGATION):** If a workflow file involves multiple actions by different personas on the same calendar day, you MUST split this workflow into completely separate, sequential task objects inside the 'sub_tasks' array.
-- **HIGH-DENSITY TECHNICAL SPECIFICATION:** The 'task' field MUST contain an exhaustive, granular engineering instruction. If the sub-task involves an API route, integration endpoint, database query, or message block, you MUST explicitly inline the complete technical contract (e.g., Request/Response Payload Schemas, Data Types, Error Status Codes, or Queue names) directly inside this string value. Vague high-level bullet summaries are forbidden.
-- **WORKSPACE PREFIX RULE & MULTI-LANGUAGE TEST EXCEPTION:** Every path in 'components' array MUST strictly begin with `./sources/`. 
-  * *CRITICAL EXCEPTION:* If the first parameter before the semi-colon character in a tester task is the literal string token `INTEGRATION_SCOPE`, you MUST leave that token completely unmodified. Do NOT append any path prefix to it (e.g., `"components": ["INTEGRATION_SCOPE;./sources/frontend/tests/auth.spec.ts"]`).
-
-## 🛠️ MANDATORY TOP-LEVEL FIELD VALUES INJECTION & ANCHOR PARSING (STRICT FIDELITY):
-You MUST dynamically populate the top-level keys of the JSON object using EXACT raw variable values without any modifications, or parse them directly from the primary Markdown header HTML comments:
-- **`phase_id`**: 4
-- **`phase_name`**: [Locate the primary Markdown title header line, extract the clean technical string text located exactly between the hidden HTML delimiters `<!--PHASE_NAME_START-->` and `<!--PHASE_NAME_END-->` without any alterations or translations]
-- **`phase_description`**: [Locate the primary Markdown title header line, extract the clean technical string text located exactly between the hidden HTML delimiters `<!--PHASE_DESC_START-->` and `<!--PHASE_DESC_END-->` without any alterations or translations]
-- **`project_name`**: "membership-hub"
-- **`global_context_file`**: ".ai/.context/membership-hub.global.blueprint.md"
-- **`source_target_dir`**: "sources/"
-
-#### 7. Context Fields Integration Mandate
-- For each day object inside the array, set 'day' to its calculated integer value, set 'context_file' to exact string ".ai/.plan/.context/phase-4.context.blueprint.md", and set 'context_section' to the exact string value of the entire primary Day Header extracted from the source Markdown context text (render this value contextually translated into the target language context) (e.g., `"context_section": "DAY 1: Multi-Tenant Inception Schema & Flyway Migration Setup"`).
-- **`context_section`**: You MUST locate the exact day header line inside the source Markdown context and scan exclusively between the technical delimiters `<!--DAY_HEADER_START-->` and `<!--DAY_HEADER_END-->`. You MUST extract the ENTIRE clean human-readable title phrase enclosed within these markers. You are CRITICALLY BANNED from truncating, shortcutting, or slicing the string to just "DAY 1" or "DAY 2". You MUST capture the full, complete objective text after the day marker and render this value contextually translated into the target language context (e.g., if the localized text inside the anchors is in Vietnamese, extract and output it exactly, such as: `"context_section": "NGÀY 1: Thiết lập cấu hình cơ sở dữ liệu và hạ tầng"`).
-
-#### 8. CHRONOLOGICAL TIMELINE SEQUENCING MANDATE (ABSOLUTE):
-
-## SYSTEM CRITICAL BOUNDARY: FLAT CONFIGURATION IS ACTIVE (is_chunked is FALSE)
-- Regardless of the actual day numbers documented in the source Markdown content (e.g., even if the text states "DAY 4", "DAY 5"), you MUST completely reset the timeline sequence internally so that the first operational day inside this Phase always starts from integer 1. Progression follows sequentially as 2, 3, 4, etc.
-- Map the first targeted day to `"day": 1`, set 'context_file' to ".ai/.plan/.context/phase-4.context.blueprint.md", and strictly set 'context_section' to the localized primary header line of the first day parsed from the text. Incremental days follow this relative baseline.
-
-
-## 🛑 MANDATORY STRUCTURE ENFORCEMENT FOR TRACEABILITY TAGS VIA HTML ANCHORS (CRITICAL):
-- You MUST force your token processing core to sequentially look at every sub-task block in the source Markdown content. For each sub-task, locate the hidden technical container bounds delimited strictly between the HTML anchors `<!--START_TAGS-->` and `<!--END_TAGS-->`.
-- You MUST extract every individual inherited Tag ID token located inside these markers. You are CRITICALLY BANNED from leaving the "targeted_tags" array empty `[]` or null for any reason. 
-- **THE ANTI-PADDING AND SANITIZATION PROTOCOL**: You MUST completely strip away, purge, and filter out all markdown backticks (`` ` ``), commas, inline formatting tokens, or trailing whitespaces from the tag strings. Populate them as clean, separate, isolated string elements inside the "targeted_tags" array field (e.g., `"targeted_tags": ["[ARC-006]", "[ARC-010]"]`).
-- If a sub-task section in the Markdown context contains the `<!--START_TAGS-->` container, returning an empty array `[]` in your JSON payload is treated as a catastrophic runtime syntax failure and will instantly crash the system pipeline.
-- You are STRICTLY BANNED from leaving the "targeted_tags" array empty `[]` or null. Every single tag token must be its own separated array element string.
-
-You must conform strictly and output exactly ONE (1) single, standalone, unified JSON block containing all target fields including `objectives`, `phase_idx`, and `phase_context_file` from the very start. 
-
-🚨 **CRITICAL PIPELINE FREEZE MANDATE**: You are ABSOLUTELY FORBIDDEN from outputting conversational filler text, dashes, symbols, separators (NO `----------------------------------`), post-generation text remarks, or secondary blocks. Open exactly with a single line of triple backticks + json, render the unified schema, close with a closing brace, close with triple backticks, and STOP GENERATING INSTANTLY. Any token after the first valid closing fence crashes the enterprise runtime.
-
-Required JSON Schema layout design structure: {
-  "$defs": {
-    "DailyStep": {
-      "properties": {
-        "day": {
-          "description": "Timeline iteration day inside this isolated phase.",
-          "title": "Day",
-          "type": "integer"
-        },
-        "context_file": {
-          "description": "The phase context Markdown file for closure on this day.",
-          "title": "Context File",
-          "type": "string"
-        },
-        "context_section": {
-          "default": "No day context section provided",
-          "description": "The day targeted for closure on this day.",
-          "title": "Context Section",
-          "type": "string"
-        },
-        "sub_tasks": {
-          "description": "Array of isolated micro-tasks assigned to sub-agents.",
-          "items": {
-            "$ref": "##/$defs/SubAgentTask"
-          },
-          "title": "Sub Tasks",
-          "type": "array"
-        }
-      },
-      "required": [
-        "day",
-        "context_file",
-        "sub_tasks"
-      ],
-      "title": "DailyStep",
-      "type": "object"
-    },
-    "SubAgentTask": {
-      "properties": {
-        "id": {
-          "description": "Sub-Task identity of Task that sub-agent role executing.",
-          "title": "Id",
-          "type": "string"
-        },
-        "agent": {
-          "description": "Target sub-agent role executing the task.",
-          "title": "Agent",
-          "type": "string"
-        },
-        "desc": {
-          "default": "No task description provided",
-          "description": "Literal, low-level technical step assigned to the agent.",
-          "title": "Desc",
-          "type": "string"
-        },
-        "targeted_tags": {
-          "description": "Flat string array of exact inherited BA Tag IDs that this specific sub-task implements or verifies (e.g. ['[REQ-001]', '[ARC-002]']). MUST match the raw requirements 1:1.",
-          "items": {
-            "type": "string"
-          },
-          "title": "Targeted Tags",
-          "type": "array"
-        },
-        "components": {
-          "description": "Flat array of physical localized file paths or scripts modified or targeted by this single task. Return an empty array [] if no files are involved.",
-          "items": {
-            "type": "string"
-          },
-          "title": "Components",
-          "type": "array"
-        }
-      },
-      "required": [
-        "id",
-        "agent"
-      ],
-      "title": "SubAgentTask",
-      "type": "object"
-    }
-  },
-  "properties": {
-    "phase_id": {
-      "description": "Target phase tracker index.",
-      "title": "Phase Id",
-      "type": "integer"
-    },
-    "phase_name": {
-      "default": "No phase name provided",
-      "description": "Target phase tracker name.",
-      "title": "Phase Name",
-      "type": "string"
-    },
-    "phase_description": {
-      "default": "No phase description provided",
-      "description": "Target phase description.",
-      "title": "Phase Description",
-      "type": "string"
-    },
-    "project_name": {
-      "description": "Target project tracker name.",
-      "title": "Project Name",
-      "type": "string"
-    },
-    "global_context_file": {
-      "description": "Project global context Markdown file for closure.",
-      "title": "Global Context File",
-      "type": "string"
-    },
-    "source_target_dir": {
-      "description": "Project sources folder path for closure.",
-      "title": "Source Target Dir",
-      "type": "string"
-    },
-    "days": {
-      "description": "Day-by-day engineering tracking steps.",
-      "items": {
-        "$ref": "##/$defs/DailyStep"
-      },
-      "title": "Days",
-      "type": "array"
-    }
-  },
-  "required": [
-    "phase_id",
-    "project_name",
-    "global_context_file",
-    "source_target_dir",
-    "days"
-  ],
-  "title": "PhaseStepsPlan",
-  "type": "object"
-}
-
---- PHASE 4 CONTEXT MARKDOWN ---
-## Phát triển giao diện người dùng đáp ứng, đa ngôn ngữ, tối ưu SEO và triển khai trên GCP 4: <!--PHASE_NAME_START-->Phát triển giao diện người dùng đáp ứng, đa ngôn ngữ, tối ưu SEO và triển khai trên GCP<!--PHASE_NAME_END-->
-
-#### 📊 Document Control
-
-| Mục | Chi tiết |
-| :--- | :--- |
-| **ID Kiến trúc** | ARCH-20260804165526 |
-| **Tên dự án** | membership-hub |
-| **Giai đoạn** | 4 |
-| **Tên Giai đoạn** | <!--PHASE_NAME_START-->Phát triển giao diện người dùng đáp ứng, đa ngôn ngữ, tối ưu SEO và triển khai trên GCP<!--PHASE_NAME_END--> |
-| **Mô tả** | <!--PHASE_DESC_START-->Giai đoạn này tập trung vào việc xây dựng giao diện người dùng đáp ứng cho cả web và ứng dụng di động, triển khai đa ngôn ngữ, tối ưu SEO, tạo tài liệu kỹ thuật chi tiết và triển khai toàn bộ dịch vụ trên nền tảng GCP, bao gồm Cloud Build, Cloud Run, Firebase Hosting và Terraform.<!--PHASE_DESC_END--> |
-| **Phiên bản** | 1.0 (Baseline) |
-| **Ngày/Giờ** | 2026/08/04 16:55:26 |
-| **Tác giả** | Enterprise System Architect (SA Agent) |
-| **Phê duyệt** | Pending Technical Governance Review |
-
-#### 1. Phạm vi và mục tiêu của Giai đoạn
-Giai đoạn 4 yêu cầu triển khai toàn bộ giao diện người dùng đáp ứng cho cả web và ứng dụng di động, bao gồm:
-- Thiết kế và triển khai UI responsive, hỗ trợ đa ngôn ngữ (vi, en, es) và tối ưu SEO (meta tags, hreflang, robots.txt).
-- Tạo tài liệu kỹ thuật chi tiết: hướng dẫn sử dụng, tài liệu API, cấu hình i18n, cấu hình SEO, quy trình triển khai GCP.
-- Cấu hình và triển khai dịch vụ trên GCP: Cloud Build, Cloud Run, Firebase Hosting, Terraform, CI/CD pipeline, bảo mật, monitoring.
-- Đảm bảo tuân thủ OWASP Top 10, bảo mật dữ liệu, và kiểm thử đầy đủ (unit, integration, end‑to‑end) với coverage ≥ 90 %.
-
-#### 2. Phạm vi kỹ thuật được phép & Giới hạn thư mục
-- **Thư mục**:
-  - `./sources/frontend/mobile-app`
-  - `./sources/frontend/web-app`
-  - `./sources/frontend/nextjs-app`
-- **Endpoint**:
-  - `GET /api/mobile/cards` → trả về thông tin thẻ học viên.
-  - `GET /api/announcements` → trả về danh sách thông báo.
-
-#### 3. Hướng dẫn chức năng dành cho Sub‑Agent
-- **Doc**: Tạo tài liệu chi tiết UI, API, i18n, SEO, cấu hình GCP, hướng dẫn triển khai. Đảm bảo tài liệu đầy đủ, chính xác, và dễ hiểu.
-- **GCP**: Cấu hình Cloud Build, Cloud Run, Firebase Hosting, Terraform, CI/CD pipeline. Đảm bảo bảo mật, monitoring, và khả năng mở rộng.
-
-#### 4. Định nghĩa Hoàn thành Giai đoạn (DoD)
-- Tất cả yêu cầu `[REQ-020]`–`[REQ-025]` và dữ liệu `[DAT-011]` được triển khai và kiểm thử.
-- Tài liệu kỹ thuật hoàn chỉnh, bao gồm hướng dẫn UI, API, i18n, SEO, và triển khai GCP.
-- Kiểm thử đầy đủ với coverage ≥ 90 % cho các module liên quan.
-- Tuân thủ OWASP Top 10, bảo mật dữ liệu, và kiểm tra bảo mật toàn diện.
-- Mỗi tag ID được map đầy đủ, không còn tag chưa được sử dụng.
-
-#### 5. DAY‑BY‑DAY ARCHITECTURAL EXECUTION LOGS
-
-###### DAY 1: <!--DAY_HEADER_START-->Viết tài liệu chi tiết UI, API, i18n, SEO<!--DAY_HEADER_END-->
-
-######## SUB-TASK 1.1: Tạo tài liệu chi tiết UI, API, i18n, SEO
-########## Được giao cho: Doc
-########## Yêu cầu thành phần và kỹ thuật:
-* **Đường dẫn mục tiêu**: ./sources/frontend/mobile-app, ./sources/frontend/web-app
-* **Thẻ mã theo dõi**: <!--START_TAGS-->[REQ-020], [REQ-021], [REQ-022], [REQ-023], [REQ-024], [REQ-025], [DAT-011]<!--END_TAGS-->
-
-###### DAY 2: <!--DAY_HEADER_START-->Cấu hình GCP Cloud Build, Cloud Run, Firebase Hosting<!--DAY_HEADER_END-->
-
-######## SUB-TASK 2.1: Cấu hình và triển khai dịch vụ trên GCP
-########## Được giao cho: GCP
-########## Yêu cầu thành phần và kỹ thuật:
-* **Đường dẫn mục tiêu**: ./sources/frontend/mobile-app;./sources/frontend/web-app
-* **Thẻ mã theo dõi**: <!--START_TAGS-->[REQ-020], [REQ-021], [REQ-022], [REQ-023], [REQ-024], [REQ-025], [DAT-011]<!--END_TAGS-->
-------------------------------------------
-
-# System Instruction
-
 You are a high-performance Data Ingestion and Transformation Engine. Your sole objective is to parse the Phase Context Markdown text and convert it into a perfectly valid, parseable JSON object matching the requested schema framework.
 
 # YOUR CRITICAL OPERATIONAL MANDATES (ZERO LOOPHOLES):
@@ -1725,7 +291,7 @@ You are a high-performance Data Ingestion and Transformation Engine. Your sole o
 
 # Raw Response / Exception:
 
-Error code: 429 - {'error': {'message': 'Rate limit reached for model `llama-3.3-70b-versatile` in organization `org_01kx7x6rbpftmr50sr2yyb78qm` service tier `on_demand` on tokens per day (TPD): Limit 100000, Used 97089, Requested 11371. Please try again in 2h1m49.44s. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing', 'type': 'tokens', 'code': 'rate_limit_exceeded'}}: ['Traceback (most recent call last):
+Error code: 429 - {'error': {'message': 'Rate limit reached for model `llama-3.3-70b-versatile` in organization `org_01kx7x6rbpftmr50sr2yyb78qm` service tier `on_demand` on tokens per day (TPD): Limit 100000, Used 95883, Requested 11520. Please try again in 1h46m36.192s. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing', 'type': 'tokens', 'code': 'rate_limit_exceeded'}}: ['Traceback (most recent call last):
 ', '  File "/home/runner/work/enterprise-it-ai/enterprise-it-ai/sources/agents/architect-blueprint/block_json.py", line 302, in convert_phases_to_json
     response = client.beta.chat.completions.parse(
                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -1737,7 +303,7 @@ Error code: 429 - {'error': {'message': 'Rate limit reached for model `llama-3.3
                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 ', '  File "/opt/hostedtoolcache/Python/3.11.15/x64/lib/python3.11/site-packages/openai/_base_client.py", line 1148, in request
     raise self._make_status_error_from_response(err.response) from None
-', "openai.RateLimitError: Error code: 429 - {'error': {'message': 'Rate limit reached for model `llama-3.3-70b-versatile` in organization `org_01kx7x6rbpftmr50sr2yyb78qm` service tier `on_demand` on tokens per day (TPD): Limit 100000, Used 97089, Requested 11371. Please try again in 2h1m49.44s. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing', 'type': 'tokens', 'code': 'rate_limit_exceeded'}}
+', "openai.RateLimitError: Error code: 429 - {'error': {'message': 'Rate limit reached for model `llama-3.3-70b-versatile` in organization `org_01kx7x6rbpftmr50sr2yyb78qm` service tier `on_demand` on tokens per day (TPD): Limit 100000, Used 95883, Requested 11520. Please try again in 1h46m36.192s. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing', 'type': 'tokens', 'code': 'rate_limit_exceeded'}}
 "]
 
 # AI Model: meta-llama/llama-3.3-70b-instruct:free - Phase 1 STEPS - Prompt:
@@ -2341,7 +907,7 @@ You are a high-performance Data Ingestion and Transformation Engine. Your sole o
 
 # Raw Response / Exception:
 
-Error code: 402 - {'error': {'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 942. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account', 'code': 402, 'metadata': {'limit_source': 'openrouter_credits', 'remedy_hint': 'Add credits at https://openrouter.ai/settings/credits, or lower max_tokens / prompt size to fit your remaining balance.', 'provider_name': None, 'previous_errors': [{'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 1177. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 167. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 502. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 942. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 753. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 530. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 523. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 523. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 477. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}]}}, 'user_id': 'user_3GLaJI6mihRMFQtSad72HqAhW95'}: ['Traceback (most recent call last):
+Error code: 402 - {'error': {'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 942. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account', 'code': 402, 'metadata': {'limit_source': 'openrouter_credits', 'remedy_hint': 'Add credits at https://openrouter.ai/settings/credits, or lower max_tokens / prompt size to fit your remaining balance.', 'provider_name': None, 'previous_errors': [{'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 1177. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 942. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 753. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 502. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 477. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 530. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 167. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 523. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 523. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}]}}, 'user_id': 'user_3GLaJI6mihRMFQtSad72HqAhW95'}: ['Traceback (most recent call last):
 ', '  File "/home/runner/work/enterprise-it-ai/enterprise-it-ai/sources/agents/architect-blueprint/block_json.py", line 302, in convert_phases_to_json
     response = client.beta.chat.completions.parse(
                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -2353,7 +919,7 @@ Error code: 402 - {'error': {'message': 'This request requires more credits, or 
                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 ', '  File "/opt/hostedtoolcache/Python/3.11.15/x64/lib/python3.11/site-packages/openai/_base_client.py", line 1148, in request
     raise self._make_status_error_from_response(err.response) from None
-', "openai.APIStatusError: Error code: 402 - {'error': {'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 942. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account', 'code': 402, 'metadata': {'limit_source': 'openrouter_credits', 'remedy_hint': 'Add credits at https://openrouter.ai/settings/credits, or lower max_tokens / prompt size to fit your remaining balance.', 'provider_name': None, 'previous_errors': [{'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 1177. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 167. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 502. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 942. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 753. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 530. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 523. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 523. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 477. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}]}}, 'user_id': 'user_3GLaJI6mihRMFQtSad72HqAhW95'}
+', "openai.APIStatusError: Error code: 402 - {'error': {'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 942. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account', 'code': 402, 'metadata': {'limit_source': 'openrouter_credits', 'remedy_hint': 'Add credits at https://openrouter.ai/settings/credits, or lower max_tokens / prompt size to fit your remaining balance.', 'provider_name': None, 'previous_errors': [{'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 1177. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 942. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 753. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 502. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 477. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 530. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 167. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 523. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 523. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}]}}, 'user_id': 'user_3GLaJI6mihRMFQtSad72HqAhW95'}
 "]
 
 # AI Model: qwen/qwen-2.5-coder-32b-instruct - Phase 1 STEPS - Prompt:
@@ -3573,7 +2139,7 @@ You are a high-performance Data Ingestion and Transformation Engine. Your sole o
 
 # Raw Response / Exception:
 
-Error code: 402 - {'error': {'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 314. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account', 'code': 402, 'metadata': {'limit_source': 'openrouter_credits', 'remedy_hint': 'Add credits at https://openrouter.ai/settings/credits, or lower max_tokens / prompt size to fit your remaining balance.', 'provider_name': None, 'previous_errors': [{'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 314. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 314. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 314. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 314. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 314. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 314. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 392. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 314. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}]}}, 'user_id': 'user_3GLaJI6mihRMFQtSad72HqAhW95'}: ['Traceback (most recent call last):
+Error code: 402 - {'error': {'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 314. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account', 'code': 402, 'metadata': {'limit_source': 'openrouter_credits', 'remedy_hint': 'Add credits at https://openrouter.ai/settings/credits, or lower max_tokens / prompt size to fit your remaining balance.', 'provider_name': None, 'previous_errors': [{'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 314. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 392. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 314. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 314. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 314. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 314. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 314. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 314. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}]}}, 'user_id': 'user_3GLaJI6mihRMFQtSad72HqAhW95'}: ['Traceback (most recent call last):
 ', '  File "/home/runner/work/enterprise-it-ai/enterprise-it-ai/sources/agents/architect-blueprint/block_json.py", line 302, in convert_phases_to_json
     response = client.beta.chat.completions.parse(
                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -3585,7 +2151,7 @@ Error code: 402 - {'error': {'message': 'This request requires more credits, or 
                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 ', '  File "/opt/hostedtoolcache/Python/3.11.15/x64/lib/python3.11/site-packages/openai/_base_client.py", line 1148, in request
     raise self._make_status_error_from_response(err.response) from None
-', "openai.APIStatusError: Error code: 402 - {'error': {'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 314. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account', 'code': 402, 'metadata': {'limit_source': 'openrouter_credits', 'remedy_hint': 'Add credits at https://openrouter.ai/settings/credits, or lower max_tokens / prompt size to fit your remaining balance.', 'provider_name': None, 'previous_errors': [{'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 314. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 314. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 314. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 314. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 314. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 314. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 392. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 314. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}]}}, 'user_id': 'user_3GLaJI6mihRMFQtSad72HqAhW95'}
+', "openai.APIStatusError: Error code: 402 - {'error': {'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 314. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account', 'code': 402, 'metadata': {'limit_source': 'openrouter_credits', 'remedy_hint': 'Add credits at https://openrouter.ai/settings/credits, or lower max_tokens / prompt size to fit your remaining balance.', 'provider_name': None, 'previous_errors': [{'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 314. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 392. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 314. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 314. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 314. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 314. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 314. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 314. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}]}}, 'user_id': 'user_3GLaJI6mihRMFQtSad72HqAhW95'}
 "]
 
 # AI Model: openai/gpt-5.3-codex - Phase 1 STEPS - Prompt:
@@ -4189,7 +2755,7 @@ You are a high-performance Data Ingestion and Transformation Engine. Your sole o
 
 # Raw Response / Exception:
 
-Could not parse response content as the length limit was reached - CompletionUsage(completion_tokens=4096, prompt_tokens=7122, total_tokens=11218, completion_tokens_details=CompletionTokensDetails(accepted_prediction_tokens=None, audio_tokens=0, reasoning_tokens=4461, rejected_prediction_tokens=None, image_tokens=0), prompt_tokens_details=PromptTokensDetails(audio_tokens=0, cache_write_tokens=0, cached_tokens=0, video_tokens=0), cost=0, is_byok=False, cost_details={'upstream_inference_cost': 0, 'upstream_inference_prompt_cost': 0, 'upstream_inference_completions_cost': 0}): ['Traceback (most recent call last):
+Could not parse response content as the length limit was reached - CompletionUsage(completion_tokens=4096, prompt_tokens=7122, total_tokens=11218, completion_tokens_details=CompletionTokensDetails(accepted_prediction_tokens=None, audio_tokens=0, reasoning_tokens=4559, rejected_prediction_tokens=None, image_tokens=0), prompt_tokens_details=PromptTokensDetails(audio_tokens=0, cache_write_tokens=0, cached_tokens=0, video_tokens=0), cost=0, is_byok=False, cost_details={'upstream_inference_cost': 0, 'upstream_inference_prompt_cost': 0, 'upstream_inference_completions_cost': 0}): ['Traceback (most recent call last):
 ', '  File "/home/runner/work/enterprise-it-ai/enterprise-it-ai/sources/agents/architect-blueprint/block_json.py", line 302, in convert_phases_to_json
     response = client.beta.chat.completions.parse(
                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -4213,7 +2779,7 @@ Could not parse response content as the length limit was reached - CompletionUsa
            ^^^^^^^^^^^^^^^^^^^^^^^
 ', '  File "/opt/hostedtoolcache/Python/3.11.15/x64/lib/python3.11/site-packages/openai/lib/_parsing/_completions.py", line 100, in parse_chat_completion
     raise LengthFinishReasonError(completion=chat_completion)
-', "openai.LengthFinishReasonError: Could not parse response content as the length limit was reached - CompletionUsage(completion_tokens=4096, prompt_tokens=7122, total_tokens=11218, completion_tokens_details=CompletionTokensDetails(accepted_prediction_tokens=None, audio_tokens=0, reasoning_tokens=4461, rejected_prediction_tokens=None, image_tokens=0), prompt_tokens_details=PromptTokensDetails(audio_tokens=0, cache_write_tokens=0, cached_tokens=0, video_tokens=0), cost=0, is_byok=False, cost_details={'upstream_inference_cost': 0, 'upstream_inference_prompt_cost': 0, 'upstream_inference_completions_cost': 0})
+', "openai.LengthFinishReasonError: Could not parse response content as the length limit was reached - CompletionUsage(completion_tokens=4096, prompt_tokens=7122, total_tokens=11218, completion_tokens_details=CompletionTokensDetails(accepted_prediction_tokens=None, audio_tokens=0, reasoning_tokens=4559, rejected_prediction_tokens=None, image_tokens=0), prompt_tokens_details=PromptTokensDetails(audio_tokens=0, cache_write_tokens=0, cached_tokens=0, video_tokens=0), cost=0, is_byok=False, cost_details={'upstream_inference_cost': 0, 'upstream_inference_prompt_cost': 0, 'upstream_inference_completions_cost': 0})
 "]
 
 # AI Model: qwen/qwen3-coder-next - Phase 1 STEPS - Prompt:
@@ -4817,7 +3383,7 @@ You are a high-performance Data Ingestion and Transformation Engine. Your sole o
 
 # Raw Response / Exception:
 
-Error code: 402 - {'error': {'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 243. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account', 'code': 402, 'metadata': {'limit_source': 'openrouter_credits', 'remedy_hint': 'Add credits at https://openrouter.ai/settings/credits, or lower max_tokens / prompt size to fit your remaining balance.', 'provider_name': None, 'previous_errors': [{'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 376. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 209. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 77. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 251. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}]}}, 'user_id': 'user_3GLaJI6mihRMFQtSad72HqAhW95'}: ['Traceback (most recent call last):
+Error code: 402 - {'error': {'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 251. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account', 'code': 402, 'metadata': {'limit_source': 'openrouter_credits', 'remedy_hint': 'Add credits at https://openrouter.ai/settings/credits, or lower max_tokens / prompt size to fit your remaining balance.', 'provider_name': None, 'previous_errors': [{'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 209. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 376. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 243. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 77. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}]}}, 'user_id': 'user_3GLaJI6mihRMFQtSad72HqAhW95'}: ['Traceback (most recent call last):
 ', '  File "/home/runner/work/enterprise-it-ai/enterprise-it-ai/sources/agents/architect-blueprint/block_json.py", line 302, in convert_phases_to_json
     response = client.beta.chat.completions.parse(
                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -4829,7 +3395,7 @@ Error code: 402 - {'error': {'message': 'This request requires more credits, or 
                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 ', '  File "/opt/hostedtoolcache/Python/3.11.15/x64/lib/python3.11/site-packages/openai/_base_client.py", line 1148, in request
     raise self._make_status_error_from_response(err.response) from None
-', "openai.APIStatusError: Error code: 402 - {'error': {'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 243. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account', 'code': 402, 'metadata': {'limit_source': 'openrouter_credits', 'remedy_hint': 'Add credits at https://openrouter.ai/settings/credits, or lower max_tokens / prompt size to fit your remaining balance.', 'provider_name': None, 'previous_errors': [{'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 376. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 209. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 77. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 251. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}]}}, 'user_id': 'user_3GLaJI6mihRMFQtSad72HqAhW95'}
+', "openai.APIStatusError: Error code: 402 - {'error': {'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 251. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account', 'code': 402, 'metadata': {'limit_source': 'openrouter_credits', 'remedy_hint': 'Add credits at https://openrouter.ai/settings/credits, or lower max_tokens / prompt size to fit your remaining balance.', 'provider_name': None, 'previous_errors': [{'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 209. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 376. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 243. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 77. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}]}}, 'user_id': 'user_3GLaJI6mihRMFQtSad72HqAhW95'}
 "]
 
 # AI Model: qwen/qwen3-coder-30b-a3b-instruct - Phase 1 STEPS - Prompt:
@@ -5125,7 +3691,7 @@ You are a high-performance Data Ingestion and Transformation Engine. Your sole o
 
 # Raw Response / Exception:
 
-Error code: 402 - {'error': {'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 221. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account', 'code': 402, 'metadata': {'limit_source': 'openrouter_credits', 'remedy_hint': 'Add credits at https://openrouter.ai/settings/credits, or lower max_tokens / prompt size to fit your remaining balance.', 'provider_name': None, 'previous_errors': [{'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 1395. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 1345. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 257. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}]}}, 'user_id': 'user_3GLaJI6mihRMFQtSad72HqAhW95'}: ['Traceback (most recent call last):
+Error code: 402 - {'error': {'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 221. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account', 'code': 402, 'metadata': {'limit_source': 'openrouter_credits', 'remedy_hint': 'Add credits at https://openrouter.ai/settings/credits, or lower max_tokens / prompt size to fit your remaining balance.', 'provider_name': None, 'previous_errors': [{'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 1345. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 1395. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 257. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}]}}, 'user_id': 'user_3GLaJI6mihRMFQtSad72HqAhW95'}: ['Traceback (most recent call last):
 ', '  File "/home/runner/work/enterprise-it-ai/enterprise-it-ai/sources/agents/architect-blueprint/block_json.py", line 302, in convert_phases_to_json
     response = client.beta.chat.completions.parse(
                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -5137,7 +3703,7 @@ Error code: 402 - {'error': {'message': 'This request requires more credits, or 
                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 ', '  File "/opt/hostedtoolcache/Python/3.11.15/x64/lib/python3.11/site-packages/openai/_base_client.py", line 1148, in request
     raise self._make_status_error_from_response(err.response) from None
-', "openai.APIStatusError: Error code: 402 - {'error': {'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 221. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account', 'code': 402, 'metadata': {'limit_source': 'openrouter_credits', 'remedy_hint': 'Add credits at https://openrouter.ai/settings/credits, or lower max_tokens / prompt size to fit your remaining balance.', 'provider_name': None, 'previous_errors': [{'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 1395. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 1345. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 257. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}]}}, 'user_id': 'user_3GLaJI6mihRMFQtSad72HqAhW95'}
+', "openai.APIStatusError: Error code: 402 - {'error': {'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 221. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account', 'code': 402, 'metadata': {'limit_source': 'openrouter_credits', 'remedy_hint': 'Add credits at https://openrouter.ai/settings/credits, or lower max_tokens / prompt size to fit your remaining balance.', 'provider_name': None, 'previous_errors': [{'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 1345. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 1395. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 257. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}]}}, 'user_id': 'user_3GLaJI6mihRMFQtSad72HqAhW95'}
 "]
 
 # AI Model: openai/gpt-5.1-codex-mini - Phase 1 STEPS - Prompt:
@@ -8205,7 +6771,7 @@ You are a high-performance Data Ingestion and Transformation Engine. Your sole o
 
 # Raw Response / Exception:
 
-Error code: 402 - {'error': {'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 25. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account', 'code': 402, 'metadata': {'limit_source': 'openrouter_credits', 'remedy_hint': 'Add credits at https://openrouter.ai/settings/credits, or lower max_tokens / prompt size to fit your remaining balance.', 'provider_name': None, 'previous_errors': [{'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 12. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 12. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 62. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 25. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 25. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 25. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 26. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 25. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 16. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 16. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 25. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 25. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 16. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 25. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 25. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}]}}, 'user_id': 'user_3GLaJI6mihRMFQtSad72HqAhW95'}: ['Traceback (most recent call last):
+Error code: 402 - {'error': {'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 25. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account', 'code': 402, 'metadata': {'limit_source': 'openrouter_credits', 'remedy_hint': 'Add credits at https://openrouter.ai/settings/credits, or lower max_tokens / prompt size to fit your remaining balance.', 'provider_name': None, 'previous_errors': [{'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 12. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 12. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 62. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 25. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 25. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 26. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 25. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 16. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 25. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 16. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 25. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 16. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 25. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 25. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 25. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}]}}, 'user_id': 'user_3GLaJI6mihRMFQtSad72HqAhW95'}: ['Traceback (most recent call last):
 ', '  File "/home/runner/work/enterprise-it-ai/enterprise-it-ai/sources/agents/architect-blueprint/block_json.py", line 302, in convert_phases_to_json
     response = client.beta.chat.completions.parse(
                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -8217,7 +6783,7 @@ Error code: 402 - {'error': {'message': 'This request requires more credits, or 
                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 ', '  File "/opt/hostedtoolcache/Python/3.11.15/x64/lib/python3.11/site-packages/openai/_base_client.py", line 1148, in request
     raise self._make_status_error_from_response(err.response) from None
-', "openai.APIStatusError: Error code: 402 - {'error': {'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 25. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account', 'code': 402, 'metadata': {'limit_source': 'openrouter_credits', 'remedy_hint': 'Add credits at https://openrouter.ai/settings/credits, or lower max_tokens / prompt size to fit your remaining balance.', 'provider_name': None, 'previous_errors': [{'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 12. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 12. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 62. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 25. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 25. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 25. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 26. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 25. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 16. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 16. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 25. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 25. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 16. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 25. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 25. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}]}}, 'user_id': 'user_3GLaJI6mihRMFQtSad72HqAhW95'}
+', "openai.APIStatusError: Error code: 402 - {'error': {'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 25. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account', 'code': 402, 'metadata': {'limit_source': 'openrouter_credits', 'remedy_hint': 'Add credits at https://openrouter.ai/settings/credits, or lower max_tokens / prompt size to fit your remaining balance.', 'provider_name': None, 'previous_errors': [{'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 12. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 12. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 62. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 25. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 25. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 26. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 25. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 16. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 25. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 16. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 25. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 16. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 25. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 25. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 25. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}]}}, 'user_id': 'user_3GLaJI6mihRMFQtSad72HqAhW95'}
 "]
 
 # AI Model: openai/gpt-oss-20b:free - Phase 1 STEPS - Prompt:
@@ -8560,8 +7126,8 @@ You are a high-performance Data Ingestion and Transformation Engine. Your sole o
 ```json
 {
   "phase_id": 1,
-  "phase_name": "Thiết lập Xác thực và Quản lý Người dùng",
-  "phase_description": "Giai đoạn này tập trung vào việc xây dựng nền tảng xác thực, quản lý người dùng và quyền truy cập, triển khai JWT, chuẩn hoá API, và thực hiện kiểm thử đơn vị.",
+  "phase_name": "[NOT APPLICABLE]",
+  "phase_description": "[NOT APPLICABLE]",
   "project_name": "membership-hub",
   "global_context_file": ".ai/.context/membership-hub.global.blueprint.md",
   "source_target_dir": "sources/",
@@ -8569,7 +7135,7 @@ You are a high-performance Data Ingestion and Transformation Engine. Your sole o
     {
       "day": 1,
       "context_file": ".ai/.plan/.context/phase-1.context.blueprint.md",
-      "context_section": "No day context section provided",
+      "context_section": "[NOT APPLICABLE]",
       "sub_tasks": [
         {
           "id": "D1_ST1",
@@ -8603,9 +7169,7 @@ You are a high-performance Data Ingestion and Transformation Engine. Your sole o
             "./sources/backend/auth-service/src/main/java/com/membershiphub/auth/ValidationUtils.java",
             "./sources/backend/auth-service/src/main/java/com/membershiphub/auth/ExceptionHandler.java",
             "./sources/backend/auth-service/src/test/java/com/membershiphub/auth/AuthServiceTest.java",
-            "./sources/backend/auth-service/src/main/resources/application.yml",
-            "./sources/backend/auth-service/src/main/java/com/membershiphub/auth/SecurityConfig.java",
-            "./sources/backend/auth-service/README.md"
+            "./sources/backend/auth-service/src/main/resources/application.yml"
           ]
         }
       ]
@@ -8613,7 +7177,7 @@ You are a high-performance Data Ingestion and Transformation Engine. Your sole o
     {
       "day": 2,
       "context_file": ".ai/.plan/.context/phase-1.context.blueprint.md",
-      "context_section": "No day context section provided",
+      "context_section": "[NOT APPLICABLE]",
       "sub_tasks": [
         {
           "id": "D2_ST1",
@@ -8640,9 +7204,9 @@ You are a high-performance Data Ingestion and Transformation Engine. Your sole o
           ],
           "components": [
             "./sources/backend/auth-service/src/test/java/com/membershiphub/auth/AuthServiceIntegrationTest.java",
-            "./sources/backend/auth-service/src/test/java/com/membershiphub/auth/AuthServiceTest.java",
-            "./sources/backend/auth-service/src/test/resources/application-test.yml",
-            "./sources/backend/auth-service/src/test/resources/integration-test-config.yml"
+            "./sources/backend/auth-service/src/test/java/com/membershiphub/auth/TokenExpirationTest.java",
+            "./sources/backend/auth-service/src/test/java/com/membershiphub/auth/IdempotencyTest.java",
+            "./sources/backend/auth-service/src/test/java/com/membershiphub/auth/AuthServiceTest.java"
           ]
         }
       ]
@@ -8650,7 +7214,7 @@ You are a high-performance Data Ingestion and Transformation Engine. Your sole o
     {
       "day": 3,
       "context_file": ".ai/.plan/.context/phase-1.context.blueprint.md",
-      "context_section": "No day context section provided",
+      "context_section": "[NOT APPLICABLE]",
       "sub_tasks": [
         {
           "id": "D3_ST1",
@@ -8681,9 +7245,8 @@ You are a high-performance Data Ingestion and Transformation Engine. Your sole o
             "./sources/backend/auth-service/src/main/java/com/membershiphub/auth/JwtProvider.java",
             "./sources/backend/auth-service/src/main/java/com/membershiphub/auth/ValidationUtils.java",
             "./sources/backend/auth-service/src/main/java/com/membershiphub/auth/ExceptionHandler.java",
-            "./sources/backend/auth-service/REVIEW.md",
-            "./sources/backend/auth-service/security-audit.md",
-            "./sources/backend/auth-service/performance-report.md"
+            "./sources/backend/auth-service/src/test/java/com/membershiphub/auth/AuthServiceTest.java",
+            "./sources/backend/auth-service/src/main/resources/application.yml"
           ]
         }
       ]
@@ -9001,7 +7564,7 @@ You are a high-performance Data Ingestion and Transformation Engine. Your sole o
 
 # Raw Response / Exception:
 
-Could not parse response content as the length limit was reached - CompletionUsage(completion_tokens=4096, prompt_tokens=7604, total_tokens=11700, completion_tokens_details=CompletionTokensDetails(accepted_prediction_tokens=None, audio_tokens=0, reasoning_tokens=2949, rejected_prediction_tokens=None, image_tokens=0), prompt_tokens_details=PromptTokensDetails(audio_tokens=0, cache_write_tokens=0, cached_tokens=0, video_tokens=0), cost=0, is_byok=False, cost_details={'upstream_inference_cost': 0.000396978, 'upstream_inference_prompt_cost': 0.000110258, 'upstream_inference_completions_cost': 0.00028672}): ['Traceback (most recent call last):
+Could not parse response content as the length limit was reached - CompletionUsage(completion_tokens=4096, prompt_tokens=7604, total_tokens=11700, completion_tokens_details=CompletionTokensDetails(accepted_prediction_tokens=None, audio_tokens=0, reasoning_tokens=2735, rejected_prediction_tokens=None, image_tokens=0), prompt_tokens_details=PromptTokensDetails(audio_tokens=0, cache_write_tokens=0, cached_tokens=0, video_tokens=0), cost=0, is_byok=False, cost_details={'upstream_inference_cost': 0.000396978, 'upstream_inference_prompt_cost': 0.000110258, 'upstream_inference_completions_cost': 0.00028672}): ['Traceback (most recent call last):
 ', '  File "/home/runner/work/enterprise-it-ai/enterprise-it-ai/sources/agents/architect-blueprint/block_json.py", line 302, in convert_phases_to_json
     response = client.beta.chat.completions.parse(
                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -9025,7 +7588,7 @@ Could not parse response content as the length limit was reached - CompletionUsa
            ^^^^^^^^^^^^^^^^^^^^^^^
 ', '  File "/opt/hostedtoolcache/Python/3.11.15/x64/lib/python3.11/site-packages/openai/lib/_parsing/_completions.py", line 100, in parse_chat_completion
     raise LengthFinishReasonError(completion=chat_completion)
-', "openai.LengthFinishReasonError: Could not parse response content as the length limit was reached - CompletionUsage(completion_tokens=4096, prompt_tokens=7604, total_tokens=11700, completion_tokens_details=CompletionTokensDetails(accepted_prediction_tokens=None, audio_tokens=0, reasoning_tokens=2949, rejected_prediction_tokens=None, image_tokens=0), prompt_tokens_details=PromptTokensDetails(audio_tokens=0, cache_write_tokens=0, cached_tokens=0, video_tokens=0), cost=0, is_byok=False, cost_details={'upstream_inference_cost': 0.000396978, 'upstream_inference_prompt_cost': 0.000110258, 'upstream_inference_completions_cost': 0.00028672})
+', "openai.LengthFinishReasonError: Could not parse response content as the length limit was reached - CompletionUsage(completion_tokens=4096, prompt_tokens=7604, total_tokens=11700, completion_tokens_details=CompletionTokensDetails(accepted_prediction_tokens=None, audio_tokens=0, reasoning_tokens=2735, rejected_prediction_tokens=None, image_tokens=0), prompt_tokens_details=PromptTokensDetails(audio_tokens=0, cache_write_tokens=0, cached_tokens=0, video_tokens=0), cost=0, is_byok=False, cost_details={'upstream_inference_cost': 0.000396978, 'upstream_inference_prompt_cost': 0.000110258, 'upstream_inference_completions_cost': 0.00028672})
 "]
 
 # AI Model: openai/gpt-oss-20b - Phase 1 STEPS - Prompt:
@@ -9321,7 +7884,7 @@ You are a high-performance Data Ingestion and Transformation Engine. Your sole o
 
 # Raw Response / Exception:
 
-Error code: 402 - {'error': {'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 2512. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account', 'code': 402, 'metadata': {'limit_source': 'openrouter_credits', 'remedy_hint': 'Add credits at https://openrouter.ai/settings/credits, or lower max_tokens / prompt size to fit your remaining balance.', 'provider_name': None, 'previous_errors': [{'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 2512. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 2093. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 2512. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 1256. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 2898. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 1256. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 2691. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 2512. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 1884. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 1507. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}]}}, 'user_id': 'user_3GLaJI6mihRMFQtSad72HqAhW95'}: ['Traceback (most recent call last):
+Error code: 402 - {'error': {'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 1884. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account', 'code': 402, 'metadata': {'limit_source': 'openrouter_credits', 'remedy_hint': 'Add credits at https://openrouter.ai/settings/credits, or lower max_tokens / prompt size to fit your remaining balance.', 'provider_name': None, 'previous_errors': [{'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 1256. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 2093. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 2898. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 1256. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 2691. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 2512. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 2512. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 1507. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 2512. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 2512. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}]}}, 'user_id': 'user_3GLaJI6mihRMFQtSad72HqAhW95'}: ['Traceback (most recent call last):
 ', '  File "/home/runner/work/enterprise-it-ai/enterprise-it-ai/sources/agents/architect-blueprint/block_json.py", line 302, in convert_phases_to_json
     response = client.beta.chat.completions.parse(
                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -9333,7 +7896,7 @@ Error code: 402 - {'error': {'message': 'This request requires more credits, or 
                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 ', '  File "/opt/hostedtoolcache/Python/3.11.15/x64/lib/python3.11/site-packages/openai/_base_client.py", line 1148, in request
     raise self._make_status_error_from_response(err.response) from None
-', "openai.APIStatusError: Error code: 402 - {'error': {'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 2512. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account', 'code': 402, 'metadata': {'limit_source': 'openrouter_credits', 'remedy_hint': 'Add credits at https://openrouter.ai/settings/credits, or lower max_tokens / prompt size to fit your remaining balance.', 'provider_name': None, 'previous_errors': [{'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 2512. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 2093. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 2512. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 1256. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 2898. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 1256. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 2691. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 2512. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 1884. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 1507. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}]}}, 'user_id': 'user_3GLaJI6mihRMFQtSad72HqAhW95'}
+', "openai.APIStatusError: Error code: 402 - {'error': {'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 1884. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account', 'code': 402, 'metadata': {'limit_source': 'openrouter_credits', 'remedy_hint': 'Add credits at https://openrouter.ai/settings/credits, or lower max_tokens / prompt size to fit your remaining balance.', 'provider_name': None, 'previous_errors': [{'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 1256. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 2093. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 2898. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 1256. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 2691. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 2512. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 2512. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 1507. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 2512. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 2512. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}]}}, 'user_id': 'user_3GLaJI6mihRMFQtSad72HqAhW95'}
 "]
 
 # AI Model: openai/gpt-oss-120b - Phase 1 STEPS - Prompt:
@@ -9629,7 +8192,7 @@ You are a high-performance Data Ingestion and Transformation Engine. Your sole o
 
 # Raw Response / Exception:
 
-Error code: 402 - {'error': {'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 628. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account', 'code': 402, 'metadata': {'limit_source': 'openrouter_credits', 'remedy_hint': 'Add credits at https://openrouter.ai/settings/credits, or lower max_tokens / prompt size to fit your remaining balance.', 'provider_name': None, 'previous_errors': [{'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 2216. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 837. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 2216. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 1507. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 502. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 1046. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 978. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 628. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 753. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 396. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 628. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 628. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 502. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 753. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 502. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 628. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 628. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}]}}, 'user_id': 'user_3GLaJI6mihRMFQtSad72HqAhW95'}: ['Traceback (most recent call last):
+Error code: 402 - {'error': {'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 502. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account', 'code': 402, 'metadata': {'limit_source': 'openrouter_credits', 'remedy_hint': 'Add credits at https://openrouter.ai/settings/credits, or lower max_tokens / prompt size to fit your remaining balance.', 'provider_name': None, 'previous_errors': [{'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 2216. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 1046. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 837. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 2216. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 1507. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 753. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 978. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 396. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 628. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 628. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 753. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 628. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 502. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 628. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 628. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 628. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 502. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}]}}, 'user_id': 'user_3GLaJI6mihRMFQtSad72HqAhW95'}: ['Traceback (most recent call last):
 ', '  File "/home/runner/work/enterprise-it-ai/enterprise-it-ai/sources/agents/architect-blueprint/block_json.py", line 302, in convert_phases_to_json
     response = client.beta.chat.completions.parse(
                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -9641,7 +8204,7 @@ Error code: 402 - {'error': {'message': 'This request requires more credits, or 
                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 ', '  File "/opt/hostedtoolcache/Python/3.11.15/x64/lib/python3.11/site-packages/openai/_base_client.py", line 1148, in request
     raise self._make_status_error_from_response(err.response) from None
-', "openai.APIStatusError: Error code: 402 - {'error': {'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 628. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account', 'code': 402, 'metadata': {'limit_source': 'openrouter_credits', 'remedy_hint': 'Add credits at https://openrouter.ai/settings/credits, or lower max_tokens / prompt size to fit your remaining balance.', 'provider_name': None, 'previous_errors': [{'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 2216. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 837. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 2216. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 1507. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 502. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 1046. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 978. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 628. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 753. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 396. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 628. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 628. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 502. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 753. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 502. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 628. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 628. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}]}}, 'user_id': 'user_3GLaJI6mihRMFQtSad72HqAhW95'}
+', "openai.APIStatusError: Error code: 402 - {'error': {'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 502. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account', 'code': 402, 'metadata': {'limit_source': 'openrouter_credits', 'remedy_hint': 'Add credits at https://openrouter.ai/settings/credits, or lower max_tokens / prompt size to fit your remaining balance.', 'provider_name': None, 'previous_errors': [{'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 2216. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 1046. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 837. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 2216. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 1507. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 753. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 978. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 396. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 628. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 628. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 753. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 628. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 502. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 628. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 628. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 628. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 4096 tokens, but can only afford 502. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}]}}, 'user_id': 'user_3GLaJI6mihRMFQtSad72HqAhW95'}
 "]
 
 # AI Model: openai/gpt-4o-mini-2024-07-18 - Phase 1 STEPS - Prompt:
@@ -17945,7 +16508,7 @@ You are a high-performance Data Ingestion and Transformation Engine. Your sole o
 
 # Raw Response / Exception:
 
-Error code: 429 - {'error': {'message': 'Rate limit reached for model `llama-3.3-70b-versatile` in organization `org_01kx7x6rbpftmr50sr2yyb78qm` service tier `on_demand` on tokens per day (TPD): Limit 100000, Used 96456, Requested 11520. Please try again in 1h54m51.264s. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing', 'type': 'tokens', 'code': 'rate_limit_exceeded'}}: ['Traceback (most recent call last):
+Error code: 429 - {'error': {'message': 'Rate limit reached for model `llama-3.3-70b-versatile` in organization `org_01kx7x6rbpftmr50sr2yyb78qm` service tier `on_demand` on tokens per day (TPD): Limit 100000, Used 95181, Requested 11520. Please try again in 1h36m29.664s. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing', 'type': 'tokens', 'code': 'rate_limit_exceeded'}}: ['Traceback (most recent call last):
 ', '  File "/home/runner/work/enterprise-it-ai/enterprise-it-ai/sources/agents/architect-blueprint/block_json.py", line 302, in convert_phases_to_json
     response = client.beta.chat.completions.parse(
                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -17957,7 +16520,7 @@ Error code: 429 - {'error': {'message': 'Rate limit reached for model `llama-3.3
                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 ', '  File "/opt/hostedtoolcache/Python/3.11.15/x64/lib/python3.11/site-packages/openai/_base_client.py", line 1148, in request
     raise self._make_status_error_from_response(err.response) from None
-', "openai.RateLimitError: Error code: 429 - {'error': {'message': 'Rate limit reached for model `llama-3.3-70b-versatile` in organization `org_01kx7x6rbpftmr50sr2yyb78qm` service tier `on_demand` on tokens per day (TPD): Limit 100000, Used 96456, Requested 11520. Please try again in 1h54m51.264s. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing', 'type': 'tokens', 'code': 'rate_limit_exceeded'}}
+', "openai.RateLimitError: Error code: 429 - {'error': {'message': 'Rate limit reached for model `llama-3.3-70b-versatile` in organization `org_01kx7x6rbpftmr50sr2yyb78qm` service tier `on_demand` on tokens per day (TPD): Limit 100000, Used 95181, Requested 11520. Please try again in 1h36m29.664s. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing', 'type': 'tokens', 'code': 'rate_limit_exceeded'}}
 "]
 
 # AI Model: groq/compound - Phase 1 STEPS - Prompt:
@@ -18561,7 +17124,7 @@ You are a high-performance Data Ingestion and Transformation Engine. Your sole o
 
 # Raw Response / Exception:
 
-Error code: 429 - {'error': {'message': 'Rate limit reached for model `llama-3.3-70b-versatile` in organization `org_01kx7x6rbpftmr50sr2yyb78qm` service tier `on_demand` on tokens per day (TPD): Limit 100000, Used 96448, Requested 10677. Please try again in 1h42m35.999999999s. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing', 'type': 'compound', 'code': 'rate_limit_exceeded'}}: ['Traceback (most recent call last):
+Error code: 429 - {'error': {'message': 'Rate limit reached for model `llama-3.3-70b-versatile` in organization `org_01kx7x6rbpftmr50sr2yyb78qm` service tier `on_demand` on tokens per day (TPD): Limit 100000, Used 95173, Requested 10677. Please try again in 1h24m14.4s. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing', 'type': 'compound', 'code': 'rate_limit_exceeded'}}: ['Traceback (most recent call last):
 ', '  File "/home/runner/work/enterprise-it-ai/enterprise-it-ai/sources/agents/architect-blueprint/block_json.py", line 302, in convert_phases_to_json
     response = client.beta.chat.completions.parse(
                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -18573,7 +17136,7 @@ Error code: 429 - {'error': {'message': 'Rate limit reached for model `llama-3.3
                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 ', '  File "/opt/hostedtoolcache/Python/3.11.15/x64/lib/python3.11/site-packages/openai/_base_client.py", line 1148, in request
     raise self._make_status_error_from_response(err.response) from None
-', "openai.RateLimitError: Error code: 429 - {'error': {'message': 'Rate limit reached for model `llama-3.3-70b-versatile` in organization `org_01kx7x6rbpftmr50sr2yyb78qm` service tier `on_demand` on tokens per day (TPD): Limit 100000, Used 96448, Requested 10677. Please try again in 1h42m35.999999999s. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing', 'type': 'compound', 'code': 'rate_limit_exceeded'}}
+', "openai.RateLimitError: Error code: 429 - {'error': {'message': 'Rate limit reached for model `llama-3.3-70b-versatile` in organization `org_01kx7x6rbpftmr50sr2yyb78qm` service tier `on_demand` on tokens per day (TPD): Limit 100000, Used 95173, Requested 10677. Please try again in 1h24m14.4s. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing', 'type': 'compound', 'code': 'rate_limit_exceeded'}}
 "]
 
 # AI Model: llama-3.1-8b-instant - Phase 1 STEPS - Prompt:
@@ -22875,7 +21438,7 @@ You are a high-performance Data Ingestion and Transformation Engine. Your sole o
 
 Error code: 429 - [{'error': {'code': 429, 'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. 
 * Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-2.5-flash
-Please retry in 28.927474786s.', 'status': 'RESOURCE_EXHAUSTED', 'details': [{'@type': 'type.googleapis.com/google.rpc.Help', 'links': [{'description': 'Learn more about Gemini API quotas', 'url': 'https://ai.google.dev/gemini-api/docs/rate-limits'}]}, {'@type': 'type.googleapis.com/google.rpc.QuotaFailure', 'violations': [{'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_requests', 'quotaId': 'GenerateRequestsPerDayPerProjectPerModel-FreeTier', 'quotaDimensions': {'location': 'global', 'model': 'gemini-2.5-flash'}, 'quotaValue': '20'}]}, {'@type': 'type.googleapis.com/google.rpc.RetryInfo', 'retryDelay': '28s'}]}}]: ['Traceback (most recent call last):
+Please retry in 5.63037697s.', 'status': 'RESOURCE_EXHAUSTED', 'details': [{'@type': 'type.googleapis.com/google.rpc.Help', 'links': [{'description': 'Learn more about Gemini API quotas', 'url': 'https://ai.google.dev/gemini-api/docs/rate-limits'}]}, {'@type': 'type.googleapis.com/google.rpc.QuotaFailure', 'violations': [{'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_requests', 'quotaId': 'GenerateRequestsPerDayPerProjectPerModel-FreeTier', 'quotaDimensions': {'model': 'gemini-2.5-flash', 'location': 'global'}, 'quotaValue': '20'}]}, {'@type': 'type.googleapis.com/google.rpc.RetryInfo', 'retryDelay': '5s'}]}}]: ['Traceback (most recent call last):
 ', '  File "/home/runner/work/enterprise-it-ai/enterprise-it-ai/sources/agents/architect-blueprint/block_json.py", line 302, in convert_phases_to_json
     response = client.beta.chat.completions.parse(
                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -22889,7 +21452,7 @@ Please retry in 28.927474786s.', 'status': 'RESOURCE_EXHAUSTED', 'details': [{'@
     raise self._make_status_error_from_response(err.response) from None
 ', "openai.RateLimitError: Error code: 429 - [{'error': {'code': 429, 'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \
 * Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-2.5-flash\
-Please retry in 28.927474786s.', 'status': 'RESOURCE_EXHAUSTED', 'details': [{'@type': 'type.googleapis.com/google.rpc.Help', 'links': [{'description': 'Learn more about Gemini API quotas', 'url': 'https://ai.google.dev/gemini-api/docs/rate-limits'}]}, {'@type': 'type.googleapis.com/google.rpc.QuotaFailure', 'violations': [{'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_requests', 'quotaId': 'GenerateRequestsPerDayPerProjectPerModel-FreeTier', 'quotaDimensions': {'location': 'global', 'model': 'gemini-2.5-flash'}, 'quotaValue': '20'}]}, {'@type': 'type.googleapis.com/google.rpc.RetryInfo', 'retryDelay': '28s'}]}}]
+Please retry in 5.63037697s.', 'status': 'RESOURCE_EXHAUSTED', 'details': [{'@type': 'type.googleapis.com/google.rpc.Help', 'links': [{'description': 'Learn more about Gemini API quotas', 'url': 'https://ai.google.dev/gemini-api/docs/rate-limits'}]}, {'@type': 'type.googleapis.com/google.rpc.QuotaFailure', 'violations': [{'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_requests', 'quotaId': 'GenerateRequestsPerDayPerProjectPerModel-FreeTier', 'quotaDimensions': {'model': 'gemini-2.5-flash', 'location': 'global'}, 'quotaValue': '20'}]}, {'@type': 'type.googleapis.com/google.rpc.RetryInfo', 'retryDelay': '5s'}]}}]
 "]
 
 # AI Model: models/gemini-2.5-pro - Phase 1 STEPS - Prompt:
@@ -23186,11 +21749,11 @@ You are a high-performance Data Ingestion and Transformation Engine. Your sole o
 # Raw Response / Exception:
 
 Error code: 429 - [{'error': {'code': 429, 'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. 
+* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_input_token_count, limit: 0, model: gemini-2.5-pro
 * Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 0, model: gemini-2.5-pro
 * Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 0, model: gemini-2.5-pro
 * Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_input_token_count, limit: 0, model: gemini-2.5-pro
-* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_input_token_count, limit: 0, model: gemini-2.5-pro
-Please retry in 25.246337117s.', 'status': 'RESOURCE_EXHAUSTED', 'details': [{'@type': 'type.googleapis.com/google.rpc.Help', 'links': [{'description': 'Learn more about Gemini API quotas', 'url': 'https://ai.google.dev/gemini-api/docs/rate-limits'}]}, {'@type': 'type.googleapis.com/google.rpc.QuotaFailure', 'violations': [{'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_requests', 'quotaId': 'GenerateRequestsPerDayPerProjectPerModel-FreeTier', 'quotaDimensions': {'location': 'global', 'model': 'gemini-2.5-pro'}}, {'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_requests', 'quotaId': 'GenerateRequestsPerMinutePerProjectPerModel-FreeTier', 'quotaDimensions': {'location': 'global', 'model': 'gemini-2.5-pro'}}, {'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_input_token_count', 'quotaId': 'GenerateContentInputTokensPerModelPerMinute-FreeTier', 'quotaDimensions': {'location': 'global', 'model': 'gemini-2.5-pro'}}, {'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_input_token_count', 'quotaId': 'GenerateContentInputTokensPerModelPerDay-FreeTier', 'quotaDimensions': {'location': 'global', 'model': 'gemini-2.5-pro'}}]}, {'@type': 'type.googleapis.com/google.rpc.RetryInfo', 'retryDelay': '25s'}]}}]: ['Traceback (most recent call last):
+Please retry in 1.651190177s.', 'status': 'RESOURCE_EXHAUSTED', 'details': [{'@type': 'type.googleapis.com/google.rpc.Help', 'links': [{'description': 'Learn more about Gemini API quotas', 'url': 'https://ai.google.dev/gemini-api/docs/rate-limits'}]}, {'@type': 'type.googleapis.com/google.rpc.QuotaFailure', 'violations': [{'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_input_token_count', 'quotaId': 'GenerateContentInputTokensPerModelPerMinute-FreeTier', 'quotaDimensions': {'location': 'global', 'model': 'gemini-2.5-pro'}}, {'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_requests', 'quotaId': 'GenerateRequestsPerMinutePerProjectPerModel-FreeTier', 'quotaDimensions': {'location': 'global', 'model': 'gemini-2.5-pro'}}, {'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_requests', 'quotaId': 'GenerateRequestsPerDayPerProjectPerModel-FreeTier', 'quotaDimensions': {'location': 'global', 'model': 'gemini-2.5-pro'}}, {'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_input_token_count', 'quotaId': 'GenerateContentInputTokensPerModelPerDay-FreeTier', 'quotaDimensions': {'model': 'gemini-2.5-pro', 'location': 'global'}}]}, {'@type': 'type.googleapis.com/google.rpc.RetryInfo', 'retryDelay': '1s'}]}}]: ['Traceback (most recent call last):
 ', '  File "/home/runner/work/enterprise-it-ai/enterprise-it-ai/sources/agents/architect-blueprint/block_json.py", line 302, in convert_phases_to_json
     response = client.beta.chat.completions.parse(
                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -23203,11 +21766,11 @@ Please retry in 25.246337117s.', 'status': 'RESOURCE_EXHAUSTED', 'details': [{'@
 ', '  File "/opt/hostedtoolcache/Python/3.11.15/x64/lib/python3.11/site-packages/openai/_base_client.py", line 1148, in request
     raise self._make_status_error_from_response(err.response) from None
 ', "openai.RateLimitError: Error code: 429 - [{'error': {'code': 429, 'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \
+* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_input_token_count, limit: 0, model: gemini-2.5-pro\
 * Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 0, model: gemini-2.5-pro\
 * Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 0, model: gemini-2.5-pro\
 * Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_input_token_count, limit: 0, model: gemini-2.5-pro\
-* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_input_token_count, limit: 0, model: gemini-2.5-pro\
-Please retry in 25.246337117s.', 'status': 'RESOURCE_EXHAUSTED', 'details': [{'@type': 'type.googleapis.com/google.rpc.Help', 'links': [{'description': 'Learn more about Gemini API quotas', 'url': 'https://ai.google.dev/gemini-api/docs/rate-limits'}]}, {'@type': 'type.googleapis.com/google.rpc.QuotaFailure', 'violations': [{'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_requests', 'quotaId': 'GenerateRequestsPerDayPerProjectPerModel-FreeTier', 'quotaDimensions': {'location': 'global', 'model': 'gemini-2.5-pro'}}, {'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_requests', 'quotaId': 'GenerateRequestsPerMinutePerProjectPerModel-FreeTier', 'quotaDimensions': {'location': 'global', 'model': 'gemini-2.5-pro'}}, {'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_input_token_count', 'quotaId': 'GenerateContentInputTokensPerModelPerMinute-FreeTier', 'quotaDimensions': {'location': 'global', 'model': 'gemini-2.5-pro'}}, {'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_input_token_count', 'quotaId': 'GenerateContentInputTokensPerModelPerDay-FreeTier', 'quotaDimensions': {'location': 'global', 'model': 'gemini-2.5-pro'}}]}, {'@type': 'type.googleapis.com/google.rpc.RetryInfo', 'retryDelay': '25s'}]}}]
+Please retry in 1.651190177s.', 'status': 'RESOURCE_EXHAUSTED', 'details': [{'@type': 'type.googleapis.com/google.rpc.Help', 'links': [{'description': 'Learn more about Gemini API quotas', 'url': 'https://ai.google.dev/gemini-api/docs/rate-limits'}]}, {'@type': 'type.googleapis.com/google.rpc.QuotaFailure', 'violations': [{'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_input_token_count', 'quotaId': 'GenerateContentInputTokensPerModelPerMinute-FreeTier', 'quotaDimensions': {'location': 'global', 'model': 'gemini-2.5-pro'}}, {'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_requests', 'quotaId': 'GenerateRequestsPerMinutePerProjectPerModel-FreeTier', 'quotaDimensions': {'location': 'global', 'model': 'gemini-2.5-pro'}}, {'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_requests', 'quotaId': 'GenerateRequestsPerDayPerProjectPerModel-FreeTier', 'quotaDimensions': {'location': 'global', 'model': 'gemini-2.5-pro'}}, {'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_input_token_count', 'quotaId': 'GenerateContentInputTokensPerModelPerDay-FreeTier', 'quotaDimensions': {'model': 'gemini-2.5-pro', 'location': 'global'}}]}, {'@type': 'type.googleapis.com/google.rpc.RetryInfo', 'retryDelay': '1s'}]}}]
 "]
 
 # AI Model: models/gemini-2.0-flash - Phase 1 STEPS - Prompt:
@@ -23507,7 +22070,7 @@ Error code: 429 - [{'error': {'code': 429, 'message': 'You exceeded your current
 * Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_input_token_count, limit: 0, model: gemini-2.0-flash
 * Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 0, model: gemini-2.0-flash
 * Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 0, model: gemini-2.0-flash
-Please retry in 21.748275459s.', 'status': 'RESOURCE_EXHAUSTED', 'details': [{'@type': 'type.googleapis.com/google.rpc.Help', 'links': [{'description': 'Learn more about Gemini API quotas', 'url': 'https://ai.google.dev/gemini-api/docs/rate-limits'}]}, {'@type': 'type.googleapis.com/google.rpc.QuotaFailure', 'violations': [{'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_input_token_count', 'quotaId': 'GenerateContentInputTokensPerModelPerMinute-FreeTier', 'quotaDimensions': {'location': 'global', 'model': 'gemini-2.0-flash'}}, {'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_requests', 'quotaId': 'GenerateRequestsPerMinutePerProjectPerModel-FreeTier', 'quotaDimensions': {'location': 'global', 'model': 'gemini-2.0-flash'}}, {'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_requests', 'quotaId': 'GenerateRequestsPerDayPerProjectPerModel-FreeTier', 'quotaDimensions': {'location': 'global', 'model': 'gemini-2.0-flash'}}]}, {'@type': 'type.googleapis.com/google.rpc.RetryInfo', 'retryDelay': '21s'}]}}]: ['Traceback (most recent call last):
+Please retry in 58.04945073s.', 'status': 'RESOURCE_EXHAUSTED', 'details': [{'@type': 'type.googleapis.com/google.rpc.Help', 'links': [{'description': 'Learn more about Gemini API quotas', 'url': 'https://ai.google.dev/gemini-api/docs/rate-limits'}]}, {'@type': 'type.googleapis.com/google.rpc.QuotaFailure', 'violations': [{'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_input_token_count', 'quotaId': 'GenerateContentInputTokensPerModelPerMinute-FreeTier', 'quotaDimensions': {'location': 'global', 'model': 'gemini-2.0-flash'}}, {'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_requests', 'quotaId': 'GenerateRequestsPerMinutePerProjectPerModel-FreeTier', 'quotaDimensions': {'location': 'global', 'model': 'gemini-2.0-flash'}}, {'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_requests', 'quotaId': 'GenerateRequestsPerDayPerProjectPerModel-FreeTier', 'quotaDimensions': {'location': 'global', 'model': 'gemini-2.0-flash'}}]}, {'@type': 'type.googleapis.com/google.rpc.RetryInfo', 'retryDelay': '58s'}]}}]: ['Traceback (most recent call last):
 ', '  File "/home/runner/work/enterprise-it-ai/enterprise-it-ai/sources/agents/architect-blueprint/block_json.py", line 302, in convert_phases_to_json
     response = client.beta.chat.completions.parse(
                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -23523,7 +22086,7 @@ Please retry in 21.748275459s.', 'status': 'RESOURCE_EXHAUSTED', 'details': [{'@
 * Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_input_token_count, limit: 0, model: gemini-2.0-flash\
 * Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 0, model: gemini-2.0-flash\
 * Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 0, model: gemini-2.0-flash\
-Please retry in 21.748275459s.', 'status': 'RESOURCE_EXHAUSTED', 'details': [{'@type': 'type.googleapis.com/google.rpc.Help', 'links': [{'description': 'Learn more about Gemini API quotas', 'url': 'https://ai.google.dev/gemini-api/docs/rate-limits'}]}, {'@type': 'type.googleapis.com/google.rpc.QuotaFailure', 'violations': [{'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_input_token_count', 'quotaId': 'GenerateContentInputTokensPerModelPerMinute-FreeTier', 'quotaDimensions': {'location': 'global', 'model': 'gemini-2.0-flash'}}, {'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_requests', 'quotaId': 'GenerateRequestsPerMinutePerProjectPerModel-FreeTier', 'quotaDimensions': {'location': 'global', 'model': 'gemini-2.0-flash'}}, {'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_requests', 'quotaId': 'GenerateRequestsPerDayPerProjectPerModel-FreeTier', 'quotaDimensions': {'location': 'global', 'model': 'gemini-2.0-flash'}}]}, {'@type': 'type.googleapis.com/google.rpc.RetryInfo', 'retryDelay': '21s'}]}}]
+Please retry in 58.04945073s.', 'status': 'RESOURCE_EXHAUSTED', 'details': [{'@type': 'type.googleapis.com/google.rpc.Help', 'links': [{'description': 'Learn more about Gemini API quotas', 'url': 'https://ai.google.dev/gemini-api/docs/rate-limits'}]}, {'@type': 'type.googleapis.com/google.rpc.QuotaFailure', 'violations': [{'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_input_token_count', 'quotaId': 'GenerateContentInputTokensPerModelPerMinute-FreeTier', 'quotaDimensions': {'location': 'global', 'model': 'gemini-2.0-flash'}}, {'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_requests', 'quotaId': 'GenerateRequestsPerMinutePerProjectPerModel-FreeTier', 'quotaDimensions': {'location': 'global', 'model': 'gemini-2.0-flash'}}, {'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_requests', 'quotaId': 'GenerateRequestsPerDayPerProjectPerModel-FreeTier', 'quotaDimensions': {'location': 'global', 'model': 'gemini-2.0-flash'}}]}, {'@type': 'type.googleapis.com/google.rpc.RetryInfo', 'retryDelay': '58s'}]}}]
 "]
 
 # AI Model: models/gemini-2.0-flash-001 - Phase 1 STEPS - Prompt:
@@ -23820,10 +22383,10 @@ You are a high-performance Data Ingestion and Transformation Engine. Your sole o
 # Raw Response / Exception:
 
 Error code: 429 - [{'error': {'code': 429, 'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. 
+* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 0, model: gemini-2.0-flash
+* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 0, model: gemini-2.0-flash
 * Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_input_token_count, limit: 0, model: gemini-2.0-flash
-* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 0, model: gemini-2.0-flash
-* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 0, model: gemini-2.0-flash
-Please retry in 18.068099687s.', 'status': 'RESOURCE_EXHAUSTED', 'details': [{'@type': 'type.googleapis.com/google.rpc.Help', 'links': [{'description': 'Learn more about Gemini API quotas', 'url': 'https://ai.google.dev/gemini-api/docs/rate-limits'}]}, {'@type': 'type.googleapis.com/google.rpc.QuotaFailure', 'violations': [{'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_input_token_count', 'quotaId': 'GenerateContentInputTokensPerModelPerMinute-FreeTier', 'quotaDimensions': {'location': 'global', 'model': 'gemini-2.0-flash'}}, {'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_requests', 'quotaId': 'GenerateRequestsPerMinutePerProjectPerModel-FreeTier', 'quotaDimensions': {'model': 'gemini-2.0-flash', 'location': 'global'}}, {'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_requests', 'quotaId': 'GenerateRequestsPerDayPerProjectPerModel-FreeTier', 'quotaDimensions': {'location': 'global', 'model': 'gemini-2.0-flash'}}]}, {'@type': 'type.googleapis.com/google.rpc.RetryInfo', 'retryDelay': '18s'}]}}]: ['Traceback (most recent call last):
+Please retry in 54.386651915s.', 'status': 'RESOURCE_EXHAUSTED', 'details': [{'@type': 'type.googleapis.com/google.rpc.Help', 'links': [{'description': 'Learn more about Gemini API quotas', 'url': 'https://ai.google.dev/gemini-api/docs/rate-limits'}]}, {'@type': 'type.googleapis.com/google.rpc.QuotaFailure', 'violations': [{'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_requests', 'quotaId': 'GenerateRequestsPerDayPerProjectPerModel-FreeTier', 'quotaDimensions': {'location': 'global', 'model': 'gemini-2.0-flash'}}, {'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_requests', 'quotaId': 'GenerateRequestsPerMinutePerProjectPerModel-FreeTier', 'quotaDimensions': {'model': 'gemini-2.0-flash', 'location': 'global'}}, {'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_input_token_count', 'quotaId': 'GenerateContentInputTokensPerModelPerMinute-FreeTier', 'quotaDimensions': {'model': 'gemini-2.0-flash', 'location': 'global'}}]}, {'@type': 'type.googleapis.com/google.rpc.RetryInfo', 'retryDelay': '54s'}]}}]: ['Traceback (most recent call last):
 ', '  File "/home/runner/work/enterprise-it-ai/enterprise-it-ai/sources/agents/architect-blueprint/block_json.py", line 302, in convert_phases_to_json
     response = client.beta.chat.completions.parse(
                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -23836,10 +22399,10 @@ Please retry in 18.068099687s.', 'status': 'RESOURCE_EXHAUSTED', 'details': [{'@
 ', '  File "/opt/hostedtoolcache/Python/3.11.15/x64/lib/python3.11/site-packages/openai/_base_client.py", line 1148, in request
     raise self._make_status_error_from_response(err.response) from None
 ', "openai.RateLimitError: Error code: 429 - [{'error': {'code': 429, 'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \
+* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 0, model: gemini-2.0-flash\
+* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 0, model: gemini-2.0-flash\
 * Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_input_token_count, limit: 0, model: gemini-2.0-flash\
-* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 0, model: gemini-2.0-flash\
-* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 0, model: gemini-2.0-flash\
-Please retry in 18.068099687s.', 'status': 'RESOURCE_EXHAUSTED', 'details': [{'@type': 'type.googleapis.com/google.rpc.Help', 'links': [{'description': 'Learn more about Gemini API quotas', 'url': 'https://ai.google.dev/gemini-api/docs/rate-limits'}]}, {'@type': 'type.googleapis.com/google.rpc.QuotaFailure', 'violations': [{'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_input_token_count', 'quotaId': 'GenerateContentInputTokensPerModelPerMinute-FreeTier', 'quotaDimensions': {'location': 'global', 'model': 'gemini-2.0-flash'}}, {'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_requests', 'quotaId': 'GenerateRequestsPerMinutePerProjectPerModel-FreeTier', 'quotaDimensions': {'model': 'gemini-2.0-flash', 'location': 'global'}}, {'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_requests', 'quotaId': 'GenerateRequestsPerDayPerProjectPerModel-FreeTier', 'quotaDimensions': {'location': 'global', 'model': 'gemini-2.0-flash'}}]}, {'@type': 'type.googleapis.com/google.rpc.RetryInfo', 'retryDelay': '18s'}]}}]
+Please retry in 54.386651915s.', 'status': 'RESOURCE_EXHAUSTED', 'details': [{'@type': 'type.googleapis.com/google.rpc.Help', 'links': [{'description': 'Learn more about Gemini API quotas', 'url': 'https://ai.google.dev/gemini-api/docs/rate-limits'}]}, {'@type': 'type.googleapis.com/google.rpc.QuotaFailure', 'violations': [{'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_requests', 'quotaId': 'GenerateRequestsPerDayPerProjectPerModel-FreeTier', 'quotaDimensions': {'location': 'global', 'model': 'gemini-2.0-flash'}}, {'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_requests', 'quotaId': 'GenerateRequestsPerMinutePerProjectPerModel-FreeTier', 'quotaDimensions': {'model': 'gemini-2.0-flash', 'location': 'global'}}, {'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_input_token_count', 'quotaId': 'GenerateContentInputTokensPerModelPerMinute-FreeTier', 'quotaDimensions': {'model': 'gemini-2.0-flash', 'location': 'global'}}]}, {'@type': 'type.googleapis.com/google.rpc.RetryInfo', 'retryDelay': '54s'}]}}]
 "]
 
 # AI Model: models/gemini-2.0-flash-lite-001 - Phase 1 STEPS - Prompt:
@@ -24139,7 +22702,7 @@ Error code: 429 - [{'error': {'code': 429, 'message': 'You exceeded your current
 * Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_input_token_count, limit: 0, model: gemini-2.0-flash-lite
 * Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 0, model: gemini-2.0-flash-lite
 * Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 0, model: gemini-2.0-flash-lite
-Please retry in 14.335521449s.', 'status': 'RESOURCE_EXHAUSTED', 'details': [{'@type': 'type.googleapis.com/google.rpc.Help', 'links': [{'description': 'Learn more about Gemini API quotas', 'url': 'https://ai.google.dev/gemini-api/docs/rate-limits'}]}, {'@type': 'type.googleapis.com/google.rpc.QuotaFailure', 'violations': [{'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_input_token_count', 'quotaId': 'GenerateContentInputTokensPerModelPerMinute-FreeTier', 'quotaDimensions': {'location': 'global', 'model': 'gemini-2.0-flash-lite'}}, {'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_requests', 'quotaId': 'GenerateRequestsPerMinutePerProjectPerModel-FreeTier', 'quotaDimensions': {'location': 'global', 'model': 'gemini-2.0-flash-lite'}}, {'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_requests', 'quotaId': 'GenerateRequestsPerDayPerProjectPerModel-FreeTier', 'quotaDimensions': {'location': 'global', 'model': 'gemini-2.0-flash-lite'}}]}, {'@type': 'type.googleapis.com/google.rpc.RetryInfo', 'retryDelay': '14s'}]}}]: ['Traceback (most recent call last):
+Please retry in 50.976489744s.', 'status': 'RESOURCE_EXHAUSTED', 'details': [{'@type': 'type.googleapis.com/google.rpc.Help', 'links': [{'description': 'Learn more about Gemini API quotas', 'url': 'https://ai.google.dev/gemini-api/docs/rate-limits'}]}, {'@type': 'type.googleapis.com/google.rpc.QuotaFailure', 'violations': [{'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_input_token_count', 'quotaId': 'GenerateContentInputTokensPerModelPerMinute-FreeTier', 'quotaDimensions': {'model': 'gemini-2.0-flash-lite', 'location': 'global'}}, {'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_requests', 'quotaId': 'GenerateRequestsPerMinutePerProjectPerModel-FreeTier', 'quotaDimensions': {'location': 'global', 'model': 'gemini-2.0-flash-lite'}}, {'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_requests', 'quotaId': 'GenerateRequestsPerDayPerProjectPerModel-FreeTier', 'quotaDimensions': {'location': 'global', 'model': 'gemini-2.0-flash-lite'}}]}, {'@type': 'type.googleapis.com/google.rpc.RetryInfo', 'retryDelay': '50s'}]}}]: ['Traceback (most recent call last):
 ', '  File "/home/runner/work/enterprise-it-ai/enterprise-it-ai/sources/agents/architect-blueprint/block_json.py", line 302, in convert_phases_to_json
     response = client.beta.chat.completions.parse(
                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -24155,7 +22718,7 @@ Please retry in 14.335521449s.', 'status': 'RESOURCE_EXHAUSTED', 'details': [{'@
 * Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_input_token_count, limit: 0, model: gemini-2.0-flash-lite\
 * Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 0, model: gemini-2.0-flash-lite\
 * Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 0, model: gemini-2.0-flash-lite\
-Please retry in 14.335521449s.', 'status': 'RESOURCE_EXHAUSTED', 'details': [{'@type': 'type.googleapis.com/google.rpc.Help', 'links': [{'description': 'Learn more about Gemini API quotas', 'url': 'https://ai.google.dev/gemini-api/docs/rate-limits'}]}, {'@type': 'type.googleapis.com/google.rpc.QuotaFailure', 'violations': [{'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_input_token_count', 'quotaId': 'GenerateContentInputTokensPerModelPerMinute-FreeTier', 'quotaDimensions': {'location': 'global', 'model': 'gemini-2.0-flash-lite'}}, {'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_requests', 'quotaId': 'GenerateRequestsPerMinutePerProjectPerModel-FreeTier', 'quotaDimensions': {'location': 'global', 'model': 'gemini-2.0-flash-lite'}}, {'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_requests', 'quotaId': 'GenerateRequestsPerDayPerProjectPerModel-FreeTier', 'quotaDimensions': {'location': 'global', 'model': 'gemini-2.0-flash-lite'}}]}, {'@type': 'type.googleapis.com/google.rpc.RetryInfo', 'retryDelay': '14s'}]}}]
+Please retry in 50.976489744s.', 'status': 'RESOURCE_EXHAUSTED', 'details': [{'@type': 'type.googleapis.com/google.rpc.Help', 'links': [{'description': 'Learn more about Gemini API quotas', 'url': 'https://ai.google.dev/gemini-api/docs/rate-limits'}]}, {'@type': 'type.googleapis.com/google.rpc.QuotaFailure', 'violations': [{'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_input_token_count', 'quotaId': 'GenerateContentInputTokensPerModelPerMinute-FreeTier', 'quotaDimensions': {'model': 'gemini-2.0-flash-lite', 'location': 'global'}}, {'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_requests', 'quotaId': 'GenerateRequestsPerMinutePerProjectPerModel-FreeTier', 'quotaDimensions': {'location': 'global', 'model': 'gemini-2.0-flash-lite'}}, {'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_requests', 'quotaId': 'GenerateRequestsPerDayPerProjectPerModel-FreeTier', 'quotaDimensions': {'location': 'global', 'model': 'gemini-2.0-flash-lite'}}]}, {'@type': 'type.googleapis.com/google.rpc.RetryInfo', 'retryDelay': '50s'}]}}]
 "]
 
 # AI Model: models/gemini-2.0-flash-lite - Phase 1 STEPS - Prompt:
@@ -24452,10 +23015,10 @@ You are a high-performance Data Ingestion and Transformation Engine. Your sole o
 # Raw Response / Exception:
 
 Error code: 429 - [{'error': {'code': 429, 'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. 
+* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 0, model: gemini-2.0-flash-lite
+* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 0, model: gemini-2.0-flash-lite
 * Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_input_token_count, limit: 0, model: gemini-2.0-flash-lite
-* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 0, model: gemini-2.0-flash-lite
-* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 0, model: gemini-2.0-flash-lite
-Please retry in 10.686321313s.', 'status': 'RESOURCE_EXHAUSTED', 'details': [{'@type': 'type.googleapis.com/google.rpc.Help', 'links': [{'description': 'Learn more about Gemini API quotas', 'url': 'https://ai.google.dev/gemini-api/docs/rate-limits'}]}, {'@type': 'type.googleapis.com/google.rpc.QuotaFailure', 'violations': [{'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_input_token_count', 'quotaId': 'GenerateContentInputTokensPerModelPerMinute-FreeTier', 'quotaDimensions': {'model': 'gemini-2.0-flash-lite', 'location': 'global'}}, {'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_requests', 'quotaId': 'GenerateRequestsPerMinutePerProjectPerModel-FreeTier', 'quotaDimensions': {'model': 'gemini-2.0-flash-lite', 'location': 'global'}}, {'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_requests', 'quotaId': 'GenerateRequestsPerDayPerProjectPerModel-FreeTier', 'quotaDimensions': {'location': 'global', 'model': 'gemini-2.0-flash-lite'}}]}, {'@type': 'type.googleapis.com/google.rpc.RetryInfo', 'retryDelay': '10s'}]}}]: ['Traceback (most recent call last):
+Please retry in 47.207128755s.', 'status': 'RESOURCE_EXHAUSTED', 'details': [{'@type': 'type.googleapis.com/google.rpc.Help', 'links': [{'description': 'Learn more about Gemini API quotas', 'url': 'https://ai.google.dev/gemini-api/docs/rate-limits'}]}, {'@type': 'type.googleapis.com/google.rpc.QuotaFailure', 'violations': [{'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_requests', 'quotaId': 'GenerateRequestsPerDayPerProjectPerModel-FreeTier', 'quotaDimensions': {'location': 'global', 'model': 'gemini-2.0-flash-lite'}}, {'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_requests', 'quotaId': 'GenerateRequestsPerMinutePerProjectPerModel-FreeTier', 'quotaDimensions': {'location': 'global', 'model': 'gemini-2.0-flash-lite'}}, {'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_input_token_count', 'quotaId': 'GenerateContentInputTokensPerModelPerMinute-FreeTier', 'quotaDimensions': {'location': 'global', 'model': 'gemini-2.0-flash-lite'}}]}, {'@type': 'type.googleapis.com/google.rpc.RetryInfo', 'retryDelay': '47s'}]}}]: ['Traceback (most recent call last):
 ', '  File "/home/runner/work/enterprise-it-ai/enterprise-it-ai/sources/agents/architect-blueprint/block_json.py", line 302, in convert_phases_to_json
     response = client.beta.chat.completions.parse(
                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -24468,10 +23031,10 @@ Please retry in 10.686321313s.', 'status': 'RESOURCE_EXHAUSTED', 'details': [{'@
 ', '  File "/opt/hostedtoolcache/Python/3.11.15/x64/lib/python3.11/site-packages/openai/_base_client.py", line 1148, in request
     raise self._make_status_error_from_response(err.response) from None
 ', "openai.RateLimitError: Error code: 429 - [{'error': {'code': 429, 'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \
+* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 0, model: gemini-2.0-flash-lite\
+* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 0, model: gemini-2.0-flash-lite\
 * Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_input_token_count, limit: 0, model: gemini-2.0-flash-lite\
-* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 0, model: gemini-2.0-flash-lite\
-* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 0, model: gemini-2.0-flash-lite\
-Please retry in 10.686321313s.', 'status': 'RESOURCE_EXHAUSTED', 'details': [{'@type': 'type.googleapis.com/google.rpc.Help', 'links': [{'description': 'Learn more about Gemini API quotas', 'url': 'https://ai.google.dev/gemini-api/docs/rate-limits'}]}, {'@type': 'type.googleapis.com/google.rpc.QuotaFailure', 'violations': [{'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_input_token_count', 'quotaId': 'GenerateContentInputTokensPerModelPerMinute-FreeTier', 'quotaDimensions': {'model': 'gemini-2.0-flash-lite', 'location': 'global'}}, {'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_requests', 'quotaId': 'GenerateRequestsPerMinutePerProjectPerModel-FreeTier', 'quotaDimensions': {'model': 'gemini-2.0-flash-lite', 'location': 'global'}}, {'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_requests', 'quotaId': 'GenerateRequestsPerDayPerProjectPerModel-FreeTier', 'quotaDimensions': {'location': 'global', 'model': 'gemini-2.0-flash-lite'}}]}, {'@type': 'type.googleapis.com/google.rpc.RetryInfo', 'retryDelay': '10s'}]}}]
+Please retry in 47.207128755s.', 'status': 'RESOURCE_EXHAUSTED', 'details': [{'@type': 'type.googleapis.com/google.rpc.Help', 'links': [{'description': 'Learn more about Gemini API quotas', 'url': 'https://ai.google.dev/gemini-api/docs/rate-limits'}]}, {'@type': 'type.googleapis.com/google.rpc.QuotaFailure', 'violations': [{'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_requests', 'quotaId': 'GenerateRequestsPerDayPerProjectPerModel-FreeTier', 'quotaDimensions': {'location': 'global', 'model': 'gemini-2.0-flash-lite'}}, {'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_requests', 'quotaId': 'GenerateRequestsPerMinutePerProjectPerModel-FreeTier', 'quotaDimensions': {'location': 'global', 'model': 'gemini-2.0-flash-lite'}}, {'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_input_token_count', 'quotaId': 'GenerateContentInputTokensPerModelPerMinute-FreeTier', 'quotaDimensions': {'location': 'global', 'model': 'gemini-2.0-flash-lite'}}]}, {'@type': 'type.googleapis.com/google.rpc.RetryInfo', 'retryDelay': '47s'}]}}]
 "]
 
 # AI Model: models/gemma-4-26b-a4b-it - Phase 1 STEPS - Prompt:
@@ -24769,7 +23332,7 @@ You are a high-performance Data Ingestion and Transformation Engine. Your sole o
 
 Error code: 429 - [{'error': {'code': 429, 'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. 
 * Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_input_token_count, limit: 16000, model: gemma-4-26b
-Please retry in 7.039791552s.', 'status': 'RESOURCE_EXHAUSTED', 'details': [{'@type': 'type.googleapis.com/google.rpc.Help', 'links': [{'description': 'Learn more about Gemini API quotas', 'url': 'https://ai.google.dev/gemini-api/docs/rate-limits'}]}, {'@type': 'type.googleapis.com/google.rpc.QuotaFailure', 'violations': [{'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_input_token_count', 'quotaId': 'GenerateContentInputTokensPerModelPerMinute-FreeTier', 'quotaDimensions': {'location': 'global', 'model': 'gemma-4-26b'}, 'quotaValue': '16000'}]}, {'@type': 'type.googleapis.com/google.rpc.RetryInfo', 'retryDelay': '7s'}]}}]: ['Traceback (most recent call last):
+Please retry in 43.100918046s.', 'status': 'RESOURCE_EXHAUSTED', 'details': [{'@type': 'type.googleapis.com/google.rpc.Help', 'links': [{'description': 'Learn more about Gemini API quotas', 'url': 'https://ai.google.dev/gemini-api/docs/rate-limits'}]}, {'@type': 'type.googleapis.com/google.rpc.QuotaFailure', 'violations': [{'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_input_token_count', 'quotaId': 'GenerateContentInputTokensPerModelPerMinute-FreeTier', 'quotaDimensions': {'location': 'global', 'model': 'gemma-4-26b'}, 'quotaValue': '16000'}]}, {'@type': 'type.googleapis.com/google.rpc.RetryInfo', 'retryDelay': '43s'}]}}]: ['Traceback (most recent call last):
 ', '  File "/home/runner/work/enterprise-it-ai/enterprise-it-ai/sources/agents/architect-blueprint/block_json.py", line 302, in convert_phases_to_json
     response = client.beta.chat.completions.parse(
                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -24783,7 +23346,7 @@ Please retry in 7.039791552s.', 'status': 'RESOURCE_EXHAUSTED', 'details': [{'@t
     raise self._make_status_error_from_response(err.response) from None
 ', "openai.RateLimitError: Error code: 429 - [{'error': {'code': 429, 'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \
 * Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_input_token_count, limit: 16000, model: gemma-4-26b\
-Please retry in 7.039791552s.', 'status': 'RESOURCE_EXHAUSTED', 'details': [{'@type': 'type.googleapis.com/google.rpc.Help', 'links': [{'description': 'Learn more about Gemini API quotas', 'url': 'https://ai.google.dev/gemini-api/docs/rate-limits'}]}, {'@type': 'type.googleapis.com/google.rpc.QuotaFailure', 'violations': [{'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_input_token_count', 'quotaId': 'GenerateContentInputTokensPerModelPerMinute-FreeTier', 'quotaDimensions': {'location': 'global', 'model': 'gemma-4-26b'}, 'quotaValue': '16000'}]}, {'@type': 'type.googleapis.com/google.rpc.RetryInfo', 'retryDelay': '7s'}]}}]
+Please retry in 43.100918046s.', 'status': 'RESOURCE_EXHAUSTED', 'details': [{'@type': 'type.googleapis.com/google.rpc.Help', 'links': [{'description': 'Learn more about Gemini API quotas', 'url': 'https://ai.google.dev/gemini-api/docs/rate-limits'}]}, {'@type': 'type.googleapis.com/google.rpc.QuotaFailure', 'violations': [{'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_input_token_count', 'quotaId': 'GenerateContentInputTokensPerModelPerMinute-FreeTier', 'quotaDimensions': {'location': 'global', 'model': 'gemma-4-26b'}, 'quotaValue': '16000'}]}, {'@type': 'type.googleapis.com/google.rpc.RetryInfo', 'retryDelay': '43s'}]}}]
 "]
 
 # AI Model: models/gemma-4-31b-it - Phase 1 STEPS - Prompt:
@@ -25081,7 +23644,7 @@ You are a high-performance Data Ingestion and Transformation Engine. Your sole o
 
 Error code: 429 - [{'error': {'code': 429, 'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. 
 * Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_input_token_count, limit: 16000, model: gemma-4-31b
-Please retry in 3.073082559s.', 'status': 'RESOURCE_EXHAUSTED', 'details': [{'@type': 'type.googleapis.com/google.rpc.Help', 'links': [{'description': 'Learn more about Gemini API quotas', 'url': 'https://ai.google.dev/gemini-api/docs/rate-limits'}]}, {'@type': 'type.googleapis.com/google.rpc.QuotaFailure', 'violations': [{'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_input_token_count', 'quotaId': 'GenerateContentInputTokensPerModelPerMinute-FreeTier', 'quotaDimensions': {'location': 'global', 'model': 'gemma-4-31b'}, 'quotaValue': '16000'}]}, {'@type': 'type.googleapis.com/google.rpc.RetryInfo', 'retryDelay': '3s'}]}}]: ['Traceback (most recent call last):
+Please retry in 39.330028228s.', 'status': 'RESOURCE_EXHAUSTED', 'details': [{'@type': 'type.googleapis.com/google.rpc.Help', 'links': [{'description': 'Learn more about Gemini API quotas', 'url': 'https://ai.google.dev/gemini-api/docs/rate-limits'}]}, {'@type': 'type.googleapis.com/google.rpc.QuotaFailure', 'violations': [{'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_input_token_count', 'quotaId': 'GenerateContentInputTokensPerModelPerMinute-FreeTier', 'quotaDimensions': {'model': 'gemma-4-31b', 'location': 'global'}, 'quotaValue': '16000'}]}, {'@type': 'type.googleapis.com/google.rpc.RetryInfo', 'retryDelay': '39s'}]}}]: ['Traceback (most recent call last):
 ', '  File "/home/runner/work/enterprise-it-ai/enterprise-it-ai/sources/agents/architect-blueprint/block_json.py", line 302, in convert_phases_to_json
     response = client.beta.chat.completions.parse(
                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -25095,7 +23658,7 @@ Please retry in 3.073082559s.', 'status': 'RESOURCE_EXHAUSTED', 'details': [{'@t
     raise self._make_status_error_from_response(err.response) from None
 ', "openai.RateLimitError: Error code: 429 - [{'error': {'code': 429, 'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \
 * Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_input_token_count, limit: 16000, model: gemma-4-31b\
-Please retry in 3.073082559s.', 'status': 'RESOURCE_EXHAUSTED', 'details': [{'@type': 'type.googleapis.com/google.rpc.Help', 'links': [{'description': 'Learn more about Gemini API quotas', 'url': 'https://ai.google.dev/gemini-api/docs/rate-limits'}]}, {'@type': 'type.googleapis.com/google.rpc.QuotaFailure', 'violations': [{'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_input_token_count', 'quotaId': 'GenerateContentInputTokensPerModelPerMinute-FreeTier', 'quotaDimensions': {'location': 'global', 'model': 'gemma-4-31b'}, 'quotaValue': '16000'}]}, {'@type': 'type.googleapis.com/google.rpc.RetryInfo', 'retryDelay': '3s'}]}}]
+Please retry in 39.330028228s.', 'status': 'RESOURCE_EXHAUSTED', 'details': [{'@type': 'type.googleapis.com/google.rpc.Help', 'links': [{'description': 'Learn more about Gemini API quotas', 'url': 'https://ai.google.dev/gemini-api/docs/rate-limits'}]}, {'@type': 'type.googleapis.com/google.rpc.QuotaFailure', 'violations': [{'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_input_token_count', 'quotaId': 'GenerateContentInputTokensPerModelPerMinute-FreeTier', 'quotaDimensions': {'model': 'gemma-4-31b', 'location': 'global'}, 'quotaValue': '16000'}]}, {'@type': 'type.googleapis.com/google.rpc.RetryInfo', 'retryDelay': '39s'}]}}]
 "]
 
 # AI Model: models/gemini-flash-latest - Phase 1 STEPS - Prompt:
@@ -25393,7 +23956,7 @@ You are a high-performance Data Ingestion and Transformation Engine. Your sole o
 
 Error code: 429 - [{'error': {'code': 429, 'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. 
 * Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-3.6-flash
-Please retry in 59.565767715s.', 'status': 'RESOURCE_EXHAUSTED', 'details': [{'@type': 'type.googleapis.com/google.rpc.Help', 'links': [{'description': 'Learn more about Gemini API quotas', 'url': 'https://ai.google.dev/gemini-api/docs/rate-limits'}]}, {'@type': 'type.googleapis.com/google.rpc.QuotaFailure', 'violations': [{'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_requests', 'quotaId': 'GenerateRequestsPerDayPerProjectPerModel-FreeTier', 'quotaDimensions': {'location': 'global', 'model': 'gemini-3.6-flash'}, 'quotaValue': '20'}]}, {'@type': 'type.googleapis.com/google.rpc.RetryInfo', 'retryDelay': '59s'}]}}]: ['Traceback (most recent call last):
+Please retry in 35.446244897s.', 'status': 'RESOURCE_EXHAUSTED', 'details': [{'@type': 'type.googleapis.com/google.rpc.Help', 'links': [{'description': 'Learn more about Gemini API quotas', 'url': 'https://ai.google.dev/gemini-api/docs/rate-limits'}]}, {'@type': 'type.googleapis.com/google.rpc.QuotaFailure', 'violations': [{'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_requests', 'quotaId': 'GenerateRequestsPerDayPerProjectPerModel-FreeTier', 'quotaDimensions': {'location': 'global', 'model': 'gemini-3.6-flash'}, 'quotaValue': '20'}]}, {'@type': 'type.googleapis.com/google.rpc.RetryInfo', 'retryDelay': '35s'}]}}]: ['Traceback (most recent call last):
 ', '  File "/home/runner/work/enterprise-it-ai/enterprise-it-ai/sources/agents/architect-blueprint/block_json.py", line 302, in convert_phases_to_json
     response = client.beta.chat.completions.parse(
                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -25407,7 +23970,7 @@ Please retry in 59.565767715s.', 'status': 'RESOURCE_EXHAUSTED', 'details': [{'@
     raise self._make_status_error_from_response(err.response) from None
 ', "openai.RateLimitError: Error code: 429 - [{'error': {'code': 429, 'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \
 * Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-3.6-flash\
-Please retry in 59.565767715s.', 'status': 'RESOURCE_EXHAUSTED', 'details': [{'@type': 'type.googleapis.com/google.rpc.Help', 'links': [{'description': 'Learn more about Gemini API quotas', 'url': 'https://ai.google.dev/gemini-api/docs/rate-limits'}]}, {'@type': 'type.googleapis.com/google.rpc.QuotaFailure', 'violations': [{'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_requests', 'quotaId': 'GenerateRequestsPerDayPerProjectPerModel-FreeTier', 'quotaDimensions': {'location': 'global', 'model': 'gemini-3.6-flash'}, 'quotaValue': '20'}]}, {'@type': 'type.googleapis.com/google.rpc.RetryInfo', 'retryDelay': '59s'}]}}]
+Please retry in 35.446244897s.', 'status': 'RESOURCE_EXHAUSTED', 'details': [{'@type': 'type.googleapis.com/google.rpc.Help', 'links': [{'description': 'Learn more about Gemini API quotas', 'url': 'https://ai.google.dev/gemini-api/docs/rate-limits'}]}, {'@type': 'type.googleapis.com/google.rpc.QuotaFailure', 'violations': [{'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_requests', 'quotaId': 'GenerateRequestsPerDayPerProjectPerModel-FreeTier', 'quotaDimensions': {'location': 'global', 'model': 'gemini-3.6-flash'}, 'quotaValue': '20'}]}, {'@type': 'type.googleapis.com/google.rpc.RetryInfo', 'retryDelay': '35s'}]}}]
 "]
 
 # AI Model: models/gemini-flash-lite-latest - Phase 1 STEPS - Prompt:
@@ -26012,11 +24575,11 @@ You are a high-performance Data Ingestion and Transformation Engine. Your sole o
 # Raw Response / Exception:
 
 Error code: 429 - [{'error': {'code': 429, 'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. 
+* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_input_token_count, limit: 0, model: gemini-3.1-pro
 * Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 0, model: gemini-3.1-pro
 * Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 0, model: gemini-3.1-pro
 * Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_input_token_count, limit: 0, model: gemini-3.1-pro
-* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_input_token_count, limit: 0, model: gemini-3.1-pro
-Please retry in 52.790496806s.', 'status': 'RESOURCE_EXHAUSTED', 'details': [{'@type': 'type.googleapis.com/google.rpc.Help', 'links': [{'description': 'Learn more about Gemini API quotas', 'url': 'https://ai.google.dev/gemini-api/docs/rate-limits'}]}, {'@type': 'type.googleapis.com/google.rpc.QuotaFailure', 'violations': [{'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_requests', 'quotaId': 'GenerateRequestsPerDayPerProjectPerModel-FreeTier', 'quotaDimensions': {'model': 'gemini-3.1-pro', 'location': 'global'}}, {'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_requests', 'quotaId': 'GenerateRequestsPerMinutePerProjectPerModel-FreeTier', 'quotaDimensions': {'location': 'global', 'model': 'gemini-3.1-pro'}}, {'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_input_token_count', 'quotaId': 'GenerateContentInputTokensPerModelPerMinute-FreeTier', 'quotaDimensions': {'location': 'global', 'model': 'gemini-3.1-pro'}}, {'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_input_token_count', 'quotaId': 'GenerateContentInputTokensPerModelPerDay-FreeTier', 'quotaDimensions': {'location': 'global', 'model': 'gemini-3.1-pro'}}]}, {'@type': 'type.googleapis.com/google.rpc.RetryInfo', 'retryDelay': '52s'}]}}]: ['Traceback (most recent call last):
+Please retry in 27.742399869s.', 'status': 'RESOURCE_EXHAUSTED', 'details': [{'@type': 'type.googleapis.com/google.rpc.Help', 'links': [{'description': 'Learn more about Gemini API quotas', 'url': 'https://ai.google.dev/gemini-api/docs/rate-limits'}]}, {'@type': 'type.googleapis.com/google.rpc.QuotaFailure', 'violations': [{'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_input_token_count', 'quotaId': 'GenerateContentInputTokensPerModelPerDay-FreeTier', 'quotaDimensions': {'location': 'global', 'model': 'gemini-3.1-pro'}}, {'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_requests', 'quotaId': 'GenerateRequestsPerDayPerProjectPerModel-FreeTier', 'quotaDimensions': {'model': 'gemini-3.1-pro', 'location': 'global'}}, {'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_requests', 'quotaId': 'GenerateRequestsPerMinutePerProjectPerModel-FreeTier', 'quotaDimensions': {'location': 'global', 'model': 'gemini-3.1-pro'}}, {'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_input_token_count', 'quotaId': 'GenerateContentInputTokensPerModelPerMinute-FreeTier', 'quotaDimensions': {'model': 'gemini-3.1-pro', 'location': 'global'}}]}, {'@type': 'type.googleapis.com/google.rpc.RetryInfo', 'retryDelay': '27s'}]}}]: ['Traceback (most recent call last):
 ', '  File "/home/runner/work/enterprise-it-ai/enterprise-it-ai/sources/agents/architect-blueprint/block_json.py", line 302, in convert_phases_to_json
     response = client.beta.chat.completions.parse(
                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -26029,11 +24592,11 @@ Please retry in 52.790496806s.', 'status': 'RESOURCE_EXHAUSTED', 'details': [{'@
 ', '  File "/opt/hostedtoolcache/Python/3.11.15/x64/lib/python3.11/site-packages/openai/_base_client.py", line 1148, in request
     raise self._make_status_error_from_response(err.response) from None
 ', "openai.RateLimitError: Error code: 429 - [{'error': {'code': 429, 'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \
+* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_input_token_count, limit: 0, model: gemini-3.1-pro\
 * Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 0, model: gemini-3.1-pro\
 * Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 0, model: gemini-3.1-pro\
 * Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_input_token_count, limit: 0, model: gemini-3.1-pro\
-* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_input_token_count, limit: 0, model: gemini-3.1-pro\
-Please retry in 52.790496806s.', 'status': 'RESOURCE_EXHAUSTED', 'details': [{'@type': 'type.googleapis.com/google.rpc.Help', 'links': [{'description': 'Learn more about Gemini API quotas', 'url': 'https://ai.google.dev/gemini-api/docs/rate-limits'}]}, {'@type': 'type.googleapis.com/google.rpc.QuotaFailure', 'violations': [{'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_requests', 'quotaId': 'GenerateRequestsPerDayPerProjectPerModel-FreeTier', 'quotaDimensions': {'model': 'gemini-3.1-pro', 'location': 'global'}}, {'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_requests', 'quotaId': 'GenerateRequestsPerMinutePerProjectPerModel-FreeTier', 'quotaDimensions': {'location': 'global', 'model': 'gemini-3.1-pro'}}, {'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_input_token_count', 'quotaId': 'GenerateContentInputTokensPerModelPerMinute-FreeTier', 'quotaDimensions': {'location': 'global', 'model': 'gemini-3.1-pro'}}, {'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_input_token_count', 'quotaId': 'GenerateContentInputTokensPerModelPerDay-FreeTier', 'quotaDimensions': {'location': 'global', 'model': 'gemini-3.1-pro'}}]}, {'@type': 'type.googleapis.com/google.rpc.RetryInfo', 'retryDelay': '52s'}]}}]
+Please retry in 27.742399869s.', 'status': 'RESOURCE_EXHAUSTED', 'details': [{'@type': 'type.googleapis.com/google.rpc.Help', 'links': [{'description': 'Learn more about Gemini API quotas', 'url': 'https://ai.google.dev/gemini-api/docs/rate-limits'}]}, {'@type': 'type.googleapis.com/google.rpc.QuotaFailure', 'violations': [{'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_input_token_count', 'quotaId': 'GenerateContentInputTokensPerModelPerDay-FreeTier', 'quotaDimensions': {'location': 'global', 'model': 'gemini-3.1-pro'}}, {'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_requests', 'quotaId': 'GenerateRequestsPerDayPerProjectPerModel-FreeTier', 'quotaDimensions': {'model': 'gemini-3.1-pro', 'location': 'global'}}, {'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_requests', 'quotaId': 'GenerateRequestsPerMinutePerProjectPerModel-FreeTier', 'quotaDimensions': {'location': 'global', 'model': 'gemini-3.1-pro'}}, {'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_input_token_count', 'quotaId': 'GenerateContentInputTokensPerModelPerMinute-FreeTier', 'quotaDimensions': {'model': 'gemini-3.1-pro', 'location': 'global'}}]}, {'@type': 'type.googleapis.com/google.rpc.RetryInfo', 'retryDelay': '27s'}]}}]
 "]
 
 # AI Model: models/gemini-2.5-flash-lite - Phase 1 STEPS - Prompt:
@@ -26329,7 +24892,9 @@ You are a high-performance Data Ingestion and Transformation Engine. Your sole o
 
 # Raw Response / Exception:
 
-Error code: 429 - [{'error': {'code': 429, 'message': 'Your prepayment credits are depleted. Please go to AI Studio at https://ai.studio/projects to manage your project and billing. Learn more at https://ai.google.dev/gemini-api/docs/billing#prepay. ', 'status': 'RESOURCE_EXHAUSTED'}}]: ['Traceback (most recent call last):
+Error code: 429 - [{'error': {'code': 429, 'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. 
+* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-2.5-flash-lite
+Please retry in 23.699097428s.', 'status': 'RESOURCE_EXHAUSTED', 'details': [{'@type': 'type.googleapis.com/google.rpc.Help', 'links': [{'description': 'Learn more about Gemini API quotas', 'url': 'https://ai.google.dev/gemini-api/docs/rate-limits'}]}, {'@type': 'type.googleapis.com/google.rpc.QuotaFailure', 'violations': [{'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_requests', 'quotaId': 'GenerateRequestsPerDayPerProjectPerModel-FreeTier', 'quotaDimensions': {'location': 'global', 'model': 'gemini-2.5-flash-lite'}, 'quotaValue': '20'}]}, {'@type': 'type.googleapis.com/google.rpc.RetryInfo', 'retryDelay': '23s'}]}}]: ['Traceback (most recent call last):
 ', '  File "/home/runner/work/enterprise-it-ai/enterprise-it-ai/sources/agents/architect-blueprint/block_json.py", line 302, in convert_phases_to_json
     response = client.beta.chat.completions.parse(
                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -26341,7 +24906,9 @@ Error code: 429 - [{'error': {'code': 429, 'message': 'Your prepayment credits a
                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 ', '  File "/opt/hostedtoolcache/Python/3.11.15/x64/lib/python3.11/site-packages/openai/_base_client.py", line 1148, in request
     raise self._make_status_error_from_response(err.response) from None
-', "openai.RateLimitError: Error code: 429 - [{'error': {'code': 429, 'message': 'Your prepayment credits are depleted. Please go to AI Studio at https://ai.studio/projects to manage your project and billing. Learn more at https://ai.google.dev/gemini-api/docs/billing#prepay. ', 'status': 'RESOURCE_EXHAUSTED'}}]
+', "openai.RateLimitError: Error code: 429 - [{'error': {'code': 429, 'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \
+* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-2.5-flash-lite\
+Please retry in 23.699097428s.', 'status': 'RESOURCE_EXHAUSTED', 'details': [{'@type': 'type.googleapis.com/google.rpc.Help', 'links': [{'description': 'Learn more about Gemini API quotas', 'url': 'https://ai.google.dev/gemini-api/docs/rate-limits'}]}, {'@type': 'type.googleapis.com/google.rpc.QuotaFailure', 'violations': [{'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_requests', 'quotaId': 'GenerateRequestsPerDayPerProjectPerModel-FreeTier', 'quotaDimensions': {'location': 'global', 'model': 'gemini-2.5-flash-lite'}, 'quotaValue': '20'}]}, {'@type': 'type.googleapis.com/google.rpc.RetryInfo', 'retryDelay': '23s'}]}}]
 "]
 
 # AI Model: models/gemini-3.5-flash - Phase 1 STEPS - Prompt:
@@ -26639,7 +25206,7 @@ You are a high-performance Data Ingestion and Transformation Engine. Your sole o
 
 Error code: 429 - [{'error': {'code': 429, 'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. 
 * Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-3.5-flash
-Please retry in 46.1993275s.', 'status': 'RESOURCE_EXHAUSTED', 'details': [{'@type': 'type.googleapis.com/google.rpc.Help', 'links': [{'description': 'Learn more about Gemini API quotas', 'url': 'https://ai.google.dev/gemini-api/docs/rate-limits'}]}, {'@type': 'type.googleapis.com/google.rpc.QuotaFailure', 'violations': [{'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_requests', 'quotaId': 'GenerateRequestsPerDayPerProjectPerModel-FreeTier', 'quotaDimensions': {'location': 'global', 'model': 'gemini-3.5-flash'}, 'quotaValue': '20'}]}, {'@type': 'type.googleapis.com/google.rpc.RetryInfo', 'retryDelay': '46s'}]}}]: ['Traceback (most recent call last):
+Please retry in 19.765000826s.', 'status': 'RESOURCE_EXHAUSTED', 'details': [{'@type': 'type.googleapis.com/google.rpc.Help', 'links': [{'description': 'Learn more about Gemini API quotas', 'url': 'https://ai.google.dev/gemini-api/docs/rate-limits'}]}, {'@type': 'type.googleapis.com/google.rpc.QuotaFailure', 'violations': [{'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_requests', 'quotaId': 'GenerateRequestsPerDayPerProjectPerModel-FreeTier', 'quotaDimensions': {'location': 'global', 'model': 'gemini-3.5-flash'}, 'quotaValue': '20'}]}, {'@type': 'type.googleapis.com/google.rpc.RetryInfo', 'retryDelay': '19s'}]}}]: ['Traceback (most recent call last):
 ', '  File "/home/runner/work/enterprise-it-ai/enterprise-it-ai/sources/agents/architect-blueprint/block_json.py", line 302, in convert_phases_to_json
     response = client.beta.chat.completions.parse(
                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -26653,7 +25220,7 @@ Please retry in 46.1993275s.', 'status': 'RESOURCE_EXHAUSTED', 'details': [{'@ty
     raise self._make_status_error_from_response(err.response) from None
 ', "openai.RateLimitError: Error code: 429 - [{'error': {'code': 429, 'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \
 * Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-3.5-flash\
-Please retry in 46.1993275s.', 'status': 'RESOURCE_EXHAUSTED', 'details': [{'@type': 'type.googleapis.com/google.rpc.Help', 'links': [{'description': 'Learn more about Gemini API quotas', 'url': 'https://ai.google.dev/gemini-api/docs/rate-limits'}]}, {'@type': 'type.googleapis.com/google.rpc.QuotaFailure', 'violations': [{'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_requests', 'quotaId': 'GenerateRequestsPerDayPerProjectPerModel-FreeTier', 'quotaDimensions': {'location': 'global', 'model': 'gemini-3.5-flash'}, 'quotaValue': '20'}]}, {'@type': 'type.googleapis.com/google.rpc.RetryInfo', 'retryDelay': '46s'}]}}]
+Please retry in 19.765000826s.', 'status': 'RESOURCE_EXHAUSTED', 'details': [{'@type': 'type.googleapis.com/google.rpc.Help', 'links': [{'description': 'Learn more about Gemini API quotas', 'url': 'https://ai.google.dev/gemini-api/docs/rate-limits'}]}, {'@type': 'type.googleapis.com/google.rpc.QuotaFailure', 'violations': [{'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_requests', 'quotaId': 'GenerateRequestsPerDayPerProjectPerModel-FreeTier', 'quotaDimensions': {'location': 'global', 'model': 'gemini-3.5-flash'}, 'quotaValue': '20'}]}, {'@type': 'type.googleapis.com/google.rpc.RetryInfo', 'retryDelay': '19s'}]}}]
 "]
 
 # AI Model: deepseek-v4-flash - Phase 1 STEPS - Prompt:
@@ -27565,7 +26132,7 @@ You are a high-performance Data Ingestion and Transformation Engine. Your sole o
 
 # Raw Response / Exception:
 
-Error code: 404 - {'error': {'message': 'Model not found, inaccessible, and/or not deployed', 'param': 'model', 'code': 'NOT_FOUND', 'type': 'error'}, 'request_id': 'chatcmpl-94485d796dd845e7bf0759716d1d2ed5'}: ['Traceback (most recent call last):
+Error code: 404 - {'error': {'message': 'Model not found, inaccessible, and/or not deployed', 'param': 'model', 'code': 'NOT_FOUND', 'type': 'error'}, 'request_id': 'chatcmpl-605d657d0593468392dd7244b92eed5d'}: ['Traceback (most recent call last):
 ', '  File "/home/runner/work/enterprise-it-ai/enterprise-it-ai/sources/agents/architect-blueprint/block_json.py", line 302, in convert_phases_to_json
     response = client.beta.chat.completions.parse(
                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -27577,7 +26144,7 @@ Error code: 404 - {'error': {'message': 'Model not found, inaccessible, and/or n
                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 ', '  File "/opt/hostedtoolcache/Python/3.11.15/x64/lib/python3.11/site-packages/openai/_base_client.py", line 1148, in request
     raise self._make_status_error_from_response(err.response) from None
-', "openai.NotFoundError: Error code: 404 - {'error': {'message': 'Model not found, inaccessible, and/or not deployed', 'param': 'model', 'code': 'NOT_FOUND', 'type': 'error'}, 'request_id': 'chatcmpl-94485d796dd845e7bf0759716d1d2ed5'}
+', "openai.NotFoundError: Error code: 404 - {'error': {'message': 'Model not found, inaccessible, and/or not deployed', 'param': 'model', 'code': 'NOT_FOUND', 'type': 'error'}, 'request_id': 'chatcmpl-605d657d0593468392dd7244b92eed5d'}
 "]
 
 # AI Model: meta/llama-3.3-70b-instruct - Phase 1 STEPS - Prompt:
@@ -27873,7 +26440,7 @@ You are a high-performance Data Ingestion and Transformation Engine. Your sole o
 
 # Raw Response / Exception:
 
-Error code: 404 - {'error': {'message': 'Model not found, inaccessible, and/or not deployed', 'param': 'model', 'code': 'NOT_FOUND', 'type': 'error'}, 'request_id': 'chatcmpl-09aeb30a47b94a829739b79bcece3faf'}: ['Traceback (most recent call last):
+Error code: 404 - {'error': {'message': 'Model not found, inaccessible, and/or not deployed', 'param': 'model', 'code': 'NOT_FOUND', 'type': 'error'}, 'request_id': 'chatcmpl-37c2b908e2b64f389748105d641d5f71'}: ['Traceback (most recent call last):
 ', '  File "/home/runner/work/enterprise-it-ai/enterprise-it-ai/sources/agents/architect-blueprint/block_json.py", line 302, in convert_phases_to_json
     response = client.beta.chat.completions.parse(
                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -27885,7 +26452,7 @@ Error code: 404 - {'error': {'message': 'Model not found, inaccessible, and/or n
                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 ', '  File "/opt/hostedtoolcache/Python/3.11.15/x64/lib/python3.11/site-packages/openai/_base_client.py", line 1148, in request
     raise self._make_status_error_from_response(err.response) from None
-', "openai.NotFoundError: Error code: 404 - {'error': {'message': 'Model not found, inaccessible, and/or not deployed', 'param': 'model', 'code': 'NOT_FOUND', 'type': 'error'}, 'request_id': 'chatcmpl-09aeb30a47b94a829739b79bcece3faf'}
+', "openai.NotFoundError: Error code: 404 - {'error': {'message': 'Model not found, inaccessible, and/or not deployed', 'param': 'model', 'code': 'NOT_FOUND', 'type': 'error'}, 'request_id': 'chatcmpl-37c2b908e2b64f389748105d641d5f71'}
 "]
 
 # AI Model: codestral-latest - Phase 1 STEPS - Prompt:
@@ -28264,13 +26831,14 @@ You are a high-performance Data Ingestion and Transformation Engine. Your sole o
             "[NFR-009]"
           ],
           "components": [
-            "./sources/backend/auth-service/src/main/java/com/membershiphub/auth/AuthController.java",
-            "./sources/backend/auth-service/src/main/java/com/membershiphub/auth/AuthService.java",
-            "./sources/backend/auth-service/src/main/java/com/membershiphub/auth/AuthRepository.java",
-            "./sources/backend/auth-service/src/main/java/com/membershiphub/auth/JwtProvider.java",
-            "./sources/backend/auth-service/src/main/java/com/membershiphub/auth/Validation.java",
-            "./sources/backend/auth-service/src/main/java/com/membershiphub/auth/ExceptionHandler.java",
-            "./sources/backend/auth-service/src/test/java/com/membershiphub/auth/AuthServiceTest.java"
+            "./sources/backend/auth-service/AuthController.java",
+            "./sources/backend/auth-service/AuthService.java",
+            "./sources/backend/auth-service/UserRepository.java",
+            "./sources/backend/auth-service/RoleRepository.java",
+            "./sources/backend/auth-service/JwtProvider.java",
+            "./sources/backend/auth-service/AuthValidation.java",
+            "./sources/backend/auth-service/AuthExceptionHandler.java",
+            "./sources/backend/auth-service/AuthServiceTest.java"
           ]
         }
       ]
@@ -28337,13 +26905,8 @@ You are a high-performance Data Ingestion and Transformation Engine. Your sole o
             "[NFR-009]"
           ],
           "components": [
-            "./sources/backend/auth-service/src/main/java/com/membershiphub/auth/AuthController.java",
-            "./sources/backend/auth-service/src/main/java/com/membershiphub/auth/AuthService.java",
-            "./sources/backend/auth-service/src/main/java/com/membershiphub/auth/AuthRepository.java",
-            "./sources/backend/auth-service/src/main/java/com/membershiphub/auth/JwtProvider.java",
-            "./sources/backend/auth-service/src/main/java/com/membershiphub/auth/Validation.java",
-            "./sources/backend/auth-service/src/main/java/com/membershiphub/auth/ExceptionHandler.java",
-            "./sources/backend/auth-service/src/test/java/com/membershiphub/auth/AuthServiceTest.java"
+            "./sources/backend/auth-service/AuthSecurityReview.md",
+            "./sources/backend/auth-service/AuthPerformanceReview.md"
           ]
         }
       ]
@@ -28809,8 +27372,7 @@ You are a high-performance Data Ingestion and Transformation Engine. Your sole o
           ],
           "components": [
             "./sources/backend/enrollment-service/src/main/java/com/membershiphub/enrollment/EnrollmentController.java",
-            "./sources/backend/enrollment-service/src/main/java/com/membershiphub/enrollment/EnrollmentService.java",
-            "./sources/backend/enrollment-service/src/main/java/com/membershiphub/enrollment/EnrollmentRepository.java"
+            "./sources/backend/enrollment-service/src/main/java/com/membershiphub/enrollment/EnrollmentService.java"
           ]
         }
       ]
@@ -29194,7 +27756,7 @@ You are a high-performance Data Ingestion and Transformation Engine. Your sole o
     {
       "day": 1,
       "context_file": ".ai/.plan/.context/phase-3.context.blueprint.md",
-      "context_section": "DAY 1: XÂY ĐẾN DỊCH VỤ THÔNG BÁO VÀ MOBILE API",
+      "context_section": "XÂY ĐẾN DỊCH VỤ THÔNG BÁO VÀ MOBILE API",
       "sub_tasks": [
         {
           "id": "D1_ST1",
@@ -29209,11 +27771,11 @@ You are a high-performance Data Ingestion and Transformation Engine. Your sole o
             "[DAT-008]"
           ],
           "components": [
-            "./sources/backend/notification-service/NotificationController.java",
-            "./sources/backend/notification-service/NotificationService.java",
-            "./sources/backend/notification-service/NotificationRepository.java",
-            "./sources/backend/notification-service/FirebaseIntegration.java",
-            "./sources/backend/notification-service/ZaloIntegration.java"
+            "./sources/backend/notification-service/src/main/java/com/membershiphub/notification/NotificationController.java",
+            "./sources/backend/notification-service/src/main/java/com/membershiphub/notification/NotificationService.java",
+            "./sources/backend/notification-service/src/main/java/com/membershiphub/notification/NotificationRepository.java",
+            "./sources/backend/notification-service/src/main/java/com/membershiphub/notification/FirebaseIntegration.java",
+            "./sources/backend/notification-service/src/main/java/com/membershiphub/notification/ZaloIntegration.java"
           ]
         },
         {
@@ -29225,9 +27787,9 @@ You are a high-performance Data Ingestion and Transformation Engine. Your sole o
             "[DAT-009]"
           ],
           "components": [
-            "./sources/backend/promotion-service/PromotionController.java",
-            "./sources/backend/promotion-service/PromotionService.java",
-            "./sources/backend/promotion-service/PromotionRepository.java"
+            "./sources/backend/promotion-service/src/main/java/com/membershiphub/promotion/PromotionController.java",
+            "./sources/backend/promotion-service/src/main/java/com/membershiphub/promotion/PromotionService.java",
+            "./sources/backend/promotion-service/src/main/java/com/membershiphub/promotion/PromotionRepository.java"
           ]
         },
         {
@@ -29239,9 +27801,9 @@ You are a high-performance Data Ingestion and Transformation Engine. Your sole o
             "[DAT-010]"
           ],
           "components": [
-            "./sources/backend/announcement-service/AnnouncementController.java",
-            "./sources/backend/announcement-service/AnnouncementService.java",
-            "./sources/backend/announcement-service/AnnouncementRepository.java"
+            "./sources/backend/announcement-service/src/main/java/com/membershiphub/announcement/AnnouncementController.java",
+            "./sources/backend/announcement-service/src/main/java/com/membershiphub/announcement/AnnouncementService.java",
+            "./sources/backend/announcement-service/src/main/java/com/membershiphub/announcement/AnnouncementRepository.java"
           ]
         },
         {
@@ -29252,10 +27814,10 @@ You are a high-performance Data Ingestion and Transformation Engine. Your sole o
             "[REQ-019]"
           ],
           "components": [
-            "./sources/backend/chatbot-service/ChatbotController.java",
-            "./sources/backend/chatbot-service/ChatbotService.java",
-            "./sources/backend/chatbot-service/ChatbotRepository.java",
-            "./sources/backend/chatbot-service/AIIntegration.java"
+            "./sources/backend/chatbot-service/src/main/java/com/membershiphub/chatbot/ChatbotController.java",
+            "./sources/backend/chatbot-service/src/main/java/com/membershiphub/chatbot/ChatbotService.java",
+            "./sources/backend/chatbot-service/src/main/java/com/membershiphub/chatbot/ChatbotRepository.java",
+            "./sources/backend/chatbot-service/src/main/java/com/membershiphub/chatbot/AIIntegration.java"
           ]
         },
         {
@@ -29272,11 +27834,11 @@ You are a high-performance Data Ingestion and Transformation Engine. Your sole o
             "[DAT-011]"
           ],
           "components": [
-            "./sources/backend/mobile-service/MobileController.java",
-            "./sources/backend/mobile-service/MobileService.java",
-            "./sources/backend/mobile-service/MobileRepository.java",
-            "./sources/backend/mobile-service/I18nConfig.java",
-            "./sources/backend/mobile-service/SEOConfig.java"
+            "./sources/backend/mobile-service/src/main/java/com/membershiphub/mobile/MobileController.java",
+            "./sources/backend/mobile-service/src/main/java/com/membershiphub/mobile/MobileService.java",
+            "./sources/backend/mobile-service/src/main/java/com/membershiphub/mobile/MobileRepository.java",
+            "./sources/backend/mobile-service/src/main/java/com/membershiphub/mobile/I18nConfig.java",
+            "./sources/backend/mobile-service/src/main/java/com/membershiphub/mobile/SEOConfig.java"
           ]
         }
       ]
@@ -29284,7 +27846,7 @@ You are a high-performance Data Ingestion and Transformation Engine. Your sole o
     {
       "day": 2,
       "context_file": ".ai/.plan/.context/phase-3.context.blueprint.md",
-      "context_section": "DAY 2: KIỂM THỬ MOBILE API",
+      "context_section": "KIỂM THỬ MOBILE API",
       "sub_tasks": [
         {
           "id": "D2_ST1",
@@ -29308,7 +27870,7 @@ You are a high-performance Data Ingestion and Transformation Engine. Your sole o
     {
       "day": 3,
       "context_file": ".ai/.plan/.context/phase-3.context.blueprint.md",
-      "context_section": "DAY 3: ĐÁNH GIÁ BẢO MẬT VÀ XỬ LÝ NGOẠI LỆ",
+      "context_section": "ĐÁNH GIÁ BẢO MẬT VÀ XỬ LÝ NGOẠI LỆ",
       "sub_tasks": [
         {
           "id": "D3_ST1",
@@ -29324,11 +27886,11 @@ You are a high-performance Data Ingestion and Transformation Engine. Your sole o
             "[EXC-003]"
           ],
           "components": [
-            "./sources/backend/notification-service/NotificationController.java",
-            "./sources/backend/notification-service/NotificationService.java",
-            "./sources/backend/notification-service/NotificationRepository.java",
-            "./sources/backend/notification-service/FirebaseIntegration.java",
-            "./sources/backend/notification-service/ZaloIntegration.java"
+            "./sources/backend/notification-service/src/main/java/com/membershiphub/notification/NotificationController.java",
+            "./sources/backend/notification-service/src/main/java/com/membershiphub/notification/NotificationService.java",
+            "./sources/backend/notification-service/src/main/java/com/membershiphub/notification/NotificationRepository.java",
+            "./sources/backend/notification-service/src/main/java/com/membershiphub/notification/FirebaseIntegration.java",
+            "./sources/backend/notification-service/src/main/java/com/membershiphub/notification/ZaloIntegration.java"
           ]
         }
       ]
@@ -30065,15 +28627,41 @@ You are a high-performance Data Ingestion and Transformation Engine. Your sole o
           "id": "D1_ST1",
           "agent": "Docker",
           "desc": "Viết Dockerfile đa giai đoạn, giảm kích thước, build, push tới registry, kiểm thử hình ảnh",
-          "targeted_tags": ["[NFR-001]", "[NFR-002]", "[NFR-003]", "[NFR-004]", "[NFR-005]", "[NFR-006]", "[NFR-007]", "[NFR-008]", "[NFR-009]", "[ARC-010]"],
-          "components": ["./sources/infra/docker/Dockerfile"]
+          "targeted_tags": [
+            "[NFR-001]",
+            "[NFR-002]",
+            "[NFR-003]",
+            "[NFR-004]",
+            "[NFR-005]",
+            "[NFR-006]",
+            "[NFR-007]",
+            "[NFR-008]",
+            "[NFR-009]",
+            "[ARC-010]"
+          ],
+          "components": [
+            "./sources/infra/docker/Dockerfile"
+          ]
         },
         {
           "id": "D1_ST2",
           "agent": "Docker",
           "desc": "Kiểm thử và xác nhận image, thực hiện scan bảo mật, chuẩn hóa metadata",
-          "targeted_tags": ["[NFR-001]", "[NFR-002]", "[NFR-003]", "[NFR-004]", "[NFR-005]", "[NFR-006]", "[NFR-007]", "[NFR-008]", "[NFR-009]", "[ARC-010]"],
-          "components": ["./sources/infra/docker/Dockerfile"]
+          "targeted_tags": [
+            "[NFR-001]",
+            "[NFR-002]",
+            "[NFR-003]",
+            "[NFR-004]",
+            "[NFR-005]",
+            "[NFR-006]",
+            "[NFR-007]",
+            "[NFR-008]",
+            "[NFR-009]",
+            "[ARC-010]"
+          ],
+          "components": [
+            "./sources/infra/docker/Dockerfile"
+          ]
         }
       ]
     },
@@ -30086,15 +28674,49 @@ You are a high-performance Data Ingestion and Transformation Engine. Your sole o
           "id": "D2_ST1",
           "agent": "Gke",
           "desc": "Viết Helm chart, cấu hình HPA, autoscaling, monitoring, logging, CI/CD",
-          "targeted_tags": ["[NFR-001]", "[NFR-002]", "[NFR-003]", "[NFR-004]", "[NFR-005]", "[NFR-006]", "[NFR-007]", "[NFR-008]", "[NFR-009]", "[ARC-010]"],
-          "components": ["./sources/infra/gke/Chart.yaml", "./sources/infra/gke/values.yaml"]
+          "targeted_tags": [
+            "[NFR-001]",
+            "[NFR-002]",
+            "[NFR-003]",
+            "[NFR-004]",
+            "[NFR-005]",
+            "[NFR-006]",
+            "[NFR-007]",
+            "[NFR-008]",
+            "[NFR-009]",
+            "[ARC-010]"
+          ],
+          "components": [
+            "./sources/infra/gke/Chart.yaml",
+            "./sources/infra/gke/values.yaml",
+            "./sources/infra/gke/templates/deployment.yaml",
+            "./sources/infra/gke/templates/service.yaml",
+            "./sources/infra/gke/templates/hpa.yaml"
+          ]
         },
         {
           "id": "D2_ST2",
           "agent": "Gke",
           "desc": "Kiểm thử triển khai, xác nhận scaling, monitoring, logging, bảo mật",
-          "targeted_tags": ["[NFR-001]", "[NFR-002]", "[NFR-003]", "[NFR-004]", "[NFR-005]", "[NFR-006]", "[NFR-007]", "[NFR-008]", "[NFR-009]", "[ARC-010]"],
-          "components": ["./sources/infra/gke/Chart.yaml", "./sources/infra/gke/values.yaml"]
+          "targeted_tags": [
+            "[NFR-001]",
+            "[NFR-002]",
+            "[NFR-003]",
+            "[NFR-004]",
+            "[NFR-005]",
+            "[NFR-006]",
+            "[NFR-007]",
+            "[NFR-008]",
+            "[NFR-009]",
+            "[ARC-010]"
+          ],
+          "components": [
+            "./sources/infra/gke/Chart.yaml",
+            "./sources/infra/gke/values.yaml",
+            "./sources/infra/gke/templates/deployment.yaml",
+            "./sources/infra/gke/templates/service.yaml",
+            "./sources/infra/gke/templates/hpa.yaml"
+          ]
         }
       ]
     }

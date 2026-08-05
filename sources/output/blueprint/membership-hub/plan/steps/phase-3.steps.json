@@ -15,60 +15,83 @@
                     "id": "D1_ST1",
                     "agent": "Coder",
                     "desc": "Coder Agent: Xây dựng controller, service, repository, và tích hợp Firebase, Zalo, đồng thời áp dụng OWASP Top 10 bảo mật cho API và dữ liệu",
-                    "targeted_tags": [],
+                    "targeted_tags": [
+                        "[REQ-016]",
+                        "[REQ-017]",
+                        "[REQ-018]",
+                        "[REQ-019]",
+                        "[DAT-007]",
+                        "[DAT-008]"
+                    ],
                     "components": [
-                        "./sources/backend/notification-service/NotificationController.java",
-                        "./sources/backend/notification-service/NotificationService.java",
-                        "./sources/backend/notification-service/NotificationRepository.java",
-                        "./sources/backend/notification-service/FirebaseIntegration.java",
-                        "./sources/backend/notification-service/ZaloIntegration.java"
+                        "./sources/backend/notification-service/src/main/java/com/membershiphub/notification/NotificationController.java",
+                        "./sources/backend/notification-service/src/main/java/com/membershiphub/notification/NotificationService.java",
+                        "./sources/backend/notification-service/src/main/java/com/membershiphub/notification/NotificationRepository.java",
+                        "./sources/backend/notification-service/src/main/java/com/membershiphub/notification/FirebaseIntegration.java",
+                        "./sources/backend/notification-service/src/main/java/com/membershiphub/notification/ZaloIntegration.java"
                     ]
                 },
                 {
                     "id": "D1_ST2",
                     "agent": "Coder",
                     "desc": "Coder Agent: Xây dựng promotion-service với mã code duy nhất, kiểm tra trùng lặp, áp dụng OWASP",
-                    "targeted_tags": [],
+                    "targeted_tags": [
+                        "[REQ-017]",
+                        "[DAT-009]"
+                    ],
                     "components": [
-                        "./sources/backend/promotion-service/PromotionController.java",
-                        "./sources/backend/promotion-service/PromotionService.java",
-                        "./sources/backend/promotion-service/PromotionRepository.java"
+                        "./sources/backend/promotion-service/src/main/java/com/membershiphub/promotion/PromotionController.java",
+                        "./sources/backend/promotion-service/src/main/java/com/membershiphub/promotion/PromotionService.java",
+                        "./sources/backend/promotion-service/src/main/java/com/membershiphub/promotion/PromotionRepository.java"
                     ]
                 },
                 {
                     "id": "D1_ST3",
                     "agent": "Coder",
                     "desc": "Coder Agent: Xây dựng announcement-service, kiểm tra trùng lặp, bảo mật",
-                    "targeted_tags": [],
+                    "targeted_tags": [
+                        "[REQ-018]",
+                        "[DAT-010]"
+                    ],
                     "components": [
-                        "./sources/backend/announcement-service/AnnouncementController.java",
-                        "./sources/backend/announcement-service/AnnouncementService.java",
-                        "./sources/backend/announcement-service/AnnouncementRepository.java"
+                        "./sources/backend/announcement-service/src/main/java/com/membershiphub/announcement/AnnouncementController.java",
+                        "./sources/backend/announcement-service/src/main/java/com/membershiphub/announcement/AnnouncementService.java",
+                        "./sources/backend/announcement-service/src/main/java/com/membershiphub/announcement/AnnouncementRepository.java"
                     ]
                 },
                 {
                     "id": "D1_ST4",
                     "agent": "Coder",
                     "desc": "Coder Agent: Xây dựng chatbot-service, tích hợp AI, bảo mật",
-                    "targeted_tags": [],
+                    "targeted_tags": [
+                        "[REQ-019]"
+                    ],
                     "components": [
-                        "./sources/backend/chatbot-service/ChatbotController.java",
-                        "./sources/backend/chatbot-service/ChatbotService.java",
-                        "./sources/backend/chatbot-service/ChatbotRepository.java",
-                        "./sources/backend/chatbot-service/AIIntegration.java"
+                        "./sources/backend/chatbot-service/src/main/java/com/membershiphub/chatbot/ChatbotController.java",
+                        "./sources/backend/chatbot-service/src/main/java/com/membershiphub/chatbot/ChatbotService.java",
+                        "./sources/backend/chatbot-service/src/main/java/com/membershiphub/chatbot/ChatbotRepository.java",
+                        "./sources/backend/chatbot-service/src/main/java/com/membershiphub/chatbot/AIIntegration.java"
                     ]
                 },
                 {
                     "id": "D1_ST5",
                     "agent": "Coder",
                     "desc": "Coder Agent: Xây dựng mobile-service, API, i18n, SEO, bảo mật",
-                    "targeted_tags": [],
+                    "targeted_tags": [
+                        "[REQ-020]",
+                        "[REQ-021]",
+                        "[REQ-022]",
+                        "[REQ-023]",
+                        "[REQ-024]",
+                        "[REQ-025]",
+                        "[DAT-011]"
+                    ],
                     "components": [
-                        "./sources/backend/mobile-service/MobileController.java",
-                        "./sources/backend/mobile-service/MobileService.java",
-                        "./sources/backend/mobile-service/MobileRepository.java",
-                        "./sources/backend/mobile-service/I18nConfig.java",
-                        "./sources/backend/mobile-service/SEOConfig.java"
+                        "./sources/backend/mobile-service/src/main/java/com/membershiphub/mobile/MobileController.java",
+                        "./sources/backend/mobile-service/src/main/java/com/membershiphub/mobile/MobileService.java",
+                        "./sources/backend/mobile-service/src/main/java/com/membershiphub/mobile/MobileRepository.java",
+                        "./sources/backend/mobile-service/src/main/java/com/membershiphub/mobile/I18nConfig.java",
+                        "./sources/backend/mobile-service/src/main/java/com/membershiphub/mobile/SEOConfig.java"
                     ]
                 }
             ]
@@ -82,7 +105,15 @@
                     "id": "D2_ST1",
                     "agent": "Tester",
                     "desc": "Tester Agent: Viết test API, kiểm tra i18n, SEO meta tags, bảo mật",
-                    "targeted_tags": [],
+                    "targeted_tags": [
+                        "[REQ-020]",
+                        "[REQ-021]",
+                        "[REQ-022]",
+                        "[REQ-023]",
+                        "[REQ-024]",
+                        "[REQ-025]",
+                        "[DAT-011]"
+                    ],
                     "components": [
                         "./sources/backend/mobile-service/src/test/java/com/membershiphub/mobile/MobileServiceTest.java"
                     ]
@@ -98,13 +129,21 @@
                     "id": "D3_ST1",
                     "agent": "Reviewer",
                     "desc": "Reviewer Agent: Đánh giá code quality, kiểm tra exception handling, performance, bảo mật",
-                    "targeted_tags": [],
+                    "targeted_tags": [
+                        "[REQ-016]",
+                        "[REQ-017]",
+                        "[REQ-018]",
+                        "[REQ-019]",
+                        "[DAT-007]",
+                        "[DAT-008]",
+                        "[EXC-003]"
+                    ],
                     "components": [
-                        "./sources/backend/notification-service/NotificationController.java",
-                        "./sources/backend/notification-service/NotificationService.java",
-                        "./sources/backend/notification-service/NotificationRepository.java",
-                        "./sources/backend/notification-service/FirebaseIntegration.java",
-                        "./sources/backend/notification-service/ZaloIntegration.java"
+                        "./sources/backend/notification-service/src/main/java/com/membershiphub/notification/NotificationController.java",
+                        "./sources/backend/notification-service/src/main/java/com/membershiphub/notification/NotificationService.java",
+                        "./sources/backend/notification-service/src/main/java/com/membershiphub/notification/NotificationRepository.java",
+                        "./sources/backend/notification-service/src/main/java/com/membershiphub/notification/FirebaseIntegration.java",
+                        "./sources/backend/notification-service/src/main/java/com/membershiphub/notification/ZaloIntegration.java"
                     ]
                 }
             ]
