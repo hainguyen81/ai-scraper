@@ -110,6 +110,19 @@ You MUST include every single section below without exception to satisfy enterpr
 - **Backend Infrastructure Core Stack:** [Detail precise versions, runtime engines, dependency injection abstractions, ORMs, and messaging frameworks extracted from requirements]
 - **Frontend & Cross-Platform UI Mobile Stack:** [Detail strict web frameworks, dynamic localized routing, responsive layouts, and native mobile runtime wrappers if present]
 
+<!-- START_TECHNICAL_MATRIX_DO_NOT_TRANSLATE -->
+### ARCHITECTURAL STACK MATRIX
+[CRITICAL WARNING: You MUST keep this entire block 100% in raw Technical English. You are STRICTLY FORBIDDEN from translating any keys, values, or tokens inside this section into {% if language and language.strip() != "" %}{{ language }}{% else %}English{% endif %}, as it serves as a strict backend machine-gating matrix. Keep literal `true` or `false` tokens in pure lower-case].
+
+```properties
+PERSISTENCE_LAYER_REQUIRED=true
+BACKEND_LAYER_REQUIRED=true
+FRONTEND_LAYER_REQUIRED=true
+MOBILE_LAYER_REQUIRED=true
+DEVOPS_LAYER_REQUIRED=true
+```
+<!-- END_TECHNICAL_MATRIX_DO_NOT_TRANSLATE -->
+
 ## 📁 3. GLOBAL GUARDRAILS & ENTERPRISE COMPLIANCE STANDARDS
 - **Absolute Workspace Boundary Rule:** The true repository workspace root is permanently fixed at the project root `..`. All paths generated MUST begin with `./sources/`.
 - **Dynamic Directory Prefixing Compliance:** Enforce the dynamic path mapping rules defined in Protocol 1 strictly matching the detected project structure.
