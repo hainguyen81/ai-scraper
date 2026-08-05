@@ -17,11 +17,11 @@
                     "desc": "Coder Agent: Xây dựng controller, service, repository, và tích hợp Firebase, Zalo, đồng thời áp dụng OWASP Top 10 bảo mật cho API và dữ liệu",
                     "targeted_tags": [],
                     "components": [
-                        "./sources/backend/notification-service/src/main/java/com/membershiphub/notification/NotificationController.java",
-                        "./sources/backend/notification-service/src/main/java/com/membershiphub/notification/NotificationService.java",
-                        "./sources/backend/notification-service/src/main/java/com/membershiphub/notification/NotificationRepository.java",
-                        "./sources/backend/notification-service/src/main/java/com/membershiphub/notification/FirebaseIntegration.java",
-                        "./sources/backend/notification-service/src/main/java/com/membershiphub/notification/ZaloIntegration.java"
+                        "./sources/backend/notification-service/NotificationController.java",
+                        "./sources/backend/notification-service/NotificationService.java",
+                        "./sources/backend/notification-service/NotificationRepository.java",
+                        "./sources/backend/notification-service/FirebaseIntegration.java",
+                        "./sources/backend/notification-service/ZaloIntegration.java"
                     ]
                 },
                 {
@@ -30,9 +30,9 @@
                     "desc": "Coder Agent: Xây dựng promotion-service với mã code duy nhất, kiểm tra trùng lặp, áp dụng OWASP",
                     "targeted_tags": [],
                     "components": [
-                        "./sources/backend/promotion-service/src/main/java/com/membershiphub/promotion/PromotionController.java",
-                        "./sources/backend/promotion-service/src/main/java/com/membershiphub/promotion/PromotionService.java",
-                        "./sources/backend/promotion-service/src/main/java/com/membershiphub/promotion/PromotionRepository.java"
+                        "./sources/backend/promotion-service/PromotionController.java",
+                        "./sources/backend/promotion-service/PromotionService.java",
+                        "./sources/backend/promotion-service/PromotionRepository.java"
                     ]
                 },
                 {
@@ -41,9 +41,9 @@
                     "desc": "Coder Agent: Xây dựng announcement-service, kiểm tra trùng lặp, bảo mật",
                     "targeted_tags": [],
                     "components": [
-                        "./sources/backend/announcement-service/src/main/java/com/membershiphub/announcement/AnnouncementController.java",
-                        "./sources/backend/announcement-service/src/main/java/com/membershiphub/announcement/AnnouncementService.java",
-                        "./sources/backend/announcement-service/src/main/java/com/membershiphub/announcement/AnnouncementRepository.java"
+                        "./sources/backend/announcement-service/AnnouncementController.java",
+                        "./sources/backend/announcement-service/AnnouncementService.java",
+                        "./sources/backend/announcement-service/AnnouncementRepository.java"
                     ]
                 },
                 {
@@ -52,10 +52,10 @@
                     "desc": "Coder Agent: Xây dựng chatbot-service, tích hợp AI, bảo mật",
                     "targeted_tags": [],
                     "components": [
-                        "./sources/backend/chatbot-service/src/main/java/com/membershiphub/chatbot/ChatbotController.java",
-                        "./sources/backend/chatbot-service/src/main/java/com/membershiphub/chatbot/ChatbotService.java",
-                        "./sources/backend/chatbot-service/src/main/java/com/membershiphub/chatbot/ChatbotRepository.java",
-                        "./sources/backend/chatbot-service/src/main/java/com/membershiphub/chatbot/AIIntegration.java"
+                        "./sources/backend/chatbot-service/ChatbotController.java",
+                        "./sources/backend/chatbot-service/ChatbotService.java",
+                        "./sources/backend/chatbot-service/ChatbotRepository.java",
+                        "./sources/backend/chatbot-service/AIIntegration.java"
                     ]
                 },
                 {
@@ -64,11 +64,11 @@
                     "desc": "Coder Agent: Xây dựng mobile-service, API, i18n, SEO, bảo mật",
                     "targeted_tags": [],
                     "components": [
-                        "./sources/backend/mobile-service/src/main/java/com/membershiphub/mobile/MobileController.java",
-                        "./sources/backend/mobile-service/src/main/java/com/membershiphub/mobile/MobileService.java",
-                        "./sources/backend/mobile-service/src/main/java/com/membershiphub/mobile/MobileRepository.java",
-                        "./sources/backend/mobile-service/src/main/java/com/membershiphub/mobile/I18nConfig.java",
-                        "./sources/backend/mobile-service/src/main/java/com/membershiphub/mobile/SEOConfig.java"
+                        "./sources/backend/mobile-service/MobileController.java",
+                        "./sources/backend/mobile-service/MobileService.java",
+                        "./sources/backend/mobile-service/MobileRepository.java",
+                        "./sources/backend/mobile-service/I18nConfig.java",
+                        "./sources/backend/mobile-service/SEOConfig.java"
                     ]
                 }
             ]
@@ -100,11 +100,11 @@
                     "desc": "Reviewer Agent: Đánh giá code quality, kiểm tra exception handling, performance, bảo mật",
                     "targeted_tags": [],
                     "components": [
-                        "./sources/backend/notification-service/src/main/java/com/membershiphub/notification/NotificationController.java",
-                        "./sources/backend/notification-service/src/main/java/com/membershiphub/notification/NotificationService.java",
-                        "./sources/backend/notification-service/src/main/java/com/membershiphub/notification/NotificationRepository.java",
-                        "./sources/backend/notification-service/src/main/java/com/membershiphub/notification/FirebaseIntegration.java",
-                        "./sources/backend/notification-service/src/main/java/com/membershiphub/notification/ZaloIntegration.java"
+                        "./sources/backend/notification-service/NotificationController.java",
+                        "./sources/backend/notification-service/NotificationService.java",
+                        "./sources/backend/notification-service/NotificationRepository.java",
+                        "./sources/backend/notification-service/FirebaseIntegration.java",
+                        "./sources/backend/notification-service/ZaloIntegration.java"
                     ]
                 }
             ]

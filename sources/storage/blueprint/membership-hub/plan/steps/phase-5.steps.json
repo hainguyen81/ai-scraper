@@ -43,13 +43,7 @@
                     "targeted_tags": [],
                     "components": [
                         "./sources/infra/gke/Chart.yaml",
-                        "./sources/infra/gke/values.yaml",
-                        "./sources/infra/gke/templates/deployment.yaml",
-                        "./sources/infra/gke/templates/service.yaml",
-                        "./sources/infra/gke/templates/hpa.yaml",
-                        "./sources/infra/gke/templates/monitoring.yaml",
-                        "./sources/infra/gke/templates/logging.yaml",
-                        "./sources/infra/gke/templates/ci-cd.yaml"
+                        "./sources/infra/gke/values.yaml"
                     ]
                 },
                 {
@@ -59,13 +53,7 @@
                     "targeted_tags": [],
                     "components": [
                         "./sources/infra/gke/Chart.yaml",
-                        "./sources/infra/gke/values.yaml",
-                        "./sources/infra/gke/templates/deployment.yaml",
-                        "./sources/infra/gke/templates/service.yaml",
-                        "./sources/infra/gke/templates/hpa.yaml",
-                        "./sources/infra/gke/templates/monitoring.yaml",
-                        "./sources/infra/gke/templates/logging.yaml",
-                        "./sources/infra/gke/templates/ci-cd.yaml"
+                        "./sources/infra/gke/values.yaml"
                     ]
                 }
             ]

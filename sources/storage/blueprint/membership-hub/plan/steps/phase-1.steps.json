@@ -17,12 +17,13 @@
                     "desc": "Coder Agent: Xây dựng API đăng ký, đăng nhập và schema Users & Roles",
                     "targeted_tags": [],
                     "components": [
-                        "./sources/backend/auth-service/AuthController.java",
-                        "./sources/backend/auth-service/AuthService.java",
-                        "./sources/backend/auth-service/AuthRepository.java",
-                        "./sources/backend/auth-service/JwtProvider.java",
-                        "./sources/backend/auth-service/UserSchema.java",
-                        "./sources/backend/auth-service/RoleSchema.java"
+                        "./sources/backend/auth-service/src/main/java/com/membershiphub/auth/AuthController.java",
+                        "./sources/backend/auth-service/src/main/java/com/membershiphub/auth/AuthService.java",
+                        "./sources/backend/auth-service/src/main/java/com/membershiphub/auth/AuthRepository.java",
+                        "./sources/backend/auth-service/src/main/java/com/membershiphub/auth/JwtProvider.java",
+                        "./sources/backend/auth-service/src/main/java/com/membershiphub/auth/Validation.java",
+                        "./sources/backend/auth-service/src/main/java/com/membershiphub/auth/ExceptionHandler.java",
+                        "./sources/backend/auth-service/src/test/java/com/membershiphub/auth/AuthServiceTest.java"
                     ]
                 }
             ]
@@ -38,7 +39,7 @@
                     "desc": "Tester Agent: Viết test integration, kiểm tra token expiration và idempotent",
                     "targeted_tags": [],
                     "components": [
-                        "./sources/backend/auth-service/src/test/java/com/membershiphub/auth/AuthServiceTest.java"
+                        "INTEGRATION_SCOPE;./sources/backend/auth-service/src/test/java/com/membershiphub/auth/AuthServiceTest.java"
                     ]
                 }
             ]
@@ -54,9 +55,13 @@
                     "desc": "Reviewer Agent: Đánh giá bảo mật, chuẩn hoá API và kiểm tra hiệu năng",
                     "targeted_tags": [],
                     "components": [
-                        "./sources/backend/auth-service/AuthSecurityReview.java",
-                        "./sources/backend/auth-service/ApiStandardization.java",
-                        "./sources/backend/auth-service/PerformanceTest.java"
+                        "./sources/backend/auth-service/src/main/java/com/membershiphub/auth/AuthController.java",
+                        "./sources/backend/auth-service/src/main/java/com/membershiphub/auth/AuthService.java",
+                        "./sources/backend/auth-service/src/main/java/com/membershiphub/auth/AuthRepository.java",
+                        "./sources/backend/auth-service/src/main/java/com/membershiphub/auth/JwtProvider.java",
+                        "./sources/backend/auth-service/src/main/java/com/membershiphub/auth/Validation.java",
+                        "./sources/backend/auth-service/src/main/java/com/membershiphub/auth/ExceptionHandler.java",
+                        "./sources/backend/auth-service/src/test/java/com/membershiphub/auth/AuthServiceTest.java"
                     ]
                 }
             ]

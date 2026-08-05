@@ -17,8 +17,8 @@
                     "desc": "Doc Agent: Tạo tài liệu chi tiết UI, API, i18n, SEO",
                     "targeted_tags": [],
                     "components": [
-                        "./sources/frontend/mobile-app",
-                        "./sources/frontend/web-app"
+                        "./sources/frontend/mobile-app/README.md",
+                        "./sources/frontend/web-app/README.md"
                     ]
                 }
             ]
@@ -34,8 +34,8 @@
                     "desc": "Gcp Agent: Cấu hình và triển khai dịch vụ trên GCP",
                     "targeted_tags": [],
                     "components": [
-                        "./sources/frontend/mobile-app",
-                        "./sources/frontend/web-app"
+                        "./sources/frontend/mobile-app/Dockerfile",
+                        "./sources/frontend/web-app/Dockerfile"
                     ]
                 }
             ]

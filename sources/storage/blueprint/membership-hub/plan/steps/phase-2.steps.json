@@ -77,7 +77,8 @@
                     "targeted_tags": [],
                     "components": [
                         "./sources/backend/enrollment-service/src/main/java/com/membershiphub/enrollment/EnrollmentController.java",
-                        "./sources/backend/enrollment-service/src/main/java/com/membershiphub/enrollment/EnrollmentService.java"
+                        "./sources/backend/enrollment-service/src/main/java/com/membershiphub/enrollment/EnrollmentService.java",
+                        "./sources/backend/enrollment-service/src/main/java/com/membershiphub/enrollment/EnrollmentRepository.java"
                     ]
                 }
             ]
