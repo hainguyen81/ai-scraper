@@ -36,14 +36,15 @@
                         "[NFR-009]"
                     ],
                     "components": [
-                        "./sources/backend/auth-service/src/main/java/com/membershiphub/auth/AuthController.java",
-                        "./sources/backend/auth-service/src/main/java/com/membershiphub/auth/AuthService.java",
-                        "./sources/backend/auth-service/src/main/java/com/membershiphub/auth/AuthRepository.java",
-                        "./sources/backend/auth-service/src/main/java/com/membershiphub/auth/JwtProvider.java",
-                        "./sources/backend/auth-service/src/main/java/com/membershiphub/auth/Validation.java",
-                        "./sources/backend/auth-service/src/main/java/com/membershiphub/auth/ExceptionHandler.java",
-                        "./sources/backend/auth-service/src/main/resources/schema/users.sql",
-                        "./sources/backend/auth-service/src/main/resources/schema/roles.sql"
+                        "./sources/backend/auth-service/src/main/java/org/nlh4j/membershiphub/controller/AuthController.java",
+                        "./sources/backend/auth-service/src/main/java/org/nlh4j/membershiphub/service/AuthService.java",
+                        "./sources/backend/auth-service/src/main/java/org/nlh4j/membershiphub/repository/UserRepository.java",
+                        "./sources/backend/auth-service/src/main/java/org/nlh4j/membershiphub/repository/RoleRepository.java",
+                        "./sources/backend/auth-service/src/main/java/org/nlh4j/membershiphub/security/JwtProvider.java",
+                        "./sources/backend/auth-service/src/main/java/org/nlh4j/membershiphub/validation/AuthValidator.java",
+                        "./sources/backend/auth-service/src/main/java/org/nlh4j/membershiphub/exception/AuthExceptionHandler.java",
+                        "./sources/backend/auth-service/src/test/java/org/nlh4j/membershiphub/controller/AuthControllerTest.java",
+                        "./sources/backend/auth-service/src/test/java/org/nlh4j/membershiphub/service/AuthServiceTest.java"
                     ]
                 }
             ]
@@ -77,9 +78,7 @@
                         "[NFR-009]"
                     ],
                     "components": [
-                        "./sources/backend/auth-service/src/test/java/com/membershiphub/auth/AuthServiceTest.java",
-                        "./sources/backend/auth-service/src/test/java/com/membershiphub/auth/AuthIntegrationTest.java",
-                        "./sources/backend/auth-service/src/test/java/com/membershiphub/auth/MockFirebase.java"
+                        "INTEGRATION_SCOPE;./sources/backend/auth-service/src/test/java/org/nlh4j/membershiphub/AuthIntegrationTest.java"
                     ]
                 }
             ]
@@ -112,13 +111,13 @@
                         "[NFR-009]"
                     ],
                     "components": [
-                        "./sources/backend/auth-service/src/main/java/com/membershiphub/auth/AuthController.java",
-                        "./sources/backend/auth-service/src/main/java/com/membershiphub/auth/AuthService.java",
-                        "./sources/backend/auth-service/src/main/java/com/membershiphub/auth/AuthRepository.java",
-                        "./sources/backend/auth-service/src/main/java/com/membershiphub/auth/JwtProvider.java",
-                        "./sources/backend/auth-service/src/main/java/com/membershiphub/auth/Validation.java",
-                        "./sources/backend/auth-service/src/main/java/com/membershiphub/auth/ExceptionHandler.java",
-                        "./sources/backend/auth-service/src/main/resources/performance/benchmark.sh"
+                        "./sources/backend/auth-service/src/main/java/org/nlh4j/membershiphub/controller/AuthController.java",
+                        "./sources/backend/auth-service/src/main/java/org/nlh4j/membershiphub/service/AuthService.java",
+                        "./sources/backend/auth-service/src/main/java/org/nlh4j/membershiphub/repository/UserRepository.java",
+                        "./sources/backend/auth-service/src/main/java/org/nlh4j/membershiphub/repository/RoleRepository.java",
+                        "./sources/backend/auth-service/src/main/java/org/nlh4j/membershiphub/security/JwtProvider.java",
+                        "./sources/backend/auth-service/src/main/java/org/nlh4j/membershiphub/validation/AuthValidator.java",
+                        "./sources/backend/auth-service/src/main/java/org/nlh4j/membershiphub/exception/AuthExceptionHandler.java"
                     ]
                 }
             ]

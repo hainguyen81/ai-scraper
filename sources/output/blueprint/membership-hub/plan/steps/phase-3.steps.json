@@ -9,7 +9,7 @@
         {
             "day": 1,
             "context_file": "No Specific Project Phase BluePrint Context File",
-            "context_section": "DAY 1: XÂY ĐẾN DỊCH VỤ THÔNG BÁO VÀ MOBILE API",
+            "context_section": "XÂY ĐẾN DỊCH VỤ THÔNG BÁO VÀ MOBILE API",
             "sub_tasks": [
                 {
                     "id": "D1_ST1",
@@ -24,10 +24,9 @@
                         "[DAT-008]"
                     ],
                     "components": [
-                        "./sources/backend/notification-service/src/main/java/com/membershiphub/notification/NotificationController.java",
-                        "./sources/backend/notification-service/src/main/java/com/membershiphub/notification/NotificationService.java",
-                        "./sources/backend/notification-service/src/main/java/com/membershiphub/notification/NotificationRepository.java",
-                        "./sources/backend/notification-service/src/main/java/com/membershiphub/notification/FirebaseConfig.java"
+                        "./sources/backend/notification-service/src/main/java/org/nlh4j/membershiphub/controller/NotificationController.java",
+                        "./sources/backend/notification-service/src/main/java/org/nlh4j/membershiphub/service/NotificationService.java",
+                        "./sources/backend/notification-service/src/main/java/org/nlh4j/membershiphub/repository/NotificationRepository.java"
                     ]
                 },
                 {
@@ -39,9 +38,9 @@
                         "[DAT-009]"
                     ],
                     "components": [
-                        "./sources/backend/promotion-service/src/main/java/com/membershiphub/promotion/PromotionController.java",
-                        "./sources/backend/promotion-service/src/main/java/com/membershiphub/promotion/PromotionService.java",
-                        "./sources/backend/promotion-service/src/main/java/com/membershiphub/promotion/PromotionRepository.java"
+                        "./sources/backend/promotion-service/src/main/java/org/nlh4j/membershiphub/controller/PromotionController.java",
+                        "./sources/backend/promotion-service/src/main/java/org/nlh4j/membershiphub/service/PromotionService.java",
+                        "./sources/backend/promotion-service/src/main/java/org/nlh4j/membershiphub/repository/PromotionRepository.java"
                     ]
                 },
                 {
@@ -53,9 +52,9 @@
                         "[DAT-010]"
                     ],
                     "components": [
-                        "./sources/backend/announcement-service/src/main/java/com/membershiphub/announcement/AnnouncementController.java",
-                        "./sources/backend/announcement-service/src/main/java/com/membershiphub/announcement/AnnouncementService.java",
-                        "./sources/backend/announcement-service/src/main/java/com/membershiphub/announcement/AnnouncementRepository.java"
+                        "./sources/backend/announcement-service/src/main/java/org/nlh4j/membershiphub/controller/AnnouncementController.java",
+                        "./sources/backend/announcement-service/src/main/java/org/nlh4j/membershiphub/service/AnnouncementService.java",
+                        "./sources/backend/announcement-service/src/main/java/org/nlh4j/membershiphub/repository/AnnouncementRepository.java"
                     ]
                 },
                 {
@@ -66,9 +65,9 @@
                         "[REQ-019]"
                     ],
                     "components": [
-                        "./sources/backend/chatbot-service/src/main/java/com/membershiphub/chatbot/ChatbotController.java",
-                        "./sources/backend/chatbot-service/src/main/java/com/membershiphub/chatbot/ChatbotService.java",
-                        "./sources/backend/chatbot-service/src/main/java/com/membershiphub/chatbot/ChatbotRepository.java"
+                        "./sources/backend/chatbot-service/src/main/java/org/nlh4j/membershiphub/controller/ChatbotController.java",
+                        "./sources/backend/chatbot-service/src/main/java/org/nlh4j/membershiphub/service/ChatbotService.java",
+                        "./sources/backend/chatbot-service/src/main/java/org/nlh4j/membershiphub/repository/ChatbotRepository.java"
                     ]
                 },
                 {
@@ -85,9 +84,9 @@
                         "[DAT-011]"
                     ],
                     "components": [
-                        "./sources/backend/mobile-service/src/main/java/com/membershiphub/mobile/MobileController.java",
-                        "./sources/backend/mobile-service/src/main/java/com/membershiphub/mobile/MobileService.java",
-                        "./sources/backend/mobile-service/src/main/java/com/membershiphub/mobile/MobileRepository.java"
+                        "./sources/backend/mobile-service/src/main/java/org/nlh4j/membershiphub/controller/MobileController.java",
+                        "./sources/backend/mobile-service/src/main/java/org/nlh4j/membershiphub/service/MobileService.java",
+                        "./sources/backend/mobile-service/src/main/java/org/nlh4j/membershiphub/repository/MobileRepository.java"
                     ]
                 }
             ]
@@ -95,7 +94,7 @@
         {
             "day": 2,
             "context_file": "No Specific Project Phase BluePrint Context File",
-            "context_section": "DAY 2: KIỂM THỬ MOBILE API",
+            "context_section": "KIỂM THỬ MOBILE API",
             "sub_tasks": [
                 {
                     "id": "D2_ST1",
@@ -111,10 +110,7 @@
                         "[DAT-011]"
                     ],
                     "components": [
-                        "./sources/backend/mobile-service/src/main/java/com/membershiphub/mobile/MobileController.java",
-                        "./sources/backend/mobile-service/src/main/java/com/membershiphub/mobile/MobileService.java",
-                        "./sources/backend/mobile-service/src/main/java/com/membershiphub/mobile/MobileRepository.java",
-                        "./sources/backend/mobile-service/src/test/java/com/membershiphub/mobile/MobileServiceTest.java"
+                        "./sources/backend/mobile-service/src/test/java/org/nlh4j/membershiphub/MobileServiceTest.java"
                     ]
                 }
             ]
@@ -122,7 +118,7 @@
         {
             "day": 3,
             "context_file": "No Specific Project Phase BluePrint Context File",
-            "context_section": "DAY 3: ĐÁNH GIÁ BẢO MẬT VÀ XỬ LÝ NGOẠI LỆ",
+            "context_section": "ĐÁNH GIÁ BẢO MẬT VÀ XỬ LÝ NGOẠI LỆ",
             "sub_tasks": [
                 {
                     "id": "D3_ST1",
@@ -138,9 +134,9 @@
                         "[EXC-003]"
                     ],
                     "components": [
-                        "./sources/backend/notification-service/src/main/java/com/membershiphub/notification/NotificationController.java",
-                        "./sources/backend/notification-service/src/main/java/com/membershiphub/notification/NotificationService.java",
-                        "./sources/backend/notification-service/src/main/java/com/membershiphub/notification/NotificationRepository.java"
+                        "./sources/backend/notification-service/src/main/java/org/nlh4j/membershiphub/controller/NotificationController.java",
+                        "./sources/backend/notification-service/src/main/java/org/nlh4j/membershiphub/service/NotificationService.java",
+                        "./sources/backend/notification-service/src/main/java/org/nlh4j/membershiphub/repository/NotificationRepository.java"
                     ]
                 }
             ]

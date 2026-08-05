@@ -9,7 +9,7 @@
         {
             "day": 1,
             "context_file": "No Specific Project Phase BluePrint Context File",
-            "context_section": "NGÀY 1: Viết tài liệu chi tiết UI, API, i18n, SEO",
+            "context_section": "DAY 1: Viết tài liệu chi tiết UI, API, i18n, SEO",
             "sub_tasks": [
                 {
                     "id": "D1_ST1",
@@ -25,7 +25,14 @@
                         "[DAT-011]"
                     ],
                     "components": [
-                        "./sources/docs/business-flows/PROCESS_FLOWS.md"
+                        "./sources/frontend/mobile-app/docs/UI_SPECIFICATIONS.md",
+                        "./sources/frontend/mobile-app/docs/API_CONTRACTS.md",
+                        "./sources/frontend/mobile-app/docs/LOCALIZATION.md",
+                        "./sources/frontend/mobile-app/docs/SEO_OPTIMIZATION.md",
+                        "./sources/frontend/web-app/docs/UI_SPECIFICATIONS.md",
+                        "./sources/frontend/web-app/docs/API_CONTRACTS.md",
+                        "./sources/frontend/web-app/docs/LOCALIZATION.md",
+                        "./sources/frontend/web-app/docs/SEO_OPTIMIZATION.md"
                     ]
                 }
             ]
@@ -33,7 +40,7 @@
         {
             "day": 2,
             "context_file": "No Specific Project Phase BluePrint Context File",
-            "context_section": "NGÀY 2: Cấu hình GCP Cloud Build, Cloud Run, Firebase Hosting",
+            "context_section": "DAY 2: Cấu hình GCP Cloud Build, Cloud Run, Firebase Hosting",
             "sub_tasks": [
                 {
                     "id": "D2_ST1",
@@ -49,9 +56,12 @@
                         "[DAT-011]"
                     ],
                     "components": [
-                        "./sources/infra/gcp/cloudbuild.yaml",
-                        "./sources/infra/gcp/firebase.json",
-                        "./sources/infra/gcp/main.tf"
+                        "./sources/frontend/mobile-app/cloudbuild.yaml",
+                        "./sources/frontend/mobile-app/cloudrun.yaml",
+                        "./sources/frontend/mobile-app/firebase.json",
+                        "./sources/frontend/web-app/cloudbuild.yaml",
+                        "./sources/frontend/web-app/cloudrun.yaml",
+                        "./sources/frontend/web-app/firebase.json"
                     ]
                 }
             ]
