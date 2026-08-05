@@ -111,7 +111,7 @@ You MUST include every single section below without exception to satisfy enterpr
 - **[Translate "Frontend & Cross-Platform UI Mobile Stack"]:** [Detail strict web frameworks, dynamic localized routing, responsive layouts, and native mobile runtime wrappers if present]
 
 <!--START_TECHNICAL_MATRIX_DO_NOT_TRANSLATE
-[CRITICAL_TECHNICAL_MATRIX_RAIL: DO NOT TRANSLATE THIS DIRECTIVE]
+[CRITICAL_TECHNICAL_MATRIX_RAIL: DO NOT TRANSLATE THIS DIRECTIVE FROM `START_TECHNICAL_MATRIX_DO_NOT_TRANSLATE` TO `END_TECHNICAL_MATRIX_DO_NOT_TRANSLATE`]
 {% raw %}
 ### ARCHITECTURAL STACK MATRIX
 [CRITICAL WARNING: You MUST keep this entire block 100% in raw Technical English. You are STRICTLY FORBIDDEN from translating any keys, values, or tokens inside this section into {% if language and language.strip() != "" %}{{ language }}{% else %}English{% endif %}, as it serves as a strict backend machine-gating matrix. Keep literal `true` or `false` tokens in pure lower-case].
