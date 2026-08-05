@@ -75,8 +75,8 @@
                         "[ARC-010]"
                     ],
                     "components": [
-                        "./sources/infra/gke/charts/Chart.yaml",
-                        "./sources/infra/gke/charts/values.yaml"
+                        "./sources/infra/gke/Chart.yaml",
+                        "./sources/infra/gke/values.yaml"
                     ]
                 },
                 {
@@ -96,8 +96,8 @@
                         "[ARC-010]"
                     ],
                     "components": [
-                        "./sources/infra/gke/manifests/hpa.yaml",
-                        "./sources/infra/gke/manifests/ingress.yaml"
+                        "./sources/infra/gke/Chart.yaml",
+                        "./sources/infra/gke/values.yaml"
                     ]
                 }
             ]
