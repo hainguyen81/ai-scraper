@@ -42,7 +42,7 @@
                         "./sources/backend/auth-service/src/main/java/org/nlh4j/membershiphub/repository/RoleRepository.java",
                         "./sources/backend/auth-service/src/main/java/org/nlh4j/membershiphub/security/JwtProvider.java",
                         "./sources/backend/auth-service/src/main/java/org/nlh4j/membershiphub/validation/AuthValidator.java",
-                        "./sources/backend/auth-service/src/main/java/org/nlh4j/membershiphub/exception/AuthExceptionHandler.java",
+                        "./sources/backend/auth-service/src/main/java/org/nlh4j/membershiphub/exception/AuthException.java",
                         "./sources/backend/auth-service/src/test/java/org/nlh4j/membershiphub/controller/AuthControllerTest.java",
                         "./sources/backend/auth-service/src/test/java/org/nlh4j/membershiphub/service/AuthServiceTest.java"
                     ]
@@ -78,7 +78,7 @@
                         "[NFR-009]"
                     ],
                     "components": [
-                        "INTEGRATION_SCOPE;./sources/backend/auth-service/src/test/java/org/nlh4j/membershiphub/AuthIntegrationTest.java"
+                        "./sources/backend/auth-service/src/test/java/org/nlh4j/membershiphub/AuthServiceIntegrationTest.java"
                     ]
                 }
             ]
@@ -117,7 +117,7 @@
                         "./sources/backend/auth-service/src/main/java/org/nlh4j/membershiphub/repository/RoleRepository.java",
                         "./sources/backend/auth-service/src/main/java/org/nlh4j/membershiphub/security/JwtProvider.java",
                         "./sources/backend/auth-service/src/main/java/org/nlh4j/membershiphub/validation/AuthValidator.java",
-                        "./sources/backend/auth-service/src/main/java/org/nlh4j/membershiphub/exception/AuthExceptionHandler.java"
+                        "./sources/backend/auth-service/src/main/java/org/nlh4j/membershiphub/exception/AuthException.java"
                     ]
                 }
             ]

@@ -110,7 +110,8 @@
                         "[DAT-011]"
                     ],
                     "components": [
-                        "./sources/backend/mobile-service/src/test/java/org/nlh4j/membershiphub/MobileServiceTest.java"
+                        "./sources/backend/mobile-service/src/main/java/org/nlh4j/membershiphub/controller/MobileController.java",
+                        "./sources/backend/mobile-service/src/test/java/org/nlh4j/membershiphub/controller/MobileControllerTest.java"
                     ]
                 }
             ]

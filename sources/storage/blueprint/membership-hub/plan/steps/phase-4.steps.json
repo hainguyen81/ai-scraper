@@ -25,14 +25,14 @@
                         "[DAT-011]"
                     ],
                     "components": [
-                        "./sources/frontend/mobile-app/docs/UI_SPECIFICATIONS.md",
+                        "./sources/frontend/mobile-app/docs/ARCHITECTURE.md",
                         "./sources/frontend/mobile-app/docs/API_CONTRACTS.md",
-                        "./sources/frontend/mobile-app/docs/LOCALIZATION.md",
-                        "./sources/frontend/mobile-app/docs/SEO_OPTIMIZATION.md",
-                        "./sources/frontend/web-app/docs/UI_SPECIFICATIONS.md",
+                        "./sources/frontend/mobile-app/docs/I18N_CONFIG.md",
+                        "./sources/frontend/mobile-app/docs/SEO_CONFIG.md",
+                        "./sources/frontend/web-app/docs/ARCHITECTURE.md",
                         "./sources/frontend/web-app/docs/API_CONTRACTS.md",
-                        "./sources/frontend/web-app/docs/LOCALIZATION.md",
-                        "./sources/frontend/web-app/docs/SEO_OPTIMIZATION.md"
+                        "./sources/frontend/web-app/docs/I18N_CONFIG.md",
+                        "./sources/frontend/web-app/docs/SEO_CONFIG.md"
                     ]
                 }
             ]
