@@ -8,8 +8,8 @@
     "days": [
         {
             "day": 1,
-            "context_file": ".ai/.plan/.context/phase-5.context.blueprint.md",
-            "context_section": "DAY 1",
+            "context_file": "No Specific Project Phase BluePrint Context File",
+            "context_section": "Ngày 1: XÂY DỰNG Dockerfile Đa Giai Đoạn VÀ TỐI ƯU KÍCH THƯỚC",
             "sub_tasks": [
                 {
                     "id": "D1_ST1",
@@ -55,8 +55,8 @@
         },
         {
             "day": 2,
-            "context_file": ".ai/.plan/.context/phase-5.context.blueprint.md",
-            "context_section": "DAY 2",
+            "context_file": "No Specific Project Phase BluePrint Context File",
+            "context_section": "Ngày 2: XÂY DỰNG Helm chart, HPA, autoscaling, monitoring, logging, CI/CD",
             "sub_tasks": [
                 {
                     "id": "D2_ST1",
@@ -76,10 +76,7 @@
                     ],
                     "components": [
                         "./sources/infra/gke/Chart.yaml",
-                        "./sources/infra/gke/values.yaml",
-                        "./sources/infra/gke/templates/deployment.yaml",
-                        "./sources/infra/gke/templates/service.yaml",
-                        "./sources/infra/gke/templates/hpa.yaml"
+                        "./sources/infra/gke/values.yaml"
                     ]
                 },
                 {
@@ -100,10 +97,7 @@
                     ],
                     "components": [
                         "./sources/infra/gke/Chart.yaml",
-                        "./sources/infra/gke/values.yaml",
-                        "./sources/infra/gke/templates/deployment.yaml",
-                        "./sources/infra/gke/templates/service.yaml",
-                        "./sources/infra/gke/templates/hpa.yaml"
+                        "./sources/infra/gke/values.yaml"
                     ]
                 }
             ]

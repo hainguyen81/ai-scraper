@@ -8,8 +8,8 @@
     "days": [
         {
             "day": 1,
-            "context_file": ".ai/.plan/.context/phase-1.context.blueprint.md",
-            "context_section": "DAY 1",
+            "context_file": "No Specific Project Phase BluePrint Context File",
+            "context_section": "DAY 1: XÂY ĐẾN API ĐĂNG KÝ VÀ XÁC THỰC",
             "sub_tasks": [
                 {
                     "id": "D1_ST1",
@@ -40,19 +40,18 @@
                         "./sources/backend/auth-service/src/main/java/org/nlh4j/membershiphub/service/AuthService.java",
                         "./sources/backend/auth-service/src/main/java/org/nlh4j/membershiphub/repository/UserRepository.java",
                         "./sources/backend/auth-service/src/main/java/org/nlh4j/membershiphub/repository/RoleRepository.java",
-                        "./sources/backend/auth-service/src/main/java/org/nlh4j/membershiphub/security/JwtProvider.java",
+                        "./sources/backend/auth-service/src/main/java/org/nlh4j/membershiphub/security/JwtTokenProvider.java",
                         "./sources/backend/auth-service/src/main/java/org/nlh4j/membershiphub/validation/AuthValidator.java",
-                        "./sources/backend/auth-service/src/main/java/org/nlh4j/membershiphub/exception/AuthException.java",
-                        "./sources/backend/auth-service/src/test/java/org/nlh4j/membershiphub/controller/AuthControllerTest.java",
-                        "./sources/backend/auth-service/src/test/java/org/nlh4j/membershiphub/service/AuthServiceTest.java"
+                        "./sources/backend/auth-service/src/main/java/org/nlh4j/membershiphub/exception/AuthExceptionHandler.java",
+                        "./sources/backend/auth-service/src/test/java/org/nlh4j/membershiphub/controller/AuthControllerTest.java"
                     ]
                 }
             ]
         },
         {
             "day": 2,
-            "context_file": ".ai/.plan/.context/phase-1.context.blueprint.md",
-            "context_section": "DAY 2",
+            "context_file": "No Specific Project Phase BluePrint Context File",
+            "context_section": "DAY 2: THỰC HIỆN KIỂM THỬ TÍNH NĂNG XÁC THỰC",
             "sub_tasks": [
                 {
                     "id": "D2_ST1",
@@ -78,7 +77,6 @@
                         "[NFR-009]"
                     ],
                     "components": [
-                        "./sources/backend/auth-service/src/test/java/org/nlh4j/membershiphub/controller/AuthControllerTest.java",
                         "./sources/backend/auth-service/src/test/java/org/nlh4j/membershiphub/service/AuthServiceTest.java"
                     ]
                 }
@@ -86,8 +84,8 @@
         },
         {
             "day": 3,
-            "context_file": ".ai/.plan/.context/phase-1.context.blueprint.md",
-            "context_section": "DAY 3",
+            "context_file": "No Specific Project Phase BluePrint Context File",
+            "context_section": "DAY 3: ĐÁNH GIÁ BẢO MẬT VÀ TIỆN ĐIỆN",
             "sub_tasks": [
                 {
                     "id": "D3_ST1",
@@ -116,9 +114,9 @@
                         "./sources/backend/auth-service/src/main/java/org/nlh4j/membershiphub/service/AuthService.java",
                         "./sources/backend/auth-service/src/main/java/org/nlh4j/membershiphub/repository/UserRepository.java",
                         "./sources/backend/auth-service/src/main/java/org/nlh4j/membershiphub/repository/RoleRepository.java",
-                        "./sources/backend/auth-service/src/main/java/org/nlh4j/membershiphub/security/JwtProvider.java",
+                        "./sources/backend/auth-service/src/main/java/org/nlh4j/membershiphub/security/JwtTokenProvider.java",
                         "./sources/backend/auth-service/src/main/java/org/nlh4j/membershiphub/validation/AuthValidator.java",
-                        "./sources/backend/auth-service/src/main/java/org/nlh4j/membershiphub/exception/AuthException.java"
+                        "./sources/backend/auth-service/src/main/java/org/nlh4j/membershiphub/exception/AuthExceptionHandler.java"
                     ]
                 }
             ]

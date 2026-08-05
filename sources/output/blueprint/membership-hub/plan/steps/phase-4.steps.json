@@ -8,8 +8,8 @@
     "days": [
         {
             "day": 1,
-            "context_file": ".ai/.plan/.context/phase-4.context.blueprint.md",
-            "context_section": "DAY 1",
+            "context_file": "No Specific Project Phase BluePrint Context File",
+            "context_section": "DAY 1: Viết tài liệu chi tiết UI, API, i18n, SEO",
             "sub_tasks": [
                 {
                     "id": "D1_ST1",
@@ -26,16 +26,15 @@
                     ],
                     "components": [
                         "./sources/frontend/mobile-app/README.md",
-                        "./sources/frontend/web-app/README.md",
-                        ".ai/.plan/.context/phase-4.context.blueprint.md"
+                        "./sources/frontend/web-app/README.md"
                     ]
                 }
             ]
         },
         {
             "day": 2,
-            "context_file": ".ai/.plan/.context/phase-4.context.blueprint.md",
-            "context_section": "DAY 2",
+            "context_file": "No Specific Project Phase BluePrint Context File",
+            "context_section": "DAY 2: Cấu hình GCP Cloud Build, Cloud Run, Firebase Hosting",
             "sub_tasks": [
                 {
                     "id": "D2_ST1",
@@ -51,8 +50,8 @@
                         "[DAT-011]"
                     ],
                     "components": [
-                        "./sources/frontend/mobile-app/cloudbuild.yaml",
-                        "./sources/frontend/web-app/cloudbuild.yaml"
+                        "./sources/frontend/mobile-app/Dockerfile",
+                        "./sources/frontend/web-app/Dockerfile"
                     ]
                 }
             ]
