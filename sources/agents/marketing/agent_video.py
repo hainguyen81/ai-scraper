@@ -10,6 +10,8 @@ from sources.agents.agent_helper import (
     read_file_raw,
     write_file,
     parse_args,
+    json_loads,
+    write_json_file
 )
 
 # super agent
@@ -101,10 +103,20 @@ class EnterpriseVideoCreatorAgent(AbstractMarketingAgent):
         if not raw_responder_payload:
             self.logger.warning("⚠️ No valid responder payload found in the AI response")
         else:
-            write_file(
-                file=self.__storage_path__(storage_name="storage_marketing", file=f"{self.project_name}/{VIDEO_CREATOR_JSON_FILE}"),
-                data=raw_responder_payload
-            )
+            json_responder_payload = json_loads(data=raw_responder_payload, silent=True)
+            # write as JSON file
+            if json_responder_payload:
+                write_json_file(
+                    file=self.__storage_path__(storage_name="storage_marketing", file=f"{self.project_name}/{VIDEO_CREATOR_JSON_FILE}"),
+                    json_data=json_responder_payload
+                )
+            
+            # write as raw file
+            else:
+                write_file(
+                    file=self.__storage_path__(storage_name="storage_marketing", file=f"{self.project_name}/{VIDEO_CREATOR_JSON_FILE}"),
+                    data=raw_responder_payload
+                )
         
         # export raw response if necessary as log tracing
         raw_response = self.get_kwargs_by_key(key="raw_response", **kwargs)
