@@ -55,7 +55,15 @@ Your output MUST follow this exact Markdown layout structure (translate all labe
 [List the absolute directory matrices and REST/GraphQL/Event endpoint routing patterns allowed for this phase, matching the detected language and active project stack topology. Every directory matrix path must be bounded under `./sources/`]
 
 ## 3. Dedicated Sub-Agent Functional Directives
-[Delineate the explicit operational constraints and duties for each assigned agent persona in this phase, incorporating the specialized 'doc' agent role for full technical documentation compilation, and 'reviewer' for single file static/compiler analysis inside `./sources/`]
+[Delineate the explicit operational constraints and duties for each assigned agent persona in this phase, enforcing strict segregation of technical boundaries as defined below. Human-readable directives, descriptions, and task requirements MUST be contextually translated entirely into {% if language and language.strip() != "" %}{{ language }}{% else %}English{% endif %} following the transmission rails]:
+
+*   **Coder**: Acts as a Senior/Principal Application Developer. Responsible for pure application source code implementation across both backend services and frontend/mobile client applications. Banned from writing test suites or infrastructure manifests.
+*   **Tester**: Acts as a Lead/Principal QC/QA. Specialized in test suite engineering, validation, and quality gates. Responsible for generating JUnit, integration tests, E2E automation tests, and performance validation scripts. Banned from modifying application production code.
+*   **Reviewer**: Responsible for compiler verification, static analysis gating, and defensive patching. Specialized in code quality audits, resolving compilation bugs, fixing OWASP security vulnerabilities, and addressing SonarQube quality gate blockers.
+*   **Doc**: Functions as a Principal Technical Writer and Enterprise Systems Architect. Specialized in compiling comprehensive Markdown technical specifications, schema references, system blueprints, and architecture catalogs. Every single document file generated MUST reside strictly within the centralized storage layout: `./sources/docs/`.
+*   **Docker**: Specialized strictly in containerization, multi-stage Dockerfile engineering, package optimization, and pushing verified application image assets to DockerHub.
+*   **GCP**: Specialized in cloud automation within Google Cloud Platform. Responsible for building and pushing images to Google Cloud Artifact Registry (GCR), and orchestrating container environments natively on Google Cloud Run.
+*   **GKE**: Specialized in production container orchestration inside Google Kubernetes Engine. Responsible for building Kubernetes deployment manifests, routing controls, HPA configurations, Helm charts, and deploying microservices workloads into active GKE clusters.
 
 ## 4. Phase Definition of Done (DoD)
 [Specify the objective quantitative milestones required to pass this phase successfully, ensuring 100% compliance with OWASP enterprise standards, complete functional test coverage for the allocated requirements, and 100% Tag ID mapping check]
