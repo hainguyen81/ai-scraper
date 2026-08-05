@@ -1,7 +1,7 @@
 {
     "phase_id": 1,
-    "phase_name": "Thiết kế kiến trúc tổng thể và thiết lập cơ sở hạ tầng",
-    "phase_description": "Thiết kế kiến trúc tổng thể, thiết lập cơ sở hạ tầng, triển khai cơ sở dữ liệu",
+    "phase_name": "Xây dựng dịch vụ xác thực, quản lý trung tâm và khóa học",
+    "phase_description": "Xây dựng dịch vụ xác thực, quản lý trung tâm và khóa học",
     "project_name": "membership-hub",
     "global_context_file": ".ai/.context/membership-hub.global.blueprint.md",
     "source_target_dir": "sources/",
@@ -9,50 +9,45 @@
         {
             "day": 1,
             "context_file": ".ai/.plan/.context/phase-1.context.blueprint.md",
-            "context_section": "THIẾT KẾ KIẾN TRÚC TỔNG THỂ VÀ THIẾT LẬP CƠ SỞ HẠ TẦNG",
+            "context_section": "XÂY DỰNG DỊCH VỤ XÁC THỰC",
             "sub_tasks": [
                 {
                     "id": "D1_ST1",
                     "agent": "Coder",
-                    "desc": "Coder Agent: Triển khai dịch vụ xác thực với email/mật khẩu, Firebase, Google, Facebook qua OAuth2; cấp JWT token với thời hạn 15 phút và refresh token",
+                    "desc": "Coder Agent: Triển khai dịch vụ xác thực với các phương thức đăng ký và đăng nhập qua email/mật khẩu và OAuth2",
                     "targeted_tags": [
-                        "[ARC-006]"
+                        "[REQ-001]",
+                        "[REQ-002]",
+                        "[DAT-001]"
                     ],
                     "components": [
-                        "./sources/backend/auth-service/src/main/java/org/nlh4j/saas/membershiphub/auth/AuthService.java"
+                        "./sources/backend/auth/src/main/java/org/nlh4j/saas/membershiphub/auth/AuthController.java",
+                        "./sources/backend/auth/src/main/java/org/nlh4j/saas/membershiphub/auth/AuthService.java"
                     ]
                 },
                 {
                     "id": "D1_ST2",
-                    "agent": "Docker",
-                    "desc": "Docker Agent: Viết Docker Compose file để triển khai PostgreSQL, Redis, và các dịch vụ backend",
+                    "agent": "Tester",
+                    "desc": "Tester Agent: Viết các bài kiểm tra đơn vị và tích hợp cho dịch vụ xác thực",
                     "targeted_tags": [
-                        "[ARC-010]"
+                        "[REQ-001]",
+                        "[REQ-002]"
                     ],
                     "components": [
-                        "./sources/infra/docker-compose.yml"
+                        "./sources/backend/auth/src/main/java/org/nlh4j/saas/membershiphub/auth/AuthService.java;./sources/backend/auth/src/test/java/org/nlh4j/saas/membershiphub/auth/AuthServiceTest.java"
                     ]
                 },
                 {
                     "id": "D1_ST3",
-                    "agent": "GCP",
-                    "desc": "GCP Agent: Viết Terraform script để triển khai cơ sở hạ tầng trên Google Cloud Platform",
+                    "agent": "Reviewer",
+                    "desc": "Reviewer Agent: Đánh giá mã nguồn và đảm bảo tuân thủ các tiêu chuẩn lập trình",
                     "targeted_tags": [
-                        "[ARC-010]"
+                        "[REQ-001]",
+                        "[REQ-002]"
                     ],
                     "components": [
-                        "./sources/infra/gcp/terraform/main.tf"
-                    ]
-                },
-                {
-                    "id": "D1_ST4",
-                    "agent": "GKE",
-                    "desc": "GKE Agent: Viết Kubernetes deployment manifest để triển khai các dịch vụ backend trên Google Kubernetes Engine",
-                    "targeted_tags": [
-                        "[ARC-010]"
-                    ],
-                    "components": [
-                        "./sources/infra/gke/deployment.yml"
+                        "./sources/backend/auth/src/main/java/org/nlh4j/saas/membershiphub/auth/AuthController.java",
+                        "./sources/backend/auth/src/main/java/org/nlh4j/saas/membershiphub/auth/AuthService.java"
                     ]
                 }
             ]
@@ -60,94 +55,48 @@
         {
             "day": 2,
             "context_file": ".ai/.plan/.context/phase-1.context.blueprint.md",
-            "context_section": "TRIỂN KHAI CƠ SỞ DỮ LIỆU VÀ CÁC DỊCH VỤ CƠ BẢN",
+            "context_section": "XÂY DỰNG DỊCH VỤ QUẢN LÝ TRUNG TÂM VÀ KHÓA HỌC",
             "sub_tasks": [
                 {
                     "id": "D2_ST1",
                     "agent": "Coder",
-                    "desc": "Coder Agent: Triển khai dịch vụ quản lý người dùng với các vai trò System Admin, Center Admin, Manager, Teacher, Student",
+                    "desc": "Coder Agent: Triển khai dịch vụ quản lý trung tâm và khóa học",
                     "targeted_tags": [
-                        "[ARC-001]",
-                        "[ARC-002]",
-                        "[ARC-003]",
-                        "[ARC-004]",
-                        "[ARC-005]"
+                        "[REQ-004]",
+                        "[REQ-005]",
+                        "[REQ-006]",
+                        "[DAT-003]"
                     ],
                     "components": [
-                        "./sources/backend/user-service/src/main/java/org/nlh4j/saas/membershiphub/user/UserService.java"
+                        "./sources/backend/centers/src/main/java/org/nlh4j/saas/membershiphub/centers/CenterController.java",
+                        "./sources/backend/centers/src/main/java/org/nlh4j/saas/membershiphub/centers/CenterService.java"
                     ]
                 },
                 {
                     "id": "D2_ST2",
-                    "agent": "Docker",
-                    "desc": "Docker Agent: Cập nhật Docker Compose file để triển khai các dịch vụ cơ bản",
+                    "agent": "Tester",
+                    "desc": "Tester Agent: Viết các bài kiểm tra đơn vị và tích hợp cho dịch vụ quản lý trung tâm và khóa học",
                     "targeted_tags": [
-                        "[ARC-010]"
+                        "[REQ-004]",
+                        "[REQ-005]",
+                        "[REQ-006]"
                     ],
                     "components": [
-                        "./sources/infra/docker-compose.yml"
+                        "./sources/backend/centers/src/main/java/org/nlh4j/saas/membershiphub/centers/CenterService.java;./sources/backend/centers/src/test/java/org/nlh4j/saas/membershiphub/centers/CenterServiceTest.java"
                     ]
                 },
                 {
                     "id": "D2_ST3",
-                    "agent": "GCP",
-                    "desc": "GCP Agent: Cập nhật Terraform script để triển khai cơ sở hạ tầng trên Google Cloud Platform",
-                    "targeted_tags": [
-                        "[ARC-010]"
-                    ],
-                    "components": [
-                        "./sources/infra/gcp/terraform/main.tf"
-                    ]
-                },
-                {
-                    "id": "D2_ST4",
-                    "agent": "GKE",
-                    "desc": "GKE Agent: Cập nhật Kubernetes deployment manifest để triển khai các dịch vụ cơ bản trên Google Kubernetes Engine",
-                    "targeted_tags": [
-                        "[ARC-010]"
-                    ],
-                    "components": [
-                        "./sources/infra/gke/deployment.yml"
-                    ]
-                }
-            ]
-        },
-        {
-            "day": 3,
-            "context_file": ".ai/.plan/.context/phase-1.context.blueprint.md",
-            "context_section": "TRIỂN KHAI CÁC TÍNH NĂNG CƠ BẢN VÀ KIỂM THỬ",
-            "sub_tasks": [
-                {
-                    "id": "D3_ST1",
-                    "agent": "Coder",
-                    "desc": "Coder Agent: Triển khai dịch vụ thông báo với push notification đến ứng dụng di động và đăng bài lên nhóm Zalo",
-                    "targeted_tags": [
-                        "[ARC-008]"
-                    ],
-                    "components": [
-                        "./sources/backend/notification-service/src/main/java/org/nlh4j/saas/membershiphub/notification/NotificationService.java"
-                    ]
-                },
-                {
-                    "id": "D3_ST2",
-                    "agent": "Tester",
-                    "desc": "Tester Agent: Viết các test case cho dịch vụ xác thực",
-                    "targeted_tags": [
-                        "[ARC-006]"
-                    ],
-                    "components": [
-                        "./sources/backend/auth-service/src/test/java/org/nlh4j/saas/membershiphub/auth/AuthServiceTest.java;./sources/backend/auth-service/src/main/java/org/nlh4j/saas/membershiphub/auth/AuthService.java"
-                    ]
-                },
-                {
-                    "id": "D3_ST3",
                     "agent": "Reviewer",
-                    "desc": "Reviewer Agent: Review code cho dịch vụ xác thực",
+                    "desc": "Reviewer Agent: Đánh giá mã nguồn và đảm bảo tuân thủ các tiêu chuẩn lập trình",
                     "targeted_tags": [
-                        "[ARC-006]"
+                        "[REQ-004]",
+                        "[REQ-005]",
+                        "[REQ-006]"
                     ],
                     "components": [
-                        "./sources/backend/auth-service/src/main/java/org/nlh4j/saas/membershiphub/auth/AuthService.java"
+                        "./sources/backend/centers/src/main/java/org/nlh4j/saas/membershiphub/centers/CenterController.java",
+                        "./sources/backend/centers/src/main/java/org/nlh4j/saas/membershiphub/centers/CenterService.java"
                     ]
                 }
             ]

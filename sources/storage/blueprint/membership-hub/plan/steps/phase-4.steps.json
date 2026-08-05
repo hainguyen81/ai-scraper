@@ -1,7 +1,7 @@
 {
     "phase_id": 4,
-    "phase_name": "Triển khai các tính năng thông báo, khuyến mãi, chatbot AI",
-    "phase_description": "Triển khai các tính năng thông báo, khuyến mãi, chatbot AI",
+    "phase_name": "Xây dựng giao diện người dùng và ứng dụng di động",
+    "phase_description": "Xây dựng giao diện người dùng và ứng dụng di động",
     "project_name": "membership-hub",
     "global_context_file": ".ai/.context/membership-hub.global.blueprint.md",
     "source_target_dir": "sources/",
@@ -9,81 +9,52 @@
         {
             "day": 1,
             "context_file": ".ai/.plan/.context/phase-4.context.blueprint.md",
-            "context_section": "TRIỂN KHAI CÁC TÍNH NĂNG THÔNG BÁO VÀ KHUYẾN MÃI",
+            "context_section": "XÂY DỰNG GIAO DIỆN NGƯỜI DÙNG VÀ ỨNG DỤNG DI ĐỘNG",
             "sub_tasks": [
                 {
                     "id": "D1_ST1",
                     "agent": "Coder",
-                    "desc": "Coder Agent: Triển khai các tính năng kích hoạt thông báo, quản lý khuyến mãi, quản lý thông báo",
+                    "desc": "Coder Agent: Triển khai giao diện người dùng và ứng dụng di động",
                     "targeted_tags": [
-                        "[REQ-016]"
+                        "[REQ-019]",
+                        "[REQ-020]",
+                        "[REQ-021]",
+                        "[REQ-022]",
+                        "[REQ-023]",
+                        "[DAT-011]"
                     ],
                     "components": [
-                        "./sources/backend/notification-service/src/main/java/org/nlh4j/saas/membershiphub/notification/NotificationService.java"
+                        "./sources/frontend/src/main/java/org/nlh4j/saas/membershiphub/frontend/FrontendService.java"
                     ]
                 },
                 {
                     "id": "D1_ST2",
                     "agent": "Tester",
-                    "desc": "Tester Agent: Viết các test case cho các tính năng thông báo và khuyến mãi",
+                    "desc": "Tester Agent: Viết các bài kiểm tra đơn vị và tích hợp cho giao diện người dùng và ứng dụng di động",
                     "targeted_tags": [
-                        "[REQ-016]"
+                        "[REQ-019]",
+                        "[REQ-020]",
+                        "[REQ-021]",
+                        "[REQ-022]",
+                        "[REQ-023]"
                     ],
                     "components": [
-                        "./sources/backend/notification-service/src/test/java/org/nlh4j/saas/membershiphub/notification/NotificationServiceTest.java",
-                        "./sources/backend/notification-service/src/main/java/org/nlh4j/saas/membershiphub/notification/NotificationService.java"
+                        "./sources/frontend/src/test/java/org/nlh4j/saas/membershiphub/frontend/FrontendServiceTest.java"
                     ]
                 },
                 {
                     "id": "D1_ST3",
                     "agent": "Reviewer",
-                    "desc": "Reviewer Agent: Review code cho các tính năng thông báo và khuyến mãi",
+                    "desc": "Reviewer Agent: Đánh giá mã nguồn và đảm bảo tuân thủ các tiêu chuẩn lập trình",
                     "targeted_tags": [
-                        "[REQ-016]"
+                        "[REQ-019]",
+                        "[REQ-020]",
+                        "[REQ-021]",
+                        "[REQ-022]",
+                        "[REQ-023]"
                     ],
                     "components": [
-                        "./sources/backend/notification-service/src/main/java/org/nlh4j/saas/membershiphub/notification/NotificationService.java"
-                    ]
-                }
-            ]
-        },
-        {
-            "day": 2,
-            "context_file": ".ai/.plan/.context/phase-4.context.blueprint.md",
-            "context_section": "TRIỂN KHAI CÁC TÍNH NĂNG CHATBOT AI",
-            "sub_tasks": [
-                {
-                    "id": "D2_ST1",
-                    "agent": "Coder",
-                    "desc": "Coder Agent: Triển khai các tính năng tích hợp chatbot AI",
-                    "targeted_tags": [
-                        "[REQ-019]"
-                    ],
-                    "components": [
-                        "./sources/backend/chatbot-service/src/main/java/org/nlh4j/saas/membershiphub/chatbot/ChatbotService.java"
-                    ]
-                },
-                {
-                    "id": "D2_ST2",
-                    "agent": "Tester",
-                    "desc": "Tester Agent: Viết các test case cho các tính năng chatbot AI",
-                    "targeted_tags": [
-                        "[REQ-019]"
-                    ],
-                    "components": [
-                        "./sources/backend/chatbot-service/src/test/java/org/nlh4j/saas/membershiphub/chatbot/ChatbotServiceTest.java",
-                        "./sources/backend/chatbot-service/src/main/java/org/nlh4j/saas/membershiphub/chatbot/ChatbotService.java"
-                    ]
-                },
-                {
-                    "id": "D2_ST3",
-                    "agent": "Reviewer",
-                    "desc": "Reviewer Agent: Review code cho các tính năng chatbot AI",
-                    "targeted_tags": [
-                        "[REQ-019]"
-                    ],
-                    "components": [
-                        "./sources/backend/chatbot-service/src/main/java/org/nlh4j/saas/membershiphub/chatbot/ChatbotService.java"
+                        "./sources/frontend/src/main/java/org/nlh4j/saas/membershiphub/frontend/FrontendService.java"
                     ]
                 }
             ]
