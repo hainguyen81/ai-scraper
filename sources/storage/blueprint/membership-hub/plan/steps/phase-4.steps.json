@@ -8,7 +8,7 @@
     "days": [
         {
             "day": 1,
-            "context_file": "No Specific Project Phase BluePrint Context File",
+            "context_file": ".ai/.plan/.context/phase-4.context.blueprint.md",
             "context_section": "Viết tài liệu chi tiết UI, API, i18n, SEO",
             "sub_tasks": [
                 {
@@ -25,35 +25,19 @@
                         "[DAT-011]"
                     ],
                     "components": [
-                        "./sources/frontend/mobile-app/docs/architecture/ARCHITECTURE_BLUEPRINTS.md",
-                        "./sources/frontend/mobile-app/docs/architecture/ENDPOINT_API_CONTRACTS.md",
-                        "./sources/frontend/mobile-app/docs/database/DATA_DICTIONARY.md",
-                        "./sources/frontend/mobile-app/docs/database/ERD_PHYSICAL_MAPPING.md",
-                        "./sources/frontend/mobile-app/docs/flows/BACKEND_PROCESSING_LOGIC.md",
-                        "./sources/frontend/mobile-app/docs/flows/FRONTEND_WEB_ENGINE_FLOWS.md",
-                        "./sources/frontend/mobile-app/docs/flows/MOBILE_NATIVE_PROCESS_FLOWS.md",
-                        "./sources/frontend/mobile-app/docs/infrastructure/CICD_AUTOMATION_PIPELINES.md",
-                        "./sources/frontend/mobile-app/docs/infrastructure/CLUSTER_TOPOLOGY_RUNBOOK.md",
-                        "./sources/frontend/mobile-app/docs/security/JWT_AUTH_POLICIES.md",
-                        "./sources/frontend/mobile-app/docs/security/OWASP_COMPLIANCE_MATRIX.md",
-                        "./sources/frontend/web-app/docs/architecture/ARCHITECTURE_BLUEPRINTS.md",
-                        "./sources/frontend/web-app/docs/architecture/ENDPOINT_API_CONTRACTS.md",
-                        "./sources/frontend/web-app/docs/database/DATA_DICTIONARY.md",
-                        "./sources/frontend/web-app/docs/database/ERD_PHYSICAL_MAPPING.md",
-                        "./sources/frontend/web-app/docs/flows/BACKEND_PROCESSING_LOGIC.md",
-                        "./sources/frontend/web-app/docs/flows/FRONTEND_WEB_ENGINE_FLOWS.md",
-                        "./sources/frontend/web-app/docs/flows/MOBILE_NATIVE_PROCESS_FLOWS.md",
-                        "./sources/frontend/web-app/docs/infrastructure/CICD_AUTOMATION_PIPELINES.md",
-                        "./sources/frontend/web-app/docs/infrastructure/CLUSTER_TOPOLOGY_RUNBOOK.md",
-                        "./sources/frontend/web-app/docs/security/JWT_AUTH_POLICIES.md",
-                        "./sources/frontend/web-app/docs/security/OWASP_COMPLIANCE_MATRIX.md"
+                        "./sources/frontend/mobile-app/docs/ARCHITECTURE.md",
+                        "./sources/frontend/mobile-app/docs/CENTRAL_ENDPOINT_API_CONTRACT_SPECS.md",
+                        "./sources/frontend/mobile-app/docs/CROSS_PLATFORM_INTEGRATED_BUSINESS_FLOWS.md",
+                        "./sources/frontend/web-app/docs/ARCHITECTURE.md",
+                        "./sources/frontend/web-app/docs/CENTRAL_ENDPOINT_API_CONTRACT_SPECS.md",
+                        "./sources/frontend/web-app/docs/CROSS_PLATFORM_INTEGRATED_BUSINESS_FLOWS.md"
                     ]
                 }
             ]
         },
         {
             "day": 2,
-            "context_file": "No Specific Project Phase BluePrint Context File",
+            "context_file": ".ai/.plan/.context/phase-4.context.blueprint.md",
             "context_section": "Cấu hình GCP Cloud Build, Cloud Run, Firebase Hosting",
             "sub_tasks": [
                 {
@@ -70,11 +54,10 @@
                         "[DAT-011]"
                     ],
                     "components": [
-                        "./sources/frontend/mobile-app/Dockerfile",
-                        "./sources/frontend/web-app/Dockerfile",
-                        "./sources/infra/gcp/cloudbuild.yaml",
-                        "./sources/infra/gcp/firebase.json",
-                        "./sources/infra/gcp/main.tf"
+                        "./sources/frontend/mobile-app/cloudbuild.yaml",
+                        "./sources/frontend/mobile-app/firebase.json",
+                        "./sources/frontend/web-app/cloudbuild.yaml",
+                        "./sources/frontend/web-app/firebase.json"
                     ]
                 }
             ]

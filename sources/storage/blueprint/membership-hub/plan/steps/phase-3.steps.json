@@ -8,7 +8,7 @@
     "days": [
         {
             "day": 1,
-            "context_file": "No Specific Project Phase BluePrint Context File",
+            "context_file": ".ai/.plan/.context/phase-3.context.blueprint.md",
             "context_section": "XÂY ĐẾN DỊCH VỤ THÔNG BÁO VÀ MOBILE API",
             "sub_tasks": [
                 {
@@ -93,7 +93,7 @@
         },
         {
             "day": 2,
-            "context_file": "No Specific Project Phase BluePrint Context File",
+            "context_file": ".ai/.plan/.context/phase-3.context.blueprint.md",
             "context_section": "KIỂM THỬ MOBILE API",
             "sub_tasks": [
                 {
@@ -118,7 +118,7 @@
         },
         {
             "day": 3,
-            "context_file": "No Specific Project Phase BluePrint Context File",
+            "context_file": ".ai/.plan/.context/phase-3.context.blueprint.md",
             "context_section": "ĐÁNH GIÁ BẢO MẬT VÀ XỬ LÝ NGOẠI LỆ",
             "sub_tasks": [
                 {

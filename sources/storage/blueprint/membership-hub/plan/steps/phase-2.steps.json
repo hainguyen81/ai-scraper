@@ -8,7 +8,7 @@
     "days": [
         {
             "day": 1,
-            "context_file": "No Specific Project Phase BluePrint Context File",
+            "context_file": ".ai/.plan/.context/phase-2.context.blueprint.md",
             "context_section": "XÂY DỰNG CRUD TRUNG TÂM",
             "sub_tasks": [
                 {
@@ -34,7 +34,7 @@
         },
         {
             "day": 2,
-            "context_file": "No Specific Project Phase BluePrint Context File",
+            "context_file": ".ai/.plan/.context/phase-2.context.blueprint.md",
             "context_section": "XÂY DỰNG CRUD KHÓA HỌC",
             "sub_tasks": [
                 {
@@ -60,7 +60,7 @@
         },
         {
             "day": 3,
-            "context_file": "No Specific Project Phase BluePrint Context File",
+            "context_file": ".ai/.plan/.context/phase-2.context.blueprint.md",
             "context_section": "XÂY DỰNG GHI DANH VÀ ĐIỂM DANH",
             "sub_tasks": [
                 {
@@ -94,10 +94,6 @@
                     ],
                     "components": [
                         "./sources/backend/attendance-service/src/main/java/org/nlh4j/membershiphub/controller/AttendanceController.java",
-                        "./sources/backend/attendance-service/src/main/java/org/nlh4j/membershiphub/service/AttendanceService.java",
-                        "./sources/backend/attendance-service/src/main/java/org/nlh4j/membershiphub/repository/AttendanceRepository.java",
-                        "./sources/backend/attendance-service/src/main/java/org/nlh4j/membershiphub/validation/AttendanceValidator.java",
-                        "./sources/backend/attendance-service/src/main/java/org/nlh4j/membershiphub/exception/AttendanceExceptionHandler.java",
                         "./sources/backend/attendance-service/src/test/java/org/nlh4j/membershiphub/service/AttendanceServiceTest.java"
                     ]
                 },
@@ -115,8 +111,7 @@
                         "./sources/backend/enrollment-service/src/main/java/org/nlh4j/membershiphub/service/EnrollmentService.java",
                         "./sources/backend/enrollment-service/src/main/java/org/nlh4j/membershiphub/repository/EnrollmentRepository.java",
                         "./sources/backend/enrollment-service/src/main/java/org/nlh4j/membershiphub/validation/EnrollmentValidator.java",
-                        "./sources/backend/enrollment-service/src/main/java/org/nlh4j/membershiphub/exception/EnrollmentExceptionHandler.java",
-                        "./sources/backend/enrollment-service/src/test/java/org/nlh4j/membershiphub/service/EnrollmentServiceTest.java"
+                        "./sources/backend/enrollment-service/src/main/java/org/nlh4j/membershiphub/exception/EnrollmentExceptionHandler.java"
                     ]
                 }
             ]

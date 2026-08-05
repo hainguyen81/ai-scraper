@@ -8,7 +8,7 @@
     "days": [
         {
             "day": 1,
-            "context_file": "No Specific Project Phase BluePrint Context File",
+            "context_file": ".ai/.plan/.context/phase-1.context.blueprint.md",
             "context_section": "XÂY ĐẾN API ĐĂNG KÝ VÀ XÁC THỰC",
             "sub_tasks": [
                 {
@@ -39,9 +39,11 @@
                         "./sources/backend/auth-service/src/main/java/org/nlh4j/membershiphub/controller/AuthController.java",
                         "./sources/backend/auth-service/src/main/java/org/nlh4j/membershiphub/service/AuthService.java",
                         "./sources/backend/auth-service/src/main/java/org/nlh4j/membershiphub/repository/UserRepository.java",
+                        "./sources/backend/auth-service/src/main/java/org/nlh4j/membershiphub/repository/RoleRepository.java",
                         "./sources/backend/auth-service/src/main/java/org/nlh4j/membershiphub/security/JwtProvider.java",
                         "./sources/backend/auth-service/src/main/java/org/nlh4j/membershiphub/validation/AuthValidator.java",
                         "./sources/backend/auth-service/src/main/java/org/nlh4j/membershiphub/exception/AuthExceptionHandler.java",
+                        "./sources/backend/auth-service/src/test/java/org/nlh4j/membershiphub/controller/AuthControllerTest.java",
                         "./sources/backend/auth-service/src/test/java/org/nlh4j/membershiphub/service/AuthServiceTest.java"
                     ]
                 }
@@ -49,7 +51,7 @@
         },
         {
             "day": 2,
-            "context_file": "No Specific Project Phase BluePrint Context File",
+            "context_file": ".ai/.plan/.context/phase-1.context.blueprint.md",
             "context_section": "THỰC HIỆN KIỂM THỬ TÍNH NĂNG XÁC THỰC",
             "sub_tasks": [
                 {
@@ -61,7 +63,7 @@
                         "[ARC-007]",
                         "[ARC-008]",
                         "[ARC-009]",
-                        "[ARC-010]",
+                        "[ARC-0010]",
                         "[EXC-004]",
                         "[DAT-001]",
                         "[DAT-002]",
@@ -76,14 +78,15 @@
                         "[NFR-009]"
                     ],
                     "components": [
-                        "./sources/backend/auth-service/src/test/java/org/nlh4j/membershiphub/service/AuthServiceTest.java"
+                        "./sources/backend/auth-service/src/test/java/org/nlh4j/membershiphub/AuthServiceIntegrationTest.java",
+                        "./sources/backend/auth-service/src/test/java/org/nlh4j/membershiphub/AuthControllerIntegrationTest.java"
                     ]
                 }
             ]
         },
         {
             "day": 3,
-            "context_file": "No Specific Project Phase BluePrint Context File",
+            "context_file": ".ai/.plan/.context/phase-1.context.blueprint.md",
             "context_section": "ĐÁNH GIÁ BẢO MẬT VÀ TIỆN ĐIỆN",
             "sub_tasks": [
                 {
@@ -111,7 +114,6 @@
                     "components": [
                         "./sources/backend/auth-service/src/main/java/org/nlh4j/membershiphub/controller/AuthController.java",
                         "./sources/backend/auth-service/src/main/java/org/nlh4j/membershiphub/service/AuthService.java",
-                        "./sources/backend/auth-service/src/main/java/org/nlh4j/membershiphub/repository/UserRepository.java",
                         "./sources/backend/auth-service/src/main/java/org/nlh4j/membershiphub/security/JwtProvider.java",
                         "./sources/backend/auth-service/src/main/java/org/nlh4j/membershiphub/validation/AuthValidator.java",
                         "./sources/backend/auth-service/src/main/java/org/nlh4j/membershiphub/exception/AuthExceptionHandler.java"
