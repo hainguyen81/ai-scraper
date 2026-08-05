@@ -18,7 +18,7 @@
 				{
 				  "id": "D{{ day_idx }}_ST{{ loop.index | default(0) | int }}",
 				  "agent": "{{ day_item.get('subAgent') | default(task_item.assignee, true) | default(task_item.agent, true) | default(task_item.agent_role, true) | default('Coder') }}",
-				  "desc": "{{ day_item.get('subAgent') | default(task_item.assignee, true) | default(task_item.agent, true) | default(task_item.agent_role, true) | default('Coder') }} Agent: {{ task_item.task | default(task_item.desc, true) | default(task_item.description, true) | default(task_item.task_description, true) | default(task_item, true) | default('No task description provided') }}",
+				  "desc": "{{ task_item.task | default(task_item.desc, true) | default(task_item.description, true) | default(task_item.task_description, true) | default(task_item, true) | default('No task description provided') }}",
 				  "targeted_tags": [
 				    {% for tag in task_item.targeted_tags | default(task_item.tags, true) | default([]) %}
 					"{{ tag }}"{% if not loop.last %},{% endif %}
@@ -47,7 +47,7 @@
 				{
 				  "id": "D{{ day_idx }}_ST{{ loop.index | default(0) | int }}",
 				  "agent": "{{ day_item.get('subAgent') | default(task_item.assignee, true) | default(task_item.agent, true) | default(task_item.agent_role, true) | default('Coder') }}",
-				  "desc": "{{ day_item.get('subAgent') | default(task_item.assignee, true) | default(task_item.agent, true) | default(task_item.agent_role, true) | default('Coder') }} Agent: {{ task_item.task | default(task_item.desc, true) | default(task_item.description, true) | default(task_item.task_description, true) | default(task_item, true) | default('No description provided') }}",
+				  "desc": "{{ task_item.task | default(task_item.desc, true) | default(task_item.description, true) | default(task_item.task_description, true) | default(task_item, true) | default('No description provided') }}",
 				  "targeted_tags": [
 				    {% for tag in task_item.targeted_tags | default(task_item.tags, true) | default([]) %}
 					"{{ tag }}"{% if not loop.last %},{% endif %}
@@ -76,7 +76,7 @@
 				{
 				  "id": "D{{ day_idx }}_ST{{ loop.index | default(0) | int }}",
 				  "agent": "{{ day_item.get('subAgent') | default(task_item.assignee, true) | default(task_item.agent, true) | default(task_item.agent_role, true) | default('Coder') }}",
-				  "desc": "{{ day_item.get('subAgent') | default(task_item.assignee, true) | default(task_item.agent, true) | default(task_item.agent_role, true) | default('Coder') }} Agent: {{ task_item.task | default(task_item.desc, true) | default(task_item.description, true) | default(task_item.task_description, true) | default(task_item, true) | default('No description provided') }}",
+				  "desc": "{{ task_item.task | default(task_item.desc, true) | default(task_item.description, true) | default(task_item.task_description, true) | default(task_item, true) | default('No description provided') }}",
 				  "targeted_tags": [
 				    {% for tag in task_item.targeted_tags | default(task_item.tags, true) | default([]) %}
 					"{{ tag }}"{% if not loop.last %},{% endif %}
