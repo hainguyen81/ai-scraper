@@ -25,8 +25,8 @@
                         "[DAT-011]"
                     ],
                     "components": [
-                        "./sources/frontend/mobile-app/README.md",
-                        "./sources/frontend/web-app/README.md"
+                        "./sources/frontend/mobile-app/docs/ARCHITECTURE.md",
+                        "./sources/frontend/web-app/docs/ARCHITECTURE.md"
                     ]
                 }
             ]
@@ -50,8 +50,8 @@
                         "[DAT-011]"
                     ],
                     "components": [
-                        "./sources/frontend/mobile-app/cloudbuild.yaml",
-                        "./sources/frontend/web-app/cloudbuild.yaml"
+                        "./sources/frontend/mobile-app/Dockerfile",
+                        "./sources/frontend/web-app/Dockerfile"
                     ]
                 }
             ]

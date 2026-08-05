@@ -43,7 +43,8 @@
                         "./sources/backend/auth-service/src/main/java/org/nlh4j/membershiphub/security/JwtProvider.java",
                         "./sources/backend/auth-service/src/main/java/org/nlh4j/membershiphub/validation/AuthValidator.java",
                         "./sources/backend/auth-service/src/main/java/org/nlh4j/membershiphub/exception/AuthExceptionHandler.java",
-                        "./sources/backend/auth-service/src/test/java/org/nlh4j/membershiphub/AuthServiceTest.java"
+                        "./sources/backend/auth-service/src/test/java/org/nlh4j/membershiphub/controller/AuthControllerTest.java",
+                        "./sources/backend/auth-service/src/test/java/org/nlh4j/membershiphub/service/AuthServiceTest.java"
                     ]
                 }
             ]
@@ -77,8 +78,7 @@
                         "[NFR-009]"
                     ],
                     "components": [
-                        "./sources/backend/auth-service/src/main/java/org/nlh4j/membershiphub/controller/AuthController.java",
-                        "./sources/backend/auth-service/src/test/java/org/nlh4j/membershiphub/AuthServiceTest.java"
+                        "./sources/backend/auth-service/src/test/java/org/nlh4j/membershiphub/service/AuthServiceTest.java"
                     ]
                 }
             ]

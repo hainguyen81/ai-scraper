@@ -25,8 +25,6 @@
                         "./sources/backend/center-service/src/main/java/org/nlh4j/membershiphub/controller/CenterController.java",
                         "./sources/backend/center-service/src/main/java/org/nlh4j/membershiphub/service/CenterService.java",
                         "./sources/backend/center-service/src/main/java/org/nlh4j/membershiphub/repository/CenterRepository.java",
-                        "./sources/backend/center-service/src/main/java/org/nlh4j/membershiphub/validation/CenterValidator.java",
-                        "./sources/backend/center-service/src/main/java/org/nlh4j/membershiphub/exception/CenterExceptionHandler.java",
                         "./sources/backend/center-service/src/test/java/org/nlh4j/membershiphub/service/CenterServiceTest.java"
                     ]
                 }
@@ -51,8 +49,6 @@
                         "./sources/backend/course-service/src/main/java/org/nlh4j/membershiphub/controller/CourseController.java",
                         "./sources/backend/course-service/src/main/java/org/nlh4j/membershiphub/service/CourseService.java",
                         "./sources/backend/course-service/src/main/java/org/nlh4j/membershiphub/repository/CourseRepository.java",
-                        "./sources/backend/course-service/src/main/java/org/nlh4j/membershiphub/validation/CourseValidator.java",
-                        "./sources/backend/course-service/src/main/java/org/nlh4j/membershiphub/exception/CourseExceptionHandler.java",
                         "./sources/backend/course-service/src/test/java/org/nlh4j/membershiphub/service/CourseServiceTest.java"
                     ]
                 }
@@ -76,8 +72,6 @@
                         "./sources/backend/enrollment-service/src/main/java/org/nlh4j/membershiphub/controller/EnrollmentController.java",
                         "./sources/backend/enrollment-service/src/main/java/org/nlh4j/membershiphub/service/EnrollmentService.java",
                         "./sources/backend/enrollment-service/src/main/java/org/nlh4j/membershiphub/repository/EnrollmentRepository.java",
-                        "./sources/backend/enrollment-service/src/main/java/org/nlh4j/membershiphub/validation/EnrollmentValidator.java",
-                        "./sources/backend/enrollment-service/src/main/java/org/nlh4j/membershiphub/exception/EnrollmentExceptionHandler.java",
                         "./sources/backend/enrollment-service/src/test/java/org/nlh4j/membershiphub/service/EnrollmentServiceTest.java"
                     ]
                 },
@@ -108,10 +102,7 @@
                     ],
                     "components": [
                         "./sources/backend/enrollment-service/src/main/java/org/nlh4j/membershiphub/controller/EnrollmentController.java",
-                        "./sources/backend/enrollment-service/src/main/java/org/nlh4j/membershiphub/service/EnrollmentService.java",
-                        "./sources/backend/enrollment-service/src/main/java/org/nlh4j/membershiphub/repository/EnrollmentRepository.java",
-                        "./sources/backend/enrollment-service/src/main/java/org/nlh4j/membershiphub/validation/EnrollmentValidator.java",
-                        "./sources/backend/enrollment-service/src/main/java/org/nlh4j/membershiphub/exception/EnrollmentExceptionHandler.java"
+                        "./sources/backend/enrollment-service/src/main/java/org/nlh4j/membershiphub/service/EnrollmentService.java"
                     ]
                 }
             ]

@@ -75,8 +75,8 @@
                         "[ARC-010]"
                     ],
                     "components": [
-                        "./sources/infra/gke/charts/gateway/Chart.yaml",
-                        "./sources/infra/gke/charts/gateway/values.yaml"
+                        "./sources/infra/gke/charts/Chart.yaml",
+                        "./sources/infra/gke/charts/values.yaml"
                     ]
                 },
                 {

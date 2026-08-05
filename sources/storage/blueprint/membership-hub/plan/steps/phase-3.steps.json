@@ -9,7 +9,7 @@
         {
             "day": 1,
             "context_file": "No Specific Project Phase BluePrint Context File",
-            "context_section": "XÂY ĐẾN DỊCH VỤ THÔNG BÁO VÀ MOBILE API",
+            "context_section": "DAY 1: XÂY ĐẾN DỊCH VỤ THÔNG BÁO VÀ MOBILE API",
             "sub_tasks": [
                 {
                     "id": "D1_ST1",
@@ -94,7 +94,7 @@
         {
             "day": 2,
             "context_file": "No Specific Project Phase BluePrint Context File",
-            "context_section": "KIỂM THỬ MOBILE API",
+            "context_section": "DAY 2: KIỂM THỬ MOBILE API",
             "sub_tasks": [
                 {
                     "id": "D2_ST1",
@@ -110,7 +110,8 @@
                         "[DAT-011]"
                     ],
                     "components": [
-                        "INTEGRATION_SCOPE;./sources/backend/mobile-service/src/test/java/org/nlh4j/membershiphub/service/MobileServiceTest.java"
+                        "./sources/backend/mobile-service/src/test/java/org/nlh4j/membershiphub/controller/MobileControllerTest.java",
+                        "./sources/backend/mobile-service/src/test/java/org/nlh4j/membershiphub/service/MobileServiceTest.java"
                     ]
                 }
             ]
@@ -118,7 +119,7 @@
         {
             "day": 3,
             "context_file": "No Specific Project Phase BluePrint Context File",
-            "context_section": "ĐÁNH GIÁ BẢO MẬT VÀ XỬ LÝ NGOẠI LỆ",
+            "context_section": "DAY 3: ĐÁNH GIÁ BẢO MẬT VÀ XỬ LÝ NGOẠI LỆ",
             "sub_tasks": [
                 {
                     "id": "D3_ST1",
