@@ -1,72 +1,73 @@
-# Giai đoạn 1: <!--PHASE_NAME_START-->Thiết lập nền tảng xác thực và giao diện web<!--PHASE_NAME_END-->
+# Giai đoạn 1: Thiết lập cơ sở hạ tầng và xác thực
 
 ## 📊 Document Control
 
 | Mục | Chi tiết |
 | :--- | :--- |
-| **ID Kiến trúc** | ARCH-20260806133914 |
+| **ID Sơ đồ** | ARCH-20260806145545 |
 | **Tên dự án** | membership-hub |
 | **Giai đoạn** | 1 |
-| **Tên giai đoạn** | <!--PHASE_NAME_START-->Thiết lập nền tảng xác thực và giao diện web<!--PHASE_NAME_END--> |
-| **Mô tả** | <!--PHASE_DESC_START-->Giai đoạn này tập trung vào việc xây dựng các dịch vụ xác thực và quản lý người dùng, triển khai cơ sở dữ liệu Users và Roles, thiết lập tài liệu kiến trúc chi tiết, và triển khai giao diện web cho người dùng cuối. Các thành phần này cung cấp nền tảng bảo mật, quản lý quyền truy cập và giao diện người dùng ban đầu cho hệ thống membership-hub.<!--PHASE_DESC_END--> |
+| **Tên giai đoạn** | <!--PHASE_NAME_START-->Thiết lập cơ sở hạ tầng và xác thực<!--PHASE_NAME_END--> |
+| **Mô tả** | <!--PHASE_DESC_START-->Xây dựng dịch vụ xác thực, dịch vụ người dùng, giao diện web, và tài liệu kiến trúc<!--PHASE_DESC_END--> |
 | **Phiên bản** | 1.0 (Baseline) |
-| **Ngày/Thời gian** | 2026/08/06 14:24:42 |
-| **Tác giả** | Enterprise System Architect (SA Agent) |
-| **Phê duyệt** | Pending Technical Governance Review |
+| **Ngày/Giờ** | 2026/08/06 14:55:45 |
+| **Tác giả** | Kiến trúc hệ thống doanh nghiệp (SA Agent) |
+| **Phê duyệt** | Đang chờ xem xét của Ban quản trị kỹ thuật |
 
-## 1. Phạm vi và mục tiêu của giai đoạn
-Giai đoạn 1 thực hiện toàn bộ các thành phần cần thiết để khởi tạo hệ thống: xây dựng dịch vụ xác thực (auth-service), dịch vụ quản lý người dùng (user-service), tạo bảng Users và Roles, và triển khai giao diện web Next.js. Tất cả các thành phần phải tuân thủ các tiêu chuẩn bảo mật OWASP, có kiểm thử unit và tích hợp đầy đủ, và được tài liệu chi tiết trong tài liệu kiến trúc.
+## 1. Phạm vi hoạt động và mục tiêu của giai đoạn
+Giai đoạn 1 tập trung vào việc thiết lập cơ sở hạ tầng và xác thực cho hệ thống. Các nhiệm vụ bao gồm:
+- Xây dựng dịch vụ xác thực với các phương thức đăng ký và đăng nhập qua email/mật khẩu, Firebase, Google, Facebook OAuth2.
+- Tạo dịch vụ người dùng với các chức năng phân quyền và quản lý thông tin người dùng.
+- Xây dựng giao diện web với các chức năng đăng ký, đăng nhập, và quản lý người dùng.
+- Tạo tài liệu kiến trúc mô tả kiến trúc hệ thống và các dịch vụ chính.
 
-## 2. Phạm vi kỹ thuật và ranh giới thư mục
-| Đường dẫn | Mô tả |
-| :--- | :--- |
-| `./sources/backend/auth-service` | Dịch vụ xác thực (Java/Quarkus) |
-| `./sources/backend/user-service` | Dịch vụ quản lý người dùng (Java/Quarkus) |
-| `./sources/frontend/web-app` | Giao diện web Next.js |
-| `./sources/docs/architecture.md` | Tài liệu kiến trúc chi tiết |
+## 2. Phạm vi kỹ thuật và biên giới thư mục được phép
+- `./sources/backend/auth-service`
+- `./sources/backend/user-service`
+- `./sources/frontend/web-app`
+- `./sources/docs/architecture.md`
 
-## 3. Hướng dẫn chức năng của Sub-Agent
-* **Coder**: Phát triển mã nguồn cho các dịch vụ backend và frontend, tuân thủ OWASP, không viết test hoặc cấu hình hạ tầng.  
-* **Tester**: Không tham gia vào giai đoạn này.  
-* **Reviewer**: Kiểm tra mã nguồn, bảo mật, và tuân thủ OWASP.  
-* **Doc**: Soạn thảo tài liệu kiến trúc chi tiết, bao gồm mô hình ER, mô tả dịch vụ, và quy trình bảo mật.  
-* **Docker**: Không tham gia vào giai đoạn này.  
-* **GCP**: Không tham gia vào giai đoạn này.  
-* **GKE**: Không tham gia vào giai đoạn này.  
+## 3. Hướng dẫn chức năng dành riêng cho Sub-Agent
+* **Coder**: Hoạt động như một Lập trình viên Ứng dụng Cấp cao/Chuyên gia. Trách nhiệm về việc triển khai mã nguồn ứng dụng thuần túy trên cả các dịch vụ backend và ứng dụng frontend/mobile. Cấm viết bộ kiểm thử hoặc biểu mẫu cơ sở hạ tầng.
+* **Tester**: Hoạt động như một Trưởng/QC/QA Cấp cao. Chuyên về kỹ thuật kiểm thử, xác nhận và cổng kiểm soát chất lượng. Trách nhiệm về việc tạo bộ kiểm thử JUnit, kiểm thử tích hợp, tự động hóa kiểm thử E2E, và kịch bản xác nhận hiệu suất. Cấm sửa đổi mã sản xuất ứng dụng. Nếu nhiệm vụ con mục tiêu liên quan đến phạm vi tích hợp hoặc cuối cùng nơi không có tệp mã nguồn cụ thể nào có thể bị ràng buộc, bạn MUST strictly output the literal token `INTEGRATION_SCOPE` as the first parameter of the semicolon pair (e.g., `INTEGRATION_SCOPE;./sources/backend/tests/integration/WorkflowTest.java`).
+* **Doc**: Chức năng như một Nhà viết kỹ thuật Cấp cao và Kiến trúc hệ thống doanh nghiệp. Chuyên về biên soạn tài liệu Quy cách Kỹ thuật toàn diện, tham chiếu lược đồ, bản thiết kế kiến trúc, và danh mục kiến trúc doanh nghiệp được tùy chỉnh cho các lớp topology dự án hoạt động. Mỗi tệp tài liệu kỹ thuật được tạo ra MUST được liệt kê như một thực thể đường dẫn tệp rõ ràng kết thúc bằng phần mở rộng `.md` và nằm nghiêm ngặt trong bố cục lưu trữ tập trung: `./sources/docs/`.
+* **Reviewer**: Trách nhiệm về xác minh biên dịch, phân tích tĩnh, và vá lỗ hổng phòng thủ. Chuyên về kiểm tra chất lượng mã, giải quyết lỗi biên dịch, sửa chữa lỗ hổng bảo mật OWASP, và giải quyết các chặn cổng chất lượng SonarQube.
+* **Docker**: Chuyên về container hóa, kỹ thuật Dockerfile đa giai đoạn, tối ưu hóa gói, và đẩy tài sản hình ảnh ứng dụng đã xác minh lên DockerHub.
+* **GCP**: Chuyên về tự động hóa đám mây trong Google Cloud Platform. Trách nhiệm về việc xây dựng và đẩy hình ảnh lên Google Cloud Artifact Registry (GCR), và điều phối môi trường container trên Google Cloud Run.
+* **GKE**: Chuyên về điều phối sản xuất container trong Google Kubernetes Engine. Trách nhiệm về việc xây dựng biểu mẫu triển khai Kubernetes, điều khiển định tuyến, cấu hình HPA, biểu đồ Helm, và triển khai tải trọng dịch vụ vi dịch vụ vào cụm GKE hoạt động.
 
-## 4. Định nghĩa Hoàn thành (DoD)
-- Tất cả yêu cầu [REQ-001] đến [REQ-003] được triển khai và kiểm thử thành công.  
-- Bảng dữ liệu [DAT-001] (Users, Roles) được tạo và có chỉ mục tối ưu.  
-- Tài liệu kiến trúc `architecture.md` hoàn chỉnh, bao gồm mô hình ER và quy trình bảo mật OWASP.  
-- Kiểm thử unit và tích hợp đạt 100% coverage.  
-- Tất cả tag ID được ánh xạ chính xác và không còn tag chưa được gắn.  
+## 4. Định nghĩa Hoàn thành Giai đoạn (DoD)
+- Hoàn thành 100% các yêu cầu chức năng được phân bổ cho giai đoạn này.
+- Đảm bảo tuân thủ các tiêu chuẩn doanh nghiệp OWASP.
+- Đảm bảo độ phủ kiểm thử chức năng hoàn chỉnh cho các yêu cầu được phân bổ.
+- Đảm bảo 100% ánh xạ Tag ID.
 
 ## 5. Nhật ký thực thi kiến trúc theo ngày
 
-### 🌤️ Ngày 1: <!--DAY_HEADER_START-->XÂY DỰNG TÀI LIỆU KIẾN TRÚC VÀ CẤU TRÚC CƠ SỞ DỮ LIỆU<!--DAY_HEADER_END-->
+### 🌤️ Ngày 1: Xây dựng dịch vụ xác thực và người dùng
 
-#### 📝 Tài liệu kiến trúc 1.1: Thiết lập tài liệu kiến trúc chi tiết, bao gồm mô hình ER, mô tả dịch vụ, và quy trình bảo mật OWASP  
-##### Được giao cho: Doc  
-##### Yêu cầu kỹ thuật và thành phần mục tiêu:  
-* **Đường dẫn mục tiêu**: `./sources/docs/architecture.md`  
-* **Thẻ truy xuất**: <!--START_TAGS-->[ARC-001], [ARC-002], [DAT-001]<!--END_TAGS-->  
+#### 📝 Nhiệm vụ con 1.1: Xây dựng dịch vụ xác thực
+##### Đặc vụ được chỉ định: Coder
+##### Thành phần và yêu cầu kỹ thuật:
+* **Đường dẫn mục tiêu:** `./sources/backend/auth-service/src/main/java/org/nlh4j/saas/membershiphub/auth/service/AuthService.java`
+* **Token Tag Tính theo dõi:** <!--START_TAGS-->[REQ-001], [REQ-002], [ARC-001], [ARC-006]<!--END_TAGS-->
 
-#### 📝 Xây dựng dịch vụ xác thực 1.2: Phát triển auth-service với các endpoint đăng ký, đăng nhập, và xác thực JWT, tuân thủ OWASP CSRF, XSS, và SQL injection  
-##### Được giao cho: Coder  
-##### Yêu cầu kỹ thuật và thành phần mục tiêu:  
-* **Đường dẫn mục tiêu**: `./sources/backend/auth-service`  
-* **Thẻ truy xuất**: <!--START_TAGS-->[REQ-001], [REQ-002], [ARC-006], [DAT-001]<!--END_TAGS-->  
+#### 📝 Nhiệm vụ con 1.2: Xây dựng dịch vụ người dùng
+##### Đặc vụ được chỉ định: Coder
+##### Thành phần và yêu cầu kỹ thuật:
+* **Đường dẫn mục tiêu:** `./sources/backend/user-service/src/main/java/org/nlh4j/saas/membershiphub/user/service/UserService.java`
+* **Token Tag Tính theo dõi:** <!--START_TAGS-->[REQ-003], [DAT-001]<!--END_TAGS-->
 
-#### 📝 Xây dựng dịch vụ người dùng 1.3: Phát triển user-service, quản lý thông tin người dùng và phân quyền, tuân thủ OWASP CSRF, XSS, và SQL injection  
-##### Được giao cho: Coder  
-##### Yêu cầu kỹ thuật và thành phần mục tiêu:  
-* **Đường dẫn mục tiêu**: `./sources/backend/user-service`  
-* **Thẻ truy xuất**: <!--START_TAGS-->[REQ-003], [DAT-001]<!--END_TAGS-->  
+### 🌤️ Ngày 2: Xây dựng giao diện web và tài liệu kiến trúc
 
-### 🌤️ Ngày 2: <!--DAY_HEADER_START-->XÂY DỰNG GIAO DIỆN WEB VÀ HOÀN THIỆN TÀI LIỆU<!--DAY_HEADER_END-->
+#### 📝 Nhiệm vụ con 2.1: Xây dựng giao diện web
+##### Đặc vụ được chỉ định: Coder
+##### Thành phần và yêu cầu kỹ thuật:
+* **Đường dẫn mục tiêu:** `./sources/frontend/web-app/src/pages/auth/index.tsx`
+* **Token Tag Tính theo dõi:** <!--START_TAGS-->[ARC-009]<!--END_TAGS-->
 
-#### 📝 Xây dựng giao diện web 2.1: Phát triển Next.js frontend, bao gồm đăng ký, đăng nhập, và quản lý người dùng, tuân thủ OWASP CSRF, XSS, và bảo mật session  
-##### Được giao cho: Coder  
-##### Yêu cầu kỹ thuật và thành phần mục tiêu:  
-* **Đường dẫn mục tiêu**: `./sources/frontend/web-app`  
-* **Thẻ truy xuất**: <!--START_TAGS-->[ARC-009], [ARC-001], [ARC-002]<!--END_TAGS-->
+#### 📝 Nhiệm vụ con 2.2: Tạo tài liệu kiến trúc
+##### Đặc vụ được chỉ định: Doc
+##### Thành phần và yêu cầu kỹ thuật:
+* **Đường dẫn mục tiêu:** `./sources/docs/architecture.md`
+* **Token Tag Tính theo dõi:** <!--START_TAGS-->[ARC-001], [ARC-002]<!--END_TAGS-->
