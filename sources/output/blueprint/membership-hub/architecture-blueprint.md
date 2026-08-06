@@ -467,10 +467,10 @@ You MUST include every single section below without exception to satisfy enterpr
 
 | Item | Details |
 | :--- | :--- |
-| **Blueprint ID** | ARCH-20260806080121 |
+| **Blueprint ID** | ARCH-20260806083133 |
 | **Project Name** | membership-hub |
 | **Version** | 1.0 (Baseline) |
-| **Date.Time** | 2026/08/06 08:01:21 |
+| **Date.Time** | 2026/08/06 08:31:33 |
 | **Author** | Enterprise System Architect (SA Agent) |
 | **Approval** | Pending Technical Governance Review |
 
@@ -487,7 +487,7 @@ You MUST include every single section below without exception to satisfy enterpr
 - **Frontend & Cross-Platform UI Mobile Stack:** [Detail strict web frameworks, dynamic localized routing, responsive layouts, and native mobile runtime wrappers if present]
 
 ###### ARCHITECTURAL STACK MATRIX
-<!--START_COMMAND
+
 ```properties
 PERSISTENCE_LAYER_REQUIRED=[true/false based on project context]
 BACKEND_LAYER_REQUIRED=[true/false based on project context]
@@ -495,7 +495,6 @@ FRONTEND_LAYER_REQUIRED=[true/false based on project context]
 MOBILE_LAYER_REQUIRED=[true/false based on project context]
 DEVOPS_LAYER_REQUIRED=[true/false based on project context]
 ```
-END_COMMAND-->
 
 #### 📁 3. GLOBAL GUARDRAILS & ENTERPRISE COMPLIANCE STANDARDS
 - **Absolute Workspace Boundary Rule:** The true repository workspace root is permanently fixed at the project root `.`. All paths generated MUST begin with `./sources/`.
@@ -596,7 +595,7 @@ However, you MUST NOT translate or modify any technical syntax blocks or core el
 
 # Raw Response / Exception:
 
-Error code: 413 - {'error': {'message': 'Request too large for model `llama-3.3-70b-versatile` in organization `org_01kx7x6rbpftmr50sr2yyb78qm` service tier `on_demand` on tokens per minute (TPM): Limit 12000, Requested 15684, please reduce your message size and try again. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing', 'type': 'tokens', 'code': 'rate_limit_exceeded'}}: ['Traceback (most recent call last):
+Error code: 413 - {'error': {'message': 'Request too large for model `llama-3.3-70b-versatile` in organization `org_01kx7x6rbpftmr50sr2yyb78qm` service tier `on_demand` on tokens per minute (TPM): Limit 12000, Requested 16173, please reduce your message size and try again. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing', 'type': 'tokens', 'code': 'rate_limit_exceeded'}}: ['Traceback (most recent call last):
 ', '  File "/home/runner/work/enterprise-it-ai/enterprise-it-ai/sources/agents/architect-blueprint/block_global.py", line 92, in generate_global_context
     response = client.chat.completions.create(
                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -611,7 +610,7 @@ Error code: 413 - {'error': {'message': 'Request too large for model `llama-3.3-
                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 ', '  File "/opt/hostedtoolcache/Python/3.11.15/x64/lib/python3.11/site-packages/openai/_base_client.py", line 1148, in request
     raise self._make_status_error_from_response(err.response) from None
-', "openai.APIStatusError: Error code: 413 - {'error': {'message': 'Request too large for model `llama-3.3-70b-versatile` in organization `org_01kx7x6rbpftmr50sr2yyb78qm` service tier `on_demand` on tokens per minute (TPM): Limit 12000, Requested 15684, please reduce your message size and try again. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing', 'type': 'tokens', 'code': 'rate_limit_exceeded'}}
+', "openai.APIStatusError: Error code: 413 - {'error': {'message': 'Request too large for model `llama-3.3-70b-versatile` in organization `org_01kx7x6rbpftmr50sr2yyb78qm` service tier `on_demand` on tokens per minute (TPM): Limit 12000, Requested 16173, please reduce your message size and try again. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing', 'type': 'tokens', 'code': 'rate_limit_exceeded'}}
 "]
 
 # AI Model: meta-llama/llama-3.3-70b-instruct:free - Global Prompt:
@@ -1083,10 +1082,10 @@ You MUST include every single section below without exception to satisfy enterpr
 
 | Item | Details |
 | :--- | :--- |
-| **Blueprint ID** | ARCH-20260806080121 |
+| **Blueprint ID** | ARCH-20260806083133 |
 | **Project Name** | membership-hub |
 | **Version** | 1.0 (Baseline) |
-| **Date.Time** | 2026/08/06 08:01:21 |
+| **Date.Time** | 2026/08/06 08:31:33 |
 | **Author** | Enterprise System Architect (SA Agent) |
 | **Approval** | Pending Technical Governance Review |
 
@@ -1103,7 +1102,7 @@ You MUST include every single section below without exception to satisfy enterpr
 - **Frontend & Cross-Platform UI Mobile Stack:** [Detail strict web frameworks, dynamic localized routing, responsive layouts, and native mobile runtime wrappers if present]
 
 ###### ARCHITECTURAL STACK MATRIX
-<!--START_COMMAND
+
 ```properties
 PERSISTENCE_LAYER_REQUIRED=[true/false based on project context]
 BACKEND_LAYER_REQUIRED=[true/false based on project context]
@@ -1111,7 +1110,6 @@ FRONTEND_LAYER_REQUIRED=[true/false based on project context]
 MOBILE_LAYER_REQUIRED=[true/false based on project context]
 DEVOPS_LAYER_REQUIRED=[true/false based on project context]
 ```
-END_COMMAND-->
 
 #### 📁 3. GLOBAL GUARDRAILS & ENTERPRISE COMPLIANCE STANDARDS
 - **Absolute Workspace Boundary Rule:** The true repository workspace root is permanently fixed at the project root `.`. All paths generated MUST begin with `./sources/`.
@@ -1699,10 +1697,10 @@ You MUST include every single section below without exception to satisfy enterpr
 
 | Item | Details |
 | :--- | :--- |
-| **Blueprint ID** | ARCH-20260806080121 |
+| **Blueprint ID** | ARCH-20260806083133 |
 | **Project Name** | membership-hub |
 | **Version** | 1.0 (Baseline) |
-| **Date.Time** | 2026/08/06 08:01:21 |
+| **Date.Time** | 2026/08/06 08:31:33 |
 | **Author** | Enterprise System Architect (SA Agent) |
 | **Approval** | Pending Technical Governance Review |
 
@@ -1719,7 +1717,7 @@ You MUST include every single section below without exception to satisfy enterpr
 - **Frontend & Cross-Platform UI Mobile Stack:** [Detail strict web frameworks, dynamic localized routing, responsive layouts, and native mobile runtime wrappers if present]
 
 ###### ARCHITECTURAL STACK MATRIX
-<!--START_COMMAND
+
 ```properties
 PERSISTENCE_LAYER_REQUIRED=[true/false based on project context]
 BACKEND_LAYER_REQUIRED=[true/false based on project context]
@@ -1727,7 +1725,6 @@ FRONTEND_LAYER_REQUIRED=[true/false based on project context]
 MOBILE_LAYER_REQUIRED=[true/false based on project context]
 DEVOPS_LAYER_REQUIRED=[true/false based on project context]
 ```
-END_COMMAND-->
 
 #### 📁 3. GLOBAL GUARDRAILS & ENTERPRISE COMPLIANCE STANDARDS
 - **Absolute Workspace Boundary Rule:** The true repository workspace root is permanently fixed at the project root `.`. All paths generated MUST begin with `./sources/`.
@@ -1828,7 +1825,7 @@ However, you MUST NOT translate or modify any technical syntax blocks or core el
 
 # Raw Response / Exception:
 
-Error code: 402 - {'error': {'message': 'This request requires more credits, or fewer max_tokens. You requested up to 65536 tokens, but can only afford 942. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account', 'code': 402, 'metadata': {'limit_source': 'openrouter_credits', 'remedy_hint': 'Add credits at https://openrouter.ai/settings/credits, or lower max_tokens / prompt size to fit your remaining balance.', 'provider_name': None, 'previous_errors': [{'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 65536 tokens, but can only afford 502. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 16384 tokens, but can only afford 1177. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 3072 tokens, but can only afford 418. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 65536 tokens, but can only afford 942. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 16384 tokens, but can only afford 753. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 2048 tokens, but can only afford 362. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 32768 tokens, but can only afford 477. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 6481 tokens, but can only afford 167. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 8192 tokens, but can only afford 523. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 65536 tokens, but can only afford 530. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 65536 tokens, but can only afford 523. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}]}}, 'user_id': 'user_3GLaJI6mihRMFQtSad72HqAhW95'}: ['Traceback (most recent call last):
+Error code: 402 - {'error': {'message': 'This request requires more credits, or fewer max_tokens. You requested up to 65536 tokens, but can only afford 942. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account', 'code': 402, 'metadata': {'limit_source': 'openrouter_credits', 'remedy_hint': 'Add credits at https://openrouter.ai/settings/credits, or lower max_tokens / prompt size to fit your remaining balance.', 'provider_name': None, 'previous_errors': [{'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 16384 tokens, but can only afford 753. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 6481 tokens, but can only afford 167. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 16384 tokens, but can only afford 1177. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 65536 tokens, but can only afford 942. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 65536 tokens, but can only afford 523. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 32768 tokens, but can only afford 477. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 2048 tokens, but can only afford 362. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 65536 tokens, but can only afford 502. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 8192 tokens, but can only afford 523. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 3072 tokens, but can only afford 418. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 65536 tokens, but can only afford 530. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}]}}, 'user_id': 'user_3GLaJI6mihRMFQtSad72HqAhW95'}: ['Traceback (most recent call last):
 ', '  File "/home/runner/work/enterprise-it-ai/enterprise-it-ai/sources/agents/architect-blueprint/block_global.py", line 92, in generate_global_context
     response = client.chat.completions.create(
                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -1843,7 +1840,7 @@ Error code: 402 - {'error': {'message': 'This request requires more credits, or 
                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 ', '  File "/opt/hostedtoolcache/Python/3.11.15/x64/lib/python3.11/site-packages/openai/_base_client.py", line 1148, in request
     raise self._make_status_error_from_response(err.response) from None
-', "openai.APIStatusError: Error code: 402 - {'error': {'message': 'This request requires more credits, or fewer max_tokens. You requested up to 65536 tokens, but can only afford 942. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account', 'code': 402, 'metadata': {'limit_source': 'openrouter_credits', 'remedy_hint': 'Add credits at https://openrouter.ai/settings/credits, or lower max_tokens / prompt size to fit your remaining balance.', 'provider_name': None, 'previous_errors': [{'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 65536 tokens, but can only afford 502. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 16384 tokens, but can only afford 1177. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 3072 tokens, but can only afford 418. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 65536 tokens, but can only afford 942. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 16384 tokens, but can only afford 753. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 2048 tokens, but can only afford 362. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 32768 tokens, but can only afford 477. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 6481 tokens, but can only afford 167. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 8192 tokens, but can only afford 523. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 65536 tokens, but can only afford 530. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 65536 tokens, but can only afford 523. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}]}}, 'user_id': 'user_3GLaJI6mihRMFQtSad72HqAhW95'}
+', "openai.APIStatusError: Error code: 402 - {'error': {'message': 'This request requires more credits, or fewer max_tokens. You requested up to 65536 tokens, but can only afford 942. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account', 'code': 402, 'metadata': {'limit_source': 'openrouter_credits', 'remedy_hint': 'Add credits at https://openrouter.ai/settings/credits, or lower max_tokens / prompt size to fit your remaining balance.', 'provider_name': None, 'previous_errors': [{'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 16384 tokens, but can only afford 753. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 6481 tokens, but can only afford 167. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 16384 tokens, but can only afford 1177. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 65536 tokens, but can only afford 942. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 65536 tokens, but can only afford 523. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 32768 tokens, but can only afford 477. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 2048 tokens, but can only afford 362. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 65536 tokens, but can only afford 502. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 8192 tokens, but can only afford 523. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 3072 tokens, but can only afford 418. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 65536 tokens, but can only afford 530. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}]}}, 'user_id': 'user_3GLaJI6mihRMFQtSad72HqAhW95'}
 "]
 
 # AI Model: qwen/qwen-2.5-coder-32b-instruct - Global Prompt:
@@ -2315,10 +2312,10 @@ You MUST include every single section below without exception to satisfy enterpr
 
 | Item | Details |
 | :--- | :--- |
-| **Blueprint ID** | ARCH-20260806080121 |
+| **Blueprint ID** | ARCH-20260806083133 |
 | **Project Name** | membership-hub |
 | **Version** | 1.0 (Baseline) |
-| **Date.Time** | 2026/08/06 08:01:21 |
+| **Date.Time** | 2026/08/06 08:31:33 |
 | **Author** | Enterprise System Architect (SA Agent) |
 | **Approval** | Pending Technical Governance Review |
 
@@ -2335,7 +2332,7 @@ You MUST include every single section below without exception to satisfy enterpr
 - **Frontend & Cross-Platform UI Mobile Stack:** [Detail strict web frameworks, dynamic localized routing, responsive layouts, and native mobile runtime wrappers if present]
 
 ###### ARCHITECTURAL STACK MATRIX
-<!--START_COMMAND
+
 ```properties
 PERSISTENCE_LAYER_REQUIRED=[true/false based on project context]
 BACKEND_LAYER_REQUIRED=[true/false based on project context]
@@ -2343,7 +2340,6 @@ FRONTEND_LAYER_REQUIRED=[true/false based on project context]
 MOBILE_LAYER_REQUIRED=[true/false based on project context]
 DEVOPS_LAYER_REQUIRED=[true/false based on project context]
 ```
-END_COMMAND-->
 
 #### 📁 3. GLOBAL GUARDRAILS & ENTERPRISE COMPLIANCE STANDARDS
 - **Absolute Workspace Boundary Rule:** The true repository workspace root is permanently fixed at the project root `.`. All paths generated MUST begin with `./sources/`.
@@ -2931,10 +2927,10 @@ You MUST include every single section below without exception to satisfy enterpr
 
 | Item | Details |
 | :--- | :--- |
-| **Blueprint ID** | ARCH-20260806080121 |
+| **Blueprint ID** | ARCH-20260806083133 |
 | **Project Name** | membership-hub |
 | **Version** | 1.0 (Baseline) |
-| **Date.Time** | 2026/08/06 08:01:21 |
+| **Date.Time** | 2026/08/06 08:31:33 |
 | **Author** | Enterprise System Architect (SA Agent) |
 | **Approval** | Pending Technical Governance Review |
 
@@ -2951,7 +2947,7 @@ You MUST include every single section below without exception to satisfy enterpr
 - **Frontend & Cross-Platform UI Mobile Stack:** [Detail strict web frameworks, dynamic localized routing, responsive layouts, and native mobile runtime wrappers if present]
 
 ###### ARCHITECTURAL STACK MATRIX
-<!--START_COMMAND
+
 ```properties
 PERSISTENCE_LAYER_REQUIRED=[true/false based on project context]
 BACKEND_LAYER_REQUIRED=[true/false based on project context]
@@ -2959,7 +2955,6 @@ FRONTEND_LAYER_REQUIRED=[true/false based on project context]
 MOBILE_LAYER_REQUIRED=[true/false based on project context]
 DEVOPS_LAYER_REQUIRED=[true/false based on project context]
 ```
-END_COMMAND-->
 
 #### 📁 3. GLOBAL GUARDRAILS & ENTERPRISE COMPLIANCE STANDARDS
 - **Absolute Workspace Boundary Rule:** The true repository workspace root is permanently fixed at the project root `.`. All paths generated MUST begin with `./sources/`.
@@ -3547,10 +3542,10 @@ You MUST include every single section below without exception to satisfy enterpr
 
 | Item | Details |
 | :--- | :--- |
-| **Blueprint ID** | ARCH-20260806080121 |
+| **Blueprint ID** | ARCH-20260806083133 |
 | **Project Name** | membership-hub |
 | **Version** | 1.0 (Baseline) |
-| **Date.Time** | 2026/08/06 08:01:21 |
+| **Date.Time** | 2026/08/06 08:31:33 |
 | **Author** | Enterprise System Architect (SA Agent) |
 | **Approval** | Pending Technical Governance Review |
 
@@ -3567,7 +3562,7 @@ You MUST include every single section below without exception to satisfy enterpr
 - **Frontend & Cross-Platform UI Mobile Stack:** [Detail strict web frameworks, dynamic localized routing, responsive layouts, and native mobile runtime wrappers if present]
 
 ###### ARCHITECTURAL STACK MATRIX
-<!--START_COMMAND
+
 ```properties
 PERSISTENCE_LAYER_REQUIRED=[true/false based on project context]
 BACKEND_LAYER_REQUIRED=[true/false based on project context]
@@ -3575,7 +3570,6 @@ FRONTEND_LAYER_REQUIRED=[true/false based on project context]
 MOBILE_LAYER_REQUIRED=[true/false based on project context]
 DEVOPS_LAYER_REQUIRED=[true/false based on project context]
 ```
-END_COMMAND-->
 
 #### 📁 3. GLOBAL GUARDRAILS & ENTERPRISE COMPLIANCE STANDARDS
 - **Absolute Workspace Boundary Rule:** The true repository workspace root is permanently fixed at the project root `.`. All paths generated MUST begin with `./sources/`.
@@ -4163,10 +4157,10 @@ You MUST include every single section below without exception to satisfy enterpr
 
 | Item | Details |
 | :--- | :--- |
-| **Blueprint ID** | ARCH-20260806080121 |
+| **Blueprint ID** | ARCH-20260806083133 |
 | **Project Name** | membership-hub |
 | **Version** | 1.0 (Baseline) |
-| **Date.Time** | 2026/08/06 08:01:21 |
+| **Date.Time** | 2026/08/06 08:31:33 |
 | **Author** | Enterprise System Architect (SA Agent) |
 | **Approval** | Pending Technical Governance Review |
 
@@ -4183,7 +4177,7 @@ You MUST include every single section below without exception to satisfy enterpr
 - **Frontend & Cross-Platform UI Mobile Stack:** [Detail strict web frameworks, dynamic localized routing, responsive layouts, and native mobile runtime wrappers if present]
 
 ###### ARCHITECTURAL STACK MATRIX
-<!--START_COMMAND
+
 ```properties
 PERSISTENCE_LAYER_REQUIRED=[true/false based on project context]
 BACKEND_LAYER_REQUIRED=[true/false based on project context]
@@ -4191,7 +4185,6 @@ FRONTEND_LAYER_REQUIRED=[true/false based on project context]
 MOBILE_LAYER_REQUIRED=[true/false based on project context]
 DEVOPS_LAYER_REQUIRED=[true/false based on project context]
 ```
-END_COMMAND-->
 
 #### 📁 3. GLOBAL GUARDRAILS & ENTERPRISE COMPLIANCE STANDARDS
 - **Absolute Workspace Boundary Rule:** The true repository workspace root is permanently fixed at the project root `.`. All paths generated MUST begin with `./sources/`.
@@ -4292,7 +4285,7 @@ However, you MUST NOT translate or modify any technical syntax blocks or core el
 
 # Raw Response / Exception:
 
-Error code: 402 - {'error': {'message': 'This request requires more credits, or fewer max_tokens. You requested up to 65536 tokens, but can only afford 314. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account', 'code': 402, 'metadata': {'limit_source': 'openrouter_credits', 'remedy_hint': 'Add credits at https://openrouter.ai/settings/credits, or lower max_tokens / prompt size to fit your remaining balance.', 'provider_name': None, 'previous_errors': [{'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 65536 tokens, but can only afford 314. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 65536 tokens, but can only afford 314. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 32768 tokens, but can only afford 314. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 65536 tokens, but can only afford 314. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 65536 tokens, but can only afford 314. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 65536 tokens, but can only afford 392. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 65536 tokens, but can only afford 314. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 65536 tokens, but can only afford 314. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}]}}, 'user_id': 'user_3GLaJI6mihRMFQtSad72HqAhW95'}: ['Traceback (most recent call last):
+Error code: 402 - {'error': {'message': 'This request requires more credits, or fewer max_tokens. You requested up to 32768 tokens, but can only afford 314. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account', 'code': 402, 'metadata': {'limit_source': 'openrouter_credits', 'remedy_hint': 'Add credits at https://openrouter.ai/settings/credits, or lower max_tokens / prompt size to fit your remaining balance.', 'provider_name': None, 'previous_errors': [{'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 65536 tokens, but can only afford 314. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 65536 tokens, but can only afford 314. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 65536 tokens, but can only afford 392. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 65536 tokens, but can only afford 314. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 65536 tokens, but can only afford 314. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 65536 tokens, but can only afford 314. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 65536 tokens, but can only afford 314. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 65536 tokens, but can only afford 314. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}]}}, 'user_id': 'user_3GLaJI6mihRMFQtSad72HqAhW95'}: ['Traceback (most recent call last):
 ', '  File "/home/runner/work/enterprise-it-ai/enterprise-it-ai/sources/agents/architect-blueprint/block_global.py", line 92, in generate_global_context
     response = client.chat.completions.create(
                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -4307,7 +4300,7 @@ Error code: 402 - {'error': {'message': 'This request requires more credits, or 
                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 ', '  File "/opt/hostedtoolcache/Python/3.11.15/x64/lib/python3.11/site-packages/openai/_base_client.py", line 1148, in request
     raise self._make_status_error_from_response(err.response) from None
-', "openai.APIStatusError: Error code: 402 - {'error': {'message': 'This request requires more credits, or fewer max_tokens. You requested up to 65536 tokens, but can only afford 314. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account', 'code': 402, 'metadata': {'limit_source': 'openrouter_credits', 'remedy_hint': 'Add credits at https://openrouter.ai/settings/credits, or lower max_tokens / prompt size to fit your remaining balance.', 'provider_name': None, 'previous_errors': [{'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 65536 tokens, but can only afford 314. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 65536 tokens, but can only afford 314. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 32768 tokens, but can only afford 314. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 65536 tokens, but can only afford 314. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 65536 tokens, but can only afford 314. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 65536 tokens, but can only afford 392. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 65536 tokens, but can only afford 314. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 65536 tokens, but can only afford 314. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}]}}, 'user_id': 'user_3GLaJI6mihRMFQtSad72HqAhW95'}
+', "openai.APIStatusError: Error code: 402 - {'error': {'message': 'This request requires more credits, or fewer max_tokens. You requested up to 32768 tokens, but can only afford 314. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account', 'code': 402, 'metadata': {'limit_source': 'openrouter_credits', 'remedy_hint': 'Add credits at https://openrouter.ai/settings/credits, or lower max_tokens / prompt size to fit your remaining balance.', 'provider_name': None, 'previous_errors': [{'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 65536 tokens, but can only afford 314. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 65536 tokens, but can only afford 314. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 65536 tokens, but can only afford 392. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 65536 tokens, but can only afford 314. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 65536 tokens, but can only afford 314. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 65536 tokens, but can only afford 314. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 65536 tokens, but can only afford 314. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 65536 tokens, but can only afford 314. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}]}}, 'user_id': 'user_3GLaJI6mihRMFQtSad72HqAhW95'}
 "]
 
 # AI Model: openai/gpt-5.3-codex - Global Prompt:
@@ -4779,10 +4772,10 @@ You MUST include every single section below without exception to satisfy enterpr
 
 | Item | Details |
 | :--- | :--- |
-| **Blueprint ID** | ARCH-20260806080121 |
+| **Blueprint ID** | ARCH-20260806083133 |
 | **Project Name** | membership-hub |
 | **Version** | 1.0 (Baseline) |
-| **Date.Time** | 2026/08/06 08:01:21 |
+| **Date.Time** | 2026/08/06 08:31:33 |
 | **Author** | Enterprise System Architect (SA Agent) |
 | **Approval** | Pending Technical Governance Review |
 
@@ -4799,7 +4792,7 @@ You MUST include every single section below without exception to satisfy enterpr
 - **Frontend & Cross-Platform UI Mobile Stack:** [Detail strict web frameworks, dynamic localized routing, responsive layouts, and native mobile runtime wrappers if present]
 
 ###### ARCHITECTURAL STACK MATRIX
-<!--START_COMMAND
+
 ```properties
 PERSISTENCE_LAYER_REQUIRED=[true/false based on project context]
 BACKEND_LAYER_REQUIRED=[true/false based on project context]
@@ -4807,7 +4800,6 @@ FRONTEND_LAYER_REQUIRED=[true/false based on project context]
 MOBILE_LAYER_REQUIRED=[true/false based on project context]
 DEVOPS_LAYER_REQUIRED=[true/false based on project context]
 ```
-END_COMMAND-->
 
 #### 📁 3. GLOBAL GUARDRAILS & ENTERPRISE COMPLIANCE STANDARDS
 - **Absolute Workspace Boundary Rule:** The true repository workspace root is permanently fixed at the project root `.`. All paths generated MUST begin with `./sources/`.
@@ -5395,10 +5387,10 @@ You MUST include every single section below without exception to satisfy enterpr
 
 | Item | Details |
 | :--- | :--- |
-| **Blueprint ID** | ARCH-20260806080121 |
+| **Blueprint ID** | ARCH-20260806083133 |
 | **Project Name** | membership-hub |
 | **Version** | 1.0 (Baseline) |
-| **Date.Time** | 2026/08/06 08:01:21 |
+| **Date.Time** | 2026/08/06 08:31:33 |
 | **Author** | Enterprise System Architect (SA Agent) |
 | **Approval** | Pending Technical Governance Review |
 
@@ -5415,7 +5407,7 @@ You MUST include every single section below without exception to satisfy enterpr
 - **Frontend & Cross-Platform UI Mobile Stack:** [Detail strict web frameworks, dynamic localized routing, responsive layouts, and native mobile runtime wrappers if present]
 
 ###### ARCHITECTURAL STACK MATRIX
-<!--START_COMMAND
+
 ```properties
 PERSISTENCE_LAYER_REQUIRED=[true/false based on project context]
 BACKEND_LAYER_REQUIRED=[true/false based on project context]
@@ -5423,7 +5415,6 @@ FRONTEND_LAYER_REQUIRED=[true/false based on project context]
 MOBILE_LAYER_REQUIRED=[true/false based on project context]
 DEVOPS_LAYER_REQUIRED=[true/false based on project context]
 ```
-END_COMMAND-->
 
 #### 📁 3. GLOBAL GUARDRAILS & ENTERPRISE COMPLIANCE STANDARDS
 - **Absolute Workspace Boundary Rule:** The true repository workspace root is permanently fixed at the project root `.`. All paths generated MUST begin with `./sources/`.
@@ -5523,6 +5514,10 @@ Generate a clean, highly structured Markdown Table mapping the exact distributio
     * You MUST rigorously enforce a compartmentalized, fault-tolerant execution strategy during token parsing. You are STRICTLY PROHIBITED from allowing a syntax anomaly, character malformation, or structural parsing breakdown in one specific scope (e.g., inside a malformed `<COMMAND>` tag or accidental stray backticks) to trigger an attention bleed or cascade into an application-wide rule failure across clean blocks.
     * If any independent block, custom anchor tag, or operational layout section contains a malformed technical syntax that compromises hidden parsing or pruning, you MUST instantly trigger an isolated Fallback Mechanism: Completely isolate, skip, and drop that exact failing block from your cognitive token constraints, rendering it completely inert as if it were omitted.
     * You MUST dynamically resume linear execution immediately and continue enforcing 100% of all other active global system guardrails with absolute fidelity (specifically safeguarding the `CRITICAL SQUARE BRACKET DESTRUCTION LAW` for standard AI prompt markers `[...]`, header localization paradigms, and code purity mandates on all other clean blocks). Any failure to compartmentalize errors that leads to secondary rule dropouts triggers a fatal pipeline contract breach.
+- 🚨 **UNIVERSAL DYNAMIC LAYOUT & TABLE HEADER LOCALIZATION LAW (PROJECT-AGNOSTIC PARADIGM):**
+    * **Header Structural Parsing Filter:** Any text string accompanying markdown structural header syntax operators (`#`, `##`, `###`, `####`)—regardless of full uppercase formatting or specialized character components—MUST be dynamically parsed, isolated from the syntax tokens, and fully translated into the requested Target Output Language: "🇻🇳 Vietnamese". You are STRICTLY AND PERMANENTLY FORBIDDEN from freezing a whole header line in raw English to evade translation gates.
+    * **Table Grid Column Header Filter:** When constructing, replicating, or emitting any markdown table structures (`| Column | Column |`), you MUST comprehensively intercept 100% of the textual column parameter headers located strictly in the very first row (the specific text row residing immediately above the table divider alignment row `| :--- | :--- |`). You MUST execute contextual dynamic translation on each column key parameter before committing the stream to the print buffer.
+    * **Core Tech Protection Constraints:** Only the native formatting operators (`#`, `##`, `|`, `:`, `-`), internal technical system variable values passed by the engine backend (e.g., ``, ``), and literal tracking Tag IDs (e.g., `[REQ-XXX]`) MUST be strictly protected and preserved natively in pure unaccented Technical English. Any model execution that leaks raw layout titles or structural table dictionary headers in English triggers an immediate compliance pipeline failure.
 
 ## 🔐 2. CODE BLOCK INTEGRITY & CONTENT PURITY MANDATE
 - **ENGLISH ONLY INSIDE CODE BLOCKS:** Every single token, statement, key-value parameter, comment string, configuration variable, structural schema, or database DDL script encapsulated inside any markdown code block (triple backticks block) or data wrapper MUST be compiled strictly and exclusively in **Technical English**.
@@ -5541,6 +5536,7 @@ Generate a clean, highly structured Markdown Table mapping the exact distributio
 - **TONE COMPLIANCE:** All generated rationale sentences, justifications, and report outputs MUST utilize an authoritative, precise, and highly professional corporate engineering telegraphy tone (eliminate filler adjectives and passive descriptions).
 - **ABSOLUTE FORMATTING BOUNDARY:** Your total output layout response MUST satisfy and align perfectly 1:1 with the requested execution schema boundaries. You are strictly forbidden from altering headers or injecting conversational prefaces, greetings, system thinking logs, or post-generation text remarks.
 - 🚨 **CRITICAL SQUARE BRACKET DESTRUCTION LAW**: Any text segment enclosed within square brackets `[...]` inside the structural report templates (e.g., `[Provide a comprehensive...]`, `[Detail...]`) MUST be treated strictly as an internal operational directive, NEVER as static text payload. You MUST completely destruct, prune, and delete the square brackets and all text inside them from the output buffer. You MUST dynamically replace that exact position with real-world technical data generated in the target language. Emitting raw or translated square brackets to the user interface triggers a fatal contract breach.
+    * **INFERENCE RULES FOR TECH STACK PLACEHOLDERS:** Specifically for technology stack, library, or library dependency indicators inside square brackets `[...]` (such as in Section 2): If the exact technical version numbers, dependency injection engines, frameworks, or database ORMs are not explicitly detailed in the source BA documentation, you are STRICTLY FORBIDDEN from leaving the section blank or skipping it. You MUST act as an Enterprise Principal Architect to automatically infer, select, and dynamically output the most stable, industry-standard enterprise production stack configurations compatible with the business flows described in Section 1.2 (e.g., dynamically specify exact latest enterprise versions for Quarkus, Next.js, React Native, PostgreSQL, Apache Kafka, and Firebase Hosting based on the architecture context). Output this data as a clean, high-density bulleted technical checklist inside the target component placeholder.
 
 ## 🧮 6. DETERMINISTIC TRIPLE-DEEPEST CHECK VERIFICATION LOOP & PIPELINE
 - **MANDATORY EXECUTION PIPELINE:** Before emitting any text string or committing any data stream payload to the output buffer, you MUST strictly execute the following sequential compilation and verification pipeline inside your internal memory context:
@@ -5619,30 +5615,31 @@ However, you MUST NOT translate or modify any technical syntax blocks or core el
 
 #### 📊 Document Control
 
-| Item | Details |
+| Mục | Chi tiết |
 | :--- | :--- |
-| **Blueprint ID** | ARCH-20260806080121 |
+| **Blueprint ID** | ARCH-20260806083133 |
 | **Project Name** | membership-hub |
 | **Version** | 1.0 (Baseline) |
-| **Date.Time** | 2026/08/06 08:01:21 |
+| **Date.Time** | 2026/08/06 08:31:33 |
 | **Author** | Enterprise System Architect (SA Agent) |
 | **Approval** | Pending Technical Governance Review |
 
 #### 📊 1. SYSTEM OVERVIEW & CORE ARCHITECTURE MODALITY
 
 ###### 1.1. Core System Modality & Architecture Modality
-Hệ thống được thiết kế theo kiến trúc microservice với các biên giới CQRS rõ ràng, sử dụng mẫu Reactive Core để đảm bảo khả năng mở rộng và độ trễ thấp. Mỗi module chức năng (User, Center, Course, Enrollment, Attendance, Membership, Notification, Promotion, Announcement, Chatbot, Frontend) được triển khai dưới dạng một dịch vụ độc lập, được container hóa bằng Docker và orchestration trên Google Kubernetes Engine (GKE). Hệ thống áp dụng event-sourcing và message broker (ví dụ: Kafka) cho các luồng bất đồng bộ như điểm danh QR, push notification, và cập nhật Zalo group. Các API được định nghĩa dưới dạng REST với JWT bearer token, hỗ trợ đa phiên bản và versioning tự động. Kiến trúc đảm bảo cô lập đa trung tâm, tuân thủ nghiêm ngặt RBAC và các chính sách bảo mật theo chuẩn OWASP Top 10.
+Mô tả kỹ thuật chi tiết về kiến trúc hệ thống được phát hiện: hệ thống tuân thủ kiến trúc đa trung tâm (multi-center) với mô hình dịch vụ vi mô (microservices) được container hóa, sử dụng mẫu thiết kế Event-Driven (EDA) cho các luồng bất đồng bộ như điểm danh QR, thông báo, và tích hợp Zalo. Hệ thống áp dụng CQRS cho các thao tác ghi (nhật ký điểm danh, thông báo) và truy vấn (báo cáo, danh sách khóa học). Các biên giới lệnh (command) và truy vấn (query) được phân tách rõ ràng để đảm bảo khả năng mở rộng và hiệu suất. Các thành phần cốt lõi hoạt động theo kiểu phản ứng (reactive) với RxJava/Vert.x, tích hợp với Redis để cache phiên làm việc và hàng đợi tin nhắn. RBAC được thực hiện ở tầng bảo mật, với các service bảo vệ endpoint dựa trên vai trò người dùng. Các API được định nghĩa dưới dạng REST với Swagger, hỗ trợ JWT cho xác thực và OAuth2 cho các nhà cung cấp bên ngoài. Các sự kiện được phát qua Apache Kafka (hoặc RabbitMQ) để đảm bảo tính bất biến và khả năng mở rộng của các luồng điểm danh và thông báo. Các schema cơ sở dữ liệu được thiết kế theo mô hình ER với các ràng buộc khóa ngoại và chỉ mục để đảm bảo truy vấn dưới 200ms cho các trường hợp sử dụng chính. Hệ thống được triển khai trên Kubernetes (GKE) với auto-scaling dựa trên CPU và độ trễ yêu cầu, sử dụng Flyway cho quản lý migration. Các chính sách bảo mật tuân thủ OWASP Top 10, mã hóa dữ liệu ở nghỉ bằng AES-256, và TLS 1.3 cho mọi giao tiếp. Hệ thống hỗ trợ đa ngôn ngữ (EN, VN, ES) với i18n middleware và hreflang cho SEO. Các quy trình CI/CD được tự động hóa qua GitHub Actions, với các giai đoạn build, test, container image push, và triển khai lên GKE.
 
 ###### 1.2. Enterprise Data Flow Topologies & Core Ecosystems
-Các luồng dữ liệu chính bao gồm: (1) **Luồng xác thực** – OAuth2 với Firebase, Google, Facebook, cấp JWT (15 phút) và refresh token; (2) **Luồng xử lý điểm danh QR** – ứng dụng di động quét QR, gửi studentId + timestamp đến Attendance Service, ghi nhận một cách idempotent; (3) **Luồng gửi thông báo** – Notification Service kích hoạt push notification (FCM/APNs) và đăng bài lên nhóm Zalo được chỉ định; (4) **Luồng tích hợp backend ứng dụng di động** – Frontend Next.js tiêu thụ REST APIs, hỗ trợ caching ngoại tuyến (Service Worker). Các chủ đề message broker được định nghĩa cho attendance-events, notification-events, enrollment-events, và center-events để đảm bảo tính nhất quán sự kiện giữa các service.
+Mô tả chi tiết về các kênh bất đồng bộ, cổng nhập liệu (ingestion gateway), topology chủ đề, và kiến trúc fan-out cho các hệ thống ngoại vi. Hệ thống sử dụng Apache Kafka làm backbone cho các luồng sự kiện bất đồng bộ: chủ đề `qr-attendance` ghi nhận sự kiện quét mã QR từ ứng dụng di động; chủ đề `notifications` truyền tải thông báo push và tin nhắn Zalo; chủ đề `enrollments` ghi lại các đăng ký khóa học. Các cổng nhập liệu (ingestion gateway) tại lớp API biên (edge) nhận yêu cầu từ client, xác thực JWT, sau đó ghi vào Kafka chủ đề tương ứng. Các consumer xử lý song song: service điểm danh xử lý `qr-attendance` để ghi vào PostgreSQL với tính chất idempotent; service thông báo đẩy vào FCM/APNs và gửi tin nhắn Zalo dựa trên chủ đề `notifications`. Các hệ thống phân tích (analytics) đọc từ Kafka để tạo báo cáo điểm danh hàng ngày và cập nhật dashboard. Các tích hợp bên ngoài (Zalo API, Firebase Auth) được thực hiện qua HTTP client bất đồng bộ, với retry circuit-breaker để đảm bảo độ tin cậy. Cache Redis được sử dụng cho session user và token blacklist, với TTL phù hợp. Các luồng này được giám sát bởi hệ thống logging tập trung (ELK) và alerting qua Prometheus/Grafana.
 
 #### 📁 2. TECH STACK DEPENDENCIES & ECOSYSTEM LIBRARIES
 
-- **Backend Infrastructure Core Stack:** Java 21, Quarkus 3.8, PostgreSQL 15, Docker (<500 MB), Kubernetes (GKE), Firebase Authentication, Google Cloud Messaging (FCM)/Apple APNs, Zalo API, Redis (session caching), GitHub Actions CI/CD, Maven/Bun build tools.
-- **Frontend & Cross-Platform UI Mobile Stack:** Next.js 14, React 18, TypeScript, Tailwind CSS, i18next cho đa ngôn ngữ, @capacitor/core cho hybrid mobile, React Native cho các màn hình chuyên sâu, Capacitor Storage API, Service Worker cho offline caching, SEO với next-seo, host trên Cloud Front/GCLOUD.
+- **Backend Infrastructure Core Stack:** Java 21 (LTS), Quarkus 3.2.0, Hibernate ORM, PostgreSQL 15, Docker 23.x, Kubernetes 1.27+, Firebase Authentication SDK, Google Cloud Messaging (FCM) SDK, Apple APNs SDK, Zalo API v2, Redis 7, Flyway, GitHub Actions, Maven 3.9.
+
+- **Frontend & Cross-Platform UI Mobile Stack:** Node.js 20, npm 9, Next.js 14 (React 18), TypeScript, Tailwind CSS, React Native 0.73, Expo, Capacitor, i18next, react-i18next, Jest, React Testing Library, Docker (cho môi trường phát triển).
 
 ###### ARCHITECTURAL STACK MATRIX
-<!--START_COMMAND
+
 ```properties
 PERSISTENCE_LAYER_REQUIRED=true
 BACKEND_LAYER_REQUIRED=true
@@ -5650,438 +5647,378 @@ FRONTEND_LAYER_REQUIRED=true
 MOBILE_LAYER_REQUIRED=true
 DEVOPS_LAYER_REQUIRED=true
 ```
-END_COMMAND-->
 
 #### 📁 3. GLOBAL GUARDRAILS & ENTERPRISE COMPLIANCE STANDARDS
 
-- **Absolute Workspace Boundary Rule:** Root repository là `.`; mọi đường dẫn phải bắt đầu bằng `./sources/`.
-- **Dynamic Directory Prefixing Compliance:** Backend logic → `./sources/backend.<service-name>.`; Frontend → `./sources/frontend.`; Infra → `./sources/infra.`.
-- **[CONDITION: JAVA_STACK_ONLY] Java Package Standard:** Tất cả mã nguồn Java phải nằm trong gói `org.nlh4j.saas.membershiphub`.
-- **Strict Tester Target Path Syntax:** Mọi thành phần được Tester nhắm đến phải theo cú pháp `<source_component>;<test_suite_file>` với cả hai đều bắt đầu bằng `./sources/`.
+- **Absolute Workspace Boundary Rule:** Toàn bộ mã nguồn và cấu hình phải nằm dưới thư mục gốc dự án `.`. Tất cả các đường dẫn được tạo ra phải bắt đầu bằng `./sources/`.
+- **Dynamic Directory Prefixing Compliance:** Áp dụng quy tắc tiền tố thư mục linh hoạt: `./sources/backend.<service-name>` cho logic backend, `./sources/frontend` cho giao diện web, `./sources/frontend.<app-name>` cho ứng dụng di động, `./sources/infra` cho cấu hình DevOps.
+- **[CONDITION: JAVA_STACK_ONLY] Java Package Standard:** Tất cả mã Java phải được đóng gói trong `org.nlh4j.saas.membershiphub`. Tên dự án được chuẩn hóa thành dạng chữ thường, không dấu, không gạch ngang.
+- **Strict Tester Target Path Syntax:** Bất kỳ thành phần nào được Tester nhắm đến phải được biểu diễn dưới dạng cặp bán phẩy `<source_component>;<test_suite_file>`, ví dụ: `./sources/backend.user-management;src/test/java/org/nlh4j/saas/membershiphub/user/RegistrationTest.java`.
 
 #### 4. HIGH-LEVEL MULTI-PHASE ARCHITECTURAL SYNOPSIS GRID
 
-| Phase | Day Range | Architectural Component / Module Path | Technical Deliverables Summary | Assigned Sub-Agent | Targeted Tag IDs |
+| Giai đoạn | Khoảng ngày | Đường dẫn Thành phần Kiến trúc | Tóm tắt Sản phẩm Bàn giao | Sub-Agent được chỉ định | Tag IDs Mục tiêu |
 | :--- | :--- | :--- | :--- | :--- | :--- |
-| **Phase 1** | 1‑3 | `./sources/backend.user.` | Triển khai bảng Users & Roles, RBAC, đăng ký người dùng, xác thực mạng xã hội, gán vai trò. | Coder | [ARC-001], [ARC-002], [ARC-003], [ARC-004], [ARC-005], [REQ-001], [REQ-002], [REQ-003], [EXC-004], [DAT-001] |
-| **Phase 1** | 1‑3 | `./sources/docs/architecture.` | Tài liệu kiến trúc tổng quan, sơ đồ RBAC, ma trận kiểm soát truy cập. | Doc | [ARC-001], [ARC-002], [ARC-003], [ARC-004], [ARC-005] |
-| **Phase 2** | 4‑7 | `./sources/backend.center.` | CRUD trung tâm, xác thực taxId duy nhất, gán Center Admin. | Coder | [REQ-004], [REQ-005], [REQ-006], [DAT-003], [EXC-004] |
-| **Phase 2** | 4‑7 | `./sources/backend.course.` | CRUD khóa học, phát hiện xung đột lịch giảng, phân công giáo viên. | Coder | [REQ-007], [REQ-008], [REQ-009], [DAT-004], [EXC-003] |
-| **Phase 2** | 4‑7 | `./sources/docs/api.` | Tài liệu hợp đồng API cho Centers và Courses (REST contracts). | Doc | [REQ-004], [REQ-005], [REQ-006], [REQ-007], [REQ-008], [REQ-009] |
-| **Phase 3** | 8‑13 | `./sources/backend.enrollment.` | Xử lý ghi danh học viên, tự động tạo tài khoản Student, đẩy notification. | Coder | [REQ-010], [REQ-011], [DAT-005], [EXC-003] |
-| **Phase 3** | 8‑13 | `./sources/backend.attendance.` | Xử lý điểm danh QR, đảm bảo bất biến, phát hiện duplicate, ghi log network drop. | Coder | [REQ-012], [REQ-013], [DAT-006], [EXC-001], [EXC-002] |
-| **Phase 3** | 8‑13 | `./sources/backend.membership.` | Hiển thị thẻ hội viên, tính remaining days, xử lý gia hạn thẻ. | Coder | [REQ-014], [REQ-015], [DAT-007], [EXC-004] |
-| **Phase 3** | 8‑13 | `./sources/backend.notification.` | Gửi push notification, đăng bài lên Zalo group, hàng đợi retry. | Coder | [REQ-016], [EXC-003] |
-| **Phase 3** | 8‑13 | `./sources/backend.promo.` | CRUD khuyến mãi & thông báo, auto-expiry, hiển thị cho student. | Coder | [REQ-017], [REQ-018], [DAT-009], [EXC-004] |
-| **Phase 3** | 8‑13 | `./sources/docs/reporting.` | Tài liệu báo cáo điểm danh CSV, dashboard tóm tắt ghi danh. | Doc | [REQ-024], [REQ-025], [DAT-006], [DAT-007] |
-| **Phase 4** | 14‑18 | `./sources/frontend.web.` | UI responsive theo vai trò, tích hợp i18n, SEO meta tags, caching ngoại tuyến. | Coder | [REQ-019], [REQ-020], [REQ-021], [REQ-022], [REQ-023], [DAT-011], [NFR-007], [NFR-003], [NFR-001], [NFR-006] |
-| **Phase 4** | 14‑18 | `./sources/backend.chatbot.` | Tích hợp chatbot AI cho các truy vấn phổ biến, cơ chế fallback. | Coder | [REQ-019], [EXC-004] |
-| **Phase 4** | 14‑18 | `./sources/infra.docker.` | Xây dựng Dockerfiles đa giai đoạn, đảm bảo kích thước ảnh <500 MB. | Docker | [NFR-005], [NFR-004] |
-| **Phase 5** | 19‑21 | `./sources/infra.gcp.` | Cấu hình VPC, IAM, Cloud Storage, CI/CD pipelines, thiết lập backup. | GCP | [ARC-010], [NFR-002], [NFR-004], [NFR-008], [NFR-009] |
-| **Phase 5** | 19‑21 | `./sources/infra.gke.` | Triển khai manifests Kubernetes, cấu hình HPA, thiết lập failover, autoscaling. | GKE | [ARC-010], [NFR-002], [NFR-004], [NFR-009] |
-| **Phase 5** | 19‑21 | `./sources/docs/compliance.` | Tài liệu kiểm soát bảo mật OWASP, tuân thủ GDPR/CCPA, logging audit. | Doc | [NFR-003], [NFR-006], [NFR-008], [NFR-009] |
+| 1 | Ngày 1-3 | `./sources/backend.user-management` | Triển khai bảng Users/Roles, API đăng ký, xác thực xã hội, gán vai trò. | Coder | [REQ-001], [REQ-002], [REQ-003], [DAT-001], [ARC-001], [ARC-002], [ARC-003], [EXC-004] |
+| 1 | Ngày 1-3 | `./sources/backend.authentication` | Triển khai OAuth2 với Firebase/Google/Facebook, cấp JWT (15 phút), refresh token (7 ngày). | Coder | [ARC-006], [DAT-001] |
+| 1 | Ngày 1-3 | `./sources/backend.center-management` | CRUD trung tâm, gán Center Admin, validation tax ID duy nhất. | Coder | [REQ-004], [REQ-005], [REQ-006], [DAT-003], [ARC-002] |
+| 2 | Ngày 4-6 | `./sources/backend.course-management` | CRUD khóa học, kiểm tra xung đột lịch giảng, phân công giáo viên, notification cho giáo viên. | Coder | [REQ-007], [REQ-008], [REQ-009], [DAT-004], [ARC-002], [ARC-003] |
+| 2 | Ngày 4-6 | `./sources/backend.enrollment` | Duyệt khóa học, đăng ký, tự động tạo tài khoản học viên, push notification, gửi tin nhắn Zalo group. | Coder | [REQ-010], [REQ-011], [DAT-005], [ARC-008] |
+| 2 | Ngày 4-6 | `./sources/backend.notification` | Tạo bản ghi thông báo, hàng đợi push notification cho mobile, gửi tin nhắn Zalo, retry delivery. | Coder | [REQ-016], [EXC-003], [DAT-008], [ARC-008] |
+| 3 | Ngày 7-9 | `./sources/backend.attendance` | Xử lý quét QR, ghi điểm danh với tính chất bất biến, phát hiện duplicate, fallback khi mất mạng. | Coder | [REQ-012], [REQ-013], [EXC-001], [EXC-002], [DAT-006], [ARC-007] |
+| 3 | Ngày 7-9 | `./sources/backend.membership` | Hiển thị thẻ hội viên, tính ngày hiệu lực còn lại, xử lý gia hạn thẻ, cập nhật end date. | Coder | [REQ-014], [REQ-015], [DAT-007] |
+| 3 | Ngày 7-9 | `./sources/backend.promotion` | CRUD khuyến mãi, CRUD thông báo, auto-expire dựa trên ngày kết thúc, hiển thị cho học viên. | Coder | [REQ-017], [REQ-018], [DAT-009] |
+| 4 | Ngày 10-12 | `./sources/frontend.mobile` | Giao diện responsive cho các vai trò, màn hình quét QR, danh sách khóa học, thẻ hội viên, nhận push notification. | Coder | [REQ-020], [REQ-021] |
+| 4 | Ngày 10-12 | `./sources/frontend.i18n` | Middleware phát hiện ngôn ngữ, fallback Accept-Language, hreflang injection, meta tags cho EN/VN/ES. | Coder | [REQ-022], [REQ-023], [DAT-011] |
+| 4 | Ngày 10-12 | `./sources/backend.reports` | Tạo báo cáo điểm danh CSV, dashboard tóm tắt ghi danh, tổng hợp dữ liệu thời gian thực. | Coder | [REQ-024], [REQ-025], [EXC-005] |
+| 5 | Ngày 13-14 | `./sources/infra` | Xây dựng Docker image đa giai đoạn (<500MB), push lên registry, triển khai lên GKE với HPA, CI/CD, áp dụng các biện pháp bảo mật NFR. | Docker | [ARC-010], [NFR-001], [NFR-002], [NFR-003], [NFR-004], [NFR-005], [NFR-006], [NFR-007], [NFR-008], [NFR-009] |
+| 5 | Ngày 13-14 | `./sources/infra/gcp` | Cấu hình VPC, IAM, Cloud Storage, Cloud SQL, monitoring, logging, CI/CD. | GCP | [ARC-010], [NFR-002], [NFR-004], [NFR-008] |
+| 5 | Ngày 13-14 | `./sources/infra/gke` | Tạo cluster GKE, deployment manifests, auto-scaling, health checks, CI/CD. | GKE | [ARC-010], [NFR-002], [NFR-004] |
 
 #### 5. GRANULAR PHASE SPECIALIZATIONS & DAY-BY-DAY DELIVERABLES
 
 ###### 📈 Phase 1 DETAILED ARCHITECTURAL SPECIFICATION
-- **Phase Core Objective & Purpose:** Xây dựng nền tảng định danh người dùng và phân quyền truy cập, triển khai các bảng dữ liệu cơ bản cho Users, Roles, và các quy tắc xác thực ban đầu.
+- **Phase Core Objective & Purpose:** Triển khai nền tảng cốt lõi bao gồm quản lý người dùng, xác thực, phân quyền RBAC, và quản lý trung tâm. Xây dựng các bảng dữ liệu cơ bản (Users, Roles, Centers) và các API tương ứng để hỗ trợ các chức năng đăng ký, đăng nhập xã hội, gán vai trò, và quản lý trung tâm.
 - **Target Physical Directory Matrix Map:**
-    * `./sources/backend.user. [DAT-001], [ARC-001], [ARC-002], [ARC-003], [ARC-004], [ARC-005], [REQ-001], [REQ-002], [REQ-003]`
-    * `./sources/docs/architecture. [ARC-001], [ARC-002], [ARC-003], [ARC-004], [ARC-005]`
-- **Database Schema DDL SQL Specification [DAT-001]:**
+    *   `./sources/backend.user-management [REQ-001], [REQ-002], [REQ-003], [DAT-001], [ARC-001], [ARC-002], [ARC-003], [EXC-004]`
+    *   `./sources/backend.authentication [ARC-006], [DAT-001]`
+    *   `./sources/backend.center-management [REQ-004], [REQ-005], [REQ-006], [DAT-003], [ARC-002]`
+    *   `./sources/docs/phase1_architecture.md [REQ-001], [REQ-002], [REQ-003], [DAT-001], [ARC-001], [ARC-002], [ARC-003], [EXC-004]`
+- **Database Schema DDL SQL Specification [DAT-001], [DAT-003]:**
+
 ```sql
-CREATE TABLE ROLES (
-    roleId SMALLINT PRIMARY KEY,
+-- Bảng Roles
+CREATE TABLE roles (
+    role_id SMALLINT PRIMARY KEY,
     name VARCHAR(30) NOT NULL UNIQUE,
     description VARCHAR(200)
 );
 
-CREATE TABLE USERS (
-    userId UUID PRIMARY KEY,
+-- Bảng Users
+CREATE TABLE users (
+    user_id UUID PRIMARY KEY,
     email VARCHAR(255) NOT NULL UNIQUE,
-    passwordHash CHAR(60) NOT NULL,
-    fullName VARCHAR(100) NOT NULL,
-    roleId SMALLINT NOT NULL REFERENCES ROLES(roleId),
-    provider ENUM('local','firebase','google','facebook') NOT NULL DEFAULT 'local',
-    createdAt TIMESTAMP NOT NULL DEFAULT NOW(),
-    updatedAt TIMESTAMP NOT NULL DEFAULT NOW()
+    password_hash CHAR(60) NOT NULL,
+    full_name VARCHAR(100) NOT NULL,
+    role_id SMALLINT NOT NULL REFERENCES roles(role_id),
+    provider ENUM('local', 'firebase', 'google', 'facebook') NOT NULL DEFAULT 'local',
+    created_at TIMESTAMP NOT NULL DEFAULT now(),
+    updated_at TIMESTAMP NOT NULL DEFAULT now()
 );
-```
-- **API and Event Routing Contracts [REQ-001], [REQ-002], [REQ-003], [ARC-006]:**
-```json
-// POST /api/v1/auth/register
-{
-  "email":"user@example.com",
-  "password":"StrongPass123!",
-  "fullName":"Nguyen Van A",
-  "roleId":5
-}
-```
-```json
-// POST /api/v1/auth/social
-{
-  "provider":"google",
-  "code":"oauth2_code_from_google"
-}
-```
-```json
-// PUT /api/v1/users/{userId}/role
-{
-  "roleId":3
-}
-```
-- **Phase Localized Exception Handlers [EXC-004]:**
-    * Khi xác thực đầu vào không hợp lệ (ví dụ: email sai định dạng, thiếu trường bắt buộc), hệ thống trả về HTTP 400 với danh sách các trường không hợp lệ và hướng dẫn chỉnh sửa.
 
-######## 📅 Chronological Day-by-Day Sub-Agent Task Distribution Logs (Phase 1)
-- **DAY 1:** Mục tiêu ngắn hạn: Triển khai bảng dữ liệu người dùng và vai trò, thiết lập các ràng buộc khóa chính, chỉ mục duy nhất.
-  - **Sub-Agent Workflow Specialization:**
-    * **[Coder]:**
-      - **Target Component file path (`target_component`):** ./sources/backend.user. [DAT-001], [ARC-001], [ARC-002], [ARC-003], [ARC-004], [ARC-005], [REQ-001], [REQ-002], [REQ-003]
-      - **Low-Level Technical Task Instruction:** Triển khai lớp `UserEntity` với các trường tương ứng, thêm các annotation JPA (`@Entity`, `@Table`), `@Id`, `@Column`, `@ManyToOne` đến `Roles`. Tạo `UserRepository` mở rộng `JpaRepository<Users, UUID>`. Triển khai `UserService` với phương thức `registerUser` thực hiện xác thực đầu vào, mã hóa password bằng bcrypt, lưu người dùng mới với role mặc định là Student (`roleId` 5). Thêm các validation (`@NotBlank`, `@Email`). Ghi đè `equals`/`hashCode` dựa trên `userId`. Đảm bảo `createdAt`/`updatedAt` được tự động cập nhật.
-      - **Targeted Tag IDs:** [REQ-001], [REQ-002], [REQ-003], [DAT-001], [ARC-001], [ARC-002], [ARC-003], [ARC-004], [ARC-005]
-- **DAY 2:** Mục tiêu ngắn hạn: Tài liệu hóa kiến trúc tổng quan và ma trận kiểm soát truy cập dựa trên RBAC.
-  - **Sub-Agent Workflow Specialization:**
-    * **[Doc]:**
-      - **Target Component file path (`target_component`):** ./sources/docs/architecture. [ARC-001], [ARC-002], [ARC-003], [ARC-004], [ARC-005]
-      - **Low-Level Technical Task Instruction:** Tạo tài liệu Confluence với tiêu đề “Sơ đồ Kiến trúc – membership‑hub”. Bao gồm phần “RBAC Matrix” liệt kê System Admin ([ARC-001]), Center Admin ([ARC-002]), Manager ([ARC-003]), Teacher ([ARC-004]), Student ([ARC-005]) với các quyền hạn tương ứng. Thêm sơ đồ ER cho Users và Roles. Đính kèm hướng dẫn triển khai và các ghi chú bảo mật.
-      - **Targeted Tag IDs:** [ARC-001], [ARC-002], [ARC-003], [ARC-004], [ARC-005]
-- **DAY 3:** Mục tiêu ngắn hạn: Xây dựng Docker image cho service user và đẩy lên registry.
-  - **Sub-Agent Workflow Specialization:**
-    * **[Docker]:**
-      - **Target Component file path (`target_component`):** ./sources/infra.docker. [NFR-005], [NFR-004]
-      - **Low-Level Technical Task Instruction:** Tạo `Dockerfile` đa giai đoạn: giai đoạn build sử dụng `maven` (hoặc `gradle`) để đóng gói ứng dụng Quarkus; giai đoạn runtime sử dụng image `eclipse-temurin:21-jdk-alpine`. Thêm nhãn `org.opencontainers.image.base.name`, `maintainer`, `version`. Xây dựng image `membership-hub/user:1.0.0`. Kiểm tra kích thước image (<500 MB). Push image lên Google Artifact Registry (`us-central1-docker.pkg.dev/<project>/membership-hub/user:1.0.0`).
-      - **Targeted Tag IDs:** [NFR-005], [NFR-004]
-
-###### 📈 Phase 2 DETAILED ARCHITECTURAL SPECIFICATION
-- **Phase Core Objective & Purpose:** Triển khai quản lý trung tâm và khóa học, bao gồm CRUD, phát hiện xung đột lịch, và gán giáo viên.
-- **Target Physical Directory Matrix Map:**
-    * `./sources/backend.center. [DAT-003], [REQ-004], [REQ-005], [REQ-006]`
-    * `./sources/backend.course. [DAT-004], [REQ-007], [REQ-008], [REQ-009]`
-    * `./sources/docs/api. [REQ-004], [REQ-005], [REQ-006], [REQ-007], [REQ-008], [REQ-009]`
-- **Database Schema DDL SQL Specification [DAT-003], [DAT-004]:**
-```sql
-CREATE TABLE CENTERS (
-    centerId UUID PRIMARY KEY,
+-- Bảng Centers
+CREATE TABLE centers (
+    center_id UUID PRIMARY KEY,
     name VARCHAR(100) NOT NULL,
     address VARCHAR(255) NOT NULL,
-    taxId VARCHAR(13) NOT NULL UNIQUE,
-    contactPhone VARCHAR(30),
-    contactEmail VARCHAR(255)
+    tax_id VARCHAR(20) NOT NULL UNIQUE,
+    contact_phone VARCHAR(30),
+    contact_email VARCHAR(255)
 );
+```
 
-CREATE TABLE COURSES (
-    courseId UUID PRIMARY KEY,
+- **API and Event Routing Contracts [REQ-001], [REQ-002], [REQ-003], [ARC-006], [REQ-004], [REQ-005], [REQ-006], [ARC-001], [ARC-002], [ARC-003]:**
+    *   `POST /api/auth/register` – Nhận `{email, password, fullName}` → tạo người dùng, mã hóa mật khẩu, gán vai trò mặc định `Student`, trả về JWT.
+    *   `GET /api/auth/{provider}/callback?code={code}` – Trao đổi mã lấy thông tin từ Firebase/Google/Facebook, tạo/cập nhật người dùng, trả về JWT.
+    *   `PUT /api/users/{userId}/role` – Chỉ Admin có thể gán vai trò mới, cập nhật `role_id` trong bảng `users`.
+    *   `GET /api/centers` – Trả về danh sách tất cả trung tâm (`name, address, taxId, contactPhone, contactEmail`).
+    *   `POST /api/centers` – Tạo trung tâm mới, validation taxId duy nhất, trả về đối tượng trung tâm.
+    *   `PUT /api/centers/{id}` – Cập nhật thông tin trung tâm.
+    *   `DELETE /api/centers/{id}` – Xóa trung tâm.
+    *   `PATCH /api/users/{userId}/center/{centerId}` – Gán người dùng làm Center Admin cho trung tâm cụ thể.
+
+- **Phase Localized Exception Handlers [EXC-004]:**
+    *   Xử lý xác thực đầu vào không hợp lệ (ví dụ: email sai định dạng, thiếu trường bắt buộc) trong quá trình đăng ký. Trả về JSON body chứa danh sách các trường lỗi và thông báo chi tiết, ví dụ: `{"errors": [{"field": "email", "message": "Email đã tồn tại"}, {"field": "password", "message": "Mật khẩu phải có ít nhất 8 ký tự"}]}`.
+
+######## 📅 Chronological Day-by-Day Sub-Agent Task Distribution Logs (Phase 1)
+- **DAY 1: Triển khai service quản lý người dùng (Users/Roles) và API đăng ký.**
+  - **Sub-Agent Workflow Specialization:**
+    * **[Coder]:**
+      - **Target Component file path (`target_component`):** `./sources/backend.user-management [REQ-001], [REQ-002], [REQ-003], [DAT-001], [ARC-001], [ARC-002], [ARC-003], [EXC-004]`
+      - **Low-Level Technical Task Instruction:** Triển khai entity Users và Roles với các trường như được định nghĩa trong DAT-001, tạo UserRepository và RoleRepository, implement RegistrationService xử lý xác thực đầu vào, mã hóa mật khẩu bằng bcrypt, gán vai trò mặc định 'Student', trả về JWT token. Thêm validation cho email duy nhất, mật khẩu mạnh, và xử lý ngoại lệ [EXC-004] để trả về danh sách trường lỗi chi tiết. Triển khai REST endpoint POST /api/auth/register với request body {email, password, fullName}. Thêm unit test cho registration thành công và thất bại.
+      - **Targeted Tag IDs:** [REQ-001], [REQ-002], [REQ-003], [DAT-001], [ARC-001], [ARC-002], [ARC-003], [EXC-004]
+
+- **DAY 2: Triển khai xác thực OAuth2 với Firebase, Google, Facebook.**
+  - **Sub-Agent Workflow Specialization:**
+    * **[Coder]:**
+      - **Target Component file path (`target_component`):** `./sources/backend.authentication [ARC-006], [DAT-001]`
+      - **Low-Level Technical Task Instruction:** Triển khai OAuth2 Authorization Code flow cho từng nhà cung cấp, tích hợp Firebase Auth SDK, Google People API, Facebook Graph API. Tạo AuthenticationService với phương thức authenticate(String provider, String code) trả về JWT. Lưu người dùng vào bảng Users với provider tương ứng. Triển khai endpoint GET /api/auth/{provider}/callback. Thêm logging và xử lý lỗi cho trường hợp thiếu code hoặc token không hợp lệ. Triển khai integration test sử dụng mock provider.
+      - **Targeted Tag IDs:** [ARC-006], [DAT-001]
+
+- **DAY 3: Triển khai service quản lý trung tâm (Centers) và gán Center Admin.**
+  - **Sub-Agent Workflow Specialization:**
+    * **[Coder]:**
+      - **Target Component file path (`target_component`):** `./sources/backend.center-management [REQ-004], [REQ-005], [REQ-006], [DAT-003], [ARC-002]`
+      - **Low-Level Technical Task Instruction:** Triển khai entity Centers với các ràng buộc unique taxId, tạo CenterRepository, implement CenterService với các phương thức CRUD (create, update, delete). Triển khai endpoint POST /api/centers để tạo trung tâm mới, validation trùng taxId trả về lỗi conflict. Triển khai endpoint PUT /api/centers/{id} để cập nhật, DELETE để xóa. Triển khai assign/unassign Center Admin: cập nhật role người dùng thành CENTER_ADMIN và lưu centerId. Triển khai endpoint PATCH /api/users/{userId}/center/{centerId}. Thêm unit test cho từng API.
+      - **Targeted Tag IDs:** [REQ-004], [REQ-005], [REQ-006], [DAT-003], [ARC-002]
+
+###### 📈 Phase 2 DETAILED ARCHITECTURAL SPECIFICATION
+- **Phase Core Objective & Purpose:** Triển khai quản lý khóa học, đăng ký học viên, và hệ thống thông báo. Xây dựng các bảng Courses, Enrollments, Notifications và các API tương ứng.
+- **Target Physical Directory Matrix Map:**
+    *   `./sources/backend.course-management [REQ-007], [REQ-008], [REQ-009], [DAT-004], [ARC-002], [ARC-003]`
+    *   `./sources/backend.enrollment [REQ-010], [REQ-011], [DAT-005], [ARC-008]`
+    *   `./sources/backend.notification [REQ-016], [EXC-003], [DAT-008], [ARC-008]`
+    *   `./sources/docs/phase2_architecture.md [REQ-007], [REQ-008], [REQ-009], [DAT-004], [REQ-010], [REQ-011], [DAT-005], [REQ-016], [EXC-003], [DAT-008]`
+- **Database Schema DDL SQL Specification [DAT-004], [DAT-005], [DAT-008]:**
+
+```sql
+-- Bảng Courses
+CREATE TABLE courses (
+    course_id UUID PRIMARY KEY,
     title VARCHAR(150) NOT NULL,
     description TEXT,
-    startDate DATE NOT NULL,
-    endDate DATE NOT NULL,
-    teacherId UUID NOT NULL REFERENCES USERS(userId),
-    maxStudents INT NOT NULL DEFAULT 30
+    start_date DATE NOT NULL,
+    end_date DATE NOT NULL,
+    teacher_id UUID NOT NULL REFERENCES users(user_id),
+    max_students INT NOT NULL DEFAULT 30
+);
+
+-- Bảng Enrollments
+CREATE TABLE enrollments (
+    enrollment_id UUID PRIMARY KEY,
+    student_id UUID NOT NULL REFERENCES users(user_id),
+    course_id UUID NOT NULL REFERENCES courses(course_id),
+    enrollment_date TIMESTAMP NOT NULL DEFAULT now(),
+    UNIQUE (student_id, course_id)
+);
+
+-- Bảng Notifications
+CREATE TABLE notifications (
+    notification_id UUID PRIMARY KEY,
+    user_id UUID REFERENCES users(user_id),
+    group_zalo VARCHAR(100),
+    message TEXT NOT NULL,
+    sent_at TIMESTAMP NOT NULL DEFAULT now(),
+    delivered BOOLEAN NOT NULL DEFAULT false
 );
 ```
-- **API and Event Routing Contracts [REQ-004], [REQ-005], [REQ-006], [REQ-007], [REQ-008], [REQ-009]:**
-```json
-// GET /api/v1/centers
-// Response: [{ "centerId":"...","name":"...","address":"...","taxId":"...","contactPhone":"...","contactEmail":"..." }]
-```
-```json
-// POST /api/v1/centers
-{
-  "name":"Center A",
-  "address":"123 Street",
-  "taxId":"1234567890123",
-  "contactPhone":"+84123456789",
-  "contactEmail":"center@example.com"
-}
-```
-```json
-// POST /api/v1/courses
-{
-  "title":"Lớp học lập trình Java",
-  "description":"Khóa học nâng cao",
-  "startDate":"2026-09-01",
-  "endDate":"2026-12-31",
-  "teacherId":"a1b2c3d4-...",
-  "maxStudents":30
-}
-```
+
+- **API and Event Routing Contracts [REQ-007], [REQ-008], [REQ-009], [REQ-010], [REQ-011], [REQ-016], [ARC-008]:**
+    *   `GET /api/courses` – Trả về danh sách khóa học (`courseId, title, startDate, endDate, teacherName`).
+    *   `POST /api/courses` – Tạo khóa học mới, validation xung đột lịch giảng cho giáo viên, trả về CourseDTO.
+    *   `PUT /api/courses/{id}` – Cập nhật khóa học.
+    *   `DELETE /api/courses/{id}` – Xóa khóa học.
+    *   `PATCH /api/courses/{courseId}/teacher/{teacherId}` – Gán giáo viên cho khóa học, tạo notification cho giáo viên.
+    *   `GET /api/enrollments/courses` – Học viên duyệt khóa học (trừ các khóa đã ghi danh).
+    *   `POST /api/enrollments` – Đăng ký khóa học, tự động tạo tài khoản học viên nếu thiếu, push notification, gửi tin nhắn Zalo group.
+    *   `POST /api/notifications` – Tạo bản ghi thông báo, trigger async job để gửi push notification và Zalo message, retry logic 3 lần.
+
 - **Phase Localized Exception Handlers [EXC-003]:**
-    * Khi gửi push notification thất bại (ví dụ: token thiết bị không hợp lệ), hệ thống ghi log lỗi, tăng số lần thử lại (tối đa 3 lần), sau đó đánh dấu bản ghi Notification là `delivered = false`.
+    *   Xử lý trường hợp gửi notification thất bại (ví dụ: token thiết bị không hợp lệ). Hệ thống ghi log lỗi, lên lịch retry sau 5 giây, 10 giây, 30 giây. Sau 3 lần thất bại, đánh dấu `delivered = false` và ghi lại `error_message`. API trả về HTTP 200 với trạng thái `queued` nhưng thông báo cho client về khả năng thất bại.
 
 ######## 📅 Chronological Day-by-Day Sub-Agent Task Distribution Logs (Phase 2)
-- **DAY 4:** Mục tiêu ngắn hạn: Triển khai service quản lý trung tâm, bao gồm validation taxId duy nhất.
+- **DAY 4: Triển khai service quản lý khóa học (Courses) và phân công giáo viên.**
   - **Sub-Agent Workflow Specialization:**
     * **[Coder]:**
-      - **Target Component file path (`target_component`):** ./sources/backend.center. [DAT-003], [REQ-004], [REQ-005], [REQ-006]
-      - **Low-Level Technical Task Instruction:** Tạo `CenterEntity` với các trường tương ứng, thêm `@UniqueConstraint(columnNames = "taxId")`. Triển khai `CenterRepository`. Triển khai `CenterService` với các phương thức `createCenter`, `updateCenter`, `deleteCenter`. Thêm logic validation taxId (chỉ số 10‑13 chữ số). Đảm bảo audit fields (`createdAt`, `updatedAt`). Viết integration test cho từng API.
-      - **Targeted Tag IDs:** [REQ-004], [REQ-005], [REQ-006], [DAT-003]
-- **DAY 5:** Mục tiêu ngắn hạn: Triển khai service quản lý khóa học với phát hiện xung đột lịch.
+      - **Target Component file path (`target_component`):** `./sources/backend.course-management [REQ-007], [REQ-008], [REQ-009], [DAT-004], [ARC-002], [ARC-003]`
+      - **Low-Level Technical Task Instruction:** Triển khai entity Courses với các trường startDate, endDate, teacherId, maxStudents. Tạo CourseRepository, implement CourseService với validation xung đột lịch giảng cho cùng giáo viên (SELECT * FROM courses WHERE teacher_id = ? AND (start_date < ? AND end_date > ?) OR ...). Triển khai endpoint POST /api/courses để tạo khóa học mới, trả về CourseDTO. Triển khai endpoint PUT /api/courses/{id} để cập nhật, DELETE để xóa. Triển khai assign/unassign teacher qua endpoint PATCH /api/courses/{courseId}/teacher/{teacherId}. Thêm logging và xử lý lỗi cho trường hợp xung đột lịch. Triển khai unit test cho validation.
+      - **Targeted Tag IDs:** [REQ-007], [REQ-008], [REQ-009], [DAT-004], [ARC-002], [ARC-003]
+
+- **DAY 5: Triển khai service đăng ký học viên (Enrollments) và flow đăng ký.**
   - **Sub-Agent Workflow Specialization:**
     * **[Coder]:**
-      - **Target Component file path (`target_component`):** ./sources/backend.course. [DAT-004], [REQ-007], [REQ-008], [REQ-009]
-      - **Low-Level Technical Task Instruction:** Tạo `CourseEntity` với các ràng buộc khóa ngoại đến `USERS`. Thêm phương thức `checkScheduleConflict(teacherId, startDate, endDate)` truy vấn các khóa học hiện có. Triển khai `CourseService` với `createCourse`, `updateCourse`, `assignTeacher`. Sử dụng `@Transactional` để đảm bảo nguyên tử. Thêm validation cho `startDate` < `endDate`. Ghi đè `toString` để loại bỏ các trường nhạy cảm.
-      - **Targeted Tag IDs:** [REQ-007], [REQ-008], [REQ-009], [DAT-004]
-- **DAY 6:** Mục tiêu ngắn hạn: Tài liệu hợp đồng API cho Centers và Courses.
+      - **Target Component file path (`target_component`):** `./sources/backend.enrollment [REQ-010], [REQ-011], [DAT-005], [ARC-008]`
+      - **Low-Level Technical Task Instruction:** Triển khai entity Enrollments, implement EnrollmentService với phương thức browseCourses(studentId) trả về các khóa học chưa ghi danh, và register(studentId, courseId) tạo bản ghi enrollment, tự động tạo tài khoản người dùng nếu thiếu, push notification qua hàng đợi, gửi tin nhắn Zalo group. Triển khai endpoint GET /api/enrollments/courses để duyệt, POST /api/enrollments để đăng ký. Thêm validation kiểm tra capacity và xung đột. Triển khai integration test cho flow đăng ký.
+      - **Targeted Tag IDs:** [REQ-010], [REQ-011], [DAT-005], [ARC-008]
+
+- **DAY 6: Triển khai service thông báo (Notifications) và hàng đợi push.**
   - **Sub-Agent Workflow Specialization:**
-    * **[Doc]:**
-      - **Target Component file path (`target_component`):** ./sources/docs/api. [REQ-004], [REQ-005], [REQ-006], [REQ-007], [REQ-008], [REQ-009]
-      - **Low-Level Technical Task Instruction:** Tạo tài liệu OpenAPI YAML cho các endpoint `/centers` và `/courses`. Bao gồm request/response schemas, mã lỗi, ví dụ. Đính kèm mô tả về quy tắc phát hiện xung đột lịch. Xuất tài liệu sang Confluence.
-      - **Targeted Tag IDs:** [REQ-004], [REQ-005], [REQ-006], [REQ-007], [REQ-008], [REQ-009]
-- **DAY 7:** Mục tiêu ngắn hạn: Cung cấp hạ tầng GCP (VPC, IAM) cho các service.
-  - **Sub-Agent Workflow Specialization:**
-    * **[GCP]:**
-      - **Target Component file path (`target_component`):** ./sources/infra.gcp. [ARC-010], [NFR-002], [NFR-004]
-      - **Low-Level Technical Task Instruction:** Sử dụng Terraform để tạo VPC mạng `membership-vpc` với các subnet ở `us-central1`. Tạo `ServiceAccount` cho từng service (`user-sa`, `center-sa`, v.v.). Thiết lập `Cloud Storage` bucket `membership-bucket` với chính sách bảo mật. Kích hoạt API `cloudresourcemanager`, `iamcredentials`. Tạo GitHub Actions secret cho các credential.
-      - **Targeted Tag IDs:** [ARC-010], [NFR-002], [NFR-004]
+    * **[Coder]:**
+      - **Target Component file path (`target_component`):** `./sources/backend.notification [REQ-016], [EXC-003], [DAT-008], [ARC-008]`
+      - **Low-Level Technical Task Instruction:** Triển khai entity Notifications, implement NotificationService với phương thức send(userId, groupZalo, message) lưu vào DB, tạo payload push notification (FCM/APNs) và gửi qua hàng đợi. Triển khai endpoint POST /api/notifications để tạo thông báo, trigger async job xử lý. Thêm retry logic lên đến 3 lần khi gửi thất bại, đánh dấu delivered. Triển khai scheduler để gửi hàng đợi. Triển khai unit test cho thành công và thất bại.
+      - **Targeted Tag IDs:** [REQ-016], [EXC-003], [DAT-008], [ARC-008]
 
 ###### 📈 Phase 3 DETAILED ARCHITECTURAL SPECIFICATION
-- **Phase Core Objective & Purpose:** Xây dựng các module ghi danh, điểm danh, thẻ hội viên, thông báo, khuyến mãi, và báo cáo phân tích.
+- **Phase Core Objective & Purpose:** Triển khai hệ thống điểm danh QR, quản lý thẻ hội viên, và quản lý khuyến mãi/thông báo. Xây dựng các bảng Attendance, StudentCards, Promotions, Announcements.
 - **Target Physical Directory Matrix Map:**
-    * `./sources/backend.enrollment. [DAT-005], [REQ-010], [REQ-011]`
-    * `./sources/backend.attendance. [DAT-006], [REQ-012], [REQ-013]`
-    * `./sources/backend.membership. [DAT-007], [REQ-014], [REQ-015]`
-    * `./sources/backend.notification. [DAT-008], [REQ-016]`
-    * `./sources/backend.promo. [DAT-009], [REQ-017], [REQ-018]`
-    * `./sources/docs/reporting. [REQ-024], [REQ-025], [DAT-006], [DAT-007]`
-- **Database Schema DDL SQL Specification [DAT-005], [DAT-006], [DAT-007], [DAT-008], [DAT-009]:**
+    *   `./sources/backend.attendance [REQ-012], [REQ-013], [EXC-001], [EXC-002], [DAT-006], [ARC-007]`
+    *   `./sources/backend.membership [REQ-014], [REQ-015], [DAT-007]`
+    *   `./sources/backend.promotion [REQ-017], [REQ-018], [DAT-009]`
+    *   `./sources/docs/phase3_architecture.md [REQ-012], [REQ-013], [EXC-001], [EXC-002], [DAT-006], [REQ-014], [REQ-015], [DAT-007], [REQ-017], [REQ-018], [DAT-009]`
+- **Database Schema DDL SQL Specification [DAT-006], [DAT-007], [DAT-009]:**
+
 ```sql
-CREATE TABLE ENROLLMENTS (
-    enrollmentId UUID PRIMARY KEY,
-    studentId UUID NOT NULL REFERENCES USERS(userId),
-    courseId UUID NOT NULL REFERENCES COURSES(courseId),
-    enrollmentDate TIMESTAMP NOT NULL DEFAULT NOW()
+-- Bảng Attendance
+CREATE TABLE attendance (
+    attendance_id UUID PRIMARY KEY,
+    student_id UUID NOT NULL REFERENCES users(user_id),
+    course_id UUID NOT NULL REFERENCES courses(course_id),
+    attendance_date DATE NOT NULL,
+    timestamp TIMESTAMP NOT NULL DEFAULT now(),
+    UNIQUE (student_id, course_id, attendance_date)
 );
 
-CREATE TABLE ATTENDANCE (
-    attendanceId UUID PRIMARY KEY,
-    studentId UUID NOT NULL REFERENCES USERS(userId),
-    courseId UUID NOT NULL REFERENCES COURSES(courseId),
-    attendanceDate DATE NOT NULL,
-    timestamp TIMESTAMP NOT NULL DEFAULT NOW()
+-- Bảng StudentCards
+CREATE TABLE studentcards (
+    card_id UUID PRIMARY KEY,
+    student_id UUID NOT NULL REFERENCES users(user_id),
+    issue_date DATE NOT NULL,
+    validity_days INT NOT NULL,
+    remaining_days INT NOT NULL
 );
 
-CREATE TABLE STUDENTCARDS (
-    cardId UUID PRIMARY KEY,
-    studentId UUID NOT NULL REFERENCES USERS(userId),
-    issueDate DATE NOT NULL,
-    validityDays INT NOT NULL,
-    remainingDays INT NOT NULL
-);
-
-CREATE TABLE NOTIFICATIONS (
-    notificationId UUID PRIMARY KEY,
-    userId UUID REFERENCES USERS(userId),
-    groupZalo VARCHAR(100),
-    message TEXT NOT NULL,
-    sentAt TIMESTAMP NOT NULL DEFAULT NOW(),
-    delivered BOOLEAN NOT NULL DEFAULT FALSE
-);
-
-CREATE TABLE PROMOTIONS (
-    promoId UUID PRIMARY KEY,
-    code VARCHAR(30) NOT NULL UNIQUE,
-    discountPercent SMALLINT NOT NULL,
-    startDate DATE,
-    endDate DATE,
+-- Bảng Promotions
+CREATE TABLE promotions (
+    promo_id UUID PRIMARY KEY,
+    code VARCHAR(50) NOT NULL UNIQUE,
+    discount_percent SMALLINT NOT NULL,
+    start_date DATE,
+    end_date DATE,
     description TEXT
 );
+
+-- Bảng Announcements
+CREATE TABLE announcements (
+    announcement_id UUID PRIMARY KEY,
+    title VARCHAR(150) NOT NULL,
+    content TEXT NOT NULL,
+    start_date DATE,
+    end_date DATE
+);
 ```
-- **API and Event Routing Contracts [REQ-010], [REQ-011], [REQ-012], [REQ-013], [REQ-014], [REQ-015], [REQ-016], [REQ-017], [REQ-018]:**
-```json
-// POST /api/v1/enrollments
-{
-  "studentId":"a1b2c3d4-...",
-  "courseId":"e5f6g7h8-..."
-}
-```
-```json
-// POST /api/v1/attendance/qr
-{
-  "studentId":"a1b2c3d4-...",
-  "courseId":"e5f6g7h8-...",
-  "attendanceDate":"2026-08-06"
-}
-```
-```json
-// GET /api/v1/membership/{studentId}/card
-// Response: { "cardId":"...","issueDate":"...","validityDays":365,"remainingDays":300 }
-```
-```json
-// POST /api/v1/notifications
-{
-  "userId":"a1b2c3d4-...",
-  "groupZalo":"hoc-vien-khoa-hoc",
-  "message":"Điểm danh thành công"
-}
-```
-```json
-// POST /api/v1/promotions
-{
-  "code":"SUMMER20",
-  "discountPercent":20,
-  "startDate":"2026-06-01",
-  "endDate":"2026-08-31",
-  "description":"Giảm giá mùa hè"
-}
-```
-- **Phase Localized Exception Handlers [EXC-001], [EXC-002], [EXC-003], [EXC-005]:**
-    * **EXC-001:** Nếu điểm danh QR bị thất bại do mất mạng, ứng dụng di động sẽ lưu yêu cầu locally và tự động retry khi có kết nối. Service xử lý sẽ deduplicate dựa trên `studentId`, `courseId`, `attendanceDate`.
-    * **EXC-002:** Phát hiện duplicate attendance trong cùng ngày: service trả về HTTP 200 với payload `{"status":"duplicate","message":"Điểm danh đã được ghi nhận trước đó"}` và không tạo row mới.
-    * **EXC-003:** Nếu gửi push notification thất bại (ví dụ: token không hợp lệ), system ghi log lỗi, lên lịch retry tối đa 3 lần, sau đó đánh dấu `delivered = false`.
-    * **EXC-005:** Sau khi phục hồi hệ thống, các yêu cầu điểm danh chờ xử lý được xử lý theo thứ tự FIFO và user nhận notification về các sự kiện đã được khôi phục.
+
+- **API and Event Routing Contracts [REQ-012], [REQ-013], [REQ-014], [REQ-015], [REQ-017], [REQ-018], [ARC-007]:**
+    *   `POST /api/attendance/qr` – Nhận `{studentId, courseId, timestamp}` → xác thực student-course, ghi điểm danh, trả về success/duplicate flag.
+    *   `GET /api/attendance/report` – Tạo báo cáo điểm danh cho center/date range, xuất CSV.
+    *   `GET /api/membership/card/{studentId}` – Trả về thông tin thẻ hội viên (`issueDate, validityDays, remainingDays`).
+    *   `POST /api/membership/renew` – Nhận `{studentId, days}` → tính toán endDate mới, cập nhật `studentcards`.
+    *   `GET /api/promotions` – Liệt kê khuyến mãi đang hiệu lực.
+    *   `POST /api/promotions` – Tạo khuyến mãi mới, validation start/end date.
+    *   `GET /api/announcements` – Liệt kê thông báo đang hiệu lực.
+    *   `POST /api/announcements` – Tạo thông báo mới.
+
+- **Phase Localized Exception Handlers [EXC-001], [EXC-002]:**
+    *   Xử lý mất kết nối mạng trong quá trình quét QR: cache yêu cầu locally, retry khi kết nối lại, đảm bảo chỉ ghi một lần.
+    *   Phát hiện duplicate scans trong cùng ngày: trả về success với flag `duplicate: true`, không tạo bản ghi mới.
 
 ######## 📅 Chronological Day-by-Day Sub-Agent Task Distribution Logs (Phase 3)
-- **DAY 8:** Mục tiêu ngắn hạn: Triển khai service ghi danh học viên và validation xung đột.
+- **DAY 7: Triển khai service điểm danh (Attendance) và xử lý quét QR.**
   - **Sub-Agent Workflow Specialization:**
     * **[Coder]:**
-      - **Target Component file path (`target_component`):** ./sources/backend.enrollment. [DAT-005], [REQ-010], [REQ-011]
-      - **Low-Level Technical Task Instruction:** Tạo `EnrollmentEntity` với các trường khóa ngoại đến `USERS` và `COURSES`. Thêm `EnrollmentService` với phương thức `enrollStudent` kiểm tra xem student đã ghi danh khóa học đó chưa (tránh duplicate). Tự động tạo tài khoản Student nếu thiếu (`roleId` 5). Gửi notification qua `NotificationService`. Thêm validation cho capacity (`maxStudents`). Ghi đè `equals`/`hashCode`.
-      - **Targeted Tag IDs:** [REQ-010], [REQ-011], [DAT-005]
-- **DAY 9:** Mục tiêu ngắn hạn: Triển khai service điểm danh QR với logic idempotent.
+      - **Target Component file path (`target_component`):** `./sources/backend.attendance [REQ-012], [REQ-013], [EXC-001], [EXC-002], [DAT-006], [ARC-007]`
+      - **Low-Level Technical Task Instruction:** Triển khai entity Attendance, implement AttendanceService với phương thức record(studentId, courseId, timestamp) kiểm tra duplicate cho cùng student, course, attendance_date, nếu đã tồn tại trả về success với flag duplicate. Sử dụng khóa unique (student_id, course_id, attendance_date) để đảm bảo bất biến. Triển khai endpoint POST /api/attendance/qr với payload {studentId, courseId, timestamp}. Thêm fallback khi mất mạng: cache request local, retry khi kết nối lại, đảm bảo chỉ ghi một lần. Triển khai unit test cho duplicate detection và network recovery.
+      - **Targeted Tag IDs:** [REQ-012], [REQ-013], [EXC-001], [EXC-002], [DAT-006], [ARC-007]
+
+- **DAY 8: Triển khai service quản lý thẻ hội viên (Membership).**
   - **Sub-Agent Workflow Specialization:**
     * **[Coder]:**
-      - **Target Component file path (`target_component`):** ./sources/backend.attendance. [DAT-006], [REQ-012], [REQ-013]
-      - **Low-Level Technical Task Instruction:** Tạo `AttendanceEntity` với các trường `studentId`, `courseId`, `attendanceDate`, `timestamp`. Triển khai `AttendanceService` với endpoint `recordAttendance` nhận payload từ mobile. Sử dụng `SELECT FOR UPDATE` trên `ATTENDANCE` với điều kiện `studentId`, `courseId`, `attendanceDate` để đảm bảo chỉ một bản ghi được tạo. Nếu đã tồn tại, trả về cờ duplicate. Thêm retry logic cho network loss (`@CircuitBreaker`). Ghi log mỗi lần truy cập vào `AUDIT_LOG`.
-      - **Targeted Tag IDs:** [REQ-012], [REQ-013], [DAT-006], [EXC-001], [EXC-002]
-- **DAY 10:** Mục tiêu ngắn hạn: Triển khai service thẻ hội viên và logic gia hạn.
-  - **Sub-Agent Workflow Specialization:**
-    * **[Coder]:**
-      - **Target Component file path (`target_component`):** ./sources/backend.membership. [DAT-007], [REQ-014], [REQ-015]
-      - **Low-Level Technical Task Instruction:** Tạo `StudentCardEntity` với `issueDate`, `validityDays`, `remainingDays` (computed). Triển khai `MembershipService` với `getCardInfo` trả về days còn lại, `renewCard` cập nhật `issueDate` += days mới, `remainingDays` được tính lại. Thêm validation cho payment service integration. Đảm bảo trigger notification khi thẻ sắp hết hạn.
+      - **Target Component file path (`target_component`):** `./sources/backend.membership [REQ-014], [REQ-015], [DAT-007]`
+      - **Low-Level Technical Task Instruction:** Triển khai entity StudentCards, implement MembershipService với phương thức getCard(studentId) trả về issueDate, validityDays, remainingDays (computed). Triển khai endpoint GET /api/membership/card/{studentId}. Triển khai endpoint POST /api/membership/renew với payload {studentId, days} thực hiện thanh toán (giả lập), cập nhật endDate (issueDate + validityDays). Triển khai validation cho student tồn tại. Triển khai unit test cho tính toán remainingDays và flow gia hạn.
       - **Targeted Tag IDs:** [REQ-014], [REQ-015], [DAT-007]
-- **DAY 11:** Mục tiêu ngắn hạn: Triển khai service thông báo và hàng đợi retry.
+
+- **DAY 9: Triển khai service khuyến mãi & thông báo (Promotion).**
   - **Sub-Agent Workflow Specialization:**
     * **[Coder]:**
-      - **Target Component file path (`target_component`):** ./sources/backend.notification. [DAT-008], [REQ-016]
-      - **Low-Level Technical Task Instruction:** Tạo `NotificationEntity` với các trường `userId`, `groupZalo`, `message`, `sentAt`, `delivered`. Triển khai `NotificationService` với `sendPush` gọi FCM/APNs API. Bao bọc trong `Retryable` với `maxAttempts=3`. Nếu thất bại sau 3 lần, set `delivered = false`. Thêm `DeadLetterQueue` cho các notification không thể gửi.
-      - **Targeted Tag IDs:** [REQ-016], [EXC-003]
-- **DAY 12:** Mục tiêu ngắn hạn: Tài liệu báo cáo điểm danh và dashboard tóm tắt.
-  - **Sub-Agent Workflow Specialization:**
-    * **[Doc]:**
-      - **Target Component file path (`target_component`):** ./sources/docs/reporting. [REQ-024], [REQ-025], [DAT-006], [DAT-007]
-      - **Low-Level Technical Task Instruction:** Tạo tài liệu spec cho báo cáo CSV (`/reports/attendance/{centerId}/{date}`) với các cột: StudentName, CourseName, AttendanceDate, Status. Thêm spec cho dashboard (`/dashboard/center/{centerId}`) hiển thị totalStudents, activeCourses, upcomingSessions (7 ngày tới). Cung cấp ví dụ JSON cho frontend.
-      - **Targeted Tag IDs:** [REQ-024], [REQ-025], [DAT-006], [DAT-007]
-- **DAY 13:** Mục tiêu ngắn hạn: Triển khai service khuyến mãi & thông báo.
-  - **Sub-Agent Workflow Specialization:**
-    * **[Coder]:**
-      - **Target Component file path (`target_component`):** ./sources/backend.promo. [DAT-009], [REQ-017], [REQ-018]
-      - **Low-Level Technical Task Instruction:** Tạo `PromotionEntity` với `code`, `discountPercent`, `startDate`, `endDate`, `description`. Triển khai `PromoService` với `createPromotion`, `updatePromotion`, `deletePromotion`. Thêm logic auto‑expiry: hàng ngày, job quét `PROMOTIONS` và vô hiệu hóa bản ghi khi `endDate` < current date. Tích hợp với `StudentCard` để áp dụng discount khi gia hạn.
+      - **Target Component file path (`target_component`):** `./sources/backend.promotion [REQ-017], [REQ-018], [DAT-009]`
+      - **Low-Level Technical Task Instruction:** Triển khai entity Promotions và Announcements, implement PromotionService với CRUD cho khuyến mãi (code, discountPercent, startDate, endDate) và CRUD cho thông báo (title, content, startDate, endDate). Triển khai endpoint POST /api/promotions, GET /api/promotions, PUT /api/promotions/{id}, DELETE /api/promotions/{id}. Triển khai endpoint POST /api/announcements, GET /api/announcements, auto-filter các bản ghi đã hết hạn dựa trên endDate. Triển khai unit test cho validation và auto-expire.
       - **Targeted Tag IDs:** [REQ-017], [REQ-018], [DAT-009]
 
 ###### 📈 Phase 4 DETAILED ARCHITECTURAL SPECIFICATION
-- **Phase Core Objective & Purpose:** Xây dựng giao diện người dùng web và di động, tích hợp i18n/SEO, triển khai chatbot AI, và container hóa dịch vụ.
+- **Phase Core Objective & Purpose:** Triển khai giao diện người dùng di động, hỗ trợ quốc tế hóa và SEO, và hệ thống báo cáo & phân tích. Xây dựng các thành phần frontend và backend báo cáo.
 - **Target Physical Directory Matrix Map:**
-    * `./sources/frontend.web. [REQ-019], [REQ-020], [REQ-021], [REQ-022], [REQ-023], [DAT-011]`
-    * `./sources/backend.chatbot. [REQ-019]`
-    * `./sources/infra.docker. [NFR-005], [NFR-004]`
+    *   `./sources/frontend.mobile [REQ-020], [REQ-021]`
+    *   `./sources/frontend.i18n [REQ-022], [REQ-023], [DAT-011]`
+    *   `./sources.backend.reports [REQ-024], [REQ-025], [EXC-005]`
+    *   `./sources/docs/phase4_architecture.md [REQ-020], [REQ-021], [REQ-022], [REQ-023], [DAT-011], [REQ-024], [REQ-025], [EXC-005]`
 - **Database Schema DDL SQL Specification [DAT-011]:**
+
 ```sql
-CREATE TABLE SYSTEMSETTINGS (
-    settingKey VARCHAR(50) PRIMARY KEY,
-    settingValue TEXT NOT NULL,
+-- Bảng SystemSettings
+CREATE TABLE systemsettings (
+    setting_key VARCHAR(100) PRIMARY KEY,
+    setting_value TEXT NOT NULL,
     description TEXT
 );
 ```
-- **API and Event Routing Contracts [REQ-019], [REQ-020], [REQ-021], [REQ-022], [REQ-023]:**
-```json
-// GET /api/v1/frontend/config
-{
-  "defaultLanguage":"vi",
-  "supportedLanguages":["en","vi","es"],
-  "features":{"chatbot":true}
-}
-```
-```json
-// POST /api/v1/chatbot/message
-{
-  "userId":"a1b2c3d4-...",
-  "message":"Khóa học Java ở đâu?"
-}
-```
-- **Phase Localized Exception Handlers [EXC-004]:**
-    * Khi đầu vào cho khuyến mãi hoặc chatbot không hợp lệ (ví dụ: thiếu trường bắt buộc, định dạng sai), system trả về HTTP 400 với danh sách các trường lỗi và hướng dẫn chỉnh sửa bằng ngôn ngữ tương ứng.
+
+- **API and Event Routing Contracts [REQ-020], [REQ-021], [REQ-022], [REQ-023], [REQ-024], [REQ-025], [ARC-009]:**
+    *   `GET /api/mobile/dashboard` – Trả về các chỉ số dashboard cho vai trò người dùng (student, teacher, admin).
+    *   `POST /api/mobile/auth/token` – Nhận device token để đăng ký push notification.
+    *   `GET /api/i18n/resources` – Trả về các bản dịch cho locale được yêu cầu.
+    *   `GET /api/reports/attendance` – Tạo báo cáo điểm danh CSV cho center/date range.
+    *   `GET /api/dashboard/summary` – Trả về tổng hợp real-time (totalStudents, activeCourses, upcomingSessions).
+
+- **Phase Localized Exception Handlers [EXC-005]:**
+    *   System Recovery After Outage: Khi dịch vụ phục hồi, xử lý các yêu cầu điểm danh QR pending trong hàng đợi (FIFO), ghi bản ghi điểm danh, và gửi notification cho user về các sự kiện đã phục hồi.
 
 ######## 📅 Chronological Day-by-Day Sub-Agent Task Distribution Logs (Phase 4)
-- **DAY 14:** Mục tiêu ngắn hạn: Triển khai frontend web với giao diện responsive và tích hợp i18n.
+- **DAY 10: Triển khai giao diện người dùng di động (Mobile UI).**
   - **Sub-Agent Workflow Specialization:**
     * **[Coder]:**
-      - **Target Component file path (`target_component`):** ./sources/frontend.web. [REQ-019], [REQ-020], [REQ-021], [REQ-022], [REQ-023], [DAT-011]
-      - **Low-Level Technical Task Instruction:** Tạo dự án Next.js với `app/` router. Thêm `i18n` configuration sử dụng `next-i18next`. Tạo các component `RoleBasedRoute` bảo vệ bởi JWT. Triển khai page `/en/centers`, `/vi/centers`, `/es/centers` với SEO meta tags (`<html lang="en">`). Thêm `getStaticProps` cho các page công khai. Tích hợp `Capacitor` cho native push notification nhận diện.
-      - **Targeted Tag IDs:** [REQ-019], [REQ-020], [REQ-021], [REQ-022], [REQ-023], [DAT-011]
-- **DAY 15:** Mục tiêu ngắn hạn: Triển khai service chatbot AI cho các truy vấn phổ biến.
+      - **Target Component file path (`target_component`):** `./sources/frontend.mobile [REQ-020], [REQ-021]`
+      - **Low-Level Technical Task Instruction:** Triển khai React Native app với các màn hình role-specific (Student, Teacher, Admin). Bao gồm màn hình quét QR (camera integration), danh sách khóa học, thẻ hội viên, danh sách thông báo. Triển khai authentication context sử dụng JWT, lưu token trong secure storage. Triển khai push notification registration với Firebase Cloud Messaging (FCM) token. Triển khai offline caching cho các endpoint chính sử dụng @react-native-async-storage. Triển khai unit test cho navigation và UI components.
+      - **Targeted Tag IDs:** [REQ-020], [REQ-021]
+
+- **DAY 11: Triển khai quốc tế hóa (i18n) và SEO.**
   - **Sub-Agent Workflow Specialization:**
     * **[Coder]:**
-      - **Target Component file path (`target_component`):** ./sources/backend.chatbot. [REQ-019]
-      - **Low-Level Technical Task Instruction:** Triển khai `ChatbotController` với endpoint `POST /api/v1/chatbot/message`. Gọi `OpenAI` (hoặc model nội bộ) để tạo câu trả lời. Thêm lớp `ChatbotService` với phương thức `processMessage` thực hiện intent recognition, truy vấn cơ sở dữ liệu cho courses/centers nếu cần. Fallback đến human support nếu confidence < 0.7. Ghi log mỗi tương tác vào `AUDIT_LOG`.
-      - **Targeted Tag IDs:** [REQ-019]
-- **DAY 16:** Mục tiêu ngắn hạn: Xây dựng Docker image đa giai đoạn cho toàn bộ dịch vụ.
+      - **Target Component file path (`target_component`):** `./sources/frontend.i18n [REQ-022], [REQ-023], [DAT-011]`
+      - **Low-Level Technical Task Instruction:** Triển khai i18n middleware sử dụng i18next, detect language từ localStorage, fallback Accept-Language header. Triển khai dynamic hreflang links trong head cho EN, VN, ES. Triển khai SEO meta tags (title, description) cho từng locale. Triển khai API endpoint GET /api/i18n/resources trả về các bản dịch. Triển khai unit test cho detection và rendering.
+      - **Targeted Tag IDs:** [REQ-022], [REQ-023], [DAT-011]
+
+- **DAY 12: Triển khai service báo cáo & phân tích (Reports).**
   - **Sub-Agent Workflow Specialization:**
-    * **[Docker]:**
-      - **Target Component file path (`target_component`):** ./sources/infra.docker. [NFR-005], [NFR-004]
-      - **Low-Level Technical Task Instruction:** Tạo `Dockerfile` cho mỗi service (`user`, `center`, `course`, `enrollment`, `attendance`, `membership`, `notification`, `promo`, `chatbot`). Sử dụng stage builder với `maven`/`gradle`. Giai đoạn runtime sử dụng `distroless` image. Thêm `labels` cho version, maintainer. Xây dựng image `membership-hub/fullstack:1.0.0`. Quét image với `Trivy`. Đẩy lên Artifact Registry.
-      - **Targeted Tag IDs:** [NFR-005], [NFR-004]
-- **DAY 17:** Mục tiêu ngắn hạn: Cung cấp cấu hình GCP cuối cùng (Cloud Storage, Secret Manager) cho CI/CD.
-  - **Sub-Agent Workflow Specialization:**
-    * **[GCP]:**
-      - **Target Component file path (`target_component`):** ./sources/infra.gcp. [ARC-010], [NFR-002], [NFR-004], [NFR-008], [NFR-009]
-      - **Low-Level Technical Task Instruction:** Tạo `SecretManager` secret cho JWT key, Firebase credentials. Thiết lập `CloudStorage` bucket `membership-assets` với lifecycle policy (xóa sau 30 ngày). Kích hoạt `CloudScheduler` job để auto-expire promotions. Cấu hình `CloudBuild` triggers từ GitHub Actions. Thiết lập `Monitoring` với Cloud Monitoring cho các metric.
-      - **Targeted Tag IDs:** [ARC-010], [NFR-002], [NFR-004], [NFR-008], [NFR-009]
-- **DAY 18:** Mục tiêu ngắn hạn: Orchestration GKE với HPA và failover.
-  - **Sub-Agent Workflow Specialization:**
-    * **[GKE]:**
-      - **Target Component file path (`target_component`):** ./sources/infra.gke. [ARC-010], [NFR-002], [NFR-004], [NFR-009]
-      - **Low-Level Technical Task Instruction:** Tạo `Deployment` cho từng service với `imagePullSecrets`. Thêm `HorizontalPodAutoscaler` dựa trên CPU >70% hoặc latency >300ms. Cấu hình `Ingress` với `nginx` để TLS termination. Thiết lập `PodDisruptionBudget`. Tạo `ServiceMonitor` cho Prometheus. Triển khai `Istio` cho traffic splitting và retry policy.
-      - **Targeted Tag IDs:** [ARC-010], [NFR-002], [NFR-004], [NFR-009]
+    * **[Coder]:**
+      - **Target Component file path (`target_component`):** `./sources/backend.reports [REQ-024], [REQ-025], [EXC-005]`
+      - **Low-Level Technical Task Instruction:** Triển khai ReportingService với phương thức generateAttendanceReport(centerId, startDate, endDate) xuất file CSV với các cột StudentName, CourseName, AttendanceDate, Status. Triển khai endpoint GET /api/reports/attendance. Triển khai DashboardService với phương thức getSummary(centerId) trả về totalStudents, activeCourses, upcomingSessions (7 ngày tới). Triển khai endpoint GET /api/dashboard. Thêm logic xử lý khi mất kết nối: cache dữ liệu, retry khi phục hồi, trigger EXC-005. Triển khai integration test cho report generation.
+      - **Targeted Tag IDs:** [REQ-024], [REQ-025], [EXC-005]
 
 ###### 📈 Phase 5 DETAILED ARCHITECTURAL SPECIFICATION
-- **Phase Core Objective & Purpose:** Hoàn thiện bảo mật, tuân thủ, và vận hành sản xuất, bao gồm logging, backup, disaster recovery, và tài liệu cuối cùng.
+- **Phase Core Objective & Purpose:** Triển khai DevOps, containerization, triển khai lên GKE, và đảm bảo tuân thủ các yêu cầu phi chức năng (bảo mật, hiệu suất, khả năng phục hồi). Xây dựng pipeline CI/CD, image Docker, cấu hình cloud, và các biện pháp bảo mật.
 - **Target Physical Directory Matrix Map:**
-    * `./sources/docs/compliance. [NFR-003], [NFR-006], [NFR-008], [NFR-009]`
-    * `./sources/infra.gke. [ARC-010], [NFR-002], [NFR-004], [NFR-009]`
-    * `./sources/infra.gcp. [ARC-010], [NFR-009]`
-- **Database Schema DDL SQL Specification:** Không có bảng mới; có thể thêm các bảng audit nếu cần.
-- **API and Event Routing Contracts:** Không có endpoint mới; có thể thêm `/health`, `/metrics`.
-- **Phase Localized Exception Handlers:** Không có exception mới; tiếp tục xử lý các lỗi đã xác định.
+    *   `./sources/infra [ARC-010], [NFR-001], [NFR-002], [NFR-003], [NFR-004], [NFR-005], [NFR-006], [NFR-007], [NFR-008], [NFR-009]`
+    *   `./sources/docs/phase5_architecture.md [ARC-010], [NFR-001], [NFR-002], [NFR-003], [NFR-004], [NFR-005], [NFR-006], [NFR-007], [NFR-008], [NFR-009]`
+- **Database Schema DDL SQL Specification:** (none needed)
+
+- **API and Event Routing Contracts:** (none needed)
+
+- **Phase Localized Exception Handlers:** (none needed)
 
 ######## 📅 Chronological Day-by-Day Sub-Agent Task Distribution Logs (Phase 5)
-- **DAY 19:** Mục tiêu ngắn hạn: Tài liệu hóa kiểm soát bảo mật và tuân thủ.
+- **DAY 13: Xây dựng Docker image và push registry.**
   - **Sub-Agent Workflow Specialization:**
-    * **[Doc]:**
-      - **Target Component file path (`target_component`):** ./sources/docs/compliance. [NFR-003], [NFR-006], [NFR-008], [NFR-009]
-      - **Low-Level Technical Task Instruction:** Tạo tài liệu “Enterprise Security & Compliance” bao gồm các phần: OWASP Top 10 mitigations, GDPR/CCPA data handling, audit logging cấu hình, chính sách backup & DR. Thêm ma trận kiểm soát truy cập cuối cùng. Xuất tài liệu sang PDF và lưu vào `membership-bucket`.
-      - **Targeted Tag IDs:** [NFR-003], [NFR-006], [NFR-008], [NFR-009]
-- **DAY 20:** Mục tiêu ngắn hạn: Điều chỉnh cuối cùng GKE cho scaling và failover.
-  - **Sub-Agent Workflow Specialization:**
-    * **[GKE]:**
-      - **Target Component file path (`target_component`):** ./sources/infra.gke. [ARC-010], [NFR-002], [NFR-004], [NFR-009]
-      - **Low-Level Technical Task Instruction:** Tinh chỉnh `HPA` cho các deployment dựa trên kết quả monitoring thực tế. Thêm `PodDisruptionBudget` để đảm bảo SLA 99.9%. Tạo `PriorityClass` cho các job quan trọng. Kiểm tra `NetworkPolicy` để cô lập namespace. Thực hiện rolling update và xác nhận toàn bộ pods đều sẵn sàng.
-      - **Targeted Tag IDs:** [ARC-010], [NFR-002], [NFR-004], [NFR-009]
-- **DAY 21:** Mục tiêu ngắn hạn: Thiết lập backup PostgreSQL và khôi phục sau thảm họa.
+    * **[Docker]:**
+      - **Target Component file path (`target_component`):** `./sources/infra/Dockerfile [ARC-010], [NFR-001], [NFR-002], [NFR-003], [NFR-004], [NFR-005], [NFR-006], [NFR-007], [NFR-008], [NFR-009]`
+      - **Low-Level Technical Task Instruction:** Xây dựng multi-stage Dockerfile cho backend (Quarkus) và frontend (Node.js) với kích thước image tối ưu (<500MB). Push image lên Google Artifact Registry. Triển khai security scan (Trivy) để phát hiện lỗ hổng, đảm bảo tuân thủ NFR-003 (mã hóa dữ liệu), NFR-005 (kích thước image). Triển khai unit test và integration test trong pipeline CI.
+      - **Targeted Tag IDs:** [ARC-010], [NFR-001], [NFR-002], [NFR-003], [NFR-004], [NFR-005], [NFR-006], [NFR-007], [NFR-008], [NFR-009]
+
+- **DAY 14: Cấu hình GCP và triển khai GKE.**
   - **Sub-Agent Workflow Specialization:**
     * **[GCP]:**
-      - **Target Component file path (`target_component`):** ./sources/infra.gcp. [ARC-010], [NFR-009]
-      - **Low-Level Technical Task Instruction:** Tạo `BackupJob` hàng ngày cho PostgreSQL sử dụng `CloudSQL Backup` với retention 24 giờ. Thiết lập `Cross-Region Replication` đến bucket `membership-backup-us-east1`. Kiểm tra khôi phục bằng cách tạo database test và xác nhận dữ liệu. Tạo runbook cho quy trình khôi phục sau sự cố.
-      - **Targeted Tag IDs:** [ARC-010], [NFR-009]
+      - **Target Component file path (`target_component`):** `./sources/infra/gcp [ARC-010], [NFR-002], [NFR-004], [NFR-008]`
+      - **Low-Level Technical Task Instruction:** Cấu hình VPC với private subnets, tạo IAM service accounts cho các service, thiết lập Cloud Storage bucket cho backup, enable Cloud SQL (PostgreSQL) với backup tự động, thiết lập Cloud Monitoring và Cloud Logging. Triển khai Cloud Build pipeline để trigger build Docker image và deploy lên GKE. Triển khai GKE cluster với auto-scaling dựa trên CPU >70% hoặc latency >300ms (HPA). Triển khai deployment.yaml, service.yaml, ingress.yaml. Triển khai health checks và tự động rollback khi lỗi.
+      - **Targeted Tag IDs:** [ARC-010], [NFR-002], [NFR-004], [NFR-008]
 
-#### 📁 6. UNIVERSAL ENTERPRISE SECURITY CODES & INJECTION COUNTERMEASURES [NFR-003]
+- **DAY 14 (GKE Agent):**
+  - **Sub-Agent Workflow Specialization:**
+    * **[GKE]:**
+      - **Target Component file path (`target_component`):** `./sources/infra/gke [ARC-010], [NFR-002], [NFR-004]`
+      - **Low-Level Technical Task Instruction:** Tạo GKE cluster version 1.27+, cấu hình node pools, kích hoạt network policy, thiết lập CNI. Triển khai các deployment từ Docker images, cấu hình resource limits, liveness/readiness probes. Thiết lập HPA dựa trên metric tùy chỉnh (latency, request count). Triển khai CI/CD pipeline với GitHub Actions để tự động deploy khi có thay đổi code. Triển khai monitoring với Prometheus và alerting qua Alertmanager.
+      - **Targeted Tag IDs:** [ARC-010], [NFR-002], [NFR-004]
 
-- **SQL Injection (SQLi) Absolute Countermeasures:** Sử dụng Prepared Statements / Parameterized Queries trong tất cả JDBC calls. Áp dụng WhiteList cho các giá trị sort column. Áp dụng Row-Level Security cho multi-tenant.
-- **Cross-Site Scripting (XSS) & Content Security Policy (CSP):** Tự động escape tất cả user inputs trong Thymeleaf/JSX. Áp dụng `@RequestMapping` để đánh dấu các endpoint. Thêm HTTP header `Content-Security-Policy` với `default-src 'self'`, không cho phép `unsafe-inline`.
-- **Multi-Tenant CORS Security Rails:** Validate origin chống lại danh sách tenant-cấu hình; từ chối các origin không được phép. Sử dụng `Access-Control-Allow-Origin` động.
-- **Zero-Leak Log Scrubbing & PII Data Masking Engines:** Áp dụng `@JsonSerialize` với `JsonSerializer` tùy chỉnh để che giấu số CCCD, email. Sử dụng `Logback` filter để loại bỏ các trường nhạy cảm. Lưu trữ logs trong bucket mã hóa, rotation hàng ngày.
+#### 📁 6. UNIVERSAL ENTERPRISE SECURITY CODES & INJECTION COUNTERMEASURES [NFR-001]
+
+- **SQL Injection (SQLi) Absolute Countermeasures:** Sử dụng Prepared Statements với JDBC, Hibernate Criteria API, hoặc QueryDSL. Áp dụng Whitelist cho các giá trị sắp xếp (ví dụ: sortBy ∈ {“name”, “date”, “id”}). Áp dụng ORM mapping an toàn, không cho phép raw SQL.
+
+- **Cross-Site Scripting (XSS) & Content Security Policy (CSP):** Áp dụng auto-escaping trong Thymeleaf (cho Java) và React (JSX). Sử dụng helmet CSP cho frontend, đặt header `Content-Security-Policy: default-src 'self'; script-src 'self' 'unsafe-inline'` chỉ cho các script cần thiết. Áp dụng validation đầu vào cho các trường HTML.
+
+- **Multi-Tenant CORS Security Rails:** Cấu hình CORS cho từng tenant dựa trên origin, sử dụng `Access-Control-Allow-Origin` động với whitelist. Xác thực tenant qua JWT claim `tenant_id`. Áp dụng same-origin cho các API nội bộ.
+
+- **Zero-Leak Log Scrubbing & PII Data Masking Engines:** Sử dụng interceptor `@LogSanitization` để xóa thông tin nhạy cảm (email, SSN) trước khi ghi log. Áp dụng `@JsonSerialize` với `JsonInclude.Include.NON_NULL`. Thiết lập threshold cho độ dài log, tự động che giấu các trường PII bằng `***`.
 
 #### 📁 7. HYBRID MOBILE COMPLIANCE RAIL RULES & INTERNATIONALIZED SEO MECHANISMS
 
-- **Capacitor Mobile Hybrid Compliance Rails:** Sử dụng `@capacitor/preferences` cho storage an toàn, `capacitor-community/contacts` cho danh bạ giới hạn. Áp dụng URL scheme `membership://auth` cho deep linking. Bắt sự kiện back-button native.
-- **Internationalization (i18n) & Dynamic SEO Injection:** Middleware phát hiện `Accept-Language`. Sử dụng `next-i18next` với các file tài nguyên `.json`. Tự động chèn `<link rel="alternate" hreflang="en" href="https://example.com/en"/>` cho từng ngôn ngữ. Tối ưu hóa meta tags cho từng locale.
+- **Capacitor Mobile Hybrid Compliance Rails:** Sử dụng @capacitor/core để quản lý file hệ thống, lưu trữ an toàn với @capacitor/preferences, chặn back-button với native plugin, fetch data qua API với timeout và retry. Áp dụng URL scheme cho deep linking (app://course/123). Áp dụng caching với IndexedDB thông qua Capacitor Storage.
+
+- **Internationalization (i18n) & Dynamic SEO Injection:** Middleware phát hiện locale từ cookie, header Accept-Language, fallback sang default (EN). Sử dụng react-i18next với namespace cho từng phần. Tự động generate hreflang links: `<link rel="alternate" hreflang="en" href="https://example.com/en/page"/>`. Sử dụng schema.org cho các cấu trúc dữ liệu đa ngôn ngữ.
 
 #### 📁 8. PIPELINE AUTOMATED DAILY SESSION GIT BRANCH FLOW
 
-- **Daily Workspace Forking Isolation:** Script CI tạo branch `features/development-phase-1-day-1`, `features/development-phase-2-day-1`, v.v. Mỗi branch là isolated workspace.
-- **Validation Guard Pipeline Gates:** Thực hiện `mvn clean verify` hoặc `npm run test` với mục tiêu độ phủ `>=85%`. Kiểm tra `docker scan` cho vulnerabilities. Ghi nhận kết quả vào `build-reports/`. Chỉ merge khi tất cả gates vượt qua.
+- **Daily Workspace Forking Isolation:** Mỗi ngày tạo branch mới `features/development-phase-X-day-Y` (X là số phase, Y là số ngày). Sử dụng git fork từ `main` để đảm bảo isolation.
+
+- **Validation Guard Pipeline Gates:** Sau khi merge, GitHub Actions chạy các bước: `mvn clean verify` (hoặc `npm test`), kiểm tra độ phủ sóng >=85%, kiểm tra style (Spotless), kiểm tra bảo mật (Snyk). Chỉ cho phép merge khi tất cả các gate vượt qua.
 
 ###### 🛑 MATRIX COVERAGE CHECK MANDATE
 
-`[TRACEABILITY MATRIX ENFORCEMENT: 100% COVERAGE VALIDATED. TOTAL UNIQUE REQ TAGS MAPPED: 25, TOTAL ARC TAGS: 10, TOTAL EXC TAGS: 5, TOTAL DAT TAGS: 9, TOTAL NFR TAGS: 9. ZERO UNASSIGNED CODES FOUND.]`
+`[TRACEABILITY MATRIX ENFORCEMENT: 100% COVERAGE VALIDATED. TOTAL UNIQUE REQ TAGS MAPPED: 25, TOTAL ARC TAGS: 9, TOTAL EXC TAGS: 5, TOTAL DAT TAGS: 11, TOTAL NFR TAGS: 9. ZERO UNASSIGNED CODES FOUND.]`
 
