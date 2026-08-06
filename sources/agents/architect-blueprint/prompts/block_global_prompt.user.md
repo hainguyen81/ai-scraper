@@ -178,7 +178,7 @@ Generate a clean, highly structured Markdown Table mapping the exact distributio
 </COMMAND>
 
 <PHASE_TEMPLATE_LOOP>
-### 📈 Phase [X] DETAILED ARCHITECTURAL SPECIFICATION
+### 📈 [Translated text for "Phase"] [X] [DYNAMICALLY EXTRACT THE OPERATIONAL OBJECTIVE MATRIX FROM THE PHASE DESCRIPTION BELOW AND GENERATE A SHARP, HIGH-LEVEL TECHNICAL SUMMARY ABSTRACT TITLE CONCISELY RENDERED IN THE DESIGNATED TARGET LANGUAGE. DO NOT USE STATIC LABELS. EXAMPLE: "Xây Dựng Nền Tảng Người Dùng Và Xác Thực Đa Nhà Cung Cấp"]
 - **Phase Core Objective & Purpose:** [Detailed technical explanation of what this phase achieves and its functional goals, fully translated into {% if language and language.strip() != "" %}{{ language }}{% else %}English{% endif %}]
 - **Target Physical Directory Matrix Map:** List all specific file paths underneath `./sources/` initialized or modified in this phase. Every single line path generated MUST be appended with its tracking Tag IDs inline.
     *   *Documentation Gating Boundary:* Any line representing an enterprise specification, reference blueprint, relational database mapping catalog, or architecture layout MUST strictly reside under the unified root directory path: `./sources/docs/`.
