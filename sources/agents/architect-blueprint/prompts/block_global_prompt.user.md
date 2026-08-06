@@ -104,10 +104,20 @@ You MUST include every single section below without exception to satisfy enterpr
 ## 📊 1. SYSTEM OVERVIEW & CORE ARCHITECTURE MODALITY
 
 ### 1.1. Core System Modality & Architecture Modality
-[Provide a comprehensive technical overview mapping out the core detected architecture topology, EDA paradigms, CQRS boundaries, and Reactive Core patterns based strictly on requirements]
+<RULE>
+- You MUST automatically delete this entire rule instruction text stream block.
+- You MUST dynamically generate a comprehensive technical overview analysis of the discovered core system architecture, EDA patterns, CQRS boundaries, and Reactive core models based strictly on the requirement context.
+- CRITICAL FORMAT RULE: You BANNED from outputting paragraphs or walls of text. You MUST strictly format 100% of your generated overview as a clean, highly structured, high-density markdown bulleted checklist (`- ` symbols). Each bullet point must be a short, punchy technical statement delivering raw architectural metrics.
+- You MUST render 100% of your newly generated sentences in the designated target language: Vietnamese.
+</RULE>
 
 ### 1.2. Enterprise Data Flow Topologies & Core Ecosystems
-[Detail the asynchronous messaging channels, ingestion gateway parameters, topic topologies, and cross-channel external fan-out architectures]
+<RULE>
+- You MUST automatically delete this entire rule instruction text stream block.
+- You MUST dynamically generate a detailed technical breakdown analysis of asynchronous messaging channels, ingestion gateway parameters, topic topologies, and cross-channel external fan-out architectures based on the context.
+- CRITICAL FORMAT RULE: You BANNED from outputting paragraphs or walls of text. You MUST strictly format 100% of your generated breakdown as a clean, highly structured, high-density markdown bulleted checklist (`- ` symbols). Each bullet point must be a short, punchy technical statement delivering raw data flow paths.
+- You MUST render 100% of your newly generated sentences in the designated target language: Vietnamese.
+</RULE>
 
 ## 📁 2. TECH STACK DEPENDENCIES & ECOSYSTEM LIBRARIES
 - **Backend Infrastructure Core Stack:** [Detail precise versions, runtime engines, dependency injection abstractions, ORMs, and messaging frameworks extracted from requirements]
