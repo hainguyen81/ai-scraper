@@ -174,18 +174,13 @@ Generate a clean, highly structured Markdown Table mapping the exact distributio
 - **Phase Localized Exception Handlers [EXC-XXX]:** Detail explicit business validation rules, error codes, and system exception handling pathways mapping strictly to the current phase scope, contextually translated into {% if language and language.strip() != "" %}{{ language }}{% else %}English{% endif %}.
 <!--END_DELIMITTER-->
 
-#### 📅 Chronological Day-by-Day Sub-Agent Task Distribution Logs (Phase [X])
-# BANNED RAW HEADERS, INDENTATION & LANGUAGE ENFORCEMENT:
-- You are ABSOLUTELY BANNED from using markdown header symbols (`#`, `##`, `###`, `####`) before the word DAY. Every day log MUST be rendered strictly as a nested bullet point starting with `- **DAY [Y]: ...**`.
-- You MUST translate the DAY objective text and the "Low-Level Technical Task Instruction" entirely into "{% if language and language.strip() != "" %}{{ language }}{% else %}English{% endif %}". Do NOT leave explanations in English.
-- Ensure all inner properties are properly indented with spaces to maintain a beautiful nested list hierarchy. Ensure exactly ONE single Sub-Agent with Capitalized first-letter formatting is assigned per active task line.
+#### Chronological Day-by-Day Sub-Agent Task Distribution Logs (Phase [X])
 
 - **DAY [Y]: SHORT OBJECTIVE FOR THIS OPERATIONAL CALENDAR DAY**
-  - **Sub-Agent Workflow Specialization:**
-    * **[Assigned Sub-Agent literal token: Coder | Tester | Reviewer | Doc | Docker | GCP | GKE]:**
-      - **Target Component file path (`target_component`):** [Insert explicit physical file path starting with `./sources/` or Tester pair syntax in Technical English. Append its corresponding Tag IDs inline here, e.g., `./sources/backend.... [REQ-001], [DAT-002]`]
-      - **Low-Level Technical Task Instruction:** [Exhaustive, high-density engineering instruction, framework conventions, API contract layouts, data fields validation, or unit test case parameters translated completely into {% if language and language.strip() != "" %}{{ language }}{% else %}English{% endif %}, attaching Tag IDs]
-      - **Targeted Tag IDs:** [Write each tag out individually separated by commas, e.g., `[REQ-001], [DAT-002], [EXC-001]`.]
+    * **Sub-Agent Workflow Specialization:** <RULE>You MUST analyze the required daily task domain and output EXACTLY one single literal token code inside brackets representing the allocated persona: `[Coder]`, `[Tester]`, `[Reviewer]`, `[Doc]`, `[Docker]`, `[GCP]`, or `[GKE]`. You are CRITICALLY BANNED from outputting any English instructional placeholders or text descriptions like "Assigned Sub-Agent" or "literal token". Emitting anything other than the naked bracketed sub-agent code triggers an immediate failure.</RULE>
+    * **Target Component file path (`target_component`):** <RULE>Output explicit physical file path starting with `./sources/` (or Tester semi-colon pair) with its corresponding Tag IDs appended inline.</RULE>
+    * **Low-Level Technical Task Instruction:** <RULE>Output exhaustive, high-density engineering instructions, validation schemas, or API contract parameters fully translated into Vietnamese, attaching explicit Tag IDs.</RULE>
+    * **Targeted Tag IDs:** <RULE>Output each tag identifier out individually separated by commas, enclosed in markdown code ticks.</RULE>
 
 ## 📁 6. UNIVERSAL ENTERPRISE SECURITY CODES & INJECTION COUNTERMEASURES [NFR-XXX]
 - **SQL Injection (SQLi) Absolute Countermeasures:** Rule parameters for prepared statements, positional query parameters, and dynamic sorting input Whitelists.
