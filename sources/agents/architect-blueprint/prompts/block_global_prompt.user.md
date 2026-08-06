@@ -146,6 +146,9 @@ DEVOPS_LAYER_REQUIRED=[true/false based on project context]
 
 ## 4. HIGH-LEVEL MULTI-PHASE ARCHITECTURAL SYNOPSIS GRID
 Generate a clean, highly structured Markdown Table mapping the exact distribution of components and Tag IDs across the dynamically calculated phases. You MUST compute the most optimal number of phases (denoted as N, where N <= {{ num_phases }}) that naturally and completely covers 100% of the BA requirements and Tag IDs. Each row MUST specify a real-world engineering duration bounded between 1 to a strict upper ceiling of {{ max_days_per_phase }} days maximum per phase. Do NOT generate empty rows, placeholder phases, or artificial workloads. If the requirements are fully satisfied within fewer than {{ num_phases }} phases, terminate the matrix setup immediately at phase N.
+<RULE>
+- **LOCAL DAY RANGE BOUNDARY**: In the "Day Range" column of this table, you MUST format the day sequence starting from relative integer 1 for EACH individual phase row (e.g., Phase 1: `Day 1 - 2`, Phase 2: `Day 1 - 2`). Compounding or running a linear progressive day count across phase boundaries (e.g., `Day 3 - 4` for Phase 2) is strictly prohibited.
+</RULE>
 
 *   CRITICAL PIPELINE RAILS FOR ARCHITECTURAL COMPONENT PATHS:
     *   All technical architectural documentation assets generated for Confluence, CTO review, or Developer onboarding MUST strictly utilize the localized centralized master directory prefix: `./sources/docs/`.
@@ -165,6 +168,7 @@ Generate a clean, highly structured Markdown Table mapping the exact distributio
 
 # DYNAMIC CEILING BOUNDARY ENFORCEMENT:
 - For each active Phase [X], the day-by-day logs MUST strictly map to the exact day range defined for that phase in Section 4.
+- **ABSOLUTE LOCAL CHRONO RESET**: When generating the day element sub-headers inside Section 5 (e.g., `- **DAY [Y]:**`), the counter variable Y MUST natively reset and restart from 1 for EVERY single phase block (e.g., Phase 1 contains DAY 1, DAY 2; Phase 2 MUST restart and contain exactly DAY 1, DAY 2). You are permanently forbidden from bleeding the global progressive timeline into these sections.
 - The total days within any single phase MUST NOT exceed the absolute upperbound of {{ max_days_per_phase }} days.
 - You MUST execute a hard log freeze and terminate the active day loop immediately on the exact day when 100% of the baseline BA tracking codes for Phase [X] are covered. Fabricating dummy tasks or synthetic requirements to pad out the timeline up to {{ max_days_per_phase }} is completely banned.
 </COMMAND>
