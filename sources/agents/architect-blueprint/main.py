@@ -196,13 +196,13 @@ def run_architect_agent(
     # parse master prompt rules from template
     master_rules = None
     if not is_build_plan_spec:
-        logger.info("=============================================================================")
-        logger.info(f"🤖 Master Rule File: {MASTER_PROMPT_TEMPLATE_PATH}")
-        logger.info("=============================================================================")
+        logger.trace("=============================================================================")
+        logger.trace(f"🤖 Master Rule File: {MASTER_PROMPT_TEMPLATE_PATH}")
+        logger.trace("=============================================================================")
         master_rules = render_prompt(MASTER_PROMPT_TEMPLATE_PATH, {
             "language": language or DEFAULT_BLUEPRINT_LANGUAGE,
         })
-        logger.info(master_rules)
+        logger.trace(master_rules)
     
     # Master pipeline orchestrator that runs individual functional blocks in sequence.
     # Provides pristine separation of concerns and protects engine runtime stability.

@@ -71,10 +71,10 @@ def generate_global_context(client: OpenAI, model_name: str, master_rules: str, 
         system_prompt = render_prompt(GLOBAL_SYSTEM_PROMPT_TEMPLATE_PATH, prompt_context)
         log_system_prompt = system_prompt
         system_prompt = merge_master_prompt(master_rules, system_prompt)
-        logger.info("=============================================================================")
-        logger.info("🤖 Combine MASTER + SYSTEM PROMPTS:")
-        logger.info(system_prompt)
-        logger.info("=============================================================================")
+        logger.trace("=============================================================================")
+        logger.trace("🤖 Combine MASTER + SYSTEM PROMPTS:")
+        logger.trace(system_prompt)
+        logger.trace("=============================================================================")
         
         # parse user prompt from template
         user_prompt = render_prompt(GLOBAL_USER_PROMPT_TEMPLATE_PATH, prompt_context)
