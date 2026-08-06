@@ -164,7 +164,7 @@ Generate a clean, highly structured Markdown Table mapping the exact distributio
 - You MUST execute a hard log freeze and terminate the active day loop immediately on the exact day when 100% of the baseline BA tracking codes for Phase [X] are covered. Fabricating dummy tasks or synthetic requirements to pad out the timeline up to {{ max_days_per_phase }} is completely banned.
 </COMMAND>
 
-<!--START_DELIMITTER-->
+<PHASE_TEMPLATE_LOOP>
 ### 📈 Phase [X] DETAILED ARCHITECTURAL SPECIFICATION
 - **Phase Core Objective & Purpose:** [Detailed technical explanation of what this phase achieves and its functional goals, fully translated into {% if language and language.strip() != "" %}{{ language }}{% else %}English{% endif %}]
 - **Target Physical Directory Matrix Map:** List all specific file paths underneath `./sources/` initialized or modified in this phase. Every single line path generated MUST be appended with its tracking Tag IDs inline.
@@ -172,15 +172,20 @@ Generate a clean, highly structured Markdown Table mapping the exact distributio
 - **Database Schema DDL SQL Specification [DAT-XXX]:** Provide raw, complete, and valid DDL SQL migration statements containing explicit columns, data types, primary/foreign keys, matrix mappings, indexes, and nullability constraints applied under this phase scope. (Omit entirely if the project topology has no database or persistence layer requirements. This technical block MUST NOT be translated).
 - **API and Event Routing Contracts [REQ-XXX], [ARC-XXX]:** Document the complete technical contracts (precise endpoint paths, HTTP methods, request/response JSON payload schemas, or message broker topic configurations. Technical blocks MUST NOT be translated).
 - **Phase Localized Exception Handlers [EXC-XXX]:** Detail explicit business validation rules, error codes, and system exception handling pathways mapping strictly to the current phase scope, contextually translated into {% if language and language.strip() != "" %}{{ language }}{% else %}English{% endif %}.
-<!--END_DELIMITTER-->
+</PHASE_TEMPLATE_LOOP>
 
 #### Chronological Day-by-Day Sub-Agent Task Distribution Logs (Phase [X])
 
 - **DAY [Y]: SHORT OBJECTIVE FOR THIS OPERATIONAL CALENDAR DAY**
     * **Sub-Agent Workflow Specialization:** <RULE>You MUST analyze the required daily task domain and output EXACTLY one single literal token code inside brackets representing the allocated persona: `[Coder]`, `[Tester]`, `[Reviewer]`, `[Doc]`, `[Docker]`, `[GCP]`, or `[GKE]`. You are CRITICALLY BANNED from outputting any English instructional placeholders or text descriptions like "Assigned Sub-Agent" or "literal token". Emitting anything other than the naked bracketed sub-agent code triggers an immediate failure.</RULE>
+    * **Targeted Tag IDs:** <RULE>Output each tag identifier out individually separated by commas, enclosed in markdown code ticks.</RULE>
     * **Target Component file path (`target_component`):** <RULE>Output explicit physical file path starting with `./sources/` (or Tester semi-colon pair) with its corresponding Tag IDs appended inline.</RULE>
     * **Low-Level Technical Task Instruction:** <RULE>Output exhaustive, high-density engineering instructions, validation schemas, or API contract parameters fully translated into Vietnamese, attaching explicit Tag IDs.</RULE>
-    * **Targeted Tag IDs:** <RULE>Output each tag identifier out individually separated by commas, enclosed in markdown code ticks.</RULE>
+    
+    # 🚨 DYNAMIC ARCHITECTURAL CONTENT GATING (IF-ACTIVE RAIL PROTOCOL):
+    * **Database Schema DDL SQL Specification [DAT-XXX]:** <RULE>You MUST actively check the active Sub-Agent for this DAY. If and ONLY IF the task involves database migrations, SQL, scripts, or persistence engines, you MUST dynamically generate the complete SQL blocks here. If the task is FrontendUI/DevOps/Testing and has NO database work, you MUST completely delete and eliminate this entire bullet point from the output buffer.</RULE>
+    * **API and Event Routing Contracts [REQ-XXX], [ARC-XXX]:** <RULE>You MUST actively check the active Sub-Agent for this DAY. If and ONLY IF the task involves backend service microservices, route contracts, or event brokers, you MUST dynamically generate the endpoint JSON/WebSocket schemas here. If the task involves ONLY frontend components, containerization, or infrastructure, you MUST completely delete and eliminate this entire bullet point from the output buffer.</RULE>
+    * **Phase Localized Exception Handlers [EXC-XXX]:** <RULE>You MUST actively check the active Sub-Agent for this DAY. If and ONLY IF the task contains explicit business validation boundaries or system exceptions, generate the handlers here. Otherwise, completely delete and eliminate this entire bullet point from the output buffer.</RULE>
 
 ## 📁 6. UNIVERSAL ENTERPRISE SECURITY CODES & INJECTION COUNTERMEASURES [NFR-XXX]
 - **SQL Injection (SQLi) Absolute Countermeasures:** Rule parameters for prepared statements, positional query parameters, and dynamic sorting input Whitelists.
