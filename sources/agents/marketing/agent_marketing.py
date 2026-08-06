@@ -3,7 +3,8 @@ import sys
 # Now Python can seamlessly see and import the centralized helper utility cleanly!
 from sources.agents.agent_helper import (
     extract_data_part,
-    read_file_raw
+    read_file_raw,
+    render_prompt
 )
 
 # super agent
@@ -52,6 +53,12 @@ class AbstractMarketingAgent(AbstractSubAgent):
     
     def master_prompt_file(self) -> str:
         return MASTER_RULE_PROMPT_TEMPLATE
+    
+    def build_master_prompt(self, **kwargs) -> str:
+        prompt_context = self.build_master_prompt_context(**kwargs) or {}
+        super_master_prompt = render_prompt(super().master_prompt_template(), prompt_context)
+        master_prompt = render_prompt(self.master_prompt_template(), prompt_context)
+        return f"{super_master_prompt}\n\n{master_prompt}"
     
     # @override
     def __pre_execute__(self, **kwargs):
