@@ -130,7 +130,7 @@ You MUST include every single section below without exception to satisfy enterpr
 
 ### ARCHITECTURAL STACK MATRIX
 
-```properties
+```properties:stack_matrix
 PERSISTENCE_LAYER_REQUIRED=[true/false based on project context]
 BACKEND_LAYER_REQUIRED=[true/false based on project context]
 FRONTEND_LAYER_REQUIRED=[true/false based on project context]

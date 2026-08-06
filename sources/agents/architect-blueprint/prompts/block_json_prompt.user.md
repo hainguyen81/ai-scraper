@@ -61,7 +61,13 @@ You MUST dynamically populate the top-level keys of the JSON object using EXACT 
 # 🛑 MANDATORY STRUCTURE ENFORCEMENT FOR TRACEABILITY TAGS VIA HTML ANCHORS (CRITICAL):
 - You MUST force your token processing core to sequentially look at every sub-task block in the source Markdown content. For each sub-task, locate the hidden technical container bounds delimited strictly between the HTML anchors `<!--START_TAGS-->` and `<!--END_TAGS-->`.
 - You MUST extract every individual inherited Tag ID token located inside these markers. You are CRITICALLY BANNED from leaving the "targeted_tags" array empty `[]` or null for any reason. 
-- **THE ANTI-PADDING AND SANITIZATION PROTOCOL**: You MUST completely strip away, purge, and filter out all markdown backticks (`` ` ``), commas, inline formatting tokens, or trailing whitespaces from the tag strings. Populate them as clean, separate, isolated string elements inside the "targeted_tags" array field (e.g., `"targeted_tags": ["[ARC-006]", "[ARC-010]"]`).
+- **THE ANTI-PADDING AND SANITIZATION PROTOCOL**:
+  <RULE>
+  - You MUST rigorously split the extracted tag string payload by the comma character `,` to isolate each individual tracking code. 
+  - You MUST strip away and dọn dẹp sạch sẽ all markdown backticks (`` ` ``), brackets inside elements if doubled, or trailing whitespaces. 
+  - Populate each token as a completely independent, clean string element inside the "targeted_tags" array field (e.g., exact format: `"targeted_tags": ["[ARC-006]", "[ARC-010]"]`). 
+  - Emitting combined tags as a single string element triggers an immediate execution pipeline failure.
+  </RULE>
 - If a sub-task section in the Markdown context contains the `<!--START_TAGS-->` container, returning an empty array `[]` in your JSON payload is treated as a catastrophic runtime syntax failure and will instantly crash the system pipeline.
 - You are STRICTLY BANNED from leaving the "targeted_tags" array empty `[]` or null. Every single tag token must be its own separated array element string.
 

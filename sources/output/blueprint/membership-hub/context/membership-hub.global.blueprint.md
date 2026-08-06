@@ -31,7 +31,7 @@
 
 ### MA TRẬN CÔNG NGHỆ KIẾN TRÚC
 
-```properties
+```properties:stack_matrix
 PERSISTENCE_LAYER_REQUIRED=true
 BACKEND_LAYER_REQUIRED=true
 FRONTEND_LAYER_REQUIRED=true
