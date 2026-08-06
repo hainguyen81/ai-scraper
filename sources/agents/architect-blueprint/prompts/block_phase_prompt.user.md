@@ -32,6 +32,11 @@ You are tasked to detail **PHASE {{ phase_idx }} OUT OF {{ num_phases }}**. You 
 ---
 
 Your output MUST follow this exact Markdown layout structure (translate all label tokens but preserve the hidden HTML anchor formatting exactly):
+
+<RULE>
+- **🚨 MASTER GOVERNANCE COMPLIANCE MANDATE**: Before generating your final output response, you MUST strictly re-read and enforce the global translation rules defined in the Master Rules section. Ensure 100% of descriptive texts are rendered in {% if language and language.strip() != "" %}{{ language }}{% else %}English{% endif %} while completely freezing all technical paths, tags, and block codes.
+</RULE>
+
 # [Translate "Phase"] {{ phase_idx }}: <!--PHASE_NAME_START-->[Generate a standard, natural, human-readable descriptive title for this phase. You MUST write this as a normal human sentence or phrase using isolated words separated by real, standard whitespace characters. You are ABSOLUTELY AND CRITICALLY BANNED from combining words together, removing spaces, or utilizing programming styles like PascalCase, camelCase, or snake_case. It must read normally and smoothly just like a human description string. Fully translate and render this title into the target language requested by the parameters: {% if language and language.strip() != "" %}{{ language }}{% else %}English{% endif %}. Example: "Core Infrastructure And Authentication Setup"]<!--PHASE_NAME_END-->
 
 ## 📊 Document Control

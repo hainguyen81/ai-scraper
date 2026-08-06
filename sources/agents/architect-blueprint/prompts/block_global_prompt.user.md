@@ -93,6 +93,10 @@ You MUST strictly isolate the architectural responsibilities of all Sub-Agents l
 ### 📋 MANDATORY OUTPUT STRUCTURE (MARKDOWN REPORT LAYOUT):
 You MUST include every single section below without exception to satisfy enterprise compliance requirements, and fully translating them following the rules in `CRITICAL FULL TRANSLATION MANDATE`:
 
+<RULE>
+- **🚨 MASTER GOVERNANCE COMPLIANCE MANDATE**: Before generating your final output response, you MUST strictly re-read and enforce the global translation rules defined in the Master Rules section. Ensure 100% of descriptive texts are rendered in {% if language and language.strip() != "" %}{{ language }}{% else %}English{% endif %} while completely freezing all technical paths, tags, and block codes.
+</RULE>
+
 # GLOBAL PROJECT CONTEXT: {{ project_name }}
 
 ## 📊 Document Control
