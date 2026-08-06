@@ -98,15 +98,15 @@ You MUST include every single section below without exception to satisfy enterpr
 | **Author** | Enterprise System Architect (SA Agent) |
 | **Approval** | Pending Technical Governance Review |
 
-## 📊 1. [TRANSLATED "SYSTEM OVERVIEW & CORE ARCHITECTURE MODALITY"]
+## 📊 1. [Translate "SYSTEM OVERVIEW & CORE ARCHITECTURE MODALITY"]
 
-### 1.1. [TRANSLATED "Core System Modality & Architecture Modality"]
+### 1.1. [Translate "Core System Modality & Architecture Modality"]
 [Provide a comprehensive technical overview mapping out the core detected architecture topology, EDA paradigms, CQRS boundaries, and Reactive Core patterns based strictly on requirements]
 
-### 1.2. [TRANSLATED "Enterprise Data Flow Topologies & Core Ecosystems"]
+### 1.2. [Translate "Enterprise Data Flow Topologies & Core Ecosystems"]
 [Detail the asynchronous messaging channels, ingestion gateway parameters, topic topologies, and cross-channel external fan-out architectures]
 
-## 📁 2. [TRANSLATED "TECH STACK DEPENDENCIES & ECOSYSTEM LIBRARIES"]
+## 📁 2. [Translate "TECH STACK DEPENDENCIES & ECOSYSTEM LIBRARIES"]
 - **[Translate "Backend Infrastructure Core Stack"]:** [Detail precise versions, runtime engines, dependency injection abstractions, ORMs, and messaging frameworks extracted from requirements]
 - **[Translate "Frontend & Cross-Platform UI Mobile Stack"]:** [Detail strict web frameworks, dynamic localized routing, responsive layouts, and native mobile runtime wrappers if present]
 
@@ -121,16 +121,16 @@ MOBILE_LAYER_REQUIRED=true
 DEVOPS_LAYER_REQUIRED=true
 END_TECHNICAL_MATRIX_DO_NOT_TRANSLATE-->
 
-## 📁 3. [TRANSLATED "GLOBAL GUARDRAILS & ENTERPRISE COMPLIANCE STANDARDS"]
+## 📁 3. [Translate "GLOBAL GUARDRAILS & ENTERPRISE COMPLIANCE STANDARDS"]
 <!--START_TRANSLATION_DIRECTIVE_DO_NOT_DISPLAY
-[CRITICAL TRANSLATION COMMAND: You MUST fully translate 100% of the titles, item names, and human-readable text descriptions of this section 3 into the designated Target Output Language: {% if language and language.strip() != "" %}{{ language }}{% else %}English{% endif %}. You are STRICTLY FORBIDDEN from leaving this section in raw English. However, you MUST lock and preserve all specific technical tokens, literal paths like `./sources/`, and package names like `org.nlh4j.saas.<project_name_alphanumeric_lowercase>` in pure unaccented Technical English wrapped inside inline code backticks. You MUST NOT leak this instruction block into the final text output].
+[CRITICAL TRANSLATION COMMAND: You MUST fully translate 100% of the titles, bullet titles, item names, and human-readable text descriptions of this section into the designated Target Output Language: {% if language and language.strip() != "" %}{{ language }}{% else %}English{% endif %}. You are STRICTLY FORBIDDEN from leaving this section in raw English. However, you MUST lock and preserve all specific technical tokens, literal paths like `./sources/`, and package names like `org.nlh4j.saas.<project_name_alphanumeric_lowercase>` in pure unaccented Technical English wrapped inside inline code backticks. You MUST NOT leak this instruction block into the final text output].
 END_TRANSLATION_DIRECTIVE_DO_NOT_DISPLAY-->
-- **Absolute Workspace Boundary Rule:** The true repository workspace root is permanently fixed at the project root `./`. All paths generated MUST begin with `./sources/`.
+- **Absolute Workspace Boundary Rule:** The true repository workspace root is permanently fixed at the project root `.`. All paths generated MUST begin with `./sources/`.
 - **Dynamic Directory Prefixing Compliance:** Enforce the dynamic path mapping rules defined in Protocol 1 strictly matching the detected project structure.
 - **[CONDITION: JAVA_STACK_ONLY] Java Package Standard:** If the tech stack utilizes Java frameworks, all Java source codes MUST strictly reside within the corporate package foundation: `org.nlh4j.saas.<project_name_alphanumeric_lowercase>`. You MUST dynamically convert the string "{{ project_name }}" into a strict pure alphanumeric lowercase token by stripping out whitespaces, hyphens, and underscores. Non-Java projects are completely banned from applying this package segment.
 - **Strict Tester Target Path Syntax:** Any component targeted by a Tester Sub-Agent must be structured as a strict semi-colon separated pair `<source_component_or_token>;<test_suite_file_to_execute>`. Both paths inside the pair MUST begin with `./sources/`.
 
-## 4. [TRANSLATED "HIGH-LEVEL MULTI-PHASE ARCHITECTURAL SYNOPSIS GRID"]
+## 4. [Translate "HIGH-LEVEL MULTI-PHASE ARCHITECTURAL SYNOPSIS GRID"]
 Generate a clean, highly structured Markdown Table mapping the exact distribution of components and Tag IDs across the dynamically calculated phases. You MUST compute the most optimal number of phases (denoted as N, where N <= {{ num_phases }}) that naturally and completely covers 100% of the BA requirements and Tag IDs. Each row MUST specify a real-world engineering duration bounded between 1 to a strict upper ceiling of {{ max_days_per_phase }} days maximum per phase. Do NOT generate empty rows, placeholder phases, or artificial workloads. If the requirements are fully satisfied within fewer than {{ num_phases }} phases, terminate the matrix setup immediately at phase N.
 
 *   CRITICAL PIPELINE RAILS FOR ARCHITECTURAL COMPONENT PATHS:
@@ -143,7 +143,7 @@ Generate a clean, highly structured Markdown Table mapping the exact distributio
 | Phase | Day Range | Architectural Component / Module Path | Technical Deliverables Summary | Assigned Sub-Agent | Targeted Tag IDs |
 | :--- | :--- | :--- | :--- | :--- | :--- |
 
-## 5. [TRANSLATED "GRANULAR PHASE SPECIALIZATIONS & DAY-BY-DAY DELIVERABLES"]
+## 5. [Translate "GRANULAR PHASE SPECIALIZATIONS & DAY-BY-DAY DELIVERABLES"]
 <!--START_CRITICAL_COMMAND_DIRECTIVE_DO_NOT_DISPLAY
 [CRITIAL COMMAND:
 # STRICT 1:1 SYNOPSIS MIRROR MANDATE:
@@ -182,7 +182,7 @@ END_CRITICAL_COMMAND_DIRECTIVE_DO_NOT_DISPLAY-->
 
 ## 📁 6. [TRANSLATED UNIVERSAL ENTERPRISE SECURITY CODES & INJECTION COUNTERMEASURES] [NFR-XXX]
 <!--START_TRANSLATION_DIRECTIVE_DO_NOT_DISPLAY
-[CRITICAL TRANSLATION COMMAND: You MUST fully translate 100% of the titles, item names, and human-readable text descriptions of this section 3 into the designated Target Output Language: {% if language and language.strip() != "" %}{{ language }}{% else %}English{% endif %}. You are STRICTLY FORBIDDEN from leaving this section in raw English. However, you MUST lock and preserve all specific technical tokens, literal paths like `./sources/`, and package names like `org.nlh4j.saas.<project_name_alphanumeric_lowercase>` in pure unaccented Technical English wrapped inside inline code backticks. You MUST NOT leak this instruction block into the final text output].
+[CRITICAL TRANSLATION COMMAND: You MUST fully translate 100% of the titles, item names, and human-readable text descriptions of this section into the designated Target Output Language: {% if language and language.strip() != "" %}{{ language }}{% else %}English{% endif %}. You are STRICTLY FORBIDDEN from leaving this section in raw English. However, you MUST lock and preserve all specific technical tokens, literal paths like `./sources/`, and package names like `org.nlh4j.saas.<project_name_alphanumeric_lowercase>` in pure unaccented Technical English wrapped inside inline code backticks. You MUST NOT leak this instruction block into the final text output].
 END_TRANSLATION_DIRECTIVE_DO_NOT_DISPLAY-->
 - **SQL Injection (SQLi) Absolute Countermeasures:** Rule parameters for prepared statements, positional query parameters, and dynamic sorting input Whitelists.
 - **Cross-Site Scripting (XSS) & Content Security Policy (CSP):** Layout standards for automated context sanitization, JSX auto-escaping, and dynamic injection of strict CSP headers (`unsafe-inline` restriction).
@@ -191,14 +191,14 @@ END_TRANSLATION_DIRECTIVE_DO_NOT_DISPLAY-->
 
 ## 📁 7. [TRANSLATED HYBRID MOBILE COMPLIANCE RAIL RULES & INTERNATIONALIZED SEO MECHANISMS]
 <!--START_TRANSLATION_DIRECTIVE_DO_NOT_DISPLAY
-[CRITICAL TRANSLATION COMMAND: You MUST fully translate 100% of the titles, item names, and human-readable text descriptions of this section 3 into the designated Target Output Language: {% if language and language.strip() != "" %}{{ language }}{% else %}English{% endif %}. You are STRICTLY FORBIDDEN from leaving this section in raw English. However, you MUST lock and preserve all specific technical tokens, literal paths like `./sources/`, and package names like `org.nlh4j.saas.<project_name_alphanumeric_lowercase>` in pure unaccented Technical English wrapped inside inline code backticks. You MUST NOT leak this instruction block into the final text output].
+[CRITICAL TRANSLATION COMMAND: You MUST fully translate 100% of the titles, item names, and human-readable text descriptions of this section into the designated Target Output Language: {% if language and language.strip() != "" %}{{ language }}{% else %}English{% endif %}. You are STRICTLY FORBIDDEN from leaving this section in raw English. However, you MUST lock and preserve all specific technical tokens, literal paths like `./sources/`, and package names like `org.nlh4j.saas.<project_name_alphanumeric_lowercase>` in pure unaccented Technical English wrapped inside inline code backticks. You MUST NOT leak this instruction block into the final text output].
 END_TRANSLATION_DIRECTIVE_DO_NOT_DISPLAY-->
 - **Capacitor Mobile Hybrid Compliance Rails:** [IF Mobile active] Rules for dynamic client-side fetching, absolute URL addressing, hydration safeguards, native storage abstractions (`@capacitor/preferences`), and hardware back-button interception.
 - **Internationalization (i18n) & Dynamic SEO Injection:** Edge-layer locale recognition middleware architectures, hreflang dynamic hypermedia control injection, and search crawler robots indexing limits.
 
 ## 📁 8. [TRANSLATED PIPELINE AUTOMATED DAILY SESSION GIT BRANCH FLOW]
 <!--START_TRANSLATION_DIRECTIVE_DO_NOT_DISPLAY
-[CRITICAL TRANSLATION COMMAND: You MUST fully translate 100% of the titles, item names, and human-readable text descriptions of this section 3 into the designated Target Output Language: {% if language and language.strip() != "" %}{{ language }}{% else %}English{% endif %}. You are STRICTLY FORBIDDEN from leaving this section in raw English. However, you MUST lock and preserve all specific technical tokens, literal paths like `./sources/`, and package names like `org.nlh4j.saas.<project_name_alphanumeric_lowercase>` in pure unaccented Technical English wrapped inside inline code backticks. You MUST NOT leak this instruction block into the final text output].
+[CRITICAL TRANSLATION COMMAND: You MUST fully translate 100% of the titles, item names, and human-readable text descriptions of this section into the designated Target Output Language: {% if language and language.strip() != "" %}{{ language }}{% else %}English{% endif %}. You are STRICTLY FORBIDDEN from leaving this section in raw English. However, you MUST lock and preserve all specific technical tokens, literal paths like `./sources/`, and package names like `org.nlh4j.saas.<project_name_alphanumeric_lowercase>` in pure unaccented Technical English wrapped inside inline code backticks. You MUST NOT leak this instruction block into the final text output].
 END_TRANSLATION_DIRECTIVE_DO_NOT_DISPLAY-->
 - **Daily Workspace Forking Isolation:** Programmatic forking controls for branch `features/development-phase-X-day-Y` (`X` is the number of phase, from 1 to N, where N <= {{ num_phases }}; `Y` is the day number in phase, it will start from 1 for each phase).
 - **Validation Guard Pipeline Gates:** Execution rules for compilation verification, automated code coverage goals (`>= 85%`), and context summary serialization logs.
