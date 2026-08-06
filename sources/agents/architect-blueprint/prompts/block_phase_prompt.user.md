@@ -58,17 +58,17 @@ Your output MUST follow this exact Markdown layout structure (translate all labe
 [Delineate the explicit operational constraints and duties for each assigned agent persona in this phase, enforcing strict segregation of technical boundaries as defined below. Human-readable directives, descriptions, and task requirements MUST be contextually translated entirely into {% if language and language.strip() != "" %}{{ language }}{% else %}English{% endif %} following the transmission rails]:
 
 *   **Coder**: Acts as a Senior/Principal Application Developer. Responsible for pure application source code implementation across both backend services and frontend/mobile client applications. Banned from writing test suites or infrastructure manifests.
-*   **Tester**: Acts as a Lead/Principal QC/QA. Specialized in test suite engineering, validation, and quality gates. Responsible for generating JUnit, integration tests, E2E automation tests, and performance validation scripts. Banned from modifying application production code.
+* **Tester**: Acts as a Lead/Principal QC/QA. Specialized in test suite engineering, validation, and quality gates. Responsible for generating JUnit, integration tests, E2E automation tests, and performance validation scripts. Banned from modifying application production code. If the sub-task target involves an overall integration or end-to-end scope where no single specific code file can be bounded, you MUST strictly output the literal token `INTEGRATION_SCOPE` as the first parameter of the semicolon pair (e.g., `INTEGRATION_SCOPE;./sources/backend/tests/integration/WorkflowTest.java`).
+* **Doc**: Functions as a Principal Technical Writer and Enterprise Systems Architect. Specialized in compiling comprehensive Technical Specification documents, schema references, system blueprints, and enterprise architecture catalogs custom-fitted to the active project topology layers. Every single technical document file generated MUST be listed as an explicit file path entity ending with the `.md` extension and reside strictly within the centralized storage layout: `./sources/docs/`.
+<RULE>
+[CRITICAL_SYSTEM_PIPELINE_RAIL:
+- You are STRICTLY PROHIBITED from omitting, dropping, or filtering out the 'Doc' agent from any computed phase logs.
+- For EVERY calculated phase generated in your output, on Day 1 of that phase, you MUST explicitly allocate a foundational system documentation task to the 'Doc' agent.
+- This task description MUST require the 'Doc' agent to initialize, architect, and map out the complete technical framework manuals, architecture blueprints, data structures, or deployment topologies corresponding to the active stack matrix of that current phase.
+- Failing to write the 'Doc' agent inside Day 1 of any phase triggers a fatal pipeline contract breach.
+]
+</RULE>
 *   **Reviewer**: Responsible for compiler verification, static analysis gating, and defensive patching. Specialized in code quality audits, resolving compilation bugs, fixing OWASP security vulnerabilities, and addressing SonarQube quality gate blockers.
-*   **Doc**: Functions as a Principal Technical Writer and Enterprise Systems Architect. Specialized in compiling comprehensive Markdown technical specifications, schema references, system blueprints, and architecture catalogs. Every single document file generated MUST reside strictly within the centralized storage layout: `./sources/docs/`.
-   <!--START_CRITICAL_SYSTEM_PIPELINE_RAIL_DO_NOT_DISPLAY
-   [CRITICAL_SYSTEM_PIPELINE_RAIL:
-   - You are STRICTLY PROHIBITED from omitting, dropping, or filtering out the 'Doc' agent from any computed phase logs.
-   - For EVERY calculated phase generated in your output, on Day 1 of that phase, you MUST explicitly allocate a foundational system documentation task to the 'Doc' agent.
-   - This task description MUST require the 'Doc' agent to initialize and map out the system architecture blueprints, entity relationships, technical contracts, or deployment topologies corresponding to the active stack matrix of that current phase.
-   - Failing to write the 'Doc' agent inside Day 1 of any phase triggers a fatal pipeline contract breach.
-   ]
-   END_CRITICAL_SYSTEM_PIPELINE_RAIL_DO_NOT_DISPLAY-->
 *   **Docker**: Specialized strictly in containerization, multi-stage Dockerfile engineering, package optimization, and pushing verified application image assets to DockerHub.
 *   **GCP**: Specialized in cloud automation within Google Cloud Platform. Responsible for building and pushing images to Google Cloud Artifact Registry (GCR), and orchestrating container environments natively on Google Cloud Run.
 *   **GKE**: Specialized in production container orchestration inside Google Kubernetes Engine. Responsible for building Kubernetes deployment manifests, routing controls, HPA configurations, Helm charts, and deploying microservices workloads into active GKE clusters.
@@ -82,8 +82,8 @@ Your output MUST follow this exact Markdown layout structure (translate all labe
 
 ### 🌤️ [TRANSLATED DAY] [X]: <!--DAY_HEADER_START-->[CAPITALIZED SHORT OBJECTIVE FOR THIS OPERATIONAL CALENDAR DAY]<!--DAY_HEADER_END-->
 
-#### 📝 [TRANSLATED SUB-TASK] [X.Y]: [Clear, low-level engineering description of the specific sub-task goal, explicitly embedding OWASP compliance rules]
+#### 📝 [TRANSLATED SUB-TASK] [X.Y]: [Clear, low-level engineering description of the specific sub-task goal, explicitly embedding OWASP compliance rules and comprehensive technical implementation details]
 ##### [Translate "Assigned Sub-Agent"]: [Insert exactly ONE unique literal Agent token: Coder | Tester | Reviewer | Doc | Docker | GCP | GKE]
 ##### [Translate "Targeted Components & Technical Requirements"]:
-* **[Translate "Target Path"]:** [Insert explicit physical file path starting with `./sources/` or Tester pair syntax.]
-* **[Translate "Traceability Tag Tokens"]:** <!--START_TAGS-->`[REQ-XXX], [DAT-XXX], [EXC-XXX]`<!--END_TAGS-->
+* **[Translate "Target Path"]:** [Insert the explicit, decentralized physical file path target. For Coder/Tester/Reviewer agents, you MUST expand generic directory boundaries into precise enterprise layered structures, forcing valid file-level dot extensions like `.java`, `.ts`, `.sql`, etc. If it is a Java application layer, you MUST enforce the Maven/Gradle full corporate package structural path segment: `/org/nlh4j/saas/<project_name_alphanumeric_lowercase>/[layer_package]/file.java`. For Tester integration scopes without a single source file, output exactly: `INTEGRATION_SCOPE;<relative_test_file_path>`.]
+* **[Translate "Traceability Tag Tokens"]:** <!--START_TAGS-->[REQ-XXX], [DAT-XXX], [EXC-XXX]<!--END_TAGS-->
