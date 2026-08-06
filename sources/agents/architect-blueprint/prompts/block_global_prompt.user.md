@@ -184,7 +184,7 @@ Generate a clean, highly structured Markdown Table mapping the exact distributio
 - **DAY [Y]: SHORT OBJECTIVE FOR THIS OPERATIONAL CALENDAR DAY**
     * **Sub-Agent Workflow Specialization:** <RULE>You MUST analyze the required daily task domain and output EXACTLY one single literal token code inside brackets representing the allocated persona: `[Coder]`, `[Tester]`, `[Reviewer]`, `[Doc]`, `[Docker]`, `[GCP]`, or `[GKE]`. You are CRITICALLY BANNED from outputting any English instructional placeholders or text descriptions like "Assigned Sub-Agent" or "literal token". Emitting anything other than the naked bracketed sub-agent code triggers an immediate failure.</RULE>
     * **Targeted Tag IDs:** <RULE>Write each tag out individually separated by commas, e.g., `[REQ-001], [DAT-002], [EXC-001]`.</RULE>
-    - **Target Component file path (`target_component`):** <RULE>Insert explicit physical file path starting with `./sources/` or Tester pair syntax in Technical English. Append its corresponding Tag IDs inline here, e.g., `./sources/backend.... [REQ-001], [DAT-002]`</RULE>
+    * **Target Component file path (`target_component`):** <RULE>Insert explicit physical file path starting with `./sources/` or Tester pair syntax in Technical English. Append its corresponding Tag IDs inline here, e.g., `./sources/backend.... [REQ-001], [DAT-002]`</RULE>
     * **Low-Level Technical Task Instruction:** <RULE>Output exhaustive, high-density engineering instructions, validation schemas, or API contract parameters fully translated into {% if language and language.strip() != "" %}{{ language }}{% else %}English{% endif %}, attaching explicit Tag IDs.</RULE>
     
     # 🚨 DYNAMIC ARCHITECTURAL CONTENT GATING (IF-ACTIVE RAIL PROTOCOL):
