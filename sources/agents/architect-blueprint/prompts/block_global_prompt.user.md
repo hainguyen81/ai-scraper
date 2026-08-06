@@ -85,9 +85,9 @@ You MUST strictly isolate the architectural responsibilities of all Sub-Agents l
 ### 📋 MANDATORY OUTPUT STRUCTURE (MARKDOWN REPORT LAYOUT):
 You MUST include every single section below without exception to satisfy enterprise compliance requirements, and fully translating them following the rules in `CRITICAL FULL TRANSLATION MANDATE`:
 
-# [TRANSLATED "GLOBAL PROJECT CONTEXT"]: {{ project_name }}
+# GLOBAL PROJECT CONTEXT: {{ project_name }}
 
-## 📊 [TRANSLATED "Document Control"]
+## 📊 Document Control
 
 | Item | Details |
 | :--- | :--- |
@@ -98,39 +98,38 @@ You MUST include every single section below without exception to satisfy enterpr
 | **Author** | Enterprise System Architect (SA Agent) |
 | **Approval** | Pending Technical Governance Review |
 
-## 📊 1. [Translate "SYSTEM OVERVIEW & CORE ARCHITECTURE MODALITY"]
+## 📊 1. SYSTEM OVERVIEW & CORE ARCHITECTURE MODALITY
 
-### 1.1. [Translate "Core System Modality & Architecture Modality"]
+### 1.1. Core System Modality & Architecture Modality
 [Provide a comprehensive technical overview mapping out the core detected architecture topology, EDA paradigms, CQRS boundaries, and Reactive Core patterns based strictly on requirements]
 
-### 1.2. [Translate "Enterprise Data Flow Topologies & Core Ecosystems"]
+### 1.2. Enterprise Data Flow Topologies & Core Ecosystems
 [Detail the asynchronous messaging channels, ingestion gateway parameters, topic topologies, and cross-channel external fan-out architectures]
 
-## 📁 2. [Translate "TECH STACK DEPENDENCIES & ECOSYSTEM LIBRARIES"]
-- **[Translate "Backend Infrastructure Core Stack"]:** [Detail precise versions, runtime engines, dependency injection abstractions, ORMs, and messaging frameworks extracted from requirements]
-- **[Translate "Frontend & Cross-Platform UI Mobile Stack"]:** [Detail strict web frameworks, dynamic localized routing, responsive layouts, and native mobile runtime wrappers if present]
+## 📁 2. TECH STACK DEPENDENCIES & ECOSYSTEM LIBRARIES
+- **Backend Infrastructure Core Stack:** [Detail precise versions, runtime engines, dependency injection abstractions, ORMs, and messaging frameworks extracted from requirements]
+- **Frontend & Cross-Platform UI Mobile Stack:** [Detail strict web frameworks, dynamic localized routing, responsive layouts, and native mobile runtime wrappers if present]
 
-<!--START_TECHNICAL_MATRIX_DO_NOT_TRANSLATE
+<COMMAND>
 ### ARCHITECTURAL STACK MATRIX
-[CRITICAL WARNING: You MUST keep this entire block 100% in raw Technical English. You are STRICTLY FORBIDDEN from translating any keys, values, or tokens inside this section into {% if language and language.strip() != "" %}{{ language }}{% else %}English{% endif %}, as it serves as a strict backend machine-gating matrix. Keep literal `true` or `false` tokens in pure lower-case].
+You MUST keep this entire block 100% in raw Technical English. You are STRICTLY FORBIDDEN from translating any keys, values, or tokens inside this section into {% if language and language.strip() != "" %}{{ language }}{% else %}English{% endif %}, as it serves as a strict backend machine-gating matrix. Keep literal `true` or `false` tokens in pure lower-case.
 
+```properties
 PERSISTENCE_LAYER_REQUIRED=true
 BACKEND_LAYER_REQUIRED=true
 FRONTEND_LAYER_REQUIRED=true
 MOBILE_LAYER_REQUIRED=true
 DEVOPS_LAYER_REQUIRED=true
-END_TECHNICAL_MATRIX_DO_NOT_TRANSLATE-->
+```
+</COMMAND>
 
-## 📁 3. [Translate "GLOBAL GUARDRAILS & ENTERPRISE COMPLIANCE STANDARDS"]
-<!--START_TRANSLATION_DIRECTIVE_DO_NOT_DISPLAY
-[CRITICAL TRANSLATION COMMAND: You MUST fully translate 100% of the titles, bullet titles, item names, and human-readable text descriptions of this section into the designated Target Output Language: {% if language and language.strip() != "" %}{{ language }}{% else %}English{% endif %}. You are STRICTLY FORBIDDEN from leaving this section in raw English. However, you MUST lock and preserve all specific technical tokens, literal paths like `./sources/`, and package names like `org.nlh4j.saas.<project_name_alphanumeric_lowercase>` in pure unaccented Technical English wrapped inside inline code backticks. You MUST NOT leak this instruction block into the final text output].
-END_TRANSLATION_DIRECTIVE_DO_NOT_DISPLAY-->
+## 📁 3. GLOBAL GUARDRAILS & ENTERPRISE COMPLIANCE STANDARDS
 - **Absolute Workspace Boundary Rule:** The true repository workspace root is permanently fixed at the project root `.`. All paths generated MUST begin with `./sources/`.
 - **Dynamic Directory Prefixing Compliance:** Enforce the dynamic path mapping rules defined in Protocol 1 strictly matching the detected project structure.
 - **[CONDITION: JAVA_STACK_ONLY] Java Package Standard:** If the tech stack utilizes Java frameworks, all Java source codes MUST strictly reside within the corporate package foundation: `org.nlh4j.saas.<project_name_alphanumeric_lowercase>`. You MUST dynamically convert the string "{{ project_name }}" into a strict pure alphanumeric lowercase token by stripping out whitespaces, hyphens, and underscores. Non-Java projects are completely banned from applying this package segment.
 - **Strict Tester Target Path Syntax:** Any component targeted by a Tester Sub-Agent must be structured as a strict semi-colon separated pair `<source_component_or_token>;<test_suite_file_to_execute>`. Both paths inside the pair MUST begin with `./sources/`.
 
-## 4. [Translate "HIGH-LEVEL MULTI-PHASE ARCHITECTURAL SYNOPSIS GRID"]
+## 4. HIGH-LEVEL MULTI-PHASE ARCHITECTURAL SYNOPSIS GRID
 Generate a clean, highly structured Markdown Table mapping the exact distribution of components and Tag IDs across the dynamically calculated phases. You MUST compute the most optimal number of phases (denoted as N, where N <= {{ num_phases }}) that naturally and completely covers 100% of the BA requirements and Tag IDs. Each row MUST specify a real-world engineering duration bounded between 1 to a strict upper ceiling of {{ max_days_per_phase }} days maximum per phase. Do NOT generate empty rows, placeholder phases, or artificial workloads. If the requirements are fully satisfied within fewer than {{ num_phases }} phases, terminate the matrix setup immediately at phase N.
 
 *   CRITICAL PIPELINE RAILS FOR ARCHITECTURAL COMPONENT PATHS:
@@ -143,9 +142,8 @@ Generate a clean, highly structured Markdown Table mapping the exact distributio
 | Phase | Day Range | Architectural Component / Module Path | Technical Deliverables Summary | Assigned Sub-Agent | Targeted Tag IDs |
 | :--- | :--- | :--- | :--- | :--- | :--- |
 
-## 5. [Translate "GRANULAR PHASE SPECIALIZATIONS & DAY-BY-DAY DELIVERABLES"]
-<!--START_CRITICAL_COMMAND_DIRECTIVE_DO_NOT_DISPLAY
-[CRITIAL COMMAND:
+## 5. GRANULAR PHASE SPECIALIZATIONS & DAY-BY-DAY DELIVERABLES
+<COMMAND>
 # STRICT 1:1 SYNOPSIS MIRROR MANDATE:
 - Section 5 MUST act as a strict structural mirror of the dynamic phases calculated in Section 4. You MUST generate an independent, complete detailed block below for EVERY phase sequence from Phase 1 up to Phase N (where N <= {{ num_phases }}). Absolutely no phase that has been calculated in section 4 can be omitted.
 - Truncating, omitting, or combining phases is an absolute pipeline violation. You are strictly commanded to detail every phase that appeared in your Section 4 table.
@@ -154,17 +152,16 @@ Generate a clean, highly structured Markdown Table mapping the exact distributio
 - For each active Phase [X], the day-by-day logs MUST strictly map to the exact day range defined for that phase in Section 4.
 - The total days within any single phase MUST NOT exceed the absolute upperbound of {{ max_days_per_phase }} days.
 - You MUST execute a hard log freeze and terminate the active day loop immediately on the exact day when 100% of the baseline BA tracking codes for Phase [X] are covered. Fabricating dummy tasks or synthetic requirements to pad out the timeline up to {{ max_days_per_phase }} is completely banned.
-]
-END_CRITICAL_COMMAND_DIRECTIVE_DO_NOT_DISPLAY-->
+</COMMAND>
 
 <!--START_DELIMITTER-->
-### 📈 Phase [X] [TRANSLATED DETAILED ARCHITECTURAL SPECIFICATION]
-- **[Translate "Phase Core Objective & Purpose"]:** [Detailed technical explanation of what this phase achieves and its functional goals, fully translated into {% if language and language.strip() != "" %}{{ language }}{% else %}English{% endif %}]
-- **[Translate "Target Physical Directory Matrix Map"]:** List all specific file paths underneath `./sources/` initialized or modified in this phase. Every single line path generated MUST be appended with its tracking Tag IDs inline.
+### 📈 Phase [X] DETAILED ARCHITECTURAL SPECIFICATION
+- **Phase Core Objective & Purpose:** [Detailed technical explanation of what this phase achieves and its functional goals, fully translated into {% if language and language.strip() != "" %}{{ language }}{% else %}English{% endif %}]
+- **Target Physical Directory Matrix Map:** List all specific file paths underneath `./sources/` initialized or modified in this phase. Every single line path generated MUST be appended with its tracking Tag IDs inline.
     *   *Documentation Gating Boundary:* Any line representing an enterprise specification, reference blueprint, relational database mapping catalog, or architecture layout MUST strictly reside under the unified root directory path: `./sources/docs/`.
-- **[Translate "Database Schema DDL SQL Specification"] [DAT-XXX]:** Provide raw, complete, and valid DDL SQL migration statements containing explicit columns, data types, primary/foreign keys, matrix mappings, indexes, and nullability constraints applied under this phase scope. (Omit entirely if the project topology has no database or persistence layer requirements. This technical block MUST NOT be translated).
-- **[Translate "API and Event Routing Contracts"] [REQ-XXX], [ARC-XXX]:** Document the complete technical contracts (precise endpoint paths, HTTP methods, request/response JSON payload schemas, or message broker topic configurations. Technical blocks MUST NOT be translated).
-- **[Translate "Phase Localized Exception Handlers"] [EXC-XXX]:** Detail explicit business validation rules, error codes, and system exception handling pathways mapping strictly to the current phase scope, contextually translated into {% if language and language.strip() != "" %}{{ language }}{% else %}English{% endif %}.
+- **Database Schema DDL SQL Specification [DAT-XXX]:** Provide raw, complete, and valid DDL SQL migration statements containing explicit columns, data types, primary/foreign keys, matrix mappings, indexes, and nullability constraints applied under this phase scope. (Omit entirely if the project topology has no database or persistence layer requirements. This technical block MUST NOT be translated).
+- **API and Event Routing Contracts [REQ-XXX], [ARC-XXX]:** Document the complete technical contracts (precise endpoint paths, HTTP methods, request/response JSON payload schemas, or message broker topic configurations. Technical blocks MUST NOT be translated).
+- **Phase Localized Exception Handlers [EXC-XXX]:** Detail explicit business validation rules, error codes, and system exception handling pathways mapping strictly to the current phase scope, contextually translated into {% if language and language.strip() != "" %}{{ language }}{% else %}English{% endif %}.
 <!--END_DELIMITTER-->
 
 #### 📅 Chronological Day-by-Day Sub-Agent Task Distribution Logs (Phase [X])
@@ -173,41 +170,27 @@ END_CRITICAL_COMMAND_DIRECTIVE_DO_NOT_DISPLAY-->
 - You MUST translate the DAY objective text and the "Low-Level Technical Task Instruction" entirely into "{% if language and language.strip() != "" %}{{ language }}{% else %}English{% endif %}". Do NOT leave explanations in English.
 - Ensure all inner properties are properly indented with spaces to maintain a beautiful nested list hierarchy. Ensure exactly ONE single Sub-Agent with Capitalized first-letter formatting is assigned per active task line.
 
-- **DAY [Y]: [TRANSLATED SHORT OBJECTIVE FOR THIS OPERATIONAL CALENDAR DAY]**
-  - **[Translate "Sub-Agent Workflow Specialization"]:**
+- **DAY [Y]: SHORT OBJECTIVE FOR THIS OPERATIONAL CALENDAR DAY**
+  - **Sub-Agent Workflow Specialization:**
     * **[Assigned Sub-Agent literal token: Coder | Tester | Reviewer | Doc | Docker | GCP | GKE]:**
-      - **[Translate "Target Component file path"] (`target_component`):** [Insert explicit physical file path starting with `./sources/` or Tester pair syntax in Technical English. Append its corresponding Tag IDs inline here, e.g., `./sources/backend.... [REQ-001], [DAT-002]`]
-      - **[Translate "Low-Level Technical Task Instruction"]:** [Exhaustive, high-density engineering instruction, framework conventions, API contract layouts, data fields validation, or unit test case parameters translated completely into {% if language and language.strip() != "" %}{{ language }}{% else %}English{% endif %}, attaching Tag IDs]
-      - **[Translate "Targeted Tag IDs"]:** [Write each tag out individually separated by commas, e.g., `[REQ-001], [DAT-002], [EXC-001]`.]
+      - **Target Component file path (`target_component`):** [Insert explicit physical file path starting with `./sources/` or Tester pair syntax in Technical English. Append its corresponding Tag IDs inline here, e.g., `./sources/backend.... [REQ-001], [DAT-002]`]
+      - **Low-Level Technical Task Instruction:** [Exhaustive, high-density engineering instruction, framework conventions, API contract layouts, data fields validation, or unit test case parameters translated completely into {% if language and language.strip() != "" %}{{ language }}{% else %}English{% endif %}, attaching Tag IDs]
+      - **Targeted Tag IDs:** [Write each tag out individually separated by commas, e.g., `[REQ-001], [DAT-002], [EXC-001]`.]
 
-## 📁 6. [TRANSLATED UNIVERSAL ENTERPRISE SECURITY CODES & INJECTION COUNTERMEASURES] [NFR-XXX]
-<!--START_TRANSLATION_DIRECTIVE_DO_NOT_DISPLAY
-[CRITICAL TRANSLATION COMMAND: You MUST fully translate 100% of the titles, item names, and human-readable text descriptions of this section into the designated Target Output Language: {% if language and language.strip() != "" %}{{ language }}{% else %}English{% endif %}. You are STRICTLY FORBIDDEN from leaving this section in raw English. However, you MUST lock and preserve all specific technical tokens, literal paths like `./sources/`, and package names like `org.nlh4j.saas.<project_name_alphanumeric_lowercase>` in pure unaccented Technical English wrapped inside inline code backticks. You MUST NOT leak this instruction block into the final text output].
-END_TRANSLATION_DIRECTIVE_DO_NOT_DISPLAY-->
+## 📁 6. UNIVERSAL ENTERPRISE SECURITY CODES & INJECTION COUNTERMEASURES [NFR-XXX]
 - **SQL Injection (SQLi) Absolute Countermeasures:** Rule parameters for prepared statements, positional query parameters, and dynamic sorting input Whitelists.
 - **Cross-Site Scripting (XSS) & Content Security Policy (CSP):** Layout standards for automated context sanitization, JSX auto-escaping, and dynamic injection of strict CSP headers (`unsafe-inline` restriction).
 - **Multi-Tenant CORS Security Rails:** Configurations for origin wildcard prohibitions and dynamic tenant origin database metrics validation.
 - **Zero-Leak Log Scrubbing & PII Data Masking Engines:** Rules for automated masking interceptors (`@JsonSerialize`) and log scrubbing thresholds.
 
-## 📁 7. [TRANSLATED HYBRID MOBILE COMPLIANCE RAIL RULES & INTERNATIONALIZED SEO MECHANISMS]
-<!--START_TRANSLATION_DIRECTIVE_DO_NOT_DISPLAY
-[CRITICAL TRANSLATION COMMAND: You MUST fully translate 100% of the titles, item names, and human-readable text descriptions of this section into the designated Target Output Language: {% if language and language.strip() != "" %}{{ language }}{% else %}English{% endif %}. You are STRICTLY FORBIDDEN from leaving this section in raw English. However, you MUST lock and preserve all specific technical tokens, literal paths like `./sources/`, and package names like `org.nlh4j.saas.<project_name_alphanumeric_lowercase>` in pure unaccented Technical English wrapped inside inline code backticks. You MUST NOT leak this instruction block into the final text output].
-END_TRANSLATION_DIRECTIVE_DO_NOT_DISPLAY-->
+## 📁 7. HYBRID MOBILE COMPLIANCE RAIL RULES & INTERNATIONALIZED SEO MECHANISMS
 - **Capacitor Mobile Hybrid Compliance Rails:** [IF Mobile active] Rules for dynamic client-side fetching, absolute URL addressing, hydration safeguards, native storage abstractions (`@capacitor/preferences`), and hardware back-button interception.
 - **Internationalization (i18n) & Dynamic SEO Injection:** Edge-layer locale recognition middleware architectures, hreflang dynamic hypermedia control injection, and search crawler robots indexing limits.
 
-## 📁 8. [TRANSLATED PIPELINE AUTOMATED DAILY SESSION GIT BRANCH FLOW]
-<!--START_TRANSLATION_DIRECTIVE_DO_NOT_DISPLAY
-[CRITICAL TRANSLATION COMMAND: You MUST fully translate 100% of the titles, item names, and human-readable text descriptions of this section into the designated Target Output Language: {% if language and language.strip() != "" %}{{ language }}{% else %}English{% endif %}. You are STRICTLY FORBIDDEN from leaving this section in raw English. However, you MUST lock and preserve all specific technical tokens, literal paths like `./sources/`, and package names like `org.nlh4j.saas.<project_name_alphanumeric_lowercase>` in pure unaccented Technical English wrapped inside inline code backticks. You MUST NOT leak this instruction block into the final text output].
-END_TRANSLATION_DIRECTIVE_DO_NOT_DISPLAY-->
+## 📁 8. PIPELINE AUTOMATED DAILY SESSION GIT BRANCH FLOW
 - **Daily Workspace Forking Isolation:** Programmatic forking controls for branch `features/development-phase-X-day-Y` (`X` is the number of phase, from 1 to N, where N <= {{ num_phases }}; `Y` is the day number in phase, it will start from 1 for each phase).
 - **Validation Guard Pipeline Gates:** Execution rules for compilation verification, automated code coverage goals (`>= 85%`), and context summary serialization logs.
 
-### 🛑 [TRANSLATED "MATRIX COVERAGE CHECK MANDATE"]
-<!--START_CRITICAL_COMMAND_DIRECTIVE_DO_NOT_DISPLAY
-[CRITIAL COMMAND:
-Immediately at the absolute end of the document text, you MUST print a strict mathematical traceability verification text block by parsing and counting every unique tag string present in your output:
-]
-END_CRITICAL_COMMAND_DIRECTIVE_DO_NOT_DISPLAY-->
+### 🛑 MATRIX COVERAGE CHECK MANDATE
 
 `[TRACEABILITY MATRIX ENFORCEMENT: 100% COVERAGE VALIDATED. TOTAL UNIQUE REQ TAGS MAPPED: X, TOTAL ARC TAGS: Y, TOTAL EXC TAGS: Z, TOTAL DAT TAGS: V, TOTAL NFR TAGS: W. ZERO UNASSIGNED CODES FOUND.]`
