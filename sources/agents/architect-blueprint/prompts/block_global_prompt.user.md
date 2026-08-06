@@ -114,17 +114,15 @@ You MUST include every single section below without exception to satisfy enterpr
 - **Frontend & Cross-Platform UI Mobile Stack:** [Detail strict web frameworks, dynamic localized routing, responsive layouts, and native mobile runtime wrappers if present]
 
 ### ARCHITECTURAL STACK MATRIX
-<COMMAND>
-You MUST keep the below properties block 100% in raw Technical English. You are STRICTLY FORBIDDEN from translating any keys, values, or tokens inside this block into {% if language and language.strip() != "" %}{{ language }}{% else %}English{% endif %}, as it serves as a strict backend machine-gating matrix. Keep literal true or false tokens in pure lower-case.
-
+<!--START_COMMAND
 ```properties
-PERSISTENCE_LAYER_REQUIRED=true
-BACKEND_LAYER_REQUIRED=true
-FRONTEND_LAYER_REQUIRED=true
-MOBILE_LAYER_REQUIRED=true
-DEVOPS_LAYER_REQUIRED=true
+PERSISTENCE_LAYER_REQUIRED=[true/false based on project context]
+BACKEND_LAYER_REQUIRED=[true/false based on project context]
+FRONTEND_LAYER_REQUIRED=[true/false based on project context]
+MOBILE_LAYER_REQUIRED=[true/false based on project context]
+DEVOPS_LAYER_REQUIRED=[true/false based on project context]
 ```
-</COMMAND>
+END_COMMAND-->
 
 ## 📁 3. GLOBAL GUARDRAILS & ENTERPRISE COMPLIANCE STANDARDS
 - **Absolute Workspace Boundary Rule:** The true repository workspace root is permanently fixed at the project root `.`. All paths generated MUST begin with `./sources/`.
