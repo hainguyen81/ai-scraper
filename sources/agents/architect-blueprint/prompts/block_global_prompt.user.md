@@ -115,7 +115,7 @@ You MUST include every single section below without exception to satisfy enterpr
 
 ### ARCHITECTURAL STACK MATRIX
 <COMMAND>
-You MUST keep this entire block 100% in raw Technical English. You are STRICTLY FORBIDDEN from translating any keys, values, or tokens inside this section into {% if language and language.strip() != "" %}{{ language }}{% else %}English{% endif %}, as it serves as a strict backend machine-gating matrix. Keep literal `true` or `false` tokens in pure lower-case.
+You MUST keep below block (e.g. block "```properties...```"") 100% in raw Technical English. You are STRICTLY FORBIDDEN from translating any keys, values, or tokens inside this block into {% if language and language.strip() != "" %}{{ language }}{% else %}English{% endif %}, as it serves as a strict backend machine-gating matrix. Keep literal `true` or `false` tokens in pure lower-case.
 
 ```properties
 PERSISTENCE_LAYER_REQUIRED=true
