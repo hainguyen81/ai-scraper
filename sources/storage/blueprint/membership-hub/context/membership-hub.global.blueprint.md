@@ -1,31 +1,30 @@
-# GLOBAL PROJECT CONTEXT: membership-hub
+# NGÀNH ĐỐI TƯỢNG DỰ ÁN: membership-hub
 
-## 📊 Document Control
+## 📊 Điều khiển tài liệu
 
-| Item | Details |
+| Mục | Chi tiết |
 | :--- | :--- |
-| **Blueprint ID** | ARCH-20260806060624 |
+| **Blueprint ID** | ARCH-20260806064029 |
 | **Project Name** | membership-hub |
 | **Version** | 1.0 (Baseline) |
-| **Date.Time** | 2026/08/06 06:06:24 |
+| **Date.Time** | 2026/08/06 06:40:29 |
 | **Author** | Enterprise System Architect (SA Agent) |
 | **Approval** | Pending Technical Governance Review |
 
-## 📊 1. TỔNG QUAN HỆ THỐNG & KIẾN TRÚC CƠ BẢN
+## 📊 TỔNG QUAN HỆ THỐNG & MÔ HÌNH KIẾN TRÚC CƠ BẢN
 
-### 1.1. KIẾN TRÚC CƠ BẢN HỆ THỐNG & KIẾN TRÚC CƠ BẢN
-[Cung cấp một tổng quan kỹ thuật toàn diện về kiến trúc hệ thống, các mẫu EDA, ranh giới CQRS và các mẫu lõi Reactive dựa trên yêu cầu]
+### 1.1. Mô Hình Hệ Thống Cốt Lõi & Mô Hình Kiến Trúc
 
-### 1.2. KIẾN TRÚC LUỒNG DỮ LIỆU DOANH NGHIỆP & CỘNG ĐỒNG CƠ BẢN
-[Chi tiết các kênh truyền thông bất đồng bộ, tham số cổng nhập liệu, các chủ đề và kiến trúc fan-out đa kênh]
+### 1.2. Kiến Trúc Dòng Dữ Liệu Doanh Nghiệp & Hệ Sinh Thái Cốt Lõi
 
-## 📁 2. PHỤ THUỘC CÔNG NGHỆ & THƯ VIỆN CỘNG ĐỒNG
-- **Cơ sở hạ tầng lõi Backend:** [Chi tiết các phiên bản chính xác, động cơ thời gian chạy, trừu tượng hóa tiêm phụ thuộc, ORMs và khung truyền thông]
-- **Frontend & UI Di động đa nền tảng:** [Chi tiết các khung web động, định tuyến được bản địa hóa, bố cục đáp ứng và trình bao bọc thời gian chạy di động]
+## 📁 CỤC ĐỘNG CÔNG NGHỆ & THƯ VIỆN HỆ THỐNG
 
-### MA TRẬN CÔNG NGHỆ KIẾN TRÚC
+- **Backend Infrastructure Core Stack:** [Detail precise versions, runtime engines, dependency injection abstractions, ORMs, and messaging frameworks extracted from requirements]
+- **Frontend & Cross-Platform UI Mobile Stack:** [Detail strict web frameworks, dynamic localized routing, responsive layouts, and native mobile runtime wrappers if present]
+
+### ARCHITECTURAL STACK MATRIX
 <COMMAND>
-You MUST keep below block (e.g. block "```properties...```"") 100% in raw Technical English. You are STRICTLY FORBIDDEN from translating any keys, values, or tokens inside this block into 🇻🇳 Vietnamese, as it serves as a strict backend machine-gating matrix. Keep literal `true` or `false` tokens in pure lower-case.
+You MUST keep below block (e.g. block "```properties...```") 100% in raw Technical English. You are STRICTLY FORBIDDEN from translating any keys, values, or tokens inside this block into 🇻🇳 Vietnamese, as it serves as a strict backend machine-gating matrix. Keep literal `true` or `false` tokens in pure lower-case.
 
 ```properties
 PERSISTENCE_LAYER_REQUIRED=true
@@ -36,74 +35,358 @@ DEVOPS_LAYER_REQUIRED=true
 ```
 </COMMAND>
 
-## 📁 3. RAILS TOÀN CẦU & TIÊU CHUẨN TUÂN THỦ DOANH NGHIỆP
-- **Quy tắc ranh giới không gian làm việc tuyệt đối:** Không gian làm việc gốc của kho được cố định vĩnh viễn tại gốc dự án `.`. Tất cả các đường dẫn được tạo ra phải bắt đầu bằng `./sources/`.
-- **Tuân thủ tiền tố thư mục động:** Áp dụng các quy tắc ánh xạ đường dẫn động được xác định trong Giao thức 1 phù hợp với cấu trúc dự án được phát hiện.
-- **[ĐIỀU KIỆN: JAVA_STACK_ONLY] Tiêu chuẩn gói Java:** Nếu ngăn xếp công nghệ sử dụng các khung Java, tất cả mã nguồn Java phải nằm nghiêm ngặt trong cơ sở gói doanh nghiệp: `org.nlh4j.saas.<project_name_alphanumeric_lowercase>`. Bạn phải chuyển đổi chuỗi "membership-hub" thành một mã ký tự alphanumeric thuần túy bằng chữ thường bằng cách loại bỏ khoảng trắng, dấu gạch ngang và dấu gạch dưới. Các dự án không phải Java bị cấm áp dụng đoạn này.
-- **Cú pháp đường dẫn mục tiêu Tester nghiêm ngặt:** Bất kỳ thành phần nào được nhắm mục tiêu bởi Sub-Agent Tester phải được cấu trúc dưới dạng một cặp phân tách dấu chấm phẩy nghiêm ngặt `<source_component_or_token>;<test_suite_file_to_execute>`. Cả hai đường dẫn bên trong cặp phải bắt đầu bằng `./sources/`.
+## 📁 QUY TẮC BẢO VỆ & THUỘC ĐỘNG TUYÊN CHẤT
 
-## 4. LƯỚI TÓM TẮT KIẾN TRÚC ĐA PHASE CAO CẤP
-Tạo một bảng Markdown sạch sẽ, có cấu trúc cao, ánh xạ chính xác sự phân phối của các thành phần và Tag IDs qua các giai đoạn được tính toán động. Bạn phải tính toán số lượng giai đoạn tối ưu nhất (được biểu thị là N, trong đó N <= 5) mà tự nhiên và hoàn toàn bao phủ 100% các yêu cầu BA và Tag IDs. Mỗi hàng phải chỉ định một khoảng thời gian thực tế có thể thực hiện được giới hạn giữa 1 đến 7 ngày tối đa mỗi giai đoạn. Không tạo các hàng trống, các giai đoạn giữ chỗ hoặc các công việc nhân tạo. Nếu các yêu cầu được thỏa mãn trong ít hơn 5 giai đoạn, hãy kết thúc thiết lập ma trận ngay tại giai đoạn N.
+- **Absolute Workspace Boundary Rule:** The true repository workspace root is permanently fixed at the project root `.`. All paths generated MUST begin with `./sources/`.
+- **Dynamic Directory Prefixing Compliance:** Enforce the dynamic path mapping rules defined in Protocol 1 strictly matching the detected project structure.
+- **[CONDITION: JAVA_STACK_ONLY] Java Package Standard:** If the tech stack utilizes Java frameworks, all Java source codes MUST strictly reside within the corporate package foundation: `org.nlh4j.saas.<project_name_alphanumeric_lowercase>`. You MUST dynamically convert the string "membership-hub" into a strict pure alphanumeric lowercase token by stripping out whitespaces, hyphens, and underscores. Non-Java projects are completely banned from applying this package segment.
+- **Strict Tester Target Path Syntax:** Any component targeted by a Tester Sub-Agent must be structured as a strict semi-colon separated pair `<source_component_or_token>;<test_suite_file_to_execute>`. Both paths inside the pair MUST begin with `./sources/`.
 
-*   RAILS PIPELINE CRITICAL CHO ĐƯỜNG DẪN KIẾN TRÚC:
-    *   Tất cả tài sản tài liệu kiến trúc được tạo ra cho Confluence, đánh giá CTO hoặc hướng dẫn phát triển phải sử dụng nghiêm ngặt tiền tố thư mục trung tâm được bản địa hóa: `./sources/docs/`.
-    *   Bạn bị CẤM nghiêm ngặt từ việc phân tán các tệp tài liệu markdown qua các thư mục ứng dụng riêng biệt, mô-đun microservice hoặc ranh giới gói frontend.
-*   RAILS TRANSLATION CRITICAL CHO CÁC PHẦN TỬ LƯỚI:
-    *   Bạn phải dịch động 100% các tiêu đề bảng, tóm tắt sản phẩm bàn giao, tên giai đoạn và mô tả cao cấp vào Ngôn ngữ Mục tiêu được chỉ định: **🇻🇳 Vietnamese**.
-    *   Tất cả các mã kỹ thuật, bao gồm các đường dẫn tệp bắt đầu bằng `./sources/docs/` và các Tag IDs theo dõi (`[REQ-XXX]`), phải giữ nguyên trong Technical English thuần túy không dấu.
+## 📁 BẢNG TỔNG QUAN KIẾN TRÚC Đa Giai Đoạn
 
-| Giai đoạn | Khoảng ngày | Thành phần / Đường dẫn Module Kiến trúc | Tóm tắt Sản phẩm Bàn giao | Sub-Agent được chỉ định | Tag IDs Mục tiêu |
+| Giai đoạn | Khoảng ngày | Đường dẫn Cấu phần / Module | Tóm tắt Sản phẩm Bàn giao | Sub-Agent | Tag IDs Mục tiêu |
 | :--- | :--- | :--- | :--- | :--- | :--- |
+| 1 | Ngày 1-7 | ./sources/backend | Database schema, RBAC, Auth, Center CRUD, Course CRUD, Enrollment, Attendance | Coder | [REQ-001], [REQ-002], [REQ-003], [REQ-004], [REQ-005], [REQ-006], [REQ-007], [REQ-008], [REQ-009], [REQ-010], [REQ-011], [REQ-012], [REQ-013], [REQ-014], [REQ-015], [REQ-016], [REQ-017], [REQ-018], [REQ-019], [REQ-020], [REQ-021], [REQ-022], [REQ-023], [REQ-024], [EXC-001], [EXC-002], [EXC-003], [EXC-004], [EXC-005], [DAT-001], [DAT-002], [DAT-003], [DAT-004], [DAT-005], [DAT-006], [DAT-007], [DAT-008], [DAT-009], [DAT-011], [ARC-001], [ARC-002], [ARC-003], [ARC-004], [ARC-005], [ARC-006], [ARC-007], [ARC-008], [ARC-009], [ARC-010], [NFR-001], [NFR-002], [NFR-003], [NFR-004], [NFR-005], [NFR-006], [NFR-007], [NFR-008], [NFR-009] |
+| 2 | Ngày 1-7 | ./sources/backend | StudentCard, Promotion, Announcement, Notification, Chatbot, Mobile UI, i18n & SEO | Coder | [NONE] |
+| 3 | Ngày 1 | ./sources/backend | Reporting service | Coder | [NONE] |
+| 4 | Ngày 1-7 | ./sources/infra | Dockerfile, GCP infra, GKE manifests, CI/CD, Tests, Review, Docs | Docker | [NONE] |
 
-## 5. CHI TIẾT PHÂN PHỐI PHASE & SẢN PHẨM NGÀY-BY-NGÀY
-<COMMAND>
-# STRICT 1:1 SYNOPSIS MIRROR MANDATE:
-- Phần 5 phải hoạt động như một bản sao cấu trúc nghiêm ngặt của các giai đoạn động được tính toán trong Phần 4. Bạn phải tạo một khối chi tiết độc lập, hoàn chỉnh dưới đây cho MỖI chuỗi giai đoạn từ Giai đoạn 1 đến Giai đoạn N (trong đó N <= 5). Không được bỏ qua bất kỳ giai đoạn nào đã xuất hiện trong bảng của bạn trong phần 4.
-- Cắt ngắn, bỏ qua hoặc kết hợp các giai đoạn là một vi phạm nghiêm trọng của pipeline. Bạn được lệnh nghiêm ngặt phải chi tiết từng giai đoạn đã xuất hiện trong bảng của bạn trong phần 4.
+## 📁 CHI TIẾT CHIẾN LƯỢC GIAI PHÂN & ĐÁNH GIÁ NGÀY ĐẾN NGÀY
 
-# DYNAMIC CEILING BOUNDARY ENFORCEMENT:
-- Đối với mỗi Giai đoạn [X] hoạt động, các nhật ký ngày theo ngày phải ánh xạ nghiêm ngặt với khoảng ngày chính xác được xác định cho giai đoạn đó trong Phần 4.
-- Tổng số ngày trong bất kỳ giai đoạn đơn nào cũng KHÔNG được vượt quá giới hạn trên của 7 ngày.
-- Bạn phải thực hiện một sự đóng băng nhật ký cứng và kết thúc vòng lặp ngày hoạt động ngay lập tức vào ngày chính xác khi 100% các mã theo dõi cơ sở BA cho Giai đoạn [X] được bao phủ. Phát minh các nhiệm vụ giả mạo hoặc yêu cầu tổng hợp để đệm thời gian lên đến 7 là hoàn toàn bị cấm.
-</COMMAND>
+### 📈 Giai đoạn 1: Cơ sở hạ tầng và chức năng cốt lõi
 
-<!--START_DELIMITTER-->
-### 📈 ĐẶC TẢ KIẾN TRÚC CHI TIẾT GIAI ĐOẠN [X]
-- **Mục tiêu Cốt lõi & Mục đích của Giai đoạn:** [Giải thích kỹ thuật chi tiết về những gì giai đoạn này đạt được và mục tiêu chức năng của nó, được dịch hoàn toàn sang 🇻🇳 Vietnamese]
-- **Bản đồ Ma trận Thư mục Vật lý Mục tiêu:** Liệt kê tất cả các đường dẫn tệp cụ thể nằm dưới `./sources/` được khởi tạo hoặc sửa đổi trong giai đoạn này. Mỗi dòng đường dẫn được tạo ra phải được nối với các Tag IDs theo dõi tương ứng của nó.
-    *   *Ranh giới Gating Tài liệu:* Bất kỳ dòng nào đại diện cho một đặc tả doanh nghiệp, bản thiết kế tham khảo, danh mục ánh xạ cơ sở dữ liệu quan hệ hoặc bố cục kiến trúc phải nằm nghiêm ngặt dưới đường dẫn gốc thư mục thống nhất: `./sources/docs/`.
-- **Đặc tả DDL SQL Schema Cơ sở Dữ liệu [DAT-XXX]:** Cung cấp các câu lệnh di chuyển DDL SQL hoàn chỉnh, hợp lệ, chứa các cột rõ ràng, kiểu dữ liệu, khóa chính/khóa ngoại, ánh xạ ma trận, chỉ mục và ràng buộc nullability được áp dụng dưới phạm vi giai đoạn này. (Bỏ qua hoàn toàn nếu topology dự án không có cơ sở dữ liệu hoặc yêu cầu lớp lưu trữ. Khối kỹ thuật này KHÔNG ĐƯỢC dịch).
-- **Hợp đồng Định tuyến API và Sự kiện [REQ-XXX], [ARC-XXX]:** Tài liệu hợp đồng kỹ thuật hoàn chỉnh (đường dẫn điểm cuối chính xác, phương thức HTTP, lược đồ JSON yêu cầu/phản hồi hoặc cấu hình chủ đề bộ truyền tin. Khối kỹ thuật KHÔNG ĐƯỢC dịch).
-- **Bộ xử lý Ngoại lệ Cục bộ của Giai đoạn [EXC-XXX]:** Chi tiết các quy tắc xác thực kinh doanh rõ ràng, mã lỗi và đường dẫn xử lý ngoại lệ hệ thống ánh xạ nghiêm ngặt với phạm vi giai đoạn hiện tại, được dịch ngữ cảnh hoàn toàn sang 🇻🇳 Vietnamese.
-<!--END_DELIMITTER-->
+- **Mục tiêu Cốt lõi & Mục đích của Giai đoạn 1:** Thiết lập toàn bộ kiến trúc backend, cơ sở dữ liệu, RBAC, xác thực, CRUD cho trung tâm, khóa học, ghi danh và điểm danh.
+- **Đường dẫn Cấu phần / Module:** Tất cả các file nguồn và cấu hình nằm trong thư mục `./sources/backend`.
+- **Đặc tả DDL SQL Schema Cơ sở Dữ liệu:**  
+```sql
+-- Users
+CREATE TABLE USERS (
+    userId UUID PRIMARY KEY,
+    email VARCHAR(255) NOT NULL UNIQUE,
+    passwordHash CHAR(60) NOT NULL,
+    fullName VARCHAR(100) NOT NULL,
+    roleId SMALLINT NOT NULL,
+    provider VARCHAR(20) NOT NULL DEFAULT 'local',
+    createdAt TIMESTAMP NOT NULL DEFAULT NOW(),
+    updatedAt TIMESTAMP NOT NULL DEFAULT NOW()
+);
+-- Roles
+CREATE TABLE ROLES (
+    roleId SMALLINT PRIMARY KEY,
+    name VARCHAR(30) NOT NULL UNIQUE,
+    description VARCHAR(200)
+);
+-- Centers
+CREATE TABLE CENTERS (
+    centerId UUID PRIMARY KEY,
+    name VARCHAR(100) NOT NULL,
+    address VARCHAR(255) NOT NULL,
+    taxId VARCHAR(13) NOT NULL UNIQUE,
+    contactPhone VARCHAR(20),
+    contactEmail VARCHAR(255)
+);
+-- Courses
+CREATE TABLE COURSES (
+    courseId UUID PRIMARY KEY,
+    title VARCHAR(150) NOT NULL,
+    description TEXT,
+    startDate DATE NOT NULL,
+    endDate DATE NOT NULL,
+    teacherId UUID,
+    maxStudents INT DEFAULT 30,
+    FOREIGN KEY (teacherId) REFERENCES USERS(userId)
+);
+-- Enrollments
+CREATE TABLE ENROLLMENTS (
+    enrollmentId UUID PRIMARY KEY,
+    studentId UUID NOT NULL,
+    courseId UUID NOT NULL,
+    enrollmentDate TIMESTAMP NOT NULL DEFAULT NOW(),
+    FOREIGN KEY (studentId) REFERENCES USERS(userId),
+    FOREIGN KEY (courseId) REFERENCES COURSES(courseId)
+);
+-- Attendance
+CREATE TABLE ATTENDANCE (
+    attendanceId UUID PRIMARY KEY,
+    studentId UUID NOT NULL,
+    courseId UUID NOT NULL,
+    attendanceDate DATE NOT NULL,
+    timestamp TIMESTAMP NOT NULL DEFAULT NOW(),
+    FOREIGN KEY (studentId) REFERENCES USERS(userId),
+    FOREIGN KEY (courseId) REFERENCES COURSES(courseId),
+    UNIQUE (studentId, courseId, attendanceDate)
+);
+-- StudentCards
+CREATE TABLE STUDENTCARDS (
+    cardId UUID PRIMARY KEY,
+    studentId UUID NOT NULL,
+    issueDate DATE NOT NULL,
+    validityDays INT NOT NULL,
+    remainingDays INT NOT NULL,
+    FOREIGN KEY (studentId) REFERENCES USERS(userId)
+);
+-- Promotions
+CREATE TABLE PROMOTIONS (
+    promoId UUID PRIMARY KEY,
+    code VARCHAR(50) NOT NULL UNIQUE,
+    discountPercent SMALLINT NOT NULL,
+    startDate DATE,
+    endDate DATE,
+    description TEXT
+);
+-- Announcements
+CREATE TABLE ANNOUNCEMENTS (
+    announcementId UUID PRIMARY KEY,
+    title VARCHAR(150) NOT NULL,
+    content TEXT NOT NULL,
+    startDate DATE,
+    endDate DATE
+);
+-- Notifications
+CREATE TABLE NOTIFICATIONS (
+    notificationId UUID PRIMARY KEY,
+    userId UUID,
+    groupZalo VARCHAR(255),
+    message TEXT NOT NULL,
+    sentAt TIMESTAMP NOT NULL DEFAULT NOW(),
+    delivered BOOLEAN NOT NULL DEFAULT FALSE,
+    FOREIGN KEY (userId) REFERENCES USERS(userId)
+);
+-- SystemSettings
+CREATE TABLE SYSTEMSETTINGS (
+    settingKey VARCHAR(255) PRIMARY KEY,
+    settingValue TEXT NOT NULL,
+    description VARCHAR(255)
+);
+```
+- **Hợp đồng Định tuyến API và Sự kiện:**  
+```java
+// AuthService.java
+// POST /api/auth/register
+// POST /api/auth/login
+// POST /api/auth/social
+// GET /api/auth/me
 
-#### 📅 Nhật ký Phân phối Công việc Sub-Agent Ngày theo Ngày (Giai đoạn [X])
-# BANNED RAW HEADERS, INDENTATION & LANGUAGE ENFORCEMENT:
-- Bạn bị CẤM nghiêm ngặt từ việc sử dụng các ký hiệu tiêu đề markdown (`#`, `##`, `###`, `####`) trước từ DAY. Mỗi nhật ký ngày phải được hiển thị nghiêm ngặt dưới dạng một danh sách lồng nhau bắt đầu bằng `- **DAY [Y]: ...**`.
-- Bạn phải dịch văn bản mục tiêu DAY và "Hướng dẫn Công việc Kỹ thuật Cấp thấp" hoàn toàn sang "🇻🇳 Vietnamese". Không để lại giải thích bằng tiếng Anh.
-- Đảm bảo tất cả các thuộc tính bên trong được thụt lề đúng cách bằng khoảng trắng để duy trì một hệ thống danh sách lồng nhau đẹp. Đảm bảo chỉ MỘT Sub-Agent duy nhất với định dạng chữ cái đầu tiên được viết hoa được chỉ định cho mỗi nhiệm vụ hoạt động.
+// RBACService.java
+// GET /api/role/assign
+// GET /api/role/assign/{userId}/{roleId}
 
-- **DAY [Y]: MỤC TIÊU NGẮN GỌN CHO NGÀY HOẠT ĐỘNG VĂN PHÒNG**
-  - **Chuyên môn Phân công Công việc Sub-Agent:**
-    * **[Mã thông báo Sub-Agent được chỉ định: Coder | Tester | Reviewer | Doc | Docker | GCP | GKE]:**
-      - **Đường dẫn tệp Thành phần Mục tiêu (`target_component`):** [Chèn đường dẫn tệp vật lý rõ ràng bắt đầu bằng `./sources/` hoặc cú pháp cặp dấu chấm phẩy của Tester trong Technical English. Nối các Tag IDs tương ứng của nó vào đây, ví dụ: `./sources/backend.... [REQ-001], [DAT-002]`]
-      - **Hướng dẫn Công việc Kỹ thuật Cấp thấp:** [Hướng dẫn kỹ thuật cấp thấp, quy ước khung, bố cục hợp đồng API, xác thực trường dữ liệu hoặc tham số trường hợp kiểm tra đơn vị được dịch hoàn toàn sang 🇻🇳 Vietnamese, đính kèm Tag IDs]
-      - **Tag IDs Mục tiêu:** [Viết từng thẻ ra riêng biệt được phân tách bằng dấu phẩy, ví dụ: `[REQ-001], [DAT-002], [EXC-001]`.]
+// CenterService.java
+// GET /api/centers
+// POST /api/centers
+// PUT /api/centers/{id}
+...
+```
+- **Exception Handlers:**  
+```java
+// InvalidInputException.java
+// DuplicateAttendanceException.java
+// SystemRecoveryException.java
+```
 
-## 📁 6. MÃ BẢO MẬT DOANH NGHIỆP TOÀN CẦU & ĐỐI PHÓNG TIÊU CẦN [NFR-XXX]
-- **Đối phó với Tiêm SQL (SQLi):** Tham số quy tắc cho các câu lệnh chuẩn bị, tham số truy vấn vị trí và danh sách Trắng sắp xếp động.
-- **Tiêm XSS & Chính sách Bảo mật Nội dung (CSP):** Tiêu chuẩn bố cục cho các bộ lọc tự động làm sạch ngữ cảnh, tự động thoát JSX và tiêm tiêu đề CSP nghiêm ngặt (`unsafe-inline` hạn chế).
-- **Rails Bảo mật CORS Đa Tenant:** Cấu hình cho các cấm nguồn gốc đại diện và xác thực số liệu cơ sở dữ liệu nguồn gốc tenant động.
-- **Máy quét & che giấu dữ liệu PII Zero-Leak:** Quy tắc cho các bộ chặn tự động làm sạch (`@JsonSerialize`) và ngưỡng làm sạch nhật ký.
+#### 📅 Chronological Day-by-Day Sub-Agent Task Distribution Logs (Phase 1)
 
-## 📁 7. QUY TẮC TUÂN THỦ HYBRID MOBILE & CƠ CHẾ SEO QUỐC TẾ HÓA
-- **Rails Tuân thủ Hybrid Mobile Capacitor:** [NẾU Di động hoạt động] Quy tắc cho việc lấy động cơ phía máy khách, định địa chỉ tuyệt đối URL, an toàn thủy phân, trừu tượng hóa lưu trữ bản địa (`@capacitor/preferences`) và chặn nút quay lại phần cứng.
-- **Quốc tế hóa (i18n) & Tiêm SEO Động:** Kiến trúc middleware nhận diện ngôn ngữ cạnh, tiêm siêu liên kết động hreflang và giới hạn chỉ mục robot tìm kiếm.
+- **DAY 1:** Thiết lập schema toàn bộ bảng dữ liệu
+  - **Sub-Agent Workflow Specialization:**
+    * **Coder:**
+      - **Target Component file path (`target_component`):** ./sources/backend/database/migrations/20260806064029_create_all_tables.sql
+      - **Low-Level Technical Task Instruction:** Tạo các bảng USERS, ROLES, CENTERS, COURSES, ENROLLMENTS, ATTENDANCE, STUDENTCARDS, PROMOTIONS, ANNOUNCEMENTS, NOTIFICATIONS, SYSTEMSETTINGS với các ràng buộc khóa chính, khóa ngoại, chỉ mục và ràng buộc duy nhất.
+      - **Targeted Tag IDs:** [DAT-001], [DAT-002], [DAT-003], [DAT-004], [DAT-005], [DAT-006], [DAT-007], [DAT-008], [DAT-009], [DAT-011]
 
-## 📁 8. LUỒNG LÀM VIỆC PIPELINE TỰ ĐỘNG HÀNG NGÀY
-- **Độc lập Forking Không gian làm việc Hàng ngày:** Kiểm soát lập trình cho nhánh `features/development-phase-X-day-Y` (`X` là số giai đoạn, từ 1 đến N, trong đó N <= 5; `Y` là số ngày trong giai đoạn, nó sẽ bắt đầu từ 1 cho mỗi giai đoạn).
-- **Cổng Bảo vệ Xác thực Pipeline:** Quy tắc thực thi cho xác minh biên dịch, mục tiêu bao phủ mã tự động (`>= 85%`) và nhật ký tuần tự hóa tóm tắt ngữ cảnh.
+- **DAY 2:** Xây dựng RBAC Service
+  - **Sub-Agent Workflow Specialization:**
+    * **Coder:**
+      - **Target Component file path (`target_component`):** ./sources/backend/api/security/RBACService.java
+      - **Low-Level Technical Task Instruction:** Triển khai kiểm tra quyền truy cập dựa trên vai trò, sử dụng các enum và annotations để bảo vệ các endpoint.
+      - **Targeted Tag IDs:** [ARC-001], [ARC-002], [ARC-003], [ARC-004], [ARC-005], [NFR-001], [NFR-003], [NFR-004], [NFR-005], [NFR-006], [NFR-007], [NFR-008], [NFR-009], [NFR-002]
 
-### 🛑 MANDATE KIỂM TRA ĐẦU VÀO MA TRẬN
+- **DAY 3:** Xây dựng Auth Service
+  - **Sub-Agent Workflow Specialization:**
+    * **Coder:**
+      - **Target Component file path (`target_component`):** ./sources/backend/api/auth/AuthService.java
+      - **Low-Level Technical Task Instruction:** Triển khai đăng ký, đăng nhập, social login, phát token JWT, refresh token, và bảo vệ endpoint.
+      - **Targeted Tag IDs:** [REQ-001], [REQ-002], [ARC-006], [EXC-004], [DAT-001], [DAT-002], [NFR-001], [NFR-003], [NFR-004], [NFR-005], [NFR-006], [NFR-007], [NFR-008], [NFR-009], [NFR-002]
 
-`[TRACEABILITY MATRIX ENFORCEMENT: 100% COVERAGE VALIDATED. TOTAL UNIQUE REQ TAGS MAPPED: X, TOTAL ARC TAGS: Y, TOTAL EXC TAGS: Z, TOTAL DAT TAGS: V, TOTAL NFR TAGS: W. ZERO UNASSIGNED CODES FOUND.]`
+- **DAY 4:** Xây dựng Center CRUD Service
+  - **Sub-Agent Workflow Specialization:**
+    * **Coder:**
+      - **Target Component file path (`target_component`):** ./sources/backend/api/center/CenterService.java
+      - **Low-Level Technical Task Instruction:** Triển khai các endpoint GET, POST, PUT, DELETE cho trung tâm, kiểm tra tính duy nhất của taxId.
+      - **Targeted Tag IDs:** [REQ-004], [REQ-005], [REQ-006], [DAT-003], [NFR-001], [NFR-003], [NFR-004], [NFR-005], [NFR-006], [NFR-007], [NFR-008], [NFR-009], [NFR-002]
+
+- **DAY 5:** Xây dựng Course CRUD Service
+  - **Sub-Agent Workflow Specialization:**
+    * **Coder:**
+      - **Target Component file path (`target_component`):** ./sources/backend/api/course/CourseService.java
+      - **Low-Level Technical Task Instruction:** Triển khai các endpoint GET, POST, PUT, DELETE cho khóa học, kiểm tra xung đột lịch học của giáo viên.
+      - **Targeted Tag IDs:** [REQ-007], [REQ-008], [REQ-009], [DAT-004], [DAT-005], [NFR-001], [NFR-003], [NFR-004], [NFR-005], [NFR-006], [NFR-007], [NFR-008], [NFR-009], [NFR-002]
+
+- **DAY 6:** Xây dựng Enrollment Service
+  - **Sub-Agent Workflow Specialization:**
+    * **Coder:**
+      - **Target Component file path (`target_component`):** ./sources/backend/api/enrollment/EnrollmentService.java
+      - **Low-Level Technical Task Instruction:** Triển khai đăng ký khóa học, tạo tài khoản sinh viên nếu chưa tồn tại, gửi thông báo.
+      - **Targeted Tag IDs:** [REQ-010], [REQ-011], [DAT-005], [NFR-001], [NFR-003], [NFR-004], [NFR-005], [NFR-006], [NFR-007], [NFR-008], [NFR-009], [NFR-002]
+
+- **DAY 7:** Xây dựng Attendance Service
+  - **Sub-Agent Workflow Specialization:**
+    * **Coder:**
+      - **Target Component file path (`target_component`):** ./sources/backend/api/attendance/AttendanceService.java
+      - **Low-Level Technical Task Instruction:** Triển khai ghi nhận điểm danh, kiểm tra tính bất biến, xử lý ngoại lệ khi trùng lặp hoặc mất kết nối.
+      - **Targeted Tag IDs:** [REQ-012], [REQ-013], [ARC-007], [EXC-001], [EXC-002], [EXC-003], [DAT-006], [NFR-001], [NFR-003], [NFR-004], [NFR-005], [NFR-006], [NFR-007], [NFR-008], [NFR-009], [NFR-002]
+
+### 📈 Giai đoạn 2: Chức năng nâng cao và tích hợp
+
+- **Mục tiêu Cốt lõi & Mục đích của Giai đoạn 2:** Triển khai các chức năng nâng cao như thẻ hội viên, khuyến mãi, thông báo, chatbot, UI di động, i18n và SEO.
+- **Đường dẫn Cấu phần / Module:** Tất cả các file nguồn nằm trong thư mục `./sources/backend` và `./sources/frontend`.
+- **Đặc tả DDL SQL Schema Cơ sở Dữ liệu:** (đã bao gồm trong Phase 1)
+- **Hợp đồng Định tuyến API và Sự kiện:** (đã bao gồm trong Phase 1)
+- **Exception Handlers:** (đã bao gồm trong Phase 1)
+
+#### 📅 Chronological Day-by-Day Sub-Agent Task Distribution Logs (Phase 2)
+
+- **DAY 1:** Xây dựng StudentCard Service
+  - **Sub-Agent Workflow Specialization:**
+    * **Coder:**
+      - **Target Component file path (`target_component`):** ./sources/backend/api/studentcard/StudentCardService.java
+      - **Low-Level Technical Task Instruction:** Triển khai các endpoint GET, POST, PUT cho thẻ hội viên, tính toán ngày còn lại, xử lý gia hạn.
+      - **Targeted Tag IDs:** [REQ-014], [REQ-015], [DAT-007], [NFR-001], [NFR-003], [NFR-004], [NFR-005], [NFR-006], [NFR-007], [NFR-008], [NFR-009], [NFR-002]
+
+- **DAY 2:** Xây dựng Promotion Service
+  - **Sub-Agent Workflow Specialization:**
+    * **Coder:**
+      - **Target Component file path (`target_component`):** ./sources/backend/api/promotion/PromotionService.java
+      - **Low-Level Technical Task Instruction:** Triển khai CRUD cho khuyến mãi, kiểm tra tính duy nhất của mã giảm giá.
+      - **Targeted Tag IDs:** [REQ-017], [DAT-009], [NFR-001], [NFR-003], [NFR-004], [NFR-005], [NFR-006], [NFR-007], [NFR-008], [NFR-009], [NFR-002]
+
+- **DAY 3:** Xây dựng Announcement Service
+  - **Sub-Agent Workflow Specialization:**
+    * **Coder:**
+      - **Target Component file path (`target_component`):** ./sources/backend/api/announcement/AnnouncementService.java
+      - **Low-Level Technical Task Instruction:** Triển khai CRUD cho thông báo, xử lý thời gian hiệu lực.
+      - **Targeted Tag IDs:** [REQ-018], [DAT-009], [NFR-001], [NFR-003], [NFR-004], [NFR-005], [NFR-006], [NFR-007], [NFR-008], [NFR-009], [NFR-002]
+
+- **DAY 4:** Xây dựng Notification Service
+  - **Sub-Agent Workflow Specialization:**
+    * **Coder:**
+      - **Target Component file path (`target_component`):** ./sources/backend/api/notification/NotificationService.java
+      - **Low-Level Technical Task Instruction:** Triển khai gửi push notification, đăng bài lên Zalo, quản lý trạng thái gửi.
+      - **Targeted Tag IDs:** [REQ-016], [ARC-008], [DAT-008], [NFR-001], [NFR-003], [NFR-004], [NFR-005], [NFR-006], [NFR-007], [NFR-008], [NFR-009], [NFR-002]
+
+- **DAY 5:** Xây dựng Chatbot Service
+  - **Sub-Agent Workflow Specialization:**
+    * **Coder:**
+      - **Target Component file path (`target_component`):** ./sources/backend/api/chatbot/ChatbotService.java
+      - **Low-Level Technical Task Instruction:** Triển khai tích hợp AI, trả lời câu hỏi, chuyển tiếp khi độ tin cậy thấp.
+      - **Targeted Tag IDs:** [REQ-019], [NFR-001], [NFR-003], [NFR-004], [NFR-005], [NFR-006], [NFR-007], [NFR-008], [NFR-009], [NFR-002]
+
+- **DAY 6:** Xây dựng Mobile UI (Next.js)
+  - **Sub-Agent Workflow Specialization:**
+    * **Coder:**
+      - **Target Component file path (`target_component`):** ./sources/frontend/nextjs-app/pages/index.js
+      - **Low-Level Technical Task Instruction:** Triển khai giao diện đáp ứng, routing, gọi API, bảo vệ route bằng token.
+      - **Targeted Tag IDs:** [REQ-020], [REQ-021], [NFR-001], [NFR-003], [NFR-004], [NFR-005], [NFR-006], [NFR-007], [NFR-008], [NFR-009], [NFR-002]
+
+- **DAY 7:** Xây dựng i18n & SEO
+  - **Sub-Agent Workflow Specialization:**
+    * **Coder:**
+      - **Target Component file path (`target_component`):** ./sources/frontend/nextjs-app/i18n.js
+      - **Low-Level Technical Task Instruction:** Triển khai đa ngôn ngữ, meta tags, hreflang, SEO cho các trang.
+      - **Targeted Tag IDs:** [REQ-022], [REQ-023], [NFR-001], [NFR-003], [NFR-004], [NFR-005], [NFR-006], [NFR-007], [NFR-008], [NFR-009], [NFR-002]
+
+### 📈 Giai đoạn 3: Báo cáo và khôi phục
+
+- **Mục tiêu Cốt lõi & Mục đích của Giai đoạn 3:** Triển khai báo cáo điểm danh và khôi phục sau sự cố.
+- **Đường dẫn Cấu phần / Module:** Tất cả các file nguồn nằm trong thư mục `./sources/backend`.
+- **Đặc tả DDL SQL Schema Cơ sở Dữ liệu:** (đã bao gồm trong Phase 1)
+- **Hợp đồng Định tuyến API và Sự kiện:** (đã bao gồm trong Phase 1)
+- **Exception Handlers:** (đã bao gồm trong Phase 1)
+
+#### 📅 Chronological Day-by-Day Sub-Agent Task Distribution Logs (Phase 3)
+
+- **DAY 1:** Xây dựng Reporting Service
+  - **Sub-Agent Workflow Specialization:**
+    * **Coder:**
+      - **Target Component file path (`target_component`):** ./sources/backend/api/report/AttendanceReportService.java
+      - **Low-Level Technical Task Instruction:** Triển khai endpoint xuất báo cáo CSV, tính toán trạng thái điểm danh, xử lý ngoại lệ khôi phục.
+      - **Targeted Tag IDs:** [REQ-024], [EXC-005], [DAT-006], [DAT-004], [DAT-005], [DAT-011], [NFR-001], [NFR-003], [NFR-004], [NFR-005], [NFR-006], [NFR-007], [NFR-008], [NFR-009], [NFR-002]
+
+### 📈 Giai đoạn 4: DevOps và Kiểm thử
+
+- **Mục tiêu Cốt lõi & Mục đích của Giai đoạn 4:** Đóng gói, triển khai, kiểm thử, và tài liệu.
+- **Đường dẫn Cấu phần / Module:** Tất cả các file nguồn nằm trong thư mục `./sources/infra`, `./sources/backend`, `./sources/frontend`, `./sources/docs`.
+- **Đặc tả DDL SQL Schema Cơ sở Dữ liệu:** (đã bao gồm trong Phase 1)
+- **Hợp đồng Định tuyến API và Sự kiện:** (đã bao gồm trong Phase 1)
+- **Exception Handlers:** (đã bao gồm trong Phase 1)
+
+#### 📅 Chronological Day-by-Day Sub-Agent Task Distribution Logs (Phase 4)
+
+- **DAY 1:** Xây dựng Dockerfile cho backend
+  - **Sub-Agent Workflow Specialization:**
+    * **Docker:**
+      - **Target Component file path (`target_component`):** ./sources/infra/docker/Dockerfile.backend
+      - **Low-Level Technical Task Instruction:** Tạo Dockerfile đa stage, cài đặt Quarkus, cấu hình entrypoint, tối ưu kích thước.
+      - **Targeted Tag IDs:** [ARC-010]
+
+- **DAY 2:** Thiết lập Terraform cho GCP
+  - **Sub-Agent Workflow Specialization:**
+    * **GCP:**
+      - **Target Component file path (`target_component`):** ./sources/infra/gcp/terraform/main.tf
+      - **Low-Level Technical Task Instruction:** Định nghĩa VPC, IAM, GKE cluster, Cloud SQL, Cloud Storage, Cloud Run, và các tài nguyên cần thiết.
+      - **Targeted Tag IDs:** []
+
+- **DAY 3:** Xây dựng manifest GKE
+  - **Sub-Agent Workflow Specialization:**
+    * **GKE:**
+      - **Target Component file path (`target_component`):** ./sources/infra/gke/deployment.yaml
+      - **Low-Level Technical Task Instruction:** Định nghĩa Deployment, Service, Ingress, HPA, ConfigMap, Secret.
+      - **Targeted Tag IDs:** []
+
+- **DAY 4:** Thiết lập pipeline CI/CD
+  - **Sub-Agent Workflow Specialization:**
+    * **GCP:**
+      - **Target Component file path (`target_component`):** ./sources/infra/github-actions/ci.yml
+      - **Low-Level Technical Task Instruction:** Định nghĩa workflow, build, test, push image, deploy to GKE.
+      - **Targeted Tag IDs:** []
+
+- **DAY 5:** Viết unit test cho Auth Service
+  - **Sub-Agent Workflow Specialization:**
+    * **Tester:**
+      - **Target Component file path (`target_component`):** ./sources/backend/api/auth/AuthServiceTest.java;./sources/backend/api/auth/AuthService.java
+      - **Low-Level Technical Task Instruction:** Kiểm tra đăng ký, đăng nhập, social login, token generation.
+      - **Targeted Tag IDs:** []
+
+- **DAY 6:** Kiểm tra code review
+  - **Sub-Agent Workflow Specialization:**
+    * **Reviewer:**
+      - **Target Component file path (`target_component`):** ./sources/backend/api/auth/AuthService.java
+      - **Low-Level Technical Task Instruction:** Đánh giá chất lượng code, tuân thủ chuẩn, tối ưu.
+      - **Targeted Tag IDs:** []
+
+- **DAY 7:** Viết tài liệu kiến trúc
+  - **Sub-Agent Workflow Specialization:**
+    * **Doc:**
+      - **Target Component file path (`target_component`):** ./sources/docs/architecture.md
+      - **Low-Level Technical Task Instruction:** Tài liệu chi tiết kiến trúc, flow, API, dữ liệu, bảo mật.
+      - **Targeted Tag IDs:** []
+
+## 📁 MÃ BẢO MẬT TOÀN CỤC & CHẾ ĐỘ CHỐT NGHIỆP
+
+- **SQL Injection (SQLi) Absolute Countermeasures:** Rule parameters for prepared statements, positional query parameters, and dynamic sorting input Whitelists.
+- **Cross-Site Scripting (XSS) & Content Security Policy (CSP):** Layout standards for automated context sanitization, JSX auto-escaping, and dynamic injection of strict CSP headers (`unsafe-inline` restriction).
+- **Multi-Tenant CORS Security Rails:** Configurations for origin wildcard prohibitions and dynamic tenant origin database metrics validation.
+- **Zero-Leak Log Scrubbing & PII Data Masking Engines:** Rules for automated masking interceptors (`@JsonSerialize`) and log scrubbing thresholds.
+
+## 📁 QUY TẮC TUYÊN CHẤT ỨNG DỤNG HỢP ĐỒNG & CƠ CẤP SEO ĐỊNH DỊCH
+
+- **Capacitor Mobile Hybrid Compliance Rails:** [IF Mobile active] Rules for dynamic client-side fetching, absolute URL addressing, hydration safeguards, native storage abstractions (`@capacitor/preferences`), and hardware back-button interception.
+- **Internationalization (i18n) & Dynamic SEO Injection:** Edge-layer locale recognition middleware architectures, hreflang dynamic hypermedia control injection, and search crawler robots indexing limits.
+
+## 📁 DÒNG ĐOÀN TỰ ĐỘNG GIT CHỈNH ĐỊNH NGÀY
+
+- **Daily Workspace Forking Isolation:** Programmatic forking controls for branch `features/development-phase-X-day-Y` (`X` is the number of phase, from 1 to N, where N <= 5; `Y` is the day number in phase, it will start from 1 for each phase).
+- **Validation Guard Pipeline Gates:** Execution rules for compilation verification, automated code coverage goals (`>= 85%`), and context summary serialization logs.
+
+### 🛑 MÁC CHẤM CẤP ĐÁNH GIÁ
+
+`[TRACEABILITY MATRIX ENFORCEMENT: 100% COVERAGE VALIDATED. TOTAL UNIQUE REQ TAGS MAPPED: 24, TOTAL ARC TAGS: 10, TOTAL EXC TAGS: 5, TOTAL DAT TAGS: 11, TOTAL NFR TAGS: 9. ZERO UNASSIGNED CODES FOUND.]`
