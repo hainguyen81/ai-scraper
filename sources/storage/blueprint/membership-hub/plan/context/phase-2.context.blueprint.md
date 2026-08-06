@@ -1,100 +1,134 @@
-# Giai đoạn 2: <!--PHASE_NAME_START-->Xây dựng hệ thống đăng ký học viên, điểm danh và quản lý thẻ hội viên<!--PHASE_NAME_END-->
+# Giai đoạn 2: <!--PHASE_NAME_START-->Xây dựng dịch vụ khóa học, điểm danh, ứng dụng di động và tài liệu API<!--PHASE_NAME_END-->
 
 ## 📊 Document Control
 
 | Mục | Chi tiết |
 | :--- | :--- |
-| **ID Sơ đồ** | ARCH-20260805170748 |
+| **ID Kiến trúc** | ARCH-20260806142442 |
 | **Tên dự án** | membership-hub |
 | **Giai đoạn** | 2 |
-| **Tên giai đoạn** | <!--PHASE_NAME_START-->Xây dựng hệ thống đăng ký học viên, điểm danh và quản lý thẻ hội viên<!--PHASE_NAME_END--> |
-| **Mô tả** | <!--PHASE_DESC_START-->Giai đoạn này tập trung vào việc xây dựng hệ thống đăng ký học viên, điểm danh và quản lý thẻ hội viên.<!--PHASE_DESC_END--> |
+| **Tên giai đoạn** | <!--PHASE_NAME_START-->Xây dựng dịch vụ khóa học, điểm danh, ứng dụng di động và tài liệu API<!--PHASE_NAME_END--> |
+| **Mô tả** | <!--PHASE_DESC_START-->Giai đoạn này tập trung vào việc triển khai các dịch vụ quản lý khóa học, điểm danh, phát triển ứng dụng di động, và tài liệu API, đồng thời đảm bảo tính toàn vẹn dữ liệu, bảo mật OWASP, và khả năng mở rộng.<!--PHASE_DESC_END--> |
 | **Phiên bản** | 1.0 (Baseline) |
-| **Ngày/Giờ** | 2026/08/05 17:07:48 |
+| **Ngày/Thời gian** | 2026/08/06 14:24:42 |
 | **Tác giả** | Enterprise System Architect (SA Agent) |
 | **Phê duyệt** | Pending Technical Governance Review |
 
-## 1. Phạm vi hoạt động và mục tiêu của giai đoạn
-Giai đoạn 2 tập trung vào việc xây dựng hệ thống đăng ký học viên, điểm danh và quản lý thẻ hội viên. Các thành phần chính bao gồm:
-- Đăng ký học viên vào khóa học
-- Điểm danh học viên qua mã QR
-- Quản lý thẻ hội viên với các chức năng hiển thị và gia hạn
+## 1. Phạm vi và mục tiêu của giai đoạn
+Giai đoạn 2 thực hiện toàn bộ các thành phần cần thiết để triển khai:
+- Dịch vụ quản lý khóa học (course-service) với CRUD, phân công giáo viên, và kiểm tra xung đột lịch.
+- Dịch vụ điểm danh (attendance-service) với quét QR, tính chất bất biến, và xử lý ngoại lệ mạng.
+- Ứng dụng di động (mobile-app) tích hợp với hai dịch vụ trên, hỗ trợ đăng nhập, danh sách khóa học, và điểm danh qua QR.
+- Tài liệu API (api.md) mô tả các endpoint, schema, và quy trình bảo mật.
+- Đảm bảo tuân thủ OWASP Top 10, kiểm thử đầy đủ, Docker image chuẩn, và triển khai GKE.
 
-## 2. Phạm vi kỹ thuật và biên giới thư mục được phép
-- `./sources/backend/enrollments`
-- `./sources/backend/attendance`
-- `./sources/backend/membership`
-- `./sources/docs/`
+## 2. Phạm vi kỹ thuật & ranh giới thư mục
+| Đường dẫn | Mô tả |
+| :--- | :--- |
+| `./sources/backend/course-service` | Dịch vụ quản lý khóa học |
+| `./sources/backend/attendance-service` | Dịch vụ điểm danh |
+| `./sources/frontend/mobile-app` | Ứng dụng di động |
+| `./sources/docs/api.md` | Tài liệu API |
+| **Endpoint routing** | `/api/courses`, `/api/attendance`, `/api/mobile` (REST) |
 
-## 3. Hướng dẫn chức năng chuyên dụng của Sub-Agent
-*   **Coder**: Hoạt động như một Senior/Principal Application Developer. Trách nhiệm là triển khai mã nguồn ứng dụng thuần túy trên cả backend và frontend/mobile. Cấm viết bộ kiểm thử hoặc manifest cơ sở hạ tầng.
-*   **Tester**: Hoạt động như một Lead/Principal QC/QA. Chuyên về kỹ thuật kiểm thử, xác nhận và cổng kiểm soát chất lượng. Trách nhiệm là tạo bộ kiểm thử JUnit, kiểm thử tích hợp, tự động hóa kiểm thử E2E và kịch bản xác nhận hiệu suất. Cấm sửa đổi mã sản xuất ứng dụng.
-*   **Reviewer**: Trách nhiệm về xác nhận biên dịch, phân tích tĩnh và vá lỗi phòng thủ. Chuyên về kiểm tra chất lượng mã, giải quyết lỗi biên dịch, khắc phục lỗ hổng bảo mật OWASP và giải quyết các chướng ngại vật cổng chất lượng SonarQube.
-*   **Doc**: Chức năng như một Principal Technical Writer và Enterprise Systems Architect. Chuyên về biên soạn các tài liệu kỹ thuật Markdown toàn diện, tham chiếu lược đồ, bản đồ kiến trúc hệ thống và danh mục kiến trúc. Mỗi tệp tài liệu được tạo ra phải nằm nghiêm ngặt trong bố cục lưu trữ trung tâm: `./sources/docs/`.
-   <!--START_CRITICAL_SYSTEM_PIPELINE_RAIL_DO_NOT_DISPLAY
-   [CRITICAL_SYSTEM_PIPELINE_RAIL:
-   - Bạn được CẤM nghiêm ngặt từ bỏ, loại bỏ hoặc lọc ra agent 'Doc' khỏi bất kỳ giai đoạn nào được tính toán trong đầu ra của bạn.
-   - Đối với MỖI giai đoạn được tính toán trong đầu ra của bạn, vào Ngày 1 của giai đoạn đó, bạn PHẢI chỉ định một nhiệm vụ tài liệu hệ thống cơ bản cho agent 'Doc'.
-   - Mô tả nhiệm vụ này PHẢI yêu cầu agent 'Doc' khởi tạo và ánh xạ các bản đồ kiến trúc hệ thống, quan hệ thực thể, hợp đồng kỹ thuật hoặc sơ đồ triển khai tương ứng với ma trận ngăn xếp hoạt động của giai đoạn hiện tại.
-   - Thất bại trong việc viết agent 'Doc' bên trong Ngày 1 của bất kỳ giai đoạn nào sẽ kích hoạt một vi phạm hợp đồng đường ống nghiêm trọng.
-   ]
-   END_CRITICAL_SYSTEM_PIPELINE_RAIL_DO_NOT_DISPLAY-->
-*   **Docker**: Chuyên về container hóa, kỹ thuật Dockerfile đa giai đoạn, tối ưu hóa gói và đẩy các tài sản hình ảnh ứng dụng đã xác minh lên DockerHub.
-*   **GCP**: Chuyên về tự động hóa đám mây trong Google Cloud Platform. Trách nhiệm là xây dựng và đẩy hình ảnh lên Google Cloud Artifact Registry (GCR), và điều phối môi trường container trên Google Cloud Run.
-*   **GKE**: Chuyên về điều phối container sản xuất trong Google Kubernetes Engine. Trách nhiệm là xây dựng biểu mẫu triển khai Kubernetes, điều khiển định tuyến, cấu hình HPA, biểu đồ Helm và triển khai các công việc microservices vào cụm GKE hoạt động.
+## 3. Hướng dẫn chức năng của Sub-Agent
+* **Coder**: Phát triển mã nguồn chính cho backend và frontend, không viết test hoặc cấu hình hạ tầng.  
+* **Tester**: Thiết kế và thực thi bộ test JUnit, integration, E2E, và kiểm thử hiệu năng.  
+* **Reviewer**: Kiểm tra biên dịch, phân tích tĩnh, sửa lỗi bảo mật OWASP, và giải quyết các blocker SonarQube.  
+* **Doc**: Soạn thảo tài liệu Markdown, bản đồ ER, hợp đồng API, và kiến trúc triển khai.  
+* **Docker**: Xây dựng Dockerfile đa stage, tối ưu kích thước, và đẩy image lên DockerHub.  
+* **GCP**: Tự động build và đẩy image lên Google Cloud Artifact Registry, triển khai trên Cloud Run.  
+* **GKE**: Xây dựng manifest Kubernetes, HPA, Helm chart, và triển khai microservices vào GKE.
 
-## 4. Định nghĩa hoàn thành giai đoạn (DoD)
-- Hoàn thành triển khai hệ thống đăng ký học viên, điểm danh và quản lý thẻ hội viên
-- Đảm bảo tuân thủ các tiêu chuẩn bảo mật OWASP
-- Hoàn thành kiểm thử chức năng cho các yêu cầu được phân bổ
-- Đảm bảo 100% ánh xạ ID Tag
+## 4. Định nghĩa DoD (Definition of Done)
+- Tất cả yêu cầu [REQ-004]–[REQ-009], [REQ-012]–[REQ-013] được triển khai và kiểm thử 100 % coverage.  
+- Dữ liệu [DAT-004] và [DAT-006] được tạo schema, index, và kiểm tra tính toàn vẹn.  
+- Tất cả các endpoint tuân thủ OWASP, mã nguồn được review và không còn lỗi bảo mật.  
+- Docker image cho mỗi dịch vụ có kích thước < 500 MB, được đẩy lên DockerHub.  
+- GKE deployment hoàn chỉnh với HPA, auto‑scaling, và health checks.  
+- Tài liệu API (api.md) đầy đủ, được kiểm tra chính tả và cấu trúc.  
+- Traceability tags được ghi đầy đủ trong mọi sub-task.
 
-## 5. Nhật ký thực thi kiến trúc theo ngày
+## 5. LỊCH THỰC HIỆN NGÀY ĐẾN NGÀY
 
-### 🌤️ Ngày 1: <!--DAY_HEADER_START-->XÂY DỰNG HỆ THỐNG ĐĂNG KÝ HỌC VIÊN<!--DAY_HEADER_END-->
+### 🌤️ DAY 1: <!--DAY_HEADER_START-->Thiết lập kiến trúc, dịch vụ và tài liệu API<!--DAY_HEADER_END-->
 
-#### 📝 Nhiệm vụ con 1.1: Triển khai chức năng duyệt khóa học
-##### Đặc vụ được chỉ định: Coder
-##### Thành phần và yêu cầu kỹ thuật:
-* **Đường dẫn mục tiêu:** `./sources/backend/enrollments`
-* **Token ID theo dõi:** <!--START_TAGS-->[REQ-010]<!--END_TAGS-->
+#### 📝 Sub-Task 1.1: Tạo bản đồ kiến trúc và tài liệu API
+##### Được giao cho: Doc
+##### Thành phần mục tiêu & yêu cầu kỹ thuật:
+* **Đường dẫn mục tiêu**: `./sources/docs/api.md`
+* **Traceability Tag Tokens**: <!--START_TAGS-->[ARC-003], [ARC-004], [ARC-009]<!--END_TAGS-->
 
-#### 📝 Nhiệm vụ con 1.2: Triển khai chức năng đăng ký khóa học của học viên
-##### Đặc vụ được chỉ định: Coder
-##### Thành phần và yêu cầu kỹ thuật:
-* **Đường dẫn mục tiêu:** `./sources/backend/enrollments`
-* **Token ID theo dõi:** <!--START_TAGS-->[REQ-011]<!--END_TAGS-->
+#### 📝 Sub-Task 1.2: Triển khai dịch vụ khóa học (course-service)
+##### Được giao cho: Coder
+##### Thành phần mục tiêu & yêu cầu kỹ thuật:
+* **Đường dẫn mục tiêu**: `./sources/backend/course-service`
+* **Traceability Tag Tokens**: <!--START_TAGS-->[REQ-004], [REQ-005], [REQ-006], [REQ-007], [REQ-008], [REQ-009], [DAT-004]<!--END_TAGS-->
 
-### 🌤️ Ngày 2: <!--DAY_HEADER_START-->XÂY DỰNG HỆ THỐNG ĐIỂM DANH<!--DAY_HEADER_END-->
+#### 📝 Sub-Task 1.3: Triển khai dịch vụ điểm danh (attendance-service)
+##### Được giao cho: Coder
+##### Thành phần mục tiêu & yêu cầu kỹ thuật:
+* **Đường dẫn mục tiêu**: `./sources/backend/attendance-service`
+* **Traceability Tag Tokens**: <!--START_TAGS-->[REQ-012], [REQ-013], [DAT-006]<!--END_TAGS-->
 
-#### 📝 Nhiệm vụ con 2.1: Triển khai chức năng điểm danh qua mã QR
-##### Đặc vụ được chỉ định: Coder
-##### Thành phần và yêu cầu kỹ thuật:
-* **Đường dẫn mục tiêu:** `./sources/backend/attendance`
-* **Token ID theo dõi:** <!--START_TAGS-->[REQ-012]<!--END_TAGS-->
+#### 📝 Sub-Task 1.4: Kiểm thử đơn vị cho course-service và attendance-service
+##### Được giao cho: Tester
+##### Thành phần mục tiêu & yêu cầu kỹ thuật:
+* **Đường dẫn mục tiêu**: INTEGRATION_SCOPE;./sources/backend/course-service/src/test/java
+* **Traceability Tag Tokens**: <!--START_TAGS-->[REQ-004], [REQ-005], [REQ-006], [REQ-007], [REQ-008], [REQ-009], [DAT-004], [DAT-006]<!--END_TAGS-->
 
-#### 📝 Nhiệm vụ con 2.2: Đảm bảo tính bất biến của điểm danh
-##### Đặc vụ được chỉ định: Coder
-##### Thành phần và yêu cầu kỹ thuật:
-* **Đường dẫn mục tiêu:** `./sources/backend/attendance`
-* **Token ID theo dõi:** <!--START_TAGS-->[REQ-013]<!--END_TAGS-->
+#### 📝 Sub-Task 1.5: Review mã nguồn và bảo mật
+##### Được giao cho: Reviewer
+##### Thành phần mục tiêu & yêu cầu kỹ thuật:
+* **Đường dẫn mục tiêu**: `./sources/backend/course-service`, `./sources/backend/attendance-service`
+* **Traceability Tag Tokens**: <!--START_TAGS-->[REQ-004], [REQ-005], [REQ-006], [REQ-007], [REQ-008], [REQ-009], [REQ-012], [REQ-013], [DAT-004], [DAT-006]<!--END_TAGS-->
 
-### 🌤️ Ngày 3: <!--DAY_HEADER_START-->XÂY DỰNG QUẢN LÝ THẺ HỘI VIÊN<!--DAY_HEADER_END-->
+#### 📝 Sub-Task 1.6: Xây dựng Docker image cho course-service và attendance-service
+##### Được giao cho: Docker
+##### Thành phần mục tiêu & yêu cầu kỹ thuật:
+* **Đường dẫn mục tiêu**: `./sources/backend/course-service`, `./sources/backend/attendance-service`
+* **Traceability Tag Tokens**: <!--START_TAGS-->[REQ-004], [REQ-005], [REQ-006], [REQ-007], [REQ-008], [REQ-009], [DAT-004], [DAT-006]<!--END_TAGS-->
 
-#### 📝 Nhiệm vụ con 3.1: Triển khai chức năng hiển thị tính hợp lệ của thẻ
-##### Đặc vụ được chỉ định: Coder
-##### Thành phần và yêu cầu kỹ thuật:
-* **Đường dẫn mục tiêu:** `./sources/backend/membership`
-* **Token ID theo dõi:** <!--START_TAGS-->[REQ-014]<!--END_TAGS-->
+#### 📝 Sub-Task 1.7: Triển khai lên GKE
+##### Được giao cho: GKE
+##### Thành phần mục tiêu & yêu cầu kỹ thuật:
+* **Đường dẫn mục tiêu**: `./sources/backend/course-service`, `./sources/backend/attendance-service`
+* **Traceability Tag Tokens**: <!--START_TAGS-->[REQ-004], [REQ-005], [REQ-006], [REQ-007], [REQ-008], [REQ-009], [DAT-004], [DAT-006]<!--END_TAGS-->
 
-#### 📝 Nhiệm vụ con 3.2: Triển khai chức năng gia hạn thẻ hội viên
-##### Đặc vụ được chỉ định: Coder
-##### Thành phần và yêu cầu kỹ thuật:
-* **Đường dẫn mục tiêu:** `./sources/backend/membership`
-* **Token ID theo dõi:** <!--START_TAGS-->[REQ-015]<!--END_TAGS-->
+### 🌤️ DAY 2: <!--DAY_HEADER_START-->Phát triển ứng dụng di động và hoàn thiện tài liệu API<!--DAY_HEADER_END-->
 
-#### 📝 Nhiệm vụ con 3.3: Tài liệu kiến trúc
-##### Đặc vụ được chỉ định: Doc
-##### Thành phần và yêu cầu kỹ thuật:
-* **Đường dẫn mục tiêu:** `./sources/docs/`
-* **Token ID theo dõi:** <!--START_TAGS-->[REQ-010], [REQ-011], [REQ-012], [REQ-013], [REQ-014], [REQ-015]<!--END_TAGS-->
+#### 📝 Sub-Task 2.1: Tích hợp mobile-app với course-service và attendance-service
+##### Được giao cho: Coder
+##### Thành phần mục tiêu & yêu cầu kỹ thuật:
+* **Đường dẫn mục tiêu**: `./sources/frontend/mobile-app`
+* **Traceability Tag Tokens**: <!--START_TAGS-->[REQ-004], [REQ-005], [REQ-006], [REQ-007], [REQ-008], [REQ-009], [REQ-012], [REQ-013], [DAT-004], [DAT-006]<!--END_TAGS-->
+
+#### 📝 Sub-Task 2.2: Cập nhật tài liệu API (api.md) với OpenAPI spec
+##### Được giao cho: Doc
+##### Thành phần mục tiêu & yêu cầu kỹ thuật:
+* **Đường dẫn mục tiêu**: `./sources/docs/api.md`
+* **Traceability Tag Tokens**: <!--START_TAGS-->[ARC-003], [ARC-004], [ARC-009]<!--END_TAGS-->
+
+#### 📝 Sub-Task 2.3: Kiểm thử tích hợp cho mobile-app
+##### Được giao cho: Tester
+##### Thành phần mục tiêu & yêu cầu kỹ thuật:
+* **Đường dẫn mục tiêu**: INTEGRATION_SCOPE;./sources/frontend/mobile-app/src/test/java
+* **Traceability Tag Tokens**: <!--START_TAGS-->[REQ-004], [REQ-005], [REQ-006], [REQ-007], [REQ-008], [REQ-009], [REQ-012], [REQ-013], [DAT-004], [DAT-006]<!--END_TAGS-->
+
+#### 📝 Sub-Task 2.4: Review mã nguồn mobile-app
+##### Được giao cho: Reviewer
+##### Thành phần mục tiêu & yêu cầu kỹ thuật:
+* **Đường dẫn mục tiêu**: `./sources/frontend/mobile-app`
+* **Traceability Tag Tokens**: <!--START_TAGS-->[REQ-004], [REQ-005], [REQ-006], [REQ-007], [REQ-008], [REQ-009], [REQ-012], [REQ-013], [DAT-004], [DAT-006]<!--END_TAGS-->
+
+#### 📝 Sub-Task 2.5: Xây dựng Docker image cho mobile-app
+##### Được giao cho: Docker
+##### Thành phần mục tiêu & yêu cầu kỹ thuật:
+* **Đường dẫn mục tiêu**: `./sources/frontend/mobile-app`
+* **Traceability Tag Tokens**: <!--START_TAGS-->[REQ-004], [REQ-005], [REQ-006], [REQ-007], [REQ-008], [REQ-009], [DAT-004], [DAT-006]<!--END_TAGS-->
+
+#### 📝 Sub-Task 2.6: Triển khai mobile-app lên GKE
+##### Được giao cho: GKE
+##### Thành phần mục tiêu & yêu cầu kỹ thuật:
+* **Đường dẫn mục tiêu**: `./sources/frontend/mobile-app`
+* **Traceability Tag Tokens**: <!--START_TAGS-->[REQ-004], [REQ-005], [REQ-006], [REQ-007], [REQ-008], [REQ-009], [DAT-004], [DAT-006]<!--END_TAGS-->
