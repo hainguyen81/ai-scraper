@@ -8,11 +8,16 @@ Analyze the attached project requirements. Build the GLOBAL PROJECT CONTEXT for 
 *You must fully engineer the blueprint report by strictly implementing exactly three engineering protocols:*
 
 #### 🎯 PROTOCOL 1: Dynamic Topology Path Prefixing
-- You MUST dynamically match the physical directory file path masks to the active system topology extracted from the raw requirements. Do NOT emit relative paths that assume a sub-module directory is the root:
-  * *IF Backend logic/layer is active:* All backend code, services, database schemas, and database tests must reside strictly under: `./sources/backend.` (If Microservices topology is active, you MUST utilize the alphanumeric lowercase service name as the sub-folder path, e.g., `./sources/backend.<service-name>.`).
-  * *IF Frontend logic/layer is active:* All client interfaces, responsive views, mobile bundles, and web tests must reside strictly under: `./sources/frontend.` (or `./sources/frontend.<app-name>.` if multiple client applications exist. Skip entirely if project is Backend-only).
-  * *IF DevOps infrastructure logic is active:* All deployment manifests, Dockerfiles, GKE orchestrations, and cloud provisioning scripts must reside strictly under: `./sources/infra.`.
+- You MUST dynamically match the physical directory file path masks to the active system topology extracted from the raw requirements.
+- Every single generated path parameter string inside the log (`target_component`) MUST utilize the strict Unix forward-slash `/` character as the structural directory delimiter.
+- You are CRITICALLY AND PERMANENTLY FORBIDDEN from utilizing the package dot notation `.` inside folder names or file boundaries.
+- Do NOT emit relative paths that assume a sub-module directory is the root:
+  * *IF Backend logic/layer is active:* All backend code, services, database schemas, and database tests must reside strictly under: `./sources/backend/` (If Microservices topology is active, you MUST utilize the alphanumeric lowercase service name as the sub-folder path, e.g., `./sources/backend/<service-name>/`). Skip entirely if project is Frontend-only.
+  * *IF Frontend logic/layer is active:* All client interfaces, responsive views, mobile bundles, and web tests must reside strictly under: `./sources/frontend/` (or `./sources/frontend/<app-name>/` if multiple client applications exist. Skip entirely if project is Backend-only).
+  * *IF DevOps infrastructure logic is active:* All deployment manifests, Dockerfiles, GKE orchestrations, and cloud provisioning scripts must reside strictly under: `./sources/infra/`.
+  * *For Document Asserts:* Prefix paths strictly with: `./sources/docs/`.
   * For alternative topologies (AI/Data, IoT, Embedded): Paths must strictly map to logical root subdirectories matching the service domain layer under `./sources/`.
+- Any component path emitted that replaces a forward slash `/` with a directory dot `.` triggers a fatal pipeline integrity exception.
 
 #### 🗄️ PROTOCOL 2: Granular Ceilings-Compliant Task Logs
 - For each calculated phase necessary to cover the BA inputs (Up to the absolute maximum ceiling of {{ num_phases }} phases), supply a clean chronological daylog breakdown (Up to the absolute ceiling of {{ max_days_per_phase }} days per phase). Every single day generated MUST explicitly define the specific assigned sub-agent persona ('Coder' | 'Tester' | 'Reviewer' | 'Doc' | 'Docker' | 'GCP' | 'GKE'), the low-level technical step target, the exact tracking Tag IDs, and the explicit physical relative file path (`target_component`).
@@ -178,9 +183,9 @@ Generate a clean, highly structured Markdown Table mapping the exact distributio
 
 - **DAY [Y]: SHORT OBJECTIVE FOR THIS OPERATIONAL CALENDAR DAY**
     * **Sub-Agent Workflow Specialization:** <RULE>You MUST analyze the required daily task domain and output EXACTLY one single literal token code inside brackets representing the allocated persona: `[Coder]`, `[Tester]`, `[Reviewer]`, `[Doc]`, `[Docker]`, `[GCP]`, or `[GKE]`. You are CRITICALLY BANNED from outputting any English instructional placeholders or text descriptions like "Assigned Sub-Agent" or "literal token". Emitting anything other than the naked bracketed sub-agent code triggers an immediate failure.</RULE>
-    * **Targeted Tag IDs:** <RULE>Output each tag identifier out individually separated by commas, enclosed in markdown code ticks.</RULE>
-    * **Target Component file path (`target_component`):** <RULE>Output explicit physical file path starting with `./sources/` (or Tester semi-colon pair) with its corresponding Tag IDs appended inline.</RULE>
-    * **Low-Level Technical Task Instruction:** <RULE>Output exhaustive, high-density engineering instructions, validation schemas, or API contract parameters fully translated into Vietnamese, attaching explicit Tag IDs.</RULE>
+    * **Targeted Tag IDs:** <RULE>Write each tag out individually separated by commas, e.g., `[REQ-001], [DAT-002], [EXC-001]`.</RULE>
+    - **Target Component file path (`target_component`):** <RULE>Insert explicit physical file path starting with `./sources/` or Tester pair syntax in Technical English. Append its corresponding Tag IDs inline here, e.g., `./sources/backend.... [REQ-001], [DAT-002]`</RULE>
+    * **Low-Level Technical Task Instruction:** <RULE>Output exhaustive, high-density engineering instructions, validation schemas, or API contract parameters fully translated into {% if language and language.strip() != "" %}{{ language }}{% else %}English{% endif %}, attaching explicit Tag IDs.</RULE>
     
     # 🚨 DYNAMIC ARCHITECTURAL CONTENT GATING (IF-ACTIVE RAIL PROTOCOL):
     * **Database Schema DDL SQL Specification [DAT-XXX]:** <RULE>You MUST actively check the active Sub-Agent for this DAY. If and ONLY IF the task involves database migrations, SQL, scripts, or persistence engines, you MUST dynamically generate the complete SQL blocks here. If the task is FrontendUI/DevOps/Testing and has NO database work, you MUST completely delete and eliminate this entire bullet point from the output buffer.</RULE>
