@@ -1,47 +1,35 @@
-# BẢN ĐỒ DỰ ÁN TOÀN CẦU: membership-hub
+# GLOBAL PROJECT CONTEXT: membership-hub
 
 ## 📊 Document Control
 
 | Item | Details |
 | :--- | :--- |
-| **Blueprint ID** | ARCH-20260806131423 |
+| **Blueprint ID** | ARCH-20260806133914 |
 | **Project Name** | membership-hub |
 | **Version** | 1.0 (Baseline) |
-| **Date.Time** | 2026/08/06 13:14:23 |
+| **Date.Time** | 2026/08/06 13:39:14 |
 | **Author** | Enterprise System Architect (SA Agent) |
 | **Approval** | Pending Technical Governance Review |
 
-## 📊 1. TỔNG QUAN HỆ THỐNG & MÔ HÌNH KIẾN TRÚC CỐT LÕ
+## 📊 1. TỔNG QUAN HỆ THỐNG & KIẾN TRÚC CƠ BẢN
 
-### 1.1. Mô Hình Hệ Thống Cốt Lõi & Kiến Trúc
+### 1.1. KIẾN TRÚC CƠ BẢN & CHẾ ĐỘ KIẾN TRÚC
+- Hệ thống được thiết kế theo kiến trúc microservices với các dịch vụ độc lập cho quản lý người dùng, trung tâm, khóa học, và điểm danh.
+- Sử dụng mô hình Event-Driven Architecture (EDA) cho các luồng xử lý điểm danh và thông báo.
+- Áp dụng mô hình CQRS (Command Query Responsibility Segregation) để tách biệt các thao tác ghi và đọc dữ liệu.
+- Sử dụng mô hình Reactive Programming cho các tính năng thời gian thực như điểm danh và thông báo đẩy.
 
-- Hệ thống được triển khai theo kiến trúc microservices, mỗi dịch vụ chịu trách nhiệm một miền nghiệp vụ riêng biệt.  
-- Sử dụng Quarkus cho backend, Next.js cho frontend, React Native + Capacitor cho ứng dụng di động.  
-- Dữ liệu được lưu trữ trong PostgreSQL, Redis dùng cho session caching.  
-- Giao tiếp giữa các dịch vụ thông qua Kafka, các sự kiện được fan‑out tới Zalo API và Firebase Cloud Messaging.  
-- Mỗi dịch vụ được container hóa bằng Docker, triển khai trên GKE với HPA tự động.  
-- Bảo mật: JWT 15 phút, refresh 7 ngày, TLS 1.3, mã hoá AES‑256, OWASP Top 10 mitigations.  
-- Đa ngôn ngữ: Vietnamese, English, Spanish, hỗ trợ i18n và SEO.  
-- CI/CD: GitHub Actions, Terraform cho GCP, Helm chart cho GKE.  
-- Kiểm thử: unit, integration, end‑to‑end, coverage ≥ 85 %.  
-- Logging & audit: ELK stack, log retention 1 year.  
-- Backup: PostgreSQL full backup hàng ngày, point‑in‑time recovery 24 h, GKE cluster backup region.  
+### 1.2. LUỒNG DỮ LIỆU DOANH NGHIỆP & CỘNG ĐỒNG CƠ BẢN
+- Sử dụng Kafka để xử lý các sự kiện điểm danh và thông báo.
+- Các dịch vụ giao tiếp với nhau thông qua REST APIs và WebSocket.
+- Sử dụng Redis để lưu trữ session và caching dữ liệu.
+- Các dịch vụ được triển khai trên Kubernetes với các quy tắc scaling tự động dựa trên tải.
 
-### 1.2. Mô Hình Dòng Dữ Liệu & Hệ Sinh Thái
+## 📁 2. PHỤ THUỘC CÔNG NGHỆ & CỘNG ĐỒNG THƯ VIỆN
+- **Backend Infrastructure Core Stack:** Java/Quarkus, PostgreSQL, Docker, Kubernetes (GKE), Firebase Authentication, Google Cloud Messaging (FCM)/Apple APNs, Redis, GitHub Actions.
+- **Frontend & Cross-Platform UI Mobile Stack:** Next.js, React Native, Firebase Hosting.
 
-- **Authentication Flow**: OAuth2 (Firebase, Google, Facebook) → JWT → API Gateway.  
-- **Attendance Flow**: Mobile QR scan → API → idempotent attendance record.  
-- **Notification Flow**: Event → Kafka → Notification Service → FCM/APNs + Zalo group.  
-- **Enrollment Flow**: Student → API → Enrollment record, capacity check, notification.  
-- **Promotion Flow**: Center Admin → API → Promotion record, student visibility.  
-- **Reporting Flow**: Admin → API → CSV export, dashboard metrics.  
-
-## 📁 2. CỤC PHẦN CÔNG NGHỆ & THƯ VIỆN
-
-- **Backend Infrastructure Core Stack**: Java 17, Quarkus 3.x, Hibernate ORM, Flyway, Kafka, Redis, PostgreSQL, JWT, Spring Security, OWASP ESAPI.  
-- **Frontend & Cross‑Platform UI Mobile Stack**: Next.js 13, React 18, TypeScript, Tailwind CSS, React Query, Capacitor 4, Firebase SDK, Zalo SDK, QR Code Scanner.  
-
-### MÁ THƯỜNG CỤC PHẦN
+### MA TRẬN CÔNG NGHỆ KIẾN TRÚC
 
 ```properties
 PERSISTENCE_LAYER_REQUIRED=true
@@ -51,356 +39,205 @@ MOBILE_LAYER_REQUIRED=true
 DEVOPS_LAYER_REQUIRED=true
 ```
 
-## 📁 3. QUY ĐỊNH BẢO VỆ & TUY ĐIỂM TUYÊN CUNG
+## 📁 3. QUY TẮC TOÀN CẦU & TIÊU CHUẨN TUÂN THỦ DOANH NGHIỆP
+- **Quy tắc Giới hạn Không gian làm việc:** Gốc thực sự của không gian làm việc là cố định tại gốc dự án `.`. Tất cả các đường dẫn được tạo ra phải bắt đầu với `./sources/`.
+- **Tuân thủ Động Tiền tố Thư mục:** Áp dụng các quy tắc ánh xạ đường dẫn động được xác định trong Protocol 1 một cách nghiêm ngặt phù hợp với cấu trúc dự án phát hiện được.
+- **[ĐIỀU KIỆN: JAVA_STACK_ONLY] Tiêu chuẩn Gói Java:** Nếu ngăn xếp công nghệ sử dụng các khung Java, tất cả mã nguồn Java phải nằm nghiêm ngặt trong cơ sở gói doanh nghiệp: `org.nlh4j.saas.<project_name_alphanumeric_lowercase>`. Bạn phải chuyển đổi động chuỗi "membership-hub" thành một mã alphanumeric thuần túy viết thường bằng cách loại bỏ khoảng trắng, dấu gạch ngang và dấu gạch dưới. Các dự án không phải Java bị cấm áp dụng đoạn này.
+- **Cú pháp Đường dẫn Mục tiêu Tester nghiêm ngặt:** Bất kỳ thành phần nào được nhắm mục tiêu bởi Sub-Agent Tester phải được cấu trúc dưới dạng cặp phân tách chặt chẽ bằng dấu chấm phẩy `<source_component_or_token>;<test_suite_file_to_execute>`. Cả hai đường dẫn bên trong cặp phải bắt đầu với `./sources/`.
 
-- **Workspace Root**: `./sources/`.  
-- **Backend Code**: `./sources/backend/membership-hub/`.  
-- **Frontend Code**: `./sources/frontend/membership-hub/`.  
-- **Mobile Code**: `./sources/frontend/membership-hub-mobile/`.  
-- **Infra Code**: `./sources/infra/`.  
-- **Docs**: `./sources/docs/`.  
-- **Java Package**: `org.nlh4j.saas.membershiphub`.  
-
-## 📁 4. BẢNG TỔNG QUAN ĐIỀU PHÁP KIẾN TRÚC GIAO PHÂN
-
-| Giai đoạn | Khoảng ngày | Đường dẫn Cấu phần / Module | Tóm tắt Sản phẩm Bàn giao | Sub-Agent | Tag IDs Mục tiêu |
+## 4. LƯỚI TÓM TẮT KIẾN TRÚC ĐA PHASE CẤP CAO
+| Giai đoạn | Khoảng ngày | Thành phần Kiến trúc / Module Đường dẫn | Tóm tắt Sản phẩm Bàn giao | Sub-Agent | Tag IDs Mục tiêu |
 | :--- | :--- | :--- | :--- | :--- | :--- |
-| Giai đoạn 1 | 1-7 | ./sources/backend/membership-hub/ | Tạo schema, API cơ bản | Coder | [DAT-001], [DAT-002], [DAT-003], [DAT-004], [DAT-005], [DAT-006], [DAT-007], [DAT-008], [DAT-009], [DAT-011], [REQ-001], [REQ-002], [REQ-003], [REQ-004], [REQ-005], [REQ-006], [REQ-007], [REQ-008], [REQ-009], [REQ-010], [REQ-011], [REQ-012], [REQ-013], [REQ-014], [REQ-015], [REQ-016], [REQ-017], [REQ-018], [REQ-019], [REQ-020], [REQ-021], [REQ-022], [REQ-023], [REQ-024], [REQ-025] |
-| Giai đoạn 2 | 1-5 | ./sources/backend/membership-hub/ | Kiểm thử API | Tester | [REQ-001], [REQ-002], [REQ-003], [REQ-004], [REQ-005], [REQ-006], [REQ-007], [REQ-008], [REQ-009], [REQ-010], [REQ-011], [REQ-012], [REQ-013], [REQ-014], [REQ-015], [REQ-016], [REQ-017], [REQ-018], [REQ-019], [REQ-020], [REQ-021], [REQ-022], [REQ-023], [REQ-024], [REQ-025] |
-| Giai đoạn 3 | 1-5 | ./sources/infra/ | Bảo mật, Docker, GCP, GKE, CI/CD | Coder, Docker, GCP, GKE | [NFR-001], [NFR-002], [NFR-003], [NFR-004], [NFR-005], [NFR-006], [NFR-007], [NFR-008], [NFR-009] |
-| Giai đoạn 4 | 1-3 | ./sources/frontend/membership-hub/ | Frontend, Mobile, i18n, SEO | Coder | [ARC-001], [ARC-002], [ARC-003], [ARC-004], [ARC-005], [ARC-006], [ARC-007], [ARC-008], [ARC-009], [ARC-010] |
-| Giai đoạn 5 | 1-2 | ./sources/docs/ | Git flow, Traceability | Doc, Reviewer | [REQ-001]...[REQ-025], [EXC-001]...[EXC-005], [DAT-001]...[DAT-011], [ARC-001]...[ARC-010], [NFR-001]...[NFR-009] |
+| Giai đoạn 1 | Ngày 1-2 | `./sources/backend/auth-service`, `./sources/backend/user-service`, `./sources/frontend/web-app`, `./sources/docs/architecture.md` | Xây dựng dịch vụ xác thực, dịch vụ người dùng, giao diện web, tài liệu kiến trúc | Coder, Doc | [REQ-001], [REQ-002], [REQ-003], [ARC-001], [ARC-002], [ARC-006], [DAT-001], [DAT-003] |
+| Giai đoạn 2 | Ngày 3-4 | `./sources/backend/course-service`, `./sources/backend/attendance-service`, `./sources/frontend/mobile-app`, `./sources/docs/api.md` | Xây dựng dịch vụ khóa học, dịch vụ điểm danh, ứng dụng di động, tài liệu API | Coder, Doc | [REQ-004], [REQ-005], [REQ-006], [REQ-007], [REQ-008], [REQ-009], [ARC-003], [ARC-004], [DAT-004], [DAT-006] |
+| Giai đoạn 3 | Ngày 5-6 | `./sources/backend/notification-service`, `./sources/frontend/web-app`, `./sources/docs/security.md` | Xây dựng dịch vụ thông báo, cập nhật giao diện web, tài liệu bảo mật | Coder, Doc | [REQ-016], [ARC-008], [ARC-009], [DAT-008], [NFR-003] |
+| Giai đoạn 4 | Ngày 7 | `./sources/backend/promotion-service`, `./sources/frontend/mobile-app`, `./sources/docs/i18n.md` | Xây dựng dịch vụ khuyến mãi, cập nhật ứng dụng di động, tài liệu bản địa hóa | Coder, Doc | [REQ-017], [REQ-018], [ARC-007], [DAT-009], [NFR-007] |
+| Giai đoạn 5 | Ngày 1-2 | `./sources/infra/docker`, `./sources/infra/k8s`, `./sources/docs/deployment.md` | Triển khai Docker, Kubernetes, tài liệu triển khai | Docker, GCP, GKE, Doc | [ARC-010], [NFR-002], [NFR-004], [NFR-005] |
 
-## 📁 5. CHI TIẾT GIAO PHÂN GIAI ĐOẠN & LỊCH HÀNH NGÀY
+## 5. CHI TIẾT PHÂN PHỐI NGÀY VÀ CÁC GIAI ĐOẠN PHÂN BIỆT PHASE
+### 📈 Giai đoạn 1 ĐẶC TẢ KIẾN TRÚC CHI TIẾT
+- **Mục tiêu Cốt lõi & Mục đích của Giai đoạn:** Xây dựng dịch vụ xác thực, dịch vụ người dùng, giao diện web, và tài liệu kiến trúc.
+- **Ma trận Bản đồ Thư mục Vật lý Mục tiêu:** `./sources/backend/auth-service [REQ-001], [REQ-002], [ARC-001], [ARC-006]`, `./sources/backend/user-service [REQ-003], [DAT-001]`, `./sources/frontend/web-app [ARC-009]`, `./sources/docs/architecture.md [ARC-001], [ARC-002]`.
+- **Đặc tả DDL SQL Schema Cơ sở Dữ liệu [DAT-001]:** Tạo bảng `Users` và `Roles` với các trường như `userId`, `email`, `passwordHash`, `fullName`, `roleId`, `provider`, `createdAt`, `updatedAt`.
+- **Hợp đồng Định tuyến API và Sự kiện [REQ-001], [REQ-002], [ARC-006]:** Xác thực qua email/mật khẩu, Firebase, Google, Facebook OAuth2, cấp JWT token.
+- **Bộ xử lý Ngoại lệ Cục bộ của Giai đoạn [EXC-004]:** Xác thực đầu vào không hợp lệ, thông báo rõ ràng các trường không hợp lệ.
 
-### 📈 Giai đoạn 1: Tạo Schema & API Cơ Bản
+#### Nhật ký Phân phối Công việc Sub-Agent Ngày theo Ngày (Giai đoạn 1)
 
-- **Phase Core Objective & Purpose**: Thiết lập cơ sở dữ liệu, tạo các bảng chính và triển khai các endpoint REST cơ bản cho người dùng, trung tâm, khóa học, ghi danh, điểm danh, thẻ hội viên, thông báo, khuyến mãi, thông báo, cài đặt hệ thống.  
-- **Target Physical Directory Matrix Map**:  
-  * `./sources/backend/membership-hub/src/main/java/com/membershiphub/model/User.java [DAT-001]`  
-  * `./sources/backend/membership-hub/src/main/java/com/membershiphub/model/Role.java [DAT-002]`  
-  * `./sources/backend/membership-hub/src/main/java/com/membershiphub/model/Center.java [DAT-003]`  
-  * `./sources/backend/membership-hub/src/main/java/com/membershiphub/model/Course.java [DAT-004]`  
-  * `./sources/backend/membership-hub/src/main/java/com/membershiphub/model/Enrollment.java [DAT-005]`  
-  * `./sources/backend/membership-hub/src/main/java/com/membershiphub/model/Attendance.java [DAT-006]`  
-  * `./sources/backend/membership-hub/src/main/java/com/membershiphub/model/StudentCard.java [DAT-007]`  
-  * `./sources/backend/membership-hub/src/main/java/com/membershiphub/model/Notification.java [DAT-008]`  
-  * `./sources/backend/membership-hub/src/main/java/com/membershiphub/model/Promotion.java [DAT-009]`  
-  * `./sources/backend/membership-hub/src/main/java/com/membershiphub/model/Announcement.java [DAT-011]`  
-  * `./sources/backend/membership-hub/src/main/java/com/membershiphub/controller/UserController.java [REQ-001], [REQ-002], [REQ-003]`  
-  * `./sources/backend/membership-hub/src/main/java/com/membershiphub/controller/CenterController.java [REQ-004], [REQ-005], [REQ-006]`  
-  * `./sources/backend/membership-hub/src/main/java/com/membershiphub/controller/CourseController.java [REQ-007], [REQ-008], [REQ-009]`  
-  * `./sources/backend/membership-hub/src/main/java/com/membershiphub/controller/EnrollmentController.java [REQ-010], [REQ-011], [REQ-012], [REQ-013], [REQ-014], [REQ-015], [REQ-016], [REQ-017], [REQ-018], [REQ-019], [REQ-020], [REQ-021], [REQ-022], [REQ-023], [REQ-024], [REQ-025]`  
-  * `./sources/backend/membership-hub/src/main/java/com/membershiphub/exception/ValidationException.java [EXC-004]`  
-  * `./sources/backend/membership-hub/src/main/java/com/membershiphub/exception/AttendanceException.java [EXC-001], [EXC-002], [EXC-003]`  
-  * `./sources/backend/membership-hub/src/main/java/com/membershiphub/exception/RecoveryException.java [EXC-005]`  
+- **NGÀY 1: XÂY DỰNG DỊCH VỤ XÁC THỰC VÀ NGƯỜI DÙNG**
+    * **Sub-Agent Workflow Specialization:** [Coder]
+    * **Tag IDs Mục tiêu:** [REQ-001], [REQ-002], [REQ-003], [ARC-001], [ARC-006], [DAT-001]
+    * **Thành phần Mục tiêu file path (`target_component`):** `./sources/backend/auth-service [REQ-001], [REQ-002], [ARC-001], [ARC-006]`, `./sources/backend/user-service [REQ-003], [DAT-001]`
+    * **Hướng dẫn Công việc Kỹ thuật Chi tiết Cấp thấp:** Xây dựng dịch vụ xác thực với các phương thức đăng ký và đăng nhập qua email/mật khẩu, Firebase, Google, Facebook OAuth2. Tạo dịch vụ người dùng với các chức năng phân quyền và quản lý thông tin người dùng.
+    * **Đặc tả DDL SQL Schema Cơ sở Dữ liệu [DAT-001]:**
+      ```sql
+      CREATE TABLE Roles (
+          roleId SERIAL PRIMARY KEY,
+          name VARCHAR(30) UNIQUE NOT NULL,
+          description VARCHAR(200)
+      );
 
-- **Database Schema DDL SQL Specification [DAT-001]**  
+      CREATE TABLE Users (
+          userId UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+          email VARCHAR(255) UNIQUE NOT NULL,
+          passwordHash CHAR(60) NOT NULL,
+          fullName VARCHAR(100) NOT NULL,
+          roleId INT REFERENCES Roles(roleId),
+          provider VARCHAR(10) DEFAULT 'local',
+          createdAt TIMESTAMP NOT NULL DEFAULT NOW(),
+          updatedAt TIMESTAMP NOT NULL DEFAULT NOW()
+      );
+      ```
 
-```sql
-CREATE TABLE USERS (
-    userId UUID PRIMARY KEY,
-    email VARCHAR(255) NOT NULL UNIQUE,
-    passwordHash CHAR(60) NOT NULL,
-    fullName VARCHAR(100) NOT NULL,
-    roleId SMALLINT NOT NULL,
-    provider VARCHAR(20) NOT NULL DEFAULT 'local',
-    createdAt TIMESTAMP NOT NULL DEFAULT NOW(),
-    updatedAt TIMESTAMP NOT NULL DEFAULT NOW()
-);
-CREATE TABLE ROLES (
-    roleId SMALLINT PRIMARY KEY,
-    name VARCHAR(30) NOT NULL UNIQUE,
-    description VARCHAR(200)
-);
-CREATE TABLE CENTERS (
-    centerId UUID PRIMARY KEY,
-    name VARCHAR(100) NOT NULL,
-    address VARCHAR(255) NOT NULL,
-    taxId VARCHAR(13) NOT NULL UNIQUE,
-    contactPhone VARCHAR(50),
-    contactEmail VARCHAR(255)
-);
-CREATE TABLE COURSES (
-    courseId UUID PRIMARY KEY,
-    title VARCHAR(150) NOT NULL,
-    description TEXT,
-    startDate DATE NOT NULL,
-    endDate DATE NOT NULL,
-    teacherId UUID,
-    maxStudents INT DEFAULT 30
-);
-CREATE TABLE ENROLLMENTS (
-    enrollmentId UUID PRIMARY KEY,
-    studentId UUID NOT NULL,
-    courseId UUID NOT NULL,
-    enrollmentDate TIMESTAMP NOT NULL DEFAULT NOW(),
-    FOREIGN KEY (studentId) REFERENCES USERS(userId),
-    FOREIGN KEY (courseId) REFERENCES COURSES(courseId)
-);
-CREATE TABLE ATTENDANCE (
-    attendanceId UUID PRIMARY KEY,
-    studentId UUID NOT NULL,
-    courseId UUID NOT NULL,
-    attendanceDate DATE NOT NULL,
-    timestamp TIMESTAMP NOT NULL DEFAULT NOW(),
-    UNIQUE (studentId, courseId, attendanceDate),
-    FOREIGN KEY (studentId) REFERENCES USERS(userId),
-    FOREIGN KEY (courseId) REFERENCES COURSES(courseId)
-);
-CREATE TABLE STUDENTCARDS (
-    cardId UUID PRIMARY KEY,
-    studentId UUID NOT NULL,
-    issueDate DATE NOT NULL,
-    validityDays INT NOT NULL,
-    remainingDays INT NOT NULL,
-    FOREIGN KEY (studentId) REFERENCES USERS(userId)
-);
-CREATE TABLE NOTIFICATIONS (
-    notificationId UUID PRIMARY KEY,
-    userId UUID,
-    groupZalo VARCHAR(255),
-    message TEXT NOT NULL,
-    sentAt TIMESTAMP NOT NULL DEFAULT NOW(),
-    delivered BOOLEAN NOT NULL DEFAULT FALSE
-);
-CREATE TABLE PROMOTIONS (
-    promoId UUID PRIMARY KEY,
-    code VARCHAR(50) NOT NULL UNIQUE,
-    discountPercent SMALLINT NOT NULL,
-    startDate DATE,
-    endDate DATE,
-    description TEXT
-);
-CREATE TABLE ANNOUNCEMENTS (
-    announcementId UUID PRIMARY KEY,
-    title VARCHAR(150) NOT NULL,
-    content TEXT NOT NULL,
-    startDate DATE,
-    endDate DATE
-);
-CREATE TABLE SYSTEMSETTINGS (
-    settingKey VARCHAR(100) PRIMARY KEY,
-    settingValue TEXT NOT NULL,
-    description VARCHAR(200)
-);
-```
+- **NGÀY 2: XÂY DỰNG GIAO DIỆN WEB VÀ TÀI LIỆU KIẾN TRÚC**
+    * **Sub-Agent Workflow Specialization:** [Coder], [Doc]
+    * **Tag IDs Mục tiêu:** [ARC-009], [ARC-001], [ARC-002]
+    * **Thành phần Mục tiêu file path (`target_component`):** `./sources/frontend/web-app [ARC-009]`, `./sources/docs/architecture.md [ARC-001], [ARC-002]`
+    * **Hướng dẫn Công việc Kỹ thuật Chi tiết Cấp thấp:** Xây dựng giao diện web với các chức năng đăng ký, đăng nhập, và quản lý người dùng. Tạo tài liệu kiến trúc mô tả kiến trúc hệ thống và các dịch vụ chính.
 
-- **API and Event Routing Contracts [REQ-001]**  
+### 📈 Giai đoạn 2 ĐẶC TẢ KIẾN TRÚC CHI TIẾT
+- **Mục tiêu Cốt lõi & Mục đích của Giai đoạn:** Xây dựng dịch vụ khóa học, dịch vụ điểm danh, ứng dụng di động, và tài liệu API.
+- **Ma trận Bản đồ Thư mục Vật lý Mục tiêu:** `./sources/backend/course-service [REQ-004], [REQ-005], [REQ-006], [REQ-007], [REQ-008], [REQ-009], [DAT-004]`, `./sources/backend/attendance-service [REQ-012], [REQ-013], [DAT-006]`, `./sources/frontend/mobile-app [ARC-009]`, `./sources/docs/api.md [ARC-003], [ARC-004]`.
+- **Đặc tả DDL SQL Schema Cơ sở Dữ liệu [DAT-004], [DAT-006]:** Tạo bảng `Courses`, `Enrollments`, và `Attendance` với các trường như `courseId`, `title`, `description`, `startDate`, `endDate`, `teacherId`, `maxStudents`, `enrollmentId`, `studentId`, `enrollmentDate`, `attendanceId`, `attendanceDate`, `timestamp`.
+- **Hợp đồng Định tuyến API và Sự kiện [REQ-004], [REQ-005], [REQ-006], [REQ-007], [REQ-008], [REQ-009], [ARC-003], [ARC-004]:** Quản lý khóa học, điểm danh, và đăng ký học viên.
+- **Bộ xử lý Ngoại lệ Cục bộ của Giai đoạn [EXC-001], [EXC-002]:** Xử lý các trường hợp mạng không ổn định và điểm danh trùng lặp.
 
-```json
-{
-  "endpoint": "/api/auth/register",
-  "method": "POST",
-  "request": {
-    "email": "string",
-    "password": "string",
-    "provider": "string"
-  },
-  "response": {
-    "userId": "uuid",
-    "token": "string",
-    "expiresIn": "int"
-  }
-}
-```
+#### Nhật ký Phân phối Công việc Sub-Agent Ngày theo Ngày (Giai đoạn 2)
 
-- **Phase Localized Exception Handlers [EXC-004]**  
+- **NGÀY 3: XÂY DỰNG DỊCH VỤ KHÓA HỌC VÀ ĐIỂM DANH**
+    * **Sub-Agent Workflow Specialization:** [Coder]
+    * **Tag IDs Mục tiêu:** [REQ-004], [REQ-005], [REQ-006], [REQ-007], [REQ-008], [REQ-009], [REQ-012], [REQ-013], [DAT-004], [DAT-006]
+    * **Thành phần Mục tiêu file path (`target_component`):** `./sources/backend/course-service [REQ-004], [REQ-005], [REQ-006], [REQ-007], [REQ-008], [REQ-009], [DAT-004]`, `./sources/backend/attendance-service [REQ-012], [REQ-013], [DAT-006]`
+    * **Hướng dẫn Công việc Kỹ thuật Chi tiết Cấp thấp:** Xây dựng dịch vụ khóa học với các chức năng quản lý khóa học, phân công giáo viên, và điểm danh. Tạo dịch vụ điểm danh với các chức năng quét mã QR và xử lý điểm danh trùng lặp.
+    * **Đặc tả DDL SQL Schema Cơ sở Dữ liệu [DAT-004], [DAT-006]:**
+      ```sql
+      CREATE TABLE Courses (
+          courseId UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+          title VARCHAR(150) NOT NULL,
+          description TEXT,
+          startDate DATE NOT NULL,
+          endDate DATE NOT NULL,
+          teacherId UUID REFERENCES Users(userId),
+          maxStudents INT DEFAULT 30
+      );
 
-```java
-@RestControllerAdvice
-public class ValidationExceptionHandler {
-    @ExceptionHandler(MethodArgumentNotValidException.class)
-    public ResponseEntity<Map<String, String>> handleValidation(MethodArgumentNotValidException ex) {
-        Map<String, String> errors = ex.getBindingResult()
-            .getFieldErrors()
-            .stream()
-            .collect(Collectors.toMap(FieldError::getField, FieldError::getDefaultMessage));
-        return ResponseEntity.badRequest().body(errors);
-    }
-}
-```
+      CREATE TABLE Enrollments (
+          enrollmentId UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+          studentId UUID REFERENCES Users(userId),
+          courseId UUID REFERENCES Courses(courseId),
+          enrollmentDate TIMESTAMP NOT NULL DEFAULT NOW()
+      );
 
-### 📈 Giai đoạn 2: Kiểm Thử API
+      CREATE TABLE Attendance (
+          attendanceId UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+          studentId UUID REFERENCES Users(userId),
+          courseId UUID REFERENCES Courses(courseId),
+          attendanceDate DATE NOT NULL,
+          timestamp TIMESTAMP NOT NULL DEFAULT NOW()
+      );
+      ```
 
-- **Phase Core Objective & Purpose**: Đảm bảo tính đúng đắn, độ tin cậy và bảo mật của các endpoint.  
-- **Target Physical Directory Matrix Map**:  
-  * `./sources/backend/membership-hub/src/test/java/com/membershiphub/controller/UserControllerTest.java [REQ-001], [REQ-002], [REQ-003]`  
-  * `./sources/backend/membership-hub/src/test/java/com/membershiphub/controller/CenterControllerTest.java [REQ-004], [REQ-005], [REQ-006]`  
-  * `./sources/backend/membership-hub/src/test/java/com/membershiphub/controller/CourseControllerTest.java [REQ-007], [REQ-008], [REQ-009]`  
-  * `./sources/backend/membership-hub/src/test/java/com/membershiphub/controller/EnrollmentControllerTest.java [REQ-010], [REQ-011], [REQ-012], [REQ-013], [REQ-014], [REQ-015], [REQ-016], [REQ-017], [REQ-018], [REQ-019], [REQ-020], [REQ-021], [REQ-022], [REQ-023], [REQ-024], [REQ-025]`  
-  * `./sources/backend/membership-hub/src/test/java/com/membershiphub/integration/AuthIntegrationTest.java [REQ-001], [REQ-002], [REQ-003]`  
+- **NGÀY 4: XÂY DỰNG ỨNG DỤNG DI ĐỘNG VÀ TÀI LIỆU API**
+    * **Sub-Agent Workflow Specialization:** [Coder], [Doc]
+    * **Tag IDs Mục tiêu:** [ARC-009], [ARC-003], [ARC-004]
+    * **Thành phần Mục tiêu file path (`target_component`):** `./sources/frontend/mobile-app [ARC-009]`, `./sources/docs/api.md [ARC-003], [ARC-004]`
+    * **Hướng dẫn Công việc Kỹ thuật Chi tiết Cấp thấp:** Xây dựng ứng dụng di động với các chức năng điểm danh qua mã QR và nhận thông báo. Tạo tài liệu API mô tả các endpoint và hợp đồng sự kiện.
 
-- **Low-Level Technical Task Instruction**: Viết unit tests sử dụng JUnit 5, Mockito, Spring MockMvc. Kiểm tra các trường hợp thành công, lỗi, và bảo mật (JWT, CSRF). Đảm bảo coverage ≥ 85 %.  
+### 📈 Giai đoạn 3 ĐẶC TẢ KIẾN TRÚC CHI TIẾT
+- **Mục tiêu Cốt lõi & Mục đích của Giai đoạn:** Xây dựng dịch vụ thông báo, cập nhật giao diện web, và tài liệu bảo mật.
+- **Ma trận Bản đồ Thư mục Vật lý Mục tiêu:** `./sources/backend/notification-service [REQ-016], [ARC-008], [DAT-008]`, `./sources/frontend/web-app [ARC-009]`, `./sources/docs/security.md [NFR-003]`.
+- **Đặc tả DDL SQL Schema Cơ sở Dữ liệu [DAT-008]:** Tạo bảng `Notifications` với các trường như `notificationId`, `userId`, `groupZalo`, `message`, `sentAt`, `delivered`.
+- **Hợp đồng Định tuyến API và Sự kiện [REQ-016], [ARC-008], [ARC-009]:** Gửi thông báo qua ứng dụng di động và nhóm Zalo.
+- **Bộ xử lý Ngoại lệ Cục bộ của Giai đoạn [EXC-003]:** Xử lý các trường hợp không thể gửi thông báo.
 
-### 📈 Giai đoạn 3: Bảo Mật & Hạ Tầng
+#### Nhật ký Phân phối Công việc Sub-Agent Ngày theo Ngày (Giai đoạn 3)
 
-- **Phase Core Objective & Purpose**: Thiết lập bảo mật, container, infra, CI/CD.  
-- **Target Physical Directory Matrix Map**:  
-  * `./sources/backend/membership-hub/src/main/java/com/membershiphub/security/SecurityConfig.java [NFR-003], [NFR-004], [NFR-005], [NFR-006], [NFR-007], [NFR-008], [NFR-009]`  
-  * `./sources/infra/docker/Dockerfile [NFR-005]`  
-  * `./sources/infra/terraform/main.tf [NFR-004], [NFR-006]`  
-  * `./sources/infra/k8s/deployment.yaml [NFR-004], [NFR-006]`  
-  * `./sources/infra/github-actions/.github/workflows/ci-cd.yml [NFR-004], [NFR-005]`  
+- **NGÀY 5: XÂY DỰNG DỊCH VỤ THÔNG BÁO**
+    * **Sub-Agent Workflow Specialization:** [Coder]
+    * **Tag IDs Mục tiêu:** [REQ-016], [ARC-008], [DAT-008]
+    * **Thành phần Mục tiêu file path (`target_component`):** `./sources/backend/notification-service [REQ-016], [ARC-008], [DAT-008]`
+    * **Hướng dẫn Công việc Kỹ thuật Chi tiết Cấp thấp:** Xây dựng dịch vụ thông báo với các chức năng gửi thông báo qua ứng dụng di động và nhóm Zalo.
+    * **Đặc tả DDL SQL Schema Cơ sở Dữ liệu [DAT-008]:**
+      ```sql
+      CREATE TABLE Notifications (
+          notificationId UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+          userId UUID REFERENCES Users(userId),
+          groupZalo VARCHAR(255),
+          message TEXT NOT NULL,
+          sentAt TIMESTAMP NOT NULL DEFAULT NOW(),
+          delivered BOOLEAN DEFAULT FALSE
+      );
+      ```
 
-- **Security Configuration**  
+- **NGÀY 6: CẬP NHẬT GIAO DIỆN WEB VÀ TÀI LIỆU BẢO MẬT**
+    * **Sub-Agent Workflow Specialization:** [Coder], [Doc]
+    * **Tag IDs Mục tiêu:** [ARC-009], [NFR-003]
+    * **Thành phần Mục tiêu file path (`target_component`):** `./sources/frontend/web-app [ARC-009]`, `./sources/docs/security.md [NFR-003]`
+    * **Hướng dẫn Công việc Kỹ thuật Chi tiết Cấp thấp:** Cập nhật giao diện web với các chức năng nhận thông báo. Tạo tài liệu bảo mật mô tả các quy tắc bảo mật và xử lý ngoại lệ.
 
-```java
-@EnableWebSecurity
-public class SecurityConfig extends WebSecurityConfigurerAdapter {
-    @Override
-    protected void configure(HttpSecurity http) throws Exception {
-        http
-            .csrf().disable()
-            .sessionManagement()
-                .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
-            .and()
-            .authorizeRequests()
-                .antMatchers("/api/auth/**").permitAll()
-                .anyRequest().authenticated()
-            .and()
-            .addFilterBefore(new JwtAuthenticationFilter(), UsernamePasswordAuthenticationFilter.class);
-    }
-}
-```
+### 📈 Giai đoạn 4 ĐẶC TẢ KIẾN TRÚC CHI TIẾT
+- **Mục tiêu Cốt lõi & Mục đích của Giai đoạn:** Xây dựng dịch vụ khuyến mãi, cập nhật ứng dụng di động, và tài liệu bản địa hóa.
+- **Ma trận Bản đồ Thư mục Vật lý Mục tiêu:** `./sources/backend/promotion-service [REQ-017], [REQ-018], [DAT-009]`, `./sources/frontend/mobile-app [ARC-009]`, `./sources/docs/i18n.md [NFR-007]`.
+- **Đặc tả DDL SQL Schema Cơ sở Dữ liệu [DAT-009]:** Tạo bảng `Promotions` và `Announcements` với các trường như `promoId`, `code`, `discountPercent`, `startDate`, `endDate`, `description`, `announcementId`, `title`, `content`.
+- **Hợp đồng Định tuyến API và Sự kiện [REQ-017], [REQ-018], [ARC-009]:** Quản lý khuyến mãi và thông báo.
+- **Bộ xử lý Ngoại lệ Cục bộ của Giai đoạn:** Không có ngoại lệ chuyên biệt.
 
-- **Dockerfile**  
+#### Nhật ký Phân phối Công việc Sub-Agent Ngày theo Ngày (Giai đoạn 4)
 
-```dockerfile
-FROM eclipse-temurin:17-jdk-slim AS build
-WORKDIR /app
-COPY pom.xml .
-RUN mvn dependency:go-offline
-COPY src ./src
-RUN mvn package -DskipTests
+- **NGÀY 7: XÂY DỰNG DỊCH VỤ KHUYẾN MÃI VÀ CẬP NHẬT ỨNG DỤNG DI ĐỘNG**
+    * **Sub-Agent Workflow Specialization:** [Coder]
+    * **Tag IDs Mục tiêu:** [REQ-017], [REQ-018], [DAT-009]
+    * **Thành phần Mục tiêu file path (`target_component`):** `./sources/backend/promotion-service [REQ-017], [REQ-018], [DAT-009]`
+    * **Hướng dẫn Công việc Kỹ thuật Chi tiết Cấp thấp:** Xây dựng dịch vụ khuyến mãi với các chức năng quản lý khuyến mãi và thông báo. Cập nhật ứng dụng di động với các chức năng xem khuyến mãi và thông báo.
+    * **Đặc tả DDL SQL Schema Cơ sở Dữ liệu [DAT-009]:**
+      ```sql
+      CREATE TABLE Promotions (
+          promoId UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+          code VARCHAR(50) UNIQUE,
+          discountPercent SMALLINT NOT NULL,
+          startDate DATE,
+          endDate DATE,
+          description TEXT
+      );
 
-FROM eclipse-temurin:17-jre-slim
-WORKDIR /app
-COPY --from=build /app/target/membership-hub-1.0.jar app.jar
-ENTRYPOINT ["java","-jar","app.jar"]
-```
+      CREATE TABLE Announcements (
+          announcementId UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+          title VARCHAR(150) NOT NULL,
+          content TEXT NOT NULL,
+          startDate DATE,
+          endDate DATE
+      );
+      ```
 
-- **Terraform**  
+### 📈 Giai đoạn 5 ĐẶC TẢ KIẾN TRÚC CHI TIẾT
+- **Mục tiêu Cốt lõi & Mục đích của Giai đoạn:** Triển khai Docker, Kubernetes, và tài liệu triển khai.
+- **Ma trận Bản đồ Thư mục Vật lý Mục tiêu:** `./sources/infra/docker [ARC-010]`, `./sources/infra/k8s [NFR-002], [NFR-004]`, `./sources/docs/deployment.md [NFR-002], [NFR-004], [NFR-005]`.
+- **Đặc tả DDL SQL Schema Cơ sở Dữ liệu:** Không có.
+- **Hợp đồng Định tuyến API và Sự kiện:** Không có.
+- **Bộ xử lý Ngoại lệ Cục bộ của Giai đoạn:** Không có.
 
-```hcl
-provider "google" {
-  project = "membership-hub"
-  region  = "us-central1"
-}
-resource "google_container_cluster" "gke_cluster" {
-  name     = "membership-hub-cluster"
-  location = "us-central1"
-  initial_node_count = 3
-  node_config {
-    machine_type = "e2-medium"
-  }
-}
-```
+#### Nhật ký Phân phối Công việc Sub-Agent Ngày theo Ngày (Giai đoạn 5)
 
-- **Helm Deployment**  
+- **NGÀY 1: TRIỂN KHAI DOCKER VÀ KUBERNETES**
+    * **Sub-Agent Workflow Specialization:** [Docker], [GCP], [GKE], [Doc]
+    * **Tag IDs Mục tiêu:** [ARC-010], [NFR-002], [NFR-004], [NFR-005]
+    * **Thành phần Mục tiêu file path (`target_component`):** `./sources/infra/docker [ARC-010]`, `./sources/infra/k8s [NFR-002], [NFR-004]`, `./sources/docs/deployment.md [NFR-002], [NFR-004], [NFR-005]`
+    * **Hướng dẫn Công việc Kỹ thuật Chi tiết Cấp thấp:** Triển khai Docker với các cấu hình container hóa. Triển khai Kubernetes với các cấu hình triển khai và scaling tự động. Tạo tài liệu triển khai mô tả các quy tắc triển khai và bảo mật.
 
-```yaml
-apiVersion: apps/v1
-kind: Deployment
-metadata:
-  name: membership-hub
-spec:
-  replicas: 3
-  selector:
-    matchLabels:
-      app: membership-hub
-  template:
-    metadata:
-      labels:
-        app: membership-hub
-    spec:
-      containers:
-        - name: membership-hub
-          image: gcr.io/membership-hub/membership-hub:latest
-          ports:
-            - containerPort: 8080
-          resources:
-            limits:
-              cpu: "1"
-              memory: "512Mi"
-          readinessProbe:
-            httpGet:
-              path: /actuator/health
-              port: 8080
-            initialDelaySeconds: 10
-            periodSeconds: 5
-```
+## 📁 6. QUY TẮC BẢO MẬT TOÀN CẦU & ĐỐI PHÓNG TIÊU CHUẨN TIÊM NẠP [NFR-XXX]
+- **Đối phó với Tiêm SQL (SQLi) tuyệt đối:** Tham số quy tắc cho các câu lệnh chuẩn bị, tham số truy vấn vị trí, và danh sách trắng sắp xếp động đầu vào.
+- **Tiêm chéo trang web (XSS) & Chính sách Bảo mật Nội dung (CSP):** Tiêu chuẩn bố cục cho các bộ lọc tự động làm sạch ngữ cảnh, tự động thoát JSX, và tiêm động các tiêu đề CSP nghiêm ngặt (`unsafe-inline` hạn chế).
+- **Quy tắc Bảo mật CORS đa người dùng:** Cấu hình cho các cấm thông báo nguồn gốc đại diện và xác thực động các số liệu người dùng cơ sở dữ liệu nguồn gốc.
+- **Máy quét & Máy làm sạch Nhật ký Không rò rỉ & Máy che dữ liệu PII:** Quy tắc cho các bộ chặn tự động làm sạch (`@JsonSerialize`) và ngưỡng làm sạch nhật ký.
 
-### 📈 Giai đoạn 4: Frontend, Mobile, i18n, SEO
+## 📁 7. QUY TẮC TUÂN THỦ HYBRID MOBILE & CƠ CHẾ SEO QUỐC TẾ ĐỘNG
+- **Quy tắc Tuân thủ Hybrid Mobile Capacitor tuyệt đối:** [NẾU DI ĐỘNG hoạt động] Quy tắc cho việc lấy động khách hàng, địa chỉ tuyệt đối URL, bảo vệ thủy phân, trừu tượng hóa lưu trữ cục bộ (`@capacitor/preferences`), và chặn nút quay lại phần cứng.
+- **Bản địa hóa Quốc tế (i18n) & Tiêm Động SEO:** Kiến trúc middleware nhận diện lớp biên với các cơ chế điều khiển siêu liên kết động hreflang và giới hạn chỉ mục robot thu thập thông tin tìm kiếm.
 
-- **Phase Core Objective & Purpose**: Xây dựng giao diện web, mobile, hỗ trợ đa ngôn ngữ và SEO.  
-- **Target Physical Directory Matrix Map**:  
-  * `./sources/frontend/membership-hub/pages/index.js [ARC-010], [ARC-006], [ARC-007]`  
-  * `./sources/frontend/membership-hub/pages/centers.js [ARC-004]`  
-  * `./sources/frontend/membership-hub/pages/courses.js [ARC-007]`  
-  * `./sources/frontend/membership-hub-mobile/App.js [ARC-009], [ARC-008], [ARC-010]`  
-  * `./sources/frontend/membership-hub/pages/_document.js [NFR-007], [NFR-008]`  
+## 📁 8. LUỒNG LÀM VIỆC PIPELINE TỰ ĐỘNG HÀNG NGÀY SESSION GIT BRANCH
+- **Đồng bộ hóa Không gian làm việc Forking Độc lập:** Kiểm soát lập trình cho nhánh `features/development-phase-X-day-Y` (`X` là số giai đoạn, từ 1 đến N, trong đó N <= 5; `Y` là số ngày trong giai đoạn, nó sẽ bắt đầu từ 1 cho mỗi giai đoạn).
+- **Cổng Kiểm soát Hợp lệ Pipeline:** Quy tắc thực thi cho xác minh biên dịch, mục tiêu tự động hóa độ phủ mã (`>= 85%`), và nhật ký tổng kết tuần tự hóa ngữ cảnh.
 
-- **Low-Level Technical Task Instruction**: Sử dụng Next.js với API routes, React Query cho caching, Tailwind CSS cho responsive, Capacitor để build native, Firebase SDK cho push, Zalo SDK cho chat, QR Code Scanner. Thêm i18n với next-i18next, SEO meta tags, hreflang.  
-
-### 📈 Giai đoạn 5: Git Flow & Traceability
-
-- **Phase Core Objective & Purpose**: Định nghĩa quy trình phát triển, kiểm tra tính toàn vẹn liên kết.  
-- **Target Physical Directory Matrix Map**:  
-  * `./sources/docs/git-branching.md [NFR-004]`  
-  * `./sources/docs/traceability_matrix.md [REQ-001]...[REQ-025], [EXC-001]...[EXC-005], [DAT-001]...[DAT-011], [ARC-001]...[ARC-010], [NFR-001]...[NFR-009]`  
-
-- **Low-Level Technical Task Instruction**: Viết tài liệu quy tắc đặt tên nhánh, quy trình merge, kiểm tra liên kết.  
-
-## 📁 6. MÃ BẢO VỆ & CHẾ ĐỘ NGHIỆM NGHIỆP
-
-- **SQL Injection (SQLi)**: Sử dụng prepared statements, parameterized queries.  
-- **Cross-Site Scripting (XSS)**: Escape output, CSP header `default-src 'self'; script-src 'self';`.  
-- **CORS**: Chỉ cho phép origin từ danh sách whitelist, không dùng wildcard.  
-- **Logging**: Mã hoá dữ liệu nhạy cảm, mask PII, log level INFO.  
-- **Encryption**: AES‑256 cho dữ liệu tĩnh, TLS 1.3 cho truyền.  
-
-## 📁 7. HỢP ĐỒNG HỢP TÁC MOBILE & SEO
-
-- **Capacitor Mobile**: `capacitor.config.json` cấu hình Android, iOS, web.  
-- **i18n**: `next-i18next.config.js` cấu hình ngôn ngữ, `public/locales/vi/common.json`.  
-- **SEO**: `pages/_document.js` thêm `<meta name="description">`, `<link rel="alternate" hreflang="vi">`.  
-
-## 📁 8. PIPELINE CI/CD & Git Branch Flow
-
-- **Git Branch Naming**: `feature/<short-description>-<id>`, `bugfix/<short-description>-<id>`.  
-- **CI Workflow** (`.github/workflows/ci-cd.yml`)  
-
-```yaml
-name: CI/CD
-on:
-  push:
-    branches: [ main ]
-jobs:
-  build:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v3
-      - name: Set up JDK 17
-        uses: actions/setup-java@v3
-        with:
-          java-version: '17'
-      - name: Build
-        run: mvn clean package -DskipTests
-      - name: Test
-        run: mvn test
-      - name: Docker Build
-        run: |
-          docker build -t gcr.io/membership-hub/membership-hub:${{ github.sha }} .
-          docker push gcr.io/membership-hub/membership-hub:${{ github.sha }}
-      - name: Deploy to GKE
-        uses: google-github-actions/deploy-gke@v1
-        with:
-          cluster_name: membership-hub-cluster
-          location: us-central1
-          manifests: ./sources/infra/k8s/deployment.yaml
-```
-
-## 📁 9. Kiểm Tra Tracability Matrix
+### 🛑 MANDATE KIỂM TRA ĐẦU VÀO MA TRẬN
 
 `[TRACEABILITY MATRIX ENFORCEMENT: 100% COVERAGE VALIDATED. TOTAL UNIQUE REQ TAGS MAPPED: 25, TOTAL ARC TAGS: 10, TOTAL EXC TAGS: 5, TOTAL DAT TAGS: 11, TOTAL NFR TAGS: 9. ZERO UNASSIGNED CODES FOUND.]`
