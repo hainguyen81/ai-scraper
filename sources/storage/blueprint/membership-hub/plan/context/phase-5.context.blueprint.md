@@ -1,134 +1,68 @@
-# Phase 5: <!--PHASE_NAME_START-->Triển khai Bản địa hóa, SEO, Báo cáo, Nâng cao bảo mật, Container hóa, Triển khai và Ghi nhật ký kiểm toán<!--PHASE_NAME_END-->
+# Giai đoạn 5: Bảo mật, tuân thủ, di động, pipeline
 
-## 📊 Document Control
+## 📊 Kiểm Soát Tài Liệu
 
-| Mục | Chi tiết |
+| Mục | Chi Tiết |
 | :--- | :--- |
-| **Mã Blueprint** | ARCH-20260807134137 |
-| **Tên Dự án** | membership-hub |
+| **ID Bản vẽ** | ARCH-20260807172813 |
+| **Tên Dự Án** | membership-hub |
 | **Giai đoạn** | 5 |
-| **Tên Giai đoạn** | <!--PHASE_NAME_START-->Triển khai Bản địa hóa, SEO, Báo cáo, Nâng cao bảo mật, Container hóa, Triển khai và Ghi nhật ký kiểm toán<!--PHASE_NAME_END--> |
-| **Mô tả** | <!--PHASE_DESC_START-->Giai đoạn 5 tập trung vào việc triển khai các chức năng bản địa hóa đa ngôn ngữ, tối ưu SEO, tạo báo cáo điểm danh, nâng cao bảo mật hệ thống, container hóa toàn bộ dịch vụ và triển khai lên GKE, đồng thời thiết lập ghi nhật ký kiểm toán toàn diện. Các thành phần chính bao gồm cấu hình Firebase, Zalo, các bảng dữ liệu hệ thống, cấu hình Kubernetes, và tài liệu kỹ thuật chi tiết.<!--PHASE_DESC_END--> |
+| **Tên Giai đoạn** | <!--PHASE_NAME_START-->Bảo mật, tuân thủ, di động, pipeline<!--PHASE_NAME_END--> |
+| **Mô tả** | <!--PHASE_DESC_START-->Giai đoạn này tập trung vào việc triển khai các biện pháp bảo mật doanh nghiệp, tuân thủ các yêu cầu phi chức năng, thiết lập quy trình DevOps và đảm bảo tuân thủ di động.<!--PHASE_DESC_END--> |
 | **Phiên bản** | 1.0 (Baseline) |
-| **Ngày/Giờ** | 2026/08/07 13:41:37 |
-| **Tác giả** | Enterprise System Architect (SA Agent) |
-| **Phê duyệt** | Pending Technical Governance Review |
+| **Ngày/Giờ** | 2026/08/07 17:28:13 |
+| **Tác giả** | Kiến Trúc Hệ Thống Doanh Nghiệp (SA Agent) |
+| **Phê duyệt** | Đang chờ xem xét của Ban Quản Trị Kỹ Thuật |
 
-## 1. Phạm vi và Mục tiêu của Giai đoạn
+## 1. Phạm Vi Hoạt Động & Mục Tiêu Của Giai Đoạn
+Giai đoạn này tập trung vào việc triển khai các biện pháp bảo mật doanh nghiệp, tuân thủ các yêu cầu phi chức năng, thiết lập quy trình DevOps và đảm bảo tuân thủ di động. Các yêu cầu bao gồm xây dựng Docker image đa giai đoạn, cung cấp hạ tầng GCP, triển khai Kubernetes (GKE) với HPA, tự động failover và backup cluster.
 
-Giai đoạn 5 thực hiện triển khai toàn bộ chức năng bản địa hóa đa ngôn ngữ (EN, VI, ES), tối ưu SEO với hreflang và meta tags, tạo báo cáo điểm danh theo ngày cho từng trung tâm, nâng cao bảo mật hệ thống theo OWASP Top 10, container hóa toàn bộ dịch vụ Quarkus, triển khai lên GKE với HPA, và thiết lập ghi nhật ký kiểm toán toàn diện. Các thành phần chính bao gồm cấu hình Firebase, Zalo, các bảng dữ liệu hệ thống, cấu hình Kubernetes, và tài liệu kỹ thuật chi tiết.
+## 2. Phạm Vi Kỹ Thuật & Ranh Giới Thư Mục (Tệp, đường dẫn và điểm cuối)
+- ./sources/infra/ (Docker) – [NFR-001], [NFR-002], [NFR-003]
+- ./sources/infra/ (GCP) – [NFR-004], [NFR-005], [NFR-006]
+- ./sources/infra/ (GKE) – [NFR-007], [NFR-008], [NFR-009]
+- ./sources/docs/ (Doc) – tài liệu bảo mật & tuân thủ
 
-## 2. Phạm vi Kỹ thuật & Giới hạn Thư mục
+## 3. Hướng Dẫn Chức Năng Cụ Thể Cho Các Đặc Sỹ Phụ
+*   **Coder**: Hoạt động như một Lập Trình Viên Ứng Dụng Cấp Cao/Chuyên Gia. Trách nhiệm là triển khai mã nguồn ứng dụng thuần túy trên cả các dịch vụ backend và ứng dụng khách frontend/mobile. Cấm viết bộ kiểm thử hoặc biểu mẫu hạ tầng.
+* **Tester**: Hoạt động như một Trưởng/Chuyên Gia Kiểm Chất/QA. Chuyên về kỹ thuật bộ kiểm thử, xác nhận và cổng kiểm tra chất lượng. Trách nhiệm là tạo các bộ kiểm thử JUnit, kiểm thử tích hợp, tự động hóa kiểm thử cuối cùng và kịch bản xác nhận hiệu suất. Cấm sửa đổi mã sản xuất ứng dụng. Nếu mục tiêu con nhiệm vụ liên quan đến phạm vi tích hợp hoặc cuối cùng nơi không có tệp mã nguồn cụ thể nào có thể bị ràng buộc, bạn PHẢI xuất ra chính xác mã thông báo `INTEGRATION_SCOPE` làm tham số đầu tiên của cặp chấm phẩy (ví dụ: `INTEGRATION_SCOPE;./sources/backend/tests/integration/WorkflowTest.java`).
+* **Doc**: Chức năng như một Nhà Viết Kỹ Thuật Chuyên Gia và Kiến Trúc Hệ Thống Doanh Nghiệp. Chuyên về biên soạn tài liệu Kỹ Thuật Chi Tiết, tham chiếu lược đồ, bản thiết kế hệ thống và danh mục kiến trúc doanh nghiệp phù hợp với các lớp công nghệ hoạt động. Mỗi tệp tài liệu kỹ thuật được tạo ra PHẢI được liệt kê như một thực thể đường dẫn tệp cụ thể kết thúc bằng phần mở rộng `.md` và nằm nghiêm ngặt trong bố cục lưu trữ trung tâm: `./sources/docs/`.
+*   **Reviewer**: Trách nhiệm về xác nhận biên dịch, phân tích tĩnh, và vá lỗi phòng thủ. Chuyên về kiểm tra chất lượng mã, giải quyết lỗi biên dịch, khắc phục lỗ hổng bảo mật OWASP và giải quyết các chặn cổng chất lượng SonarQube.
+*   **Docker**: Chuyên về container hóa, kỹ thuật Dockerfile đa giai đoạn, tối ưu hóa gói và đẩy các tài sản hình ảnh ứng dụng đã xác nhận lên DockerHub.
+*   **GCP**: Chuyên về tự động hóa đám mây trong Google Cloud Platform. Trách nhiệm là xây dựng và đẩy hình ảnh lên Google Cloud Artifact Registry (GCR), và điều phối môi trường container tự nhiên trên Google Cloud Run.
+*   **GKE**: Chuyên về điều phối container sản xuất bên trong Google Kubernetes Engine. Trách nhiệm là xây dựng biểu mẫu triển khai Kubernetes, điều khiển định tuyến, cấu hình HPA, biểu đồ Helm và triển khai các tải trọng dịch vụ microservices vào các cụm GKE hoạt động.
 
-| Đường dẫn | Mô tả |
-| :--- | :--- |
-| `./sources/backend/org/nlh4j/saas/membershiphub/i18n/` | Cấu hình đa ngôn ngữ, file locale |
-| `./sources/backend/org/nlh4j/saas/membershiphub/report/` | Dịch vụ tạo báo cáo điểm danh |
-| `./sources/backend/org/nlh4j/saas/membershiphub/security/` | Cấu hình bảo mật, JWT, OWASP |
-| `./sources/backend/org/nlh4j/saas/membershiphub/audit/` | Entity ghi nhật ký kiểm toán |
-| `./sources/infra/k8s/` | Manifest Kubernetes, Deployment, Service, Ingress |
-| `./sources/infra/ci-cd/` | Pipeline CI/CD |
-| `./sources/docs/` | Tài liệu kỹ thuật, kiến trúc, schema |
+## 4. Định Nghĩa Hoàn Thành Giai Đoạn (DoD)
+- Triển khai hoàn chỉnh các biện pháp bảo mật doanh nghiệp, tuân thủ các yêu cầu phi chức năng, thiết lập quy trình DevOps và đảm bảo tuân thủ di động.
+- Kiểm tra và xác nhận các yêu cầu chức năng cốt lõi.
+- Đảm bảo tuân thủ các tiêu chuẩn bảo mật OWASP.
+- Hoàn thành 100% ánh xạ Tag ID.
 
-## 3. Hướng dẫn chức năng dành cho các tác nhân phụ
+## 5. NHẬT KÝ THỰC HIỆN KIẾN TRÚC THEO NGÀY
 
-- **Coder**: Phát triển mã nguồn Java/Quarkus và JavaScript/React cho backend và frontend, không viết test hoặc manifest.  
-- **Tester**: Viết JUnit, integration test, E2E, kiểm thử hiệu năng, không sửa mã nguồn.  
-- **Reviewer**: Kiểm tra biên dịch, phân tích tĩnh, bảo mật OWASP, sửa lỗi.  
-- **Doc**: Soạn thảo tài liệu kỹ thuật, schema, API contract, cấu hình, deployment.  
-- **Docker**: Xây dựng Dockerfile đa giai đoạn, tối ưu kích thước, đẩy image.  
-- **GCP**: Đẩy image lên Artifact Registry, cấu hình IAM.  
-- **GKE**: Xây dựng manifest Kubernetes, HPA, Ingress, triển khai.  
+### 🌤️ NGÀY 1: <!--DAY_HEADER_START-->Xây dựng Docker image đa giai đoạn với kích thước nhỏ (<500MB) và base image <200MB<!--DAY_HEADER_END-->
 
-## 4. Định nghĩa Doanh nghiệp (DoD)
+#### 📝 NHIỆM VỤ CON 1.1: [Xây dựng Docker image đa giai đoạn với kích thước nhỏ (<500MB) và base image <200MB]
+##### Đặc Sỹ Phụ Được Phân Công: Docker
+##### Thành Phần Mục Tiêu & Yêu Cầu Kỹ Thuật:
+* **Đường dẫn mục tiêu:** ./sources/infra/docker/QuarkusDockerfile
+* **Mã Thẻ Theo Dõi:** <!--START_TAGS-->[NFR-001], [NFR-002], [NFR-003]<!--END_TAGS-->
+* **Hướng Dẫn Kỹ Thuật Chi Tiết:** Soạn thảo multi-stage Dockerfile: giai đoạn builder sử dụng image Quarkus có sẵn, giai đoạn runtime sử dụng distroless base image; đảm bảo loại bỏ các gói không cần thiết; thực hiện `apk add --no-cache` tối thiểu; xác minh kích thước image bằng `docker build --no-cache`; đẩy image lên container registry.
 
-- Tất cả yêu cầu [REQ-022]–[REQ-025] được triển khai đầy đủ.  
-- Mọi endpoint tuân thủ chuẩn REST, bảo mật JWT, RBAC, OWASP Top 10.  
-- Độ phủ test ≥ 85 % cho các module chính.  
-- Tất cả tag ID được ánh xạ và kiểm tra 100 %.  
-- Kích thước Docker image < 500 MB, triển khai thành công lên GKE.  
-- Ghi nhật ký audit đầy đủ, lưu trữ 1 năm.  
+### 🌤️ NGÀY 2: <!--DAY_HEADER_START-->Cung cấp hạ tầng GCP (VPC, IAM, Cloud Storage) và thiết lập monitoring<!--DAY_HEADER_END-->
 
-## 5. LỊCH THỰC HIỆN KIẾT TRÚC NGÀY BỞI NGÀY
+#### 📝 NHIỆM VỤ CON 2.1: [Cung cấp hạ tầng GCP (VPC, IAM, Cloud Storage) và thiết lập monitoring]
+##### Đặc Sỹ Phụ Được Phân Công: GCP
+##### Thành Phần Mục Tiêu & Yêu Cầu Kỹ Thuật:
+* **Đường dẫn mục tiêu:** ./sources/infra/gcp/GCPInfrastructure.tf
+* **Mã Thẻ Theo Dõi:** <!--START_TAGS-->[NFR-004], [NFR-005], [NFR-006]<!--END_TAGS-->
+* **Hướng Dẫn Kỹ Thuật Chi Tiết:** Triển khai Terraform script tạo VPC với private subnets, firewall rules; tạo IAM service accounts cho các service; thiết lập bucket Cloud Storage với lifecycle policy; tích hợp Prometheus và Grafana để monitoring; thiết lập alerting cho các chỉ số hiệu suất (latency, error rate).
 
-### 🌤️ DAY 1: <!--DAY_HEADER_START-->Xây dựng manifest triển khai Kubernetes<!--DAY_HEADER_END-->
+### 🌤️ NGÀY 3: <!--DAY_HEADER_START-->Triển khai Kubernetes (GKE) với HPA, tự động failover và backup cluster<!--DAY_HEADER_END-->
 
-#### 📝 Xây dựng manifest triển khai Kubernetes 1.1:
-##### Assigned Sub-Agent: GKE
-##### Targeted Components & Technical Requirements:
-* **Target Path**: ./sources/infra/k8s/Deployment.yaml
-* **Traceability Tag Tokens**: <!--START_TAGS-->[NFR-004], [NFR-005]<!--END_TAGS-->
-* **Low-Level Technical Task Instruction**: Tạo file Deployment.yaml cho toàn bộ dịch vụ Quarkus, cấu hình HPA dựa trên CPU > 70% hoặc độ trễ > 300ms, thiết lập Service cho mỗi module, định nghĩa Ingress với TLS, và triển khai lên cluster GKE. Đảm bảo các biến môi trường Firebase và Zalo được inject qua ConfigMap/Secret.
-
-### 🌤️ DAY 2: <!--DAY_HEADER_START-->Đánh giá và hardening bảo mật<!--DAY_HEADER_END-->
-
-#### 📝 Đánh giá và hardening bảo mật 2.1:
-##### Assigned Sub-Agent: Reviewer
-##### Targeted Components & Technical Requirements:
-* **Target Path**: ./sources/backend/org/nlh4j/saas/membershiphub/security/SecurityConfig.java
-* **Traceability Tag Tokens**: <!--START_TAGS-->[NFR-003], [NFR-006]<!--END_TAGS-->
-* **Low-Level Technical Task Instruction**: Xem xét cấu hình bảo mật hiện tại, áp dụng OWASP Top 10: sử dụng prepared statements, bảo vệ CSRF, XSS, enforce TLS 1.3, mã hóa dữ liệu nhạy cảm, cấu hình JWT expiration 15 phút, refresh token 7 ngày, và ghi log audit cho mọi hành động quan trọng.
-
-#### 📝 Đánh giá và hardening bảo mật 2.2:
-##### Assigned Sub-Agent: Reviewer
-##### Targeted Components & Technical Requirements:
-* **Target Path**: ./sources/backend/org/nlh4j/saas/membershiphub/audit/AuditLogEntity.java
-* **Traceability Tag Tokens**: <!--START_TAGS-->[NFR-003], [NFR-006]<!--END_TAGS-->
-* **Low-Level Technical Task Instruction**: Thêm entity AuditLog với các trường userId, action, timestamp, details. Đảm bảo ghi log cho mọi thay đổi role, attendance, notification, và các thao tác quan trọng. Định dạng JSON, lưu trữ trong PostgreSQL, bảo vệ dữ liệu nhạy cảm.
-
-### 🌤️ DAY 3: <!--DAY_HEADER_START-->Tạo tài liệu kỹ thuật và tham chiếu API<!--DAY_HEADER_END-->
-
-#### 📝 Tạo tài liệu kỹ thuật và tham chiếu API 3.1:
-##### Assigned Sub-Agent: Doc
-##### Targeted Components & Technical Requirements:
-* **Target Path**: ./sources/docs/Phase5_Documentation.md
-* **Traceability Tag Tokens**: <!--START_TAGS-->[REQ-022], [REQ-023], [REQ-024], [REQ-025]<!--END_TAGS-->
-* **Low-Level Technical Task Instruction**: Soạn thảo tài liệu chi tiết bao gồm mô tả hệ thống, cấu trúc dữ liệu, API contract, exception handler, cấu hình Firebase, Zalo, Dockerfile, manifest Kubernetes, và hướng dẫn triển khai. Đảm bảo tài liệu phản ánh đúng trạng thái cuối cùng của hệ thống, bao gồm các bảng dữ liệu, quy trình, và các biện pháp bảo mật.
-
-* **Database Schema DDL SQL Specification [DAT-011]**:
-```sql
-CREATE TABLE system_settings (
-    setting_key VARCHAR(100) PRIMARY KEY,
-    setting_value TEXT NOT NULL,
-    description TEXT
-);
-```
-
-* **API and Event Routing Contracts [REQ-022], [REQ-023], [REQ-024]**:
-```json
-{
-  "endpoints": [
-    {
-      "path": "/api/v1/i18n/{locale}",
-      "method": "GET",
-      "response": {
-        "messages": "object"
-      }
-    },
-    {
-      "path": "/api/v1/reports/attendance",
-      "method": "GET",
-      "request": {
-        "centerId": "UUID",
-        "startDate": "DATE",
-        "endDate": "DATE"
-      },
-      "response": {
-        "fileName": "string",
-        "downloadUrl": "string"
-      }
-    },
-    {
-      "path": "/api/v1/dashboard/summary",
-      "method": "GET",
-      "response": {
-        "totalStudents": "INT",
-        "activeCourses": "INT",
-        "upcomingSessions": "INT"
-      }
-    }
-  ]
-}
-```
-
-* **Phase Localized Exception Handlers [EXC-005]**: Xử lý lỗi phục hồi hệ thống sau sự cố: Khi dịch vụ được khôi phục, bất kỳ quét QR chờ xử lý nào được lưu trữ sẽ được xử lý theo thứ tự FIFO; người dùng nhận được thông báo về các sự kiện điểm danh đã được khôi phục.
+#### 📝 NHIỆM VỤ CON 3.1: [Triển khai Kubernetes (GKE) với HPA, tự động failover và backup cluster]
+##### Đặc Sỹ Phụ Được Phân Công: GKE
+##### Thành Phần Mục Tiêu & Yêu Cầu Kỹ Thuật:
+* **Đường dẫn mục tiêu:** ./sources/infra/gke/Deployment.yaml
+* **Mã Thẻ Theo Dõi:** <!--START_TAGS-->[NFR-007], [NFR-008], [NFR-009]<!--END_TAGS-->
+* **Hướng Dẫn Kỹ Thuật Chi Tiết:** Soạn thảo Kubernetes Deployment cho các microservice Quarkus; cấu hình Resource Limits/Requests; thiết lập Horizontal Pod Autoscaler dựa trên CPU >70% hoặc latency >300ms; tạo ServiceEntry cho cross-cluster communication; thiết lập backup GKE cluster ở region khác; định kỳ kiểm tra SLA 99.9% và ghi log vào hệ thống monitoring.

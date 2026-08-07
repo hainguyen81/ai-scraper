@@ -1,7 +1,7 @@
 {
     "phase_id": 2,
-    "phase_name": "Xây dựng hệ thống đăng ký học viên, điểm danh và quản lý thẻ hội viên",
-    "phase_description": "Giai đoạn này tập trung vào việc xây dựng hệ thống đăng ký học viên, điểm danh và quản lý thẻ hội viên.",
+    "phase_name": "Quản lý trung tâm",
+    "phase_description": "Giai đoạn này tập trung vào việc xây dựng CRUD trung tâm, kiểm tra tính duy nhất của taxId và phân quyền quản trị trung tâm.",
     "project_name": "membership-hub",
     "global_context_file": ".ai/.context/membership-hub.global.blueprint.md",
     "source_target_dir": "sources/",
@@ -9,28 +9,19 @@
         {
             "day": 1,
             "context_file": ".ai/.plan/.context/phase-2.context.blueprint.md",
-            "context_section": "XÂY DỰNG HỆ THỐNG ĐĂNG KÝ HỌC VIÊN",
+            "context_section": "Triển khai danh sách trung tâm, tạo trung tâm và kiểm tra xung đột taxId",
             "sub_tasks": [
                 {
                     "id": "D1_ST1",
                     "agent": "Coder",
-                    "desc": "Triển khai chức năng duyệt khóa học",
+                    "desc": "Triển khai CenterController với endpoint GET /centers trả về danh sách; POST /centers chấp nhận request body, xác thực tính duy nhất của taxId (throw ConflictException), lưu vào bảng CENTERS; thêm validation cho các trường bắt buộc; trả về response với các trường phù hợp.",
                     "targeted_tags": [
-                        "[REQ-010]"
+                        "[REQ-004]",
+                        "[REQ-005]",
+                        "[DAT-003]"
                     ],
                     "components": [
-                        "./sources/backend/enrollments/CourseBrowsingService.java"
-                    ]
-                },
-                {
-                    "id": "D1_ST2",
-                    "agent": "Coder",
-                    "desc": "Triển khai chức năng đăng ký khóa học của học viên",
-                    "targeted_tags": [
-                        "[REQ-011]"
-                    ],
-                    "components": [
-                        "./sources/backend/enrollments/StudentEnrollmentService.java"
+                        "./sources/backend/center/CenterController.java"
                     ]
                 }
             ]
@@ -38,77 +29,18 @@
         {
             "day": 2,
             "context_file": ".ai/.plan/.context/phase-2.context.blueprint.md",
-            "context_section": "XÂY DỰNG HỆ THỐNG ĐIỂM DANH",
+            "context_section": "Triển khai phân quyền quản trị trung tâm",
             "sub_tasks": [
                 {
                     "id": "D2_ST1",
-                    "agent": "Coder",
-                    "desc": "Triển khai chức năng điểm danh qua mã QR",
-                    "targeted_tags": [
-                        "[REQ-012]"
-                    ],
-                    "components": [
-                        "./sources/backend/attendance/QRAttendanceService.java"
-                    ]
-                },
-                {
-                    "id": "D2_ST2",
-                    "agent": "Coder",
-                    "desc": "Đảm bảo tính bất biến của điểm danh",
-                    "targeted_tags": [
-                        "[REQ-013]"
-                    ],
-                    "components": [
-                        "./sources/backend/attendance/AttendanceImmutabilityService.java"
-                    ]
-                }
-            ]
-        },
-        {
-            "day": 3,
-            "context_file": ".ai/.plan/.context/phase-2.context.blueprint.md",
-            "context_section": "XÂY DỰNG QUẢN LÝ THẺ HỘI VIÊN",
-            "sub_tasks": [
-                {
-                    "id": "D3_ST1",
-                    "agent": "Coder",
-                    "desc": "Triển khai chức năng hiển thị tính hợp lệ của thẻ",
-                    "targeted_tags": [
-                        "[REQ-014]"
-                    ],
-                    "components": [
-                        "./sources/backend/membership/MembershipValidationService.java"
-                    ]
-                },
-                {
-                    "id": "D3_ST2",
-                    "agent": "Coder",
-                    "desc": "Triển khai chức năng gia hạn thẻ hội viên",
-                    "targeted_tags": [
-                        "[REQ-015]"
-                    ],
-                    "components": [
-                        "./sources/backend/membership/MembershipRenewalService.java"
-                    ]
-                },
-                {
-                    "id": "D3_ST3",
                     "agent": "Doc",
-                    "desc": "Tài liệu kiến trúc",
+                    "desc": "Soạn thảo tài liệu hướng dẫn quản lý trung tâm bao gồm quy trình gán người dùng làm Center Admin, quy trình thu hồi quyền; tham chiếu các Tag IDs [REQ-006], [DAT-003]; thêm các đoạn mã API ví dụ.",
                     "targeted_tags": [
-                        "[REQ-010]",
-                        "[REQ-011]",
-                        "[REQ-012]",
-                        "[REQ-013]",
-                        "[REQ-014]",
-                        "[REQ-015]"
+                        "[REQ-006]",
+                        "[DAT-003]"
                     ],
                     "components": [
-                        "./sources/docs/architecture/ENTERPRISE_SYSTEM_ARCHITECTURE_BLUEPRINT.md",
-                        "./sources/docs/architecture/CENTRAL_ENDPOINT_API_CONTRACT_SPECS.md",
-                        "./sources/docs/architecture/CROSS_PLATFORM_INTEGRATED_BUSINESS_FLOWS.md",
-                        "./sources/docs/security/ENTERPRISE_SECURITY_OWASP_COMPLIANCE_MATRIX.md",
-                        "./sources/docs/security/CENTRAL_MONITORING_LOGGING_ARCHITECTURE.md"
+                        "./sources/docs/CenterManagementGuide.md"
                     ]
                 }
             ]

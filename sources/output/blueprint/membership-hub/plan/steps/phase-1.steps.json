@@ -1,7 +1,7 @@
 {
     "phase_id": 1,
-    "phase_name": "Xây dựng hệ thống xác thực người dùng, quản lý trung tâm và quản lý khóa học",
-    "phase_description": "Giai đoạn này tập trung vào việc xây dựng hệ thống xác thực người dùng, quản lý trung tâm và quản lý khóa học.",
+    "phase_name": "Quản lý người dùng & xác thực cốt lõi",
+    "phase_description": "Giai đoạn này tập trung vào việc xây dựng lõi người dùng, xác thực đa nhà cung cấp, phân quyền RBAC và các cơ chế bảo vệ đầu vào.",
     "project_name": "membership-hub",
     "global_context_file": ".ai/.context/membership-hub.global.blueprint.md",
     "source_target_dir": "sources/",
@@ -9,32 +9,21 @@
         {
             "day": 1,
             "context_file": ".ai/.plan/.context/phase-1.context.blueprint.md",
-            "context_section": "XÂY DỰNG HỆ THỐNG XÁC THỰC NGƯỜI DÙNG",
+            "context_section": "Triển khai đăng ký người dùng, xác thực qua mạng xã hội và gán vai trò ban đầu",
             "sub_tasks": [
                 {
                     "id": "D1_ST1",
                     "agent": "Coder",
-                    "desc": "Triển khai chức năng đăng ký và đăng nhập người dùng",
+                    "desc": "Viết lớp UserService triển khai registerUser (validation, bcrypt hash, lưu vào bảng USERS với roleId mặc định là Student), implement socialAuthFlow (nhận OAuth2 code, gọi Firebase/Google/Facebook API, tạo hoặc cập nhật bản ghi USERS, sinh JWT token có thời hạn 15 phút), thêm phương thức assignRole (cập nhật cột roleId, ghi log vào bảng AUDIT). Đảm bảo tất cả các thao tác đều được bao quanh bởi transaction và tuân thủ các ràng buộc khóa ngoại.",
                     "targeted_tags": [
                         "[REQ-001]",
                         "[REQ-002]",
-                        "[REQ-003]"
+                        "[REQ-003]",
+                        "[ARC-001]",
+                        "[DAT-001]"
                     ],
                     "components": [
-                        "./sources/backend/auth/src/main/java/org/nlh4j/membershiphub/controller/AuthController.java",
-                        "./sources/backend/auth/src/main/java/org/nlh4j/membershiphub/service/AuthService.java"
-                    ]
-                },
-                {
-                    "id": "D1_ST2",
-                    "agent": "Coder",
-                    "desc": "Tích hợp xác thực qua mạng xã hội",
-                    "targeted_tags": [
-                        "[REQ-002]"
-                    ],
-                    "components": [
-                        "./sources/backend/auth/src/main/java/org/nlh4j/membershiphub/controller/SocialAuthController.java",
-                        "./sources/backend/auth/src/main/java/org/nlh4j/membershiphub/service/SocialAuthService.java"
+                        "./sources/backend/auth/UserService.java"
                     ]
                 }
             ]
@@ -42,20 +31,20 @@
         {
             "day": 2,
             "context_file": ".ai/.plan/.context/phase-1.context.blueprint.md",
-            "context_section": "XÂY DỰNG QUẢN LÝ TRUNG TÂM",
+            "context_section": "Xây dựng kiểm tra đầu vào và xử lý lỗi xác thực",
             "sub_tasks": [
                 {
                     "id": "D2_ST1",
-                    "agent": "Coder",
-                    "desc": "Triển khai chức năng quản lý trung tâm",
+                    "agent": "Tester",
+                    "desc": "Viết unit tests cho registerUser với các trường hợp: email hợp lệ, mật khẩu yếu, email trùng lặp; xác minh response HTTP status và message lỗi bằng tiếng Việt; kiểm tra socialAuthFlow với mã OAuth2 hợp lệ và không hợp lệ; đảm bảo exception InputValidationException được ném và xử lý bởi GlobalExceptionHandler để trả về JSON lỗi chi tiết.",
                     "targeted_tags": [
-                        "[REQ-004]",
-                        "[REQ-005]",
-                        "[REQ-006]"
+                        "[EXC-004]",
+                        "[REQ-001]",
+                        "[DAT-001]"
                     ],
                     "components": [
-                        "./sources/backend/centers/src/main/java/org/nlh4j/membershiphub/controller/CenterController.java",
-                        "./sources/backend/centers/src/main/java/org/nlh4j/membershiphub/service/CenterService.java"
+                        "./sources/backend/auth/UserServiceTest.java",
+                        "./sources/backend/auth/UserService.java"
                     ]
                 }
             ]
@@ -63,43 +52,39 @@
         {
             "day": 3,
             "context_file": ".ai/.plan/.context/phase-1.context.blueprint.md",
-            "context_section": "XÂY DỰNG QUẢN LÝ KHÓA HỌC",
+            "context_section": "Tạo tài liệu kỹ thuật và hướng dẫn vận hành",
             "sub_tasks": [
                 {
                     "id": "D3_ST1",
-                    "agent": "Coder",
-                    "desc": "Triển khai chức năng quản lý khóa học",
-                    "targeted_tags": [
-                        "[REQ-007]",
-                        "[REQ-008]",
-                        "[REQ-009]"
-                    ],
-                    "components": [
-                        "./sources/backend/courses/src/main/java/org/nlh4j/membershiphub/controller/CourseController.java",
-                        "./sources/backend/courses/src/main/java/org/nlh4j/membershiphub/service/CourseService.java"
-                    ]
-                },
-                {
-                    "id": "D3_ST2",
                     "agent": "Doc",
-                    "desc": "Tài liệu kiến trúc",
+                    "desc": "Soạn thảo tài liệu hướng dẫn quản lý người dùng bao gồm mô tả API, bảng tham chiếu vai trò, quy trình đăng ký, quy trình xác thực qua mạng xã hội, quy trình gán vai trò; thêm các đoạn mã ví dụ bằng tiếng Việt; đảm bảo tài liệu tham chiếu các Tag IDs [REQ-002], [ARC-002], [ARC-003].",
                     "targeted_tags": [
-                        "[REQ-001]",
                         "[REQ-002]",
-                        "[REQ-003]",
-                        "[REQ-004]",
-                        "[REQ-005]",
-                        "[REQ-006]",
-                        "[REQ-007]",
-                        "[REQ-008]",
-                        "[REQ-009]"
+                        "[ARC-002]",
+                        "[ARC-003]"
                     ],
                     "components": [
-                        "./sources/docs/architecture/ENTERPRISE_SYSTEM_ARCHITECTURE_BLUEPRINT.md",
-                        "./sources/docs/architecture/CENTRAL_ENDPOINT_API_CONTRACT_SPECS.md",
-                        "./sources/docs/architecture/CROSS_PLATFORM_INTEGRATED_BUSINESS_FLOWS.md",
-                        "./sources/docs/security/ENTERPRISE_SECURITY_OWASP_COMPLIANCE_MATRIX.md",
-                        "./sources/docs/security/CENTRAL_MONITORING_LOGGING_ARCHITECTURE.md"
+                        "./sources/docs/UserManagementGuide.md"
+                    ]
+                }
+            ]
+        },
+        {
+            "day": 4,
+            "context_file": ".ai/.plan/.context/phase-1.context.blueprint.md",
+            "context_section": "Triển khai luồng xác thực JWT và refresh token",
+            "sub_tasks": [
+                {
+                    "id": "D4_ST1",
+                    "agent": "Coder",
+                    "desc": "Triển khai TokenService tạo accessToken (JWT, thời gian sống 15 phút) và refreshToken (thời gian sống 7 ngày) sử dụng java-jwt; thêm endpoint /api/v1/auth/refresh để đổi refreshToken lấy accessToken mới; tích hợp Firebase Authentication làm nhà cung cấp xác thực thay thế; đảm bảo token được lưu trữ an toàn (HTTP-only, Secure flag) và thực thi blacklist cho các token bị thu hồi.",
+                    "targeted_tags": [
+                        "[ARC-004]",
+                        "[ARC-005]",
+                        "[ARC-006]"
+                    ],
+                    "components": [
+                        "./sources/backend/auth/TokenService.java"
                     ]
                 }
             ]

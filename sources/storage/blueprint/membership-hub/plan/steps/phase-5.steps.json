@@ -1,7 +1,7 @@
 {
     "phase_id": 5,
-    "phase_name": "Triển khai hạ tầng và tối ưu hóa hệ thống",
-    "phase_description": "Giai đoạn này tập trung vào việc triển khai hạ tầng và tối ưu hóa hệ thống.",
+    "phase_name": "Bảo mật, tuân thủ, di động, pipeline",
+    "phase_description": "Giai đoạn này tập trung vào việc triển khai các biện pháp bảo mật doanh nghiệp, tuân thủ các yêu cầu phi chức năng, thiết lập quy trình DevOps và đảm bảo tuân thủ di động.",
     "project_name": "membership-hub",
     "global_context_file": ".ai/.context/membership-hub.global.blueprint.md",
     "source_target_dir": "sources/",
@@ -9,44 +9,19 @@
         {
             "day": 1,
             "context_file": ".ai/.plan/.context/phase-5.context.blueprint.md",
-            "context_section": "TRIỂN KHAI HẠ TẦNG",
+            "context_section": "Xây dựng Docker image đa giai đoạn với kích thước nhỏ (<500MB) và base image <200MB",
             "sub_tasks": [
                 {
                     "id": "D1_ST1",
                     "agent": "Docker",
-                    "desc": "Triển khai Docker và tối ưu hóa kích thước hình ảnh",
-                    "targeted_tags": [
-                        "[NFR-005]"
-                    ],
-                    "components": [
-                        "./sources/infra/Dockerfile"
-                    ]
-                },
-                {
-                    "id": "D1_ST2",
-                    "agent": "GCP",
-                    "desc": "Triển khai hạ tầng trên Google Cloud Platform và đảm bảo tính khả dụng và bảo mật",
-                    "targeted_tags": [
-                        "[NFR-002]",
-                        "[NFR-003]",
-                        "[NFR-004]"
-                    ],
-                    "components": [
-                        "./sources/infra/gcp/cloudbuild.yaml",
-                        "./sources/infra/gcp/main.tf"
-                    ]
-                },
-                {
-                    "id": "D1_ST3",
-                    "agent": "GKE",
-                    "desc": "Triển khai và quản lý Kubernetes trên Google Kubernetes Engine",
+                    "desc": "Soạn thảo multi-stage Dockerfile: giai đoạn builder sử dụng image Quarkus có sẵn, giai đoạn runtime sử dụng distroless base image; đảm bảo loại bỏ các gói không cần thiết; thực hiện `apk add --no-cache` tối thiểu; xác minh kích thước image bằng `docker build --no-cache`; đẩy image lên container registry.",
                     "targeted_tags": [
                         "[NFR-001]",
-                        "[NFR-004]"
+                        "[NFR-002]",
+                        "[NFR-003]"
                     ],
                     "components": [
-                        "./sources/infra/gke/charts/gateway/Chart.yaml",
-                        "./sources/infra/gke/charts/gateway/values.yaml"
+                        "./sources/infra/docker/QuarkusDockerfile"
                     ]
                 }
             ]
@@ -54,21 +29,19 @@
         {
             "day": 2,
             "context_file": ".ai/.plan/.context/phase-5.context.blueprint.md",
-            "context_section": "TỐI ƯU HÓA HỆ THỐNG",
+            "context_section": "Cung cấp hạ tầng GCP (VPC, IAM, Cloud Storage) và thiết lập monitoring",
             "sub_tasks": [
                 {
                     "id": "D2_ST1",
-                    "agent": "Coder",
-                    "desc": "Tối ưu hóa hiệu suất hệ thống, đảm bảo tính bảo mật và tuân thủ các quy định",
+                    "agent": "GCP",
+                    "desc": "Triển khai Terraform script tạo VPC với private subnets, firewall rules; tạo IAM service accounts cho các service; thiết lập bucket Cloud Storage với lifecycle policy; tích hợp Prometheus và Grafana để monitoring; thiết lập alerting cho các chỉ số hiệu suất (latency, error rate).",
                     "targeted_tags": [
-                        "[NFR-001]",
-                        "[NFR-006]",
-                        "[NFR-007]",
-                        "[NFR-008]",
-                        "[NFR-009]"
+                        "[NFR-004]",
+                        "[NFR-005]",
+                        "[NFR-006]"
                     ],
                     "components": [
-                        "./sources/backend/src/main/java/org/nlh4j/membershiphub/service/SystemOptimizationService.java"
+                        "./sources/infra/gcp/GCPInfrastructure.tf"
                     ]
                 }
             ]
@@ -76,29 +49,19 @@
         {
             "day": 3,
             "context_file": ".ai/.plan/.context/phase-5.context.blueprint.md",
-            "context_section": "TÀI LIỆU KIẾN TRÚC",
+            "context_section": "Triển khai Kubernetes (GKE) với HPA, tự động failover và backup cluster",
             "sub_tasks": [
                 {
                     "id": "D3_ST1",
-                    "agent": "Doc",
-                    "desc": "Tài liệu kiến trúc",
+                    "agent": "GKE",
+                    "desc": "Soạn thảo Kubernetes Deployment cho các microservice Quarkus; cấu hình Resource Limits/Requests; thiết lập Horizontal Pod Autoscaler dựa trên CPU >70% hoặc latency >300ms; tạo ServiceEntry cho cross-cluster communication; thiết lập backup GKE cluster ở region khác; định kỳ kiểm tra SLA 99.9% và ghi log vào hệ thống monitoring.",
                     "targeted_tags": [
-                        "[NFR-001]",
-                        "[NFR-002]",
-                        "[NFR-003]",
-                        "[NFR-004]",
-                        "[NFR-005]",
-                        "[NFR-006]",
                         "[NFR-007]",
                         "[NFR-008]",
                         "[NFR-009]"
                     ],
                     "components": [
-                        "./sources/docs/architecture/ENTERPRISE_SYSTEM_ARCHITECTURE_BLUEPRINT.md",
-                        "./sources/docs/architecture/CENTRAL_ENDPOINT_API_CONTRACT_SPECS.md",
-                        "./sources/docs/architecture/CROSS_PLATFORM_INTEGRATED_BUSINESS_FLOWS.md",
-                        "./sources/docs/security/ENTERPRISE_SECURITY_OWASP_COMPLIANCE_MATRIX.md",
-                        "./sources/docs/security/CENTRAL_MONITORING_LOGGING_ARCHITECTURE.md"
+                        "./sources/infra/gke/Deployment.yaml"
                     ]
                 }
             ]

@@ -1,7 +1,7 @@
 {
     "phase_id": 3,
-    "phase_name": "Xây dựng hệ thống thông báo và quản lý khuyến mãi",
-    "phase_description": "Giai đoạn này tập trung vào việc xây dựng hệ thống thông báo và quản lý khuyến mãi.",
+    "phase_name": "Quản lý khóa học",
+    "phase_description": "Giai đoạn này tập trung vào việc xây dựng CRUD khóa học, kiểm tra xung đột lịch dạy của giáo viên và phân công giáo viên.",
     "project_name": "membership-hub",
     "global_context_file": ".ai/.context/membership-hub.global.blueprint.md",
     "source_target_dir": "sources/",
@@ -9,17 +9,19 @@
         {
             "day": 1,
             "context_file": ".ai/.plan/.context/phase-3.context.blueprint.md",
-            "context_section": "XÂY DỰNG HỆ THỐNG THÔNG BÁO",
+            "context_section": "Triển khai danh sách khóa học, tạo khóa học mới và kiểm tra xung đột lịch",
             "sub_tasks": [
                 {
                     "id": "D1_ST1",
                     "agent": "Coder",
-                    "desc": "Triển khai chức năng kích hoạt thông báo",
+                    "desc": "Triển khai CourseService với findAllCourses trả về view bao gồm tên giáo viên; implement createCourse validation đảm bảo startDate <= endDate, kiểm tra xem teacherId đã có khóa học nào trùng lịch (startDate <= existing.endDate AND endDate >= existing.startDate) ném ConflictException; lưu khóa học vào bảng COURSES; trả về response DTO.",
                     "targeted_tags": [
-                        "[REQ-016]"
+                        "[REQ-007]",
+                        "[REQ-008]",
+                        "[DAT-004]"
                     ],
                     "components": [
-                        "./sources/backend/notifications/NotificationService.java"
+                        "./sources/backend/course/CourseService.java"
                     ]
                 }
             ]
@@ -27,52 +29,18 @@
         {
             "day": 2,
             "context_file": ".ai/.plan/.context/phase-3.context.blueprint.md",
-            "context_section": "XÂY DỰNG QUẢN LÝ KHUYẾN MÃI",
+            "context_section": "Triển khai phân công giáo viên và thông báo cho giáo viên qua ứng dụng di động",
             "sub_tasks": [
                 {
                     "id": "D2_ST1",
-                    "agent": "Coder",
-                    "desc": "Triển khai chức năng quản lý khuyến mãi",
-                    "targeted_tags": [
-                        "[REQ-017]"
-                    ],
-                    "components": [
-                        "./sources/backend/promotions/PromotionService.java"
-                    ]
-                },
-                {
-                    "id": "D2_ST2",
-                    "agent": "Coder",
-                    "desc": "Triển khai chức năng quản lý thông báo",
-                    "targeted_tags": [
-                        "[REQ-018]"
-                    ],
-                    "components": [
-                        "./sources/backend/promotions/NotificationService.java"
-                    ]
-                }
-            ]
-        },
-        {
-            "day": 3,
-            "context_file": ".ai/.plan/.context/phase-3.context.blueprint.md",
-            "context_section": "TÀI LIỆU KIẾN TRÚC",
-            "sub_tasks": [
-                {
-                    "id": "D3_ST1",
                     "agent": "Doc",
-                    "desc": "Tài liệu kiến trúc",
+                    "desc": "Soạn thảo tài liệu hướng dẫn quản lý khóa học bao gồm quy trình phân công giáo viên, quy trình thu hồi phân công; tham chiếu các Tag IDs [REQ-009], [DAT-004]; thêm các đoạn mã API ví dụ.",
                     "targeted_tags": [
-                        "[REQ-016]",
-                        "[REQ-017]",
-                        "[REQ-018]"
+                        "[REQ-009]",
+                        "[DAT-004]"
                     ],
                     "components": [
-                        "./sources/docs/architecture/ENTERPRISE_SYSTEM_ARCHITECTURE_BLUEPRINT.md",
-                        "./sources/docs/architecture/CENTRAL_ENDPOINT_API_CONTRACT_SPECS.md",
-                        "./sources/docs/architecture/CROSS_PLATFORM_INTEGRATED_BUSINESS_FLOWS.md",
-                        "./sources/docs/security/ENTERPRISE_SECURITY_OWASP_COMPLIANCE_MATRIX.md",
-                        "./sources/docs/security/CENTRAL_MONITORING_LOGGING_ARCHITECTURE.md"
+                        "./sources/docs/CourseManagementGuide.md"
                     ]
                 }
             ]

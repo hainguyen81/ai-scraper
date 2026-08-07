@@ -1,183 +1,95 @@
-# Phase 2: <!--PHASE_NAME_START-->Triển khai quản lý trung tâm, API CRUD và schema trung tâm<!--PHASE_NAME_END-->
+# Giai đoạn 2: Quản lý trung tâm
 
-## 📊 Document Control
+## 📊 Kiểm Soát Tài Liệu
 
-| Mục | Chi tiết |
+| Mục | Chi Tiết |
 | :--- | :--- |
-| **Mã Blueprint** | ARCH-20260807134137 |
-| **Tên Dự án** | membership-hub |
+| **ID Bản vẽ** | ARCH-20260807172813 |
+| **Tên Dự Án** | membership-hub |
 | **Giai đoạn** | 2 |
-| **Tên Giai đoạn** | <!--PHASE_NAME_START-->Triển khai quản lý trung tâm, API CRUD và schema trung tâm<!--PHASE_NAME_END--> |
-| **Mô tả** | <!--PHASE_DESC_START-->Giai đoạn 2 tập trung vào việc triển khai quản lý trung tâm, xây dựng API CRUD, và định nghĩa schema dữ liệu cho trung tâm. Các thành phần chính bao gồm lớp thực thể `CenterEntity`, controller `CenterController`, và các endpoint REST tương ứng. Ngoài ra, giai đoạn còn bao gồm việc chuẩn bị tài liệu kiến trúc chi tiết và xây dựng Docker image cho dịch vụ trung tâm.<!--PHASE_DESC_END--> |
+| **Tên Giai đoạn** | <!--PHASE_NAME_START-->Quản lý trung tâm<!--PHASE_NAME_END--> |
+| **Mô tả** | <!--PHASE_DESC_START-->Giai đoạn này tập trung vào việc xây dựng CRUD trung tâm, kiểm tra tính duy nhất của taxId và phân quyền quản trị trung tâm.<!--PHASE_DESC_END--> |
 | **Phiên bản** | 1.0 (Baseline) |
-| **Ngày/Giờ** | 2026/08/07 13:41:37 |
-| **Tác giả** | Enterprise System Architect (SA Agent) |
-| **Phê duyệt** | Pending Technical Governance Review |
+| **Ngày/Giờ** | 2026/08/07 17:28:13 |
+| **Tác giả** | Kiến Trúc Hệ Thống Doanh Nghiệp (SA Agent) |
+| **Phê duyệt** | Đang chờ xem xét của Ban Quản Trị Kỹ Thuật |
 
-## 1. Phạm vi thực thi và mục tiêu
+## 1. Phạm Vi Hoạt Động & Mục Tiêu Của Giai Đoạn
+Giai đoạn này tập trung vào việc triển khai CRUD trung tâm, kiểm tra tính duy nhất của taxId và phân quyền quản trị trung tâm. Các yêu cầu bao gồm xem danh sách trung tâm, tạo/cập nhật/xóa trung tâm và phân quyền quản trị trung tâm.
 
-Giai đoạn 2 thực hiện các nhiệm vụ sau:
-- Xây dựng mô hình dữ liệu `CenterEntity` và các ràng buộc liên quan (khóa chính, khóa ngoại, kiểm tra số thuế).
-- Phát triển controller `CenterController` với các endpoint CRUD và gán quản trị viên trung tâm.
-- Định nghĩa và triển khai schema PostgreSQL cho bảng `centers`.
-- Tạo tài liệu kiến trúc chi tiết cho giai đoạn 2, bao gồm mô hình dữ liệu, luồng API, và quy trình triển khai.
-- Xây dựng Dockerfile đa giai đoạn cho dịch vụ trung tâm, tối ưu kích thước và chuẩn bị cho CI/CD.
+## 2. Phạm Vi Kỹ Thuật & Ranh Giới Thư Mục (Tệp, đường dẫn và điểm cuối)
+- ./sources/backend/center/ (Coder) – [REQ-004], [REQ-005], [REQ-006], [DAT-003]
+- ./sources/docs/ (Doc) – tài liệu quản lý trung tâm
 
-## 2. Phạm vi kỹ thuật và ranh giới thư mục
+## 3. Hướng Dẫn Chức Năng Cụ Thể Cho Các Đặc Sỹ Phụ
+*   **Coder**: Hoạt động như một Lập Trình Viên Ứng Dụng Cấp Cao/Chuyên Gia. Trách nhiệm là triển khai mã nguồn ứng dụng thuần túy trên cả các dịch vụ backend và ứng dụng khách frontend/mobile. Cấm viết bộ kiểm thử hoặc biểu mẫu hạ tầng.
+* **Tester**: Hoạt động như một Trưởng/Chuyên Gia Kiểm Chất/QA. Chuyên về kỹ thuật bộ kiểm thử, xác nhận và cổng kiểm tra chất lượng. Trách nhiệm là tạo các bộ kiểm thử JUnit, kiểm thử tích hợp, tự động hóa kiểm thử cuối cùng và kịch bản xác nhận hiệu suất. Cấm sửa đổi mã sản xuất ứng dụng. Nếu mục tiêu con nhiệm vụ liên quan đến phạm vi tích hợp hoặc cuối cùng nơi không có tệp mã nguồn cụ thể nào có thể bị ràng buộc, bạn PHẢI xuất ra chính xác mã thông báo `INTEGRATION_SCOPE` làm tham số đầu tiên của cặp chấm phẩy (ví dụ: `INTEGRATION_SCOPE;./sources/backend/tests/integration/WorkflowTest.java`).
+* **Doc**: Chức năng như một Nhà Viết Kỹ Thuật Chuyên Gia và Kiến Trúc Hệ Thống Doanh Nghiệp. Chuyên về biên soạn tài liệu Kỹ Thuật Chi Tiết, tham chiếu lược đồ, bản thiết kế hệ thống và danh mục kiến trúc doanh nghiệp phù hợp với các lớp công nghệ hoạt động. Mỗi tệp tài liệu kỹ thuật được tạo ra PHẢI được liệt kê như một thực thể đường dẫn tệp cụ thể kết thúc bằng phần mở rộng `.md` và nằm nghiêm ngặt trong bố cục lưu trữ trung tâm: `./sources/docs/`.
+*   **Reviewer**: Trách nhiệm về xác nhận biên dịch, phân tích tĩnh, và vá lỗi phòng thủ. Chuyên về kiểm tra chất lượng mã, giải quyết lỗi biên dịch, khắc phục lỗ hổng bảo mật OWASP và giải quyết các chặn cổng chất lượng SonarQube.
+*   **Docker**: Chuyên về container hóa, kỹ thuật Dockerfile đa giai đoạn, tối ưu hóa gói và đẩy các tài sản hình ảnh ứng dụng đã xác nhận lên DockerHub.
+*   **GCP**: Chuyên về tự động hóa đám mây trong Google Cloud Platform. Trách nhiệm là xây dựng và đẩy hình ảnh lên Google Cloud Artifact Registry (GCR), và điều phối môi trường container tự nhiên trên Google Cloud Run.
+*   **GKE**: Chuyên về điều phối container sản xuất bên trong Google Kubernetes Engine. Trách nhiệm là xây dựng biểu mẫu triển khai Kubernetes, điều khiển định tuyến, cấu hình HPA, biểu đồ Helm và triển khai các tải trọng dịch vụ microservices vào các cụm GKE hoạt động.
 
-| Đường dẫn | Mô tả |
-| :--- | :--- |
-| `./sources/backend/org/nlh4j/saas/membershiphub/center-management/CenterEntity.java` | Lớp thực thể trung tâm |
-| `./sources/backend/org/nlh4j/saas/membershiphub/center-management/CenterController.java` | Controller CRUD trung tâm |
-| `./sources/backend/org/nlh4j/saas/membershiphub/center-management/CenterService.java` | Service nghiệp vụ trung tâm |
-| `./sources/backend/org/nlh4j/saas/membershiphub/center-management/CenterRepository.java` | Repository JPA |
-| `./sources/backend/org/nlh4j/saas/membershiphub/center-management/CenterDTO.java` | DTO trung tâm |
-| `./sources/docs/Phase2_Architecture.md` | Tài liệu kiến trúc giai đoạn 2 |
-| `./sources/infra/center-management/Dockerfile` | Dockerfile đa giai đoạn |
-| Endpoints: `/api/v1/centers`, `/api/v1/centers/{id}`, `/api/v1/centers/assign` | API CRUD và gán quản trị viên |
+## 4. Định Nghĩa Hoàn Thành Giai Đoạn (DoD)
+- Triển khai hoàn chỉnh các dịch vụ CRUD trung tâm, kiểm tra tính duy nhất của taxId và phân quyền quản trị trung tâm.
+- Kiểm tra và xác nhận các yêu cầu chức năng cốt lõi.
+- Đảm bảo tuân thủ các tiêu chuẩn bảo mật OWASP.
+- Hoàn thành 100% ánh xạ Tag ID.
 
-## 3. Hướng dẫn chức năng của các tác nhân phụ
+## 5. NHẬT KÝ THỰC HIỆN KIẾN TRÚC THEO NGÀY
 
-- **Coder**: Phát triển mã nguồn Java cho backend, bao gồm các lớp thực thể, controller, service, repository, và DTO. Không thực hiện kiểm thử hoặc cấu hình hạ tầng.
-- **Tester**: Thiết kế và triển khai bộ kiểm thử JUnit5 cho các lớp thực thể và controller. Nếu phạm vi kiểm thử bao gồm nhiều lớp, sử dụng `INTEGRATION_SCOPE;./sources/backend/tests/integration/CenterIntegrationTest.java`.
-- **Doc**: Soạn thảo tài liệu kiến trúc chi tiết, mô hình dữ liệu, luồng API, và quy trình triển khai. Tạo file `./sources/docs/Phase2_Architecture.md`.
-- **Reviewer**: Kiểm tra mã nguồn, thực hiện phân tích tĩnh, và đảm bảo tuân thủ OWASP Top 10.
-- **Docker**: Xây dựng Dockerfile đa giai đoạn cho dịch vụ trung tâm, tối ưu kích thước và chuẩn bị cho CI/CD.
-- **GCP**: Không áp dụng trong giai đoạn này.
-- **GKE**: Không áp dụng trong giai đoạn này.
+### 🌤️ NGÀY 1: <!--DAY_HEADER_START-->Triển khai danh sách trung tâm, tạo trung tâm và kiểm tra xung đột taxId<!--DAY_HEADER_END-->
 
-## 4. Định nghĩa Hoàn thành (DoD)
+#### 📝 NHIỆM VỤ CON 1.1: [Triển khai danh sách trung tâm, tạo trung tâm và kiểm tra xung đột taxId]
+##### Đặc Sỹ Phụ Được Phân Công: Coder
+##### Thành Phần Mục Tiêu & Yêu Cầu Kỹ Thuật:
+* **Đường dẫn mục tiêu:** ./sources/backend/center/CenterController.java
+* **Mã Thẻ Theo Dõi:** <!--START_TAGS-->[REQ-004], [REQ-005], [DAT-003]<!--END_TAGS-->
+* **Hướng Dẫn Kỹ Thuật Chi Tiết:** Triển khai CenterController với endpoint GET /centers trả về danh sách; POST /centers chấp nhận request body, xác thực tính duy nhất của taxId (throw ConflictException), lưu vào bảng CENTERS; thêm validation cho các trường bắt buộc; trả về response với các trường phù hợp.
 
-- Tất cả yêu cầu [REQ-004], [REQ-005], [REQ-006] được triển khai đầy đủ.
-- Schema PostgreSQL `centers` được tạo và kiểm tra tính toàn vẹn dữ liệu.
-- API CRUD `/api/v1/centers` đáp ứng đúng định dạng JSON và bảo mật JWT.
-- Tài liệu kiến trúc `Phase2_Architecture.md` hoàn chỉnh, bao gồm mô hình dữ liệu, luồng API, và quy trình triển khai.
-- Docker image `center-management` được xây dựng, kích thước < 500 MB, và được đẩy lên registry.
-- Độ phủ kiểm thử JUnit5 ≥ 85 % cho các lớp thực thể và controller.
-- Kiểm tra OWASP: bảo vệ chống SQL injection, XSS, CSRF, và bảo mật JWT.
-- Mọi tag ID được ánh xạ đầy đủ, không có tag chưa được sử dụng.
-
-## 5. Nhật ký thực thi kiến trúc theo ngày
-
-### 🌤️ NGÀY 1: <!--DAY_HEADER_START-->TRIỂN KHAI LỚP THỰC THỂ VÀ CONTROLLER TRUNG TÂM<!--DAY_HEADER_END-->
-
-#### 📝 TRIỂN KHAI LỚP THỰC THỂ VÀ CONTROLLER TRUNG TÂM 1.1:
-##### Được giao cho: Coder
-##### Yêu cầu thành phần & kỹ thuật:
-* **Đường dẫn mục tiêu**: `./sources/backend/org/nlh4j/saas/membershiphub/center-management/CenterEntity.java`
-* **Thẻ truy xuất**: <!--START_TAGS-->[REQ-004], [DAT-003]<!--END_TAGS-->
-* **Hướng dẫn công việc kỹ thuật chi tiết**:  
-  - Triển khai lớp thực thể `CenterEntity` với các trường `centerId` (UUID PK), `name`, `address`, `taxId` (UNIQUE, CHECK số), `contactPhone`, `contactEmail`.  
-  - Định nghĩa ràng buộc NOT NULL, UNIQUE, và CHECK `tax_id ~ '^[0-9]+$'`.  
-  - Tạo controller `CenterController` với các endpoint CRUD (`GET`, `POST`, `PUT`, `DELETE`) và endpoint gán quản trị viên (`POST /assign`).  
-  - Đảm bảo tất cả các endpoint bảo vệ bằng JWT và thực thi kiểm tra quyền RBAC.  
-  - Thêm service `CenterService` để xử lý nghiệp vụ và repository `CenterRepository` cho truy cập JPA.  
-  - Đảm bảo mã nguồn tuân thủ OWASP: sử dụng prepared statements, kiểm tra đầu vào, và mã hóa dữ liệu nhạy cảm.
-
-* **Database Schema DDL SQL Specification [DAT-003]**:
+* **Đặc tả DDL SQL Schema Cơ sở Dữ liệu [DAT-003]:**
 ```sql
-CREATE TABLE centers (
-    center_id UUID PRIMARY KEY,
+CREATE TABLE CENTERS (
+    centerId UUID PRIMARY KEY,
     name VARCHAR(100) NOT NULL,
     address VARCHAR(255) NOT NULL,
-    tax_id VARCHAR(13) NOT NULL UNIQUE,
-    contact_phone VARCHAR(20),
-    contact_email VARCHAR(255),
-    CONSTRAINT chk_tax_id_numeric CHECK (tax_id ~ '^[0-9]+$')
+    taxId VARCHAR(13) NOT NULL UNIQUE,
+    contactPhone VARCHAR(20),
+    contactEmail VARCHAR(255)
 );
 ```
 
-* **API and Event Routing Contracts [REQ-004], [ARC-002], [ARC-005]**:
+* **Hợp đồng Định tuyến API và Sự kiện [REQ-004], [REQ-005], [REQ-006]:**
 ```json
+// GET /api/v1/centers
+// Response: [{ "centerId": "uuid", "name": "Center A", "address": "Hanoi", "taxId": "1234567890123", "contactPhone": "+84123456789", "contactEmail": "center@example.com" }]
+
+// POST /api/v1/centers
 {
-  "endpoints": [
-    {
-      "path": "/api/v1/centers",
-      "method": "GET",
-      "response": [
-        {
-          "centerId": "UUID",
-          "name": "string",
-          "address": "string",
-          "taxId": "string",
-          "contactPhone": "string",
-          "contactEmail": "string"
-        }
-      ]
-    },
-    {
-      "path": "/api/v1/centers",
-      "method": "POST",
-      "request": {
-        "name": "string",
-        "address": "string",
-        "taxId": "string",
-        "contactPhone": "string",
-        "contactEmail": "string"
-      },
-      "response": {
-        "centerId": "UUID"
-      }
-    },
-    {
-      "path": "/api/v1/centers/{id}",
-      "method": "PUT",
-      "request": {
-        "name": "string",
-        "address": "string",
-        "taxId": "string",
-        "contactPhone": "string",
-        "contactEmail": "string"
-      },
-      "response": {
-        "centerId": "UUID"
-      }
-    },
-    {
-      "path": "/api/v1/centers/{id}",
-      "method": "DELETE",
-      "response": {
-        "centerId": "UUID"
-      }
-    },
-    {
-      "path": "/api/v1/centers/assign",
-      "method": "POST",
-      "request": {
-        "userId": "UUID",
-        "centerId": "UUID"
-      },
-      "response": {
-        "userId": "UUID",
-        "centerId": "UUID"
-      }
-    }
-  ]
+  "name": "Center B",
+  "address": "Ho Chi Minh",
+  "taxId": "9876543210987",
+  "contactPhone": "+84987654321",
+  "contactEmail": "centerB@example.com"
 }
+
+// PUT /api/v1/centers/{centerId}
+{
+  "name": "Center B Updated",
+  "address": "Ho Chi Minh City",
+  "taxId": "9876543210987",
+  "contactPhone": "+84987654321",
+  "contactEmail": "centerB@example.com"
+}
+
+// DELETE /api/v1/centers/{centerId}
 ```
 
-* **Phase Localized Exception Handlers [EXC-004]**:
-  - Xử lý lỗi xác thực đầu vào không hợp lệ cho form tạo trung tâm (ví dụ: taxId trùng lặp, email sai định dạng). Trả về thông báo lỗi chi tiết và hướng dẫn chỉnh sửa.
+### 🌤️ NGÀY 2: <!--DAY_HEADER_START-->Triển khai phân quyền quản trị trung tâm<!--DAY_HEADER_END-->
 
-#### 📝 TẠI LIỆU KIẾN TRÚC GIAI ĐOẠN 2 1.2:
-##### Được giao cho: Doc
-##### Yêu cầu thành phần & kỹ thuật:
-* **Đường dẫn mục tiêu**: `./sources/docs/Phase2_Architecture.md`
-* **Thẻ truy xuất**: <!--START_TAGS-->[REQ-004], [REQ-005], [REQ-006]<!--END_TAGS-->
-* **Hướng dẫn công việc kỹ thuật chi tiết**:  
-  - Soạn thảo tài liệu kiến trúc chi tiết cho giai đoạn 2, bao gồm mô hình dữ liệu `CenterEntity`, luồng API CRUD, quy trình triển khai Docker, và quy trình CI/CD.  
-  - Đảm bảo tài liệu tuân thủ chuẩn OWASP, bảo mật, và ghi chú các ràng buộc dữ liệu.  
-  - Cung cấp sơ đồ kiến trúc, bảng dữ liệu, và mô tả chi tiết các endpoint.
-
-### 🌤️ NGÀY 2: <!--DAY_HEADER_START-->XÂY DỰNG DOCKER IMAGE CHO DỊCH VỤ TRUNG TÂM<!--DAY_HEADER_END-->
-
-#### 📝 XÂY DỰNG DOCKER IMAGE CHO DỊCH VỤ TRUNG TÂM 2.1:
-##### Được giao cho: Docker
-##### Yêu cầu thành phần & kỹ thuật:
-* **Đường dẫn mục tiêu**: `./sources/infra/center-management/Dockerfile`
-* **Thẻ truy xuất**: <!--START_TAGS-->[REQ-004], [REQ-005], [REQ-006]<!--END_TAGS-->
-* **Hướng dẫn công việc kỹ thuật chi tiết**:  
-  - Tạo Dockerfile đa giai đoạn sử dụng Quarkus runtime, sao chép mã nguồn đã biên dịch, thiết lập người dùng không đặc quyền, expose port 8080, và tối ưu kích thước image (< 500 MB).  
-  - Định nghĩa biến môi trường cho cấu hình kết nối PostgreSQL và Redis.  
-  - Kiểm tra image bằng `docker build` và `docker run` trong môi trường CI.  
-  - Đẩy image lên registry với tag `latest` và chuẩn bị cho triển khai trên GKE.
+#### 📝 NHIỆM VỤ CON 2.1: [Triển khai phân quyền quản trị trung tâm]
+##### Đặc Sỹ Phụ Được Phân Công: Doc
+##### Thành Phần Mục Tiêu & Yêu Cầu Kỹ Thuật:
+* **Đường dẫn mục tiêu:** ./sources/docs/CenterManagementGuide.md
+* **Mã Thẻ Theo Dõi:** <!--START_TAGS-->[REQ-006], [DAT-003]<!--END_TAGS-->
+* **Hướng Dẫn Kỹ Thuật Chi Tiết:** Soạn thảo tài liệu hướng dẫn quản lý trung tâm bao gồm quy trình gán người dùng làm Center Admin, quy trình thu hồi quyền; tham chiếu các Tag IDs [REQ-006], [DAT-003]; thêm các đoạn mã API ví dụ.
