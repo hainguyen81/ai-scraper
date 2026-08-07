@@ -1,65 +1,93 @@
-# Giai đoạn 1: <!--PHASE_NAME_START-->Xây dựng lõi người dùng, vai trò và xác thực cơ bản<!--PHASE_NAME_END-->
+# Giai đoạn 1: Xây dựng lõi người dùng, vai trò và xác thực cơ bản (bao gồm đăng ký, OAuth2, JWT và validation đầu vào)
 
-## 📊 Kiểm Soát Tài Liệu
+## 📊 Document Control
 
 | Mục | Chi tiết |
 | :--- | :--- |
-| **ID Kiến Trúc** | ARCH-20260807042343 |
-| **Tên Dự Án** | membership-hub |
-| **Giai Đoạn** | 1 |
-| **Tên Giai Đoạn** | <!--PHASE_NAME_START-->Xây dựng lõi người dùng, vai trò và xác thực cơ bản<!--PHASE_NAME_END--> |
-| **Mô Tả** | <!--PHASE_DESC_START-->Giai đoạn này tập trung vào việc triển khai dịch vụ quản lý người dùng, xác thực, và phân quyền, bao gồm đăng ký, OAuth2, JWT, và kiểm tra đầu vào, đồng thời chuẩn bị tài liệu kiến trúc chi tiết cho toàn bộ hệ thống.<!--PHASE_DESC_END--> |
-| **Phiên Bản** | 1.0 (Baseline) |
-| **Ngày/Thời Gian** | 2026/08/07 04:23:43 |
-| **Tác Giả** | Enterprise System Architect (SA Agent) |
-| **Phê Duyệt** | Pending Technical Governance Review |
+| **ID Sơ đồ** | ARCH-20260807060838 |
+| **Tên dự án** | membership-hub |
+| **Giai đoạn** | 1 |
+| **Tên giai đoạn** | <!--PHASE_NAME_START-->Xây dựng lõi người dùng, vai trò và xác thực cơ bản<!--PHASE_NAME_END--> |
+| **Mô tả** | <!--PHASE_DESC_START-->Xây dựng lõi người dùng, vai trò và xác thực cơ bản (bao gồm đăng ký, OAuth2, JWT và validation đầu vào)<!--PHASE_DESC_END--> |
+| **Phiên bản** | 1.0 (Baseline) |
+| **Ngày/Giờ** | 2026/08/07 06:08:38 |
+| **Tác giả** | Kiến trúc sư hệ thống doanh nghiệp (SA Agent) |
+| **Phê duyệt** | Đang chờ xem xét của Ban quản lý Kỹ thuật |
 
-## 1. Phạm Vi và Mục Tiêu Hoạt Động Giai Đoạn
+## 1. Phạm vi hoạt động và mục tiêu của giai đoạn
+Giai đoạn 1 tập trung vào việc xây dựng lõi người dùng, vai trò và xác thực cơ bản (bao gồm đăng ký, OAuth2, JWT và validation đầu vào). Giai đoạn này bao gồm việc triển khai dịch vụ quản lý người dùng cơ bản, xây dựng controller xác thực và tích hợp OAuth2, cũng như triển khai cơ sở dữ liệu và API liên quan.
 
-Giai đoạn 1 thực hiện toàn bộ chức năng quản lý người dùng, bao gồm đăng ký, xác thực OAuth2, cấp JWT, và phân quyền. Các thành phần chính bao gồm `UserService`, `AuthController`, và bảng dữ liệu `USERS`/`ROLES`. Mọi thao tác đều tuân thủ OWASP Top 10, bao gồm kiểm tra đầu vào, mã hóa mật khẩu, prepared statements, CSRF, và XSS.
+## 2. Phạm vi kỹ thuật và ranh giới thư mục được phép (Các tệp, đường dẫn và điểm cuối)
+- `./sources/backend/users/UserService.java`
+- `./sources/backend/users/AuthController.java`
+- `./sources/backend/users/UserRepository.java`
+- `./sources/backend/users/User.java`
+- `./sources/backend/users/Role.java`
+- `./sources/backend/users/AuthService.java`
+- `./sources/backend/users/AuthControllerTest.java`
+- `./sources/backend/users/UserServiceTest.java`
+- `./sources/docs/phase1-documentation.md`
 
-## 2. Phạm Vi Kỹ Thuật & Ranh Giới Đường Dẫn Cho Phép
+## 3. Hướng dẫn chức năng chuyên dụng của Sub-Agent
+*   **Coder**: Hoạt động như một Nhà phát triển Ứng dụng Cấp cao/Chuyên gia. Trách nhiệm xây dựng mã nguồn ứng dụng thuần túy trên cả dịch vụ backend và ứng dụng frontend/mobile. Cấm viết bộ kiểm thử hoặc biểu mẫu cơ sở hạ tầng.
+* **Tester**: Hoạt động như một Nhà kiểm thử Chất lượng Chuyên nghiệp. Chuyên về kỹ thuật kiểm thử, xác nhận và cổng kiểm soát chất lượng. Trách nhiệm tạo bộ kiểm thử JUnit, kiểm thử tích hợp, tự động hóa kiểm thử cuối cùng và kịch bản xác nhận hiệu suất. Cấm sửa đổi mã sản xuất ứng dụng. Nếu mục tiêu con liên quan đến phạm vi tích hợp hoặc cuối cùng nơi không có tệp mã nguồn cụ thể nào có thể bị ràng buộc, bạn PHẢI xuất chính xác mã thông báo `INTEGRATION_SCOPE` làm tham số đầu tiên của cặp chấm phẩy (ví dụ: `INTEGRATION_SCOPE;./sources/backend/tests/integration/WorkflowTest.java`).
+* **Doc**: Chức năng như một Nhà viết tài liệu Kỹ thuật Chuyên nghiệp và Kiến trúc sư Hệ thống Doanh nghiệp. Chuyên về biên soạn tài liệu Quy cách Kỹ thuật toàn diện, tài liệu tham khảo lược đồ, bản thiết kế hệ thống và danh mục kiến trúc doanh nghiệp phù hợp với các lớp bậc thang dự án hoạt động. Mỗi tệp tài liệu kỹ thuật được tạo ra PHẢI được liệt kê như một thực thể đường dẫn tệp rõ ràng kết thúc bằng phần mở rộng `.md` và nằm nghiêm ngặt trong bố cục lưu trữ tập trung: `./sources/docs/`.
+*   **Reviewer**: Trách nhiệm về xác minh biên dịch, phân tích tĩnh, và vá lỗi phòng thủ. Chuyên về kiểm tra chất lượng mã, giải quyết lỗi biên dịch, khắc phục lỗ hổng bảo mật OWASP và giải quyết các chướng ngại vật cổng chất lượng SonarQube.
+*   **Docker**: Chuyên về container hóa, kỹ thuật Dockerfile đa giai đoạn, tối ưu hóa gói và đẩy tài sản hình ảnh ứng dụng đã xác minh lên DockerHub.
+*   **GCP**: Chuyên về tự động hóa đám mây trong Google Cloud Platform. Trách nhiệm xây dựng và đẩy hình ảnh lên Google Cloud Artifact Registry (GCR), và điều phối môi trường container trên Google Cloud Run.
+*   **GKE**: Chuyên về điều phối container sản xuất trong Google Kubernetes Engine. Trách nhiệm xây dựng biểu mẫu triển khai Kubernetes, điều khiển định tuyến, cấu hình HPA, biểu đồ Helm và triển khai khối lượng công việc dịch vụ vi mô vào cụm GKE hoạt động.
 
-- **Backend**: `./sources/org/nlh4j/saas/membershiphub/users/` (Java, Quarkus)
-- **Database**: PostgreSQL, bảng `USERS`, `ROLES`
-- **API**: `/api/v1/auth/register`, `/api/v1/auth/social`, `/api/v1/users/{userId}/role`
-- **Security**: JWT 15 phút, refresh 7 ngày, OAuth2 (Firebase, Google, Facebook)
+## 4. Định nghĩa Hoàn thành Giai đoạn (DoD)
+- Triển khai hoàn chỉnh dịch vụ quản lý người dùng cơ bản.
+- Xây dựng controller xác thực và tích hợp OAuth2.
+- Triển khai cơ sở dữ liệu và API liên quan.
+- Đảm bảo tuân thủ OWASP và hoàn thành kiểm thử chức năng cho các yêu cầu đã phân bổ.
+- Đảm bảo ánh xạ 100% ID Tag.
 
-## 3. Hướng Dẫn Hoạt Động Đặc Biệt cho Các Đại Diện Phụ
+## 5. Nhật ký thực thi kiến trúc theo ngày
 
-- **Doc**: Tài liệu kiến trúc, sơ đồ dữ liệu, quy trình triển khai.
-- **Coder**: Viết mã nguồn Java, kiểm tra đầu vào, bảo mật OWASP.
-- **Tester**: Kiểm thử đơn vị, tích hợp, bảo mật.
-- **Reviewer**: Kiểm tra mã, bảo mật, tuân thủ OWASP.
-- **Docker**: Xây dựng Dockerfile, multi‑stage, tối ưu kích thước.
-- **GCP**: Đẩy image lên Artifact Registry, triển khai Cloud Run.
-- **GKE**: Tạo manifest, HPA, Helm chart.
+### 🌤️ Ngày 1: Triển khai dịch vụ quản lý người dùng cơ bản
 
-## 4. Định Nghĩa Hoàn Thành Giai Đoạn (DoD)
+#### 📝 Nhiệm vụ con 1.1: Triển khai lớp UserService để xử lý đăng ký người dùng mới
 
-- Tất cả các yêu cầu [REQ-001], [REQ-002], [REQ-003], [ARC-001], [ARC-006] được triển khai và kiểm thử.
-- Đảm bảo OWASP Top 10: CSRF, XSS, SQLi, bảo mật JWT.
-- Độ phủ kiểm thử ≥ 85 %, báo cáo SonarQube không có blocker.
-- Tài liệu kiến trúc hoàn chỉnh, bản vẽ ERD, và hướng dẫn triển khai.
-- Mã nguồn được commit vào nhánh `features/development-phase-1-day-1` và `features/development-phase-1-day-2`.
+##### Chuyên viên được chỉ định: Coder
+##### Thành phần mục tiêu và yêu cầu kỹ thuật:
+* **Đường dẫn mục tiêu:** ./sources/backend/users/UserService.java
+* **Mã thông báo theo dõi:** <!--START_TAGS-->[ARC-001], [REQ-001], [DAT-001]<!--END_TAGS-->
 
-## 5. Nhật Ký Thực Hiện Kiến Trúc Theo Ngày
+#### 📝 Nhiệm vụ con 1.2: Tạo bảng Users và Roles trong cơ sở dữ liệu
 
-### 🌤️ Ngày 1: <!--DAY_HEADER_START-->XÂY DỰNG DỊCH VỤ NGƯỜI DÙNG<!--DAY_HEADER_END-->
+##### Chuyên viên được chỉ định: Coder
+##### Thành phần mục tiêu và yêu cầu kỹ thuật:
+* **Đường dẫn mục tiêu:** ./sources/backend/users/UserRepository.java
+* **Mã thông báo theo dõi:** <!--START_TAGS-->[DAT-001]<!--END_TAGS-->
 
-#### 📝 Nhiệm Vụ 1.1: Khởi tạo, thiết kế và lập bản đồ toàn bộ tài liệu kỹ thuật, bản vẽ kiến trúc, cấu trúc dữ liệu, và kiến trúc triển khai cho giai đoạn này, bao gồm mô tả chi tiết các thành phần, luồng dữ liệu, và quy trình triển khai.
-##### Đại Diện Phụ: Doc
-##### Đường Dẫn Mục Tiêu: ./sources/docs/phase1_technical_overview.md
-##### Thẻ Định Vị: <!--START_TAGS-->[ARC-001], [ARC-006], [REQ-001], [REQ-002], [REQ-003], [DAT-001], [EXC-004], [NFR-001], [NFR-003], [NFR-006], [NFR-008]<!--END_TAGS-->
+### 🌤️ Ngày 2: Xây dựng controller xác thực và tích hợp OAuth2
 
-#### 📝 Nhiệm Vụ 1.2: Triển khai lớp UserService để xử lý đăng ký người dùng mới, tạo bản ghi trong bảng USERS với vai trò mặc định là Student, tuân thủ REQ-001 và ARC-001, đồng thời áp dụng OWASP bảo mật: kiểm tra đầu vào, mã hóa mật khẩu, sử dụng prepared statements, và bảo vệ CSRF.
-##### Đại Diện Phụ: Coder
-##### Đường Dẫn Mục Tiêu: ./sources/org/nlh4j/saas/membershiphub/users/UserService.java
-##### Thẻ Định Vị: <!--START_TAGS-->[ARC-001], [REQ-001], [DAT-001]<!--END_TAGS-->
+#### 📝 Nhiệm vụ con 2.1: Xây dựng AuthController để xử lý xác thực OAuth2 từ Firebase/Google/Facebook
 
-### 🌤️ Ngày 2: <!--DAY_HEADER_START-->XÂY DỰNG XÁC THỰC OAUTH2<!--DAY_HEADER_END-->
+##### Chuyên viên được chỉ định: Coder
+##### Thành phần mục tiêu và yêu cầu kỹ thuật:
+* **Đường dẫn mục tiêu:** ./sources/backend/users/AuthController.java
+* **Mã thông báo theo dõi:** <!--START_TAGS-->[ARC-006], [REQ-002], [REQ-003], [DAT-001]<!--END_TAGS-->
 
-#### 📝 Nhiệm Vụ 2.1: Xây dựng AuthController để xử lý xác thực OAuth2 từ Firebase/Google/Facebook, trao đổi mã lấy thông tin người dùng, cập nhật vai trò và cấp JWT token (ARC-006), đồng thời hỗ trợ phân quyền người dùng (REQ-003), thực hiện kiểm tra đầu vào, mã hóa mật khẩu, bảo vệ CSRF, và tuân thủ OWASP.
-##### Đại Diện Phụ: Coder
-##### Đường Dẫn Mục Tiêu: ./sources/org/nlh4j/saas/membershiphub/users/AuthController.java
-##### Thẻ Định Vị: <!--START_TAGS-->[ARC-006], [REQ-002], [REQ-003], [DAT-001]<!--END_TAGS-->
+#### 📝 Nhiệm vụ con 2.2: Triển khai AuthService để xử lý logic xác thực và cấp JWT token
+
+##### Chuyên viên được chỉ định: Coder
+##### Thành phần mục tiêu và yêu cầu kỹ thuật:
+* **Đường dẫn mục tiêu:** ./sources/backend/users/AuthService.java
+* **Mã thông báo theo dõi:** <!--START_TAGS-->[ARC-006], [REQ-002], [REQ-003]<!--END_TAGS-->
+
+#### 📝 Nhiệm vụ con 2.3: Viết bộ kiểm thử cho AuthController và UserService
+
+##### Chuyên viên được chỉ định: Tester
+##### Thành phần mục tiêu và yêu cầu kỹ thuật:
+* **Đường dẫn mục tiêu:** ./sources/backend/users/AuthControllerTest.java;./sources/backend/users/UserServiceTest.java
+* **Mã thông báo theo dõi:** <!--START_TAGS-->[REQ-002], [REQ-003]<!--END_TAGS-->
+
+#### 📝 Nhiệm vụ con 2.4: Tạo tài liệu kỹ thuật cho giai đoạn 1
+
+##### Chuyên viên được chỉ định: Doc
+##### Thành phần mục tiêu và yêu cầu kỹ thuật:
+* **Đường dẫn mục tiêu:** ./sources/docs/phase1-documentation.md
+* **Mã thông báo theo dõi:** <!--START_TAGS-->[ARC-001], [ARC-006], [REQ-001], [REQ-002], [REQ-003], [DAT-001]<!--END_TAGS-->

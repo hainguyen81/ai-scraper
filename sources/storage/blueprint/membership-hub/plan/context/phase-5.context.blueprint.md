@@ -1,72 +1,64 @@
-# Giai đoạn 5: <!--PHASE_NAME_START-->Phát triển giao diện di động, thông báo đẩy, chatbot AI, i18n, SEO, báo cáo và hardening DevOps<!--PHASE_NAME_END-->
+# Giai đoạn 5: Phát triển giao diện di động, thông báo đẩy, chatbot AI, i18n, SEO, báo cáo và hardening DevOps
 
 ## 📊 Document Control
 
 | Mục | Chi tiết |
 | :--- | :--- |
-| **ID Kiến Trúc** | ARCH-20260807042343 |
-| **Tên Dự Án** | membership-hub |
-| **Giai Đoạn** | 5 |
-| **Tên Giai Đoạn** | Phát triển giao diện di động, thông báo đẩy, chatbot AI, i18n, SEO, báo cáo và hardening DevOps |
-| **Mô Tả** | <!--PHASE_DESC_START-->Giai đoạn 5 tập trung vào việc xây dựng giao diện di động đa nền tảng, tích hợp thông báo đẩy qua Firebase Cloud Messaging và Apple Push Notification Service, triển khai chatbot AI hỗ trợ trả lời câu hỏi của người dùng, hỗ trợ đa ngôn ngữ và SEO, tạo tài liệu báo cáo và hardening DevOps cho toàn bộ hệ thống. Phần công việc bao gồm phát triển ứng dụng di động hybrid, tạo tài liệu kỹ thuật, cấu hình CI/CD, bảo mật, và tuân thủ các yêu cầu NFR liên quan đến hiệu năng, bảo mật, và độ sẵn sàng.<!--PHASE_DESC_END--> |
-| **Phiên Bản** | 1.0 (Baseline) |
-| **Ngày/Thời Gian** | 2026/08/07 04:23:43 |
-| **Tác Giả** | Enterprise System Architect (SA Agent) |
-| **Phê Duyệt** | Pending Technical Governance Review |
+| **ID Sơ đồ** | ARCH-20260807060838 |
+| **Tên dự án** | membership-hub |
+| **Giai đoạn** | 5 |
+| **Tên giai đoạn** | <!--PHASE_NAME_START-->Phát triển giao diện di động, thông báo đẩy, chatbot AI, i18n, SEO, báo cáo và hardening DevOps<!--PHASE_NAME_END--> |
+| **Mô tả** | <!--PHASE_DESC_START-->Phát triển giao diện di động, thông báo đẩy, chatbot AI, i18n, SEO, báo cáo và hardening DevOps<!--PHASE_DESC_END--> |
+| **Phiên bản** | 1.0 (Baseline) |
+| **Ngày/Giờ** | 2026/08/07 06:08:38 |
+| **Tác giả** | Kiến trúc sư hệ thống doanh nghiệp (SA Agent) |
+| **Phê duyệt** | Đang chờ xem xét của Ban quản lý Kỹ thuật |
 
-## 1. Phạm vi hoạt động và mục tiêu giai đoạn
-Giai đoạn 5 thực hiện toàn bộ chức năng phát triển giao diện di động, tích hợp thông báo đẩy, chatbot AI, hỗ trợ đa ngôn ngữ và SEO, tạo tài liệu báo cáo, và hardening DevOps. Các thành phần chính bao gồm:
-- Ứng dụng di động hybrid (React Native + Capacitor) với Firebase Auth, FCM/APNs, và Zalo API.
-- Chatbot AI sử dụng mô hình ngôn ngữ tự nhiên (OpenAI GPT-4 hoặc tương đương) để trả lời câu hỏi về khóa học, giáo viên, trung tâm, và tài khoản.
-- Hỗ trợ i18n với các ngôn ngữ tiếng Việt, tiếng Anh, và tiếng Tây Ban Nha, đồng thời chèn thẻ `<meta>` và `hreflang` cho SEO.
-- Tài liệu báo cáo và hardening DevOps bao gồm quy trình CI/CD, Dockerfile, Helm chart, và cấu hình GKE.
+## 1. Phạm vi hoạt động và mục tiêu của giai đoạn
+Giai đoạn 5 tập trung vào việc phát triển giao diện di động, thông báo đẩy, chatbot AI, i18n, SEO, báo cáo và hardening DevOps. Giai đoạn này bao gồm việc xây dựng lõi ứng dụng di động, tạo tài liệu báo cáo và SEO.
 
-## 2. Phạm vi kỹ thuật & ranh giới thư mục (Files, paths, và endpoints)
-- **Thư mục**:
-  - `./sources/frontend/mobile/` – mã nguồn ứng dụng di động.
-  - `./sources/docs/` – tài liệu kỹ thuật, báo cáo, và hướng dẫn triển khai.
-- **Endpoint**:
-  - `GET /api/v1/mobile/user/{userId}/profile`
-  - `POST /api/v1/mobile/tokens`
-  - `POST /api/v1/chatbot/query`
-  - `GET /api/v1/reports/attendance?centerId=...&date=...`
+## 2. Phạm vi kỹ thuật và ranh giới thư mục được phép (Các tệp, đường dẫn và điểm cuối)
+- `./sources/frontend/mobile/App.js`
+- `./sources/docs/reporting-and-seo.md`
 
-## 3. Hướng dẫn chức năng của các Sub-Agent
-- **Coder**: Phát triển mã nguồn ứng dụng di động và tài liệu kỹ thuật. Không viết test, manifest, hoặc cấu hình CI/CD.
-- **Tester**: Thiết kế và thực thi bộ kiểm thử JUnit, integration test, và E2E automation. Không sửa mã nguồn.
-- **Doc**: Soạn tài liệu kỹ thuật, sơ đồ kiến trúc, mô hình dữ liệu, và quy trình triển khai. Đảm bảo tài liệu nằm trong `./sources/docs/`.
-- **Reviewer**: Kiểm tra mã, phân tích tĩnh, vá lỗi bảo mật OWASP, và đảm bảo chất lượng code.
-- **Docker**: Xây dựng Dockerfile đa stage, tối ưu kích thước, và đẩy image lên DockerHub.
-- **GCP**: Tự động hóa triển khai trên Google Cloud, đẩy image lên Artifact Registry, và triển khai trên Cloud Run.
-- **GKE**: Xây dựng manifest Kubernetes, HPA, Helm chart, và triển khai microservices trên GKE.
+## 3. Hướng dẫn chức năng chuyên dụng của Sub-Agent
+*   **Coder**: Hoạt động như một Nhà phát triển Ứng dụng Cấp cao/Chuyên gia. Trách nhiệm xây dựng mã nguồn ứng dụng thuần túy trên cả dịch vụ backend và ứng dụng frontend/mobile. Cấm viết bộ kiểm thử hoặc biểu mẫu cơ sở hạ tầng.
+* **Tester**: Hoạt động như một Nhà kiểm thử Chất lượng Chuyên nghiệp. Chuyên về kỹ thuật kiểm thử, xác nhận và cổng kiểm soát chất lượng. Trách nhiệm tạo bộ kiểm thử JUnit, kiểm thử tích hợp, tự động hóa kiểm thử cuối cùng và kịch bản xác nhận hiệu suất. Cấm sửa đổi mã sản xuất ứng dụng. Nếu mục tiêu con liên quan đến phạm vi tích hợp hoặc cuối cùng nơi không có tệp mã nguồn cụ thể nào có thể bị ràng buộc, bạn PHẢI xuất chính xác mã thông báo `INTEGRATION_SCOPE` làm tham số đầu tiên của cặp chấm phẩy (ví dụ: `INTEGRATION_SCOPE;./sources/backend/tests/integration/WorkflowTest.java`).
+* **Doc**: Chức năng như một Nhà viết tài liệu Kỹ thuật Chuyên nghiệp và Kiến trúc sư Hệ thống Doanh nghiệp. Chuyên về biên soạn tài liệu Quy cách Kỹ thuật toàn diện, tài liệu tham khảo lược đồ, bản thiết kế hệ thống và danh mục kiến trúc doanh nghiệp phù hợp với các lớp bậc thang dự án hoạt động. Mỗi tệp tài liệu kỹ thuật được tạo ra PHẢI được liệt kê như một thực thể đường dẫn tệp rõ ràng kết thúc bằng phần mở rộng `.md` và nằm nghiêm ngặt trong bố cục lưu trữ tập trung: `./sources/docs/`.
+*   **Reviewer**: Trách nhiệm về xác minh biên dịch, phân tích tĩnh, và vá lỗi phòng thủ. Chuyên về kiểm tra chất lượng mã, giải quyết lỗi biên dịch, khắc phục lỗ hổng bảo mật OWASP và giải quyết các chướng ngại vật cổng chất lượng SonarQube.
+*   **Docker**: Chuyên về container hóa, kỹ thuật Dockerfile đa giai đoạn, tối ưu hóa gói và đẩy tài sản hình ảnh ứng dụng đã xác minh lên DockerHub.
+*   **GCP**: Chuyên về tự động hóa đám mây trong Google Cloud Platform. Trách nhiệm xây dựng và đẩy hình ảnh lên Google Cloud Artifact Registry (GCR), và điều phối môi trường container trên Google Cloud Run.
+*   **GKE**: Chuyên về điều phối container sản xuất trong Google Kubernetes Engine. Trách nhiệm xây dựng biểu mẫu triển khai Kubernetes, điều khiển định tuyến, cấu hình HPA, biểu đồ Helm và triển khai khối lượng công việc dịch vụ vi mô vào cụm GKE hoạt động.
 
-## 4. Định nghĩa DoD (Definition of Done)
-- Tất cả các yêu cầu [REQ-019] tới [REQ-025] được triển khai và kiểm thử thành công.
-- Đạt 100% coverage cho unit, integration, và E2E tests.
-- Đạt OWASP Top 10 compliance, bảo mật OWASP, và NFR-002, NFR-005, NFR-007, NFR-008, NFR-009.
-- Mỗi tag ID được map đầy đủ, không còn tag chưa được sử dụng.
-- Tài liệu kỹ thuật, sơ đồ kiến trúc, và báo cáo hoàn chỉnh, lưu trữ trong `./sources/docs/`.
+## 4. Định nghĩa Hoàn thành Giai đoạn (DoD)
+- Triển khai hoàn chỉnh lõi ứng dụng di động.
+- Tạo hoàn chỉnh tài liệu báo cáo và SEO.
+- Đảm bảo tuân thủ OWASP và hoàn thành kiểm thử chức năng cho các yêu cầu đã phân bổ.
+- Đảm bảo ánh xạ 100% ID Tag.
 
-## 5. LỊCH THỰC HIỆN NGÀY ĐÓNG
+## 5. Nhật ký thực thi kiến trúc theo ngày
 
-### 🌤️ NGÀY 1: <!--DAY_HEADER_START-->XÂY DỰNG LÓI ỨNG DỤNG DI ĐỘNG<!--DAY_HEADER_END-->
+### 🌤️ Ngày 1: Xây dựng lõi ứng dụng di động
 
-#### 📝 NHIỆM VỤ 1.1: Triển khai lõi ứng dụng di động hybrid với điều hướng vai trò, tích hợp Firebase Auth và xử lý push notification
-##### Được giao: Coder
-##### Định hướng thành phần & yêu cầu kỹ thuật:
-* **Đường dẫn**: ./sources/frontend/mobile/App.js
-* **Thẻ theo dõi**: <!--START_TAGS-->[ARC-009], [REQ-019], [REQ-020], [NFR-002], [NFR-005]<!--END_TAGS-->
+#### 📝 Nhiệm vụ con 1.1: Triển khai lõi ứng dụng di động hybrid với điều hướng vai trò, tích hợp Firebase Auth và xử lý push notification
 
-#### 📝 NHIỆM VỤ 1.2: Khởi tạo tài liệu kiến trúc hệ thống, bao gồm sơ đồ kiến trúc, mô hình dữ liệu, và quy trình triển khai
-##### Được giao: Doc
-##### Định hướng thành phần & yêu cầu kỹ thuật:
-* **Đường dẫn**: ./sources/docs/phase5-architecture.md
-* **Thẻ theo dõi**: <!--START_TAGS-->[ARC-009], [ARC-010], [REQ-019], [REQ-020], [NFR-002], [NFR-005]<!--END_TAGS-->
+##### Chuyên viên được chỉ định: Coder
+##### Thành phần mục tiêu và yêu cầu kỹ thuật:
+* **Đường dẫn mục tiêu:** ./sources/frontend/mobile/App.js
+* **Mã thông báo theo dõi:** <!--START_TAGS-->[ARC-009], [REQ-019], [REQ-020], [NFR-002], [NFR-005]<!--END_TAGS-->
 
-### 🌤️ NGÀY 2: <!--DAY_HEADER_START-->TẠO TÀI LIỆU BÁO CÁO VÀ SEO<!--DAY_HEADER_END-->
+#### 📝 Nhiệm vụ con 1.2: Tạo tài liệu kỹ thuật cho giai đoạn 5
 
-#### 📝 NHIỆM VỤ 2.1: Tạo tài liệu báo cáo và SEO, bao gồm hướng dẫn tạo báo cáo điểm danh CSV, chèn meta tags đa ngôn ngữ và hreflang, thực hiện tuân thủ GDPR/CCPA, sao lưu PostgreSQL, ghi lại quy trình triển khai Docker và GKE
-##### Được giao: Doc
-##### Định hướng thành phần & yêu cầu kỹ thuật:
-* **Đường dẫn**: ./sources/docs/reporting-and-seo.md
-* **Thẻ theo dõi**: <!--START_TAGS-->[ARC-010], [REQ-022], [REQ-023], [REQ-024], [REQ-025], [NFR-007], [NFR-008], [NFR-009]<!--END_TAGS-->
+##### Chuyên viên được chỉ định: Doc
+##### Thành phần mục tiêu và yêu cầu kỹ thuật:
+* **Đường dẫn mục tiêu:** ./sources/docs/phase5-documentation.md
+* **Mã thông báo theo dõi:** <!--START_TAGS-->[ARC-009], [REQ-019], [REQ-020], [NFR-002], [NFR-005]<!--END_TAGS-->
+
+### 🌤️ Ngày 2: Tạo tài liệu báo cáo và SEO
+
+#### 📝 Nhiệm vụ con 2.1: Tạo tài liệu báo cáo và SEO, bao gồm hướng dẫn tạo báo cáo điểm danh CSV, chèn meta tags đa ngôn ngữ và hreflang, thực hiện tuân thủ GDPR/CCPA và sao lưu PostgreSQL
+
+##### Chuyên viên được chỉ định: Doc
+##### Thành phần mục tiêu và yêu cầu kỹ thuật:
+* **Đường dẫn mục tiêu:** ./sources/docs/reporting-and-seo.md
+* **Mã thông báo theo dõi:** <!--START_TAGS-->[ARC-010], [REQ-022], [REQ-023], [REQ-024], [REQ-025], [NFR-007], [NFR-008], [NFR-009]<!--END_TAGS-->

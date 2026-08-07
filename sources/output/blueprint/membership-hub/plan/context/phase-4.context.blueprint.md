@@ -1,105 +1,139 @@
-# Giai đoạn 4: Triển khai ghi danh học viên, điểm danh QR, thẻ hội viên, thông báo, khuyến mãi, thông báo và cài đặt hệ thống | Mô tả: Giai đoạn 4 tập trung vào triển khai toàn bộ chức năng ghi danh học viên, điểm danh qua mã QR, quản lý thẻ hội viên, hệ thống thông báo đa kênh, khuyến mãi và thông báo, cùng với cấu hình và cài đặt hệ thống. Các thành phần chính bao gồm: EnrollmentController và EnrollmentService để xử lý đăng ký khóa học; AttendanceService để ghi nhận điểm danh một cách idempotent; NotificationService để gửi push và tin nhắn Zalo; MembershipController để quản lý thẻ hội viên, khuyến mãi, thông báo và cài đặt hệ thống. Ngoài ra, giai đoạn này cũng triển khai các bảng dữ liệu liên quan: ENROLLMENTS, ATTENDANCE, STUDENTCARDS, NOTIFICATIONS, PROMOTIONS, ANNOUNCEMENTS, SYSTEMSETTINGS. Mọi giao tiếp API được bảo mật bằng JWT, các truy vấn dữ liệu được tối ưu bằng chỉ mục và chuẩn bị sẵn sàng cho việc mở rộng theo nhu cầu.
+# Giai đoạn 4: Triển khai ghi danh học viên, điểm danh QR, thẻ hội viên, thông báo, khuyến mãi, thông báo và cài đặt hệ thống
 
 ## 📊 Document Control
 
 | Mục | Chi tiết |
 | :--- | :--- |
-| **ID Kiến Trúc** | ARCH-20260807042343 |
-| **Tên Dự Án** | membership-hub |
-| **Giai Đoạn** | 4 |
-| **Tên Giai Đoạn** | Triển khai ghi danh học viên, điểm danh QR, thẻ hội viên, thông báo, khuyến mãi, thông báo và cài đặt hệ thống |
-| **Mô Tả** | Giai đoạn 4 tập trung vào triển khai toàn bộ chức năng ghi danh học viên, điểm danh qua mã QR, quản lý thẻ hội viên, hệ thống thông báo đa kênh, khuyến mãi và thông báo, cùng với cấu hình và cài đặt hệ thống. Các thành phần chính bao gồm: EnrollmentController và EnrollmentService để xử lý đăng ký khóa học; AttendanceService để ghi nhận điểm danh một cách idempotent; NotificationService để gửi push và tin nhắn Zalo; MembershipController để quản lý thẻ hội viên, khuyến mãi, thông báo và cài đặt hệ thống. Ngoài ra, giai đoạn này cũng triển khai các bảng dữ liệu liên quan: ENROLLMENTS, ATTENDANCE, STUDENTCARDS, NOTIFICATIONS, PROMOTIONS, ANNOUNCEMENTS, SYSTEMSETTINGS. Mọi giao tiếp API được bảo mật bằng JWT, các truy vấn dữ liệu được tối ưu bằng chỉ mục và chuẩn bị sẵn sàng cho việc mở rộng theo nhu cầu. |
-| **Phiên Bản** | 1.0 (Baseline) |
-| **Ngày/Thời Gian** | 2026/08/07 04:23:43 |
-| **Tác Giả** | Enterprise System Architect (SA Agent) |
-| **Phê Duyệt** | Pending Technical Governance Review |
+| **ID Sơ đồ** | ARCH-20260807060838 |
+| **Tên dự án** | membership-hub |
+| **Giai đoạn** | 4 |
+| **Tên giai đoạn** | <!--PHASE_NAME_START-->Triển khai ghi danh học viên, điểm danh QR, thẻ hội viên, thông báo, khuyến mãi, thông báo và cài đặt hệ thống<!--PHASE_NAME_END--> |
+| **Mô tả** | <!--PHASE_DESC_START-->Triển khai ghi danh học viên, điểm danh QR, thẻ hội viên, thông báo, khuyến mãi, thông báo và cài đặt hệ thống<!--PHASE_DESC_END--> |
+| **Phiên bản** | 1.0 (Baseline) |
+| **Ngày/Giờ** | 2026/08/07 06:08:38 |
+| **Tác giả** | Kiến trúc sư hệ thống doanh nghiệp (SA Agent) |
+| **Phê duyệt** | Đang chờ xem xét của Ban quản lý Kỹ thuật |
 
-## 1. Phạm vi hoạt động và mục tiêu giai đoạn
+## 1. Phạm vi hoạt động và mục tiêu của giai đoạn
+Giai đoạn 4 tập trung vào việc triển khai ghi danh học viên, điểm danh QR, thẻ hội viên, thông báo, khuyến mãi, thông báo và cài đặt hệ thống. Giai đoạn này bao gồm việc xây dựng controller ghi danh khóa học, triển khai logic đăng ký khóa học, triển khai dịch vụ điểm danh QR, triển khai dịch vụ thông báo, triển khai controller thẻ hội viên, khuyến mãi, thông báo và cài đặt hệ thống.
 
-Giai đoạn 4 thực hiện toàn bộ chức năng ghi danh học viên, điểm danh qua mã QR, quản lý thẻ hội viên, hệ thống thông báo đa kênh, khuyến mãi và thông báo, cùng với cấu hình và cài đặt hệ thống. Các thành phần chính bao gồm: EnrollmentController và EnrollmentService để xử lý đăng ký khóa học; AttendanceService để ghi nhận điểm danh một cách idempotent; NotificationService để gửi push và tin nhắn Zalo; MembershipController để quản lý thẻ hội viên, khuyến mãi, thông báo và cài đặt hệ thống. Ngoài ra, giai đoạn này cũng triển khai các bảng dữ liệu liên quan: ENROLLMENTS, ATTENDANCE, STUDENTCARDS, NOTIFICATIONS, PROMOTIONS, ANNOUNCEMENTS, SYSTEMSETTINGS. Mọi giao tiếp API được bảo mật bằng JWT, các truy vấn dữ liệu được tối ưu bằng chỉ mục và chuẩn bị sẵn sàng cho việc mở rộng theo nhu cầu.
+## 2. Phạm vi kỹ thuật và ranh giới thư mục được phép (Các tệp, đường dẫn và điểm cuối)
+- `./sources/backend/enrollment/EnrollmentController.java`
+- `./sources/backend/enrollment/EnrollmentService.java`
+- `./sources/backend/attendance/AttendanceService.java`
+- `./sources/backend/notifications/NotificationService.java`
+- `./sources/backend/membership/MembershipController.java`
+- `./sources/backend/enrollment/EnrollmentRepository.java`
+- `./sources/backend/enrollment/Enrollment.java`
+- `./sources/backend/attendance/AttendanceRepository.java`
+- `./sources/backend/attendance/Attendance.java`
+- `./sources/backend/notifications/NotificationRepository.java`
+- `./sources/backend/notifications/Notification.java`
+- `./sources/backend/membership/MembershipRepository.java`
+- `./sources/backend/membership/Membership.java`
+- `./sources/backend/enrollment/EnrollmentControllerTest.java`
+- `./sources/backend/enrollment/EnrollmentServiceTest.java`
+- `./sources/backend/attendance/AttendanceServiceTest.java`
+- `./sources/backend/notifications/NotificationServiceTest.java`
+- `./sources/backend/membership/MembershipControllerTest.java`
+- `./sources/docs/phase4-documentation.md`
 
-## 2. Phạm vi kỹ thuật và ranh giới thư mục
+## 3. Hướng dẫn chức năng chuyên dụng của Sub-Agent
+*   **Coder**: Hoạt động như một Nhà phát triển Ứng dụng Cấp cao/Chuyên gia. Trách nhiệm xây dựng mã nguồn ứng dụng thuần túy trên cả dịch vụ backend và ứng dụng frontend/mobile. Cấm viết bộ kiểm thử hoặc biểu mẫu cơ sở hạ tầng.
+* **Tester**: Hoạt động như một Nhà kiểm thử Chất lượng Chuyên nghiệp. Chuyên về kỹ thuật kiểm thử, xác nhận và cổng kiểm soát chất lượng. Trách nhiệm tạo bộ kiểm thử JUnit, kiểm thử tích hợp, tự động hóa kiểm thử cuối cùng và kịch bản xác nhận hiệu suất. Cấm sửa đổi mã sản xuất ứng dụng. Nếu mục tiêu con liên quan đến phạm vi tích hợp hoặc cuối cùng nơi không có tệp mã nguồn cụ thể nào có thể bị ràng buộc, bạn PHẢI xuất chính xác mã thông báo `INTEGRATION_SCOPE` làm tham số đầu tiên của cặp chấm phẩy (ví dụ: `INTEGRATION_SCOPE;./sources/backend/tests/integration/WorkflowTest.java`).
+* **Doc**: Chức năng như một Nhà viết tài liệu Kỹ thuật Chuyên nghiệp và Kiến trúc sư Hệ thống Doanh nghiệp. Chuyên về biên soạn tài liệu Quy cách Kỹ thuật toàn diện, tài liệu tham khảo lược đồ, bản thiết kế hệ thống và danh mục kiến trúc doanh nghiệp phù hợp với các lớp bậc thang dự án hoạt động. Mỗi tệp tài liệu kỹ thuật được tạo ra PHẢI được liệt kê như một thực thể đường dẫn tệp rõ ràng kết thúc bằng phần mở rộng `.md` và nằm nghiêm ngặt trong bố cục lưu trữ tập trung: `./sources/docs/`.
+*   **Reviewer**: Trách nhiệm về xác minh biên dịch, phân tích tĩnh, và vá lỗi phòng thủ. Chuyên về kiểm tra chất lượng mã, giải quyết lỗi biên dịch, khắc phục lỗ hổng bảo mật OWASP và giải quyết các chướng ngại vật cổng chất lượng SonarQube.
+*   **Docker**: Chuyên về container hóa, kỹ thuật Dockerfile đa giai đoạn, tối ưu hóa gói và đẩy tài sản hình ảnh ứng dụng đã xác minh lên DockerHub.
+*   **GCP**: Chuyên về tự động hóa đám mây trong Google Cloud Platform. Trách nhiệm xây dựng và đẩy hình ảnh lên Google Cloud Artifact Registry (GCR), và điều phối môi trường container trên Google Cloud Run.
+*   **GKE**: Chuyên về điều phối container sản xuất trong Google Kubernetes Engine. Trách nhiệm xây dựng biểu mẫu triển khai Kubernetes, điều khiển định tuyến, cấu hình HPA, biểu đồ Helm và triển khai khối lượng công việc dịch vụ vi mô vào cụm GKE hoạt động.
 
-- Thư mục backend: `./sources/backend/enrollment/`, `./sources/backend/attendance/`, `./sources/backend/notifications/`, `./sources/backend/membership/`
-- Thư mục docs: `./sources/docs/`
-- Các điểm cuối API:
-  - `POST /api/v1/enrollments`
-  - `POST /api/v1/attendance/scan`
-  - `POST /api/v1/notifications`
-  - `POST /api/v1/promotions`
-  - `POST /api/v1/announcements`
-  - `GET /api/v1/membership/{studentId}/card`
-  - `POST /api/v1/membership/renew`
-
-## 3. Hướng dẫn chức năng dành cho từng nhân viên phụ trách
-
-- **Coder**: Đóng vai trò là Nhà phát triển ứng dụng cấp cao. Trách nhiệm triển khai mã nguồn cho các dịch vụ backend và thành phần frontend/mobile. Không viết bộ kiểm thử hoặc manifest.
-- **Tester**: Đóng vai trò là Lead/Principal QC/QA. Chuyên về viết bộ kiểm thử, kiểm tra tích hợp, kiểm tra hiệu năng. Không sửa mã nguồn.
-- **Reviewer**: Đóng vai trò là Kiểm tra mã, phân tích tĩnh, vá lỗi bảo mật. Kiểm tra chất lượng, sửa lỗi, bảo mật OWASP.
-- **Doc**: Đóng vai trò là Technical Writer và Enterprise Systems Architect. Soạn tài liệu kỹ thuật, sơ đồ dữ liệu, quy trình triển khai, và các tiêu chuẩn bảo mật.
-- **Docker**: Đóng vai trò là chuyên gia containerization, multi‑stage Dockerfile, tối ưu kích thước, đẩy image lên DockerHub.
-- **GCP**: Đóng vai trò là chuyên gia tự động hóa GCP, xây dựng và đẩy image lên Artifact Registry, triển khai trên Cloud Run.
-- **GKE**: Đóng vai trò là chuyên gia Kubernetes, xây dựng manifest, HPA, Helm chart, triển khai microservices trên GKE.
-
-## 4. Định nghĩa Hoàn thành (DoD)
-
-- Tất cả các yêu cầu [REQ-010] đến [REQ-018] được triển khai và kiểm thử thành công.
-- Mọi API được bảo mật bằng JWT, có thời gian hết hạn 15 phút và refresh token 7 ngày.
-- Kiểm thử unit, integration, E2E đạt 100% coverage cho các module liên quan.
-- Kiểm tra OWASP Top 10, bảo mật OWASP, và NFR-001, NFR-003, NFR-004, NFR-006 được đáp ứng.
-- Tất cả các tag ID được map đầy đủ, không còn tag chưa được sử dụng.
-- Tài liệu kỹ thuật hoàn chỉnh, bao gồm sơ đồ dữ liệu, kiến trúc, quy trình triển khai, và hướng dẫn bảo mật.
+## 4. Định nghĩa Hoàn thành Giai đoạn (DoD)
+- Triển khai hoàn chỉnh controller ghi danh khóa học.
+- Triển khai hoàn chỉnh logic đăng ký khóa học.
+- Triển khai hoàn chỉnh dịch vụ điểm danh QR.
+- Triển khai hoàn chỉnh dịch vụ thông báo.
+- Triển khai hoàn chỉnh controller thẻ hội viên, khuyến mãi, thông báo và cài đặt hệ thống.
+- Đảm bảo tuân thủ OWASP và hoàn thành kiểm thử chức năng cho các yêu cầu đã phân bổ.
+- Đảm bảo ánh xạ 100% ID Tag.
 
 ## 5. Nhật ký thực thi kiến trúc theo ngày
 
-### 🌤️ NGÀY 1: Xây dựng controller ghi danh khóa học
+### 🌤️ Ngày 1: Xây dựng controller ghi danh khóa học
 
-#### 📝 Mục tiêu 1.0: Khởi tạo tài liệu kiến trúc giai đoạn 4
-##### Được giao: Doc
-##### Đường dẫn:
-* **Đường dẫn**: ./sources/docs/phase4_architecture_overview.md
-##### Thẻ theo dõi:
-* **Thẻ theo dõi**: <!--START_TAGS-->[ARC-004], [ARC-005], [REQ-010], [REQ-011], [REQ-012], [REQ-013], [REQ-014], [REQ-015], [REQ-016], [REQ-017], [REQ-018], [REQ-019], [REQ-020], [REQ-021], [REQ-022], [REQ-023], [REQ-024], [REQ-025], [DAT-005], [DAT-006], [DAT-007], [DAT-008], [DAT-009], [DAT-011], [EXC-001], [EXC-002], [EXC-003], [EXC-005], [NFR-001], [NFR-003], [NFR-004], [NFR-006]<!--END_TAGS-->
+#### 📝 Nhiệm vụ con 1.1: Triển khai EnrollmentController để duyệt khóa học và xử lý đăng ký
 
-#### 📝 Mục tiêu 1.1: Triển khai EnrollmentController
-##### Được giao: Coder
-##### Đường dẫn:
-* **Đường dẫn**: ./sources/backend/enrollment/org/nlh4j/sources/membershiphub/EnrollmentController.java
-##### Thẻ theo dõi:
-* **Thẻ theo dõi**: <!--START_TAGS-->[ARC-004], [REQ-010], [DAT-005]<!--END_TAGS-->
+##### Chuyên viên được chỉ định: Coder
+##### Thành phần mục tiêu và yêu cầu kỹ thuật:
+* **Đường dẫn mục tiêu:** ./sources/backend/enrollment/EnrollmentController.java
+* **Mã thông báo theo dõi:** <!--START_TAGS-->[ARC-004], [REQ-010], [DAT-005]<!--END_TAGS-->
 
-### 🌤️ NGÀY 2: Triển khai logic đăng ký khóa học
+#### 📝 Nhiệm vụ con 1.2: Tạo tài liệu kỹ thuật cho giai đoạn 4
 
-#### 📝 Mục tiêu 2.1: Triển khai EnrollmentService
-##### Được giao: Coder
-##### Đường dẫn:
-* **Đường dẫn**: ./sources/backend/enrollment/org/nlh4j/sources/membershiphub/EnrollmentService.java
-##### Thẻ theo dõi:
-* **Thẻ theo dõi**: <!--START_TAGS-->[REQ-011], [DAT-005], [ARC-005]<!--END_TAGS-->
+##### Chuyên viên được chỉ định: Doc
+##### Thành phần mục tiêu và yêu cầu kỹ thuật:
+* **Đường dẫn mục tiêu:** ./sources/docs/phase4-documentation.md
+* **Mã thông báo theo dõi:** <!--START_TAGS-->[ARC-004], [REQ-010], [DAT-005]<!--END_TAGS-->
 
-### 🌤️ NGÀY 3: Triển khai dịch vụ điểm danh QR
+### 🌤️ Ngày 2: Triển khai logic đăng ký khóa học
 
-#### 📝 Mục tiêu 3.1: Triển khai AttendanceService
-##### Được giao: Coder
-##### Đường dẫn:
-* **Đường dẫn**: ./sources/backend/attendance/org/nlh4j/sources/membershiphub/AttendanceService.java
-##### Thẻ theo dõi:
-* **Thẻ theo dõi**: <!--START_TAGS-->[ARC-007], [REQ-012], [DAT-006], [EXC-001], [EXC-002]<!--END_TAGS-->
+#### 📝 Nhiệm vụ con 2.1: Triển khai logic đăng ký khóa học trong EnrollmentService
 
-### 🌤️ NGÀY 4: Triển khai dịch vụ thông báo
+##### Chuyên viên được chỉ định: Coder
+##### Thành phần mục tiêu và yêu cầu kỹ thuật:
+* **Đường dẫn mục tiêu:** ./sources/backend/enrollment/EnrollmentService.java
+* **Mã thông báo theo dõi:** <!--START_TAGS-->[REQ-011], [DAT-005], [ARC-005]<!--END_TAGS-->
 
-#### 📝 Mục tiêu 4.1: Triển khai NotificationService
-##### Được giao: Coder
-##### Đường dẫn:
-* **Đường dẫn**: ./sources/backend/notifications/org/nlh4j/sources/membershiphub/NotificationService.java
-##### Thẻ theo dõi:
-* **Thẻ theo dõi**: <!--START_TAGS-->[ARC-008], [REQ-016], [DAT-008], [EXC-003]<!--END_TAGS-->
+#### 📝 Nhiệm vụ con 2.2: Viết bộ kiểm thử cho EnrollmentController và EnrollmentService
 
-### 🌤️ NGÀY 5: Triển khai controller thẻ hội viên, khuyến mãi, thông báo và cài đặt hệ thống
+##### Chuyên viên được chỉ định: Tester
+##### Thành phần mục tiêu và yêu cầu kỹ thuật:
+* **Đường dẫn mục tiêu:** ./sources/backend/enrollment/EnrollmentControllerTest.java;./sources/backend/enrollment/EnrollmentServiceTest.java
+* **Mã thông báo theo dõi:** <!--START_TAGS-->[REQ-011], [DAT-005], [ARC-005]<!--END_TAGS-->
 
-#### 📝 Mục tiêu 5.1: Triển khai MembershipController
-##### Được giao: Coder
-##### Đường dẫn:
-* **Đường dẫn**: ./sources/backend/membership/org/nlh4j/sources/membershiphub/MembershipController.java
-##### Thẻ theo dõi:
-* **Thẻ theo dõi**: <!--START_TAGS-->[REQ-014], [REQ-015], [DAT-007], [DAT-009], [DAT-011], [EXC-005]<!--END_TAGS-->
+### 🌤️ Ngày 3: Triển khai dịch vụ điểm danh QR
+
+#### 📝 Nhiệm vụ con 3.1: Triển khai dịch vụ điểm danh QR trong AttendanceService
+
+##### Chuyên viên được chỉ định: Coder
+##### Thành phần mục tiêu và yêu cầu kỹ thuật:
+* **Đường dẫn mục tiêu:** ./sources/backend/attendance/AttendanceService.java
+* **Mã thông báo theo dõi:** <!--START_TAGS-->[ARC-007], [REQ-012], [DAT-006], [EXC-001], [EXC-002]<!--END_TAGS-->
+
+#### 📝 Nhiệm vụ con 3.2: Viết bộ kiểm thử cho AttendanceService
+
+##### Chuyên viên được chỉ định: Tester
+##### Thành phần mục tiêu và yêu cầu kỹ thuật:
+* **Đường dẫn mục tiêu:** ./sources/backend/attendance/AttendanceServiceTest.java
+* **Mã thông báo theo dõi:** <!--START_TAGS-->[ARC-007], [REQ-012], [DAT-006], [EXC-001], [EXC-002]<!--END_TAGS-->
+
+### 🌤️ Ngày 4: Triển khai dịch vụ thông báo
+
+#### 📝 Nhiệm vụ con 4.1: Triển khai dịch vụ thông báo trong NotificationService
+
+##### Chuyên viên được chỉ định: Coder
+##### Thành phần mục tiêu và yêu cầu kỹ thuật:
+* **Đường dẫn mục tiêu:** ./sources/backend/notifications/NotificationService.java
+* **Mã thông báo theo dõi:** <!--START_TAGS-->[ARC-008], [REQ-016], [DAT-008], [EXC-003]<!--END_TAGS-->
+
+#### 📝 Nhiệm vụ con 4.2: Viết bộ kiểm thử cho NotificationService
+
+##### Chuyên viên được chỉ định: Tester
+##### Thành phần mục tiêu và yêu cầu kỹ thuật:
+* **Đường dẫn mục tiêu:** ./sources/backend/notifications/NotificationServiceTest.java
+* **Mã thông báo theo dõi:** <!--START_TAGS-->[ARC-008], [REQ-016], [DAT-008], [EXC-003]<!--END_TAGS-->
+
+### 🌤️ Ngày 5: Triển khai controller thẻ hội viên, khuyến mãi, thông báo và cài đặt hệ thống
+
+#### 📝 Nhiệm vụ con 5.1: Triển khai MembershipController để hiển thị thẻ hội viên và xử lý gia hạn thẻ
+
+##### Chuyên viên được chỉ định: Coder
+##### Thành phần mục tiêu và yêu cầu kỹ thuật:
+* **Đường dẫn mục tiêu:** ./sources/backend/membership/MembershipController.java
+* **Mã thông báo theo dõi:** <!--START_TAGS-->[REQ-014], [REQ-015], [DAT-007], [DAT-009], [DAT-011], [EXC-005]<!--END_TAGS-->
+
+#### 📝 Nhiệm vụ con 5.2: Viết bộ kiểm thử cho MembershipController
+
+##### Chuyên viên được chỉ định: Tester
+##### Thành phần mục tiêu và yêu cầu kỹ thuật:
+* **Đường dẫn mục tiêu:** ./sources/backend/membership/MembershipControllerTest.java
+* **Mã thông báo theo dõi:** <!--START_TAGS-->[REQ-014], [REQ-015], [DAT-007], [DAT-009], [DAT-011], [EXC-005]<!--END_TAGS-->
