@@ -1,8 +1,13 @@
 Analyze the attached Phase {{ phase_idx }} Context Markdown content. 
+
 {% if is_chunked %}
-Extract and parse ALL daily steps, checklists, and agent tasks starting from Day {{ current_start_day }} up to Day {{ current_end_day }} (inclusive). Localize the human-readable text strictly within the JSON string values according to your System Prompt Override rule.
+# SYSTEM CRITICAL BOUNDARY: CHUNKED CONFIGURATION IS ACTIVE (is_chunked is TRUE)
+- You MUST map the relative chronological day segments extracted from the phase input document (which always starts sequentially from Day 1, Day 2, etc.) directly onto the absolute target sequence specified by the runtime parameters starting from {{ current_start_day }} up to {{ current_end_day }}. The first processed relative day block from the text MUST be recorded under the absolute numerical day index value of {{ current_start_day }} inside the JSON array.
+- You are STRICTLY BANNED from resetting the day value to 1. Map the absolute day index directly to the "day" field, set 'context_file' to "{{ project_phase_context_file }}", and set 'context_section' to the localized primary day header line corresponding to that absolute day index from the source markdown.
 {% else %}
-Extract and parse ALL daily steps, checklists, and agent tasks from the entire document. Localize the human-readable text strictly within the JSON string values according to your System Prompt Override rule.
+# SYSTEM CRITICAL BOUNDARY: FLAT CONFIGURATION IS ACTIVE (is_chunked is FALSE)
+- Regardless of the actual day numbers documented in the source Markdown content (e.g., even if the text states "DAY 4", "DAY 5"), you MUST completely reset the timeline sequence internally so that the first operational day inside this Phase always starts from integer 1. Progression follows sequentially as 2, 3, 4, etc.
+- Map the first targeted day to `"day": 1`, set 'context_file' to "{{ project_phase_context_file }}", and strictly set 'context_section' to the localized primary header line of the first day parsed from the text. Incremental days follow this relative baseline.
 {% endif %}
 
 # 🔒 AGENT ATOMICITY, TASK ID FORMAT & FILE-LEVEL COMPONENT MANDATES (ABSOLUTE):
