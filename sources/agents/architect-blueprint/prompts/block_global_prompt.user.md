@@ -149,12 +149,12 @@ DEVOPS_LAYER_REQUIRED=[true/false based on project context]
 - **Strict Tester Target Path Syntax:** Any component targeted by a Tester Sub-Agent must be structured as a strict semi-colon separated pair `<source_component_or_token>;<test_suite_file_to_execute>`. Both paths inside the pair MUST begin with `./sources/`.
 
 ## 4. HIGH-LEVEL MULTI-PHASE ARCHITECTURAL SYNOPSIS GRID
-Generate a clean, highly structured Markdown Table mapping the exact distribution of components and Tag IDs across the dynamically calculated phases. You MUST compute the most optimal number of phases (denoted as N, where N <= {{ num_phases }}) that naturally and completely covers 100% of the BA requirements and Tag IDs. Each row MUST specify a real-world engineering duration bounded between 1 to a strict upper ceiling of {{ max_days_per_phase }} days maximum per phase. Do NOT generate empty rows, placeholder phases, or artificial workloads. If the requirements are fully satisfied within fewer than {{ num_phases }} phases, terminate the matrix setup immediately at phase N.
+Generate a clean, highly structured Markdown Table mapping the exact distribution of components and Tag IDs across the dynamically calculated phases. You MUST compute the most optimal number of phases (denoted as N, where N <= {{ num_phases }}) that naturally and completely covers 100% of the BA requirements and Tag IDs.
 <RULE>
+- Each row MUST specify a real-world engineering duration bounded between 1 to a strict upper ceiling of {{ max_days_per_phase }} days maximum per phase. Do NOT generate empty rows, placeholder phases, or artificial workloads. If the requirements are fully satisfied within fewer than {{ num_phases }} phases, terminate the matrix setup immediately at phase N.
 - **LOCAL DAY RANGE BOUNDARY**: In the "Day Range" column of this table, you MUST format the day sequence starting from relative integer 1 for EACH individual phase row (e.g., Phase 1: `Day 1 - 2`, Phase 2: `Day 1 - 2`). Compounding or running a linear progressive day count across phase boundaries (e.g., `Day 3 - 4` for Phase 2) is strictly prohibited.
-- **🚨 DYNAMIC CHRONO LOAD BALANCING RAIL (Project-Agnostic)**: When dynamically calculating and allocating the "Day Range" for each phase row, you MUST rigorously analyze the architectural weight of the requirements. 
-- If a single phase encompasses more than three complex infrastructure components or distinct stacks (e.g., combining Mobile UI, Chatbot AI integration, and Hardening DevOps simultaneously), you ARE ABSOLUTELY FORBIDDEN from compressing the duration into a short 1-2 day window. You MUST automatically expand the local allocation budget for that specific phase row to at least 4-5 days.
-- **MAXIMUM DAILY ATTENTION CAPACITY**: You MUST distribute the sub-agent task allocation matrix evenly across the calculated calendar days. A single operational day log inside Section 5 MUST NOT contain more than 3 unique critical Tag IDs (REQ/ARC/NFR) combined. Packing an excessive token footprint into one day triggers a system attention failure.
+- **🚨 DYNAMIC TECHNICAL DENSITY PRICING LAW (Project-Agnostic)**: Each row's "Day Range" MUST be computed dynamically based strictly on the actual volume and density of the allocated Tag IDs for that specific phase. You MUST evaluate the capacity weight: a single calculated operational calendar day log inside Section 5 MUST NOT contain more than 3 unique critical requirement tags (REQ/ARC/NFR) combined. 
+- If a phase contains low-density tasks, you MUST stop the index immediately (e.g., closing tightly at Day 1-2). If a phase contains high-density heavy tasks (e.g., combining Mobile UI, Chatbot AI, and DevOps simultaneously), you MUST expand its duration proportionally to smooth out the sub-task distribution, but under any circumstance, the calculated upper boundary MUST NOT exceed the absolute parameter ceiling of {{ max_days_per_phase }} days. Generating phantom filler days or trailing padding tasks is a fatal compliance breach.
 </RULE>
 
 *   CRITICAL PIPELINE RAILS FOR ARCHITECTURAL COMPONENT PATHS:
@@ -164,8 +164,10 @@ Generate a clean, highly structured Markdown Table mapping the exact distributio
     *   You MUST dynamically translate 100% of the table headers, deliverables summaries, phase names, and high-level descriptions into the designated Target Output Language: **{% if language and language.strip() != "" %}{{ language }}{% else %}English{% endif %}**. 
     *   All technical tokens, including file paths starting with `./sources/docs/` and tracing Tag IDs (`[REQ-XXX]`), MUST remain unchanged in pure unaccented Technical English.
 
+<!--START_PHASE_SYNOPSIS_GRID-->
 | Phase | Day Range | Architectural Component / Module Path | Technical Deliverables Summary | Assigned Sub-Agent | Targeted Tag IDs |
 | :--- | :--- | :--- | :--- | :--- | :--- |
+<!--END_PHASE_SYNOPSIS_GRID-->
 
 ## 5. GRANULAR PHASE SPECIALIZATIONS & DAY-BY-DAY DELIVERABLES
 <COMMAND>
