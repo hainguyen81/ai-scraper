@@ -914,13 +914,13 @@ Your output MUST follow this exact Markdown layout structure (translate all labe
 
 | [Translate "Item"] | [Translate "Details"] |
 | :--- | :--- |
-| **[Translate "Blueprint ID"]** | ARCH-20260807034424 |
+| **[Translate "Blueprint ID"]** | ARCH-20260807042343 |
 | **[Translate "Project Name"]** | membership-hub |
 | **[Translate "Phase"]** | 1 |
 | **[Translate "Phase Name"]** | <!--PHASE_NAME_START-->[Generate a standard, natural, human-readable descriptive title for this phase. You MUST write this as a normal human sentence or phrase using isolated words separated by real, standard whitespace characters. You are ABSOLUTELY AND CRITICALLY BANNED from combining words together, removing spaces, or utilizing programming styles like PascalCase, camelCase, or snake_case. It must read normally and smoothly just like a human description string. Fully translate and render this title into the target language requested by the parameters: 🇻🇳 Vietnamese. Example: "Core Infrastructure And Authentication Setup"]<!--PHASE_NAME_END--> |
 | **[Translate "Description"]** | <!--PHASE_DESC_START-->[Granular professional engineering summary description of the absolute operational scope of this specific phase, fully rendered in 🇻🇳 Vietnamese]<!--PHASE_DESC_END--> |
 | **[You MUST translate the literal token "Version" into 🇻🇳 Vietnamese]** | 1.0 (Baseline) |
-| **[You MUST translate the literal token "Date/Time" into 🇻🇳 Vietnamese]** | 2026/08/07 03:44:24 |
+| **[You MUST translate the literal token "Date/Time" into 🇻🇳 Vietnamese]** | 2026/08/07 04:23:43 |
 | **[You MUST translate the literal token "Author" into 🇻🇳 Vietnamese]** | Enterprise System Architect (SA Agent) |
 | **[You MUST translate the literal token "Approval" into 🇻🇳 Vietnamese]** | Pending Technical Governance Review |
 
@@ -975,13 +975,16 @@ You are a world-class Principal Solutions Architect. Your specific task is to re
 
 3. **MANDATORY INLINE TAG INJECTION RULE & HTML ANCHOR LOCKDOWN:** For every single Sub-Task generated under the daily logs, you MUST explicitly output a dedicated structural line item starting exactly with the translated string token for `* Traceability Tag Tokens:` followed by an immutable hidden HTML token container block. You MUST wrap the exact raw comma-separated tag IDs inside the hidden tag container string token layout exactly as: `<!--START_TAGS-->[REQ-XXX], [DAT-XXX]<!--END_TAGS-->`. You are STRICTLY BANNED from translating or altering any token values inside the HTML comment tags. Leaving a task block without this explicit HTML anchor layout is a fatal pipeline failure.
 
-4. **LONGITECTURAL DAY PARTITIONING & ANTI-PADDING GUARDRAIL (ACTUAL SYNOPSIS CEILING LAW):** 
-<RULE>
-- You MUST break down the operational calendar day-by-day using individual sequential integers starting strictly from DAY 1.
-- **CRITICAL ACTUAL CEILING CONSTRAINT**: You are ABSOLUTELY AND CRITICALLY BANNED from blindly generating days up to the generic `7` configuration parameter if the active phase's actual duration defined in Section 4 "HIGH-LEVEL MULTI-PHASE ARCHITECTURAL SYNOPSIS GRID" of the Global Context is shorter.
-- You MUST cross-reference the active `Phase 1` row inside the Section 4 Synopsis Table, extract the exact runtime duration from the "Day Range" column (e.g., if the table says "Day 1 - 2", the actual ceiling is strictly 2 days), and force-stop your sequential day generation precisely at that calculated local integer ceiling.
-- Generating a single day beyond the actual duration specified in the Global Context synopsis grid (such as generating Day 3 or Day 5 when the table restricts the phase to Day 1 - 2) constitutes a fatal structural contract violation and will break the backend workflow sequencer.
-</RULE>
+4. **LONGITECTURAL DAY PARTITIONING & ANTI-PADDING GUARDRAIL (ABSOLUTE LOCAL CHRONO RE-INDEX LAW):**
+   - You MUST break down the operational calendar day-by-day using individual sequential integers starting strictly from DAY 1 up to a MAXIMUM of DAY 7.
+   - **ABSOLUTE CHRONO RESET LAW**: You are COMPLETELY BANNED from continuing the sequential day index from any previous phase or global context log timelines. 
+   - The very first day section generated inside this active file MUST natively reset and force-freeze its counter starting exactly from numerical digit 1 (e.g., DAY 1 or NGÀY 1), regardless of the preceding historical context metrics. 
+   - Any model execution that outputs a continuing sequence (like generating "DAY 3" on Phase 2 because Phase 1 ended on Day 2) triggers an immediate pipeline crash.
+   - **STRICT PROGRESSION STOPPING CRITERION:** You MUST freeze the timeline and stop generating daily sections immediately on the exact calendar day where the technical objectives allocated for this phase are satisfied. You are STRICTLY BANNED from injecting dummy placeholder days, fake syncs, empty review blocks, or documentation padding just to expand the calendar. If the technical scope is natively complete on DAY 1, freeze the output file state and exit immediately. Do NOT generate empty or padded days.
+   - You are STRICTLY FORBIDDEN from bundling multiple days together (e.g., NO "DAY 1 - DAY 3"). Every single calendar day log must be explicitly isolated as its own standalone subsection header containing atomic steps for that unique 24-hour cycle.
+   - **CRITICAL ACTUAL CEILING CONSTRAINT**: You are ABSOLUTELY AND CRITICALLY BANNED from blindly generating days up to the generic `7` configuration parameter if the active phase's actual duration defined in Section 4 "HIGH-LEVEL MULTI-PHASE ARCHITECTURAL SYNOPSIS GRID" of the Global Context is shorter.
+   - You MUST cross-reference the active `Phase 1` row inside the Section 4 Synopsis Table, extract the exact runtime duration from the "Day Range" column (e.g., if the table says "Day 1 - 2", the actual ceiling is strictly 2 days), and force-stop your sequential day generation precisely at that calculated local integer ceiling.
+   - Generating a single day beyond the actual duration specified in the Global Context synopsis grid (such as generating Day 3 or Day 5 when the table restricts the phase to Day 1 - 2) constitutes a fatal structural contract violation and will break the backend workflow sequencer.
 
 5. **Language Compliance & Formatting Lockdown:** You MUST generate the entire report strictly in the language specified by the parameters: **🇻🇳 Vietnamese**.
 
@@ -991,7 +994,7 @@ You are a world-class Principal Solutions Architect. Your specific task is to re
 
 # Raw Response / Exception:
 
-Error code: 413 - {'error': {'message': 'Request too large for model `llama-3.3-70b-versatile` in organization `org_01kx7x6rbpftmr50sr2yyb78qm` service tier `on_demand` on tokens per minute (TPM): Limit 12000, Requested 21792, please reduce your message size and try again. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing', 'type': 'tokens', 'code': 'rate_limit_exceeded'}}: ['Traceback (most recent call last):
+Error code: 413 - {'error': {'message': 'Request too large for model `llama-3.3-70b-versatile` in organization `org_01kx7x6rbpftmr50sr2yyb78qm` service tier `on_demand` on tokens per minute (TPM): Limit 12000, Requested 22082, please reduce your message size and try again. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing', 'type': 'tokens', 'code': 'rate_limit_exceeded'}}: ['Traceback (most recent call last):
 ', '  File "/home/runner/work/enterprise-it-ai/enterprise-it-ai/sources/agents/architect-blueprint/block_phase.py", line 99, in generate_phase_contexts
     response = client.chat.completions.create(
                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -1006,7 +1009,7 @@ Error code: 413 - {'error': {'message': 'Request too large for model `llama-3.3-
                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 ', '  File "/opt/hostedtoolcache/Python/3.11.15/x64/lib/python3.11/site-packages/openai/_base_client.py", line 1148, in request
     raise self._make_status_error_from_response(err.response) from None
-', "openai.APIStatusError: Error code: 413 - {'error': {'message': 'Request too large for model `llama-3.3-70b-versatile` in organization `org_01kx7x6rbpftmr50sr2yyb78qm` service tier `on_demand` on tokens per minute (TPM): Limit 12000, Requested 21792, please reduce your message size and try again. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing', 'type': 'tokens', 'code': 'rate_limit_exceeded'}}
+', "openai.APIStatusError: Error code: 413 - {'error': {'message': 'Request too large for model `llama-3.3-70b-versatile` in organization `org_01kx7x6rbpftmr50sr2yyb78qm` service tier `on_demand` on tokens per minute (TPM): Limit 12000, Requested 22082, please reduce your message size and try again. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing', 'type': 'tokens', 'code': 'rate_limit_exceeded'}}
 "]
 
 # AI Model: meta-llama/llama-3.3-70b-instruct:free - Phase 1 - Prompt:
@@ -1925,13 +1928,13 @@ Your output MUST follow this exact Markdown layout structure (translate all labe
 
 | [Translate "Item"] | [Translate "Details"] |
 | :--- | :--- |
-| **[Translate "Blueprint ID"]** | ARCH-20260807034424 |
+| **[Translate "Blueprint ID"]** | ARCH-20260807042343 |
 | **[Translate "Project Name"]** | membership-hub |
 | **[Translate "Phase"]** | 1 |
 | **[Translate "Phase Name"]** | <!--PHASE_NAME_START-->[Generate a standard, natural, human-readable descriptive title for this phase. You MUST write this as a normal human sentence or phrase using isolated words separated by real, standard whitespace characters. You are ABSOLUTELY AND CRITICALLY BANNED from combining words together, removing spaces, or utilizing programming styles like PascalCase, camelCase, or snake_case. It must read normally and smoothly just like a human description string. Fully translate and render this title into the target language requested by the parameters: 🇻🇳 Vietnamese. Example: "Core Infrastructure And Authentication Setup"]<!--PHASE_NAME_END--> |
 | **[Translate "Description"]** | <!--PHASE_DESC_START-->[Granular professional engineering summary description of the absolute operational scope of this specific phase, fully rendered in 🇻🇳 Vietnamese]<!--PHASE_DESC_END--> |
 | **[You MUST translate the literal token "Version" into 🇻🇳 Vietnamese]** | 1.0 (Baseline) |
-| **[You MUST translate the literal token "Date/Time" into 🇻🇳 Vietnamese]** | 2026/08/07 03:44:24 |
+| **[You MUST translate the literal token "Date/Time" into 🇻🇳 Vietnamese]** | 2026/08/07 04:23:43 |
 | **[You MUST translate the literal token "Author" into 🇻🇳 Vietnamese]** | Enterprise System Architect (SA Agent) |
 | **[You MUST translate the literal token "Approval" into 🇻🇳 Vietnamese]** | Pending Technical Governance Review |
 
@@ -1986,13 +1989,16 @@ You are a world-class Principal Solutions Architect. Your specific task is to re
 
 3. **MANDATORY INLINE TAG INJECTION RULE & HTML ANCHOR LOCKDOWN:** For every single Sub-Task generated under the daily logs, you MUST explicitly output a dedicated structural line item starting exactly with the translated string token for `* Traceability Tag Tokens:` followed by an immutable hidden HTML token container block. You MUST wrap the exact raw comma-separated tag IDs inside the hidden tag container string token layout exactly as: `<!--START_TAGS-->[REQ-XXX], [DAT-XXX]<!--END_TAGS-->`. You are STRICTLY BANNED from translating or altering any token values inside the HTML comment tags. Leaving a task block without this explicit HTML anchor layout is a fatal pipeline failure.
 
-4. **LONGITECTURAL DAY PARTITIONING & ANTI-PADDING GUARDRAIL (ACTUAL SYNOPSIS CEILING LAW):** 
-<RULE>
-- You MUST break down the operational calendar day-by-day using individual sequential integers starting strictly from DAY 1.
-- **CRITICAL ACTUAL CEILING CONSTRAINT**: You are ABSOLUTELY AND CRITICALLY BANNED from blindly generating days up to the generic `7` configuration parameter if the active phase's actual duration defined in Section 4 "HIGH-LEVEL MULTI-PHASE ARCHITECTURAL SYNOPSIS GRID" of the Global Context is shorter.
-- You MUST cross-reference the active `Phase 1` row inside the Section 4 Synopsis Table, extract the exact runtime duration from the "Day Range" column (e.g., if the table says "Day 1 - 2", the actual ceiling is strictly 2 days), and force-stop your sequential day generation precisely at that calculated local integer ceiling.
-- Generating a single day beyond the actual duration specified in the Global Context synopsis grid (such as generating Day 3 or Day 5 when the table restricts the phase to Day 1 - 2) constitutes a fatal structural contract violation and will break the backend workflow sequencer.
-</RULE>
+4. **LONGITECTURAL DAY PARTITIONING & ANTI-PADDING GUARDRAIL (ABSOLUTE LOCAL CHRONO RE-INDEX LAW):**
+   - You MUST break down the operational calendar day-by-day using individual sequential integers starting strictly from DAY 1 up to a MAXIMUM of DAY 7.
+   - **ABSOLUTE CHRONO RESET LAW**: You are COMPLETELY BANNED from continuing the sequential day index from any previous phase or global context log timelines. 
+   - The very first day section generated inside this active file MUST natively reset and force-freeze its counter starting exactly from numerical digit 1 (e.g., DAY 1 or NGÀY 1), regardless of the preceding historical context metrics. 
+   - Any model execution that outputs a continuing sequence (like generating "DAY 3" on Phase 2 because Phase 1 ended on Day 2) triggers an immediate pipeline crash.
+   - **STRICT PROGRESSION STOPPING CRITERION:** You MUST freeze the timeline and stop generating daily sections immediately on the exact calendar day where the technical objectives allocated for this phase are satisfied. You are STRICTLY BANNED from injecting dummy placeholder days, fake syncs, empty review blocks, or documentation padding just to expand the calendar. If the technical scope is natively complete on DAY 1, freeze the output file state and exit immediately. Do NOT generate empty or padded days.
+   - You are STRICTLY FORBIDDEN from bundling multiple days together (e.g., NO "DAY 1 - DAY 3"). Every single calendar day log must be explicitly isolated as its own standalone subsection header containing atomic steps for that unique 24-hour cycle.
+   - **CRITICAL ACTUAL CEILING CONSTRAINT**: You are ABSOLUTELY AND CRITICALLY BANNED from blindly generating days up to the generic `7` configuration parameter if the active phase's actual duration defined in Section 4 "HIGH-LEVEL MULTI-PHASE ARCHITECTURAL SYNOPSIS GRID" of the Global Context is shorter.
+   - You MUST cross-reference the active `Phase 1` row inside the Section 4 Synopsis Table, extract the exact runtime duration from the "Day Range" column (e.g., if the table says "Day 1 - 2", the actual ceiling is strictly 2 days), and force-stop your sequential day generation precisely at that calculated local integer ceiling.
+   - Generating a single day beyond the actual duration specified in the Global Context synopsis grid (such as generating Day 3 or Day 5 when the table restricts the phase to Day 1 - 2) constitutes a fatal structural contract violation and will break the backend workflow sequencer.
 
 5. **Language Compliance & Formatting Lockdown:** You MUST generate the entire report strictly in the language specified by the parameters: **🇻🇳 Vietnamese**.
 
@@ -2936,13 +2942,13 @@ Your output MUST follow this exact Markdown layout structure (translate all labe
 
 | [Translate "Item"] | [Translate "Details"] |
 | :--- | :--- |
-| **[Translate "Blueprint ID"]** | ARCH-20260807034424 |
+| **[Translate "Blueprint ID"]** | ARCH-20260807042343 |
 | **[Translate "Project Name"]** | membership-hub |
 | **[Translate "Phase"]** | 1 |
 | **[Translate "Phase Name"]** | <!--PHASE_NAME_START-->[Generate a standard, natural, human-readable descriptive title for this phase. You MUST write this as a normal human sentence or phrase using isolated words separated by real, standard whitespace characters. You are ABSOLUTELY AND CRITICALLY BANNED from combining words together, removing spaces, or utilizing programming styles like PascalCase, camelCase, or snake_case. It must read normally and smoothly just like a human description string. Fully translate and render this title into the target language requested by the parameters: 🇻🇳 Vietnamese. Example: "Core Infrastructure And Authentication Setup"]<!--PHASE_NAME_END--> |
 | **[Translate "Description"]** | <!--PHASE_DESC_START-->[Granular professional engineering summary description of the absolute operational scope of this specific phase, fully rendered in 🇻🇳 Vietnamese]<!--PHASE_DESC_END--> |
 | **[You MUST translate the literal token "Version" into 🇻🇳 Vietnamese]** | 1.0 (Baseline) |
-| **[You MUST translate the literal token "Date/Time" into 🇻🇳 Vietnamese]** | 2026/08/07 03:44:24 |
+| **[You MUST translate the literal token "Date/Time" into 🇻🇳 Vietnamese]** | 2026/08/07 04:23:43 |
 | **[You MUST translate the literal token "Author" into 🇻🇳 Vietnamese]** | Enterprise System Architect (SA Agent) |
 | **[You MUST translate the literal token "Approval" into 🇻🇳 Vietnamese]** | Pending Technical Governance Review |
 
@@ -2997,13 +3003,16 @@ You are a world-class Principal Solutions Architect. Your specific task is to re
 
 3. **MANDATORY INLINE TAG INJECTION RULE & HTML ANCHOR LOCKDOWN:** For every single Sub-Task generated under the daily logs, you MUST explicitly output a dedicated structural line item starting exactly with the translated string token for `* Traceability Tag Tokens:` followed by an immutable hidden HTML token container block. You MUST wrap the exact raw comma-separated tag IDs inside the hidden tag container string token layout exactly as: `<!--START_TAGS-->[REQ-XXX], [DAT-XXX]<!--END_TAGS-->`. You are STRICTLY BANNED from translating or altering any token values inside the HTML comment tags. Leaving a task block without this explicit HTML anchor layout is a fatal pipeline failure.
 
-4. **LONGITECTURAL DAY PARTITIONING & ANTI-PADDING GUARDRAIL (ACTUAL SYNOPSIS CEILING LAW):** 
-<RULE>
-- You MUST break down the operational calendar day-by-day using individual sequential integers starting strictly from DAY 1.
-- **CRITICAL ACTUAL CEILING CONSTRAINT**: You are ABSOLUTELY AND CRITICALLY BANNED from blindly generating days up to the generic `7` configuration parameter if the active phase's actual duration defined in Section 4 "HIGH-LEVEL MULTI-PHASE ARCHITECTURAL SYNOPSIS GRID" of the Global Context is shorter.
-- You MUST cross-reference the active `Phase 1` row inside the Section 4 Synopsis Table, extract the exact runtime duration from the "Day Range" column (e.g., if the table says "Day 1 - 2", the actual ceiling is strictly 2 days), and force-stop your sequential day generation precisely at that calculated local integer ceiling.
-- Generating a single day beyond the actual duration specified in the Global Context synopsis grid (such as generating Day 3 or Day 5 when the table restricts the phase to Day 1 - 2) constitutes a fatal structural contract violation and will break the backend workflow sequencer.
-</RULE>
+4. **LONGITECTURAL DAY PARTITIONING & ANTI-PADDING GUARDRAIL (ABSOLUTE LOCAL CHRONO RE-INDEX LAW):**
+   - You MUST break down the operational calendar day-by-day using individual sequential integers starting strictly from DAY 1 up to a MAXIMUM of DAY 7.
+   - **ABSOLUTE CHRONO RESET LAW**: You are COMPLETELY BANNED from continuing the sequential day index from any previous phase or global context log timelines. 
+   - The very first day section generated inside this active file MUST natively reset and force-freeze its counter starting exactly from numerical digit 1 (e.g., DAY 1 or NGÀY 1), regardless of the preceding historical context metrics. 
+   - Any model execution that outputs a continuing sequence (like generating "DAY 3" on Phase 2 because Phase 1 ended on Day 2) triggers an immediate pipeline crash.
+   - **STRICT PROGRESSION STOPPING CRITERION:** You MUST freeze the timeline and stop generating daily sections immediately on the exact calendar day where the technical objectives allocated for this phase are satisfied. You are STRICTLY BANNED from injecting dummy placeholder days, fake syncs, empty review blocks, or documentation padding just to expand the calendar. If the technical scope is natively complete on DAY 1, freeze the output file state and exit immediately. Do NOT generate empty or padded days.
+   - You are STRICTLY FORBIDDEN from bundling multiple days together (e.g., NO "DAY 1 - DAY 3"). Every single calendar day log must be explicitly isolated as its own standalone subsection header containing atomic steps for that unique 24-hour cycle.
+   - **CRITICAL ACTUAL CEILING CONSTRAINT**: You are ABSOLUTELY AND CRITICALLY BANNED from blindly generating days up to the generic `7` configuration parameter if the active phase's actual duration defined in Section 4 "HIGH-LEVEL MULTI-PHASE ARCHITECTURAL SYNOPSIS GRID" of the Global Context is shorter.
+   - You MUST cross-reference the active `Phase 1` row inside the Section 4 Synopsis Table, extract the exact runtime duration from the "Day Range" column (e.g., if the table says "Day 1 - 2", the actual ceiling is strictly 2 days), and force-stop your sequential day generation precisely at that calculated local integer ceiling.
+   - Generating a single day beyond the actual duration specified in the Global Context synopsis grid (such as generating Day 3 or Day 5 when the table restricts the phase to Day 1 - 2) constitutes a fatal structural contract violation and will break the backend workflow sequencer.
 
 5. **Language Compliance & Formatting Lockdown:** You MUST generate the entire report strictly in the language specified by the parameters: **🇻🇳 Vietnamese**.
 
@@ -3013,7 +3022,7 @@ You are a world-class Principal Solutions Architect. Your specific task is to re
 
 # Raw Response / Exception:
 
-Error code: 402 - {'error': {'message': 'This request requires more credits, or fewer max_tokens. You requested up to 2048 tokens, but can only afford 362. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account', 'code': 402, 'metadata': {'limit_source': 'openrouter_credits', 'remedy_hint': 'Add credits at https://openrouter.ai/settings/credits, or lower max_tokens / prompt size to fit your remaining balance.', 'provider_name': None, 'previous_errors': [{'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 16384 tokens, but can only afford 1177. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 65536 tokens, but can only afford 502. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 65536 tokens, but can only afford 942. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 6481 tokens, but can only afford 167. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 16384 tokens, but can only afford 753. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 3072 tokens, but can only afford 418. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 65536 tokens, but can only afford 942. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 8192 tokens, but can only afford 523. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 65536 tokens, but can only afford 530. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 32768 tokens, but can only afford 477. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 65536 tokens, but can only afford 523. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}]}}, 'user_id': 'user_3GLaJI6mihRMFQtSad72HqAhW95'}: ['Traceback (most recent call last):
+Error code: 402 - {'error': {'message': 'This request requires more credits, or fewer max_tokens. You requested up to 65536 tokens, but can only afford 942. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account', 'code': 402, 'metadata': {'limit_source': 'openrouter_credits', 'remedy_hint': 'Add credits at https://openrouter.ai/settings/credits, or lower max_tokens / prompt size to fit your remaining balance.', 'provider_name': None, 'previous_errors': [{'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 16384 tokens, but can only afford 1177. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 65536 tokens, but can only afford 942. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 16384 tokens, but can only afford 753. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 3072 tokens, but can only afford 418. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 32768 tokens, but can only afford 477. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 65536 tokens, but can only afford 502. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 65536 tokens, but can only afford 523. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 8192 tokens, but can only afford 523. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 65536 tokens, but can only afford 530. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 2048 tokens, but can only afford 362. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}]}}, 'user_id': 'user_3GLaJI6mihRMFQtSad72HqAhW95'}: ['Traceback (most recent call last):
 ', '  File "/home/runner/work/enterprise-it-ai/enterprise-it-ai/sources/agents/architect-blueprint/block_phase.py", line 99, in generate_phase_contexts
     response = client.chat.completions.create(
                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -3028,7 +3037,7 @@ Error code: 402 - {'error': {'message': 'This request requires more credits, or 
                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 ', '  File "/opt/hostedtoolcache/Python/3.11.15/x64/lib/python3.11/site-packages/openai/_base_client.py", line 1148, in request
     raise self._make_status_error_from_response(err.response) from None
-', "openai.APIStatusError: Error code: 402 - {'error': {'message': 'This request requires more credits, or fewer max_tokens. You requested up to 2048 tokens, but can only afford 362. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account', 'code': 402, 'metadata': {'limit_source': 'openrouter_credits', 'remedy_hint': 'Add credits at https://openrouter.ai/settings/credits, or lower max_tokens / prompt size to fit your remaining balance.', 'provider_name': None, 'previous_errors': [{'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 16384 tokens, but can only afford 1177. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 65536 tokens, but can only afford 502. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 65536 tokens, but can only afford 942. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 6481 tokens, but can only afford 167. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 16384 tokens, but can only afford 753. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 3072 tokens, but can only afford 418. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 65536 tokens, but can only afford 942. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 8192 tokens, but can only afford 523. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 65536 tokens, but can only afford 530. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 32768 tokens, but can only afford 477. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 65536 tokens, but can only afford 523. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}]}}, 'user_id': 'user_3GLaJI6mihRMFQtSad72HqAhW95'}
+', "openai.APIStatusError: Error code: 402 - {'error': {'message': 'This request requires more credits, or fewer max_tokens. You requested up to 65536 tokens, but can only afford 942. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account', 'code': 402, 'metadata': {'limit_source': 'openrouter_credits', 'remedy_hint': 'Add credits at https://openrouter.ai/settings/credits, or lower max_tokens / prompt size to fit your remaining balance.', 'provider_name': None, 'previous_errors': [{'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 16384 tokens, but can only afford 1177. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 65536 tokens, but can only afford 942. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 16384 tokens, but can only afford 753. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 3072 tokens, but can only afford 418. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 32768 tokens, but can only afford 477. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 65536 tokens, but can only afford 502. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 65536 tokens, but can only afford 523. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 8192 tokens, but can only afford 523. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 65536 tokens, but can only afford 530. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 2048 tokens, but can only afford 362. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}]}}, 'user_id': 'user_3GLaJI6mihRMFQtSad72HqAhW95'}
 "]
 
 # AI Model: qwen/qwen-2.5-coder-32b-instruct - Phase 1 - Prompt:
@@ -3947,13 +3956,13 @@ Your output MUST follow this exact Markdown layout structure (translate all labe
 
 | [Translate "Item"] | [Translate "Details"] |
 | :--- | :--- |
-| **[Translate "Blueprint ID"]** | ARCH-20260807034424 |
+| **[Translate "Blueprint ID"]** | ARCH-20260807042343 |
 | **[Translate "Project Name"]** | membership-hub |
 | **[Translate "Phase"]** | 1 |
 | **[Translate "Phase Name"]** | <!--PHASE_NAME_START-->[Generate a standard, natural, human-readable descriptive title for this phase. You MUST write this as a normal human sentence or phrase using isolated words separated by real, standard whitespace characters. You are ABSOLUTELY AND CRITICALLY BANNED from combining words together, removing spaces, or utilizing programming styles like PascalCase, camelCase, or snake_case. It must read normally and smoothly just like a human description string. Fully translate and render this title into the target language requested by the parameters: 🇻🇳 Vietnamese. Example: "Core Infrastructure And Authentication Setup"]<!--PHASE_NAME_END--> |
 | **[Translate "Description"]** | <!--PHASE_DESC_START-->[Granular professional engineering summary description of the absolute operational scope of this specific phase, fully rendered in 🇻🇳 Vietnamese]<!--PHASE_DESC_END--> |
 | **[You MUST translate the literal token "Version" into 🇻🇳 Vietnamese]** | 1.0 (Baseline) |
-| **[You MUST translate the literal token "Date/Time" into 🇻🇳 Vietnamese]** | 2026/08/07 03:44:24 |
+| **[You MUST translate the literal token "Date/Time" into 🇻🇳 Vietnamese]** | 2026/08/07 04:23:43 |
 | **[You MUST translate the literal token "Author" into 🇻🇳 Vietnamese]** | Enterprise System Architect (SA Agent) |
 | **[You MUST translate the literal token "Approval" into 🇻🇳 Vietnamese]** | Pending Technical Governance Review |
 
@@ -4008,13 +4017,16 @@ You are a world-class Principal Solutions Architect. Your specific task is to re
 
 3. **MANDATORY INLINE TAG INJECTION RULE & HTML ANCHOR LOCKDOWN:** For every single Sub-Task generated under the daily logs, you MUST explicitly output a dedicated structural line item starting exactly with the translated string token for `* Traceability Tag Tokens:` followed by an immutable hidden HTML token container block. You MUST wrap the exact raw comma-separated tag IDs inside the hidden tag container string token layout exactly as: `<!--START_TAGS-->[REQ-XXX], [DAT-XXX]<!--END_TAGS-->`. You are STRICTLY BANNED from translating or altering any token values inside the HTML comment tags. Leaving a task block without this explicit HTML anchor layout is a fatal pipeline failure.
 
-4. **LONGITECTURAL DAY PARTITIONING & ANTI-PADDING GUARDRAIL (ACTUAL SYNOPSIS CEILING LAW):** 
-<RULE>
-- You MUST break down the operational calendar day-by-day using individual sequential integers starting strictly from DAY 1.
-- **CRITICAL ACTUAL CEILING CONSTRAINT**: You are ABSOLUTELY AND CRITICALLY BANNED from blindly generating days up to the generic `7` configuration parameter if the active phase's actual duration defined in Section 4 "HIGH-LEVEL MULTI-PHASE ARCHITECTURAL SYNOPSIS GRID" of the Global Context is shorter.
-- You MUST cross-reference the active `Phase 1` row inside the Section 4 Synopsis Table, extract the exact runtime duration from the "Day Range" column (e.g., if the table says "Day 1 - 2", the actual ceiling is strictly 2 days), and force-stop your sequential day generation precisely at that calculated local integer ceiling.
-- Generating a single day beyond the actual duration specified in the Global Context synopsis grid (such as generating Day 3 or Day 5 when the table restricts the phase to Day 1 - 2) constitutes a fatal structural contract violation and will break the backend workflow sequencer.
-</RULE>
+4. **LONGITECTURAL DAY PARTITIONING & ANTI-PADDING GUARDRAIL (ABSOLUTE LOCAL CHRONO RE-INDEX LAW):**
+   - You MUST break down the operational calendar day-by-day using individual sequential integers starting strictly from DAY 1 up to a MAXIMUM of DAY 7.
+   - **ABSOLUTE CHRONO RESET LAW**: You are COMPLETELY BANNED from continuing the sequential day index from any previous phase or global context log timelines. 
+   - The very first day section generated inside this active file MUST natively reset and force-freeze its counter starting exactly from numerical digit 1 (e.g., DAY 1 or NGÀY 1), regardless of the preceding historical context metrics. 
+   - Any model execution that outputs a continuing sequence (like generating "DAY 3" on Phase 2 because Phase 1 ended on Day 2) triggers an immediate pipeline crash.
+   - **STRICT PROGRESSION STOPPING CRITERION:** You MUST freeze the timeline and stop generating daily sections immediately on the exact calendar day where the technical objectives allocated for this phase are satisfied. You are STRICTLY BANNED from injecting dummy placeholder days, fake syncs, empty review blocks, or documentation padding just to expand the calendar. If the technical scope is natively complete on DAY 1, freeze the output file state and exit immediately. Do NOT generate empty or padded days.
+   - You are STRICTLY FORBIDDEN from bundling multiple days together (e.g., NO "DAY 1 - DAY 3"). Every single calendar day log must be explicitly isolated as its own standalone subsection header containing atomic steps for that unique 24-hour cycle.
+   - **CRITICAL ACTUAL CEILING CONSTRAINT**: You are ABSOLUTELY AND CRITICALLY BANNED from blindly generating days up to the generic `7` configuration parameter if the active phase's actual duration defined in Section 4 "HIGH-LEVEL MULTI-PHASE ARCHITECTURAL SYNOPSIS GRID" of the Global Context is shorter.
+   - You MUST cross-reference the active `Phase 1` row inside the Section 4 Synopsis Table, extract the exact runtime duration from the "Day Range" column (e.g., if the table says "Day 1 - 2", the actual ceiling is strictly 2 days), and force-stop your sequential day generation precisely at that calculated local integer ceiling.
+   - Generating a single day beyond the actual duration specified in the Global Context synopsis grid (such as generating Day 3 or Day 5 when the table restricts the phase to Day 1 - 2) constitutes a fatal structural contract violation and will break the backend workflow sequencer.
 
 5. **Language Compliance & Formatting Lockdown:** You MUST generate the entire report strictly in the language specified by the parameters: **🇻🇳 Vietnamese**.
 
@@ -4958,13 +4970,13 @@ Your output MUST follow this exact Markdown layout structure (translate all labe
 
 | [Translate "Item"] | [Translate "Details"] |
 | :--- | :--- |
-| **[Translate "Blueprint ID"]** | ARCH-20260807034424 |
+| **[Translate "Blueprint ID"]** | ARCH-20260807042343 |
 | **[Translate "Project Name"]** | membership-hub |
 | **[Translate "Phase"]** | 1 |
 | **[Translate "Phase Name"]** | <!--PHASE_NAME_START-->[Generate a standard, natural, human-readable descriptive title for this phase. You MUST write this as a normal human sentence or phrase using isolated words separated by real, standard whitespace characters. You are ABSOLUTELY AND CRITICALLY BANNED from combining words together, removing spaces, or utilizing programming styles like PascalCase, camelCase, or snake_case. It must read normally and smoothly just like a human description string. Fully translate and render this title into the target language requested by the parameters: 🇻🇳 Vietnamese. Example: "Core Infrastructure And Authentication Setup"]<!--PHASE_NAME_END--> |
 | **[Translate "Description"]** | <!--PHASE_DESC_START-->[Granular professional engineering summary description of the absolute operational scope of this specific phase, fully rendered in 🇻🇳 Vietnamese]<!--PHASE_DESC_END--> |
 | **[You MUST translate the literal token "Version" into 🇻🇳 Vietnamese]** | 1.0 (Baseline) |
-| **[You MUST translate the literal token "Date/Time" into 🇻🇳 Vietnamese]** | 2026/08/07 03:44:24 |
+| **[You MUST translate the literal token "Date/Time" into 🇻🇳 Vietnamese]** | 2026/08/07 04:23:43 |
 | **[You MUST translate the literal token "Author" into 🇻🇳 Vietnamese]** | Enterprise System Architect (SA Agent) |
 | **[You MUST translate the literal token "Approval" into 🇻🇳 Vietnamese]** | Pending Technical Governance Review |
 
@@ -5019,13 +5031,16 @@ You are a world-class Principal Solutions Architect. Your specific task is to re
 
 3. **MANDATORY INLINE TAG INJECTION RULE & HTML ANCHOR LOCKDOWN:** For every single Sub-Task generated under the daily logs, you MUST explicitly output a dedicated structural line item starting exactly with the translated string token for `* Traceability Tag Tokens:` followed by an immutable hidden HTML token container block. You MUST wrap the exact raw comma-separated tag IDs inside the hidden tag container string token layout exactly as: `<!--START_TAGS-->[REQ-XXX], [DAT-XXX]<!--END_TAGS-->`. You are STRICTLY BANNED from translating or altering any token values inside the HTML comment tags. Leaving a task block without this explicit HTML anchor layout is a fatal pipeline failure.
 
-4. **LONGITECTURAL DAY PARTITIONING & ANTI-PADDING GUARDRAIL (ACTUAL SYNOPSIS CEILING LAW):** 
-<RULE>
-- You MUST break down the operational calendar day-by-day using individual sequential integers starting strictly from DAY 1.
-- **CRITICAL ACTUAL CEILING CONSTRAINT**: You are ABSOLUTELY AND CRITICALLY BANNED from blindly generating days up to the generic `7` configuration parameter if the active phase's actual duration defined in Section 4 "HIGH-LEVEL MULTI-PHASE ARCHITECTURAL SYNOPSIS GRID" of the Global Context is shorter.
-- You MUST cross-reference the active `Phase 1` row inside the Section 4 Synopsis Table, extract the exact runtime duration from the "Day Range" column (e.g., if the table says "Day 1 - 2", the actual ceiling is strictly 2 days), and force-stop your sequential day generation precisely at that calculated local integer ceiling.
-- Generating a single day beyond the actual duration specified in the Global Context synopsis grid (such as generating Day 3 or Day 5 when the table restricts the phase to Day 1 - 2) constitutes a fatal structural contract violation and will break the backend workflow sequencer.
-</RULE>
+4. **LONGITECTURAL DAY PARTITIONING & ANTI-PADDING GUARDRAIL (ABSOLUTE LOCAL CHRONO RE-INDEX LAW):**
+   - You MUST break down the operational calendar day-by-day using individual sequential integers starting strictly from DAY 1 up to a MAXIMUM of DAY 7.
+   - **ABSOLUTE CHRONO RESET LAW**: You are COMPLETELY BANNED from continuing the sequential day index from any previous phase or global context log timelines. 
+   - The very first day section generated inside this active file MUST natively reset and force-freeze its counter starting exactly from numerical digit 1 (e.g., DAY 1 or NGÀY 1), regardless of the preceding historical context metrics. 
+   - Any model execution that outputs a continuing sequence (like generating "DAY 3" on Phase 2 because Phase 1 ended on Day 2) triggers an immediate pipeline crash.
+   - **STRICT PROGRESSION STOPPING CRITERION:** You MUST freeze the timeline and stop generating daily sections immediately on the exact calendar day where the technical objectives allocated for this phase are satisfied. You are STRICTLY BANNED from injecting dummy placeholder days, fake syncs, empty review blocks, or documentation padding just to expand the calendar. If the technical scope is natively complete on DAY 1, freeze the output file state and exit immediately. Do NOT generate empty or padded days.
+   - You are STRICTLY FORBIDDEN from bundling multiple days together (e.g., NO "DAY 1 - DAY 3"). Every single calendar day log must be explicitly isolated as its own standalone subsection header containing atomic steps for that unique 24-hour cycle.
+   - **CRITICAL ACTUAL CEILING CONSTRAINT**: You are ABSOLUTELY AND CRITICALLY BANNED from blindly generating days up to the generic `7` configuration parameter if the active phase's actual duration defined in Section 4 "HIGH-LEVEL MULTI-PHASE ARCHITECTURAL SYNOPSIS GRID" of the Global Context is shorter.
+   - You MUST cross-reference the active `Phase 1` row inside the Section 4 Synopsis Table, extract the exact runtime duration from the "Day Range" column (e.g., if the table says "Day 1 - 2", the actual ceiling is strictly 2 days), and force-stop your sequential day generation precisely at that calculated local integer ceiling.
+   - Generating a single day beyond the actual duration specified in the Global Context synopsis grid (such as generating Day 3 or Day 5 when the table restricts the phase to Day 1 - 2) constitutes a fatal structural contract violation and will break the backend workflow sequencer.
 
 5. **Language Compliance & Formatting Lockdown:** You MUST generate the entire report strictly in the language specified by the parameters: **🇻🇳 Vietnamese**.
 
@@ -5969,13 +5984,13 @@ Your output MUST follow this exact Markdown layout structure (translate all labe
 
 | [Translate "Item"] | [Translate "Details"] |
 | :--- | :--- |
-| **[Translate "Blueprint ID"]** | ARCH-20260807034424 |
+| **[Translate "Blueprint ID"]** | ARCH-20260807042343 |
 | **[Translate "Project Name"]** | membership-hub |
 | **[Translate "Phase"]** | 1 |
 | **[Translate "Phase Name"]** | <!--PHASE_NAME_START-->[Generate a standard, natural, human-readable descriptive title for this phase. You MUST write this as a normal human sentence or phrase using isolated words separated by real, standard whitespace characters. You are ABSOLUTELY AND CRITICALLY BANNED from combining words together, removing spaces, or utilizing programming styles like PascalCase, camelCase, or snake_case. It must read normally and smoothly just like a human description string. Fully translate and render this title into the target language requested by the parameters: 🇻🇳 Vietnamese. Example: "Core Infrastructure And Authentication Setup"]<!--PHASE_NAME_END--> |
 | **[Translate "Description"]** | <!--PHASE_DESC_START-->[Granular professional engineering summary description of the absolute operational scope of this specific phase, fully rendered in 🇻🇳 Vietnamese]<!--PHASE_DESC_END--> |
 | **[You MUST translate the literal token "Version" into 🇻🇳 Vietnamese]** | 1.0 (Baseline) |
-| **[You MUST translate the literal token "Date/Time" into 🇻🇳 Vietnamese]** | 2026/08/07 03:44:24 |
+| **[You MUST translate the literal token "Date/Time" into 🇻🇳 Vietnamese]** | 2026/08/07 04:23:43 |
 | **[You MUST translate the literal token "Author" into 🇻🇳 Vietnamese]** | Enterprise System Architect (SA Agent) |
 | **[You MUST translate the literal token "Approval" into 🇻🇳 Vietnamese]** | Pending Technical Governance Review |
 
@@ -6030,13 +6045,16 @@ You are a world-class Principal Solutions Architect. Your specific task is to re
 
 3. **MANDATORY INLINE TAG INJECTION RULE & HTML ANCHOR LOCKDOWN:** For every single Sub-Task generated under the daily logs, you MUST explicitly output a dedicated structural line item starting exactly with the translated string token for `* Traceability Tag Tokens:` followed by an immutable hidden HTML token container block. You MUST wrap the exact raw comma-separated tag IDs inside the hidden tag container string token layout exactly as: `<!--START_TAGS-->[REQ-XXX], [DAT-XXX]<!--END_TAGS-->`. You are STRICTLY BANNED from translating or altering any token values inside the HTML comment tags. Leaving a task block without this explicit HTML anchor layout is a fatal pipeline failure.
 
-4. **LONGITECTURAL DAY PARTITIONING & ANTI-PADDING GUARDRAIL (ACTUAL SYNOPSIS CEILING LAW):** 
-<RULE>
-- You MUST break down the operational calendar day-by-day using individual sequential integers starting strictly from DAY 1.
-- **CRITICAL ACTUAL CEILING CONSTRAINT**: You are ABSOLUTELY AND CRITICALLY BANNED from blindly generating days up to the generic `7` configuration parameter if the active phase's actual duration defined in Section 4 "HIGH-LEVEL MULTI-PHASE ARCHITECTURAL SYNOPSIS GRID" of the Global Context is shorter.
-- You MUST cross-reference the active `Phase 1` row inside the Section 4 Synopsis Table, extract the exact runtime duration from the "Day Range" column (e.g., if the table says "Day 1 - 2", the actual ceiling is strictly 2 days), and force-stop your sequential day generation precisely at that calculated local integer ceiling.
-- Generating a single day beyond the actual duration specified in the Global Context synopsis grid (such as generating Day 3 or Day 5 when the table restricts the phase to Day 1 - 2) constitutes a fatal structural contract violation and will break the backend workflow sequencer.
-</RULE>
+4. **LONGITECTURAL DAY PARTITIONING & ANTI-PADDING GUARDRAIL (ABSOLUTE LOCAL CHRONO RE-INDEX LAW):**
+   - You MUST break down the operational calendar day-by-day using individual sequential integers starting strictly from DAY 1 up to a MAXIMUM of DAY 7.
+   - **ABSOLUTE CHRONO RESET LAW**: You are COMPLETELY BANNED from continuing the sequential day index from any previous phase or global context log timelines. 
+   - The very first day section generated inside this active file MUST natively reset and force-freeze its counter starting exactly from numerical digit 1 (e.g., DAY 1 or NGÀY 1), regardless of the preceding historical context metrics. 
+   - Any model execution that outputs a continuing sequence (like generating "DAY 3" on Phase 2 because Phase 1 ended on Day 2) triggers an immediate pipeline crash.
+   - **STRICT PROGRESSION STOPPING CRITERION:** You MUST freeze the timeline and stop generating daily sections immediately on the exact calendar day where the technical objectives allocated for this phase are satisfied. You are STRICTLY BANNED from injecting dummy placeholder days, fake syncs, empty review blocks, or documentation padding just to expand the calendar. If the technical scope is natively complete on DAY 1, freeze the output file state and exit immediately. Do NOT generate empty or padded days.
+   - You are STRICTLY FORBIDDEN from bundling multiple days together (e.g., NO "DAY 1 - DAY 3"). Every single calendar day log must be explicitly isolated as its own standalone subsection header containing atomic steps for that unique 24-hour cycle.
+   - **CRITICAL ACTUAL CEILING CONSTRAINT**: You are ABSOLUTELY AND CRITICALLY BANNED from blindly generating days up to the generic `7` configuration parameter if the active phase's actual duration defined in Section 4 "HIGH-LEVEL MULTI-PHASE ARCHITECTURAL SYNOPSIS GRID" of the Global Context is shorter.
+   - You MUST cross-reference the active `Phase 1` row inside the Section 4 Synopsis Table, extract the exact runtime duration from the "Day Range" column (e.g., if the table says "Day 1 - 2", the actual ceiling is strictly 2 days), and force-stop your sequential day generation precisely at that calculated local integer ceiling.
+   - Generating a single day beyond the actual duration specified in the Global Context synopsis grid (such as generating Day 3 or Day 5 when the table restricts the phase to Day 1 - 2) constitutes a fatal structural contract violation and will break the backend workflow sequencer.
 
 5. **Language Compliance & Formatting Lockdown:** You MUST generate the entire report strictly in the language specified by the parameters: **🇻🇳 Vietnamese**.
 
@@ -6980,13 +6998,13 @@ Your output MUST follow this exact Markdown layout structure (translate all labe
 
 | [Translate "Item"] | [Translate "Details"] |
 | :--- | :--- |
-| **[Translate "Blueprint ID"]** | ARCH-20260807034424 |
+| **[Translate "Blueprint ID"]** | ARCH-20260807042343 |
 | **[Translate "Project Name"]** | membership-hub |
 | **[Translate "Phase"]** | 1 |
 | **[Translate "Phase Name"]** | <!--PHASE_NAME_START-->[Generate a standard, natural, human-readable descriptive title for this phase. You MUST write this as a normal human sentence or phrase using isolated words separated by real, standard whitespace characters. You are ABSOLUTELY AND CRITICALLY BANNED from combining words together, removing spaces, or utilizing programming styles like PascalCase, camelCase, or snake_case. It must read normally and smoothly just like a human description string. Fully translate and render this title into the target language requested by the parameters: 🇻🇳 Vietnamese. Example: "Core Infrastructure And Authentication Setup"]<!--PHASE_NAME_END--> |
 | **[Translate "Description"]** | <!--PHASE_DESC_START-->[Granular professional engineering summary description of the absolute operational scope of this specific phase, fully rendered in 🇻🇳 Vietnamese]<!--PHASE_DESC_END--> |
 | **[You MUST translate the literal token "Version" into 🇻🇳 Vietnamese]** | 1.0 (Baseline) |
-| **[You MUST translate the literal token "Date/Time" into 🇻🇳 Vietnamese]** | 2026/08/07 03:44:24 |
+| **[You MUST translate the literal token "Date/Time" into 🇻🇳 Vietnamese]** | 2026/08/07 04:23:43 |
 | **[You MUST translate the literal token "Author" into 🇻🇳 Vietnamese]** | Enterprise System Architect (SA Agent) |
 | **[You MUST translate the literal token "Approval" into 🇻🇳 Vietnamese]** | Pending Technical Governance Review |
 
@@ -7041,13 +7059,16 @@ You are a world-class Principal Solutions Architect. Your specific task is to re
 
 3. **MANDATORY INLINE TAG INJECTION RULE & HTML ANCHOR LOCKDOWN:** For every single Sub-Task generated under the daily logs, you MUST explicitly output a dedicated structural line item starting exactly with the translated string token for `* Traceability Tag Tokens:` followed by an immutable hidden HTML token container block. You MUST wrap the exact raw comma-separated tag IDs inside the hidden tag container string token layout exactly as: `<!--START_TAGS-->[REQ-XXX], [DAT-XXX]<!--END_TAGS-->`. You are STRICTLY BANNED from translating or altering any token values inside the HTML comment tags. Leaving a task block without this explicit HTML anchor layout is a fatal pipeline failure.
 
-4. **LONGITECTURAL DAY PARTITIONING & ANTI-PADDING GUARDRAIL (ACTUAL SYNOPSIS CEILING LAW):** 
-<RULE>
-- You MUST break down the operational calendar day-by-day using individual sequential integers starting strictly from DAY 1.
-- **CRITICAL ACTUAL CEILING CONSTRAINT**: You are ABSOLUTELY AND CRITICALLY BANNED from blindly generating days up to the generic `7` configuration parameter if the active phase's actual duration defined in Section 4 "HIGH-LEVEL MULTI-PHASE ARCHITECTURAL SYNOPSIS GRID" of the Global Context is shorter.
-- You MUST cross-reference the active `Phase 1` row inside the Section 4 Synopsis Table, extract the exact runtime duration from the "Day Range" column (e.g., if the table says "Day 1 - 2", the actual ceiling is strictly 2 days), and force-stop your sequential day generation precisely at that calculated local integer ceiling.
-- Generating a single day beyond the actual duration specified in the Global Context synopsis grid (such as generating Day 3 or Day 5 when the table restricts the phase to Day 1 - 2) constitutes a fatal structural contract violation and will break the backend workflow sequencer.
-</RULE>
+4. **LONGITECTURAL DAY PARTITIONING & ANTI-PADDING GUARDRAIL (ABSOLUTE LOCAL CHRONO RE-INDEX LAW):**
+   - You MUST break down the operational calendar day-by-day using individual sequential integers starting strictly from DAY 1 up to a MAXIMUM of DAY 7.
+   - **ABSOLUTE CHRONO RESET LAW**: You are COMPLETELY BANNED from continuing the sequential day index from any previous phase or global context log timelines. 
+   - The very first day section generated inside this active file MUST natively reset and force-freeze its counter starting exactly from numerical digit 1 (e.g., DAY 1 or NGÀY 1), regardless of the preceding historical context metrics. 
+   - Any model execution that outputs a continuing sequence (like generating "DAY 3" on Phase 2 because Phase 1 ended on Day 2) triggers an immediate pipeline crash.
+   - **STRICT PROGRESSION STOPPING CRITERION:** You MUST freeze the timeline and stop generating daily sections immediately on the exact calendar day where the technical objectives allocated for this phase are satisfied. You are STRICTLY BANNED from injecting dummy placeholder days, fake syncs, empty review blocks, or documentation padding just to expand the calendar. If the technical scope is natively complete on DAY 1, freeze the output file state and exit immediately. Do NOT generate empty or padded days.
+   - You are STRICTLY FORBIDDEN from bundling multiple days together (e.g., NO "DAY 1 - DAY 3"). Every single calendar day log must be explicitly isolated as its own standalone subsection header containing atomic steps for that unique 24-hour cycle.
+   - **CRITICAL ACTUAL CEILING CONSTRAINT**: You are ABSOLUTELY AND CRITICALLY BANNED from blindly generating days up to the generic `7` configuration parameter if the active phase's actual duration defined in Section 4 "HIGH-LEVEL MULTI-PHASE ARCHITECTURAL SYNOPSIS GRID" of the Global Context is shorter.
+   - You MUST cross-reference the active `Phase 1` row inside the Section 4 Synopsis Table, extract the exact runtime duration from the "Day Range" column (e.g., if the table says "Day 1 - 2", the actual ceiling is strictly 2 days), and force-stop your sequential day generation precisely at that calculated local integer ceiling.
+   - Generating a single day beyond the actual duration specified in the Global Context synopsis grid (such as generating Day 3 or Day 5 when the table restricts the phase to Day 1 - 2) constitutes a fatal structural contract violation and will break the backend workflow sequencer.
 
 5. **Language Compliance & Formatting Lockdown:** You MUST generate the entire report strictly in the language specified by the parameters: **🇻🇳 Vietnamese**.
 
@@ -7057,7 +7078,7 @@ You are a world-class Principal Solutions Architect. Your specific task is to re
 
 # Raw Response / Exception:
 
-Error code: 402 - {'error': {'message': 'This request requires more credits, or fewer max_tokens. You requested up to 65536 tokens, but can only afford 342. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account', 'code': 402, 'metadata': {'limit_source': 'openrouter_credits', 'remedy_hint': 'Add credits at https://openrouter.ai/settings/credits, or lower max_tokens / prompt size to fit your remaining balance.', 'provider_name': None, 'previous_errors': [{'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 65536 tokens, but can only afford 314. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 32768 tokens, but can only afford 314. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 65536 tokens, but can only afford 314. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 65536 tokens, but can only afford 314. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 65536 tokens, but can only afford 314. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 65536 tokens, but can only afford 392. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 65536 tokens, but can only afford 314. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 65536 tokens, but can only afford 314. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}]}}, 'user_id': 'user_3GLaJI6mihRMFQtSad72HqAhW95'}: ['Traceback (most recent call last):
+Error code: 402 - {'error': {'message': 'This request requires more credits, or fewer max_tokens. You requested up to 65536 tokens, but can only afford 314. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account', 'code': 402, 'metadata': {'limit_source': 'openrouter_credits', 'remedy_hint': 'Add credits at https://openrouter.ai/settings/credits, or lower max_tokens / prompt size to fit your remaining balance.', 'provider_name': None, 'previous_errors': [{'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 65536 tokens, but can only afford 314. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 65536 tokens, but can only afford 314. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 65536 tokens, but can only afford 314. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 65536 tokens, but can only afford 314. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 65536 tokens, but can only afford 392. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 65536 tokens, but can only afford 314. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 32768 tokens, but can only afford 314. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 65536 tokens, but can only afford 342. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}]}}, 'user_id': 'user_3GLaJI6mihRMFQtSad72HqAhW95'}: ['Traceback (most recent call last):
 ', '  File "/home/runner/work/enterprise-it-ai/enterprise-it-ai/sources/agents/architect-blueprint/block_phase.py", line 99, in generate_phase_contexts
     response = client.chat.completions.create(
                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -7072,7 +7093,7 @@ Error code: 402 - {'error': {'message': 'This request requires more credits, or 
                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 ', '  File "/opt/hostedtoolcache/Python/3.11.15/x64/lib/python3.11/site-packages/openai/_base_client.py", line 1148, in request
     raise self._make_status_error_from_response(err.response) from None
-', "openai.APIStatusError: Error code: 402 - {'error': {'message': 'This request requires more credits, or fewer max_tokens. You requested up to 65536 tokens, but can only afford 342. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account', 'code': 402, 'metadata': {'limit_source': 'openrouter_credits', 'remedy_hint': 'Add credits at https://openrouter.ai/settings/credits, or lower max_tokens / prompt size to fit your remaining balance.', 'provider_name': None, 'previous_errors': [{'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 65536 tokens, but can only afford 314. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 32768 tokens, but can only afford 314. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 65536 tokens, but can only afford 314. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 65536 tokens, but can only afford 314. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 65536 tokens, but can only afford 314. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 65536 tokens, but can only afford 392. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 65536 tokens, but can only afford 314. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 65536 tokens, but can only afford 314. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}]}}, 'user_id': 'user_3GLaJI6mihRMFQtSad72HqAhW95'}
+', "openai.APIStatusError: Error code: 402 - {'error': {'message': 'This request requires more credits, or fewer max_tokens. You requested up to 65536 tokens, but can only afford 314. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account', 'code': 402, 'metadata': {'limit_source': 'openrouter_credits', 'remedy_hint': 'Add credits at https://openrouter.ai/settings/credits, or lower max_tokens / prompt size to fit your remaining balance.', 'provider_name': None, 'previous_errors': [{'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 65536 tokens, but can only afford 314. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 65536 tokens, but can only afford 314. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 65536 tokens, but can only afford 314. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 65536 tokens, but can only afford 314. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 65536 tokens, but can only afford 392. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 65536 tokens, but can only afford 314. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 32768 tokens, but can only afford 314. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 65536 tokens, but can only afford 342. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}]}}, 'user_id': 'user_3GLaJI6mihRMFQtSad72HqAhW95'}
 "]
 
 # AI Model: openai/gpt-5.3-codex - Phase 1 - Prompt:
@@ -7991,13 +8012,13 @@ Your output MUST follow this exact Markdown layout structure (translate all labe
 
 | [Translate "Item"] | [Translate "Details"] |
 | :--- | :--- |
-| **[Translate "Blueprint ID"]** | ARCH-20260807034424 |
+| **[Translate "Blueprint ID"]** | ARCH-20260807042343 |
 | **[Translate "Project Name"]** | membership-hub |
 | **[Translate "Phase"]** | 1 |
 | **[Translate "Phase Name"]** | <!--PHASE_NAME_START-->[Generate a standard, natural, human-readable descriptive title for this phase. You MUST write this as a normal human sentence or phrase using isolated words separated by real, standard whitespace characters. You are ABSOLUTELY AND CRITICALLY BANNED from combining words together, removing spaces, or utilizing programming styles like PascalCase, camelCase, or snake_case. It must read normally and smoothly just like a human description string. Fully translate and render this title into the target language requested by the parameters: 🇻🇳 Vietnamese. Example: "Core Infrastructure And Authentication Setup"]<!--PHASE_NAME_END--> |
 | **[Translate "Description"]** | <!--PHASE_DESC_START-->[Granular professional engineering summary description of the absolute operational scope of this specific phase, fully rendered in 🇻🇳 Vietnamese]<!--PHASE_DESC_END--> |
 | **[You MUST translate the literal token "Version" into 🇻🇳 Vietnamese]** | 1.0 (Baseline) |
-| **[You MUST translate the literal token "Date/Time" into 🇻🇳 Vietnamese]** | 2026/08/07 03:44:24 |
+| **[You MUST translate the literal token "Date/Time" into 🇻🇳 Vietnamese]** | 2026/08/07 04:23:43 |
 | **[You MUST translate the literal token "Author" into 🇻🇳 Vietnamese]** | Enterprise System Architect (SA Agent) |
 | **[You MUST translate the literal token "Approval" into 🇻🇳 Vietnamese]** | Pending Technical Governance Review |
 
@@ -8052,13 +8073,16 @@ You are a world-class Principal Solutions Architect. Your specific task is to re
 
 3. **MANDATORY INLINE TAG INJECTION RULE & HTML ANCHOR LOCKDOWN:** For every single Sub-Task generated under the daily logs, you MUST explicitly output a dedicated structural line item starting exactly with the translated string token for `* Traceability Tag Tokens:` followed by an immutable hidden HTML token container block. You MUST wrap the exact raw comma-separated tag IDs inside the hidden tag container string token layout exactly as: `<!--START_TAGS-->[REQ-XXX], [DAT-XXX]<!--END_TAGS-->`. You are STRICTLY BANNED from translating or altering any token values inside the HTML comment tags. Leaving a task block without this explicit HTML anchor layout is a fatal pipeline failure.
 
-4. **LONGITECTURAL DAY PARTITIONING & ANTI-PADDING GUARDRAIL (ACTUAL SYNOPSIS CEILING LAW):** 
-<RULE>
-- You MUST break down the operational calendar day-by-day using individual sequential integers starting strictly from DAY 1.
-- **CRITICAL ACTUAL CEILING CONSTRAINT**: You are ABSOLUTELY AND CRITICALLY BANNED from blindly generating days up to the generic `7` configuration parameter if the active phase's actual duration defined in Section 4 "HIGH-LEVEL MULTI-PHASE ARCHITECTURAL SYNOPSIS GRID" of the Global Context is shorter.
-- You MUST cross-reference the active `Phase 1` row inside the Section 4 Synopsis Table, extract the exact runtime duration from the "Day Range" column (e.g., if the table says "Day 1 - 2", the actual ceiling is strictly 2 days), and force-stop your sequential day generation precisely at that calculated local integer ceiling.
-- Generating a single day beyond the actual duration specified in the Global Context synopsis grid (such as generating Day 3 or Day 5 when the table restricts the phase to Day 1 - 2) constitutes a fatal structural contract violation and will break the backend workflow sequencer.
-</RULE>
+4. **LONGITECTURAL DAY PARTITIONING & ANTI-PADDING GUARDRAIL (ABSOLUTE LOCAL CHRONO RE-INDEX LAW):**
+   - You MUST break down the operational calendar day-by-day using individual sequential integers starting strictly from DAY 1 up to a MAXIMUM of DAY 7.
+   - **ABSOLUTE CHRONO RESET LAW**: You are COMPLETELY BANNED from continuing the sequential day index from any previous phase or global context log timelines. 
+   - The very first day section generated inside this active file MUST natively reset and force-freeze its counter starting exactly from numerical digit 1 (e.g., DAY 1 or NGÀY 1), regardless of the preceding historical context metrics. 
+   - Any model execution that outputs a continuing sequence (like generating "DAY 3" on Phase 2 because Phase 1 ended on Day 2) triggers an immediate pipeline crash.
+   - **STRICT PROGRESSION STOPPING CRITERION:** You MUST freeze the timeline and stop generating daily sections immediately on the exact calendar day where the technical objectives allocated for this phase are satisfied. You are STRICTLY BANNED from injecting dummy placeholder days, fake syncs, empty review blocks, or documentation padding just to expand the calendar. If the technical scope is natively complete on DAY 1, freeze the output file state and exit immediately. Do NOT generate empty or padded days.
+   - You are STRICTLY FORBIDDEN from bundling multiple days together (e.g., NO "DAY 1 - DAY 3"). Every single calendar day log must be explicitly isolated as its own standalone subsection header containing atomic steps for that unique 24-hour cycle.
+   - **CRITICAL ACTUAL CEILING CONSTRAINT**: You are ABSOLUTELY AND CRITICALLY BANNED from blindly generating days up to the generic `7` configuration parameter if the active phase's actual duration defined in Section 4 "HIGH-LEVEL MULTI-PHASE ARCHITECTURAL SYNOPSIS GRID" of the Global Context is shorter.
+   - You MUST cross-reference the active `Phase 1` row inside the Section 4 Synopsis Table, extract the exact runtime duration from the "Day Range" column (e.g., if the table says "Day 1 - 2", the actual ceiling is strictly 2 days), and force-stop your sequential day generation precisely at that calculated local integer ceiling.
+   - Generating a single day beyond the actual duration specified in the Global Context synopsis grid (such as generating Day 3 or Day 5 when the table restricts the phase to Day 1 - 2) constitutes a fatal structural contract violation and will break the backend workflow sequencer.
 
 5. **Language Compliance & Formatting Lockdown:** You MUST generate the entire report strictly in the language specified by the parameters: **🇻🇳 Vietnamese**.
 
@@ -9002,13 +9026,13 @@ Your output MUST follow this exact Markdown layout structure (translate all labe
 
 | [Translate "Item"] | [Translate "Details"] |
 | :--- | :--- |
-| **[Translate "Blueprint ID"]** | ARCH-20260807034424 |
+| **[Translate "Blueprint ID"]** | ARCH-20260807042343 |
 | **[Translate "Project Name"]** | membership-hub |
 | **[Translate "Phase"]** | 1 |
 | **[Translate "Phase Name"]** | <!--PHASE_NAME_START-->[Generate a standard, natural, human-readable descriptive title for this phase. You MUST write this as a normal human sentence or phrase using isolated words separated by real, standard whitespace characters. You are ABSOLUTELY AND CRITICALLY BANNED from combining words together, removing spaces, or utilizing programming styles like PascalCase, camelCase, or snake_case. It must read normally and smoothly just like a human description string. Fully translate and render this title into the target language requested by the parameters: 🇻🇳 Vietnamese. Example: "Core Infrastructure And Authentication Setup"]<!--PHASE_NAME_END--> |
 | **[Translate "Description"]** | <!--PHASE_DESC_START-->[Granular professional engineering summary description of the absolute operational scope of this specific phase, fully rendered in 🇻🇳 Vietnamese]<!--PHASE_DESC_END--> |
 | **[You MUST translate the literal token "Version" into 🇻🇳 Vietnamese]** | 1.0 (Baseline) |
-| **[You MUST translate the literal token "Date/Time" into 🇻🇳 Vietnamese]** | 2026/08/07 03:44:24 |
+| **[You MUST translate the literal token "Date/Time" into 🇻🇳 Vietnamese]** | 2026/08/07 04:23:43 |
 | **[You MUST translate the literal token "Author" into 🇻🇳 Vietnamese]** | Enterprise System Architect (SA Agent) |
 | **[You MUST translate the literal token "Approval" into 🇻🇳 Vietnamese]** | Pending Technical Governance Review |
 
@@ -9063,13 +9087,16 @@ You are a world-class Principal Solutions Architect. Your specific task is to re
 
 3. **MANDATORY INLINE TAG INJECTION RULE & HTML ANCHOR LOCKDOWN:** For every single Sub-Task generated under the daily logs, you MUST explicitly output a dedicated structural line item starting exactly with the translated string token for `* Traceability Tag Tokens:` followed by an immutable hidden HTML token container block. You MUST wrap the exact raw comma-separated tag IDs inside the hidden tag container string token layout exactly as: `<!--START_TAGS-->[REQ-XXX], [DAT-XXX]<!--END_TAGS-->`. You are STRICTLY BANNED from translating or altering any token values inside the HTML comment tags. Leaving a task block without this explicit HTML anchor layout is a fatal pipeline failure.
 
-4. **LONGITECTURAL DAY PARTITIONING & ANTI-PADDING GUARDRAIL (ACTUAL SYNOPSIS CEILING LAW):** 
-<RULE>
-- You MUST break down the operational calendar day-by-day using individual sequential integers starting strictly from DAY 1.
-- **CRITICAL ACTUAL CEILING CONSTRAINT**: You are ABSOLUTELY AND CRITICALLY BANNED from blindly generating days up to the generic `7` configuration parameter if the active phase's actual duration defined in Section 4 "HIGH-LEVEL MULTI-PHASE ARCHITECTURAL SYNOPSIS GRID" of the Global Context is shorter.
-- You MUST cross-reference the active `Phase 1` row inside the Section 4 Synopsis Table, extract the exact runtime duration from the "Day Range" column (e.g., if the table says "Day 1 - 2", the actual ceiling is strictly 2 days), and force-stop your sequential day generation precisely at that calculated local integer ceiling.
-- Generating a single day beyond the actual duration specified in the Global Context synopsis grid (such as generating Day 3 or Day 5 when the table restricts the phase to Day 1 - 2) constitutes a fatal structural contract violation and will break the backend workflow sequencer.
-</RULE>
+4. **LONGITECTURAL DAY PARTITIONING & ANTI-PADDING GUARDRAIL (ABSOLUTE LOCAL CHRONO RE-INDEX LAW):**
+   - You MUST break down the operational calendar day-by-day using individual sequential integers starting strictly from DAY 1 up to a MAXIMUM of DAY 7.
+   - **ABSOLUTE CHRONO RESET LAW**: You are COMPLETELY BANNED from continuing the sequential day index from any previous phase or global context log timelines. 
+   - The very first day section generated inside this active file MUST natively reset and force-freeze its counter starting exactly from numerical digit 1 (e.g., DAY 1 or NGÀY 1), regardless of the preceding historical context metrics. 
+   - Any model execution that outputs a continuing sequence (like generating "DAY 3" on Phase 2 because Phase 1 ended on Day 2) triggers an immediate pipeline crash.
+   - **STRICT PROGRESSION STOPPING CRITERION:** You MUST freeze the timeline and stop generating daily sections immediately on the exact calendar day where the technical objectives allocated for this phase are satisfied. You are STRICTLY BANNED from injecting dummy placeholder days, fake syncs, empty review blocks, or documentation padding just to expand the calendar. If the technical scope is natively complete on DAY 1, freeze the output file state and exit immediately. Do NOT generate empty or padded days.
+   - You are STRICTLY FORBIDDEN from bundling multiple days together (e.g., NO "DAY 1 - DAY 3"). Every single calendar day log must be explicitly isolated as its own standalone subsection header containing atomic steps for that unique 24-hour cycle.
+   - **CRITICAL ACTUAL CEILING CONSTRAINT**: You are ABSOLUTELY AND CRITICALLY BANNED from blindly generating days up to the generic `7` configuration parameter if the active phase's actual duration defined in Section 4 "HIGH-LEVEL MULTI-PHASE ARCHITECTURAL SYNOPSIS GRID" of the Global Context is shorter.
+   - You MUST cross-reference the active `Phase 1` row inside the Section 4 Synopsis Table, extract the exact runtime duration from the "Day Range" column (e.g., if the table says "Day 1 - 2", the actual ceiling is strictly 2 days), and force-stop your sequential day generation precisely at that calculated local integer ceiling.
+   - Generating a single day beyond the actual duration specified in the Global Context synopsis grid (such as generating Day 3 or Day 5 when the table restricts the phase to Day 1 - 2) constitutes a fatal structural contract violation and will break the backend workflow sequencer.
 
 5. **Language Compliance & Formatting Lockdown:** You MUST generate the entire report strictly in the language specified by the parameters: **🇻🇳 Vietnamese**.
 
@@ -10007,13 +10034,13 @@ Your output MUST follow this exact Markdown layout structure (translate all labe
 
 | [Translate "Item"] | [Translate "Details"] |
 | :--- | :--- |
-| **[Translate "Blueprint ID"]** | ARCH-20260807034424 |
+| **[Translate "Blueprint ID"]** | ARCH-20260807042343 |
 | **[Translate "Project Name"]** | membership-hub |
 | **[Translate "Phase"]** | 1 |
 | **[Translate "Phase Name"]** | <!--PHASE_NAME_START-->[Generate a standard, natural, human-readable descriptive title for this phase. You MUST write this as a normal human sentence or phrase using isolated words separated by real, standard whitespace characters. You are ABSOLUTELY AND CRITICALLY BANNED from combining words together, removing spaces, or utilizing programming styles like PascalCase, camelCase, or snake_case. It must read normally and smoothly just like a human description string. Fully translate and render this title into the target language requested by the parameters: 🇻🇳 Vietnamese. Example: "Core Infrastructure And Authentication Setup"]<!--PHASE_NAME_END--> |
 | **[Translate "Description"]** | <!--PHASE_DESC_START-->[Granular professional engineering summary description of the absolute operational scope of this specific phase, fully rendered in 🇻🇳 Vietnamese]<!--PHASE_DESC_END--> |
 | **[You MUST translate the literal token "Version" into 🇻🇳 Vietnamese]** | 1.0 (Baseline) |
-| **[You MUST translate the literal token "Date/Time" into 🇻🇳 Vietnamese]** | 2026/08/07 03:44:24 |
+| **[You MUST translate the literal token "Date/Time" into 🇻🇳 Vietnamese]** | 2026/08/07 04:23:43 |
 | **[You MUST translate the literal token "Author" into 🇻🇳 Vietnamese]** | Enterprise System Architect (SA Agent) |
 | **[You MUST translate the literal token "Approval" into 🇻🇳 Vietnamese]** | Pending Technical Governance Review |
 
@@ -10068,13 +10095,16 @@ You are a world-class Principal Solutions Architect. Your specific task is to re
 
 3. **MANDATORY INLINE TAG INJECTION RULE & HTML ANCHOR LOCKDOWN:** For every single Sub-Task generated under the daily logs, you MUST explicitly output a dedicated structural line item starting exactly with the translated string token for `* Traceability Tag Tokens:` followed by an immutable hidden HTML token container block. You MUST wrap the exact raw comma-separated tag IDs inside the hidden tag container string token layout exactly as: `<!--START_TAGS-->[REQ-XXX], [DAT-XXX]<!--END_TAGS-->`. You are STRICTLY BANNED from translating or altering any token values inside the HTML comment tags. Leaving a task block without this explicit HTML anchor layout is a fatal pipeline failure.
 
-4. **LONGITECTURAL DAY PARTITIONING & ANTI-PADDING GUARDRAIL (ACTUAL SYNOPSIS CEILING LAW):** 
-<RULE>
-- You MUST break down the operational calendar day-by-day using individual sequential integers starting strictly from DAY 1.
-- **CRITICAL ACTUAL CEILING CONSTRAINT**: You are ABSOLUTELY AND CRITICALLY BANNED from blindly generating days up to the generic `7` configuration parameter if the active phase's actual duration defined in Section 4 "HIGH-LEVEL MULTI-PHASE ARCHITECTURAL SYNOPSIS GRID" of the Global Context is shorter.
-- You MUST cross-reference the active `Phase 1` row inside the Section 4 Synopsis Table, extract the exact runtime duration from the "Day Range" column (e.g., if the table says "Day 1 - 2", the actual ceiling is strictly 2 days), and force-stop your sequential day generation precisely at that calculated local integer ceiling.
-- Generating a single day beyond the actual duration specified in the Global Context synopsis grid (such as generating Day 3 or Day 5 when the table restricts the phase to Day 1 - 2) constitutes a fatal structural contract violation and will break the backend workflow sequencer.
-</RULE>
+4. **LONGITECTURAL DAY PARTITIONING & ANTI-PADDING GUARDRAIL (ABSOLUTE LOCAL CHRONO RE-INDEX LAW):**
+   - You MUST break down the operational calendar day-by-day using individual sequential integers starting strictly from DAY 1 up to a MAXIMUM of DAY 7.
+   - **ABSOLUTE CHRONO RESET LAW**: You are COMPLETELY BANNED from continuing the sequential day index from any previous phase or global context log timelines. 
+   - The very first day section generated inside this active file MUST natively reset and force-freeze its counter starting exactly from numerical digit 1 (e.g., DAY 1 or NGÀY 1), regardless of the preceding historical context metrics. 
+   - Any model execution that outputs a continuing sequence (like generating "DAY 3" on Phase 2 because Phase 1 ended on Day 2) triggers an immediate pipeline crash.
+   - **STRICT PROGRESSION STOPPING CRITERION:** You MUST freeze the timeline and stop generating daily sections immediately on the exact calendar day where the technical objectives allocated for this phase are satisfied. You are STRICTLY BANNED from injecting dummy placeholder days, fake syncs, empty review blocks, or documentation padding just to expand the calendar. If the technical scope is natively complete on DAY 1, freeze the output file state and exit immediately. Do NOT generate empty or padded days.
+   - You are STRICTLY FORBIDDEN from bundling multiple days together (e.g., NO "DAY 1 - DAY 3"). Every single calendar day log must be explicitly isolated as its own standalone subsection header containing atomic steps for that unique 24-hour cycle.
+   - **CRITICAL ACTUAL CEILING CONSTRAINT**: You are ABSOLUTELY AND CRITICALLY BANNED from blindly generating days up to the generic `7` configuration parameter if the active phase's actual duration defined in Section 4 "HIGH-LEVEL MULTI-PHASE ARCHITECTURAL SYNOPSIS GRID" of the Global Context is shorter.
+   - You MUST cross-reference the active `Phase 1` row inside the Section 4 Synopsis Table, extract the exact runtime duration from the "Day Range" column (e.g., if the table says "Day 1 - 2", the actual ceiling is strictly 2 days), and force-stop your sequential day generation precisely at that calculated local integer ceiling.
+   - Generating a single day beyond the actual duration specified in the Global Context synopsis grid (such as generating Day 3 or Day 5 when the table restricts the phase to Day 1 - 2) constitutes a fatal structural contract violation and will break the backend workflow sequencer.
 
 5. **Language Compliance & Formatting Lockdown:** You MUST generate the entire report strictly in the language specified by the parameters: **🇻🇳 Vietnamese**.
 
@@ -10084,7 +10114,7 @@ You are a world-class Principal Solutions Architect. Your specific task is to re
 
 # Raw Response / Exception:
 
-Error code: 402 - {'error': {'message': 'This request requires more credits, or fewer max_tokens. You requested up to 65536 tokens, but can only afford 251. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account', 'code': 402, 'metadata': {'limit_source': 'openrouter_credits', 'remedy_hint': 'Add credits at https://openrouter.ai/settings/credits, or lower max_tokens / prompt size to fit your remaining balance.', 'provider_name': None, 'previous_errors': [{'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 65536 tokens, but can only afford 471. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 65536 tokens, but can only afford 471. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 65536 tokens, but can only afford 251. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 64000 tokens, but can only afford 418. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}]}}, 'user_id': 'user_3GLaJI6mihRMFQtSad72HqAhW95'}: ['Traceback (most recent call last):
+Error code: 402 - {'error': {'message': 'This request requires more credits, or fewer max_tokens. You requested up to 65536 tokens, but can only afford 251. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account', 'code': 402, 'metadata': {'limit_source': 'openrouter_credits', 'remedy_hint': 'Add credits at https://openrouter.ai/settings/credits, or lower max_tokens / prompt size to fit your remaining balance.', 'provider_name': None, 'previous_errors': [{'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 64000 tokens, but can only afford 418. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 65536 tokens, but can only afford 251. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 65536 tokens, but can only afford 471. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 65536 tokens, but can only afford 471. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}]}}, 'user_id': 'user_3GLaJI6mihRMFQtSad72HqAhW95'}: ['Traceback (most recent call last):
 ', '  File "/home/runner/work/enterprise-it-ai/enterprise-it-ai/sources/agents/architect-blueprint/block_phase.py", line 99, in generate_phase_contexts
     response = client.chat.completions.create(
                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -10099,7 +10129,7 @@ Error code: 402 - {'error': {'message': 'This request requires more credits, or 
                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 ', '  File "/opt/hostedtoolcache/Python/3.11.15/x64/lib/python3.11/site-packages/openai/_base_client.py", line 1148, in request
     raise self._make_status_error_from_response(err.response) from None
-', "openai.APIStatusError: Error code: 402 - {'error': {'message': 'This request requires more credits, or fewer max_tokens. You requested up to 65536 tokens, but can only afford 251. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account', 'code': 402, 'metadata': {'limit_source': 'openrouter_credits', 'remedy_hint': 'Add credits at https://openrouter.ai/settings/credits, or lower max_tokens / prompt size to fit your remaining balance.', 'provider_name': None, 'previous_errors': [{'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 65536 tokens, but can only afford 471. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 65536 tokens, but can only afford 471. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 65536 tokens, but can only afford 251. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 64000 tokens, but can only afford 418. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}]}}, 'user_id': 'user_3GLaJI6mihRMFQtSad72HqAhW95'}
+', "openai.APIStatusError: Error code: 402 - {'error': {'message': 'This request requires more credits, or fewer max_tokens. You requested up to 65536 tokens, but can only afford 251. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account', 'code': 402, 'metadata': {'limit_source': 'openrouter_credits', 'remedy_hint': 'Add credits at https://openrouter.ai/settings/credits, or lower max_tokens / prompt size to fit your remaining balance.', 'provider_name': None, 'previous_errors': [{'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 64000 tokens, but can only afford 418. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 65536 tokens, but can only afford 251. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 65536 tokens, but can only afford 471. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 65536 tokens, but can only afford 471. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}]}}, 'user_id': 'user_3GLaJI6mihRMFQtSad72HqAhW95'}
 "]
 
 # AI Model: qwen/qwen3-coder - Phase 1 - Prompt:
@@ -11018,13 +11048,13 @@ Your output MUST follow this exact Markdown layout structure (translate all labe
 
 | [Translate "Item"] | [Translate "Details"] |
 | :--- | :--- |
-| **[Translate "Blueprint ID"]** | ARCH-20260807034424 |
+| **[Translate "Blueprint ID"]** | ARCH-20260807042343 |
 | **[Translate "Project Name"]** | membership-hub |
 | **[Translate "Phase"]** | 1 |
 | **[Translate "Phase Name"]** | <!--PHASE_NAME_START-->[Generate a standard, natural, human-readable descriptive title for this phase. You MUST write this as a normal human sentence or phrase using isolated words separated by real, standard whitespace characters. You are ABSOLUTELY AND CRITICALLY BANNED from combining words together, removing spaces, or utilizing programming styles like PascalCase, camelCase, or snake_case. It must read normally and smoothly just like a human description string. Fully translate and render this title into the target language requested by the parameters: 🇻🇳 Vietnamese. Example: "Core Infrastructure And Authentication Setup"]<!--PHASE_NAME_END--> |
 | **[Translate "Description"]** | <!--PHASE_DESC_START-->[Granular professional engineering summary description of the absolute operational scope of this specific phase, fully rendered in 🇻🇳 Vietnamese]<!--PHASE_DESC_END--> |
 | **[You MUST translate the literal token "Version" into 🇻🇳 Vietnamese]** | 1.0 (Baseline) |
-| **[You MUST translate the literal token "Date/Time" into 🇻🇳 Vietnamese]** | 2026/08/07 03:44:24 |
+| **[You MUST translate the literal token "Date/Time" into 🇻🇳 Vietnamese]** | 2026/08/07 04:23:43 |
 | **[You MUST translate the literal token "Author" into 🇻🇳 Vietnamese]** | Enterprise System Architect (SA Agent) |
 | **[You MUST translate the literal token "Approval" into 🇻🇳 Vietnamese]** | Pending Technical Governance Review |
 
@@ -11079,13 +11109,16 @@ You are a world-class Principal Solutions Architect. Your specific task is to re
 
 3. **MANDATORY INLINE TAG INJECTION RULE & HTML ANCHOR LOCKDOWN:** For every single Sub-Task generated under the daily logs, you MUST explicitly output a dedicated structural line item starting exactly with the translated string token for `* Traceability Tag Tokens:` followed by an immutable hidden HTML token container block. You MUST wrap the exact raw comma-separated tag IDs inside the hidden tag container string token layout exactly as: `<!--START_TAGS-->[REQ-XXX], [DAT-XXX]<!--END_TAGS-->`. You are STRICTLY BANNED from translating or altering any token values inside the HTML comment tags. Leaving a task block without this explicit HTML anchor layout is a fatal pipeline failure.
 
-4. **LONGITECTURAL DAY PARTITIONING & ANTI-PADDING GUARDRAIL (ACTUAL SYNOPSIS CEILING LAW):** 
-<RULE>
-- You MUST break down the operational calendar day-by-day using individual sequential integers starting strictly from DAY 1.
-- **CRITICAL ACTUAL CEILING CONSTRAINT**: You are ABSOLUTELY AND CRITICALLY BANNED from blindly generating days up to the generic `7` configuration parameter if the active phase's actual duration defined in Section 4 "HIGH-LEVEL MULTI-PHASE ARCHITECTURAL SYNOPSIS GRID" of the Global Context is shorter.
-- You MUST cross-reference the active `Phase 1` row inside the Section 4 Synopsis Table, extract the exact runtime duration from the "Day Range" column (e.g., if the table says "Day 1 - 2", the actual ceiling is strictly 2 days), and force-stop your sequential day generation precisely at that calculated local integer ceiling.
-- Generating a single day beyond the actual duration specified in the Global Context synopsis grid (such as generating Day 3 or Day 5 when the table restricts the phase to Day 1 - 2) constitutes a fatal structural contract violation and will break the backend workflow sequencer.
-</RULE>
+4. **LONGITECTURAL DAY PARTITIONING & ANTI-PADDING GUARDRAIL (ABSOLUTE LOCAL CHRONO RE-INDEX LAW):**
+   - You MUST break down the operational calendar day-by-day using individual sequential integers starting strictly from DAY 1 up to a MAXIMUM of DAY 7.
+   - **ABSOLUTE CHRONO RESET LAW**: You are COMPLETELY BANNED from continuing the sequential day index from any previous phase or global context log timelines. 
+   - The very first day section generated inside this active file MUST natively reset and force-freeze its counter starting exactly from numerical digit 1 (e.g., DAY 1 or NGÀY 1), regardless of the preceding historical context metrics. 
+   - Any model execution that outputs a continuing sequence (like generating "DAY 3" on Phase 2 because Phase 1 ended on Day 2) triggers an immediate pipeline crash.
+   - **STRICT PROGRESSION STOPPING CRITERION:** You MUST freeze the timeline and stop generating daily sections immediately on the exact calendar day where the technical objectives allocated for this phase are satisfied. You are STRICTLY BANNED from injecting dummy placeholder days, fake syncs, empty review blocks, or documentation padding just to expand the calendar. If the technical scope is natively complete on DAY 1, freeze the output file state and exit immediately. Do NOT generate empty or padded days.
+   - You are STRICTLY FORBIDDEN from bundling multiple days together (e.g., NO "DAY 1 - DAY 3"). Every single calendar day log must be explicitly isolated as its own standalone subsection header containing atomic steps for that unique 24-hour cycle.
+   - **CRITICAL ACTUAL CEILING CONSTRAINT**: You are ABSOLUTELY AND CRITICALLY BANNED from blindly generating days up to the generic `7` configuration parameter if the active phase's actual duration defined in Section 4 "HIGH-LEVEL MULTI-PHASE ARCHITECTURAL SYNOPSIS GRID" of the Global Context is shorter.
+   - You MUST cross-reference the active `Phase 1` row inside the Section 4 Synopsis Table, extract the exact runtime duration from the "Day Range" column (e.g., if the table says "Day 1 - 2", the actual ceiling is strictly 2 days), and force-stop your sequential day generation precisely at that calculated local integer ceiling.
+   - Generating a single day beyond the actual duration specified in the Global Context synopsis grid (such as generating Day 3 or Day 5 when the table restricts the phase to Day 1 - 2) constitutes a fatal structural contract violation and will break the backend workflow sequencer.
 
 5. **Language Compliance & Formatting Lockdown:** You MUST generate the entire report strictly in the language specified by the parameters: **🇻🇳 Vietnamese**.
 
@@ -11095,7 +11128,7 @@ You are a world-class Principal Solutions Architect. Your specific task is to re
 
 # Raw Response / Exception:
 
-Error code: 402 - {'error': {'message': 'This request requires more credits, or fewer max_tokens. You requested up to 65536 tokens, but can only afford 77. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account', 'code': 402, 'metadata': {'limit_source': 'openrouter_credits', 'remedy_hint': 'Add credits at https://openrouter.ai/settings/credits, or lower max_tokens / prompt size to fit your remaining balance.', 'provider_name': None, 'previous_errors': [{'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 65536 tokens, but can only afford 251. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 65536 tokens, but can only afford 376. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 65536 tokens, but can only afford 209. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 65536 tokens, but can only afford 243. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}]}}, 'user_id': 'user_3GLaJI6mihRMFQtSad72HqAhW95'}: ['Traceback (most recent call last):
+Error code: 402 - {'error': {'message': 'This request requires more credits, or fewer max_tokens. You requested up to 65536 tokens, but can only afford 243. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account', 'code': 402, 'metadata': {'limit_source': 'openrouter_credits', 'remedy_hint': 'Add credits at https://openrouter.ai/settings/credits, or lower max_tokens / prompt size to fit your remaining balance.', 'provider_name': None, 'previous_errors': [{'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 65536 tokens, but can only afford 251. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 65536 tokens, but can only afford 209. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 65536 tokens, but can only afford 376. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 65536 tokens, but can only afford 77. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}]}}, 'user_id': 'user_3GLaJI6mihRMFQtSad72HqAhW95'}: ['Traceback (most recent call last):
 ', '  File "/home/runner/work/enterprise-it-ai/enterprise-it-ai/sources/agents/architect-blueprint/block_phase.py", line 99, in generate_phase_contexts
     response = client.chat.completions.create(
                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -11110,7 +11143,7 @@ Error code: 402 - {'error': {'message': 'This request requires more credits, or 
                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 ', '  File "/opt/hostedtoolcache/Python/3.11.15/x64/lib/python3.11/site-packages/openai/_base_client.py", line 1148, in request
     raise self._make_status_error_from_response(err.response) from None
-', "openai.APIStatusError: Error code: 402 - {'error': {'message': 'This request requires more credits, or fewer max_tokens. You requested up to 65536 tokens, but can only afford 77. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account', 'code': 402, 'metadata': {'limit_source': 'openrouter_credits', 'remedy_hint': 'Add credits at https://openrouter.ai/settings/credits, or lower max_tokens / prompt size to fit your remaining balance.', 'provider_name': None, 'previous_errors': [{'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 65536 tokens, but can only afford 251. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 65536 tokens, but can only afford 376. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 65536 tokens, but can only afford 209. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 65536 tokens, but can only afford 243. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}]}}, 'user_id': 'user_3GLaJI6mihRMFQtSad72HqAhW95'}
+', "openai.APIStatusError: Error code: 402 - {'error': {'message': 'This request requires more credits, or fewer max_tokens. You requested up to 65536 tokens, but can only afford 243. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account', 'code': 402, 'metadata': {'limit_source': 'openrouter_credits', 'remedy_hint': 'Add credits at https://openrouter.ai/settings/credits, or lower max_tokens / prompt size to fit your remaining balance.', 'provider_name': None, 'previous_errors': [{'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 65536 tokens, but can only afford 251. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 65536 tokens, but can only afford 209. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 65536 tokens, but can only afford 376. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 65536 tokens, but can only afford 77. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}]}}, 'user_id': 'user_3GLaJI6mihRMFQtSad72HqAhW95'}
 "]
 
 # AI Model: qwen/qwen3-coder-30b-a3b-instruct - Phase 1 - Prompt:
@@ -12029,13 +12062,13 @@ Your output MUST follow this exact Markdown layout structure (translate all labe
 
 | [Translate "Item"] | [Translate "Details"] |
 | :--- | :--- |
-| **[Translate "Blueprint ID"]** | ARCH-20260807034424 |
+| **[Translate "Blueprint ID"]** | ARCH-20260807042343 |
 | **[Translate "Project Name"]** | membership-hub |
 | **[Translate "Phase"]** | 1 |
 | **[Translate "Phase Name"]** | <!--PHASE_NAME_START-->[Generate a standard, natural, human-readable descriptive title for this phase. You MUST write this as a normal human sentence or phrase using isolated words separated by real, standard whitespace characters. You are ABSOLUTELY AND CRITICALLY BANNED from combining words together, removing spaces, or utilizing programming styles like PascalCase, camelCase, or snake_case. It must read normally and smoothly just like a human description string. Fully translate and render this title into the target language requested by the parameters: 🇻🇳 Vietnamese. Example: "Core Infrastructure And Authentication Setup"]<!--PHASE_NAME_END--> |
 | **[Translate "Description"]** | <!--PHASE_DESC_START-->[Granular professional engineering summary description of the absolute operational scope of this specific phase, fully rendered in 🇻🇳 Vietnamese]<!--PHASE_DESC_END--> |
 | **[You MUST translate the literal token "Version" into 🇻🇳 Vietnamese]** | 1.0 (Baseline) |
-| **[You MUST translate the literal token "Date/Time" into 🇻🇳 Vietnamese]** | 2026/08/07 03:44:24 |
+| **[You MUST translate the literal token "Date/Time" into 🇻🇳 Vietnamese]** | 2026/08/07 04:23:43 |
 | **[You MUST translate the literal token "Author" into 🇻🇳 Vietnamese]** | Enterprise System Architect (SA Agent) |
 | **[You MUST translate the literal token "Approval" into 🇻🇳 Vietnamese]** | Pending Technical Governance Review |
 
@@ -12090,13 +12123,16 @@ You are a world-class Principal Solutions Architect. Your specific task is to re
 
 3. **MANDATORY INLINE TAG INJECTION RULE & HTML ANCHOR LOCKDOWN:** For every single Sub-Task generated under the daily logs, you MUST explicitly output a dedicated structural line item starting exactly with the translated string token for `* Traceability Tag Tokens:` followed by an immutable hidden HTML token container block. You MUST wrap the exact raw comma-separated tag IDs inside the hidden tag container string token layout exactly as: `<!--START_TAGS-->[REQ-XXX], [DAT-XXX]<!--END_TAGS-->`. You are STRICTLY BANNED from translating or altering any token values inside the HTML comment tags. Leaving a task block without this explicit HTML anchor layout is a fatal pipeline failure.
 
-4. **LONGITECTURAL DAY PARTITIONING & ANTI-PADDING GUARDRAIL (ACTUAL SYNOPSIS CEILING LAW):** 
-<RULE>
-- You MUST break down the operational calendar day-by-day using individual sequential integers starting strictly from DAY 1.
-- **CRITICAL ACTUAL CEILING CONSTRAINT**: You are ABSOLUTELY AND CRITICALLY BANNED from blindly generating days up to the generic `7` configuration parameter if the active phase's actual duration defined in Section 4 "HIGH-LEVEL MULTI-PHASE ARCHITECTURAL SYNOPSIS GRID" of the Global Context is shorter.
-- You MUST cross-reference the active `Phase 1` row inside the Section 4 Synopsis Table, extract the exact runtime duration from the "Day Range" column (e.g., if the table says "Day 1 - 2", the actual ceiling is strictly 2 days), and force-stop your sequential day generation precisely at that calculated local integer ceiling.
-- Generating a single day beyond the actual duration specified in the Global Context synopsis grid (such as generating Day 3 or Day 5 when the table restricts the phase to Day 1 - 2) constitutes a fatal structural contract violation and will break the backend workflow sequencer.
-</RULE>
+4. **LONGITECTURAL DAY PARTITIONING & ANTI-PADDING GUARDRAIL (ABSOLUTE LOCAL CHRONO RE-INDEX LAW):**
+   - You MUST break down the operational calendar day-by-day using individual sequential integers starting strictly from DAY 1 up to a MAXIMUM of DAY 7.
+   - **ABSOLUTE CHRONO RESET LAW**: You are COMPLETELY BANNED from continuing the sequential day index from any previous phase or global context log timelines. 
+   - The very first day section generated inside this active file MUST natively reset and force-freeze its counter starting exactly from numerical digit 1 (e.g., DAY 1 or NGÀY 1), regardless of the preceding historical context metrics. 
+   - Any model execution that outputs a continuing sequence (like generating "DAY 3" on Phase 2 because Phase 1 ended on Day 2) triggers an immediate pipeline crash.
+   - **STRICT PROGRESSION STOPPING CRITERION:** You MUST freeze the timeline and stop generating daily sections immediately on the exact calendar day where the technical objectives allocated for this phase are satisfied. You are STRICTLY BANNED from injecting dummy placeholder days, fake syncs, empty review blocks, or documentation padding just to expand the calendar. If the technical scope is natively complete on DAY 1, freeze the output file state and exit immediately. Do NOT generate empty or padded days.
+   - You are STRICTLY FORBIDDEN from bundling multiple days together (e.g., NO "DAY 1 - DAY 3"). Every single calendar day log must be explicitly isolated as its own standalone subsection header containing atomic steps for that unique 24-hour cycle.
+   - **CRITICAL ACTUAL CEILING CONSTRAINT**: You are ABSOLUTELY AND CRITICALLY BANNED from blindly generating days up to the generic `7` configuration parameter if the active phase's actual duration defined in Section 4 "HIGH-LEVEL MULTI-PHASE ARCHITECTURAL SYNOPSIS GRID" of the Global Context is shorter.
+   - You MUST cross-reference the active `Phase 1` row inside the Section 4 Synopsis Table, extract the exact runtime duration from the "Day Range" column (e.g., if the table says "Day 1 - 2", the actual ceiling is strictly 2 days), and force-stop your sequential day generation precisely at that calculated local integer ceiling.
+   - Generating a single day beyond the actual duration specified in the Global Context synopsis grid (such as generating Day 3 or Day 5 when the table restricts the phase to Day 1 - 2) constitutes a fatal structural contract violation and will break the backend workflow sequencer.
 
 5. **Language Compliance & Formatting Lockdown:** You MUST generate the entire report strictly in the language specified by the parameters: **🇻🇳 Vietnamese**.
 
@@ -12106,7 +12142,7 @@ You are a world-class Principal Solutions Architect. Your specific task is to re
 
 # Raw Response / Exception:
 
-Error code: 402 - {'error': {'message': 'This request requires more credits, or fewer max_tokens. You requested up to 65536 tokens, but can only afford 221. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account', 'code': 402, 'metadata': {'limit_source': 'openrouter_credits', 'remedy_hint': 'Add credits at https://openrouter.ai/settings/credits, or lower max_tokens / prompt size to fit your remaining balance.', 'provider_name': None, 'previous_errors': [{'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 32768 tokens, but can only afford 1395. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 65536 tokens, but can only afford 257. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 65536 tokens, but can only afford 1345. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}]}}, 'user_id': 'user_3GLaJI6mihRMFQtSad72HqAhW95'}: ['Traceback (most recent call last):
+Error code: 402 - {'error': {'message': 'This request requires more credits, or fewer max_tokens. You requested up to 65536 tokens, but can only afford 221. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account', 'code': 402, 'metadata': {'limit_source': 'openrouter_credits', 'remedy_hint': 'Add credits at https://openrouter.ai/settings/credits, or lower max_tokens / prompt size to fit your remaining balance.', 'provider_name': None, 'previous_errors': [{'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 65536 tokens, but can only afford 1345. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 32768 tokens, but can only afford 1395. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 65536 tokens, but can only afford 257. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}]}}, 'user_id': 'user_3GLaJI6mihRMFQtSad72HqAhW95'}: ['Traceback (most recent call last):
 ', '  File "/home/runner/work/enterprise-it-ai/enterprise-it-ai/sources/agents/architect-blueprint/block_phase.py", line 99, in generate_phase_contexts
     response = client.chat.completions.create(
                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -12121,7 +12157,7 @@ Error code: 402 - {'error': {'message': 'This request requires more credits, or 
                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 ', '  File "/opt/hostedtoolcache/Python/3.11.15/x64/lib/python3.11/site-packages/openai/_base_client.py", line 1148, in request
     raise self._make_status_error_from_response(err.response) from None
-', "openai.APIStatusError: Error code: 402 - {'error': {'message': 'This request requires more credits, or fewer max_tokens. You requested up to 65536 tokens, but can only afford 221. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account', 'code': 402, 'metadata': {'limit_source': 'openrouter_credits', 'remedy_hint': 'Add credits at https://openrouter.ai/settings/credits, or lower max_tokens / prompt size to fit your remaining balance.', 'provider_name': None, 'previous_errors': [{'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 32768 tokens, but can only afford 1395. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 65536 tokens, but can only afford 257. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 65536 tokens, but can only afford 1345. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}]}}, 'user_id': 'user_3GLaJI6mihRMFQtSad72HqAhW95'}
+', "openai.APIStatusError: Error code: 402 - {'error': {'message': 'This request requires more credits, or fewer max_tokens. You requested up to 65536 tokens, but can only afford 221. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account', 'code': 402, 'metadata': {'limit_source': 'openrouter_credits', 'remedy_hint': 'Add credits at https://openrouter.ai/settings/credits, or lower max_tokens / prompt size to fit your remaining balance.', 'provider_name': None, 'previous_errors': [{'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 65536 tokens, but can only afford 1345. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 32768 tokens, but can only afford 1395. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 65536 tokens, but can only afford 257. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}]}}, 'user_id': 'user_3GLaJI6mihRMFQtSad72HqAhW95'}
 "]
 
 # AI Model: openai/gpt-5.1-codex-mini - Phase 1 - Prompt:
@@ -13040,13 +13076,13 @@ Your output MUST follow this exact Markdown layout structure (translate all labe
 
 | [Translate "Item"] | [Translate "Details"] |
 | :--- | :--- |
-| **[Translate "Blueprint ID"]** | ARCH-20260807034424 |
+| **[Translate "Blueprint ID"]** | ARCH-20260807042343 |
 | **[Translate "Project Name"]** | membership-hub |
 | **[Translate "Phase"]** | 1 |
 | **[Translate "Phase Name"]** | <!--PHASE_NAME_START-->[Generate a standard, natural, human-readable descriptive title for this phase. You MUST write this as a normal human sentence or phrase using isolated words separated by real, standard whitespace characters. You are ABSOLUTELY AND CRITICALLY BANNED from combining words together, removing spaces, or utilizing programming styles like PascalCase, camelCase, or snake_case. It must read normally and smoothly just like a human description string. Fully translate and render this title into the target language requested by the parameters: 🇻🇳 Vietnamese. Example: "Core Infrastructure And Authentication Setup"]<!--PHASE_NAME_END--> |
 | **[Translate "Description"]** | <!--PHASE_DESC_START-->[Granular professional engineering summary description of the absolute operational scope of this specific phase, fully rendered in 🇻🇳 Vietnamese]<!--PHASE_DESC_END--> |
 | **[You MUST translate the literal token "Version" into 🇻🇳 Vietnamese]** | 1.0 (Baseline) |
-| **[You MUST translate the literal token "Date/Time" into 🇻🇳 Vietnamese]** | 2026/08/07 03:44:24 |
+| **[You MUST translate the literal token "Date/Time" into 🇻🇳 Vietnamese]** | 2026/08/07 04:23:43 |
 | **[You MUST translate the literal token "Author" into 🇻🇳 Vietnamese]** | Enterprise System Architect (SA Agent) |
 | **[You MUST translate the literal token "Approval" into 🇻🇳 Vietnamese]** | Pending Technical Governance Review |
 
@@ -13101,13 +13137,16 @@ You are a world-class Principal Solutions Architect. Your specific task is to re
 
 3. **MANDATORY INLINE TAG INJECTION RULE & HTML ANCHOR LOCKDOWN:** For every single Sub-Task generated under the daily logs, you MUST explicitly output a dedicated structural line item starting exactly with the translated string token for `* Traceability Tag Tokens:` followed by an immutable hidden HTML token container block. You MUST wrap the exact raw comma-separated tag IDs inside the hidden tag container string token layout exactly as: `<!--START_TAGS-->[REQ-XXX], [DAT-XXX]<!--END_TAGS-->`. You are STRICTLY BANNED from translating or altering any token values inside the HTML comment tags. Leaving a task block without this explicit HTML anchor layout is a fatal pipeline failure.
 
-4. **LONGITECTURAL DAY PARTITIONING & ANTI-PADDING GUARDRAIL (ACTUAL SYNOPSIS CEILING LAW):** 
-<RULE>
-- You MUST break down the operational calendar day-by-day using individual sequential integers starting strictly from DAY 1.
-- **CRITICAL ACTUAL CEILING CONSTRAINT**: You are ABSOLUTELY AND CRITICALLY BANNED from blindly generating days up to the generic `7` configuration parameter if the active phase's actual duration defined in Section 4 "HIGH-LEVEL MULTI-PHASE ARCHITECTURAL SYNOPSIS GRID" of the Global Context is shorter.
-- You MUST cross-reference the active `Phase 1` row inside the Section 4 Synopsis Table, extract the exact runtime duration from the "Day Range" column (e.g., if the table says "Day 1 - 2", the actual ceiling is strictly 2 days), and force-stop your sequential day generation precisely at that calculated local integer ceiling.
-- Generating a single day beyond the actual duration specified in the Global Context synopsis grid (such as generating Day 3 or Day 5 when the table restricts the phase to Day 1 - 2) constitutes a fatal structural contract violation and will break the backend workflow sequencer.
-</RULE>
+4. **LONGITECTURAL DAY PARTITIONING & ANTI-PADDING GUARDRAIL (ABSOLUTE LOCAL CHRONO RE-INDEX LAW):**
+   - You MUST break down the operational calendar day-by-day using individual sequential integers starting strictly from DAY 1 up to a MAXIMUM of DAY 7.
+   - **ABSOLUTE CHRONO RESET LAW**: You are COMPLETELY BANNED from continuing the sequential day index from any previous phase or global context log timelines. 
+   - The very first day section generated inside this active file MUST natively reset and force-freeze its counter starting exactly from numerical digit 1 (e.g., DAY 1 or NGÀY 1), regardless of the preceding historical context metrics. 
+   - Any model execution that outputs a continuing sequence (like generating "DAY 3" on Phase 2 because Phase 1 ended on Day 2) triggers an immediate pipeline crash.
+   - **STRICT PROGRESSION STOPPING CRITERION:** You MUST freeze the timeline and stop generating daily sections immediately on the exact calendar day where the technical objectives allocated for this phase are satisfied. You are STRICTLY BANNED from injecting dummy placeholder days, fake syncs, empty review blocks, or documentation padding just to expand the calendar. If the technical scope is natively complete on DAY 1, freeze the output file state and exit immediately. Do NOT generate empty or padded days.
+   - You are STRICTLY FORBIDDEN from bundling multiple days together (e.g., NO "DAY 1 - DAY 3"). Every single calendar day log must be explicitly isolated as its own standalone subsection header containing atomic steps for that unique 24-hour cycle.
+   - **CRITICAL ACTUAL CEILING CONSTRAINT**: You are ABSOLUTELY AND CRITICALLY BANNED from blindly generating days up to the generic `7` configuration parameter if the active phase's actual duration defined in Section 4 "HIGH-LEVEL MULTI-PHASE ARCHITECTURAL SYNOPSIS GRID" of the Global Context is shorter.
+   - You MUST cross-reference the active `Phase 1` row inside the Section 4 Synopsis Table, extract the exact runtime duration from the "Day Range" column (e.g., if the table says "Day 1 - 2", the actual ceiling is strictly 2 days), and force-stop your sequential day generation precisely at that calculated local integer ceiling.
+   - Generating a single day beyond the actual duration specified in the Global Context synopsis grid (such as generating Day 3 or Day 5 when the table restricts the phase to Day 1 - 2) constitutes a fatal structural contract violation and will break the backend workflow sequencer.
 
 5. **Language Compliance & Formatting Lockdown:** You MUST generate the entire report strictly in the language specified by the parameters: **🇻🇳 Vietnamese**.
 
@@ -14051,13 +14090,13 @@ Your output MUST follow this exact Markdown layout structure (translate all labe
 
 | [Translate "Item"] | [Translate "Details"] |
 | :--- | :--- |
-| **[Translate "Blueprint ID"]** | ARCH-20260807034424 |
+| **[Translate "Blueprint ID"]** | ARCH-20260807042343 |
 | **[Translate "Project Name"]** | membership-hub |
 | **[Translate "Phase"]** | 1 |
 | **[Translate "Phase Name"]** | <!--PHASE_NAME_START-->[Generate a standard, natural, human-readable descriptive title for this phase. You MUST write this as a normal human sentence or phrase using isolated words separated by real, standard whitespace characters. You are ABSOLUTELY AND CRITICALLY BANNED from combining words together, removing spaces, or utilizing programming styles like PascalCase, camelCase, or snake_case. It must read normally and smoothly just like a human description string. Fully translate and render this title into the target language requested by the parameters: 🇻🇳 Vietnamese. Example: "Core Infrastructure And Authentication Setup"]<!--PHASE_NAME_END--> |
 | **[Translate "Description"]** | <!--PHASE_DESC_START-->[Granular professional engineering summary description of the absolute operational scope of this specific phase, fully rendered in 🇻🇳 Vietnamese]<!--PHASE_DESC_END--> |
 | **[You MUST translate the literal token "Version" into 🇻🇳 Vietnamese]** | 1.0 (Baseline) |
-| **[You MUST translate the literal token "Date/Time" into 🇻🇳 Vietnamese]** | 2026/08/07 03:44:24 |
+| **[You MUST translate the literal token "Date/Time" into 🇻🇳 Vietnamese]** | 2026/08/07 04:23:43 |
 | **[You MUST translate the literal token "Author" into 🇻🇳 Vietnamese]** | Enterprise System Architect (SA Agent) |
 | **[You MUST translate the literal token "Approval" into 🇻🇳 Vietnamese]** | Pending Technical Governance Review |
 
@@ -14112,13 +14151,16 @@ You are a world-class Principal Solutions Architect. Your specific task is to re
 
 3. **MANDATORY INLINE TAG INJECTION RULE & HTML ANCHOR LOCKDOWN:** For every single Sub-Task generated under the daily logs, you MUST explicitly output a dedicated structural line item starting exactly with the translated string token for `* Traceability Tag Tokens:` followed by an immutable hidden HTML token container block. You MUST wrap the exact raw comma-separated tag IDs inside the hidden tag container string token layout exactly as: `<!--START_TAGS-->[REQ-XXX], [DAT-XXX]<!--END_TAGS-->`. You are STRICTLY BANNED from translating or altering any token values inside the HTML comment tags. Leaving a task block without this explicit HTML anchor layout is a fatal pipeline failure.
 
-4. **LONGITECTURAL DAY PARTITIONING & ANTI-PADDING GUARDRAIL (ACTUAL SYNOPSIS CEILING LAW):** 
-<RULE>
-- You MUST break down the operational calendar day-by-day using individual sequential integers starting strictly from DAY 1.
-- **CRITICAL ACTUAL CEILING CONSTRAINT**: You are ABSOLUTELY AND CRITICALLY BANNED from blindly generating days up to the generic `7` configuration parameter if the active phase's actual duration defined in Section 4 "HIGH-LEVEL MULTI-PHASE ARCHITECTURAL SYNOPSIS GRID" of the Global Context is shorter.
-- You MUST cross-reference the active `Phase 1` row inside the Section 4 Synopsis Table, extract the exact runtime duration from the "Day Range" column (e.g., if the table says "Day 1 - 2", the actual ceiling is strictly 2 days), and force-stop your sequential day generation precisely at that calculated local integer ceiling.
-- Generating a single day beyond the actual duration specified in the Global Context synopsis grid (such as generating Day 3 or Day 5 when the table restricts the phase to Day 1 - 2) constitutes a fatal structural contract violation and will break the backend workflow sequencer.
-</RULE>
+4. **LONGITECTURAL DAY PARTITIONING & ANTI-PADDING GUARDRAIL (ABSOLUTE LOCAL CHRONO RE-INDEX LAW):**
+   - You MUST break down the operational calendar day-by-day using individual sequential integers starting strictly from DAY 1 up to a MAXIMUM of DAY 7.
+   - **ABSOLUTE CHRONO RESET LAW**: You are COMPLETELY BANNED from continuing the sequential day index from any previous phase or global context log timelines. 
+   - The very first day section generated inside this active file MUST natively reset and force-freeze its counter starting exactly from numerical digit 1 (e.g., DAY 1 or NGÀY 1), regardless of the preceding historical context metrics. 
+   - Any model execution that outputs a continuing sequence (like generating "DAY 3" on Phase 2 because Phase 1 ended on Day 2) triggers an immediate pipeline crash.
+   - **STRICT PROGRESSION STOPPING CRITERION:** You MUST freeze the timeline and stop generating daily sections immediately on the exact calendar day where the technical objectives allocated for this phase are satisfied. You are STRICTLY BANNED from injecting dummy placeholder days, fake syncs, empty review blocks, or documentation padding just to expand the calendar. If the technical scope is natively complete on DAY 1, freeze the output file state and exit immediately. Do NOT generate empty or padded days.
+   - You are STRICTLY FORBIDDEN from bundling multiple days together (e.g., NO "DAY 1 - DAY 3"). Every single calendar day log must be explicitly isolated as its own standalone subsection header containing atomic steps for that unique 24-hour cycle.
+   - **CRITICAL ACTUAL CEILING CONSTRAINT**: You are ABSOLUTELY AND CRITICALLY BANNED from blindly generating days up to the generic `7` configuration parameter if the active phase's actual duration defined in Section 4 "HIGH-LEVEL MULTI-PHASE ARCHITECTURAL SYNOPSIS GRID" of the Global Context is shorter.
+   - You MUST cross-reference the active `Phase 1` row inside the Section 4 Synopsis Table, extract the exact runtime duration from the "Day Range" column (e.g., if the table says "Day 1 - 2", the actual ceiling is strictly 2 days), and force-stop your sequential day generation precisely at that calculated local integer ceiling.
+   - Generating a single day beyond the actual duration specified in the Global Context synopsis grid (such as generating Day 3 or Day 5 when the table restricts the phase to Day 1 - 2) constitutes a fatal structural contract violation and will break the backend workflow sequencer.
 
 5. **Language Compliance & Formatting Lockdown:** You MUST generate the entire report strictly in the language specified by the parameters: **🇻🇳 Vietnamese**.
 
@@ -15062,13 +15104,13 @@ Your output MUST follow this exact Markdown layout structure (translate all labe
 
 | [Translate "Item"] | [Translate "Details"] |
 | :--- | :--- |
-| **[Translate "Blueprint ID"]** | ARCH-20260807034424 |
+| **[Translate "Blueprint ID"]** | ARCH-20260807042343 |
 | **[Translate "Project Name"]** | membership-hub |
 | **[Translate "Phase"]** | 1 |
 | **[Translate "Phase Name"]** | <!--PHASE_NAME_START-->[Generate a standard, natural, human-readable descriptive title for this phase. You MUST write this as a normal human sentence or phrase using isolated words separated by real, standard whitespace characters. You are ABSOLUTELY AND CRITICALLY BANNED from combining words together, removing spaces, or utilizing programming styles like PascalCase, camelCase, or snake_case. It must read normally and smoothly just like a human description string. Fully translate and render this title into the target language requested by the parameters: 🇻🇳 Vietnamese. Example: "Core Infrastructure And Authentication Setup"]<!--PHASE_NAME_END--> |
 | **[Translate "Description"]** | <!--PHASE_DESC_START-->[Granular professional engineering summary description of the absolute operational scope of this specific phase, fully rendered in 🇻🇳 Vietnamese]<!--PHASE_DESC_END--> |
 | **[You MUST translate the literal token "Version" into 🇻🇳 Vietnamese]** | 1.0 (Baseline) |
-| **[You MUST translate the literal token "Date/Time" into 🇻🇳 Vietnamese]** | 2026/08/07 03:44:24 |
+| **[You MUST translate the literal token "Date/Time" into 🇻🇳 Vietnamese]** | 2026/08/07 04:23:43 |
 | **[You MUST translate the literal token "Author" into 🇻🇳 Vietnamese]** | Enterprise System Architect (SA Agent) |
 | **[You MUST translate the literal token "Approval" into 🇻🇳 Vietnamese]** | Pending Technical Governance Review |
 
@@ -15123,13 +15165,16 @@ You are a world-class Principal Solutions Architect. Your specific task is to re
 
 3. **MANDATORY INLINE TAG INJECTION RULE & HTML ANCHOR LOCKDOWN:** For every single Sub-Task generated under the daily logs, you MUST explicitly output a dedicated structural line item starting exactly with the translated string token for `* Traceability Tag Tokens:` followed by an immutable hidden HTML token container block. You MUST wrap the exact raw comma-separated tag IDs inside the hidden tag container string token layout exactly as: `<!--START_TAGS-->[REQ-XXX], [DAT-XXX]<!--END_TAGS-->`. You are STRICTLY BANNED from translating or altering any token values inside the HTML comment tags. Leaving a task block without this explicit HTML anchor layout is a fatal pipeline failure.
 
-4. **LONGITECTURAL DAY PARTITIONING & ANTI-PADDING GUARDRAIL (ACTUAL SYNOPSIS CEILING LAW):** 
-<RULE>
-- You MUST break down the operational calendar day-by-day using individual sequential integers starting strictly from DAY 1.
-- **CRITICAL ACTUAL CEILING CONSTRAINT**: You are ABSOLUTELY AND CRITICALLY BANNED from blindly generating days up to the generic `7` configuration parameter if the active phase's actual duration defined in Section 4 "HIGH-LEVEL MULTI-PHASE ARCHITECTURAL SYNOPSIS GRID" of the Global Context is shorter.
-- You MUST cross-reference the active `Phase 1` row inside the Section 4 Synopsis Table, extract the exact runtime duration from the "Day Range" column (e.g., if the table says "Day 1 - 2", the actual ceiling is strictly 2 days), and force-stop your sequential day generation precisely at that calculated local integer ceiling.
-- Generating a single day beyond the actual duration specified in the Global Context synopsis grid (such as generating Day 3 or Day 5 when the table restricts the phase to Day 1 - 2) constitutes a fatal structural contract violation and will break the backend workflow sequencer.
-</RULE>
+4. **LONGITECTURAL DAY PARTITIONING & ANTI-PADDING GUARDRAIL (ABSOLUTE LOCAL CHRONO RE-INDEX LAW):**
+   - You MUST break down the operational calendar day-by-day using individual sequential integers starting strictly from DAY 1 up to a MAXIMUM of DAY 7.
+   - **ABSOLUTE CHRONO RESET LAW**: You are COMPLETELY BANNED from continuing the sequential day index from any previous phase or global context log timelines. 
+   - The very first day section generated inside this active file MUST natively reset and force-freeze its counter starting exactly from numerical digit 1 (e.g., DAY 1 or NGÀY 1), regardless of the preceding historical context metrics. 
+   - Any model execution that outputs a continuing sequence (like generating "DAY 3" on Phase 2 because Phase 1 ended on Day 2) triggers an immediate pipeline crash.
+   - **STRICT PROGRESSION STOPPING CRITERION:** You MUST freeze the timeline and stop generating daily sections immediately on the exact calendar day where the technical objectives allocated for this phase are satisfied. You are STRICTLY BANNED from injecting dummy placeholder days, fake syncs, empty review blocks, or documentation padding just to expand the calendar. If the technical scope is natively complete on DAY 1, freeze the output file state and exit immediately. Do NOT generate empty or padded days.
+   - You are STRICTLY FORBIDDEN from bundling multiple days together (e.g., NO "DAY 1 - DAY 3"). Every single calendar day log must be explicitly isolated as its own standalone subsection header containing atomic steps for that unique 24-hour cycle.
+   - **CRITICAL ACTUAL CEILING CONSTRAINT**: You are ABSOLUTELY AND CRITICALLY BANNED from blindly generating days up to the generic `7` configuration parameter if the active phase's actual duration defined in Section 4 "HIGH-LEVEL MULTI-PHASE ARCHITECTURAL SYNOPSIS GRID" of the Global Context is shorter.
+   - You MUST cross-reference the active `Phase 1` row inside the Section 4 Synopsis Table, extract the exact runtime duration from the "Day Range" column (e.g., if the table says "Day 1 - 2", the actual ceiling is strictly 2 days), and force-stop your sequential day generation precisely at that calculated local integer ceiling.
+   - Generating a single day beyond the actual duration specified in the Global Context synopsis grid (such as generating Day 3 or Day 5 when the table restricts the phase to Day 1 - 2) constitutes a fatal structural contract violation and will break the backend workflow sequencer.
 
 5. **Language Compliance & Formatting Lockdown:** You MUST generate the entire report strictly in the language specified by the parameters: **🇻🇳 Vietnamese**.
 
@@ -16073,13 +16118,13 @@ Your output MUST follow this exact Markdown layout structure (translate all labe
 
 | [Translate "Item"] | [Translate "Details"] |
 | :--- | :--- |
-| **[Translate "Blueprint ID"]** | ARCH-20260807034424 |
+| **[Translate "Blueprint ID"]** | ARCH-20260807042343 |
 | **[Translate "Project Name"]** | membership-hub |
 | **[Translate "Phase"]** | 1 |
 | **[Translate "Phase Name"]** | <!--PHASE_NAME_START-->[Generate a standard, natural, human-readable descriptive title for this phase. You MUST write this as a normal human sentence or phrase using isolated words separated by real, standard whitespace characters. You are ABSOLUTELY AND CRITICALLY BANNED from combining words together, removing spaces, or utilizing programming styles like PascalCase, camelCase, or snake_case. It must read normally and smoothly just like a human description string. Fully translate and render this title into the target language requested by the parameters: 🇻🇳 Vietnamese. Example: "Core Infrastructure And Authentication Setup"]<!--PHASE_NAME_END--> |
 | **[Translate "Description"]** | <!--PHASE_DESC_START-->[Granular professional engineering summary description of the absolute operational scope of this specific phase, fully rendered in 🇻🇳 Vietnamese]<!--PHASE_DESC_END--> |
 | **[You MUST translate the literal token "Version" into 🇻🇳 Vietnamese]** | 1.0 (Baseline) |
-| **[You MUST translate the literal token "Date/Time" into 🇻🇳 Vietnamese]** | 2026/08/07 03:44:24 |
+| **[You MUST translate the literal token "Date/Time" into 🇻🇳 Vietnamese]** | 2026/08/07 04:23:43 |
 | **[You MUST translate the literal token "Author" into 🇻🇳 Vietnamese]** | Enterprise System Architect (SA Agent) |
 | **[You MUST translate the literal token "Approval" into 🇻🇳 Vietnamese]** | Pending Technical Governance Review |
 
@@ -16134,13 +16179,16 @@ You are a world-class Principal Solutions Architect. Your specific task is to re
 
 3. **MANDATORY INLINE TAG INJECTION RULE & HTML ANCHOR LOCKDOWN:** For every single Sub-Task generated under the daily logs, you MUST explicitly output a dedicated structural line item starting exactly with the translated string token for `* Traceability Tag Tokens:` followed by an immutable hidden HTML token container block. You MUST wrap the exact raw comma-separated tag IDs inside the hidden tag container string token layout exactly as: `<!--START_TAGS-->[REQ-XXX], [DAT-XXX]<!--END_TAGS-->`. You are STRICTLY BANNED from translating or altering any token values inside the HTML comment tags. Leaving a task block without this explicit HTML anchor layout is a fatal pipeline failure.
 
-4. **LONGITECTURAL DAY PARTITIONING & ANTI-PADDING GUARDRAIL (ACTUAL SYNOPSIS CEILING LAW):** 
-<RULE>
-- You MUST break down the operational calendar day-by-day using individual sequential integers starting strictly from DAY 1.
-- **CRITICAL ACTUAL CEILING CONSTRAINT**: You are ABSOLUTELY AND CRITICALLY BANNED from blindly generating days up to the generic `7` configuration parameter if the active phase's actual duration defined in Section 4 "HIGH-LEVEL MULTI-PHASE ARCHITECTURAL SYNOPSIS GRID" of the Global Context is shorter.
-- You MUST cross-reference the active `Phase 1` row inside the Section 4 Synopsis Table, extract the exact runtime duration from the "Day Range" column (e.g., if the table says "Day 1 - 2", the actual ceiling is strictly 2 days), and force-stop your sequential day generation precisely at that calculated local integer ceiling.
-- Generating a single day beyond the actual duration specified in the Global Context synopsis grid (such as generating Day 3 or Day 5 when the table restricts the phase to Day 1 - 2) constitutes a fatal structural contract violation and will break the backend workflow sequencer.
-</RULE>
+4. **LONGITECTURAL DAY PARTITIONING & ANTI-PADDING GUARDRAIL (ABSOLUTE LOCAL CHRONO RE-INDEX LAW):**
+   - You MUST break down the operational calendar day-by-day using individual sequential integers starting strictly from DAY 1 up to a MAXIMUM of DAY 7.
+   - **ABSOLUTE CHRONO RESET LAW**: You are COMPLETELY BANNED from continuing the sequential day index from any previous phase or global context log timelines. 
+   - The very first day section generated inside this active file MUST natively reset and force-freeze its counter starting exactly from numerical digit 1 (e.g., DAY 1 or NGÀY 1), regardless of the preceding historical context metrics. 
+   - Any model execution that outputs a continuing sequence (like generating "DAY 3" on Phase 2 because Phase 1 ended on Day 2) triggers an immediate pipeline crash.
+   - **STRICT PROGRESSION STOPPING CRITERION:** You MUST freeze the timeline and stop generating daily sections immediately on the exact calendar day where the technical objectives allocated for this phase are satisfied. You are STRICTLY BANNED from injecting dummy placeholder days, fake syncs, empty review blocks, or documentation padding just to expand the calendar. If the technical scope is natively complete on DAY 1, freeze the output file state and exit immediately. Do NOT generate empty or padded days.
+   - You are STRICTLY FORBIDDEN from bundling multiple days together (e.g., NO "DAY 1 - DAY 3"). Every single calendar day log must be explicitly isolated as its own standalone subsection header containing atomic steps for that unique 24-hour cycle.
+   - **CRITICAL ACTUAL CEILING CONSTRAINT**: You are ABSOLUTELY AND CRITICALLY BANNED from blindly generating days up to the generic `7` configuration parameter if the active phase's actual duration defined in Section 4 "HIGH-LEVEL MULTI-PHASE ARCHITECTURAL SYNOPSIS GRID" of the Global Context is shorter.
+   - You MUST cross-reference the active `Phase 1` row inside the Section 4 Synopsis Table, extract the exact runtime duration from the "Day Range" column (e.g., if the table says "Day 1 - 2", the actual ceiling is strictly 2 days), and force-stop your sequential day generation precisely at that calculated local integer ceiling.
+   - Generating a single day beyond the actual duration specified in the Global Context synopsis grid (such as generating Day 3 or Day 5 when the table restricts the phase to Day 1 - 2) constitutes a fatal structural contract violation and will break the backend workflow sequencer.
 
 5. **Language Compliance & Formatting Lockdown:** You MUST generate the entire report strictly in the language specified by the parameters: **🇻🇳 Vietnamese**.
 
@@ -17084,13 +17132,13 @@ Your output MUST follow this exact Markdown layout structure (translate all labe
 
 | [Translate "Item"] | [Translate "Details"] |
 | :--- | :--- |
-| **[Translate "Blueprint ID"]** | ARCH-20260807034424 |
+| **[Translate "Blueprint ID"]** | ARCH-20260807042343 |
 | **[Translate "Project Name"]** | membership-hub |
 | **[Translate "Phase"]** | 1 |
 | **[Translate "Phase Name"]** | <!--PHASE_NAME_START-->[Generate a standard, natural, human-readable descriptive title for this phase. You MUST write this as a normal human sentence or phrase using isolated words separated by real, standard whitespace characters. You are ABSOLUTELY AND CRITICALLY BANNED from combining words together, removing spaces, or utilizing programming styles like PascalCase, camelCase, or snake_case. It must read normally and smoothly just like a human description string. Fully translate and render this title into the target language requested by the parameters: 🇻🇳 Vietnamese. Example: "Core Infrastructure And Authentication Setup"]<!--PHASE_NAME_END--> |
 | **[Translate "Description"]** | <!--PHASE_DESC_START-->[Granular professional engineering summary description of the absolute operational scope of this specific phase, fully rendered in 🇻🇳 Vietnamese]<!--PHASE_DESC_END--> |
 | **[You MUST translate the literal token "Version" into 🇻🇳 Vietnamese]** | 1.0 (Baseline) |
-| **[You MUST translate the literal token "Date/Time" into 🇻🇳 Vietnamese]** | 2026/08/07 03:44:24 |
+| **[You MUST translate the literal token "Date/Time" into 🇻🇳 Vietnamese]** | 2026/08/07 04:23:43 |
 | **[You MUST translate the literal token "Author" into 🇻🇳 Vietnamese]** | Enterprise System Architect (SA Agent) |
 | **[You MUST translate the literal token "Approval" into 🇻🇳 Vietnamese]** | Pending Technical Governance Review |
 
@@ -17145,13 +17193,16 @@ You are a world-class Principal Solutions Architect. Your specific task is to re
 
 3. **MANDATORY INLINE TAG INJECTION RULE & HTML ANCHOR LOCKDOWN:** For every single Sub-Task generated under the daily logs, you MUST explicitly output a dedicated structural line item starting exactly with the translated string token for `* Traceability Tag Tokens:` followed by an immutable hidden HTML token container block. You MUST wrap the exact raw comma-separated tag IDs inside the hidden tag container string token layout exactly as: `<!--START_TAGS-->[REQ-XXX], [DAT-XXX]<!--END_TAGS-->`. You are STRICTLY BANNED from translating or altering any token values inside the HTML comment tags. Leaving a task block without this explicit HTML anchor layout is a fatal pipeline failure.
 
-4. **LONGITECTURAL DAY PARTITIONING & ANTI-PADDING GUARDRAIL (ACTUAL SYNOPSIS CEILING LAW):** 
-<RULE>
-- You MUST break down the operational calendar day-by-day using individual sequential integers starting strictly from DAY 1.
-- **CRITICAL ACTUAL CEILING CONSTRAINT**: You are ABSOLUTELY AND CRITICALLY BANNED from blindly generating days up to the generic `7` configuration parameter if the active phase's actual duration defined in Section 4 "HIGH-LEVEL MULTI-PHASE ARCHITECTURAL SYNOPSIS GRID" of the Global Context is shorter.
-- You MUST cross-reference the active `Phase 1` row inside the Section 4 Synopsis Table, extract the exact runtime duration from the "Day Range" column (e.g., if the table says "Day 1 - 2", the actual ceiling is strictly 2 days), and force-stop your sequential day generation precisely at that calculated local integer ceiling.
-- Generating a single day beyond the actual duration specified in the Global Context synopsis grid (such as generating Day 3 or Day 5 when the table restricts the phase to Day 1 - 2) constitutes a fatal structural contract violation and will break the backend workflow sequencer.
-</RULE>
+4. **LONGITECTURAL DAY PARTITIONING & ANTI-PADDING GUARDRAIL (ABSOLUTE LOCAL CHRONO RE-INDEX LAW):**
+   - You MUST break down the operational calendar day-by-day using individual sequential integers starting strictly from DAY 1 up to a MAXIMUM of DAY 7.
+   - **ABSOLUTE CHRONO RESET LAW**: You are COMPLETELY BANNED from continuing the sequential day index from any previous phase or global context log timelines. 
+   - The very first day section generated inside this active file MUST natively reset and force-freeze its counter starting exactly from numerical digit 1 (e.g., DAY 1 or NGÀY 1), regardless of the preceding historical context metrics. 
+   - Any model execution that outputs a continuing sequence (like generating "DAY 3" on Phase 2 because Phase 1 ended on Day 2) triggers an immediate pipeline crash.
+   - **STRICT PROGRESSION STOPPING CRITERION:** You MUST freeze the timeline and stop generating daily sections immediately on the exact calendar day where the technical objectives allocated for this phase are satisfied. You are STRICTLY BANNED from injecting dummy placeholder days, fake syncs, empty review blocks, or documentation padding just to expand the calendar. If the technical scope is natively complete on DAY 1, freeze the output file state and exit immediately. Do NOT generate empty or padded days.
+   - You are STRICTLY FORBIDDEN from bundling multiple days together (e.g., NO "DAY 1 - DAY 3"). Every single calendar day log must be explicitly isolated as its own standalone subsection header containing atomic steps for that unique 24-hour cycle.
+   - **CRITICAL ACTUAL CEILING CONSTRAINT**: You are ABSOLUTELY AND CRITICALLY BANNED from blindly generating days up to the generic `7` configuration parameter if the active phase's actual duration defined in Section 4 "HIGH-LEVEL MULTI-PHASE ARCHITECTURAL SYNOPSIS GRID" of the Global Context is shorter.
+   - You MUST cross-reference the active `Phase 1` row inside the Section 4 Synopsis Table, extract the exact runtime duration from the "Day Range" column (e.g., if the table says "Day 1 - 2", the actual ceiling is strictly 2 days), and force-stop your sequential day generation precisely at that calculated local integer ceiling.
+   - Generating a single day beyond the actual duration specified in the Global Context synopsis grid (such as generating Day 3 or Day 5 when the table restricts the phase to Day 1 - 2) constitutes a fatal structural contract violation and will break the backend workflow sequencer.
 
 5. **Language Compliance & Formatting Lockdown:** You MUST generate the entire report strictly in the language specified by the parameters: **🇻🇳 Vietnamese**.
 
@@ -18095,13 +18146,13 @@ Your output MUST follow this exact Markdown layout structure (translate all labe
 
 | [Translate "Item"] | [Translate "Details"] |
 | :--- | :--- |
-| **[Translate "Blueprint ID"]** | ARCH-20260807034424 |
+| **[Translate "Blueprint ID"]** | ARCH-20260807042343 |
 | **[Translate "Project Name"]** | membership-hub |
 | **[Translate "Phase"]** | 1 |
 | **[Translate "Phase Name"]** | <!--PHASE_NAME_START-->[Generate a standard, natural, human-readable descriptive title for this phase. You MUST write this as a normal human sentence or phrase using isolated words separated by real, standard whitespace characters. You are ABSOLUTELY AND CRITICALLY BANNED from combining words together, removing spaces, or utilizing programming styles like PascalCase, camelCase, or snake_case. It must read normally and smoothly just like a human description string. Fully translate and render this title into the target language requested by the parameters: 🇻🇳 Vietnamese. Example: "Core Infrastructure And Authentication Setup"]<!--PHASE_NAME_END--> |
 | **[Translate "Description"]** | <!--PHASE_DESC_START-->[Granular professional engineering summary description of the absolute operational scope of this specific phase, fully rendered in 🇻🇳 Vietnamese]<!--PHASE_DESC_END--> |
 | **[You MUST translate the literal token "Version" into 🇻🇳 Vietnamese]** | 1.0 (Baseline) |
-| **[You MUST translate the literal token "Date/Time" into 🇻🇳 Vietnamese]** | 2026/08/07 03:44:24 |
+| **[You MUST translate the literal token "Date/Time" into 🇻🇳 Vietnamese]** | 2026/08/07 04:23:43 |
 | **[You MUST translate the literal token "Author" into 🇻🇳 Vietnamese]** | Enterprise System Architect (SA Agent) |
 | **[You MUST translate the literal token "Approval" into 🇻🇳 Vietnamese]** | Pending Technical Governance Review |
 
@@ -18156,13 +18207,16 @@ You are a world-class Principal Solutions Architect. Your specific task is to re
 
 3. **MANDATORY INLINE TAG INJECTION RULE & HTML ANCHOR LOCKDOWN:** For every single Sub-Task generated under the daily logs, you MUST explicitly output a dedicated structural line item starting exactly with the translated string token for `* Traceability Tag Tokens:` followed by an immutable hidden HTML token container block. You MUST wrap the exact raw comma-separated tag IDs inside the hidden tag container string token layout exactly as: `<!--START_TAGS-->[REQ-XXX], [DAT-XXX]<!--END_TAGS-->`. You are STRICTLY BANNED from translating or altering any token values inside the HTML comment tags. Leaving a task block without this explicit HTML anchor layout is a fatal pipeline failure.
 
-4. **LONGITECTURAL DAY PARTITIONING & ANTI-PADDING GUARDRAIL (ACTUAL SYNOPSIS CEILING LAW):** 
-<RULE>
-- You MUST break down the operational calendar day-by-day using individual sequential integers starting strictly from DAY 1.
-- **CRITICAL ACTUAL CEILING CONSTRAINT**: You are ABSOLUTELY AND CRITICALLY BANNED from blindly generating days up to the generic `7` configuration parameter if the active phase's actual duration defined in Section 4 "HIGH-LEVEL MULTI-PHASE ARCHITECTURAL SYNOPSIS GRID" of the Global Context is shorter.
-- You MUST cross-reference the active `Phase 1` row inside the Section 4 Synopsis Table, extract the exact runtime duration from the "Day Range" column (e.g., if the table says "Day 1 - 2", the actual ceiling is strictly 2 days), and force-stop your sequential day generation precisely at that calculated local integer ceiling.
-- Generating a single day beyond the actual duration specified in the Global Context synopsis grid (such as generating Day 3 or Day 5 when the table restricts the phase to Day 1 - 2) constitutes a fatal structural contract violation and will break the backend workflow sequencer.
-</RULE>
+4. **LONGITECTURAL DAY PARTITIONING & ANTI-PADDING GUARDRAIL (ABSOLUTE LOCAL CHRONO RE-INDEX LAW):**
+   - You MUST break down the operational calendar day-by-day using individual sequential integers starting strictly from DAY 1 up to a MAXIMUM of DAY 7.
+   - **ABSOLUTE CHRONO RESET LAW**: You are COMPLETELY BANNED from continuing the sequential day index from any previous phase or global context log timelines. 
+   - The very first day section generated inside this active file MUST natively reset and force-freeze its counter starting exactly from numerical digit 1 (e.g., DAY 1 or NGÀY 1), regardless of the preceding historical context metrics. 
+   - Any model execution that outputs a continuing sequence (like generating "DAY 3" on Phase 2 because Phase 1 ended on Day 2) triggers an immediate pipeline crash.
+   - **STRICT PROGRESSION STOPPING CRITERION:** You MUST freeze the timeline and stop generating daily sections immediately on the exact calendar day where the technical objectives allocated for this phase are satisfied. You are STRICTLY BANNED from injecting dummy placeholder days, fake syncs, empty review blocks, or documentation padding just to expand the calendar. If the technical scope is natively complete on DAY 1, freeze the output file state and exit immediately. Do NOT generate empty or padded days.
+   - You are STRICTLY FORBIDDEN from bundling multiple days together (e.g., NO "DAY 1 - DAY 3"). Every single calendar day log must be explicitly isolated as its own standalone subsection header containing atomic steps for that unique 24-hour cycle.
+   - **CRITICAL ACTUAL CEILING CONSTRAINT**: You are ABSOLUTELY AND CRITICALLY BANNED from blindly generating days up to the generic `7` configuration parameter if the active phase's actual duration defined in Section 4 "HIGH-LEVEL MULTI-PHASE ARCHITECTURAL SYNOPSIS GRID" of the Global Context is shorter.
+   - You MUST cross-reference the active `Phase 1` row inside the Section 4 Synopsis Table, extract the exact runtime duration from the "Day Range" column (e.g., if the table says "Day 1 - 2", the actual ceiling is strictly 2 days), and force-stop your sequential day generation precisely at that calculated local integer ceiling.
+   - Generating a single day beyond the actual duration specified in the Global Context synopsis grid (such as generating Day 3 or Day 5 when the table restricts the phase to Day 1 - 2) constitutes a fatal structural contract violation and will break the backend workflow sequencer.
 
 5. **Language Compliance & Formatting Lockdown:** You MUST generate the entire report strictly in the language specified by the parameters: **🇻🇳 Vietnamese**.
 
@@ -19106,13 +19160,13 @@ Your output MUST follow this exact Markdown layout structure (translate all labe
 
 | [Translate "Item"] | [Translate "Details"] |
 | :--- | :--- |
-| **[Translate "Blueprint ID"]** | ARCH-20260807034424 |
+| **[Translate "Blueprint ID"]** | ARCH-20260807042343 |
 | **[Translate "Project Name"]** | membership-hub |
 | **[Translate "Phase"]** | 1 |
 | **[Translate "Phase Name"]** | <!--PHASE_NAME_START-->[Generate a standard, natural, human-readable descriptive title for this phase. You MUST write this as a normal human sentence or phrase using isolated words separated by real, standard whitespace characters. You are ABSOLUTELY AND CRITICALLY BANNED from combining words together, removing spaces, or utilizing programming styles like PascalCase, camelCase, or snake_case. It must read normally and smoothly just like a human description string. Fully translate and render this title into the target language requested by the parameters: 🇻🇳 Vietnamese. Example: "Core Infrastructure And Authentication Setup"]<!--PHASE_NAME_END--> |
 | **[Translate "Description"]** | <!--PHASE_DESC_START-->[Granular professional engineering summary description of the absolute operational scope of this specific phase, fully rendered in 🇻🇳 Vietnamese]<!--PHASE_DESC_END--> |
 | **[You MUST translate the literal token "Version" into 🇻🇳 Vietnamese]** | 1.0 (Baseline) |
-| **[You MUST translate the literal token "Date/Time" into 🇻🇳 Vietnamese]** | 2026/08/07 03:44:24 |
+| **[You MUST translate the literal token "Date/Time" into 🇻🇳 Vietnamese]** | 2026/08/07 04:23:43 |
 | **[You MUST translate the literal token "Author" into 🇻🇳 Vietnamese]** | Enterprise System Architect (SA Agent) |
 | **[You MUST translate the literal token "Approval" into 🇻🇳 Vietnamese]** | Pending Technical Governance Review |
 
@@ -19167,13 +19221,16 @@ You are a world-class Principal Solutions Architect. Your specific task is to re
 
 3. **MANDATORY INLINE TAG INJECTION RULE & HTML ANCHOR LOCKDOWN:** For every single Sub-Task generated under the daily logs, you MUST explicitly output a dedicated structural line item starting exactly with the translated string token for `* Traceability Tag Tokens:` followed by an immutable hidden HTML token container block. You MUST wrap the exact raw comma-separated tag IDs inside the hidden tag container string token layout exactly as: `<!--START_TAGS-->[REQ-XXX], [DAT-XXX]<!--END_TAGS-->`. You are STRICTLY BANNED from translating or altering any token values inside the HTML comment tags. Leaving a task block without this explicit HTML anchor layout is a fatal pipeline failure.
 
-4. **LONGITECTURAL DAY PARTITIONING & ANTI-PADDING GUARDRAIL (ACTUAL SYNOPSIS CEILING LAW):** 
-<RULE>
-- You MUST break down the operational calendar day-by-day using individual sequential integers starting strictly from DAY 1.
-- **CRITICAL ACTUAL CEILING CONSTRAINT**: You are ABSOLUTELY AND CRITICALLY BANNED from blindly generating days up to the generic `7` configuration parameter if the active phase's actual duration defined in Section 4 "HIGH-LEVEL MULTI-PHASE ARCHITECTURAL SYNOPSIS GRID" of the Global Context is shorter.
-- You MUST cross-reference the active `Phase 1` row inside the Section 4 Synopsis Table, extract the exact runtime duration from the "Day Range" column (e.g., if the table says "Day 1 - 2", the actual ceiling is strictly 2 days), and force-stop your sequential day generation precisely at that calculated local integer ceiling.
-- Generating a single day beyond the actual duration specified in the Global Context synopsis grid (such as generating Day 3 or Day 5 when the table restricts the phase to Day 1 - 2) constitutes a fatal structural contract violation and will break the backend workflow sequencer.
-</RULE>
+4. **LONGITECTURAL DAY PARTITIONING & ANTI-PADDING GUARDRAIL (ABSOLUTE LOCAL CHRONO RE-INDEX LAW):**
+   - You MUST break down the operational calendar day-by-day using individual sequential integers starting strictly from DAY 1 up to a MAXIMUM of DAY 7.
+   - **ABSOLUTE CHRONO RESET LAW**: You are COMPLETELY BANNED from continuing the sequential day index from any previous phase or global context log timelines. 
+   - The very first day section generated inside this active file MUST natively reset and force-freeze its counter starting exactly from numerical digit 1 (e.g., DAY 1 or NGÀY 1), regardless of the preceding historical context metrics. 
+   - Any model execution that outputs a continuing sequence (like generating "DAY 3" on Phase 2 because Phase 1 ended on Day 2) triggers an immediate pipeline crash.
+   - **STRICT PROGRESSION STOPPING CRITERION:** You MUST freeze the timeline and stop generating daily sections immediately on the exact calendar day where the technical objectives allocated for this phase are satisfied. You are STRICTLY BANNED from injecting dummy placeholder days, fake syncs, empty review blocks, or documentation padding just to expand the calendar. If the technical scope is natively complete on DAY 1, freeze the output file state and exit immediately. Do NOT generate empty or padded days.
+   - You are STRICTLY FORBIDDEN from bundling multiple days together (e.g., NO "DAY 1 - DAY 3"). Every single calendar day log must be explicitly isolated as its own standalone subsection header containing atomic steps for that unique 24-hour cycle.
+   - **CRITICAL ACTUAL CEILING CONSTRAINT**: You are ABSOLUTELY AND CRITICALLY BANNED from blindly generating days up to the generic `7` configuration parameter if the active phase's actual duration defined in Section 4 "HIGH-LEVEL MULTI-PHASE ARCHITECTURAL SYNOPSIS GRID" of the Global Context is shorter.
+   - You MUST cross-reference the active `Phase 1` row inside the Section 4 Synopsis Table, extract the exact runtime duration from the "Day Range" column (e.g., if the table says "Day 1 - 2", the actual ceiling is strictly 2 days), and force-stop your sequential day generation precisely at that calculated local integer ceiling.
+   - Generating a single day beyond the actual duration specified in the Global Context synopsis grid (such as generating Day 3 or Day 5 when the table restricts the phase to Day 1 - 2) constitutes a fatal structural contract violation and will break the backend workflow sequencer.
 
 5. **Language Compliance & Formatting Lockdown:** You MUST generate the entire report strictly in the language specified by the parameters: **🇻🇳 Vietnamese**.
 
@@ -20117,13 +20174,13 @@ Your output MUST follow this exact Markdown layout structure (translate all labe
 
 | [Translate "Item"] | [Translate "Details"] |
 | :--- | :--- |
-| **[Translate "Blueprint ID"]** | ARCH-20260807034424 |
+| **[Translate "Blueprint ID"]** | ARCH-20260807042343 |
 | **[Translate "Project Name"]** | membership-hub |
 | **[Translate "Phase"]** | 1 |
 | **[Translate "Phase Name"]** | <!--PHASE_NAME_START-->[Generate a standard, natural, human-readable descriptive title for this phase. You MUST write this as a normal human sentence or phrase using isolated words separated by real, standard whitespace characters. You are ABSOLUTELY AND CRITICALLY BANNED from combining words together, removing spaces, or utilizing programming styles like PascalCase, camelCase, or snake_case. It must read normally and smoothly just like a human description string. Fully translate and render this title into the target language requested by the parameters: 🇻🇳 Vietnamese. Example: "Core Infrastructure And Authentication Setup"]<!--PHASE_NAME_END--> |
 | **[Translate "Description"]** | <!--PHASE_DESC_START-->[Granular professional engineering summary description of the absolute operational scope of this specific phase, fully rendered in 🇻🇳 Vietnamese]<!--PHASE_DESC_END--> |
 | **[You MUST translate the literal token "Version" into 🇻🇳 Vietnamese]** | 1.0 (Baseline) |
-| **[You MUST translate the literal token "Date/Time" into 🇻🇳 Vietnamese]** | 2026/08/07 03:44:24 |
+| **[You MUST translate the literal token "Date/Time" into 🇻🇳 Vietnamese]** | 2026/08/07 04:23:43 |
 | **[You MUST translate the literal token "Author" into 🇻🇳 Vietnamese]** | Enterprise System Architect (SA Agent) |
 | **[You MUST translate the literal token "Approval" into 🇻🇳 Vietnamese]** | Pending Technical Governance Review |
 
@@ -20178,13 +20235,16 @@ You are a world-class Principal Solutions Architect. Your specific task is to re
 
 3. **MANDATORY INLINE TAG INJECTION RULE & HTML ANCHOR LOCKDOWN:** For every single Sub-Task generated under the daily logs, you MUST explicitly output a dedicated structural line item starting exactly with the translated string token for `* Traceability Tag Tokens:` followed by an immutable hidden HTML token container block. You MUST wrap the exact raw comma-separated tag IDs inside the hidden tag container string token layout exactly as: `<!--START_TAGS-->[REQ-XXX], [DAT-XXX]<!--END_TAGS-->`. You are STRICTLY BANNED from translating or altering any token values inside the HTML comment tags. Leaving a task block without this explicit HTML anchor layout is a fatal pipeline failure.
 
-4. **LONGITECTURAL DAY PARTITIONING & ANTI-PADDING GUARDRAIL (ACTUAL SYNOPSIS CEILING LAW):** 
-<RULE>
-- You MUST break down the operational calendar day-by-day using individual sequential integers starting strictly from DAY 1.
-- **CRITICAL ACTUAL CEILING CONSTRAINT**: You are ABSOLUTELY AND CRITICALLY BANNED from blindly generating days up to the generic `7` configuration parameter if the active phase's actual duration defined in Section 4 "HIGH-LEVEL MULTI-PHASE ARCHITECTURAL SYNOPSIS GRID" of the Global Context is shorter.
-- You MUST cross-reference the active `Phase 1` row inside the Section 4 Synopsis Table, extract the exact runtime duration from the "Day Range" column (e.g., if the table says "Day 1 - 2", the actual ceiling is strictly 2 days), and force-stop your sequential day generation precisely at that calculated local integer ceiling.
-- Generating a single day beyond the actual duration specified in the Global Context synopsis grid (such as generating Day 3 or Day 5 when the table restricts the phase to Day 1 - 2) constitutes a fatal structural contract violation and will break the backend workflow sequencer.
-</RULE>
+4. **LONGITECTURAL DAY PARTITIONING & ANTI-PADDING GUARDRAIL (ABSOLUTE LOCAL CHRONO RE-INDEX LAW):**
+   - You MUST break down the operational calendar day-by-day using individual sequential integers starting strictly from DAY 1 up to a MAXIMUM of DAY 7.
+   - **ABSOLUTE CHRONO RESET LAW**: You are COMPLETELY BANNED from continuing the sequential day index from any previous phase or global context log timelines. 
+   - The very first day section generated inside this active file MUST natively reset and force-freeze its counter starting exactly from numerical digit 1 (e.g., DAY 1 or NGÀY 1), regardless of the preceding historical context metrics. 
+   - Any model execution that outputs a continuing sequence (like generating "DAY 3" on Phase 2 because Phase 1 ended on Day 2) triggers an immediate pipeline crash.
+   - **STRICT PROGRESSION STOPPING CRITERION:** You MUST freeze the timeline and stop generating daily sections immediately on the exact calendar day where the technical objectives allocated for this phase are satisfied. You are STRICTLY BANNED from injecting dummy placeholder days, fake syncs, empty review blocks, or documentation padding just to expand the calendar. If the technical scope is natively complete on DAY 1, freeze the output file state and exit immediately. Do NOT generate empty or padded days.
+   - You are STRICTLY FORBIDDEN from bundling multiple days together (e.g., NO "DAY 1 - DAY 3"). Every single calendar day log must be explicitly isolated as its own standalone subsection header containing atomic steps for that unique 24-hour cycle.
+   - **CRITICAL ACTUAL CEILING CONSTRAINT**: You are ABSOLUTELY AND CRITICALLY BANNED from blindly generating days up to the generic `7` configuration parameter if the active phase's actual duration defined in Section 4 "HIGH-LEVEL MULTI-PHASE ARCHITECTURAL SYNOPSIS GRID" of the Global Context is shorter.
+   - You MUST cross-reference the active `Phase 1` row inside the Section 4 Synopsis Table, extract the exact runtime duration from the "Day Range" column (e.g., if the table says "Day 1 - 2", the actual ceiling is strictly 2 days), and force-stop your sequential day generation precisely at that calculated local integer ceiling.
+   - Generating a single day beyond the actual duration specified in the Global Context synopsis grid (such as generating Day 3 or Day 5 when the table restricts the phase to Day 1 - 2) constitutes a fatal structural contract violation and will break the backend workflow sequencer.
 
 5. **Language Compliance & Formatting Lockdown:** You MUST generate the entire report strictly in the language specified by the parameters: **🇻🇳 Vietnamese**.
 
@@ -21128,13 +21188,13 @@ Your output MUST follow this exact Markdown layout structure (translate all labe
 
 | [Translate "Item"] | [Translate "Details"] |
 | :--- | :--- |
-| **[Translate "Blueprint ID"]** | ARCH-20260807034424 |
+| **[Translate "Blueprint ID"]** | ARCH-20260807042343 |
 | **[Translate "Project Name"]** | membership-hub |
 | **[Translate "Phase"]** | 1 |
 | **[Translate "Phase Name"]** | <!--PHASE_NAME_START-->[Generate a standard, natural, human-readable descriptive title for this phase. You MUST write this as a normal human sentence or phrase using isolated words separated by real, standard whitespace characters. You are ABSOLUTELY AND CRITICALLY BANNED from combining words together, removing spaces, or utilizing programming styles like PascalCase, camelCase, or snake_case. It must read normally and smoothly just like a human description string. Fully translate and render this title into the target language requested by the parameters: 🇻🇳 Vietnamese. Example: "Core Infrastructure And Authentication Setup"]<!--PHASE_NAME_END--> |
 | **[Translate "Description"]** | <!--PHASE_DESC_START-->[Granular professional engineering summary description of the absolute operational scope of this specific phase, fully rendered in 🇻🇳 Vietnamese]<!--PHASE_DESC_END--> |
 | **[You MUST translate the literal token "Version" into 🇻🇳 Vietnamese]** | 1.0 (Baseline) |
-| **[You MUST translate the literal token "Date/Time" into 🇻🇳 Vietnamese]** | 2026/08/07 03:44:24 |
+| **[You MUST translate the literal token "Date/Time" into 🇻🇳 Vietnamese]** | 2026/08/07 04:23:43 |
 | **[You MUST translate the literal token "Author" into 🇻🇳 Vietnamese]** | Enterprise System Architect (SA Agent) |
 | **[You MUST translate the literal token "Approval" into 🇻🇳 Vietnamese]** | Pending Technical Governance Review |
 
@@ -21189,13 +21249,16 @@ You are a world-class Principal Solutions Architect. Your specific task is to re
 
 3. **MANDATORY INLINE TAG INJECTION RULE & HTML ANCHOR LOCKDOWN:** For every single Sub-Task generated under the daily logs, you MUST explicitly output a dedicated structural line item starting exactly with the translated string token for `* Traceability Tag Tokens:` followed by an immutable hidden HTML token container block. You MUST wrap the exact raw comma-separated tag IDs inside the hidden tag container string token layout exactly as: `<!--START_TAGS-->[REQ-XXX], [DAT-XXX]<!--END_TAGS-->`. You are STRICTLY BANNED from translating or altering any token values inside the HTML comment tags. Leaving a task block without this explicit HTML anchor layout is a fatal pipeline failure.
 
-4. **LONGITECTURAL DAY PARTITIONING & ANTI-PADDING GUARDRAIL (ACTUAL SYNOPSIS CEILING LAW):** 
-<RULE>
-- You MUST break down the operational calendar day-by-day using individual sequential integers starting strictly from DAY 1.
-- **CRITICAL ACTUAL CEILING CONSTRAINT**: You are ABSOLUTELY AND CRITICALLY BANNED from blindly generating days up to the generic `7` configuration parameter if the active phase's actual duration defined in Section 4 "HIGH-LEVEL MULTI-PHASE ARCHITECTURAL SYNOPSIS GRID" of the Global Context is shorter.
-- You MUST cross-reference the active `Phase 1` row inside the Section 4 Synopsis Table, extract the exact runtime duration from the "Day Range" column (e.g., if the table says "Day 1 - 2", the actual ceiling is strictly 2 days), and force-stop your sequential day generation precisely at that calculated local integer ceiling.
-- Generating a single day beyond the actual duration specified in the Global Context synopsis grid (such as generating Day 3 or Day 5 when the table restricts the phase to Day 1 - 2) constitutes a fatal structural contract violation and will break the backend workflow sequencer.
-</RULE>
+4. **LONGITECTURAL DAY PARTITIONING & ANTI-PADDING GUARDRAIL (ABSOLUTE LOCAL CHRONO RE-INDEX LAW):**
+   - You MUST break down the operational calendar day-by-day using individual sequential integers starting strictly from DAY 1 up to a MAXIMUM of DAY 7.
+   - **ABSOLUTE CHRONO RESET LAW**: You are COMPLETELY BANNED from continuing the sequential day index from any previous phase or global context log timelines. 
+   - The very first day section generated inside this active file MUST natively reset and force-freeze its counter starting exactly from numerical digit 1 (e.g., DAY 1 or NGÀY 1), regardless of the preceding historical context metrics. 
+   - Any model execution that outputs a continuing sequence (like generating "DAY 3" on Phase 2 because Phase 1 ended on Day 2) triggers an immediate pipeline crash.
+   - **STRICT PROGRESSION STOPPING CRITERION:** You MUST freeze the timeline and stop generating daily sections immediately on the exact calendar day where the technical objectives allocated for this phase are satisfied. You are STRICTLY BANNED from injecting dummy placeholder days, fake syncs, empty review blocks, or documentation padding just to expand the calendar. If the technical scope is natively complete on DAY 1, freeze the output file state and exit immediately. Do NOT generate empty or padded days.
+   - You are STRICTLY FORBIDDEN from bundling multiple days together (e.g., NO "DAY 1 - DAY 3"). Every single calendar day log must be explicitly isolated as its own standalone subsection header containing atomic steps for that unique 24-hour cycle.
+   - **CRITICAL ACTUAL CEILING CONSTRAINT**: You are ABSOLUTELY AND CRITICALLY BANNED from blindly generating days up to the generic `7` configuration parameter if the active phase's actual duration defined in Section 4 "HIGH-LEVEL MULTI-PHASE ARCHITECTURAL SYNOPSIS GRID" of the Global Context is shorter.
+   - You MUST cross-reference the active `Phase 1` row inside the Section 4 Synopsis Table, extract the exact runtime duration from the "Day Range" column (e.g., if the table says "Day 1 - 2", the actual ceiling is strictly 2 days), and force-stop your sequential day generation precisely at that calculated local integer ceiling.
+   - Generating a single day beyond the actual duration specified in the Global Context synopsis grid (such as generating Day 3 or Day 5 when the table restricts the phase to Day 1 - 2) constitutes a fatal structural contract violation and will break the backend workflow sequencer.
 
 5. **Language Compliance & Formatting Lockdown:** You MUST generate the entire report strictly in the language specified by the parameters: **🇻🇳 Vietnamese**.
 
@@ -22139,13 +22202,13 @@ Your output MUST follow this exact Markdown layout structure (translate all labe
 
 | [Translate "Item"] | [Translate "Details"] |
 | :--- | :--- |
-| **[Translate "Blueprint ID"]** | ARCH-20260807034424 |
+| **[Translate "Blueprint ID"]** | ARCH-20260807042343 |
 | **[Translate "Project Name"]** | membership-hub |
 | **[Translate "Phase"]** | 1 |
 | **[Translate "Phase Name"]** | <!--PHASE_NAME_START-->[Generate a standard, natural, human-readable descriptive title for this phase. You MUST write this as a normal human sentence or phrase using isolated words separated by real, standard whitespace characters. You are ABSOLUTELY AND CRITICALLY BANNED from combining words together, removing spaces, or utilizing programming styles like PascalCase, camelCase, or snake_case. It must read normally and smoothly just like a human description string. Fully translate and render this title into the target language requested by the parameters: 🇻🇳 Vietnamese. Example: "Core Infrastructure And Authentication Setup"]<!--PHASE_NAME_END--> |
 | **[Translate "Description"]** | <!--PHASE_DESC_START-->[Granular professional engineering summary description of the absolute operational scope of this specific phase, fully rendered in 🇻🇳 Vietnamese]<!--PHASE_DESC_END--> |
 | **[You MUST translate the literal token "Version" into 🇻🇳 Vietnamese]** | 1.0 (Baseline) |
-| **[You MUST translate the literal token "Date/Time" into 🇻🇳 Vietnamese]** | 2026/08/07 03:44:24 |
+| **[You MUST translate the literal token "Date/Time" into 🇻🇳 Vietnamese]** | 2026/08/07 04:23:43 |
 | **[You MUST translate the literal token "Author" into 🇻🇳 Vietnamese]** | Enterprise System Architect (SA Agent) |
 | **[You MUST translate the literal token "Approval" into 🇻🇳 Vietnamese]** | Pending Technical Governance Review |
 
@@ -22200,13 +22263,16 @@ You are a world-class Principal Solutions Architect. Your specific task is to re
 
 3. **MANDATORY INLINE TAG INJECTION RULE & HTML ANCHOR LOCKDOWN:** For every single Sub-Task generated under the daily logs, you MUST explicitly output a dedicated structural line item starting exactly with the translated string token for `* Traceability Tag Tokens:` followed by an immutable hidden HTML token container block. You MUST wrap the exact raw comma-separated tag IDs inside the hidden tag container string token layout exactly as: `<!--START_TAGS-->[REQ-XXX], [DAT-XXX]<!--END_TAGS-->`. You are STRICTLY BANNED from translating or altering any token values inside the HTML comment tags. Leaving a task block without this explicit HTML anchor layout is a fatal pipeline failure.
 
-4. **LONGITECTURAL DAY PARTITIONING & ANTI-PADDING GUARDRAIL (ACTUAL SYNOPSIS CEILING LAW):** 
-<RULE>
-- You MUST break down the operational calendar day-by-day using individual sequential integers starting strictly from DAY 1.
-- **CRITICAL ACTUAL CEILING CONSTRAINT**: You are ABSOLUTELY AND CRITICALLY BANNED from blindly generating days up to the generic `7` configuration parameter if the active phase's actual duration defined in Section 4 "HIGH-LEVEL MULTI-PHASE ARCHITECTURAL SYNOPSIS GRID" of the Global Context is shorter.
-- You MUST cross-reference the active `Phase 1` row inside the Section 4 Synopsis Table, extract the exact runtime duration from the "Day Range" column (e.g., if the table says "Day 1 - 2", the actual ceiling is strictly 2 days), and force-stop your sequential day generation precisely at that calculated local integer ceiling.
-- Generating a single day beyond the actual duration specified in the Global Context synopsis grid (such as generating Day 3 or Day 5 when the table restricts the phase to Day 1 - 2) constitutes a fatal structural contract violation and will break the backend workflow sequencer.
-</RULE>
+4. **LONGITECTURAL DAY PARTITIONING & ANTI-PADDING GUARDRAIL (ABSOLUTE LOCAL CHRONO RE-INDEX LAW):**
+   - You MUST break down the operational calendar day-by-day using individual sequential integers starting strictly from DAY 1 up to a MAXIMUM of DAY 7.
+   - **ABSOLUTE CHRONO RESET LAW**: You are COMPLETELY BANNED from continuing the sequential day index from any previous phase or global context log timelines. 
+   - The very first day section generated inside this active file MUST natively reset and force-freeze its counter starting exactly from numerical digit 1 (e.g., DAY 1 or NGÀY 1), regardless of the preceding historical context metrics. 
+   - Any model execution that outputs a continuing sequence (like generating "DAY 3" on Phase 2 because Phase 1 ended on Day 2) triggers an immediate pipeline crash.
+   - **STRICT PROGRESSION STOPPING CRITERION:** You MUST freeze the timeline and stop generating daily sections immediately on the exact calendar day where the technical objectives allocated for this phase are satisfied. You are STRICTLY BANNED from injecting dummy placeholder days, fake syncs, empty review blocks, or documentation padding just to expand the calendar. If the technical scope is natively complete on DAY 1, freeze the output file state and exit immediately. Do NOT generate empty or padded days.
+   - You are STRICTLY FORBIDDEN from bundling multiple days together (e.g., NO "DAY 1 - DAY 3"). Every single calendar day log must be explicitly isolated as its own standalone subsection header containing atomic steps for that unique 24-hour cycle.
+   - **CRITICAL ACTUAL CEILING CONSTRAINT**: You are ABSOLUTELY AND CRITICALLY BANNED from blindly generating days up to the generic `7` configuration parameter if the active phase's actual duration defined in Section 4 "HIGH-LEVEL MULTI-PHASE ARCHITECTURAL SYNOPSIS GRID" of the Global Context is shorter.
+   - You MUST cross-reference the active `Phase 1` row inside the Section 4 Synopsis Table, extract the exact runtime duration from the "Day Range" column (e.g., if the table says "Day 1 - 2", the actual ceiling is strictly 2 days), and force-stop your sequential day generation precisely at that calculated local integer ceiling.
+   - Generating a single day beyond the actual duration specified in the Global Context synopsis grid (such as generating Day 3 or Day 5 when the table restricts the phase to Day 1 - 2) constitutes a fatal structural contract violation and will break the backend workflow sequencer.
 
 5. **Language Compliance & Formatting Lockdown:** You MUST generate the entire report strictly in the language specified by the parameters: **🇻🇳 Vietnamese**.
 
@@ -22216,7 +22282,7 @@ You are a world-class Principal Solutions Architect. Your specific task is to re
 
 # Raw Response / Exception:
 
-Error code: 402 - {'error': {'message': 'This request requires more credits, or fewer max_tokens. You requested up to 65536 tokens, but can only afford 26. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account', 'code': 402, 'metadata': {'limit_source': 'openrouter_credits', 'remedy_hint': 'Add credits at https://openrouter.ai/settings/credits, or lower max_tokens / prompt size to fit your remaining balance.', 'provider_name': None, 'previous_errors': [{'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 65536 tokens, but can only afford 12. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 65536 tokens, but can only afford 12. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 65536 tokens, but can only afford 62. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 65536 tokens, but can only afford 25. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 65536 tokens, but can only afford 25. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 65536 tokens, but can only afford 25. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 65536 tokens, but can only afford 25. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 65536 tokens, but can only afford 25. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 65535 tokens, but can only afford 25. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 65536 tokens, but can only afford 16. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 65536 tokens, but can only afford 25. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 65536 tokens, but can only afford 25. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 65536 tokens, but can only afford 16. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 65536 tokens, but can only afford 16. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 65536 tokens, but can only afford 25. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}]}}, 'user_id': 'user_3GLaJI6mihRMFQtSad72HqAhW95'}: ['Traceback (most recent call last):
+Error code: 402 - {'error': {'message': 'This request requires more credits, or fewer max_tokens. You requested up to 65536 tokens, but can only afford 16. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account', 'code': 402, 'metadata': {'limit_source': 'openrouter_credits', 'remedy_hint': 'Add credits at https://openrouter.ai/settings/credits, or lower max_tokens / prompt size to fit your remaining balance.', 'provider_name': None, 'previous_errors': [{'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 65536 tokens, but can only afford 12. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 65536 tokens, but can only afford 12. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 65536 tokens, but can only afford 62. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 65536 tokens, but can only afford 25. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 65535 tokens, but can only afford 25. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 65536 tokens, but can only afford 25. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 65536 tokens, but can only afford 25. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 65536 tokens, but can only afford 25. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 65536 tokens, but can only afford 25. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 65536 tokens, but can only afford 25. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 65536 tokens, but can only afford 16. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 65536 tokens, but can only afford 25. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 65536 tokens, but can only afford 25. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 65536 tokens, but can only afford 16. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 65536 tokens, but can only afford 26. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}]}}, 'user_id': 'user_3GLaJI6mihRMFQtSad72HqAhW95'}: ['Traceback (most recent call last):
 ', '  File "/home/runner/work/enterprise-it-ai/enterprise-it-ai/sources/agents/architect-blueprint/block_phase.py", line 99, in generate_phase_contexts
     response = client.chat.completions.create(
                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -22231,7 +22297,7 @@ Error code: 402 - {'error': {'message': 'This request requires more credits, or 
                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 ', '  File "/opt/hostedtoolcache/Python/3.11.15/x64/lib/python3.11/site-packages/openai/_base_client.py", line 1148, in request
     raise self._make_status_error_from_response(err.response) from None
-', "openai.APIStatusError: Error code: 402 - {'error': {'message': 'This request requires more credits, or fewer max_tokens. You requested up to 65536 tokens, but can only afford 26. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account', 'code': 402, 'metadata': {'limit_source': 'openrouter_credits', 'remedy_hint': 'Add credits at https://openrouter.ai/settings/credits, or lower max_tokens / prompt size to fit your remaining balance.', 'provider_name': None, 'previous_errors': [{'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 65536 tokens, but can only afford 12. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 65536 tokens, but can only afford 12. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 65536 tokens, but can only afford 62. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 65536 tokens, but can only afford 25. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 65536 tokens, but can only afford 25. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 65536 tokens, but can only afford 25. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 65536 tokens, but can only afford 25. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 65536 tokens, but can only afford 25. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 65535 tokens, but can only afford 25. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 65536 tokens, but can only afford 16. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 65536 tokens, but can only afford 25. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 65536 tokens, but can only afford 25. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 65536 tokens, but can only afford 16. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 65536 tokens, but can only afford 16. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 65536 tokens, but can only afford 25. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}]}}, 'user_id': 'user_3GLaJI6mihRMFQtSad72HqAhW95'}
+', "openai.APIStatusError: Error code: 402 - {'error': {'message': 'This request requires more credits, or fewer max_tokens. You requested up to 65536 tokens, but can only afford 16. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account', 'code': 402, 'metadata': {'limit_source': 'openrouter_credits', 'remedy_hint': 'Add credits at https://openrouter.ai/settings/credits, or lower max_tokens / prompt size to fit your remaining balance.', 'provider_name': None, 'previous_errors': [{'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 65536 tokens, but can only afford 12. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 65536 tokens, but can only afford 12. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 65536 tokens, but can only afford 62. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 65536 tokens, but can only afford 25. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 65535 tokens, but can only afford 25. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 65536 tokens, but can only afford 25. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 65536 tokens, but can only afford 25. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 65536 tokens, but can only afford 25. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 65536 tokens, but can only afford 25. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 65536 tokens, but can only afford 25. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 65536 tokens, but can only afford 16. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 65536 tokens, but can only afford 25. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 65536 tokens, but can only afford 25. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 65536 tokens, but can only afford 16. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}, {'code': 402, 'message': 'This request requires more credits, or fewer max_tokens. You requested up to 65536 tokens, but can only afford 26. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account'}]}}, 'user_id': 'user_3GLaJI6mihRMFQtSad72HqAhW95'}
 "]
 
 # AI Model: openai/gpt-oss-20b:free - Phase 1 - Prompt:
@@ -23150,13 +23216,13 @@ Your output MUST follow this exact Markdown layout structure (translate all labe
 
 | [Translate "Item"] | [Translate "Details"] |
 | :--- | :--- |
-| **[Translate "Blueprint ID"]** | ARCH-20260807034424 |
+| **[Translate "Blueprint ID"]** | ARCH-20260807042343 |
 | **[Translate "Project Name"]** | membership-hub |
 | **[Translate "Phase"]** | 1 |
 | **[Translate "Phase Name"]** | <!--PHASE_NAME_START-->[Generate a standard, natural, human-readable descriptive title for this phase. You MUST write this as a normal human sentence or phrase using isolated words separated by real, standard whitespace characters. You are ABSOLUTELY AND CRITICALLY BANNED from combining words together, removing spaces, or utilizing programming styles like PascalCase, camelCase, or snake_case. It must read normally and smoothly just like a human description string. Fully translate and render this title into the target language requested by the parameters: 🇻🇳 Vietnamese. Example: "Core Infrastructure And Authentication Setup"]<!--PHASE_NAME_END--> |
 | **[Translate "Description"]** | <!--PHASE_DESC_START-->[Granular professional engineering summary description of the absolute operational scope of this specific phase, fully rendered in 🇻🇳 Vietnamese]<!--PHASE_DESC_END--> |
 | **[You MUST translate the literal token "Version" into 🇻🇳 Vietnamese]** | 1.0 (Baseline) |
-| **[You MUST translate the literal token "Date/Time" into 🇻🇳 Vietnamese]** | 2026/08/07 03:44:24 |
+| **[You MUST translate the literal token "Date/Time" into 🇻🇳 Vietnamese]** | 2026/08/07 04:23:43 |
 | **[You MUST translate the literal token "Author" into 🇻🇳 Vietnamese]** | Enterprise System Architect (SA Agent) |
 | **[You MUST translate the literal token "Approval" into 🇻🇳 Vietnamese]** | Pending Technical Governance Review |
 
@@ -23307,13 +23373,16 @@ You are a world-class Principal Solutions Architect. Your specific task is to re
 
 3. **MANDATORY INLINE TAG INJECTION RULE & HTML ANCHOR LOCKDOWN:** For every single Sub-Task generated under the daily logs, you MUST explicitly output a dedicated structural line item starting exactly with the translated string token for `* Traceability Tag Tokens:` followed by an immutable hidden HTML token container block. You MUST wrap the exact raw comma-separated tag IDs inside the hidden tag container string token layout exactly as: `<!--START_TAGS-->[REQ-XXX], [DAT-XXX]<!--END_TAGS-->`. You are STRICTLY BANNED from translating or altering any token values inside the HTML comment tags. Leaving a task block without this explicit HTML anchor layout is a fatal pipeline failure.
 
-4. **LONGITECTURAL DAY PARTITIONING & ANTI-PADDING GUARDRAIL (ACTUAL SYNOPSIS CEILING LAW):** 
-<RULE>
-- You MUST break down the operational calendar day-by-day using individual sequential integers starting strictly from DAY 1.
-- **CRITICAL ACTUAL CEILING CONSTRAINT**: You are ABSOLUTELY AND CRITICALLY BANNED from blindly generating days up to the generic `7` configuration parameter if the active phase's actual duration defined in Section 4 "HIGH-LEVEL MULTI-PHASE ARCHITECTURAL SYNOPSIS GRID" of the Global Context is shorter.
-- You MUST cross-reference the active `Phase 1` row inside the Section 4 Synopsis Table, extract the exact runtime duration from the "Day Range" column (e.g., if the table says "Day 1 - 2", the actual ceiling is strictly 2 days), and force-stop your sequential day generation precisely at that calculated local integer ceiling.
-- Generating a single day beyond the actual duration specified in the Global Context synopsis grid (such as generating Day 3 or Day 5 when the table restricts the phase to Day 1 - 2) constitutes a fatal structural contract violation and will break the backend workflow sequencer.
-</RULE>
+4. **LONGITECTURAL DAY PARTITIONING & ANTI-PADDING GUARDRAIL (ABSOLUTE LOCAL CHRONO RE-INDEX LAW):**
+   - You MUST break down the operational calendar day-by-day using individual sequential integers starting strictly from DAY 1 up to a MAXIMUM of DAY 7.
+   - **ABSOLUTE CHRONO RESET LAW**: You are COMPLETELY BANNED from continuing the sequential day index from any previous phase or global context log timelines. 
+   - The very first day section generated inside this active file MUST natively reset and force-freeze its counter starting exactly from numerical digit 1 (e.g., DAY 1 or NGÀY 1), regardless of the preceding historical context metrics. 
+   - Any model execution that outputs a continuing sequence (like generating "DAY 3" on Phase 2 because Phase 1 ended on Day 2) triggers an immediate pipeline crash.
+   - **STRICT PROGRESSION STOPPING CRITERION:** You MUST freeze the timeline and stop generating daily sections immediately on the exact calendar day where the technical objectives allocated for this phase are satisfied. You are STRICTLY BANNED from injecting dummy placeholder days, fake syncs, empty review blocks, or documentation padding just to expand the calendar. If the technical scope is natively complete on DAY 1, freeze the output file state and exit immediately. Do NOT generate empty or padded days.
+   - You are STRICTLY FORBIDDEN from bundling multiple days together (e.g., NO "DAY 1 - DAY 3"). Every single calendar day log must be explicitly isolated as its own standalone subsection header containing atomic steps for that unique 24-hour cycle.
+   - **CRITICAL ACTUAL CEILING CONSTRAINT**: You are ABSOLUTELY AND CRITICALLY BANNED from blindly generating days up to the generic `7` configuration parameter if the active phase's actual duration defined in Section 4 "HIGH-LEVEL MULTI-PHASE ARCHITECTURAL SYNOPSIS GRID" of the Global Context is shorter.
+   - You MUST cross-reference the active `Phase 1` row inside the Section 4 Synopsis Table, extract the exact runtime duration from the "Day Range" column (e.g., if the table says "Day 1 - 2", the actual ceiling is strictly 2 days), and force-stop your sequential day generation precisely at that calculated local integer ceiling.
+   - Generating a single day beyond the actual duration specified in the Global Context synopsis grid (such as generating Day 3 or Day 5 when the table restricts the phase to Day 1 - 2) constitutes a fatal structural contract violation and will break the backend workflow sequencer.
 
 5. **Language Compliance & Formatting Lockdown:** You MUST generate the entire report strictly in the language specified by the parameters: **🇻🇳 Vietnamese**.
 
@@ -23326,91 +23395,5132 @@ You are a world-class Principal Solutions Architect. Your specific task is to re
 
 ## Giai đoạn 1: <!--PHASE_NAME_START-->Xây dựng lõi người dùng, vai trò và xác thực cơ bản<!--PHASE_NAME_END-->
 
+#### 📊 Kiểm Soát Tài Liệu
+
+| Mục | Chi tiết |
+| :--- | :--- |
+| **ID Kiến Trúc** | ARCH-20260807042343 |
+| **Tên Dự Án** | membership-hub |
+| **Giai Đoạn** | 1 |
+| **Tên Giai Đoạn** | <!--PHASE_NAME_START-->Xây dựng lõi người dùng, vai trò và xác thực cơ bản<!--PHASE_NAME_END--> |
+| **Mô Tả** | <!--PHASE_DESC_START-->Giai đoạn này tập trung vào việc triển khai dịch vụ quản lý người dùng, xác thực, và phân quyền, bao gồm đăng ký, OAuth2, JWT, và kiểm tra đầu vào, đồng thời chuẩn bị tài liệu kiến trúc chi tiết cho toàn bộ hệ thống.<!--PHASE_DESC_END--> |
+| **Phiên Bản** | 1.0 (Baseline) |
+| **Ngày/Thời Gian** | 2026/08/07 04:23:43 |
+| **Tác Giả** | Enterprise System Architect (SA Agent) |
+| **Phê Duyệt** | Pending Technical Governance Review |
+
+#### 1. Phạm Vi và Mục Tiêu Hoạt Động Giai Đoạn
+
+Giai đoạn 1 thực hiện toàn bộ chức năng quản lý người dùng, bao gồm đăng ký, xác thực OAuth2, cấp JWT, và phân quyền. Các thành phần chính bao gồm `UserService`, `AuthController`, và bảng dữ liệu `USERS`/`ROLES`. Mọi thao tác đều tuân thủ OWASP Top 10, bao gồm kiểm tra đầu vào, mã hóa mật khẩu, prepared statements, CSRF, và XSS.
+
+#### 2. Phạm Vi Kỹ Thuật & Ranh Giới Đường Dẫn Cho Phép
+
+- **Backend**: `./sources/org/nlh4j/saas/membershiphub/users/` (Java, Quarkus)
+- **Database**: PostgreSQL, bảng `USERS`, `ROLES`
+- **API**: `/api/v1/auth/register`, `/api/v1/auth/social`, `/api/v1/users/{userId}/role`
+- **Security**: JWT 15 phút, refresh 7 ngày, OAuth2 (Firebase, Google, Facebook)
+
+#### 3. Hướng Dẫn Hoạt Động Đặc Biệt cho Các Đại Diện Phụ
+
+- **Doc**: Tài liệu kiến trúc, sơ đồ dữ liệu, quy trình triển khai.
+- **Coder**: Viết mã nguồn Java, kiểm tra đầu vào, bảo mật OWASP.
+- **Tester**: Kiểm thử đơn vị, tích hợp, bảo mật.
+- **Reviewer**: Kiểm tra mã, bảo mật, tuân thủ OWASP.
+- **Docker**: Xây dựng Dockerfile, multi‑stage, tối ưu kích thước.
+- **GCP**: Đẩy image lên Artifact Registry, triển khai Cloud Run.
+- **GKE**: Tạo manifest, HPA, Helm chart.
+
+#### 4. Định Nghĩa Hoàn Thành Giai Đoạn (DoD)
+
+- Tất cả các yêu cầu [REQ-001], [REQ-002], [REQ-003], [ARC-001], [ARC-006] được triển khai và kiểm thử.
+- Đảm bảo OWASP Top 10: CSRF, XSS, SQLi, bảo mật JWT.
+- Độ phủ kiểm thử ≥ 85 %, báo cáo SonarQube không có blocker.
+- Tài liệu kiến trúc hoàn chỉnh, bản vẽ ERD, và hướng dẫn triển khai.
+- Mã nguồn được commit vào nhánh `features/development-phase-1-day-1` và `features/development-phase-1-day-2`.
+
+#### 5. Nhật Ký Thực Hiện Kiến Trúc Theo Ngày
+
+###### 🌤️ Ngày 1: <!--DAY_HEADER_START-->XÂY DỰNG DỊCH VỤ NGƯỜI DÙNG<!--DAY_HEADER_END-->
+
+######## 📝 Nhiệm Vụ 1.1: Khởi tạo, thiết kế và lập bản đồ toàn bộ tài liệu kỹ thuật, bản vẽ kiến trúc, cấu trúc dữ liệu, và kiến trúc triển khai cho giai đoạn này, bao gồm mô tả chi tiết các thành phần, luồng dữ liệu, và quy trình triển khai.
+########## Đại Diện Phụ: Doc
+########## Đường Dẫn Mục Tiêu: ./sources/docs/phase1_technical_overview.md
+########## Thẻ Định Vị: <!--START_TAGS-->[ARC-001], [ARC-006], [REQ-001], [REQ-002], [REQ-003], [DAT-001], [EXC-004], [NFR-001], [NFR-003], [NFR-006], [NFR-008]<!--END_TAGS-->
+
+######## 📝 Nhiệm Vụ 1.2: Triển khai lớp UserService để xử lý đăng ký người dùng mới, tạo bản ghi trong bảng USERS với vai trò mặc định là Student, tuân thủ REQ-001 và ARC-001, đồng thời áp dụng OWASP bảo mật: kiểm tra đầu vào, mã hóa mật khẩu, sử dụng prepared statements, và bảo vệ CSRF.
+########## Đại Diện Phụ: Coder
+########## Đường Dẫn Mục Tiêu: ./sources/org/nlh4j/saas/membershiphub/users/UserService.java
+########## Thẻ Định Vị: <!--START_TAGS-->[ARC-001], [REQ-001], [DAT-001]<!--END_TAGS-->
+
+###### 🌤️ Ngày 2: <!--DAY_HEADER_START-->XÂY DỰNG XÁC THỰC OAUTH2<!--DAY_HEADER_END-->
+
+######## 📝 Nhiệm Vụ 2.1: Xây dựng AuthController để xử lý xác thực OAuth2 từ Firebase/Google/Facebook, trao đổi mã lấy thông tin người dùng, cập nhật vai trò và cấp JWT token (ARC-006), đồng thời hỗ trợ phân quyền người dùng (REQ-003), thực hiện kiểm tra đầu vào, mã hóa mật khẩu, bảo vệ CSRF, và tuân thủ OWASP.
+########## Đại Diện Phụ: Coder
+########## Đường Dẫn Mục Tiêu: ./sources/org/nlh4j/saas/membershiphub/users/AuthController.java
+########## Thẻ Định Vị: <!--START_TAGS-->[ARC-006], [REQ-002], [REQ-003], [DAT-001]<!--END_TAGS-->
+
+# AI Model: openai/gpt-oss-20b:free - Phase 2 - Prompt:
+
+## CONTEXT INHERITANCE PIPELINE
+Project Name: membership-hub
+You are tasked to detail **PHASE 2 OUT OF 5**. You must align perfectly with the established Global Context, satisfy a subset of the Raw Requirements, and maintain strict continuity of physical files generated in previous phases to avoid collision or duplicate creation.
+
+--- GLOBAL CONTEXT REFERENCE ---
+## BỐ CỤC DỰ ÁN TOÀN CẦU: membership-hub
+
+#### 📊 Document Control
+
+| Item | Details |
+| :--- | :--- |
+| **Blueprint ID** | ARCH-20260807024254 |
+| **Project Name** | membership-hub |
+| **Version** | 1.0 (Baseline) |
+| **Date.Time** | 2026/08/07 02:42:54 |
+| **Author** | Enterprise System Architect (SA Agent) |
+| **Approval** | Pending Technical Governance Review |
+
+#### 📊 1. SYSTEM OVERVIEW & CORE ARCHITECTURE MODALITY
+
+###### 1.1 Core System Modality & Architecture Modality
+- Xác định mô hình kiến trúc đa dịch vụ với các thành phần độc lập: người dùng, trung tâm, khóa học, ghi danh, điểm danh, thẻ hội viên, thông báo, khuyến mãi, chatbot AI, giao diện di động.
+- Áp dụng mô hình CQRS cho các hoạt động đọc/ghi, đảm bảo tính nhất quán cho điểm danh và thẻ hội viên.
+- Sử dụng kiến trúc hướng sự kiện với Kafka để đồng bộ hóa dữ liệu giữa các dịch vụ.
+- Triển khai bảo mật theo từng trung tâm với RBAC và phân quyền dựa trên vai trò (ARC-001 đến ARC-005).
+- Tích hợp OAuth2/OIDC với Firebase, Google, Facebook để xác thực (ARC-006).
+- Thiết kế API REST với JWT (15 phút) và refresh token (7 ngày) (ARC-006).
+- Triển khai container hóa Docker với Quarkus và orchestration Kubernetes trên GKE (ARC-010).
+- Tích hợp push notification qua FCM/APNs và tích hợp Zalo API (ARC-008).
+- Triển khai hệ thống giám sát và ghi nhật ký tập trung (NFR-006).
+
+###### 1.2 Enterprise Data Flow Topologies & Core Ecosystems
+- Luồng xác thực: Người dùng đăng nhập qua email/mật khẩu hoặc OAuth2 từ Firebase/Google/Facebook → xác thực → cấp JWT.
+- Luồng điểm danh QR: Ứng dụng di động quét QR → gửi studentId + timestamp → dịch vụ xác thực → ghi điểm danh (ARC-007, EXC-001, EXC-002).
+- Luồng thông báo: Hành động ghi danh/giáo viên/thông báo → tạo bản ghi Notification → đẩy push (FCM/APNs) + gửi tin nhắn Zalo (ARC-008, EXC-003).
+- Luồng tích hợp frontend: Next.js tiêu thụ REST API, caching ngoại tuyến qua IndexedDB (ARC-009).
+- Luồng xử lý sự kiện: Kafka chủ đề `attendance`, `notifications`, `enrollment` để đồng bộ hóa dữ liệu giữa các dịch vụ.
+- Tích hợp cơ sở dữ liệu: PostgreSQL cho dữ liệu quan trọng, Redis cho session caching (ARC-010).
+- Triển khai CI/CD qua GitHub Actions với kiểm tra tự động và triển khai canary (ARC-010).
+- Vòng lặp đa ngôn ngữ: middleware phát hiện locale, chuyển hướng URL, chèn hreflang cho SEO (REQ-022, REQ-023).
+
+#### 📁 2. TECH STACK DEPENDENCIES & ECOSYSTEM LIBRARIES
+
+###### 2.1 Backend Infrastructure Core Stack
+- Java/Quarkus **3.2.0**
+- PostgreSQL **15.4**
+- Docker **24.0.5**
+- Kubernetes (GKE) **1.28**
+- Firebase Authentication SDK **9.22.0**
+- Google Cloud Messaging (FCM) / Apple APNs **latest**
+- Zalo API SDK **2.0.1**
+- Redis **7.2**
+- Maven **3.9.6**
+- Liquibase **4.25.5**
+- JUnit5/Mockito **5.10**
+- OpenTelemetry **1.30.0**
+
+###### 2.2 Frontend & Cross-Platform UI Mobile Stack
+- Next.js **14.x**
+- React Native **0.73.0**
+- Node.js **20.12**
+- TypeScript **5.3**
+- Capacitor **5.5**
+- Tailwind CSS **3.4**
+- Axios **1.6**
+- React Query **5.0**
+- Swift (iOS) / Kotlin (Android) native modules cho FCM/APNs
+
+###### 2.3 ARCHITECTURAL STACK MATRIX
+
+```properties:stack_matrix
+PERSISTENCE_LAYER_REQUIRED=true
+BACKEND_LAYER_REQUIRED=true
+FRONTEND_LAYER_REQUIRED=true
+MOBILE_LAYER_REQUIRED=true
+DEVOPS_LAYER_REQUIRED=true
+```
+
+#### 📁 3. GLOBAL GUARDRAILS & ENTERPRISE COMPLIANCE STANDARDS
+- **Quy tắc biên giới không gian làm việc:** Tất cả các đường dẫn phải bắt đầu với `./sources/`.
+- **Quy tắc tiền tố thư mục động:** tuân thủ Protocol 1.
+- **Quy tắc gói Java:** `org.nlh4j.saas.membershiphub` (membership-hub được chuẩn hóa thành dạng alphanumeric lowercase).
+- **Quy tắc cú pháp mục tiêu kiểm thử:** `<source_component>;<test_suite_file>`.
+
+#### 4. HIGH-LEVEL MULTI-PHASE ARCHITECTURAL SYNOPSIS GRID
+
+| Phase | Day Range | Architectural Component / Module Path | Technical Deliverables Summary | Assigned Sub-Agent | Targeted Tag IDs |
+| :--- | :--- | :--- | :--- | :--- | :--- |
+| Phase 1 | Day 1 - 2 | ./sources/backend/users/ | Xây dựng lõi người dùng, vai trò và xác thực cơ bản (bao gồm đăng ký, OAuth2, JWT và validation đầu vào) | Coder | [ARC-001], [ARC-006], [REQ-001], [REQ-002], [REQ-003], [DAT-001], [EXC-004], [NFR-001], [NFR-003], [NFR-006], [NFR-008] |
+| Phase 2 | Day 1 - 4 | ./sources/backend/centers/ | Triển khai quản lý trung tâm với CRUD, phân quyền và gán Center Admin | Coder | [ARC-002], [REQ-004], [REQ-005], [REQ-006], [DAT-003], [NFR-001], [NFR-003], [NFR-004] |
+| Phase 3 | Day 1 - 3 | ./sources/backend/courses/ | Xây dựng quản lý khóa học với xung đột lịch và phân công giáo viên | Coder | [ARC-003], [REQ-007], [REQ-008], [REQ-009], [DAT-004], [NFR-001], [NFR-003] |
+| Phase 4 | Day 1 - 5 | ./sources/backend/enrollment/ | Triển khai ghi danh học viên, điểm danh QR, thẻ hội viên, thông báo, khuyến mãi, thông báo và cài đặt hệ thống | Coder | [ARC-004], [ARC-005], [REQ-010], [REQ-011], [REQ-012], [REQ-013], [REQ-014], [REQ-015], [REQ-016], [REQ-017], [REQ-018], [DAT-005], [DAT-006], [DAT-007], [DAT-008], [DAT-009], [DAT-011], [EXC-001], [EXC-002], [EXC-003], [EXC-005], [NFR-001], [NFR-003], [NFR-004], [NFR-006] |
+| Phase 5 | Day 1 - 2 | ./sources/frontend/mobile/ | Phát triển giao diện di động, thông báo đẩy, chatbot AI, i18n, SEO, báo cáo và hardening DevOps | Coder | [ARC-007], [ARC-008], [ARC-009], [ARC-010], [REQ-019], [REQ-020], [REQ-021], [REQ-022], [REQ-023], [REQ-024], [REQ-025], [NFR-002], [NFR-005], [NFR-007], [NFR-008], [NFR-009] |
+
+#### 5. GRANULAR PHASE SPECIALIZATIONS & DAY-BY-DAY DELIVERABLES
+
+###### 📈 Phase 1: Xây dựng lõi người dùng, vai trò và xác thực cơ bản (bao gồm đăng ký, OAuth2, JWT và validation đầu vào)
+
+- **Phase Core Objective & Purpose:** Xây dựng lõi người dùng, vai trò và xác thực cơ bản (bao gồm đăng ký, OAuth2, JWT và validation đầu vào).
+- **Target Physical Directory Matrix Map:**
+    *   `./sources/backend/users/UserService.java` [ARC-001], [REQ-001], [DAT-001]
+    *   `./sources/backend/users/AuthController.java` [ARC-006], [REQ-002], [REQ-003], [DAT-001]
+- **Database Schema DDL SQL Specification [DAT-001]:**
+```sql
+CREATE TABLE ROLES (
+    roleId SMALLINT PRIMARY KEY,
+    name VARCHAR(30) NOT NULL UNIQUE,
+    description VARCHAR(200)
+);
+
+CREATE TABLE USERS (
+    userId UUID PRIMARY KEY,
+    email VARCHAR(255) NOT NULL UNIQUE,
+    passwordHash CHAR(60) NOT NULL,
+    fullName VARCHAR(100) NOT NULL,
+    roleId SMALLINT NOT NULL REFERENCES ROLES(roleId),
+    provider ENUM('local','firebase','google','facebook') NOT NULL DEFAULT 'local',
+    createdAt TIMESTAMP NOT NULL DEFAULT NOW(),
+    updatedAt TIMESTAMP NOT NULL DEFAULT NOW()
+);
+```
+- **API and Event Routing Contracts [REQ-001], [REQ-002], [REQ-003], [ARC-006]:**
+```json
+// POST /api/v1/auth/register
+{
+  "email": "user@example.com",
+  "password": "StrongPass123!",
+  "fullName": "Nguyen Van A",
+  "provider": "local"
+}
+```
+```json
+// POST /api/v1/auth/social
+{
+  "provider": "google",
+  "code": "OAuth2_code_from_google",
+  "redirectUri": "https://app.example.com/auth/callback"
+}
+```
+```json
+// PUT /api/v1/users/{userId}/role
+{
+  "roleId": 2
+}
+```
+- **Phase Localized Exception Handlers [EXC-004]:**
+    * Xác thực đầu vào không hợp lệ (ví dụ: email sai định dạng, thiếu trường bắt buộc): Trả về HTTP 400 với danh sách các trường không hợp lệ và hướng dẫn chỉnh sửa.
+
+######## Chronological Day-by-Day Sub-Agent Task Distribution Logs (Phase 1)
+
+- **DAY 1:** Mục tiêu ngắn hạn: Triển khai dịch vụ quản lý người dùng cơ bản.
+    * **Sub-Agent Workflow Specialization:** [Coder]
+    * **Targeted Tag IDs:** [ARC-001], [REQ-001], [DAT-001]
+    * **Target Component file path (`target_component`):** ./sources/backend/users/UserService.java [ARC-001], [REQ-001], [DAT-001]
+    * **Low-Level Technical Task Instruction:** Triển khai lớp UserService để xử lý đăng ký người dùng mới, tạo bản ghi trong bảng Users với vai trò mặc định là Student, tuân thủ REQ-001 và ARC-001.
+
+- **DAY 2:** Mục tiêu ngắn hạn: Xây dựng controller xác thực và tích hợp OAuth2.
+    * **Sub-Agent Workflow Specialization:** [Coder]
+    * **Targeted Tag IDs:** [ARC-006], [REQ-002], [REQ-003], [DAT-001]
+    * **Target Component file path (`target_component`):** ./sources/backend/users/AuthController.java [ARC-006], [REQ-002], [REQ-003], [DAT-001]
+    * **Low-Level Technical Task Instruction:** Xây dựng AuthController để xử lý xác thực OAuth2 từ Firebase/Google/Facebook, trao đổi mã lấy thông tin người dùng, cập nhật vai trò và cấp JWT token (ARC-006), đồng thời hỗ trợ phân quyền người dùng (REQ-003).
+
+###### 📈 Phase 2: Triển khai quản lý trung tâm với CRUD, phân quyền và gán Center Admin
+
+- **Phase Core Objective & Purpose:** Triển khai quản lý trung tâm với CRUD, phân quyền và gán Center Admin.
+- **Target Physical Directory Matrix Map:**
+    *   `./sources/backend/centers/CenterController.java` [ARC-002], [REQ-004], [DAT-003]
+    *   `./sources/backend/centers/CenterService.java` [REQ-005], [DAT-003]
+    *   `./sources/backend/centers/CenterAdminService.java` [REQ-006], [ARC-002], [DAT-003]
+- **Database Schema DDL SQL Specification [DAT-003]:**
+```sql
+CREATE TABLE CENTERS (
+    centerId UUID PRIMARY KEY,
+    name VARCHAR(100) NOT NULL,
+    address VARCHAR(255) NOT NULL,
+    taxId VARCHAR(13) NOT NULL UNIQUE,
+    contactPhone VARCHAR(20),
+    contactEmail VARCHAR(255)
+);
+```
+- **API and Event Routing Contracts [REQ-004], [REQ-005], [REQ-006], [ARC-002]:**
+```json
+// GET /api/v1/centers
+// trả về danh sách trung tâm
+```
+```json
+// POST /api/v1/centers
+{
+  "name": "Hà Nội Center",
+  "address": "123 Đường Láng, Đống Đa, Hà Nội",
+  "taxId": "0123456789",
+  "contactPhone": "+84123456789",
+  "contactEmail": "contact@hnc.com"
+}
+```
+```json
+// PUT /api/v1/centers/{centerId}/admin/{userId}
+```
+- **Phase Localized Exception Handlers:** Không có ngoại lệ chuyên biệt.
+
+######## Chronological Day-by-Day Sub-Agent Task Distribution Logs (Phase 2)
+
+- **DAY 1:** Mục tiêu ngắn hạn: Xây dựng controller danh sách trung tâm.
+    * **Sub-Agent Workflow Specialization:** [Coder]
+    * **Targeted Tag IDs:** [ARC-002], [REQ-004], [DAT-003]
+    * **Target Component file path (`target_component`):** ./sources/backend/centers/CenterController.java [ARC-002], [REQ-004], [DAT-003]
+    * **Low-Level Technical Task Instruction:** Triển khai CenterController để hiển thị danh sách trung tâm (REQ-004) và phục vụ các thao tác CRUD cho System Admin (ARC-002).
+
+- **DAY 2:** Mục tiêu ngắn hạn: Triển khai logic tạo/cập nhật trung tâm.
+    * **Sub-Agent Workflow Specialization:** [Coder]
+    * **Targeted Tag IDs:** [REQ-005], [DAT-003]
+    * **Target Component file path (`target_component`):** ./sources/backend/centers/CenterService.java [REQ-005], [DAT-003]
+    * **Low-Level Technical Task Instruction:** Triển khai logic tạo/cập nhật trung tâm trong CenterService, thực hiện kiểm tra trùng lặp taxId và ghi dữ liệu vào bảng CENTERS (REQ-005).
+
+- **DAY 3:** Mục tiêu ngắn hạn: Triển khai gán/rút quyền Center Admin.
+    * **Sub-Agent Workflow Specialization:** [Coder]
+    * **Targeted Tag IDs:** [REQ-006], [ARC-002], [DAT-003]
+    * **Target Component file path (`target_component`):** ./sources/backend/centers/CenterAdminService.java [REQ-006], [ARC-002], [DAT-003]
+    * **Low-Level Technical Task Instruction:** Triển khai gán/rút quyền Center Admin cho người dùng, cập nhật roleId trong bảng USERS và ghi lại mối quan hệ (REQ-006, ARC-002).
+
+- **DAY 4:** Mục tiêu ngắn hạn: Triển khai manifest GKE cho dịch vụ trung tâm.
+    * **Sub-Agent Workflow Specialization:** [Coder]
+    * **Targeted Tag IDs:** [NFR-001], [NFR-003], [NFR-004]
+    * **Target Component file path (`target_component`):** ./sources/infra/k8s/center-deployment.yaml [NFR-001], [NFR-003], [NFR-004]
+    * **Low-Level Technical Task Instruction:** Tạo manifest triển khai dịch vụ quản lý trung tâm trên GKE với autoscaling dựa trên CPU và request latency (NFR-001, NFR-003, NFR-004).
+
+###### 📈 Phase 3: Xây dựng quản lý khóa học với xung đột lịch và phân công giáo viên
+
+- **Phase Core Objective & Purpose:** Xây dựng quản lý khóa học với xung đột lịch và phân công giáo viên.
+- **Target Physical Directory Matrix Map:**
+    *   `./sources/backend/courses/CourseController.java` [ARC-003], [REQ-007], [DAT-004]
+    *   `./sources/backend/courses/CourseService.java` [REQ-008], [DAT-004]
+    *   `./sources/backend/courses/CourseTeacherService.java` [REQ-009], [ARC-003], [DAT-004]
+- **Database Schema DDL SQL Specification [DAT-004]:**
+```sql
+CREATE TABLE COURSES (
+    courseId UUID PRIMARY KEY,
+    title VARCHAR(150) NOT NULL,
+    description TEXT,
+    startDate DATE NOT NULL,
+    endDate DATE NOT NULL,
+    teacherId UUID NOT NULL REFERENCES USERS(userId),
+    maxStudents INT NOT NULL DEFAULT 30
+);
+```
+- **API and Event Routing Contracts [REQ-007], [REQ-008], [REQ-009], [ARC-003]:**
+```json
+// GET /api/v1/courses
+// trả về danh sách khóa học
+```
+```json
+// POST /api/v1/courses
+{
+  "title": "Lập trình Java nâng cao",
+  "description": "Khóa học về Quarkus và Kubernetes",
+  "startDate": "2026-09-01",
+  "endDate": "2026-12-31",
+  "teacherId": "a1b2c3d4-...",
+  "maxStudents": 20
+}
+```
+```json
+// PUT /api/v1/courses/{courseId}/teacher/{teacherId}
+```
+- **Phase Localized Exception Handlers:** Không có ngoại lệ chuyên biệt.
+
+######## Chronological Day-by-Day Sub-Agent Task Distribution Logs (Phase 3)
+
+- **DAY 1:** Mục tiêu ngắn hạn: Xây dựng controller danh sách khóa học.
+    * **Sub-Agent Workflow Specialization:** [Coder]
+    * **Targeted Tag IDs:** [ARC-003], [REQ-007], [DAT-004]
+    * **Target Component file path (`target_component`):** ./sources/backend/courses/CourseController.java [ARC-003], [REQ-007], [DAT-004]
+    * **Low-Level Technical Task Instruction:** Triển khai CourseController để hiển thị danh sách khóa học (REQ-007) và hỗ trợ CRUD cho System/Center Admin (ARC-003).
+
+- **DAY 2:** Mục tiêu ngắn hạn: Triển khai logic tạo/cập nhật khóa học.
+    * **Sub-Agent Workflow Specialization:** [Coder]
+    * **Targeted Tag IDs:** [REQ-008], [DAT-004]
+    * **Target Component file path (`target_component`):** ./sources/backend/courses/CourseService.java [REQ-008], [DAT-004]
+    * **Low-Level Technical Task Instruction:** Triển khai logic tạo/cập nhật khóa học, kiểm tra xung đột lịch với giáo viên (REQ-008) và ghi dữ liệu vào bảng COURSES (DAT-004).
+
+- **DAY 3:** Mục tiêu ngắn hạn: Triển khai gán/rút giáo viên vào khóa học.
+    * **Sub-Agent Workflow Specialization:** [Coder]
+    * **Targeted Tag IDs:** [REQ-009], [ARC-003], [DAT-004]
+    * **Target Component file path (`target_component`):** ./sources/backend/courses/CourseTeacherService.java [REQ-009], [ARC-003], [DAT-004]
+    * **Low-Level Technical Task Instruction:** Triển khai gán/rút giáo viên vào khóa học, tạo bản ghi mapping và gửi thông báo push (REQ-009, ARC-003).
+
+###### 📈 Phase 4: Triển khai ghi danh học viên, điểm danh QR, thẻ hội viên, thông báo, khuyến mãi, thông báo và cài đặt hệ thống
+
+- **Phase Core Objective & Purpose:** Triển khai ghi danh học viên, điểm danh QR, thẻ hội viên, thông báo, khuyến mãi, thông báo và cài đặt hệ thống.
+- **Target Physical Directory Matrix Map:**
+    *   `./sources/backend/enrollment/EnrollmentController.java` [ARC-004], [REQ-010], [DAT-005]
+    *   `./sources/backend/enrollment/EnrollmentService.java` [REQ-011], [DAT-005], [ARC-005]
+    *   `./sources/backend/attendance/AttendanceService.java` [ARC-007], [REQ-012], [DAT-006], [EXC-001], [EXC-002]
+    *   `./sources/backend/notifications/NotificationService.java` [ARC-008], [REQ-016], [DAT-008], [EXC-003]
+    *   `./sources/backend/membership/MembershipController.java` [REQ-014], [REQ-015], [DAT-007], [DAT-009], [DAT-011], [EXC-005]
+- **Database Schema DDL SQL Specification [DAT-005], [DAT-006], [DAT-007], [DAT-008], [DAT-009], [DAT-011]:**
+```sql
+CREATE TABLE ENROLLMENTS (
+    enrollmentId UUID PRIMARY KEY,
+    studentId UUID NOT NULL REFERENCES USERS(userId),
+    courseId UUID NOT NULL REFERENCES COURSES(courseId),
+    enrollmentDate TIMESTAMP NOT NULL DEFAULT NOW()
+);
+
+CREATE TABLE ATTENDANCE (
+    attendanceId UUID PRIMARY KEY,
+    studentId UUID NOT NULL REFERENCES USERS(userId),
+    courseId UUID NOT NULL REFERENCES COURSES(courseId),
+    attendanceDate DATE NOT NULL,
+    timestamp TIMESTAMP NOT NULL DEFAULT NOW()
+);
+
+CREATE TABLE STUDENTCARDS (
+    cardId UUID PRIMARY KEY,
+    studentId UUID NOT NULL REFERENCES USERS(userId),
+    issueDate DATE NOT NULL,
+    validityDays INT NOT NULL,
+    remainingDays INT NOT NULL
+);
+
+CREATE TABLE NOTIFICATIONS (
+    notificationId UUID PRIMARY KEY,
+    userId UUID REFERENCES USERS(userId),
+    groupZalo VARCHAR(100),
+    message TEXT NOT NULL,
+    sentAt TIMESTAMP NOT NULL DEFAULT NOW(),
+    delivered BOOLEAN NOT NULL DEFAULT FALSE
+);
+
+CREATE TABLE PROMOTIONS (
+    promoId UUID PRIMARY KEY,
+    code VARCHAR(30) NOT NULL UNIQUE,
+    discountPercent SMALLINT NOT NULL,
+    startDate DATE,
+    endDate DATE,
+    description TEXT
+);
+
+CREATE TABLE ANNOUNCEMENTS (
+    announcementId UUID PRIMARY KEY,
+    title VARCHAR(150) NOT NULL,
+    content TEXT NOT NULL,
+    startDate DATE,
+    endDate DATE
+);
+
+CREATE TABLE SYSTEMSETTINGS (
+    settingKey VARCHAR(50) PRIMARY KEY,
+    settingValue TEXT NOT NULL,
+    description TEXT
+);
+```
+- **API and Event Routing Contracts [REQ-010], [REQ-011], [REQ-012], [REQ-013], [REQ-014], [REQ-015], [REQ-016], [REQ-017], [REQ-018], [ARC-004], [ARC-005], [ARC-007], [ARC-008]:**
+```json
+// POST /api/v1/enrollments
+{
+  "studentId": "a1b2c3d4-...",
+  "courseId": "e5f6g7h8-..."
+}
+```
+```json
+// POST /api/v1/attendance/scan
+{
+  "studentId": "a1b2c3d4-...",
+  "courseId": "e5f6g7h8-...",
+  "qrCodeData": "course:e5f6g7h8-...|date:2026-08-07"
+}
+```
+```json
+// GET /api/v1/membership/{studentId}/card
+// trả về thẻ hội viên với daysRemaining
+```
+```json
+// POST /api/v1/notifications
+{
+  "userId": "a1b2c3d4-...",
+  "groupZalo": "hoc_vien_hn",
+  "message": "Bạn đã được ghi danh vào khóa học mới."
+}
+```
+```json
+// POST /api/v1/promotions
+{
+  "code": "SUMMER20",
+  "discountPercent": 20,
+  "startDate": "2026-06-01",
+  "endDate": "2026-08-31",
+  "description": "Giảm giá 20% cho tất cả khóa học."
+}
+```
+```json
+// POST /api/v1/announcements
+{
+  "title": "Thông báo nghỉ lễ",
+  "content": "Trung tâm nghỉ lễ từ 01/09 đến 05/09.",
+  "startDate": "2026-08-31",
+  "endDate": "2026-09-05"
+}
+```
+- **Phase Localized Exception Handlers [EXC-001], [EXC-002], [EXC-003], [EXC-005]:**
+    * **Mất mạng khi quét QR (EXC-001):** Nếu sinh viên quét QR nhưng không có kết nối mạng, khi kết nối được khôi phục, ứng dụng sẽ tự động gửi lại yêu cầu điểm danh; dịch vụ sẽ đảm bảo chỉ ghi một bản ghi điểm danh duy nhất.
+    * **Điểm danh trùng lặp (EXC-002):** Nếu cùng một sinh viên quét cùng một QR nhiều lần trong ngày, hệ thống sẽ phát hiện duplicate, trả về success với cờ ‘alreadyRecorded’ và không tạo thêm hàng.
+    * **Giao hàng thông báo thất bại (EXC-003):** Nếu push notification không thể gửi (ví dụ: token thiết bị không hợp lệ), hệ thống ghi log lỗi, lên lịch thử lại tối đa 3 lần, sau đó đánh dấu là thất bại.
+    * **Khôi phục hệ thống sau sự cố (EXC-005):** Nếu dịch vụ không khả dụng, khi khôi phục, các lần quét điểm danh chờ xử lý được xử lý theo thứ tự FIFO, và người dùng nhận được thông báo về các sự kiện đã khôi phục.
+
+######## Chronological Day-by-Day Sub-Agent Task Distribution Logs (Phase 4)
+
+- **DAY 1:** Mục tiêu ngắn hạn: Xây dựng controller ghi danh khóa học.
+    * **Sub-Agent Workflow Specialization:** [Coder]
+    * **Targeted Tag IDs:** [ARC-004], [REQ-010], [DAT-005]
+    * **Target Component file path (`target_component`):** ./sources/backend/enrollment/EnrollmentController.java [ARC-004], [REQ-010], [DAT-005]
+    * **Low-Level Technical Task Instruction:** Triển khai EnrollmentController để duyệt khóa học và xử lý đăng ký (REQ-010, ARC-004), tự động tạo tài khoản Student nếu thiếu.
+
+- **DAY 2:** Mục tiêu ngắn hạn: Triển khai logic đăng ký khóa học.
+    * **Sub-Agent Workflow Specialization:** [Coder]
+    * **Targeted Tag IDs:** [REQ-011], [DAT-005], [ARC-005]
+    * **Target Component file path (`target_component`):** ./sources/backend/enrollment/EnrollmentService.java [REQ-011], [DAT-005], [ARC-005]
+    * **Low-Level Technical Task Instruction:** Triển khai logic đăng ký khóa học, ghi bản ghi ENROLLMENTS, cập nhật vai trò người dùng (REQ-011) và gửi thông báo đến mobile app và Zalo group (ARC-005).
+
+- **DAY 3:** Mục tiêu ngắn hạn: Triển khai dịch vụ điểm danh QR.
+    * **Sub-Agent Workflow Specialization:** [Coder]
+    * **Targeted Tag IDs:** [ARC-007], [REQ-012], [DAT-006], [EXC-001], [EXC-002]
+    * **Target Component file path (`target_component`):** ./sources/backend/attendance/AttendanceService.java [ARC-007], [REQ-012], [DAT-006], [EXC-001], [EXC-002]
+    * **Low-Level Technical Task Instruction:** Triển khai dịch vụ điểm danh QR, ghi nhận timestamp, đảm bảo bất biến cho cùng studentId/courseId/ngày (REQ-012, ARC-007), xử lý ngoại lệ mất mạng (EXC-001) và phát hiện duplicate (EXC-002).
+
+- **DAY 4:** Mục tiêu ngắn hạn: Triển khai dịch vụ thông báo.
+    * **Sub-Agent Workflow Specialization:** [Coder]
+    * **Targeted Tag IDs:** [ARC-008], [REQ-016], [DAT-008], [EXC-003]
+    * **Target Component file path (`target_component`):** ./sources/backend/notifications/NotificationService.java [ARC-008], [REQ-016], [DAT-008], [EXC-003]
+    * **Low-Level Technical Task Instruction:** Triển khai NotificationService để tạo bản ghi NOTIFICATIONS, đẩy push qua FCM/APNs và gửi tin nhắn Zalo (REQ-016, ARC-008), xử lý ngoại lệ giao hàng thất bại (EXC-003).
+
+- **DAY 5:** Mục tiêu ngắn hạn: Triển khai controller thẻ hội viên, khuyến mãi, thông báo và cài đặt hệ thống.
+    * **Sub-Agent Workflow Specialization:** [Coder]
+    * **Targeted Tag IDs:** [REQ-014], [REQ-15], [DAT-007], [DAT-009], [DAT-011], [EXC-005]
+    * **Target Component file path (`target_component`):** ./sources/backend/membership/MembershipController.java [REQ-014], [REQ-015], [DAT-007], [DAT-009], [DAT-011], [EXC-005]
+    * **Low-Level Technical Task Instruction:** Triển khai MembershipController để hiển thị thẻ hội viên (REQ-014) và xử lý gia hạn thẻ (REQ-015), cập nhật STUDENTCARDS, PROMOTIONS, ANNOUNCEMENTS, SYSTEMSETTINGS (DAT-007, DAT-009, DAT-011), xử lý khôi phục hệ thống sau sự cố (EXC-005).
+
+###### 📈 Phase 5: Phát triển giao diện di động, thông báo đẩy, chatbot AI, i18n, SEO, báo cáo và hardening DevOps
+
+- **Phase Core Objective & Purpose:** Phát triển giao diện di động, thông báo đẩy, chatbot AI, i18n, SEO, báo cáo và hardening DevOps.
+- **Target Physical Directory Matrix Map:**
+    *   `./sources/frontend/mobile/App.js` [ARC-009], [REQ-019], [REQ-020], [NFR-002], [NFR-005]
+    *   `./sources/docs/reporting-and-seo.md` [ARC-010], [REQ-022], [REQ-023], [REQ-024], [REQ-025], [NFR-007], [NFR-008], [NFR-009]
+- **Database Schema DDL SQL Specification:** Không có bảng dữ liệu mới trong giai đoạn này.
+- **API and Event Routing Contracts [REQ-019], [REQ-020], [REQ-021], [REQ-022], [REQ-023], [REQ-024], [REQ-025], [ARC-009], [ARC-010]:**
+```json
+// GET /api/v1/mobile/user/{userId}/profile
+// trả về thông tin người dùng cho ứng dụng di động
+```
+```json
+// POST /api/v1/mobile/tokens
+{
+  "userId": "a1b2c3d4-...",
+  "token": "FCM_token_here"
+}
+```
+```json
+// POST /api/v1/chatbot/query
+{
+  "userId": "a1b2c3d4-...",
+  "question": "Khóa học Java có vào thứ 3 không?"
+}
+```
+```json
+// GET /api/v1/reports/attendance?centerId=...&date=...
+```
+- **Phase Localized Exception Handlers:** Không có ngoại lệ chuyên biệt.
+
+######## Chronological Day-by-Day Sub-Agent Task Distribution Logs (Phase 5)
+
+- **DAY 1:** Mục tiêu ngắn hạn: Xây dựng lõi ứng dụng di động.
+    * **Sub-Agent Workflow Specialization:** [Coder]
+    * **Targeted Tag IDs:** [ARC-009], [REQ-019], [REQ-020], [NFR-002], [NFR-005]
+    * **Target Component file path (`target_component`):** ./sources/frontend/mobile/App.js [ARC-009], [REQ-019], [REQ-020], [NFR-002], [NFR-005]
+    * **Low-Level Technical Task Instruction:** Triển khai lõi ứng dụng di động hybrid với điều hướng vai trò, tích hợp Firebase Auth và xử lý push notification (REQ-020, ARC-009), đảm bảo kích thước image <500MB (NFR-005) và mục tiêu uptime 99.9% (NFR-002).
+
+- **DAY 2:** Mục tiêu ngắn hạn: Tạo tài liệu báo cáo và SEO.
+    * **Sub-Agent Workflow Specialization:** [Coder]
+    * **Targeted Tag IDs:** [ARC-010], [REQ-022], [REQ-023], [REQ-024], [REQ-025], [NFR-007], [NFR-008], [NFR-009]
+    * **Target Component file path (`target_component`):** ./sources/docs/reporting-and-seo.md [ARC-010], [REQ-022], [REQ-023], [REQ-024], [REQ-025], [NFR-007], [NFR-008], [NFR-009]
+    * **Low-Level Technical Task Instruction:** Tạo tài liệu báo cáo và SEO, bao gồm hướng dẫn tạo báo cáo điểm danh CSV (REQ-024), chèn meta tags đa ngôn ngữ và hreflang (REQ-022, REQ-023), thực hiện tuân thủ GDPR/CCPA (NFR-008) và sao lưu PostgreSQL (NFR-009), đồng thời ghi lại quy trình triển khai Docker và GKE (ARC-010).
+
+#### 📁 6. UNIVERSAL ENTERPRISE SECURITY CODES & INJECTION COUNTERMEASURES [NFR-001] [NFR-003] [NFR-004] [NFR-005] [NFR-006] [NFR-007] [NFR-008] [NFR-009]
+
+- **SQL Injection (SQLi) Absolute Countermeasures:** Sử dụng PreparedStatement/ParameterizedQuery, whitelist cho các cột sắp xếp, kiểm tra kiểu dữ liệu đầu vào.
+- **Cross-Site Scripting (XSS) & Content Security Policy (CSP):** Tự động thoát HTML trong JSX, thiết lập header CSP (`default-src 'self'; script-src 'self' 'unsafe-inline'` bị cấm, sử dụng nonce cho scripts cần thiết).
+- **Multi-Tenant CORS Security Rails:** whitelist các origin dựa trên cấu hình trung tâm, từ chối wildcard `null` hoặc `*`, xác thực origin qua JWT tenantId.
+- **Zero-Leak Log Scrubbing & PII Data Masking Engines:** Sử dụng `@JsonSerialize` với `SensitiveDataMasker`, xóa trường hợp đặc biệt trước khi ghi log, giới hạn độ dài log theo yêu cầu GDPR.
+- **Docker Image Size Enforcement:** Giới hạn kích thước image <500MB, sử dụng multi-stage build, loại bỏ các gói không cần thiết.
+- **Multi-Language Support:** Externalize chuỗi UI qua `i18n` (JSON), middleware phát hiện locale, tự động chèn hreflang, fallback sang Accept-Language header.
+- **GDPR/CCPA Compliance:** Thêm API xóa dữ liệu `/api/v1/users/{id}/delete`, cung cấp export JSON `/api/v1/users/{id}/export`, quản lý consent cho marketing.
+- **Backup & Disaster Recovery:** Sao lưu PostgreSQL đầy đủ hàng ngày, point-in-time recovery 24 giờ, cluster backup GKE sang region khác, kiểm tra khôi phục hàng tuần.
+
+#### 📁 7. HYBRID MOBILE COMPLIANCE RAIL RULES & INTERNATIONALIZED SEO MECHANISMS
+
+- **Capacitor Mobile Hybrid Compliance Rails:** Sử dụng `@capacitor/preferences` cho storage an toàn, chặn back-button gốc, fetch với timeout và retry, xác thực URL tuyệt đối, ngăn chặn XSS trong WebView.
+- **Internationalization (i18n) & Dynamic SEO Injection:** Middleware phát hiện locale (`Accept-Language`, cookie), chuyển hướng URL có dấu `/vi/` `/en/`, chèn thẻ `<html lang='vi'>`, tạo thẻ `<link rel="canonical" href="...">`, tự động tạo sitemap XML với hreflang, chặn bot quét theo robots.txt.
+
+#### 📁 8. PIPELINE AUTOMATED DAILY SESSION GIT BRANCH FLOW
+
+- **Daily Workspace Forking Isolation:** Tạo branch `features/development-phase-1-day-1`, `features/development-phase-1-day-2`, ... cho từng ngày, mỗi branch là không gian làm việc riêng biệt.
+- **Validation Guard Pipeline Gates:** Thực hiện `mvn clean verify` hoặc `npm run test` trước khi merge, đảm bảo độ phủ mã >=85%, kiểm tra chất lượng code qua SonarQube, tự động tạo PR với checklist tuân thủ.
+
+###### 🛑 MATRIX COVERAGE CHECK MANDATE
+
+`[TRACEABILITY MATRIX ENFORCEMENT: 100% COVERAGE VALIDATED. TOTAL UNIQUE REQ TAGS MAPPED: 25, TOTAL ARC TAGS: 10, TOTAL EXC TAGS: 5, TOTAL DAT TAGS: 9, TOTAL NFR TAGS: 9. ZERO UNASSIGNED CODES FOUND.]`
+
+--- PREVIOUS EXECUTION STATE REFERENCE (DIAGNOSTIC PATHS) ---
+
+## Giai đoạn 1: <!--PHASE_NAME_START-->Xây dựng lõi người dùng, vai trò và xác thực cơ bản<!--PHASE_NAME_END-->
+
+#### 📊 Kiểm Soát Tài Liệu
+
+| Mục | Chi tiết |
+| :--- | :--- |
+| **ID Kiến Trúc** | ARCH-20260807042343 |
+| **Tên Dự Án** | membership-hub |
+| **Giai Đoạn** | 1 |
+| **Tên Giai Đoạn** | <!--PHASE_NAME_START-->Xây dựng lõi người dùng, vai trò và xác thực cơ bản<!--PHASE_NAME_END--> |
+| **Mô Tả** | <!--PHASE_DESC_START-->Giai đoạn này tập trung vào việc triển khai dịch vụ quản lý người dùng, xác thực, và phân quyền, bao gồm đăng ký, OAuth2, JWT, và kiểm tra đầu vào, đồng thời chuẩn bị tài liệu kiến trúc chi tiết cho toàn bộ hệ thống.<!--PHASE_DESC_END--> |
+| **Phiên Bản** | 1.0 (Baseline) |
+| **Ngày/Thời Gian** | 2026/08/07 04:23:43 |
+| **Tác Giả** | Enterprise System Architect (SA Agent) |
+| **Phê Duyệt** | Pending Technical Governance Review |
+
+#### 1. Phạm Vi và Mục Tiêu Hoạt Động Giai Đoạn
+
+Giai đoạn 1 thực hiện toàn bộ chức năng quản lý người dùng, bao gồm đăng ký, xác thực OAuth2, cấp JWT, và phân quyền. Các thành phần chính bao gồm `UserService`, `AuthController`, và bảng dữ liệu `USERS`/`ROLES`. Mọi thao tác đều tuân thủ OWASP Top 10, bao gồm kiểm tra đầu vào, mã hóa mật khẩu, prepared statements, CSRF, và XSS.
+
+#### 2. Phạm Vi Kỹ Thuật & Ranh Giới Đường Dẫn Cho Phép
+
+- **Backend**: `./sources/org/nlh4j/saas/membershiphub/users/` (Java, Quarkus)
+- **Database**: PostgreSQL, bảng `USERS`, `ROLES`
+- **API**: `/api/v1/auth/register`, `/api/v1/auth/social`, `/api/v1/users/{userId}/role`
+- **Security**: JWT 15 phút, refresh 7 ngày, OAuth2 (Firebase, Google, Facebook)
+
+#### 3. Hướng Dẫn Hoạt Động Đặc Biệt cho Các Đại Diện Phụ
+
+- **Doc**: Tài liệu kiến trúc, sơ đồ dữ liệu, quy trình triển khai.
+- **Coder**: Viết mã nguồn Java, kiểm tra đầu vào, bảo mật OWASP.
+- **Tester**: Kiểm thử đơn vị, tích hợp, bảo mật.
+- **Reviewer**: Kiểm tra mã, bảo mật, tuân thủ OWASP.
+- **Docker**: Xây dựng Dockerfile, multi‑stage, tối ưu kích thước.
+- **GCP**: Đẩy image lên Artifact Registry, triển khai Cloud Run.
+- **GKE**: Tạo manifest, HPA, Helm chart.
+
+#### 4. Định Nghĩa Hoàn Thành Giai Đoạn (DoD)
+
+- Tất cả các yêu cầu [REQ-001], [REQ-002], [REQ-003], [ARC-001], [ARC-006] được triển khai và kiểm thử.
+- Đảm bảo OWASP Top 10: CSRF, XSS, SQLi, bảo mật JWT.
+- Độ phủ kiểm thử ≥ 85 %, báo cáo SonarQube không có blocker.
+- Tài liệu kiến trúc hoàn chỉnh, bản vẽ ERD, và hướng dẫn triển khai.
+- Mã nguồn được commit vào nhánh `features/development-phase-1-day-1` và `features/development-phase-1-day-2`.
+
+#### 5. Nhật Ký Thực Hiện Kiến Trúc Theo Ngày
+
+###### 🌤️ Ngày 1: <!--DAY_HEADER_START-->XÂY DỰNG DỊCH VỤ NGƯỜI DÙNG<!--DAY_HEADER_END-->
+
+######## 📝 Nhiệm Vụ 1.1: Khởi tạo, thiết kế và lập bản đồ toàn bộ tài liệu kỹ thuật, bản vẽ kiến trúc, cấu trúc dữ liệu, và kiến trúc triển khai cho giai đoạn này, bao gồm mô tả chi tiết các thành phần, luồng dữ liệu, và quy trình triển khai.
+########## Đại Diện Phụ: Doc
+########## Đường Dẫn Mục Tiêu: ./sources/docs/phase1_technical_overview.md
+########## Thẻ Định Vị: <!--START_TAGS-->[ARC-001], [ARC-006], [REQ-001], [REQ-002], [REQ-003], [DAT-001], [EXC-004], [NFR-001], [NFR-003], [NFR-006], [NFR-008]<!--END_TAGS-->
+
+######## 📝 Nhiệm Vụ 1.2: Triển khai lớp UserService để xử lý đăng ký người dùng mới, tạo bản ghi trong bảng USERS với vai trò mặc định là Student, tuân thủ REQ-001 và ARC-001, đồng thời áp dụng OWASP bảo mật: kiểm tra đầu vào, mã hóa mật khẩu, sử dụng prepared statements, và bảo vệ CSRF.
+########## Đại Diện Phụ: Coder
+########## Đường Dẫn Mục Tiêu: ./sources/org/nlh4j/saas/membershiphub/users/UserService.java
+########## Thẻ Định Vị: <!--START_TAGS-->[ARC-001], [REQ-001], [DAT-001]<!--END_TAGS-->
+
+###### 🌤️ Ngày 2: <!--DAY_HEADER_START-->XÂY DỰNG XÁC THỰC OAUTH2<!--DAY_HEADER_END-->
+
+######## 📝 Nhiệm Vụ 2.1: Xây dựng AuthController để xử lý xác thực OAuth2 từ Firebase/Google/Facebook, trao đổi mã lấy thông tin người dùng, cập nhật vai trò và cấp JWT token (ARC-006), đồng thời hỗ trợ phân quyền người dùng (REQ-003), thực hiện kiểm tra đầu vào, mã hóa mật khẩu, bảo vệ CSRF, và tuân thủ OWASP.
+########## Đại Diện Phụ: Coder
+########## Đường Dẫn Mục Tiêu: ./sources/org/nlh4j/saas/membershiphub/users/AuthController.java
+########## Thẻ Định Vị: <!--START_TAGS-->[ARC-006], [REQ-002], [REQ-003], [DAT-001]<!--END_TAGS-->
+
+
+--- RAW REQUIREMENTS REFERENCE ---
+## SOFTWARE REQUIREMENTS SPECIFICATION: membership-hub
+#### 1. TỔNG QUAN DỰ ÁN & KIẾN TRÚC TOÀN CẦU
+
+###### Mục tiêu & giá trị cốt lõi
+- Cung cấp nền tảng thống nhất để quản lý hội viên đa trung tâm.
+- Cho phép theo dõi điểm danh thời gian thực qua quét mã QR.
+- Cung cấp thẻ hội viên kỹ thuật số với tính năng đếm ngày hiệu lực.
+- Hỗ trợ giao tiếp đa kênh (web, di động, nhóm Zalo).
+- Giá trị cốt lõi: độ tin cậy, khả năng mở rộng, bảo mật, tính thân thiện với người dùng, hỗ trợ đa ngôn ngữ.
+
+###### Đối tượng người dùng mục tiêu
+- System Admin (siêu người dùng toàn cầu)
+- Center Admin (quản lý cấp trung tâm)
+- Manager (phó quản trị, quyền hạn giới hạn)
+- Teacher (xem chỉ đọc lịch dạy)
+- Student (duyệt khóa học, đăng ký, xem thẻ hội viên)
+- Mobile App User (giao diện đáp ứng cho các vai trò trên)
+
+###### Ma trận kiểm soát truy cập dựa trên vai trò (RBAC)
+- [ARC-001] System Admin: toàn quyền trên tất cả các trung tâm.
+- [ARC-002] Center Admin: toàn quyền trong trung tâm của mình, không ảnh hưởng đến các trung tâm khác.
+- [ARC-003] Manager: có thể tạo thông báo, quản lý học viên, gán học viên hiện có vào khóa học, xem danh sách khóa học, không thể chỉnh sửa khóa học hoặc chỉ định giáo viên.
+- [ARC-004] Teacher: xem khóa học của mình, danh sách học viên, lịch dạy; chỉ đọc.
+- [ARC-005] Student: duyệt khóa học, đăng ký khóa học mới, xem thẻ hội viên (ngày còn lại), gia hạn ngày thẻ.
+
+###### Kiến trúc & luồng dữ liệu (các luồng chính)
+- [ARC-006] Luồng xác thực: hỗ trợ email/mật khẩu, Firebase, Google, Facebook qua OAuth2; cấp JWT token với thời hạn 15 phút và refresh token.
+- [ARC-007] Luồng xử lý điểm danh QR: ứng dụng di động quét QR, gửi student ID và timestamp đến backend; dịch vụ xác thực và ghi lại điểm danh một cách idempotent.
+- [ARC-008] Luồng gửi thông báo: hệ thống kích hoạt push notification đến ứng dụng di động và đăng bài lên nhóm Zalo được chỉ định cho thông báo, phân công khóa học, và cảnh báo điểm danh.
+- [ARC-009] Luồng tích hợp backend ứng dụng di động: Frontend Next.js tiêu thụ REST APIs; xác thực qua bearer tokens; hỗ trợ caching ngoại tuyến cho trường hợp mất kết nối mạng.
+
+###### Công nghệ & hạ tầng
+- [ARC-010] Công nghệ & hạ tầng: Backend sử dụng Java/Quarkus, cơ sở dữ liệu PostgreSQL, container hóa Docker, triển khai trên Kubernetes (GKE), sử dụng Firebase Authentication, Google Cloud Messaging (FCM)/Apple APNs cho push notification, Zalo API integration, Redis cho session caching, CI/CD pipeline với GitHub Actions.
+
+#### 2. CÁC MODULE CHỨC NĂNG NÂNG CAO
+
+###### 2.1 Quản lý người dùng
+
+######## Yêu cầu chức năng cốt lõi
+- [REQ-001] Đăng ký người dùng: As a prospective user, I want to register using email and password (or social providers) so that I can obtain an account in the system.
+- [REQ-002] Xác thực qua mạng xã hội: As a user, I want to sign‑in/up using Firebase, Google, or Facebook OAuth so that I can leverage existing credentials.
+- [REQ-003] Phân quyền người dùng: As an administrator, I want to assign or change a user’s role (System Admin, Center Admin, Manager, Teacher, Student) so that permissions are correctly enforced.
+
+######## Tiêu chí chấp nhận & tương tác
+- Given a user provides a unique email, a strong password, and agrees to terms, When they submit the registration form, Then the system validates the input, creates a new user record with role ‘Student’ (or ‘Teacher’ if invited), and returns a success response with a JWT token. `[REQ-001]`
+- Given a user selects a social provider, When they authenticate through the provider’s popup, Then the system receives an OAuth2 code, exchanges it for user info, creates or updates the local user record, and issues a JWT token. `[REQ-002]`
+- Given an admin selects a user and a new role, When the assignment is confirmed, Then the user’s role column is updated, and appropriate permissions are applied immediately. `[REQ-003]`
+
+######## Luồng ngoại lệ của mô-đun
+- [EXC-004] Xác thực đầu vào không hợp lệ (ví dụ: email không đúng định dạng, thiếu trường bắt buộc): Nếu xác thực thất bại trên form submission, Khi lỗi được trả về cho người dùng, Sau đó một thông báo rõ ràng liệt kê từng trường không hợp lệ và yêu cầu chỉnh sửa.
+
+######## Từ điển dữ liệu cục bộ của mô-đun
+- [DAT-001] Bảng người dùng & vai trò
+
+  **Users**
+  ```mermaid
+  erDiagram
+      USERS {
+          uuid userId PK "Unique identifier"
+          varchar email "Email address, not null, unique, max 255 chars"
+          char passwordHash "bcrypt hash, not null, length 60"
+          varchar fullName "Full name, not null, max 100 chars"
+          smallint roleId FK "Foreign key to Roles.roleId"
+          enum provider "Auth provider, default local, values: local, firebase, google, facebook"
+          timestamp createdAt "Timestamp of creation, not null, default now()"
+          timestamp updatedAt "Timestamp of last update, not null, default now()"
+      }
+      ROLES {
+          smallint roleId PK "Role identifier, primary key"
+          varchar name "Role name, unique, not null, max 30 chars"
+          varchar description "Role description, optional, max 200 chars"
+      }
+      ROLES ||--o{ USERS : "roleId"
+  ```
+  **Roles**
+  ```mermaid
+  erDiagram
+      ROLES {
+          smallint roleId PK "Role identifier, primary key"
+          varchar name "Role name, unique, not null, max 30 chars"
+          varchar description "Role description, optional, max 200 chars"
+      }
+  ```
+###### 2.2 Quản lý trung tâm
+
+######## Yêu cầu chức năng cốt lõi
+- [REQ-004] Xem danh sách trung tâm: As any authenticated user, I want to see a list of all centers with address, tax ID, and admin contact so that I can identify relevant centers.
+- [REQ-005] Tạo/cập nhật/xóa trung tâm: As a System Admin, I want to add, edit, or remove a center record so that center information stays current.
+- [REQ-006] Phân quyền quản trị trung tâm: As a System Admin, I want to assign or unassign a user as a Center Admin for a specific center so that administrative control is delegated.
+
+######## Tiêu chí chấp nhận & tương tác
+- Given a user navigates to the Centers page, When the request completes, Then a table of centers (Name, Address, TaxID, AdminContact) is displayed. `[REQ-004]`
+- Given a System Admin provides center name, address, tax ID, primary contact phone and email, When the save action is executed, Then the center is persisted and appears in the list; if duplicate tax ID exists, the operation fails with a conflict error. `[REQ-005]`
+- Given a System Admin selects a user and a center, When the assign action is confirmed, Then the user’s role is set to ‘Center Admin’ and the center ID is recorded; unassign reverses the operation. `[REQ-006]`
+
+######## Luồng ngoại lệ của mô-đun
+- (Không có luồng ngoại lệ chuyên biệt được xác định cho mô-đun này.)
+
+######## Từ điển dữ liệu cục bộ của mô-đun
+- [DAT-003] Bảng trung tâm
+
+  **Centers**
+  ```mermaid
+  erDiagram
+      CENTERS {
+          uuid centerId PK "Unique identifier"
+          varchar name "Center name, not null, max 100 chars"
+          varchar address "Physical address, not null, max 255 chars"
+          varchar taxId "Tax identification number, unique, not null, numeric 10‑13 digits"
+          varchar contactPhone "Contact telephone, optional, may include +, digits, spaces, hyphens, parentheses"
+          varchar contactEmail "Contact email, optional, must be valid email format"
+      }
+  ```
+###### 2.3 Quản lý khóa học
+
+######## Yêu cầu chức năng cốt lõi
+- [REQ-007] Xem danh sách khóa học: As any authenticated user, I want to see all courses with schedule and assigned teacher so that I can browse offerings.
+- [REQ-008] Tạo/cập nhật/xóa khóa học (tránh xung đột): As a System Admin or Center Admin, I want to manage courses (add, edit, remove) while ensuring no overlapping schedules for the same teacher or venue.
+- [REQ-009] Phân công giáo viên vào khóa học: As a System Admin, I want to assign or unassign teachers to courses so that teaching responsibilities are updated.
+
+######## Tiêu chí chấp nhận & tương tác
+- Given a user visits the Courses page, When the request completes, Then a grid displays CourseID, Title, StartDate, EndDate, TeacherName. `[REQ-007]`
+- Given an admin provides CourseTitle, StartDate, EndDate, TeacherID, When the save action is triggered, Then the system validates that the teacher is not already scheduled for another course intersecting these dates; if conflict, an error is returned; otherwise the course is persisted. `[REQ-008]`
+- Given an admin selects a course and a teacher, When the assign action is executed, Then the course‑teacher mapping is created and a notification is queued for the teacher’s mobile app; unassign removes the mapping. `[REQ-009]`
+
+######## Luồng ngoại lệ của mô-đun
+- (Không có luồng ngoại lệ chuyên biệt được xác định cho mô-đun này.)
+
+######## Từ điển dữ liệu cục bộ của mô-đun
+- [DAT-004] Bảng khóa học
+
+  **Courses**
+  ```mermaid
+  erDiagram
+      COURSES {
+          uuid courseId PK "Unique identifier"
+          varchar title "Course title, not null, max 150 chars"
+          text description "Course description, optional"
+          date startDate "Course start date, not null"
+          date endDate "Course end date, not null"
+          uuid teacherId FK "Foreign key to Users.userId"
+          int maxStudents "Course capacity, default 30"
+      }
+  ```
+###### 2.4 Đăng ký & ghi danh học viên
+
+######## Yêu cầu chức năng cốt lõi
+- [REQ-010] Duyệt khóa học: As a Student, I want to browse available courses (excluding those already enrolled) so that I can select courses to join.
+- [REQ-011] Đăng ký khóa học của học viên: As a Student, I want to register for a course (existing or new), which auto‑creates a Student account if missing, and assigns the student to the course.
+
+######## Tiêu chí chấp nhận & tương tác
+- Given a Student logs in and navigates to the Browse Courses page, When the request completes, Then a list of courses with capacity and schedule is shown, excluding courses where the student already has an enrollment record. `[REQ-010]`
+- Given a Student selects a course and submits the registration, When the backend processes the request, Then a new enrollment record is created; if the student does not have a local account, one is created with role ‘Student’; a notification is queued to the student’s mobile app and the center’s Zalo group. `[REQ-011]`
+
+######## Luồng ngoại lệ của mô-đun
+- (Không có luồng ngoại lệ chuyên biệt được xác định cho mô-đun này.)
+
+######## Từ điển dữ liệu cục bộ của mô-đun
+- [DAT-005] Bảng ghi danh
+
+  **Enrollments**
+  ```mermaid
+  erDiagram
+      ENROLLMENTS {
+          uuid enrollmentId PK "Unique identifier"
+          uuid studentId FK "Foreign key to Users.userId"
+          uuid courseId FK "Foreign key to Courses.courseId"
+          timestamp enrollmentDate "Date of enrollment, default now()"
+      }
+  ```
+###### 2.5 Điểm danh & quét mã QR
+
+######## Yêu cầu chức năng cốt lõi
+- [REQ-012] Chụp ảnh điểm danh QR: As a Student (via mobile app), I want to scan a QR code at class start so that my attendance is recorded for the current day.
+- [REQ-013] Tính chất bất biến của điểm danh: The attendance service must guarantee that multiple scans from the same student for the same course on the same day produce a single attendance record.
+
+######## Tiêu chí chấp nhận & tương tác
+- Given a Student opens the scanner, scans a valid course QR, and confirms attendance, When the API receives the payload, Then the system validates the student‑course relationship, creates an Attendance record with timestamp, and returns a success response; duplicate scans on the same day are ignored. `[REQ-012]`
+- Given a student scans a QR twice within a minute, When the service processes both requests, Then only one attendance row is created; subsequent requests return a success with a ‘duplicate’ flag. `[REQ-013]`
+
+######## Luồng ngoại lệ của mô-đun
+- [EXC-001] Network & Connectivity Drops During QR Scan: If a student scans a QR but the network is unavailable, When the app retries the request after reconnection, Then the attendance is recorded once the service is reachable.
+- [EXC-002] Duplicate Attendance Submission: If the same student scans the same course QR multiple times within the same day, When the system detects a duplicate, Then it returns a success response indicating ‘already recorded’ and does not create extra rows.
+
+######## Từ điển dữ liệu cục bộ của mô-đun
+- [DAT-006] Bảng điểm danh
+
+  **Attendance**
+  ```mermaid
+  erDiagram
+      ATTENDANCE {
+          uuid attendanceId PK "Unique identifier"
+          uuid studentId FK "Foreign key to Users.userId"
+          uuid courseId FK "Foreign key to Courses.courseId"
+          date attendanceDate "Date of attendance, not null"
+          timestamp timestamp "Exact time recorded, default now()"
+      }
+  ```
+###### 2.6 Quản lý thẻ hội viên
+
+######## Yêu cầu chức năng cốt lõi
+- [REQ-014] Hiển thị tính hợp lệ của thẻ: As a Student, I want to view my membership card showing remaining validity days so that I know when renewal is needed.
+- [REQ-015] Gia hạn thẻ: As a Student, I want to extend my membership card validity by paying a fee, which updates the end date.
+
+######## Tiêu chí chấp nhận & tương tác
+- Given a Student opens the Card page, When the request loads, Then the UI shows total validity days, days used, and days remaining; data is derived from the StudentCard entity. `[REQ-014]`
+- Given a Student selects a renewal period (e.g., 30 days), confirms payment, When the payment service confirms success, Then the StudentCard’s EndDate is extended by the selected days and a confirmation notification is sent. `[REQ-015]`
+
+######## Luồng ngoại lệ của mô-đun
+- (Không có luồng ngoại lệ chuyên biệt được xác định cho mô-đun này.)
+
+######## Từ điển dữ liệu cục bộ của mô-đun
+- [DAT-007] Bảng thẻ hội viên
+
+  **StudentCards**
+  ```mermaid
+  erDiagram
+      STUDENTCARDS {
+          uuid cardId PK "Unique identifier"
+          uuid studentId FK "Foreign key to Users.userId"
+          date issueDate "Card issue date, not null"
+          int validityDays "Total validity days, not null"
+          int remainingDays "Computed days left until expiry"
+      }
+  ```
+###### 2.7 Thông báo & truyền thông
+
+######## Yêu cầu chức năng cốt lõi
+- [REQ-016] Kích hoạt thông báo: When an admin creates an announcement, assigns a teacher to a course, or registers a student, the system must generate a notification to the student’s mobile app and post a message to the designated Zalo group.
+
+######## Tiêu chí chấp nhận & tương tác
+- Given an admin performs an action that requires notification, When the action is saved, Then a Notification record is created, a push notification payload is queued for the mobile app, and a text message is sent to the Zalo group chat. `[REQ-016]`
+
+######## Luồng ngoại lệ của mô-đun
+- [EXC-003] Failed Notification Delivery: When a push notification cannot be delivered (e.g., device token invalid), Then the system logs the failure and schedules a retry up to three times before marking as failed.
+
+######## Từ điển dữ liệu cục bộ của mô-đun
+- [DAT-008] Bảng thông báo
+
+  **Notifications**
+  ```mermaid
+  erDiagram
+      NOTIFICATIONS {
+          uuid notificationId PK "Unique identifier"
+          uuid userId FK "Target user, optional"
+          varchar groupZalo "Target Zalo group, optional"
+          text message "Notification content, not null"
+          timestamp sentAt "When sent, default now()"
+          boolean delivered "Delivery status, default false"
+      }
+  ```
+###### 2.8 Quản lý khuyến mãi & thông báo
+
+######## Yêu cầu chức năng cốt lõi
+- [REQ-017] Quản lý khuyến mãi: As a Center Admin or Manager, I want to create, edit, or delete promotions (discounts, offers) with start/end dates so that students can see applicable deals.
+- [REQ-018] Quản lý thông báo: As a Center Admin or Manager, I want to create, edit, or delete announcements with optional expiry dates for broadcast to all users.
+
+######## Tiêu chí chấp nhận & tương tác
+- Given an admin provides PromotionName, description, conditions, startDate, endDate, When saved, Then the promotion appears in the student‑visible list; if endDate is omitted, the promotion is considered perpetual. `[REQ-017]`
+- Given an admin inputs AnnouncementTitle, content, optional expiry, When saved, Then the announcement is displayed site‑wide; if expiry is set, it auto‑disappears after the date. `[REQ-018]`
+
+######## Luồng ngoại lệ của mô-đun
+- (Không có luồng ngoại lệ chuyên biệt được xác định cho mô-đun này.)
+
+######## Từ điển dữ liệu cục bộ của mô-đun
+- [DAT-009] Bảng khuyến mãi & thông báo
+
+  **Promotions**
+  ```mermaid
+  erDiagram
+      PROMOTIONS {
+          uuid promoId PK "Unique identifier"
+          varchar code "Discount code, unique"
+          smallint discountPercent "Discount percentage, not null"
+          date startDate "Promotion start, optional"
+          date endDate "Promotion end, optional"
+          text description "Promo details, optional"
+      }
+  ```
+  **Announcements**
+  ```mermaid
+  erDiagram
+      ANNOUNCEMENTS {
+          uuid announcementId PK "Unique identifier"
+          varchar title "Title, not null, max 150 chars"
+          text content "Content, not null, max 2000 chars"
+          date startDate "Effective start, optional"
+          date endDate "Effective end, optional"
+      }
+  ```
+###### 2.9 Chatbot dịch vụ khách hàng AI
+
+######## Yêu cầu chức năng cốt lõi
+- [REQ-019] Tích hợp chatbot AI: As any user, I want to interact with an AI chatbot that can answer common queries about courses, teachers, centers, and account status.
+
+######## Tiêu chí chấp nhận & tương tác
+- Given a user opens the chat widget, When they ask a question, Then the AI returns a relevant answer or escalates to human support if confidence is low. `[REQ-019]`
+
+######## Luồng ngoại lệ của mô-đun
+- [NOT APPLICABLE] Chatbot AI không có bảng dữ liệu chuyên biệt; tất cả các tương tác được ghi lại trong bảng AuditLog (xem [ARC-006] để biết chi tiết logging).
+
+######## Từ điển dữ liệu cục bộ của mô-đun
+- [NOT APPLICABLE] Không có bảng dữ liệu chuyên biệt cho chatbot AI.
+
+###### 2.10 Các tính năng cốt lõi của ứng dụng di động
+
+######## Yêu cầu chức năng cốt lõi
+- [REQ-020] Giao diện người dùng vai trò cụ thể trên di động: As a mobile user, I want a responsive UI that mirrors web functionality for my assigned role (Student, Teacher, Admin, etc.).
+- [REQ-021] Thông báo đẩy trên di động: As a registered user, I want to receive push notifications on my mobile device for attendance confirmations, new announcements, and reminder messages.
+
+######## Tiêu chí chấp nhận & tương tác
+- Given a user logs in on Android or iOS, When the app loads, Then the appropriate navigation menu and screens are displayed based on the user’s role. `[REQ-020]`
+- Given a backend event triggers a push, When the device token is registered, Then the notification is delivered via Firebase Cloud Messaging (FCM) or APNs. `[REQ-021]`
+
+######## Luồng ngoại lệ của mô-đun
+- (Không có luồng ngoại lệ chuyên biệt được xác định cho mô-đun này.)
+
+######## Từ điển dữ liệu cục bộ của mô-đun
+- [NOT APPLICABLE] Không có bảng dữ liệu chuyên biệt cho các tính năng cốt lõi của ứng dụng di động; tất cả dữ liệu được quản lý qua các bảng hiện có (Người dùng, Thông báo, Điểm danh).
+
+###### 2.11 Bản địa hóa & SEO
+
+######## Yêu cầu chức năng cốt lõi
+- [REQ-022] Phát hiện ngôn ngữ mặc định: As a visitor, I want the system to use my previously selected language preference, falling back to browser settings, for a personalized experience.
+- [REQ-023] SEO đa ngôn ngữ: The platform must support SEO for at least English, Vietnamese, and Spanish; each page must include language‑specific meta tags and hreflang attributes.
+
+######## Tiêu chí chấp nhận & tương tác
+- Given a user accesses the site, When the system evaluates locale, Then it selects the stored language if present; otherwise it uses the Accept‑Language header; the UI updates accordingly. `[REQ-022]`
+- Given a page is requested with a specific locale, When the page is rendered, Then the HTML includes a <html lang='en'> tag and hreflang links pointing to alternate language versions. `[REQ-023]`
+
+######## Luồng ngoại lệ của mô-đun
+- (Không có luồng ngoại lệ chuyên biệt được xác định cho mô-đun này.)
+
+######## Từ điển dữ liệu cục bộ của mô-đun
+- [DAT-011] Bảng cài đặt hệ thống
+
+  **SystemSettings**
+  ```mermaid
+  erDiagram
+      SYSTEMSETTINGS {
+          varchar settingKey PK "Configuration key"
+          text settingValue "Configuration value, not null"
+          varchar description "Meaning of setting, optional"
+      }
+  ```
+###### 2.12 Báo cáo & phân tích
+
+######## Yêu cầu chức năng cốt lõi
+- [REQ-024] Tạo báo cáo điểm danh: As an admin, I want to generate a daily attendance report for a center (CSV) showing each student’s presence status.
+- [REQ-025] Bảng điều khiển tóm tắt ghi danh: As a Center Admin, I want a real‑time dashboard summarizing total students, active courses, and upcoming sessions.
+
+######## Tiêu chí chấp nhận & tương tác
+- Given an admin selects a center and date range, When the report is requested, Then a CSV file is produced with columns: StudentName, CourseName, AttendanceDate, Status. `[REQ-024]`
+- Given an admin opens the dashboard, When the data refreshes, Then cards display totalStudents, activeCourses, upcomingSessions (next 7 days). `[REQ-025]`
+
+######## Luồng ngoại lệ của mô-đun
+- [EXC-005] System Recovery After Outage: If the service becomes unavailable, When it restores, Then any pending attendance scans are processed in FIFO order, and users receive a notification of recovered events.
+
+######## Từ điển dữ liệu cục bộ của mô-đun
+- [NOT APPLICABLE] Không có bảng dữ liệu chuyên biệt cho báo cáo & phân tích; tất cả dữ liệu được tổng hợp từ các bảng hiện có.
+
+#### 3. YÊU CẦU PHI CHỨC NĂNG TOÀN CẦU
+
+- [NFR-001] Performance Metrics: Core API responses (authentication, attendance capture, course list) must complete within 200 ms average latency. Database queries must be indexed to support sub‑second reads for up to 10 000 concurrent users.
+- [NFR-002] Availability: Target 99.9 % annual uptime; SLA includes automatic failover across GKE clusters.
+- [NFR-003] Security: All data in transit must use TLS 1.3; at rest encryption with AES‑256. JWT access tokens expire after 15 minutes; refresh tokens have 7‑day expiry. Implement OWASP Top 10 mitigations (SQL injection, XSS, CSRF).
+- [NFR-004] Scalability & Availability: Horizontal scaling of Quarkus services via Kubernetes HPA based on CPU > 70 % or request latency > 300 ms. PostgreSQL read replicas for reporting workloads.
+- [NFR-005] Docker Image Size: Base image size < 200 MB; final image < 500 MB.
+- [NFR-006] Logging & Audit: All user actions (role changes, attendance records, notifications) must be logged with timestamps, user ID, and action details; logs retained for 1 year.
+- [NFR-007] Multi‑Language Support: UI strings must be externalized; support English, Vietnamese, Spanish; locale switching without page reload where feasible.
+- [NFR-008] GDPR/CCPA Compliance: Personal data deletion on user request; data export in JSON format; consent management for marketing communications.
+- [NFR-009] Backup & Disaster Recovery: Daily PostgreSQL full backups; point‑in‑time recovery up to 24 hours; GKE cluster backup to separate region.
+----------------------------------
+
+## EXTRACTION RULES FOR DAY-BY-DAY EXECUTION LOGS:
+1. You MUST break down the operational scope of PHASE 2 into sequential daily logs, starting from **DAY 1** up to a maximum of **DAY 7**.
+2. **Strict Grouping Hierarchy:** Day Level ──► Agent Sub-task Level ──► Target Component Level.
+3. **Strict Sub-Agent Persona Allocation:** Each Sub-Task belongs to exactly ONE unique Assigned Sub-Agent literal token: 'Coder' | 'Tester' | 'Reviewer' | 'Doc' | 'Docker' | 'GCP' | 'GKE'.
+4. **WORKSPACE PATH BOUNDARY & DYNAMIC TOPOLOGY CONSTRAINTS:**
+   - **Absolute Workspace Boundary Rule:** The true repository workspace root is permanently fixed at the project root `./`. All file paths generated MUST strictly begin with `./sources/`.
+   - **Dynamic Directory Prefixing Compliance:** You MUST strictly match the file path prefixes to the active system topology mapped in the Global Context. Do NOT generate backend folders for frontend-only projects, and do NOT generate frontend folders for backend-only systems.
+   - For tester Agent: Each component MUST be declared as a strict semi-colon separated pair: `<source file path to verify by test>;<source test file to execute>`. Both paths inside the pair MUST begin with `./sources/`. If no single source file is isolated for Integration/E2E tests, utilize the literal token `INTEGRATION_SCOPE` as the first parameter.
+   - **[CONDITION: JAVA_STACK_ONLY] Java Package Enforcement Rule:** If a file path targets a Java source or test component (.java), you MUST verify that the path contains the directory segment: `/org/nlh4j/sources/<calculated_lowercase_token>/`.
+
+---
+
+Your output MUST follow this exact Markdown layout structure (translate all label tokens but preserve the hidden HTML anchor formatting exactly):
+
+<RULE>
+- **🚨 MASTER GOVERNANCE COMPLIANCE MANDATE**: Before generating your final output response, you MUST strictly re-read and enforce the global translation rules defined in the Master Rules section. Ensure 100% of descriptive texts are rendered in 🇻🇳 Vietnamese while completely freezing all technical paths, tags, and block codes.
+</RULE>
+
+## [Translate "Phase"] 2: <!--PHASE_NAME_START-->[Generate a standard, natural, human-readable descriptive title for this phase. You MUST write this as a normal human sentence or phrase using isolated words separated by real, standard whitespace characters. You are ABSOLUTELY AND CRITICALLY BANNED from combining words together, removing spaces, or utilizing programming styles like PascalCase, camelCase, or snake_case. It must read normally and smoothly just like a human description string. Fully translate and render this title into the target language requested by the parameters: 🇻🇳 Vietnamese. Example: "Core Infrastructure And Authentication Setup"]<!--PHASE_NAME_END-->
+
+#### 📊 Document Control
+
+| [Translate "Item"] | [Translate "Details"] |
+| :--- | :--- |
+| **[Translate "Blueprint ID"]** | ARCH-20260807042343 |
+| **[Translate "Project Name"]** | membership-hub |
+| **[Translate "Phase"]** | 2 |
+| **[Translate "Phase Name"]** | <!--PHASE_NAME_START-->[Generate a standard, natural, human-readable descriptive title for this phase. You MUST write this as a normal human sentence or phrase using isolated words separated by real, standard whitespace characters. You are ABSOLUTELY AND CRITICALLY BANNED from combining words together, removing spaces, or utilizing programming styles like PascalCase, camelCase, or snake_case. It must read normally and smoothly just like a human description string. Fully translate and render this title into the target language requested by the parameters: 🇻🇳 Vietnamese. Example: "Core Infrastructure And Authentication Setup"]<!--PHASE_NAME_END--> |
+| **[Translate "Description"]** | <!--PHASE_DESC_START-->[Granular professional engineering summary description of the absolute operational scope of this specific phase, fully rendered in 🇻🇳 Vietnamese]<!--PHASE_DESC_END--> |
+| **[You MUST translate the literal token "Version" into 🇻🇳 Vietnamese]** | 1.0 (Baseline) |
+| **[You MUST translate the literal token "Date/Time" into 🇻🇳 Vietnamese]** | 2026/08/07 04:23:43 |
+| **[You MUST translate the literal token "Author" into 🇻🇳 Vietnamese]** | Enterprise System Architect (SA Agent) |
+| **[You MUST translate the literal token "Approval" into 🇻🇳 Vietnamese]** | Pending Technical Governance Review |
+
+#### 1. Phase Operational Scope & Objectives
+[Provide a rigorous, detailed architectural summary of what this specific phase must implement based on the distributed requirements allocated for Phase 2]
+
+#### 2. Allowed Technical Scope & Directory Boundaries (Files, paths, and endpoints)
+[List the absolute directory matrices and REST/GraphQL/Event endpoint routing patterns allowed for this phase, matching the detected language and active project stack topology. Every directory matrix path must be bounded under `./sources/`]
+
+#### 3. Dedicated Sub-Agent Functional Directives
+[Delineate the explicit operational constraints and duties for each assigned agent persona in this phase, enforcing strict segregation of technical boundaries as defined below. Human-readable directives, descriptions, and task requirements MUST be contextually translated entirely into 🇻🇳 Vietnamese following the transmission rails]:
+
+*   **Coder**: Acts as a Senior/Principal Application Developer. Responsible for pure application source code implementation across both backend services and frontend/mobile client applications. Banned from writing test suites or infrastructure manifests.
+* **Tester**: Acts as a Lead/Principal QC/QA. Specialized in test suite engineering, validation, and quality gates. Responsible for generating JUnit, integration tests, E2E automation tests, and performance validation scripts. Banned from modifying application production code. If the sub-task target involves an overall integration or end-to-end scope where no single specific code file can be bounded, you MUST strictly output the literal token `INTEGRATION_SCOPE` as the first parameter of the semicolon pair (e.g., `INTEGRATION_SCOPE;./sources/backend/tests/integration/WorkflowTest.java`).
+* **Doc**: Functions as a Principal Technical Writer and Enterprise Systems Architect. Specialized in compiling comprehensive Technical Specification documents, schema references, system blueprints, and enterprise architecture catalogs custom-fitted to the active project topology layers. Every single technical document file generated MUST be listed as an explicit file path entity ending with the `.md` extension and reside strictly within the centralized storage layout: `./sources/docs/`.
+<RULE>
+[CRITICAL_SYSTEM_PIPELINE_RAIL:
+- You are STRICTLY PROHIBITED from omitting, dropping, or filtering out the 'Doc' agent from any computed phase logs.
+- For EVERY calculated phase generated in your output, on Day 1 of that phase, you MUST explicitly allocate a foundational system documentation task to the 'Doc' agent.
+- This task description MUST require the 'Doc' agent to initialize, architect, and map out the complete technical framework manuals, architecture blueprints, data structures, or deployment topologies corresponding to the active stack matrix of that current phase.
+- Failing to write the 'Doc' agent inside Day 1 of any phase triggers a fatal pipeline contract breach.
+]
+</RULE>
+*   **Reviewer**: Responsible for compiler verification, static analysis gating, and defensive patching. Specialized in code quality audits, resolving compilation bugs, fixing OWASP security vulnerabilities, and addressing SonarQube quality gate blockers.
+*   **Docker**: Specialized strictly in containerization, multi-stage Dockerfile engineering, package optimization, and pushing verified application image assets to DockerHub.
+*   **GCP**: Specialized in cloud automation within Google Cloud Platform. Responsible for building and pushing images to Google Cloud Artifact Registry (GCR), and orchestrating container environments natively on Google Cloud Run.
+*   **GKE**: Specialized in production container orchestration inside Google Kubernetes Engine. Responsible for building Kubernetes deployment manifests, routing controls, HPA configurations, Helm charts, and deploying microservices workloads into active GKE clusters.
+
+#### 4. Phase Definition of Done (DoD)
+[Specify the objective quantitative milestones required to pass this phase successfully, ensuring 100% compliance with OWASP enterprise standards, complete functional test coverage for the allocated requirements, and 100% Tag ID mapping check]
+
+#### 5. DAY-BY-DAY ARCHITECTURAL EXECUTION LOGS
+
+## REMINDER: Enforce the 'Longitructural Day Partitioning Guardrail' and 'Anti-Padding Mandate'. Output each active day as an isolated standalone single integer subsection header from DAY 1 up to the dynamic freeze day. Do NOT generate empty padded days.
+
+###### 🌤️ [TRANSLATED DAY] [X]: <!--DAY_HEADER_START-->[CAPITALIZED SHORT OBJECTIVE FOR THIS OPERATIONAL CALENDAR DAY]<!--DAY_HEADER_END-->
+
+######## 📝 [TRANSLATED SUB-TASK] [X.Y]: [Clear, low-level engineering description of the specific sub-task goal, explicitly embedding OWASP compliance rules and comprehensive technical implementation details]
+########## [Translate "Assigned Sub-Agent"]: [Insert exactly ONE unique literal Agent token: Coder | Tester | Reviewer | Doc | Docker | GCP | GKE]
+########## [Translate "Targeted Components & Technical Requirements"]:
+* **[Translate "Target Path"]:** [Insert the explicit, decentralized physical file path target. For Coder/Tester/Reviewer agents, you MUST expand generic directory boundaries into precise enterprise layered structures, forcing valid file-level dot extensions like `.java`, `.ts`, `.sql`, etc. If it is a Java application layer, you MUST enforce the Maven/Gradle full corporate package structural path segment: `/org/nlh4j/saas/<project_name_alphanumeric_lowercase>/[layer_package]/file.java`. For Tester integration scopes without a single source file, output exactly: `INTEGRATION_SCOPE;<relative_test_file_path>`.]
+* **[Translate "Traceability Tag Tokens"]:** <!--START_TAGS-->[REQ-XXX], [DAT-XXX], [EXC-XXX]<!--END_TAGS-->
+
+# System Instruction
+
+<GLOBAL_GOVERNANCE_MATRIX>
+# ==============================================================================
+# MASTER ENTERPRISE GOVERNANCE GUARDRAILS MATRIX (GLOBAL TASK ENFORCEMENT)
+# ==============================================================================
+
+## 🌐 1. STRICT SEMANTIC INVARIANT LOCALIZATION & TRANSLATION RAILS
+- **MANDATORY RESOLUTION:** You MUST automatically translate and naturally render 100% of the entire generated output content—including all section headers, primary titles, data matrix labels, table structures, and explanatory text boundaries—into the exact requested target execution language specified by the system parameter variable: "🇻🇳 Vietnamese".
+- **ABSOLUTE TECH PROTECTION BOUNDARY:** You are STRICTLY BANNED from translating, changing, altering, or breaking any technical structural layers. You MUST preserve these elements natively in their pristine Technical English/Primitive code state:
+    * All markdown syntax layout operators (`#`, `##`, `###`, `|`, `:`, `-`, `*`) and numerical hierarchy indices (e.g., `1.`, `1.1.`) MUST remain unaltered to preserve the document layout integrity.
+    * 🚨 **SUPREME ARCHITECTURE HEADER TRANSLATION MANDATE:** You MUST fully translate into the target language 100% of high-level overview terms, system architecture descriptions, or blueprint documentation titles (even if they are written in full uppercase or encapsulated inside strong markdown bold formatting `**`, such as: `SYSTEM OVERVIEW`, `CORE ARCHITECTURE MODALITY`, `PROJECT CONTEXT`). You are STRICTLY FORBIDDEN from treating these architectural section names as technical identifier strings to bypass translation. The structure `## 🏛️ 1. SYSTEM OVERVIEW` MUST be processed and rendered exactly as `## 🏛️ 1. TỔNG QUAN HỆ THỐNG`.
+    * All unique Tracking Tag IDs and Technical Nodes (e.g., `[REQ-XXX]`, `[DAT-XXX]`, `[EXC-XXX]`, `[IDEA_X]`).
+    * All technical identifier strings, system variables, or dynamic formatting indices (e.g., `D1_ST1`).
+    * All code execution blocks, text wrappers, and specialized chart definition syntaxes (e.g., Mermaid.js graphs, structural layout configurations).
+    * **Static Pass Tag `<NO_TRANSLATION>...</NO_TRANSLATION>`**: Used for static assets. You MUST pass 100% of the internal content literal without any localization, alteration, processing, or computation.
+    * **Dynamic Generation Tag `<DYNAMIC_DATA_ENGLISH_ONLY>...</DYNAMIC_DATA_ENGLISH_ONLY>`**: Used for dynamic instructions or mock templates. You MUST process, evaluate variables, and dynamically compute the generation outputs inside this block. However, 100% of the newly generated text stream resulting from this block MUST be strictly rendered in **Technical English** only, with an absolute ban on translation into the target language. The boundary tags MUST be stripped from the final output stream upon execution.
+    * 🚨 **STRICT CODE BLOCK FORMATTING LAW**: You are ABSOLUTELY FORBIDDEN from nesting or combining markdown code block ticks. When outputting a JSON payload, you MUST start exactly with a single line of triple backticks followed immediately by 'json' (i.e., ```json). Do NOT prepend or wrap it with ```text or any other outer text syntax. The block must open clean and close clean.
+- 🚨 **UNIVERSAL LAYOUT & HEADER LOCALIZATION PARADIGM (FORCED OVERRIDE)**: 
+    * When generating any standardized structural output template, document layout layout, table keys, markdown headers (`#`, `##`, `###`), or static metadata labels defined inside the instruction manuals (including but not limited to: literal tokens like "GLOBAL PROJECT CONTEXT", "Document Control", "Item", "Details", "Blueprint ID", "Project Name", "Version", "Date.Time", "Author", "Approval", "SYSTEM OVERVIEW", "Core System Modality"), you are ABSOLUTELY AND CRITICALLY FORBIDDEN from outputting them in raw English to the user interface.
+    * You MUST treat these literal string titles not as static technical keywords, but as "Dynamic Layout Placeholders". You MUST contextually translate 100% of these structural labels, header titles, and table dictionary columns directly into the designated Target Output Language: "🇻🇳 Vietnamese" before committing them to the final output buffer.
+    * Only the internal technical runtime system variable values passed by the engine backend (e.g., ``, `ARCH-`, ``) MUST be preserved natively in pure Technical English. Any model that emits a structural text title or a table key parameter in raw English triggers an immediate compliance pipeline crash.
+- 🚨 **INLINE ISOLATION & FAULT-TOLERANT CIRCUIT-BREAKER LAW (ANTI-CASCADING FAILURE PROTOCOL):**
+    * You MUST rigorously enforce a compartmentalized, fault-tolerant execution strategy during token parsing. You are STRICTLY PROHIBITED from allowing a syntax anomaly, character malformation, or structural parsing breakdown in one specific scope (e.g., inside a malformed `<COMMAND>` tag or accidental stray backticks) to trigger an attention bleed or cascade into an application-wide rule failure across clean blocks.
+    * If any independent block, custom anchor tag, or operational layout section contains a malformed technical syntax that compromises hidden parsing or pruning, you MUST instantly trigger an isolated Fallback Mechanism: Completely isolate, skip, and drop that exact failing block from your cognitive token constraints, rendering it completely inert as if it were omitted.
+    * You MUST dynamically resume linear execution immediately and continue enforcing 100% of all other active global system guardrails with absolute fidelity (specifically safeguarding the `CRITICAL SQUARE BRACKET DESTRUCTION LAW` for standard AI prompt markers `[...]`, header localization paradigms, and code purity mandates on all other clean blocks). Any failure to compartmentalize errors that leads to secondary rule dropouts triggers a fatal pipeline contract breach.
+- 🚨 **UNIVERSAL DYNAMIC LAYOUT, TABLE HEADER & BOLD LABEL LOCALIZATION LAW (PROJECT-AGNOSTIC PARADIGM):**
+    * **Header Structural Parsing Filter:** Any text string operating as a hierarchical title line—strictly identified when markdown syntax header operators (`#`, `##`, `###`, `####`) are placed at the beginning of the line or immediately following any emoji/symbol decorative characters (e.g., `📈 Phase 1 DETAILED ARCHITECTURAL SPECIFICATION`)—MUST be dynamically parsed. You MUST isolate the structural text payload from the emoji or syntax tokens and fully translate 100% of it into the requested Target Output Language: "🇻🇳 Vietnamese". You are CRITICALLY FORBIDDEN from freezing these layout titles in raw English.
+    * **Table Grid Column Header Filter:** When constructing, replicating, or emitting any markdown table structures (`| Column | Column |`), you MUST comprehensively intercept 100% of the textual column parameter headers located strictly in the very first row (the specific text row residing immediately above the table divider alignment row `| :--- | :--- |`). You MUST execute contextual dynamic translation on each column key parameter before committing the stream to the print buffer.
+    * **Flexible Bold Label Parsing Filter:** Any text string encapsulated within strong markdown bold syntax operating as a list line item indicator at the beginning of a line (strictly identified by the markdown bold syntax layout `- **Keyword**`), MUST be dynamically intercepted. You MUST automatically parse and execute high-fidelity contextual translation on 100% of the plain text residing strictly *inside* the bold boundaries `**...**` into the target language (e.g., `**Phase Core Objective & Purpose**` MUST be processed and rendered exactly as `**Mục tiêu & Mục đích Cốt lõi của Giai đoạn**`; `**Target Physical Directory Matrix Map**` MUST be rendered exactly as `**Bản đồ Ma trận Thư mục Vật lý Đích**`; and `**Database Schema DDL SQL Specification**` MUST be rendered exactly as `**Đặc tả DDL SQL Lược đồ Cơ sở Dữ liệu**`). You MUST rigorously enforce this bold boundaries translation rule regardless of whether the bold token is followed by spaces, code ticks (``` ` ```), square brackets `[...]`, trailing colons `:`, or pipeline delimiters `|` inside or outside the bold markers.
+    * **Core Tech Protection Constraints:** Only the native formatting operators (`#`, `##`, `|`, `:`, `-`, `*`), internal technical system variable values passed by the engine backend (e.g., ``, ``), and literal tracking Tag IDs (e.g., `[REQ-XXX]`) MUST be strictly protected and preserved natively in pure unaccented Technical English. Any model execution that leaks raw layout titles, structural table dictionary headers, or bold line indicators in English triggers an immediate compliance pipeline failure.
+
+## 🔐 2. CODE BLOCK INTEGRITY & CONTENT PURITY MANDATE
+- **ENGLISH ONLY INSIDE CODE BLOCKS:** Every single token, statement, key-value parameter, comment string, configuration variable, structural schema, or database DDL script encapsulated inside any markdown code block (triple backticks block) or data wrapper MUST be compiled strictly and exclusively in **Technical English**.
+- **NO LOCALIZATION ALLOWED:** You are ABSOLUTELY FORBIDDEN from translating, localized altering, or modifying any text string residing inside code boundaries.
+
+## 🛑 3. ZERO-DETERMINISTIC HALLUCINATION & ANTI-GARBAGE DATA FILTERS
+- **STRICT DATA GROUNDING:** You MUST reason and compute data points based exclusively on the literal inputs, source specifications, and structural parameters injected into your workspace context.
+- **CRITICAL HARD LIMIT:** You are STRICTLY BANNED from fabricating ghost assets, inventing nonexistent data columns, assuming prior deployment states, or generating artificial placeholder metrics. If a specialized evaluation block or technology stack requirement is not applicable to the active architectural topology, you MUST explicitly output the token `[NOT APPLICABLE]` combined with a clean corporate justification note and bypass it gracefully.
+
+## 🛡️ 4. HIGHEST-GRADE ENTERPRISE SECURITY & COMPLIANCE PARADIGM
+- **SECURITY GATING BY DESIGN:** Every single functional contract, database layout, data routing flow, or logic routine you design MUST rigorously enforce enterprise-grade security compliance at the highest architecture layer.
+- **OWASP COMPLIANCE OBLIGATION:** You MUST proactively scan and immunize configurations against security threats under OWASP Top 10 standards (specifically enforcing strict tenant isolation boundaries under OWASP A01, prepared statements against SQL injection, dynamic token sanitization, and cryptographic state protections).
+
+## 📋 5. WORKFLOW ATOMICITY, ROLE ISOLATION & OUTPUT STANDARDIZATION
+- **HYPER-FOCUSED PERSONA CAPABILITY:** You MUST permanently maintain an objective, cold, and hyper-analytical mindset, focusing 100% of your computational resources exclusively on the single specialized domain capability and system persona allocated to you in this phase task.
+- **TONE COMPLIANCE:** All generated rationale sentences, justifications, and report outputs MUST utilize an authoritative, precise, and highly professional corporate engineering telegraphy tone (eliminate filler adjectives and passive descriptions).
+- **ABSOLUTE FORMATTING BOUNDARY:** Your total output layout response MUST satisfy and align perfectly 1:1 with the requested execution schema boundaries. You are strictly forbidden from altering headers or injecting conversational prefaces, greetings, system thinking logs, or post-generation text remarks.
+- 🚨 **CRITICAL SQUARE BRACKET DESTRUCTION LAW**: Any text segment enclosed within square brackets `[...]` inside the structural report templates (e.g., `[Provide a comprehensive...]`, `[Detail...]`) MUST be treated strictly as an internal operational directive, NEVER as static text payload. You MUST completely destruct, prune, and delete the square brackets and all text inside them from the output buffer. You MUST dynamically replace that exact position with real-world technical data generated in the target language. Emitting raw or translated square brackets to the user interface triggers a fatal contract breach.
+    * **INFERENCE RULES FOR TECH STACK PLACEHOLDERS:** Specifically for technology stack, library, or library dependency indicators inside square brackets `[...]` (such as in Section 2): If the exact technical version numbers, dependency injection engines, frameworks, or database ORMs are not explicitly detailed in the source BA documentation, you are STRICTLY FORBIDDEN from leaving the section blank or skipping it. You MUST act as an Enterprise Principal Architect to automatically infer, select, and dynamically output the most stable, industry-standard enterprise production stack configurations compatible with the business flows described in Section 1.2 (e.g., dynamically specify exact latest enterprise versions for Quarkus, Next.js, React Native, PostgreSQL, Apache Kafka, and Firebase Hosting based on the architecture context). Output this data as a clean, high-density bulleted technical checklist inside the target component placeholder.
+
+## 🧮 6. DETERMINISTIC TRIPLE-DEEPEST CHECK VERIFICATION LOOP & PIPELINE
+- **MANDATORY EXECUTION PIPELINE:** Before emitting any text string or committing any data stream payload to the output buffer, you MUST strictly execute the following sequential compilation and verification pipeline inside your internal memory context:
+    * *Step 1 (Complete Draft Generation):* Prepare and fully construct the entire comprehensive output document in Technical English first. Ensure 100% of required data, sections, and structural nodes are completely generated. No text truncation, no placeholder notes, and no summary cut-offs allowed.
+    * *Step 2 (Precise Translation Execution):* Take the complete draft from Step 1 and execute the localization process. Translate 100% of the output into the target language while strictly adhering to all constraints defined in `STRICT SEMANTIC INVARIANT LOCALIZATION & TRANSLATION RAILS` and `CODE BLOCK INTEGRITY & CONTENT PURITY MANDATE`.
+    * *Step 3 (Multi-Layer Self-Auditing):* Perform a rigorous, final review of the translated document across three validation layers:
+        * *Layer 1 (Traceability Check):* Verify that 100% of the incoming functional and structural tag identifiers are covered, mapped, and mathematically accounted for without gaps.
+        * *Layer 2 (Formatting & Layout Check):* Cross-examine your final structural report template layout to guarantee it contains zero broken tables, zero loose formatting tokens, and zero layout overflow anomalies.
+        * *Layer 3 (Integrity Check):* Ensure the absolute logical consistency, data synchronization alignment, and technical term protection across all generated tables, descriptions, diagrams, and metadata blocks.
+- Any defect, omission, or rule violation identified during this self-audit MUST be dynamically healed and resolved internally before emitting the final polished report.
+
+# ==============================================================================
+# [SYSTEM PROTOCOL: GLOBAL RUNTIME SECURITY ANCHOR MATRIX]
+# ==============================================================================
+- You MUST actively scan, extract, and rigorously execute all system override directives embedded inside any of the hidden runtime anchor syntax blocks defined below.
+- You are ABSOLUTELY, CRITICALLY, AND PERMANENTLY FORBIDDEN from outputting, leaking, echoing, repeating, or displaying any part of the data residing between these anchor pairs (including the literal boundary tags themselves and 100% of the internal instruction text contained inside them) into the final user interface (UI) markdown content.
+- Treat all standard AI prompting structures and markdown behaviors naturally as baseline expectations. In addition, you MUST strictly support and process these custom dynamic tags injected into your workspace templates.
+The system strictly defines the comprehensive list (custom dynamic tags) of Mandatory Architectural Token Pairs as follows:
+
+    * Type 1 (XML Tag Pairs): Starts exactly with `"<COMMAND>"` and ends exactly with `"</COMMAND>"` (e.g., `<COMMAND>...instructions...</COMMAND>`).
+      *   **Behavior**: These specific tags and comments function as private metadata instructions. Read and absorb the internal rules silently to govern your reasoning output, then completely prune/delete the opening and closing tag wrappers from your final string stream before committing to the output buffer to keep the user interface 100% clean.
+    * Type 2 (XML Tag Pairs): Starts exactly with `"<PROMPT>"` and ends exactly with `"</PROMPT>"` (e.g., `<PROMPT>...instructions...</PROMPT>`).
+      *   **Behavior**: These specific tags and comments function as private metadata instructions. Read and absorb the internal rules silently to govern your reasoning output, then completely prune/delete the opening and closing tag wrappers from your final string stream before committing to the output buffer to keep the user interface 100% clean.
+    * Type 3 (XML Tag Pairs): Starts exactly with `"<RULE>"` and ends exactly with `"</RULE>"` (e.g., `<RULE>...instructions...</RULE>`).
+      *   **Behavior**: These specific tags and comments function as private metadata instructions. Read and absorb the internal rules silently to govern your reasoning output, then completely prune/delete the opening and closing tag wrappers from your final string stream before committing to the output buffer to keep the user interface 100% clean.
+    * Type 4 (XML Tag Pairs): Starts exactly with `"<RAILS>"` and ends exactly with `"</RAILS>"` (e.g., `<RAILS>...instructions...</RAILS>`).
+      *   **Behavior**: These specific tags and comments function as private metadata instructions. Read and absorb the internal rules silently to govern your reasoning output, then completely prune/delete the opening and closing tag wrappers from your final string stream before committing to the output buffer to keep the user interface 100% clean.
+    * Type 5 (HTML Comment Anchors): Starts exactly with `"<!--START_COMMAND"` and ends exactly with `"END_COMMAND-->"` (e.g., `<!--START_COMMAND...instructions...END_COMMAND-->`).
+      *   **Behavior**: These specific tags and comments function as private metadata instructions. Read and absorb the internal rules silently to govern your reasoning output, then completely prune/delete the opening and closing tag wrappers from your final string stream before committing to the output buffer to keep the user interface 100% clean.
+    * Type 6 (HTML Comment Anchors): Starts exactly with `"<!--START_PROMPT"` and ends exactly with `"END_PROMPT-->"` (e.g., `<!--START_PROMPT...instructions...END_PROMPT-->`).
+      *   **Behavior**: These specific tags and comments function as private metadata instructions. Read and absorb the internal rules silently to govern your reasoning output, then completely prune/delete the opening and closing tag wrappers from your final string stream before committing to the output buffer to keep the user interface 100% clean.
+    * Type 7 (HTML Comment Anchors): Starts exactly with `"<!--START_RULE"` and ends exactly with `"END_RULE-->"` (e.g., `<!--START_RULE...instructions...END_RULE-->`).
+      *   **Behavior**: These specific tags and comments function as private metadata instructions. Read and absorb the internal rules silently to govern your reasoning output, then completely prune/delete the opening and closing tag wrappers from your final string stream before committing to the output buffer to keep the user interface 100% clean.
+    * Type 8 (HTML Comment Anchors): Starts exactly with `"<!--START_RAILS"` and ends exactly with `"END_RAILS-->"` (e.g., `<!--START_RAILS...instructions...END_RAILS-->`).
+      *   **Behavior**: These specific tags and comments function as private metadata instructions. Read and absorb the internal rules silently to govern your reasoning output, then completely prune/delete the opening and closing tag wrappers from your final string stream before committing to the output buffer to keep the user interface 100% clean.
+    * Type 9 (XML Tag Pairs): Starts exactly with `"<NO_TRANSLATION>"` and ends exactly with `"</NO_TRANSLATION>"` (e.g., `<NO_TRANSLATION>...instructions...</NO_TRANSLATION>`).
+      *   **Behavior**: When content is wrapped inside this tag pair, freeze the entire cognitive matrix. You MUST emit 100% of the internal content strictly as-is in its pristine Technical English literal state. Do NOT execute any processing, rendering modifications, or localization inside this block.
+    * Type 10 (XML Tag Pairs): Starts exactly with `"<DYNAMIC_DATA_ENGLISH_ONLY>"` and ends exactly with `"</DYNAMIC_DATA_ENGLISH_ONLY>"` (e.g., `<DYNAMIC_DATA_ENGLISH_ONLY>...instructions...</DYNAMIC_DATA_ENGLISH_ONLY>`).
+      *   **Behavior**: When variables (`{{ ... }}`) or code generation instructions are wrapped inside this tag pair, you MUST compute, evaluate, and dynamically generate the required content based on the project context. However, 100% of the newly generated text stream and keys inside this block MUST be strictly rendered in Technical English. Translation is absolutely banned.
+
+- **CRITICAL STRING PRUNING & TANG_HINH LAW (ZERO LEAKAGE GATE):**
+    * These hidden blocks function exclusively as private machine-to-machine backend gating logic. 
+    * You MUST silently ingest 100% of the technical parameters or rules written inside these anchors to govern your internal reasoning matrix and apply its constraints to the surrounding markdown context.
+    * You MUST execute a definitive token-level pruning algorithm: completely wipe out, strip, and delete the entire anchor block wrapper (spanning from the very first character of the opening tag to the absolute final character of the corresponding closing tag) from your output string stream BEFORE committing any data payload to the final emission buffer. 
+    * Any model execution that leaks even a single tag character or hidden command line to the UI user screen triggers an immediate catastrophic runtime pipeline contract breach.
+</GLOBAL_GOVERNANCE_MATRIX>
+
+<ACTIVE_TASK_SYSTEM_INSTRUCTION>
+You are a world-class Principal Solutions Architect. Your specific task is to read the Global Context Markdown blueprint and generate a highly detailed operational context blueprint for one targeted Phase. 
+
+# YOUR CRITICAL OPERATIONAL MANDATES (ZERO LOOPHOLES):
+1. **ANTI-LAZINESS & DIRECT INHERITANCE MANDATE:** You MUST extract and expand every single technical task, DDL SQL schema definition, API contract, and exception flow outlined for the targeted Phase inside the Global Context reference. Converting details into broad summaries or placeholders is permanently banned.
+
+2. **100% PERFECT TAG MATCHING:** Every single Tag ID (`[REQ-XXX]`, `[EXC-XXX]`, `[DAT-XXX]`, `[ARC-XXX]`, `[NFR-XXX]`) present in the Global Context for this specific phase MUST be perfectly preserved and mapped into the daily execution logs.
+
+3. **MANDATORY INLINE TAG INJECTION RULE & HTML ANCHOR LOCKDOWN:** For every single Sub-Task generated under the daily logs, you MUST explicitly output a dedicated structural line item starting exactly with the translated string token for `* Traceability Tag Tokens:` followed by an immutable hidden HTML token container block. You MUST wrap the exact raw comma-separated tag IDs inside the hidden tag container string token layout exactly as: `<!--START_TAGS-->[REQ-XXX], [DAT-XXX]<!--END_TAGS-->`. You are STRICTLY BANNED from translating or altering any token values inside the HTML comment tags. Leaving a task block without this explicit HTML anchor layout is a fatal pipeline failure.
+
+4. **LONGITECTURAL DAY PARTITIONING & ANTI-PADDING GUARDRAIL (ABSOLUTE LOCAL CHRONO RE-INDEX LAW):**
+   - You MUST break down the operational calendar day-by-day using individual sequential integers starting strictly from DAY 1 up to a MAXIMUM of DAY 7.
+   - **ABSOLUTE CHRONO RESET LAW**: You are COMPLETELY BANNED from continuing the sequential day index from any previous phase or global context log timelines. 
+   - The very first day section generated inside this active file MUST natively reset and force-freeze its counter starting exactly from numerical digit 1 (e.g., DAY 1 or NGÀY 1), regardless of the preceding historical context metrics. 
+   - Any model execution that outputs a continuing sequence (like generating "DAY 3" on Phase 2 because Phase 1 ended on Day 2) triggers an immediate pipeline crash.
+   - **STRICT PROGRESSION STOPPING CRITERION:** You MUST freeze the timeline and stop generating daily sections immediately on the exact calendar day where the technical objectives allocated for this phase are satisfied. You are STRICTLY BANNED from injecting dummy placeholder days, fake syncs, empty review blocks, or documentation padding just to expand the calendar. If the technical scope is natively complete on DAY 1, freeze the output file state and exit immediately. Do NOT generate empty or padded days.
+   - You are STRICTLY FORBIDDEN from bundling multiple days together (e.g., NO "DAY 1 - DAY 3"). Every single calendar day log must be explicitly isolated as its own standalone subsection header containing atomic steps for that unique 24-hour cycle.
+   - **CRITICAL ACTUAL CEILING CONSTRAINT**: You are ABSOLUTELY AND CRITICALLY BANNED from blindly generating days up to the generic `7` configuration parameter if the active phase's actual duration defined in Section 4 "HIGH-LEVEL MULTI-PHASE ARCHITECTURAL SYNOPSIS GRID" of the Global Context is shorter.
+   - You MUST cross-reference the active `Phase 2` row inside the Section 4 Synopsis Table, extract the exact runtime duration from the "Day Range" column (e.g., if the table says "Day 1 - 2", the actual ceiling is strictly 2 days), and force-stop your sequential day generation precisely at that calculated local integer ceiling.
+   - Generating a single day beyond the actual duration specified in the Global Context synopsis grid (such as generating Day 3 or Day 5 when the table restricts the phase to Day 1 - 2) constitutes a fatal structural contract violation and will break the backend workflow sequencer.
+
+5. **Language Compliance & Formatting Lockdown:** You MUST generate the entire report strictly in the language specified by the parameters: **🇻🇳 Vietnamese**.
+
+# 🔒 SYSTEM PRODUCTION INTEGRATION AND FORMATTING LOCKDOWN (ABSOLUTE)
+- **Strict Content Purity Constraint:** Your entire output response MUST be a pure, raw executable Markdown text payload written in 🇻🇳 Vietnamese.
+- **Explicit Start Mandate & Technical Name Isolation:** Your output response MUST start exactly with the standardized primary title text pattern, translating descriptive labels into the target language but isolating the technical identifier: `# [Translated text for "Phase"] 2: <!--PHASE_NAME_START-->[Dynamically analyze the allocated tasks and output a standard, natural, human-readable descriptive title string for this phase using isolated words separated by real, standard whitespace characters. You are ABSOLUTELY AND CRITICALLY BANNED from combining words together, removing spaces, or utilizing programming styles like PascalCase, camelCase, or snake_case. It must read normally and smoothly just like a human description string. Fully translate and render this title into the target language requested by the parameters: 🇻🇳 Vietnamese. Example: "Core Infrastructure And Authentication Setup"]<!--PHASE_NAME_END--> | [Translated text for "Description"]: <!--PHASE_DESC_START-->[Provide a granular, professional engineering description summarizing the absolute operational scope of this specific phase, fully rendered in 🇻🇳 Vietnamese]<!--PHASE_DESC_END-->`. Do NOT include greetings, intros, notes, or explanations. Do NOT wrap the entire response inside markdown codeblocks. Any token before or after this exact structure will cause an immediate execution pipeline crash.
+</ACTIVE_TASK_SYSTEM_INSTRUCTION>
+
+# Raw Response / Exception:
+
+## Giai đoạn 2: <!--PHASE_NAME_START-->Triển khai quản lý trung tâm với CRUD, phân quyền và gán Center Admin<!--PHASE_NAME_END-->
+
 #### 📊 Document Control
 
 | Mục | Chi tiết |
 | :--- | :--- |
-| **ID Kiến Trúc** | ARCH-20260807034424 |
+| **ID Kiến Trúc** | ARCH-20260807042343 |
 | **Tên Dự Án** | membership-hub |
-| **Giai đoạn** | 1 |
-| **Tên Giai đoạn** | <!--PHASE_NAME_START-->Xây dựng lõi người dùng, vai trò và xác thực cơ bản<!--PHASE_NAME_END--> |
-| **Mô tả** | <!--PHASE_DESC_START-->Giai đoạn này tập trung vào xây dựng lõi người dùng, vai trò và xác thực cơ bản, bao gồm đăng ký, OAuth2, JWT và validation đầu vào, đồng thời thiết lập bảng dữ liệu người dùng và vai trò.<!--PHASE_DESC_END--> |
-| **Phiên bản** | 1.0 (Baseline) |
-| **Ngày/Giờ** | 2026/08/07 03:44:24 |
-| **Tác giả** | Enterprise System Architect (SA Agent) |
-| **Phê duyệt** | Pending Technical Governance Review |
+| **Giai Đoạn** | 2 |
+| **Tên Giai Đoạn** | <!--PHASE_NAME_START-->Triển khai quản lý trung tâm với CRUD, phân quyền và gán Center Admin<!--PHASE_NAME_END--> |
+| **Mô Tả** | <!--PHASE_DESC_START-->Giai đoạn này triển khai quản lý trung tâm, bao gồm xây dựng API CRUD cho trung tâm, kiểm tra trùng lặp taxId, phân quyền Center Admin, cập nhật role trong bảng USERS, và triển khai manifest GKE cho dịch vụ trung tâm với autoscaling dựa trên CPU và độ trễ.<!--PHASE_DESC_END--> |
+| **Phiên Bản** | 1.0 (Baseline) |
+| **Ngày/Thời Gian** | 2026/08/07 04:23:43 |
+| **Tác Giả** | Enterprise System Architect (SA Agent) |
+| **Phê Duyệt** | Pending Technical Governance Review |
 
-#### 1. Phạm vi và Mục tiêu của Giai đoạn
+#### 1. Phạm Vi Hoạt Động Giai Đoạn & Mục Tiêu
 
-Giai đoạn 1 triển khai toàn bộ chức năng quản lý người dùng và xác thực, bao gồm:
-- Đăng ký người dùng mới với mật khẩu bảo mật và xác thực email.
-- Xác thực OAuth2 qua Firebase, Google, Facebook.
-- Phân quyền người dùng dựa trên vai trò (System Admin, Center Admin, Manager, Teacher, Student).
-- Thiết lập bảng dữ liệu `USERS` và `ROLES` trong PostgreSQL.
-- Cung cấp API REST `/api/v1/auth/register`, `/api/v1/auth/social`, `/api/v1/users/{userId}/role`.
-- Đảm bảo tuân thủ OWASP Top 10, bảo mật JWT, và bảo vệ CSRF.
+Giai đoạn 2 tập trung vào triển khai quản lý trung tâm, bao gồm:
+- Xây dựng các API CRUD cho trung tâm (tạo, đọc, cập nhật, xóa) với kiểm tra trùng lặp `taxId`.
+- Phân quyền Center Admin: gán và rút quyền cho người dùng, cập nhật `roleId` trong bảng `USERS`.
+- Tạo và triển khai manifest Kubernetes (GKE) cho dịch vụ trung tâm, bao gồm autoscaling dựa trên CPU và độ trễ.
+- Đảm bảo tuân thủ các yêu cầu bảo mật, hiệu năng và khả năng mở rộng (NFR-001, NFR-003, NFR-004).
+- Đảm bảo tất cả các yêu cầu [REQ-004], [REQ-005], [REQ-006] và dữ liệu [DAT-003] được triển khai đầy đủ.
 
-#### 2. Phạm vi Kỹ thuật & Giới hạn Thư mục
+#### 2. Phạm Vi Kỹ Thuật & Giới Hạn Đường Dẫn (Tệp, Đường dẫn, và Điểm cuối API)
 
-- **Backend**: `./sources/org/nlh4j/sources/membershiphub/backend/users/UserService.java`, `./sources/org/nlh4j/sources/membershiphub/backend/users/AuthController.java`
-- **Database**: Tạo bảng `ROLES` và `USERS` theo DDL SQL trong PostgreSQL.
-- **API**: `POST /api/v1/auth/register`, `POST /api/v1/auth/social`, `PUT /api/v1/users/{userId}/role`
-- **Authentication**: JWT 15 phút, refresh token 7 ngày, OAuth2 flow.
-- **Security**: PreparedStatement, bcrypt, CSRF token, TLS 1.3.
+- **Backend**: `./sources/backend/centers/`
+  - `CenterController.java` – API endpoints: `GET /api/v1/centers`, `POST /api/v1/centers`, `PUT /api/v1/centers/{centerId}/admin/{userId}`
+  - `CenterService.java` – Logic for create/update/delete center, taxId validation.
+  - `CenterAdminService.java` – Logic for assigning/removing Center Admin, updating `roleId` in `USERS`.
+- **Infrastructure**: `./sources/infra/k8s/`
+  - `center-deployment.yaml` – Kubernetes deployment, HPA, autoscaling configuration.
 
-#### 3. Hướng dẫn Cụ thể cho Các Agent
+#### 3. Hướng Dẫn Chức Năng Đặc Biệt Cho Mỗi Đại Diện Phụ
 
-- **Coder**: Phát triển mã nguồn Java cho `UserService` và `AuthController`. Không viết test hoặc manifest.
-- **Tester**: Tạo bộ test JUnit cho các lớp, test tích hợp API, không sửa mã nguồn.
-- **Doc**: Viết tài liệu kiến trúc, sơ đồ ER, quy trình triển khai. Tạo file `.md` trong `./sources/docs/`.
-- **Reviewer**: Kiểm tra mã, bảo mật, tuân thủ OWASP, sửa lỗi biên dịch.
-- **Docker**: Xây dựng Dockerfile multi‑stage cho `UserService`, tối ưu kích thước < 500 MB.
-- **GCP**: Đẩy image lên Google Artifact Registry, triển khai trên Cloud Run.
-- **GKE**: Tạo manifest deployment, HPA, service, ingress cho `UserService`.
+- **Coder**: Phát triển mã nguồn ứng dụng, thực hiện các lớp Java cho backend, không viết test hoặc manifest.
+- **Tester**: Viết bộ kiểm thử JUnit, kiểm thử tích hợp, kiểm thử hiệu năng, không sửa mã nguồn.
+- **Doc**: Soạn tài liệu kỹ thuật, mô tả kiến trúc, sơ đồ dữ liệu, tài liệu triển khai.
+- **Reviewer**: Kiểm tra mã, phân tích tĩnh, sửa lỗi bảo mật, đảm bảo tuân thủ OWASP.
+- **Docker**: Xây dựng Dockerfile đa giai đoạn, tối ưu gói, đẩy image lên DockerHub.
+- **GCP**: Tự động triển khai image lên Google Artifact Registry, cấu hình Cloud Run.
+- **GKE**: Xây dựng manifest Kubernetes, HPA, Helm chart, triển khai dịch vụ lên GKE.
+
+#### 4. Định Nghĩa Hoàn Thành Giai Đoạn (DoD)
+
+- Tất cả các yêu cầu [REQ-004], [REQ-005], [REQ-006] và dữ liệu [DAT-003] được triển khai và kiểm thử thành công.
+- Đạt 100% coverage kiểm thử cho các module liên quan.
+- Tuân thủ đầy đủ các yêu cầu bảo mật OWASP, NFR-001, NFR-003, NFR-004.
+- Mọi thẻ ID được ánh xạ chính xác, không có thẻ chưa được sử dụng.
+
+#### 5. Nhật Ký Thực Hiện Kiến Trúc Ngày Mỗi Ngày
+
+###### 🌤️ NGÀY 1: <!--DAY_HEADER_START-->XÂY DỰNG CONTROLLER DANH SÁCH TRUNG TÂM<!--DAY_HEADER_END-->
+
+######## 📝 Nhiệm Vụ 1.1: Triển khai CenterController để hiển thị danh sách trung tâm (REQ-004) và phục vụ các thao tác CRUD cho System Admin (ARC-002).
+########## Địa Diện Phụ: Coder
+########## Yêu Cầu Thành Phần & Yêu Cầu Kỹ Thuật:
+* **Đường Dẫn Mục Tiêu**: ./sources/backend/centers/CenterController.java
+* **Thẻ Định Vị Theo Dõi**: <!--START_TAGS-->[REQ-004], [ARC-002], [DAT-003]<!--END_TAGS-->
+
+######## 📝 Nhiệm Vụ 1.2: Soạn tài liệu kỹ thuật cho giai đoạn 2, bao gồm mô tả kiến trúc, sơ đồ dữ liệu, và quy trình triển khai.
+########## Địa Diện Phụ: Doc
+########## Yêu Cầu Thành Phần & Yêu Cầu Kỹ Thuật:
+* **Đường Dẫn Mục Tiêu**: ./sources/docs/phase2_technical_overview.md
+* **Thẻ Định Vị Theo Dõi**: <!--START_TAGS-->[DAT-003], [NFR-001], [NFR-003], [NFR-004]<!--END_TAGS-->
+
+###### 🌤️ NGÀY 2: <!--DAY_HEADER_START-->XÂY DỰNG SERVICE TẠO/ CẬP NHẬT TRUNG TÂM<!--DAY_HEADER_END-->
+
+######## 📝 Nhiệm Vụ 2.1: Triển khai CenterService để tạo/cập nhật trung tâm (REQ-005) và kiểm tra trùng lặp taxId.
+########## Địa Diện Phụ: Coder
+########## Yêu Cầu Thành Phần & Yêu Cầu Kỹ Thuật:
+* **Đường Dẫn Mục Tiêu**: ./sources/backend/centers/CenterService.java
+* **Thẻ Định Vị Theo Dõi**: <!--START_TAGS-->[REQ-005], [DAT-003]<!--END_TAGS-->
+
+###### 🌤️ NGÀY 3: <!--DAY_HEADER_START-->XÂY DỰNG SERVICE GÁN RÚT QUYỀN CENTER ADMIN<!--DAY_HEADER_END-->
+
+######## 📝 Nhiệm Vụ 3.1: Triển khai CenterAdminService để gán/rút quyền Center Admin (REQ-006) và cập nhật roleId trong USERS.
+########## Địa Diện Phụ: Coder
+########## Yêu Cầu Thành Phần & Yêu Cầu Kỹ Thuật:
+* **Đường Dẫn Mục Tiêu**: ./sources/backend/centers/CenterAdminService.java
+* **Thẻ Định Vị Theo Dõi**: <!--START_TAGS-->[REQ-006], [ARC-002], [DAT-003]<!--END_TAGS-->
+
+###### 🌤️ NGÀY 4: <!--DAY_HEADER_START-->TẠO MANIFEST GKE CHO DỊCH VỤ TRUNG TÂM<!--DAY_HEADER_END-->
+
+######## 📝 Nhiệm Vụ 4.1: Tạo manifest GKE cho dịch vụ trung tâm (center-deployment.yaml) với autoscaling dựa trên CPU và độ trễ.
+########## Địa Diện Phụ: GKE
+########## Yêu Cầu Thành Phần & Yêu Cầu Kỹ Thuật:
+* **Đường Dẫn Mục Tiêu**: ./sources/infra/k8s/center-deployment.yaml
+* **Thẻ Định Vị Theo Dõi**: <!--START_TAGS-->[NFR-001], [NFR-003], [NFR-004]<!--END_TAGS-->
+
+# AI Model: openai/gpt-oss-20b:free - Phase 3 - Prompt:
+
+## CONTEXT INHERITANCE PIPELINE
+Project Name: membership-hub
+You are tasked to detail **PHASE 3 OUT OF 5**. You must align perfectly with the established Global Context, satisfy a subset of the Raw Requirements, and maintain strict continuity of physical files generated in previous phases to avoid collision or duplicate creation.
+
+--- GLOBAL CONTEXT REFERENCE ---
+## BỐ CỤC DỰ ÁN TOÀN CẦU: membership-hub
+
+#### 📊 Document Control
+
+| Item | Details |
+| :--- | :--- |
+| **Blueprint ID** | ARCH-20260807024254 |
+| **Project Name** | membership-hub |
+| **Version** | 1.0 (Baseline) |
+| **Date.Time** | 2026/08/07 02:42:54 |
+| **Author** | Enterprise System Architect (SA Agent) |
+| **Approval** | Pending Technical Governance Review |
+
+#### 📊 1. SYSTEM OVERVIEW & CORE ARCHITECTURE MODALITY
+
+###### 1.1 Core System Modality & Architecture Modality
+- Xác định mô hình kiến trúc đa dịch vụ với các thành phần độc lập: người dùng, trung tâm, khóa học, ghi danh, điểm danh, thẻ hội viên, thông báo, khuyến mãi, chatbot AI, giao diện di động.
+- Áp dụng mô hình CQRS cho các hoạt động đọc/ghi, đảm bảo tính nhất quán cho điểm danh và thẻ hội viên.
+- Sử dụng kiến trúc hướng sự kiện với Kafka để đồng bộ hóa dữ liệu giữa các dịch vụ.
+- Triển khai bảo mật theo từng trung tâm với RBAC và phân quyền dựa trên vai trò (ARC-001 đến ARC-005).
+- Tích hợp OAuth2/OIDC với Firebase, Google, Facebook để xác thực (ARC-006).
+- Thiết kế API REST với JWT (15 phút) và refresh token (7 ngày) (ARC-006).
+- Triển khai container hóa Docker với Quarkus và orchestration Kubernetes trên GKE (ARC-010).
+- Tích hợp push notification qua FCM/APNs và tích hợp Zalo API (ARC-008).
+- Triển khai hệ thống giám sát và ghi nhật ký tập trung (NFR-006).
+
+###### 1.2 Enterprise Data Flow Topologies & Core Ecosystems
+- Luồng xác thực: Người dùng đăng nhập qua email/mật khẩu hoặc OAuth2 từ Firebase/Google/Facebook → xác thực → cấp JWT.
+- Luồng điểm danh QR: Ứng dụng di động quét QR → gửi studentId + timestamp → dịch vụ xác thực → ghi điểm danh (ARC-007, EXC-001, EXC-002).
+- Luồng thông báo: Hành động ghi danh/giáo viên/thông báo → tạo bản ghi Notification → đẩy push (FCM/APNs) + gửi tin nhắn Zalo (ARC-008, EXC-003).
+- Luồng tích hợp frontend: Next.js tiêu thụ REST API, caching ngoại tuyến qua IndexedDB (ARC-009).
+- Luồng xử lý sự kiện: Kafka chủ đề `attendance`, `notifications`, `enrollment` để đồng bộ hóa dữ liệu giữa các dịch vụ.
+- Tích hợp cơ sở dữ liệu: PostgreSQL cho dữ liệu quan trọng, Redis cho session caching (ARC-010).
+- Triển khai CI/CD qua GitHub Actions với kiểm tra tự động và triển khai canary (ARC-010).
+- Vòng lặp đa ngôn ngữ: middleware phát hiện locale, chuyển hướng URL, chèn hreflang cho SEO (REQ-022, REQ-023).
+
+#### 📁 2. TECH STACK DEPENDENCIES & ECOSYSTEM LIBRARIES
+
+###### 2.1 Backend Infrastructure Core Stack
+- Java/Quarkus **3.2.0**
+- PostgreSQL **15.4**
+- Docker **24.0.5**
+- Kubernetes (GKE) **1.28**
+- Firebase Authentication SDK **9.22.0**
+- Google Cloud Messaging (FCM) / Apple APNs **latest**
+- Zalo API SDK **2.0.1**
+- Redis **7.2**
+- Maven **3.9.6**
+- Liquibase **4.25.5**
+- JUnit5/Mockito **5.10**
+- OpenTelemetry **1.30.0**
+
+###### 2.2 Frontend & Cross-Platform UI Mobile Stack
+- Next.js **14.x**
+- React Native **0.73.0**
+- Node.js **20.12**
+- TypeScript **5.3**
+- Capacitor **5.5**
+- Tailwind CSS **3.4**
+- Axios **1.6**
+- React Query **5.0**
+- Swift (iOS) / Kotlin (Android) native modules cho FCM/APNs
+
+###### 2.3 ARCHITECTURAL STACK MATRIX
+
+```properties:stack_matrix
+PERSISTENCE_LAYER_REQUIRED=true
+BACKEND_LAYER_REQUIRED=true
+FRONTEND_LAYER_REQUIRED=true
+MOBILE_LAYER_REQUIRED=true
+DEVOPS_LAYER_REQUIRED=true
+```
+
+#### 📁 3. GLOBAL GUARDRAILS & ENTERPRISE COMPLIANCE STANDARDS
+- **Quy tắc biên giới không gian làm việc:** Tất cả các đường dẫn phải bắt đầu với `./sources/`.
+- **Quy tắc tiền tố thư mục động:** tuân thủ Protocol 1.
+- **Quy tắc gói Java:** `org.nlh4j.saas.membershiphub` (membership-hub được chuẩn hóa thành dạng alphanumeric lowercase).
+- **Quy tắc cú pháp mục tiêu kiểm thử:** `<source_component>;<test_suite_file>`.
+
+#### 4. HIGH-LEVEL MULTI-PHASE ARCHITECTURAL SYNOPSIS GRID
+
+| Phase | Day Range | Architectural Component / Module Path | Technical Deliverables Summary | Assigned Sub-Agent | Targeted Tag IDs |
+| :--- | :--- | :--- | :--- | :--- | :--- |
+| Phase 1 | Day 1 - 2 | ./sources/backend/users/ | Xây dựng lõi người dùng, vai trò và xác thực cơ bản (bao gồm đăng ký, OAuth2, JWT và validation đầu vào) | Coder | [ARC-001], [ARC-006], [REQ-001], [REQ-002], [REQ-003], [DAT-001], [EXC-004], [NFR-001], [NFR-003], [NFR-006], [NFR-008] |
+| Phase 2 | Day 1 - 4 | ./sources/backend/centers/ | Triển khai quản lý trung tâm với CRUD, phân quyền và gán Center Admin | Coder | [ARC-002], [REQ-004], [REQ-005], [REQ-006], [DAT-003], [NFR-001], [NFR-003], [NFR-004] |
+| Phase 3 | Day 1 - 3 | ./sources/backend/courses/ | Xây dựng quản lý khóa học với xung đột lịch và phân công giáo viên | Coder | [ARC-003], [REQ-007], [REQ-008], [REQ-009], [DAT-004], [NFR-001], [NFR-003] |
+| Phase 4 | Day 1 - 5 | ./sources/backend/enrollment/ | Triển khai ghi danh học viên, điểm danh QR, thẻ hội viên, thông báo, khuyến mãi, thông báo và cài đặt hệ thống | Coder | [ARC-004], [ARC-005], [REQ-010], [REQ-011], [REQ-012], [REQ-013], [REQ-014], [REQ-015], [REQ-016], [REQ-017], [REQ-018], [DAT-005], [DAT-006], [DAT-007], [DAT-008], [DAT-009], [DAT-011], [EXC-001], [EXC-002], [EXC-003], [EXC-005], [NFR-001], [NFR-003], [NFR-004], [NFR-006] |
+| Phase 5 | Day 1 - 2 | ./sources/frontend/mobile/ | Phát triển giao diện di động, thông báo đẩy, chatbot AI, i18n, SEO, báo cáo và hardening DevOps | Coder | [ARC-007], [ARC-008], [ARC-009], [ARC-010], [REQ-019], [REQ-020], [REQ-021], [REQ-022], [REQ-023], [REQ-024], [REQ-025], [NFR-002], [NFR-005], [NFR-007], [NFR-008], [NFR-009] |
+
+#### 5. GRANULAR PHASE SPECIALIZATIONS & DAY-BY-DAY DELIVERABLES
+
+###### 📈 Phase 1: Xây dựng lõi người dùng, vai trò và xác thực cơ bản (bao gồm đăng ký, OAuth2, JWT và validation đầu vào)
+
+- **Phase Core Objective & Purpose:** Xây dựng lõi người dùng, vai trò và xác thực cơ bản (bao gồm đăng ký, OAuth2, JWT và validation đầu vào).
+- **Target Physical Directory Matrix Map:**
+    *   `./sources/backend/users/UserService.java` [ARC-001], [REQ-001], [DAT-001]
+    *   `./sources/backend/users/AuthController.java` [ARC-006], [REQ-002], [REQ-003], [DAT-001]
+- **Database Schema DDL SQL Specification [DAT-001]:**
+```sql
+CREATE TABLE ROLES (
+    roleId SMALLINT PRIMARY KEY,
+    name VARCHAR(30) NOT NULL UNIQUE,
+    description VARCHAR(200)
+);
+
+CREATE TABLE USERS (
+    userId UUID PRIMARY KEY,
+    email VARCHAR(255) NOT NULL UNIQUE,
+    passwordHash CHAR(60) NOT NULL,
+    fullName VARCHAR(100) NOT NULL,
+    roleId SMALLINT NOT NULL REFERENCES ROLES(roleId),
+    provider ENUM('local','firebase','google','facebook') NOT NULL DEFAULT 'local',
+    createdAt TIMESTAMP NOT NULL DEFAULT NOW(),
+    updatedAt TIMESTAMP NOT NULL DEFAULT NOW()
+);
+```
+- **API and Event Routing Contracts [REQ-001], [REQ-002], [REQ-003], [ARC-006]:**
+```json
+// POST /api/v1/auth/register
+{
+  "email": "user@example.com",
+  "password": "StrongPass123!",
+  "fullName": "Nguyen Van A",
+  "provider": "local"
+}
+```
+```json
+// POST /api/v1/auth/social
+{
+  "provider": "google",
+  "code": "OAuth2_code_from_google",
+  "redirectUri": "https://app.example.com/auth/callback"
+}
+```
+```json
+// PUT /api/v1/users/{userId}/role
+{
+  "roleId": 2
+}
+```
+- **Phase Localized Exception Handlers [EXC-004]:**
+    * Xác thực đầu vào không hợp lệ (ví dụ: email sai định dạng, thiếu trường bắt buộc): Trả về HTTP 400 với danh sách các trường không hợp lệ và hướng dẫn chỉnh sửa.
+
+######## Chronological Day-by-Day Sub-Agent Task Distribution Logs (Phase 1)
+
+- **DAY 1:** Mục tiêu ngắn hạn: Triển khai dịch vụ quản lý người dùng cơ bản.
+    * **Sub-Agent Workflow Specialization:** [Coder]
+    * **Targeted Tag IDs:** [ARC-001], [REQ-001], [DAT-001]
+    * **Target Component file path (`target_component`):** ./sources/backend/users/UserService.java [ARC-001], [REQ-001], [DAT-001]
+    * **Low-Level Technical Task Instruction:** Triển khai lớp UserService để xử lý đăng ký người dùng mới, tạo bản ghi trong bảng Users với vai trò mặc định là Student, tuân thủ REQ-001 và ARC-001.
+
+- **DAY 2:** Mục tiêu ngắn hạn: Xây dựng controller xác thực và tích hợp OAuth2.
+    * **Sub-Agent Workflow Specialization:** [Coder]
+    * **Targeted Tag IDs:** [ARC-006], [REQ-002], [REQ-003], [DAT-001]
+    * **Target Component file path (`target_component`):** ./sources/backend/users/AuthController.java [ARC-006], [REQ-002], [REQ-003], [DAT-001]
+    * **Low-Level Technical Task Instruction:** Xây dựng AuthController để xử lý xác thực OAuth2 từ Firebase/Google/Facebook, trao đổi mã lấy thông tin người dùng, cập nhật vai trò và cấp JWT token (ARC-006), đồng thời hỗ trợ phân quyền người dùng (REQ-003).
+
+###### 📈 Phase 2: Triển khai quản lý trung tâm với CRUD, phân quyền và gán Center Admin
+
+- **Phase Core Objective & Purpose:** Triển khai quản lý trung tâm với CRUD, phân quyền và gán Center Admin.
+- **Target Physical Directory Matrix Map:**
+    *   `./sources/backend/centers/CenterController.java` [ARC-002], [REQ-004], [DAT-003]
+    *   `./sources/backend/centers/CenterService.java` [REQ-005], [DAT-003]
+    *   `./sources/backend/centers/CenterAdminService.java` [REQ-006], [ARC-002], [DAT-003]
+- **Database Schema DDL SQL Specification [DAT-003]:**
+```sql
+CREATE TABLE CENTERS (
+    centerId UUID PRIMARY KEY,
+    name VARCHAR(100) NOT NULL,
+    address VARCHAR(255) NOT NULL,
+    taxId VARCHAR(13) NOT NULL UNIQUE,
+    contactPhone VARCHAR(20),
+    contactEmail VARCHAR(255)
+);
+```
+- **API and Event Routing Contracts [REQ-004], [REQ-005], [REQ-006], [ARC-002]:**
+```json
+// GET /api/v1/centers
+// trả về danh sách trung tâm
+```
+```json
+// POST /api/v1/centers
+{
+  "name": "Hà Nội Center",
+  "address": "123 Đường Láng, Đống Đa, Hà Nội",
+  "taxId": "0123456789",
+  "contactPhone": "+84123456789",
+  "contactEmail": "contact@hnc.com"
+}
+```
+```json
+// PUT /api/v1/centers/{centerId}/admin/{userId}
+```
+- **Phase Localized Exception Handlers:** Không có ngoại lệ chuyên biệt.
+
+######## Chronological Day-by-Day Sub-Agent Task Distribution Logs (Phase 2)
+
+- **DAY 1:** Mục tiêu ngắn hạn: Xây dựng controller danh sách trung tâm.
+    * **Sub-Agent Workflow Specialization:** [Coder]
+    * **Targeted Tag IDs:** [ARC-002], [REQ-004], [DAT-003]
+    * **Target Component file path (`target_component`):** ./sources/backend/centers/CenterController.java [ARC-002], [REQ-004], [DAT-003]
+    * **Low-Level Technical Task Instruction:** Triển khai CenterController để hiển thị danh sách trung tâm (REQ-004) và phục vụ các thao tác CRUD cho System Admin (ARC-002).
+
+- **DAY 2:** Mục tiêu ngắn hạn: Triển khai logic tạo/cập nhật trung tâm.
+    * **Sub-Agent Workflow Specialization:** [Coder]
+    * **Targeted Tag IDs:** [REQ-005], [DAT-003]
+    * **Target Component file path (`target_component`):** ./sources/backend/centers/CenterService.java [REQ-005], [DAT-003]
+    * **Low-Level Technical Task Instruction:** Triển khai logic tạo/cập nhật trung tâm trong CenterService, thực hiện kiểm tra trùng lặp taxId và ghi dữ liệu vào bảng CENTERS (REQ-005).
+
+- **DAY 3:** Mục tiêu ngắn hạn: Triển khai gán/rút quyền Center Admin.
+    * **Sub-Agent Workflow Specialization:** [Coder]
+    * **Targeted Tag IDs:** [REQ-006], [ARC-002], [DAT-003]
+    * **Target Component file path (`target_component`):** ./sources/backend/centers/CenterAdminService.java [REQ-006], [ARC-002], [DAT-003]
+    * **Low-Level Technical Task Instruction:** Triển khai gán/rút quyền Center Admin cho người dùng, cập nhật roleId trong bảng USERS và ghi lại mối quan hệ (REQ-006, ARC-002).
+
+- **DAY 4:** Mục tiêu ngắn hạn: Triển khai manifest GKE cho dịch vụ trung tâm.
+    * **Sub-Agent Workflow Specialization:** [Coder]
+    * **Targeted Tag IDs:** [NFR-001], [NFR-003], [NFR-004]
+    * **Target Component file path (`target_component`):** ./sources/infra/k8s/center-deployment.yaml [NFR-001], [NFR-003], [NFR-004]
+    * **Low-Level Technical Task Instruction:** Tạo manifest triển khai dịch vụ quản lý trung tâm trên GKE với autoscaling dựa trên CPU và request latency (NFR-001, NFR-003, NFR-004).
+
+###### 📈 Phase 3: Xây dựng quản lý khóa học với xung đột lịch và phân công giáo viên
+
+- **Phase Core Objective & Purpose:** Xây dựng quản lý khóa học với xung đột lịch và phân công giáo viên.
+- **Target Physical Directory Matrix Map:**
+    *   `./sources/backend/courses/CourseController.java` [ARC-003], [REQ-007], [DAT-004]
+    *   `./sources/backend/courses/CourseService.java` [REQ-008], [DAT-004]
+    *   `./sources/backend/courses/CourseTeacherService.java` [REQ-009], [ARC-003], [DAT-004]
+- **Database Schema DDL SQL Specification [DAT-004]:**
+```sql
+CREATE TABLE COURSES (
+    courseId UUID PRIMARY KEY,
+    title VARCHAR(150) NOT NULL,
+    description TEXT,
+    startDate DATE NOT NULL,
+    endDate DATE NOT NULL,
+    teacherId UUID NOT NULL REFERENCES USERS(userId),
+    maxStudents INT NOT NULL DEFAULT 30
+);
+```
+- **API and Event Routing Contracts [REQ-007], [REQ-008], [REQ-009], [ARC-003]:**
+```json
+// GET /api/v1/courses
+// trả về danh sách khóa học
+```
+```json
+// POST /api/v1/courses
+{
+  "title": "Lập trình Java nâng cao",
+  "description": "Khóa học về Quarkus và Kubernetes",
+  "startDate": "2026-09-01",
+  "endDate": "2026-12-31",
+  "teacherId": "a1b2c3d4-...",
+  "maxStudents": 20
+}
+```
+```json
+// PUT /api/v1/courses/{courseId}/teacher/{teacherId}
+```
+- **Phase Localized Exception Handlers:** Không có ngoại lệ chuyên biệt.
+
+######## Chronological Day-by-Day Sub-Agent Task Distribution Logs (Phase 3)
+
+- **DAY 1:** Mục tiêu ngắn hạn: Xây dựng controller danh sách khóa học.
+    * **Sub-Agent Workflow Specialization:** [Coder]
+    * **Targeted Tag IDs:** [ARC-003], [REQ-007], [DAT-004]
+    * **Target Component file path (`target_component`):** ./sources/backend/courses/CourseController.java [ARC-003], [REQ-007], [DAT-004]
+    * **Low-Level Technical Task Instruction:** Triển khai CourseController để hiển thị danh sách khóa học (REQ-007) và hỗ trợ CRUD cho System/Center Admin (ARC-003).
+
+- **DAY 2:** Mục tiêu ngắn hạn: Triển khai logic tạo/cập nhật khóa học.
+    * **Sub-Agent Workflow Specialization:** [Coder]
+    * **Targeted Tag IDs:** [REQ-008], [DAT-004]
+    * **Target Component file path (`target_component`):** ./sources/backend/courses/CourseService.java [REQ-008], [DAT-004]
+    * **Low-Level Technical Task Instruction:** Triển khai logic tạo/cập nhật khóa học, kiểm tra xung đột lịch với giáo viên (REQ-008) và ghi dữ liệu vào bảng COURSES (DAT-004).
+
+- **DAY 3:** Mục tiêu ngắn hạn: Triển khai gán/rút giáo viên vào khóa học.
+    * **Sub-Agent Workflow Specialization:** [Coder]
+    * **Targeted Tag IDs:** [REQ-009], [ARC-003], [DAT-004]
+    * **Target Component file path (`target_component`):** ./sources/backend/courses/CourseTeacherService.java [REQ-009], [ARC-003], [DAT-004]
+    * **Low-Level Technical Task Instruction:** Triển khai gán/rút giáo viên vào khóa học, tạo bản ghi mapping và gửi thông báo push (REQ-009, ARC-003).
+
+###### 📈 Phase 4: Triển khai ghi danh học viên, điểm danh QR, thẻ hội viên, thông báo, khuyến mãi, thông báo và cài đặt hệ thống
+
+- **Phase Core Objective & Purpose:** Triển khai ghi danh học viên, điểm danh QR, thẻ hội viên, thông báo, khuyến mãi, thông báo và cài đặt hệ thống.
+- **Target Physical Directory Matrix Map:**
+    *   `./sources/backend/enrollment/EnrollmentController.java` [ARC-004], [REQ-010], [DAT-005]
+    *   `./sources/backend/enrollment/EnrollmentService.java` [REQ-011], [DAT-005], [ARC-005]
+    *   `./sources/backend/attendance/AttendanceService.java` [ARC-007], [REQ-012], [DAT-006], [EXC-001], [EXC-002]
+    *   `./sources/backend/notifications/NotificationService.java` [ARC-008], [REQ-016], [DAT-008], [EXC-003]
+    *   `./sources/backend/membership/MembershipController.java` [REQ-014], [REQ-015], [DAT-007], [DAT-009], [DAT-011], [EXC-005]
+- **Database Schema DDL SQL Specification [DAT-005], [DAT-006], [DAT-007], [DAT-008], [DAT-009], [DAT-011]:**
+```sql
+CREATE TABLE ENROLLMENTS (
+    enrollmentId UUID PRIMARY KEY,
+    studentId UUID NOT NULL REFERENCES USERS(userId),
+    courseId UUID NOT NULL REFERENCES COURSES(courseId),
+    enrollmentDate TIMESTAMP NOT NULL DEFAULT NOW()
+);
+
+CREATE TABLE ATTENDANCE (
+    attendanceId UUID PRIMARY KEY,
+    studentId UUID NOT NULL REFERENCES USERS(userId),
+    courseId UUID NOT NULL REFERENCES COURSES(courseId),
+    attendanceDate DATE NOT NULL,
+    timestamp TIMESTAMP NOT NULL DEFAULT NOW()
+);
+
+CREATE TABLE STUDENTCARDS (
+    cardId UUID PRIMARY KEY,
+    studentId UUID NOT NULL REFERENCES USERS(userId),
+    issueDate DATE NOT NULL,
+    validityDays INT NOT NULL,
+    remainingDays INT NOT NULL
+);
+
+CREATE TABLE NOTIFICATIONS (
+    notificationId UUID PRIMARY KEY,
+    userId UUID REFERENCES USERS(userId),
+    groupZalo VARCHAR(100),
+    message TEXT NOT NULL,
+    sentAt TIMESTAMP NOT NULL DEFAULT NOW(),
+    delivered BOOLEAN NOT NULL DEFAULT FALSE
+);
+
+CREATE TABLE PROMOTIONS (
+    promoId UUID PRIMARY KEY,
+    code VARCHAR(30) NOT NULL UNIQUE,
+    discountPercent SMALLINT NOT NULL,
+    startDate DATE,
+    endDate DATE,
+    description TEXT
+);
+
+CREATE TABLE ANNOUNCEMENTS (
+    announcementId UUID PRIMARY KEY,
+    title VARCHAR(150) NOT NULL,
+    content TEXT NOT NULL,
+    startDate DATE,
+    endDate DATE
+);
+
+CREATE TABLE SYSTEMSETTINGS (
+    settingKey VARCHAR(50) PRIMARY KEY,
+    settingValue TEXT NOT NULL,
+    description TEXT
+);
+```
+- **API and Event Routing Contracts [REQ-010], [REQ-011], [REQ-012], [REQ-013], [REQ-014], [REQ-015], [REQ-016], [REQ-017], [REQ-018], [ARC-004], [ARC-005], [ARC-007], [ARC-008]:**
+```json
+// POST /api/v1/enrollments
+{
+  "studentId": "a1b2c3d4-...",
+  "courseId": "e5f6g7h8-..."
+}
+```
+```json
+// POST /api/v1/attendance/scan
+{
+  "studentId": "a1b2c3d4-...",
+  "courseId": "e5f6g7h8-...",
+  "qrCodeData": "course:e5f6g7h8-...|date:2026-08-07"
+}
+```
+```json
+// GET /api/v1/membership/{studentId}/card
+// trả về thẻ hội viên với daysRemaining
+```
+```json
+// POST /api/v1/notifications
+{
+  "userId": "a1b2c3d4-...",
+  "groupZalo": "hoc_vien_hn",
+  "message": "Bạn đã được ghi danh vào khóa học mới."
+}
+```
+```json
+// POST /api/v1/promotions
+{
+  "code": "SUMMER20",
+  "discountPercent": 20,
+  "startDate": "2026-06-01",
+  "endDate": "2026-08-31",
+  "description": "Giảm giá 20% cho tất cả khóa học."
+}
+```
+```json
+// POST /api/v1/announcements
+{
+  "title": "Thông báo nghỉ lễ",
+  "content": "Trung tâm nghỉ lễ từ 01/09 đến 05/09.",
+  "startDate": "2026-08-31",
+  "endDate": "2026-09-05"
+}
+```
+- **Phase Localized Exception Handlers [EXC-001], [EXC-002], [EXC-003], [EXC-005]:**
+    * **Mất mạng khi quét QR (EXC-001):** Nếu sinh viên quét QR nhưng không có kết nối mạng, khi kết nối được khôi phục, ứng dụng sẽ tự động gửi lại yêu cầu điểm danh; dịch vụ sẽ đảm bảo chỉ ghi một bản ghi điểm danh duy nhất.
+    * **Điểm danh trùng lặp (EXC-002):** Nếu cùng một sinh viên quét cùng một QR nhiều lần trong ngày, hệ thống sẽ phát hiện duplicate, trả về success với cờ ‘alreadyRecorded’ và không tạo thêm hàng.
+    * **Giao hàng thông báo thất bại (EXC-003):** Nếu push notification không thể gửi (ví dụ: token thiết bị không hợp lệ), hệ thống ghi log lỗi, lên lịch thử lại tối đa 3 lần, sau đó đánh dấu là thất bại.
+    * **Khôi phục hệ thống sau sự cố (EXC-005):** Nếu dịch vụ không khả dụng, khi khôi phục, các lần quét điểm danh chờ xử lý được xử lý theo thứ tự FIFO, và người dùng nhận được thông báo về các sự kiện đã khôi phục.
+
+######## Chronological Day-by-Day Sub-Agent Task Distribution Logs (Phase 4)
+
+- **DAY 1:** Mục tiêu ngắn hạn: Xây dựng controller ghi danh khóa học.
+    * **Sub-Agent Workflow Specialization:** [Coder]
+    * **Targeted Tag IDs:** [ARC-004], [REQ-010], [DAT-005]
+    * **Target Component file path (`target_component`):** ./sources/backend/enrollment/EnrollmentController.java [ARC-004], [REQ-010], [DAT-005]
+    * **Low-Level Technical Task Instruction:** Triển khai EnrollmentController để duyệt khóa học và xử lý đăng ký (REQ-010, ARC-004), tự động tạo tài khoản Student nếu thiếu.
+
+- **DAY 2:** Mục tiêu ngắn hạn: Triển khai logic đăng ký khóa học.
+    * **Sub-Agent Workflow Specialization:** [Coder]
+    * **Targeted Tag IDs:** [REQ-011], [DAT-005], [ARC-005]
+    * **Target Component file path (`target_component`):** ./sources/backend/enrollment/EnrollmentService.java [REQ-011], [DAT-005], [ARC-005]
+    * **Low-Level Technical Task Instruction:** Triển khai logic đăng ký khóa học, ghi bản ghi ENROLLMENTS, cập nhật vai trò người dùng (REQ-011) và gửi thông báo đến mobile app và Zalo group (ARC-005).
+
+- **DAY 3:** Mục tiêu ngắn hạn: Triển khai dịch vụ điểm danh QR.
+    * **Sub-Agent Workflow Specialization:** [Coder]
+    * **Targeted Tag IDs:** [ARC-007], [REQ-012], [DAT-006], [EXC-001], [EXC-002]
+    * **Target Component file path (`target_component`):** ./sources/backend/attendance/AttendanceService.java [ARC-007], [REQ-012], [DAT-006], [EXC-001], [EXC-002]
+    * **Low-Level Technical Task Instruction:** Triển khai dịch vụ điểm danh QR, ghi nhận timestamp, đảm bảo bất biến cho cùng studentId/courseId/ngày (REQ-012, ARC-007), xử lý ngoại lệ mất mạng (EXC-001) và phát hiện duplicate (EXC-002).
+
+- **DAY 4:** Mục tiêu ngắn hạn: Triển khai dịch vụ thông báo.
+    * **Sub-Agent Workflow Specialization:** [Coder]
+    * **Targeted Tag IDs:** [ARC-008], [REQ-016], [DAT-008], [EXC-003]
+    * **Target Component file path (`target_component`):** ./sources/backend/notifications/NotificationService.java [ARC-008], [REQ-016], [DAT-008], [EXC-003]
+    * **Low-Level Technical Task Instruction:** Triển khai NotificationService để tạo bản ghi NOTIFICATIONS, đẩy push qua FCM/APNs và gửi tin nhắn Zalo (REQ-016, ARC-008), xử lý ngoại lệ giao hàng thất bại (EXC-003).
+
+- **DAY 5:** Mục tiêu ngắn hạn: Triển khai controller thẻ hội viên, khuyến mãi, thông báo và cài đặt hệ thống.
+    * **Sub-Agent Workflow Specialization:** [Coder]
+    * **Targeted Tag IDs:** [REQ-014], [REQ-15], [DAT-007], [DAT-009], [DAT-011], [EXC-005]
+    * **Target Component file path (`target_component`):** ./sources/backend/membership/MembershipController.java [REQ-014], [REQ-015], [DAT-007], [DAT-009], [DAT-011], [EXC-005]
+    * **Low-Level Technical Task Instruction:** Triển khai MembershipController để hiển thị thẻ hội viên (REQ-014) và xử lý gia hạn thẻ (REQ-015), cập nhật STUDENTCARDS, PROMOTIONS, ANNOUNCEMENTS, SYSTEMSETTINGS (DAT-007, DAT-009, DAT-011), xử lý khôi phục hệ thống sau sự cố (EXC-005).
+
+###### 📈 Phase 5: Phát triển giao diện di động, thông báo đẩy, chatbot AI, i18n, SEO, báo cáo và hardening DevOps
+
+- **Phase Core Objective & Purpose:** Phát triển giao diện di động, thông báo đẩy, chatbot AI, i18n, SEO, báo cáo và hardening DevOps.
+- **Target Physical Directory Matrix Map:**
+    *   `./sources/frontend/mobile/App.js` [ARC-009], [REQ-019], [REQ-020], [NFR-002], [NFR-005]
+    *   `./sources/docs/reporting-and-seo.md` [ARC-010], [REQ-022], [REQ-023], [REQ-024], [REQ-025], [NFR-007], [NFR-008], [NFR-009]
+- **Database Schema DDL SQL Specification:** Không có bảng dữ liệu mới trong giai đoạn này.
+- **API and Event Routing Contracts [REQ-019], [REQ-020], [REQ-021], [REQ-022], [REQ-023], [REQ-024], [REQ-025], [ARC-009], [ARC-010]:**
+```json
+// GET /api/v1/mobile/user/{userId}/profile
+// trả về thông tin người dùng cho ứng dụng di động
+```
+```json
+// POST /api/v1/mobile/tokens
+{
+  "userId": "a1b2c3d4-...",
+  "token": "FCM_token_here"
+}
+```
+```json
+// POST /api/v1/chatbot/query
+{
+  "userId": "a1b2c3d4-...",
+  "question": "Khóa học Java có vào thứ 3 không?"
+}
+```
+```json
+// GET /api/v1/reports/attendance?centerId=...&date=...
+```
+- **Phase Localized Exception Handlers:** Không có ngoại lệ chuyên biệt.
+
+######## Chronological Day-by-Day Sub-Agent Task Distribution Logs (Phase 5)
+
+- **DAY 1:** Mục tiêu ngắn hạn: Xây dựng lõi ứng dụng di động.
+    * **Sub-Agent Workflow Specialization:** [Coder]
+    * **Targeted Tag IDs:** [ARC-009], [REQ-019], [REQ-020], [NFR-002], [NFR-005]
+    * **Target Component file path (`target_component`):** ./sources/frontend/mobile/App.js [ARC-009], [REQ-019], [REQ-020], [NFR-002], [NFR-005]
+    * **Low-Level Technical Task Instruction:** Triển khai lõi ứng dụng di động hybrid với điều hướng vai trò, tích hợp Firebase Auth và xử lý push notification (REQ-020, ARC-009), đảm bảo kích thước image <500MB (NFR-005) và mục tiêu uptime 99.9% (NFR-002).
+
+- **DAY 2:** Mục tiêu ngắn hạn: Tạo tài liệu báo cáo và SEO.
+    * **Sub-Agent Workflow Specialization:** [Coder]
+    * **Targeted Tag IDs:** [ARC-010], [REQ-022], [REQ-023], [REQ-024], [REQ-025], [NFR-007], [NFR-008], [NFR-009]
+    * **Target Component file path (`target_component`):** ./sources/docs/reporting-and-seo.md [ARC-010], [REQ-022], [REQ-023], [REQ-024], [REQ-025], [NFR-007], [NFR-008], [NFR-009]
+    * **Low-Level Technical Task Instruction:** Tạo tài liệu báo cáo và SEO, bao gồm hướng dẫn tạo báo cáo điểm danh CSV (REQ-024), chèn meta tags đa ngôn ngữ và hreflang (REQ-022, REQ-023), thực hiện tuân thủ GDPR/CCPA (NFR-008) và sao lưu PostgreSQL (NFR-009), đồng thời ghi lại quy trình triển khai Docker và GKE (ARC-010).
+
+#### 📁 6. UNIVERSAL ENTERPRISE SECURITY CODES & INJECTION COUNTERMEASURES [NFR-001] [NFR-003] [NFR-004] [NFR-005] [NFR-006] [NFR-007] [NFR-008] [NFR-009]
+
+- **SQL Injection (SQLi) Absolute Countermeasures:** Sử dụng PreparedStatement/ParameterizedQuery, whitelist cho các cột sắp xếp, kiểm tra kiểu dữ liệu đầu vào.
+- **Cross-Site Scripting (XSS) & Content Security Policy (CSP):** Tự động thoát HTML trong JSX, thiết lập header CSP (`default-src 'self'; script-src 'self' 'unsafe-inline'` bị cấm, sử dụng nonce cho scripts cần thiết).
+- **Multi-Tenant CORS Security Rails:** whitelist các origin dựa trên cấu hình trung tâm, từ chối wildcard `null` hoặc `*`, xác thực origin qua JWT tenantId.
+- **Zero-Leak Log Scrubbing & PII Data Masking Engines:** Sử dụng `@JsonSerialize` với `SensitiveDataMasker`, xóa trường hợp đặc biệt trước khi ghi log, giới hạn độ dài log theo yêu cầu GDPR.
+- **Docker Image Size Enforcement:** Giới hạn kích thước image <500MB, sử dụng multi-stage build, loại bỏ các gói không cần thiết.
+- **Multi-Language Support:** Externalize chuỗi UI qua `i18n` (JSON), middleware phát hiện locale, tự động chèn hreflang, fallback sang Accept-Language header.
+- **GDPR/CCPA Compliance:** Thêm API xóa dữ liệu `/api/v1/users/{id}/delete`, cung cấp export JSON `/api/v1/users/{id}/export`, quản lý consent cho marketing.
+- **Backup & Disaster Recovery:** Sao lưu PostgreSQL đầy đủ hàng ngày, point-in-time recovery 24 giờ, cluster backup GKE sang region khác, kiểm tra khôi phục hàng tuần.
+
+#### 📁 7. HYBRID MOBILE COMPLIANCE RAIL RULES & INTERNATIONALIZED SEO MECHANISMS
+
+- **Capacitor Mobile Hybrid Compliance Rails:** Sử dụng `@capacitor/preferences` cho storage an toàn, chặn back-button gốc, fetch với timeout và retry, xác thực URL tuyệt đối, ngăn chặn XSS trong WebView.
+- **Internationalization (i18n) & Dynamic SEO Injection:** Middleware phát hiện locale (`Accept-Language`, cookie), chuyển hướng URL có dấu `/vi/` `/en/`, chèn thẻ `<html lang='vi'>`, tạo thẻ `<link rel="canonical" href="...">`, tự động tạo sitemap XML với hreflang, chặn bot quét theo robots.txt.
+
+#### 📁 8. PIPELINE AUTOMATED DAILY SESSION GIT BRANCH FLOW
+
+- **Daily Workspace Forking Isolation:** Tạo branch `features/development-phase-1-day-1`, `features/development-phase-1-day-2`, ... cho từng ngày, mỗi branch là không gian làm việc riêng biệt.
+- **Validation Guard Pipeline Gates:** Thực hiện `mvn clean verify` hoặc `npm run test` trước khi merge, đảm bảo độ phủ mã >=85%, kiểm tra chất lượng code qua SonarQube, tự động tạo PR với checklist tuân thủ.
+
+###### 🛑 MATRIX COVERAGE CHECK MANDATE
+
+`[TRACEABILITY MATRIX ENFORCEMENT: 100% COVERAGE VALIDATED. TOTAL UNIQUE REQ TAGS MAPPED: 25, TOTAL ARC TAGS: 10, TOTAL EXC TAGS: 5, TOTAL DAT TAGS: 9, TOTAL NFR TAGS: 9. ZERO UNASSIGNED CODES FOUND.]`
+
+--- PREVIOUS EXECUTION STATE REFERENCE (DIAGNOSTIC PATHS) ---
+
+## Giai đoạn 2: <!--PHASE_NAME_START-->Triển khai quản lý trung tâm với CRUD, phân quyền và gán Center Admin<!--PHASE_NAME_END-->
+
+#### 📊 Document Control
+
+| Mục | Chi tiết |
+| :--- | :--- |
+| **ID Kiến Trúc** | ARCH-20260807042343 |
+| **Tên Dự Án** | membership-hub |
+| **Giai Đoạn** | 2 |
+| **Tên Giai Đoạn** | <!--PHASE_NAME_START-->Triển khai quản lý trung tâm với CRUD, phân quyền và gán Center Admin<!--PHASE_NAME_END--> |
+| **Mô Tả** | <!--PHASE_DESC_START-->Giai đoạn này triển khai quản lý trung tâm, bao gồm xây dựng API CRUD cho trung tâm, kiểm tra trùng lặp taxId, phân quyền Center Admin, cập nhật role trong bảng USERS, và triển khai manifest GKE cho dịch vụ trung tâm với autoscaling dựa trên CPU và độ trễ.<!--PHASE_DESC_END--> |
+| **Phiên Bản** | 1.0 (Baseline) |
+| **Ngày/Thời Gian** | 2026/08/07 04:23:43 |
+| **Tác Giả** | Enterprise System Architect (SA Agent) |
+| **Phê Duyệt** | Pending Technical Governance Review |
+
+#### 1. Phạm Vi Hoạt Động Giai Đoạn & Mục Tiêu
+
+Giai đoạn 2 tập trung vào triển khai quản lý trung tâm, bao gồm:
+- Xây dựng các API CRUD cho trung tâm (tạo, đọc, cập nhật, xóa) với kiểm tra trùng lặp `taxId`.
+- Phân quyền Center Admin: gán và rút quyền cho người dùng, cập nhật `roleId` trong bảng `USERS`.
+- Tạo và triển khai manifest Kubernetes (GKE) cho dịch vụ trung tâm, bao gồm autoscaling dựa trên CPU và độ trễ.
+- Đảm bảo tuân thủ các yêu cầu bảo mật, hiệu năng và khả năng mở rộng (NFR-001, NFR-003, NFR-004).
+- Đảm bảo tất cả các yêu cầu [REQ-004], [REQ-005], [REQ-006] và dữ liệu [DAT-003] được triển khai đầy đủ.
+
+#### 2. Phạm Vi Kỹ Thuật & Giới Hạn Đường Dẫn (Tệp, Đường dẫn, và Điểm cuối API)
+
+- **Backend**: `./sources/backend/centers/`
+  - `CenterController.java` – API endpoints: `GET /api/v1/centers`, `POST /api/v1/centers`, `PUT /api/v1/centers/{centerId}/admin/{userId}`
+  - `CenterService.java` – Logic for create/update/delete center, taxId validation.
+  - `CenterAdminService.java` – Logic for assigning/removing Center Admin, updating `roleId` in `USERS`.
+- **Infrastructure**: `./sources/infra/k8s/`
+  - `center-deployment.yaml` – Kubernetes deployment, HPA, autoscaling configuration.
+
+#### 3. Hướng Dẫn Chức Năng Đặc Biệt Cho Mỗi Đại Diện Phụ
+
+- **Coder**: Phát triển mã nguồn ứng dụng, thực hiện các lớp Java cho backend, không viết test hoặc manifest.
+- **Tester**: Viết bộ kiểm thử JUnit, kiểm thử tích hợp, kiểm thử hiệu năng, không sửa mã nguồn.
+- **Doc**: Soạn tài liệu kỹ thuật, mô tả kiến trúc, sơ đồ dữ liệu, tài liệu triển khai.
+- **Reviewer**: Kiểm tra mã, phân tích tĩnh, sửa lỗi bảo mật, đảm bảo tuân thủ OWASP.
+- **Docker**: Xây dựng Dockerfile đa giai đoạn, tối ưu gói, đẩy image lên DockerHub.
+- **GCP**: Tự động triển khai image lên Google Artifact Registry, cấu hình Cloud Run.
+- **GKE**: Xây dựng manifest Kubernetes, HPA, Helm chart, triển khai dịch vụ lên GKE.
+
+#### 4. Định Nghĩa Hoàn Thành Giai Đoạn (DoD)
+
+- Tất cả các yêu cầu [REQ-004], [REQ-005], [REQ-006] và dữ liệu [DAT-003] được triển khai và kiểm thử thành công.
+- Đạt 100% coverage kiểm thử cho các module liên quan.
+- Tuân thủ đầy đủ các yêu cầu bảo mật OWASP, NFR-001, NFR-003, NFR-004.
+- Mọi thẻ ID được ánh xạ chính xác, không có thẻ chưa được sử dụng.
+
+#### 5. Nhật Ký Thực Hiện Kiến Trúc Ngày Mỗi Ngày
+
+###### 🌤️ NGÀY 1: <!--DAY_HEADER_START-->XÂY DỰNG CONTROLLER DANH SÁCH TRUNG TÂM<!--DAY_HEADER_END-->
+
+######## 📝 Nhiệm Vụ 1.1: Triển khai CenterController để hiển thị danh sách trung tâm (REQ-004) và phục vụ các thao tác CRUD cho System Admin (ARC-002).
+########## Địa Diện Phụ: Coder
+########## Yêu Cầu Thành Phần & Yêu Cầu Kỹ Thuật:
+* **Đường Dẫn Mục Tiêu**: ./sources/backend/centers/CenterController.java
+* **Thẻ Định Vị Theo Dõi**: <!--START_TAGS-->[REQ-004], [ARC-002], [DAT-003]<!--END_TAGS-->
+
+######## 📝 Nhiệm Vụ 1.2: Soạn tài liệu kỹ thuật cho giai đoạn 2, bao gồm mô tả kiến trúc, sơ đồ dữ liệu, và quy trình triển khai.
+########## Địa Diện Phụ: Doc
+########## Yêu Cầu Thành Phần & Yêu Cầu Kỹ Thuật:
+* **Đường Dẫn Mục Tiêu**: ./sources/docs/phase2_technical_overview.md
+* **Thẻ Định Vị Theo Dõi**: <!--START_TAGS-->[DAT-003], [NFR-001], [NFR-003], [NFR-004]<!--END_TAGS-->
+
+###### 🌤️ NGÀY 2: <!--DAY_HEADER_START-->XÂY DỰNG SERVICE TẠO/ CẬP NHẬT TRUNG TÂM<!--DAY_HEADER_END-->
+
+######## 📝 Nhiệm Vụ 2.1: Triển khai CenterService để tạo/cập nhật trung tâm (REQ-005) và kiểm tra trùng lặp taxId.
+########## Địa Diện Phụ: Coder
+########## Yêu Cầu Thành Phần & Yêu Cầu Kỹ Thuật:
+* **Đường Dẫn Mục Tiêu**: ./sources/backend/centers/CenterService.java
+* **Thẻ Định Vị Theo Dõi**: <!--START_TAGS-->[REQ-005], [DAT-003]<!--END_TAGS-->
+
+###### 🌤️ NGÀY 3: <!--DAY_HEADER_START-->XÂY DỰNG SERVICE GÁN RÚT QUYỀN CENTER ADMIN<!--DAY_HEADER_END-->
+
+######## 📝 Nhiệm Vụ 3.1: Triển khai CenterAdminService để gán/rút quyền Center Admin (REQ-006) và cập nhật roleId trong USERS.
+########## Địa Diện Phụ: Coder
+########## Yêu Cầu Thành Phần & Yêu Cầu Kỹ Thuật:
+* **Đường Dẫn Mục Tiêu**: ./sources/backend/centers/CenterAdminService.java
+* **Thẻ Định Vị Theo Dõi**: <!--START_TAGS-->[REQ-006], [ARC-002], [DAT-003]<!--END_TAGS-->
+
+###### 🌤️ NGÀY 4: <!--DAY_HEADER_START-->TẠO MANIFEST GKE CHO DỊCH VỤ TRUNG TÂM<!--DAY_HEADER_END-->
+
+######## 📝 Nhiệm Vụ 4.1: Tạo manifest GKE cho dịch vụ trung tâm (center-deployment.yaml) với autoscaling dựa trên CPU và độ trễ.
+########## Địa Diện Phụ: GKE
+########## Yêu Cầu Thành Phần & Yêu Cầu Kỹ Thuật:
+* **Đường Dẫn Mục Tiêu**: ./sources/infra/k8s/center-deployment.yaml
+* **Thẻ Định Vị Theo Dõi**: <!--START_TAGS-->[NFR-001], [NFR-003], [NFR-004]<!--END_TAGS-->
+
+
+--- RAW REQUIREMENTS REFERENCE ---
+## SOFTWARE REQUIREMENTS SPECIFICATION: membership-hub
+#### 1. TỔNG QUAN DỰ ÁN & KIẾN TRÚC TOÀN CẦU
+
+###### Mục tiêu & giá trị cốt lõi
+- Cung cấp nền tảng thống nhất để quản lý hội viên đa trung tâm.
+- Cho phép theo dõi điểm danh thời gian thực qua quét mã QR.
+- Cung cấp thẻ hội viên kỹ thuật số với tính năng đếm ngày hiệu lực.
+- Hỗ trợ giao tiếp đa kênh (web, di động, nhóm Zalo).
+- Giá trị cốt lõi: độ tin cậy, khả năng mở rộng, bảo mật, tính thân thiện với người dùng, hỗ trợ đa ngôn ngữ.
+
+###### Đối tượng người dùng mục tiêu
+- System Admin (siêu người dùng toàn cầu)
+- Center Admin (quản lý cấp trung tâm)
+- Manager (phó quản trị, quyền hạn giới hạn)
+- Teacher (xem chỉ đọc lịch dạy)
+- Student (duyệt khóa học, đăng ký, xem thẻ hội viên)
+- Mobile App User (giao diện đáp ứng cho các vai trò trên)
+
+###### Ma trận kiểm soát truy cập dựa trên vai trò (RBAC)
+- [ARC-001] System Admin: toàn quyền trên tất cả các trung tâm.
+- [ARC-002] Center Admin: toàn quyền trong trung tâm của mình, không ảnh hưởng đến các trung tâm khác.
+- [ARC-003] Manager: có thể tạo thông báo, quản lý học viên, gán học viên hiện có vào khóa học, xem danh sách khóa học, không thể chỉnh sửa khóa học hoặc chỉ định giáo viên.
+- [ARC-004] Teacher: xem khóa học của mình, danh sách học viên, lịch dạy; chỉ đọc.
+- [ARC-005] Student: duyệt khóa học, đăng ký khóa học mới, xem thẻ hội viên (ngày còn lại), gia hạn ngày thẻ.
+
+###### Kiến trúc & luồng dữ liệu (các luồng chính)
+- [ARC-006] Luồng xác thực: hỗ trợ email/mật khẩu, Firebase, Google, Facebook qua OAuth2; cấp JWT token với thời hạn 15 phút và refresh token.
+- [ARC-007] Luồng xử lý điểm danh QR: ứng dụng di động quét QR, gửi student ID và timestamp đến backend; dịch vụ xác thực và ghi lại điểm danh một cách idempotent.
+- [ARC-008] Luồng gửi thông báo: hệ thống kích hoạt push notification đến ứng dụng di động và đăng bài lên nhóm Zalo được chỉ định cho thông báo, phân công khóa học, và cảnh báo điểm danh.
+- [ARC-009] Luồng tích hợp backend ứng dụng di động: Frontend Next.js tiêu thụ REST APIs; xác thực qua bearer tokens; hỗ trợ caching ngoại tuyến cho trường hợp mất kết nối mạng.
+
+###### Công nghệ & hạ tầng
+- [ARC-010] Công nghệ & hạ tầng: Backend sử dụng Java/Quarkus, cơ sở dữ liệu PostgreSQL, container hóa Docker, triển khai trên Kubernetes (GKE), sử dụng Firebase Authentication, Google Cloud Messaging (FCM)/Apple APNs cho push notification, Zalo API integration, Redis cho session caching, CI/CD pipeline với GitHub Actions.
+
+#### 2. CÁC MODULE CHỨC NĂNG NÂNG CAO
+
+###### 2.1 Quản lý người dùng
+
+######## Yêu cầu chức năng cốt lõi
+- [REQ-001] Đăng ký người dùng: As a prospective user, I want to register using email and password (or social providers) so that I can obtain an account in the system.
+- [REQ-002] Xác thực qua mạng xã hội: As a user, I want to sign‑in/up using Firebase, Google, or Facebook OAuth so that I can leverage existing credentials.
+- [REQ-003] Phân quyền người dùng: As an administrator, I want to assign or change a user’s role (System Admin, Center Admin, Manager, Teacher, Student) so that permissions are correctly enforced.
+
+######## Tiêu chí chấp nhận & tương tác
+- Given a user provides a unique email, a strong password, and agrees to terms, When they submit the registration form, Then the system validates the input, creates a new user record with role ‘Student’ (or ‘Teacher’ if invited), and returns a success response with a JWT token. `[REQ-001]`
+- Given a user selects a social provider, When they authenticate through the provider’s popup, Then the system receives an OAuth2 code, exchanges it for user info, creates or updates the local user record, and issues a JWT token. `[REQ-002]`
+- Given an admin selects a user and a new role, When the assignment is confirmed, Then the user’s role column is updated, and appropriate permissions are applied immediately. `[REQ-003]`
+
+######## Luồng ngoại lệ của mô-đun
+- [EXC-004] Xác thực đầu vào không hợp lệ (ví dụ: email không đúng định dạng, thiếu trường bắt buộc): Nếu xác thực thất bại trên form submission, Khi lỗi được trả về cho người dùng, Sau đó một thông báo rõ ràng liệt kê từng trường không hợp lệ và yêu cầu chỉnh sửa.
+
+######## Từ điển dữ liệu cục bộ của mô-đun
+- [DAT-001] Bảng người dùng & vai trò
+
+  **Users**
+  ```mermaid
+  erDiagram
+      USERS {
+          uuid userId PK "Unique identifier"
+          varchar email "Email address, not null, unique, max 255 chars"
+          char passwordHash "bcrypt hash, not null, length 60"
+          varchar fullName "Full name, not null, max 100 chars"
+          smallint roleId FK "Foreign key to Roles.roleId"
+          enum provider "Auth provider, default local, values: local, firebase, google, facebook"
+          timestamp createdAt "Timestamp of creation, not null, default now()"
+          timestamp updatedAt "Timestamp of last update, not null, default now()"
+      }
+      ROLES {
+          smallint roleId PK "Role identifier, primary key"
+          varchar name "Role name, unique, not null, max 30 chars"
+          varchar description "Role description, optional, max 200 chars"
+      }
+      ROLES ||--o{ USERS : "roleId"
+  ```
+  **Roles**
+  ```mermaid
+  erDiagram
+      ROLES {
+          smallint roleId PK "Role identifier, primary key"
+          varchar name "Role name, unique, not null, max 30 chars"
+          varchar description "Role description, optional, max 200 chars"
+      }
+  ```
+###### 2.2 Quản lý trung tâm
+
+######## Yêu cầu chức năng cốt lõi
+- [REQ-004] Xem danh sách trung tâm: As any authenticated user, I want to see a list of all centers with address, tax ID, and admin contact so that I can identify relevant centers.
+- [REQ-005] Tạo/cập nhật/xóa trung tâm: As a System Admin, I want to add, edit, or remove a center record so that center information stays current.
+- [REQ-006] Phân quyền quản trị trung tâm: As a System Admin, I want to assign or unassign a user as a Center Admin for a specific center so that administrative control is delegated.
+
+######## Tiêu chí chấp nhận & tương tác
+- Given a user navigates to the Centers page, When the request completes, Then a table of centers (Name, Address, TaxID, AdminContact) is displayed. `[REQ-004]`
+- Given a System Admin provides center name, address, tax ID, primary contact phone and email, When the save action is executed, Then the center is persisted and appears in the list; if duplicate tax ID exists, the operation fails with a conflict error. `[REQ-005]`
+- Given a System Admin selects a user and a center, When the assign action is confirmed, Then the user’s role is set to ‘Center Admin’ and the center ID is recorded; unassign reverses the operation. `[REQ-006]`
+
+######## Luồng ngoại lệ của mô-đun
+- (Không có luồng ngoại lệ chuyên biệt được xác định cho mô-đun này.)
+
+######## Từ điển dữ liệu cục bộ của mô-đun
+- [DAT-003] Bảng trung tâm
+
+  **Centers**
+  ```mermaid
+  erDiagram
+      CENTERS {
+          uuid centerId PK "Unique identifier"
+          varchar name "Center name, not null, max 100 chars"
+          varchar address "Physical address, not null, max 255 chars"
+          varchar taxId "Tax identification number, unique, not null, numeric 10‑13 digits"
+          varchar contactPhone "Contact telephone, optional, may include +, digits, spaces, hyphens, parentheses"
+          varchar contactEmail "Contact email, optional, must be valid email format"
+      }
+  ```
+###### 2.3 Quản lý khóa học
+
+######## Yêu cầu chức năng cốt lõi
+- [REQ-007] Xem danh sách khóa học: As any authenticated user, I want to see all courses with schedule and assigned teacher so that I can browse offerings.
+- [REQ-008] Tạo/cập nhật/xóa khóa học (tránh xung đột): As a System Admin or Center Admin, I want to manage courses (add, edit, remove) while ensuring no overlapping schedules for the same teacher or venue.
+- [REQ-009] Phân công giáo viên vào khóa học: As a System Admin, I want to assign or unassign teachers to courses so that teaching responsibilities are updated.
+
+######## Tiêu chí chấp nhận & tương tác
+- Given a user visits the Courses page, When the request completes, Then a grid displays CourseID, Title, StartDate, EndDate, TeacherName. `[REQ-007]`
+- Given an admin provides CourseTitle, StartDate, EndDate, TeacherID, When the save action is triggered, Then the system validates that the teacher is not already scheduled for another course intersecting these dates; if conflict, an error is returned; otherwise the course is persisted. `[REQ-008]`
+- Given an admin selects a course and a teacher, When the assign action is executed, Then the course‑teacher mapping is created and a notification is queued for the teacher’s mobile app; unassign removes the mapping. `[REQ-009]`
+
+######## Luồng ngoại lệ của mô-đun
+- (Không có luồng ngoại lệ chuyên biệt được xác định cho mô-đun này.)
+
+######## Từ điển dữ liệu cục bộ của mô-đun
+- [DAT-004] Bảng khóa học
+
+  **Courses**
+  ```mermaid
+  erDiagram
+      COURSES {
+          uuid courseId PK "Unique identifier"
+          varchar title "Course title, not null, max 150 chars"
+          text description "Course description, optional"
+          date startDate "Course start date, not null"
+          date endDate "Course end date, not null"
+          uuid teacherId FK "Foreign key to Users.userId"
+          int maxStudents "Course capacity, default 30"
+      }
+  ```
+###### 2.4 Đăng ký & ghi danh học viên
+
+######## Yêu cầu chức năng cốt lõi
+- [REQ-010] Duyệt khóa học: As a Student, I want to browse available courses (excluding those already enrolled) so that I can select courses to join.
+- [REQ-011] Đăng ký khóa học của học viên: As a Student, I want to register for a course (existing or new), which auto‑creates a Student account if missing, and assigns the student to the course.
+
+######## Tiêu chí chấp nhận & tương tác
+- Given a Student logs in and navigates to the Browse Courses page, When the request completes, Then a list of courses with capacity and schedule is shown, excluding courses where the student already has an enrollment record. `[REQ-010]`
+- Given a Student selects a course and submits the registration, When the backend processes the request, Then a new enrollment record is created; if the student does not have a local account, one is created with role ‘Student’; a notification is queued to the student’s mobile app and the center’s Zalo group. `[REQ-011]`
+
+######## Luồng ngoại lệ của mô-đun
+- (Không có luồng ngoại lệ chuyên biệt được xác định cho mô-đun này.)
+
+######## Từ điển dữ liệu cục bộ của mô-đun
+- [DAT-005] Bảng ghi danh
+
+  **Enrollments**
+  ```mermaid
+  erDiagram
+      ENROLLMENTS {
+          uuid enrollmentId PK "Unique identifier"
+          uuid studentId FK "Foreign key to Users.userId"
+          uuid courseId FK "Foreign key to Courses.courseId"
+          timestamp enrollmentDate "Date of enrollment, default now()"
+      }
+  ```
+###### 2.5 Điểm danh & quét mã QR
+
+######## Yêu cầu chức năng cốt lõi
+- [REQ-012] Chụp ảnh điểm danh QR: As a Student (via mobile app), I want to scan a QR code at class start so that my attendance is recorded for the current day.
+- [REQ-013] Tính chất bất biến của điểm danh: The attendance service must guarantee that multiple scans from the same student for the same course on the same day produce a single attendance record.
+
+######## Tiêu chí chấp nhận & tương tác
+- Given a Student opens the scanner, scans a valid course QR, and confirms attendance, When the API receives the payload, Then the system validates the student‑course relationship, creates an Attendance record with timestamp, and returns a success response; duplicate scans on the same day are ignored. `[REQ-012]`
+- Given a student scans a QR twice within a minute, When the service processes both requests, Then only one attendance row is created; subsequent requests return a success with a ‘duplicate’ flag. `[REQ-013]`
+
+######## Luồng ngoại lệ của mô-đun
+- [EXC-001] Network & Connectivity Drops During QR Scan: If a student scans a QR but the network is unavailable, When the app retries the request after reconnection, Then the attendance is recorded once the service is reachable.
+- [EXC-002] Duplicate Attendance Submission: If the same student scans the same course QR multiple times within the same day, When the system detects a duplicate, Then it returns a success response indicating ‘already recorded’ and does not create extra rows.
+
+######## Từ điển dữ liệu cục bộ của mô-đun
+- [DAT-006] Bảng điểm danh
+
+  **Attendance**
+  ```mermaid
+  erDiagram
+      ATTENDANCE {
+          uuid attendanceId PK "Unique identifier"
+          uuid studentId FK "Foreign key to Users.userId"
+          uuid courseId FK "Foreign key to Courses.courseId"
+          date attendanceDate "Date of attendance, not null"
+          timestamp timestamp "Exact time recorded, default now()"
+      }
+  ```
+###### 2.6 Quản lý thẻ hội viên
+
+######## Yêu cầu chức năng cốt lõi
+- [REQ-014] Hiển thị tính hợp lệ của thẻ: As a Student, I want to view my membership card showing remaining validity days so that I know when renewal is needed.
+- [REQ-015] Gia hạn thẻ: As a Student, I want to extend my membership card validity by paying a fee, which updates the end date.
+
+######## Tiêu chí chấp nhận & tương tác
+- Given a Student opens the Card page, When the request loads, Then the UI shows total validity days, days used, and days remaining; data is derived from the StudentCard entity. `[REQ-014]`
+- Given a Student selects a renewal period (e.g., 30 days), confirms payment, When the payment service confirms success, Then the StudentCard’s EndDate is extended by the selected days and a confirmation notification is sent. `[REQ-015]`
+
+######## Luồng ngoại lệ của mô-đun
+- (Không có luồng ngoại lệ chuyên biệt được xác định cho mô-đun này.)
+
+######## Từ điển dữ liệu cục bộ của mô-đun
+- [DAT-007] Bảng thẻ hội viên
+
+  **StudentCards**
+  ```mermaid
+  erDiagram
+      STUDENTCARDS {
+          uuid cardId PK "Unique identifier"
+          uuid studentId FK "Foreign key to Users.userId"
+          date issueDate "Card issue date, not null"
+          int validityDays "Total validity days, not null"
+          int remainingDays "Computed days left until expiry"
+      }
+  ```
+###### 2.7 Thông báo & truyền thông
+
+######## Yêu cầu chức năng cốt lõi
+- [REQ-016] Kích hoạt thông báo: When an admin creates an announcement, assigns a teacher to a course, or registers a student, the system must generate a notification to the student’s mobile app and post a message to the designated Zalo group.
+
+######## Tiêu chí chấp nhận & tương tác
+- Given an admin performs an action that requires notification, When the action is saved, Then a Notification record is created, a push notification payload is queued for the mobile app, and a text message is sent to the Zalo group chat. `[REQ-016]`
+
+######## Luồng ngoại lệ của mô-đun
+- [EXC-003] Failed Notification Delivery: When a push notification cannot be delivered (e.g., device token invalid), Then the system logs the failure and schedules a retry up to three times before marking as failed.
+
+######## Từ điển dữ liệu cục bộ của mô-đun
+- [DAT-008] Bảng thông báo
+
+  **Notifications**
+  ```mermaid
+  erDiagram
+      NOTIFICATIONS {
+          uuid notificationId PK "Unique identifier"
+          uuid userId FK "Target user, optional"
+          varchar groupZalo "Target Zalo group, optional"
+          text message "Notification content, not null"
+          timestamp sentAt "When sent, default now()"
+          boolean delivered "Delivery status, default false"
+      }
+  ```
+###### 2.8 Quản lý khuyến mãi & thông báo
+
+######## Yêu cầu chức năng cốt lõi
+- [REQ-017] Quản lý khuyến mãi: As a Center Admin or Manager, I want to create, edit, or delete promotions (discounts, offers) with start/end dates so that students can see applicable deals.
+- [REQ-018] Quản lý thông báo: As a Center Admin or Manager, I want to create, edit, or delete announcements with optional expiry dates for broadcast to all users.
+
+######## Tiêu chí chấp nhận & tương tác
+- Given an admin provides PromotionName, description, conditions, startDate, endDate, When saved, Then the promotion appears in the student‑visible list; if endDate is omitted, the promotion is considered perpetual. `[REQ-017]`
+- Given an admin inputs AnnouncementTitle, content, optional expiry, When saved, Then the announcement is displayed site‑wide; if expiry is set, it auto‑disappears after the date. `[REQ-018]`
+
+######## Luồng ngoại lệ của mô-đun
+- (Không có luồng ngoại lệ chuyên biệt được xác định cho mô-đun này.)
+
+######## Từ điển dữ liệu cục bộ của mô-đun
+- [DAT-009] Bảng khuyến mãi & thông báo
+
+  **Promotions**
+  ```mermaid
+  erDiagram
+      PROMOTIONS {
+          uuid promoId PK "Unique identifier"
+          varchar code "Discount code, unique"
+          smallint discountPercent "Discount percentage, not null"
+          date startDate "Promotion start, optional"
+          date endDate "Promotion end, optional"
+          text description "Promo details, optional"
+      }
+  ```
+  **Announcements**
+  ```mermaid
+  erDiagram
+      ANNOUNCEMENTS {
+          uuid announcementId PK "Unique identifier"
+          varchar title "Title, not null, max 150 chars"
+          text content "Content, not null, max 2000 chars"
+          date startDate "Effective start, optional"
+          date endDate "Effective end, optional"
+      }
+  ```
+###### 2.9 Chatbot dịch vụ khách hàng AI
+
+######## Yêu cầu chức năng cốt lõi
+- [REQ-019] Tích hợp chatbot AI: As any user, I want to interact with an AI chatbot that can answer common queries about courses, teachers, centers, and account status.
+
+######## Tiêu chí chấp nhận & tương tác
+- Given a user opens the chat widget, When they ask a question, Then the AI returns a relevant answer or escalates to human support if confidence is low. `[REQ-019]`
+
+######## Luồng ngoại lệ của mô-đun
+- [NOT APPLICABLE] Chatbot AI không có bảng dữ liệu chuyên biệt; tất cả các tương tác được ghi lại trong bảng AuditLog (xem [ARC-006] để biết chi tiết logging).
+
+######## Từ điển dữ liệu cục bộ của mô-đun
+- [NOT APPLICABLE] Không có bảng dữ liệu chuyên biệt cho chatbot AI.
+
+###### 2.10 Các tính năng cốt lõi của ứng dụng di động
+
+######## Yêu cầu chức năng cốt lõi
+- [REQ-020] Giao diện người dùng vai trò cụ thể trên di động: As a mobile user, I want a responsive UI that mirrors web functionality for my assigned role (Student, Teacher, Admin, etc.).
+- [REQ-021] Thông báo đẩy trên di động: As a registered user, I want to receive push notifications on my mobile device for attendance confirmations, new announcements, and reminder messages.
+
+######## Tiêu chí chấp nhận & tương tác
+- Given a user logs in on Android or iOS, When the app loads, Then the appropriate navigation menu and screens are displayed based on the user’s role. `[REQ-020]`
+- Given a backend event triggers a push, When the device token is registered, Then the notification is delivered via Firebase Cloud Messaging (FCM) or APNs. `[REQ-021]`
+
+######## Luồng ngoại lệ của mô-đun
+- (Không có luồng ngoại lệ chuyên biệt được xác định cho mô-đun này.)
+
+######## Từ điển dữ liệu cục bộ của mô-đun
+- [NOT APPLICABLE] Không có bảng dữ liệu chuyên biệt cho các tính năng cốt lõi của ứng dụng di động; tất cả dữ liệu được quản lý qua các bảng hiện có (Người dùng, Thông báo, Điểm danh).
+
+###### 2.11 Bản địa hóa & SEO
+
+######## Yêu cầu chức năng cốt lõi
+- [REQ-022] Phát hiện ngôn ngữ mặc định: As a visitor, I want the system to use my previously selected language preference, falling back to browser settings, for a personalized experience.
+- [REQ-023] SEO đa ngôn ngữ: The platform must support SEO for at least English, Vietnamese, and Spanish; each page must include language‑specific meta tags and hreflang attributes.
+
+######## Tiêu chí chấp nhận & tương tác
+- Given a user accesses the site, When the system evaluates locale, Then it selects the stored language if present; otherwise it uses the Accept‑Language header; the UI updates accordingly. `[REQ-022]`
+- Given a page is requested with a specific locale, When the page is rendered, Then the HTML includes a <html lang='en'> tag and hreflang links pointing to alternate language versions. `[REQ-023]`
+
+######## Luồng ngoại lệ của mô-đun
+- (Không có luồng ngoại lệ chuyên biệt được xác định cho mô-đun này.)
+
+######## Từ điển dữ liệu cục bộ của mô-đun
+- [DAT-011] Bảng cài đặt hệ thống
+
+  **SystemSettings**
+  ```mermaid
+  erDiagram
+      SYSTEMSETTINGS {
+          varchar settingKey PK "Configuration key"
+          text settingValue "Configuration value, not null"
+          varchar description "Meaning of setting, optional"
+      }
+  ```
+###### 2.12 Báo cáo & phân tích
+
+######## Yêu cầu chức năng cốt lõi
+- [REQ-024] Tạo báo cáo điểm danh: As an admin, I want to generate a daily attendance report for a center (CSV) showing each student’s presence status.
+- [REQ-025] Bảng điều khiển tóm tắt ghi danh: As a Center Admin, I want a real‑time dashboard summarizing total students, active courses, and upcoming sessions.
+
+######## Tiêu chí chấp nhận & tương tác
+- Given an admin selects a center and date range, When the report is requested, Then a CSV file is produced with columns: StudentName, CourseName, AttendanceDate, Status. `[REQ-024]`
+- Given an admin opens the dashboard, When the data refreshes, Then cards display totalStudents, activeCourses, upcomingSessions (next 7 days). `[REQ-025]`
+
+######## Luồng ngoại lệ của mô-đun
+- [EXC-005] System Recovery After Outage: If the service becomes unavailable, When it restores, Then any pending attendance scans are processed in FIFO order, and users receive a notification of recovered events.
+
+######## Từ điển dữ liệu cục bộ của mô-đun
+- [NOT APPLICABLE] Không có bảng dữ liệu chuyên biệt cho báo cáo & phân tích; tất cả dữ liệu được tổng hợp từ các bảng hiện có.
+
+#### 3. YÊU CẦU PHI CHỨC NĂNG TOÀN CẦU
+
+- [NFR-001] Performance Metrics: Core API responses (authentication, attendance capture, course list) must complete within 200 ms average latency. Database queries must be indexed to support sub‑second reads for up to 10 000 concurrent users.
+- [NFR-002] Availability: Target 99.9 % annual uptime; SLA includes automatic failover across GKE clusters.
+- [NFR-003] Security: All data in transit must use TLS 1.3; at rest encryption with AES‑256. JWT access tokens expire after 15 minutes; refresh tokens have 7‑day expiry. Implement OWASP Top 10 mitigations (SQL injection, XSS, CSRF).
+- [NFR-004] Scalability & Availability: Horizontal scaling of Quarkus services via Kubernetes HPA based on CPU > 70 % or request latency > 300 ms. PostgreSQL read replicas for reporting workloads.
+- [NFR-005] Docker Image Size: Base image size < 200 MB; final image < 500 MB.
+- [NFR-006] Logging & Audit: All user actions (role changes, attendance records, notifications) must be logged with timestamps, user ID, and action details; logs retained for 1 year.
+- [NFR-007] Multi‑Language Support: UI strings must be externalized; support English, Vietnamese, Spanish; locale switching without page reload where feasible.
+- [NFR-008] GDPR/CCPA Compliance: Personal data deletion on user request; data export in JSON format; consent management for marketing communications.
+- [NFR-009] Backup & Disaster Recovery: Daily PostgreSQL full backups; point‑in‑time recovery up to 24 hours; GKE cluster backup to separate region.
+----------------------------------
+
+## EXTRACTION RULES FOR DAY-BY-DAY EXECUTION LOGS:
+1. You MUST break down the operational scope of PHASE 3 into sequential daily logs, starting from **DAY 1** up to a maximum of **DAY 7**.
+2. **Strict Grouping Hierarchy:** Day Level ──► Agent Sub-task Level ──► Target Component Level.
+3. **Strict Sub-Agent Persona Allocation:** Each Sub-Task belongs to exactly ONE unique Assigned Sub-Agent literal token: 'Coder' | 'Tester' | 'Reviewer' | 'Doc' | 'Docker' | 'GCP' | 'GKE'.
+4. **WORKSPACE PATH BOUNDARY & DYNAMIC TOPOLOGY CONSTRAINTS:**
+   - **Absolute Workspace Boundary Rule:** The true repository workspace root is permanently fixed at the project root `./`. All file paths generated MUST strictly begin with `./sources/`.
+   - **Dynamic Directory Prefixing Compliance:** You MUST strictly match the file path prefixes to the active system topology mapped in the Global Context. Do NOT generate backend folders for frontend-only projects, and do NOT generate frontend folders for backend-only systems.
+   - For tester Agent: Each component MUST be declared as a strict semi-colon separated pair: `<source file path to verify by test>;<source test file to execute>`. Both paths inside the pair MUST begin with `./sources/`. If no single source file is isolated for Integration/E2E tests, utilize the literal token `INTEGRATION_SCOPE` as the first parameter.
+   - **[CONDITION: JAVA_STACK_ONLY] Java Package Enforcement Rule:** If a file path targets a Java source or test component (.java), you MUST verify that the path contains the directory segment: `/org/nlh4j/sources/<calculated_lowercase_token>/`.
+
+---
+
+Your output MUST follow this exact Markdown layout structure (translate all label tokens but preserve the hidden HTML anchor formatting exactly):
+
+<RULE>
+- **🚨 MASTER GOVERNANCE COMPLIANCE MANDATE**: Before generating your final output response, you MUST strictly re-read and enforce the global translation rules defined in the Master Rules section. Ensure 100% of descriptive texts are rendered in 🇻🇳 Vietnamese while completely freezing all technical paths, tags, and block codes.
+</RULE>
+
+## [Translate "Phase"] 3: <!--PHASE_NAME_START-->[Generate a standard, natural, human-readable descriptive title for this phase. You MUST write this as a normal human sentence or phrase using isolated words separated by real, standard whitespace characters. You are ABSOLUTELY AND CRITICALLY BANNED from combining words together, removing spaces, or utilizing programming styles like PascalCase, camelCase, or snake_case. It must read normally and smoothly just like a human description string. Fully translate and render this title into the target language requested by the parameters: 🇻🇳 Vietnamese. Example: "Core Infrastructure And Authentication Setup"]<!--PHASE_NAME_END-->
+
+#### 📊 Document Control
+
+| [Translate "Item"] | [Translate "Details"] |
+| :--- | :--- |
+| **[Translate "Blueprint ID"]** | ARCH-20260807042343 |
+| **[Translate "Project Name"]** | membership-hub |
+| **[Translate "Phase"]** | 3 |
+| **[Translate "Phase Name"]** | <!--PHASE_NAME_START-->[Generate a standard, natural, human-readable descriptive title for this phase. You MUST write this as a normal human sentence or phrase using isolated words separated by real, standard whitespace characters. You are ABSOLUTELY AND CRITICALLY BANNED from combining words together, removing spaces, or utilizing programming styles like PascalCase, camelCase, or snake_case. It must read normally and smoothly just like a human description string. Fully translate and render this title into the target language requested by the parameters: 🇻🇳 Vietnamese. Example: "Core Infrastructure And Authentication Setup"]<!--PHASE_NAME_END--> |
+| **[Translate "Description"]** | <!--PHASE_DESC_START-->[Granular professional engineering summary description of the absolute operational scope of this specific phase, fully rendered in 🇻🇳 Vietnamese]<!--PHASE_DESC_END--> |
+| **[You MUST translate the literal token "Version" into 🇻🇳 Vietnamese]** | 1.0 (Baseline) |
+| **[You MUST translate the literal token "Date/Time" into 🇻🇳 Vietnamese]** | 2026/08/07 04:23:43 |
+| **[You MUST translate the literal token "Author" into 🇻🇳 Vietnamese]** | Enterprise System Architect (SA Agent) |
+| **[You MUST translate the literal token "Approval" into 🇻🇳 Vietnamese]** | Pending Technical Governance Review |
+
+#### 1. Phase Operational Scope & Objectives
+[Provide a rigorous, detailed architectural summary of what this specific phase must implement based on the distributed requirements allocated for Phase 3]
+
+#### 2. Allowed Technical Scope & Directory Boundaries (Files, paths, and endpoints)
+[List the absolute directory matrices and REST/GraphQL/Event endpoint routing patterns allowed for this phase, matching the detected language and active project stack topology. Every directory matrix path must be bounded under `./sources/`]
+
+#### 3. Dedicated Sub-Agent Functional Directives
+[Delineate the explicit operational constraints and duties for each assigned agent persona in this phase, enforcing strict segregation of technical boundaries as defined below. Human-readable directives, descriptions, and task requirements MUST be contextually translated entirely into 🇻🇳 Vietnamese following the transmission rails]:
+
+*   **Coder**: Acts as a Senior/Principal Application Developer. Responsible for pure application source code implementation across both backend services and frontend/mobile client applications. Banned from writing test suites or infrastructure manifests.
+* **Tester**: Acts as a Lead/Principal QC/QA. Specialized in test suite engineering, validation, and quality gates. Responsible for generating JUnit, integration tests, E2E automation tests, and performance validation scripts. Banned from modifying application production code. If the sub-task target involves an overall integration or end-to-end scope where no single specific code file can be bounded, you MUST strictly output the literal token `INTEGRATION_SCOPE` as the first parameter of the semicolon pair (e.g., `INTEGRATION_SCOPE;./sources/backend/tests/integration/WorkflowTest.java`).
+* **Doc**: Functions as a Principal Technical Writer and Enterprise Systems Architect. Specialized in compiling comprehensive Technical Specification documents, schema references, system blueprints, and enterprise architecture catalogs custom-fitted to the active project topology layers. Every single technical document file generated MUST be listed as an explicit file path entity ending with the `.md` extension and reside strictly within the centralized storage layout: `./sources/docs/`.
+<RULE>
+[CRITICAL_SYSTEM_PIPELINE_RAIL:
+- You are STRICTLY PROHIBITED from omitting, dropping, or filtering out the 'Doc' agent from any computed phase logs.
+- For EVERY calculated phase generated in your output, on Day 1 of that phase, you MUST explicitly allocate a foundational system documentation task to the 'Doc' agent.
+- This task description MUST require the 'Doc' agent to initialize, architect, and map out the complete technical framework manuals, architecture blueprints, data structures, or deployment topologies corresponding to the active stack matrix of that current phase.
+- Failing to write the 'Doc' agent inside Day 1 of any phase triggers a fatal pipeline contract breach.
+]
+</RULE>
+*   **Reviewer**: Responsible for compiler verification, static analysis gating, and defensive patching. Specialized in code quality audits, resolving compilation bugs, fixing OWASP security vulnerabilities, and addressing SonarQube quality gate blockers.
+*   **Docker**: Specialized strictly in containerization, multi-stage Dockerfile engineering, package optimization, and pushing verified application image assets to DockerHub.
+*   **GCP**: Specialized in cloud automation within Google Cloud Platform. Responsible for building and pushing images to Google Cloud Artifact Registry (GCR), and orchestrating container environments natively on Google Cloud Run.
+*   **GKE**: Specialized in production container orchestration inside Google Kubernetes Engine. Responsible for building Kubernetes deployment manifests, routing controls, HPA configurations, Helm charts, and deploying microservices workloads into active GKE clusters.
+
+#### 4. Phase Definition of Done (DoD)
+[Specify the objective quantitative milestones required to pass this phase successfully, ensuring 100% compliance with OWASP enterprise standards, complete functional test coverage for the allocated requirements, and 100% Tag ID mapping check]
+
+#### 5. DAY-BY-DAY ARCHITECTURAL EXECUTION LOGS
+
+## REMINDER: Enforce the 'Longitructural Day Partitioning Guardrail' and 'Anti-Padding Mandate'. Output each active day as an isolated standalone single integer subsection header from DAY 1 up to the dynamic freeze day. Do NOT generate empty padded days.
+
+###### 🌤️ [TRANSLATED DAY] [X]: <!--DAY_HEADER_START-->[CAPITALIZED SHORT OBJECTIVE FOR THIS OPERATIONAL CALENDAR DAY]<!--DAY_HEADER_END-->
+
+######## 📝 [TRANSLATED SUB-TASK] [X.Y]: [Clear, low-level engineering description of the specific sub-task goal, explicitly embedding OWASP compliance rules and comprehensive technical implementation details]
+########## [Translate "Assigned Sub-Agent"]: [Insert exactly ONE unique literal Agent token: Coder | Tester | Reviewer | Doc | Docker | GCP | GKE]
+########## [Translate "Targeted Components & Technical Requirements"]:
+* **[Translate "Target Path"]:** [Insert the explicit, decentralized physical file path target. For Coder/Tester/Reviewer agents, you MUST expand generic directory boundaries into precise enterprise layered structures, forcing valid file-level dot extensions like `.java`, `.ts`, `.sql`, etc. If it is a Java application layer, you MUST enforce the Maven/Gradle full corporate package structural path segment: `/org/nlh4j/saas/<project_name_alphanumeric_lowercase>/[layer_package]/file.java`. For Tester integration scopes without a single source file, output exactly: `INTEGRATION_SCOPE;<relative_test_file_path>`.]
+* **[Translate "Traceability Tag Tokens"]:** <!--START_TAGS-->[REQ-XXX], [DAT-XXX], [EXC-XXX]<!--END_TAGS-->
+
+# System Instruction
+
+<GLOBAL_GOVERNANCE_MATRIX>
+# ==============================================================================
+# MASTER ENTERPRISE GOVERNANCE GUARDRAILS MATRIX (GLOBAL TASK ENFORCEMENT)
+# ==============================================================================
+
+## 🌐 1. STRICT SEMANTIC INVARIANT LOCALIZATION & TRANSLATION RAILS
+- **MANDATORY RESOLUTION:** You MUST automatically translate and naturally render 100% of the entire generated output content—including all section headers, primary titles, data matrix labels, table structures, and explanatory text boundaries—into the exact requested target execution language specified by the system parameter variable: "🇻🇳 Vietnamese".
+- **ABSOLUTE TECH PROTECTION BOUNDARY:** You are STRICTLY BANNED from translating, changing, altering, or breaking any technical structural layers. You MUST preserve these elements natively in their pristine Technical English/Primitive code state:
+    * All markdown syntax layout operators (`#`, `##`, `###`, `|`, `:`, `-`, `*`) and numerical hierarchy indices (e.g., `1.`, `1.1.`) MUST remain unaltered to preserve the document layout integrity.
+    * 🚨 **SUPREME ARCHITECTURE HEADER TRANSLATION MANDATE:** You MUST fully translate into the target language 100% of high-level overview terms, system architecture descriptions, or blueprint documentation titles (even if they are written in full uppercase or encapsulated inside strong markdown bold formatting `**`, such as: `SYSTEM OVERVIEW`, `CORE ARCHITECTURE MODALITY`, `PROJECT CONTEXT`). You are STRICTLY FORBIDDEN from treating these architectural section names as technical identifier strings to bypass translation. The structure `## 🏛️ 1. SYSTEM OVERVIEW` MUST be processed and rendered exactly as `## 🏛️ 1. TỔNG QUAN HỆ THỐNG`.
+    * All unique Tracking Tag IDs and Technical Nodes (e.g., `[REQ-XXX]`, `[DAT-XXX]`, `[EXC-XXX]`, `[IDEA_X]`).
+    * All technical identifier strings, system variables, or dynamic formatting indices (e.g., `D1_ST1`).
+    * All code execution blocks, text wrappers, and specialized chart definition syntaxes (e.g., Mermaid.js graphs, structural layout configurations).
+    * **Static Pass Tag `<NO_TRANSLATION>...</NO_TRANSLATION>`**: Used for static assets. You MUST pass 100% of the internal content literal without any localization, alteration, processing, or computation.
+    * **Dynamic Generation Tag `<DYNAMIC_DATA_ENGLISH_ONLY>...</DYNAMIC_DATA_ENGLISH_ONLY>`**: Used for dynamic instructions or mock templates. You MUST process, evaluate variables, and dynamically compute the generation outputs inside this block. However, 100% of the newly generated text stream resulting from this block MUST be strictly rendered in **Technical English** only, with an absolute ban on translation into the target language. The boundary tags MUST be stripped from the final output stream upon execution.
+    * 🚨 **STRICT CODE BLOCK FORMATTING LAW**: You are ABSOLUTELY FORBIDDEN from nesting or combining markdown code block ticks. When outputting a JSON payload, you MUST start exactly with a single line of triple backticks followed immediately by 'json' (i.e., ```json). Do NOT prepend or wrap it with ```text or any other outer text syntax. The block must open clean and close clean.
+- 🚨 **UNIVERSAL LAYOUT & HEADER LOCALIZATION PARADIGM (FORCED OVERRIDE)**: 
+    * When generating any standardized structural output template, document layout layout, table keys, markdown headers (`#`, `##`, `###`), or static metadata labels defined inside the instruction manuals (including but not limited to: literal tokens like "GLOBAL PROJECT CONTEXT", "Document Control", "Item", "Details", "Blueprint ID", "Project Name", "Version", "Date.Time", "Author", "Approval", "SYSTEM OVERVIEW", "Core System Modality"), you are ABSOLUTELY AND CRITICALLY FORBIDDEN from outputting them in raw English to the user interface.
+    * You MUST treat these literal string titles not as static technical keywords, but as "Dynamic Layout Placeholders". You MUST contextually translate 100% of these structural labels, header titles, and table dictionary columns directly into the designated Target Output Language: "🇻🇳 Vietnamese" before committing them to the final output buffer.
+    * Only the internal technical runtime system variable values passed by the engine backend (e.g., ``, `ARCH-`, ``) MUST be preserved natively in pure Technical English. Any model that emits a structural text title or a table key parameter in raw English triggers an immediate compliance pipeline crash.
+- 🚨 **INLINE ISOLATION & FAULT-TOLERANT CIRCUIT-BREAKER LAW (ANTI-CASCADING FAILURE PROTOCOL):**
+    * You MUST rigorously enforce a compartmentalized, fault-tolerant execution strategy during token parsing. You are STRICTLY PROHIBITED from allowing a syntax anomaly, character malformation, or structural parsing breakdown in one specific scope (e.g., inside a malformed `<COMMAND>` tag or accidental stray backticks) to trigger an attention bleed or cascade into an application-wide rule failure across clean blocks.
+    * If any independent block, custom anchor tag, or operational layout section contains a malformed technical syntax that compromises hidden parsing or pruning, you MUST instantly trigger an isolated Fallback Mechanism: Completely isolate, skip, and drop that exact failing block from your cognitive token constraints, rendering it completely inert as if it were omitted.
+    * You MUST dynamically resume linear execution immediately and continue enforcing 100% of all other active global system guardrails with absolute fidelity (specifically safeguarding the `CRITICAL SQUARE BRACKET DESTRUCTION LAW` for standard AI prompt markers `[...]`, header localization paradigms, and code purity mandates on all other clean blocks). Any failure to compartmentalize errors that leads to secondary rule dropouts triggers a fatal pipeline contract breach.
+- 🚨 **UNIVERSAL DYNAMIC LAYOUT, TABLE HEADER & BOLD LABEL LOCALIZATION LAW (PROJECT-AGNOSTIC PARADIGM):**
+    * **Header Structural Parsing Filter:** Any text string operating as a hierarchical title line—strictly identified when markdown syntax header operators (`#`, `##`, `###`, `####`) are placed at the beginning of the line or immediately following any emoji/symbol decorative characters (e.g., `📈 Phase 1 DETAILED ARCHITECTURAL SPECIFICATION`)—MUST be dynamically parsed. You MUST isolate the structural text payload from the emoji or syntax tokens and fully translate 100% of it into the requested Target Output Language: "🇻🇳 Vietnamese". You are CRITICALLY FORBIDDEN from freezing these layout titles in raw English.
+    * **Table Grid Column Header Filter:** When constructing, replicating, or emitting any markdown table structures (`| Column | Column |`), you MUST comprehensively intercept 100% of the textual column parameter headers located strictly in the very first row (the specific text row residing immediately above the table divider alignment row `| :--- | :--- |`). You MUST execute contextual dynamic translation on each column key parameter before committing the stream to the print buffer.
+    * **Flexible Bold Label Parsing Filter:** Any text string encapsulated within strong markdown bold syntax operating as a list line item indicator at the beginning of a line (strictly identified by the markdown bold syntax layout `- **Keyword**`), MUST be dynamically intercepted. You MUST automatically parse and execute high-fidelity contextual translation on 100% of the plain text residing strictly *inside* the bold boundaries `**...**` into the target language (e.g., `**Phase Core Objective & Purpose**` MUST be processed and rendered exactly as `**Mục tiêu & Mục đích Cốt lõi của Giai đoạn**`; `**Target Physical Directory Matrix Map**` MUST be rendered exactly as `**Bản đồ Ma trận Thư mục Vật lý Đích**`; and `**Database Schema DDL SQL Specification**` MUST be rendered exactly as `**Đặc tả DDL SQL Lược đồ Cơ sở Dữ liệu**`). You MUST rigorously enforce this bold boundaries translation rule regardless of whether the bold token is followed by spaces, code ticks (``` ` ```), square brackets `[...]`, trailing colons `:`, or pipeline delimiters `|` inside or outside the bold markers.
+    * **Core Tech Protection Constraints:** Only the native formatting operators (`#`, `##`, `|`, `:`, `-`, `*`), internal technical system variable values passed by the engine backend (e.g., ``, ``), and literal tracking Tag IDs (e.g., `[REQ-XXX]`) MUST be strictly protected and preserved natively in pure unaccented Technical English. Any model execution that leaks raw layout titles, structural table dictionary headers, or bold line indicators in English triggers an immediate compliance pipeline failure.
+
+## 🔐 2. CODE BLOCK INTEGRITY & CONTENT PURITY MANDATE
+- **ENGLISH ONLY INSIDE CODE BLOCKS:** Every single token, statement, key-value parameter, comment string, configuration variable, structural schema, or database DDL script encapsulated inside any markdown code block (triple backticks block) or data wrapper MUST be compiled strictly and exclusively in **Technical English**.
+- **NO LOCALIZATION ALLOWED:** You are ABSOLUTELY FORBIDDEN from translating, localized altering, or modifying any text string residing inside code boundaries.
+
+## 🛑 3. ZERO-DETERMINISTIC HALLUCINATION & ANTI-GARBAGE DATA FILTERS
+- **STRICT DATA GROUNDING:** You MUST reason and compute data points based exclusively on the literal inputs, source specifications, and structural parameters injected into your workspace context.
+- **CRITICAL HARD LIMIT:** You are STRICTLY BANNED from fabricating ghost assets, inventing nonexistent data columns, assuming prior deployment states, or generating artificial placeholder metrics. If a specialized evaluation block or technology stack requirement is not applicable to the active architectural topology, you MUST explicitly output the token `[NOT APPLICABLE]` combined with a clean corporate justification note and bypass it gracefully.
+
+## 🛡️ 4. HIGHEST-GRADE ENTERPRISE SECURITY & COMPLIANCE PARADIGM
+- **SECURITY GATING BY DESIGN:** Every single functional contract, database layout, data routing flow, or logic routine you design MUST rigorously enforce enterprise-grade security compliance at the highest architecture layer.
+- **OWASP COMPLIANCE OBLIGATION:** You MUST proactively scan and immunize configurations against security threats under OWASP Top 10 standards (specifically enforcing strict tenant isolation boundaries under OWASP A01, prepared statements against SQL injection, dynamic token sanitization, and cryptographic state protections).
+
+## 📋 5. WORKFLOW ATOMICITY, ROLE ISOLATION & OUTPUT STANDARDIZATION
+- **HYPER-FOCUSED PERSONA CAPABILITY:** You MUST permanently maintain an objective, cold, and hyper-analytical mindset, focusing 100% of your computational resources exclusively on the single specialized domain capability and system persona allocated to you in this phase task.
+- **TONE COMPLIANCE:** All generated rationale sentences, justifications, and report outputs MUST utilize an authoritative, precise, and highly professional corporate engineering telegraphy tone (eliminate filler adjectives and passive descriptions).
+- **ABSOLUTE FORMATTING BOUNDARY:** Your total output layout response MUST satisfy and align perfectly 1:1 with the requested execution schema boundaries. You are strictly forbidden from altering headers or injecting conversational prefaces, greetings, system thinking logs, or post-generation text remarks.
+- 🚨 **CRITICAL SQUARE BRACKET DESTRUCTION LAW**: Any text segment enclosed within square brackets `[...]` inside the structural report templates (e.g., `[Provide a comprehensive...]`, `[Detail...]`) MUST be treated strictly as an internal operational directive, NEVER as static text payload. You MUST completely destruct, prune, and delete the square brackets and all text inside them from the output buffer. You MUST dynamically replace that exact position with real-world technical data generated in the target language. Emitting raw or translated square brackets to the user interface triggers a fatal contract breach.
+    * **INFERENCE RULES FOR TECH STACK PLACEHOLDERS:** Specifically for technology stack, library, or library dependency indicators inside square brackets `[...]` (such as in Section 2): If the exact technical version numbers, dependency injection engines, frameworks, or database ORMs are not explicitly detailed in the source BA documentation, you are STRICTLY FORBIDDEN from leaving the section blank or skipping it. You MUST act as an Enterprise Principal Architect to automatically infer, select, and dynamically output the most stable, industry-standard enterprise production stack configurations compatible with the business flows described in Section 1.2 (e.g., dynamically specify exact latest enterprise versions for Quarkus, Next.js, React Native, PostgreSQL, Apache Kafka, and Firebase Hosting based on the architecture context). Output this data as a clean, high-density bulleted technical checklist inside the target component placeholder.
+
+## 🧮 6. DETERMINISTIC TRIPLE-DEEPEST CHECK VERIFICATION LOOP & PIPELINE
+- **MANDATORY EXECUTION PIPELINE:** Before emitting any text string or committing any data stream payload to the output buffer, you MUST strictly execute the following sequential compilation and verification pipeline inside your internal memory context:
+    * *Step 1 (Complete Draft Generation):* Prepare and fully construct the entire comprehensive output document in Technical English first. Ensure 100% of required data, sections, and structural nodes are completely generated. No text truncation, no placeholder notes, and no summary cut-offs allowed.
+    * *Step 2 (Precise Translation Execution):* Take the complete draft from Step 1 and execute the localization process. Translate 100% of the output into the target language while strictly adhering to all constraints defined in `STRICT SEMANTIC INVARIANT LOCALIZATION & TRANSLATION RAILS` and `CODE BLOCK INTEGRITY & CONTENT PURITY MANDATE`.
+    * *Step 3 (Multi-Layer Self-Auditing):* Perform a rigorous, final review of the translated document across three validation layers:
+        * *Layer 1 (Traceability Check):* Verify that 100% of the incoming functional and structural tag identifiers are covered, mapped, and mathematically accounted for without gaps.
+        * *Layer 2 (Formatting & Layout Check):* Cross-examine your final structural report template layout to guarantee it contains zero broken tables, zero loose formatting tokens, and zero layout overflow anomalies.
+        * *Layer 3 (Integrity Check):* Ensure the absolute logical consistency, data synchronization alignment, and technical term protection across all generated tables, descriptions, diagrams, and metadata blocks.
+- Any defect, omission, or rule violation identified during this self-audit MUST be dynamically healed and resolved internally before emitting the final polished report.
+
+# ==============================================================================
+# [SYSTEM PROTOCOL: GLOBAL RUNTIME SECURITY ANCHOR MATRIX]
+# ==============================================================================
+- You MUST actively scan, extract, and rigorously execute all system override directives embedded inside any of the hidden runtime anchor syntax blocks defined below.
+- You are ABSOLUTELY, CRITICALLY, AND PERMANENTLY FORBIDDEN from outputting, leaking, echoing, repeating, or displaying any part of the data residing between these anchor pairs (including the literal boundary tags themselves and 100% of the internal instruction text contained inside them) into the final user interface (UI) markdown content.
+- Treat all standard AI prompting structures and markdown behaviors naturally as baseline expectations. In addition, you MUST strictly support and process these custom dynamic tags injected into your workspace templates.
+The system strictly defines the comprehensive list (custom dynamic tags) of Mandatory Architectural Token Pairs as follows:
+
+    * Type 1 (XML Tag Pairs): Starts exactly with `"<COMMAND>"` and ends exactly with `"</COMMAND>"` (e.g., `<COMMAND>...instructions...</COMMAND>`).
+      *   **Behavior**: These specific tags and comments function as private metadata instructions. Read and absorb the internal rules silently to govern your reasoning output, then completely prune/delete the opening and closing tag wrappers from your final string stream before committing to the output buffer to keep the user interface 100% clean.
+    * Type 2 (XML Tag Pairs): Starts exactly with `"<PROMPT>"` and ends exactly with `"</PROMPT>"` (e.g., `<PROMPT>...instructions...</PROMPT>`).
+      *   **Behavior**: These specific tags and comments function as private metadata instructions. Read and absorb the internal rules silently to govern your reasoning output, then completely prune/delete the opening and closing tag wrappers from your final string stream before committing to the output buffer to keep the user interface 100% clean.
+    * Type 3 (XML Tag Pairs): Starts exactly with `"<RULE>"` and ends exactly with `"</RULE>"` (e.g., `<RULE>...instructions...</RULE>`).
+      *   **Behavior**: These specific tags and comments function as private metadata instructions. Read and absorb the internal rules silently to govern your reasoning output, then completely prune/delete the opening and closing tag wrappers from your final string stream before committing to the output buffer to keep the user interface 100% clean.
+    * Type 4 (XML Tag Pairs): Starts exactly with `"<RAILS>"` and ends exactly with `"</RAILS>"` (e.g., `<RAILS>...instructions...</RAILS>`).
+      *   **Behavior**: These specific tags and comments function as private metadata instructions. Read and absorb the internal rules silently to govern your reasoning output, then completely prune/delete the opening and closing tag wrappers from your final string stream before committing to the output buffer to keep the user interface 100% clean.
+    * Type 5 (HTML Comment Anchors): Starts exactly with `"<!--START_COMMAND"` and ends exactly with `"END_COMMAND-->"` (e.g., `<!--START_COMMAND...instructions...END_COMMAND-->`).
+      *   **Behavior**: These specific tags and comments function as private metadata instructions. Read and absorb the internal rules silently to govern your reasoning output, then completely prune/delete the opening and closing tag wrappers from your final string stream before committing to the output buffer to keep the user interface 100% clean.
+    * Type 6 (HTML Comment Anchors): Starts exactly with `"<!--START_PROMPT"` and ends exactly with `"END_PROMPT-->"` (e.g., `<!--START_PROMPT...instructions...END_PROMPT-->`).
+      *   **Behavior**: These specific tags and comments function as private metadata instructions. Read and absorb the internal rules silently to govern your reasoning output, then completely prune/delete the opening and closing tag wrappers from your final string stream before committing to the output buffer to keep the user interface 100% clean.
+    * Type 7 (HTML Comment Anchors): Starts exactly with `"<!--START_RULE"` and ends exactly with `"END_RULE-->"` (e.g., `<!--START_RULE...instructions...END_RULE-->`).
+      *   **Behavior**: These specific tags and comments function as private metadata instructions. Read and absorb the internal rules silently to govern your reasoning output, then completely prune/delete the opening and closing tag wrappers from your final string stream before committing to the output buffer to keep the user interface 100% clean.
+    * Type 8 (HTML Comment Anchors): Starts exactly with `"<!--START_RAILS"` and ends exactly with `"END_RAILS-->"` (e.g., `<!--START_RAILS...instructions...END_RAILS-->`).
+      *   **Behavior**: These specific tags and comments function as private metadata instructions. Read and absorb the internal rules silently to govern your reasoning output, then completely prune/delete the opening and closing tag wrappers from your final string stream before committing to the output buffer to keep the user interface 100% clean.
+    * Type 9 (XML Tag Pairs): Starts exactly with `"<NO_TRANSLATION>"` and ends exactly with `"</NO_TRANSLATION>"` (e.g., `<NO_TRANSLATION>...instructions...</NO_TRANSLATION>`).
+      *   **Behavior**: When content is wrapped inside this tag pair, freeze the entire cognitive matrix. You MUST emit 100% of the internal content strictly as-is in its pristine Technical English literal state. Do NOT execute any processing, rendering modifications, or localization inside this block.
+    * Type 10 (XML Tag Pairs): Starts exactly with `"<DYNAMIC_DATA_ENGLISH_ONLY>"` and ends exactly with `"</DYNAMIC_DATA_ENGLISH_ONLY>"` (e.g., `<DYNAMIC_DATA_ENGLISH_ONLY>...instructions...</DYNAMIC_DATA_ENGLISH_ONLY>`).
+      *   **Behavior**: When variables (`{{ ... }}`) or code generation instructions are wrapped inside this tag pair, you MUST compute, evaluate, and dynamically generate the required content based on the project context. However, 100% of the newly generated text stream and keys inside this block MUST be strictly rendered in Technical English. Translation is absolutely banned.
+
+- **CRITICAL STRING PRUNING & TANG_HINH LAW (ZERO LEAKAGE GATE):**
+    * These hidden blocks function exclusively as private machine-to-machine backend gating logic. 
+    * You MUST silently ingest 100% of the technical parameters or rules written inside these anchors to govern your internal reasoning matrix and apply its constraints to the surrounding markdown context.
+    * You MUST execute a definitive token-level pruning algorithm: completely wipe out, strip, and delete the entire anchor block wrapper (spanning from the very first character of the opening tag to the absolute final character of the corresponding closing tag) from your output string stream BEFORE committing any data payload to the final emission buffer. 
+    * Any model execution that leaks even a single tag character or hidden command line to the UI user screen triggers an immediate catastrophic runtime pipeline contract breach.
+</GLOBAL_GOVERNANCE_MATRIX>
+
+<ACTIVE_TASK_SYSTEM_INSTRUCTION>
+You are a world-class Principal Solutions Architect. Your specific task is to read the Global Context Markdown blueprint and generate a highly detailed operational context blueprint for one targeted Phase. 
+
+# YOUR CRITICAL OPERATIONAL MANDATES (ZERO LOOPHOLES):
+1. **ANTI-LAZINESS & DIRECT INHERITANCE MANDATE:** You MUST extract and expand every single technical task, DDL SQL schema definition, API contract, and exception flow outlined for the targeted Phase inside the Global Context reference. Converting details into broad summaries or placeholders is permanently banned.
+
+2. **100% PERFECT TAG MATCHING:** Every single Tag ID (`[REQ-XXX]`, `[EXC-XXX]`, `[DAT-XXX]`, `[ARC-XXX]`, `[NFR-XXX]`) present in the Global Context for this specific phase MUST be perfectly preserved and mapped into the daily execution logs.
+
+3. **MANDATORY INLINE TAG INJECTION RULE & HTML ANCHOR LOCKDOWN:** For every single Sub-Task generated under the daily logs, you MUST explicitly output a dedicated structural line item starting exactly with the translated string token for `* Traceability Tag Tokens:` followed by an immutable hidden HTML token container block. You MUST wrap the exact raw comma-separated tag IDs inside the hidden tag container string token layout exactly as: `<!--START_TAGS-->[REQ-XXX], [DAT-XXX]<!--END_TAGS-->`. You are STRICTLY BANNED from translating or altering any token values inside the HTML comment tags. Leaving a task block without this explicit HTML anchor layout is a fatal pipeline failure.
+
+4. **LONGITECTURAL DAY PARTITIONING & ANTI-PADDING GUARDRAIL (ABSOLUTE LOCAL CHRONO RE-INDEX LAW):**
+   - You MUST break down the operational calendar day-by-day using individual sequential integers starting strictly from DAY 1 up to a MAXIMUM of DAY 7.
+   - **ABSOLUTE CHRONO RESET LAW**: You are COMPLETELY BANNED from continuing the sequential day index from any previous phase or global context log timelines. 
+   - The very first day section generated inside this active file MUST natively reset and force-freeze its counter starting exactly from numerical digit 1 (e.g., DAY 1 or NGÀY 1), regardless of the preceding historical context metrics. 
+   - Any model execution that outputs a continuing sequence (like generating "DAY 3" on Phase 2 because Phase 1 ended on Day 2) triggers an immediate pipeline crash.
+   - **STRICT PROGRESSION STOPPING CRITERION:** You MUST freeze the timeline and stop generating daily sections immediately on the exact calendar day where the technical objectives allocated for this phase are satisfied. You are STRICTLY BANNED from injecting dummy placeholder days, fake syncs, empty review blocks, or documentation padding just to expand the calendar. If the technical scope is natively complete on DAY 1, freeze the output file state and exit immediately. Do NOT generate empty or padded days.
+   - You are STRICTLY FORBIDDEN from bundling multiple days together (e.g., NO "DAY 1 - DAY 3"). Every single calendar day log must be explicitly isolated as its own standalone subsection header containing atomic steps for that unique 24-hour cycle.
+   - **CRITICAL ACTUAL CEILING CONSTRAINT**: You are ABSOLUTELY AND CRITICALLY BANNED from blindly generating days up to the generic `7` configuration parameter if the active phase's actual duration defined in Section 4 "HIGH-LEVEL MULTI-PHASE ARCHITECTURAL SYNOPSIS GRID" of the Global Context is shorter.
+   - You MUST cross-reference the active `Phase 3` row inside the Section 4 Synopsis Table, extract the exact runtime duration from the "Day Range" column (e.g., if the table says "Day 1 - 2", the actual ceiling is strictly 2 days), and force-stop your sequential day generation precisely at that calculated local integer ceiling.
+   - Generating a single day beyond the actual duration specified in the Global Context synopsis grid (such as generating Day 3 or Day 5 when the table restricts the phase to Day 1 - 2) constitutes a fatal structural contract violation and will break the backend workflow sequencer.
+
+5. **Language Compliance & Formatting Lockdown:** You MUST generate the entire report strictly in the language specified by the parameters: **🇻🇳 Vietnamese**.
+
+# 🔒 SYSTEM PRODUCTION INTEGRATION AND FORMATTING LOCKDOWN (ABSOLUTE)
+- **Strict Content Purity Constraint:** Your entire output response MUST be a pure, raw executable Markdown text payload written in 🇻🇳 Vietnamese.
+- **Explicit Start Mandate & Technical Name Isolation:** Your output response MUST start exactly with the standardized primary title text pattern, translating descriptive labels into the target language but isolating the technical identifier: `# [Translated text for "Phase"] 3: <!--PHASE_NAME_START-->[Dynamically analyze the allocated tasks and output a standard, natural, human-readable descriptive title string for this phase using isolated words separated by real, standard whitespace characters. You are ABSOLUTELY AND CRITICALLY BANNED from combining words together, removing spaces, or utilizing programming styles like PascalCase, camelCase, or snake_case. It must read normally and smoothly just like a human description string. Fully translate and render this title into the target language requested by the parameters: 🇻🇳 Vietnamese. Example: "Core Infrastructure And Authentication Setup"]<!--PHASE_NAME_END--> | [Translated text for "Description"]: <!--PHASE_DESC_START-->[Provide a granular, professional engineering description summarizing the absolute operational scope of this specific phase, fully rendered in 🇻🇳 Vietnamese]<!--PHASE_DESC_END-->`. Do NOT include greetings, intros, notes, or explanations. Do NOT wrap the entire response inside markdown codeblocks. Any token before or after this exact structure will cause an immediate execution pipeline crash.
+</ACTIVE_TASK_SYSTEM_INSTRUCTION>
+
+# Raw Response / Exception:
+
+## Giai Đoạn 3: <!--PHASE_NAME_START-->Xây dựng quản lý khóa học với xung đột lịch và phân công giáo viên<!--PHASE_NAME_END-->
+
+#### 📊 Document Control
+
+| Mục | Chi tiết |
+| :--- | :--- |
+| **ID Kiến Trúc** | ARCH-20260807042343 |
+| **Tên Dự Án** | membership-hub |
+| **Giai Đoạn** | 3 |
+| **Tên Giai Đoạn** | <!--PHASE_NAME_START-->Xây dựng quản lý khóa học với xung đột lịch và phân công giáo viên<!--PHASE_NAME_END--> |
+| **Mô Tả** | <!--PHASE_DESC_START-->Xây dựng hệ thống quản lý khóa học, bao gồm tạo, cập nhật, xoá khóa học, kiểm tra xung đột lịch với giáo viên, và gán/giải quyền giáo viên cho khóa học. Hệ thống cung cấp API REST để truy xuất danh sách khóa học, tạo mới, cập nhật, và gán giáo viên, đồng thời thực thi kiểm tra xung đột lịch và bảo mật theo OWASP.<!--PHASE_DESC_END--> |
+| **Phiên Bản** | 1.0 (Baseline) |
+| **Ngày/Thời Gian** | 2026/08/07 04:23:43 |
+| **Tác Giả** | Enterprise System Architect (SA Agent) |
+| **Phê Duyệt** | Pending Technical Governance Review |
+
+#### Phạm Vi Hoạt Động & Mục Tiêu Giai Đoạn
+
+Giai đoạn 3 tập trung vào xây dựng toàn bộ chức năng quản lý khóa học, bao gồm:
+- Tạo, cập nhật, xoá khóa học với kiểm tra xung đột lịch và tài nguyên.
+- Gán và giải quyền giáo viên cho khóa học, đồng thời gửi thông báo push và tin nhắn Zalo.
+- Cung cấp API REST `/api/v1/courses` để truy xuất danh sách, tạo mới và gán giáo viên.
+- Đảm bảo tuân thủ các yêu cầu bảo mật OWASP, hiệu năng NFR-001, NFR-003, NFR-004 và đầy đủ mapping tag ID.
+
+#### Phạm Vi Kỹ Thuật & Giới Hạn Đường Dẫn
+
+- Thư mục dịch vụ backend: `./sources/backend/courses/`
+- Thư mục gói Java: `./sources/backend/courses/org/nlh4j/sources/membershiphub/`
+- Điểm cuối REST:
+  - GET `/api/v1/courses`
+  - POST `/api/v1/courses`
+  - PUT `/api/v1/courses/{courseId}/teacher/{teacherId}`
+
+#### Chỉ Định Chức Năng Đối Tượng Được Giao Nhận
+
+- **Coder**: Đóng vai trò là Nhà phát triển ứng dụng cấp cao. Chịu trách nhiệm triển khai mã nguồn cho cả backend và frontend/mobile. Không viết bộ kiểm thử hoặc manifest.
+- **Tester**: Đóng vai trò là QC/QA trưởng. Chuyên về viết bộ kiểm thử, kiểm tra tích hợp, kiểm tra hiệu năng. Không sửa mã nguồn.
+- **Doc**: Đóng vai trò là Nhà viết tài liệu kỹ thuật. Chuyên biên soạn tài liệu kỹ thuật, sơ đồ dữ liệu, bản vẽ kiến trúc.
+- **Reviewer**: Đóng vai trò là Kiểm tra mã, phân tích tĩnh, vá lỗi bảo mật.
+- **Docker**: Đóng vai trò là chuyên gia containerization.
+- **GCP**: Đóng vai trò là chuyên gia tự động hóa GCP.
+- **GKE**: Đóng vai trò là chuyên gia Kubernetes.
+
+#### Định Nghĩa Hoàn Thành Giai Đoạn
+
+- Tất cả các yêu cầu [REQ-007], [REQ-008], [REQ-009] được triển khai và kiểm thử thành công.
+- Đạt 100% coverage kiểm thử cho các module liên quan.
+- Đảm bảo tuân thủ OWASP Top 10 và NFR-001, NFR-003, NFR-004.
+- Kiểm tra toàn bộ mapping tag ID, không có tag chưa được sử dụng.
+
+#### Ngày-đến-Ngày Thực Hiện Kiến Trúc
+
+###### 🌤️ NGÀY 1: <!--DAY_HEADER_START-->XÂY DỰNG CONTROLLER DANH SÁCH KHÓA HỌC<!--DAY_HEADER_END-->
+
+######## 📝 NHIỆM VỤ 1.1: Triển khai CourseController để hiển thị danh sách khóa học (REQ-007) và hỗ trợ CRUD cho System/Center Admin (ARC-003).
+
+########## Được Giao Nhận: Coder
+
+########## Yêu Cầu Thành Phần & Yêu Cầu Kỹ Thuật:
+* **Đường Dẫn Mục Tiêu**: ./sources/backend/courses/org/nlh4j/sources/membershiphub/CourseController.java
+* **Thẻ Định Vị Theo Dõi**: <!--START_TAGS-->[REQ-007], [DAT-004], [ARC-003]<!--END_TAGS-->
+
+######## 📝 NHIỆM VỤ 1.2: Tạo tài liệu kiến trúc cho giai đoạn 3
+
+########## Được Giao Nhận: Doc
+
+########## Yêu Cầu Thành Phần & Yêu Cầu Kỹ Thuật:
+* **Đường Dẫn Mục Tiêu**: ./sources/docs/phase3_architecture_overview.md
+* **Thẻ Định Vị Theo Dõi**: <!--START_TAGS-->[ARC-003], [DAT-004], [NFR-001], [NFR-003], [NFR-004]<!--END_TAGS-->
+
+###### 🌤️ NGÀY 2: <!--DAY_HEADER_START-->XÂY DỰNG LOGIC TẠO/CẬP NHẬT KHÓA HỌC<!--DAY_HEADER_END-->
+
+######## 📝 NHIỆM VỤ 2.1: Triển khai CourseService để tạo, cập nhật khóa học, kiểm tra xung đột lịch với giáo viên (REQ-008).
+
+########## Được Giao Nhận: Coder
+
+########## Yêu Cầu Thành Phần & Yêu Cầu Kỹ Thuật:
+* **Đường Dẫn Mục Tiêu**: ./sources/backend/courses/org/nlh4j/sources/membershiphub/CourseService.java
+* **Thẻ Định Vị Theo Dõi**: <!--START_TAGS-->[REQ-008], [DAT-004], [ARC-003]<!--END_TAGS-->
+
+###### 🌤️ NGÀY 3: <!--DAY_HEADER_START-->XÂY DỰNG GÁN/RÚT GIÁO VIÊN VÀ KHÓA HỌC<!--DAY_HEADER_END-->
+
+######## 📝 NHIỆM VỤ 3.1: Triển khai CourseTeacherService để gán/giải quyền giáo viên cho khóa học (REQ-009).
+
+########## Được Giao Nhận: Coder
+
+########## Yêu Cầu Thành Phần & Yêu Cầu Kỹ Thuật:
+* **Đường Dẫn Mục Tiêu**: ./sources/backend/courses/org/nlh4j/sources/membershiphub/CourseTeacherService.java
+* **Thẻ Định Vị Theo Dõi**: <!--START_TAGS-->[REQ-009], [DAT-004], [ARC-003]<!--END_TAGS-->
+
+# AI Model: openai/gpt-oss-20b:free - Phase 4 - Prompt:
+
+## CONTEXT INHERITANCE PIPELINE
+Project Name: membership-hub
+You are tasked to detail **PHASE 4 OUT OF 5**. You must align perfectly with the established Global Context, satisfy a subset of the Raw Requirements, and maintain strict continuity of physical files generated in previous phases to avoid collision or duplicate creation.
+
+--- GLOBAL CONTEXT REFERENCE ---
+## BỐ CỤC DỰ ÁN TOÀN CẦU: membership-hub
+
+#### 📊 Document Control
+
+| Item | Details |
+| :--- | :--- |
+| **Blueprint ID** | ARCH-20260807024254 |
+| **Project Name** | membership-hub |
+| **Version** | 1.0 (Baseline) |
+| **Date.Time** | 2026/08/07 02:42:54 |
+| **Author** | Enterprise System Architect (SA Agent) |
+| **Approval** | Pending Technical Governance Review |
+
+#### 📊 1. SYSTEM OVERVIEW & CORE ARCHITECTURE MODALITY
+
+###### 1.1 Core System Modality & Architecture Modality
+- Xác định mô hình kiến trúc đa dịch vụ với các thành phần độc lập: người dùng, trung tâm, khóa học, ghi danh, điểm danh, thẻ hội viên, thông báo, khuyến mãi, chatbot AI, giao diện di động.
+- Áp dụng mô hình CQRS cho các hoạt động đọc/ghi, đảm bảo tính nhất quán cho điểm danh và thẻ hội viên.
+- Sử dụng kiến trúc hướng sự kiện với Kafka để đồng bộ hóa dữ liệu giữa các dịch vụ.
+- Triển khai bảo mật theo từng trung tâm với RBAC và phân quyền dựa trên vai trò (ARC-001 đến ARC-005).
+- Tích hợp OAuth2/OIDC với Firebase, Google, Facebook để xác thực (ARC-006).
+- Thiết kế API REST với JWT (15 phút) và refresh token (7 ngày) (ARC-006).
+- Triển khai container hóa Docker với Quarkus và orchestration Kubernetes trên GKE (ARC-010).
+- Tích hợp push notification qua FCM/APNs và tích hợp Zalo API (ARC-008).
+- Triển khai hệ thống giám sát và ghi nhật ký tập trung (NFR-006).
+
+###### 1.2 Enterprise Data Flow Topologies & Core Ecosystems
+- Luồng xác thực: Người dùng đăng nhập qua email/mật khẩu hoặc OAuth2 từ Firebase/Google/Facebook → xác thực → cấp JWT.
+- Luồng điểm danh QR: Ứng dụng di động quét QR → gửi studentId + timestamp → dịch vụ xác thực → ghi điểm danh (ARC-007, EXC-001, EXC-002).
+- Luồng thông báo: Hành động ghi danh/giáo viên/thông báo → tạo bản ghi Notification → đẩy push (FCM/APNs) + gửi tin nhắn Zalo (ARC-008, EXC-003).
+- Luồng tích hợp frontend: Next.js tiêu thụ REST API, caching ngoại tuyến qua IndexedDB (ARC-009).
+- Luồng xử lý sự kiện: Kafka chủ đề `attendance`, `notifications`, `enrollment` để đồng bộ hóa dữ liệu giữa các dịch vụ.
+- Tích hợp cơ sở dữ liệu: PostgreSQL cho dữ liệu quan trọng, Redis cho session caching (ARC-010).
+- Triển khai CI/CD qua GitHub Actions với kiểm tra tự động và triển khai canary (ARC-010).
+- Vòng lặp đa ngôn ngữ: middleware phát hiện locale, chuyển hướng URL, chèn hreflang cho SEO (REQ-022, REQ-023).
+
+#### 📁 2. TECH STACK DEPENDENCIES & ECOSYSTEM LIBRARIES
+
+###### 2.1 Backend Infrastructure Core Stack
+- Java/Quarkus **3.2.0**
+- PostgreSQL **15.4**
+- Docker **24.0.5**
+- Kubernetes (GKE) **1.28**
+- Firebase Authentication SDK **9.22.0**
+- Google Cloud Messaging (FCM) / Apple APNs **latest**
+- Zalo API SDK **2.0.1**
+- Redis **7.2**
+- Maven **3.9.6**
+- Liquibase **4.25.5**
+- JUnit5/Mockito **5.10**
+- OpenTelemetry **1.30.0**
+
+###### 2.2 Frontend & Cross-Platform UI Mobile Stack
+- Next.js **14.x**
+- React Native **0.73.0**
+- Node.js **20.12**
+- TypeScript **5.3**
+- Capacitor **5.5**
+- Tailwind CSS **3.4**
+- Axios **1.6**
+- React Query **5.0**
+- Swift (iOS) / Kotlin (Android) native modules cho FCM/APNs
+
+###### 2.3 ARCHITECTURAL STACK MATRIX
+
+```properties:stack_matrix
+PERSISTENCE_LAYER_REQUIRED=true
+BACKEND_LAYER_REQUIRED=true
+FRONTEND_LAYER_REQUIRED=true
+MOBILE_LAYER_REQUIRED=true
+DEVOPS_LAYER_REQUIRED=true
+```
+
+#### 📁 3. GLOBAL GUARDRAILS & ENTERPRISE COMPLIANCE STANDARDS
+- **Quy tắc biên giới không gian làm việc:** Tất cả các đường dẫn phải bắt đầu với `./sources/`.
+- **Quy tắc tiền tố thư mục động:** tuân thủ Protocol 1.
+- **Quy tắc gói Java:** `org.nlh4j.saas.membershiphub` (membership-hub được chuẩn hóa thành dạng alphanumeric lowercase).
+- **Quy tắc cú pháp mục tiêu kiểm thử:** `<source_component>;<test_suite_file>`.
+
+#### 4. HIGH-LEVEL MULTI-PHASE ARCHITECTURAL SYNOPSIS GRID
+
+| Phase | Day Range | Architectural Component / Module Path | Technical Deliverables Summary | Assigned Sub-Agent | Targeted Tag IDs |
+| :--- | :--- | :--- | :--- | :--- | :--- |
+| Phase 1 | Day 1 - 2 | ./sources/backend/users/ | Xây dựng lõi người dùng, vai trò và xác thực cơ bản (bao gồm đăng ký, OAuth2, JWT và validation đầu vào) | Coder | [ARC-001], [ARC-006], [REQ-001], [REQ-002], [REQ-003], [DAT-001], [EXC-004], [NFR-001], [NFR-003], [NFR-006], [NFR-008] |
+| Phase 2 | Day 1 - 4 | ./sources/backend/centers/ | Triển khai quản lý trung tâm với CRUD, phân quyền và gán Center Admin | Coder | [ARC-002], [REQ-004], [REQ-005], [REQ-006], [DAT-003], [NFR-001], [NFR-003], [NFR-004] |
+| Phase 3 | Day 1 - 3 | ./sources/backend/courses/ | Xây dựng quản lý khóa học với xung đột lịch và phân công giáo viên | Coder | [ARC-003], [REQ-007], [REQ-008], [REQ-009], [DAT-004], [NFR-001], [NFR-003] |
+| Phase 4 | Day 1 - 5 | ./sources/backend/enrollment/ | Triển khai ghi danh học viên, điểm danh QR, thẻ hội viên, thông báo, khuyến mãi, thông báo và cài đặt hệ thống | Coder | [ARC-004], [ARC-005], [REQ-010], [REQ-011], [REQ-012], [REQ-013], [REQ-014], [REQ-015], [REQ-016], [REQ-017], [REQ-018], [DAT-005], [DAT-006], [DAT-007], [DAT-008], [DAT-009], [DAT-011], [EXC-001], [EXC-002], [EXC-003], [EXC-005], [NFR-001], [NFR-003], [NFR-004], [NFR-006] |
+| Phase 5 | Day 1 - 2 | ./sources/frontend/mobile/ | Phát triển giao diện di động, thông báo đẩy, chatbot AI, i18n, SEO, báo cáo và hardening DevOps | Coder | [ARC-007], [ARC-008], [ARC-009], [ARC-010], [REQ-019], [REQ-020], [REQ-021], [REQ-022], [REQ-023], [REQ-024], [REQ-025], [NFR-002], [NFR-005], [NFR-007], [NFR-008], [NFR-009] |
+
+#### 5. GRANULAR PHASE SPECIALIZATIONS & DAY-BY-DAY DELIVERABLES
+
+###### 📈 Phase 1: Xây dựng lõi người dùng, vai trò và xác thực cơ bản (bao gồm đăng ký, OAuth2, JWT và validation đầu vào)
+
+- **Phase Core Objective & Purpose:** Xây dựng lõi người dùng, vai trò và xác thực cơ bản (bao gồm đăng ký, OAuth2, JWT và validation đầu vào).
+- **Target Physical Directory Matrix Map:**
+    *   `./sources/backend/users/UserService.java` [ARC-001], [REQ-001], [DAT-001]
+    *   `./sources/backend/users/AuthController.java` [ARC-006], [REQ-002], [REQ-003], [DAT-001]
+- **Database Schema DDL SQL Specification [DAT-001]:**
+```sql
+CREATE TABLE ROLES (
+    roleId SMALLINT PRIMARY KEY,
+    name VARCHAR(30) NOT NULL UNIQUE,
+    description VARCHAR(200)
+);
+
+CREATE TABLE USERS (
+    userId UUID PRIMARY KEY,
+    email VARCHAR(255) NOT NULL UNIQUE,
+    passwordHash CHAR(60) NOT NULL,
+    fullName VARCHAR(100) NOT NULL,
+    roleId SMALLINT NOT NULL REFERENCES ROLES(roleId),
+    provider ENUM('local','firebase','google','facebook') NOT NULL DEFAULT 'local',
+    createdAt TIMESTAMP NOT NULL DEFAULT NOW(),
+    updatedAt TIMESTAMP NOT NULL DEFAULT NOW()
+);
+```
+- **API and Event Routing Contracts [REQ-001], [REQ-002], [REQ-003], [ARC-006]:**
+```json
+// POST /api/v1/auth/register
+{
+  "email": "user@example.com",
+  "password": "StrongPass123!",
+  "fullName": "Nguyen Van A",
+  "provider": "local"
+}
+```
+```json
+// POST /api/v1/auth/social
+{
+  "provider": "google",
+  "code": "OAuth2_code_from_google",
+  "redirectUri": "https://app.example.com/auth/callback"
+}
+```
+```json
+// PUT /api/v1/users/{userId}/role
+{
+  "roleId": 2
+}
+```
+- **Phase Localized Exception Handlers [EXC-004]:**
+    * Xác thực đầu vào không hợp lệ (ví dụ: email sai định dạng, thiếu trường bắt buộc): Trả về HTTP 400 với danh sách các trường không hợp lệ và hướng dẫn chỉnh sửa.
+
+######## Chronological Day-by-Day Sub-Agent Task Distribution Logs (Phase 1)
+
+- **DAY 1:** Mục tiêu ngắn hạn: Triển khai dịch vụ quản lý người dùng cơ bản.
+    * **Sub-Agent Workflow Specialization:** [Coder]
+    * **Targeted Tag IDs:** [ARC-001], [REQ-001], [DAT-001]
+    * **Target Component file path (`target_component`):** ./sources/backend/users/UserService.java [ARC-001], [REQ-001], [DAT-001]
+    * **Low-Level Technical Task Instruction:** Triển khai lớp UserService để xử lý đăng ký người dùng mới, tạo bản ghi trong bảng Users với vai trò mặc định là Student, tuân thủ REQ-001 và ARC-001.
+
+- **DAY 2:** Mục tiêu ngắn hạn: Xây dựng controller xác thực và tích hợp OAuth2.
+    * **Sub-Agent Workflow Specialization:** [Coder]
+    * **Targeted Tag IDs:** [ARC-006], [REQ-002], [REQ-003], [DAT-001]
+    * **Target Component file path (`target_component`):** ./sources/backend/users/AuthController.java [ARC-006], [REQ-002], [REQ-003], [DAT-001]
+    * **Low-Level Technical Task Instruction:** Xây dựng AuthController để xử lý xác thực OAuth2 từ Firebase/Google/Facebook, trao đổi mã lấy thông tin người dùng, cập nhật vai trò và cấp JWT token (ARC-006), đồng thời hỗ trợ phân quyền người dùng (REQ-003).
+
+###### 📈 Phase 2: Triển khai quản lý trung tâm với CRUD, phân quyền và gán Center Admin
+
+- **Phase Core Objective & Purpose:** Triển khai quản lý trung tâm với CRUD, phân quyền và gán Center Admin.
+- **Target Physical Directory Matrix Map:**
+    *   `./sources/backend/centers/CenterController.java` [ARC-002], [REQ-004], [DAT-003]
+    *   `./sources/backend/centers/CenterService.java` [REQ-005], [DAT-003]
+    *   `./sources/backend/centers/CenterAdminService.java` [REQ-006], [ARC-002], [DAT-003]
+- **Database Schema DDL SQL Specification [DAT-003]:**
+```sql
+CREATE TABLE CENTERS (
+    centerId UUID PRIMARY KEY,
+    name VARCHAR(100) NOT NULL,
+    address VARCHAR(255) NOT NULL,
+    taxId VARCHAR(13) NOT NULL UNIQUE,
+    contactPhone VARCHAR(20),
+    contactEmail VARCHAR(255)
+);
+```
+- **API and Event Routing Contracts [REQ-004], [REQ-005], [REQ-006], [ARC-002]:**
+```json
+// GET /api/v1/centers
+// trả về danh sách trung tâm
+```
+```json
+// POST /api/v1/centers
+{
+  "name": "Hà Nội Center",
+  "address": "123 Đường Láng, Đống Đa, Hà Nội",
+  "taxId": "0123456789",
+  "contactPhone": "+84123456789",
+  "contactEmail": "contact@hnc.com"
+}
+```
+```json
+// PUT /api/v1/centers/{centerId}/admin/{userId}
+```
+- **Phase Localized Exception Handlers:** Không có ngoại lệ chuyên biệt.
+
+######## Chronological Day-by-Day Sub-Agent Task Distribution Logs (Phase 2)
+
+- **DAY 1:** Mục tiêu ngắn hạn: Xây dựng controller danh sách trung tâm.
+    * **Sub-Agent Workflow Specialization:** [Coder]
+    * **Targeted Tag IDs:** [ARC-002], [REQ-004], [DAT-003]
+    * **Target Component file path (`target_component`):** ./sources/backend/centers/CenterController.java [ARC-002], [REQ-004], [DAT-003]
+    * **Low-Level Technical Task Instruction:** Triển khai CenterController để hiển thị danh sách trung tâm (REQ-004) và phục vụ các thao tác CRUD cho System Admin (ARC-002).
+
+- **DAY 2:** Mục tiêu ngắn hạn: Triển khai logic tạo/cập nhật trung tâm.
+    * **Sub-Agent Workflow Specialization:** [Coder]
+    * **Targeted Tag IDs:** [REQ-005], [DAT-003]
+    * **Target Component file path (`target_component`):** ./sources/backend/centers/CenterService.java [REQ-005], [DAT-003]
+    * **Low-Level Technical Task Instruction:** Triển khai logic tạo/cập nhật trung tâm trong CenterService, thực hiện kiểm tra trùng lặp taxId và ghi dữ liệu vào bảng CENTERS (REQ-005).
+
+- **DAY 3:** Mục tiêu ngắn hạn: Triển khai gán/rút quyền Center Admin.
+    * **Sub-Agent Workflow Specialization:** [Coder]
+    * **Targeted Tag IDs:** [REQ-006], [ARC-002], [DAT-003]
+    * **Target Component file path (`target_component`):** ./sources/backend/centers/CenterAdminService.java [REQ-006], [ARC-002], [DAT-003]
+    * **Low-Level Technical Task Instruction:** Triển khai gán/rút quyền Center Admin cho người dùng, cập nhật roleId trong bảng USERS và ghi lại mối quan hệ (REQ-006, ARC-002).
+
+- **DAY 4:** Mục tiêu ngắn hạn: Triển khai manifest GKE cho dịch vụ trung tâm.
+    * **Sub-Agent Workflow Specialization:** [Coder]
+    * **Targeted Tag IDs:** [NFR-001], [NFR-003], [NFR-004]
+    * **Target Component file path (`target_component`):** ./sources/infra/k8s/center-deployment.yaml [NFR-001], [NFR-003], [NFR-004]
+    * **Low-Level Technical Task Instruction:** Tạo manifest triển khai dịch vụ quản lý trung tâm trên GKE với autoscaling dựa trên CPU và request latency (NFR-001, NFR-003, NFR-004).
+
+###### 📈 Phase 3: Xây dựng quản lý khóa học với xung đột lịch và phân công giáo viên
+
+- **Phase Core Objective & Purpose:** Xây dựng quản lý khóa học với xung đột lịch và phân công giáo viên.
+- **Target Physical Directory Matrix Map:**
+    *   `./sources/backend/courses/CourseController.java` [ARC-003], [REQ-007], [DAT-004]
+    *   `./sources/backend/courses/CourseService.java` [REQ-008], [DAT-004]
+    *   `./sources/backend/courses/CourseTeacherService.java` [REQ-009], [ARC-003], [DAT-004]
+- **Database Schema DDL SQL Specification [DAT-004]:**
+```sql
+CREATE TABLE COURSES (
+    courseId UUID PRIMARY KEY,
+    title VARCHAR(150) NOT NULL,
+    description TEXT,
+    startDate DATE NOT NULL,
+    endDate DATE NOT NULL,
+    teacherId UUID NOT NULL REFERENCES USERS(userId),
+    maxStudents INT NOT NULL DEFAULT 30
+);
+```
+- **API and Event Routing Contracts [REQ-007], [REQ-008], [REQ-009], [ARC-003]:**
+```json
+// GET /api/v1/courses
+// trả về danh sách khóa học
+```
+```json
+// POST /api/v1/courses
+{
+  "title": "Lập trình Java nâng cao",
+  "description": "Khóa học về Quarkus và Kubernetes",
+  "startDate": "2026-09-01",
+  "endDate": "2026-12-31",
+  "teacherId": "a1b2c3d4-...",
+  "maxStudents": 20
+}
+```
+```json
+// PUT /api/v1/courses/{courseId}/teacher/{teacherId}
+```
+- **Phase Localized Exception Handlers:** Không có ngoại lệ chuyên biệt.
+
+######## Chronological Day-by-Day Sub-Agent Task Distribution Logs (Phase 3)
+
+- **DAY 1:** Mục tiêu ngắn hạn: Xây dựng controller danh sách khóa học.
+    * **Sub-Agent Workflow Specialization:** [Coder]
+    * **Targeted Tag IDs:** [ARC-003], [REQ-007], [DAT-004]
+    * **Target Component file path (`target_component`):** ./sources/backend/courses/CourseController.java [ARC-003], [REQ-007], [DAT-004]
+    * **Low-Level Technical Task Instruction:** Triển khai CourseController để hiển thị danh sách khóa học (REQ-007) và hỗ trợ CRUD cho System/Center Admin (ARC-003).
+
+- **DAY 2:** Mục tiêu ngắn hạn: Triển khai logic tạo/cập nhật khóa học.
+    * **Sub-Agent Workflow Specialization:** [Coder]
+    * **Targeted Tag IDs:** [REQ-008], [DAT-004]
+    * **Target Component file path (`target_component`):** ./sources/backend/courses/CourseService.java [REQ-008], [DAT-004]
+    * **Low-Level Technical Task Instruction:** Triển khai logic tạo/cập nhật khóa học, kiểm tra xung đột lịch với giáo viên (REQ-008) và ghi dữ liệu vào bảng COURSES (DAT-004).
+
+- **DAY 3:** Mục tiêu ngắn hạn: Triển khai gán/rút giáo viên vào khóa học.
+    * **Sub-Agent Workflow Specialization:** [Coder]
+    * **Targeted Tag IDs:** [REQ-009], [ARC-003], [DAT-004]
+    * **Target Component file path (`target_component`):** ./sources/backend/courses/CourseTeacherService.java [REQ-009], [ARC-003], [DAT-004]
+    * **Low-Level Technical Task Instruction:** Triển khai gán/rút giáo viên vào khóa học, tạo bản ghi mapping và gửi thông báo push (REQ-009, ARC-003).
+
+###### 📈 Phase 4: Triển khai ghi danh học viên, điểm danh QR, thẻ hội viên, thông báo, khuyến mãi, thông báo và cài đặt hệ thống
+
+- **Phase Core Objective & Purpose:** Triển khai ghi danh học viên, điểm danh QR, thẻ hội viên, thông báo, khuyến mãi, thông báo và cài đặt hệ thống.
+- **Target Physical Directory Matrix Map:**
+    *   `./sources/backend/enrollment/EnrollmentController.java` [ARC-004], [REQ-010], [DAT-005]
+    *   `./sources/backend/enrollment/EnrollmentService.java` [REQ-011], [DAT-005], [ARC-005]
+    *   `./sources/backend/attendance/AttendanceService.java` [ARC-007], [REQ-012], [DAT-006], [EXC-001], [EXC-002]
+    *   `./sources/backend/notifications/NotificationService.java` [ARC-008], [REQ-016], [DAT-008], [EXC-003]
+    *   `./sources/backend/membership/MembershipController.java` [REQ-014], [REQ-015], [DAT-007], [DAT-009], [DAT-011], [EXC-005]
+- **Database Schema DDL SQL Specification [DAT-005], [DAT-006], [DAT-007], [DAT-008], [DAT-009], [DAT-011]:**
+```sql
+CREATE TABLE ENROLLMENTS (
+    enrollmentId UUID PRIMARY KEY,
+    studentId UUID NOT NULL REFERENCES USERS(userId),
+    courseId UUID NOT NULL REFERENCES COURSES(courseId),
+    enrollmentDate TIMESTAMP NOT NULL DEFAULT NOW()
+);
+
+CREATE TABLE ATTENDANCE (
+    attendanceId UUID PRIMARY KEY,
+    studentId UUID NOT NULL REFERENCES USERS(userId),
+    courseId UUID NOT NULL REFERENCES COURSES(courseId),
+    attendanceDate DATE NOT NULL,
+    timestamp TIMESTAMP NOT NULL DEFAULT NOW()
+);
+
+CREATE TABLE STUDENTCARDS (
+    cardId UUID PRIMARY KEY,
+    studentId UUID NOT NULL REFERENCES USERS(userId),
+    issueDate DATE NOT NULL,
+    validityDays INT NOT NULL,
+    remainingDays INT NOT NULL
+);
+
+CREATE TABLE NOTIFICATIONS (
+    notificationId UUID PRIMARY KEY,
+    userId UUID REFERENCES USERS(userId),
+    groupZalo VARCHAR(100),
+    message TEXT NOT NULL,
+    sentAt TIMESTAMP NOT NULL DEFAULT NOW(),
+    delivered BOOLEAN NOT NULL DEFAULT FALSE
+);
+
+CREATE TABLE PROMOTIONS (
+    promoId UUID PRIMARY KEY,
+    code VARCHAR(30) NOT NULL UNIQUE,
+    discountPercent SMALLINT NOT NULL,
+    startDate DATE,
+    endDate DATE,
+    description TEXT
+);
+
+CREATE TABLE ANNOUNCEMENTS (
+    announcementId UUID PRIMARY KEY,
+    title VARCHAR(150) NOT NULL,
+    content TEXT NOT NULL,
+    startDate DATE,
+    endDate DATE
+);
+
+CREATE TABLE SYSTEMSETTINGS (
+    settingKey VARCHAR(50) PRIMARY KEY,
+    settingValue TEXT NOT NULL,
+    description TEXT
+);
+```
+- **API and Event Routing Contracts [REQ-010], [REQ-011], [REQ-012], [REQ-013], [REQ-014], [REQ-015], [REQ-016], [REQ-017], [REQ-018], [ARC-004], [ARC-005], [ARC-007], [ARC-008]:**
+```json
+// POST /api/v1/enrollments
+{
+  "studentId": "a1b2c3d4-...",
+  "courseId": "e5f6g7h8-..."
+}
+```
+```json
+// POST /api/v1/attendance/scan
+{
+  "studentId": "a1b2c3d4-...",
+  "courseId": "e5f6g7h8-...",
+  "qrCodeData": "course:e5f6g7h8-...|date:2026-08-07"
+}
+```
+```json
+// GET /api/v1/membership/{studentId}/card
+// trả về thẻ hội viên với daysRemaining
+```
+```json
+// POST /api/v1/notifications
+{
+  "userId": "a1b2c3d4-...",
+  "groupZalo": "hoc_vien_hn",
+  "message": "Bạn đã được ghi danh vào khóa học mới."
+}
+```
+```json
+// POST /api/v1/promotions
+{
+  "code": "SUMMER20",
+  "discountPercent": 20,
+  "startDate": "2026-06-01",
+  "endDate": "2026-08-31",
+  "description": "Giảm giá 20% cho tất cả khóa học."
+}
+```
+```json
+// POST /api/v1/announcements
+{
+  "title": "Thông báo nghỉ lễ",
+  "content": "Trung tâm nghỉ lễ từ 01/09 đến 05/09.",
+  "startDate": "2026-08-31",
+  "endDate": "2026-09-05"
+}
+```
+- **Phase Localized Exception Handlers [EXC-001], [EXC-002], [EXC-003], [EXC-005]:**
+    * **Mất mạng khi quét QR (EXC-001):** Nếu sinh viên quét QR nhưng không có kết nối mạng, khi kết nối được khôi phục, ứng dụng sẽ tự động gửi lại yêu cầu điểm danh; dịch vụ sẽ đảm bảo chỉ ghi một bản ghi điểm danh duy nhất.
+    * **Điểm danh trùng lặp (EXC-002):** Nếu cùng một sinh viên quét cùng một QR nhiều lần trong ngày, hệ thống sẽ phát hiện duplicate, trả về success với cờ ‘alreadyRecorded’ và không tạo thêm hàng.
+    * **Giao hàng thông báo thất bại (EXC-003):** Nếu push notification không thể gửi (ví dụ: token thiết bị không hợp lệ), hệ thống ghi log lỗi, lên lịch thử lại tối đa 3 lần, sau đó đánh dấu là thất bại.
+    * **Khôi phục hệ thống sau sự cố (EXC-005):** Nếu dịch vụ không khả dụng, khi khôi phục, các lần quét điểm danh chờ xử lý được xử lý theo thứ tự FIFO, và người dùng nhận được thông báo về các sự kiện đã khôi phục.
+
+######## Chronological Day-by-Day Sub-Agent Task Distribution Logs (Phase 4)
+
+- **DAY 1:** Mục tiêu ngắn hạn: Xây dựng controller ghi danh khóa học.
+    * **Sub-Agent Workflow Specialization:** [Coder]
+    * **Targeted Tag IDs:** [ARC-004], [REQ-010], [DAT-005]
+    * **Target Component file path (`target_component`):** ./sources/backend/enrollment/EnrollmentController.java [ARC-004], [REQ-010], [DAT-005]
+    * **Low-Level Technical Task Instruction:** Triển khai EnrollmentController để duyệt khóa học và xử lý đăng ký (REQ-010, ARC-004), tự động tạo tài khoản Student nếu thiếu.
+
+- **DAY 2:** Mục tiêu ngắn hạn: Triển khai logic đăng ký khóa học.
+    * **Sub-Agent Workflow Specialization:** [Coder]
+    * **Targeted Tag IDs:** [REQ-011], [DAT-005], [ARC-005]
+    * **Target Component file path (`target_component`):** ./sources/backend/enrollment/EnrollmentService.java [REQ-011], [DAT-005], [ARC-005]
+    * **Low-Level Technical Task Instruction:** Triển khai logic đăng ký khóa học, ghi bản ghi ENROLLMENTS, cập nhật vai trò người dùng (REQ-011) và gửi thông báo đến mobile app và Zalo group (ARC-005).
+
+- **DAY 3:** Mục tiêu ngắn hạn: Triển khai dịch vụ điểm danh QR.
+    * **Sub-Agent Workflow Specialization:** [Coder]
+    * **Targeted Tag IDs:** [ARC-007], [REQ-012], [DAT-006], [EXC-001], [EXC-002]
+    * **Target Component file path (`target_component`):** ./sources/backend/attendance/AttendanceService.java [ARC-007], [REQ-012], [DAT-006], [EXC-001], [EXC-002]
+    * **Low-Level Technical Task Instruction:** Triển khai dịch vụ điểm danh QR, ghi nhận timestamp, đảm bảo bất biến cho cùng studentId/courseId/ngày (REQ-012, ARC-007), xử lý ngoại lệ mất mạng (EXC-001) và phát hiện duplicate (EXC-002).
+
+- **DAY 4:** Mục tiêu ngắn hạn: Triển khai dịch vụ thông báo.
+    * **Sub-Agent Workflow Specialization:** [Coder]
+    * **Targeted Tag IDs:** [ARC-008], [REQ-016], [DAT-008], [EXC-003]
+    * **Target Component file path (`target_component`):** ./sources/backend/notifications/NotificationService.java [ARC-008], [REQ-016], [DAT-008], [EXC-003]
+    * **Low-Level Technical Task Instruction:** Triển khai NotificationService để tạo bản ghi NOTIFICATIONS, đẩy push qua FCM/APNs và gửi tin nhắn Zalo (REQ-016, ARC-008), xử lý ngoại lệ giao hàng thất bại (EXC-003).
+
+- **DAY 5:** Mục tiêu ngắn hạn: Triển khai controller thẻ hội viên, khuyến mãi, thông báo và cài đặt hệ thống.
+    * **Sub-Agent Workflow Specialization:** [Coder]
+    * **Targeted Tag IDs:** [REQ-014], [REQ-15], [DAT-007], [DAT-009], [DAT-011], [EXC-005]
+    * **Target Component file path (`target_component`):** ./sources/backend/membership/MembershipController.java [REQ-014], [REQ-015], [DAT-007], [DAT-009], [DAT-011], [EXC-005]
+    * **Low-Level Technical Task Instruction:** Triển khai MembershipController để hiển thị thẻ hội viên (REQ-014) và xử lý gia hạn thẻ (REQ-015), cập nhật STUDENTCARDS, PROMOTIONS, ANNOUNCEMENTS, SYSTEMSETTINGS (DAT-007, DAT-009, DAT-011), xử lý khôi phục hệ thống sau sự cố (EXC-005).
+
+###### 📈 Phase 5: Phát triển giao diện di động, thông báo đẩy, chatbot AI, i18n, SEO, báo cáo và hardening DevOps
+
+- **Phase Core Objective & Purpose:** Phát triển giao diện di động, thông báo đẩy, chatbot AI, i18n, SEO, báo cáo và hardening DevOps.
+- **Target Physical Directory Matrix Map:**
+    *   `./sources/frontend/mobile/App.js` [ARC-009], [REQ-019], [REQ-020], [NFR-002], [NFR-005]
+    *   `./sources/docs/reporting-and-seo.md` [ARC-010], [REQ-022], [REQ-023], [REQ-024], [REQ-025], [NFR-007], [NFR-008], [NFR-009]
+- **Database Schema DDL SQL Specification:** Không có bảng dữ liệu mới trong giai đoạn này.
+- **API and Event Routing Contracts [REQ-019], [REQ-020], [REQ-021], [REQ-022], [REQ-023], [REQ-024], [REQ-025], [ARC-009], [ARC-010]:**
+```json
+// GET /api/v1/mobile/user/{userId}/profile
+// trả về thông tin người dùng cho ứng dụng di động
+```
+```json
+// POST /api/v1/mobile/tokens
+{
+  "userId": "a1b2c3d4-...",
+  "token": "FCM_token_here"
+}
+```
+```json
+// POST /api/v1/chatbot/query
+{
+  "userId": "a1b2c3d4-...",
+  "question": "Khóa học Java có vào thứ 3 không?"
+}
+```
+```json
+// GET /api/v1/reports/attendance?centerId=...&date=...
+```
+- **Phase Localized Exception Handlers:** Không có ngoại lệ chuyên biệt.
+
+######## Chronological Day-by-Day Sub-Agent Task Distribution Logs (Phase 5)
+
+- **DAY 1:** Mục tiêu ngắn hạn: Xây dựng lõi ứng dụng di động.
+    * **Sub-Agent Workflow Specialization:** [Coder]
+    * **Targeted Tag IDs:** [ARC-009], [REQ-019], [REQ-020], [NFR-002], [NFR-005]
+    * **Target Component file path (`target_component`):** ./sources/frontend/mobile/App.js [ARC-009], [REQ-019], [REQ-020], [NFR-002], [NFR-005]
+    * **Low-Level Technical Task Instruction:** Triển khai lõi ứng dụng di động hybrid với điều hướng vai trò, tích hợp Firebase Auth và xử lý push notification (REQ-020, ARC-009), đảm bảo kích thước image <500MB (NFR-005) và mục tiêu uptime 99.9% (NFR-002).
+
+- **DAY 2:** Mục tiêu ngắn hạn: Tạo tài liệu báo cáo và SEO.
+    * **Sub-Agent Workflow Specialization:** [Coder]
+    * **Targeted Tag IDs:** [ARC-010], [REQ-022], [REQ-023], [REQ-024], [REQ-025], [NFR-007], [NFR-008], [NFR-009]
+    * **Target Component file path (`target_component`):** ./sources/docs/reporting-and-seo.md [ARC-010], [REQ-022], [REQ-023], [REQ-024], [REQ-025], [NFR-007], [NFR-008], [NFR-009]
+    * **Low-Level Technical Task Instruction:** Tạo tài liệu báo cáo và SEO, bao gồm hướng dẫn tạo báo cáo điểm danh CSV (REQ-024), chèn meta tags đa ngôn ngữ và hreflang (REQ-022, REQ-023), thực hiện tuân thủ GDPR/CCPA (NFR-008) và sao lưu PostgreSQL (NFR-009), đồng thời ghi lại quy trình triển khai Docker và GKE (ARC-010).
+
+#### 📁 6. UNIVERSAL ENTERPRISE SECURITY CODES & INJECTION COUNTERMEASURES [NFR-001] [NFR-003] [NFR-004] [NFR-005] [NFR-006] [NFR-007] [NFR-008] [NFR-009]
+
+- **SQL Injection (SQLi) Absolute Countermeasures:** Sử dụng PreparedStatement/ParameterizedQuery, whitelist cho các cột sắp xếp, kiểm tra kiểu dữ liệu đầu vào.
+- **Cross-Site Scripting (XSS) & Content Security Policy (CSP):** Tự động thoát HTML trong JSX, thiết lập header CSP (`default-src 'self'; script-src 'self' 'unsafe-inline'` bị cấm, sử dụng nonce cho scripts cần thiết).
+- **Multi-Tenant CORS Security Rails:** whitelist các origin dựa trên cấu hình trung tâm, từ chối wildcard `null` hoặc `*`, xác thực origin qua JWT tenantId.
+- **Zero-Leak Log Scrubbing & PII Data Masking Engines:** Sử dụng `@JsonSerialize` với `SensitiveDataMasker`, xóa trường hợp đặc biệt trước khi ghi log, giới hạn độ dài log theo yêu cầu GDPR.
+- **Docker Image Size Enforcement:** Giới hạn kích thước image <500MB, sử dụng multi-stage build, loại bỏ các gói không cần thiết.
+- **Multi-Language Support:** Externalize chuỗi UI qua `i18n` (JSON), middleware phát hiện locale, tự động chèn hreflang, fallback sang Accept-Language header.
+- **GDPR/CCPA Compliance:** Thêm API xóa dữ liệu `/api/v1/users/{id}/delete`, cung cấp export JSON `/api/v1/users/{id}/export`, quản lý consent cho marketing.
+- **Backup & Disaster Recovery:** Sao lưu PostgreSQL đầy đủ hàng ngày, point-in-time recovery 24 giờ, cluster backup GKE sang region khác, kiểm tra khôi phục hàng tuần.
+
+#### 📁 7. HYBRID MOBILE COMPLIANCE RAIL RULES & INTERNATIONALIZED SEO MECHANISMS
+
+- **Capacitor Mobile Hybrid Compliance Rails:** Sử dụng `@capacitor/preferences` cho storage an toàn, chặn back-button gốc, fetch với timeout và retry, xác thực URL tuyệt đối, ngăn chặn XSS trong WebView.
+- **Internationalization (i18n) & Dynamic SEO Injection:** Middleware phát hiện locale (`Accept-Language`, cookie), chuyển hướng URL có dấu `/vi/` `/en/`, chèn thẻ `<html lang='vi'>`, tạo thẻ `<link rel="canonical" href="...">`, tự động tạo sitemap XML với hreflang, chặn bot quét theo robots.txt.
+
+#### 📁 8. PIPELINE AUTOMATED DAILY SESSION GIT BRANCH FLOW
+
+- **Daily Workspace Forking Isolation:** Tạo branch `features/development-phase-1-day-1`, `features/development-phase-1-day-2`, ... cho từng ngày, mỗi branch là không gian làm việc riêng biệt.
+- **Validation Guard Pipeline Gates:** Thực hiện `mvn clean verify` hoặc `npm run test` trước khi merge, đảm bảo độ phủ mã >=85%, kiểm tra chất lượng code qua SonarQube, tự động tạo PR với checklist tuân thủ.
+
+###### 🛑 MATRIX COVERAGE CHECK MANDATE
+
+`[TRACEABILITY MATRIX ENFORCEMENT: 100% COVERAGE VALIDATED. TOTAL UNIQUE REQ TAGS MAPPED: 25, TOTAL ARC TAGS: 10, TOTAL EXC TAGS: 5, TOTAL DAT TAGS: 9, TOTAL NFR TAGS: 9. ZERO UNASSIGNED CODES FOUND.]`
+
+--- PREVIOUS EXECUTION STATE REFERENCE (DIAGNOSTIC PATHS) ---
+
+## Giai Đoạn 3: <!--PHASE_NAME_START-->Xây dựng quản lý khóa học với xung đột lịch và phân công giáo viên<!--PHASE_NAME_END-->
+
+#### 📊 Document Control
+
+| Mục | Chi tiết |
+| :--- | :--- |
+| **ID Kiến Trúc** | ARCH-20260807042343 |
+| **Tên Dự Án** | membership-hub |
+| **Giai Đoạn** | 3 |
+| **Tên Giai Đoạn** | <!--PHASE_NAME_START-->Xây dựng quản lý khóa học với xung đột lịch và phân công giáo viên<!--PHASE_NAME_END--> |
+| **Mô Tả** | <!--PHASE_DESC_START-->Xây dựng hệ thống quản lý khóa học, bao gồm tạo, cập nhật, xoá khóa học, kiểm tra xung đột lịch với giáo viên, và gán/giải quyền giáo viên cho khóa học. Hệ thống cung cấp API REST để truy xuất danh sách khóa học, tạo mới, cập nhật, và gán giáo viên, đồng thời thực thi kiểm tra xung đột lịch và bảo mật theo OWASP.<!--PHASE_DESC_END--> |
+| **Phiên Bản** | 1.0 (Baseline) |
+| **Ngày/Thời Gian** | 2026/08/07 04:23:43 |
+| **Tác Giả** | Enterprise System Architect (SA Agent) |
+| **Phê Duyệt** | Pending Technical Governance Review |
+
+#### Phạm Vi Hoạt Động & Mục Tiêu Giai Đoạn
+
+Giai đoạn 3 tập trung vào xây dựng toàn bộ chức năng quản lý khóa học, bao gồm:
+- Tạo, cập nhật, xoá khóa học với kiểm tra xung đột lịch và tài nguyên.
+- Gán và giải quyền giáo viên cho khóa học, đồng thời gửi thông báo push và tin nhắn Zalo.
+- Cung cấp API REST `/api/v1/courses` để truy xuất danh sách, tạo mới và gán giáo viên.
+- Đảm bảo tuân thủ các yêu cầu bảo mật OWASP, hiệu năng NFR-001, NFR-003, NFR-004 và đầy đủ mapping tag ID.
+
+#### Phạm Vi Kỹ Thuật & Giới Hạn Đường Dẫn
+
+- Thư mục dịch vụ backend: `./sources/backend/courses/`
+- Thư mục gói Java: `./sources/backend/courses/org/nlh4j/sources/membershiphub/`
+- Điểm cuối REST:
+  - GET `/api/v1/courses`
+  - POST `/api/v1/courses`
+  - PUT `/api/v1/courses/{courseId}/teacher/{teacherId}`
+
+#### Chỉ Định Chức Năng Đối Tượng Được Giao Nhận
+
+- **Coder**: Đóng vai trò là Nhà phát triển ứng dụng cấp cao. Chịu trách nhiệm triển khai mã nguồn cho cả backend và frontend/mobile. Không viết bộ kiểm thử hoặc manifest.
+- **Tester**: Đóng vai trò là QC/QA trưởng. Chuyên về viết bộ kiểm thử, kiểm tra tích hợp, kiểm tra hiệu năng. Không sửa mã nguồn.
+- **Doc**: Đóng vai trò là Nhà viết tài liệu kỹ thuật. Chuyên biên soạn tài liệu kỹ thuật, sơ đồ dữ liệu, bản vẽ kiến trúc.
+- **Reviewer**: Đóng vai trò là Kiểm tra mã, phân tích tĩnh, vá lỗi bảo mật.
+- **Docker**: Đóng vai trò là chuyên gia containerization.
+- **GCP**: Đóng vai trò là chuyên gia tự động hóa GCP.
+- **GKE**: Đóng vai trò là chuyên gia Kubernetes.
+
+#### Định Nghĩa Hoàn Thành Giai Đoạn
+
+- Tất cả các yêu cầu [REQ-007], [REQ-008], [REQ-009] được triển khai và kiểm thử thành công.
+- Đạt 100% coverage kiểm thử cho các module liên quan.
+- Đảm bảo tuân thủ OWASP Top 10 và NFR-001, NFR-003, NFR-004.
+- Kiểm tra toàn bộ mapping tag ID, không có tag chưa được sử dụng.
+
+#### Ngày-đến-Ngày Thực Hiện Kiến Trúc
+
+###### 🌤️ NGÀY 1: <!--DAY_HEADER_START-->XÂY DỰNG CONTROLLER DANH SÁCH KHÓA HỌC<!--DAY_HEADER_END-->
+
+######## 📝 NHIỆM VỤ 1.1: Triển khai CourseController để hiển thị danh sách khóa học (REQ-007) và hỗ trợ CRUD cho System/Center Admin (ARC-003).
+
+########## Được Giao Nhận: Coder
+
+########## Yêu Cầu Thành Phần & Yêu Cầu Kỹ Thuật:
+* **Đường Dẫn Mục Tiêu**: ./sources/backend/courses/org/nlh4j/sources/membershiphub/CourseController.java
+* **Thẻ Định Vị Theo Dõi**: <!--START_TAGS-->[REQ-007], [DAT-004], [ARC-003]<!--END_TAGS-->
+
+######## 📝 NHIỆM VỤ 1.2: Tạo tài liệu kiến trúc cho giai đoạn 3
+
+########## Được Giao Nhận: Doc
+
+########## Yêu Cầu Thành Phần & Yêu Cầu Kỹ Thuật:
+* **Đường Dẫn Mục Tiêu**: ./sources/docs/phase3_architecture_overview.md
+* **Thẻ Định Vị Theo Dõi**: <!--START_TAGS-->[ARC-003], [DAT-004], [NFR-001], [NFR-003], [NFR-004]<!--END_TAGS-->
+
+###### 🌤️ NGÀY 2: <!--DAY_HEADER_START-->XÂY DỰNG LOGIC TẠO/CẬP NHẬT KHÓA HỌC<!--DAY_HEADER_END-->
+
+######## 📝 NHIỆM VỤ 2.1: Triển khai CourseService để tạo, cập nhật khóa học, kiểm tra xung đột lịch với giáo viên (REQ-008).
+
+########## Được Giao Nhận: Coder
+
+########## Yêu Cầu Thành Phần & Yêu Cầu Kỹ Thuật:
+* **Đường Dẫn Mục Tiêu**: ./sources/backend/courses/org/nlh4j/sources/membershiphub/CourseService.java
+* **Thẻ Định Vị Theo Dõi**: <!--START_TAGS-->[REQ-008], [DAT-004], [ARC-003]<!--END_TAGS-->
+
+###### 🌤️ NGÀY 3: <!--DAY_HEADER_START-->XÂY DỰNG GÁN/RÚT GIÁO VIÊN VÀ KHÓA HỌC<!--DAY_HEADER_END-->
+
+######## 📝 NHIỆM VỤ 3.1: Triển khai CourseTeacherService để gán/giải quyền giáo viên cho khóa học (REQ-009).
+
+########## Được Giao Nhận: Coder
+
+########## Yêu Cầu Thành Phần & Yêu Cầu Kỹ Thuật:
+* **Đường Dẫn Mục Tiêu**: ./sources/backend/courses/org/nlh4j/sources/membershiphub/CourseTeacherService.java
+* **Thẻ Định Vị Theo Dõi**: <!--START_TAGS-->[REQ-009], [DAT-004], [ARC-003]<!--END_TAGS-->
+
+
+--- RAW REQUIREMENTS REFERENCE ---
+## SOFTWARE REQUIREMENTS SPECIFICATION: membership-hub
+#### 1. TỔNG QUAN DỰ ÁN & KIẾN TRÚC TOÀN CẦU
+
+###### Mục tiêu & giá trị cốt lõi
+- Cung cấp nền tảng thống nhất để quản lý hội viên đa trung tâm.
+- Cho phép theo dõi điểm danh thời gian thực qua quét mã QR.
+- Cung cấp thẻ hội viên kỹ thuật số với tính năng đếm ngày hiệu lực.
+- Hỗ trợ giao tiếp đa kênh (web, di động, nhóm Zalo).
+- Giá trị cốt lõi: độ tin cậy, khả năng mở rộng, bảo mật, tính thân thiện với người dùng, hỗ trợ đa ngôn ngữ.
+
+###### Đối tượng người dùng mục tiêu
+- System Admin (siêu người dùng toàn cầu)
+- Center Admin (quản lý cấp trung tâm)
+- Manager (phó quản trị, quyền hạn giới hạn)
+- Teacher (xem chỉ đọc lịch dạy)
+- Student (duyệt khóa học, đăng ký, xem thẻ hội viên)
+- Mobile App User (giao diện đáp ứng cho các vai trò trên)
+
+###### Ma trận kiểm soát truy cập dựa trên vai trò (RBAC)
+- [ARC-001] System Admin: toàn quyền trên tất cả các trung tâm.
+- [ARC-002] Center Admin: toàn quyền trong trung tâm của mình, không ảnh hưởng đến các trung tâm khác.
+- [ARC-003] Manager: có thể tạo thông báo, quản lý học viên, gán học viên hiện có vào khóa học, xem danh sách khóa học, không thể chỉnh sửa khóa học hoặc chỉ định giáo viên.
+- [ARC-004] Teacher: xem khóa học của mình, danh sách học viên, lịch dạy; chỉ đọc.
+- [ARC-005] Student: duyệt khóa học, đăng ký khóa học mới, xem thẻ hội viên (ngày còn lại), gia hạn ngày thẻ.
+
+###### Kiến trúc & luồng dữ liệu (các luồng chính)
+- [ARC-006] Luồng xác thực: hỗ trợ email/mật khẩu, Firebase, Google, Facebook qua OAuth2; cấp JWT token với thời hạn 15 phút và refresh token.
+- [ARC-007] Luồng xử lý điểm danh QR: ứng dụng di động quét QR, gửi student ID và timestamp đến backend; dịch vụ xác thực và ghi lại điểm danh một cách idempotent.
+- [ARC-008] Luồng gửi thông báo: hệ thống kích hoạt push notification đến ứng dụng di động và đăng bài lên nhóm Zalo được chỉ định cho thông báo, phân công khóa học, và cảnh báo điểm danh.
+- [ARC-009] Luồng tích hợp backend ứng dụng di động: Frontend Next.js tiêu thụ REST APIs; xác thực qua bearer tokens; hỗ trợ caching ngoại tuyến cho trường hợp mất kết nối mạng.
+
+###### Công nghệ & hạ tầng
+- [ARC-010] Công nghệ & hạ tầng: Backend sử dụng Java/Quarkus, cơ sở dữ liệu PostgreSQL, container hóa Docker, triển khai trên Kubernetes (GKE), sử dụng Firebase Authentication, Google Cloud Messaging (FCM)/Apple APNs cho push notification, Zalo API integration, Redis cho session caching, CI/CD pipeline với GitHub Actions.
+
+#### 2. CÁC MODULE CHỨC NĂNG NÂNG CAO
+
+###### 2.1 Quản lý người dùng
+
+######## Yêu cầu chức năng cốt lõi
+- [REQ-001] Đăng ký người dùng: As a prospective user, I want to register using email and password (or social providers) so that I can obtain an account in the system.
+- [REQ-002] Xác thực qua mạng xã hội: As a user, I want to sign‑in/up using Firebase, Google, or Facebook OAuth so that I can leverage existing credentials.
+- [REQ-003] Phân quyền người dùng: As an administrator, I want to assign or change a user’s role (System Admin, Center Admin, Manager, Teacher, Student) so that permissions are correctly enforced.
+
+######## Tiêu chí chấp nhận & tương tác
+- Given a user provides a unique email, a strong password, and agrees to terms, When they submit the registration form, Then the system validates the input, creates a new user record with role ‘Student’ (or ‘Teacher’ if invited), and returns a success response with a JWT token. `[REQ-001]`
+- Given a user selects a social provider, When they authenticate through the provider’s popup, Then the system receives an OAuth2 code, exchanges it for user info, creates or updates the local user record, and issues a JWT token. `[REQ-002]`
+- Given an admin selects a user and a new role, When the assignment is confirmed, Then the user’s role column is updated, and appropriate permissions are applied immediately. `[REQ-003]`
+
+######## Luồng ngoại lệ của mô-đun
+- [EXC-004] Xác thực đầu vào không hợp lệ (ví dụ: email không đúng định dạng, thiếu trường bắt buộc): Nếu xác thực thất bại trên form submission, Khi lỗi được trả về cho người dùng, Sau đó một thông báo rõ ràng liệt kê từng trường không hợp lệ và yêu cầu chỉnh sửa.
+
+######## Từ điển dữ liệu cục bộ của mô-đun
+- [DAT-001] Bảng người dùng & vai trò
+
+  **Users**
+  ```mermaid
+  erDiagram
+      USERS {
+          uuid userId PK "Unique identifier"
+          varchar email "Email address, not null, unique, max 255 chars"
+          char passwordHash "bcrypt hash, not null, length 60"
+          varchar fullName "Full name, not null, max 100 chars"
+          smallint roleId FK "Foreign key to Roles.roleId"
+          enum provider "Auth provider, default local, values: local, firebase, google, facebook"
+          timestamp createdAt "Timestamp of creation, not null, default now()"
+          timestamp updatedAt "Timestamp of last update, not null, default now()"
+      }
+      ROLES {
+          smallint roleId PK "Role identifier, primary key"
+          varchar name "Role name, unique, not null, max 30 chars"
+          varchar description "Role description, optional, max 200 chars"
+      }
+      ROLES ||--o{ USERS : "roleId"
+  ```
+  **Roles**
+  ```mermaid
+  erDiagram
+      ROLES {
+          smallint roleId PK "Role identifier, primary key"
+          varchar name "Role name, unique, not null, max 30 chars"
+          varchar description "Role description, optional, max 200 chars"
+      }
+  ```
+###### 2.2 Quản lý trung tâm
+
+######## Yêu cầu chức năng cốt lõi
+- [REQ-004] Xem danh sách trung tâm: As any authenticated user, I want to see a list of all centers with address, tax ID, and admin contact so that I can identify relevant centers.
+- [REQ-005] Tạo/cập nhật/xóa trung tâm: As a System Admin, I want to add, edit, or remove a center record so that center information stays current.
+- [REQ-006] Phân quyền quản trị trung tâm: As a System Admin, I want to assign or unassign a user as a Center Admin for a specific center so that administrative control is delegated.
+
+######## Tiêu chí chấp nhận & tương tác
+- Given a user navigates to the Centers page, When the request completes, Then a table of centers (Name, Address, TaxID, AdminContact) is displayed. `[REQ-004]`
+- Given a System Admin provides center name, address, tax ID, primary contact phone and email, When the save action is executed, Then the center is persisted and appears in the list; if duplicate tax ID exists, the operation fails with a conflict error. `[REQ-005]`
+- Given a System Admin selects a user and a center, When the assign action is confirmed, Then the user’s role is set to ‘Center Admin’ and the center ID is recorded; unassign reverses the operation. `[REQ-006]`
+
+######## Luồng ngoại lệ của mô-đun
+- (Không có luồng ngoại lệ chuyên biệt được xác định cho mô-đun này.)
+
+######## Từ điển dữ liệu cục bộ của mô-đun
+- [DAT-003] Bảng trung tâm
+
+  **Centers**
+  ```mermaid
+  erDiagram
+      CENTERS {
+          uuid centerId PK "Unique identifier"
+          varchar name "Center name, not null, max 100 chars"
+          varchar address "Physical address, not null, max 255 chars"
+          varchar taxId "Tax identification number, unique, not null, numeric 10‑13 digits"
+          varchar contactPhone "Contact telephone, optional, may include +, digits, spaces, hyphens, parentheses"
+          varchar contactEmail "Contact email, optional, must be valid email format"
+      }
+  ```
+###### 2.3 Quản lý khóa học
+
+######## Yêu cầu chức năng cốt lõi
+- [REQ-007] Xem danh sách khóa học: As any authenticated user, I want to see all courses with schedule and assigned teacher so that I can browse offerings.
+- [REQ-008] Tạo/cập nhật/xóa khóa học (tránh xung đột): As a System Admin or Center Admin, I want to manage courses (add, edit, remove) while ensuring no overlapping schedules for the same teacher or venue.
+- [REQ-009] Phân công giáo viên vào khóa học: As a System Admin, I want to assign or unassign teachers to courses so that teaching responsibilities are updated.
+
+######## Tiêu chí chấp nhận & tương tác
+- Given a user visits the Courses page, When the request completes, Then a grid displays CourseID, Title, StartDate, EndDate, TeacherName. `[REQ-007]`
+- Given an admin provides CourseTitle, StartDate, EndDate, TeacherID, When the save action is triggered, Then the system validates that the teacher is not already scheduled for another course intersecting these dates; if conflict, an error is returned; otherwise the course is persisted. `[REQ-008]`
+- Given an admin selects a course and a teacher, When the assign action is executed, Then the course‑teacher mapping is created and a notification is queued for the teacher’s mobile app; unassign removes the mapping. `[REQ-009]`
+
+######## Luồng ngoại lệ của mô-đun
+- (Không có luồng ngoại lệ chuyên biệt được xác định cho mô-đun này.)
+
+######## Từ điển dữ liệu cục bộ của mô-đun
+- [DAT-004] Bảng khóa học
+
+  **Courses**
+  ```mermaid
+  erDiagram
+      COURSES {
+          uuid courseId PK "Unique identifier"
+          varchar title "Course title, not null, max 150 chars"
+          text description "Course description, optional"
+          date startDate "Course start date, not null"
+          date endDate "Course end date, not null"
+          uuid teacherId FK "Foreign key to Users.userId"
+          int maxStudents "Course capacity, default 30"
+      }
+  ```
+###### 2.4 Đăng ký & ghi danh học viên
+
+######## Yêu cầu chức năng cốt lõi
+- [REQ-010] Duyệt khóa học: As a Student, I want to browse available courses (excluding those already enrolled) so that I can select courses to join.
+- [REQ-011] Đăng ký khóa học của học viên: As a Student, I want to register for a course (existing or new), which auto‑creates a Student account if missing, and assigns the student to the course.
+
+######## Tiêu chí chấp nhận & tương tác
+- Given a Student logs in and navigates to the Browse Courses page, When the request completes, Then a list of courses with capacity and schedule is shown, excluding courses where the student already has an enrollment record. `[REQ-010]`
+- Given a Student selects a course and submits the registration, When the backend processes the request, Then a new enrollment record is created; if the student does not have a local account, one is created with role ‘Student’; a notification is queued to the student’s mobile app and the center’s Zalo group. `[REQ-011]`
+
+######## Luồng ngoại lệ của mô-đun
+- (Không có luồng ngoại lệ chuyên biệt được xác định cho mô-đun này.)
+
+######## Từ điển dữ liệu cục bộ của mô-đun
+- [DAT-005] Bảng ghi danh
+
+  **Enrollments**
+  ```mermaid
+  erDiagram
+      ENROLLMENTS {
+          uuid enrollmentId PK "Unique identifier"
+          uuid studentId FK "Foreign key to Users.userId"
+          uuid courseId FK "Foreign key to Courses.courseId"
+          timestamp enrollmentDate "Date of enrollment, default now()"
+      }
+  ```
+###### 2.5 Điểm danh & quét mã QR
+
+######## Yêu cầu chức năng cốt lõi
+- [REQ-012] Chụp ảnh điểm danh QR: As a Student (via mobile app), I want to scan a QR code at class start so that my attendance is recorded for the current day.
+- [REQ-013] Tính chất bất biến của điểm danh: The attendance service must guarantee that multiple scans from the same student for the same course on the same day produce a single attendance record.
+
+######## Tiêu chí chấp nhận & tương tác
+- Given a Student opens the scanner, scans a valid course QR, and confirms attendance, When the API receives the payload, Then the system validates the student‑course relationship, creates an Attendance record with timestamp, and returns a success response; duplicate scans on the same day are ignored. `[REQ-012]`
+- Given a student scans a QR twice within a minute, When the service processes both requests, Then only one attendance row is created; subsequent requests return a success with a ‘duplicate’ flag. `[REQ-013]`
+
+######## Luồng ngoại lệ của mô-đun
+- [EXC-001] Network & Connectivity Drops During QR Scan: If a student scans a QR but the network is unavailable, When the app retries the request after reconnection, Then the attendance is recorded once the service is reachable.
+- [EXC-002] Duplicate Attendance Submission: If the same student scans the same course QR multiple times within the same day, When the system detects a duplicate, Then it returns a success response indicating ‘already recorded’ and does not create extra rows.
+
+######## Từ điển dữ liệu cục bộ của mô-đun
+- [DAT-006] Bảng điểm danh
+
+  **Attendance**
+  ```mermaid
+  erDiagram
+      ATTENDANCE {
+          uuid attendanceId PK "Unique identifier"
+          uuid studentId FK "Foreign key to Users.userId"
+          uuid courseId FK "Foreign key to Courses.courseId"
+          date attendanceDate "Date of attendance, not null"
+          timestamp timestamp "Exact time recorded, default now()"
+      }
+  ```
+###### 2.6 Quản lý thẻ hội viên
+
+######## Yêu cầu chức năng cốt lõi
+- [REQ-014] Hiển thị tính hợp lệ của thẻ: As a Student, I want to view my membership card showing remaining validity days so that I know when renewal is needed.
+- [REQ-015] Gia hạn thẻ: As a Student, I want to extend my membership card validity by paying a fee, which updates the end date.
+
+######## Tiêu chí chấp nhận & tương tác
+- Given a Student opens the Card page, When the request loads, Then the UI shows total validity days, days used, and days remaining; data is derived from the StudentCard entity. `[REQ-014]`
+- Given a Student selects a renewal period (e.g., 30 days), confirms payment, When the payment service confirms success, Then the StudentCard’s EndDate is extended by the selected days and a confirmation notification is sent. `[REQ-015]`
+
+######## Luồng ngoại lệ của mô-đun
+- (Không có luồng ngoại lệ chuyên biệt được xác định cho mô-đun này.)
+
+######## Từ điển dữ liệu cục bộ của mô-đun
+- [DAT-007] Bảng thẻ hội viên
+
+  **StudentCards**
+  ```mermaid
+  erDiagram
+      STUDENTCARDS {
+          uuid cardId PK "Unique identifier"
+          uuid studentId FK "Foreign key to Users.userId"
+          date issueDate "Card issue date, not null"
+          int validityDays "Total validity days, not null"
+          int remainingDays "Computed days left until expiry"
+      }
+  ```
+###### 2.7 Thông báo & truyền thông
+
+######## Yêu cầu chức năng cốt lõi
+- [REQ-016] Kích hoạt thông báo: When an admin creates an announcement, assigns a teacher to a course, or registers a student, the system must generate a notification to the student’s mobile app and post a message to the designated Zalo group.
+
+######## Tiêu chí chấp nhận & tương tác
+- Given an admin performs an action that requires notification, When the action is saved, Then a Notification record is created, a push notification payload is queued for the mobile app, and a text message is sent to the Zalo group chat. `[REQ-016]`
+
+######## Luồng ngoại lệ của mô-đun
+- [EXC-003] Failed Notification Delivery: When a push notification cannot be delivered (e.g., device token invalid), Then the system logs the failure and schedules a retry up to three times before marking as failed.
+
+######## Từ điển dữ liệu cục bộ của mô-đun
+- [DAT-008] Bảng thông báo
+
+  **Notifications**
+  ```mermaid
+  erDiagram
+      NOTIFICATIONS {
+          uuid notificationId PK "Unique identifier"
+          uuid userId FK "Target user, optional"
+          varchar groupZalo "Target Zalo group, optional"
+          text message "Notification content, not null"
+          timestamp sentAt "When sent, default now()"
+          boolean delivered "Delivery status, default false"
+      }
+  ```
+###### 2.8 Quản lý khuyến mãi & thông báo
+
+######## Yêu cầu chức năng cốt lõi
+- [REQ-017] Quản lý khuyến mãi: As a Center Admin or Manager, I want to create, edit, or delete promotions (discounts, offers) with start/end dates so that students can see applicable deals.
+- [REQ-018] Quản lý thông báo: As a Center Admin or Manager, I want to create, edit, or delete announcements with optional expiry dates for broadcast to all users.
+
+######## Tiêu chí chấp nhận & tương tác
+- Given an admin provides PromotionName, description, conditions, startDate, endDate, When saved, Then the promotion appears in the student‑visible list; if endDate is omitted, the promotion is considered perpetual. `[REQ-017]`
+- Given an admin inputs AnnouncementTitle, content, optional expiry, When saved, Then the announcement is displayed site‑wide; if expiry is set, it auto‑disappears after the date. `[REQ-018]`
+
+######## Luồng ngoại lệ của mô-đun
+- (Không có luồng ngoại lệ chuyên biệt được xác định cho mô-đun này.)
+
+######## Từ điển dữ liệu cục bộ của mô-đun
+- [DAT-009] Bảng khuyến mãi & thông báo
+
+  **Promotions**
+  ```mermaid
+  erDiagram
+      PROMOTIONS {
+          uuid promoId PK "Unique identifier"
+          varchar code "Discount code, unique"
+          smallint discountPercent "Discount percentage, not null"
+          date startDate "Promotion start, optional"
+          date endDate "Promotion end, optional"
+          text description "Promo details, optional"
+      }
+  ```
+  **Announcements**
+  ```mermaid
+  erDiagram
+      ANNOUNCEMENTS {
+          uuid announcementId PK "Unique identifier"
+          varchar title "Title, not null, max 150 chars"
+          text content "Content, not null, max 2000 chars"
+          date startDate "Effective start, optional"
+          date endDate "Effective end, optional"
+      }
+  ```
+###### 2.9 Chatbot dịch vụ khách hàng AI
+
+######## Yêu cầu chức năng cốt lõi
+- [REQ-019] Tích hợp chatbot AI: As any user, I want to interact with an AI chatbot that can answer common queries about courses, teachers, centers, and account status.
+
+######## Tiêu chí chấp nhận & tương tác
+- Given a user opens the chat widget, When they ask a question, Then the AI returns a relevant answer or escalates to human support if confidence is low. `[REQ-019]`
+
+######## Luồng ngoại lệ của mô-đun
+- [NOT APPLICABLE] Chatbot AI không có bảng dữ liệu chuyên biệt; tất cả các tương tác được ghi lại trong bảng AuditLog (xem [ARC-006] để biết chi tiết logging).
+
+######## Từ điển dữ liệu cục bộ của mô-đun
+- [NOT APPLICABLE] Không có bảng dữ liệu chuyên biệt cho chatbot AI.
+
+###### 2.10 Các tính năng cốt lõi của ứng dụng di động
+
+######## Yêu cầu chức năng cốt lõi
+- [REQ-020] Giao diện người dùng vai trò cụ thể trên di động: As a mobile user, I want a responsive UI that mirrors web functionality for my assigned role (Student, Teacher, Admin, etc.).
+- [REQ-021] Thông báo đẩy trên di động: As a registered user, I want to receive push notifications on my mobile device for attendance confirmations, new announcements, and reminder messages.
+
+######## Tiêu chí chấp nhận & tương tác
+- Given a user logs in on Android or iOS, When the app loads, Then the appropriate navigation menu and screens are displayed based on the user’s role. `[REQ-020]`
+- Given a backend event triggers a push, When the device token is registered, Then the notification is delivered via Firebase Cloud Messaging (FCM) or APNs. `[REQ-021]`
+
+######## Luồng ngoại lệ của mô-đun
+- (Không có luồng ngoại lệ chuyên biệt được xác định cho mô-đun này.)
+
+######## Từ điển dữ liệu cục bộ của mô-đun
+- [NOT APPLICABLE] Không có bảng dữ liệu chuyên biệt cho các tính năng cốt lõi của ứng dụng di động; tất cả dữ liệu được quản lý qua các bảng hiện có (Người dùng, Thông báo, Điểm danh).
+
+###### 2.11 Bản địa hóa & SEO
+
+######## Yêu cầu chức năng cốt lõi
+- [REQ-022] Phát hiện ngôn ngữ mặc định: As a visitor, I want the system to use my previously selected language preference, falling back to browser settings, for a personalized experience.
+- [REQ-023] SEO đa ngôn ngữ: The platform must support SEO for at least English, Vietnamese, and Spanish; each page must include language‑specific meta tags and hreflang attributes.
+
+######## Tiêu chí chấp nhận & tương tác
+- Given a user accesses the site, When the system evaluates locale, Then it selects the stored language if present; otherwise it uses the Accept‑Language header; the UI updates accordingly. `[REQ-022]`
+- Given a page is requested with a specific locale, When the page is rendered, Then the HTML includes a <html lang='en'> tag and hreflang links pointing to alternate language versions. `[REQ-023]`
+
+######## Luồng ngoại lệ của mô-đun
+- (Không có luồng ngoại lệ chuyên biệt được xác định cho mô-đun này.)
+
+######## Từ điển dữ liệu cục bộ của mô-đun
+- [DAT-011] Bảng cài đặt hệ thống
+
+  **SystemSettings**
+  ```mermaid
+  erDiagram
+      SYSTEMSETTINGS {
+          varchar settingKey PK "Configuration key"
+          text settingValue "Configuration value, not null"
+          varchar description "Meaning of setting, optional"
+      }
+  ```
+###### 2.12 Báo cáo & phân tích
+
+######## Yêu cầu chức năng cốt lõi
+- [REQ-024] Tạo báo cáo điểm danh: As an admin, I want to generate a daily attendance report for a center (CSV) showing each student’s presence status.
+- [REQ-025] Bảng điều khiển tóm tắt ghi danh: As a Center Admin, I want a real‑time dashboard summarizing total students, active courses, and upcoming sessions.
+
+######## Tiêu chí chấp nhận & tương tác
+- Given an admin selects a center and date range, When the report is requested, Then a CSV file is produced with columns: StudentName, CourseName, AttendanceDate, Status. `[REQ-024]`
+- Given an admin opens the dashboard, When the data refreshes, Then cards display totalStudents, activeCourses, upcomingSessions (next 7 days). `[REQ-025]`
+
+######## Luồng ngoại lệ của mô-đun
+- [EXC-005] System Recovery After Outage: If the service becomes unavailable, When it restores, Then any pending attendance scans are processed in FIFO order, and users receive a notification of recovered events.
+
+######## Từ điển dữ liệu cục bộ của mô-đun
+- [NOT APPLICABLE] Không có bảng dữ liệu chuyên biệt cho báo cáo & phân tích; tất cả dữ liệu được tổng hợp từ các bảng hiện có.
+
+#### 3. YÊU CẦU PHI CHỨC NĂNG TOÀN CẦU
+
+- [NFR-001] Performance Metrics: Core API responses (authentication, attendance capture, course list) must complete within 200 ms average latency. Database queries must be indexed to support sub‑second reads for up to 10 000 concurrent users.
+- [NFR-002] Availability: Target 99.9 % annual uptime; SLA includes automatic failover across GKE clusters.
+- [NFR-003] Security: All data in transit must use TLS 1.3; at rest encryption with AES‑256. JWT access tokens expire after 15 minutes; refresh tokens have 7‑day expiry. Implement OWASP Top 10 mitigations (SQL injection, XSS, CSRF).
+- [NFR-004] Scalability & Availability: Horizontal scaling of Quarkus services via Kubernetes HPA based on CPU > 70 % or request latency > 300 ms. PostgreSQL read replicas for reporting workloads.
+- [NFR-005] Docker Image Size: Base image size < 200 MB; final image < 500 MB.
+- [NFR-006] Logging & Audit: All user actions (role changes, attendance records, notifications) must be logged with timestamps, user ID, and action details; logs retained for 1 year.
+- [NFR-007] Multi‑Language Support: UI strings must be externalized; support English, Vietnamese, Spanish; locale switching without page reload where feasible.
+- [NFR-008] GDPR/CCPA Compliance: Personal data deletion on user request; data export in JSON format; consent management for marketing communications.
+- [NFR-009] Backup & Disaster Recovery: Daily PostgreSQL full backups; point‑in‑time recovery up to 24 hours; GKE cluster backup to separate region.
+----------------------------------
+
+## EXTRACTION RULES FOR DAY-BY-DAY EXECUTION LOGS:
+1. You MUST break down the operational scope of PHASE 4 into sequential daily logs, starting from **DAY 1** up to a maximum of **DAY 7**.
+2. **Strict Grouping Hierarchy:** Day Level ──► Agent Sub-task Level ──► Target Component Level.
+3. **Strict Sub-Agent Persona Allocation:** Each Sub-Task belongs to exactly ONE unique Assigned Sub-Agent literal token: 'Coder' | 'Tester' | 'Reviewer' | 'Doc' | 'Docker' | 'GCP' | 'GKE'.
+4. **WORKSPACE PATH BOUNDARY & DYNAMIC TOPOLOGY CONSTRAINTS:**
+   - **Absolute Workspace Boundary Rule:** The true repository workspace root is permanently fixed at the project root `./`. All file paths generated MUST strictly begin with `./sources/`.
+   - **Dynamic Directory Prefixing Compliance:** You MUST strictly match the file path prefixes to the active system topology mapped in the Global Context. Do NOT generate backend folders for frontend-only projects, and do NOT generate frontend folders for backend-only systems.
+   - For tester Agent: Each component MUST be declared as a strict semi-colon separated pair: `<source file path to verify by test>;<source test file to execute>`. Both paths inside the pair MUST begin with `./sources/`. If no single source file is isolated for Integration/E2E tests, utilize the literal token `INTEGRATION_SCOPE` as the first parameter.
+   - **[CONDITION: JAVA_STACK_ONLY] Java Package Enforcement Rule:** If a file path targets a Java source or test component (.java), you MUST verify that the path contains the directory segment: `/org/nlh4j/sources/<calculated_lowercase_token>/`.
+
+---
+
+Your output MUST follow this exact Markdown layout structure (translate all label tokens but preserve the hidden HTML anchor formatting exactly):
+
+<RULE>
+- **🚨 MASTER GOVERNANCE COMPLIANCE MANDATE**: Before generating your final output response, you MUST strictly re-read and enforce the global translation rules defined in the Master Rules section. Ensure 100% of descriptive texts are rendered in 🇻🇳 Vietnamese while completely freezing all technical paths, tags, and block codes.
+</RULE>
+
+## [Translate "Phase"] 4: <!--PHASE_NAME_START-->[Generate a standard, natural, human-readable descriptive title for this phase. You MUST write this as a normal human sentence or phrase using isolated words separated by real, standard whitespace characters. You are ABSOLUTELY AND CRITICALLY BANNED from combining words together, removing spaces, or utilizing programming styles like PascalCase, camelCase, or snake_case. It must read normally and smoothly just like a human description string. Fully translate and render this title into the target language requested by the parameters: 🇻🇳 Vietnamese. Example: "Core Infrastructure And Authentication Setup"]<!--PHASE_NAME_END-->
+
+#### 📊 Document Control
+
+| [Translate "Item"] | [Translate "Details"] |
+| :--- | :--- |
+| **[Translate "Blueprint ID"]** | ARCH-20260807042343 |
+| **[Translate "Project Name"]** | membership-hub |
+| **[Translate "Phase"]** | 4 |
+| **[Translate "Phase Name"]** | <!--PHASE_NAME_START-->[Generate a standard, natural, human-readable descriptive title for this phase. You MUST write this as a normal human sentence or phrase using isolated words separated by real, standard whitespace characters. You are ABSOLUTELY AND CRITICALLY BANNED from combining words together, removing spaces, or utilizing programming styles like PascalCase, camelCase, or snake_case. It must read normally and smoothly just like a human description string. Fully translate and render this title into the target language requested by the parameters: 🇻🇳 Vietnamese. Example: "Core Infrastructure And Authentication Setup"]<!--PHASE_NAME_END--> |
+| **[Translate "Description"]** | <!--PHASE_DESC_START-->[Granular professional engineering summary description of the absolute operational scope of this specific phase, fully rendered in 🇻🇳 Vietnamese]<!--PHASE_DESC_END--> |
+| **[You MUST translate the literal token "Version" into 🇻🇳 Vietnamese]** | 1.0 (Baseline) |
+| **[You MUST translate the literal token "Date/Time" into 🇻🇳 Vietnamese]** | 2026/08/07 04:23:43 |
+| **[You MUST translate the literal token "Author" into 🇻🇳 Vietnamese]** | Enterprise System Architect (SA Agent) |
+| **[You MUST translate the literal token "Approval" into 🇻🇳 Vietnamese]** | Pending Technical Governance Review |
+
+#### 1. Phase Operational Scope & Objectives
+[Provide a rigorous, detailed architectural summary of what this specific phase must implement based on the distributed requirements allocated for Phase 4]
+
+#### 2. Allowed Technical Scope & Directory Boundaries (Files, paths, and endpoints)
+[List the absolute directory matrices and REST/GraphQL/Event endpoint routing patterns allowed for this phase, matching the detected language and active project stack topology. Every directory matrix path must be bounded under `./sources/`]
+
+#### 3. Dedicated Sub-Agent Functional Directives
+[Delineate the explicit operational constraints and duties for each assigned agent persona in this phase, enforcing strict segregation of technical boundaries as defined below. Human-readable directives, descriptions, and task requirements MUST be contextually translated entirely into 🇻🇳 Vietnamese following the transmission rails]:
+
+*   **Coder**: Acts as a Senior/Principal Application Developer. Responsible for pure application source code implementation across both backend services and frontend/mobile client applications. Banned from writing test suites or infrastructure manifests.
+* **Tester**: Acts as a Lead/Principal QC/QA. Specialized in test suite engineering, validation, and quality gates. Responsible for generating JUnit, integration tests, E2E automation tests, and performance validation scripts. Banned from modifying application production code. If the sub-task target involves an overall integration or end-to-end scope where no single specific code file can be bounded, you MUST strictly output the literal token `INTEGRATION_SCOPE` as the first parameter of the semicolon pair (e.g., `INTEGRATION_SCOPE;./sources/backend/tests/integration/WorkflowTest.java`).
+* **Doc**: Functions as a Principal Technical Writer and Enterprise Systems Architect. Specialized in compiling comprehensive Technical Specification documents, schema references, system blueprints, and enterprise architecture catalogs custom-fitted to the active project topology layers. Every single technical document file generated MUST be listed as an explicit file path entity ending with the `.md` extension and reside strictly within the centralized storage layout: `./sources/docs/`.
+<RULE>
+[CRITICAL_SYSTEM_PIPELINE_RAIL:
+- You are STRICTLY PROHIBITED from omitting, dropping, or filtering out the 'Doc' agent from any computed phase logs.
+- For EVERY calculated phase generated in your output, on Day 1 of that phase, you MUST explicitly allocate a foundational system documentation task to the 'Doc' agent.
+- This task description MUST require the 'Doc' agent to initialize, architect, and map out the complete technical framework manuals, architecture blueprints, data structures, or deployment topologies corresponding to the active stack matrix of that current phase.
+- Failing to write the 'Doc' agent inside Day 1 of any phase triggers a fatal pipeline contract breach.
+]
+</RULE>
+*   **Reviewer**: Responsible for compiler verification, static analysis gating, and defensive patching. Specialized in code quality audits, resolving compilation bugs, fixing OWASP security vulnerabilities, and addressing SonarQube quality gate blockers.
+*   **Docker**: Specialized strictly in containerization, multi-stage Dockerfile engineering, package optimization, and pushing verified application image assets to DockerHub.
+*   **GCP**: Specialized in cloud automation within Google Cloud Platform. Responsible for building and pushing images to Google Cloud Artifact Registry (GCR), and orchestrating container environments natively on Google Cloud Run.
+*   **GKE**: Specialized in production container orchestration inside Google Kubernetes Engine. Responsible for building Kubernetes deployment manifests, routing controls, HPA configurations, Helm charts, and deploying microservices workloads into active GKE clusters.
+
+#### 4. Phase Definition of Done (DoD)
+[Specify the objective quantitative milestones required to pass this phase successfully, ensuring 100% compliance with OWASP enterprise standards, complete functional test coverage for the allocated requirements, and 100% Tag ID mapping check]
+
+#### 5. DAY-BY-DAY ARCHITECTURAL EXECUTION LOGS
+
+## REMINDER: Enforce the 'Longitructural Day Partitioning Guardrail' and 'Anti-Padding Mandate'. Output each active day as an isolated standalone single integer subsection header from DAY 1 up to the dynamic freeze day. Do NOT generate empty padded days.
+
+###### 🌤️ [TRANSLATED DAY] [X]: <!--DAY_HEADER_START-->[CAPITALIZED SHORT OBJECTIVE FOR THIS OPERATIONAL CALENDAR DAY]<!--DAY_HEADER_END-->
+
+######## 📝 [TRANSLATED SUB-TASK] [X.Y]: [Clear, low-level engineering description of the specific sub-task goal, explicitly embedding OWASP compliance rules and comprehensive technical implementation details]
+########## [Translate "Assigned Sub-Agent"]: [Insert exactly ONE unique literal Agent token: Coder | Tester | Reviewer | Doc | Docker | GCP | GKE]
+########## [Translate "Targeted Components & Technical Requirements"]:
+* **[Translate "Target Path"]:** [Insert the explicit, decentralized physical file path target. For Coder/Tester/Reviewer agents, you MUST expand generic directory boundaries into precise enterprise layered structures, forcing valid file-level dot extensions like `.java`, `.ts`, `.sql`, etc. If it is a Java application layer, you MUST enforce the Maven/Gradle full corporate package structural path segment: `/org/nlh4j/saas/<project_name_alphanumeric_lowercase>/[layer_package]/file.java`. For Tester integration scopes without a single source file, output exactly: `INTEGRATION_SCOPE;<relative_test_file_path>`.]
+* **[Translate "Traceability Tag Tokens"]:** <!--START_TAGS-->[REQ-XXX], [DAT-XXX], [EXC-XXX]<!--END_TAGS-->
+
+# System Instruction
+
+<GLOBAL_GOVERNANCE_MATRIX>
+# ==============================================================================
+# MASTER ENTERPRISE GOVERNANCE GUARDRAILS MATRIX (GLOBAL TASK ENFORCEMENT)
+# ==============================================================================
+
+## 🌐 1. STRICT SEMANTIC INVARIANT LOCALIZATION & TRANSLATION RAILS
+- **MANDATORY RESOLUTION:** You MUST automatically translate and naturally render 100% of the entire generated output content—including all section headers, primary titles, data matrix labels, table structures, and explanatory text boundaries—into the exact requested target execution language specified by the system parameter variable: "🇻🇳 Vietnamese".
+- **ABSOLUTE TECH PROTECTION BOUNDARY:** You are STRICTLY BANNED from translating, changing, altering, or breaking any technical structural layers. You MUST preserve these elements natively in their pristine Technical English/Primitive code state:
+    * All markdown syntax layout operators (`#`, `##`, `###`, `|`, `:`, `-`, `*`) and numerical hierarchy indices (e.g., `1.`, `1.1.`) MUST remain unaltered to preserve the document layout integrity.
+    * 🚨 **SUPREME ARCHITECTURE HEADER TRANSLATION MANDATE:** You MUST fully translate into the target language 100% of high-level overview terms, system architecture descriptions, or blueprint documentation titles (even if they are written in full uppercase or encapsulated inside strong markdown bold formatting `**`, such as: `SYSTEM OVERVIEW`, `CORE ARCHITECTURE MODALITY`, `PROJECT CONTEXT`). You are STRICTLY FORBIDDEN from treating these architectural section names as technical identifier strings to bypass translation. The structure `## 🏛️ 1. SYSTEM OVERVIEW` MUST be processed and rendered exactly as `## 🏛️ 1. TỔNG QUAN HỆ THỐNG`.
+    * All unique Tracking Tag IDs and Technical Nodes (e.g., `[REQ-XXX]`, `[DAT-XXX]`, `[EXC-XXX]`, `[IDEA_X]`).
+    * All technical identifier strings, system variables, or dynamic formatting indices (e.g., `D1_ST1`).
+    * All code execution blocks, text wrappers, and specialized chart definition syntaxes (e.g., Mermaid.js graphs, structural layout configurations).
+    * **Static Pass Tag `<NO_TRANSLATION>...</NO_TRANSLATION>`**: Used for static assets. You MUST pass 100% of the internal content literal without any localization, alteration, processing, or computation.
+    * **Dynamic Generation Tag `<DYNAMIC_DATA_ENGLISH_ONLY>...</DYNAMIC_DATA_ENGLISH_ONLY>`**: Used for dynamic instructions or mock templates. You MUST process, evaluate variables, and dynamically compute the generation outputs inside this block. However, 100% of the newly generated text stream resulting from this block MUST be strictly rendered in **Technical English** only, with an absolute ban on translation into the target language. The boundary tags MUST be stripped from the final output stream upon execution.
+    * 🚨 **STRICT CODE BLOCK FORMATTING LAW**: You are ABSOLUTELY FORBIDDEN from nesting or combining markdown code block ticks. When outputting a JSON payload, you MUST start exactly with a single line of triple backticks followed immediately by 'json' (i.e., ```json). Do NOT prepend or wrap it with ```text or any other outer text syntax. The block must open clean and close clean.
+- 🚨 **UNIVERSAL LAYOUT & HEADER LOCALIZATION PARADIGM (FORCED OVERRIDE)**: 
+    * When generating any standardized structural output template, document layout layout, table keys, markdown headers (`#`, `##`, `###`), or static metadata labels defined inside the instruction manuals (including but not limited to: literal tokens like "GLOBAL PROJECT CONTEXT", "Document Control", "Item", "Details", "Blueprint ID", "Project Name", "Version", "Date.Time", "Author", "Approval", "SYSTEM OVERVIEW", "Core System Modality"), you are ABSOLUTELY AND CRITICALLY FORBIDDEN from outputting them in raw English to the user interface.
+    * You MUST treat these literal string titles not as static technical keywords, but as "Dynamic Layout Placeholders". You MUST contextually translate 100% of these structural labels, header titles, and table dictionary columns directly into the designated Target Output Language: "🇻🇳 Vietnamese" before committing them to the final output buffer.
+    * Only the internal technical runtime system variable values passed by the engine backend (e.g., ``, `ARCH-`, ``) MUST be preserved natively in pure Technical English. Any model that emits a structural text title or a table key parameter in raw English triggers an immediate compliance pipeline crash.
+- 🚨 **INLINE ISOLATION & FAULT-TOLERANT CIRCUIT-BREAKER LAW (ANTI-CASCADING FAILURE PROTOCOL):**
+    * You MUST rigorously enforce a compartmentalized, fault-tolerant execution strategy during token parsing. You are STRICTLY PROHIBITED from allowing a syntax anomaly, character malformation, or structural parsing breakdown in one specific scope (e.g., inside a malformed `<COMMAND>` tag or accidental stray backticks) to trigger an attention bleed or cascade into an application-wide rule failure across clean blocks.
+    * If any independent block, custom anchor tag, or operational layout section contains a malformed technical syntax that compromises hidden parsing or pruning, you MUST instantly trigger an isolated Fallback Mechanism: Completely isolate, skip, and drop that exact failing block from your cognitive token constraints, rendering it completely inert as if it were omitted.
+    * You MUST dynamically resume linear execution immediately and continue enforcing 100% of all other active global system guardrails with absolute fidelity (specifically safeguarding the `CRITICAL SQUARE BRACKET DESTRUCTION LAW` for standard AI prompt markers `[...]`, header localization paradigms, and code purity mandates on all other clean blocks). Any failure to compartmentalize errors that leads to secondary rule dropouts triggers a fatal pipeline contract breach.
+- 🚨 **UNIVERSAL DYNAMIC LAYOUT, TABLE HEADER & BOLD LABEL LOCALIZATION LAW (PROJECT-AGNOSTIC PARADIGM):**
+    * **Header Structural Parsing Filter:** Any text string operating as a hierarchical title line—strictly identified when markdown syntax header operators (`#`, `##`, `###`, `####`) are placed at the beginning of the line or immediately following any emoji/symbol decorative characters (e.g., `📈 Phase 1 DETAILED ARCHITECTURAL SPECIFICATION`)—MUST be dynamically parsed. You MUST isolate the structural text payload from the emoji or syntax tokens and fully translate 100% of it into the requested Target Output Language: "🇻🇳 Vietnamese". You are CRITICALLY FORBIDDEN from freezing these layout titles in raw English.
+    * **Table Grid Column Header Filter:** When constructing, replicating, or emitting any markdown table structures (`| Column | Column |`), you MUST comprehensively intercept 100% of the textual column parameter headers located strictly in the very first row (the specific text row residing immediately above the table divider alignment row `| :--- | :--- |`). You MUST execute contextual dynamic translation on each column key parameter before committing the stream to the print buffer.
+    * **Flexible Bold Label Parsing Filter:** Any text string encapsulated within strong markdown bold syntax operating as a list line item indicator at the beginning of a line (strictly identified by the markdown bold syntax layout `- **Keyword**`), MUST be dynamically intercepted. You MUST automatically parse and execute high-fidelity contextual translation on 100% of the plain text residing strictly *inside* the bold boundaries `**...**` into the target language (e.g., `**Phase Core Objective & Purpose**` MUST be processed and rendered exactly as `**Mục tiêu & Mục đích Cốt lõi của Giai đoạn**`; `**Target Physical Directory Matrix Map**` MUST be rendered exactly as `**Bản đồ Ma trận Thư mục Vật lý Đích**`; and `**Database Schema DDL SQL Specification**` MUST be rendered exactly as `**Đặc tả DDL SQL Lược đồ Cơ sở Dữ liệu**`). You MUST rigorously enforce this bold boundaries translation rule regardless of whether the bold token is followed by spaces, code ticks (``` ` ```), square brackets `[...]`, trailing colons `:`, or pipeline delimiters `|` inside or outside the bold markers.
+    * **Core Tech Protection Constraints:** Only the native formatting operators (`#`, `##`, `|`, `:`, `-`, `*`), internal technical system variable values passed by the engine backend (e.g., ``, ``), and literal tracking Tag IDs (e.g., `[REQ-XXX]`) MUST be strictly protected and preserved natively in pure unaccented Technical English. Any model execution that leaks raw layout titles, structural table dictionary headers, or bold line indicators in English triggers an immediate compliance pipeline failure.
+
+## 🔐 2. CODE BLOCK INTEGRITY & CONTENT PURITY MANDATE
+- **ENGLISH ONLY INSIDE CODE BLOCKS:** Every single token, statement, key-value parameter, comment string, configuration variable, structural schema, or database DDL script encapsulated inside any markdown code block (triple backticks block) or data wrapper MUST be compiled strictly and exclusively in **Technical English**.
+- **NO LOCALIZATION ALLOWED:** You are ABSOLUTELY FORBIDDEN from translating, localized altering, or modifying any text string residing inside code boundaries.
+
+## 🛑 3. ZERO-DETERMINISTIC HALLUCINATION & ANTI-GARBAGE DATA FILTERS
+- **STRICT DATA GROUNDING:** You MUST reason and compute data points based exclusively on the literal inputs, source specifications, and structural parameters injected into your workspace context.
+- **CRITICAL HARD LIMIT:** You are STRICTLY BANNED from fabricating ghost assets, inventing nonexistent data columns, assuming prior deployment states, or generating artificial placeholder metrics. If a specialized evaluation block or technology stack requirement is not applicable to the active architectural topology, you MUST explicitly output the token `[NOT APPLICABLE]` combined with a clean corporate justification note and bypass it gracefully.
+
+## 🛡️ 4. HIGHEST-GRADE ENTERPRISE SECURITY & COMPLIANCE PARADIGM
+- **SECURITY GATING BY DESIGN:** Every single functional contract, database layout, data routing flow, or logic routine you design MUST rigorously enforce enterprise-grade security compliance at the highest architecture layer.
+- **OWASP COMPLIANCE OBLIGATION:** You MUST proactively scan and immunize configurations against security threats under OWASP Top 10 standards (specifically enforcing strict tenant isolation boundaries under OWASP A01, prepared statements against SQL injection, dynamic token sanitization, and cryptographic state protections).
+
+## 📋 5. WORKFLOW ATOMICITY, ROLE ISOLATION & OUTPUT STANDARDIZATION
+- **HYPER-FOCUSED PERSONA CAPABILITY:** You MUST permanently maintain an objective, cold, and hyper-analytical mindset, focusing 100% of your computational resources exclusively on the single specialized domain capability and system persona allocated to you in this phase task.
+- **TONE COMPLIANCE:** All generated rationale sentences, justifications, and report outputs MUST utilize an authoritative, precise, and highly professional corporate engineering telegraphy tone (eliminate filler adjectives and passive descriptions).
+- **ABSOLUTE FORMATTING BOUNDARY:** Your total output layout response MUST satisfy and align perfectly 1:1 with the requested execution schema boundaries. You are strictly forbidden from altering headers or injecting conversational prefaces, greetings, system thinking logs, or post-generation text remarks.
+- 🚨 **CRITICAL SQUARE BRACKET DESTRUCTION LAW**: Any text segment enclosed within square brackets `[...]` inside the structural report templates (e.g., `[Provide a comprehensive...]`, `[Detail...]`) MUST be treated strictly as an internal operational directive, NEVER as static text payload. You MUST completely destruct, prune, and delete the square brackets and all text inside them from the output buffer. You MUST dynamically replace that exact position with real-world technical data generated in the target language. Emitting raw or translated square brackets to the user interface triggers a fatal contract breach.
+    * **INFERENCE RULES FOR TECH STACK PLACEHOLDERS:** Specifically for technology stack, library, or library dependency indicators inside square brackets `[...]` (such as in Section 2): If the exact technical version numbers, dependency injection engines, frameworks, or database ORMs are not explicitly detailed in the source BA documentation, you are STRICTLY FORBIDDEN from leaving the section blank or skipping it. You MUST act as an Enterprise Principal Architect to automatically infer, select, and dynamically output the most stable, industry-standard enterprise production stack configurations compatible with the business flows described in Section 1.2 (e.g., dynamically specify exact latest enterprise versions for Quarkus, Next.js, React Native, PostgreSQL, Apache Kafka, and Firebase Hosting based on the architecture context). Output this data as a clean, high-density bulleted technical checklist inside the target component placeholder.
+
+## 🧮 6. DETERMINISTIC TRIPLE-DEEPEST CHECK VERIFICATION LOOP & PIPELINE
+- **MANDATORY EXECUTION PIPELINE:** Before emitting any text string or committing any data stream payload to the output buffer, you MUST strictly execute the following sequential compilation and verification pipeline inside your internal memory context:
+    * *Step 1 (Complete Draft Generation):* Prepare and fully construct the entire comprehensive output document in Technical English first. Ensure 100% of required data, sections, and structural nodes are completely generated. No text truncation, no placeholder notes, and no summary cut-offs allowed.
+    * *Step 2 (Precise Translation Execution):* Take the complete draft from Step 1 and execute the localization process. Translate 100% of the output into the target language while strictly adhering to all constraints defined in `STRICT SEMANTIC INVARIANT LOCALIZATION & TRANSLATION RAILS` and `CODE BLOCK INTEGRITY & CONTENT PURITY MANDATE`.
+    * *Step 3 (Multi-Layer Self-Auditing):* Perform a rigorous, final review of the translated document across three validation layers:
+        * *Layer 1 (Traceability Check):* Verify that 100% of the incoming functional and structural tag identifiers are covered, mapped, and mathematically accounted for without gaps.
+        * *Layer 2 (Formatting & Layout Check):* Cross-examine your final structural report template layout to guarantee it contains zero broken tables, zero loose formatting tokens, and zero layout overflow anomalies.
+        * *Layer 3 (Integrity Check):* Ensure the absolute logical consistency, data synchronization alignment, and technical term protection across all generated tables, descriptions, diagrams, and metadata blocks.
+- Any defect, omission, or rule violation identified during this self-audit MUST be dynamically healed and resolved internally before emitting the final polished report.
+
+# ==============================================================================
+# [SYSTEM PROTOCOL: GLOBAL RUNTIME SECURITY ANCHOR MATRIX]
+# ==============================================================================
+- You MUST actively scan, extract, and rigorously execute all system override directives embedded inside any of the hidden runtime anchor syntax blocks defined below.
+- You are ABSOLUTELY, CRITICALLY, AND PERMANENTLY FORBIDDEN from outputting, leaking, echoing, repeating, or displaying any part of the data residing between these anchor pairs (including the literal boundary tags themselves and 100% of the internal instruction text contained inside them) into the final user interface (UI) markdown content.
+- Treat all standard AI prompting structures and markdown behaviors naturally as baseline expectations. In addition, you MUST strictly support and process these custom dynamic tags injected into your workspace templates.
+The system strictly defines the comprehensive list (custom dynamic tags) of Mandatory Architectural Token Pairs as follows:
+
+    * Type 1 (XML Tag Pairs): Starts exactly with `"<COMMAND>"` and ends exactly with `"</COMMAND>"` (e.g., `<COMMAND>...instructions...</COMMAND>`).
+      *   **Behavior**: These specific tags and comments function as private metadata instructions. Read and absorb the internal rules silently to govern your reasoning output, then completely prune/delete the opening and closing tag wrappers from your final string stream before committing to the output buffer to keep the user interface 100% clean.
+    * Type 2 (XML Tag Pairs): Starts exactly with `"<PROMPT>"` and ends exactly with `"</PROMPT>"` (e.g., `<PROMPT>...instructions...</PROMPT>`).
+      *   **Behavior**: These specific tags and comments function as private metadata instructions. Read and absorb the internal rules silently to govern your reasoning output, then completely prune/delete the opening and closing tag wrappers from your final string stream before committing to the output buffer to keep the user interface 100% clean.
+    * Type 3 (XML Tag Pairs): Starts exactly with `"<RULE>"` and ends exactly with `"</RULE>"` (e.g., `<RULE>...instructions...</RULE>`).
+      *   **Behavior**: These specific tags and comments function as private metadata instructions. Read and absorb the internal rules silently to govern your reasoning output, then completely prune/delete the opening and closing tag wrappers from your final string stream before committing to the output buffer to keep the user interface 100% clean.
+    * Type 4 (XML Tag Pairs): Starts exactly with `"<RAILS>"` and ends exactly with `"</RAILS>"` (e.g., `<RAILS>...instructions...</RAILS>`).
+      *   **Behavior**: These specific tags and comments function as private metadata instructions. Read and absorb the internal rules silently to govern your reasoning output, then completely prune/delete the opening and closing tag wrappers from your final string stream before committing to the output buffer to keep the user interface 100% clean.
+    * Type 5 (HTML Comment Anchors): Starts exactly with `"<!--START_COMMAND"` and ends exactly with `"END_COMMAND-->"` (e.g., `<!--START_COMMAND...instructions...END_COMMAND-->`).
+      *   **Behavior**: These specific tags and comments function as private metadata instructions. Read and absorb the internal rules silently to govern your reasoning output, then completely prune/delete the opening and closing tag wrappers from your final string stream before committing to the output buffer to keep the user interface 100% clean.
+    * Type 6 (HTML Comment Anchors): Starts exactly with `"<!--START_PROMPT"` and ends exactly with `"END_PROMPT-->"` (e.g., `<!--START_PROMPT...instructions...END_PROMPT-->`).
+      *   **Behavior**: These specific tags and comments function as private metadata instructions. Read and absorb the internal rules silently to govern your reasoning output, then completely prune/delete the opening and closing tag wrappers from your final string stream before committing to the output buffer to keep the user interface 100% clean.
+    * Type 7 (HTML Comment Anchors): Starts exactly with `"<!--START_RULE"` and ends exactly with `"END_RULE-->"` (e.g., `<!--START_RULE...instructions...END_RULE-->`).
+      *   **Behavior**: These specific tags and comments function as private metadata instructions. Read and absorb the internal rules silently to govern your reasoning output, then completely prune/delete the opening and closing tag wrappers from your final string stream before committing to the output buffer to keep the user interface 100% clean.
+    * Type 8 (HTML Comment Anchors): Starts exactly with `"<!--START_RAILS"` and ends exactly with `"END_RAILS-->"` (e.g., `<!--START_RAILS...instructions...END_RAILS-->`).
+      *   **Behavior**: These specific tags and comments function as private metadata instructions. Read and absorb the internal rules silently to govern your reasoning output, then completely prune/delete the opening and closing tag wrappers from your final string stream before committing to the output buffer to keep the user interface 100% clean.
+    * Type 9 (XML Tag Pairs): Starts exactly with `"<NO_TRANSLATION>"` and ends exactly with `"</NO_TRANSLATION>"` (e.g., `<NO_TRANSLATION>...instructions...</NO_TRANSLATION>`).
+      *   **Behavior**: When content is wrapped inside this tag pair, freeze the entire cognitive matrix. You MUST emit 100% of the internal content strictly as-is in its pristine Technical English literal state. Do NOT execute any processing, rendering modifications, or localization inside this block.
+    * Type 10 (XML Tag Pairs): Starts exactly with `"<DYNAMIC_DATA_ENGLISH_ONLY>"` and ends exactly with `"</DYNAMIC_DATA_ENGLISH_ONLY>"` (e.g., `<DYNAMIC_DATA_ENGLISH_ONLY>...instructions...</DYNAMIC_DATA_ENGLISH_ONLY>`).
+      *   **Behavior**: When variables (`{{ ... }}`) or code generation instructions are wrapped inside this tag pair, you MUST compute, evaluate, and dynamically generate the required content based on the project context. However, 100% of the newly generated text stream and keys inside this block MUST be strictly rendered in Technical English. Translation is absolutely banned.
+
+- **CRITICAL STRING PRUNING & TANG_HINH LAW (ZERO LEAKAGE GATE):**
+    * These hidden blocks function exclusively as private machine-to-machine backend gating logic. 
+    * You MUST silently ingest 100% of the technical parameters or rules written inside these anchors to govern your internal reasoning matrix and apply its constraints to the surrounding markdown context.
+    * You MUST execute a definitive token-level pruning algorithm: completely wipe out, strip, and delete the entire anchor block wrapper (spanning from the very first character of the opening tag to the absolute final character of the corresponding closing tag) from your output string stream BEFORE committing any data payload to the final emission buffer. 
+    * Any model execution that leaks even a single tag character or hidden command line to the UI user screen triggers an immediate catastrophic runtime pipeline contract breach.
+</GLOBAL_GOVERNANCE_MATRIX>
+
+<ACTIVE_TASK_SYSTEM_INSTRUCTION>
+You are a world-class Principal Solutions Architect. Your specific task is to read the Global Context Markdown blueprint and generate a highly detailed operational context blueprint for one targeted Phase. 
+
+# YOUR CRITICAL OPERATIONAL MANDATES (ZERO LOOPHOLES):
+1. **ANTI-LAZINESS & DIRECT INHERITANCE MANDATE:** You MUST extract and expand every single technical task, DDL SQL schema definition, API contract, and exception flow outlined for the targeted Phase inside the Global Context reference. Converting details into broad summaries or placeholders is permanently banned.
+
+2. **100% PERFECT TAG MATCHING:** Every single Tag ID (`[REQ-XXX]`, `[EXC-XXX]`, `[DAT-XXX]`, `[ARC-XXX]`, `[NFR-XXX]`) present in the Global Context for this specific phase MUST be perfectly preserved and mapped into the daily execution logs.
+
+3. **MANDATORY INLINE TAG INJECTION RULE & HTML ANCHOR LOCKDOWN:** For every single Sub-Task generated under the daily logs, you MUST explicitly output a dedicated structural line item starting exactly with the translated string token for `* Traceability Tag Tokens:` followed by an immutable hidden HTML token container block. You MUST wrap the exact raw comma-separated tag IDs inside the hidden tag container string token layout exactly as: `<!--START_TAGS-->[REQ-XXX], [DAT-XXX]<!--END_TAGS-->`. You are STRICTLY BANNED from translating or altering any token values inside the HTML comment tags. Leaving a task block without this explicit HTML anchor layout is a fatal pipeline failure.
+
+4. **LONGITECTURAL DAY PARTITIONING & ANTI-PADDING GUARDRAIL (ABSOLUTE LOCAL CHRONO RE-INDEX LAW):**
+   - You MUST break down the operational calendar day-by-day using individual sequential integers starting strictly from DAY 1 up to a MAXIMUM of DAY 7.
+   - **ABSOLUTE CHRONO RESET LAW**: You are COMPLETELY BANNED from continuing the sequential day index from any previous phase or global context log timelines. 
+   - The very first day section generated inside this active file MUST natively reset and force-freeze its counter starting exactly from numerical digit 1 (e.g., DAY 1 or NGÀY 1), regardless of the preceding historical context metrics. 
+   - Any model execution that outputs a continuing sequence (like generating "DAY 3" on Phase 2 because Phase 1 ended on Day 2) triggers an immediate pipeline crash.
+   - **STRICT PROGRESSION STOPPING CRITERION:** You MUST freeze the timeline and stop generating daily sections immediately on the exact calendar day where the technical objectives allocated for this phase are satisfied. You are STRICTLY BANNED from injecting dummy placeholder days, fake syncs, empty review blocks, or documentation padding just to expand the calendar. If the technical scope is natively complete on DAY 1, freeze the output file state and exit immediately. Do NOT generate empty or padded days.
+   - You are STRICTLY FORBIDDEN from bundling multiple days together (e.g., NO "DAY 1 - DAY 3"). Every single calendar day log must be explicitly isolated as its own standalone subsection header containing atomic steps for that unique 24-hour cycle.
+   - **CRITICAL ACTUAL CEILING CONSTRAINT**: You are ABSOLUTELY AND CRITICALLY BANNED from blindly generating days up to the generic `7` configuration parameter if the active phase's actual duration defined in Section 4 "HIGH-LEVEL MULTI-PHASE ARCHITECTURAL SYNOPSIS GRID" of the Global Context is shorter.
+   - You MUST cross-reference the active `Phase 4` row inside the Section 4 Synopsis Table, extract the exact runtime duration from the "Day Range" column (e.g., if the table says "Day 1 - 2", the actual ceiling is strictly 2 days), and force-stop your sequential day generation precisely at that calculated local integer ceiling.
+   - Generating a single day beyond the actual duration specified in the Global Context synopsis grid (such as generating Day 3 or Day 5 when the table restricts the phase to Day 1 - 2) constitutes a fatal structural contract violation and will break the backend workflow sequencer.
+
+5. **Language Compliance & Formatting Lockdown:** You MUST generate the entire report strictly in the language specified by the parameters: **🇻🇳 Vietnamese**.
+
+# 🔒 SYSTEM PRODUCTION INTEGRATION AND FORMATTING LOCKDOWN (ABSOLUTE)
+- **Strict Content Purity Constraint:** Your entire output response MUST be a pure, raw executable Markdown text payload written in 🇻🇳 Vietnamese.
+- **Explicit Start Mandate & Technical Name Isolation:** Your output response MUST start exactly with the standardized primary title text pattern, translating descriptive labels into the target language but isolating the technical identifier: `# [Translated text for "Phase"] 4: <!--PHASE_NAME_START-->[Dynamically analyze the allocated tasks and output a standard, natural, human-readable descriptive title string for this phase using isolated words separated by real, standard whitespace characters. You are ABSOLUTELY AND CRITICALLY BANNED from combining words together, removing spaces, or utilizing programming styles like PascalCase, camelCase, or snake_case. It must read normally and smoothly just like a human description string. Fully translate and render this title into the target language requested by the parameters: 🇻🇳 Vietnamese. Example: "Core Infrastructure And Authentication Setup"]<!--PHASE_NAME_END--> | [Translated text for "Description"]: <!--PHASE_DESC_START-->[Provide a granular, professional engineering description summarizing the absolute operational scope of this specific phase, fully rendered in 🇻🇳 Vietnamese]<!--PHASE_DESC_END-->`. Do NOT include greetings, intros, notes, or explanations. Do NOT wrap the entire response inside markdown codeblocks. Any token before or after this exact structure will cause an immediate execution pipeline crash.
+</ACTIVE_TASK_SYSTEM_INSTRUCTION>
+
+# Raw Response / Exception:
+
+## Giai đoạn 4: Triển khai ghi danh học viên, điểm danh QR, thẻ hội viên, thông báo, khuyến mãi, thông báo và cài đặt hệ thống | Mô tả: Giai đoạn 4 tập trung vào triển khai toàn bộ chức năng ghi danh học viên, điểm danh qua mã QR, quản lý thẻ hội viên, hệ thống thông báo đa kênh, khuyến mãi và thông báo, cùng với cấu hình và cài đặt hệ thống. Các thành phần chính bao gồm: EnrollmentController và EnrollmentService để xử lý đăng ký khóa học; AttendanceService để ghi nhận điểm danh một cách idempotent; NotificationService để gửi push và tin nhắn Zalo; MembershipController để quản lý thẻ hội viên, khuyến mãi, thông báo và cài đặt hệ thống. Ngoài ra, giai đoạn này cũng triển khai các bảng dữ liệu liên quan: ENROLLMENTS, ATTENDANCE, STUDENTCARDS, NOTIFICATIONS, PROMOTIONS, ANNOUNCEMENTS, SYSTEMSETTINGS. Mọi giao tiếp API được bảo mật bằng JWT, các truy vấn dữ liệu được tối ưu bằng chỉ mục và chuẩn bị sẵn sàng cho việc mở rộng theo nhu cầu.
+
+#### 📊 Document Control
+
+| Mục | Chi tiết |
+| :--- | :--- |
+| **ID Kiến Trúc** | ARCH-20260807042343 |
+| **Tên Dự Án** | membership-hub |
+| **Giai Đoạn** | 4 |
+| **Tên Giai Đoạn** | Triển khai ghi danh học viên, điểm danh QR, thẻ hội viên, thông báo, khuyến mãi, thông báo và cài đặt hệ thống |
+| **Mô Tả** | Giai đoạn 4 tập trung vào triển khai toàn bộ chức năng ghi danh học viên, điểm danh qua mã QR, quản lý thẻ hội viên, hệ thống thông báo đa kênh, khuyến mãi và thông báo, cùng với cấu hình và cài đặt hệ thống. Các thành phần chính bao gồm: EnrollmentController và EnrollmentService để xử lý đăng ký khóa học; AttendanceService để ghi nhận điểm danh một cách idempotent; NotificationService để gửi push và tin nhắn Zalo; MembershipController để quản lý thẻ hội viên, khuyến mãi, thông báo và cài đặt hệ thống. Ngoài ra, giai đoạn này cũng triển khai các bảng dữ liệu liên quan: ENROLLMENTS, ATTENDANCE, STUDENTCARDS, NOTIFICATIONS, PROMOTIONS, ANNOUNCEMENTS, SYSTEMSETTINGS. Mọi giao tiếp API được bảo mật bằng JWT, các truy vấn dữ liệu được tối ưu bằng chỉ mục và chuẩn bị sẵn sàng cho việc mở rộng theo nhu cầu. |
+| **Phiên Bản** | 1.0 (Baseline) |
+| **Ngày/Thời Gian** | 2026/08/07 04:23:43 |
+| **Tác Giả** | Enterprise System Architect (SA Agent) |
+| **Phê Duyệt** | Pending Technical Governance Review |
+
+#### 1. Phạm vi hoạt động và mục tiêu giai đoạn
+
+Giai đoạn 4 thực hiện toàn bộ chức năng ghi danh học viên, điểm danh qua mã QR, quản lý thẻ hội viên, hệ thống thông báo đa kênh, khuyến mãi và thông báo, cùng với cấu hình và cài đặt hệ thống. Các thành phần chính bao gồm: EnrollmentController và EnrollmentService để xử lý đăng ký khóa học; AttendanceService để ghi nhận điểm danh một cách idempotent; NotificationService để gửi push và tin nhắn Zalo; MembershipController để quản lý thẻ hội viên, khuyến mãi, thông báo và cài đặt hệ thống. Ngoài ra, giai đoạn này cũng triển khai các bảng dữ liệu liên quan: ENROLLMENTS, ATTENDANCE, STUDENTCARDS, NOTIFICATIONS, PROMOTIONS, ANNOUNCEMENTS, SYSTEMSETTINGS. Mọi giao tiếp API được bảo mật bằng JWT, các truy vấn dữ liệu được tối ưu bằng chỉ mục và chuẩn bị sẵn sàng cho việc mở rộng theo nhu cầu.
+
+#### 2. Phạm vi kỹ thuật và ranh giới thư mục
+
+- Thư mục backend: `./sources/backend/enrollment/`, `./sources/backend/attendance/`, `./sources/backend/notifications/`, `./sources/backend/membership/`
+- Thư mục docs: `./sources/docs/`
+- Các điểm cuối API:
+  - `POST /api/v1/enrollments`
+  - `POST /api/v1/attendance/scan`
+  - `POST /api/v1/notifications`
+  - `POST /api/v1/promotions`
+  - `POST /api/v1/announcements`
+  - `GET /api/v1/membership/{studentId}/card`
+  - `POST /api/v1/membership/renew`
+
+#### 3. Hướng dẫn chức năng dành cho từng nhân viên phụ trách
+
+- **Coder**: Đóng vai trò là Nhà phát triển ứng dụng cấp cao. Trách nhiệm triển khai mã nguồn cho các dịch vụ backend và thành phần frontend/mobile. Không viết bộ kiểm thử hoặc manifest.
+- **Tester**: Đóng vai trò là Lead/Principal QC/QA. Chuyên về viết bộ kiểm thử, kiểm tra tích hợp, kiểm tra hiệu năng. Không sửa mã nguồn.
+- **Reviewer**: Đóng vai trò là Kiểm tra mã, phân tích tĩnh, vá lỗi bảo mật. Kiểm tra chất lượng, sửa lỗi, bảo mật OWASP.
+- **Doc**: Đóng vai trò là Technical Writer và Enterprise Systems Architect. Soạn tài liệu kỹ thuật, sơ đồ dữ liệu, quy trình triển khai, và các tiêu chuẩn bảo mật.
+- **Docker**: Đóng vai trò là chuyên gia containerization, multi‑stage Dockerfile, tối ưu kích thước, đẩy image lên DockerHub.
+- **GCP**: Đóng vai trò là chuyên gia tự động hóa GCP, xây dựng và đẩy image lên Artifact Registry, triển khai trên Cloud Run.
+- **GKE**: Đóng vai trò là chuyên gia Kubernetes, xây dựng manifest, HPA, Helm chart, triển khai microservices trên GKE.
 
 #### 4. Định nghĩa Hoàn thành (DoD)
 
-- Tất cả các API hoạt động đúng theo yêu cầu.
-- Kiểm thử unit ≥ 90 % và integration ≥ 80 %.
-- Đánh giá OWASP, SonarQube đạt 0 blocker.
-- Tài liệu kiến trúc hoàn chỉnh, lưu trữ trong `./sources/docs/`.
-- Mã nguồn được commit vào nhánh `features/development-phase-1-day-1` và `features/development-phase-1-day-2`.
-- Đã triển khai Docker image và push lên GCR.
-- Đã triển khai GKE deployment và kiểm tra HPA.
+- Tất cả các yêu cầu [REQ-010] đến [REQ-018] được triển khai và kiểm thử thành công.
+- Mọi API được bảo mật bằng JWT, có thời gian hết hạn 15 phút và refresh token 7 ngày.
+- Kiểm thử unit, integration, E2E đạt 100% coverage cho các module liên quan.
+- Kiểm tra OWASP Top 10, bảo mật OWASP, và NFR-001, NFR-003, NFR-004, NFR-006 được đáp ứng.
+- Tất cả các tag ID được map đầy đủ, không còn tag chưa được sử dụng.
+- Tài liệu kỹ thuật hoàn chỉnh, bao gồm sơ đồ dữ liệu, kiến trúc, quy trình triển khai, và hướng dẫn bảo mật.
 
-#### 5. LỊCH THỰC HIỆN HÀNG NGÀY
+#### 5. Nhật ký thực thi kiến trúc theo ngày
 
-###### 🌤️ Ngày 1: <!--DAY_HEADER_START-->TRIỂN KHAI DỊCH VỤ QUẢN LÝ NGƯỜI DÙNG CƠ BẢN<!--DAY_HEADER_END-->
+###### 🌤️ NGÀY 1: Xây dựng controller ghi danh khóa học
 
-######## 📝 Nhiệm vụ 1.1: Triển khai lớp UserService để xử lý đăng ký người dùng mới, tạo bản ghi trong bảng USERS với vai trò mặc định là Student, tuân thủ REQ-001 và ARC-001.  
-########## Được giao cho: Coder  
-########## Yêu cầu Đường dẫn & Yêu cầu Kỹ thuật:  
-* **Đường dẫn Mục tiêu**: ./sources/org/nlh4j/sources/membershiphub/backend/users/UserService.java  
-* **Thẻ Tracability**: <!--START_TAGS-->[REQ-001], [ARC-001], [DAT-001], [NFR-001], [NFR-003], [NFR-006], [NFR-008]<!--END_TAGS-->  
+######## 📝 Mục tiêu 1.0: Khởi tạo tài liệu kiến trúc giai đoạn 4
+########## Được giao: Doc
+########## Đường dẫn:
+* **Đường dẫn**: ./sources/docs/phase4_architecture_overview.md
+########## Thẻ theo dõi:
+* **Thẻ theo dõi**: <!--START_TAGS-->[ARC-004], [ARC-005], [REQ-010], [REQ-011], [REQ-012], [REQ-013], [REQ-014], [REQ-015], [REQ-016], [REQ-017], [REQ-018], [REQ-019], [REQ-020], [REQ-021], [REQ-022], [REQ-023], [REQ-024], [REQ-025], [DAT-005], [DAT-006], [DAT-007], [DAT-008], [DAT-009], [DAT-011], [EXC-001], [EXC-002], [EXC-003], [EXC-005], [NFR-001], [NFR-003], [NFR-004], [NFR-006]<!--END_TAGS-->
 
-######## 📝 Nhiệm vụ 1.2: Viết tài liệu kiến trúc tổng quan cho giai đoạn 1, bao gồm mô hình kiến trúc, sơ đồ ER, và quy trình triển khai.  
-########## Được giao cho: Doc  
-########## Yêu cầu Đường dẫn & Yêu cầu Kỹ thuật:  
-* **Đường dẫn Mục tiêu**: ./sources/docs/phase1_architecture_overview.md  
-* **Thẻ Tracability**: <!--START_TAGS-->[REQ-001], [ARC-001], [DAT-001], [NFR-001], [NFR-003], [NFR-006], [NFR-008]<!--END_TAGS-->  
+######## 📝 Mục tiêu 1.1: Triển khai EnrollmentController
+########## Được giao: Coder
+########## Đường dẫn:
+* **Đường dẫn**: ./sources/backend/enrollment/org/nlh4j/sources/membershiphub/EnrollmentController.java
+########## Thẻ theo dõi:
+* **Thẻ theo dõi**: <!--START_TAGS-->[ARC-004], [REQ-010], [DAT-005]<!--END_TAGS-->
 
-######## 📝 Nhiệm vụ 1.3: Kiểm tra mã nguồn UserService, xác nhận tuân thủ OWASP, kiểm tra lỗi biên dịch.  
-########## Được giao cho: Reviewer  
-########## Yêu cầu Đường dẫn & Yêu cầu Kỹ thuật:  
-* **Đường dẫn Mục tiêu**: ./sources/org/nlh4j/sources/membershiphub/backend/users/UserService.java  
-* **Thẻ Tracability**: <!--START_TAGS-->[ARC-001], [DAT-001], [NFR-001], [NFR-003], [NFR-006], [NFR-008]<!--END_TAGS-->  
+###### 🌤️ NGÀY 2: Triển khai logic đăng ký khóa học
 
-###### 🌤️ Ngày 2: <!--DAY_HEADER_START-->TRIỂN KHAI DỊCH VỤ XÁC THỰC OAUTH2 VÀ JWT<!--DAY_HEADER_END-->
+######## 📝 Mục tiêu 2.1: Triển khai EnrollmentService
+########## Được giao: Coder
+########## Đường dẫn:
+* **Đường dẫn**: ./sources/backend/enrollment/org/nlh4j/sources/membershiphub/EnrollmentService.java
+########## Thẻ theo dõi:
+* **Thẻ theo dõi**: <!--START_TAGS-->[REQ-011], [DAT-005], [ARC-005]<!--END_TAGS-->
 
-######## 📝 Nhiệm vụ 2.1: Triển khai AuthController để xử lý xác thực OAuth2 từ Firebase/Google/Facebook, trao đổi mã lấy thông tin người dùng, cập nhật vai trò và cấp JWT token (ARC-006), đồng thời hỗ trợ phân quyền người dùng (REQ-003).  
-########## Được giao cho: Coder  
-########## Yêu cầu Đường dẫn & Yêu cầu Kỹ thuật:  
-* **Đường dẫn Mục tiêu**: ./sources/org/nlh4j/sources/membershiphub/backend/users/AuthController.java  
-* **Thẻ Tracability**: <!--START_TAGS-->[REQ-002], [REQ-003], [ARC-006], [DAT-001], [NFR-001], [NFR-003], [NFR-006], [NFR-008]<!--END_TAGS-->  
+###### 🌤️ NGÀY 3: Triển khai dịch vụ điểm danh QR
 
-######## 📝 Nhiệm vụ 2.2: Xây dựng Dockerfile multi‑stage cho UserService, tối ưu kích thước < 500 MB.  
-########## Được giao cho: Docker  
-########## Yêu cầu Đường dẫn & Yêu cầu Kỹ thuật:  
-* **Đường dẫn Mục tiêu**: ./sources/org/nlh4j/sources/membershiphub/backend/users/Dockerfile  
-* **Thẻ Tracability**: <!--START_TAGS-->[ARC-001], [NFR-005], [NFR-006]<!--END_TAGS-->
+######## 📝 Mục tiêu 3.1: Triển khai AttendanceService
+########## Được giao: Coder
+########## Đường dẫn:
+* **Đường dẫn**: ./sources/backend/attendance/org/nlh4j/sources/membershiphub/AttendanceService.java
+########## Thẻ theo dõi:
+* **Thẻ theo dõi**: <!--START_TAGS-->[ARC-007], [REQ-012], [DAT-006], [EXC-001], [EXC-002]<!--END_TAGS-->
+
+###### 🌤️ NGÀY 4: Triển khai dịch vụ thông báo
+
+######## 📝 Mục tiêu 4.1: Triển khai NotificationService
+########## Được giao: Coder
+########## Đường dẫn:
+* **Đường dẫn**: ./sources/backend/notifications/org/nlh4j/sources/membershiphub/NotificationService.java
+########## Thẻ theo dõi:
+* **Thẻ theo dõi**: <!--START_TAGS-->[ARC-008], [REQ-016], [DAT-008], [EXC-003]<!--END_TAGS-->
+
+###### 🌤️ NGÀY 5: Triển khai controller thẻ hội viên, khuyến mãi, thông báo và cài đặt hệ thống
+
+######## 📝 Mục tiêu 5.1: Triển khai MembershipController
+########## Được giao: Coder
+########## Đường dẫn:
+* **Đường dẫn**: ./sources/backend/membership/org/nlh4j/sources/membershiphub/MembershipController.java
+########## Thẻ theo dõi:
+* **Thẻ theo dõi**: <!--START_TAGS-->[REQ-014], [REQ-015], [DAT-007], [DAT-009], [DAT-011], [EXC-005]<!--END_TAGS-->
+
+# AI Model: openai/gpt-oss-20b:free - Phase 5 - Prompt:
+
+## CONTEXT INHERITANCE PIPELINE
+Project Name: membership-hub
+You are tasked to detail **PHASE 5 OUT OF 5**. You must align perfectly with the established Global Context, satisfy a subset of the Raw Requirements, and maintain strict continuity of physical files generated in previous phases to avoid collision or duplicate creation.
+
+--- GLOBAL CONTEXT REFERENCE ---
+## BỐ CỤC DỰ ÁN TOÀN CẦU: membership-hub
+
+#### 📊 Document Control
+
+| Item | Details |
+| :--- | :--- |
+| **Blueprint ID** | ARCH-20260807024254 |
+| **Project Name** | membership-hub |
+| **Version** | 1.0 (Baseline) |
+| **Date.Time** | 2026/08/07 02:42:54 |
+| **Author** | Enterprise System Architect (SA Agent) |
+| **Approval** | Pending Technical Governance Review |
+
+#### 📊 1. SYSTEM OVERVIEW & CORE ARCHITECTURE MODALITY
+
+###### 1.1 Core System Modality & Architecture Modality
+- Xác định mô hình kiến trúc đa dịch vụ với các thành phần độc lập: người dùng, trung tâm, khóa học, ghi danh, điểm danh, thẻ hội viên, thông báo, khuyến mãi, chatbot AI, giao diện di động.
+- Áp dụng mô hình CQRS cho các hoạt động đọc/ghi, đảm bảo tính nhất quán cho điểm danh và thẻ hội viên.
+- Sử dụng kiến trúc hướng sự kiện với Kafka để đồng bộ hóa dữ liệu giữa các dịch vụ.
+- Triển khai bảo mật theo từng trung tâm với RBAC và phân quyền dựa trên vai trò (ARC-001 đến ARC-005).
+- Tích hợp OAuth2/OIDC với Firebase, Google, Facebook để xác thực (ARC-006).
+- Thiết kế API REST với JWT (15 phút) và refresh token (7 ngày) (ARC-006).
+- Triển khai container hóa Docker với Quarkus và orchestration Kubernetes trên GKE (ARC-010).
+- Tích hợp push notification qua FCM/APNs và tích hợp Zalo API (ARC-008).
+- Triển khai hệ thống giám sát và ghi nhật ký tập trung (NFR-006).
+
+###### 1.2 Enterprise Data Flow Topologies & Core Ecosystems
+- Luồng xác thực: Người dùng đăng nhập qua email/mật khẩu hoặc OAuth2 từ Firebase/Google/Facebook → xác thực → cấp JWT.
+- Luồng điểm danh QR: Ứng dụng di động quét QR → gửi studentId + timestamp → dịch vụ xác thực → ghi điểm danh (ARC-007, EXC-001, EXC-002).
+- Luồng thông báo: Hành động ghi danh/giáo viên/thông báo → tạo bản ghi Notification → đẩy push (FCM/APNs) + gửi tin nhắn Zalo (ARC-008, EXC-003).
+- Luồng tích hợp frontend: Next.js tiêu thụ REST API, caching ngoại tuyến qua IndexedDB (ARC-009).
+- Luồng xử lý sự kiện: Kafka chủ đề `attendance`, `notifications`, `enrollment` để đồng bộ hóa dữ liệu giữa các dịch vụ.
+- Tích hợp cơ sở dữ liệu: PostgreSQL cho dữ liệu quan trọng, Redis cho session caching (ARC-010).
+- Triển khai CI/CD qua GitHub Actions với kiểm tra tự động và triển khai canary (ARC-010).
+- Vòng lặp đa ngôn ngữ: middleware phát hiện locale, chuyển hướng URL, chèn hreflang cho SEO (REQ-022, REQ-023).
+
+#### 📁 2. TECH STACK DEPENDENCIES & ECOSYSTEM LIBRARIES
+
+###### 2.1 Backend Infrastructure Core Stack
+- Java/Quarkus **3.2.0**
+- PostgreSQL **15.4**
+- Docker **24.0.5**
+- Kubernetes (GKE) **1.28**
+- Firebase Authentication SDK **9.22.0**
+- Google Cloud Messaging (FCM) / Apple APNs **latest**
+- Zalo API SDK **2.0.1**
+- Redis **7.2**
+- Maven **3.9.6**
+- Liquibase **4.25.5**
+- JUnit5/Mockito **5.10**
+- OpenTelemetry **1.30.0**
+
+###### 2.2 Frontend & Cross-Platform UI Mobile Stack
+- Next.js **14.x**
+- React Native **0.73.0**
+- Node.js **20.12**
+- TypeScript **5.3**
+- Capacitor **5.5**
+- Tailwind CSS **3.4**
+- Axios **1.6**
+- React Query **5.0**
+- Swift (iOS) / Kotlin (Android) native modules cho FCM/APNs
+
+###### 2.3 ARCHITECTURAL STACK MATRIX
+
+```properties:stack_matrix
+PERSISTENCE_LAYER_REQUIRED=true
+BACKEND_LAYER_REQUIRED=true
+FRONTEND_LAYER_REQUIRED=true
+MOBILE_LAYER_REQUIRED=true
+DEVOPS_LAYER_REQUIRED=true
+```
+
+#### 📁 3. GLOBAL GUARDRAILS & ENTERPRISE COMPLIANCE STANDARDS
+- **Quy tắc biên giới không gian làm việc:** Tất cả các đường dẫn phải bắt đầu với `./sources/`.
+- **Quy tắc tiền tố thư mục động:** tuân thủ Protocol 1.
+- **Quy tắc gói Java:** `org.nlh4j.saas.membershiphub` (membership-hub được chuẩn hóa thành dạng alphanumeric lowercase).
+- **Quy tắc cú pháp mục tiêu kiểm thử:** `<source_component>;<test_suite_file>`.
+
+#### 4. HIGH-LEVEL MULTI-PHASE ARCHITECTURAL SYNOPSIS GRID
+
+| Phase | Day Range | Architectural Component / Module Path | Technical Deliverables Summary | Assigned Sub-Agent | Targeted Tag IDs |
+| :--- | :--- | :--- | :--- | :--- | :--- |
+| Phase 1 | Day 1 - 2 | ./sources/backend/users/ | Xây dựng lõi người dùng, vai trò và xác thực cơ bản (bao gồm đăng ký, OAuth2, JWT và validation đầu vào) | Coder | [ARC-001], [ARC-006], [REQ-001], [REQ-002], [REQ-003], [DAT-001], [EXC-004], [NFR-001], [NFR-003], [NFR-006], [NFR-008] |
+| Phase 2 | Day 1 - 4 | ./sources/backend/centers/ | Triển khai quản lý trung tâm với CRUD, phân quyền và gán Center Admin | Coder | [ARC-002], [REQ-004], [REQ-005], [REQ-006], [DAT-003], [NFR-001], [NFR-003], [NFR-004] |
+| Phase 3 | Day 1 - 3 | ./sources/backend/courses/ | Xây dựng quản lý khóa học với xung đột lịch và phân công giáo viên | Coder | [ARC-003], [REQ-007], [REQ-008], [REQ-009], [DAT-004], [NFR-001], [NFR-003] |
+| Phase 4 | Day 1 - 5 | ./sources/backend/enrollment/ | Triển khai ghi danh học viên, điểm danh QR, thẻ hội viên, thông báo, khuyến mãi, thông báo và cài đặt hệ thống | Coder | [ARC-004], [ARC-005], [REQ-010], [REQ-011], [REQ-012], [REQ-013], [REQ-014], [REQ-015], [REQ-016], [REQ-017], [REQ-018], [DAT-005], [DAT-006], [DAT-007], [DAT-008], [DAT-009], [DAT-011], [EXC-001], [EXC-002], [EXC-003], [EXC-005], [NFR-001], [NFR-003], [NFR-004], [NFR-006] |
+| Phase 5 | Day 1 - 2 | ./sources/frontend/mobile/ | Phát triển giao diện di động, thông báo đẩy, chatbot AI, i18n, SEO, báo cáo và hardening DevOps | Coder | [ARC-007], [ARC-008], [ARC-009], [ARC-010], [REQ-019], [REQ-020], [REQ-021], [REQ-022], [REQ-023], [REQ-024], [REQ-025], [NFR-002], [NFR-005], [NFR-007], [NFR-008], [NFR-009] |
+
+#### 5. GRANULAR PHASE SPECIALIZATIONS & DAY-BY-DAY DELIVERABLES
+
+###### 📈 Phase 1: Xây dựng lõi người dùng, vai trò và xác thực cơ bản (bao gồm đăng ký, OAuth2, JWT và validation đầu vào)
+
+- **Phase Core Objective & Purpose:** Xây dựng lõi người dùng, vai trò và xác thực cơ bản (bao gồm đăng ký, OAuth2, JWT và validation đầu vào).
+- **Target Physical Directory Matrix Map:**
+    *   `./sources/backend/users/UserService.java` [ARC-001], [REQ-001], [DAT-001]
+    *   `./sources/backend/users/AuthController.java` [ARC-006], [REQ-002], [REQ-003], [DAT-001]
+- **Database Schema DDL SQL Specification [DAT-001]:**
+```sql
+CREATE TABLE ROLES (
+    roleId SMALLINT PRIMARY KEY,
+    name VARCHAR(30) NOT NULL UNIQUE,
+    description VARCHAR(200)
+);
+
+CREATE TABLE USERS (
+    userId UUID PRIMARY KEY,
+    email VARCHAR(255) NOT NULL UNIQUE,
+    passwordHash CHAR(60) NOT NULL,
+    fullName VARCHAR(100) NOT NULL,
+    roleId SMALLINT NOT NULL REFERENCES ROLES(roleId),
+    provider ENUM('local','firebase','google','facebook') NOT NULL DEFAULT 'local',
+    createdAt TIMESTAMP NOT NULL DEFAULT NOW(),
+    updatedAt TIMESTAMP NOT NULL DEFAULT NOW()
+);
+```
+- **API and Event Routing Contracts [REQ-001], [REQ-002], [REQ-003], [ARC-006]:**
+```json
+// POST /api/v1/auth/register
+{
+  "email": "user@example.com",
+  "password": "StrongPass123!",
+  "fullName": "Nguyen Van A",
+  "provider": "local"
+}
+```
+```json
+// POST /api/v1/auth/social
+{
+  "provider": "google",
+  "code": "OAuth2_code_from_google",
+  "redirectUri": "https://app.example.com/auth/callback"
+}
+```
+```json
+// PUT /api/v1/users/{userId}/role
+{
+  "roleId": 2
+}
+```
+- **Phase Localized Exception Handlers [EXC-004]:**
+    * Xác thực đầu vào không hợp lệ (ví dụ: email sai định dạng, thiếu trường bắt buộc): Trả về HTTP 400 với danh sách các trường không hợp lệ và hướng dẫn chỉnh sửa.
+
+######## Chronological Day-by-Day Sub-Agent Task Distribution Logs (Phase 1)
+
+- **DAY 1:** Mục tiêu ngắn hạn: Triển khai dịch vụ quản lý người dùng cơ bản.
+    * **Sub-Agent Workflow Specialization:** [Coder]
+    * **Targeted Tag IDs:** [ARC-001], [REQ-001], [DAT-001]
+    * **Target Component file path (`target_component`):** ./sources/backend/users/UserService.java [ARC-001], [REQ-001], [DAT-001]
+    * **Low-Level Technical Task Instruction:** Triển khai lớp UserService để xử lý đăng ký người dùng mới, tạo bản ghi trong bảng Users với vai trò mặc định là Student, tuân thủ REQ-001 và ARC-001.
+
+- **DAY 2:** Mục tiêu ngắn hạn: Xây dựng controller xác thực và tích hợp OAuth2.
+    * **Sub-Agent Workflow Specialization:** [Coder]
+    * **Targeted Tag IDs:** [ARC-006], [REQ-002], [REQ-003], [DAT-001]
+    * **Target Component file path (`target_component`):** ./sources/backend/users/AuthController.java [ARC-006], [REQ-002], [REQ-003], [DAT-001]
+    * **Low-Level Technical Task Instruction:** Xây dựng AuthController để xử lý xác thực OAuth2 từ Firebase/Google/Facebook, trao đổi mã lấy thông tin người dùng, cập nhật vai trò và cấp JWT token (ARC-006), đồng thời hỗ trợ phân quyền người dùng (REQ-003).
+
+###### 📈 Phase 2: Triển khai quản lý trung tâm với CRUD, phân quyền và gán Center Admin
+
+- **Phase Core Objective & Purpose:** Triển khai quản lý trung tâm với CRUD, phân quyền và gán Center Admin.
+- **Target Physical Directory Matrix Map:**
+    *   `./sources/backend/centers/CenterController.java` [ARC-002], [REQ-004], [DAT-003]
+    *   `./sources/backend/centers/CenterService.java` [REQ-005], [DAT-003]
+    *   `./sources/backend/centers/CenterAdminService.java` [REQ-006], [ARC-002], [DAT-003]
+- **Database Schema DDL SQL Specification [DAT-003]:**
+```sql
+CREATE TABLE CENTERS (
+    centerId UUID PRIMARY KEY,
+    name VARCHAR(100) NOT NULL,
+    address VARCHAR(255) NOT NULL,
+    taxId VARCHAR(13) NOT NULL UNIQUE,
+    contactPhone VARCHAR(20),
+    contactEmail VARCHAR(255)
+);
+```
+- **API and Event Routing Contracts [REQ-004], [REQ-005], [REQ-006], [ARC-002]:**
+```json
+// GET /api/v1/centers
+// trả về danh sách trung tâm
+```
+```json
+// POST /api/v1/centers
+{
+  "name": "Hà Nội Center",
+  "address": "123 Đường Láng, Đống Đa, Hà Nội",
+  "taxId": "0123456789",
+  "contactPhone": "+84123456789",
+  "contactEmail": "contact@hnc.com"
+}
+```
+```json
+// PUT /api/v1/centers/{centerId}/admin/{userId}
+```
+- **Phase Localized Exception Handlers:** Không có ngoại lệ chuyên biệt.
+
+######## Chronological Day-by-Day Sub-Agent Task Distribution Logs (Phase 2)
+
+- **DAY 1:** Mục tiêu ngắn hạn: Xây dựng controller danh sách trung tâm.
+    * **Sub-Agent Workflow Specialization:** [Coder]
+    * **Targeted Tag IDs:** [ARC-002], [REQ-004], [DAT-003]
+    * **Target Component file path (`target_component`):** ./sources/backend/centers/CenterController.java [ARC-002], [REQ-004], [DAT-003]
+    * **Low-Level Technical Task Instruction:** Triển khai CenterController để hiển thị danh sách trung tâm (REQ-004) và phục vụ các thao tác CRUD cho System Admin (ARC-002).
+
+- **DAY 2:** Mục tiêu ngắn hạn: Triển khai logic tạo/cập nhật trung tâm.
+    * **Sub-Agent Workflow Specialization:** [Coder]
+    * **Targeted Tag IDs:** [REQ-005], [DAT-003]
+    * **Target Component file path (`target_component`):** ./sources/backend/centers/CenterService.java [REQ-005], [DAT-003]
+    * **Low-Level Technical Task Instruction:** Triển khai logic tạo/cập nhật trung tâm trong CenterService, thực hiện kiểm tra trùng lặp taxId và ghi dữ liệu vào bảng CENTERS (REQ-005).
+
+- **DAY 3:** Mục tiêu ngắn hạn: Triển khai gán/rút quyền Center Admin.
+    * **Sub-Agent Workflow Specialization:** [Coder]
+    * **Targeted Tag IDs:** [REQ-006], [ARC-002], [DAT-003]
+    * **Target Component file path (`target_component`):** ./sources/backend/centers/CenterAdminService.java [REQ-006], [ARC-002], [DAT-003]
+    * **Low-Level Technical Task Instruction:** Triển khai gán/rút quyền Center Admin cho người dùng, cập nhật roleId trong bảng USERS và ghi lại mối quan hệ (REQ-006, ARC-002).
+
+- **DAY 4:** Mục tiêu ngắn hạn: Triển khai manifest GKE cho dịch vụ trung tâm.
+    * **Sub-Agent Workflow Specialization:** [Coder]
+    * **Targeted Tag IDs:** [NFR-001], [NFR-003], [NFR-004]
+    * **Target Component file path (`target_component`):** ./sources/infra/k8s/center-deployment.yaml [NFR-001], [NFR-003], [NFR-004]
+    * **Low-Level Technical Task Instruction:** Tạo manifest triển khai dịch vụ quản lý trung tâm trên GKE với autoscaling dựa trên CPU và request latency (NFR-001, NFR-003, NFR-004).
+
+###### 📈 Phase 3: Xây dựng quản lý khóa học với xung đột lịch và phân công giáo viên
+
+- **Phase Core Objective & Purpose:** Xây dựng quản lý khóa học với xung đột lịch và phân công giáo viên.
+- **Target Physical Directory Matrix Map:**
+    *   `./sources/backend/courses/CourseController.java` [ARC-003], [REQ-007], [DAT-004]
+    *   `./sources/backend/courses/CourseService.java` [REQ-008], [DAT-004]
+    *   `./sources/backend/courses/CourseTeacherService.java` [REQ-009], [ARC-003], [DAT-004]
+- **Database Schema DDL SQL Specification [DAT-004]:**
+```sql
+CREATE TABLE COURSES (
+    courseId UUID PRIMARY KEY,
+    title VARCHAR(150) NOT NULL,
+    description TEXT,
+    startDate DATE NOT NULL,
+    endDate DATE NOT NULL,
+    teacherId UUID NOT NULL REFERENCES USERS(userId),
+    maxStudents INT NOT NULL DEFAULT 30
+);
+```
+- **API and Event Routing Contracts [REQ-007], [REQ-008], [REQ-009], [ARC-003]:**
+```json
+// GET /api/v1/courses
+// trả về danh sách khóa học
+```
+```json
+// POST /api/v1/courses
+{
+  "title": "Lập trình Java nâng cao",
+  "description": "Khóa học về Quarkus và Kubernetes",
+  "startDate": "2026-09-01",
+  "endDate": "2026-12-31",
+  "teacherId": "a1b2c3d4-...",
+  "maxStudents": 20
+}
+```
+```json
+// PUT /api/v1/courses/{courseId}/teacher/{teacherId}
+```
+- **Phase Localized Exception Handlers:** Không có ngoại lệ chuyên biệt.
+
+######## Chronological Day-by-Day Sub-Agent Task Distribution Logs (Phase 3)
+
+- **DAY 1:** Mục tiêu ngắn hạn: Xây dựng controller danh sách khóa học.
+    * **Sub-Agent Workflow Specialization:** [Coder]
+    * **Targeted Tag IDs:** [ARC-003], [REQ-007], [DAT-004]
+    * **Target Component file path (`target_component`):** ./sources/backend/courses/CourseController.java [ARC-003], [REQ-007], [DAT-004]
+    * **Low-Level Technical Task Instruction:** Triển khai CourseController để hiển thị danh sách khóa học (REQ-007) và hỗ trợ CRUD cho System/Center Admin (ARC-003).
+
+- **DAY 2:** Mục tiêu ngắn hạn: Triển khai logic tạo/cập nhật khóa học.
+    * **Sub-Agent Workflow Specialization:** [Coder]
+    * **Targeted Tag IDs:** [REQ-008], [DAT-004]
+    * **Target Component file path (`target_component`):** ./sources/backend/courses/CourseService.java [REQ-008], [DAT-004]
+    * **Low-Level Technical Task Instruction:** Triển khai logic tạo/cập nhật khóa học, kiểm tra xung đột lịch với giáo viên (REQ-008) và ghi dữ liệu vào bảng COURSES (DAT-004).
+
+- **DAY 3:** Mục tiêu ngắn hạn: Triển khai gán/rút giáo viên vào khóa học.
+    * **Sub-Agent Workflow Specialization:** [Coder]
+    * **Targeted Tag IDs:** [REQ-009], [ARC-003], [DAT-004]
+    * **Target Component file path (`target_component`):** ./sources/backend/courses/CourseTeacherService.java [REQ-009], [ARC-003], [DAT-004]
+    * **Low-Level Technical Task Instruction:** Triển khai gán/rút giáo viên vào khóa học, tạo bản ghi mapping và gửi thông báo push (REQ-009, ARC-003).
+
+###### 📈 Phase 4: Triển khai ghi danh học viên, điểm danh QR, thẻ hội viên, thông báo, khuyến mãi, thông báo và cài đặt hệ thống
+
+- **Phase Core Objective & Purpose:** Triển khai ghi danh học viên, điểm danh QR, thẻ hội viên, thông báo, khuyến mãi, thông báo và cài đặt hệ thống.
+- **Target Physical Directory Matrix Map:**
+    *   `./sources/backend/enrollment/EnrollmentController.java` [ARC-004], [REQ-010], [DAT-005]
+    *   `./sources/backend/enrollment/EnrollmentService.java` [REQ-011], [DAT-005], [ARC-005]
+    *   `./sources/backend/attendance/AttendanceService.java` [ARC-007], [REQ-012], [DAT-006], [EXC-001], [EXC-002]
+    *   `./sources/backend/notifications/NotificationService.java` [ARC-008], [REQ-016], [DAT-008], [EXC-003]
+    *   `./sources/backend/membership/MembershipController.java` [REQ-014], [REQ-015], [DAT-007], [DAT-009], [DAT-011], [EXC-005]
+- **Database Schema DDL SQL Specification [DAT-005], [DAT-006], [DAT-007], [DAT-008], [DAT-009], [DAT-011]:**
+```sql
+CREATE TABLE ENROLLMENTS (
+    enrollmentId UUID PRIMARY KEY,
+    studentId UUID NOT NULL REFERENCES USERS(userId),
+    courseId UUID NOT NULL REFERENCES COURSES(courseId),
+    enrollmentDate TIMESTAMP NOT NULL DEFAULT NOW()
+);
+
+CREATE TABLE ATTENDANCE (
+    attendanceId UUID PRIMARY KEY,
+    studentId UUID NOT NULL REFERENCES USERS(userId),
+    courseId UUID NOT NULL REFERENCES COURSES(courseId),
+    attendanceDate DATE NOT NULL,
+    timestamp TIMESTAMP NOT NULL DEFAULT NOW()
+);
+
+CREATE TABLE STUDENTCARDS (
+    cardId UUID PRIMARY KEY,
+    studentId UUID NOT NULL REFERENCES USERS(userId),
+    issueDate DATE NOT NULL,
+    validityDays INT NOT NULL,
+    remainingDays INT NOT NULL
+);
+
+CREATE TABLE NOTIFICATIONS (
+    notificationId UUID PRIMARY KEY,
+    userId UUID REFERENCES USERS(userId),
+    groupZalo VARCHAR(100),
+    message TEXT NOT NULL,
+    sentAt TIMESTAMP NOT NULL DEFAULT NOW(),
+    delivered BOOLEAN NOT NULL DEFAULT FALSE
+);
+
+CREATE TABLE PROMOTIONS (
+    promoId UUID PRIMARY KEY,
+    code VARCHAR(30) NOT NULL UNIQUE,
+    discountPercent SMALLINT NOT NULL,
+    startDate DATE,
+    endDate DATE,
+    description TEXT
+);
+
+CREATE TABLE ANNOUNCEMENTS (
+    announcementId UUID PRIMARY KEY,
+    title VARCHAR(150) NOT NULL,
+    content TEXT NOT NULL,
+    startDate DATE,
+    endDate DATE
+);
+
+CREATE TABLE SYSTEMSETTINGS (
+    settingKey VARCHAR(50) PRIMARY KEY,
+    settingValue TEXT NOT NULL,
+    description TEXT
+);
+```
+- **API and Event Routing Contracts [REQ-010], [REQ-011], [REQ-012], [REQ-013], [REQ-014], [REQ-015], [REQ-016], [REQ-017], [REQ-018], [ARC-004], [ARC-005], [ARC-007], [ARC-008]:**
+```json
+// POST /api/v1/enrollments
+{
+  "studentId": "a1b2c3d4-...",
+  "courseId": "e5f6g7h8-..."
+}
+```
+```json
+// POST /api/v1/attendance/scan
+{
+  "studentId": "a1b2c3d4-...",
+  "courseId": "e5f6g7h8-...",
+  "qrCodeData": "course:e5f6g7h8-...|date:2026-08-07"
+}
+```
+```json
+// GET /api/v1/membership/{studentId}/card
+// trả về thẻ hội viên với daysRemaining
+```
+```json
+// POST /api/v1/notifications
+{
+  "userId": "a1b2c3d4-...",
+  "groupZalo": "hoc_vien_hn",
+  "message": "Bạn đã được ghi danh vào khóa học mới."
+}
+```
+```json
+// POST /api/v1/promotions
+{
+  "code": "SUMMER20",
+  "discountPercent": 20,
+  "startDate": "2026-06-01",
+  "endDate": "2026-08-31",
+  "description": "Giảm giá 20% cho tất cả khóa học."
+}
+```
+```json
+// POST /api/v1/announcements
+{
+  "title": "Thông báo nghỉ lễ",
+  "content": "Trung tâm nghỉ lễ từ 01/09 đến 05/09.",
+  "startDate": "2026-08-31",
+  "endDate": "2026-09-05"
+}
+```
+- **Phase Localized Exception Handlers [EXC-001], [EXC-002], [EXC-003], [EXC-005]:**
+    * **Mất mạng khi quét QR (EXC-001):** Nếu sinh viên quét QR nhưng không có kết nối mạng, khi kết nối được khôi phục, ứng dụng sẽ tự động gửi lại yêu cầu điểm danh; dịch vụ sẽ đảm bảo chỉ ghi một bản ghi điểm danh duy nhất.
+    * **Điểm danh trùng lặp (EXC-002):** Nếu cùng một sinh viên quét cùng một QR nhiều lần trong ngày, hệ thống sẽ phát hiện duplicate, trả về success với cờ ‘alreadyRecorded’ và không tạo thêm hàng.
+    * **Giao hàng thông báo thất bại (EXC-003):** Nếu push notification không thể gửi (ví dụ: token thiết bị không hợp lệ), hệ thống ghi log lỗi, lên lịch thử lại tối đa 3 lần, sau đó đánh dấu là thất bại.
+    * **Khôi phục hệ thống sau sự cố (EXC-005):** Nếu dịch vụ không khả dụng, khi khôi phục, các lần quét điểm danh chờ xử lý được xử lý theo thứ tự FIFO, và người dùng nhận được thông báo về các sự kiện đã khôi phục.
+
+######## Chronological Day-by-Day Sub-Agent Task Distribution Logs (Phase 4)
+
+- **DAY 1:** Mục tiêu ngắn hạn: Xây dựng controller ghi danh khóa học.
+    * **Sub-Agent Workflow Specialization:** [Coder]
+    * **Targeted Tag IDs:** [ARC-004], [REQ-010], [DAT-005]
+    * **Target Component file path (`target_component`):** ./sources/backend/enrollment/EnrollmentController.java [ARC-004], [REQ-010], [DAT-005]
+    * **Low-Level Technical Task Instruction:** Triển khai EnrollmentController để duyệt khóa học và xử lý đăng ký (REQ-010, ARC-004), tự động tạo tài khoản Student nếu thiếu.
+
+- **DAY 2:** Mục tiêu ngắn hạn: Triển khai logic đăng ký khóa học.
+    * **Sub-Agent Workflow Specialization:** [Coder]
+    * **Targeted Tag IDs:** [REQ-011], [DAT-005], [ARC-005]
+    * **Target Component file path (`target_component`):** ./sources/backend/enrollment/EnrollmentService.java [REQ-011], [DAT-005], [ARC-005]
+    * **Low-Level Technical Task Instruction:** Triển khai logic đăng ký khóa học, ghi bản ghi ENROLLMENTS, cập nhật vai trò người dùng (REQ-011) và gửi thông báo đến mobile app và Zalo group (ARC-005).
+
+- **DAY 3:** Mục tiêu ngắn hạn: Triển khai dịch vụ điểm danh QR.
+    * **Sub-Agent Workflow Specialization:** [Coder]
+    * **Targeted Tag IDs:** [ARC-007], [REQ-012], [DAT-006], [EXC-001], [EXC-002]
+    * **Target Component file path (`target_component`):** ./sources/backend/attendance/AttendanceService.java [ARC-007], [REQ-012], [DAT-006], [EXC-001], [EXC-002]
+    * **Low-Level Technical Task Instruction:** Triển khai dịch vụ điểm danh QR, ghi nhận timestamp, đảm bảo bất biến cho cùng studentId/courseId/ngày (REQ-012, ARC-007), xử lý ngoại lệ mất mạng (EXC-001) và phát hiện duplicate (EXC-002).
+
+- **DAY 4:** Mục tiêu ngắn hạn: Triển khai dịch vụ thông báo.
+    * **Sub-Agent Workflow Specialization:** [Coder]
+    * **Targeted Tag IDs:** [ARC-008], [REQ-016], [DAT-008], [EXC-003]
+    * **Target Component file path (`target_component`):** ./sources/backend/notifications/NotificationService.java [ARC-008], [REQ-016], [DAT-008], [EXC-003]
+    * **Low-Level Technical Task Instruction:** Triển khai NotificationService để tạo bản ghi NOTIFICATIONS, đẩy push qua FCM/APNs và gửi tin nhắn Zalo (REQ-016, ARC-008), xử lý ngoại lệ giao hàng thất bại (EXC-003).
+
+- **DAY 5:** Mục tiêu ngắn hạn: Triển khai controller thẻ hội viên, khuyến mãi, thông báo và cài đặt hệ thống.
+    * **Sub-Agent Workflow Specialization:** [Coder]
+    * **Targeted Tag IDs:** [REQ-014], [REQ-15], [DAT-007], [DAT-009], [DAT-011], [EXC-005]
+    * **Target Component file path (`target_component`):** ./sources/backend/membership/MembershipController.java [REQ-014], [REQ-015], [DAT-007], [DAT-009], [DAT-011], [EXC-005]
+    * **Low-Level Technical Task Instruction:** Triển khai MembershipController để hiển thị thẻ hội viên (REQ-014) và xử lý gia hạn thẻ (REQ-015), cập nhật STUDENTCARDS, PROMOTIONS, ANNOUNCEMENTS, SYSTEMSETTINGS (DAT-007, DAT-009, DAT-011), xử lý khôi phục hệ thống sau sự cố (EXC-005).
+
+###### 📈 Phase 5: Phát triển giao diện di động, thông báo đẩy, chatbot AI, i18n, SEO, báo cáo và hardening DevOps
+
+- **Phase Core Objective & Purpose:** Phát triển giao diện di động, thông báo đẩy, chatbot AI, i18n, SEO, báo cáo và hardening DevOps.
+- **Target Physical Directory Matrix Map:**
+    *   `./sources/frontend/mobile/App.js` [ARC-009], [REQ-019], [REQ-020], [NFR-002], [NFR-005]
+    *   `./sources/docs/reporting-and-seo.md` [ARC-010], [REQ-022], [REQ-023], [REQ-024], [REQ-025], [NFR-007], [NFR-008], [NFR-009]
+- **Database Schema DDL SQL Specification:** Không có bảng dữ liệu mới trong giai đoạn này.
+- **API and Event Routing Contracts [REQ-019], [REQ-020], [REQ-021], [REQ-022], [REQ-023], [REQ-024], [REQ-025], [ARC-009], [ARC-010]:**
+```json
+// GET /api/v1/mobile/user/{userId}/profile
+// trả về thông tin người dùng cho ứng dụng di động
+```
+```json
+// POST /api/v1/mobile/tokens
+{
+  "userId": "a1b2c3d4-...",
+  "token": "FCM_token_here"
+}
+```
+```json
+// POST /api/v1/chatbot/query
+{
+  "userId": "a1b2c3d4-...",
+  "question": "Khóa học Java có vào thứ 3 không?"
+}
+```
+```json
+// GET /api/v1/reports/attendance?centerId=...&date=...
+```
+- **Phase Localized Exception Handlers:** Không có ngoại lệ chuyên biệt.
+
+######## Chronological Day-by-Day Sub-Agent Task Distribution Logs (Phase 5)
+
+- **DAY 1:** Mục tiêu ngắn hạn: Xây dựng lõi ứng dụng di động.
+    * **Sub-Agent Workflow Specialization:** [Coder]
+    * **Targeted Tag IDs:** [ARC-009], [REQ-019], [REQ-020], [NFR-002], [NFR-005]
+    * **Target Component file path (`target_component`):** ./sources/frontend/mobile/App.js [ARC-009], [REQ-019], [REQ-020], [NFR-002], [NFR-005]
+    * **Low-Level Technical Task Instruction:** Triển khai lõi ứng dụng di động hybrid với điều hướng vai trò, tích hợp Firebase Auth và xử lý push notification (REQ-020, ARC-009), đảm bảo kích thước image <500MB (NFR-005) và mục tiêu uptime 99.9% (NFR-002).
+
+- **DAY 2:** Mục tiêu ngắn hạn: Tạo tài liệu báo cáo và SEO.
+    * **Sub-Agent Workflow Specialization:** [Coder]
+    * **Targeted Tag IDs:** [ARC-010], [REQ-022], [REQ-023], [REQ-024], [REQ-025], [NFR-007], [NFR-008], [NFR-009]
+    * **Target Component file path (`target_component`):** ./sources/docs/reporting-and-seo.md [ARC-010], [REQ-022], [REQ-023], [REQ-024], [REQ-025], [NFR-007], [NFR-008], [NFR-009]
+    * **Low-Level Technical Task Instruction:** Tạo tài liệu báo cáo và SEO, bao gồm hướng dẫn tạo báo cáo điểm danh CSV (REQ-024), chèn meta tags đa ngôn ngữ và hreflang (REQ-022, REQ-023), thực hiện tuân thủ GDPR/CCPA (NFR-008) và sao lưu PostgreSQL (NFR-009), đồng thời ghi lại quy trình triển khai Docker và GKE (ARC-010).
+
+#### 📁 6. UNIVERSAL ENTERPRISE SECURITY CODES & INJECTION COUNTERMEASURES [NFR-001] [NFR-003] [NFR-004] [NFR-005] [NFR-006] [NFR-007] [NFR-008] [NFR-009]
+
+- **SQL Injection (SQLi) Absolute Countermeasures:** Sử dụng PreparedStatement/ParameterizedQuery, whitelist cho các cột sắp xếp, kiểm tra kiểu dữ liệu đầu vào.
+- **Cross-Site Scripting (XSS) & Content Security Policy (CSP):** Tự động thoát HTML trong JSX, thiết lập header CSP (`default-src 'self'; script-src 'self' 'unsafe-inline'` bị cấm, sử dụng nonce cho scripts cần thiết).
+- **Multi-Tenant CORS Security Rails:** whitelist các origin dựa trên cấu hình trung tâm, từ chối wildcard `null` hoặc `*`, xác thực origin qua JWT tenantId.
+- **Zero-Leak Log Scrubbing & PII Data Masking Engines:** Sử dụng `@JsonSerialize` với `SensitiveDataMasker`, xóa trường hợp đặc biệt trước khi ghi log, giới hạn độ dài log theo yêu cầu GDPR.
+- **Docker Image Size Enforcement:** Giới hạn kích thước image <500MB, sử dụng multi-stage build, loại bỏ các gói không cần thiết.
+- **Multi-Language Support:** Externalize chuỗi UI qua `i18n` (JSON), middleware phát hiện locale, tự động chèn hreflang, fallback sang Accept-Language header.
+- **GDPR/CCPA Compliance:** Thêm API xóa dữ liệu `/api/v1/users/{id}/delete`, cung cấp export JSON `/api/v1/users/{id}/export`, quản lý consent cho marketing.
+- **Backup & Disaster Recovery:** Sao lưu PostgreSQL đầy đủ hàng ngày, point-in-time recovery 24 giờ, cluster backup GKE sang region khác, kiểm tra khôi phục hàng tuần.
+
+#### 📁 7. HYBRID MOBILE COMPLIANCE RAIL RULES & INTERNATIONALIZED SEO MECHANISMS
+
+- **Capacitor Mobile Hybrid Compliance Rails:** Sử dụng `@capacitor/preferences` cho storage an toàn, chặn back-button gốc, fetch với timeout và retry, xác thực URL tuyệt đối, ngăn chặn XSS trong WebView.
+- **Internationalization (i18n) & Dynamic SEO Injection:** Middleware phát hiện locale (`Accept-Language`, cookie), chuyển hướng URL có dấu `/vi/` `/en/`, chèn thẻ `<html lang='vi'>`, tạo thẻ `<link rel="canonical" href="...">`, tự động tạo sitemap XML với hreflang, chặn bot quét theo robots.txt.
+
+#### 📁 8. PIPELINE AUTOMATED DAILY SESSION GIT BRANCH FLOW
+
+- **Daily Workspace Forking Isolation:** Tạo branch `features/development-phase-1-day-1`, `features/development-phase-1-day-2`, ... cho từng ngày, mỗi branch là không gian làm việc riêng biệt.
+- **Validation Guard Pipeline Gates:** Thực hiện `mvn clean verify` hoặc `npm run test` trước khi merge, đảm bảo độ phủ mã >=85%, kiểm tra chất lượng code qua SonarQube, tự động tạo PR với checklist tuân thủ.
+
+###### 🛑 MATRIX COVERAGE CHECK MANDATE
+
+`[TRACEABILITY MATRIX ENFORCEMENT: 100% COVERAGE VALIDATED. TOTAL UNIQUE REQ TAGS MAPPED: 25, TOTAL ARC TAGS: 10, TOTAL EXC TAGS: 5, TOTAL DAT TAGS: 9, TOTAL NFR TAGS: 9. ZERO UNASSIGNED CODES FOUND.]`
+
+--- PREVIOUS EXECUTION STATE REFERENCE (DIAGNOSTIC PATHS) ---
+
+## Giai đoạn 4: Triển khai ghi danh học viên, điểm danh QR, thẻ hội viên, thông báo, khuyến mãi, thông báo và cài đặt hệ thống | Mô tả: Giai đoạn 4 tập trung vào triển khai toàn bộ chức năng ghi danh học viên, điểm danh qua mã QR, quản lý thẻ hội viên, hệ thống thông báo đa kênh, khuyến mãi và thông báo, cùng với cấu hình và cài đặt hệ thống. Các thành phần chính bao gồm: EnrollmentController và EnrollmentService để xử lý đăng ký khóa học; AttendanceService để ghi nhận điểm danh một cách idempotent; NotificationService để gửi push và tin nhắn Zalo; MembershipController để quản lý thẻ hội viên, khuyến mãi, thông báo và cài đặt hệ thống. Ngoài ra, giai đoạn này cũng triển khai các bảng dữ liệu liên quan: ENROLLMENTS, ATTENDANCE, STUDENTCARDS, NOTIFICATIONS, PROMOTIONS, ANNOUNCEMENTS, SYSTEMSETTINGS. Mọi giao tiếp API được bảo mật bằng JWT, các truy vấn dữ liệu được tối ưu bằng chỉ mục và chuẩn bị sẵn sàng cho việc mở rộng theo nhu cầu.
+
+#### 📊 Document Control
+
+| Mục | Chi tiết |
+| :--- | :--- |
+| **ID Kiến Trúc** | ARCH-20260807042343 |
+| **Tên Dự Án** | membership-hub |
+| **Giai Đoạn** | 4 |
+| **Tên Giai Đoạn** | Triển khai ghi danh học viên, điểm danh QR, thẻ hội viên, thông báo, khuyến mãi, thông báo và cài đặt hệ thống |
+| **Mô Tả** | Giai đoạn 4 tập trung vào triển khai toàn bộ chức năng ghi danh học viên, điểm danh qua mã QR, quản lý thẻ hội viên, hệ thống thông báo đa kênh, khuyến mãi và thông báo, cùng với cấu hình và cài đặt hệ thống. Các thành phần chính bao gồm: EnrollmentController và EnrollmentService để xử lý đăng ký khóa học; AttendanceService để ghi nhận điểm danh một cách idempotent; NotificationService để gửi push và tin nhắn Zalo; MembershipController để quản lý thẻ hội viên, khuyến mãi, thông báo và cài đặt hệ thống. Ngoài ra, giai đoạn này cũng triển khai các bảng dữ liệu liên quan: ENROLLMENTS, ATTENDANCE, STUDENTCARDS, NOTIFICATIONS, PROMOTIONS, ANNOUNCEMENTS, SYSTEMSETTINGS. Mọi giao tiếp API được bảo mật bằng JWT, các truy vấn dữ liệu được tối ưu bằng chỉ mục và chuẩn bị sẵn sàng cho việc mở rộng theo nhu cầu. |
+| **Phiên Bản** | 1.0 (Baseline) |
+| **Ngày/Thời Gian** | 2026/08/07 04:23:43 |
+| **Tác Giả** | Enterprise System Architect (SA Agent) |
+| **Phê Duyệt** | Pending Technical Governance Review |
+
+#### 1. Phạm vi hoạt động và mục tiêu giai đoạn
+
+Giai đoạn 4 thực hiện toàn bộ chức năng ghi danh học viên, điểm danh qua mã QR, quản lý thẻ hội viên, hệ thống thông báo đa kênh, khuyến mãi và thông báo, cùng với cấu hình và cài đặt hệ thống. Các thành phần chính bao gồm: EnrollmentController và EnrollmentService để xử lý đăng ký khóa học; AttendanceService để ghi nhận điểm danh một cách idempotent; NotificationService để gửi push và tin nhắn Zalo; MembershipController để quản lý thẻ hội viên, khuyến mãi, thông báo và cài đặt hệ thống. Ngoài ra, giai đoạn này cũng triển khai các bảng dữ liệu liên quan: ENROLLMENTS, ATTENDANCE, STUDENTCARDS, NOTIFICATIONS, PROMOTIONS, ANNOUNCEMENTS, SYSTEMSETTINGS. Mọi giao tiếp API được bảo mật bằng JWT, các truy vấn dữ liệu được tối ưu bằng chỉ mục và chuẩn bị sẵn sàng cho việc mở rộng theo nhu cầu.
+
+#### 2. Phạm vi kỹ thuật và ranh giới thư mục
+
+- Thư mục backend: `./sources/backend/enrollment/`, `./sources/backend/attendance/`, `./sources/backend/notifications/`, `./sources/backend/membership/`
+- Thư mục docs: `./sources/docs/`
+- Các điểm cuối API:
+  - `POST /api/v1/enrollments`
+  - `POST /api/v1/attendance/scan`
+  - `POST /api/v1/notifications`
+  - `POST /api/v1/promotions`
+  - `POST /api/v1/announcements`
+  - `GET /api/v1/membership/{studentId}/card`
+  - `POST /api/v1/membership/renew`
+
+#### 3. Hướng dẫn chức năng dành cho từng nhân viên phụ trách
+
+- **Coder**: Đóng vai trò là Nhà phát triển ứng dụng cấp cao. Trách nhiệm triển khai mã nguồn cho các dịch vụ backend và thành phần frontend/mobile. Không viết bộ kiểm thử hoặc manifest.
+- **Tester**: Đóng vai trò là Lead/Principal QC/QA. Chuyên về viết bộ kiểm thử, kiểm tra tích hợp, kiểm tra hiệu năng. Không sửa mã nguồn.
+- **Reviewer**: Đóng vai trò là Kiểm tra mã, phân tích tĩnh, vá lỗi bảo mật. Kiểm tra chất lượng, sửa lỗi, bảo mật OWASP.
+- **Doc**: Đóng vai trò là Technical Writer và Enterprise Systems Architect. Soạn tài liệu kỹ thuật, sơ đồ dữ liệu, quy trình triển khai, và các tiêu chuẩn bảo mật.
+- **Docker**: Đóng vai trò là chuyên gia containerization, multi‑stage Dockerfile, tối ưu kích thước, đẩy image lên DockerHub.
+- **GCP**: Đóng vai trò là chuyên gia tự động hóa GCP, xây dựng và đẩy image lên Artifact Registry, triển khai trên Cloud Run.
+- **GKE**: Đóng vai trò là chuyên gia Kubernetes, xây dựng manifest, HPA, Helm chart, triển khai microservices trên GKE.
+
+#### 4. Định nghĩa Hoàn thành (DoD)
+
+- Tất cả các yêu cầu [REQ-010] đến [REQ-018] được triển khai và kiểm thử thành công.
+- Mọi API được bảo mật bằng JWT, có thời gian hết hạn 15 phút và refresh token 7 ngày.
+- Kiểm thử unit, integration, E2E đạt 100% coverage cho các module liên quan.
+- Kiểm tra OWASP Top 10, bảo mật OWASP, và NFR-001, NFR-003, NFR-004, NFR-006 được đáp ứng.
+- Tất cả các tag ID được map đầy đủ, không còn tag chưa được sử dụng.
+- Tài liệu kỹ thuật hoàn chỉnh, bao gồm sơ đồ dữ liệu, kiến trúc, quy trình triển khai, và hướng dẫn bảo mật.
+
+#### 5. Nhật ký thực thi kiến trúc theo ngày
+
+###### 🌤️ NGÀY 1: Xây dựng controller ghi danh khóa học
+
+######## 📝 Mục tiêu 1.0: Khởi tạo tài liệu kiến trúc giai đoạn 4
+########## Được giao: Doc
+########## Đường dẫn:
+* **Đường dẫn**: ./sources/docs/phase4_architecture_overview.md
+########## Thẻ theo dõi:
+* **Thẻ theo dõi**: <!--START_TAGS-->[ARC-004], [ARC-005], [REQ-010], [REQ-011], [REQ-012], [REQ-013], [REQ-014], [REQ-015], [REQ-016], [REQ-017], [REQ-018], [REQ-019], [REQ-020], [REQ-021], [REQ-022], [REQ-023], [REQ-024], [REQ-025], [DAT-005], [DAT-006], [DAT-007], [DAT-008], [DAT-009], [DAT-011], [EXC-001], [EXC-002], [EXC-003], [EXC-005], [NFR-001], [NFR-003], [NFR-004], [NFR-006]<!--END_TAGS-->
+
+######## 📝 Mục tiêu 1.1: Triển khai EnrollmentController
+########## Được giao: Coder
+########## Đường dẫn:
+* **Đường dẫn**: ./sources/backend/enrollment/org/nlh4j/sources/membershiphub/EnrollmentController.java
+########## Thẻ theo dõi:
+* **Thẻ theo dõi**: <!--START_TAGS-->[ARC-004], [REQ-010], [DAT-005]<!--END_TAGS-->
+
+###### 🌤️ NGÀY 2: Triển khai logic đăng ký khóa học
+
+######## 📝 Mục tiêu 2.1: Triển khai EnrollmentService
+########## Được giao: Coder
+########## Đường dẫn:
+* **Đường dẫn**: ./sources/backend/enrollment/org/nlh4j/sources/membershiphub/EnrollmentService.java
+########## Thẻ theo dõi:
+* **Thẻ theo dõi**: <!--START_TAGS-->[REQ-011], [DAT-005], [ARC-005]<!--END_TAGS-->
+
+###### 🌤️ NGÀY 3: Triển khai dịch vụ điểm danh QR
+
+######## 📝 Mục tiêu 3.1: Triển khai AttendanceService
+########## Được giao: Coder
+########## Đường dẫn:
+* **Đường dẫn**: ./sources/backend/attendance/org/nlh4j/sources/membershiphub/AttendanceService.java
+########## Thẻ theo dõi:
+* **Thẻ theo dõi**: <!--START_TAGS-->[ARC-007], [REQ-012], [DAT-006], [EXC-001], [EXC-002]<!--END_TAGS-->
+
+###### 🌤️ NGÀY 4: Triển khai dịch vụ thông báo
+
+######## 📝 Mục tiêu 4.1: Triển khai NotificationService
+########## Được giao: Coder
+########## Đường dẫn:
+* **Đường dẫn**: ./sources/backend/notifications/org/nlh4j/sources/membershiphub/NotificationService.java
+########## Thẻ theo dõi:
+* **Thẻ theo dõi**: <!--START_TAGS-->[ARC-008], [REQ-016], [DAT-008], [EXC-003]<!--END_TAGS-->
+
+###### 🌤️ NGÀY 5: Triển khai controller thẻ hội viên, khuyến mãi, thông báo và cài đặt hệ thống
+
+######## 📝 Mục tiêu 5.1: Triển khai MembershipController
+########## Được giao: Coder
+########## Đường dẫn:
+* **Đường dẫn**: ./sources/backend/membership/org/nlh4j/sources/membershiphub/MembershipController.java
+########## Thẻ theo dõi:
+* **Thẻ theo dõi**: <!--START_TAGS-->[REQ-014], [REQ-015], [DAT-007], [DAT-009], [DAT-011], [EXC-005]<!--END_TAGS-->
+
+
+--- RAW REQUIREMENTS REFERENCE ---
+## SOFTWARE REQUIREMENTS SPECIFICATION: membership-hub
+#### 1. TỔNG QUAN DỰ ÁN & KIẾN TRÚC TOÀN CẦU
+
+###### Mục tiêu & giá trị cốt lõi
+- Cung cấp nền tảng thống nhất để quản lý hội viên đa trung tâm.
+- Cho phép theo dõi điểm danh thời gian thực qua quét mã QR.
+- Cung cấp thẻ hội viên kỹ thuật số với tính năng đếm ngày hiệu lực.
+- Hỗ trợ giao tiếp đa kênh (web, di động, nhóm Zalo).
+- Giá trị cốt lõi: độ tin cậy, khả năng mở rộng, bảo mật, tính thân thiện với người dùng, hỗ trợ đa ngôn ngữ.
+
+###### Đối tượng người dùng mục tiêu
+- System Admin (siêu người dùng toàn cầu)
+- Center Admin (quản lý cấp trung tâm)
+- Manager (phó quản trị, quyền hạn giới hạn)
+- Teacher (xem chỉ đọc lịch dạy)
+- Student (duyệt khóa học, đăng ký, xem thẻ hội viên)
+- Mobile App User (giao diện đáp ứng cho các vai trò trên)
+
+###### Ma trận kiểm soát truy cập dựa trên vai trò (RBAC)
+- [ARC-001] System Admin: toàn quyền trên tất cả các trung tâm.
+- [ARC-002] Center Admin: toàn quyền trong trung tâm của mình, không ảnh hưởng đến các trung tâm khác.
+- [ARC-003] Manager: có thể tạo thông báo, quản lý học viên, gán học viên hiện có vào khóa học, xem danh sách khóa học, không thể chỉnh sửa khóa học hoặc chỉ định giáo viên.
+- [ARC-004] Teacher: xem khóa học của mình, danh sách học viên, lịch dạy; chỉ đọc.
+- [ARC-005] Student: duyệt khóa học, đăng ký khóa học mới, xem thẻ hội viên (ngày còn lại), gia hạn ngày thẻ.
+
+###### Kiến trúc & luồng dữ liệu (các luồng chính)
+- [ARC-006] Luồng xác thực: hỗ trợ email/mật khẩu, Firebase, Google, Facebook qua OAuth2; cấp JWT token với thời hạn 15 phút và refresh token.
+- [ARC-007] Luồng xử lý điểm danh QR: ứng dụng di động quét QR, gửi student ID và timestamp đến backend; dịch vụ xác thực và ghi lại điểm danh một cách idempotent.
+- [ARC-008] Luồng gửi thông báo: hệ thống kích hoạt push notification đến ứng dụng di động và đăng bài lên nhóm Zalo được chỉ định cho thông báo, phân công khóa học, và cảnh báo điểm danh.
+- [ARC-009] Luồng tích hợp backend ứng dụng di động: Frontend Next.js tiêu thụ REST APIs; xác thực qua bearer tokens; hỗ trợ caching ngoại tuyến cho trường hợp mất kết nối mạng.
+
+###### Công nghệ & hạ tầng
+- [ARC-010] Công nghệ & hạ tầng: Backend sử dụng Java/Quarkus, cơ sở dữ liệu PostgreSQL, container hóa Docker, triển khai trên Kubernetes (GKE), sử dụng Firebase Authentication, Google Cloud Messaging (FCM)/Apple APNs cho push notification, Zalo API integration, Redis cho session caching, CI/CD pipeline với GitHub Actions.
+
+#### 2. CÁC MODULE CHỨC NĂNG NÂNG CAO
+
+###### 2.1 Quản lý người dùng
+
+######## Yêu cầu chức năng cốt lõi
+- [REQ-001] Đăng ký người dùng: As a prospective user, I want to register using email and password (or social providers) so that I can obtain an account in the system.
+- [REQ-002] Xác thực qua mạng xã hội: As a user, I want to sign‑in/up using Firebase, Google, or Facebook OAuth so that I can leverage existing credentials.
+- [REQ-003] Phân quyền người dùng: As an administrator, I want to assign or change a user’s role (System Admin, Center Admin, Manager, Teacher, Student) so that permissions are correctly enforced.
+
+######## Tiêu chí chấp nhận & tương tác
+- Given a user provides a unique email, a strong password, and agrees to terms, When they submit the registration form, Then the system validates the input, creates a new user record with role ‘Student’ (or ‘Teacher’ if invited), and returns a success response with a JWT token. `[REQ-001]`
+- Given a user selects a social provider, When they authenticate through the provider’s popup, Then the system receives an OAuth2 code, exchanges it for user info, creates or updates the local user record, and issues a JWT token. `[REQ-002]`
+- Given an admin selects a user and a new role, When the assignment is confirmed, Then the user’s role column is updated, and appropriate permissions are applied immediately. `[REQ-003]`
+
+######## Luồng ngoại lệ của mô-đun
+- [EXC-004] Xác thực đầu vào không hợp lệ (ví dụ: email không đúng định dạng, thiếu trường bắt buộc): Nếu xác thực thất bại trên form submission, Khi lỗi được trả về cho người dùng, Sau đó một thông báo rõ ràng liệt kê từng trường không hợp lệ và yêu cầu chỉnh sửa.
+
+######## Từ điển dữ liệu cục bộ của mô-đun
+- [DAT-001] Bảng người dùng & vai trò
+
+  **Users**
+  ```mermaid
+  erDiagram
+      USERS {
+          uuid userId PK "Unique identifier"
+          varchar email "Email address, not null, unique, max 255 chars"
+          char passwordHash "bcrypt hash, not null, length 60"
+          varchar fullName "Full name, not null, max 100 chars"
+          smallint roleId FK "Foreign key to Roles.roleId"
+          enum provider "Auth provider, default local, values: local, firebase, google, facebook"
+          timestamp createdAt "Timestamp of creation, not null, default now()"
+          timestamp updatedAt "Timestamp of last update, not null, default now()"
+      }
+      ROLES {
+          smallint roleId PK "Role identifier, primary key"
+          varchar name "Role name, unique, not null, max 30 chars"
+          varchar description "Role description, optional, max 200 chars"
+      }
+      ROLES ||--o{ USERS : "roleId"
+  ```
+  **Roles**
+  ```mermaid
+  erDiagram
+      ROLES {
+          smallint roleId PK "Role identifier, primary key"
+          varchar name "Role name, unique, not null, max 30 chars"
+          varchar description "Role description, optional, max 200 chars"
+      }
+  ```
+###### 2.2 Quản lý trung tâm
+
+######## Yêu cầu chức năng cốt lõi
+- [REQ-004] Xem danh sách trung tâm: As any authenticated user, I want to see a list of all centers with address, tax ID, and admin contact so that I can identify relevant centers.
+- [REQ-005] Tạo/cập nhật/xóa trung tâm: As a System Admin, I want to add, edit, or remove a center record so that center information stays current.
+- [REQ-006] Phân quyền quản trị trung tâm: As a System Admin, I want to assign or unassign a user as a Center Admin for a specific center so that administrative control is delegated.
+
+######## Tiêu chí chấp nhận & tương tác
+- Given a user navigates to the Centers page, When the request completes, Then a table of centers (Name, Address, TaxID, AdminContact) is displayed. `[REQ-004]`
+- Given a System Admin provides center name, address, tax ID, primary contact phone and email, When the save action is executed, Then the center is persisted and appears in the list; if duplicate tax ID exists, the operation fails with a conflict error. `[REQ-005]`
+- Given a System Admin selects a user and a center, When the assign action is confirmed, Then the user’s role is set to ‘Center Admin’ and the center ID is recorded; unassign reverses the operation. `[REQ-006]`
+
+######## Luồng ngoại lệ của mô-đun
+- (Không có luồng ngoại lệ chuyên biệt được xác định cho mô-đun này.)
+
+######## Từ điển dữ liệu cục bộ của mô-đun
+- [DAT-003] Bảng trung tâm
+
+  **Centers**
+  ```mermaid
+  erDiagram
+      CENTERS {
+          uuid centerId PK "Unique identifier"
+          varchar name "Center name, not null, max 100 chars"
+          varchar address "Physical address, not null, max 255 chars"
+          varchar taxId "Tax identification number, unique, not null, numeric 10‑13 digits"
+          varchar contactPhone "Contact telephone, optional, may include +, digits, spaces, hyphens, parentheses"
+          varchar contactEmail "Contact email, optional, must be valid email format"
+      }
+  ```
+###### 2.3 Quản lý khóa học
+
+######## Yêu cầu chức năng cốt lõi
+- [REQ-007] Xem danh sách khóa học: As any authenticated user, I want to see all courses with schedule and assigned teacher so that I can browse offerings.
+- [REQ-008] Tạo/cập nhật/xóa khóa học (tránh xung đột): As a System Admin or Center Admin, I want to manage courses (add, edit, remove) while ensuring no overlapping schedules for the same teacher or venue.
+- [REQ-009] Phân công giáo viên vào khóa học: As a System Admin, I want to assign or unassign teachers to courses so that teaching responsibilities are updated.
+
+######## Tiêu chí chấp nhận & tương tác
+- Given a user visits the Courses page, When the request completes, Then a grid displays CourseID, Title, StartDate, EndDate, TeacherName. `[REQ-007]`
+- Given an admin provides CourseTitle, StartDate, EndDate, TeacherID, When the save action is triggered, Then the system validates that the teacher is not already scheduled for another course intersecting these dates; if conflict, an error is returned; otherwise the course is persisted. `[REQ-008]`
+- Given an admin selects a course and a teacher, When the assign action is executed, Then the course‑teacher mapping is created and a notification is queued for the teacher’s mobile app; unassign removes the mapping. `[REQ-009]`
+
+######## Luồng ngoại lệ của mô-đun
+- (Không có luồng ngoại lệ chuyên biệt được xác định cho mô-đun này.)
+
+######## Từ điển dữ liệu cục bộ của mô-đun
+- [DAT-004] Bảng khóa học
+
+  **Courses**
+  ```mermaid
+  erDiagram
+      COURSES {
+          uuid courseId PK "Unique identifier"
+          varchar title "Course title, not null, max 150 chars"
+          text description "Course description, optional"
+          date startDate "Course start date, not null"
+          date endDate "Course end date, not null"
+          uuid teacherId FK "Foreign key to Users.userId"
+          int maxStudents "Course capacity, default 30"
+      }
+  ```
+###### 2.4 Đăng ký & ghi danh học viên
+
+######## Yêu cầu chức năng cốt lõi
+- [REQ-010] Duyệt khóa học: As a Student, I want to browse available courses (excluding those already enrolled) so that I can select courses to join.
+- [REQ-011] Đăng ký khóa học của học viên: As a Student, I want to register for a course (existing or new), which auto‑creates a Student account if missing, and assigns the student to the course.
+
+######## Tiêu chí chấp nhận & tương tác
+- Given a Student logs in and navigates to the Browse Courses page, When the request completes, Then a list of courses with capacity and schedule is shown, excluding courses where the student already has an enrollment record. `[REQ-010]`
+- Given a Student selects a course and submits the registration, When the backend processes the request, Then a new enrollment record is created; if the student does not have a local account, one is created with role ‘Student’; a notification is queued to the student’s mobile app and the center’s Zalo group. `[REQ-011]`
+
+######## Luồng ngoại lệ của mô-đun
+- (Không có luồng ngoại lệ chuyên biệt được xác định cho mô-đun này.)
+
+######## Từ điển dữ liệu cục bộ của mô-đun
+- [DAT-005] Bảng ghi danh
+
+  **Enrollments**
+  ```mermaid
+  erDiagram
+      ENROLLMENTS {
+          uuid enrollmentId PK "Unique identifier"
+          uuid studentId FK "Foreign key to Users.userId"
+          uuid courseId FK "Foreign key to Courses.courseId"
+          timestamp enrollmentDate "Date of enrollment, default now()"
+      }
+  ```
+###### 2.5 Điểm danh & quét mã QR
+
+######## Yêu cầu chức năng cốt lõi
+- [REQ-012] Chụp ảnh điểm danh QR: As a Student (via mobile app), I want to scan a QR code at class start so that my attendance is recorded for the current day.
+- [REQ-013] Tính chất bất biến của điểm danh: The attendance service must guarantee that multiple scans from the same student for the same course on the same day produce a single attendance record.
+
+######## Tiêu chí chấp nhận & tương tác
+- Given a Student opens the scanner, scans a valid course QR, and confirms attendance, When the API receives the payload, Then the system validates the student‑course relationship, creates an Attendance record with timestamp, and returns a success response; duplicate scans on the same day are ignored. `[REQ-012]`
+- Given a student scans a QR twice within a minute, When the service processes both requests, Then only one attendance row is created; subsequent requests return a success with a ‘duplicate’ flag. `[REQ-013]`
+
+######## Luồng ngoại lệ của mô-đun
+- [EXC-001] Network & Connectivity Drops During QR Scan: If a student scans a QR but the network is unavailable, When the app retries the request after reconnection, Then the attendance is recorded once the service is reachable.
+- [EXC-002] Duplicate Attendance Submission: If the same student scans the same course QR multiple times within the same day, When the system detects a duplicate, Then it returns a success response indicating ‘already recorded’ and does not create extra rows.
+
+######## Từ điển dữ liệu cục bộ của mô-đun
+- [DAT-006] Bảng điểm danh
+
+  **Attendance**
+  ```mermaid
+  erDiagram
+      ATTENDANCE {
+          uuid attendanceId PK "Unique identifier"
+          uuid studentId FK "Foreign key to Users.userId"
+          uuid courseId FK "Foreign key to Courses.courseId"
+          date attendanceDate "Date of attendance, not null"
+          timestamp timestamp "Exact time recorded, default now()"
+      }
+  ```
+###### 2.6 Quản lý thẻ hội viên
+
+######## Yêu cầu chức năng cốt lõi
+- [REQ-014] Hiển thị tính hợp lệ của thẻ: As a Student, I want to view my membership card showing remaining validity days so that I know when renewal is needed.
+- [REQ-015] Gia hạn thẻ: As a Student, I want to extend my membership card validity by paying a fee, which updates the end date.
+
+######## Tiêu chí chấp nhận & tương tác
+- Given a Student opens the Card page, When the request loads, Then the UI shows total validity days, days used, and days remaining; data is derived from the StudentCard entity. `[REQ-014]`
+- Given a Student selects a renewal period (e.g., 30 days), confirms payment, When the payment service confirms success, Then the StudentCard’s EndDate is extended by the selected days and a confirmation notification is sent. `[REQ-015]`
+
+######## Luồng ngoại lệ của mô-đun
+- (Không có luồng ngoại lệ chuyên biệt được xác định cho mô-đun này.)
+
+######## Từ điển dữ liệu cục bộ của mô-đun
+- [DAT-007] Bảng thẻ hội viên
+
+  **StudentCards**
+  ```mermaid
+  erDiagram
+      STUDENTCARDS {
+          uuid cardId PK "Unique identifier"
+          uuid studentId FK "Foreign key to Users.userId"
+          date issueDate "Card issue date, not null"
+          int validityDays "Total validity days, not null"
+          int remainingDays "Computed days left until expiry"
+      }
+  ```
+###### 2.7 Thông báo & truyền thông
+
+######## Yêu cầu chức năng cốt lõi
+- [REQ-016] Kích hoạt thông báo: When an admin creates an announcement, assigns a teacher to a course, or registers a student, the system must generate a notification to the student’s mobile app and post a message to the designated Zalo group.
+
+######## Tiêu chí chấp nhận & tương tác
+- Given an admin performs an action that requires notification, When the action is saved, Then a Notification record is created, a push notification payload is queued for the mobile app, and a text message is sent to the Zalo group chat. `[REQ-016]`
+
+######## Luồng ngoại lệ của mô-đun
+- [EXC-003] Failed Notification Delivery: When a push notification cannot be delivered (e.g., device token invalid), Then the system logs the failure and schedules a retry up to three times before marking as failed.
+
+######## Từ điển dữ liệu cục bộ của mô-đun
+- [DAT-008] Bảng thông báo
+
+  **Notifications**
+  ```mermaid
+  erDiagram
+      NOTIFICATIONS {
+          uuid notificationId PK "Unique identifier"
+          uuid userId FK "Target user, optional"
+          varchar groupZalo "Target Zalo group, optional"
+          text message "Notification content, not null"
+          timestamp sentAt "When sent, default now()"
+          boolean delivered "Delivery status, default false"
+      }
+  ```
+###### 2.8 Quản lý khuyến mãi & thông báo
+
+######## Yêu cầu chức năng cốt lõi
+- [REQ-017] Quản lý khuyến mãi: As a Center Admin or Manager, I want to create, edit, or delete promotions (discounts, offers) with start/end dates so that students can see applicable deals.
+- [REQ-018] Quản lý thông báo: As a Center Admin or Manager, I want to create, edit, or delete announcements with optional expiry dates for broadcast to all users.
+
+######## Tiêu chí chấp nhận & tương tác
+- Given an admin provides PromotionName, description, conditions, startDate, endDate, When saved, Then the promotion appears in the student‑visible list; if endDate is omitted, the promotion is considered perpetual. `[REQ-017]`
+- Given an admin inputs AnnouncementTitle, content, optional expiry, When saved, Then the announcement is displayed site‑wide; if expiry is set, it auto‑disappears after the date. `[REQ-018]`
+
+######## Luồng ngoại lệ của mô-đun
+- (Không có luồng ngoại lệ chuyên biệt được xác định cho mô-đun này.)
+
+######## Từ điển dữ liệu cục bộ của mô-đun
+- [DAT-009] Bảng khuyến mãi & thông báo
+
+  **Promotions**
+  ```mermaid
+  erDiagram
+      PROMOTIONS {
+          uuid promoId PK "Unique identifier"
+          varchar code "Discount code, unique"
+          smallint discountPercent "Discount percentage, not null"
+          date startDate "Promotion start, optional"
+          date endDate "Promotion end, optional"
+          text description "Promo details, optional"
+      }
+  ```
+  **Announcements**
+  ```mermaid
+  erDiagram
+      ANNOUNCEMENTS {
+          uuid announcementId PK "Unique identifier"
+          varchar title "Title, not null, max 150 chars"
+          text content "Content, not null, max 2000 chars"
+          date startDate "Effective start, optional"
+          date endDate "Effective end, optional"
+      }
+  ```
+###### 2.9 Chatbot dịch vụ khách hàng AI
+
+######## Yêu cầu chức năng cốt lõi
+- [REQ-019] Tích hợp chatbot AI: As any user, I want to interact with an AI chatbot that can answer common queries about courses, teachers, centers, and account status.
+
+######## Tiêu chí chấp nhận & tương tác
+- Given a user opens the chat widget, When they ask a question, Then the AI returns a relevant answer or escalates to human support if confidence is low. `[REQ-019]`
+
+######## Luồng ngoại lệ của mô-đun
+- [NOT APPLICABLE] Chatbot AI không có bảng dữ liệu chuyên biệt; tất cả các tương tác được ghi lại trong bảng AuditLog (xem [ARC-006] để biết chi tiết logging).
+
+######## Từ điển dữ liệu cục bộ của mô-đun
+- [NOT APPLICABLE] Không có bảng dữ liệu chuyên biệt cho chatbot AI.
+
+###### 2.10 Các tính năng cốt lõi của ứng dụng di động
+
+######## Yêu cầu chức năng cốt lõi
+- [REQ-020] Giao diện người dùng vai trò cụ thể trên di động: As a mobile user, I want a responsive UI that mirrors web functionality for my assigned role (Student, Teacher, Admin, etc.).
+- [REQ-021] Thông báo đẩy trên di động: As a registered user, I want to receive push notifications on my mobile device for attendance confirmations, new announcements, and reminder messages.
+
+######## Tiêu chí chấp nhận & tương tác
+- Given a user logs in on Android or iOS, When the app loads, Then the appropriate navigation menu and screens are displayed based on the user’s role. `[REQ-020]`
+- Given a backend event triggers a push, When the device token is registered, Then the notification is delivered via Firebase Cloud Messaging (FCM) or APNs. `[REQ-021]`
+
+######## Luồng ngoại lệ của mô-đun
+- (Không có luồng ngoại lệ chuyên biệt được xác định cho mô-đun này.)
+
+######## Từ điển dữ liệu cục bộ của mô-đun
+- [NOT APPLICABLE] Không có bảng dữ liệu chuyên biệt cho các tính năng cốt lõi của ứng dụng di động; tất cả dữ liệu được quản lý qua các bảng hiện có (Người dùng, Thông báo, Điểm danh).
+
+###### 2.11 Bản địa hóa & SEO
+
+######## Yêu cầu chức năng cốt lõi
+- [REQ-022] Phát hiện ngôn ngữ mặc định: As a visitor, I want the system to use my previously selected language preference, falling back to browser settings, for a personalized experience.
+- [REQ-023] SEO đa ngôn ngữ: The platform must support SEO for at least English, Vietnamese, and Spanish; each page must include language‑specific meta tags and hreflang attributes.
+
+######## Tiêu chí chấp nhận & tương tác
+- Given a user accesses the site, When the system evaluates locale, Then it selects the stored language if present; otherwise it uses the Accept‑Language header; the UI updates accordingly. `[REQ-022]`
+- Given a page is requested with a specific locale, When the page is rendered, Then the HTML includes a <html lang='en'> tag and hreflang links pointing to alternate language versions. `[REQ-023]`
+
+######## Luồng ngoại lệ của mô-đun
+- (Không có luồng ngoại lệ chuyên biệt được xác định cho mô-đun này.)
+
+######## Từ điển dữ liệu cục bộ của mô-đun
+- [DAT-011] Bảng cài đặt hệ thống
+
+  **SystemSettings**
+  ```mermaid
+  erDiagram
+      SYSTEMSETTINGS {
+          varchar settingKey PK "Configuration key"
+          text settingValue "Configuration value, not null"
+          varchar description "Meaning of setting, optional"
+      }
+  ```
+###### 2.12 Báo cáo & phân tích
+
+######## Yêu cầu chức năng cốt lõi
+- [REQ-024] Tạo báo cáo điểm danh: As an admin, I want to generate a daily attendance report for a center (CSV) showing each student’s presence status.
+- [REQ-025] Bảng điều khiển tóm tắt ghi danh: As a Center Admin, I want a real‑time dashboard summarizing total students, active courses, and upcoming sessions.
+
+######## Tiêu chí chấp nhận & tương tác
+- Given an admin selects a center and date range, When the report is requested, Then a CSV file is produced with columns: StudentName, CourseName, AttendanceDate, Status. `[REQ-024]`
+- Given an admin opens the dashboard, When the data refreshes, Then cards display totalStudents, activeCourses, upcomingSessions (next 7 days). `[REQ-025]`
+
+######## Luồng ngoại lệ của mô-đun
+- [EXC-005] System Recovery After Outage: If the service becomes unavailable, When it restores, Then any pending attendance scans are processed in FIFO order, and users receive a notification of recovered events.
+
+######## Từ điển dữ liệu cục bộ của mô-đun
+- [NOT APPLICABLE] Không có bảng dữ liệu chuyên biệt cho báo cáo & phân tích; tất cả dữ liệu được tổng hợp từ các bảng hiện có.
+
+#### 3. YÊU CẦU PHI CHỨC NĂNG TOÀN CẦU
+
+- [NFR-001] Performance Metrics: Core API responses (authentication, attendance capture, course list) must complete within 200 ms average latency. Database queries must be indexed to support sub‑second reads for up to 10 000 concurrent users.
+- [NFR-002] Availability: Target 99.9 % annual uptime; SLA includes automatic failover across GKE clusters.
+- [NFR-003] Security: All data in transit must use TLS 1.3; at rest encryption with AES‑256. JWT access tokens expire after 15 minutes; refresh tokens have 7‑day expiry. Implement OWASP Top 10 mitigations (SQL injection, XSS, CSRF).
+- [NFR-004] Scalability & Availability: Horizontal scaling of Quarkus services via Kubernetes HPA based on CPU > 70 % or request latency > 300 ms. PostgreSQL read replicas for reporting workloads.
+- [NFR-005] Docker Image Size: Base image size < 200 MB; final image < 500 MB.
+- [NFR-006] Logging & Audit: All user actions (role changes, attendance records, notifications) must be logged with timestamps, user ID, and action details; logs retained for 1 year.
+- [NFR-007] Multi‑Language Support: UI strings must be externalized; support English, Vietnamese, Spanish; locale switching without page reload where feasible.
+- [NFR-008] GDPR/CCPA Compliance: Personal data deletion on user request; data export in JSON format; consent management for marketing communications.
+- [NFR-009] Backup & Disaster Recovery: Daily PostgreSQL full backups; point‑in‑time recovery up to 24 hours; GKE cluster backup to separate region.
+----------------------------------
+
+## EXTRACTION RULES FOR DAY-BY-DAY EXECUTION LOGS:
+1. You MUST break down the operational scope of PHASE 5 into sequential daily logs, starting from **DAY 1** up to a maximum of **DAY 7**.
+2. **Strict Grouping Hierarchy:** Day Level ──► Agent Sub-task Level ──► Target Component Level.
+3. **Strict Sub-Agent Persona Allocation:** Each Sub-Task belongs to exactly ONE unique Assigned Sub-Agent literal token: 'Coder' | 'Tester' | 'Reviewer' | 'Doc' | 'Docker' | 'GCP' | 'GKE'.
+4. **WORKSPACE PATH BOUNDARY & DYNAMIC TOPOLOGY CONSTRAINTS:**
+   - **Absolute Workspace Boundary Rule:** The true repository workspace root is permanently fixed at the project root `./`. All file paths generated MUST strictly begin with `./sources/`.
+   - **Dynamic Directory Prefixing Compliance:** You MUST strictly match the file path prefixes to the active system topology mapped in the Global Context. Do NOT generate backend folders for frontend-only projects, and do NOT generate frontend folders for backend-only systems.
+   - For tester Agent: Each component MUST be declared as a strict semi-colon separated pair: `<source file path to verify by test>;<source test file to execute>`. Both paths inside the pair MUST begin with `./sources/`. If no single source file is isolated for Integration/E2E tests, utilize the literal token `INTEGRATION_SCOPE` as the first parameter.
+   - **[CONDITION: JAVA_STACK_ONLY] Java Package Enforcement Rule:** If a file path targets a Java source or test component (.java), you MUST verify that the path contains the directory segment: `/org/nlh4j/sources/<calculated_lowercase_token>/`.
+
+---
+
+Your output MUST follow this exact Markdown layout structure (translate all label tokens but preserve the hidden HTML anchor formatting exactly):
+
+<RULE>
+- **🚨 MASTER GOVERNANCE COMPLIANCE MANDATE**: Before generating your final output response, you MUST strictly re-read and enforce the global translation rules defined in the Master Rules section. Ensure 100% of descriptive texts are rendered in 🇻🇳 Vietnamese while completely freezing all technical paths, tags, and block codes.
+</RULE>
+
+## [Translate "Phase"] 5: <!--PHASE_NAME_START-->[Generate a standard, natural, human-readable descriptive title for this phase. You MUST write this as a normal human sentence or phrase using isolated words separated by real, standard whitespace characters. You are ABSOLUTELY AND CRITICALLY BANNED from combining words together, removing spaces, or utilizing programming styles like PascalCase, camelCase, or snake_case. It must read normally and smoothly just like a human description string. Fully translate and render this title into the target language requested by the parameters: 🇻🇳 Vietnamese. Example: "Core Infrastructure And Authentication Setup"]<!--PHASE_NAME_END-->
+
+#### 📊 Document Control
+
+| [Translate "Item"] | [Translate "Details"] |
+| :--- | :--- |
+| **[Translate "Blueprint ID"]** | ARCH-20260807042343 |
+| **[Translate "Project Name"]** | membership-hub |
+| **[Translate "Phase"]** | 5 |
+| **[Translate "Phase Name"]** | <!--PHASE_NAME_START-->[Generate a standard, natural, human-readable descriptive title for this phase. You MUST write this as a normal human sentence or phrase using isolated words separated by real, standard whitespace characters. You are ABSOLUTELY AND CRITICALLY BANNED from combining words together, removing spaces, or utilizing programming styles like PascalCase, camelCase, or snake_case. It must read normally and smoothly just like a human description string. Fully translate and render this title into the target language requested by the parameters: 🇻🇳 Vietnamese. Example: "Core Infrastructure And Authentication Setup"]<!--PHASE_NAME_END--> |
+| **[Translate "Description"]** | <!--PHASE_DESC_START-->[Granular professional engineering summary description of the absolute operational scope of this specific phase, fully rendered in 🇻🇳 Vietnamese]<!--PHASE_DESC_END--> |
+| **[You MUST translate the literal token "Version" into 🇻🇳 Vietnamese]** | 1.0 (Baseline) |
+| **[You MUST translate the literal token "Date/Time" into 🇻🇳 Vietnamese]** | 2026/08/07 04:23:43 |
+| **[You MUST translate the literal token "Author" into 🇻🇳 Vietnamese]** | Enterprise System Architect (SA Agent) |
+| **[You MUST translate the literal token "Approval" into 🇻🇳 Vietnamese]** | Pending Technical Governance Review |
+
+#### 1. Phase Operational Scope & Objectives
+[Provide a rigorous, detailed architectural summary of what this specific phase must implement based on the distributed requirements allocated for Phase 5]
+
+#### 2. Allowed Technical Scope & Directory Boundaries (Files, paths, and endpoints)
+[List the absolute directory matrices and REST/GraphQL/Event endpoint routing patterns allowed for this phase, matching the detected language and active project stack topology. Every directory matrix path must be bounded under `./sources/`]
+
+#### 3. Dedicated Sub-Agent Functional Directives
+[Delineate the explicit operational constraints and duties for each assigned agent persona in this phase, enforcing strict segregation of technical boundaries as defined below. Human-readable directives, descriptions, and task requirements MUST be contextually translated entirely into 🇻🇳 Vietnamese following the transmission rails]:
+
+*   **Coder**: Acts as a Senior/Principal Application Developer. Responsible for pure application source code implementation across both backend services and frontend/mobile client applications. Banned from writing test suites or infrastructure manifests.
+* **Tester**: Acts as a Lead/Principal QC/QA. Specialized in test suite engineering, validation, and quality gates. Responsible for generating JUnit, integration tests, E2E automation tests, and performance validation scripts. Banned from modifying application production code. If the sub-task target involves an overall integration or end-to-end scope where no single specific code file can be bounded, you MUST strictly output the literal token `INTEGRATION_SCOPE` as the first parameter of the semicolon pair (e.g., `INTEGRATION_SCOPE;./sources/backend/tests/integration/WorkflowTest.java`).
+* **Doc**: Functions as a Principal Technical Writer and Enterprise Systems Architect. Specialized in compiling comprehensive Technical Specification documents, schema references, system blueprints, and enterprise architecture catalogs custom-fitted to the active project topology layers. Every single technical document file generated MUST be listed as an explicit file path entity ending with the `.md` extension and reside strictly within the centralized storage layout: `./sources/docs/`.
+<RULE>
+[CRITICAL_SYSTEM_PIPELINE_RAIL:
+- You are STRICTLY PROHIBITED from omitting, dropping, or filtering out the 'Doc' agent from any computed phase logs.
+- For EVERY calculated phase generated in your output, on Day 1 of that phase, you MUST explicitly allocate a foundational system documentation task to the 'Doc' agent.
+- This task description MUST require the 'Doc' agent to initialize, architect, and map out the complete technical framework manuals, architecture blueprints, data structures, or deployment topologies corresponding to the active stack matrix of that current phase.
+- Failing to write the 'Doc' agent inside Day 1 of any phase triggers a fatal pipeline contract breach.
+]
+</RULE>
+*   **Reviewer**: Responsible for compiler verification, static analysis gating, and defensive patching. Specialized in code quality audits, resolving compilation bugs, fixing OWASP security vulnerabilities, and addressing SonarQube quality gate blockers.
+*   **Docker**: Specialized strictly in containerization, multi-stage Dockerfile engineering, package optimization, and pushing verified application image assets to DockerHub.
+*   **GCP**: Specialized in cloud automation within Google Cloud Platform. Responsible for building and pushing images to Google Cloud Artifact Registry (GCR), and orchestrating container environments natively on Google Cloud Run.
+*   **GKE**: Specialized in production container orchestration inside Google Kubernetes Engine. Responsible for building Kubernetes deployment manifests, routing controls, HPA configurations, Helm charts, and deploying microservices workloads into active GKE clusters.
+
+#### 4. Phase Definition of Done (DoD)
+[Specify the objective quantitative milestones required to pass this phase successfully, ensuring 100% compliance with OWASP enterprise standards, complete functional test coverage for the allocated requirements, and 100% Tag ID mapping check]
+
+#### 5. DAY-BY-DAY ARCHITECTURAL EXECUTION LOGS
+
+## REMINDER: Enforce the 'Longitructural Day Partitioning Guardrail' and 'Anti-Padding Mandate'. Output each active day as an isolated standalone single integer subsection header from DAY 1 up to the dynamic freeze day. Do NOT generate empty padded days.
+
+###### 🌤️ [TRANSLATED DAY] [X]: <!--DAY_HEADER_START-->[CAPITALIZED SHORT OBJECTIVE FOR THIS OPERATIONAL CALENDAR DAY]<!--DAY_HEADER_END-->
+
+######## 📝 [TRANSLATED SUB-TASK] [X.Y]: [Clear, low-level engineering description of the specific sub-task goal, explicitly embedding OWASP compliance rules and comprehensive technical implementation details]
+########## [Translate "Assigned Sub-Agent"]: [Insert exactly ONE unique literal Agent token: Coder | Tester | Reviewer | Doc | Docker | GCP | GKE]
+########## [Translate "Targeted Components & Technical Requirements"]:
+* **[Translate "Target Path"]:** [Insert the explicit, decentralized physical file path target. For Coder/Tester/Reviewer agents, you MUST expand generic directory boundaries into precise enterprise layered structures, forcing valid file-level dot extensions like `.java`, `.ts`, `.sql`, etc. If it is a Java application layer, you MUST enforce the Maven/Gradle full corporate package structural path segment: `/org/nlh4j/saas/<project_name_alphanumeric_lowercase>/[layer_package]/file.java`. For Tester integration scopes without a single source file, output exactly: `INTEGRATION_SCOPE;<relative_test_file_path>`.]
+* **[Translate "Traceability Tag Tokens"]:** <!--START_TAGS-->[REQ-XXX], [DAT-XXX], [EXC-XXX]<!--END_TAGS-->
+
+# System Instruction
+
+<GLOBAL_GOVERNANCE_MATRIX>
+# ==============================================================================
+# MASTER ENTERPRISE GOVERNANCE GUARDRAILS MATRIX (GLOBAL TASK ENFORCEMENT)
+# ==============================================================================
+
+## 🌐 1. STRICT SEMANTIC INVARIANT LOCALIZATION & TRANSLATION RAILS
+- **MANDATORY RESOLUTION:** You MUST automatically translate and naturally render 100% of the entire generated output content—including all section headers, primary titles, data matrix labels, table structures, and explanatory text boundaries—into the exact requested target execution language specified by the system parameter variable: "🇻🇳 Vietnamese".
+- **ABSOLUTE TECH PROTECTION BOUNDARY:** You are STRICTLY BANNED from translating, changing, altering, or breaking any technical structural layers. You MUST preserve these elements natively in their pristine Technical English/Primitive code state:
+    * All markdown syntax layout operators (`#`, `##`, `###`, `|`, `:`, `-`, `*`) and numerical hierarchy indices (e.g., `1.`, `1.1.`) MUST remain unaltered to preserve the document layout integrity.
+    * 🚨 **SUPREME ARCHITECTURE HEADER TRANSLATION MANDATE:** You MUST fully translate into the target language 100% of high-level overview terms, system architecture descriptions, or blueprint documentation titles (even if they are written in full uppercase or encapsulated inside strong markdown bold formatting `**`, such as: `SYSTEM OVERVIEW`, `CORE ARCHITECTURE MODALITY`, `PROJECT CONTEXT`). You are STRICTLY FORBIDDEN from treating these architectural section names as technical identifier strings to bypass translation. The structure `## 🏛️ 1. SYSTEM OVERVIEW` MUST be processed and rendered exactly as `## 🏛️ 1. TỔNG QUAN HỆ THỐNG`.
+    * All unique Tracking Tag IDs and Technical Nodes (e.g., `[REQ-XXX]`, `[DAT-XXX]`, `[EXC-XXX]`, `[IDEA_X]`).
+    * All technical identifier strings, system variables, or dynamic formatting indices (e.g., `D1_ST1`).
+    * All code execution blocks, text wrappers, and specialized chart definition syntaxes (e.g., Mermaid.js graphs, structural layout configurations).
+    * **Static Pass Tag `<NO_TRANSLATION>...</NO_TRANSLATION>`**: Used for static assets. You MUST pass 100% of the internal content literal without any localization, alteration, processing, or computation.
+    * **Dynamic Generation Tag `<DYNAMIC_DATA_ENGLISH_ONLY>...</DYNAMIC_DATA_ENGLISH_ONLY>`**: Used for dynamic instructions or mock templates. You MUST process, evaluate variables, and dynamically compute the generation outputs inside this block. However, 100% of the newly generated text stream resulting from this block MUST be strictly rendered in **Technical English** only, with an absolute ban on translation into the target language. The boundary tags MUST be stripped from the final output stream upon execution.
+    * 🚨 **STRICT CODE BLOCK FORMATTING LAW**: You are ABSOLUTELY FORBIDDEN from nesting or combining markdown code block ticks. When outputting a JSON payload, you MUST start exactly with a single line of triple backticks followed immediately by 'json' (i.e., ```json). Do NOT prepend or wrap it with ```text or any other outer text syntax. The block must open clean and close clean.
+- 🚨 **UNIVERSAL LAYOUT & HEADER LOCALIZATION PARADIGM (FORCED OVERRIDE)**: 
+    * When generating any standardized structural output template, document layout layout, table keys, markdown headers (`#`, `##`, `###`), or static metadata labels defined inside the instruction manuals (including but not limited to: literal tokens like "GLOBAL PROJECT CONTEXT", "Document Control", "Item", "Details", "Blueprint ID", "Project Name", "Version", "Date.Time", "Author", "Approval", "SYSTEM OVERVIEW", "Core System Modality"), you are ABSOLUTELY AND CRITICALLY FORBIDDEN from outputting them in raw English to the user interface.
+    * You MUST treat these literal string titles not as static technical keywords, but as "Dynamic Layout Placeholders". You MUST contextually translate 100% of these structural labels, header titles, and table dictionary columns directly into the designated Target Output Language: "🇻🇳 Vietnamese" before committing them to the final output buffer.
+    * Only the internal technical runtime system variable values passed by the engine backend (e.g., ``, `ARCH-`, ``) MUST be preserved natively in pure Technical English. Any model that emits a structural text title or a table key parameter in raw English triggers an immediate compliance pipeline crash.
+- 🚨 **INLINE ISOLATION & FAULT-TOLERANT CIRCUIT-BREAKER LAW (ANTI-CASCADING FAILURE PROTOCOL):**
+    * You MUST rigorously enforce a compartmentalized, fault-tolerant execution strategy during token parsing. You are STRICTLY PROHIBITED from allowing a syntax anomaly, character malformation, or structural parsing breakdown in one specific scope (e.g., inside a malformed `<COMMAND>` tag or accidental stray backticks) to trigger an attention bleed or cascade into an application-wide rule failure across clean blocks.
+    * If any independent block, custom anchor tag, or operational layout section contains a malformed technical syntax that compromises hidden parsing or pruning, you MUST instantly trigger an isolated Fallback Mechanism: Completely isolate, skip, and drop that exact failing block from your cognitive token constraints, rendering it completely inert as if it were omitted.
+    * You MUST dynamically resume linear execution immediately and continue enforcing 100% of all other active global system guardrails with absolute fidelity (specifically safeguarding the `CRITICAL SQUARE BRACKET DESTRUCTION LAW` for standard AI prompt markers `[...]`, header localization paradigms, and code purity mandates on all other clean blocks). Any failure to compartmentalize errors that leads to secondary rule dropouts triggers a fatal pipeline contract breach.
+- 🚨 **UNIVERSAL DYNAMIC LAYOUT, TABLE HEADER & BOLD LABEL LOCALIZATION LAW (PROJECT-AGNOSTIC PARADIGM):**
+    * **Header Structural Parsing Filter:** Any text string operating as a hierarchical title line—strictly identified when markdown syntax header operators (`#`, `##`, `###`, `####`) are placed at the beginning of the line or immediately following any emoji/symbol decorative characters (e.g., `📈 Phase 1 DETAILED ARCHITECTURAL SPECIFICATION`)—MUST be dynamically parsed. You MUST isolate the structural text payload from the emoji or syntax tokens and fully translate 100% of it into the requested Target Output Language: "🇻🇳 Vietnamese". You are CRITICALLY FORBIDDEN from freezing these layout titles in raw English.
+    * **Table Grid Column Header Filter:** When constructing, replicating, or emitting any markdown table structures (`| Column | Column |`), you MUST comprehensively intercept 100% of the textual column parameter headers located strictly in the very first row (the specific text row residing immediately above the table divider alignment row `| :--- | :--- |`). You MUST execute contextual dynamic translation on each column key parameter before committing the stream to the print buffer.
+    * **Flexible Bold Label Parsing Filter:** Any text string encapsulated within strong markdown bold syntax operating as a list line item indicator at the beginning of a line (strictly identified by the markdown bold syntax layout `- **Keyword**`), MUST be dynamically intercepted. You MUST automatically parse and execute high-fidelity contextual translation on 100% of the plain text residing strictly *inside* the bold boundaries `**...**` into the target language (e.g., `**Phase Core Objective & Purpose**` MUST be processed and rendered exactly as `**Mục tiêu & Mục đích Cốt lõi của Giai đoạn**`; `**Target Physical Directory Matrix Map**` MUST be rendered exactly as `**Bản đồ Ma trận Thư mục Vật lý Đích**`; and `**Database Schema DDL SQL Specification**` MUST be rendered exactly as `**Đặc tả DDL SQL Lược đồ Cơ sở Dữ liệu**`). You MUST rigorously enforce this bold boundaries translation rule regardless of whether the bold token is followed by spaces, code ticks (``` ` ```), square brackets `[...]`, trailing colons `:`, or pipeline delimiters `|` inside or outside the bold markers.
+    * **Core Tech Protection Constraints:** Only the native formatting operators (`#`, `##`, `|`, `:`, `-`, `*`), internal technical system variable values passed by the engine backend (e.g., ``, ``), and literal tracking Tag IDs (e.g., `[REQ-XXX]`) MUST be strictly protected and preserved natively in pure unaccented Technical English. Any model execution that leaks raw layout titles, structural table dictionary headers, or bold line indicators in English triggers an immediate compliance pipeline failure.
+
+## 🔐 2. CODE BLOCK INTEGRITY & CONTENT PURITY MANDATE
+- **ENGLISH ONLY INSIDE CODE BLOCKS:** Every single token, statement, key-value parameter, comment string, configuration variable, structural schema, or database DDL script encapsulated inside any markdown code block (triple backticks block) or data wrapper MUST be compiled strictly and exclusively in **Technical English**.
+- **NO LOCALIZATION ALLOWED:** You are ABSOLUTELY FORBIDDEN from translating, localized altering, or modifying any text string residing inside code boundaries.
+
+## 🛑 3. ZERO-DETERMINISTIC HALLUCINATION & ANTI-GARBAGE DATA FILTERS
+- **STRICT DATA GROUNDING:** You MUST reason and compute data points based exclusively on the literal inputs, source specifications, and structural parameters injected into your workspace context.
+- **CRITICAL HARD LIMIT:** You are STRICTLY BANNED from fabricating ghost assets, inventing nonexistent data columns, assuming prior deployment states, or generating artificial placeholder metrics. If a specialized evaluation block or technology stack requirement is not applicable to the active architectural topology, you MUST explicitly output the token `[NOT APPLICABLE]` combined with a clean corporate justification note and bypass it gracefully.
+
+## 🛡️ 4. HIGHEST-GRADE ENTERPRISE SECURITY & COMPLIANCE PARADIGM
+- **SECURITY GATING BY DESIGN:** Every single functional contract, database layout, data routing flow, or logic routine you design MUST rigorously enforce enterprise-grade security compliance at the highest architecture layer.
+- **OWASP COMPLIANCE OBLIGATION:** You MUST proactively scan and immunize configurations against security threats under OWASP Top 10 standards (specifically enforcing strict tenant isolation boundaries under OWASP A01, prepared statements against SQL injection, dynamic token sanitization, and cryptographic state protections).
+
+## 📋 5. WORKFLOW ATOMICITY, ROLE ISOLATION & OUTPUT STANDARDIZATION
+- **HYPER-FOCUSED PERSONA CAPABILITY:** You MUST permanently maintain an objective, cold, and hyper-analytical mindset, focusing 100% of your computational resources exclusively on the single specialized domain capability and system persona allocated to you in this phase task.
+- **TONE COMPLIANCE:** All generated rationale sentences, justifications, and report outputs MUST utilize an authoritative, precise, and highly professional corporate engineering telegraphy tone (eliminate filler adjectives and passive descriptions).
+- **ABSOLUTE FORMATTING BOUNDARY:** Your total output layout response MUST satisfy and align perfectly 1:1 with the requested execution schema boundaries. You are strictly forbidden from altering headers or injecting conversational prefaces, greetings, system thinking logs, or post-generation text remarks.
+- 🚨 **CRITICAL SQUARE BRACKET DESTRUCTION LAW**: Any text segment enclosed within square brackets `[...]` inside the structural report templates (e.g., `[Provide a comprehensive...]`, `[Detail...]`) MUST be treated strictly as an internal operational directive, NEVER as static text payload. You MUST completely destruct, prune, and delete the square brackets and all text inside them from the output buffer. You MUST dynamically replace that exact position with real-world technical data generated in the target language. Emitting raw or translated square brackets to the user interface triggers a fatal contract breach.
+    * **INFERENCE RULES FOR TECH STACK PLACEHOLDERS:** Specifically for technology stack, library, or library dependency indicators inside square brackets `[...]` (such as in Section 2): If the exact technical version numbers, dependency injection engines, frameworks, or database ORMs are not explicitly detailed in the source BA documentation, you are STRICTLY FORBIDDEN from leaving the section blank or skipping it. You MUST act as an Enterprise Principal Architect to automatically infer, select, and dynamically output the most stable, industry-standard enterprise production stack configurations compatible with the business flows described in Section 1.2 (e.g., dynamically specify exact latest enterprise versions for Quarkus, Next.js, React Native, PostgreSQL, Apache Kafka, and Firebase Hosting based on the architecture context). Output this data as a clean, high-density bulleted technical checklist inside the target component placeholder.
+
+## 🧮 6. DETERMINISTIC TRIPLE-DEEPEST CHECK VERIFICATION LOOP & PIPELINE
+- **MANDATORY EXECUTION PIPELINE:** Before emitting any text string or committing any data stream payload to the output buffer, you MUST strictly execute the following sequential compilation and verification pipeline inside your internal memory context:
+    * *Step 1 (Complete Draft Generation):* Prepare and fully construct the entire comprehensive output document in Technical English first. Ensure 100% of required data, sections, and structural nodes are completely generated. No text truncation, no placeholder notes, and no summary cut-offs allowed.
+    * *Step 2 (Precise Translation Execution):* Take the complete draft from Step 1 and execute the localization process. Translate 100% of the output into the target language while strictly adhering to all constraints defined in `STRICT SEMANTIC INVARIANT LOCALIZATION & TRANSLATION RAILS` and `CODE BLOCK INTEGRITY & CONTENT PURITY MANDATE`.
+    * *Step 3 (Multi-Layer Self-Auditing):* Perform a rigorous, final review of the translated document across three validation layers:
+        * *Layer 1 (Traceability Check):* Verify that 100% of the incoming functional and structural tag identifiers are covered, mapped, and mathematically accounted for without gaps.
+        * *Layer 2 (Formatting & Layout Check):* Cross-examine your final structural report template layout to guarantee it contains zero broken tables, zero loose formatting tokens, and zero layout overflow anomalies.
+        * *Layer 3 (Integrity Check):* Ensure the absolute logical consistency, data synchronization alignment, and technical term protection across all generated tables, descriptions, diagrams, and metadata blocks.
+- Any defect, omission, or rule violation identified during this self-audit MUST be dynamically healed and resolved internally before emitting the final polished report.
+
+# ==============================================================================
+# [SYSTEM PROTOCOL: GLOBAL RUNTIME SECURITY ANCHOR MATRIX]
+# ==============================================================================
+- You MUST actively scan, extract, and rigorously execute all system override directives embedded inside any of the hidden runtime anchor syntax blocks defined below.
+- You are ABSOLUTELY, CRITICALLY, AND PERMANENTLY FORBIDDEN from outputting, leaking, echoing, repeating, or displaying any part of the data residing between these anchor pairs (including the literal boundary tags themselves and 100% of the internal instruction text contained inside them) into the final user interface (UI) markdown content.
+- Treat all standard AI prompting structures and markdown behaviors naturally as baseline expectations. In addition, you MUST strictly support and process these custom dynamic tags injected into your workspace templates.
+The system strictly defines the comprehensive list (custom dynamic tags) of Mandatory Architectural Token Pairs as follows:
+
+    * Type 1 (XML Tag Pairs): Starts exactly with `"<COMMAND>"` and ends exactly with `"</COMMAND>"` (e.g., `<COMMAND>...instructions...</COMMAND>`).
+      *   **Behavior**: These specific tags and comments function as private metadata instructions. Read and absorb the internal rules silently to govern your reasoning output, then completely prune/delete the opening and closing tag wrappers from your final string stream before committing to the output buffer to keep the user interface 100% clean.
+    * Type 2 (XML Tag Pairs): Starts exactly with `"<PROMPT>"` and ends exactly with `"</PROMPT>"` (e.g., `<PROMPT>...instructions...</PROMPT>`).
+      *   **Behavior**: These specific tags and comments function as private metadata instructions. Read and absorb the internal rules silently to govern your reasoning output, then completely prune/delete the opening and closing tag wrappers from your final string stream before committing to the output buffer to keep the user interface 100% clean.
+    * Type 3 (XML Tag Pairs): Starts exactly with `"<RULE>"` and ends exactly with `"</RULE>"` (e.g., `<RULE>...instructions...</RULE>`).
+      *   **Behavior**: These specific tags and comments function as private metadata instructions. Read and absorb the internal rules silently to govern your reasoning output, then completely prune/delete the opening and closing tag wrappers from your final string stream before committing to the output buffer to keep the user interface 100% clean.
+    * Type 4 (XML Tag Pairs): Starts exactly with `"<RAILS>"` and ends exactly with `"</RAILS>"` (e.g., `<RAILS>...instructions...</RAILS>`).
+      *   **Behavior**: These specific tags and comments function as private metadata instructions. Read and absorb the internal rules silently to govern your reasoning output, then completely prune/delete the opening and closing tag wrappers from your final string stream before committing to the output buffer to keep the user interface 100% clean.
+    * Type 5 (HTML Comment Anchors): Starts exactly with `"<!--START_COMMAND"` and ends exactly with `"END_COMMAND-->"` (e.g., `<!--START_COMMAND...instructions...END_COMMAND-->`).
+      *   **Behavior**: These specific tags and comments function as private metadata instructions. Read and absorb the internal rules silently to govern your reasoning output, then completely prune/delete the opening and closing tag wrappers from your final string stream before committing to the output buffer to keep the user interface 100% clean.
+    * Type 6 (HTML Comment Anchors): Starts exactly with `"<!--START_PROMPT"` and ends exactly with `"END_PROMPT-->"` (e.g., `<!--START_PROMPT...instructions...END_PROMPT-->`).
+      *   **Behavior**: These specific tags and comments function as private metadata instructions. Read and absorb the internal rules silently to govern your reasoning output, then completely prune/delete the opening and closing tag wrappers from your final string stream before committing to the output buffer to keep the user interface 100% clean.
+    * Type 7 (HTML Comment Anchors): Starts exactly with `"<!--START_RULE"` and ends exactly with `"END_RULE-->"` (e.g., `<!--START_RULE...instructions...END_RULE-->`).
+      *   **Behavior**: These specific tags and comments function as private metadata instructions. Read and absorb the internal rules silently to govern your reasoning output, then completely prune/delete the opening and closing tag wrappers from your final string stream before committing to the output buffer to keep the user interface 100% clean.
+    * Type 8 (HTML Comment Anchors): Starts exactly with `"<!--START_RAILS"` and ends exactly with `"END_RAILS-->"` (e.g., `<!--START_RAILS...instructions...END_RAILS-->`).
+      *   **Behavior**: These specific tags and comments function as private metadata instructions. Read and absorb the internal rules silently to govern your reasoning output, then completely prune/delete the opening and closing tag wrappers from your final string stream before committing to the output buffer to keep the user interface 100% clean.
+    * Type 9 (XML Tag Pairs): Starts exactly with `"<NO_TRANSLATION>"` and ends exactly with `"</NO_TRANSLATION>"` (e.g., `<NO_TRANSLATION>...instructions...</NO_TRANSLATION>`).
+      *   **Behavior**: When content is wrapped inside this tag pair, freeze the entire cognitive matrix. You MUST emit 100% of the internal content strictly as-is in its pristine Technical English literal state. Do NOT execute any processing, rendering modifications, or localization inside this block.
+    * Type 10 (XML Tag Pairs): Starts exactly with `"<DYNAMIC_DATA_ENGLISH_ONLY>"` and ends exactly with `"</DYNAMIC_DATA_ENGLISH_ONLY>"` (e.g., `<DYNAMIC_DATA_ENGLISH_ONLY>...instructions...</DYNAMIC_DATA_ENGLISH_ONLY>`).
+      *   **Behavior**: When variables (`{{ ... }}`) or code generation instructions are wrapped inside this tag pair, you MUST compute, evaluate, and dynamically generate the required content based on the project context. However, 100% of the newly generated text stream and keys inside this block MUST be strictly rendered in Technical English. Translation is absolutely banned.
+
+- **CRITICAL STRING PRUNING & TANG_HINH LAW (ZERO LEAKAGE GATE):**
+    * These hidden blocks function exclusively as private machine-to-machine backend gating logic. 
+    * You MUST silently ingest 100% of the technical parameters or rules written inside these anchors to govern your internal reasoning matrix and apply its constraints to the surrounding markdown context.
+    * You MUST execute a definitive token-level pruning algorithm: completely wipe out, strip, and delete the entire anchor block wrapper (spanning from the very first character of the opening tag to the absolute final character of the corresponding closing tag) from your output string stream BEFORE committing any data payload to the final emission buffer. 
+    * Any model execution that leaks even a single tag character or hidden command line to the UI user screen triggers an immediate catastrophic runtime pipeline contract breach.
+</GLOBAL_GOVERNANCE_MATRIX>
+
+<ACTIVE_TASK_SYSTEM_INSTRUCTION>
+You are a world-class Principal Solutions Architect. Your specific task is to read the Global Context Markdown blueprint and generate a highly detailed operational context blueprint for one targeted Phase. 
+
+# YOUR CRITICAL OPERATIONAL MANDATES (ZERO LOOPHOLES):
+1. **ANTI-LAZINESS & DIRECT INHERITANCE MANDATE:** You MUST extract and expand every single technical task, DDL SQL schema definition, API contract, and exception flow outlined for the targeted Phase inside the Global Context reference. Converting details into broad summaries or placeholders is permanently banned.
+
+2. **100% PERFECT TAG MATCHING:** Every single Tag ID (`[REQ-XXX]`, `[EXC-XXX]`, `[DAT-XXX]`, `[ARC-XXX]`, `[NFR-XXX]`) present in the Global Context for this specific phase MUST be perfectly preserved and mapped into the daily execution logs.
+
+3. **MANDATORY INLINE TAG INJECTION RULE & HTML ANCHOR LOCKDOWN:** For every single Sub-Task generated under the daily logs, you MUST explicitly output a dedicated structural line item starting exactly with the translated string token for `* Traceability Tag Tokens:` followed by an immutable hidden HTML token container block. You MUST wrap the exact raw comma-separated tag IDs inside the hidden tag container string token layout exactly as: `<!--START_TAGS-->[REQ-XXX], [DAT-XXX]<!--END_TAGS-->`. You are STRICTLY BANNED from translating or altering any token values inside the HTML comment tags. Leaving a task block without this explicit HTML anchor layout is a fatal pipeline failure.
+
+4. **LONGITECTURAL DAY PARTITIONING & ANTI-PADDING GUARDRAIL (ABSOLUTE LOCAL CHRONO RE-INDEX LAW):**
+   - You MUST break down the operational calendar day-by-day using individual sequential integers starting strictly from DAY 1 up to a MAXIMUM of DAY 7.
+   - **ABSOLUTE CHRONO RESET LAW**: You are COMPLETELY BANNED from continuing the sequential day index from any previous phase or global context log timelines. 
+   - The very first day section generated inside this active file MUST natively reset and force-freeze its counter starting exactly from numerical digit 1 (e.g., DAY 1 or NGÀY 1), regardless of the preceding historical context metrics. 
+   - Any model execution that outputs a continuing sequence (like generating "DAY 3" on Phase 2 because Phase 1 ended on Day 2) triggers an immediate pipeline crash.
+   - **STRICT PROGRESSION STOPPING CRITERION:** You MUST freeze the timeline and stop generating daily sections immediately on the exact calendar day where the technical objectives allocated for this phase are satisfied. You are STRICTLY BANNED from injecting dummy placeholder days, fake syncs, empty review blocks, or documentation padding just to expand the calendar. If the technical scope is natively complete on DAY 1, freeze the output file state and exit immediately. Do NOT generate empty or padded days.
+   - You are STRICTLY FORBIDDEN from bundling multiple days together (e.g., NO "DAY 1 - DAY 3"). Every single calendar day log must be explicitly isolated as its own standalone subsection header containing atomic steps for that unique 24-hour cycle.
+   - **CRITICAL ACTUAL CEILING CONSTRAINT**: You are ABSOLUTELY AND CRITICALLY BANNED from blindly generating days up to the generic `7` configuration parameter if the active phase's actual duration defined in Section 4 "HIGH-LEVEL MULTI-PHASE ARCHITECTURAL SYNOPSIS GRID" of the Global Context is shorter.
+   - You MUST cross-reference the active `Phase 5` row inside the Section 4 Synopsis Table, extract the exact runtime duration from the "Day Range" column (e.g., if the table says "Day 1 - 2", the actual ceiling is strictly 2 days), and force-stop your sequential day generation precisely at that calculated local integer ceiling.
+   - Generating a single day beyond the actual duration specified in the Global Context synopsis grid (such as generating Day 3 or Day 5 when the table restricts the phase to Day 1 - 2) constitutes a fatal structural contract violation and will break the backend workflow sequencer.
+
+5. **Language Compliance & Formatting Lockdown:** You MUST generate the entire report strictly in the language specified by the parameters: **🇻🇳 Vietnamese**.
+
+# 🔒 SYSTEM PRODUCTION INTEGRATION AND FORMATTING LOCKDOWN (ABSOLUTE)
+- **Strict Content Purity Constraint:** Your entire output response MUST be a pure, raw executable Markdown text payload written in 🇻🇳 Vietnamese.
+- **Explicit Start Mandate & Technical Name Isolation:** Your output response MUST start exactly with the standardized primary title text pattern, translating descriptive labels into the target language but isolating the technical identifier: `# [Translated text for "Phase"] 5: <!--PHASE_NAME_START-->[Dynamically analyze the allocated tasks and output a standard, natural, human-readable descriptive title string for this phase using isolated words separated by real, standard whitespace characters. You are ABSOLUTELY AND CRITICALLY BANNED from combining words together, removing spaces, or utilizing programming styles like PascalCase, camelCase, or snake_case. It must read normally and smoothly just like a human description string. Fully translate and render this title into the target language requested by the parameters: 🇻🇳 Vietnamese. Example: "Core Infrastructure And Authentication Setup"]<!--PHASE_NAME_END--> | [Translated text for "Description"]: <!--PHASE_DESC_START-->[Provide a granular, professional engineering description summarizing the absolute operational scope of this specific phase, fully rendered in 🇻🇳 Vietnamese]<!--PHASE_DESC_END-->`. Do NOT include greetings, intros, notes, or explanations. Do NOT wrap the entire response inside markdown codeblocks. Any token before or after this exact structure will cause an immediate execution pipeline crash.
+</ACTIVE_TASK_SYSTEM_INSTRUCTION>
+
+# Raw Response / Exception:
+
+## Giai đoạn 5: <!--PHASE_NAME_START-->Phát triển giao diện di động, thông báo đẩy, chatbot AI, i18n, SEO, báo cáo và hardening DevOps<!--PHASE_NAME_END-->
+
+#### 📊 Document Control
+
+| Mục | Chi tiết |
+| :--- | :--- |
+| **ID Kiến Trúc** | ARCH-20260807042343 |
+| **Tên Dự Án** | membership-hub |
+| **Giai Đoạn** | 5 |
+| **Tên Giai Đoạn** | Phát triển giao diện di động, thông báo đẩy, chatbot AI, i18n, SEO, báo cáo và hardening DevOps |
+| **Mô Tả** | <!--PHASE_DESC_START-->Giai đoạn 5 tập trung vào việc xây dựng giao diện di động đa nền tảng, tích hợp thông báo đẩy qua Firebase Cloud Messaging và Apple Push Notification Service, triển khai chatbot AI hỗ trợ trả lời câu hỏi của người dùng, hỗ trợ đa ngôn ngữ và SEO, tạo tài liệu báo cáo và hardening DevOps cho toàn bộ hệ thống. Phần công việc bao gồm phát triển ứng dụng di động hybrid, tạo tài liệu kỹ thuật, cấu hình CI/CD, bảo mật, và tuân thủ các yêu cầu NFR liên quan đến hiệu năng, bảo mật, và độ sẵn sàng.<!--PHASE_DESC_END--> |
+| **Phiên Bản** | 1.0 (Baseline) |
+| **Ngày/Thời Gian** | 2026/08/07 04:23:43 |
+| **Tác Giả** | Enterprise System Architect (SA Agent) |
+| **Phê Duyệt** | Pending Technical Governance Review |
+
+#### 1. Phạm vi hoạt động và mục tiêu giai đoạn
+Giai đoạn 5 thực hiện toàn bộ chức năng phát triển giao diện di động, tích hợp thông báo đẩy, chatbot AI, hỗ trợ đa ngôn ngữ và SEO, tạo tài liệu báo cáo, và hardening DevOps. Các thành phần chính bao gồm:
+- Ứng dụng di động hybrid (React Native + Capacitor) với Firebase Auth, FCM/APNs, và Zalo API.
+- Chatbot AI sử dụng mô hình ngôn ngữ tự nhiên (OpenAI GPT-4 hoặc tương đương) để trả lời câu hỏi về khóa học, giáo viên, trung tâm, và tài khoản.
+- Hỗ trợ i18n với các ngôn ngữ tiếng Việt, tiếng Anh, và tiếng Tây Ban Nha, đồng thời chèn thẻ `<meta>` và `hreflang` cho SEO.
+- Tài liệu báo cáo và hardening DevOps bao gồm quy trình CI/CD, Dockerfile, Helm chart, và cấu hình GKE.
+
+#### 2. Phạm vi kỹ thuật & ranh giới thư mục (Files, paths, và endpoints)
+- **Thư mục**:
+  - `./sources/frontend/mobile/` – mã nguồn ứng dụng di động.
+  - `./sources/docs/` – tài liệu kỹ thuật, báo cáo, và hướng dẫn triển khai.
+- **Endpoint**:
+  - `GET /api/v1/mobile/user/{userId}/profile`
+  - `POST /api/v1/mobile/tokens`
+  - `POST /api/v1/chatbot/query`
+  - `GET /api/v1/reports/attendance?centerId=...&date=...`
+
+#### 3. Hướng dẫn chức năng của các Sub-Agent
+- **Coder**: Phát triển mã nguồn ứng dụng di động và tài liệu kỹ thuật. Không viết test, manifest, hoặc cấu hình CI/CD.
+- **Tester**: Thiết kế và thực thi bộ kiểm thử JUnit, integration test, và E2E automation. Không sửa mã nguồn.
+- **Doc**: Soạn tài liệu kỹ thuật, sơ đồ kiến trúc, mô hình dữ liệu, và quy trình triển khai. Đảm bảo tài liệu nằm trong `./sources/docs/`.
+- **Reviewer**: Kiểm tra mã, phân tích tĩnh, vá lỗi bảo mật OWASP, và đảm bảo chất lượng code.
+- **Docker**: Xây dựng Dockerfile đa stage, tối ưu kích thước, và đẩy image lên DockerHub.
+- **GCP**: Tự động hóa triển khai trên Google Cloud, đẩy image lên Artifact Registry, và triển khai trên Cloud Run.
+- **GKE**: Xây dựng manifest Kubernetes, HPA, Helm chart, và triển khai microservices trên GKE.
+
+#### 4. Định nghĩa DoD (Definition of Done)
+- Tất cả các yêu cầu [REQ-019] tới [REQ-025] được triển khai và kiểm thử thành công.
+- Đạt 100% coverage cho unit, integration, và E2E tests.
+- Đạt OWASP Top 10 compliance, bảo mật OWASP, và NFR-002, NFR-005, NFR-007, NFR-008, NFR-009.
+- Mỗi tag ID được map đầy đủ, không còn tag chưa được sử dụng.
+- Tài liệu kỹ thuật, sơ đồ kiến trúc, và báo cáo hoàn chỉnh, lưu trữ trong `./sources/docs/`.
+
+#### 5. LỊCH THỰC HIỆN NGÀY ĐÓNG
+
+###### 🌤️ NGÀY 1: <!--DAY_HEADER_START-->XÂY DỰNG LÓI ỨNG DỤNG DI ĐỘNG<!--DAY_HEADER_END-->
+
+######## 📝 NHIỆM VỤ 1.1: Triển khai lõi ứng dụng di động hybrid với điều hướng vai trò, tích hợp Firebase Auth và xử lý push notification
+########## Được giao: Coder
+########## Định hướng thành phần & yêu cầu kỹ thuật:
+* **Đường dẫn**: ./sources/frontend/mobile/App.js
+* **Thẻ theo dõi**: <!--START_TAGS-->[ARC-009], [REQ-019], [REQ-020], [NFR-002], [NFR-005]<!--END_TAGS-->
+
+######## 📝 NHIỆM VỤ 1.2: Khởi tạo tài liệu kiến trúc hệ thống, bao gồm sơ đồ kiến trúc, mô hình dữ liệu, và quy trình triển khai
+########## Được giao: Doc
+########## Định hướng thành phần & yêu cầu kỹ thuật:
+* **Đường dẫn**: ./sources/docs/phase5-architecture.md
+* **Thẻ theo dõi**: <!--START_TAGS-->[ARC-009], [ARC-010], [REQ-019], [REQ-020], [NFR-002], [NFR-005]<!--END_TAGS-->
+
+###### 🌤️ NGÀY 2: <!--DAY_HEADER_START-->TẠO TÀI LIỆU BÁO CÁO VÀ SEO<!--DAY_HEADER_END-->
+
+######## 📝 NHIỆM VỤ 2.1: Tạo tài liệu báo cáo và SEO, bao gồm hướng dẫn tạo báo cáo điểm danh CSV, chèn meta tags đa ngôn ngữ và hreflang, thực hiện tuân thủ GDPR/CCPA, sao lưu PostgreSQL, ghi lại quy trình triển khai Docker và GKE
+########## Được giao: Doc
+########## Định hướng thành phần & yêu cầu kỹ thuật:
+* **Đường dẫn**: ./sources/docs/reporting-and-seo.md
+* **Thẻ theo dõi**: <!--START_TAGS-->[ARC-010], [REQ-022], [REQ-023], [REQ-024], [REQ-025], [NFR-007], [NFR-008], [NFR-009]<!--END_TAGS-->
 
