@@ -1,213 +1,282 @@
-# Giai đoạn 3: <!--PHASE_NAME_START-->Xây dựng quản lý khóa học với xung đột lịch và phân công giáo viên<!--PHASE_NAME_END-->
+# Giai đoạn 3: <!--PHASE_NAME_START-->Xây dựng quản lý khóa học, ghi danh, điểm danh QR và thẻ hội viên<!--PHASE_NAME_END-->
 
 ## 📊 Document Control
 
 | Mục | Chi tiết |
 | :--- | :--- |
-| **ID Kiến Trúc** | ARCH-20260807024254 |
-| **Tên Dự Án** | membership-hub |
+| **Mã Blueprint** | ARCH-20260807134137 |
+| **Tên Dự án** | membership-hub |
 | **Giai đoạn** | 3 |
-| **Tên Giai đoạn** | <!--PHASE_NAME_START-->Xây dựng quản lý khóa học với xung đột lịch và phân công giáo viên<!--PHASE_NAME_END--> |
-| **Mô tả** | <!--PHASE_DESC_START-->Giai đoạn này tập trung vào việc xây dựng toàn bộ mô-đun quản lý khóa học, bao gồm việc triển khai controller, service và service phân công giáo viên, đồng thời thiết lập schema dữ liệu, API contract và kiểm tra tính nhất quán lịch học. Các chức năng chính bao gồm: hiển thị danh sách khóa học, tạo/ cập nhật khóa học với kiểm tra xung đột lịch, và gán/ rút giáo viên cho khóa học. Tất cả các endpoint đều tuân thủ chuẩn REST, bảo mật JWT, và áp dụng OWASP Top‑10. Phần triển khai còn bao gồm việc viết tài liệu kiến trúc, kiểm thử, và chuẩn bị containerization cho môi trường GKE.<!--PHASE_DESC_END--> |
+| **Tên Giai đoạn** | <!--PHASE_NAME_START-->Xây dựng quản lý khóa học, ghi danh, điểm danh QR và thẻ hội viên<!--PHASE_NAME_END--> |
+| **Mô tả** | <!--PHASE_DESC_START-->Giai đoạn 3 tập trung vào xây dựng toàn bộ mô hình dữ liệu và API cho quản lý khóa học, ghi danh học viên, điểm danh qua QR, và quản lý thẻ hội viên. Bao gồm triển khai các bảng dữ liệu courses, enrollments, attendance, member_cards, phát triển các controller, service, DTO, và các endpoint tương ứng, đồng thời triển khai exception handlers cho mất kết nối mạng và trùng lặp điểm danh. Ngoài ra, chuẩn bị tài liệu kiến trúc chi tiết cho giai đoạn này.<!--PHASE_DESC_END--> |
 | **Phiên bản** | 1.0 (Baseline) |
-| **Ngày/Giờ** | 2026/08/07 07:35:34 |
+| **Ngày/Giờ** | 2026/08/07 13:41:37 |
 | **Tác giả** | Enterprise System Architect (SA Agent) |
 | **Phê duyệt** | Pending Technical Governance Review |
 
-## 1. Phạm vi và mục tiêu thực thi giai đoạn
-Giai đoạn 3 yêu cầu triển khai toàn bộ mô-đun quản lý khóa học, bao gồm:
-- Xây dựng **CourseController** để cung cấp danh sách, tạo, cập nhật và gán giáo viên cho khóa học.
-- Xây dựng **CourseService** để xử lý nghiệp vụ tạo/ cập nhật khóa học, đồng thời kiểm tra xung đột lịch với giáo viên đã được phân công.
-- Xây dựng **CourseTeacherService** để thực hiện gán/rút giáo viên vào khóa học và gửi thông báo push khi có thay đổi.
-- Định nghĩa schema **COURSES** trong PostgreSQL, bao gồm các trường khóa học, ngày bắt đầu/ kết thúc, giáo viên, và giới hạn số học viên.
-- Định nghĩa API contract cho các endpoint: `GET /api/v1/courses`, `POST /api/v1/courses`, `PUT /api/v1/courses/{courseId}/teacher/{teacherId}`.
-- Đảm bảo tất cả các endpoint được bảo vệ bằng JWT, áp dụng RBAC, và tuân thủ OWASP Top‑10 (SQL injection, XSS, CSRF, etc.).
-- Viết tài liệu kiến trúc, schema, và hướng dẫn triển khai containerization cho môi trường GKE.
-- Kiểm thử unit, integration, và E2E với coverage 100% cho các yêu cầu REQ-007, REQ-008, REQ-009.
+## Phạm vi thực thi và mục tiêu
 
-## 2. Phạm vi kỹ thuật & ranh giới thư mục (Files, paths, và endpoints)
-- **Thư mục chính**: `./sources/backend/courses/`
-- **File controller**: `./sources/backend/courses/CourseController.java`
-- **File service**: `./sources/backend/courses/CourseService.java`
-- **File teacher service**: `./sources/backend/courses/CourseTeacherService.java`
-- **Schema file**: `./sources/backend/courses/CourseSchema.sql`
-- **Endpoints**:
-  - `GET /api/v1/courses` – trả về danh sách khóa học.
-  - `POST /api/v1/courses` – tạo khóa học mới.
-  - `PUT /api/v1/courses/{courseId}` – cập nhật thông tin khóa học.
-  - `PUT /api/v1/courses/{courseId}/teacher/{teacherId}` – gán giáo viên cho khóa học.
+Giai đoạn 3 thực hiện xây dựng toàn bộ mô hình dữ liệu và API cho quản lý khóa học, ghi danh học viên, điểm danh qua QR, và quản lý thẻ hội viên. Các thành phần chính bao gồm lớp thực thể CourseEntity, EnrollmentEntity, AttendanceEntity, MemberCardEntity, các controller, service, DTO, và các endpoint tương ứng. Ngoài ra, triển khai exception handlers cho mất kết nối mạng và trùng lặp điểm danh, đồng thời chuẩn bị tài liệu kiến trúc chi tiết cho giai đoạn này.
 
-## 3. Hướng dẫn chức năng của các đại lý phụ
-- **Coder**: Phát triển mã nguồn Java cho controller, service, và repository. Không viết test, manifest, hoặc tài liệu.
-- **Tester**: Viết test unit, integration, và E2E cho các lớp Java. Nếu không có file nguồn cụ thể, ghi `INTEGRATION_SCOPE;./sources/backend/tests/integration/CourseWorkflowTest.java`.
-- **Reviewer**: Kiểm tra biên dịch, phân tích tĩnh, và vá lỗi bảo mật OWASP. Đảm bảo mã tuân thủ SonarQube.
-- **Doc**: Viết tài liệu kỹ thuật, schema, và hướng dẫn triển khai. Tạo file `./sources/docs/courses_architecture.md`.
-- **Docker**: Xây dựng Dockerfile đa‑stage cho backend, tối ưu kích thước, và chuẩn bị image cho GKE.
-- **GCP**: Đẩy image lên Artifact Registry và triển khai lên GKE.
-- **GKE**: Viết manifest deployment, service, HPA, và cấu hình networking cho backend.
+## Phạm vi kỹ thuật và ranh giới thư mục
 
-## 4. Định nghĩa Hoàn thành (DoD)
-- Tất cả các endpoint REQ-007, REQ-008, REQ-009 được triển khai và hoạt động đúng theo API contract.
-- Kiểm thử unit, integration, và E2E đạt 100% coverage cho các yêu cầu này.
-- Mã nguồn tuân thủ OWASP Top‑10 và đạt SonarQube quality gate.
-- Tất cả tag ID (REQ-007, REQ-008, REQ-009, ARC-003, DAT-004) được ánh xạ và ghi lại trong logs.
-- Tài liệu kiến trúc, schema, và hướng dẫn triển khai được hoàn thiện và lưu trong `./sources/docs/`.
-- Docker image có kích thước < 500 MB và được đẩy lên Artifact Registry.
-- Manifest GKE triển khai thành công với HPA và autoscaling.
+| Đường dẫn | Mô tả |
+| :--- | :--- |
+| `./sources/backend/org/nlh4j/saas/membershiphub/course-management/CourseEntity.java` | Lớp thực thể khóa học |
+| `./sources/backend/org/nlh4j/saas/membershiphub/course-management/EnrollmentEntity.java` | Lớp thực thể ghi danh |
+| `./sources/backend/org/nlh4j/saas/membershiphub/course-management/AttendanceEntity.java` | Lớp thực thể điểm danh |
+| `./sources/backend/org/nlh4j/saas/membershiphub/course-management/MemberCardEntity.java` | Lớp thực thể thẻ hội viên |
+| `./sources/backend/org/nlh4j/saas/membershiphub/course-management/CourseController.java` | Controller khóa học |
+| `./sources/backend/org/nlh4j/saas/membershiphub/course-management/EnrollmentController.java` | Controller ghi danh |
+| `./sources/backend/org/nlh4j/saas/membershiphub/course-management/AttendanceController.java` | Controller điểm danh |
+| `./sources/backend/org/nlh4j/saas/membershiphub/course-management/MemberCardController.java` | Controller thẻ hội viên |
+| `./sources/backend/org/nlh4j/saas/membershiphub/course-management/CourseService.java` | Service khóa học |
+| `./sources/backend/org/nlh4j/saas/membershiphub/course-management/EnrollmentService.java` | Service ghi danh |
+| `./sources/backend/org/nlh4j/saas/membershiphub/course-management/AttendanceService.java` | Service điểm danh |
+| `./sources/backend/org/nlh4j/saas/membershiphub/course-management/MemberCardService.java` | Service thẻ hội viên |
+| `./sources/backend/org/nlh4j/saas/membershiphub/course-management/CourseDTO.java` | DTO khóa học |
+| `./sources/backend/org/nlh4j/saas/membershiphub/course-management/EnrollmentDTO.java` | DTO ghi danh |
+| `./sources/backend/org/nlh4j/saas/membershiphub/course-management/AttendanceDTO.java` | DTO điểm danh |
+| `./sources/backend/org/nlh4j/saas/membershiphub/course-management/MemberCardDTO.java` | DTO thẻ hội viên |
+| `./sources/docs/Phase3_Architecture.md` | Tài liệu kiến trúc giai đoạn 3 |
+| `./sources/backend/tests/integration/AttendanceIntegrationTest.java` | Kiểm thử tích hợp AttendanceService |
 
-## 5. DAY-BY-DAY ARCHITECTURAL EXECUTION LOGS
+## Chỉ đạo chức năng của các tác nhân phụ
 
-### 🌤️ NGÀY 1: <!--DAY_HEADER_START-->XÂY DỰNG CONTROLLER DANH SÁCH KHÓA HỌC<!--DAY_HEADER_END-->
+- **Coder**: Phát triển mã nguồn Java cho backend, bao gồm các lớp thực thể, controller, service, repository, và DTO. Không viết bộ kiểm thử hoặc cấu hình hạ tầng.
+- **Tester**: Viết bộ kiểm thử JUnit5 và kiểm thử tích hợp cho các thành phần backend. Không sửa mã nguồn.
+- **Doc**: Soạn thảo tài liệu kỹ thuật chi tiết, bao gồm mô hình dữ liệu, luồng API, exception handlers, và các thành phần quan trọng. Đảm bảo tài liệu đáp ứng chuẩn OWASP, bảo mật, và ghi chú các ràng buộc dữ liệu. Đưa ra sơ đồ kiến trúc, bảng dữ liệu, và mô tả chi tiết các endpoint.
+- **Reviewer**: Kiểm tra mã nguồn, thực hiện phân tích tĩnh, và bảo mật OWASP. Đảm bảo tuân thủ các tiêu chuẩn bảo mật.
+- **Docker**: Xây dựng Dockerfile đa giai đoạn cho dịch vụ backend. Tối ưu kích thước và chuẩn bị cho CI/CD.
+- **GCP**: Xây dựng và đẩy image lên Google Cloud Artifact Registry. Orchestrate container environments.
+- **GKE**: Xây dựng manifest Kubernetes, HPA, và triển khai microservices lên GKE.
 
-#### 📝 NHIỆM VỤ 1.1: Triển khai CourseController để hiển thị danh sách khóa học và hỗ trợ CRUD.
-##### Được Giao Cho: Coder
-##### Đường Dẫn Mục Tiêu: `./sources/backend/courses/CourseController.java`
-##### Thẻ Truyền Tính: <!--START_TAGS-->[ARC-003], [REQ-007], [DAT-004]<!--END_TAGS-->
-##### Hướng Dẫn Công Nghệ Chi Tiết:
-- Xây dựng lớp `CourseController` với các phương thức:
-  - `@GetMapping("/api/v1/courses")` trả về danh sách khóa học.
-  - `@PostMapping("/api/v1/courses")` tạo khóa học mới.
-  - `@PutMapping("/api/v1/courses/{courseId}")` cập nhật khóa học.
-- Sử dụng `CourseService` để thực hiện nghiệp vụ.
-- Bảo vệ endpoint bằng `@PreAuthorize` theo RBAC (System Admin, Center Admin).
-- Đảm bảo trả về mã lỗi 400/409 khi có dữ liệu trùng lặp hoặc xung đột.
-- Kiểm tra dữ liệu đầu vào với `@Valid` và `BindingResult`.
-- Thêm logging với SLF4J, ghi lại userId, action, và thời gian.
+## Định nghĩa của Giai đoạn đã hoàn thành
+
+- Tất cả các yêu cầu [REQ-007], [REQ-010], [REQ-012] được triển khai đầy đủ.
+- Các bảng dữ liệu courses, enrollments, attendance, member_cards được tạo và kiểm tra tính toàn vẹn.
+- API endpoints `/api/v1/courses`, `/api/v1/enrollments`, `/api/v1/attendance/scan`, `/api/v1/membercards/{studentId}` đáp ứng đúng định dạng JSON và bảo mật JWT.
+- Kiểm thử tích hợp AttendanceService đạt độ phủ ≥ 85% và kiểm tra exception handlers cho mạng offline và duplicate.
+- Đảm bảo tuân thủ OWASP Top 10, bảo mật JWT, và bảo vệ dữ liệu nhạy cảm.
+- Tất cả tag ID được ánh xạ đầy đủ, không có tag chưa được sử dụng.
+
+## LỊCH THỰC HIỆN KIẾN TRÚC NGÀY BỞI NGÀY
+
+### 🌤️ NGÀY 1: <!--DAY_HEADER_START-->TRIỂN KHAI LỚP THỰC THỂ KHÓA HỌC, GHI DANH VÀ ĐIỂM DANH<!--DAY_HEADER_END-->
+
+#### 📝 TRIỂN KHAI LỚP THỰC THỂ KHÓA HỌC, GHI DANH VÀ ĐIỂM DANH 1.1:
+Triển khai lớp thực thể CourseEntity, EnrollmentEntity, AttendanceEntity, MemberCardEntity, các controller, service, DTO, và các endpoint tương ứng. Đảm bảo các ràng buộc dữ liệu, kiểm tra đầu vào, bảo mật JWT, và tuân thủ OWASP. Xây dựng exception handlers cho mất kết nối mạng và trùng lặp điểm danh.
+##### Tác nhân phụ được giao: Coder
+##### Các thành phần mục tiêu & Yêu cầu kỹ thuật:
+* **Đường dẫn mục tiêu:** `./sources/backend/org/nlh4j/saas/membershiphub/course-management/CourseEntity.java`, `./sources/backend/org/nlh4j/saas/membershiphub/course-management/EnrollmentEntity.java`, `./sources/backend/org/nlh4j/saas/membershiphub/course-management/AttendanceEntity.java`, `./sources/backend/org/nlh4j/saas/membershiphub/course-management/MemberCardEntity.java`, `./sources/backend/org/nlh4j/saas/membershiphub/course-management/CourseController.java`, `./sources/backend/org/nlh4j/saas/membershiphub/course-management/EnrollmentController.java`, `./sources/backend/org/nlh4j/saas/membershiphub/course-management/AttendanceController.java`, `./sources/backend/org/nlh4j/saas/membershiphub/course-management/MemberCardController.java`, `./sources/backend/org/nlh4j/saas/membershiphub/course-management/CourseService.java`, `./sources/backend/org/nlh4j/saas/membershiphub/course-management/EnrollmentService.java`, `./sources/backend/org/nlh4j/saas/membershiphub/course-management/AttendanceService.java`, `./sources/backend/org/nlh4j/saas/membershiphub/course-management/MemberCardService.java`, `./sources/backend/org/nlh4j/saas/membershiphub/course-management/CourseDTO.java`, `./sources/backend/org/nlh4j/saas/membershiphub/course-management/EnrollmentDTO.java`, `./sources/backend/org/nlh4j/saas/membershiphub/course-management/AttendanceDTO.java`, `./sources/backend/org/nlh4j/saas/membershiphub/course-management/MemberCardDTO.java`
+* **Thẻ truy xuất:** <!--START_TAGS-->[REQ-007], [REQ-010], [DAT-004], [DAT-005], [DAT-006]<!--END_TAGS-->
+* **Hướng dẫn công việc chi tiết:**  
+  1. **Lớp thực thể**  
+     - Tạo `CourseEntity.java` với các trường `courseId`, `title`, `description`, `startDate`, `endDate`, `teacherId`, `maxStudents`. Thêm ràng buộc `@NotNull`, `@Size`, `@PastOrPresent`, `@FutureOrPresent`, `@Min`, `@Max`. Định nghĩa quan hệ `@ManyToOne` tới `UserEntity` (giảng viên). Thêm `@UniqueConstraint` cho `title` nếu cần.  
+     - Tạo `EnrollmentEntity.java` với các trường `enrollmentId`, `studentId`, `courseId`, `enrollmentDate`. Thêm ràng buộc `@UniqueConstraint` cho `studentId` + `courseId`. Định nghĩa quan hệ `@ManyToOne` tới `UserEntity` và `CourseEntity`.  
+     - Tạo `AttendanceEntity.java` với các trường `attendanceId`, `studentId`, `courseId`, `attendanceDate`, `timestamp`. Thêm ràng buộc `@UniqueConstraint` cho `studentId` + `courseId` + `attendanceDate`. Định nghĩa quan hệ `@ManyToOne` tới `UserEntity` và `CourseEntity`.  
+     - Tạo `MemberCardEntity.java` với các trường `cardId`, `studentId`, `issueDate`, `validityDays`, `remainingDays`. Thêm ràng buộc `@Check` cho `validityDays > 0` và `remainingDays >= 0`. Định nghĩa quan hệ `@ManyToOne` tới `UserEntity`.  
+  2. **DTO**  
+     - Tạo `CourseDTO.java`, `EnrollmentDTO.java`, `AttendanceDTO.java`, `MemberCardDTO.java` với các trường tương ứng và các annotation `@JsonProperty` khi cần.  
+  3. **Service**  
+     - Tạo `CourseService.java`, `EnrollmentService.java`, `AttendanceService.java`, `MemberCardService.java`. Sử dụng `@Transactional`, `@Service`. Kiểm tra đầu vào với `@Valid`. Xử lý business logic (đăng ký, ghi danh, điểm danh, gia hạn thẻ).  
+  4. **Controller**  
+     - Tạo `CourseController.java`, `EnrollmentController.java`, `AttendanceController.java`, `MemberCardController.java`. Sử dụng `@RestController`, `@RequestMapping`. Định nghĩa các endpoint `GET`, `POST`, `PUT`, `DELETE`, `POST /scan`. Sử dụng `@PreAuthorize` để kiểm tra RBAC.  
+  5. **Exception Handling**  
+     - Tạo `GlobalExceptionHandler.java` với `@ControllerAdvice`. Xử lý `MethodArgumentNotValidException`, `DataIntegrityViolationException`, `NetworkOfflineException`, `DuplicateAttendanceException`. Trả về `ResponseEntity` với mã lỗi và thông báo chi tiết.  
+  6. **OWASP Compliance**  
+     - Sử dụng JPA prepared statements, `@Valid`, `@Pattern` cho các trường nhập. Đánh dấu các trường nhạy cảm với `@JsonIgnore`. Đảm bảo JWT được xác thực và hết hạn đúng thời gian. Sử dụng `@Transactional` để tránh race condition.  
+  7. **Logging**  
+     - Sử dụng SLF4J để ghi log các hành động quan trọng và lỗi.  
+
+#### 📝 TÀI LIỆU KIẾN TRÚC GIAI ĐOẠN 3 1.2:
+Soạn thảo tài liệu kiến trúc chi tiết cho giai đoạn 3, bao gồm mô hình dữ liệu, luồng API, exception handlers, và các thành phần quan trọng. Đảm bảo tài liệu đáp ứng chuẩn OWASP, bảo mật, và ghi chú các ràng buộc dữ liệu. Đưa ra sơ đồ kiến trúc, bảng dữ liệu, và mô tả chi tiết các endpoint.
+##### Tác nhân phụ được giao: Doc
+##### Các thành phần mục tiêu & Yêu cầu kỹ thuật:
+* **Đường dẫn mục tiêu:** `./sources/docs/Phase3_Architecture.md`
+* **Thẻ truy xuất:** <!--START_TAGS-->[REQ-007], [REQ-010], [DAT-004], [DAT-005], [DAT-006], [DAT-007]<!--END_TAGS-->
+* **Hướng dẫn công việc chi tiết:**  
+  1. **Mục lục**: Giới thiệu, Mô hình dữ liệu, Luồng API, Exception Handling, Bảo mật, Triển khai.  
+  2. **Mô hình dữ liệu**: Sử dụng Mermaid để vẽ ER diagram cho `courses`, `enrollments`, `attendance`, `member_cards`.  
+  3. **Luồng API**: Trình bày chi tiết các endpoint trong JSON contract (đính kèm dưới đây).  
+  4. **Exception Handling**: Mô tả các exception handler `NetworkOfflineException`, `DuplicateAttendanceException`.  
+  5. **Bảo mật**: Đề cập OWASP, JWT, TLS, RBAC.  
+  6. **Triển khai**: Mô tả Docker, Kubernetes, CI/CD.  
+
+#### 📝 Kiểm thử điểm danh QR và xử lý trùng lặp 2.1:
+Xây dựng bộ kiểm thử tích hợp cho AttendanceService, bao gồm kiểm tra ghi nhận điểm danh lần đầu, phát hiện duplicate, và mô phỏng mất kết nối mạng. Đảm bảo logic idempotent và cờ duplicate được trả về chính xác. Kiểm tra exception handlers cho mạng offline và duplicate.
+##### Tác nhân phụ được giao: Tester
+##### Các thành phần mục tiêu & Yêu cầu kỹ thuật:
+* **Đường dẫn mục tiêu:** `INTEGRATION_SCOPE;./sources/backend/tests/integration/AttendanceIntegrationTest.java`
+* **Thẻ truy xuất:** <!--START_TAGS-->[REQ-012], [DAT-006], [EXC-001], [EXC-002]<!--END_TAGS-->
+* **Hướng dẫn công việc chi tiết:**  
+  1. **Setup**  
+     - Sử dụng `@SpringBootTest`, `@AutoConfigureMockMvc`.  
+     - Tạo dữ liệu mẫu `Course`, `Student`, `Attendance` trong `@BeforeEach`.  
+  2. **Scenario 1: Ghi nhận điểm danh đầu tiên**  
+     - Gửi `POST /api/v1/attendance/scan` với body `{ "studentId": "...", "courseId": "...", "qrCodeData": "..." }`.  
+     - Kiểm tra status 200, body chứa `attendanceId` và `duplicate: false`.  
+  3. **Scenario 2: Duplicate attendance**  
+     - Gửi lại cùng request trong cùng ngày.  
+     - Kiểm tra status 200, body chứa `duplicate: true`.  
+  4. **Scenario 3: Mất kết nối mạng**  
+     - Mock `AttendanceService` để ném `NetworkOfflineException`.  
+     - Kiểm tra status 503, body chứa thông báo lỗi.  
+  5. **Assertions**  
+     - Kiểm tra số lượng bản ghi trong DB, trường `duplicate` trong response.  
+  6. **Cleanup**  
+     - Xóa dữ liệu trong `@AfterEach`.  
+
+### Database Schema DDL SQL Specification
+
+```sql
+CREATE TABLE courses (
+    course_id UUID PRIMARY KEY,
+    title VARCHAR(150) NOT NULL,
+    description TEXT,
+    start_date DATE NOT NULL,
+    end_date DATE NOT NULL,
+    teacher_id UUID NOT NULL,
+    max_students INT NOT NULL DEFAULT 30,
+    CONSTRAINT fk_courses_teacher FOREIGN KEY (teacher_id) REFERENCES users(user_id),
+    CONSTRAINT chk_course_dates CHECK (start_date <= end_date)
+);
+
+CREATE TABLE enrollments (
+    enrollment_id UUID PRIMARY KEY,
+    student_id UUID NOT NULL,
+    course_id UUID NOT NULL,
+    enrollment_date TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    CONSTRAINT fk_enrollments_student FOREIGN KEY (student_id) REFERENCES users(user_id),
+    CONSTRAINT fk_enrollments_course FOREIGN KEY (course_id) REFERENCES courses(course_id),
+    CONSTRAINT uniq_student_course UNIQUE (student_id, course_id)
+);
+
+CREATE TABLE attendance (
+    attendance_id UUID PRIMARY KEY,
+    student_id UUID NOT NULL,
+    course_id UUID NOT NULL,
+    attendance_date DATE NOT NULL,
+    timestamp TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    CONSTRAINT fk_attendance_student FOREIGN KEY (student_id) REFERENCES users(user_id),
+    CONSTRAINT fk_attendance_course FOREIGN KEY (course_id) REFERENCES courses(course_id),
+    CONSTRAINT uniq_student_course_date UNIQUE (student_id, course_id, attendance_date)
+);
+
+CREATE TABLE member_cards (
+    card_id UUID PRIMARY KEY,
+    student_id UUID NOT NULL,
+    issue_date DATE NOT NULL,
+    validity_days INT NOT NULL,
+    remaining_days INT NOT NULL,
+    CONSTRAINT fk_membercard_student FOREIGN KEY (student_id) REFERENCES users(user_id),
+    CONSTRAINT chk_validity_positive CHECK (validity_days > 0 AND remaining_days >= 0)
+);
+```
+
+### API and Event Routing Contracts
 
 ```json
-// GET /api/v1/courses
 {
-  "courses": [
+  "endpoints": [
     {
-      "courseId": "uuid",
-      "title": "Lập trình Java nâng cao",
-      "description": "Khóa học về Quarkus và Kubernetes",
-      "startDate": "2026-09-01",
-      "endDate": "2026-12-31",
-      "teacherId": "a1b2c3d4-...",
-      "maxStudents": 20
+      "path": "/api/v1/courses",
+      "method": "GET",
+      "response": [
+        {
+          "courseId": "UUID",
+          "title": "string",
+          "startDate": "DATE",
+          "endDate": "DATE",
+          "teacherName": "string"
+        }
+      ]
+    },
+    {
+      "path": "/api/v1/courses",
+      "method": "POST",
+      "request": {
+        "title": "string",
+        "description": "string",
+        "startDate": "DATE",
+        "endDate": "DATE",
+        "teacherId": "UUID",
+        "maxStudents": "INT"
+      },
+      "response": {
+        "courseId": "UUID"
+      }
+    },
+    {
+      "path": "/api/v1/courses/{id}",
+      "method": "PUT",
+      "request": {
+        "title": "string",
+        "startDate": "DATE",
+        "endDate": "DATE",
+        "teacherId": "UUID"
+      },
+      "response": {
+        "courseId": "UUID"
+      }
+    },
+    {
+      "path": "/api/v1/courses/{id}",
+      "method": "DELETE",
+      "response": {
+        "courseId": "UUID"
+      }
+    },
+    {
+      "path": "/api/v1/enrollments",
+      "method": "POST",
+      "request": {
+        "studentId": "UUID",
+        "courseId": "UUID"
+      },
+      "response": {
+        "enrollmentId": "UUID"
+      }
+    },
+    {
+      "path": "/api/v1/attendance/scan",
+      "method": "POST",
+      "request": {
+        "studentId": "UUID",
+        "courseId": "UUID",
+        "qrCodeData": "string"
+      },
+      "response": {
+        "attendanceId": "UUID",
+        "duplicate": "boolean"
+      }
+    },
+    {
+      "path": "/api/v1/membercards/{studentId}",
+      "method": "GET",
+      "response": {
+        "cardId": "UUID",
+        "validityDays": "INT",
+        "remainingDays": "INT"
+      }
+    },
+    {
+      "path": "/api/v1/membercards/renew",
+      "method": "POST",
+      "request": {
+        "studentId": "UUID",
+        "additionalDays": "INT"
+      },
+      "response": {
+        "cardId": "UUID",
+        "newRemainingDays": "INT"
+      }
     }
   ]
 }
 ```
 
-```json
-// POST /api/v1/courses
-{
-  "title": "Lập trình Java nâng cao",
-  "description": "Khóa học về Quarkus và Kubernetes",
-  "startDate": "2026-09-01",
-  "endDate": "2026-12-31",
-  "teacherId": "a1b2c3d4-...",
-  "maxStudents": 20
-}
-```
+### Phase Localized Exception Handlers
 
-```json
-// PUT /api/v1/courses/{courseId}
-{
-  "title": "Lập trình Java nâng cao Updated",
-  "description": "Updated description",
-  "startDate": "2026-09-01",
-  "endDate": "2026-12-31",
-  "teacherId": "a1b2c3d4-...",
-  "maxStudents": 25
-}
-```
-
-```sql
-CREATE TABLE COURSES (
-    courseId UUID PRIMARY KEY,
-    title VARCHAR(150) NOT NULL,
-    description TEXT,
-    startDate DATE NOT NULL,
-    endDate DATE NOT NULL,
-    teacherId UUID NOT NULL REFERENCES USERS(userId),
-    maxStudents INT NOT NULL DEFAULT 30
-);
-```
-
-### 🌤️ NGÀY 2: <!--DAY_HEADER_START-->XÂY DỰNG LOGIC TẠO/ CẬP NHẬT KHÓA HỌC<!--DAY_HEADER_END-->
-
-#### 📝 NHIỆM VỤ 2.1: Triển khai CourseService để xử lý tạo và cập nhật khóa học, kiểm tra xung đột lịch.
-##### Được Giao Cho: Coder
-##### Đường Dẫn Mục Tiêu: `./sources/backend/courses/CourseService.java`
-##### Thẻ Truyền Tính: <!--START_TAGS-->[REQ-008], [DAT-004]<!--END_TAGS-->
-##### Hướng Dẫn Công Nghệ Chi Tiết:
-- Phương thức `createCourse(CourseDto)`:
-  - Kiểm tra xung đột lịch với giáo viên hiện có: truy vấn `SELECT * FROM COURSES WHERE teacherId = :teacherId AND ((startDate <= :endDate AND endDate >= :startDate))`.
-  - Nếu có xung đột, trả về lỗi 409 với thông báo chi tiết.
-  - Nếu không, lưu bản ghi vào bảng `COURSES`.
-- Phương thức `updateCourse(courseId, CourseDto)`:
-  - Kiểm tra xung đột lịch tương tự.
-  - Cập nhật các trường được cung cấp.
-- Sử dụng `@Transactional` để đảm bảo atomicity.
-- Thêm logging và exception handling cho `DataIntegrityViolationException`.
-
-```json
-// POST /api/v1/courses
-{
-  "title": "Lập trình Java nâng cao",
-  "description": "Khóa học về Quarkus và Kubernetes",
-  "startDate": "2026-09-01",
-  "endDate": "2026-12-31",
-  "teacherId": "a1b2c3d4-...",
-  "maxStudents": 20
-}
-```
-
-```sql
-CREATE TABLE COURSES (
-    courseId UUID PRIMARY KEY,
-    title VARCHAR(150) NOT NULL,
-    description TEXT,
-    startDate DATE NOT NULL,
-    endDate DATE NOT NULL,
-    teacherId UUID NOT NULL REFERENCES USERS(userId),
-    maxStudents INT NOT NULL DEFAULT 30
-);
-```
-
-### 🌤️ NGÀY 3: <!--DAY_HEADER_START-->XÂY DỰNG GÁN/ RÚT GIÁO VIÊN VÀ GỬI THÔNG BÁO<!--DAY_HEADER_END-->
-
-#### 📝 NHIỆM VỤ 3.1: Triển khai CourseTeacherService để gán/rút giáo viên vào khóa học và gửi thông báo push.
-##### Được Giao Cho: Coder
-##### Đường Dẫn Mục Tiêu: `./sources/backend/courses/CourseTeacherService.java`
-##### Thẻ Truyền Tính: <!--START_TAGS-->[REQ-009], [ARC-003], [DAT-004]<!--END_TAGS-->
-##### Hướng Dẫn Công Nghệ Chi Tiết:
-- Phương thức `assignTeacher(courseId, teacherId)`:
-  - Kiểm tra tồn tại khóa học và giáo viên.
-  - Cập nhật trường `teacherId` trong bảng `COURSES`.
-  - Tạo bản ghi mapping (nếu có bảng mapping riêng) hoặc cập nhật trực tiếp.
-  - Gửi thông báo push tới giáo viên qua `NotificationService`.
-- Phương thức `removeTeacher(courseId)`:
-  - Đặt `teacherId` thành NULL hoặc giá trị mặc định.
-  - Gửi thông báo rút quyền.
-- Sử dụng `@Transactional` và `@PreAuthorize` để bảo vệ quyền.
-- Thêm logging và exception handling cho `EntityNotFoundException`.
-
-```json
-// PUT /api/v1/courses/{courseId}/teacher/{teacherId}
-{
-  "action": "assign"
-}
-```
-
-```json
-// PUT /api/v1/courses/{courseId}/teacher/{teacherId}
-{
-  "action": "remove"
-}
-```
-
-```sql
-CREATE TABLE COURSES (
-    courseId UUID PRIMARY KEY,
-    title VARCHAR(150) NOT NULL,
-    description TEXT,
-    startDate DATE NOT NULL,
-    endDate DATE NOT NULL,
-    teacherId UUID NOT NULL REFERENCES USERS(userId),
-    maxStudents INT NOT NULL DEFAULT 30
-);
-```
+- **EXC-001**: Xử lý lỗi mất kết nối mạng trong quá trình quét QR: Khi thiết bị quét QR nhưng không có mạng, ứng dụng lưu sự kiện cục bộ và tự động đồng bộ khi kết nối được khôi phục; backend xử lý đồng bộ một cách idempotent.  
+- **EXC-002**: Ngăn chặn điểm danh trùng lặp: Nếu cùng một studentId và courseId được gửi trong cùng một ngày, hệ thống trả về success với cờ duplicate=true và không tạo bản ghi mới.

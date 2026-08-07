@@ -1,88 +1,134 @@
-# Giai đoạn 5: <!--PHASE_NAME_START-->Phát triển giao diện di động, thông báo đẩy, chatbot AI, i18n, SEO, báo cáo và hardening DevOps<!--PHASE_NAME_END-->
+# Phase 5: <!--PHASE_NAME_START-->Triển khai Bản địa hóa, SEO, Báo cáo, Nâng cao bảo mật, Container hóa, Triển khai và Ghi nhật ký kiểm toán<!--PHASE_NAME_END-->
 
 ## 📊 Document Control
 
 | Mục | Chi tiết |
 | :--- | :--- |
-| **ID Kiến Trúc** | ARCH-20260807073534 |
-| **Tên Dự Án** | membership-hub |
+| **Mã Blueprint** | ARCH-20260807134137 |
+| **Tên Dự án** | membership-hub |
 | **Giai đoạn** | 5 |
-| **Tên Giai đoạn** | <!--PHASE_NAME_START-->Phát triển giao diện di động, thông báo đẩy, chatbot AI, i18n, SEO, báo cáo và hardening DevOps<!--PHASE_NAME_END--> |
-| **Mô tả** | <!--PHASE_DESC_START-->Giai đoạn này tập trung vào việc xây dựng giao diện di động, tích hợp thông báo đẩy, chatbot AI, hỗ trợ đa ngôn ngữ, tối ưu SEO, tạo tài liệu báo cáo và thực hiện hardening DevOps cho toàn bộ hệ thống. Các thành phần chính bao gồm ứng dụng di động hybrid (React Native/Capacitor), tài liệu báo cáo và SEO (Markdown), và các cấu hình DevOps (Docker, GCP, GKE).<!--PHASE_DESC_END--> |
+| **Tên Giai đoạn** | <!--PHASE_NAME_START-->Triển khai Bản địa hóa, SEO, Báo cáo, Nâng cao bảo mật, Container hóa, Triển khai và Ghi nhật ký kiểm toán<!--PHASE_NAME_END--> |
+| **Mô tả** | <!--PHASE_DESC_START-->Giai đoạn 5 tập trung vào việc triển khai các chức năng bản địa hóa đa ngôn ngữ, tối ưu SEO, tạo báo cáo điểm danh, nâng cao bảo mật hệ thống, container hóa toàn bộ dịch vụ và triển khai lên GKE, đồng thời thiết lập ghi nhật ký kiểm toán toàn diện. Các thành phần chính bao gồm cấu hình Firebase, Zalo, các bảng dữ liệu hệ thống, cấu hình Kubernetes, và tài liệu kỹ thuật chi tiết.<!--PHASE_DESC_END--> |
 | **Phiên bản** | 1.0 (Baseline) |
-| **Ngày/Giờ** | 2026/08/07 07:35:34 |
+| **Ngày/Giờ** | 2026/08/07 13:41:37 |
 | **Tác giả** | Enterprise System Architect (SA Agent) |
 | **Phê duyệt** | Pending Technical Governance Review |
 
-## 1. Phạm vi thực thi và mục tiêu
+## 1. Phạm vi và Mục tiêu của Giai đoạn
 
-Giai đoạn 5 thực hiện toàn bộ các chức năng liên quan đến giao diện di động, thông báo đẩy, chatbot AI, i18n, SEO, báo cáo và hardening DevOps. Các nhiệm vụ chính bao gồm:
+Giai đoạn 5 thực hiện triển khai toàn bộ chức năng bản địa hóa đa ngôn ngữ (EN, VI, ES), tối ưu SEO với hreflang và meta tags, tạo báo cáo điểm danh theo ngày cho từng trung tâm, nâng cao bảo mật hệ thống theo OWASP Top 10, container hóa toàn bộ dịch vụ Quarkus, triển khai lên GKE với HPA, và thiết lập ghi nhật ký kiểm toán toàn diện. Các thành phần chính bao gồm cấu hình Firebase, Zalo, các bảng dữ liệu hệ thống, cấu hình Kubernetes, và tài liệu kỹ thuật chi tiết.
 
-- Xây dựng ứng dụng di động hybrid (React Native + Capacitor) với xác thực Firebase, quản lý token JWT, và cấu hình push notification (FCM/APNs).
-- Tích hợp chatbot AI qua endpoint `/api/v1/chatbot/query` để hỗ trợ người dùng trả lời câu hỏi về khóa học, giáo viên, trung tâm, và trạng thái hội viên.
-- Cài đặt đa ngôn ngữ (i18n) cho toàn bộ ứng dụng di động và trang web, bao gồm chuyển hướng URL, thẻ `<html lang='...'>`, và sitemap đa ngôn ngữ.
-- Tạo tài liệu báo cáo điểm danh, dashboard, và tài liệu SEO (Markdown) cho các trang web.
-- Thực hiện hardening DevOps: xây dựng Dockerfile multi‑stage, cấu hình CI/CD trên GitHub Actions, triển khai images lên Google Cloud Artifact Registry, và triển khai microservices lên GKE với HPA, Helm chart, và cấu hình bảo mật (TLS 1.3, RBAC, secrets management).
-
-## 2. Phạm vi kỹ thuật & ranh giới thư mục
+## 2. Phạm vi Kỹ thuật & Giới hạn Thư mục
 
 | Đường dẫn | Mô tả |
 | :--- | :--- |
-| `./sources/frontend/mobile/` | Ứng dụng di động hybrid (React Native + Capacitor). |
-| `./sources/docs/` | Tài liệu báo cáo, SEO, và hướng dẫn triển khai. |
-| Endpoints | `GET /api/v1/mobile/user/{userId}/profile`<br>`POST /api/v1/mobile/tokens`<br>`POST /api/v1/chatbot/query`<br>`GET /api/v1/reports/attendance?centerId=...&date=...` |
+| `./sources/backend/org/nlh4j/saas/membershiphub/i18n/` | Cấu hình đa ngôn ngữ, file locale |
+| `./sources/backend/org/nlh4j/saas/membershiphub/report/` | Dịch vụ tạo báo cáo điểm danh |
+| `./sources/backend/org/nlh4j/saas/membershiphub/security/` | Cấu hình bảo mật, JWT, OWASP |
+| `./sources/backend/org/nlh4j/saas/membershiphub/audit/` | Entity ghi nhật ký kiểm toán |
+| `./sources/infra/k8s/` | Manifest Kubernetes, Deployment, Service, Ingress |
+| `./sources/infra/ci-cd/` | Pipeline CI/CD |
+| `./sources/docs/` | Tài liệu kỹ thuật, kiến trúc, schema |
 
-## 3. Định hướng chức năng của các đại lý phụ
+## 3. Hướng dẫn chức năng dành cho các tác nhân phụ
 
-- **Coder**: Phát triển mã nguồn ứng dụng di động và tài liệu Markdown. Không viết test hoặc manifest.
-- **Tester**: Viết test JUnit, integration, E2E, và kiểm tra hiệu năng. Không sửa code production.
-- **Doc**: Soạn thảo tài liệu kỹ thuật, mô hình dữ liệu, luồng API, và tài liệu triển khai. Đảm bảo đầy đủ các tài liệu cho giai đoạn này.
-- **Reviewer**: Kiểm tra biên dịch, phân tích tĩnh, và bảo mật OWASP. Sửa lỗi và bảo vệ code.
-- **Docker**: Xây dựng Dockerfile multi‑stage, tối ưu image, và push lên DockerHub.
-- **GCP**: Đẩy images lên Google Cloud Artifact Registry và triển khai trên Cloud Run.
-- **GKE**: Xây dựng manifest Kubernetes, HPA, Helm chart, và triển khai microservices lên GKE.
+- **Coder**: Phát triển mã nguồn Java/Quarkus và JavaScript/React cho backend và frontend, không viết test hoặc manifest.  
+- **Tester**: Viết JUnit, integration test, E2E, kiểm thử hiệu năng, không sửa mã nguồn.  
+- **Reviewer**: Kiểm tra biên dịch, phân tích tĩnh, bảo mật OWASP, sửa lỗi.  
+- **Doc**: Soạn thảo tài liệu kỹ thuật, schema, API contract, cấu hình, deployment.  
+- **Docker**: Xây dựng Dockerfile đa giai đoạn, tối ưu kích thước, đẩy image.  
+- **GCP**: Đẩy image lên Artifact Registry, cấu hình IAM.  
+- **GKE**: Xây dựng manifest Kubernetes, HPA, Ingress, triển khai.  
 
-## 4. Định nghĩa DoD (Definition of Done)
+## 4. Định nghĩa Doanh nghiệp (DoD)
 
-- Tất cả API và endpoint đã triển khai trả về đúng theo contract, lỗi 4xx/5xx được xử lý.
-- Tài liệu kỹ thuật, báo cáo, và SEO hoàn chỉnh, được lưu trong `./sources/docs/`.
-- Docker images được build, kiểm tra size < 500 MB, và push lên DockerHub.
-- CI/CD pipeline trên GitHub Actions chạy thành công, coverage 100 % cho các yêu cầu [REQ-019]–[REQ-025].
-- GCP deployment thành công, images được push lên Artifact Registry.
-- GKE deployment thành công, HPA hoạt động, và các cấu hình bảo mật (TLS 1.3, RBAC) được kiểm tra.
-- OWASP Top‑10 kiểm tra, không có lỗ hổng, và SonarQube quality gate đạt.
-- Mã nguồn được review, biên dịch, và không có lỗi runtime.
-- Mọi tag ID được map 100 % và xuất hiện trong logs.
+- Tất cả yêu cầu [REQ-022]–[REQ-025] được triển khai đầy đủ.  
+- Mọi endpoint tuân thủ chuẩn REST, bảo mật JWT, RBAC, OWASP Top 10.  
+- Độ phủ test ≥ 85 % cho các module chính.  
+- Tất cả tag ID được ánh xạ và kiểm tra 100 %.  
+- Kích thước Docker image < 500 MB, triển khai thành công lên GKE.  
+- Ghi nhật ký audit đầy đủ, lưu trữ 1 năm.  
 
-## 5. DAY-BY-DAY ARCHITECTURAL EXECUTION LOGS
+## 5. LỊCH THỰC HIỆN KIẾT TRÚC NGÀY BỞI NGÀY
 
-### 🌤️ DAY 1: <!--DAY_HEADER_START-->XÂY DỰNG GIAI DI ĐỘNG<!--DAY_HEADER_END-->
+### 🌤️ DAY 1: <!--DAY_HEADER_START-->Xây dựng manifest triển khai Kubernetes<!--DAY_HEADER_END-->
 
-#### 📝 Tài liệu Kiến trúc Giai đoạn 5
+#### 📝 Xây dựng manifest triển khai Kubernetes 1.1:
+##### Assigned Sub-Agent: GKE
+##### Targeted Components & Technical Requirements:
+* **Target Path**: ./sources/infra/k8s/Deployment.yaml
+* **Traceability Tag Tokens**: <!--START_TAGS-->[NFR-004], [NFR-005]<!--END_TAGS-->
+* **Low-Level Technical Task Instruction**: Tạo file Deployment.yaml cho toàn bộ dịch vụ Quarkus, cấu hình HPA dựa trên CPU > 70% hoặc độ trễ > 300ms, thiết lập Service cho mỗi module, định nghĩa Ingress với TLS, và triển khai lên cluster GKE. Đảm bảo các biến môi trường Firebase và Zalo được inject qua ConfigMap/Secret.
 
+### 🌤️ DAY 2: <!--DAY_HEADER_START-->Đánh giá và hardening bảo mật<!--DAY_HEADER_END-->
+
+#### 📝 Đánh giá và hardening bảo mật 2.1:
+##### Assigned Sub-Agent: Reviewer
+##### Targeted Components & Technical Requirements:
+* **Target Path**: ./sources/backend/org/nlh4j/saas/membershiphub/security/SecurityConfig.java
+* **Traceability Tag Tokens**: <!--START_TAGS-->[NFR-003], [NFR-006]<!--END_TAGS-->
+* **Low-Level Technical Task Instruction**: Xem xét cấu hình bảo mật hiện tại, áp dụng OWASP Top 10: sử dụng prepared statements, bảo vệ CSRF, XSS, enforce TLS 1.3, mã hóa dữ liệu nhạy cảm, cấu hình JWT expiration 15 phút, refresh token 7 ngày, và ghi log audit cho mọi hành động quan trọng.
+
+#### 📝 Đánh giá và hardening bảo mật 2.2:
+##### Assigned Sub-Agent: Reviewer
+##### Targeted Components & Technical Requirements:
+* **Target Path**: ./sources/backend/org/nlh4j/saas/membershiphub/audit/AuditLogEntity.java
+* **Traceability Tag Tokens**: <!--START_TAGS-->[NFR-003], [NFR-006]<!--END_TAGS-->
+* **Low-Level Technical Task Instruction**: Thêm entity AuditLog với các trường userId, action, timestamp, details. Đảm bảo ghi log cho mọi thay đổi role, attendance, notification, và các thao tác quan trọng. Định dạng JSON, lưu trữ trong PostgreSQL, bảo vệ dữ liệu nhạy cảm.
+
+### 🌤️ DAY 3: <!--DAY_HEADER_START-->Tạo tài liệu kỹ thuật và tham chiếu API<!--DAY_HEADER_END-->
+
+#### 📝 Tạo tài liệu kỹ thuật và tham chiếu API 3.1:
 ##### Assigned Sub-Agent: Doc
-
 ##### Targeted Components & Technical Requirements:
-* **Target Path**: ./sources/docs/phase5_architecture.md
-* **Traceability Tag Tokens**: <!--START_TAGS-->[ARC-009], [REQ-019], [REQ-020], [NFR-002], [NFR-005]<!--END_TAGS-->
-* **Low-Level Technical Task Instruction**: Soạn thảo tài liệu chi tiết về kiến trúc toàn cục, mô hình dữ liệu, luồng API, quy trình triển khai, và các biện pháp bảo mật cho giai đoạn này.
+* **Target Path**: ./sources/docs/Phase5_Documentation.md
+* **Traceability Tag Tokens**: <!--START_TAGS-->[REQ-022], [REQ-023], [REQ-024], [REQ-025]<!--END_TAGS-->
+* **Low-Level Technical Task Instruction**: Soạn thảo tài liệu chi tiết bao gồm mô tả hệ thống, cấu trúc dữ liệu, API contract, exception handler, cấu hình Firebase, Zalo, Dockerfile, manifest Kubernetes, và hướng dẫn triển khai. Đảm bảo tài liệu phản ánh đúng trạng thái cuối cùng của hệ thống, bao gồm các bảng dữ liệu, quy trình, và các biện pháp bảo mật.
 
-#### 📝 Triển khai App.js
+* **Database Schema DDL SQL Specification [DAT-011]**:
+```sql
+CREATE TABLE system_settings (
+    setting_key VARCHAR(100) PRIMARY KEY,
+    setting_value TEXT NOT NULL,
+    description TEXT
+);
+```
 
-##### Assigned Sub-Agent: Coder
+* **API and Event Routing Contracts [REQ-022], [REQ-023], [REQ-024]**:
+```json
+{
+  "endpoints": [
+    {
+      "path": "/api/v1/i18n/{locale}",
+      "method": "GET",
+      "response": {
+        "messages": "object"
+      }
+    },
+    {
+      "path": "/api/v1/reports/attendance",
+      "method": "GET",
+      "request": {
+        "centerId": "UUID",
+        "startDate": "DATE",
+        "endDate": "DATE"
+      },
+      "response": {
+        "fileName": "string",
+        "downloadUrl": "string"
+      }
+    },
+    {
+      "path": "/api/v1/dashboard/summary",
+      "method": "GET",
+      "response": {
+        "totalStudents": "INT",
+        "activeCourses": "INT",
+        "upcomingSessions": "INT"
+      }
+    }
+  ]
+}
+```
 
-##### Targeted Components & Technical Requirements:
-* **Target Path**: ./sources/frontend/mobile/App.js
-* **Traceability Tag Tokens**: <!--START_TAGS-->[ARC-009], [REQ-019], [REQ-020], [NFR-002], [NFR-005]<!--END_TAGS-->
-* **Low-Level Technical Task Instruction**: Triển khai giao diện di động hybrid, tích hợp Firebase Auth, quản lý token JWT, và cấu hình push notification (FCM/APNs).
-
-### 🌤️ DAY 2: <!--DAY_HEADER_START-->XÂY DỰNG TÀI LIỆU BÁO CÁO VÀ SEO<!--DAY_HEADER_END-->
-
-#### 📝 Tài liệu Báo cáo và SEO
-
-##### Assigned Sub-Agent: Coder
-
-##### Targeted Components & Technical Requirements:
-* **Target Path**: ./sources/docs/reporting-and-seo.md
-* **Traceability Tag Tokens**: <!--START_TAGS-->[ARC-010], [REQ-022], [REQ-023], [REQ-024], [REQ-025], [NFR-007], [NFR-008], [NFR-009]<!--END_TAGS-->
-* **Low-Level Technical Task Instruction**: Soạn tài liệu báo cáo điểm danh, dashboard, và tối ưu SEO đa ngôn ngữ cho trang web.
+* **Phase Localized Exception Handlers [EXC-005]**: Xử lý lỗi phục hồi hệ thống sau sự cố: Khi dịch vụ được khôi phục, bất kỳ quét QR chờ xử lý nào được lưu trữ sẽ được xử lý theo thứ tự FIFO; người dùng nhận được thông báo về các sự kiện điểm danh đã được khôi phục.

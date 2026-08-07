@@ -1,216 +1,144 @@
-# Giai đoạn 1: <!--PHASE_NAME_START-->Xây dựng lõi người dùng, vai trò và xác thực cơ bản<!--PHASE_NAME_END-->
+# Giai đoạn 1: <!--PHASE_NAME_START-->Xây dựng lõi người dùng, xác thực và phân quyền; triển khai các bảng dữ liệu cơ bản.<!--PHASE_NAME_END-->
 
 ## 📊 Document Control
 
 | Mục | Chi tiết |
 | :--- | :--- |
-| **ID Kiến Trúc** | ARCH-20260807073534 |
-| **Tên Dự Án** | membership-hub |
+| **Mã Blueprint** | ARCH-20260807134137 |
+| **Tên Dự án** | membership-hub |
 | **Giai đoạn** | 1 |
-| **Tên Giai đoạn** | <!--PHASE_NAME_START-->Xây dựng lõi người dùng, vai trò và xác thực cơ bản<!--PHASE_NAME_END--> |
-| **Mô tả** | <!--PHASE_DESC_START-->Giai đoạn này tập trung vào xây dựng lõi người dùng, quản lý vai trò và triển khai cơ chế xác thực bao gồm đăng ký, OAuth2, JWT và kiểm tra đầu vào.<!--PHASE_DESC_END--> |
+| **Tên Giai đoạn** | <!--PHASE_NAME_START-->Xây dựng lõi người dùng, xác thực và phân quyền; triển khai các bảng dữ liệu cơ bản.<!--PHASE_NAME_END--> |
+| **Mô tả** | <!--PHASE_DESC_START-->Giai đoạn 1 tập trung vào xây dựng lõi người dùng, xác thực và phân quyền, triển khai các bảng dữ liệu cơ bản, định nghĩa API và exception handlers, và chuẩn bị tài liệu kiến trúc. Các thành phần chính bao gồm: lớp thực thể User và Role, controller xác thực, endpoint đăng ký, đăng nhập mạng xã hội, gán vai trò, và exception handler xử lý lỗi xác thực đầu vào. Tài liệu kiến trúc chi tiết các mô hình dữ liệu, luồng API, và quy trình triển khai sẽ được lập trình trong tài liệu Phase1_Architecture.md.<!--PHASE_DESC_END--> |
 | **Phiên bản** | 1.0 (Baseline) |
-| **Ngày/Giờ** | 2026/08/07 07:35:34 |
+| **Ngày/Giờ** | 2026/08/07 13:41:37 |
 | **Tác giả** | Enterprise System Architect (SA Agent) |
 | **Phê duyệt** | Pending Technical Governance Review |
 
-## Phạm vi và mục tiêu thực thi giai đoạn
+## 1. Phạm vi và mục tiêu thực thi giai đoạn
 
-Giai đoạn 1 thực hiện xây dựng lõi người dùng, quản lý vai trò và triển khai cơ chế xác thực. Các thành phần chính bao gồm:
+Giai đoạn 1 thực hiện toàn bộ quy trình đăng ký người dùng, xác thực qua mạng xã hội, và phân quyền vai trò. Các bảng dữ liệu `users` và `roles` được tạo ra, cùng với các ràng buộc khóa ngoại, kiểm tra duy nhất và kiểm tra giá trị hợp lệ. API `/api/v1/auth/register`, `/api/v1/auth/social`, và `/api/v1/users/{id}/role` được triển khai, đồng thời exception handler `EXC-004` xử lý lỗi đầu vào. Tài liệu kiến trúc chi tiết được lập trình trong `Phase1_Architecture.md`.
 
-- Định nghĩa bảng `USERS` và `ROLES` trong PostgreSQL.
-- Xây dựng dịch vụ `UserService` để xử lý đăng ký và quản lý người dùng.
-- Xây dựng `AuthController` để cung cấp API đăng ký, đăng nhập OAuth2 và cập nhật vai trò.
-- Tạo tài liệu kỹ thuật mô tả kiến trúc và quy trình xác thực.
-- Xây dựng Dockerfile, script triển khai GCP và manifest Kubernetes cho GKE.
-- Viết kiểm thử đơn vị và tích hợp, thực hiện đánh giá bảo mật OWASP.
+## 2. Phạm vi kỹ thuật cho phép & biên giới thư mục
 
-## Phạm vi kỹ thuật cho phép & Ranh giới thư mục
+- **Backend**: `./sources/backend/org/nlh4j/saas/membershiphub/user-management/`
+- **Documentation**: `./sources/docs/Phase1_Architecture.md`
+- **API Endpoints**:
+  - `/api/v1/auth/register` (POST)
+  - `/api/v1/auth/social` (POST)
+  - `/api/v1/users/{id}/role` (PUT)
 
-- **Backend**: `./sources/backend/users/UserService.java`, `./sources/backend/users/AuthController.java`
-- **Database**: Bảng `ROLES`, `USERS` (PostgreSQL)
-- **API Endpoints**: `/api/v1/auth/register`, `/api/v1/auth/social`, `/api/v1/users/{userId}/role`
-- **Docker**: `./sources/docker/backend/Dockerfile`
-- **GCP**: `./sources/gcp/deploy.sh`
-- **GKE**: `./sources/k8s/namespace.yaml`, `./sources/k8s/deployment.yaml`
-- **Documentation**: `./sources/docs/user_module_overview.md`
-- **Tests**: `./sources/backend/users/UserServiceTest.java`, `./sources/backend/users/AuthControllerTest.java`
-- **Review**: `./sources/review/AuthControllerReview.txt`
+## 3. Hướng dẫn chức năng của các tác nhân phụ
 
-## Chỉ đạo chức năng đại lý phụ
+* **Coder**: Chức năng là nhà phát triển ứng dụng cấp cao. Trách nhiệm thực hiện mã nguồn ứng dụng trong cả backend và frontend/mobile. Vô hiệu hoá viết bộ kiểm thử hoặc cấu hình hạ tầng.  
+* **Tester**: Chức năng là trưởng nhóm kiểm thử. Chuyên môn xây dựng bộ kiểm thử JUnit, kiểm thử tích hợp, tự động hóa E2E, và kiểm tra hiệu suất. Không sửa đổi mã nguồn sản xuất.  
+* **Doc**: Chức năng là nhà văn kỹ thuật. Chuyên môn biên soạn tài liệu kỹ thuật, bản vẽ kiến trúc, mô tả schema, và tài liệu triển khai. Không viết mã nguồn.  
+* **Reviewer**: Chức năng là kiểm tra mã. Chuyên môn phân tích tĩnh, kiểm tra bảo mật OWASP, sửa lỗi biên dịch, và giải quyết vấn đề chất lượng.  
+* **Docker**: Chức năng là chuyên gia container. Xây dựng Dockerfile đa giai đoạn, tối ưu kích thước, và đẩy image lên DockerHub.  
+* **GCP**: Chức năng là chuyên gia GCP. Xây dựng và đẩy image lên Google Artifact Registry, triển khai trên Cloud Run.  
+* **GKE**: Chức năng là chuyên gia Kubernetes. Xây dựng manifest deployment, HPA, Helm chart, và triển khai microservices lên GKE.
 
-- **Coder**: Phát triển mã nguồn ứng dụng backend, triển khai dịch vụ người dùng và xác thực.
-- **Tester**: Thiết kế và thực thi các bộ kiểm thử đơn vị và tích hợp cho `UserService` và `AuthController`.
-- **Reviewer**: Kiểm tra mã, bảo mật, và tuân thủ OWASP cho các thành phần backend.
-- **Doc**: Soạn tài liệu kỹ thuật chi tiết cho mô-đun người dùng và quy trình xác thực.
-- **Docker**: Xây dựng Dockerfile, tối ưu hình ảnh, và chuẩn bị cho triển khai.
-- **GCP**: Tạo script triển khai tới Google Cloud Artifact Registry và cấu hình môi trường.
-- **GKE**: Tạo manifest Kubernetes, HPA, và triển khai dịch vụ lên GKE.
+## 4. Định nghĩa Hoàn thành (DoD)
 
-## Định nghĩa Hoàn thành giai đoạn
+- Tất cả yêu cầu [REQ-001], [REQ-002], [REQ-003], [ARC-006], [DAT-001], [EXC-004] được triển khai đầy đủ.  
+- Độ phủ kiểm thử JUnit >= 85%.  
+- API đáp ứng đúng cấu trúc JSON đã định nghĩa.  
+- Tài liệu kiến trúc `Phase1_Architecture.md` hoàn chỉnh, bao gồm mô hình dữ liệu, luồng API, và quy trình triển khai.  
+- Kiểm tra OWASP: bảo vệ chống SQL injection, XSS, CSRF, và bảo mật JWT.  
+- Mã nguồn được kiểm tra bởi Reviewer, không có lỗi biên dịch.  
+- Mọi tag ID được ánh xạ đầy đủ, không có tag chưa được sử dụng.  
+- Không có lỗi nghiêm trọng, hệ thống có thể chạy trong môi trường GKE với Docker image < 500 MB.
 
-- 100% kiểm thử đơn vị cho `UserService` và `AuthController` với độ phủ ≥ 90%.
-- 100% kiểm thử tích hợp cho các API xác thực.
-- 100% đánh giá bảo mật OWASP (SQLi, XSS, CSRF, etc.) vượt qua.
-- Định nghĩa và triển khai schema dữ liệu `ROLES` và `USERS` trong PostgreSQL.
-- Xây dựng và kiểm tra Dockerfile, tạo image < 500 MB.
-- Kiểm tra script GCP triển khai và xác nhận image được đẩy tới Artifact Registry.
-- Kiểm tra manifest GKE, triển khai thành công, HPA hoạt động.
-- Hoàn thành tài liệu kỹ thuật chi tiết cho mô-đun người dùng.
-- Đảm bảo mọi tag ID được ánh xạ và ghi lại trong các logs.
+## 5. Nhật ký thực thi kiến trúc theo ngày
 
-## LỊCH THỰC HIỆN KIẾT THUẬT NGÀY
+### 🌤️ Ngày 1: <!--DAY_HEADER_START-->Triển khai lớp thực thể người dùng và vai trò<!--DAY_HEADER_END-->
 
-### Ngày 1: <!--DAY_HEADER_START-->XÂY DỰNG DỊCH VỤ NGƯỜI DÙNG VÀ TÀI LIỆU<!--DAY_HEADER_END-->
-
-#### Nhiệm vụ phụ 1.1: Xây dựng UserService
-##### Đại lý phụ được giao: Coder
+#### 📝 Triển khai lớp thực thể người dùng và vai trò 1.1:
+##### Tác nhân phụ được giao: Coder
 ##### Thành phần mục tiêu & Yêu cầu kỹ thuật:
-* **Đường dẫn mục tiêu**: ./sources/backend/users/UserService.java
-* **Thẻ truy xuất**: <!--START_TAGS-->[ARC-001], [REQ-001], [DAT-001]<!--END_TAGS-->
-* **Hướng dẫn công việc kỹ thuật chi tiết**: Xây dựng lớp `UserService` để xử lý đăng ký người dùng mới, tạo bản ghi trong bảng `USERS` với vai trò mặc định là `Student`, tuân thủ `REQ-001` và `ARC-001`. Đảm bảo kiểm tra đầu vào, hash mật khẩu, và lưu trữ an toàn.  
-**Đặc tả DDL SQL cho Ma trận dữ liệu [DAT-001]**  
+* **Đường dẫn mục tiêu:** ./sources/backend/org/nlh4j/saas/membershiphub/user-management/UserEntity.java
+* **Thẻ truy xuất:** <!--START_TAGS-->[REQ-001], [DAT-001]<!--END_TAGS-->
+* **Mô tả công việc kỹ thuật chi tiết:** Triển khai lớp thực thể UserEntity với các trường userId (UUID PK), email, passwordHash, fullName, roleId (FK), provider (CHECK), timestamps. Áp dụng các ràng buộc NOT NULL, UNIQUE cho email. Thêm lớp thực thể RoleEntity với roleId, name, description. Ghi chú các mối quan hệ khóa ngoại.
+* **Database Schema DDL SQL Specification [DAT-001]:**
 ```sql
-CREATE TABLE ROLES (
-    roleId SMALLINT PRIMARY KEY,
+CREATE TABLE roles (
+    role_id SMALLINT PRIMARY KEY,
     name VARCHAR(30) NOT NULL UNIQUE,
     description VARCHAR(200)
 );
 
-CREATE TABLE USERS (
-    userId UUID PRIMARY KEY,
+CREATE TABLE users (
+    user_id UUID PRIMARY KEY,
     email VARCHAR(255) NOT NULL UNIQUE,
-    passwordHash CHAR(60) NOT NULL,
-    fullName VARCHAR(100) NOT NULL,
-    roleId SMALLINT NOT NULL REFERENCES ROLES(roleId),
-    provider ENUM('local','firebase','google','facebook') NOT NULL DEFAULT 'local',
-    createdAt TIMESTAMP NOT NULL DEFAULT NOW(),
-    updatedAt TIMESTAMP NOT NULL DEFAULT NOW()
+    password_hash CHAR(60) NOT NULL,
+    full_name VARCHAR(100) NOT NULL,
+    role_id SMALLINT NOT NULL,
+    provider VARCHAR(20) NOT NULL DEFAULT 'local',
+    created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    CONSTRAINT fk_users_roles FOREIGN KEY (role_id) REFERENCES roles(role_id),
+    CONSTRAINT chk_provider CHECK (provider IN ('local','firebase','google','facebook'))
 );
 ```
-
-#### Nhiệm vụ phụ 1.2: Viết kiểm thử cho UserService
-##### Đại lý phụ được giao: Tester
-##### Thành phần mục tiêu & Yêu cầu kỹ thuật:
-* **Đường dẫn mục tiêu**: ./sources/backend/users/UserServiceTest.java
-* **Thẻ truy xuất**: <!--START_TAGS-->[REQ-001], [DAT-001]<!--END_TAGS-->
-* **Hướng dẫn công việc kỹ thuật chi tiết**: Viết các test JUnit5 cho `UserService`, bao gồm kiểm tra đăng ký thành công, lỗi email trùng, và xác thực hash mật khẩu.
-
-#### Nhiệm vụ phụ 1.3: Tài liệu mô-đun người dùng
-##### Đại lý phụ được giao: Doc
-##### Thành phần mục tiêu & Yêu cầu kỹ thuật:
-* **Đường dẫn mục tiêu**: ./sources/docs/user_module_overview.md
-* **Thẻ truy xuất**: <!--START_TAGS-->[DAT-001]<!--END_TAGS-->
-* **Hướng dẫn công việc kỹ thuật chi tiết**: Soạn tài liệu chi tiết mô tả kiến trúc `UserService`, cấu trúc database, quy trình đăng ký và xác thực.
-
-#### Nhiệm vụ phụ 1.4: Xây dựng Dockerfile backend
-##### Đại lý phụ được giao: Docker
-##### Thành phần mục tiêu & Yêu cầu kỹ thuật:
-* **Đường dẫn mục tiêu**: ./sources/docker/backend/Dockerfile
-* **Thẻ truy xuất**: <!--START_TAGS-->[DAT-001]<!--END_TAGS-->
-* **Hướng dẫn công việc kỹ thuật chi tiết**: Xây dựng Dockerfile sử dụng image `eclipse-temurin:17-jdk-alpine`, copy jar, expose port 8080, ENTRYPOINT. Đảm bảo kích thước < 500 MB.
-
-```dockerfile
-FROM eclipse-temurin:17-jdk-alpine
-WORKDIR /app
-COPY target/membership-hub.jar app.jar
-EXPOSE 8080
-ENTRYPOINT ["java","-jar","app.jar"]
-```
-
-### Ngày 2: <!--DAY_HEADER_START-->XÂY DỰNG CONTROLLER XÁC THỰC VÀ TRIỂN KHAI MÔ HÌNH<!--DAY_HEADER_END-->
-
-#### Nhiệm vụ phụ 2.1: Xây dựng AuthController
-##### Đại lý phụ được giao: Coder
-##### Thành phần mục tiêu & Yêu cầu kỹ thuật:
-* **Đường dẫn mục tiêu**: ./sources/backend/users/AuthController.java
-* **Thẻ truy xuất**: <!--START_TAGS-->[ARC-006], [REQ-002], [REQ-003], [DAT-001]<!--END_TAGS-->
-* **Hướng dẫn công việc kỹ thuật chi tiết**: Xây dựng `AuthController` để xử lý đăng ký, đăng nhập OAuth2, và cập nhật vai trò. Đảm bảo bảo mật JWT, refresh token, và kiểm tra đầu vào.  
-**Hợp đồng API và Định tuyến Sự kiện [REQ-001], [REQ-002], [REQ-003], [ARC-006]**  
+* **API and Event Routing Contracts [REQ-001], [ARC-006]:**
 ```json
-// POST /api/v1/auth/register
 {
-  "email": "user@example.com",
-  "password": "StrongPass123!",
-  "fullName": "Nguyen Van A",
-  "provider": "local"
+  "endpoints": [
+    {
+      "path": "/api/v1/auth/register",
+      "method": "POST",
+      "request": {
+        "email": "string",
+        "password": "string",
+        "fullName": "string",
+        "role": "string"
+      },
+      "response": {
+        "userId": "UUID",
+        "token": "string",
+        "refreshToken": "string"
+      }
+    },
+    {
+      "path": "/api/v1/auth/social",
+      "method": "POST",
+      "request": {
+        "provider": "string",
+        "code": "string"
+      },
+      "response": {
+        "userId": "UUID",
+        "token": "string"
+      }
+    },
+    {
+      "path": "/api/v1/users/{id}/role",
+      "method": "PUT",
+      "request": {
+        "roleId": "SMALLINT"
+      },
+      "response": {
+        "userId": "UUID",
+        "roleId": "SMALLINT"
+      }
+    }
+  ]
 }
 ```
-```json
-// POST /api/v1/auth/social
-{
-  "provider": "google",
-  "code": "OAuth2_code_from_google",
-  "redirectUri": "https://app.example.com/auth/callback"
-}
-```
-```json
-// PUT /api/v1/users/{userId}/role
-{
-  "roleId": 2
-}
-```
-**Xử lý ngoại lệ địa phương [EXC-004]**  
-```
-Xác thực đầu vào không hợp lệ (ví dụ: email sai định dạng, thiếu trường bắt buộc): Trả về HTTP 400 với danh sách các trường không hợp lệ và hướng dẫn chỉnh sửa.
-```
+* **Phase Localized Exception Handlers [EXC-004]:**
+  * Xử lý lỗi xác thực đầu vào không hợp lệ (ví dụ: email không đúng định dạng, thiếu trường bắt buộc). Khi xác thực thất bại trên form submission, Khi lỗi được trả về cho người dùng, Sau đó một thông báo rõ ràng liệt kê từng trường không hợp lệ và yêu cầu chỉnh sửa.
 
-#### Nhiệm vụ phụ 2.2: Kiểm tra AuthController
-##### Đại lý phụ được giao: Tester
+#### 📝 Tài liệu kiến trúc giai đoạn 1 1.2:
+##### Tác nhân phụ được giao: Doc
 ##### Thành phần mục tiêu & Yêu cầu kỹ thuật:
-* **Đường dẫn mục tiêu**: ./sources/backend/users/AuthControllerTest.java
-* **Thẻ truy xuất**: <!--START_TAGS-->[ARC-006], [REQ-002], [REQ-003]<!--END_TAGS-->
-* **Hướng dẫn công việc kỹ thuật chi tiết**: Viết test JUnit5 cho `AuthController`, bao gồm kiểm tra đăng ký thành công, lỗi đăng nhập, và cập nhật vai trò.
+* **Đường dẫn mục tiêu:** ./sources/docs/Phase1_Architecture.md
+* **Thẻ truy xuất:** <!--START_TAGS-->[REQ-001], [DAT-001]<!--END_TAGS-->
+* **Mô tả công việc kỹ thuật chi tiết:** Khởi tạo tài liệu kiến trúc cho giai đoạn 1, bao gồm mô tả chi tiết về kiến trúc, mô hình dữ liệu, API, exception handlers, và quy trình triển khai. Đảm bảo tài liệu đáp ứng tiêu chuẩn OWASP và các yêu cầu bảo mật, bao gồm mô tả bảo mật, kiểm tra, và quy trình kiểm tra.
 
-#### Nhiệm vụ phụ 2.3: Đánh giá bảo mật AuthController
-##### Đại lý phụ được giao: Reviewer
-##### Thành phần mục tiêu & Yêu cầu kỹ thuật:
-* **Đường dẫn mục tiêu**: ./sources/review/AuthControllerReview.txt
-* **Thẻ truy xuất**: <!--START_TAGS-->[ARC-006], [REQ-002], [REQ-003]<!--END_TAGS-->
-* **Hướng dẫn công việc kỹ thuật chi tiết**: Kiểm tra mã nguồn, xác thực OWASP, bảo mật JWT, và bảo vệ against injection.
+### 🌤️ Ngày 2: <!--DAY_HEADER_START-->Viết bộ kiểm thử đơn vị cho quản lý người dùng<!--DAY_HEADER_END-->
 
-#### Nhiệm vụ phụ 2.4: Triển khai GCP script
-##### Đại lý phụ được giao: GCP
+#### 📝 Viết bộ kiểm thử đơn vị cho quản lý người dùng 2.1:
+##### Tác nhân phụ được giao: Tester
 ##### Thành phần mục tiêu & Yêu cầu kỹ thuật:
-* **Đường dẫn mục tiêu**: ./sources/gcp/deploy.sh
-* **Thẻ truy xuất**: <!--START_TAGS-->[ARC-006]<!--END_TAGS-->
-* **Hướng dẫn công việc kỹ thuật chi tiết**: Viết script bash để build Docker image và đẩy tới Google Cloud Artifact Registry.  
-```bash
-#!/usr/bin/env bash
-gcloud builds submit --tag gcr.io/PROJECT_ID/membership-hub
-```
-
-#### Nhiệm vụ phụ 2.5: Triển khai GKE manifests
-##### Đại lý phụ được giao: GKE
-##### Thành phần mục tiêu & Yêu cầu kỹ thuật:
-* **Đường dẫn mục tiêu**: ./sources/k8s/namespace.yaml, ./sources/k8s/deployment.yaml
-* **Thẻ truy xuất**: <!--START_TAGS-->[ARC-006]<!--END_TAGS-->
-* **Hướng dẫn công việc kỹ thuật chi tiết**: Tạo namespace và deployment manifest cho backend, cấu hình HPA, và triển khai lên GKE.  
-```yaml
-apiVersion: v1
-kind: Namespace
-metadata:
-  name: membership-hub
-```
-```yaml
-apiVersion: apps/v1
-kind: Deployment
-metadata:
-  name: membership-hub-backend
-  namespace: membership-hub
-spec:
-  replicas: 3
-  selector:
-    matchLabels:
-      app: membership-hub
-  template:
-    metadata:
-      labels:
-        app: membership-hub
-    spec:
-      containers:
-      - name: backend
-        image: gcr.io/PROJECT_ID/membership-hub
-        ports:
-        - containerPort: 8080
-```
+* **Đường dẫn mục tiêu:** INTEGRATION_SCOPE;./sources/backend/org/nlh4j/saas/membershiphub/user-management/UserEntityTest.java;./sources/backend/org/nlh4j/saas/membershiphub/user-management/UserEntity.java
+* **Thẻ truy xuất:** <!--START_TAGS-->[REQ-001], [DAT-001]<!--END_TAGS-->
+* **Mô tả công việc kỹ thuật chi tiết:** Xây dựng bộ kiểm thử JUnit5 cho UserEntity và RoleEntity, bao gồm kiểm tra các ràng buộc trường (email unique, provider enum), mối quan hệ khóa ngoại, và logic tạo timestamp. Đảm bảo độ phủ trên mã nguồn >= 85%.
