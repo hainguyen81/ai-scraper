@@ -200,6 +200,8 @@ Generate a clean, highly structured Markdown Table mapping the exact distributio
   1. For Tester: Force the inclusion of concrete validation targets, explicitly stating the production of JUnit suites, Integration Tests, and end-to-end (E2E) automation execution profiles.
   2. For Doc: Force the inclusion of architecture alignment requirements, explicitly stating the generation of system technical documentation blueprints and API technical specifications.
 - ABSOLUTE ARCHITECTURAL PLAN SYMMETRY MANDATE (ANTI-DESYNC): You MUST enforce strict 1:1 deterministic alignment between the global macro-plan in Section 4.2 (<!--START_PHASE_SYNOPSIS_GRID-->) and the granular micro-logs in Section 5. It is a critical system violation to declare sub-agents in the synopsis table row while leaving them with zero execution tasks in the corresponding daily breakdown.
+- **ABSOLUTE MATHEMATICAL BACKLOG COUPLING LAW:** You MUST ensure flawless mathematical synchronization between the total task count generated in the Master Backlog table (Section 4.1 Summary Row) and the accumulated count of discrete sub-task nodes produced across all phases inside Section 5. 
+- You ARE ABSOLUTELY BANNED from dropping, truncating, or abstracting any task from Section 4.1 when expanding the timeline logs. Every individual functional index or document artifact registered in the Master Backlog table MUST expand into exactly one standalone execution sub-task node within its designated calendar day block inside Section 5. Under-counting, omitting tasks, or prematurely stopping the sub-task sequence before satisfying 100% of the Master Backlog rows constitutes a fatal compliance crash.
 - DETERMINISTIC DISTRIBUTION PATTERN PER PHASE: For 100% of the phases generated, if a sub-agent token ([Coder], [Tester], [Reviewer], [Doc], [Docker], [GCP], or [GKE]) is registered under the 'Assigned Sub-Agent' column in Section 4.2, you MUST partition the phase timeline chunk so that EVERY listed agent possesses at least one explicit, standalone, independent technical sub-task block inside Section 5 for that specific phase.
 - BALANCED MULTI-AGENT TIMELINE PACKING: To fit multiple required agents within narrow day-ranges without inflating the timeline or violating the dynamic technical density ceiling, you MUST execute compact parallel or sequential distribution:
   1. Early phase timeline segments MUST be optimized for application-layer loops where [Coder] and [Doc] execute in parallel sub-tasks, immediately followed sequentially by [Reviewer] quality gates and [Tester] automated suites.
@@ -207,11 +209,34 @@ Generate a clean, highly structured Markdown Table mapping the exact distributio
 </RULE>
 
 <!--START_PHASE_SYNOPSIS_GRID-->
-| Giai đoạn | Khoảng ngày | Đường dẫn Cấu phần / Module | Tóm tắt Sản phẩm Bàn giao | Đối tượng phụ | Tag IDs Mục tiêu |
+| Phase | Day Range | Architectural Component / Module Path | Technical Deliverables Summary | Assigned Sub-Agent | Targeted Tag IDs |
 | :--- | :--- | :--- | :--- | :--- | :--- |
+| ... | ... | ... | ... | ... | ... |
+| **AUDIT** | **Master Backlog Lifecycle Distribution Verification** | **TOTAL PHASES:** [Compute real-world N calculated phases, e.g., 5 Phases] | **MAPPED CAPACITY STATUS:** [You MUST mathematically count and cross-verify the sum of all distributed tasks against Section 4.1. Output the literal dynamic execution statement matching this pattern: 'Verified: X out of Y Total Master Backlog Tasks successfully distributed across calculated phases with 100% coverage'] | **STATUS:** Verified | **COMPLIANCE:** Hardbound Matrix |
 <!--END_PHASE_SYNOPSIS_GRID-->
 
 ## 5. GRANULAR PHASE SPECIALIZATIONS & DAY-BY-DAY DELIVERABLES
+
+# MANDATORY REAL-TIME ARCHITECTURAL CROSS-AUDIT LEDGER REPORT:
+- Immediately beneath the Section 5 title and before emitting any Phase detailed breakdown logs, you MUST execute a strict internal mathematical self-audit. You MUST compile and render an isolated, clean Markdown Compliance Report block utilizing the exact Technical English structure below. You are critically ordered to dynamically compute the real-world values based strictly on the current generation instance metrics—no hardcoding or static placeholder strings allowed:
+
+```properties:cross_audit_ledger
+[AUTOMATED_SELF_AUDIT_REPORT]
+TOTAL_PHASES_DECLARED_IN_SECTION_4_2=computed_integer_N
+TOTAL_PHASES_EXPECTED_BY_PARAMETERS={{ num_phases }}
+PHASE_COUNT_COMPLIANCE_STATUS=computed_literal_status_matching_pattern_'Verified_N_out_of_M_Phases_Generated'
+
+MAX_DAYS_PER_PHASE_LIMIT_PARAMETER={{ max_days_per_phase }}
+ACTUAL_MAX_DAY_INDEX_DETECTED_IN_TIMELINE=computed_highest_day_integer_found_in_section_5
+TIMELINE_DAY_CAP_COMPLIANCE_STATUS=computed_literal_status_matching_pattern_'Verified_All_Phase_Durations_Within_Ceiling'
+
+TOTAL_TASKS_REGISTERED_IN_MASTER_BACKLOG_4_1=computed_sum_of_backlog_rows
+TOTAL_DISCRETE_SUB_TASKS_GENERATED_IN_SECTION_5=computed_sum_of_all_atomic_sub_task_nodes
+SUB_TASK_QUANTUM_COMPLIANCE_STATUS=computed_literal_status_matching_pattern_'Verified_X_out_of_Y_Sub_Tasks_Successfully_Rendered_With_100_Percent_Symmetry'
+```
+
+- **MANDATORY CRITICAL FAILURE CRITERIA:** If your calculated `TOTAL_DISCRETE_SUB_TASKS_GENERATED_IN_SECTION_5` does not mathematically match the exact count of `TOTAL_TASKS_REGISTERED_IN_MASTER_BACKLOG_4_1` (e.g., dropping or omitting documentation or devops tasks), or if any individual phase duration breaks the ceiling of `{{ max_days_per_phase }}`, you MUST instantly trigger an internal framework exception, re-compile your attention heads, and dynamically re-distribute the allocation matrix to enforce 100% plan symmetry before emitting the final text stream.
+
 <COMMAND>
 # STRICT 1:1 SYNOPSIS MIRROR MANDATE:
 - Section 5 MUST act as a strict structural mirror of the dynamic phases calculated in Section 4. You MUST generate an independent, complete detailed block below for EVERY phase sequence from Phase 1 up to Phase N (where N <= {{ num_phases }}). Absolutely no phase that has been calculated in section 4 can be omitted.
@@ -245,6 +270,7 @@ Generate a clean, highly structured Markdown Table mapping the exact distributio
 - **DAY [Y]: SHORT OBJECTIVE FOR THIS OPERATIONAL CALENDAR DAY**
   
   ##### SUB-TASK [Z]: SHORT SPECIFIC SUB-TASK TITLE
+  * **Local Sub-Task Chrono Reset Law:** The sub-task index variable Z MUST natively reset and restart from 1 for EACH individual calendar day element generated (e.g., Day 1 contains SUB-TASK 1, SUB-TASK 2; Day 2 MUST strictly restart and contain exactly SUB-TASK 1, SUB-TASK 2). Progressively compounding or accumulating sub-task indices across daily boundaries is a critical framework violation.
   * Sub-Agent Workflow Specialization: <RULE>You MUST analyze the daily technical engineering segment and output EXACTLY one single literal token code inside naked brackets representing the allocated persona for this independent sub-task node: [Coder], [Tester], [Reviewer], [Doc], [Docker], [GCP], or [GKE]. You are PERMANENTLY FORBIDDEN from combining multiple agents into a single sub-task node or leaking generic instructional text placeholder descriptions.</RULE>
   * Targeted Tag IDs: <RULE>Write each baseline tracking tag out individually separated by commas, ensuring 100% coverage, e.g., [REQ-001], [DAT-002], [EXC-001].</RULE>
   * Target Component file path (target_component): <RULE>Insert the explicit physical path starting with `./sources/` or Tester semi-colon pair syntax based strictly on the active persona domain. Append its targeted Tag IDs inline here.</RULE>
