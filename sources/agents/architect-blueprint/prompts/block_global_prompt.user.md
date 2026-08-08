@@ -273,10 +273,22 @@ SUB_TASK_QUANTUM_COMPLIANCE_STATUS=computed_literal_status_matching_pattern_'Ver
   <RULE>
   - **Local Sub-Task Chrono Reset Law:** The sub-task index variable Z MUST natively reset and restart from 1 for EACH individual calendar day element generated (e.g., Day 1 contains SUB-TASK 1, SUB-TASK 2; Day 2 MUST strictly restart and contain exactly SUB-TASK 1, SUB-TASK 2). Progressively compounding or accumulating sub-task indices across daily boundaries is a critical framework violation.
   <RULE>
-  * **Sub-Agent Workflow Specialization:** <RULE>You MUST analyze the daily technical engineering segment and output EXACTLY one single literal token code inside naked brackets representing the allocated persona for this independent sub-task node: [Coder], [Tester], [Reviewer], [Doc], [Docker], [GCP], or [GKE]. You are PERMANENTLY FORBIDDEN from combining multiple agents into a single sub-task node or leaking generic instructional text placeholder descriptions.</RULE>
-  * **Targeted Tag IDs:** <RULE>Write each baseline tracking tag out individually separated by commas, ensuring 100% coverage, e.g., [REQ-001], [DAT-002], [EXC-001].</RULE>
-  * **Target Component file path (target_component):** <RULE>Insert the explicit physical path starting with `./sources/` or Tester semi-colon pair syntax based strictly on the active persona domain. Append its targeted Tag IDs inline here.</RULE>
-  * **Low-Level Technical Task Instruction:** <RULE>Output high-density technical instructions, operational validation steps, or schema parameters fully translated into the target language context, attaching explicit inline Tag IDs.</RULE>
+  * **Sub-Agent Workflow Specialization:**
+    <RULE>
+    You MUST analyze the daily technical engineering segment and output EXACTLY one single literal token code inside naked brackets representing the allocated persona for this independent sub-task node: [Coder], [Tester], [Reviewer], [Doc], [Docker], [GCP], or [GKE]. You are PERMANENTLY FORBIDDEN from combining multiple agents into a single sub-task node or leaking generic instructional text placeholder descriptions.
+    </RULE>
+  * **Targeted Tag IDs:**
+    <RULE>
+    Write each baseline tracking tag out individually separated by commas, ensuring 100% coverage, e.g., [REQ-001], [DAT-002], [EXC-001].
+    </RULE>
+  * **Target Component file path (target_component):**
+    <RULE>
+    Insert the explicit physical path starting with `./sources/` or Tester semi-colon pair syntax based strictly on the active persona domain. Append its targeted Tag IDs inline here.
+    </RULE>
+  * **Low-Level Technical Task Instruction:**
+    <RULE>
+    Output high-density technical instructions, operational validation steps, or schema parameters fully translated into the target language context, attaching explicit inline Tag IDs.
+    </RULE>
 
   # DYNAMIC ARCHITECTURAL CONTENT GATING (IF-ACTIVE RAIL PROTOCOL):
   * **Database Schema DDL SQL Specification [DAT-XXX]:**
