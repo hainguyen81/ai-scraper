@@ -13,7 +13,7 @@ import time
 from openai import OpenAI
 
 # Import decoupled functional components cleanly
-from block_global import generate_global_context, logger as global_logger
+from block_global import generate_global_context_by_chunk, logger as global_logger
 from block_phase import generate_phase_contexts, logger as phase_logger
 from block_json import convert_phases_to_json, logger as steps_logger
 
@@ -286,7 +286,7 @@ def run_architect_agent(
         # 1. Execute Block 1 Module
         # -------------------------------------------------
         if is_build_global and not result_global:
-            result_global = generate_global_context(
+            result_global = generate_global_context_by_chunk(
                 client=client,
                 model_name=api_model_global,
                 master_rules=master_rules,

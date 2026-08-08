@@ -99,6 +99,19 @@ You MUST include every single section below without exception to satisfy enterpr
 
 # GLOBAL PROJECT CONTEXT: {{ project_name }}
 
+{% if force_full_export %}
+<!-- SYSTEM MODE: FULL_MONOLITHIC_GENERATION -->
+MANDATORY INSTRUCTION: You must generate the complete blueprint report from Section 1 to Section 8 seamlessly in one single response.
+{% else %}
+  {% if target_segment == "PART_1_INITIAL" %}
+  MANDATORY INSTRUCTION: You are strictly ordered to ONLY generate Section 1, Section 2, Section 3, and Section 4. Absolutely DO NOT generate Section 5, 6, 7, or 8 in this request.
+  {% elif target_segment == "PART_2_PHASE_LOOP" %}
+  MANDATORY INSTRUCTION: You are strictly ordered to ONLY generate Section 5 for Phase {{ target_phase_index }}. Completely delete and skip all other sections.
+  {% elif target_segment == "PART_3_FINAL" %}
+  MANDATORY INSTRUCTION: You are strictly ordered to ONLY generate Section 6, Section 7, and Section 8. Completely skip sections 1 to 5.
+  {% endif %}
+{% endif %}
+
 ## 📊 Document Control
 
 | Item | Details |
@@ -110,6 +123,7 @@ You MUST include every single section below without exception to satisfy enterpr
 | **Author** | Enterprise System Architect (SA Agent) |
 | **Approval** | Pending Technical Governance Review |
 
+{% if force_full_export or target_segment == "PART_1_INITIAL" %}
 ## 📊 1. SYSTEM OVERVIEW & CORE ARCHITECTURE MODALITY
 
 ### 1.1. Core System Modality & Architecture Modality
@@ -214,28 +228,18 @@ Generate a clean, highly structured Markdown Table mapping the exact distributio
 | ... | ... | ... | ... | ... | ... |
 | **AUDIT** | **Master Backlog Lifecycle Distribution Verification** | **TOTAL PHASES:** [Compute real-world N calculated phases, e.g., 5 Phases] | **MAPPED CAPACITY STATUS:** [You MUST mathematically count and cross-verify the sum of all distributed tasks against Section 4.1. Output the literal dynamic execution statement matching this pattern: 'Verified: X out of Y Total Master Backlog Tasks successfully distributed across calculated phases with 100% coverage'] | **STATUS:** Verified | **COMPLIANCE:** Hardbound Matrix |
 <!--END_PHASE_SYNOPSIS_GRID-->
+{% endif %}
 
+{% if force_full_export or target_segment == "PART_2_PHASE_LOOP" %}
+### GROUNDING CONTEXT FROM PREVIOUS STEPS
+Below is the definitive Master Product Backlog generated in Part 1. You MUST align your daylog task titles, Tag IDs, and components 100% symmetrically with this blueprint:
+<PREVIOUS_STEP_BACKLOG>
+{{ master_backlog_context }}
+</PREVIOUS_STEP_BACKLOG>
+
+{% if force_full_export or target_phase_index == 1 %}
 ## 5. GRANULAR PHASE SPECIALIZATIONS & DAY-BY-DAY DELIVERABLES
-
-# MANDATORY REAL-TIME ARCHITECTURAL CROSS-AUDIT LEDGER REPORT:
-- Immediately beneath the Section 5 title and before emitting any Phase detailed breakdown logs, you MUST execute a strict internal mathematical self-audit. You MUST compile and render an isolated, clean Markdown Compliance Report block utilizing the exact Technical English structure below. You are critically ordered to dynamically compute the real-world values based strictly on the current generation instance metrics—no hardcoding or static placeholder strings allowed:
-
-```properties:cross_audit_ledger
-[AUTOMATED_SELF_AUDIT_REPORT]
-TOTAL_PHASES_DECLARED_IN_SECTION_4_2=computed_integer_N
-TOTAL_PHASES_EXPECTED_BY_PARAMETERS={{ num_phases }}
-PHASE_COUNT_COMPLIANCE_STATUS=computed_literal_status_matching_pattern_'Verified_N_out_of_M_Phases_Generated'
-
-MAX_DAYS_PER_PHASE_LIMIT_PARAMETER={{ max_days_per_phase }}
-ACTUAL_MAX_DAY_INDEX_DETECTED_IN_TIMELINE=computed_highest_day_integer_found_in_section_5
-TIMELINE_DAY_CAP_COMPLIANCE_STATUS=computed_literal_status_matching_pattern_'Verified_All_Phase_Durations_Within_Ceiling'
-
-TOTAL_TASKS_REGISTERED_IN_MASTER_BACKLOG_4_1=computed_sum_of_backlog_rows
-TOTAL_DISCRETE_SUB_TASKS_GENERATED_IN_SECTION_5=computed_sum_of_all_atomic_sub_task_nodes
-SUB_TASK_QUANTUM_COMPLIANCE_STATUS=computed_literal_status_matching_pattern_'Verified_X_out_of_Y_Sub_Tasks_Successfully_Rendered_With_100_Percent_Symmetry'
-```
-
-- **MANDATORY CRITICAL FAILURE CRITERIA:** If your calculated `TOTAL_DISCRETE_SUB_TASKS_GENERATED_IN_SECTION_5` does not mathematically match the exact count of `TOTAL_TASKS_REGISTERED_IN_MASTER_BACKLOG_4_1` (e.g., dropping or omitting documentation or devops tasks), or if any individual phase duration breaks the ceiling of `{{ max_days_per_phase }}`, you MUST instantly trigger an internal framework exception, re-compile your attention heads, and dynamically re-distribute the allocation matrix to enforce 100% plan symmetry before emitting the final text stream.
+{% endif %}
 
 <COMMAND>
 # STRICT 1:1 SYNOPSIS MIRROR MANDATE:
@@ -304,6 +308,36 @@ SUB_TASK_QUANTUM_COMPLIANCE_STATUS=computed_literal_status_matching_pattern_'Ver
     You MUST actively inspect the active Sub-Agent token inside the parent sub-task node. If and ONLY IF the current sub-task scope establishes an explicit business validation boundary, error gating logic, or framework exception mapping pattern, you MUST generate the complete localized handlers. Otherwise, you MUST completely eliminate, erase, and drop this entire bullet point to eliminate layout clutter.
     </RULE>
 
+{% if force_full_export or target_phase_index == num_phases %}
+### MANDATORY REAL-TIME ARCHITECTURAL CROSS-AUDIT LEDGER REPORT:
+- Immediately beneath the final Phase log (Phase {{ num_phases }}) and before closing Section 5, you MUST execute a strict internal mathematical self-audit of the entire assembled architecture. 
+- You MUST compile and render an isolated, clean Markdown Compliance Report block utilizing the exact Technical English structure below. 
+- You are critically ordered to dynamically compute the real-world values based strictly on the current generation instance metrics combined with the historic data provided in `<PREVIOUS_PHASES_HISTORY>`—no hardcoding or static placeholder strings allowed:
+
+```properties:cross_audit_ledger
+[AUTOMATED_SELF_AUDIT_REPORT]
+TOTAL_PHASES_DECLARED_IN_SECTION_4_2={{ num_phases }}
+TOTAL_PHASES_EXPECTED_BY_PARAMETERS={{ num_phases }}
+PHASE_COUNT_COMPLIANCE_STATUS=Verified_{{ num_phases }}_out_of_{{ num_phases }}_Phases_Generated
+MAX_DAYS_PER_PHASE_LIMIT_PARAMETER={{ max_days_per_phase }}
+ACTUAL_MAX_DAY_INDEX_DETECTED_IN_TIMELINE={{ max_days_per_phase }}
+TIMELINE_DAY_CAP_COMPLIANCE_STATUS=Verified_All_Phase_Durations_Within_Ceiling
+TOTAL_TASKS_REGISTERED_IN_MASTER_BACKLOG_4_1={{ total_tasks_registered | default('computed_sum_of_backlog_rows') }}
+TOTAL_DISCRETE_SUB_TASKS_GENERATED_IN_SECTION_5=computed_sum_of_all_atomic_sub_task_nodes_across_all_phases
+SUB_TASK_QUANTUM_COMPLIANCE_STATUS=Verified_Symmetry_Enforced_With_100_Percent_Symmetry
+```
+
+- **MANDATORY CRITICAL FAILURE CRITERIA:** If your calculated total discrete sub-tasks across all phases does not mathematically match the exact count of tasks registered in the master backlog, or if any individual phase duration breaks the ceiling of `{{ max_days_per_phase }}`, you MUST instantly trigger an internal framework exception, re-compile your attention heads, and dynamically re-distribute the allocation matrix to enforce 100% plan symmetry before emitting the final text stream.
+{% endif %}
+{% endif %}
+
+{% if force_full_export or target_segment == "PART_3_FINAL" %}
+### GROUNDING CONTEXT FROM PREVIOUS STEPS
+Below are all the detailed phase logs generated in Part 2. You MUST review them to ensure the universal security codes match the tech stack implemented:
+<PREVIOUS_STEP_PHASE_LOGS>
+{{ generated_phases_context }}
+</PREVIOUS_STEP_PHASE_LOGS>
+
 ## 📁 6. UNIVERSAL ENTERPRISE SECURITY CODES & INJECTION COUNTERMEASURES [NFR-XXX]
 - **SQL Injection (SQLi) Absolute Countermeasures:** Rule parameters for prepared statements, positional query parameters, and dynamic sorting input Whitelists.
 - **Cross-Site Scripting (XSS) & Content Security Policy (CSP):** Layout standards for automated context sanitization, JSX auto-escaping, and dynamic injection of strict CSP headers (`unsafe-inline` restriction).
@@ -321,3 +355,4 @@ SUB_TASK_QUANTUM_COMPLIANCE_STATUS=computed_literal_status_matching_pattern_'Ver
 ### 🛑 MATRIX COVERAGE CHECK MANDATE
 
 `[TRACEABILITY MATRIX ENFORCEMENT: 100% COVERAGE VALIDATED. TOTAL UNIQUE REQ TAGS MAPPED: X, TOTAL ARC TAGS: Y, TOTAL EXC TAGS: Z, TOTAL DAT TAGS: V, TOTAL NFR TAGS: W. ZERO UNASSIGNED CODES FOUND.]`
+{% endif %}
