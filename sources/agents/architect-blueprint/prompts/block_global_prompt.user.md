@@ -129,17 +129,20 @@ You MUST include every single section below without exception to satisfy enterpr
 </RULE>
 
 ## 📁 2. TECH STACK DEPENDENCIES & ECOSYSTEM LIBRARIES
+<RULE>
+- **STRICT BOUNDARY LOCKDOWN FOR PROPERTIES BLOCK:** Within the generated properties code fence, you MUST execute the complete physical destruction of the placeholder square brackets. The output values MUST be clean literal boolean raw values without any enclosing markers to prevent downstream parsing panics.
+</RULE>
 - **Backend Infrastructure Core Stack:** [Detail precise versions, runtime engines, dependency injection abstractions, ORMs, and messaging frameworks extracted from requirements]
 - **Frontend & Cross-Platform UI Mobile Stack:** [Detail strict web frameworks, dynamic localized routing, responsive layouts, and native mobile runtime wrappers if present]
 
 ### ARCHITECTURAL STACK MATRIX
 
 ```properties:stack_matrix
-PERSISTENCE_LAYER_REQUIRED=[true/false based on project context]
-BACKEND_LAYER_REQUIRED=[true/false based on project context]
-FRONTEND_LAYER_REQUIRED=[true/false based on project context]
-MOBILE_LAYER_REQUIRED=[true/false based on project context]
-DEVOPS_LAYER_REQUIRED=[true/false based on project context]
+PERSISTENCE_LAYER_REQUIRED=true_or_false_literal_only
+BACKEND_LAYER_REQUIRED=true_or_false_literal_only
+FRONTEND_LAYER_REQUIRED=true_or_false_literal_only
+MOBILE_LAYER_REQUIRED=true_or_false_literal_only
+DEVOPS_LAYER_REQUIRED=true_or_false_literal_only
 ```
 
 ## 📁 3. GLOBAL GUARDRAILS & ENTERPRISE COMPLIANCE STANDARDS
@@ -157,7 +160,22 @@ Generate a clean, highly structured Markdown Table mapping the exact distributio
 - If a phase contains low-density tasks, you MUST stop the index immediately (e.g., closing tightly at Day 1-2). If a phase contains high-density heavy tasks (e.g., combining Mobile UI, Chatbot AI, and DevOps simultaneously), you MUST expand its duration proportionally to smooth out the sub-task distribution, but under any circumstance, the calculated upper boundary MUST NOT exceed the absolute parameter ceiling of {{ max_days_per_phase }} days. Generating phantom filler days or trailing padding tasks is a fatal compliance breach.
 - **🚨 IMMUTABLE SYNOPSIS GRID WRAPPER MANDATE**: When generating this section (Section 4) Markdown table, you ARE ABSOLUTELY AND CRITICALLY BANNED from dropping, omitting, or filtering out the technical hidden HTML comment anchors. You MUST explicitly enclose the entire generated table structure strictly between the literal tokens `<!--START_PHASE_SYNOPSIS_GRID-->` and `<!--END_PHASE_SYNOPSIS_GRID-->`.
 - **🚨 DYNAMIC DAY TITLE ENFORCEMENT**: Inside Section 5, for every chronological day element (e.g., `- **Day [Y]**:`), you ARE PERMANENTLY FORBIDDEN from outputting static placeholder strings like "SHORT OBJECTIVE FOR THIS OPERATIONAL CALENDAR DAY". You MUST dynamically analyze the requirements for that day, compile a concise technical objective sentence, and fully translate it into the target language requested by the parameters.
-- **MANDATORY MULTI-AGENT SYNOPIS DISTRIBUTION LAW:** When generating rows for the summary matrix table, you ARE CRITICALLY FORBIDDEN from assigning only a single agent (like `Coder`) to any software delivery block. If the phase handles functional implementation paths (under `./sources/backend/` or `./sources/frontend/`), you MUST explicitly bundle `Tester` and `Doc` alongside `Coder` inside the "Assigned Sub-Agent" column as a comma-separated list: `Coder, Tester, Doc`.
+- **MANDATORY MULTI-AGENT SYNOPIS DISTRIBUTION LAW:** When generating rows for the summary matrix table, you ARE CRITICALLY FORBIDDEN from assigning only a single agent (like `Coder`) to any software delivery block. If the phase handles functional implementation paths (under `./sources/backend/` or `./sources/frontend/`), you MUST explicitly bundle `Tester`, `Doc`, and `Reviewer` alongside `Coder` inside the "Assigned Sub-Agent" column as a comma-separated list: `Coder, Tester, Doc, Reviewer`.
+- **MANDATORY CODER-TESTER-DOC-REVIEWER PARALLEL VORTEK LAW (ANTI-LAZINESS):** Inside Section 5 daily logs, you ARE CRITICALLY BANNED from leaving `[Coder]` as the solitary operating agent during development timelines. For 100% of the operational calendar days targeting application modules, you MUST enforce parallel lifecycle coverage by injecting task blocks for `[Tester]`, `[Doc]`, and `[Reviewer]` alongside `[Coder]` within the same daily sequence.
+- **STRICT PARALLEL LOG SCHEMAS:**
+  1. *For Coder:* Deliver core engineering logic, entity models, and endpoint routing.
+  2. *For Tester:* Force immediate initialization of validation assets. You MUST explicitly order the production of JUnit suites, Integration test matrices, and automated E2E test scripts on that exact same operational calendar day matching the coder architecture scope.
+  3. *For Doc:* Force execution of document blueprints, technical manuals, and API specifications.
+  4. *For Reviewer:* Operate strictly in a sequential multi-step gating paradigm immediately following the [Coder] execution block. The Reviewer MUST systematically analyze the Coder's generated source assets to verify compiler stability and architectural compliance. CRITICAL OPERATIONAL CONDITION: If the compiler audit passes with zero issues, the Reviewer task freezes instantly with a no-op status. If and ONLY IF an explicit syntax anomaly, structural bottleneck, or compilation breakdown is detected, the Reviewer MUST trigger a defensive patching directive to execute immediate, target-specific code corrections.
+- **STRICT SEMI-COLON PAIR SYNTAX FOR TESTER:** Within the `target_component` field for any task block allocated to `Tester`, you MUST dynamically bifurcate the string format into exactly two structural validation use-cases using a raw semicolon delimiter:
+  1. *Case 1 (Unit / JUnit Test Automation):* You MUST strict-couple the source file and the test file in the exact position: `<source_component_file_path>;<test_suite_file_path>`. The source file path MUST precede the semicolon. Both paths MUST start with `./sources/`.
+  2. *Case 2 (Integration / End-to-End Automation):* If the test validation operates over an entire multi-module or system-wide layout where no single source file is isolated, you MUST strictly utilize the unaccented literal token `INTEGRATION_SCOPE` as the first parameter before the semicolon: `INTEGRATION_SCOPE;<target_test_suite_file_path>`. You are critically banned from prefixing or altering the `INTEGRATION_SCOPE` token.
+- **STRICT SUB-AGENT FILE-EXTENSION BOUNDARY LAW:** You MUST strictly isolate physical file extensions based on the active operating persona to prevent cross-contamination:
+  1. *For [Coder] and [Reviewer]:* The `target_component` MUST strictly point to a physical executable source file ending with valid production extensions (e.g., `.java`, `.ts`, `.sql`).
+  2. *For [Tester]:* The `target_component` MUST strictly utilize the semicolon pair format containing valid test suffix extensions (e.g., `.java`, `.ts`, `.spec.ts`) matching Case 1 or Case 2 patterns.
+  3. *For [Doc]:* The `target_component` MUST permanently target granular, individual documentation files ending strictly with the `.md` extension, located inside `./sources/docs/`.
+- **ABSOLUTE DISCRETE DAY-LOG SEPARATION MANDATE:** You ARE PERMANENTLY FORBIDDEN from aggregating or grouping distinct agent actions into a single combined description block or combined agent field. Even if `Coder`, `Tester`, `Doc`, and `Reviewer` operate on the exact same physical component on the same calendar day, you MUST output them as separate, independent, standalone list items inside that day's timeline.
+- **CRITICAL COMPACT PATCH INSTRUCTION DIRECTIVE:** When the [Reviewer] dictates a code fix or defensive patching strategy upon detecting a compilation failure, the instruction MUST be written as concise, structural pseudo-steps or high-density technical instructions. You ARE ABSOLUTELY BANNED from embedding long walls of duplicate raw source code blocks inside the instruction description to safeguard context windows and protect the dynamic technical density ceiling.
 - **GRANULAR DELIVERABLE CHECKLIST MANDATE:** You MUST inject multiple verification and architectural tasks into the "Technical Deliverables Summary" column for every phase row:
   1. *For Tester:* Force the inclusion of concrete validation targets, explicitly stating the production of JUnit suites, Integration Tests, and end-to-end (E2E) automation execution profiles.
   2. *For Doc:* Force the inclusion of architecture alignment requirements, explicitly stating the generation of system technical documentation blueprints and API technical specifications.
