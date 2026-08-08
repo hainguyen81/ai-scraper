@@ -156,24 +156,24 @@ DEVOPS_LAYER_REQUIRED=true_or_false_literal_only
 ## 4. HIGH-LEVEL MULTI-PHASE ARCHITECTURAL SYNOPSIS GRID
 
 ### 4.1. MASTER ARCHITECTURAL PRODUCT BACKLOG
+<RULE>
 - You MUST generate a comprehensive, unified Master Product Backlog table directly under this section before organizing the multi-phase timeline. This table acts as the definitive grounding index for 100% of the project scope.
-- The Master Product Backlog table layout MUST strictly execute inside the hidden framework parsing hooks exactly as formatted below:
-
-<!--START_BACKLOG_SYNOPSIS_GRID-->
-
-| No. | Task | Technical Purpose / Deliverables Summary | Type | TagID |
-| :--- | :--- | :--- | :--- | :--- |
-| [Numerical Index, starting from 1] | [Task Title] | [Clear technical delivery objective description] | [Literal configuration string: 'Application Code' OR 'Enterprise Documentation' OR 'DevOps Infrastructure'] | [Dynamic tracing Tag IDs mapped inline] |
-| ... | ... | ... | ... | ... |
-| **SUMMARY** | **Total System Backlog Workload Deliverables** | **TOTAL:** [Compute and insert the absolute mathematical sum of all listed task rows, e.g., 42 Tasks] | **STATUS:** Verified | **COVERAGE:** 100% |
-<!--END_BACKLOG_SYNOPSIS_GRID-->
-
 - **STRICT BACKLOG COMPLETENESS COMPLIANCE LAW:** This master table MUST completely map and exhaustively list every engineering effort required by the corpus, strictly verified by the Type column:
   1. *Application Code:* Functional endpoint creations, database models, and service layer code blocks.
   2. *Enterprise Documentation:* Complete systemic blueprints, database schema topologies, localized operational manual files, and API contracts located under `./sources/docs/`.
   3. *DevOps Infrastructure:* Containerization scripts (Docker), cloud environment setups (GCP via Terraform), and orchestration cluster manifests (GKE).
 - **100% INVARIANT TRACEABILITY LINKAGE:** Every row in this backlog MUST enforce absolute coverage of all relevant tracking tags (`[REQ-XXX]`, `[DAT-XXX]`, `[ARC-XXX]`, `[EXC-XXX]`, `[NFR-XXX]`). Zero orphan requirements or untagged deliverables are permitted.
 - **MANDATORY CASCADE PLAN COMPLIANCE:** Every task documented in this Master Backlog table MUST cascade symmetrically downwards: it MUST be distributed into exactly one targeted phase in the Synopsis Grid under Section 4.2, and subsequently possess an explicit, standalone daily execution sub-task log inside Section 5 for that specific phase.
+- The Master Product Backlog table layout MUST strictly execute inside the hidden framework parsing hooks exactly as formatted below:
+</RULE>
+
+<!--START_BACKLOG_SYNOPSIS_GRID-->
+| No. | Task | Technical Purpose / Deliverables Summary | Type | TagID |
+| :--- | :--- | :--- | :--- | :--- |
+| [Numerical Index, starting from 1] | [Task Title] | [Clear technical delivery objective description] | [Literal configuration string: 'Application Code' OR 'Enterprise Documentation' OR 'DevOps Infrastructure'] | [Dynamic tracing Tag IDs mapped inline] |
+| ... | ... | ... | ... | ... |
+| **SUMMARY** | **Total System Backlog Workload Deliverables** | **TOTAL:** [Compute and insert the absolute mathematical sum of all listed task rows, e.g., 42 Tasks] | **STATUS:** Verified | **COVERAGE:** 100% |
+<!--END_BACKLOG_SYNOPSIS_GRID-->
 
 ### 4.2. MULTI-PHASE SYNOPSIS MATRIX
 Generate a clean, highly structured Markdown Table mapping the exact distribution of components and Tag IDs across the dynamically calculated phases. You MUST compute the most optimal number of phases (denoted as N, where N <= {{ num_phases }}) that naturally and completely covers 100% of the BA requirements and Tag IDs.
