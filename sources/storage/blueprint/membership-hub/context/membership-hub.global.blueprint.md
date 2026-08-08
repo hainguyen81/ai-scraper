@@ -1,183 +1,180 @@
-# NGÀNH ĐỐI TƯỢNG CỤ THỂ: membership-hub
+# TỔNG QUAN DỰ ÁN: membership-hub
 
-## Điều khiển tài liệu
+## 📊 Kiểm soát Tài liệu
 
-| Mục | Chi tiết |
+| Item | Details |
 | :--- | :--- |
-| **ID bản đồ** | ARCH-20260808055829 |
-| **Tên dự án** | membership-hub |
-| **Phiên bản** | 1.0 (Baseline) |
-| **Ngày giờ** | 2026/08/08 05:58:29 |
-| **Tác giả** | Enterprise System Architect (SA Agent) |
-| **Phê duyệt** | Pending Technical Governance Review |
+| **Blueprint ID** | ARCH-20260808071243 |
+| **Project Name** | membership-hub |
+| **Version** | 1.0 (Baseline) |
+| **Date.Time** | 2026/08/08 07:12:43 |
+| **Author** | Enterprise System Architect (SA Agent) |
+| **Approval** | Pending Technical Governance Review |
 
-## TỔNG QUAN HỆ THỐNG & MÔ HÌNH CƠ SỞ
+## 🏛️ 1. TỔNG QUAN HỆ THỐNG
 
-### Mô hình hệ thống cốt lõi & Mô hình kiến trúc
+### 1.1. Mô hình Hệ thống Cốt lõi & Kiến trúc
+- Triển khai kiến trúc đa dịch vụ với mô hình CQRS và xử lý bất đồng bộ dựa trên sự kiện.
+- Tích hợp kiểm soát truy cập dựa trên vai trò (RBAC) với 6 vai trò chính: System Admin, Center Admin, Manager, Teacher, Student, và Mobile App User.
+- Thiết kế hệ thống đa trung tâm với cơ sở dữ liệu riêng cho từng trung tâm và khả năng mở rộng theo chiều ngang.
+- Sử dụng mô hình lưu trữ dữ liệu quan hệ với PostgreSQL, có bản sao đọc cho các tác vụ báo cáo.
+- Tích hợp các nhà cung cấp xác thực bên thứ ba (Firebase, Google, Facebook) thông qua OAuth2 và cấp JWT token có thời hạn 15 phút.
+- Triển khai các luồng xử lý điểm danh QR bất biến với khả năng phục hồi sau sự cố mạng.
+- Tích hợp thông báo đa kênh (push notification qua FCM/APNs và bài đăng trên nhóm Zalo) với cơ chế thử lại.
+- Hỗ trợ trải nghiệm di động hybrid với Capacitor, caching ngoại tuyến, và đồng bộ hóa khi có kết nối.
+- Triển khai trên Kubernetes (GKE) với Docker, CI/CD qua GitHub Actions, và giám sát hiệu suất theo thời gian thực.
+- Tuân thủ các tiêu chuẩn bảo mật OWASP Top 10, mã hóa dữ liệu ở trạng thái nghỉ bằng AES-256, và thực hiện các chính sách GDPR/CCPA.
 
-- Kiến trúc microservices phân tách rõ ràng: `user-service`, `course-service`, `notification-service`, `reporting-service`.
-- Backend được xây dựng bằng Java 17 + Quarkus 3.x, sử dụng CDI, Hibernate ORM, Flyway, Redis cho session caching.
-- Cơ sở dữ liệu chính: PostgreSQL 15, sử dụng schema phân vùng theo `centerId`.
-- Xác thực: Firebase Authentication, OAuth2 (Google, Facebook), JWT 15 phút, refresh 7 ngày.
-- Giao tiếp nội bộ: Kafka (topic `attendance`, `notifications`, `promotions`), gRPC cho các dịch vụ nội bộ.
-- Container: Docker multi-stage, triển khai trên GKE, CI/CD bằng GitHub Actions.
-- Frontend: Next.js 13, React 18, TypeScript, Tailwind CSS, Capacitor cho mobile.
-- Định dạng dữ liệu: JSON, Protobuf cho Kafka, gRPC.
-- Bảo mật: TLS 1.3, AES‑256 at rest, OWASP Top 10 mitigations, role-based access control (RBAC).
-- Độ tin cậy: HPA dựa trên CPU > 70 % hoặc latency > 300 ms, read replicas cho reporting.
+### 1.2. Kiến trúc Luồng Dữ liệu Doanh nghiệp & Hệ sinh thái
+- Luồng xác thực: Người dùng đăng nhập qua email/mật khẩu hoặc mạng xã hội, nhận JWT token và refresh token.
+- Luồng xử lý điểm danh QR: Ứng dụng di động quét mã QR, gửi studentId và timestamp đến dịch vụ điểm danh, ghi lại bản ghi bất biến.
+- Luồng gửi thông báo: Hệ thống tạo bản ghi thông báo, đẩy notification đến thiết bị di động qua FCM/APNs, và đăng bài lên nhóm Zalo được chỉ định.
+- Luồng tích hợp backend ứng dụng di động: Frontend Next.js tiêu thụ REST APIs, xác thực qua bearer token, và duy trì cache ngoại tuyến cho các tác vụ quan trọng.
+- Luồng đồng bộ hóa dữ liệu đa trung tâm: Center Admin quản lý trung tâm của mình, System Admin giám sát toàn cầu, và các thay đổi được đồng bộ hóa qua message broker.
+- Luồng xử lý sự kiện: Các sự kiện như ghi danh khóa học, điểm danh, gia hạn thẻ được phát hành dưới dạng sự kiện để cập nhật trạng thái và kích hoạt thông báo.
+- Luồng xử lý hàng đợi: Các tác vụ nặng như gửi hàng loạt thông báo, tạo báo cáo được đưa vào hàng đợi và xử lý bất đồng bộ.
+- Luồng xử lý ngoại lệ: Các lỗi mạng, duplicate attendance được ghi lại, thử lại, và thông báo cho người dùng.
 
-### Kiến trúc luồng dữ liệu doanh nghiệp & hệ sinh thái cốt lõi
+## 📁 2. THƯ VIỆN STACK CÔNG NGHỆ & HỆ SINH THÁI
 
-- Luồng xác thực: Frontend gửi credential → Auth Service → Firebase → JWT → Quarkus → Redis cache.
-- Luồng điểm danh QR: Mobile quét → API `/attendance/scan` → Kafka `attendance` → Attendance Service → PostgreSQL.
-- Luồng thông báo: Notification Service publish → Kafka `notifications` → Mobile push (FCM/APNs) & Zalo API.
-- Luồng dữ liệu báo cáo: Reporting Service query PostgreSQL → CSV export → API `/reports/attendance`.
-- Fan-out: Khi tạo promotion, Notification Service gửi thông báo tới tất cả học viên và Zalo group.
-- Caching: Redis cho session, user profile, course list.
+- **Hạ tầng Core Stack:** Java/Quarkus (v3.8.x), PostgreSQL (v15), Docker (<500MB), Kubernetes (GKE), Firebase Authentication, Google Cloud Messaging (FCM)/Apple APNs, Zalo API, Redis (for session caching), CI/CD GitHub Actions.
+- **Frontend & Stack UI Di động Đa nền tảng:** Next.js (v14), React Native (v0.73), Capacitor, Internationalization (i18next), State management (Redux Toolkit), API client (Axios), Offline caching (Redux Persist), SEO (Next SEO), Responsive design.
 
-## CẢNH BỘ CÔNG NGHỆ & THƯ VIỆN HỆ SINH THÁI
-
-- **Backend Infrastructure Core Stack**: Java 17, Quarkus 3.2, Hibernate ORM 6.2, Flyway 9.5, Redis 7.0, PostgreSQL 15, Firebase Auth SDK, Google Cloud Messaging, Zalo API SDK, Docker 24, GKE 1.27, GitHub Actions.
-- **Frontend & Cross-Platform UI Mobile Stack**: Next.js 13, React 18, TypeScript 5.0, Tailwind CSS 3.3, Capacitor 5.0, React Native 0.73, Firebase Cloud Messaging SDK, Zalo SDK.
-
-### MÁTRIX CẢNH BỘ
+### ARCHITECTURAL STACK MATRIX
 
 ```properties:stack_matrix
-PERSISTENCE_LAYER_REQUIRED=[true]
-BACKEND_LAYER_REQUIRED=[true]
-FRONTEND_LAYER_REQUIRED=[true]
-MOBILE_LAYER_REQUIRED=[true]
-DEVOPS_LAYER_REQUIRED=[true]
+PERSISTENCE_LAYER_REQUIRED=true
+BACKEND_LAYER_REQUIRED=true
+FRONTEND_LAYER_REQUIRED=true
+MOBILE_LAYER_REQUIRED=true
+DEVOPS_LAYER_REQUIRED=true
 ```
 
-## QUY TẮC BẢO VỆ & CHẤP NHẬN DOANH NGHIỆP
+## 📁 3. BẢN MẠCH BẢO MẬT DOANH NGHIỆP TOÀN CẦU & PHÒNG NGỪA TẤN CÔNG
 
-- **Ranh giới công việc**: Repository root là `.`; tất cả các đường dẫn bắt đầu bằng `./sources/`.
-- **Định dạng thư mục**: Backend: `./sources/backend/<service-name>/`; Frontend: `./sources/frontend/<app-name>/`; DevOps: `./sources/infra/`; Docs: `./sources/docs/`.
-- **Java Package**: `org.nlh4j.saas.membershiphub` (đã chuyển `membership-hub` thành `membershiphub`).
-- **Tester Target Path**: `<source_component>;<test_suite_file>` (cả hai bắt đầu bằng `./sources/`).
+- **Các biện pháp chống SQL Injection (SQLi):** Sử dụng prepared statements, tham số hóa truy vấn, và danh sách trắng cho các tham số sắp xếp.
+- **Các biện pháp chống Cross-Site Scripting (XSS) & Content Security Policy (CSP):** Tự động thoát HTML trong JSX, thiết lập header CSP nghiêm ngặt (`script-src 'self'`), và sử dụng DOMPurify cho nội dung người dùng.
+- **Các biện pháp chống CORS đa tenant:** Kiểm tra nguồn gốc động, cho phép chỉ các tên miền được tin cậy, và lưu trữ các chính sách CORS theo từng tenant.
+- **Các biện pháp chống rò rỉ log & che giấu PII:** Sử dụng `@JsonSerialize` để ẩn PII, tự động xóa các trường nhạy cảm, và giới hạn độ dài log.
+- **Các chỉ số hiệu suất:** Đảm bảo độ trễ trung bình dưới 200ms cho các API cốt lõi, sử dụng chỉ mục cho các truy vấn thường xuyên, và hỗ trợ 10,000 người dùng đồng thời.
+- **Các chỉ số khả năng sẵn sàng:** Mục tiêu 99.9% thời gian hoạt động, triển khai auto-failover trên các cluster GKE, và giám sát sức khỏe theo thời gian thực.
+- **Các chỉ số bảo mật:** TLS 1.3 cho mọi kết nối, mã hóa AES-256 ở trạng thái nghỉ, JWT hết hạn sau 15 phút, refresh token 7 ngày, và tuân thủ OWASP Top 10.
+- **Các chỉ số khả năng mở rộng & sẵn sàng:** Tự động mở rộng Quarkus dựa trên HPA (CPU >70% hoặc độ trễ >300ms), sử dụng PostgreSQL read replicas cho báo cáo, và triển khai service mesh cho giao tiếp giữa các dịch vụ.
+- **Các chỉ số kích thước Docker:** Giới hạn kích thước image gốc <200MB, image cuối cùng <500MB, và tối ưu hóa các layer không cần thiết.
+- **Các chỉ số ghi nhật ký & kiểm toán:** Ghi lại mọi hành động của người dùng (thay đổi vai trò, điểm danh, thông báo) với timestamp, userId, và chi tiết hành động; lưu trữ log trong 1 năm.
+- **Các chỉ số hỗ trợ đa ngôn ngữ:** Ngoại giao hóa chuỗi UI, hỗ trợ English, Vietnamese, Spanish, và chuyển đổi locale không cần tải lại trang.
+- **Các chỉ số tuân thủ GDPR/CCPA:** Cho phép người dùng yêu cầu xóa dữ liệu cá nhân, cung cấp API xuất dữ liệu JSON, và quản lý sự đồng ý cho tiếp thị.
+- **Các chỉ số sao lưu & phục hồi sau thảm họa:** Sao lưu PostgreSQL đầy đủ hàng ngày, phục hồi điểm trong thời gian 24 giờ, và sao lưu cluster GKE sang region khác.
 
 <!--START_PHASE_SYNOPSIS_GRID-->
-| Giai đoạn | Khoảng ngày | Đường dẫn Cấu phần / Module | Tóm tắt Sản phẩm Bàn giao | Sub-Agent | Tag IDs Mục tiêu |
+| Giai đoạn | Khoảng ngày | Đường dẫn Thành phần / Module Kiến trúc | Tóm tắt Sản phẩm Bàn giao | Sub-Agent được chỉ định | Tag IDs Mục tiêu |
 | :--- | :--- | :--- | :--- | :--- | :--- |
-| 1 | 1 - 4 | ./sources/backend/user-service | JUnit, Integration Tests, E2E Automation, API Specs, Architecture Docs | Coder, Tester, Doc | [REQ-001], [REQ-002], [REQ-003], [REQ-004], [REQ-005], [REQ-006], [REQ-007], [REQ-008], [REQ-009], [REQ-010], [REQ-011] |
-| 2 | 1 - 4 | ./sources/backend/course-service | JUnit, Integration Tests, E2E Automation, API Specs, Architecture Docs | Coder, Tester, Doc | [REQ-012], [REQ-013], [REQ-014], [REQ-015], [REQ-016], [REQ-017], [REQ-018], [REQ-019], [REQ-020], [REQ-021], [REQ-022] |
-| 3 | 1 - 4 | ./sources/backend/notification-service | JUnit, Integration Tests, E2E Automation, API Specs, Architecture Docs | Coder, Tester, Doc | [REQ-023], [REQ-024], [EXC-001], [EXC-002], [EXC-003], [EXC-004], [EXC-005], [DAT-001], [DAT-002], [DAT-003], [DAT-004], [DAT-005] |
-| 4 | 1 - 4 | ./sources/infra | Dockerfile, Terraform, GKE Deployment, CI/CD Pipeline | Docker, GCP, GKE | [DAT-006], [DAT-007], [DAT-008], [DAT-009], [NFR-001], [NFR-002], [NFR-003], [NFR-004], [NFR-005], [NFR-006], [NFR-007], [NFR-008] |
-| 5 | 1 - 4 | ./sources/backend/reporting-service | Reporting API, Dashboard, Mobile UI, Documentation | Coder, Tester, Doc | [NFR-009], [ARC-001], [ARC-002], [ARC-003], [ARC-004], [ARC-005], [ARC-006], [ARC-007], [ARC-008], [ARC-009], [ARC-010] |
+| Giai đoạn 1 | Ngày 1 - 4 | ./sources/backend/user-management/ | Triển khai đăng ký người dùng, xác thực xã hội, phân quyền, tạo trung tâm, gán quyền trung tâm; viết unit tests; tài liệu kỹ thuật; đánh giá mã. | Coder, Tester, Doc, Reviewer | [REQ-001], [REQ-002], [REQ-003], [REQ-004], [REQ-005], [REQ-006], [ARC-001], [ARC-002], [ARC-003], [ARC-004], [ARC-005], [ARC-006], [DAT-001], [DAT-002], [EXC-004], [NFR-001], [NFR-002], [NFR-003], [NFR-004], [NFR-005], [NFR-006], [NFR-007], [NFR-008], [NFR-009] |
+| Giai đoạn 2 | Ngày 1 - 4 | ./sources/backend/course-management/ | Triển khai CRUD khóa học, xung đột lịch, phân công giáo viên, duyệt khóa học, ghi danh, quét QR điểm danh, tính bất biến, hiển thị thẻ hội viên, gia hạn thẻ; viết integration tests; tài liệu API; đánh giá mã. | Coder, Tester, Doc, Reviewer | [REQ-007], [REQ-008], [REQ-009], [REQ-010], [REQ-011], [REQ-012], [REQ-013], [REQ-014], [REQ-015], [ARC-007], [DAT-003], [DAT-004], [DAT-005], [DAT-006], [EXC-001], [EXC-002], [NFR-001], [NFR-002], [NFR-003] |
+| Giai đoạn 3 | Ngày 1 - 3 | ./sources/backend/notification-management/ | Triển khai kích hoạt thông báo, tạo khuyến mãi, thông báo, tích hợp chatbot AI, push notification, tích hợp Zalo; viết E2E tests; tài liệu kỹ thuật; đánh giá mã. | Coder, Tester, Doc, Reviewer | [REQ-016], [REQ-017], [REQ-018], [REQ-019], [REQ-020], [REQ-021], [ARC-008], [DAT-007], [DAT-008], [EXC-003], [NFR-001], [NFR-002], [NFR-003] |
+| Giai đoạn 4 | Ngày 1 - 5 | ./sources/frontend/nextjs/, ./sources/mobile/capacitor/, ./sources/infra/ | Triển khai giao diện người dùng di động responsive, thông báo đẩy, phát hiện ngôn ngữ, SEO đa ngôn ngữ, tạo báo cáo điểm danh, bảng điều khiển, phục hồi sau sự cố, hardening bảo mật; viết integration tests; tài liệu hệ thống; đánh giá mã. | Coder, Tester, Doc, Reviewer | [REQ-022], [REQ-023], [REQ-024], [REQ-025], [ARC-009], [ARC-010], [DAT-009], [EXC-005], [NFR-001], [NFR-002], [NFR-003], [NFR-004], [NFR-005], [NFR-006], [NFR-007], [NFR-008], [NFR-009] |
 <!--END_PHASE_SYNOPSIS_GRID-->
 
-## Đặc tả Kiến trúc Chi tiết Giai đoạn 1
+## 📁 5. GRANULAR PHASE SPECIALIZATIONS & DAY-BY-DAY DELIVERABLES
 
-### Mục tiêu Cốt lõi & Mục đích của Giai đoạn 1
-Xây dựng chức năng đăng ký, xác thực, phân quyền người dùng, quản lý trung tâm.
+### 📈 Giai đoạn 1: Xây dựng Nền tảng Cốt lõi
 
-### Bản đồ Ma trận Thư mục Vật lý Mục tiêu
-- `./sources/backend/user-service/src/main/java/org/nlh4j/saas/membershiphub/userservice/` [REQ-001], [REQ-002], [REQ-003], [REQ-004], [REQ-005], [REQ-006], [REQ-007], [REQ-008], [REQ-009], [REQ-010], [REQ-011]
-- `./sources/docs/architecture/user-service.md` [REQ-001], [REQ-002], [REQ-003], [REQ-004], [REQ-005], [REQ-006], [REQ-007], [REQ-008], [REQ-009], [REQ-010], [REQ-011]
-- `./sources/backend/user-service/src/main/resources/db/migration/V1__create_users_and_roles.sql` [DAT-001], [DAT-002]
-- `./sources/backend/user-service/src/test/java/org/nlh4j/saas/membershiphub/userservice/` [REQ-001], [REQ-002], [REQ-003], [REQ-004], [REQ-005], [REQ-006], [REQ-007], [REQ-008], [REQ-009], [REQ-010], [REQ-011]
-
-### Đặc tả DDL SQL Schema Cơ sở Dữ liệu [DAT-001], [DAT-002]
+- **Phase Core Objective & Purpose:** Xây dựng các thành phần cốt lõi cho hệ thống quản lý hội viên đa trung tâm, bao gồm quản lý người dùng, xác thực, phân quyền, và quản lý trung tâm.
+- **Target Physical Directory Matrix Map:**
+  * ./sources/backend/user-management/UserEntity.java [REQ-001], [DAT-001]
+  * ./sources/backend/user-management/RoleEntity.java [DAT-001]
+  * ./sources/backend/user-management/CenterEntity.java [REQ-004], [DAT-002]
+  * ./sources/docs/UserManagementGuide.md [DAT-001], [REQ-001]
+- **Đặc tả DDL SQL Lược đồ Cơ sở Dữ liệu [DAT-001], [DAT-002]:**
 ```sql
-CREATE TABLE USERS (
-    userId UUID PRIMARY KEY,
-    email VARCHAR(255) NOT NULL UNIQUE,
-    passwordHash VARCHAR(60) NOT NULL,
-    fullName VARCHAR(100) NOT NULL,
-    roleId SMALLINT NOT NULL,
-    provider VARCHAR(20) NOT NULL DEFAULT 'local',
-    createdAt TIMESTAMP NOT NULL DEFAULT NOW(),
-    updatedAt TIMESTAMP NOT NULL DEFAULT NOW()
-);
-
 CREATE TABLE ROLES (
     roleId SMALLINT PRIMARY KEY,
     name VARCHAR(30) NOT NULL UNIQUE,
     description VARCHAR(200)
 );
 
-ALTER TABLE USERS ADD CONSTRAINT fk_user_role FOREIGN KEY (roleId) REFERENCES ROLES(roleId);
-```
+CREATE TABLE USERS (
+    userId UUID PRIMARY KEY,
+    email VARCHAR(255) NOT NULL UNIQUE,
+    passwordHash CHAR(60) NOT NULL,
+    fullName VARCHAR(100) NOT NULL,
+    roleId SMALLINT NOT NULL REFERENCES ROLES(roleId),
+    provider ENUM('local','firebase','google','facebook') NOT NULL DEFAULT 'local',
+    createdAt TIMESTAMP NOT NULL DEFAULT NOW(),
+    updatedAt TIMESTAMP NOT NULL DEFAULT NOW()
+);
 
-### Hợp đồng Định tuyến API và Sự kiện [REQ-001], [REQ-002], [REQ-003], [REQ-004], [REQ-005], [REQ-006], [REQ-007], [REQ-008], [REQ-009], [REQ-010], [REQ-011]
+CREATE TABLE CENTERS (
+    centerId UUID PRIMARY KEY,
+    name VARCHAR(100) NOT NULL,
+    address VARCHAR(255) NOT NULL,
+    taxId VARCHAR(13) NOT NULL UNIQUE,
+    contactPhone VARCHAR(30),
+    contactEmail VARCHAR(255)
+);
+```
+- **Hợp đồng Định tuyến API và Sự kiện [REQ-001], [REQ-002], [REQ-003], [ARC-006]:**
 ```json
+// POST /api/v1/auth/register
 {
-  "endpoints": [
-    {
-      "path": "/api/users/register",
-      "method": "POST",
-      "request": {
-        "type": "object",
-        "properties": {
-          "email": {"type": "string", "format": "email"},
-          "password": {"type": "string"},
-          "fullName": {"type": "string"}
-        },
-        "required": ["email", "password", "fullName"]
-      },
-      "response": {
-        "type": "object",
-        "properties": {
-          "userId": {"type": "string"},
-          "token": {"type": "string"}
-        }
-      }
-    },
-    {
-      "path": "/api/users/login",
-      "method": "POST",
-      "request": {
-        "type": "object",
-        "properties": {
-          "email": {"type": "string", "format": "email"},
-          "password": {"type": "string"}
-        },
-        "required": ["email", "password"]
-      },
-      "response": {
-        "type": "object",
-        "properties": {
-          "userId": {"type": "string"},
-          "token": {"type": "string"}
-        }
-      }
-    }
-  ],
-  "events": [
-    {
-      "topic": "user.registered",
-      "schema": {
-        "type": "object",
-        "properties": {
-          "userId": {"type": "string"},
-          "email": {"type": "string"}
-        }
-      }
-    }
-  ]
+  "email":"user@example.com",
+  "password":"StrongPass123!",
+  "fullName":"Nguyen Van A",
+  "roleId":5
 }
 ```
+```json
+// POST /api/v1/auth/social
+{
+  "provider":"google",
+  "code":"OAuth2_code_from_provider"
+}
+```
+```json
+// PUT /api/v1/users/{userId}/role
+{
+  "newRoleId":2
+}
+```
+- **Xử lý Ngoại lệ theo Ngôn ngữ [EXC-004]:**
+  * Khi xác thực đầu vào không hợp lệ (ví dụ: email không đúng định dạng, thiếu trường bắt buộc), hệ thống trả về lỗi 400 với danh sách các trường không hợp lệ và hướng dẫn chỉnh sửa.
 
-### Xử lý ngoại lệ [EXC-001], [EXC-002], [EXC-003], [EXC-004], [EXC-005]
-- **EXC-001**: Xác thực đầu vào không hợp lệ → Trả lỗi 400 với danh sách trường không hợp lệ.
-- **EXC-002**: Email đã tồn tại → Trả lỗi 409.
-- **EXC-003**: Lỗi xác thực Firebase → Trả lỗi 401.
-- **EXC-004**: Lỗi ghi database → Trả lỗi 500.
-- **EXC-005**: Lỗi JWT expired → Trả lỗi 401.
+#### Chronological Day-by-Day Sub-Agent Task Distribution Logs (Giai đoạn 1)
 
-## Đặc tả Kiến trúc Chi tiết Giai đoạn 2
+- **NGÀY 1:**
+  - **[Coder]** [REQ-001], [DAT-001] ./sources/backend/user-management/UserService.java Triển khai logic đăng ký người dùng, xác thực mật khẩu, tạo password hash, và trả về JWT token.
+  - **[Tester]** [REQ-001], [DAT-001] ./sources/backend/user-management/UserServiceTest.java;./sources/backend/user-management/UserService.java Viết unit test cho đăng ký người dùng, bao gồm xác thực email, độ mạnh mật khẩu, và tạo token.
+  - **[Doc]** [REQ-001], [DAT-001] ./sources/docs/UserRegistrationGuide.md Soạn thảo hướng dẫn kỹ thuật cho API đăng ký người dùng, bao gồm request/response schema và ví dụ.
+  - **[Reviewer]** [REQ-001], [DAT-001] ./sources/backend/user-management/UserService.java Đánh giá mã nguồn, đảm bảo tuân thủ các quy tắc lập trình, và kiểm tra độ bao phủ unit test.
 
-### Mục tiêu Cốt lõi & Mục đích của Giai đoạn 2
-Quản lý khóa học, học viên, điểm danh, thẻ hội viên.
+- **NGÀY 2:**
+  - **[Coder]** [REQ-002], [DAT-001] ./sources/backend/user-management/SocialAuthService.java Triển khai trao đổi OAuth2 code lấy thông tin người dùng từ Firebase/Google/Facebook, tạo hoặc cập nhật bản ghi người dùng.
+  - **[Tester]** [REQ-002], [DAT-001] ./sources/backend/user-management/SocialAuthServiceTest.java;./sources/backend/user-management/SocialAuthService.java Viết integration test cho xác thực xã hội, mô phỏng các nhà cung cấp.
+  - **[Doc]** [REQ-002], [DAT-001] ./sources/docs/SocialAuthenticationGuide.md Soạn thảo tài liệu kỹ thuật cho endpoint xác thực xã hội, bao gồm flow và lỗi.
+  - **[Reviewer]** [REQ-002], [DAT-001] ./sources/backend/user-management/SocialAuthService.java Kiểm tra logic xử lý token, xác thực nhà cung cấp, và cập nhật người dùng.
 
-### Bản đồ Ma trận Thư mục Vật lý Mục tiêu
-- `./sources/backend/course-service/src/main/java/org/nlh4j/saas/membershiphub/courseservice/` [REQ-012], [REQ-013], [REQ-014], [REQ-015], [REQ-016], [REQ-017], [REQ-018], [REQ-019], [REQ-020], [REQ-021], [REQ-022]
-- `./sources/docs/architecture/course-service.md` [REQ-012], [REQ-013], [REQ-014], [REQ-015], [REQ-016], [REQ-017], [REQ-018], [REQ-019], [REQ-020], [REQ-021], [REQ-022]
-- `./sources/backend/course-service/src/main/resources/db/migration/V2__create_courses_enrollments_attendance_studentcards.sql` [DAT-003], [DAT-004], [DAT-005], [DAT-006], [DAT-007]
-- `./sources/backend/course-service/src/test/java/org/nlh4j/saas/membershiphub/courseservice/` [REQ-012], [REQ-013], [REQ-014], [REQ-015], [REQ-016], [REQ-017], [REQ-018], [REQ-019], [REQ-020], [REQ-021], [REQ-022]
+- **NGÀY 3:**
+  - **[Coder]** [REQ-003], [ARC-001] ./sources/backend/user-management/RoleService.java Triển khai gán vai trò người dùng, áp dụng RBAC, và ghi lại lịch sử thay đổi vai trò.
+  - **[Tester]** [REQ-003], [ARC-001] ./sources/backend/user-management/RoleServiceTest.java;./sources/backend/user-management/RoleService.java Viết unit test cho gán vai trò, bao gồm kiểm tra quyền truy cập.
+  - **[Doc]** [REQ-003], [ARC-001] ./sources/docs/RoleManagementGuide.md Soạn thảo hướng dẫn quản lý vai trò, bao gồm các quyền hạn theo từng vai trò.
+  - **[Reviewer]** [REQ-003], [ARC-001] ./sources/backend/user-management/RoleService.java Đánh giá việc thực thi RBAC, đảm bảo cách ly đa trung tâm.
 
-### Đặc tả DDL SQL Schema Cơ sở Dữ liệu [DAT-003], [DAT-004], [DAT-005], [DAT-006], [DAT-007]
+- **NGÀY 4:**
+  - **[Coder]** [REQ-004], [REQ-005], [REQ-006], [DAT-002] ./sources/backend/center-management/CenterService.java Triển khai CRUD trung tâm, validation trùng taxId, và gán Center Admin cho trung tâm.
+  - **[Tester]** [REQ-004], [REQ-005], [REQ-006], [DAT-002] ./sources/backend/center-management/CenterServiceTest.java;./sources/backend/center-management/CenterService.java Viết integration test cho các thao tác trung tâm, bao gồm validation taxId và phân quyền.
+  - **[Doc]** [REQ-004], [REQ-005], [REQ-006], [DAT-002] ./sources/docs/CenterManagementGuide.md Soạn thảo tài liệu kỹ thuật cho API quản lý trung tâm.
+  - **[Reviewer]** [REQ-004], [REQ-005], [REQ-006], [DAT-002] ./sources/backend/center-management/CenterService.java Kiểm tra logic cách ly trung tâm, đảm bảo Center Admin chỉ truy cập trung tâm của mình.
+
+### 📈 Giai đoạn 2: Quản lý Khóa học, Ghi danh và Điểm danh
+
+- **Phase Core Objective & Purpose:** Triển khai các tính năng quản lý khóa học, ghi danh học viên, điểm danh qua QR, và quản lý thẻ hội viên với tính bất biến và hiệu lực.
+- **Target Physical Directory Matrix Map:**
+  * ./sources/backend/course-management/CourseEntity.java [REQ-007], [DAT-003]
+  * ./sources/backend/course-management/EnrollmentEntity.java [REQ-010], [DAT-004]
+  * ./sources/backend/attendance/AttendanceEntity.java [REQ-012], [DAT-005]
+  * ./sources/backend/membership/MembershipCardEntity.java [REQ-014], [DAT-006]
+  * ./sources/docs/CourseManagementGuide.md [DAT-003], [REQ-007]
+- **Đặc tả DDL SQL Lược đồ Cơ sở Dữ liệu [DAT-003], [DAT-004], [DAT-005], [DAT-006]:**
 ```sql
 CREATE TABLE COURSES (
     courseId UUID PRIMARY KEY,
@@ -185,462 +182,273 @@ CREATE TABLE COURSES (
     description TEXT,
     startDate DATE NOT NULL,
     endDate DATE NOT NULL,
-    teacherId UUID NOT NULL,
+    teacherId UUID NOT NULL REFERENCES USERS(userId),
     maxStudents INT NOT NULL DEFAULT 30
 );
 
 CREATE TABLE ENROLLMENTS (
     enrollmentId UUID PRIMARY KEY,
-    studentId UUID NOT NULL,
-    courseId UUID NOT NULL,
-    enrollmentDate TIMESTAMP NOT NULL DEFAULT NOW(),
-    FOREIGN KEY (studentId) REFERENCES USERS(userId),
-    FOREIGN KEY (courseId) REFERENCES COURSES(courseId)
+    studentId UUID NOT NULL REFERENCES USERS(userId),
+    courseId UUID NOT NULL REFERENCES COURSES(courseId),
+    enrollmentDate TIMESTAMP NOT NULL DEFAULT NOW()
 );
 
 CREATE TABLE ATTENDANCE (
     attendanceId UUID PRIMARY KEY,
-    studentId UUID NOT NULL,
-    courseId UUID NOT NULL,
+    studentId UUID NOT NULL REFERENCES USERS(userId),
+    courseId UUID NOT NULL REFERENCES COURSES(courseId),
     attendanceDate DATE NOT NULL,
-    timestamp TIMESTAMP NOT NULL DEFAULT NOW(),
-    UNIQUE (studentId, courseId, attendanceDate),
-    FOREIGN KEY (studentId) REFERENCES USERS(userId),
-    FOREIGN KEY (courseId) REFERENCES COURSES(courseId)
+    timestamp TIMESTAMP NOT NULL DEFAULT NOW()
 );
 
 CREATE TABLE STUDENTCARDS (
     cardId UUID PRIMARY KEY,
-    studentId UUID NOT NULL,
+    studentId UUID NOT NULL REFERENCES USERS(userId),
     issueDate DATE NOT NULL,
     validityDays INT NOT NULL,
-    remainingDays INT NOT NULL,
-    FOREIGN KEY (studentId) REFERENCES USERS(userId)
+    remainingDays INT NOT NULL
 );
 ```
-
-### Hợp đồng Định tuyến API và Sự kiện [REQ-012], [REQ-013], [REQ-014], [REQ-015], [REQ-016], [REQ-017], [REQ-018], [REQ-019], [REQ-020], [REQ-021], [REQ-022]
+- **Hợp đồng Định tuyến API và Sự kiện [REQ-007], [REQ-008], [REQ-009], [ARC-007]:**
 ```json
+// GET /api/v1/courses
 {
-  "endpoints": [
-    {
-      "path": "/api/courses",
-      "method": "GET",
-      "response": {
-        "type": "array",
-        "items": {
-          "type": "object",
-          "properties": {
-            "courseId": {"type": "string"},
-            "title": {"type": "string"},
-            "startDate": {"type": "string", "format": "date"},
-            "endDate": {"type": "string", "format": "date"},
-            "teacherName": {"type": "string"}
-          }
-        }
-      }
-    },
-    {
-      "path": "/api/courses",
-      "method": "POST",
-      "request": {
-        "type": "object",
-        "properties": {
-          "title": {"type": "string"},
-          "startDate": {"type": "string", "format": "date"},
-          "endDate": {"type": "string", "format": "date"},
-          "teacherId": {"type": "string"}
-        },
-        "required": ["title", "startDate", "endDate", "teacherId"]
-      },
-      "response": {
-        "type": "object",
-        "properties": {
-          "courseId": {"type": "string"}
-        }
-      }
-    }
-  ],
-  "events": [
-    {
-      "topic": "course.created",
-      "schema": {
-        "type": "object",
-        "properties": {
-          "courseId": {"type": "string"},
-          "title": {"type": "string"}
-        }
-      }
-    }
+  "courses": [
+    {"courseId":"uuid","title":"Lập trình Java","startDate":"2024-09-01","endDate":"2024-12-31","teacherName":"Nguyen A"}
   ]
 }
 ```
+```json
+// POST /api/v1/courses
+{
+  "title":"Lập trình Python",
+  "description":"Khóa học về Python",
+  "startDate":"2024-10-01",
+  "endDate":"2024-12-31",
+  "teacherId":"uuid_of_teacher"
+}
+```
+```json
+// POST /api/v1/attendance/scan
+{
+  "studentId":"uuid",
+  "courseId":"uuid",
+  "timestamp":"2024-09-01T08:00:00Z"
+}
+```
+- **Xử lý Ngoại lệ theo Ngôn ngữ [EXC-001], [EXC-002]:**
+  * Nếu sinh viên quét QR nhưng không có kết nối mạng, ứng dụng lưu yêu cầu locally và đồng bộ khi có kết nối; hệ thống thông báo cho sinh viên về trạng thái.
+  * Nếu sinh viên quét QR nhiều lần trong cùng ngày, chỉ ghi lại một bản ghi điểm danh; các lần quét sau trả về success với cờ duplicate.
 
-### Xử lý ngoại lệ [EXC-001], [EXC-002], [EXC-003], [EXC-004], [EXC-005]
-- **EXC-001**: Xác thực dữ liệu không hợp lệ → Trả lỗi 400.
-- **EXC-002**: Trùng lịch học của giáo viên → Trả lỗi 409.
-- **EXC-003**: Lỗi ghi database → Trả lỗi 500.
-- **EXC-004**: Lỗi JWT expired → Trả lỗi 401.
-- **EXC-005**: Lỗi đăng ký học viên đã tồn tại → Trả lỗi 409.
+#### Chronological Day-by-Day Sub-Agent Task Distribution Logs (Giai đoạn 2)
 
-## Đặc tả Kiến trúc Chi tiết Giai đoạn 3
+- **NGÀY 1:**
+  - **[Coder]** [REQ-007], [DAT-003] ./sources/backend/course-management/CourseService.java Triển khai CRUD khóa học, validation xung đột lịch với giáo viên.
+  - **[Tester]** [REQ-007], [DAT-003] ./sources/backend/course-management/CourseServiceTest.java;./sources/backend/course-management/CourseService.java Viết unit test cho CRUD khóa học, bao gồm kiểm tra trùng lịch.
+  - **[Doc]** [REQ-007], [DAT-003] ./sources/docs/CourseCRUDGuide.md Soạn thảo tài liệu kỹ thuật cho API khóa học.
+  - **[Reviewer]** [REQ-007], [DAT-003] ./sources/backend/course-management/CourseService.java Đánh giá logic validation, đảm bảo không có xung đột lịch.
 
-### Mục tiêu Cốt lõi & Mục đích của Giai đoạn 3
-Xử lý thông báo, push, Zalo, và quản lý khuyến mãi.
+- **NGÀY 2:**
+  - **[Coder]** [REQ-010], [REQ-011], [DAT-004] ./sources/backend/course-management/EnrollmentService.java Triển khai duyệt khóa học, ghi danh, tự động tạo tài khoản Student nếu thiếu.
+  - **[Tester]** [REQ-010], [REQ-011], [DAT-004] ./sources/backend/course-management/EnrollmentServiceTest.java;./sources/backend/course-management/EnrollmentService.java Viết integration test cho ghi danh, bao gồm kiểm tra capacity.
+  - **[Doc]** [REQ-010], [REQ-011], [DAT-004] ./sources/docs/EnrollmentGuide.md Soạn thảo hướng dẫn ghi danh khóa học.
+  - **[Reviewer]** [REQ-010], [REQ-011], [DAT-004] ./sources/backend/course-management/EnrollmentService.java Kiểm tra logic tạo tài khoản, đảm bảo vai trò Student được gán đúng.
 
-### Bản đồ Ma trận Thư mục Vật lý Mục tiêu
-- `./sources/backend/notification-service/src/main/java/org/nlh4j/saas/membershiphub/notificationservice/` [REQ-023], [REQ-024], [EXC-001], [EXC-002], [EXC-003], [EXC-004], [EXC-005], [DAT-001], [DAT-002], [DAT-003], [DAT-004], [DAT-005]
-- `./sources/docs/architecture/notification-service.md` [REQ-023], [REQ-024], [EXC-001], [EXC-002], [EXC-003], [EXC-004], [EXC-005], [DAT-001], [DAT-002], [DAT-003], [DAT-004], [DAT-005]
-- `./sources/backend/notification-service/src/main/resources/db/migration/V3__create_notifications.sql` [DAT-008]
-- `./sources/backend/notification-service/src/test/java/org/nlh4j/saas/membershiphub/notificationservice/` [REQ-023], [REQ-024], [EXC-001], [EXC-002], [EXC-003], [EXC-004], [EXC-005], [DAT-001], [DAT-002], [DAT-003], [DAT-004], [DAT-005]
+- **NGÀY 3:**
+  - **[Coder]** [REQ-012], [REQ-013], [DAT-005] ./sources/backend/attendance/AttendanceService.java Triển khai quét QR điểm danh, đảm bảo tính bất biến cho cùng studentId, courseId, attendanceDate.
+  - **[Tester]** [REQ-012], [REQ-013], [DAT-005] ./sources/backend/attendance/AttendanceServiceTest.java;./sources/backend/attendance/AttendanceService.java Viết unit test cho điểm danh, bao gồm duplicate detection.
+  - **[Doc]** [REQ-012], [REQ-013], [DAT-005] ./sources/docs/AttendanceGuide.md Soạn thảo tài liệu kỹ thuật cho API điểm danh.
+  - **[Reviewer]** [REQ-012], [REQ-013], [DAT-005] ./sources/backend/attendance/AttendanceService.java Đánh giá logic duplicate, đảm bảo chỉ một bản ghi được tạo.
 
-### Đặc tả DDL SQL Schema Cơ sở Dữ liệu [DAT-008]
+- **NGÀY 4:**
+  - **[Coder]** [REQ-014], [REQ-015], [DAT-006] ./sources/backend/membership/MembershipCardService.java Triển khai hiển thị ngày hiệu lực thẻ, xử lý gia hạn thẻ qua payment gateway.
+  - **[Tester]** [REQ-014], [REQ-015], [DAT-006] ./sources/backend/membership/MembershipCardServiceTest.java;./sources/backend/membership/MembershipCardService.java Viết unit test cho hiển thị thẻ và gia hạn.
+  - **[Doc]** [REQ-014], [REQ-015], [DAT-006] ./sources/docs/MembershipCardGuide.md Soạn thảo tài liệu kỹ thuật cho thẻ hội viên.
+  - **[Reviewer]** [REQ-014], [REQ-015], [DAT-006] ./sources/backend/membership/MembershipCardService.java Kiểm tra logic tính remainingDays, đảm bảo gia hạn cập nhật đúng EndDate.
+
+### 📈 Giai đoạn 3: Quản lý Thông báo, Khuyến mãi và Chatbot
+
+- **Phase Core Objective & Purpose:** Triển khai hệ thống thông báo đa kênh, quản lý khuyến mãi và thông báo, tích hợp chatbot AI, và push notification cho di động.
+- **Target Physical Directory Matrix Map:**
+  * ./sources/backend/notification-management/NotificationEntity.java [REQ-016], [DAT-007]
+  * ./sources/backend/promotion/PromotionEntity.java [REQ-017], [DAT-008]
+  * ./sources/backend/announcement/AnnouncementEntity.java [REQ-018], [DAT-008]
+  * ./sources/backend/chatbot/ChatbotService.java [REQ-019], [NOT APPLICABLE]
+  * ./sources/docs/NotificationGuide.md [DAT-007], [REQ-016]
+- **Đặc tả DDL SQL Lược đồ Cơ sở Dữ liệu [DAT-007], [DAT-008]:**
 ```sql
 CREATE TABLE NOTIFICATIONS (
     notificationId UUID PRIMARY KEY,
     userId UUID,
-    groupZalo VARCHAR(255),
+    groupZalo VARCHAR(100),
     message TEXT NOT NULL,
     sentAt TIMESTAMP NOT NULL DEFAULT NOW(),
-    delivered BOOLEAN NOT NULL DEFAULT FALSE,
-    FOREIGN KEY (userId) REFERENCES USERS(userId)
-);
-```
-
-### Hợp đồng Định tuyến API và Sự kiện [REQ-023], [REQ-024], [EXC-001], [EXC-002], [EXC-003], [EXC-004], [EXC-005], [DAT-001], [DAT-002], [DAT-003], [DAT-004], [DAT-005]
-```json
-{
-  "endpoints": [
-    {
-      "path": "/api/notifications",
-      "method": "POST",
-      "request": {
-        "type": "object",
-        "properties": {
-          "userId": {"type": "string"},
-          "message": {"type": "string"},
-          "groupZalo": {"type": "string"}
-        },
-        "required": ["message"]
-      },
-      "response": {
-        "type": "object",
-        "properties": {
-          "notificationId": {"type": "string"}
-        }
-      }
-    }
-  ],
-  "events": [
-    {
-      "topic": "notification.sent",
-      "schema": {
-        "type": "object",
-        "properties": {
-          "notificationId": {"type": "string"},
-          "userId": {"type": "string"}
-        }
-      }
-    }
-  ]
-}
-```
-
-### Xử lý ngoại lệ [EXC-001], [EXC-002], [EXC-003], [EXC-004], [EXC-005]
-- **EXC-001**: Thông báo không hợp lệ → Trả lỗi 400.
-- **EXC-002**: Lỗi gửi push → Trả lỗi 500.
-- **EXC-003**: Lỗi gửi Zalo → Trả lỗi 500.
-- **EXC-004**: Lỗi ghi database → Trả lỗi 500.
-- **EXC-005**: Lỗi JWT expired → Trả lỗi 401.
-
-## Đặc tả Kiến trúc Chi tiết Giai đoạn 4
-
-### Mục tiêu Cốt lõi & Mục đích của Giai đoạn 4
-Containerization, CI/CD, GKE deployment, Terraform.
-
-### Bản đồ Ma trận Thư mục Vật lý Mục tiêu
-- `./sources/infra/docker/Dockerfile` [DAT-006], [DAT-007], [DAT-008], [DAT-009], [NFR-001], [NFR-002], [NFR-003], [NFR-004], [NFR-005], [NFR-006], [NFR-007], [NFR-008]
-- `./sources/infra/terraform/main.tf` [DAT-006], [DAT-007], [DAT-008], [DAT-009], [NFR-001], [NFR-002], [NFR-003], [NFR-004], [NFR-005], [NFR-006], [NFR-007], [NFR-008]
-- `./sources/infra/gke/deployment.yaml` [DAT-006], [DAT-007], [DAT-008], [DAT-009], [NFR-001], [NFR-002], [NFR-003], [NFR-004], [NFR-005], [NFR-006], [NFR-007], [NFR-008]
-- `./sources/infra/github-actions/workflows/ci.yml` [DAT-006], [DAT-007], [DAT-008], [DAT-009], [NFR-001], [NFR-002], [NFR-003], [NFR-004], [NFR-005], [NFR-006], [NFR-007], [NFR-008]
-
-## Đặc tả Kiến trúc Chi tiết Giai đoạn 5
-
-### Mục tiêu Cốt lõi & Mục đích của Giai đoạn 5
-Reporting, analytics, mobile compliance, i18n, SEO.
-
-### Bản đồ Ma trận Thư mục Vật lý Mục tiêu
-- `./sources/backend/reporting-service/src/main/java/org/nlh4j/saas/membershiphub/reportingservice/` [NFR-009], [ARC-001], [ARC-002], [ARC-003], [ARC-004], [ARC-005], [ARC-006], [ARC-007], [ARC-008], [ARC-009], [ARC-010]
-- `./sources/docs/architecture/reporting-service.md` [NFR-009], [ARC-001], [ARC-002], [ARC-003], [ARC-004], [ARC-005], [ARC-006], [ARC-007], [ARC-008], [ARC-009], [ARC-010]
-- `./sources/frontend/mobile-app/src/main/java/com/membershiphub/mobile/` [NFR-009], [ARC-001], [ARC-002], [ARC-003], [ARC-004], [ARC-005], [ARC-006], [ARC-007], [ARC-008], [ARC-009], [ARC-010]
-- `./sources/frontend/mobile-app/src/test/java/com/membershiphub/mobile/` [NFR-009], [ARC-001], [ARC-002], [ARC-003], [ARC-004], [ARC-005], [ARC-006], [ARC-007], [ARC-008], [ARC-009], [ARC-010]
-
-### Hợp đồng Định tuyến API và Sự kiện [NFR-009], [ARC-001], [ARC-002], [ARC-003], [ARC-004], [ARC-005], [ARC-006], [ARC-007], [ARC-008], [ARC-009], [ARC-010]
-```json
-{
-  "endpoints": [
-    {
-      "path": "/api/reports/attendance",
-      "method": "GET",
-      "query": {
-        "centerId": {"type": "string"},
-        "date": {"type": "string", "format": "date"}
-      },
-      "response": {
-        "type": "array",
-        "items": {
-          "type": "object",
-          "properties": {
-            "studentName": {"type": "string"},
-            "courseName": {"type": "string"},
-            "attendanceDate": {"type": "string", "format": "date"},
-            "status": {"type": "string"}
-          }
-        }
-      }
-    }
-  ],
-  "events": [
-    {
-      "topic": "report.generated",
-      "schema": {
-        "type": "object",
-        "properties": {
-          "reportId": {"type": "string"},
-          "centerId": {"type": "string"}
-        }
-      }
-    }
-  ]
-}
-```
-
-## Đặc tả Kiến trúc Chi tiết Giai đoạn 1 – Ngày 1
-
-- **Ngày 1**: Xây dựng mô hình dữ liệu người dùng và vai trò.
-  * **Sub-Agent Workflow Specialization:** `[Coder]`
-  * **Targeted Tag IDs:** [REQ-001], [REQ-002], [REQ-003], [DAT-001], [DAT-002]
-  * **Target Component file path (`target_component`):** `./sources/backend/user-service/src/main/java/org/nlh4j/saas/membershiphub/userservice/UserService.java` [REQ-001], [REQ-002], [REQ-003]
-  * **Low-Level Technical Task Instruction:** Thiết kế lớp `User`, `Role`, repository, service, và controller. Đảm bảo kiểm tra email duy nhất, hash mật khẩu bằng BCrypt, và tạo JWT. [REQ-001], [REQ-002], [REQ-003]
-
-### Đặc tả DDL SQL Schema Cơ sở Dữ liệu [DAT-001], [DAT-002]
-```sql
-CREATE TABLE USERS (
-    userId UUID PRIMARY KEY,
-    email VARCHAR(255) NOT NULL UNIQUE,
-    passwordHash VARCHAR(60) NOT NULL,
-    fullName VARCHAR(100) NOT NULL,
-    roleId SMALLINT NOT NULL,
-    provider VARCHAR(20) NOT NULL DEFAULT 'local',
-    createdAt TIMESTAMP NOT NULL DEFAULT NOW(),
-    updatedAt TIMESTAMP NOT NULL DEFAULT NOW()
+    delivered BOOLEAN NOT NULL DEFAULT FALSE
 );
 
-CREATE TABLE ROLES (
-    roleId SMALLINT PRIMARY KEY,
-    name VARCHAR(30) NOT NULL UNIQUE,
-    description VARCHAR(200)
+CREATE TABLE PROMOTIONS (
+    promoId UUID PRIMARY KEY,
+    code VARCHAR(30) NOT NULL UNIQUE,
+    discountPercent SMALLINT NOT NULL,
+    startDate DATE,
+    endDate DATE,
+    description TEXT
 );
 
-ALTER TABLE USERS ADD CONSTRAINT fk_user_role FOREIGN KEY (roleId) REFERENCES ROLES(roleId);
-```
-
-## Đặc tả Kiến trúc Chi tiết Giai đoạn 1 – Ngày 2
-
-- **Ngày 2**: Xây dựng endpoint đăng ký và login.
-  * **Sub-Agent Workflow Specialization:** `[Coder]`
-  * **Targeted Tag IDs:** [REQ-001], [REQ-002], [REQ-003]
-  * **Target Component file path (`target_component`):** `./sources/backend/user-service/src/main/java/org/nlh4j/saas/membershiphub/userservice/UserController.java` [REQ-001], [REQ-002], [REQ-003]
-  * **Low-Level Technical Task Instruction:** Tạo endpoint `/api/users/register` và `/api/users/login`. Sử dụng DTO, validation, và trả về JWT. [REQ-001], [REQ-002], [REQ-003]
-
-## Đặc tả Kiến trúc Chi tiết Giai đoạn 1 – Ngày 3
-
-- **Ngày 3**: Xây dựng endpoint phân quyền và quản lý trung tâm.
-  * **Sub-Agent Workflow Specialization:** `[Coder]`
-  * **Targeted Tag IDs:** [REQ-004], [REQ-005], [REQ-006]
-  * **Target Component file path (`target_component`):** `./sources/backend/user-service/src/main/java/org/nlh4j/saas/membershiphub/userservice/CenterController.java` [REQ-004], [REQ-005], [REQ-006]
-  * **Low-Level Technical Task Instruction:** Tạo endpoint `/api/centers`, `/api/centers/{id}`, và `/api/centers/{id}/admins`. Sử dụng DTO, validation, và kiểm tra quyền RBAC. [REQ-004], [REQ-005], [REQ-006]
-
-## Đặc tả Kiến trúc Chi tiết Giai đoạn 1 – Ngày 4
-
-- **Ngày 4**: Kiểm thử đơn vị và tích hợp cho user-service.
-  * **Sub-Agent Workflow Specialization:** `[Tester]`
-  * **Targeted Tag IDs:** [REQ-001], [REQ-002], [REQ-003], [REQ-004], [REQ-005], [REQ-006]
-  * **Target Component file path (`target_component`):** `./sources/backend/user-service/src/test/java/org/nlh4j/saas/membershiphub/userservice/UserServiceTest.java;./sources/backend/user-service/src/test/java/org/nlh4j/saas/membershiphub/userservice/UserControllerTest.java` [REQ-001], [REQ-002], [REQ-003], [REQ-004], [REQ-005], [REQ-006]
-  * **Low-Level Technical Task Instruction:** Viết JUnit 5 test cho service và controller, mock repository, kiểm tra validation, và xác thực JWT. [REQ-001], [REQ-002], [REQ-003], [REQ-004], [REQ-005], [REQ-006]
-
-## Đặc tả Kiến trúc Chi tiết Giai đoạn 2 – Ngày 1
-
-- **Ngày 1**: Xây dựng mô hình dữ liệu khóa học và học viên.
-  * **Sub-Agent Workflow Specialization:** `[Coder]`
-  * **Targeted Tag IDs:** [REQ-012], [REQ-013], [REQ-014], [DAT-003], [DAT-004]
-  * **Target Component file path (`target_component`):** `./sources/backend/course-service/src/main/java/org/nlh4j/saas/membershiphub/courseservice/CourseService.java` [REQ-012], [REQ-013], [REQ-014]
-  * **Low-Level Technical Task Instruction:** Thiết kế lớp `Course`, `Enrollment`, `Attendance`, `StudentCard`, repository, service, và controller. Đảm bảo kiểm tra lịch trùng, khóa học trùng, và tính hợp lệ. [REQ-012], [REQ-013], [REQ-014]
-
-### Đặc tả DDL SQL Schema Cơ sở Dữ liệu [DAT-003], [DAT-004]
-```sql
-CREATE TABLE COURSES (
-    courseId UUID PRIMARY KEY,
+CREATE TABLE ANNOUNCEMENTS (
+    announcementId UUID PRIMARY KEY,
     title VARCHAR(150) NOT NULL,
-    description TEXT,
-    startDate DATE NOT NULL,
-    endDate DATE NOT NULL,
-    teacherId UUID NOT NULL,
-    maxStudents INT NOT NULL DEFAULT 30
+    content TEXT NOT NULL,
+    startDate DATE,
+    endDate DATE
 );
 ```
+- **Hợp đồng Định tuyến API và Sự kiện [REQ-016], [REQ-017], [REQ-018], [ARC-008]:**
+```json
+// POST /api/v1/notifications
+{
+  "userId":"uuid",
+  "groupZalo":"ZaloGroup123",
+  "message":"Chào mừng bạn đến với trung tâm!"
+}
+```
+```json
+// POST /api/v1/promotions
+{
+  "code":"SUMMER20",
+  "discountPercent":20,
+  "startDate":"2024-06-01",
+  "endDate":"2024-08-31",
+  "description":"Giảm giá 20% cho tất cả khóa học"
+}
+```
+```json
+// POST /api/v1/announcements
+{
+  "title":"Thông báo quan trọng",
+  "content":"Hệ thống bảo trì vào cuối tuần.",
+  "startDate":"2024-09-01",
+  "endDate":"2024-09-02"
+}
+```
+- **Xử lý Ngoại lệ theo Ngôn ngữ [EXC-003]:**
+  * Nếu push notification không thể gửi (ví dụ: device token không hợp lệ), hệ thống ghi lại lỗi, lên lịch thử lại tối đa 3 lần, sau đó đánh dấu là thất bại.
 
-## Đặc tả Kiến trúc Chi tiết Giai đoạn 2 – Ngày 2
+#### Chronological Day-by-Day Sub-Agent Task Distribution Logs (Giai đoạn 3)
 
-- **Ngày 2**: Xây dựng endpoint quản lý khóa học và học viên.
-  * **Sub-Agent Workflow Specialization:** `[Coder]`
-  * **Targeted Tag IDs:** [REQ-012], [REQ-013], [REQ-014], [DAT-003], [DAT-004]
-  * **Target Component file path (`target_component`):** `./sources/backend/course-service/src/main/java/org/nlh4j/saas/membershiphub/courseservice/CourseController.java` [REQ-012], [REQ-013], [REQ-014]
-  * **Low-Level Technical Task Instruction:** Tạo endpoint `/api/courses`, `/api/courses/{id}`, `/api/courses/{id}/enroll`, `/api/courses/{id}/attendance`. Kiểm tra lịch trùng, khóa học trùng, và xác thực quyền. [REQ-012], [REQ-013], [REQ-014]
+- **NGÀY 1:**
+  - **[Coder]** [REQ-016], [DAT-007] ./sources/backend/notification-management/NotificationService.java Triển khai tạo bản ghi thông báo, đẩy push notification qua FCM/APNs, và gửi bài lên Zalo group.
+  - **[Tester]** [REQ-016], [DAT-007] ./sources/backend/notification-management/NotificationServiceTest.java;./sources/backend/notification-management/NotificationService.java Viết integration test cho gửi thông báo đa kênh.
+  - **[Doc]** [REQ-016], [DAT-007] ./sources/docs/NotificationServiceGuide.md Soạn thảo tài liệu kỹ thuật cho API thông báo.
+  - **[Reviewer]** [REQ-016], [DAT-007] ./sources/backend/notification-management/NotificationService.java Đánh giá logic gửi notification, đảm bảo retry mechanism.
 
-## Đặc tả Kiến trúc Chi tiết Giai đoạn 2 – Ngày 3
+- **NGÀY 2:**
+  - **[Coder]** [REQ-017], [REQ-018], [DAT-008] ./sources/backend/promotion/PromotionService.java Triển khai CRUD khuyến mãi và thông báo, bao gồm validation ngày hiệu lực.
+  - **[Tester]** [REQ-017], [REQ-018], [DAT-008] ./sources/backend/promotion/PromotionServiceTest.java;./sources/backend/promotion/PromotionService.java Viết unit test cho CRUD khuyến mãi và thông báo.
+  - **[Doc]** [REQ-017], [REQ-018], [DAT-008] ./sources/docs/PromotionAnnouncementGuide.md Soạn thảo tài liệu kỹ thuật cho API khuyến mãi và thông báo.
+  - **[Reviewer]** [REQ-017], [REQ-018], [DAT-008] ./sources/backend/promotion/PromotionService.java Kiểm tra logic expiration, đảm bảo hiển thị đúng theo ngày.
 
-- **Ngày 3**: Xây dựng endpoint đăng ký học viên và điểm danh.
-  * **Sub-Agent Workflow Specialization:** `[Coder]`
-  * **Targeted Tag IDs:** [REQ-010], [REQ-011], [DAT-005], [DAT-006]
-  * **Target Component file path (`target_component`):** `./sources/backend/course-service/src/main/java/org/nlh4j/saas/membershiphub/courseservice/EnrollmentController.java` [REQ-010], [REQ-011]
-  * **Low-Level Technical Task Instruction:** Tạo endpoint `/api/enrollments`, `/api/attendance/scan`. Kiểm tra học viên đã tồn tại, tạo tài khoản, và ghi điểm danh. [REQ-010], [REQ-011]
+- **NGÀY 3:**
+  - **[Coder]** [REQ-019], [NOT APPLICABLE] ./sources/backend/chatbot/ChatbotService.java Triển khai tích hợp chatbot AI, trả lời truy vấn về khóa học, giáo viên, trung tâm, và chuyển đến hỗ trợ người thật nếu cần.
+  - **[Tester]** [REQ-019], [NOT APPLICABLE] ./sources/backend/chatbot/ChatbotServiceTest.java;./sources/backend/chatbot/ChatbotService.java Viết unit test cho phản hồi chatbot, bao gồm confidence scoring.
+  - **[Doc]** [REQ-019], [NOT APPLICABLE] ./sources/docs/ChatbotGuide.md Soạn thảo tài liệu kỹ thuật cho API chatbot.
+  - **[Reviewer]** [REQ-019], [NOT APPLICABLE] ./sources/backend/chatbot/ChatbotService.java Đánh giá chất lượng phản hồi, đảm bảo tuân thủ chính sách bảo mật.
 
-## Đặc tả Kiến trúc Chi tiết Giai đoạn 2 – Ngày 4
+### 📈 Giai đoạn 4: Di động, Quốc tế hóa và Báo cáo
 
-- **Ngày 4**: Kiểm thử đơn vị và tích hợp cho course-service.
-  * **Sub-Agent Workflow Specialization:** `[Tester]`
-  * **Targeted Tag IDs:** [REQ-012], [REQ-013], [REQ-014], [REQ-010], [REQ-011], [DAT-003], [DAT-004], [DAT-005], [DAT-006]
-  * **Target Component file path (`target_component`):** `./sources/backend/course-service/src/test/java/org/nlh4j/saas/membershiphub/courseservice/CourseServiceTest.java;./sources/backend/course-service/src/test/java/org/nlh4j/saas/membershiphub/courseservice/EnrollmentControllerTest.java` [REQ-012], [REQ-013], [REQ-014], [REQ-010], [REQ-011], [DAT-003], [DAT-004], [DAT-005], [DAT-006]
-  * **Low-Level Technical Task Instruction:** Viết JUnit 5 test cho service và controller, mock repository, kiểm tra validation, và xác thực quyền. [REQ-012], [REQ-013], [REQ-014], [REQ-010], [REQ-011]
-
-## Đặc tả Kiến trúc Chi tiết Giai đoạn 3 – Ngày 1
-
-- **Ngày 1**: Xây dựng mô hình dữ liệu thông báo.
-  * **Sub-Agent Workflow Specialization:** `[Coder]`
-  * **Targeted Tag IDs:** [REQ-023], [REQ-024], [DAT-008]
-  * **Target Component file path (`target_component`):** `./sources/backend/notification-service/src/main/java/org/nlh4j/saas/membershiphub/notificationservice/NotificationService.java` [REQ-023], [REQ-024]
-  * **Low-Level Technical Task Instruction:** Thiết kế lớp `Notification`, repository, service, và controller. Đảm bảo gửi push và Zalo. [REQ-023], [REQ-024]
-
-### Đặc tả DDL SQL Schema Cơ sở Dữ liệu [DAT-008]
+- **Phase Core Objective & Purpose:** Triển khai giao diện người dùng di động responsive, hỗ trợ đa ngôn ngữ, SEO, tạo báo cáo điểm danh, bảng điều khiển, và hardening bảo mật cho hệ thống.
+- **Target Physical Directory Matrix Map:**
+  * ./sources/frontend/nextjs/pages/[locale]/courses.tsx [REQ-007], [REQ-022]
+  * ./sources/mobile/capacitor/src/app/App.tsx [REQ-020], [REQ-021]
+  * ./sources/infra/docker/QuarkusDockerfile [ARC-010]
+  * ./sources/infra/k8s/GKE-deployment.yaml [ARC-010]
+  * ./sources/docs/ReportingGuide.md [REQ-024], [REQ-025]
+- **Đặc tả DDL SQL Lược đồ Cơ sở Dữ liệu [DAT-009]:**
 ```sql
-CREATE TABLE NOTIFICATIONS (
-    notificationId UUID PRIMARY KEY,
-    userId UUID,
-    groupZalo VARCHAR(255),
-    message TEXT NOT NULL,
-    sentAt TIMESTAMP NOT NULL DEFAULT NOW(),
-    delivered BOOLEAN NOT NULL DEFAULT FALSE,
-    FOREIGN KEY (userId) REFERENCES USERS(userId)
+CREATE TABLE SYSTEMSETTINGS (
+    settingKey VARCHAR(100) PRIMARY KEY,
+    settingValue TEXT NOT NULL,
+    description TEXT
 );
 ```
+- **Hợp đồng Định tuyến API và Sự kiện [REQ-022], [REQ-023], [REQ-024], [REQ-025], [ARC-009]:**
+```json
+// GET /api/v1/reports/attendance?centerId=uuid&date=2024-09-01
+{
+  "attendanceRecords": [
+    {"studentName":"Nguyen A","courseName":"Lập trình Java","attendanceDate":"2024-09-01","status":"present"}
+  ]
+}
+```
+```json
+// GET /api/v1/dashboard/center?centerId=uuid
+{
+  "totalStudents":150,
+  "activeCourses":12,
+  "upcomingSessions":5
+}
+```
+- **Xử lý Ngoại lệ theo Ngôn ngữ [EXC-005]:**
+  * Nếu dịch vụ không khả dụng, các yêu cầu điểm danh chờ xử lý được ghi lại, và khi dịch vụ phục hồi, chúng được xử lý theo thứ tự FIFO; người dùng nhận thông báo về các sự kiện đã phục hồi.
 
-## Đặc tả Kiến trúc Chi tiết Giai đoạn 3 – Ngày 2
+#### Chronological Day-by-Day Sub-Agent Task Distribution Logs (Giai đoạn 4)
 
-- **Ngày 2**: Xây dựng endpoint gửi thông báo.
-  * **Sub-Agent Workflow Specialization:** `[Coder]`
-  * **Targeted Tag IDs:** [REQ-023], [REQ-024], [EXC-001], [EXC-002], [EXC-003], [EXC-004], [EXC-005]
-  * **Target Component file path (`target_component`):** `./sources/backend/notification-service/src/main/java/org/nlh4j/saas/membershiphub/notificationservice/NotificationController.java` [REQ-023], [REQ-024]
-  * **Low-Level Technical Task Instruction:** Tạo endpoint `/api/notifications`, xử lý payload, gọi Firebase Cloud Messaging và Zalo API, lưu vào DB. [REQ-023], [REQ-024]
+- **NGÀY 1:**
+  - **[Coder]** [REQ-022], [REQ-023], [ARC-009] ./sources/frontend/nextjs/pages/[locale]/courses.tsx Triển khai giao diện duyệt khóa học đa ngôn ngữ, tích hợp SEO meta tags và hreflang.
+  - **[Tester]** [REQ-022], [REQ-023], [ARC-009] ./sources/frontend/nextjs/pages/[locale]/courses.spec.ts;./sources/frontend/nextjs/pages/[locale]/courses.tsx Viết E2E test cho giao diện đa ngôn ngữ và SEO.
+  - **[Doc]** [REQ-022], [REQ-023], [ARC-009] ./sources/docs/InternationalizationGuide.md Soạn thảo tài liệu kỹ thuật cho i18n và SEO.
+  - **[Reviewer]** [REQ-022], [REQ-023], [ARC-009] ./sources/frontend/nextjs/pages/[locale]/courses.tsx Đánh giá việc render locale, đảm bảo SEO tags đúng định dạng.
 
-## Đặc tả Kiến trúc Chi tiết Giai đoạn 3 – Ngày 3
+- **NGÀY 2:**
+  - **[Coder]** [REQ-020], [REQ-021], [ARC-009] ./sources/mobile/capacitor/src/app/App.tsx Triển khai navigation role-based cho mobile, đăng ký device token cho push notification.
+  - **[Tester]** [REQ-020], [REQ-021], [ARC-009] ./sources/mobile/capacitor/src/app/App.spec.ts;./sources/mobile/capacitor/src/app/App.tsx Viết unit test cho navigation mobile và đăng ký token.
+  - **[Doc]** [REQ-020], [REQ-021], [ARC-009] ./sources/docs/MobileAppGuide.md Soạn thảo tài liệu kỹ thuật cho ứng dụng di động.
+  - **[Reviewer]** [REQ-020], [REQ-021], [ARC-009] ./sources/mobile/capacitor/src/app/App.tsx Kiểm tra việc cách ly vai trò, đảm bảo bảo mật token.
 
-- **Ngày 3**: Xây dựng endpoint nhận sự kiện và xử lý ngoại lệ.
-  * **Sub-Agent Workflow Specialization:** `[Coder]`
-  * **Targeted Tag IDs:** [EXC-001], [EXC-002], [EXC-003], [EXC-004], [EXC-005]
-  * **Target Component file path (`target_component`):** `./sources/backend/notification-service/src/main/java/org/nlh4j/saas/membershiphub/notificationservice/NotificationExceptionHandler.java` [EXC-001], [EXC-002], [EXC-003], [EXC-004], [EXC-005]
-  * **Low-Level Technical Task Instruction:** Định nghĩa exception handler cho các lỗi validation, push, Zalo, DB, JWT. [EXC-001], [EXC-002], [EXC-003], [EXC-004], [EXC-005]
+- **NGÀY 3:**
+  - **[Coder]** [REQ-024], [REQ-025], [DAT-009] ./sources/backend/reporting/ReportingService.java Triển khai tạo báo cáo điểm danh CSV, và API bảng điều khiển.
+  - **[Tester]** [REQ-024], [REQ-025], [DAT-009] ./sources/backend/reporting/ReportingServiceTest.java;./sources/backend/reporting/ReportingService.java Viết integration test cho báo cáo và bảng điều khiển.
+  - **[Doc]** [REQ-024], [REQ-025], [DAT-009] ./sources/docs/ReportingDashboardGuide.md Soạn thảo tài liệu kỹ thuật cho API báo cáo.
+  - **[Reviewer]** [REQ-024], [REQ-025], [DAT-009] ./sources/backend/reporting/ReportingService.java Đánh giá hiệu suất query, đảm bảo định dạng CSV đúng.
 
-## Đặc tả Kiến trúc Chi tiết Giai đoạn 3 – Ngày 4
+- **NGÀY 4:**
+  - **[Coder]** [ARC-010], [NFR-005] ./sources/infra/docker/QuarkusDockerfile Triển khai multi-stage Dockerfile, giới hạn kích thước image <500MB.
+  - **[Tester]** [ARC-010], [NFR-005] ./sources/infra/docker/QuarkusDockerfile;./sources/infra/docker/QuarkusDockerfile Viết test cho quá trình build image, kiểm tra kích thước.
+  - **[Doc]** [ARC-010], [NFR-005] ./sources/docs/DevOpsGuide.md Soạn thảo tài liệu kỹ thuật cho containerization.
+  - **[Reviewer]** [ARC-010], [NFR-005] ./sources/infra/docker/QuarkusDockerfile Đánh giá Dockerfile, đảm bảo tuân thủ giới hạn kích thước.
 
-- **Ngày 4**: Kiểm thử đơn vị và tích hợp cho notification-service.
-  * **Sub-Agent Workflow Specialization:** `[Tester]`
-  * **Targeted Tag IDs:** [REQ-023], [REQ-024], [EXC-001], [EXC-002], [EXC-003], [EXC-004], [EXC-005], [DAT-008]
-  * **Target Component file path (`target_component`):** `./sources/backend/notification-service/src/test/java/org/nlh4j/saas/membershiphub/notificationservice/NotificationServiceTest.java;./sources/backend/notification-service/src/test/java/org/nlh4j/saas/membershiphub/notificationservice/NotificationControllerTest.java` [REQ-023], [REQ-024], [EXC-001], [EXC-002], [EXC-003], [EXC-004], [EXC-005], [DAT-008]
-  * **Low-Level Technical Task Instruction:** Viết JUnit 5 test cho service và controller, mock external APIs, kiểm tra exception handling. [REQ-023], [REQ-024], [EXC-001], [EXC-002], [EXC-003], [EXC-004], [EXC-005], [DAT-008]
+- **NGÀY 5:**
+  - **[Coder]** [ARC-010], [NFR-004] ./sources/infra/k8s/GKE-deployment.yaml Triển khai Kubernetes deployment manifest, cấu hình HPA dựa trên CPU và độ trễ.
+  - **[Tester]** [ARC-010], [NFR-004] ./sources/infra/k8s/GKE-deployment.yaml;./sources/infra/k8s/GKE-deployment.yaml Viết test cho manifest, đảm bảo scaling hoạt động.
+  - **[Doc]** [ARC-010], [NFR-004] ./sources/docs/K8sGuide.md Soạn thảo tài liệu kỹ thuật cho triển khai GKE.
+  - **[Reviewer]** [ARC-010], [NFR-004] ./sources/infra/k8s/GKE-deployment.yaml Kiểm tra cấu hình HPA, đảm bảo tuân thủ yêu cầu hiệu suất.
 
-## Đặc tả Kiến trúc Chi tiết Giai đoạn 4 – Ngày 1
+## 📁 6. BẢN MẠCH BẢO MẬT DOANH NGHIỆP TOÀN CẦU & PHÒNG NGỪA TẤN CÔNG [NFR-XXX]
 
-- **Ngày 1**: Xây dựng Dockerfile cho microservices.
-  * **Sub-Agent Workflow Specialization:** `[Docker]`
-  * **Targeted Tag IDs:** [DAT-006], [DAT-007], [DAT-008], [DAT-009], [NFR-001], [NFR-002], [NFR-003], [NFR-004], [NFR-005], [NFR-006], [NFR-007], [NFR-008]
-  * **Target Component file path (`target_component`):** `./sources/infra/docker/Dockerfile` [DAT-006], [DAT-007], [DAT-008], [DAT-009], [NFR-001], [NFR-002], [NFR-003], [NFR-004], [NFR-005], [NFR-006], [NFR-007], [NFR-008]
-  * **Low-Level Technical Task Instruction:** Viết multi-stage Dockerfile, giảm kích thước, sử dụng OpenJDK 17, copy JAR, expose port 8080, healthcheck. [DAT-006], [DAT-007], [DAT-008], [DAT-009], [NFR-001], [NFR-002], [NFR-003], [NFR-004], [NFR-005], [NFR-006], [NFR-007], [NFR-008]
+- **Các biện pháp chống SQL Injection (SQLi):** Sử dụng prepared statements, tham số hóa truy vấn, và danh sách trắng cho các tham số sắp xếp.
+- **Các biện pháp chống Cross-Site Scripting (XSS) & Content Security Policy (CSP):** Tự động thoát HTML trong JSX, thiết lập header CSP nghiêm ngặt (`script-src 'self'`), và sử dụng DOMPurify cho nội dung người dùng.
+- **Các biện pháp chống CORS đa tenant:** Kiểm tra nguồn gốc động, cho phép chỉ các tên miền được tin cậy, và lưu trữ các chính sách CORS theo từng tenant.
+- **Các biện pháp chống rò rỉ log & che giấu PII:** Sử dụng `@JsonSerialize` để ẩn PII, tự động xóa các trường nhạy cảm, và giới hạn độ dài log.
+- **Các chỉ số hiệu suất:** Đảm bảo độ trễ trung bình dưới 200ms cho các API cốt lõi, sử dụng chỉ mục cho các truy vấn thường xuyên, và hỗ trợ 10,000 người dùng đồng thời.
+- **Các chỉ số khả năng sẵn sàng:** Mục tiêu 99.9% thời gian hoạt động, triển khai auto-failover trên các cluster GKE, và giám sát sức khỏe theo thời gian thực.
+- **Các chỉ số bảo mật:** TLS 1.3 cho mọi kết nối, mã hóa AES-256 ở trạng thái nghỉ, JWT hết hạn sau 15 phút, refresh token 7 ngày, và tuân thủ OWASP Top 10.
+- **Các chỉ số khả năng mở rộng & sẵn sàng:** Tự động mở rộng Quarkus dựa trên HPA (CPU >70% hoặc độ trễ >300ms), sử dụng PostgreSQL read replicas cho báo cáo, và triển khai service mesh cho giao tiếp giữa các dịch vụ.
+- **Các chỉ số kích thước Docker:** Giới hạn kích thước image gốc <200MB, image cuối cùng <500MB, và tối ưu hóa các layer không cần thiết.
+- **Các chỉ số ghi nhật ký & kiểm toán:** Ghi lại mọi hành động của người dùng (thay đổi vai trò, điểm danh, thông báo) với timestamp, userId, và chi tiết hành động; lưu trữ log trong 1 năm.
+- **Các chỉ số hỗ trợ đa ngôn ngữ:** Ngoại giao hóa chuỗi UI, hỗ trợ English, Vietnamese, Spanish, và chuyển đổi locale không cần tải lại trang.
+- **Các chỉ số tuân thủ GDPR/CCPA:** Cho phép người dùng yêu cầu xóa dữ liệu cá nhân, cung cấp API xuất dữ liệu JSON, và quản lý sự đồng ý cho tiếp thị.
+- **Các chỉ số sao lưu & phục hồi sau thảm họa:** Sao lưu PostgreSQL đầy đủ hàng ngày, phục hồi điểm trong thời gian 24 giờ, và sao lưu cluster GKE sang region khác.
 
-## Đặc tả Kiến trúc Chi tiết Giai đoạn 4 – Ngày 2
+## 📁 7. QUY TẮC TUÂN THỦ DI ĐỘNG HYBRID & CƠ CHẾ SEO QUỐC TẾ
 
-- **Ngày 2**: Xây dựng Terraform cho GKE cluster.
-  * **Sub-Agent Workflow Specialization:** `[GCP]`
-  * **Targeted Tag IDs:** [DAT-006], [DAT-007], [DAT-008], [DAT-009], [NFR-001], [NFR-002], [NFR-003], [NFR-004], [NFR-005], [NFR-006], [NFR-007], [NFR-008]
-  * **Target Component file path (`target_component`):** `./sources/infra/terraform/main.tf` [DAT-006], [DAT-007], [DAT-008], [DAT-009], [NFR-001], [NFR-002], [NFR-003], [NFR-004], [NFR-005], [NFR-006], [NFR-007], [NFR-008]
-  * **Low-Level Technical Task Instruction:** Viết Terraform modules cho VPC, GKE cluster, IAM, Cloud SQL, Pub/Sub, và Cloud Storage. [DAT-006], [DAT-007], [DAT-008], [DAT-009], [NFR-001], [NFR-002], [NFR-003], [NFR-004], [NFR-005], [NFR-006], [NFR-007], [NFR-008]
+- **Các quy tắc tuân thủ di động hybrid Capacitor:** Triển khai dynamic fetch cho API calls, absolute URL addressing, hydration safeguards (`ssr: false` cho các component tương tác), native storage abstractions (`@capacitor/preferences`), và hardware back-button interception.
+- **Các cơ chế quốc tế hóa (i18n) & SEO:** Sử dụng middleware để phát hiện locale từ cookie, header Accept-Language, hoặc URL prefix; render `<html lang='vi'>` cho Vietnamese; tự động inject hreflang links (`<link rel="alternate" hreflang="en" href="https://example.com/en/page"/>`); sử dụng meta tags `og:locale` cho social sharing.
 
-## Đặc tả Kiến trúc Chi tiết Giai đoạn 4 – Ngày 3
+## 📁 8. LUỒNG HOẠT ĐỘNG HÀNG NGÀY TỰ ĐỘNG HÓA PIPELINE CHO BRANCH GIT
 
-- **Ngày 3**: Xây dựng Kubernetes manifests.
-  * **Sub-Agent Workflow Specialization:** `[GKE]`
-  * **Targeted Tag IDs:** [DAT-006], [DAT-007], [DAT-008], [DAT-009], [NFR-001], [NFR-002], [NFR-003], [NFR-004], [NFR-005], [NFR-006], [NFR-007], [NFR-008]
-  * **Target Component file path (`target_component`):** `./sources/infra/gke/deployment.yaml` [DAT-006], [DAT-007], [DAT-008], [DAT-009], [NFR-001], [NFR-002], [NFR-003], [NFR-004], [NFR-005], [NFR-006], [NFR-007], [NFR-008]
-  * **Low-Level Technical Task Instruction:** Viết Deployment, Service, Ingress, HPA, ConfigMap, Secret. Đảm bảo autoscaling, health checks, TLS. [DAT-006], [DAT-007], [DAT-008], [DAT-009], [NFR-001], [NFR-002], [NFR-003], [NFR-004], [NFR-005], [NFR-006], [NFR-007], [NFR-008]
+- **Cách ly không gian làm việc hàng ngày:** Mỗi ngày làm việc tạo một branch riêng biệt `features/development-phase-X-day-Y` (`X` là số giai đoạn, `Y` là số ngày trong giai đoạn). Branch được tạo từ `main` và tự động merge trở lại sau khi hoàn thành ngày.
+- **Các cổng kiểm tra xác thực pipeline:** Sau khi commit, GitHub Actions chạy các bước: kiểm tra cú pháp (`npm run lint`), kiểm tra loại (`mvn compile`), kiểm tra đơn vị (`mvn test`), kiểm tra độ bao phủ (`jacoco`), và triển khai image Docker lên GKE chỉ khi tất cả kiểm tra vượt qua (>=85% độ bao phủ). Nếu thất bại, pipeline dừng lại và thông báo cho Reviewer.
 
-## Đặc tả Kiến trúc Chi tiết Giai đoạn 4 – Ngày 4
+### 🛑 MATRIX COVERAGE CHECK MANDATE
 
-- **Ngày 4**: Xây dựng workflow CI/CD.
-  * **Sub-Agent Workflow Specialization:** `[Docker]`
-  * **Targeted Tag IDs:** [DAT-006], [DAT-007], [DAT-008], [DAT-009], [NFR-001], [NFR-002], [NFR-003], [NFR-004], [NFR-005], [NFR-006], [NFR-007], [NFR-008]
-  * **Target Component file path (`target_component`):** `./sources/infra/github-actions/workflows/ci.yml` [DAT-006], [DAT-007], [DAT-008], [DAT-009], [NFR-001], [NFR-002], [NFR-003], [NFR-004], [NFR-005], [NFR-006], [NFR-007], [NFR-008]
-  * **Low-Level Technical Task Instruction:** Viết GitHub Actions workflow: build, test, scan, push Docker image, deploy to GKE. Đảm bảo coverage > 85 %. [DAT-006], [DAT-007], [DAT-008], [DAT-009], [NFR-001], [NFR-002], [NFR-003], [NFR-004], [NFR-005], [NFR-006], [NFR-007], [NFR-008]
-
-## Đặc tả Kiến trúc Chi tiết Giai đoạn 5 – Ngày 1
-
-- **Ngày 1**: Xây dựng mô hình dữ liệu báo cáo.
-  * **Sub-Agent Workflow Specialization:** `[Coder]`
-  * **Targeted Tag IDs:** [NFR-009], [ARC-001], [ARC-002], [ARC-003], [ARC-004], [ARC-005], [ARC-006], [ARC-007], [ARC-008], [ARC-009], [ARC-010]
-  * **Target Component file path (`target_component`):** `./sources/backend/reporting-service/src/main/java/org/nlh4j/saas/membershiphub/reportingservice/ReportingService.java` [NFR-009], [ARC-001], [ARC-002], [ARC-003], [ARC-004], [ARC-005], [ARC-006], [ARC-007], [ARC-008], [ARC-009], [ARC-010]
-  * **Low-Level Technical Task Instruction:** Thiết kế service để truy vấn PostgreSQL, tạo CSV, lưu file, và trả về URL. [NFR-009], [ARC-001], [ARC-002], [ARC-003], [ARC-004], [ARC-005], [ARC-006], [ARC-007], [ARC-008], [ARC-009], [ARC-010]
-
-## Đặc tả Kiến trúc Chi tiết Giai đoạn 5 – Ngày 2
-
-- **Ngày 2**: Xây dựng endpoint báo cáo.
-  * **Sub-Agent Workflow Specialization:** `[Coder]`
-  * **Targeted Tag IDs:** [NFR-009], [ARC-001], [ARC-002], [ARC-003], [ARC-004], [ARC-005], [ARC-006], [ARC-007], [ARC-008], [ARC-009], [ARC-010]
-  * **Target Component file path (`target_component`):** `./sources/backend/reporting-service/src/main/java/org/nlh4j/saas/membershiphub/reportingservice/ReportingController.java` [NFR-009], [ARC-001], [ARC-002], [ARC-003], [ARC-004], [ARC-005], [ARC-006], [ARC-007], [ARC-008], [ARC-009], [ARC-010]
-  * **Low-Level Technical Task Instruction:** Tạo endpoint `/api/reports/attendance`, nhận query, gọi service, trả về CSV. [NFR-009], [ARC-001], [ARC-002], [ARC-003], [ARC-004], [ARC-005], [ARC-006], [ARC-007], [ARC-008], [ARC-009], [ARC-010]
-
-## Đặc tả Kiến trúc Chi tiết Giai đoạn 5 – Ngày 3
-
-- **Ngày 3**: Xây dựng mobile UI cho báo cáo.
-  * **Sub-Agent Workflow Specialization:** `[Coder]`
-  * **Targeted Tag IDs:** [NFR-009], [ARC-001], [ARC-002], [ARC-003], [ARC-004], [ARC-005], [ARC-006], [ARC-007], [ARC-008], [ARC-009], [ARC-010]
-  * **Target Component file path (`target_component`):** `./sources/frontend/mobile-app/src/main/java/com/membershiphub/mobile/ReportingScreen.java` [NFR-009], [ARC-001], [ARC-002], [ARC-003], [ARC-004], [ARC-005], [ARC-006], [ARC-007], [ARC-008], [ARC-009], [ARC-010]
-  * **Low-Level Technical Task Instruction:** Thiết kế màn hình báo cáo, fetch API, hiển thị bảng, download CSV. [NFR-009], [ARC-001], [ARC-002], [ARC-003], [ARC-004], [ARC-005], [ARC-006], [ARC-007], [ARC-008], [ARC-009], [ARC-010]
-
-## Đặc tả Kiến trúc Chi tiết Giai đoạn 5 – Ngày 4
-
-- **Ngày 4**: Kiểm thử đơn vị và tích hợp cho reporting-service và mobile UI.
-  * **Sub-Agent Workflow Specialization:** `[Tester]`
-  * **Targeted Tag IDs:** [NFR-009], [ARC-001], [ARC-002], [ARC-003], [ARC-004], [ARC-005], [ARC-006], [ARC-007], [ARC-008], [ARC-009], [ARC-010]
-  * **Target Component file path (`target_component`):** `./sources/backend/reporting-service/src/test/java/org/nlh4j/saas/membershiphub/reportingservice/ReportingServiceTest.java;./sources/frontend/mobile-app/src/test/java/com/membershiphub/mobile/ReportingScreenTest.java` [NFR-009], [ARC-001], [ARC-002], [ARC-003], [ARC-004], [ARC-005], [ARC-006], [ARC-007], [ARC-008], [ARC-009], [ARC-010]
-  * **Low-Level Technical Task Instruction:** Viết JUnit 5 test cho service, mock DB, kiểm tra CSV, viết Espresso test cho mobile UI. [NFR-009], [ARC-001], [ARC-002], [ARC-003], [ARC-004], [ARC-005], [ARC-006], [ARC-007], [ARC-008], [ARC-009], [ARC-010]
-
-## Mã hóa bảo mật & biện pháp ngăn chặn xâm nhập [NFR-001] đến [NFR-009]
-
-- **SQL Injection (SQLi)**: Sử dụng prepared statements, parameter binding, tránh string concatenation.
-- **Cross-Site Scripting (XSS)**: Escape output, CSP headers, React auto-escaping.
-- **CORS**: Chỉ cho phép origin cụ thể, kiểm tra tenant origin.
-- **Log Scrubbing**: Mask PII, log level 1‑year retention.
-
-## Quy tắc tuân thủ đa ngôn ngữ & SEO [NFR-007] đến [NFR-009]
-
-- **i18n**: Tải locale từ cookie hoặc header, fallback browser locale.
-- **SEO**: Thêm meta tags, hreflang, sitemap, robots.txt, JSON‑LD.
-
-## Quy trình CI/CD & DevOps
-
-- **GitHub Actions**: Build, test, scan, push Docker, deploy to GKE, run integration tests.
-- **Terraform**: Provision VPC, GKE, Cloud SQL, Pub/Sub, IAM.
-- **Docker**: Multi-stage, size < 500 MB, base < 200 MB.
-
-## Kiểm tra toàn bộ
-
-- **[TRACEABILITY MATRIX ENFORCEMENT: 100% COVERAGE VALIDATED. TOTAL UNIQUE REQ TAGS MAPPED: 24, TOTAL ARC TAGS: 10, TOTAL EXC TAGS: 5, TOTAL DAT TAGS: 9, TOTAL NFR TAGS: 9. ZERO UNASSIGNED CODES FOUND.]**
+`[KIỂM TRA TRÙNG BẢY TRÌNH BÁO: 100% COVERAGE ĐÃ XÁC NHẬN. TỔNG SỐ TAG YÊU CẦU DUY NHẤT: 25, TỔNG SỐ TAG KIẾN TRÚC: 10, TỔNG SỐ TAG NGOẠI LỆ: 5, TỔNG SỐ TAG DỮ LIỆU: 10, TỔNG SỐ TAG NFR: 9. KHÔNG CÓ MÃ NÀO BỊ BỎ QUA.]`
